@@ -1,0 +1,408 @@
+{
+  "schemaVersion": "maa-v2-integrated-lanes-stop@1.0.0",
+  "title": "STOP FOR CODEX REVIEW — Integrated MAA V2 Batch-2 + adapters + ELD + denominators",
+  "status": "STOP_FOR_CODEX_REVIEW",
+  "createdAt": "2026-07-30T12:37:26.375Z",
+  "baselineCommit": "17361223248b41d719c8de2b98c1eaf2cb4125f6",
+  "headCommit": "17361223248b41d719c8de2b98c1eaf2cb4125f6",
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "programmePassSupported": false,
+  "applicationBehaviourChanged": false,
+  "committed": false,
+  "pushed": false,
+  "merged": false,
+  "deployed": false,
+  "freezeHashStage50Preserved": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "lanes": {
+    "batch2": {
+      "accepted": true,
+      "corrected": [
+        "FID-10 exact provenance requires independent structured binding",
+        "quotation MG5/MG6 self-mention cannot certify linked provenance",
+        "occurrence disposition JSONL regenerated",
+        "499 packet-local exit capability receipts + aggregate map"
+      ],
+      "selected30": [
+        "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+        "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+        "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+        "MAA2-CHG-06-AMENDMENT-HISTORY",
+        "MAA2-CHG-10-WARNING-INSEPARABLE",
+        "MAA2-FID-02-COUNT-NUMBERS",
+        "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+        "MAA2-FID-06-PRESERVE-NEGATIVES",
+        "MAA2-FID-07-PRESERVE-QUALIFIERS",
+        "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+        "MAA2-BND-02-INSTRUMENT-STATUS",
+        "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+        "MAA2-BND-08-EXTRACT-VS-FULL",
+        "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+        "MAA2-BND-14-QUARANTINED-CONFLICTING",
+        "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+        "MAA2-EVS-01-DIMENSION-SEPARATION",
+        "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+        "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+        "MAA2-CHR-01-EXACT-DATES-TZ",
+        "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+        "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+        "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+        "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+        "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+        "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+        "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+        "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+        "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+        "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP"
+      ],
+      "partially_implemented": 55,
+      "specified_not_implemented": 106,
+      "implemented": 0,
+      "receipts": {
+        "evaluated": 27434,
+        "unresolved": 11,
+        "not_exercised": 0,
+        "total": 27445
+      },
+      "exitCapabilityReceipts": 499,
+      "exitMapPopulation": 499
+    },
+    "multiExitAdapters": {
+      "accepted": true,
+      "corrected": [
+        "canCopy alone insufficient",
+        "view requires solicitor-visible non-empty string",
+        "structured artefact receipts require valid SHA-256/schema/ISO/run+capture",
+        "stage150/multi-exit-map derived from 499 packet receipts (not representative packet)",
+        "evidenceObserved / evidenceRequired / evidenceMissing separated"
+      ],
+      "rejected": [
+        "Independent Batch-2 multi-exit algorithm (superseded)",
+        "Representative synthetic packet as programme evidence",
+        "evidenceOnEsa for absent API/PDF/browser artefacts"
+      ],
+      "exitMatrix": [
+        {
+          "exit": "view",
+          "populationDenominator": 499,
+          "exercisableCount": 499,
+          "partialCount": 0,
+          "notExercisedCount": 0,
+          "evidenceObservedUnion": [
+            "/courtNote/text",
+            "/evidenceStates",
+            "/fiveAnswersEvidenceRows",
+            "/warningsAndGaps/doNotOverstate"
+          ],
+          "evidenceRequired": [
+            "/courtNote/text",
+            "/fiveAnswersEvidenceRows",
+            "/evidenceStates",
+            "/warningsAndGaps/doNotOverstate"
+          ],
+          "evidenceMissingUnion": [],
+          "missingAdapterCounts": {},
+          "note": "view: aggregated from 499 packet-local capability receipts."
+        },
+        {
+          "exit": "copy",
+          "populationDenominator": 499,
+          "exercisableCount": 499,
+          "partialCount": 0,
+          "notExercisedCount": 0,
+          "evidenceObservedUnion": [
+            "/courtNote/canCopy",
+            "/warningsAndGaps/chaseItems/*/copySuggestion"
+          ],
+          "evidenceRequired": [
+            "/courtNote/canCopy",
+            "/warningsAndGaps/chaseItems/*/copySuggestion",
+            "/courtNote/canCopy=true_or_nonempty_copySuggestion"
+          ],
+          "evidenceMissingUnion": [],
+          "missingAdapterCounts": {},
+          "note": "copy: aggregated from 499 packet-local capability receipts."
+        },
+        {
+          "exit": "export",
+          "populationDenominator": 499,
+          "exercisableCount": 0,
+          "partialCount": 499,
+          "notExercisedCount": 0,
+          "evidenceObservedUnion": [
+            "/exportVersion/blockedReason",
+            "/exportVersion/reviewFooter",
+            "/exportVersion/sendability"
+          ],
+          "evidenceRequired": [
+            "/exportVersion/reviewFooter",
+            "/exportVersion/sendability",
+            "/exportVersion/blockedReason",
+            "full_export_exit_payload_bytes"
+          ],
+          "evidenceMissingUnion": [
+            "full_export_exit_payload_bytes"
+          ],
+          "missingAdapterCounts": {
+            "full_export_exit_payload_bytes": 499
+          },
+          "note": "export: aggregated from 499 packet-local capability receipts."
+        },
+        {
+          "exit": "api",
+          "populationDenominator": 499,
+          "exercisableCount": 0,
+          "partialCount": 0,
+          "notExercisedCount": 499,
+          "evidenceObservedUnion": [],
+          "evidenceRequired": [
+            "api_exit_payload",
+            "api_response_headers_receipt"
+          ],
+          "evidenceMissingUnion": [
+            "api_exit_payload",
+            "api_response_headers_receipt"
+          ],
+          "missingAdapterCounts": {
+            "api_exit_adapter": 499
+          },
+          "note": "api: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
+        },
+        {
+          "exit": "pdf",
+          "populationDenominator": 499,
+          "exercisableCount": 0,
+          "partialCount": 0,
+          "notExercisedCount": 499,
+          "evidenceObservedUnion": [],
+          "evidenceRequired": [
+            "pdf_exit_payload_bytes",
+            "pdf_text_extraction_receipt"
+          ],
+          "evidenceMissingUnion": [
+            "pdf_exit_payload_bytes",
+            "pdf_text_extraction_receipt"
+          ],
+          "missingAdapterCounts": {
+            "pdf_exit_adapter": 499
+          },
+          "note": "pdf: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
+        },
+        {
+          "exit": "composed_prose",
+          "populationDenominator": 499,
+          "exercisableCount": 0,
+          "partialCount": 0,
+          "notExercisedCount": 499,
+          "evidenceObservedUnion": [],
+          "evidenceRequired": [
+            "composed_prose_exit_payload"
+          ],
+          "evidenceMissingUnion": [
+            "composed_prose_exit_payload"
+          ],
+          "missingAdapterCounts": {
+            "composed_prose_exit_adapter": 499
+          },
+          "note": "composed_prose: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
+        },
+        {
+          "exit": "authenticated_browser",
+          "populationDenominator": 499,
+          "exercisableCount": 0,
+          "partialCount": 0,
+          "notExercisedCount": 499,
+          "evidenceObservedUnion": [],
+          "evidenceRequired": [
+            "browser_session_receipt",
+            "authenticated_screenshot_hash",
+            "dom_text_extraction_receipt",
+            "exit_click_path_receipt"
+          ],
+          "evidenceMissingUnion": [
+            "authenticated_screenshot_hash",
+            "browser_session_receipt",
+            "dom_text_extraction_receipt",
+            "exit_click_path_receipt"
+          ],
+          "missingAdapterCounts": {
+            "authenticated_browser_evidence_adapter": 499
+          },
+          "note": "authenticated_browser: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
+        }
+      ]
+    },
+    "eldFoundation": {
+      "accepted": true,
+      "corrected": [
+        "graph validation: duplicates, cycles, changed-nodes, direction, identity"
+      ],
+      "status": "specified_not_implemented",
+      "controls": 14,
+      "currentlyRunnable": false,
+      "connectedToLiveDrafting": false,
+      "canonicalSpec": "eld-dependency-specification@1.1.0"
+    },
+    "denominatorReadiness": {
+      "accepted": false,
+      "corrected": true,
+      "rejectedStale": true,
+      "note": "Regenerated; FID-10 unresolved uses BLOCKED_UNRESOLVED_PROVENANCE (not detector noise). Approvals remain PENDING.",
+      "approvalCounts": {
+        "PENDING_APPROVAL": 54,
+        "BLOCKED_MISSING_INPUT": 106,
+        "BLOCKED_DETECTOR_NOISE": 0,
+        "BLOCKED_UNRESOLVED_PROVENANCE": 1,
+        "PENDING_SOURCE_REVIEW": 0,
+        "APPROVED_FOR_CALIBRATION": 0,
+        "APPROVED_FOR_FROZEN_RUN": 0
+      }
+    }
+  },
+  "fid10": {
+    "before": {
+      "unresolvedCandidateOccurrences": 915,
+      "casesWithUnresolvedCandidates": 474,
+      "populationUniqueValid": 499,
+      "source": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-intelligence/stage150-fid10-calibration-disclosure.json"
+    },
+    "after": {
+      "unresolvedCandidateOccurrences": 19,
+      "casesWithUnresolvedCandidates": 2,
+      "populationUniqueValid": 499,
+      "quoteOccurrenceTotal": 1043,
+      "casesWithAnyQuoteSurface": 499
+    },
+    "familyCounts": {
+      "substantive_quote_needs_provenance": 16,
+      "heading_label_formatting": 0,
+      "provenance_in_linked_field": 0,
+      "qualified_unknown_provenance": 1,
+      "detector_false_positive": 1023,
+      "genuinely_unresolved": 3
+    },
+    "automaticConfirmedDefectDecisions": 0,
+    "occurrenceDispositionJsonl": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch2/stage150-fid10-occurrence-dispositions.jsonl",
+    "occurrenceCount": 1043
+  },
+  "controlTotalsByStatus": {
+    "stage150ControlCount": 161,
+    "partially_implemented": 55,
+    "specified_not_implemented": 106,
+    "implemented": 0,
+    "eldNonRunnable": 14
+  },
+  "blockers": [
+    "partially_implemented detectors remain blocking (0 fully implemented of 161)",
+    "denominator minima PENDING_APPROVAL / not complete",
+    "FID-10 BLOCKED_UNRESOLVED_PROVENANCE: 19 unresolved candidates / 2 cases",
+    "ELD 14 specified_not_implemented — adapters absent",
+    "api/pdf/composed_prose/authenticated_browser not_exercised without structured receipts",
+    "Stage-150 selection/execution gates false"
+  ],
+  "protectedAssets": {
+    "brain1GuardianBlobUnchanged": true,
+    "rows": [
+      {
+        "path": "lib/criminal/strategy-fight-engine.ts",
+        "baselineBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+        "headBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-fight-engine-generators.ts",
+        "baselineBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+        "headBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/get-aggressive-defense.ts",
+        "baselineBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+        "headBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-battleboard.ts",
+        "baselineBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+        "headBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-routes.ts",
+        "baselineBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+        "headBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/bundle-truth-ledger.ts",
+        "baselineBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+        "headBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/bundle-material-normalizer.ts",
+        "baselineBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+        "headBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/fingerprint.ts",
+        "baselineBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+        "headBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/guardian.ts",
+        "baselineBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+        "headBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/index.ts",
+        "baselineBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+        "headBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/types.ts",
+        "baselineBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+        "headBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+        "blobUnchanged": true
+      }
+    ]
+  },
+  "staleArtefactsExcludedOrSuperseded": [
+    "denominator-readiness STOP claiming FID-10 915/474 (superseded by corrected scan)",
+    "stage150/multi-exit-map.ts independent algorithm (now derived from 499 receipts)",
+    "name-only artefact bags as exit evidence (rejected)",
+    "length-alone FID-10 heading exemption (rejected)",
+    "quotation self-mention of MG5/MG6 as exact provenance (rejected)",
+    "BLOCKED_DETECTOR_NOISE for genuine unresolved provenance (rejected)",
+    "representative synthetic ESA packet as programme exit evidence (rejected)"
+  ],
+  "verification": {
+    "contractsCommand": "npx tsx --test scripts/maa-v2-stage150-batch2-contracts.test.ts scripts/maa-v2-multiexit-adapter-contracts.test.ts scripts/maa-v2-eld-foundation-contracts.test.ts scripts/maa-v2-stage150-intelligence-contracts.test.ts scripts/maa-v2-every-word-foundation-contracts.test.ts scripts/maa-v2-execution-readiness-contracts.test.ts",
+    "contractsPassCount": 122,
+    "productionBuild": "npm run build — passed (this correction unit)",
+    "typescriptDelta": {
+      "schemaVersion": "stage150-typescript-delta@1.0.0",
+      "baselineCommit": "17361223248b41d719c8de2b98c1eaf2cb4125f6",
+      "comparison": "vs stage150-intelligence/typescript-baseline.json from accepted tip",
+      "priorStdoutSha256": "9488dc47ff1948968634ca1d57409e53a0bf383f9f4ca4543d0f22782f19961b",
+      "currentStdoutSha256": "23954300782b971c157991f67474a8a07d8778272bf77fab33d78453a72175c2",
+      "delta": "changed_hash_preexisting_unrelated",
+      "stage150PathErrors": 0,
+      "multiExitAdapterPathErrors": 0,
+      "eldPathErrors": 0,
+      "note": "Repo-wide tsc still exits non-zero on pre-existing unrelated eval/simulator paths; integrated correction sources introduce no new tsc errors under stage150/multi-exit-adapters/eld paths."
+    },
+    "brain1GuardianBlobUnchanged": true,
+    "protectedPathWorkingTreeDirty": false,
+    "stage150Gates": {
+      "sampleSelectionAllowed": false,
+      "executionAllowed": false,
+      "programmePassSupported": false
+    },
+    "committed": false
+  }
+}

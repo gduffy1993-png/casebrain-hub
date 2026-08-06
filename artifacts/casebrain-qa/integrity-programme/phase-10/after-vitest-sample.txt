@@ -1,0 +1,72 @@
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 C:/Users/gduff/casebrain-hub
+
+ Ô£ô lib/housing/__tests__/awaabs-monitor.test.ts (3 tests) 11ms
+ Ô£ô lib/core/__tests__/riskCopy.test.ts (11 tests) 20ms
+ Ô£ô lib/core/__tests__/limitation.test.ts (8 tests) 19ms
+ ÔØ» lib/housing/__tests__/supervision-pack.test.ts (4 tests | 1 failed) 40ms
+   ├ù Supervision Pack Generator > should include disclaimer in all outputs 27ms
+     ÔåÆ expected 'This supervision pack is generated frÔÇª' to contain 'not legal advice'
+stderr | lib/criminal/__tests__/criminal-purity.test.ts > Criminal purity + probability gating > criminal missing evidence must not include CFA/retainer/Part36/PAP/quantum items
+[criminal/purity] Stripped civil-only items from criminal output: {
+  context: 'packs/getEvidenceChecklist(merged)',
+  stripped: [
+    { id: 'base-client-id', label: 'Client Identification' },
+    {
+      id: 'base-retainer',
+      label: 'Retainer / CFA / Engagement Letter'
+    },
+    { id: 'base-pre-action', label: 'Pre-Action Correspondence' },
+    { id: 'base-schedule-loss', label: 'Schedule of Loss / Damages' },
+    { id: 'base-funding-docs', label: 'Funding Documentation' }
+  ],
+  totalStripped: 5
+}
+
+ ÔØ» lib/criminal/__tests__/criminal-purity.test.ts (2 tests | 1 failed) 40ms
+   ├ù Criminal purity + probability gating > probabilities are suppressed when completeness is low 13ms
+     ÔåÆ expected 'Decision support only ÔÇö upload servedÔÇª' to match /insufficient bundle/i
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ» Failed Tests 2 ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»
+
+ FAIL  lib/criminal/__tests__/criminal-purity.test.ts > Criminal purity + probability gating > probabilities are suppressed when completeness is low
+AssertionError: expected 'Decision support only ÔÇö upload servedÔÇª' to match /insufficient bundle/i
+
+- Expected: 
+/insufficient bundle/i
+
++ Received: 
+"Decision support only ÔÇö upload served prosecution case papers (MG forms, custody/interview records, primary media logs)"
+
+ ÔØ» lib/criminal/__tests__/criminal-purity.test.ts:19:24
+     17|     });
+     18|     expect(res.show).toBe(false);
+     19|     expect(res.reason).toMatch(/insufficient bundle/i);
+       |                        ^
+     20|   });
+     21| });
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[1/2]ÔÄ»
+
+ FAIL  lib/housing/__tests__/supervision-pack.test.ts > Supervision Pack Generator > should include disclaimer in all outputs
+AssertionError: expected 'This supervision pack is generated frÔÇª' to contain 'not legal advice'
+
+Expected: "not legal advice"
+Received: "This supervision pack is generated from extracted evidence and case data. It is procedural guidance only and does not constitute legal advice."
+
+ ÔØ» lib/housing/__tests__/supervision-pack.test.ts:74:24
+     72| 
+     73|     expect(disclaimer).toContain("procedural guidance only");
+     74|     expect(disclaimer).toContain("not legal advice");
+       |                        ^
+     75|   });
+     76| });
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[2/2]ÔÄ»
+
+ Test Files  2 failed | 3 passed (5)
+      Tests  2 failed | 26 passed (28)
+   Start at  21:50:47
+   Duration  8.15s (transform 5.40s, setup 0ms, collect 6.52s, tests 129ms, environment 2ms, prepare 3.17s)
+

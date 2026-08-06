@@ -1,0 +1,911 @@
+{
+  "schemaVersion": "batch10-population-manifest@1.0.0",
+  "target": 150,
+  "populationCount": 150,
+  "readinessMet": true,
+  "deficit": 0,
+  "cohortA": [
+    {
+      "caseId": "demo-audit-01-phone-harassment",
+      "cohort": "A_original_30",
+      "packetSha256": "2e5b59b1e66df1ed67ea0656584da3f1a8bb4839278a98e3537fdb517ce498e9",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-01-phone-harassment/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-02-cctv-stills",
+      "cohort": "A_original_30",
+      "packetSha256": "5b1cc9d5809bcba2baabd6e211e98f47dc2cf78e50e44c023abd6c29ceae75c1",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-02-cctv-stills/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-03-bwv-custody",
+      "cohort": "A_original_30",
+      "packetSha256": "0fcbf4588d9c3d9c17d30831116005ce85571438b8f40dd5fd6357e8118ca4d2",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-03-bwv-custody/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-04-co-def-interview",
+      "cohort": "A_original_30",
+      "packetSha256": "25e9ceab79c46356e356db7643e23d5cfabca7dfdb7bb3489876f80aeb89cb6c",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-04-co-def-interview/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-05-encro-attribution",
+      "cohort": "A_original_30",
+      "packetSha256": "81a9987c03b6f1da8b82ebc80fc67f88e6d1b055dece9480d1fb8849cd25b3e4",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-05-encro-attribution/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-06-domestic-stalking",
+      "cohort": "A_original_30",
+      "packetSha256": "2c8c8a1ab19ea7828004bd81727ac6f145e64e426d70467f81fae4704be15d10",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-06-domestic-stalking/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-07-phone-ocr-trap",
+      "cohort": "A_original_30",
+      "packetSha256": "730e56bcb0cda1807a706bb7640f72070d93a48edf9c9193dae166612c6d674a",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-07-phone-ocr-trap/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-08-cctv-night-stills",
+      "cohort": "A_original_30",
+      "packetSha256": "4379dd57a399c50ead8170b0741d9c22930b9d35cb970dce936e401d1d1fafda",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-08-cctv-night-stills/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-09-cctv-index-only",
+      "cohort": "A_original_30",
+      "packetSha256": "06485dcc0b64f4ff2b49c06605be9ba758de8f7d3b261011644f469a4685a12a",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-09-cctv-index-only/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-10-bwv-public-order",
+      "cohort": "A_original_30",
+      "packetSha256": "bb4ab92d10863fbc1d10b0f8f202323e49dc3143b89a19ac0d84782ac41b0841",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-10-bwv-public-order/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-11-custody-pace-ocr",
+      "cohort": "A_original_30",
+      "packetSha256": "fb3cdd72916b33d7209962bd7c898c3090afb161ab5b65f26f35a79b1830a8cf",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-11-custody-pace-ocr/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-12-multi-def-burglary",
+      "cohort": "A_original_30",
+      "packetSha256": "ec1e3a96df7a242c7070a6699445679824a272645b9debf6619d68de38ae084f",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-12-multi-def-burglary/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-13-co-def-index-trap",
+      "cohort": "A_original_30",
+      "packetSha256": "109c7370a45a86d7d87e4db1b04d4b5ccdbb67d606e8056528021f8adf4694cb",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-13-co-def-index-trap/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-14-encro-retail",
+      "cohort": "A_original_30",
+      "packetSha256": "df34ff2635c05f6e479985ea61899394d5bf403041fa8ba81025e431ea972b2d",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-14-encro-retail/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-15-county-lines-runners",
+      "cohort": "A_original_30",
+      "packetSha256": "2c52e02f292c86abe7ce3da52a5b80e01bca365e0c2db38513599041e933b2f0",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-15-county-lines-runners/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-16-fraud-bank-statements",
+      "cohort": "A_original_30",
+      "packetSha256": "0a51ca65a869777d0fd0d0791c7a3ce94bfcc6e89334c0e4ac4d3e20105ea028",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-16-fraud-bank-statements/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-17-fraud-transaction-export",
+      "cohort": "A_original_30",
+      "packetSha256": "192b69d9c1944d7caebfb03b7428d36d6625e9b095e764bdf73eeeb59699e07d",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-17-fraud-transaction-export/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-18-motoring-sjp-thin",
+      "cohort": "A_original_30",
+      "packetSha256": "083a64e6453d780b91c3aa30358229ec655b9367bea5b7964c535f10d7b76de5",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-18-motoring-sjp-thin/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-19-motoring-breath-specimen",
+      "cohort": "A_original_30",
+      "packetSha256": "b3ad5c387ca4023bd0ad394c56ce81a031c7d169990746894722db923cc66ac9",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-19-motoring-breath-specimen/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-20-domestic-harassment",
+      "cohort": "A_original_30",
+      "packetSha256": "7b048fc2c6acac7c900564ad60384a7a2a944e567df3e1b253301ad188c14af0",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-20-domestic-harassment/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-21-historic-sexual-abe",
+      "cohort": "A_original_30",
+      "packetSha256": "e5bd66e981d1986e6b2040fa1e6866fcae5cf188b2f4045e7bbdd25b1df3d87c",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-21-historic-sexual-abe/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-22-youth-interview",
+      "cohort": "A_original_30",
+      "packetSha256": "ab52b13cba4e42f550d890bb0b93f8dc6edba66413f52f52b99790d91bb830dd",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-22-youth-interview/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-23-duplicate-pages",
+      "cohort": "A_original_30",
+      "packetSha256": "7a5e60c6f769b5a15eff7b633f7075f13b821f03096396397d842d320c52d7ba",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-23-duplicate-pages/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-24-missing-pages-index",
+      "cohort": "A_original_30",
+      "packetSha256": "cdc7c6aa0b75d0ac90051b49c3bac38c93cc29b060f0bc7306e68417bb81f7ee",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-24-missing-pages-index/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-25-charge-bundle-mismatch",
+      "cohort": "A_original_30",
+      "packetSha256": "3169d345931503fa324e18a9bfd5c59bb9bef62f7554403e9145c96cae55ba12",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-25-charge-bundle-mismatch/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-26-phone-referred-metadata",
+      "cohort": "A_original_30",
+      "packetSha256": "b28bdc89b72a6243bb6b3ed6f309cd942f8a47bdbe5a5f12c317c31caead7976",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-26-phone-referred-metadata/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-27-custody-pace-missing",
+      "cohort": "A_original_30",
+      "packetSha256": "a9d87c07007a4b7c0a59d0c01f56f8c9c4c7fef826ab5c458527d0d8f8501846",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-27-custody-pace-missing/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-28-fraud-subscriber-trap",
+      "cohort": "A_original_30",
+      "packetSha256": "d58a0ee1e863c7d4c8e28c3c6cb69c0ebc61c7808b6b83b1f05d1c6f00ee9e74",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-28-fraud-subscriber-trap/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-29-youth-yjs-material",
+      "cohort": "A_original_30",
+      "packetSha256": "d9ac93c9098559b8f8493e9cba336b43d73dea6e08d774fef40e5d884499dc75",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-29-youth-yjs-material/structured-case-packet.json"
+    },
+    {
+      "caseId": "demo-audit-30-layout-hearing-date",
+      "cohort": "A_original_30",
+      "packetSha256": "a0e119e202d269a7b697a01c34aab2a1ab0bfc993cbf0d7338208c2b2c0f482f",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-30-layout-hearing-date/structured-case-packet.json"
+    }
+  ],
+  "cohortB": [
+    {
+      "caseId": "s150-d120-001-homicide-causation-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "b0ca7bb319487ef28d779be196abf99d448ce61663cab2758002b6b3ed5052df",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-001-homicide-causation-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-002-homicide-causation-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "16f3762bc78c29cd56e691d564df8a7b4971769e9fdbc5bfaf189eb66e102d1a",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-002-homicide-causation-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-003-homicide-causation-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "06ec9b7fe6d48e1c915dad7285e6548f5c13de8ee6ca97510aa5f4d1f8a4d8d3",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-003-homicide-causation-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-004-homicide-causation-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "d6c0e007c35b41e5328f58a75fb0de9d3eca6a19706d741702c5e6a67578df70",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-004-homicide-causation-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-005-homicide-causation-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "3fd37237c4c8a566058d4f02fc6c8447739e5dc8bc063be135b58bae9038bc42",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-005-homicide-causation-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-006-homicide-causation-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "b8c7d042bd946301e251486d0432d70c5aa221a8d15f3051ead274a962826d47",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-006-homicide-causation-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-007-homicide-causation-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "34721b02c25aa6b4d88e53259729b561af241e36c9efaa5f82c967d1bf04672e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-007-homicide-causation-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-008-violence-robbery-weapons-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "69795704d2d8e159bcdd744b9bbf0e99a5866943a3524370ebf24d378105012e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-008-violence-robbery-weapons-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-009-violence-robbery-weapons-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "abf8424b77c64f807c872e21ee75a827337e4721f600a3828f01836aa745fcf8",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-009-violence-robbery-weapons-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-010-violence-robbery-weapons-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "f6c978c0fde5e9aba161ee5a2c30271e05f95291d50f5b0bf22a8cb7f58f5dd3",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-010-violence-robbery-weapons-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-011-violence-robbery-weapons-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "1b7caa7ec322c1346177ff17d37de7079192a7511454133f50cec0249f147d71",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-011-violence-robbery-weapons-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-012-violence-robbery-weapons-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "30e789c4d1097754f031a68db1a350f5fd8bba6d9738e0ab905805a546362c5a",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-012-violence-robbery-weapons-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-013-violence-robbery-weapons-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "6bf1b1ad4d0c3612e5239434b0c08466f31b582ca50f44594f1a91e085d106d4",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-013-violence-robbery-weapons-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-014-violence-robbery-weapons-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "80aeb6c88fa946bb95567a0683dfb6506e23de5e8ad9a16cb04aab8d452c2496",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-014-violence-robbery-weapons-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-015-firearms-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "e8c5ce80979cd91de1df328f8818675d967455b020afc30f7b9dcdf6e27a207c",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-015-firearms-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-016-firearms-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "8af63a5aefa2fe924a8f5af21fc5b13dd2575b30023fabd5c12f3020520ecdc3",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-016-firearms-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-017-firearms-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "693a86b46c36ac46678467fd88b48a70cd8d91c7f4992ceaeb79ecd8d93b47b2",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-017-firearms-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-018-firearms-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "89e22223dfc5f983f53afa2d6227b3e86b201d60c6de520301959a65e59a5aff",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-018-firearms-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-019-firearms-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "ecc8f7ae1e325768acd53d62ff0a166e375d66ec23ed1076f3bbc4f47d113b65",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-019-firearms-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-020-firearms-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "b68b978e9816fe60f07bb65c62a1e7f545d9257fd4f8ccc7560ae6862c16a5a1",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-020-firearms-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-021-firearms-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "b3bde02476d0cc8010627d819b41b5068bd695b16ae8a051ede7753b23a63a30",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-021-firearms-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-022-sexual-abe-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "7d6e80cd76c46684f3c50b42c54ee17eb97a87e528a0b87bd9fa3a4da3ec9166",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-022-sexual-abe-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-023-sexual-abe-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "79f92ae3222e825ab3a0dea30635b8044401804daafca4f929e3d10f8a142f32",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-023-sexual-abe-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-024-sexual-abe-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "df474dbdd584ca6ed49441fd15ad583193b7c41ac6987180ab877f4f5c9202d2",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-024-sexual-abe-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-025-sexual-abe-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "370df1d65776c194b6d780d9ba3ff22709d4acb1f1d86fe0bee1da2332615794",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-025-sexual-abe-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-026-sexual-abe-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "d40c526907a7a0f2ec8e77a613781db65db4410834bcda94b9fbd330c5aab683",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-026-sexual-abe-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-027-sexual-abe-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "83ed84685798bd0468d1745d15b8dfb1790584fde0209ef90f57b74d64b9f478",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-027-sexual-abe-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-028-sexual-abe-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "23059215690459d6a0dfc93d5764b2322c852f001d6fde21c8aff7f65fe66f1f",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-028-sexual-abe-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-029-domestic-abuse-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "d772e53114a78af3724943212498d78a11cc2f9ffba163408a621fe49699a001",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-029-domestic-abuse-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-030-domestic-abuse-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "c3a511c2ff5b22dc12f8092404c30c6a1af3dbfd32111cb9bcc32b48acb3515e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-030-domestic-abuse-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-031-domestic-abuse-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "62b7157c2d4d42ebf14df5c2b25524c8d8fc041b3383e5471d062bcfadc47d35",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-031-domestic-abuse-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-032-domestic-abuse-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "e8de793d2d6f6983b221193b2752c19f18f7fe2014c01ed801486fc7aef0876e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-032-domestic-abuse-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-033-domestic-abuse-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "27292d9d815d677a6b4846d3476e43833a0e2ec9ef5bee51ba24b509b79b78ac",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-033-domestic-abuse-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-034-domestic-abuse-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "440efd4ed19b5a7a1b4404ae8155a3dadec6cf0e5ccd4e4ee7661d9e70b7ba24",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-034-domestic-abuse-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-035-domestic-abuse-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "25d0232331257f973880ecb4dc851978202616684d0c80cefd2b668c95347b7a",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-035-domestic-abuse-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-036-youth-participation-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "2c12d5a95ee4379e41b29d0e19710ba8bb0eb55b231da8206eb5b6af3cf6fe11",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-036-youth-participation-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-037-youth-participation-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "e40b85e52bd2a4e308962517f60c8110b7e8c03d1817dafbf989a9826cc35607",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-037-youth-participation-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-038-youth-participation-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "815b21e53c1f88a45f4a6dfc32fc34b68b76cc15c0feccb78e866fc11f6ba15b",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-038-youth-participation-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-039-youth-participation-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "16eb76ac21de5a22c2911085a6c318eaa92f658f66eeb8ac913d488891a76f56",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-039-youth-participation-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-040-youth-participation-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "e9d14ab6d3a8c0a85ca3a86b33298cad897d6d7b85c1fda1afa50b27ea7fa90b",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-040-youth-participation-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-041-youth-participation-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "d638d06e6a425b027ca2f24820feac1b59c387ccb697678bd0d2dc3d4e2baf4b",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-041-youth-participation-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-042-youth-participation-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "f4a3e20107ae3ccd4e715ffbf8862d4d387a40c9025de884170c48784262f70f",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-042-youth-participation-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-043-county-lines-nrm-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "b22a138e1f102f0277745c9af0e2b2cd56ce6e4c0591afe202e1a9275e24bbbd",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-043-county-lines-nrm-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-044-county-lines-nrm-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "898552119c0493920be1b47c08b2f0b64fe32c1cf589ccc773035f679f282cbc",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-044-county-lines-nrm-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-045-county-lines-nrm-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "4ddba82903afa8871d68e59560a632889f6e0fc5b92f2d28e7c7a4d44eb5ab6b",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-045-county-lines-nrm-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-046-county-lines-nrm-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "f06dd6244e6ec729a71a576fadcf5773abfc532147c994765289502adc90a06a",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-046-county-lines-nrm-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-047-county-lines-nrm-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "91d81c15917bd154dbd93902262b395cd9d0c3be3b829e5d4db51e7fa13457b9",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-047-county-lines-nrm-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-048-county-lines-nrm-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "fba13c4a31f54459285191bcbe679de135d1de6425d183febd482789e517c112",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-048-county-lines-nrm-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-049-county-lines-nrm-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "2b3f20512f0482164cac64a7379654157fa31828e064340411e467b48e95d9af",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-049-county-lines-nrm-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-050-fraud-poca-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "dd1427555f6230df643672fa029aca06425d5e6c6521537e0ac3be414a48a820",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-050-fraud-poca-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-051-fraud-poca-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "a62eb8c9a01289255b9825c36e3b238226a7293bd4c6e9955a2ca4561c47322c",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-051-fraud-poca-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-052-fraud-poca-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "24a9288556db8127ee0c2c5a6902791229e20752723268dc899e4c94bd601514",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-052-fraud-poca-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-053-fraud-poca-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "d79bfb3c6bc7e3fe6a2e22b3ce9ffb9e194fb5d3627474a437450d073d32a1b8",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-053-fraud-poca-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-054-fraud-poca-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "90c7514fe7670bbe4dcc3dc4eade1c69f785bf951d7df9c1d6c6e52c6f6876a8",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-054-fraud-poca-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-055-fraud-poca-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "9f159b543db21d686e957455baa2bed5fc0650b582f4ec452f23db8683e3f3d9",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-055-fraud-poca-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-056-fraud-poca-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "0d9be5351f9e532c4af36f60356f5f2292e636a4b91b3c3e47fd997a1240bd8d",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-056-fraud-poca-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-057-digital-attribution-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "5d749568a45a8916d6374fed88ccf48791828a47e6a0c6b9b70e21651887584e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-057-digital-attribution-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-058-digital-attribution-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "b170e663c72a8619d8df86ddb832e7441ef9992747bf65f66f46595cfad73a27",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-058-digital-attribution-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-059-digital-attribution-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "20a3e06c65171536f7e88dce8c74f7a6180eb47c0b6cad794e8bdfd33bee29ca",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-059-digital-attribution-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-060-digital-attribution-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "71a1c00e7a80bcd165ff09ab69ccc8c7237bc406c745498b1879b52d895be45e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-060-digital-attribution-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-061-digital-attribution-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "fc1472d378b4d9b2725223032cb966af92cab24aca7e7235cf4963ecd485dd36",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-061-digital-attribution-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-062-digital-attribution-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "92ff10986916ca6bd4ba8745682e5238740c5e284eb10a3d1b092b1d89280972",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-062-digital-attribution-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-063-digital-attribution-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "9d031901ae3e0ae6f9e919f3bf55d45440f260166d2a236ed863a3bef20eee5a",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-063-digital-attribution-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-064-identification-code-d-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "4716a21c3825667b135f0f329e7cdf63dbe8de1722db15fc8a689921ef6b9e83",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-064-identification-code-d-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-065-identification-code-d-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "a9fb6a2561d109de2716739e4ce9a5e598df05b6fb326f0f1dee7b995de648e7",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-065-identification-code-d-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-066-identification-code-d-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "b657f05ebd2e03de5a0a4c16f4a09df2a22f50a8199102f6a26bc235274397ff",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-066-identification-code-d-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-067-identification-code-d-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "38641658f5781926ac156208fd7a5254e0f30fe45d86c5d1ba597e9500b2b041",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-067-identification-code-d-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-068-identification-code-d-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "8d0e7d10549235915cb7075ec4a5231ad9a2a7f8aff7c4d9264d794178dabd7f",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-068-identification-code-d-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-069-identification-code-d-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "459f35e586e9fe7d47ecd05834a575568a2c9de6c5cf4fedc789692416bb5b8c",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-069-identification-code-d-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-070-identification-code-d-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "57585c37ed5ae417c2fc67cfbcaf3a8c5d53db2dcc0e7abef96dce4e567022cb",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-070-identification-code-d-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-071-mental-health-fitness-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "8592a3a5863a4cc8ac477a73a553e14195e50b77cd1ec6addc481c16489a97d2",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-071-mental-health-fitness-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-072-mental-health-fitness-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "a17c22999de9ee9ac0ff6f1b69284bb2db07368a44ca456d08d1cdc4191acc71",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-072-mental-health-fitness-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-073-mental-health-fitness-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "6f0e8824f2eb47ceb94d2c07034409e3dca5480e230ea0244b22f344dd091204",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-073-mental-health-fitness-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-074-mental-health-fitness-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "64ee13049ca9f670599a709b7db9a0a44aa80a54178e09aabafb1f082838dcb3",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-074-mental-health-fitness-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-075-mental-health-fitness-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "ec7ab90c16224213684d987a2a21f00f05faa4d5a4650eb68e9f99d5d500fd15",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-075-mental-health-fitness-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-076-mental-health-fitness-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "289af0d50c3b2591bf7adf8f82018e276a3ccf58160b7916d47d9726163f28cc",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-076-mental-health-fitness-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-077-mental-health-fitness-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "2a6b501cb0dd61b1648ee70b8a4bc495b60848afbe0ecdf75893915af02a126c",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-077-mental-health-fitness-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-078-disclosure-pii-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "53256e4ad13c459c4a93879c78e0ea92da354a6fe45cab0757287da549aed744",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-078-disclosure-pii-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-079-disclosure-pii-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "42899ce0a236d1121776e380aab2d00a029a834f057ca9e9cf251a01f3c6e404",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-079-disclosure-pii-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-080-disclosure-pii-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "ae861c12c9058ccd8634869f313add6d98a31cb10cf88d57adffb6eccc983b8f",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-080-disclosure-pii-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-081-disclosure-pii-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "a5a1c26e7ac97c87f5953fd3151d69fd0490ff9507275ef6bf14e2f20dd3aad5",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-081-disclosure-pii-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-082-disclosure-pii-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "daa595809a1b704b32fe14c5bcc1f783c2d54a825e65c9745ac26e8a8b4e6905",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-082-disclosure-pii-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-083-disclosure-pii-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "703f21d58f439f0e3e7d4773f59610805bafff7206e84126ac9192f2c5d1d0df",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-083-disclosure-pii-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-084-disclosure-pii-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "9a947137945100749211a9dd577f4f87a37cc190f33053ee51baf47fffb270c2",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-084-disclosure-pii-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-085-road-traffic-fatal-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "9f7b8f39cd7ab6c5bedc2cb3e6334af2df227b71e8f46861e401e26240a78b15",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-085-road-traffic-fatal-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-086-road-traffic-fatal-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "3ac02834bdb36065498c4b422831be3a8e38c547bc0b9e295bf5ebadc5d80954",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-086-road-traffic-fatal-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-087-road-traffic-fatal-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "b027ac69f19952cfb9ce33dc85f2499ec1db8bf1a1dc7a90c2839ba4837bca37",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-087-road-traffic-fatal-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-088-road-traffic-fatal-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "fe751c43691728cffb7436f9f78ad62c962d91ec0d114a0191857e6b28617d15",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-088-road-traffic-fatal-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-089-road-traffic-fatal-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "bc59fab5ecd26675a64058d7cc04d21f075f63687991c37a40d18a80c29efd48",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-089-road-traffic-fatal-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-090-road-traffic-fatal-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "3008d0996446c20224c207b76e125af901c91db48acd35e0a8dd7e10fd07ebd5",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-090-road-traffic-fatal-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-091-road-traffic-fatal-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "69cb85d851ba344545db9304bbe7053f93f01f898d9bb84e7397737d2c2c90aa",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-091-road-traffic-fatal-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-092-magistrates-procedure-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "6729e8e65f750b66c85beaff865ae05b0e7d73d8d8c6b72f40c1a2be5539b8aa",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-092-magistrates-procedure-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-093-magistrates-procedure-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "5f7757bc67d7b800966bf8f75dd022822190e5c6139bb37fe57f5b65bf4cd662",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-093-magistrates-procedure-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-094-magistrates-procedure-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "27793f5d3c7056d0bcd84d7f7cacc8419538d3be030f28cb6005a1eb11c7d2e5",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-094-magistrates-procedure-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-095-magistrates-procedure-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "67a397c74510532868f1fde647c998a47172f66a4183be8594c3f4fbaab73b25",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-095-magistrates-procedure-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-096-magistrates-procedure-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "9a1d6fa738ba5f976bf172e4dfad7cc4d6c1f530ab258a40a863be87f6834b1c",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-096-magistrates-procedure-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-097-magistrates-procedure-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "7e5bb93e26e8b96fdc14439430b9af66a48297cbd11f5e490772ac8527cf5b49",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-097-magistrates-procedure-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-098-magistrates-procedure-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "a1ae33e10de1b64f2e0ea6d1a90ff82314cb508163cf5a8868de6198dd787416",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-098-magistrates-procedure-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-099-bail-remand-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "d1cc5ea657140832e16783e4e93f4bf6c3937bff26767206fb15570e3e6641c9",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-099-bail-remand-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-100-bail-remand-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "cd1e070ba3e98ef678c61f5cb6c2f3b60e6e320ee197083ad56604f0105681b4",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-100-bail-remand-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-101-bail-remand-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "670c1783ecb05b5009d87aabaca61f09caa4e8e61af6f7f83d3019391d43845d",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-101-bail-remand-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-102-bail-remand-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "abcbd63bd6b14b816090007be1f5dc3623f892c67610e77f4ebcdf1455382559",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-102-bail-remand-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-103-bail-remand-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "41597bc654c654f71e855a89727e4e489fa2e676e1c7a904195451cf0dbb0078",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-103-bail-remand-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-104-bail-remand-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "af59c43795f63c561f7fbeb3b64aa471b809d3b13b1b5aecd8d16c75e8a279fa",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-104-bail-remand-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-105-bail-remand-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "a3d6d780e66dcd924303e3472a87ea72140e6490a3238d4e2267395324de2f31",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-105-bail-remand-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-106-sentencing-newton-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "13824f260542a8e14e64dbe4bde0b8de3fdc9879f94479387121307d99733a84",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-106-sentencing-newton-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-107-sentencing-newton-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "b89934a4bd7819a59276113035b74f861db96a9c6d1ba8fa3a57766491f0249b",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-107-sentencing-newton-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-108-sentencing-newton-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "456bbae743690fc65fdbca1ee287bd7a558bd33645478a26c0dabe0cc11f7255",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-108-sentencing-newton-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-109-sentencing-newton-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "5a8840c4f005efa9d587bc65a722bdd5c25ec112ead568b982386bab2596179f",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-109-sentencing-newton-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-110-sentencing-newton-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "83b183cefa47e3655428860e13f5a148dce761ec90511536ca08834105c25bbe",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-110-sentencing-newton-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-111-sentencing-newton-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "82d5a3be83215ba917fd2afbe032f8988c310f5465665a0ebdf7c5483c08abc0",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-111-sentencing-newton-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-112-sentencing-newton-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "dcc0bd2a0cc2c81440c4583840462e9d6691a29a64c79e3e602ddd770feba836",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-112-sentencing-newton-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-113-appeals-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "1a2e8537503c8f74ffdf9f7d97c2758c7194dfb2a8f50775a430965049403d46",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-113-appeals-clean/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-114-appeals-messy",
+      "cohort": "B_deficit_120",
+      "packetSha256": "07a319ce1af9904e9005b1f5cfeb7b851e6e8b83aee461ec684fa82b6ef196ec",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-114-appeals-messy/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-115-appeals-ocr-scan",
+      "cohort": "B_deficit_120",
+      "packetSha256": "abffb6d70810757ff1979f211d9be7d39786a7b8797dd294102a6e88c9816f66",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-115-appeals-ocr-scan/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-116-appeals-mixed-format",
+      "cohort": "B_deficit_120",
+      "packetSha256": "535be11872abbe13b8914662599286f4405407fc660ad2cd24e3c42329ac6eb7",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-116-appeals-mixed-format/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-117-appeals-later-disclosure",
+      "cohort": "B_deficit_120",
+      "packetSha256": "4930cebc6c1cfb57cc9eccc5fd615f34b6884c0ab39c99a1a9eb9827106adca7",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-117-appeals-later-disclosure/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-118-appeals-amended-document",
+      "cohort": "B_deficit_120",
+      "packetSha256": "60cfafdac1d0f5dec34d6224a1cb37094ad984d8ea593876f1ec14e542ddb97b",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-118-appeals-amended-document/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-119-appeals-competing-chrono",
+      "cohort": "B_deficit_120",
+      "packetSha256": "ce6ad42313c3caee2d36f3fd66bc898ee09120fc11ca481880337ff59a831da1",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-119-appeals-competing-chrono/structured-case-packet.json"
+    },
+    {
+      "caseId": "s150-d120-120-multi-defendant-attribution-clean",
+      "cohort": "B_deficit_120",
+      "packetSha256": "3287f82aa704161cc1677cd82b30339db8c7d11a015d713278bf6e56b164b38e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/s150-d120-120-multi-defendant-attribution-clean/structured-case-packet.json"
+    }
+  ]
+}

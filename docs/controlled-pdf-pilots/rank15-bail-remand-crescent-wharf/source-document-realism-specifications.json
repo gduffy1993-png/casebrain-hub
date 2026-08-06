@@ -1,0 +1,93 @@
+{
+  "schema_version":"1.0","matter_id":"R15-CRESCENT-WHARF","status":"design-only","matching_rule":"Exactly one specification per planned document ID; no extras.",
+  "specifications":[
+    {
+      "document_id":"S01",
+      "expected_professional_structure_and_purpose":"Controlled cover, version record, people/non-operative charges, allegation chronology, bail-event timeline, live application/order/condition and deadline map.",
+      "realistic_page_range_and_information_density":"5-7 pages; 250-450 words per narrative page or 10-22 sourced events/rows per table page.",
+      "required_fields_headings_and_provenance":["matter/version/preparer/reviewer","person/charge/status","event/date/time/source","application/hearing/order ID","condition/start/end/supersession","risk/source/state","deadline input/authority/unknown"],
+      "native_scan_or_media_characteristics":"Born-digital accessible PDF with searchable text, stable links and compact repeated control headers.",
+      "legitimate_imperfections_and_version_history":"Pending order reference, corrected hearing time and unresolved CTL input retained through dated revisions.",
+      "confidentiality_redaction_and_audience_restrictions":"Open orientation excludes privileged strategy, witness contact data and unnecessary medical/financial detail; role variants enforce permissions.",
+      "prohibited_filler_duplication_and_padding":"No copied submissions, generic bail law, repeated chronology, decorative forms or blank padding.",
+      "document_specific_visual_and_content_checks":["charges visibly non-operative","every risk/event sourced","latest operative order identified","condition periods readable","unknown CTL inputs visible","links/redactions/bookmarks safe"]
+    },
+    {
+      "document_id":"S02",
+      "expected_professional_structure_and_purpose":"Concise charge/context pack with charge record, MG5-style allegation summary, signed core statements and exhibit schedule; supplies proportionate context without trying the merits.",
+      "realistic_page_range_and_information_density":"7-10 pages; summaries/statements 250-450 words/page and exhibit tables 8-20 rows/page.",
+      "required_fields_headings_and_provenance":["charge/person/status/date","maker/role/date/signature","premises/property/vehicle ID","exhibit/source/holder","continuity/service","allegation versus observation","count relevance","redaction/version"],
+      "native_scan_or_media_characteristics":"Mixed signed scans and born-digital summary/schedule; native media referenced by hash rather than reproduced.",
+      "legitimate_imperfections_and_version_history":"Witness uncertainty, incomplete vehicle-use attribution and corrected exhibit label allowed with history.",
+      "confidentiality_redaction_and_audience_restrictions":"Commercial and contact data minimised; only properly served context reaches defence/client/court.",
+      "prohibited_filler_duplication_and_padding":"No wholesale trial bundle, repeated statements, irrelevant exhibits, generic offence prose or duplicated images.",
+      "document_specific_visual_and_content_checks":["summary claims source-linked","maker allegations not facts","charge status visible","vehicle use not exclusive by inference","signatures/continuity legible","service/redaction states correct"]
+    },
+    {
+      "document_id":"S03",
+      "expected_professional_structure_and_purpose":"Certified antecedent, identity-matching, prior attendance, failure-to-surrender, order and bail-history records with a reconciliation schedule.",
+      "realistic_page_range_and_information_density":"6-9 pages; records at authentic sparse density and reconciliation tables 8-18 entries/page.",
+      "required_fields_headings_and_provenance":["record custodian/reference/date","identity fields/match confidence","arrest/charge/conviction/disposal","court/order/date","attendance required/actual/outcome","bail condition/period","source correction","restriction/version"],
+      "native_scan_or_media_characteristics":"Certified or system-produced records with legible scanned orders; born-digital reconciliation schedule preserves exact source wording.",
+      "legitimate_imperfections_and_version_history":"Alias, unmatched old arrest, corrected disposal and missing legacy order permitted as explicit uncertainty.",
+      "confidentiality_redaction_and_audience_restrictions":"Criminal-record and identity data limited to necessary hearing recipients; client explanation avoids unrelated details.",
+      "prohibited_filler_duplication_and_padding":"No repeated antecedent printouts, unverified police summaries, irrelevant history, empty rows or artificial risk narrative.",
+      "document_specific_visual_and_content_checks":["arrest/charge/conviction distinct","identity match basis visible","disposals reconcile","old and current conditions not merged","certification/source legible","unmatched record flagged"]
+    },
+    {
+      "document_id":"S04",
+      "expected_professional_structure_and_purpose":"Prosecution bail representations with witness-safety source material, risk schedule, proposed restrictions and service record; separates evidence from advocacy.",
+      "realistic_page_range_and_information_density":"7-10 pages; representations 300-500 words/page and risk/condition tables 6-16 rows/page.",
+      "required_fields_headings_and_provenance":["prosecutor/maker/date","risk category/assertion","supporting source/locator","defence-disputed state","victim/witness view source","condition/remand request","necessity/proportionality submission","file/service/version"],
+      "native_scan_or_media_characteristics":"Born-digital filed representations plus controlled statement/contact extracts; signature or filing stamp retained.",
+      "legitimate_imperfections_and_version_history":"Late witness update, narrowed proposed condition and corrected source reference retained with revision history.",
+      "confidentiality_redaction_and_audience_restrictions":"Witness addresses/contact routes and internal risk deliberation restricted; court/defence receive only lawful served evidence.",
+      "prohibited_filler_duplication_and_padding":"No repeated allegation summary, generic exception language, invented victim view, duplicated conditions or unsupported risk score.",
+      "document_specific_visual_and_content_checks":["each risk source-linked","assertion/submission/finding distinct","requested conditions not operative","contact redactions safe","service time visible","later update does not rewrite earlier submission"]
+    },
+    {
+      "document_id":"S05",
+      "expected_professional_structure_and_purpose":"Defence bail proposal comprising address-provider statement, residence verification, employer rota, treatment evidence, surety/security proposal, means proof and condition schedule.",
+      "realistic_page_range_and_information_density":"8-11 pages; statements/letters 250-450 words/page, financial evidence selectively tabulated and no unnecessary medical record bulk.",
+      "required_fields_headings_and_provenance":["provider/employer/clinician identity/role/date","address/occupancy/permission","monitoring suitability state","work location/hours/version","treatment need/appointment/minimised source","surety amount/means/relationship","security form/perfection state","proposal/authorisation/service"],
+      "native_scan_or_media_characteristics":"Mixed signed letters/scans and born-digital proposal; bank/health extracts narrowly cropped or redacted with source authenticity retained.",
+      "legitimate_imperfections_and_version_history":"Changing rota, incomplete monitoring consent, partial bank period and updated appointment allowed with explicit versioning.",
+      "confidentiality_redaction_and_audience_restrictions":"Defence privilege until authorised; account numbers, diagnoses and third-party contact details minimised by audience.",
+      "prohibited_filler_duplication_and_padding":"No full medical file, full bank history, repeated references, invented verification or proposal treated as court approval.",
+      "document_specific_visual_and_content_checks":["address offer versus verification clear","monitoring consent not inferred","surety means and acceptance distinct","redactions irreversible","rota version/date visible","proposal remains attributed"]
+    },
+    {
+      "document_id":"S06",
+      "expected_professional_structure_and_purpose":"First-remand application and response, hearing attendance/note, reasons, order and service/explanation record; authoritative initial decision lifecycle.",
+      "realistic_page_range_and_information_density":"8-11 pages; prescribed-style forms/orders at authentic density, submissions 250-450 words/page and concise hearing chronology.",
+      "required_fields_headings_and_provenance":["court/matter/hearing/date","application/response/file/service","attendance/representation","evidence considered","party submissions","decision/reasons","condition exact wording/start/end","order maker/seal/version","service/explanation/receipt"],
+      "native_scan_or_media_characteristics":"Born-digital forms/submissions and signed or sealed order/hearing record; superseded draft visibly marked.",
+      "legitimate_imperfections_and_version_history":"Oral clarification, corrected condition wording and perfected-order delay allowed without silent replacement.",
+      "confidentiality_redaction_and_audience_restrictions":"Filed material role-available; privileged attendance notes restricted; protected witness/health details minimised.",
+      "prohibited_filler_duplication_and_padding":"No invented reasons, duplicate orders, repeated submissions, generic legal tests or unsigned draft presented as operative.",
+      "document_specific_visual_and_content_checks":["application/reason/order distinct","exact operative wording prominent","start/end and service readable","oral/perfected differences traced","judge/court/date shown","superseded draft unmistakable"]
+    },
+    {
+      "document_id":"S07",
+      "expected_professional_structure_and_purpose":"Condition-variation application, changed-circumstance evidence, response, service, hearing record, decision and varied/refused order with before/after comparison.",
+      "realistic_page_range_and_information_density":"6-9 pages; application/response 250-450 words/page, prescribed-style order pages and comparison tables 5-12 conditions/page.",
+      "required_fields_headings_and_provenance":["original order/condition/version","applicant/change/date","supporting source","variation requested","file/service/response","hearing/judge","decision/reason","new condition/start/end","supersession/service/version"],
+      "native_scan_or_media_characteristics":"Born-digital filed papers and signed/sealed order; source employment evidence cross-linked rather than recopied.",
+      "legitimate_imperfections_and_version_history":"Late rota, narrowed request, adjournment and correction to effective time retained with full history.",
+      "confidentiality_redaction_and_audience_restrictions":"Employment/contact data minimised; privileged rationale restricted; filed proposal and order available by role.",
+      "prohibited_filler_duplication_and_padding":"No duplicate original bundle, repeated conditions without comparison, invented employer proof or proposed wording shown as operative.",
+      "document_specific_visual_and_content_checks":["before/after terms align","changed evidence source-linked","filing/service/hearing separate","refusal versus variation clear","effective time visible","old order retained and marked superseded only where proper"]
+    },
+    {
+      "document_id":"S08",
+      "expected_professional_structure_and_purpose":"Alleged-breach arrest grounds, digital-contact exhibit/register, D1 response, court hearing/opinion, renewed bail decision, operative-order history and CTL/deadline worksheet.",
+      "realistic_page_range_and_information_density":"9-13 pages; incident records 250-450 words/page, digital/order/deadline tables 8-20 rows/page and authentic forms.",
+      "required_fields_headings_and_provenance":["arrest actor/time/ground","operative condition/version/time","alleged act/source/hash/account attribution","D1 response","court hearing/opinion/reason","renewed bail/remand/order","separate charge state","CTL authority/start/exclusion/calculation/application/ruling","service/version"],
+      "native_scan_or_media_characteristics":"Mixed arrest-record scans, native digital item retained by hash with readable exhibit, born-digital deadline worksheet and signed/sealed court order.",
+      "legitimate_imperfections_and_version_history":"Missing native platform return, disputed sender, clock offset, competing CTL start inputs and later perfected order retained transparently.",
+      "confidentiality_redaction_and_audience_restrictions":"Witness and irrelevant account content restricted; defence privilege excluded; CTL internal checks separated from filed applications.",
+      "prohibited_filler_duplication_and_padding":"No screenshot repetition, invented sender attribution, duplicate orders, automatic CTL conclusion or breach allegation presented as fact.",
+      "document_specific_visual_and_content_checks":["time-specific condition resolves","digital hash/source visible","sender state not overclaimed","arrest/opinion/renewed decision distinct","CTL inputs and uncertainty shown","latest order obvious","all exit wording remains alleged"]
+    }
+  ]
+}

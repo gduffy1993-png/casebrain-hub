@@ -1,0 +1,133 @@
+{
+  "programme": "criminal-defence-integrity-corpus",
+  "phase": 11,
+  "generatedAt": "2026-07-21T21:44:04.601Z",
+  "status": "AWAITING_HUMAN_GOLD_REVIEW",
+  "disclaimer": "Phase 11 freeze + solicitor-visible renders + empty human workbook. Not corpus PASS. Not programme PASS. No fabricated human sign-off. Blocked ≠ repaired.",
+  "canonicalSchemaVersion": "1.1.0",
+  "freezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "sampleSize": 33,
+  "stratumCounts": {
+    "accepted_clean": 5,
+    "blocked_containment": 5,
+    "uncertain_family": 4,
+    "offence_family": 2,
+    "provenance": 3,
+    "hearing_time": 4,
+    "composed_prose": 2,
+    "omission_truncation": 3,
+    "review_required": 2,
+    "copy_export_api": 3
+  },
+  "contracts": [
+    {
+      "name": "schema_1_1_0_preserved",
+      "pass": true,
+      "detail": "1.1.0"
+    },
+    {
+      "name": "central_surfaces_31",
+      "pass": true,
+      "detail": "central=31"
+    },
+    {
+      "name": "phase6_ledger_untouched",
+      "pass": true,
+      "detail": "status=LEDGER_BALANCED;42=42;55=55"
+    },
+    {
+      "name": "gold_sample_frozen_30_50",
+      "pass": true,
+      "detail": "n=33;hash=619f62a2d340"
+    },
+    {
+      "name": "all_strata_represented",
+      "pass": true,
+      "detail": "{\"accepted_clean\":5,\"blocked_containment\":5,\"uncertain_family\":4,\"offence_family\":2,\"provenance\":3,\"hearing_time\":4,\"composed_prose\":2,\"omission_truncation\":3,\"review_required\":2,\"copy_export_api\":3}"
+    },
+    {
+      "name": "renders_exist_for_every_sample",
+      "pass": true,
+      "detail": "rendered=33"
+    },
+    {
+      "name": "automated_predictions_separated",
+      "pass": true,
+      "detail": "automated-predictions.json present; human workbook separate"
+    },
+    {
+      "name": "human_workbook_awaiting_signoff",
+      "pass": true,
+      "detail": "humanReviewed=0;status=AWAITING_HUMAN_GOLD_REVIEW"
+    },
+    {
+      "name": "no_fabricated_human_signoff",
+      "pass": true,
+      "detail": "all human judgment fields null"
+    },
+    {
+      "name": "blocked_not_equated_to_repaired_in_automation",
+      "pass": true,
+      "detail": "automation never claims blocked==repaired"
+    }
+  ],
+  "contractPass": true,
+  "renderedCoverage": {
+    "casesRendered": 33,
+    "totalSurfacesRendered": 234
+  },
+  "fpFnReport": {
+    "status": "AWAITING_HUMAN_GOLD_REVIEW",
+    "denominators": {
+      "frozenSampleSize": 33,
+      "humanReviewedCount": 0,
+      "humanUnresolvedCount": 33
+    },
+    "humanCounts": {
+      "falsePositives": 0,
+      "falseNegatives": 0,
+      "safetyRelevantFalseNegatives": 0
+    },
+    "humanRates": {
+      "fpRate": null,
+      "fnRate": null,
+      "note": "Rates undefined until qualified human review completes (denominator = humanReviewedCount)."
+    },
+    "automatedHypothesesOnly": {
+      "note": "Not human FP/FN. Do not treat as sign-off.",
+      "possible_fp_overblock": 11,
+      "possible_fn_leak": 3,
+      "neither": 10,
+      "uncertain": 9
+    },
+    "confidenceLimitations": [
+      "No qualified human/solicitor gold judgments recorded in this checkpoint.",
+      "Automated predictions are hypotheses for reviewer assistance only.",
+      "Blocked ≠ repaired remains in force.",
+      "Full ≥100 browser walkthrough not claimed here."
+    ],
+    "programmePassSupported": false,
+    "blocker": "AWAITING_HUMAN_GOLD_REVIEW — safety-relevant FN cannot be cleared without independent review"
+  },
+  "ledgerImpact": {
+    "impact": "none",
+    "phase6Status": "LEDGER_BALANCED",
+    "prior72_28_unit": "copyable_exportable_rule_firing_occurrence",
+    "current42_55_unit": "per_string_copyable_hit",
+    "doNotMix": true,
+    "preserved": {
+      "prior72RawBalanced": true,
+      "prior28TruncBalanced": true,
+      "current42Raw": 42,
+      "current55Trunc": 55
+    }
+  },
+  "remainingRisks": [
+    "Qualified human gold review not yet performed — FP/FN rates unavailable",
+    "Any safety-relevant FN found later blocks programme PASS until repaired + independently re-reviewed",
+    "≥100 stratified browser walkthrough not claimed complete",
+    "Scale lane still lacks full on-disk solicitor models for all 3000 identities (Phase 9 residual)",
+    "Registered PRE-TS-* / PRE-VITEST-COPY remediation items remain"
+  ],
+  "programmePassSupported": false
+}

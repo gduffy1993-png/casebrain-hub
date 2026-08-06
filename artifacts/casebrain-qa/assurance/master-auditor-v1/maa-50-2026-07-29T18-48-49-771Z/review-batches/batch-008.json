@@ -1,0 +1,856 @@
+{
+  "batchIndex": 8,
+  "humanReviewDisposition": null,
+  "items": [
+    {
+      "textHash": "796076595656af4afec84b62ed71355778d2c8389884875e749923e20e4ab7a2",
+      "templateHash": "8c864696a69e889f29d142372b273d35b89e7465661d8ea4f3be82006b761a46",
+      "text": "MG6C/HAN — handset download — Fay Moss — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-796076595656"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "865ac94b518142e34d1db42a4c702110b9b44009d4fe21bec15a6773123c6f95",
+      "templateHash": "ebe61b7ebe7d70c533727080294df79c6d6da3d01abbbc4ada29e0b401e77c2e",
+      "text": "MG6C/BAN — banking schedule annex B (Moss / folio 387) — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-865ac94b5181"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "fb208b7eef97af80688d39506a57c67c8519bf9ba832a6c69d08a58479209bdc",
+      "templateHash": "fc92818b1ce01d6a4ca9805ab41bf9da6e29ccb921a1070d92ed88993988ff44",
+      "text": "Outstanding: usage attribution — Fay Moss; handset download — Fay Moss; banking schedule annex B (Moss / folio 387). · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-fb208b7eef97"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "10a91f06cc15b0645228b34b5a8fda0c59c92afa506dbc51130534b23371d854",
+      "templateHash": "c669b02527592ab65b6864b15f1c5dbc351d3552f0db9cfd19714f49a3d265f8",
+      "text": "usage attribution — Fay Moss · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-10a91f06cc15"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "c57aafba967f07bcf9f3b7226803dee4a1b40b4fe70a1e8c688bc7ec59e52651",
+      "templateHash": "b5dc02372c637cf72965a53d8baacffab7cda209a17a899c86223f22c066d862",
+      "text": "handset download — Fay Moss · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-c57aafba967f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ba4d4ae734aa386cd8917a1370d24b16436e3a86bb25cf699de95c5ddd6351ad",
+      "templateHash": "5c6c34bfd9420c3f56a065e37725090dfe14ac267dbdd524d16f57cde3898284",
+      "text": "banking schedule annex B (Moss / folio 387) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-ba4d4ae734aa"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "2b51cd8560641a2c53dc45e503aa81aa492d1ed95e2d2f0011b9cd0041dacb1d",
+      "templateHash": "d3ac459a883202fbfeafd0bbcf338ce24ab2369798a345d1400a646c8d1282cc",
+      "text": "cellsite if relevant — Fay Moss · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-2b51cd856064"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "db85a44db33ba96a0e097c42b76adcb9994d29368cad9e27f76a067d6ee81c81",
+      "templateHash": "230f61aa168bec639c8c328d2c21b1e9e94aa90048f4846bb90230afcfa98110",
+      "text": "MG6 line 12 handset export — Moss · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-db85a44db33b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "968a62cb8d00c3594655c2b13c572e92f2f555bdb06bfa44d6605af142bb7ebe",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-128",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-128-truth_map-968a62cb8d00"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "89946a7911383a373187fed121d3f5feda82f3fde5e28d6bc7e43a7c5ba9fc09",
+      "templateHash": "21865a88deac38107a30025b7924755e194e837acfffe72da11bc02e1e1aa72a",
+      "text": "MG6C/PER — per-defendant map — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-89946a791138"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "cb2eeff3a48c495546c5d62513b4f52fddb723d893806d03b72f706976287075",
+      "templateHash": "5cbf46ac310128858974e3ced8c33fe33156c74b1091026235b595dbf40b8f9b",
+      "text": "MG6C/FUL — full bank export — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-cb2eeff3a48c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "01af79399ce9971d190624fa50c26cf38b4d44013eec9cdffea583dadab4d2ca",
+      "templateHash": "f3ce437199ad00bbda8b0984799f4f7679f6647b86e06d196d7574c94f3896fd",
+      "text": "Outstanding: per-defendant map; full bank export. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-01af79399ce9"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5c3c5987d77bc356f06396ac5d7a2ea5791efb32e4c8668d73d5f5e67faf82ab",
+      "templateHash": "5c3c5987d77bc356f06396ac5d7a2ea5791efb32e4c8668d73d5f5e67faf82ab",
+      "text": "per-defendant map · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-5c3c5987d77b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "23665157a43cc8368927b3432d2735cd515e31c1096c2ddfd1927d2b05de93a0",
+      "templateHash": "23665157a43cc8368927b3432d2735cd515e31c1096c2ddfd1927d2b05de93a0",
+      "text": "full bank export · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-23665157a43c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "89501df45eb6248b6c3184984a17e349d96794b4bf72ebbf134053bae4205dc0",
+      "templateHash": "89501df45eb6248b6c3184984a17e349d96794b4bf72ebbf134053bae4205dc0",
+      "text": "bank data · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-89501df45eb6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "301b78f5edc4ec829a3d2b6bc9789c9d8574d8a3e2a461cd66d8fd9388cf16e3",
+      "templateHash": "301b78f5edc4ec829a3d2b6bc9789c9d8574d8a3e2a461cd66d8fd9388cf16e3",
+      "text": "per-defendant transaction map · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-301b78f5edc4"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ffefcb00b0ca4f3aa898eb8dde9db03949430eb0eafbe5a1af9d2f2af9c52f3c",
+      "templateHash": "ffefcb00b0ca4f3aa898eb8dde9db03949430eb0eafbe5a1af9d2f2af9c52f3c",
+      "text": "bank downloads · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-ffefcb00b0ca"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "026dff70e742936f9fcb64118910b380cb9580cf172599173bea7872e8b3f2da",
+      "templateHash": "026dff70e742936f9fcb64118910b380cb9580cf172599173bea7872e8b3f2da",
+      "text": "device records · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-026dff70e742"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "438f52f3e2755cd5efa0f016e6e7856c43da64257ff36403a915c461825c94ab",
+      "templateHash": "baaa67ed98bba6869639fb830f4f13774a453a9fd953bc919cac912d478a0f67",
+      "text": "MG6C/INT — interview summary (folio 332 — Irks) — served on bundle. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-438f52f3e275"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "325d18b83442121f6f30b7f91657996c7555052599c345038b2007f076d8ce77",
+      "templateHash": "c2fb22856ba8de1ee5fb9ed1cd6a70c591121d2ddc7842956dad70fe89db6ed3",
+      "text": "Served on bundle: interview summary (folio 332 — Irks); MG5 supplementary note (folio 332 — Irks). · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-325d18b83442"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "17cad0aa8771a987f474c91e63c0b012b12fe9e39db16839236b0fc9597a7878",
+      "templateHash": "f6e721ed7f1a8aa6ea5c82454b17cc0c4a3dcde8e1e19d01eadbbe7a006054fe",
+      "text": "Provisional — partial interview summary on missing mg6 schedule papers · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-17cad0aa8771"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "0c5cf5688ca55947983e65a5c9e3733d9eb9f3f34910aa2755d0fdac2e330bd9",
+      "templateHash": "d154f1b4bf8fb9ecae22ccabb68b77da4fe1aaab79eb375f59bd6ce8aa75a782",
+      "text": "MG6C/INT — interview recording — Boden Irks — referred on MG6 — export not served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-0c5cf5688ca5"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "442aeff282874000a9bfbe41ef2a905390aedd5287580d8b65f13621e3a9c4f4",
+      "templateHash": "527a21d3a0fe4207bc8802eead2854e2cf8e3daa9bf097679e27d17c341a1f20",
+      "text": "MG6C/REC — recording — Boden Irks — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-442aeff28287"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "3cc0bd690076688757e03b21356b15a322486b3381bee5837a054939497d1e22",
+      "templateHash": "be4a857a704aa38fa3dc7dfc40ffdf202c31501b8fa00b7d4b698015f9da948f",
+      "text": "MG6C/TRA — transcript — Boden Irks — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-3cc0bd690076"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "218f707f02428aa8711030f429289012b9c6406e1d4b4d40a2c6cb881220cf66",
+      "templateHash": "843fde69e5d8b354770c3a684bee103bfae89b49370cf1f374825fc7f40a359c",
+      "text": "MG6C/VEH — vehicle ANPR download (Irks / folio 332) — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-218f707f0242"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "4cd7d0bd746ef563f426ffc05dcc69286a146f435a6eeda68f363ab39410cc1c",
+      "templateHash": "92131ab2b11943f9e681c699de9076f72b266c8ded12b00ac75deeba4a9068da",
+      "text": "recording — Boden Irks · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-4cd7d0bd746e"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "931f511bacf30035d4ceb5259f8320d0a3e0749c9fba83ac94b5712d6d42cda6",
+      "templateHash": "1b60d448bd1b1decf03f6969eefb45fa79f2ffcbf08b2f87192bb431fbc4a0a6",
+      "text": "transcript — Boden Irks · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-931f511bacf3"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a4d6d8bbc2b805a861d793d762c7eaa6973340942566651f755ca1f3381195ed",
+      "templateHash": "fefd718eb861af50d7887c0fa04b723a0ee96d000187565cec644c5a707df36b",
+      "text": "vehicle ANPR download (Irks / folio 332) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-a4d6d8bbc2b8"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "14864a89a2d57de49654ec2ecbdcd676d375ad1852c213fab09a5f3743f2e219",
+      "templateHash": "ba84f0f24f36e30d1483714f9132c522b25dee7dc8c97d25c01df2ce3b9e3666",
+      "text": "Handset screenshots served without UFED scope or continuity. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-14864a89a2d5"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b991aa9d6f78dea625dc67aef7d9b53a7de146adf710a081e9368f2a69bcb09f",
+      "templateHash": "3419b118829c88ee38651a515ab890e6f1b2d4b6b4dba63d0cb9bc8106d655a4",
+      "text": "Provisional — partial phone screenshots on custody extract missing papers · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-b991aa9d6f78"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "bc123dafaad9ac86903dfa3ad7e6a2bd3b29760eee2c102c6045d9bb795d5f8f",
+      "templateHash": "1f4321d39a001647aeaba22f1ac78f793a54758b3617a6e112f4b201d7a532b7",
+      "text": "MG6C/HAN — handset screenshots (folio 329 — Fjell) — served on bundle. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-bc123dafaad9"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "201568812b9b624b79f39651f732e113730d28478b7c987f3dd8a3897bd537cf",
+      "templateHash": "1c0923391c56b1b067ac936b615edeb0178d6a76ece71953c17ea229a5bb5a6a",
+      "text": "MG6C/FUL — full download — Yvette Fjell — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-201568812b9b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "337ca6dec1020409e0d1d3f25c0cb5644b1080d5abdcee228ffab24083f30cd6",
+      "templateHash": "dbd8f317645062c07c4e1eca694678c2dcd967f91603f4c4616987d80c6d972b",
+      "text": "MG6C/SEA — search terms schedule — Yvette Fjell — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-337ca6dec102"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "fa5e4c55de2d19136fc69d18db7fe27b427e05aee3a58a94c3525b95e459fe44",
+      "templateHash": "b64f78c42b8f1b64b9ad2cd407c160c0fd605c044da97eed123ca022546dee45",
+      "text": "MG6C/UNU — unused material sensitivity review (Fjell / folio 329) — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-fa5e4c55de2d"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b4966ba7ecd9074443006c869333d2b75cda9181e5b87166a96fd538febab86c",
+      "templateHash": "46a205030ae44d54a35549df7232cea6e194c20df38a023453f1081b4d9eaa73",
+      "text": "Outstanding: full download — Yvette Fjell; search terms schedule — Yvette Fjell; unused material sensitivity review (Fjell / folio 329). · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-b4966ba7ecd9"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "913f1d3a7e0a57b780d73c074d4fb23fffe01a26ed50173003ceb2c0e30b5a91",
+      "templateHash": "3c6d54088f5ffba977b37b4d74cc165e282be09d5706418f4c557ff6a28f586f",
+      "text": "full download — Yvette Fjell · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-913f1d3a7e0a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "fa2613ae62b8a717f6c183be7a72c276470bd6f3abdb134d1d33cb31e9c0c401",
+      "templateHash": "8e25b7f60689dd696b43ccd948e1f173ba88d90f79498b5201bf64758b9b0441",
+      "text": "search terms schedule — Yvette Fjell · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-fa2613ae62b8"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "0d1d47b8d822c0e253d63523a831f9100f304dff6e40dd26497391ef5b730e53",
+      "templateHash": "4626d956b398f29b481910ae163534a3bcc31350f960b446c486c76f5a74d532",
+      "text": "unused material sensitivity review (Fjell / folio 329) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-0d1d47b8d822"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "1b0d4f1ed6d9f3dd4b5597d6e1daa47886ad8b6fa6d51d90ba5888d4558c78af",
+      "templateHash": "ec4383c4ade15a5e9711feffd3ab7d23d41fe980202f2132111557173075bfcf",
+      "text": "UFED extraction — Yvette Fjell · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-1b0d4f1ed6d9"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "64ee1a424eaa8f84314118137a14da922fcd5c2cccd497d1f5952b9bdbfea97e",
+      "templateHash": "2fc2af385c905d451eff9b5a120b3b115d890964f568c3fb63889a64583a0dd0",
+      "text": "UFED download — Yvette Fjell · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-64ee1a424eaa"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "dfca7a10d1c77876b9279898ea4136a9c315f878c3b09c440d41fa492b89912d",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-198",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-198-truth_map-dfca7a10d1c7"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a6445f418515b79172bfe19322bfed5f497595f3223a36df391736962275e9af",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-198",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-198-truth_map-a6445f418515"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "58349b664ce0cae790b0e64297f8c60cd60c835575292bfb7210537e7185d7e8",
+      "templateHash": "047912fe37b851c2c1df5d565417b3cbe74af1b8383b9699cd0431c66ecc2806",
+      "text": "MG6C/CAL — calibration — Wyatt Brine — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-58349b664ce0"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "01c4efc98e72cc2b4ef1f0854a447cdc5e3c6a5e017b80531fd7e8e93d61a3ea",
+      "templateHash": "cc8d33d9c58c0e62475350698de6d4b12073a7bba62a6f2b71a03b3eb59c4712",
+      "text": "MG6C/DEV — device record — Wyatt Brine — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-01c4efc98e72"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "789351a3a38e8a682d37494bb8ab8941afc936f8be99d45622242b7acd82cd6a",
+      "templateHash": "1efbdffb8ceb640db37156ec019f65df2cc76b4918af79f5ec63d5b83d0fdff7",
+      "text": "MG6C/MOT — motoring calibration trace (Brine / folio 198) — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-789351a3a38e"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "6dddbf49d028a4ac4a4d409e0065f966b0adae91d418d4d922e1eb66272d4b6f",
+      "templateHash": "fc4985d3190c5f993c70da93549b8ecba2d6a0e07c2fc93f33d5c530978bb497",
+      "text": "Outstanding: calibration — Wyatt Brine; device record — Wyatt Brine; motoring calibration trace (Brine / folio 198). · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-6dddbf49d028"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "4c901b822a2cae0ab5de31084099840853377e070cf3fca2b52348b9bca3813c",
+      "templateHash": "ba9bce990da90137104fdfa82b18d8202774dd0145570eeb5faed39fefd3b112",
+      "text": "calibration — Wyatt Brine · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-4c901b822a2c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "e983d60e83b380830ba5d63e877cbcd10228bfb20a11592030f3b77445803b70",
+      "templateHash": "185e716122605fc8fcc0721d76aabb834a9e5ddde756fe7349b0868d00a8e795",
+      "text": "device record — Wyatt Brine · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-e983d60e83b3"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "bf8a62952cbd27b5f4ed8083994e925f52a9717f4df0ced15cee8e8b62a57d14",
+      "templateHash": "4c7aca1c0106d2320a8a0a6f8675808158cd0e18976ca4437439ee09ce681846",
+      "text": "motoring calibration trace (Brine / folio 198) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-bf8a62952cbd"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b6a5e7381bf68b8a7e714704e00472497b35f810c6c13cb146d30b5007a2a70e",
+      "templateHash": "385334385d878fc29e8b264875e1ecf4275a58013a491f9d233af89a19389ed8",
+      "text": "calibration certificate — Wyatt Brine · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-b6a5e7381bf6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    }
+  ]
+}

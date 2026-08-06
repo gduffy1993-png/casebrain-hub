@@ -12,6 +12,12 @@ import {
   evidenceExistenceLabel,
   evidenceReliabilityLabel,
 } from "@/lib/criminal/five-answers/evidence-trace";
+import { humanizeEvidenceState } from "@/lib/criminal/solicitor-visible-sanitization";
+import {
+  makeSolicitorVisibleExportId,
+  resolveSolicitorVisibleMatterReference,
+  stripInternalCorpusIdentifiers,
+} from "@/lib/criminal/solicitor-visible-matter-reference";
 import { inferChaseItemSourceState, buildCopySafeResult } from "@/lib/criminal/trust/copy-safe";
 import { FIRM_SENDABILITY_LABELS } from "@/lib/criminal/trust/firm-facing-labels";
 import type { ExportPackModel, ExportPackSection, ExportVersionStamp } from "./types";
@@ -45,9 +51,12 @@ function worstSendability(levels: SendabilityLevel[]): SendabilityLevel {
   return levels.reduce((a, b) => (rank[b] > rank[a] ? b : a), "safe_to_send");
 }
 
-function makeExportId(caseId: string, generatedAt: string): string {
-  const t = generatedAt.replace(/[^\d]/g, "").slice(0, 14);
-  return `exp-${caseId.slice(0, 8)}-${t}`;
+function makeExportId(caseId: string, generatedAt: string, matterUrn: string | null): string {
+  return makeSolicitorVisibleExportId({
+    generatedAt,
+    internalCaseId: caseId,
+    matterUrn,
+  });
 }
 
 function buildCpsChaseSection(
@@ -78,7 +87,7 @@ function buildCpsChaseSection(
     if (COURT_IN_CPS_RE.test(raw)) {
       blockedReason = "Court wording must not appear in CPS chase copy.";
     }
-    const stateLabel = sourceState.replace(/_/g, " ");
+    const stateLabel = humanizeEvidenceState(sourceState);
     const line = copy.canCopy
       ? copy.textForClipboard.split("\n\n")[0]!
       : sanitise(raw) + "\n\n[Blocked — solicitor review required]";
@@ -194,9 +203,17 @@ function buildEvidenceGapsSection(
 
   const lines = five.evidenceState.rows.slice(0, 8).map((row) => {
     const existence = evidenceExistenceLabel(row.existence);
+    // Single professional state in brackets — do not combine existence/reliability with "/".
+    // Put reliability limitation in ordinary prose when it adds something beyond existence.
     const reliability = evidenceReliabilityLabel(row.reliability);
-    const note = row.note?.trim() ? ` — ${sanitise(row.note)}` : "";
-    return `• ${row.label} [${existence} / ${reliability}]${note}`;
+    const reliabilityNote =
+      reliability &&
+      !/^(Needs review|Unknown)$/i.test(reliability) &&
+      !new RegExp(`\\b${reliability.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(existence)
+        ? ` Reliability on the papers remains ${reliability.toLowerCase()}.`
+        : "";
+    const note = row.note?.trim() ? ` — ${sanitise(row.note)}` : reliabilityNote ? ` —${reliabilityNote}` : "";
+    return `• ${row.label} [${existence}]${note}`;
   });
 
   const chaseLines = chase.primaryItems.slice(0, 5).map((item) => {
@@ -208,7 +225,7 @@ function buildEvidenceGapsSection(
     });
     const anchor = item.evidenceAnchor?.trim() || item.source?.trim() || "Papers";
     const why = item.whyItMatters?.trim() ? ` — ${sanitise(item.whyItMatters)}` : "";
-    return `• Chase: ${item.label} [${state.replace(/_/g, " ")}] (${anchor})${why}`;
+    return `• Chase: ${item.label} [${humanizeEvidenceState(state)}] (${anchor})${why}`;
   });
 
   const combined = [...lines, ...chaseLines.filter((l) => !lines.some((x) => x.includes(l.slice(10, 30))))];
@@ -229,11 +246,13 @@ function buildEvidenceGapsSection(
 
 function buildDoNotOverstateSection(doNotOverstate: string[]): ExportPackSection {
   const lines = doNotOverstate.slice(0, 8).map((line) => {
-    const clean = sanitise(stripReqAndInternalCodes(line));
-    return `• Do not say: ${clean}\n  Why unsafe: Source not confirmed on current papers — solicitor review required.`;
+    const clean = sanitise(stripReqAndInternalCodes(line)).replace(/^\s*Do not say:\s*/i, "").trim();
+    // One clean instruction only — never "Do not say: Do not …".
+    const instruction = /^Do not\b/i.test(clean) ? clean : `Do not say: ${clean}`;
+    return `• ${instruction}`;
   });
 
-  const body = `DO NOT OVERSTATE\n(warnings — not allegations)\n\n${lines.length ? lines.join("\n\n") : "No specific do-not-overstate warnings on current papers."}`;
+  const body = `DO NOT OVERSTATE\n(warnings — not allegations)\n\n${lines.length ? lines.join("\n") : "No specific do-not-overstate warnings on current papers."}`;
   const sendability: SendabilityLevel = "needs_solicitor_review";
 
   return {
@@ -259,6 +278,11 @@ export type BuildExportPackInput = {
   primaryRouteTitle: string | null;
   appVersion?: string | null;
   generatedAt?: string;
+  /** Source-backed URN or other professional matter reference — never invent. */
+  matterUrn?: string | null;
+  matterReference?: string | null;
+  /** Extra text scanned for a source-backed URN (bundle / charge sheet extract). */
+  urnCandidateTexts?: string[];
 };
 
 export function buildExportPack(input: BuildExportPackInput): ExportPackModel {
@@ -273,7 +297,24 @@ export function buildExportPack(input: BuildExportPackInput): ExportPackModel {
     primaryRouteTitle,
     appVersion = null,
     generatedAt = new Date().toISOString(),
+    matterUrn = null,
+    matterReference = null,
+    urnCandidateTexts = [],
   } = input;
+
+  const resolvedUrn =
+    matterUrn ??
+    resolveSolicitorVisibleMatterReference({
+      caseId,
+      matterReference,
+      urnCandidates: urnCandidateTexts,
+    });
+  // Prefer bare URN digits for export-id composition when resolve returned "URN …".
+  const urnForExportId = (() => {
+    if (matterUrn) return matterUrn;
+    const m = (resolvedUrn ?? "").match(/^URN\s+(.+)$/i);
+    return m?.[1] ?? null;
+  })();
 
   const cpsChase = buildCpsChaseSection(chase, matterConfidence);
   const courtNote = buildCourtNoteSection(chase, warRoom, matterConfidence);
@@ -319,8 +360,8 @@ export function buildExportPack(input: BuildExportPackInput): ExportPackModel {
     (matterConfidence?.level === "blocked" ? "Matter confidence blocked — review before export." : null);
 
   const version: ExportVersionStamp = {
-    exportId: makeExportId(caseId, generatedAt),
-    caseId,
+    exportId: makeExportId(caseId, generatedAt, urnForExportId),
+    caseId, // machine/audit metadata — not necessarily solicitor-visible
     generatedAt,
     exportType: "h5_export_pack_v1",
     bundleVersionLabel: `overview-export@${generatedAt.slice(0, 10)}`,
@@ -332,14 +373,23 @@ export function buildExportPack(input: BuildExportPackInput): ExportPackModel {
     reviewFooter: REVIEW_FOOTER,
   };
 
+  const visibleMatterRef = resolveSolicitorVisibleMatterReference({
+    caseId,
+    matterReference: matterReference ?? resolvedUrn,
+    urnCandidates: urnCandidateTexts,
+  });
+
   const versionBlock = [
     "— VERSION STAMP —",
     `Export ID: ${version.exportId}`,
-    `Case ID: ${caseId}`,
+    visibleMatterRef ? `Matter reference: ${visibleMatterRef}` : null,
+    // Never emit "Case ID: <fixture>" on solicitor-visible stamps.
     `Generated: ${generatedAt}`,
     version.appVersion ? `Build: ${version.appVersion}` : null,
     `Bundle/output: ${version.bundleVersionLabel}`,
-    `Source states: ${sourceStatesIncluded.join(", ") || "not recorded"}`,
+    `Source states: ${
+      sourceStatesIncluded.map((s) => humanizeEvidenceState(s)).join(", ") || "not recorded"
+    }`,
     `Sendability: ${FIRM_SENDABILITY_LABELS[version.sendability]}`,
     version.blockedReason ? `Blocked: ${version.blockedReason}` : null,
     version.reviewFooter,
@@ -347,7 +397,7 @@ export function buildExportPack(input: BuildExportPackInput): ExportPackModel {
     .filter(Boolean)
     .join("\n");
 
-  const fullPack = [...coreSections.map((s) => s.textForClipboard), versionBlock].join(
+  const fullPack = [...coreSections.map((s) => stripInternalCorpusIdentifiers(s.textForClipboard)), versionBlock].join(
     "\n\n────────────\n\n",
   );
 

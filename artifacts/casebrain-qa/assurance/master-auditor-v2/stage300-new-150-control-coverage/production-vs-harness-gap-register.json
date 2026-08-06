@@ -1,0 +1,311 @@
+{
+  "schemaVersion": "stage300-new-150-production-vs-harness-gap@1.0.0",
+  "rows": [
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "priority": "P0",
+      "exactMissingInput": "Structured legalStateTaxonomy / category-set authority fields on chargeInstruments[] (not prose-only)",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 18,
+      "achievedDenominator": 0,
+      "deferReason": "production_prose_only_not_structured — structured bag absent; corpusDesignSatisfied=18"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "priority": "P0",
+      "exactMissingInput": "Explicit structured dobAgeCalcLedger (DOB, offence/hearing timestamps, timezone, calcInputs) on packets — not inferred from court prose",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 56,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=56"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "priority": "P0",
+      "exactMissingInput": "Explicit structured dobAgeCalcLedger (DOB, offence/hearing timestamps, timezone, calcInputs) on packets — not inferred from court prose",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 56,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=56"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "priority": "P0",
+      "exactMissingInput": "Explicit structured proceduralPartyState (youthState / fitnessParticipation / disclosurePiiState) on packets — not inferred from court prose",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 23,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=23"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "priority": "P0",
+      "exactMissingInput": "Explicit structured proceduralPartyState (youthState / fitnessParticipation / disclosurePiiState) on packets — not inferred from court prose",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 17,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=17"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "priority": "P0",
+      "exactMissingInput": "Explicit structured proceduralPartyState (youthState / fitnessParticipation / disclosurePiiState) on packets — not inferred from court prose",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 18,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=18"
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "priority": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 12,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=12"
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "priority": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 12,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=12"
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "priority": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 12,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=12"
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "priority": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 12,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=12"
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "priority": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 12,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=12"
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "priority": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 12,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=12"
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "priority": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 12,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=12"
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "priority": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 12,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=12"
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "priority": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 12,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=12"
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "ownership": "capture_materialisation_harness",
+      "corpusDesignSatisfiedCount": 150,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=150"
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "ownership": "capture_materialisation_harness",
+      "corpusDesignSatisfiedCount": 150,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=150"
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "ownership": "capture_materialisation_harness",
+      "corpusDesignSatisfiedCount": 150,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=150"
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "ownership": "capture_materialisation_harness",
+      "corpusDesignSatisfiedCount": 150,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=150"
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "ownership": "capture_materialisation_harness",
+      "corpusDesignSatisfiedCount": 150,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=150"
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "priority": "P0",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "priority": "P0",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "priority": "P0",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "priority": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "ownership": "production_casebrain",
+      "corpusDesignSatisfiedCount": 15,
+      "achievedDenominator": 0,
+      "deferReason": "production_does_not_emit — live product work required; corpusDesignSatisfied=15"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "phase": "11-remediation-v3",
+  "status": "REMEDIATION_V3_COMPLETE__AWAITING_HUMAN_GOLD_REVIEW",
+  "generatedAt": "2026-07-21T23:11:59.796Z",
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "v3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "sampleSize": 33,
+  "surfacesTotal": 222,
+  "changedSurfaces": 222,
+  "insufficientSourceContextCount": 13,
+  "duplicationDisclosure": {
+    "v1Ids": 33,
+    "uniqueFixtures": 30,
+    "duplicateFixtures": [
+      {
+        "fixtureId": "cb-found-2003-nguyen",
+        "occurrences": 3
+      },
+      {
+        "fixtureId": "cb-fresh-002-jordan-hale",
+        "occurrences": 2
+      }
+    ],
+    "uniqueRenderBodiesNote": "v1 independent review reported 28 unique render bodies after body-only comparison; this remediation keeps the same 33 goldIds for before/after comparison.",
+    "v3MembershipPolicy": "SAME 33 goldIds / fixtures regenerated for comparison. Exact fixture repeats across strata are JUSTIFIED (multi-angle review of the same papers: accepted vs blocked vs uncertain). Membership not silently changed. v1 and v2 artefacts preserved read-only."
+  },
+  "fnChecks": {
+    "GOLD-11-021_trunc_not_copyable": true,
+    "GOLD-11-025_placeholder_not_copyable": true,
+    "GOLD-11-022_title_withheld": true,
+    "GOLD-11-033_title_withheld": true,
+    "no_ellipsis_title_shown_022": true,
+    "no_ellipsis_title_shown_033": true,
+    "GOLD-11-029_api_neutral_banner_only": true
+  },
+  "scan": {
+    "pass": true,
+    "hits": []
+  },
+  "contracts": [
+    {
+      "name": "schema_1_1_0",
+      "pass": true,
+      "detail": "1.1.0"
+    },
+    {
+      "name": "central_31",
+      "pass": true,
+      "detail": "31"
+    },
+    {
+      "name": "ledger_untouched",
+      "pass": true,
+      "detail": "42=42;55=55"
+    },
+    {
+      "name": "v1_preserved",
+      "pass": true,
+      "detail": "619f62a2d3408edf"
+    },
+    {
+      "name": "v2_preserved",
+      "pass": true,
+      "detail": "fcdd13e53f35a61f"
+    },
+    {
+      "name": "v3_frozen_33",
+      "pass": true,
+      "detail": "33"
+    },
+    {
+      "name": "fn_trunc_021",
+      "pass": true,
+      "detail": "canCopy=false"
+    },
+    {
+      "name": "fn_placeholder_025",
+      "pass": true,
+      "detail": "canCopy=false"
+    },
+    {
+      "name": "title_022_withheld",
+      "pass": true,
+      "detail": "withheld"
+    },
+    {
+      "name": "title_033_withheld",
+      "pass": true,
+      "detail": "withheld"
+    },
+    {
+      "name": "api_029_neutral_only",
+      "pass": true,
+      "detail": "NEUTRAL_SOLICITOR_BLOCKED_BANNER"
+    },
+    {
+      "name": "solicitor_visible_scan",
+      "pass": true,
+      "detail": "clean"
+    },
+    {
+      "name": "blind_bundle_no_predictions",
+      "pass": true,
+      "detail": "predictions excluded"
+    },
+    {
+      "name": "human_blank",
+      "pass": true,
+      "detail": "AWAITING_HUMAN_GOLD_REVIEW"
+    }
+  ],
+  "contractPass": true,
+  "ledgerImpact": "none",
+  "schemaImpact": "none — still 1.1.0",
+  "programmePassSupported": false,
+  "rootCausesFixed": [
+    "Controlled source context surface with INSUFFICIENT_SOURCE_CONTEXT exclusion from substantive FP/FN",
+    "Fixture IDs / internal strings stripped from solicitor-visible copy",
+    "Theft Act / MG6C formulas queued (not free copy) on header and court lines",
+    "Client summary prose sanitized (redacted papers / unsafe proof-outcome wording)",
+    "Evidence states humanized (referred_only → Referred only)",
+    "Chase labels deduped for solicitor display",
+    "Blocked copy previews proportionate (Item/Status/Reason) via ruleIds",
+    "SYN-API-BLOCK-01 shows only NEUTRAL_SOLICITOR_BLOCKED_BANNER"
+  ]
+}

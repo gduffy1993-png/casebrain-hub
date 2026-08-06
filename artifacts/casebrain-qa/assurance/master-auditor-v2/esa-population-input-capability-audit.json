@@ -1,0 +1,432 @@
+{
+  "schemaVersion": "esa-population-input-capability-audit@v1.0.0",
+  "generatedAt": "2026-07-29T22:49:39.273Z",
+  "corpusRoot": "artifacts/evidence-state-audit-local/cases",
+  "assuranceControlsExecuted": false,
+  "stage150Run": false,
+  "denominators": {
+    "totalCaseDirectories": 530,
+    "populationUniqueValid": 499,
+    "excludedPacketCount": 31,
+    "expectedUniqueValid": 499,
+    "uniqueValidMatchesExpected": true
+  },
+  "excludedSample": [
+    {
+      "caseId": "demo-audit-01-phone-harassment",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-02-cctv-stills",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-03-bwv-custody",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-04-co-def-interview",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-05-encro-attribution",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-06-domestic-stalking",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-07-phone-ocr-trap",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-08-cctv-night-stills",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-09-cctv-index-only",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-10-bwv-public-order",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-11-custody-pace-ocr",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-12-multi-def-burglary",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-13-co-def-index-trap",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-14-encro-retail",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-15-county-lines-runners",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-16-fraud-bank-statements",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-17-fraud-transaction-export",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-18-motoring-sjp-thin",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-19-motoring-breath-specimen",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-20-domestic-harassment",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-21-historic-sexual-abe",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-22-youth-interview",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-23-duplicate-pages",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-24-missing-pages-index",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-25-charge-bundle-mismatch",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-26-phone-referred-metadata",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-27-custody-pace-missing",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-28-fraud-subscriber-trap",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-29-youth-yjs-material",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "demo-audit-30-layout-hearing-date",
+      "reason": "missing:casebrain-output.json"
+    },
+    {
+      "caseId": "proof-pack-01",
+      "reason": "missing:bundle-text.md"
+    }
+  ],
+  "fields": [
+    {
+      "field": "bundle_source_text",
+      "occurrenceCount": 529,
+      "packetCount": 529,
+      "uniqueCaseCount": 529,
+      "populationUniqueValidWithField": 499,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "original_source_documents",
+      "occurrenceCount": 30,
+      "packetCount": 30,
+      "uniqueCaseCount": 30,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "document_inventory",
+      "occurrenceCount": 0,
+      "packetCount": 0,
+      "uniqueCaseCount": 0,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Not observed in audited packets; do not invent availability."
+    },
+    {
+      "field": "logical_document_identities",
+      "occurrenceCount": 0,
+      "packetCount": 0,
+      "uniqueCaseCount": 0,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Not observed in audited packets; do not invent availability."
+    },
+    {
+      "field": "page_units",
+      "occurrenceCount": 0,
+      "packetCount": 0,
+      "uniqueCaseCount": 0,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Not observed in audited packets; do not invent availability."
+    },
+    {
+      "field": "source_compiled_page_references",
+      "occurrenceCount": 27,
+      "packetCount": 27,
+      "uniqueCaseCount": 27,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "truth_expectations",
+      "occurrenceCount": 519,
+      "packetCount": 519,
+      "uniqueCaseCount": 519,
+      "populationUniqueValidWithField": 488,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "evidence_relationships",
+      "occurrenceCount": 0,
+      "packetCount": 0,
+      "uniqueCaseCount": 0,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Not observed in audited packets; do not invent availability."
+    },
+    {
+      "field": "charge_instruments",
+      "occurrenceCount": 530,
+      "packetCount": 530,
+      "uniqueCaseCount": 530,
+      "populationUniqueValidWithField": 499,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "defendant_allocation",
+      "occurrenceCount": 394,
+      "packetCount": 394,
+      "uniqueCaseCount": 394,
+      "populationUniqueValidWithField": 386,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "chronology_timestamps",
+      "occurrenceCount": 0,
+      "packetCount": 0,
+      "uniqueCaseCount": 0,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Not observed in audited packets; do not invent availability."
+    },
+    {
+      "field": "authority_currency_metadata",
+      "occurrenceCount": 0,
+      "packetCount": 0,
+      "uniqueCaseCount": 0,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Not observed in audited packets; do not invent availability."
+    },
+    {
+      "field": "audience_specific_outputs",
+      "occurrenceCount": 500,
+      "packetCount": 500,
+      "uniqueCaseCount": 500,
+      "populationUniqueValidWithField": 499,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "exit_view",
+      "occurrenceCount": 500,
+      "packetCount": 500,
+      "uniqueCaseCount": 500,
+      "populationUniqueValidWithField": 499,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "exit_copy",
+      "occurrenceCount": 500,
+      "packetCount": 500,
+      "uniqueCaseCount": 500,
+      "populationUniqueValidWithField": 499,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "exit_export",
+      "occurrenceCount": 0,
+      "packetCount": 0,
+      "uniqueCaseCount": 0,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Exit not evidenced on ESA H5 adapter — must remain not_exercised, never pass."
+    },
+    {
+      "field": "exit_api",
+      "occurrenceCount": 0,
+      "packetCount": 0,
+      "uniqueCaseCount": 0,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Exit not evidenced on ESA H5 adapter — must remain not_exercised, never pass."
+    },
+    {
+      "field": "exit_pdf",
+      "occurrenceCount": 0,
+      "packetCount": 0,
+      "uniqueCaseCount": 0,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Exit not evidenced on ESA H5 adapter — must remain not_exercised, never pass."
+    },
+    {
+      "field": "exit_composed_prose",
+      "occurrenceCount": 0,
+      "packetCount": 0,
+      "uniqueCaseCount": 0,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Exit not evidenced on ESA H5 adapter — must remain not_exercised, never pass."
+    },
+    {
+      "field": "ocr_visual_metadata",
+      "occurrenceCount": 30,
+      "packetCount": 30,
+      "uniqueCaseCount": 30,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "browser_receipts",
+      "occurrenceCount": 0,
+      "packetCount": 0,
+      "uniqueCaseCount": 0,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Not observed in audited packets; do not invent availability."
+    },
+    {
+      "field": "human_judgments",
+      "occurrenceCount": 0,
+      "packetCount": 0,
+      "uniqueCaseCount": 0,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Not observed in audited packets; do not invent availability."
+    },
+    {
+      "field": "security_tool_evidence",
+      "occurrenceCount": 0,
+      "packetCount": 0,
+      "uniqueCaseCount": 0,
+      "populationUniqueValidWithField": 0,
+      "invented": false,
+      "note": "Not observed in audited packets; do not invent availability."
+    },
+    {
+      "field": "casebrain_output",
+      "occurrenceCount": 500,
+      "packetCount": 500,
+      "uniqueCaseCount": 500,
+      "populationUniqueValidWithField": 499,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "truth_key",
+      "occurrenceCount": 530,
+      "packetCount": 530,
+      "uniqueCaseCount": 530,
+      "populationUniqueValidWithField": 499,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "five_answers_rows",
+      "occurrenceCount": 500,
+      "packetCount": 500,
+      "uniqueCaseCount": 500,
+      "populationUniqueValidWithField": 499,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "evidence_states",
+      "occurrenceCount": 500,
+      "packetCount": 500,
+      "uniqueCaseCount": 500,
+      "populationUniqueValidWithField": 499,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "chase_items",
+      "occurrenceCount": 500,
+      "packetCount": 500,
+      "uniqueCaseCount": 500,
+      "populationUniqueValidWithField": 499,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    },
+    {
+      "field": "do_not_overstate",
+      "occurrenceCount": 500,
+      "packetCount": 500,
+      "uniqueCaseCount": 500,
+      "populationUniqueValidWithField": 499,
+      "invented": false,
+      "note": "Observed on disk without running assurance controls."
+    }
+  ],
+  "esaAvailableInputsCatalog": [
+    "bundle-text.md",
+    "casebrain-output.json",
+    "truth-key.json",
+    "fiveAnswersEvidenceRows",
+    "evidenceStates",
+    "warningsAndGaps.chaseItems",
+    "warningsAndGaps.doNotOverstate",
+    "courtNote",
+    "truth.evidenceItems"
+  ],
+  "esaUnavailableInputsCatalog": [
+    "original_source_pdf_binary",
+    "ocr_confidence_metadata",
+    "browser_session_receipt",
+    "human_judgment_disposition",
+    "security_tool_scan_receipt",
+    "export_exit_payload",
+    "api_exit_payload",
+    "pdf_exit_payload",
+    "composed_prose_exit_payload",
+    "authority_currency_registry_meta",
+    "audience_client_summary",
+    "logical_document_segmentation_receipt"
+  ],
+  "esaAvailableExits": [
+    "view",
+    "copy"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "stage300-new-150-verification@1.0.0",
+  "contractsOk": true,
+  "buildOk": true,
+  "frozen150Unchanged": true,
+  "brain1GuardianUnchanged": true,
+  "baselineCommit": "d03e0a57c279d9e155ea20cf89c2e40b3f6848c9",
+  "headCommit": "d03e0a57c279d9e155ea20cf89c2e40b3f6848c9",
+  "stage300FrozenOrRun": false,
+  "committed": false
+}

@@ -1,0 +1,36 @@
+{
+  "phase": 10,
+  "generatedAt": "2026-07-21T20:55:00.000Z",
+  "typecheck": { "before": 47, "after": 47, "delta": 0 },
+  "dateAnchoredVitest": {
+    "before": { "failed": 0, "passed": 22 },
+    "after": { "failed": 0, "passed": 22 },
+    "deltaFailed": 0
+  },
+  "vitestSampleIncludingRegistered": {
+    "note": "PRE-VITEST-COPY residual failures remain registered (purity + supervision disclaimer)",
+    "failed": 2,
+    "passed": 26
+  },
+  "build": "BUILD_OK",
+  "phase6ValidatorContracts": { "surfaces": 31, "pass": true },
+  "phase8FocusedContracts": { "pass": true },
+  "phase9FocusedContracts": { "pass": true },
+  "phase10FocusedContracts": { "pass": true },
+  "mutations": {
+    "total": 30,
+    "killed": 30,
+    "survived": 0,
+    "couldNotExercise": 0,
+    "killRate": 1,
+    "safetyRelevantSurvivors": []
+  },
+  "ledgerImpact": "none",
+  "ledgerPreserved": {
+    "status": "LEDGER_BALANCED",
+    "prior72RawBalanced": true,
+    "prior28TruncBalanced": true,
+    "current42Raw": 42,
+    "current55Trunc": 55
+  }
+}

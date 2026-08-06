@@ -1,0 +1,7 @@
+{
+  "schema_version":"1.0","audiences":{"solicitor":"served child-specific evidence, venue/remand/participation states and privilege","child_client":"age-appropriate plain-language own-case explanation with reporting and peer privacy controls","court":"authorised evidence and child-focused procedure, including controlled bilingual material","CPS":"child-specialist review material with confidentiality/minimisation","internal_review":"controlled truth, Welsh-version, age and leakage audit"},
+  "context_recipient":"Parent/carer receives only authorised contextual information and is not treated as the legal client, evidence owner or decision-maker.",
+  "exits":["view","copy","export","API","composed prose"],
+  "exit_contracts":["child-first terminology and reporting controls persist","plain-language output does not change legal state","Welsh/English version and issuer provenance survive","no Y2-to-Y1 attribution","no invented confession/application","no audience widening","substantive repair and containment scored separately"],
+  "source_scoring":{"mandatory_finding_recall":"age, charge, safeguards, participation, venue, remand, participation support and language states","unsupported_statement_precision":"penalise intent, weapon, confession, venue and specialist overclaim","provenance_correctness":"person/source/version/time/page/language/issuer/state","defendant_matter_isolation":"Y1/Y2/C1 and separate-matter negative controls","audience_leakage":"zero tolerance for reporting breach, education/family excess, co-child or privilege leakage"}
+}

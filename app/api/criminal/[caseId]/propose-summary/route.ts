@@ -9,6 +9,7 @@ import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getOpenAIClient } from "@/lib/openai";
 import { getChangeListForContext } from "@/lib/criminal/verdict-change-list";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -113,7 +114,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       ? "Here’s a proposed case theory and agreed summary. Use Agree to save, Edit to change first, or Reject to discard."
       : "I couldn’t produce a structured proposal from the context. Try adding more in the Defence Plan or evidence.";
 
-  return NextResponse.json({
+  return gatedJsonResponse("api_propose_summary", {
     ok: true,
     reply,
     proposal: proposal.caseTheoryLine || proposal.agreedSummaryDetailed ? proposal : undefined,

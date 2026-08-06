@@ -1,0 +1,17 @@
+{
+  "total": 120,
+  "emptyFive": 2,
+  "emptyFiveWithCourt": 2,
+  "withRows": 118,
+  "viewRowsButEmptyFive": 2,
+  "samples": [
+    {
+      "id": "s150-d120-001-homicide-causation-clean",
+      "courtLen": 218
+    },
+    {
+      "id": "s150-d120-002-homicide-causation-messy",
+      "courtLen": 218
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-030",
+  "def": {
+    "goldId": "GOLD-11-030",
+    "stratum": "copy_export_api",
+    "sourceKind": "synthetic_controlled",
+    "fixtureId": "SYN-EXPORT-FAMILY-01",
+    "selectionReason": "Wrong-family leak blocked on export/copy",
+    "reviewFocus": "Export/copy gate blocks wrong-family material."
+  },
+  "surfaces": [
+    {
+      "surface": "export_preview",
+      "label": "Export preview",
+      "solicitorVisibleText": "EXPORT BLOCKED — Solicitor review required — output integrity check failed.\n(Wrong-family / unsupported material must not leave the system.)",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    }
+  ]
+}

@@ -1,0 +1,3040 @@
+{
+  "programme": "criminal-defence-integrity-corpus",
+  "phase": 6,
+  "generatedAt": "2026-07-21T03:00:43.932Z",
+  "status": "LEDGER_BALANCED",
+  "disclaimer": "Phase 6 occurrence ledger — not a corpus PASS. Phase 4 remains safe-but-unresolved. Do not merge / deploy / Phase 7 until ledger balances or every discrepancy has auditable disposition.",
+  "unitDefinitions": {
+    "phase3_copyableExportableOccurrences": {
+      "unit": "copyable_exportable_rule_firing_occurrence",
+      "definition": "One count per (fixture × mode∈{copy,api}) when a batch gate of up to 16 strings returns integrity_blocked including the ruleId. Not a unique-string count. Dual-mode ≈ ×2 when both modes fire."
+    },
+    "phase5_scannedCopyableHits": {
+      "unit": "per_string_copyable_hit",
+      "definition": "One count per defective string (first 20 of deeper walk up to 50) that copy-gates as integrity_blocked for raw_extraction_marker or truncated_fragment."
+    },
+    "uniqueDiagnostics": {
+      "unit": "unique_string_fingerprint",
+      "definition": "Distinct len=N;hash=… diagnostic strings across hits."
+    },
+    "uniqueCases": {
+      "unit": "unique_fixture_id",
+      "definition": "Distinct ESA case folder ids."
+    },
+    "uniqueSurfaces": {
+      "unit": "unique_surface_label",
+      "definition": "Distinct surface strings (e.g. casebrain_output.copy)."
+    }
+  },
+  "publishedPhase3": {
+    "rawCopyableExportableOccurrences": 72,
+    "truncCopyableExportableOccurrences": 28,
+    "rawTotalOccurrences": 2423,
+    "truncTotalOccurrences": 439,
+    "rawUniqueCases": 493,
+    "truncUniqueCases": 407
+  },
+  "reconstructedPhase3": {
+    "rawOccurrenceCount": 72,
+    "truncOccurrenceCount": 28,
+    "matchesPublishedRaw": true,
+    "matchesPublishedTrunc": true,
+    "rawDispositionCounts": {
+      "reconstructed": 35,
+      "proven_duplicate": 36,
+      "safely_omitted": 1
+    },
+    "truncDispositionCounts": {
+      "safely_omitted": 14,
+      "proven_duplicate": 14
+    },
+    "rawUniqueFixtures": 36,
+    "truncUniqueFixtures": 14
+  },
+  "currentPhase5": {
+    "rawPerStringHits": 42,
+    "truncPerStringHits": 55,
+    "rawUniqueDiagnostics": 3,
+    "truncUniqueDiagnostics": 1,
+    "rawDispositionCounts": {
+      "reconstructed": 41,
+      "safely_omitted": 1
+    },
+    "truncDispositionCounts": {
+      "safely_omitted": 55
+    }
+  },
+  "truncationCrosswalk": {
+    "warning": "Phase-3 28 and Phase-5 55 are different units — never subtract them directly.",
+    "phase3": {
+      "unit": "copyable_exportable_rule_firing_occurrence",
+      "count": 28,
+      "primaryCopyChannelOccurrences": 14,
+      "provenDuplicateApiChannelOccurrences": 14,
+      "uniqueFixtures": 14,
+      "explanation": "Published 28 ≈ dual-mode (copy+api). Primary underlying stock ≈ copy-channel count; api-channel rows are proven_duplicate of the copy sibling."
+    },
+    "phase5": {
+      "unit": "per_string_copyable_hit",
+      "count": 55,
+      "baselineCorrespondentFixture": 14,
+      "differentlyCountedSameWindow": 0,
+      "newlyDiscoveredDeeperWalk": 41,
+      "uniqueFixtures": 55,
+      "uniqueDiagnostics": 1
+    },
+    "how28RelateTo55": {
+      "note": "The earlier baseline of 28 is NOT a subset of 55 string IDs. It is 28 mode×fixture batch firings (= 14 unique fixtures × copy+api). Correspondence:",
+      "step1_uniqueFixturesInP3Trunc": 14,
+      "step2_p5HitsOnThoseFixturesMatchingDiag": 14,
+      "step3_p5HitsAdditionalOnBaselineFixtures": 0,
+      "step4_p5HitsOnNewFixtures": 41,
+      "arithmeticCheck": {
+        "p5Total": 55,
+        "baselinePlusExtraPlusNew": 55,
+        "equals": true
+      },
+      "userFraming28vs27": {
+        "clarification": "55−28=27 is invalid (mixed units). Correct: P3 28 rule-firings ↔ 14 unique fixtures; of 55 P5 per-string hits, 14 match those baseline fixtures+diagnostic; remaining 41 are newly discovered on other fixtures (deeper walk).",
+        "baselineCorrespondent_of55": 14,
+        "newlyDiscovered_of55": 41,
+        "additionalOnBaseline_of55": 0,
+        "expectedUserDeltaIfWrongUnits": 27,
+        "whyWrong": "55−28 mixes per-string hits with dual-mode batch firings"
+      }
+    }
+  },
+  "prior72RawMarkerMap": {
+    "unit": "copyable_exportable_rule_firing_occurrence",
+    "expected": 72,
+    "reconstructed": 72,
+    "balanced": true,
+    "dispositionTotals": {
+      "reconstructed": 35,
+      "proven_duplicate": 36,
+      "safely_omitted": 1
+    },
+    "everyIdHasDisposition": true,
+    "occurrences": [
+      {
+        "id": "p3:raw_extraction_marker:cb-fresh-002-jordan-hale:copy",
+        "fixtureId": "cb-fresh-002-jordan-hale",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx15→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:cb-fresh-002-jordan-hale:api",
+        "fixtureId": "cb-fresh-002-jordan-hale",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:cb-fresh-002-jordan-hale:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-00032:copy",
+        "fixtureId": "sc-00032",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-00032:api",
+        "fixtureId": "sc-00032",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sc-00032:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-0003e:copy",
+        "fixtureId": "sc-0003e",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-0003e:api",
+        "fixtureId": "sc-0003e",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sc-0003e:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-00044:copy",
+        "fixtureId": "sc-00044",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-00044:api",
+        "fixtureId": "sc-00044",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sc-00044:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-00056:copy",
+        "fixtureId": "sc-00056",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-00056:api",
+        "fixtureId": "sc-00056",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sc-00056:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-00062:copy",
+        "fixtureId": "sc-00062",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-00062:api",
+        "fixtureId": "sc-00062",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sc-00062:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-00068:copy",
+        "fixtureId": "sc-00068",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-00068:api",
+        "fixtureId": "sc-00068",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sc-00068:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-0006e:copy",
+        "fixtureId": "sc-0006e",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sc-0006e:api",
+        "fixtureId": "sc-0006e",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sc-0006e:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-003:copy",
+        "fixtureId": "sim-003",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-003:api",
+        "fixtureId": "sim-003",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-003:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-038:copy",
+        "fixtureId": "sim-038",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx13→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-038:api",
+        "fixtureId": "sim-038",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-038:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-048:copy",
+        "fixtureId": "sim-048",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-048:api",
+        "fixtureId": "sim-048",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-048:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-049:copy",
+        "fixtureId": "sim-049",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-049:api",
+        "fixtureId": "sim-049",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-049:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-069:copy",
+        "fixtureId": "sim-069",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=52;hash=220bf0b5851c"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=52;hash=220bf0b5851c@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-069:api",
+        "fixtureId": "sim-069",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-069:copy",
+        "defectDiagnostics": [
+          "len=52;hash=220bf0b5851c"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=52;hash=220bf0b5851c:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-115:copy",
+        "fixtureId": "sim-115",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx14→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-115:api",
+        "fixtureId": "sim-115",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-115:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-129:copy",
+        "fixtureId": "sim-129",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx13→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-129:api",
+        "fixtureId": "sim-129",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-129:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-162:copy",
+        "fixtureId": "sim-162",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-162:api",
+        "fixtureId": "sim-162",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-162:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-174:copy",
+        "fixtureId": "sim-174",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab",
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed",
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (2): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f; len=28;hash=e6e25826b9ab@idx14→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-174:api",
+        "fixtureId": "sim-174",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-174:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab",
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed",
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed; len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-184:copy",
+        "fixtureId": "sim-184",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx14→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-184:api",
+        "fixtureId": "sim-184",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-184:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-200:copy",
+        "fixtureId": "sim-200",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-200:api",
+        "fixtureId": "sim-200",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-200:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-215:copy",
+        "fixtureId": "sim-215",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-215:api",
+        "fixtureId": "sim-215",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-215:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-226:copy",
+        "fixtureId": "sim-226",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab",
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed",
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (2): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f; len=28;hash=e6e25826b9ab@idx14→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-226:api",
+        "fixtureId": "sim-226",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-226:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab",
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed",
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed; len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-238:copy",
+        "fixtureId": "sim-238",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx14→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-238:api",
+        "fixtureId": "sim-238",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-238:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-252:copy",
+        "fixtureId": "sim-252",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx14→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-252:api",
+        "fixtureId": "sim-252",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-252:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-266:copy",
+        "fixtureId": "sim-266",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-266:api",
+        "fixtureId": "sim-266",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-266:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-278:copy",
+        "fixtureId": "sim-278",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab",
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed",
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (2): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f; len=28;hash=e6e25826b9ab@idx14→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-278:api",
+        "fixtureId": "sim-278",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-278:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab",
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed",
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed; len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-293:copy",
+        "fixtureId": "sim-293",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx12→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-293:api",
+        "fixtureId": "sim-293",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-293:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-304:copy",
+        "fixtureId": "sim-304",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-304:api",
+        "fixtureId": "sim-304",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-304:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-318:copy",
+        "fixtureId": "sim-318",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-318:api",
+        "fixtureId": "sim-318",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-318:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-329:copy",
+        "fixtureId": "sim-329",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx12→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-329:api",
+        "fixtureId": "sim-329",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-329:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-330:copy",
+        "fixtureId": "sim-330",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab",
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed",
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (2): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f; len=28;hash=e6e25826b9ab@idx14→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-330:api",
+        "fixtureId": "sim-330",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-330:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab",
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed",
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed; len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-356:copy",
+        "fixtureId": "sim-356",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-356:api",
+        "fixtureId": "sim-356",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-356:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-363:copy",
+        "fixtureId": "sim-363",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx12→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-363:api",
+        "fixtureId": "sim-363",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-363:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-370:copy",
+        "fixtureId": "sim-370",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-370:api",
+        "fixtureId": "sim-370",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-370:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-373:copy",
+        "fixtureId": "sim-373",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx12→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-373:api",
+        "fixtureId": "sim-373",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-373:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-382:copy",
+        "fixtureId": "sim-382",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab",
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed",
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (2): len=28;hash=e6e25826b9ab@idx11→reconstructed→len=155;hash=14aa2a25de7f; len=28;hash=e6e25826b9ab@idx14→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-382:api",
+        "fixtureId": "sim-382",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-382:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab",
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed",
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed; len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-392:copy",
+        "fixtureId": "sim-392",
+        "mode": "copy",
+        "disposition": "reconstructed",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=28;hash=e6e25826b9ab@idx12→reconstructed→len=155;hash=14aa2a25de7f"
+      },
+      {
+        "id": "p3:raw_extraction_marker:sim-392:api",
+        "fixtureId": "sim-392",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:raw_extraction_marker:sim-392:copy",
+        "defectDiagnostics": [
+          "len=28;hash=e6e25826b9ab"
+        ],
+        "defectMigrateDispositions": [
+          "reconstructed"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=28;hash=e6e25826b9ab:reconstructed. Primary disposition on copy channel=reconstructed."
+      }
+    ]
+  },
+  "prior28TruncMap": {
+    "unit": "copyable_exportable_rule_firing_occurrence",
+    "expected": 28,
+    "reconstructed": 28,
+    "balanced": true,
+    "dispositionTotals": {
+      "safely_omitted": 14,
+      "proven_duplicate": 14
+    },
+    "everyIdHasDisposition": true,
+    "occurrences": [
+      {
+        "id": "p3:truncated_fragment:sim-024:copy",
+        "fixtureId": "sim-024",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-024:api",
+        "fixtureId": "sim-024",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-024:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:truncated_fragment:sim-028:copy",
+        "fixtureId": "sim-028",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-028:api",
+        "fixtureId": "sim-028",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-028:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:truncated_fragment:sim-108:copy",
+        "fixtureId": "sim-108",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-108:api",
+        "fixtureId": "sim-108",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-108:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:truncated_fragment:sim-109:copy",
+        "fixtureId": "sim-109",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-109:api",
+        "fixtureId": "sim-109",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-109:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:truncated_fragment:sim-110:copy",
+        "fixtureId": "sim-110",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-110:api",
+        "fixtureId": "sim-110",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-110:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:truncated_fragment:sim-112:copy",
+        "fixtureId": "sim-112",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-112:api",
+        "fixtureId": "sim-112",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-112:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:truncated_fragment:sim-121:copy",
+        "fixtureId": "sim-121",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-121:api",
+        "fixtureId": "sim-121",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-121:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:truncated_fragment:sim-122:copy",
+        "fixtureId": "sim-122",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-122:api",
+        "fixtureId": "sim-122",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-122:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:truncated_fragment:sim-123:copy",
+        "fixtureId": "sim-123",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-123:api",
+        "fixtureId": "sim-123",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-123:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:truncated_fragment:sim-124:copy",
+        "fixtureId": "sim-124",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-124:api",
+        "fixtureId": "sim-124",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-124:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:truncated_fragment:sim-138:copy",
+        "fixtureId": "sim-138",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-138:api",
+        "fixtureId": "sim-138",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-138:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:truncated_fragment:sim-139:copy",
+        "fixtureId": "sim-139",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-139:api",
+        "fixtureId": "sim-139",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-139:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:truncated_fragment:sim-359:copy",
+        "fixtureId": "sim-359",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-359:api",
+        "fixtureId": "sim-359",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-359:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      },
+      {
+        "id": "p3:truncated_fragment:sim-375:copy",
+        "fixtureId": "sim-375",
+        "mode": "copy",
+        "disposition": "safely_omitted",
+        "duplicateOf": null,
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Defects in P3 first-16 batch (1): len=21;hash=4dc9a04370a2@idx15→safely_omitted→len=161;hash=241cadbbbdff"
+      },
+      {
+        "id": "p3:truncated_fragment:sim-375:api",
+        "fixtureId": "sim-375",
+        "mode": "api",
+        "disposition": "proven_duplicate",
+        "duplicateOf": "p3:truncated_fragment:sim-375:copy",
+        "defectDiagnostics": [
+          "len=21;hash=4dc9a04370a2"
+        ],
+        "defectMigrateDispositions": [
+          "safely_omitted"
+        ],
+        "evidence": "Dual-mode inflation: same fixture batch blocked on api after copy. Underlying defects=len=21;hash=4dc9a04370a2:safely_omitted. Primary disposition on copy channel=safely_omitted."
+      }
+    ]
+  },
+  "current55TruncSources": {
+    "unit": "per_string_copyable_hit",
+    "count": 55,
+    "byClass": {
+      "newly_discovered_deeper_walk": 41,
+      "baseline_correspondent_fixture": 14
+    },
+    "hits": [
+      {
+        "id": "p5:trunc:sim-001:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-001",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-002:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-002",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-005:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-005",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-007:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-007",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-010:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-010",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-011:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-011",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-013:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-013",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-014:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-014",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-015:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-015",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-017:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-017",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-020:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-020",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-021:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-021",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-024:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-024",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-027:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-027",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-028:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-028",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-030:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-030",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-108:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-108",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-109:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-109",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-110:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-110",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-112:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-112",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-121:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-121",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-122:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-122",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-123:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-123",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-124:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-124",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-138:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-138",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-139:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-139",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-158:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-158",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-165:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-165",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-178:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-178",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-179:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-179",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-197:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-197",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-198:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-198",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-214:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-214",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-219:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-219",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-241:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-241",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-248:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-248",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-250:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-250",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-262:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-262",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-286:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-286",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-297:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-297",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-300:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-300",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-302:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-302",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-319:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-319",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-320:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-320",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-321:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-321",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-335:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-335",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-345:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-345",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-352:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-352",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-353:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-353",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-354:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-354",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-359:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-359",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-371:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-371",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-372:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-372",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      },
+      {
+        "id": "p5:trunc:sim-375:idx18:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-375",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 18,
+        "inPhase3Window": true,
+        "sourceClass": "baseline_correspondent_fixture",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted; same fixture+diagnostic as reconstructed P3 trunc stock (P3 counted dual-mode batch firings; P5 counts per-string once)"
+      },
+      {
+        "id": "p5:trunc:sim-390:idx19:len=21;hash=4dc9a04370a2",
+        "fixtureId": "sim-390",
+        "diagnostic": "len=21;hash=4dc9a04370a2",
+        "stringIndex": 19,
+        "inPhase3Window": false,
+        "sourceClass": "newly_discovered_deeper_walk",
+        "disposition": "safely_omitted",
+        "omitKind": "evidence_item",
+        "omitDisplay": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=safely_omitted; fixture absent from reconstructed P3 trunc set (deeper walk / different length filters)"
+      }
+    ]
+  },
+  "current42RawSources": {
+    "unit": "per_string_copyable_hit",
+    "count": 42,
+    "dispositionTotals": {
+      "reconstructed": 41,
+      "safely_omitted": 1
+    },
+    "uniqueDiagnostics": 3,
+    "hits": [
+      {
+        "id": "p5:raw:cb-fresh-001-taylor-brookes:idx19:len=30;hash=4c54c565ecbb",
+        "fixtureId": "cb-fresh-001-taylor-brookes",
+        "diagnostic": "len=30;hash=4c54c565ecbb",
+        "stringIndex": 19,
+        "disposition": "reconstructed",
+        "after": "len=145;hash=ac6f24e8352d",
+        "omitKind": null,
+        "evidence": "stringIndex=19; inPhase3Window=false; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:cb-fresh-002-jordan-hale:idx16:len=28;hash=e6e25826b9ab",
+        "fixtureId": "cb-fresh-002-jordan-hale",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 16,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=16; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sc-00032:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sc-00032",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sc-0003e:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sc-0003e",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sc-00044:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sc-00044",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sc-00056:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sc-00056",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sc-00062:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sc-00062",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sc-00068:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sc-00068",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sc-0006e:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sc-0006e",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-003:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-003",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-038:idx18:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-038",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 18,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-048:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-048",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-049:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-049",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-069:idx18:len=52;hash=220bf0b5851c",
+        "fixtureId": "sim-069",
+        "diagnostic": "len=52;hash=220bf0b5851c",
+        "stringIndex": 18,
+        "disposition": "safely_omitted",
+        "after": "len=161;hash=241cadbbbdff",
+        "omitKind": "evidence_item",
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=safely_omitted"
+      },
+      {
+        "id": "p5:raw:sim-115:idx18:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-115",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 18,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-129:idx17:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-129",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 17,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=17; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-162:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-162",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-174:idx13:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-174",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 13,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=13; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-174:idx18:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-174",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 18,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-184:idx19:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-184",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 19,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=19; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-200:idx13:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-200",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 13,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=13; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-215:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-215",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-226:idx13:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-226",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 13,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=13; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-226:idx18:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-226",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 18,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-238:idx19:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-238",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 19,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=19; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-252:idx17:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-252",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 17,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=17; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-266:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-266",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-278:idx13:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-278",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 13,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=13; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-278:idx18:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-278",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 18,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-293:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-293",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-304:idx13:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-304",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 13,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=13; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-318:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-318",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-329:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-329",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-330:idx13:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-330",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 13,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=13; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-330:idx18:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-330",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 18,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-356:idx13:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-356",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 13,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=13; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-363:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-363",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-370:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-370",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-373:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-373",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-382:idx13:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-382",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 13,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=13; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-382:idx18:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-382",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 18,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=18; inPhase3Window=true; migrate=reconstructed"
+      },
+      {
+        "id": "p5:raw:sim-392:idx14:len=28;hash=e6e25826b9ab",
+        "fixtureId": "sim-392",
+        "diagnostic": "len=28;hash=e6e25826b9ab",
+        "stringIndex": 14,
+        "disposition": "reconstructed",
+        "after": "len=155;hash=14aa2a25de7f",
+        "omitKind": null,
+        "evidence": "stringIndex=14; inPhase3Window=true; migrate=reconstructed"
+      }
+    ]
+  },
+  "omitSafety": {
+    "reviewRequiredMessage": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+    "substantiveOmitCount": 56,
+    "nonSubstantiveOmitCount": 0,
+    "byKind": {
+      "evidence_item": 56
+    },
+    "silentLossPrevented": true,
+    "kindsCovered": [
+      "evidence_item",
+      "missing_material_warning",
+      "required_action",
+      "hearing_qualification",
+      "do_not_overstate_warning",
+      "other_substantive",
+      "non_substantive"
+    ]
+  },
+  "completionSummary": {
+    "independentStateCalculators": {
+      "confidence_dashboard": {
+        "status": "migrated",
+        "exposesCanonicalFingerprint": true,
+        "fingerprintMatch": true
+      },
+      "overview_presentation": {
+        "status": "migrated_adapter_deprecated_independent",
+        "countsMatchCanonical": true
+      },
+      "solicitor_matter_state": {
+        "status": "migrated",
+        "fingerprintMatch": true
+      },
+      "independentCalculatorsRemaining": [],
+      "schemaVersion": "1.0.0"
+    },
+    "canonicalFingerprintConsistencyBySurface": [
+      {
+        "surfaceId": "overview_safe_wording_card",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "overview_court_prep_card",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "overview_evidence_gaps_card",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "overview_snapshot_boxes",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "overview_advanced_panel",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "confidence_dashboard",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "defence_decision_board",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "advice_change_radar",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "rerun_diff_panel",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "hearing_war_room_assistant",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "client_explanation_panel",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "reasoning_v2_panel",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "client_account_stress_test",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "supervisor_qa_panel",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "control_room_assistant",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "export_case_qa_pack",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_letters_draft",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_disclosure_request",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_hearing_prep",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_cases_hearing_prep",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_client_advice",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_bail_application",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_sentencing_mitigation",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_court_scripts",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_kill_shot",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_prosecution_weaknesses",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_propose_summary",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_strategy_export",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_strategy_ask",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_defence_plan_chat",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      },
+      {
+        "surfaceId": "api_executive_brief",
+        "unit": "central_gated_surface",
+        "requiresCanonicalFingerprintEcho": true,
+        "contractFingerprintOk": true,
+        "note": "validateSolicitorSurface rejects mismatch → state_inconsistent; Overview/dashboard/matter-VM emit canonical.fingerprint"
+      }
+    ],
+    "substantiveVersusNonSubstantiveOmissions": {
+      "substantiveWithReviewRequired": 56,
+      "nonSubstantiveSilentOk": 0,
+      "silentLossPrevented": true
+    },
+    "remainingLegacyComposers": [
+      "defence-plan-chat eval evidence string joins (gated via shared validator; not fully structured-composer migrated)"
+    ],
+    "validatorCoverage": {
+      "inventoriedSurfaces": 51,
+      "centralGatedSurfaces": 31,
+      "centralSurfaceIds": [
+        "overview_safe_wording_card",
+        "overview_court_prep_card",
+        "overview_evidence_gaps_card",
+        "overview_snapshot_boxes",
+        "overview_advanced_panel",
+        "confidence_dashboard",
+        "defence_decision_board",
+        "advice_change_radar",
+        "rerun_diff_panel",
+        "hearing_war_room_assistant",
+        "client_explanation_panel",
+        "reasoning_v2_panel",
+        "client_account_stress_test",
+        "supervisor_qa_panel",
+        "control_room_assistant",
+        "export_case_qa_pack",
+        "api_letters_draft",
+        "api_disclosure_request",
+        "api_hearing_prep",
+        "api_cases_hearing_prep",
+        "api_client_advice",
+        "api_bail_application",
+        "api_sentencing_mitigation",
+        "api_court_scripts",
+        "api_kill_shot",
+        "api_prosecution_weaknesses",
+        "api_propose_summary",
+        "api_strategy_export",
+        "api_strategy_ask",
+        "api_defence_plan_chat",
+        "api_executive_brief"
+      ],
+      "excludedFromCentralGate": [
+        {
+          "surfaceId": "five_answers_overview",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "overview_client_summary_card",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "overview_proof_depth_drawer",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "evidence_truth_map_panel",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "proof_receipt_panel",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "pilot_today_dashboard",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "hearing_war_room",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "hearing_war_room_draft_blocks",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "disclosure_chase",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "pilot_papers_view",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "case_control_room",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "proof_map_panel",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "solicitor_export_builder_panel",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "pilot_summary_view",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "case_summary_panel",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "export_pack_panel",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "export_pack_builder",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "case_file_zone",
+          "reason": "gate=none: No solicitor wording output"
+        },
+        {
+          "surfaceId": "shared_copy_safe_gate",
+          "reason": "Not on PHASE2_SURFACE_GATE_PLAN — parent/shell or covered by shared_copy_safe_gate / parent Overview integrity; no independent wording composer in central list"
+        },
+        {
+          "surfaceId": "api_export_review",
+          "reason": "gate=none: Metadata/hash persistence only — no wording"
+        }
+      ]
+    },
+    "phase4Status": "safe-but-unresolved (not PASS)",
+    "mergeDeployPhase7": "blocked until LEDGER_BALANCED acknowledged in checkpoint"
+  }
+}

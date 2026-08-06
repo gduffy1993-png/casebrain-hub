@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":300,"approved_band":"250-500","rule":"may fall below plan when authentic content does not justify it"},
+  "planned_documents":[
+    {"id":"S01","structure":"case summary, charge proposals and chronology","pages":"12-18","purpose":"orientation without converting allegations into facts"},
+    {"id":"S02","structure":"custody records and three interviews with audio indices","pages":"45-65","purpose":"separate each defendant's words, silence, timing and safeguards"},
+    {"id":"S03","structure":"search, seizure, exhibit and continuity records","pages":"35-50","purpose":"recovery route and continuity disputes"},
+    {"id":"S04","structure":"firearms/ammunition reports, photographs and addendum","pages":"35-55","purpose":"classification, condition, operability and opinion change"},
+    {"id":"S05","structure":"GSR and DNA reports with bench material","pages":"25-40","purpose":"results plus transfer, persistence and mixture limitations"},
+    {"id":"S06","structure":"CCTV, ANPR, locker access and premises records","pages":"35-50","purpose":"conflicting presence/access timeline"},
+    {"id":"S07","structure":"device extraction, messages and call schedules","pages":"45-70","purpose":"authorship, context and alleged agreement"},
+    {"id":"S08","structure":"disclosure schedules, DMD, applications, rulings, bail and hearing records","pages":"35-55","purpose":"service, unused material and procedural state"},
+    {"id":"S09","structure":"defence statements, admissions/agreed facts and counsel/expert extracts","pages":"20-35","purpose":"party positions and authoritative scope of agreements"}
+  ],
+  "format_mix":["born-digital PDF","scanned signed forms","tables","evidence photographs","audio metadata and transcript indices","native message schedule"],
+  "exclusions":["source documents","PDFs","malicious-input harness","rank-1 or rank-2 facts"]
+}

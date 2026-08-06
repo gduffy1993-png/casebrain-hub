@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "maa-v2-batch7-changed-file-manifest@1.0.0",
+  "baselineCommit": "200c3e4d79ac7e1a837a538a723445d7e9c3884f",
+  "headCommit": "200c3e4d79ac7e1a837a538a723445d7e9c3884f",
+  "paths": [
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch2-detectors.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch2-registry.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch5-implemented.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/detector-registry.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/detectors.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/index.ts",
+    "scripts/maa-v2-stage150-batch2-contracts.test.ts",
+    "scripts/maa-v2-stage150-batch3-contracts.test.ts",
+    "scripts/maa-v2-stage150-batch4-contracts.test.ts",
+    "scripts/maa-v2-stage150-batch5-contracts.test.ts",
+    "scripts/maa-v2-stage150-batch6-contracts.test.ts",
+    "scripts/maa-v2-stage150-intelligence-contracts.test.ts"
+  ]
+}

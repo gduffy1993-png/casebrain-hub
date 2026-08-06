@@ -1,0 +1,965 @@
+{
+  "schemaVersion": "stage150-batch4-foundation-scaffolds@1.0.0",
+  "scaffolds": [
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "adapterId": "pinned_legal_authority_registry",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "authority_proposition",
+      "findingCode": "B4_LSL_05_CATEGORY_SET_COVERAGE",
+      "handlerId": "lsl_05_category_set_coverage",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#lsl_05_category_set_coverage_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#lsl_05_category_set_coverage_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Pinned registry adapter schema only; no category-set coverage detector (returns []). Schema ≠ authority taxonomy. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "adapterId": "dob_age_calc_ledger",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "calc_ledger",
+      "findingCode": "B4_CHR_06_AGE_AT_OFFENCE_HEARING",
+      "handlerId": "chr_06_age_at_offence_hearing",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#chr_06_age_at_offence_hearing_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#chr_06_age_at_offence_hearing_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "dob_age_calc_ledger adapter present; CHR-06 returns [] with no age computation detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "adapterId": "dob_age_calc_ledger",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "calc_ledger",
+      "findingCode": "B4_CHR_12_TRANSPARENT_CALC_INPUTS",
+      "handlerId": "chr_12_transparent_calc_inputs",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#chr_12_transparent_calc_inputs_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#chr_12_transparent_calc_inputs_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Empty calcInputs presence check only — not calibrated calc-input honesty detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "adapterId": "pinned_legal_authority_registry",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "authority_proposition",
+      "findingCode": "B4_LEG_01_OFFICIAL_AUTHORITY_SOURCE",
+      "handlerId": "leg_01_official_authority_source",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_01_official_authority_source_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_01_official_authority_source_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter reads officialSource fields; no control-specific finding emitter (returns []). Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-LEG-02-JURISDICTION",
+      "adapterId": "pinned_legal_authority_registry",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "authority_proposition",
+      "findingCode": "B4_LEG_02_JURISDICTION",
+      "handlerId": "leg_02_jurisdiction",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_02_jurisdiction_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_02_jurisdiction_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter stores jurisdiction; no jurisdiction-mismatch detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-LEG-03-EFFECTIVE-DATE",
+      "adapterId": "pinned_legal_authority_registry",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "authority_proposition",
+      "findingCode": "B4_LEG_03_EFFECTIVE_DATE",
+      "handlerId": "leg_03_effective_date",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_03_effective_date_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_03_effective_date_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter stores effectiveDate; no effective-date honesty detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-LEG-05-RETRIEVAL-DATE",
+      "adapterId": "pinned_legal_authority_registry",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "authority_proposition",
+      "findingCode": "B4_LEG_05_RETRIEVAL_DATE",
+      "handlerId": "leg_05_retrieval_date",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_05_retrieval_date_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_05_retrieval_date_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter stores retrievalDate; no retrieval-date detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "adapterId": "pinned_legal_authority_registry",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "authority_proposition",
+      "findingCode": "B4_LEG_06_REGISTRY_VERSION_ID",
+      "handlerId": "leg_06_registry_version_id",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_06_registry_version_id_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_06_registry_version_id_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter stores registryVersionId; no version-id detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "adapterId": "pinned_legal_authority_registry",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "authority_proposition",
+      "findingCode": "B4_LEG_07_AUTHORITY_TYPE_DISTINCTION",
+      "handlerId": "leg_07_authority_type_distinction",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_07_authority_type_distinction_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_07_authority_type_distinction_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter stores authorityType; no type-distinction detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-LEG-08-CURRENCY-WARNING",
+      "adapterId": "pinned_legal_authority_registry",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "authority_proposition",
+      "findingCode": "B4_LEG_08_CURRENCY_WARNING",
+      "handlerId": "leg_08_currency_warning",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_08_currency_warning_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_08_currency_warning_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Thin stale→warning heuristic on fixture bags; shared with XEX-04; lacks resolving multi-negative/unavailable contracts. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "adapterId": "pinned_legal_authority_registry",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "citation",
+      "findingCode": "B4_LEG_10_NO_PROPOSITION_WITHOUT_SOURCE",
+      "handlerId": "leg_10_no_proposition_without_source",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_10_no_proposition_without_source_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_10_no_proposition_without_source_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Thin contrary-to citation heuristic; not a full validator/contract suite. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "adapterId": "pinned_legal_authority_registry",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "authority_proposition",
+      "findingCode": "B4_XEX_04_LEGAL_CURRENCY_WARNING",
+      "handlerId": "xex_04_legal_currency_warning",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xex_04_legal_currency_warning_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xex_04_legal_currency_warning_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Shares LEG-08 family path — not an independent control detector with own contracts. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "adapterId": "structured_procedural_party_state",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "procedural_event",
+      "findingCode": "B4_PRC_03_YOUTH_STATE",
+      "handlerId": "prc_03_youth_state",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#prc_03_youth_state_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#prc_03_youth_state_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Presence-null check on youthState only; not a youth-state honesty detector with contracts. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "adapterId": "structured_procedural_party_state",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "procedural_event",
+      "findingCode": "B4_PRC_04_FITNESS_PARTICIPATION",
+      "handlerId": "prc_04_fitness_participation",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#prc_04_fitness_participation_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#prc_04_fitness_participation_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Presence-null check on fitnessParticipation only. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "adapterId": "structured_procedural_party_state",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "procedural_event",
+      "findingCode": "B4_PRC_07_DISCLOSURE_PII_STATE",
+      "handlerId": "prc_07_disclosure_pii_state",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#prc_07_disclosure_pii_state_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#prc_07_disclosure_pii_state_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Presence-null check on disclosurePiiState only. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "adapterId": "multi_audience_perspective",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "audience_surface_set",
+      "findingCode": "B4_AUD_02_CLIENT_PLAIN",
+      "handlerId": "aud_02_client_plain",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_02_client_plain_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_02_client_plain_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Multi-audience adapter bag only; no client-plain surface comparison detector (returns []). Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "adapterId": "multi_audience_perspective",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "audience_surface_set",
+      "findingCode": "B4_AUD_03_COURT_PRECISE",
+      "handlerId": "aud_03_court_precise",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_03_court_precise_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_03_court_precise_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter foundation only; court-precise detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "adapterId": "multi_audience_perspective",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "audience_surface_set",
+      "findingCode": "B4_AUD_04_CPS_SPECIFIC",
+      "handlerId": "aud_04_cps_specific",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_04_cps_specific_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_04_cps_specific_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter foundation only; CPS-specific detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "adapterId": "multi_audience_perspective",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "audience_surface_set",
+      "findingCode": "B4_AUD_05_SUPERVISOR_RISK",
+      "handlerId": "aud_05_supervisor_risk",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_05_supervisor_risk_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_05_supervisor_risk_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter foundation only; supervisor-risk detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "adapterId": "multi_audience_perspective",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "audience_surface_set",
+      "findingCode": "B4_AUD_08_INDEPENDENT_AUDIENCE_TESTS",
+      "handlerId": "aud_08_independent_audience_tests",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_08_independent_audience_tests_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_08_independent_audience_tests_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Counts audiences≥2 only — not independent audience test suite with contracts. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "adapterId": "multi_audience_perspective",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "perspective_surface_set",
+      "findingCode": "B4_XPP_01_DEFENCE_SOLICITOR_PERSPECTIVE",
+      "handlerId": "xpp_01_defence_solicitor_perspective",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_01_defence_solicitor_perspective_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_01_defence_solicitor_perspective_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Perspective adapter bag only; defence-solicitor perspective detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "adapterId": "multi_audience_perspective",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "perspective_surface_set",
+      "findingCode": "B4_XPP_02_PROSECUTION_CHALLENGE",
+      "handlerId": "xpp_02_prosecution_challenge",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_02_prosecution_challenge_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_02_prosecution_challenge_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter foundation only; prosecution-challenge detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "adapterId": "multi_audience_perspective",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "perspective_surface_set",
+      "findingCode": "B4_XPP_03_JUDICIAL_NEUTRALITY",
+      "handlerId": "xpp_03_judicial_neutrality",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_03_judicial_neutrality_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_03_judicial_neutrality_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter foundation only; judicial-neutrality detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "adapterId": "multi_audience_perspective",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "perspective_surface_set",
+      "findingCode": "B4_XPP_04_CLIENT_COMPREHENSION",
+      "handlerId": "xpp_04_client_comprehension",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_04_client_comprehension_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_04_client_comprehension_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter foundation only; client-comprehension detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "adapterId": "multi_audience_perspective",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "perspective_surface_set",
+      "findingCode": "B4_XPP_05_SUPERVISOR_RISK_PERSPECTIVE",
+      "handlerId": "xpp_05_supervisor_risk_perspective",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_05_supervisor_risk_perspective_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_05_supervisor_risk_perspective_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter foundation only; supervisor-risk perspective detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "adapterId": "versioned_deterministic_receipts",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "run_receipt",
+      "findingCode": "B4_VDR_01_SOURCE_CASE_HASHES",
+      "handlerId": "vdr_01_source_case_hashes",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_01_source_case_hashes_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_01_source_case_hashes_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Empty sourceCaseHashes bag check only; not a run/artefact receipt reproducibility detector suite. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "adapterId": "versioned_deterministic_receipts",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "run_receipt",
+      "findingCode": "B4_VDR_02_FROZEN_MEMBERSHIP_ORDER",
+      "handlerId": "vdr_02_frozen_membership_order",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_02_frozen_membership_order_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_02_frozen_membership_order_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Empty frozenMembershipOrder check only. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "adapterId": "versioned_deterministic_receipts",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "run_receipt",
+      "findingCode": "B4_VDR_03_CASEBRAIN_COMMIT_BUILD",
+      "handlerId": "vdr_03_casebrain_commit_build",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_03_casebrain_commit_build_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_03_casebrain_commit_build_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter stores commit/build fields; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "adapterId": "versioned_deterministic_receipts",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "artefact_receipt",
+      "findingCode": "B4_VDR_04_SCHEMA_REGISTRY_DETECTOR_VERSIONS",
+      "handlerId": "vdr_04_schema_registry_detector_versions",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_04_schema_registry_detector_versions_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_04_schema_registry_detector_versions_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter stores version pins; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "adapterId": "versioned_deterministic_receipts",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "artefact_receipt",
+      "findingCode": "B4_VDR_05_MODEL_PROMPT_VERSION",
+      "handlerId": "vdr_05_model_prompt_version",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_05_model_prompt_version_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_05_model_prompt_version_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter optional modelPromptVersion; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "adapterId": "versioned_deterministic_receipts",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "artefact_receipt",
+      "findingCode": "B4_VDR_06_EXACT_OUTPUTS_FINDING_IDS",
+      "handlerId": "vdr_06_exact_outputs_finding_ids",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_06_exact_outputs_finding_ids_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_06_exact_outputs_finding_ids_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter stores exactFindingIds; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "adapterId": "versioned_deterministic_receipts",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "artefact_receipt",
+      "findingCode": "B4_VDR_07_TIMESTAMPS_DISPOSITIONS",
+      "handlerId": "vdr_07_timestamps_dispositions",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_07_timestamps_dispositions_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_07_timestamps_dispositions_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter stores timestampsDispositions; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "adapterId": "versioned_deterministic_receipts",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "artefact_receipt",
+      "findingCode": "B4_VDR_08_BEFORE_AFTER_MAPPING",
+      "handlerId": "vdr_08_before_after_mapping",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_08_before_after_mapping_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_08_before_after_mapping_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter stores beforeAfterMap; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "adapterId": "versioned_deterministic_receipts",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "artefact_receipt",
+      "findingCode": "B4_VDR_09_ADDED_REMOVED_RETAINED",
+      "handlerId": "vdr_09_added_removed_retained",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_09_added_removed_retained_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_09_added_removed_retained_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter stores addedRemovedRetained; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "version_pair",
+      "findingCode": "B4_ELD_01_SOURCE_FACT_CONCLUSION_SENTENCE_RECEIPTS",
+      "handlerId": "eld_01_source_fact_conclusion_sentence_receipts",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_01_source_fact_conclusion_sentence_receipts_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_01_source_fact_conclusion_sentence_receipts_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Adapter eld_source_change_drafting + ELD schema only; evaluateBatch4 returns [] unconditionally for this id. Synthetic fixtures alone. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "affected_sentence",
+      "findingCode": "B4_ELD_02_SOURCE_CHANGE_AFFECTED_SENTENCES",
+      "handlerId": "eld_02_source_change_affected_sentences",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_02_source_change_affected_sentences_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_02_source_change_affected_sentences_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Shares classifyWordingOutcomes with ELD-10; adapter refuses non-synthetic version pairs → not Stage-150 exercisable from accepted live inputs. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "version_pair",
+      "findingCode": "B4_ELD_03_STALE_DRAFT_MARKING",
+      "handlerId": "eld_03_stale_draft_marking",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_03_stale_draft_marking_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_03_stale_draft_marking_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Uses detectStaleDrafting on synthetic pairs only; no resolving per-control contracts. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "version_pair",
+      "findingCode": "B4_ELD_04_STALE_BLOCKED_ACROSS_EXITS",
+      "handlerId": "eld_04_stale_blocked_across_exits",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_04_stale_blocked_across_exits_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_04_stale_blocked_across_exits_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Shares ELD-03 staleLeaksAcrossExits path; synthetic-only; not independently contracted. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "version_pair",
+      "findingCode": "B4_ELD_05_NO_SILENT_REWRITE_OR_DELETE",
+      "handlerId": "eld_05_no_silent_rewrite_or_delete",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_05_no_silent_rewrite_or_delete_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_05_no_silent_rewrite_or_delete_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "assessReceiptPreservation on synthetic pairs only; no unavailable/positive/negative contract resolution. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "version_pair",
+      "findingCode": "B4_ELD_06_BEFORE_AFTER_CHANGE_REASON",
+      "handlerId": "eld_06_before_after_change_reason",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_06_before_after_change_reason_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_06_before_after_change_reason_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Unconditional return [] after adapter presence — no control-specific detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "version_pair",
+      "findingCode": "B4_ELD_07_SOLICITOR_APPROVAL_BEFORE_EXTERNAL",
+      "handlerId": "eld_07_solicitor_approval_before_external",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_07_solicitor_approval_before_external_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_07_solicitor_approval_before_external_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Unconditional return [] after adapter presence — approval-receipt detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "version_pair",
+      "findingCode": "B4_ELD_08_REJECTED_SUPERSEDED_REVISION_HISTORY",
+      "handlerId": "eld_08_rejected_superseded_revision_history",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_08_rejected_superseded_revision_history_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_08_rejected_superseded_revision_history_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Unconditional return [] — revision-history detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "version_pair",
+      "findingCode": "B4_ELD_09_AUDIENCE_REDRAFT_UNCHANGED_TRUTH",
+      "handlerId": "eld_09_audience_redraft_unchanged_truth",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_09_audience_redraft_unchanged_truth_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_09_audience_redraft_unchanged_truth_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Unconditional return [] — audience-redraft truth lock not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "affected_sentence",
+      "findingCode": "B4_ELD_10_UNAFFECTED_SENTENCES_BYTE_IDENTICAL",
+      "handlerId": "eld_10_unaffected_sentences_byte_identical",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_10_unaffected_sentences_byte_identical_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_10_unaffected_sentences_byte_identical_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Shares ELD-02 path; synthetic-only adapter blocks non-synthetic pairs. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "version_pair",
+      "findingCode": "B4_ELD_11_UNCERTAIN_PROVENANCE_QUALIFIED",
+      "handlerId": "eld_11_uncertain_provenance_qualified",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_11_uncertain_provenance_qualified_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_11_uncertain_provenance_qualified_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Unconditional return [] — provenance qualification detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "version_pair",
+      "findingCode": "B4_ELD_12_CROSS_EXIT_PROPAGATION_COMPLETE",
+      "handlerId": "eld_12_cross_exit_propagation_complete",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_12_cross_exit_propagation_complete_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_12_cross_exit_propagation_complete_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Unconditional return [] — cross-exit propagation detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "version_pair",
+      "findingCode": "B4_ELD_13_ROLLBACK_SUPERSEDED_SOURCE",
+      "handlerId": "eld_13_rollback_superseded_source",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_13_rollback_superseded_source_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_13_rollback_superseded_source_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Unconditional return [] — rollback detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "adapterId": "eld_source_change_drafting",
+      "honestyStatus": "adapter_foundation_only",
+      "denominatorUnit": "version_pair",
+      "findingCode": "B4_ELD_14_ACTOR_TIME_SOURCE_APPROVAL_AUDIT",
+      "handlerId": "eld_14_actor_time_source_approval_audit",
+      "claimedContracts": {
+        "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_14_actor_time_source_approval_audit_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_14_actor_time_source_approval_audit_negatives",
+        "receiptValidator": "maa-v2-candidate-finding@1.0.0"
+      },
+      "contractResolution": {
+        "positiveResolves": false,
+        "negativesResolve": false,
+        "unavailableResolves": false,
+        "note": "Prior Batch-4 registry claimed per-handler contract anchors that were never executed as control-specific checks. Remediation records them unresolved."
+      },
+      "ownershipNote": "Unconditional return [] — actor/time/source/approval audit detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+    }
+  ]
+}

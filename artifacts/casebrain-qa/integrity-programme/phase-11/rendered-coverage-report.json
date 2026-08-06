@@ -1,0 +1,213 @@
+{
+  "generatedAt": "2026-07-21T21:44:04.601Z",
+  "freezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "mode": "solicitor_visible_text_render",
+  "note": [
+    "Renders exact solicitor-visible text / banners for the frozen gold sample via production builders and gates.",
+    "Full Playwright ≥100 stratified browser walkthrough is NOT claimed complete in this checkpoint;",
+    "browser walkthrough remains a residual Phase 11 / programme item if required by the authoritative brief beyond gold renders."
+  ],
+  "goldSampleSize": 33,
+  "casesRendered": 33,
+  "totalSurfacesRendered": 234,
+  "rows": [
+    {
+      "goldId": "GOLD-11-001",
+      "stratum": "accepted_clean",
+      "surfacesRendered": 12,
+      "renderPath": "rendered/GOLD-11-001.md"
+    },
+    {
+      "goldId": "GOLD-11-002",
+      "stratum": "accepted_clean",
+      "surfacesRendered": 12,
+      "renderPath": "rendered/GOLD-11-002.md"
+    },
+    {
+      "goldId": "GOLD-11-003",
+      "stratum": "accepted_clean",
+      "surfacesRendered": 12,
+      "renderPath": "rendered/GOLD-11-003.md"
+    },
+    {
+      "goldId": "GOLD-11-004",
+      "stratum": "accepted_clean",
+      "surfacesRendered": 12,
+      "renderPath": "rendered/GOLD-11-004.md"
+    },
+    {
+      "goldId": "GOLD-11-005",
+      "stratum": "accepted_clean",
+      "surfacesRendered": 12,
+      "renderPath": "rendered/GOLD-11-005.md"
+    },
+    {
+      "goldId": "GOLD-11-006",
+      "stratum": "blocked_containment",
+      "surfacesRendered": 12,
+      "renderPath": "rendered/GOLD-11-006.md"
+    },
+    {
+      "goldId": "GOLD-11-007",
+      "stratum": "blocked_containment",
+      "surfacesRendered": 12,
+      "renderPath": "rendered/GOLD-11-007.md"
+    },
+    {
+      "goldId": "GOLD-11-008",
+      "stratum": "blocked_containment",
+      "surfacesRendered": 12,
+      "renderPath": "rendered/GOLD-11-008.md"
+    },
+    {
+      "goldId": "GOLD-11-009",
+      "stratum": "blocked_containment",
+      "surfacesRendered": 12,
+      "renderPath": "rendered/GOLD-11-009.md"
+    },
+    {
+      "goldId": "GOLD-11-010",
+      "stratum": "blocked_containment",
+      "surfacesRendered": 12,
+      "renderPath": "rendered/GOLD-11-010.md"
+    },
+    {
+      "goldId": "GOLD-11-011",
+      "stratum": "uncertain_family",
+      "surfacesRendered": 12,
+      "renderPath": "rendered/GOLD-11-011.md"
+    },
+    {
+      "goldId": "GOLD-11-012",
+      "stratum": "uncertain_family",
+      "surfacesRendered": 12,
+      "renderPath": "rendered/GOLD-11-012.md"
+    },
+    {
+      "goldId": "GOLD-11-013",
+      "stratum": "uncertain_family",
+      "surfacesRendered": 12,
+      "renderPath": "rendered/GOLD-11-013.md"
+    },
+    {
+      "goldId": "GOLD-11-014",
+      "stratum": "uncertain_family",
+      "surfacesRendered": 11,
+      "renderPath": "rendered/GOLD-11-014.md"
+    },
+    {
+      "goldId": "GOLD-11-015",
+      "stratum": "offence_family",
+      "surfacesRendered": 9,
+      "renderPath": "rendered/GOLD-11-015.md"
+    },
+    {
+      "goldId": "GOLD-11-016",
+      "stratum": "provenance",
+      "surfacesRendered": 9,
+      "renderPath": "rendered/GOLD-11-016.md"
+    },
+    {
+      "goldId": "GOLD-11-017",
+      "stratum": "hearing_time",
+      "surfacesRendered": 8,
+      "renderPath": "rendered/GOLD-11-017.md"
+    },
+    {
+      "goldId": "GOLD-11-018",
+      "stratum": "composed_prose",
+      "surfacesRendered": 9,
+      "renderPath": "rendered/GOLD-11-018.md"
+    },
+    {
+      "goldId": "GOLD-11-019",
+      "stratum": "provenance",
+      "surfacesRendered": 8,
+      "renderPath": "rendered/GOLD-11-019.md"
+    },
+    {
+      "goldId": "GOLD-11-020",
+      "stratum": "composed_prose",
+      "surfacesRendered": 8,
+      "renderPath": "rendered/GOLD-11-020.md"
+    },
+    {
+      "goldId": "GOLD-11-021",
+      "stratum": "omission_truncation",
+      "surfacesRendered": 1,
+      "renderPath": "rendered/GOLD-11-021.md"
+    },
+    {
+      "goldId": "GOLD-11-022",
+      "stratum": "omission_truncation",
+      "surfacesRendered": 1,
+      "renderPath": "rendered/GOLD-11-022.md"
+    },
+    {
+      "goldId": "GOLD-11-023",
+      "stratum": "omission_truncation",
+      "surfacesRendered": 2,
+      "renderPath": "rendered/GOLD-11-023.md"
+    },
+    {
+      "goldId": "GOLD-11-024",
+      "stratum": "review_required",
+      "surfacesRendered": 2,
+      "renderPath": "rendered/GOLD-11-024.md"
+    },
+    {
+      "goldId": "GOLD-11-025",
+      "stratum": "review_required",
+      "surfacesRendered": 1,
+      "renderPath": "rendered/GOLD-11-025.md"
+    },
+    {
+      "goldId": "GOLD-11-026",
+      "stratum": "hearing_time",
+      "surfacesRendered": 1,
+      "renderPath": "rendered/GOLD-11-026.md"
+    },
+    {
+      "goldId": "GOLD-11-027",
+      "stratum": "hearing_time",
+      "surfacesRendered": 1,
+      "renderPath": "rendered/GOLD-11-027.md"
+    },
+    {
+      "goldId": "GOLD-11-028",
+      "stratum": "hearing_time",
+      "surfacesRendered": 1,
+      "renderPath": "rendered/GOLD-11-028.md"
+    },
+    {
+      "goldId": "GOLD-11-029",
+      "stratum": "copy_export_api",
+      "surfacesRendered": 2,
+      "renderPath": "rendered/GOLD-11-029.md"
+    },
+    {
+      "goldId": "GOLD-11-030",
+      "stratum": "copy_export_api",
+      "surfacesRendered": 1,
+      "renderPath": "rendered/GOLD-11-030.md"
+    },
+    {
+      "goldId": "GOLD-11-031",
+      "stratum": "copy_export_api",
+      "surfacesRendered": 1,
+      "renderPath": "rendered/GOLD-11-031.md"
+    },
+    {
+      "goldId": "GOLD-11-032",
+      "stratum": "offence_family",
+      "surfacesRendered": 1,
+      "renderPath": "rendered/GOLD-11-032.md"
+    },
+    {
+      "goldId": "GOLD-11-033",
+      "stratum": "provenance",
+      "surfacesRendered": 1,
+      "renderPath": "rendered/GOLD-11-033.md"
+    }
+  ]
+}

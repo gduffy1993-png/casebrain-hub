@@ -43,6 +43,7 @@ const SOURCE_STATES: ReadonlySet<SourceStateKind> = new Set([
   "served",
   "referred_only",
   "missing",
+  "incomplete",
   "not_safely_confirmed",
   "provisional",
   "needs_review",

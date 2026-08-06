@@ -1,0 +1,3068 @@
+{
+  "schemaVersion": "1.0.0",
+  "policyVersion": "esa-stage50-sample-v1",
+  "adapterId": "esa-local-materialised",
+  "frozenAt": "2026-07-29T18:36:43.939Z",
+  "sampleSize": 50,
+  "populationUniqueValid": 499,
+  "excludedPopulationCount": 31,
+  "excludedBreakdown": {
+    "missing_casebrain_output": 30,
+    "missing_bundle_text": 1
+  },
+  "orderedMembershipHash": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "membership": [
+    {
+      "caseId": "sc-0002d",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0002d",
+      "hashes": {
+        "bundleTextSha256": "b6beb8cefc86c7e1de89f57e329cb1684cb18a3fc3b93b113aed797b38c7f46d",
+        "casebrainOutputSha256": "c8598fa492848200e90cc2daf7876a895e857a14082b7a2c569d2cafe0382868",
+        "truthKeySha256": "40a4e5f9aae801816fe45583b89caa5da0ba20e767db2cdbd0c5688df6da762a"
+      },
+      "selectionReason": "strata:offence_family_bucket=robbery",
+      "strata": {
+        "caseId": "sc-0002d",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0002d",
+        "hashes": {
+          "bundleTextSha256": "b6beb8cefc86c7e1de89f57e329cb1684cb18a3fc3b93b113aed797b38c7f46d",
+          "casebrainOutputSha256": "c8598fa492848200e90cc2daf7876a895e857a14082b7a2c569d2cafe0382868",
+          "truthKeySha256": "40a4e5f9aae801816fe45583b89caa5da0ba20e767db2cdbd0c5688df6da762a"
+        },
+        "familyRaw": "robbery_id",
+        "familyBucket": "robbery",
+        "evidenceTypeBuckets": [
+          "unknown_only"
+        ],
+        "stateFlags": [
+          "has_referred_only",
+          "has_served"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "clip_vs_master",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 66,
+        "truthItemCount": 12,
+        "surfaceCount": 34,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "03a7e3cc9a94fa6af75ff42b28412fe37ead1590efcaa209eae8be7a1b43dfbc"
+      },
+      "orderIndex": 0
+    },
+    {
+      "caseId": "sim-120",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-120",
+      "hashes": {
+        "bundleTextSha256": "39c52c623fa25e5f6dc5cd006cb92504891522a59ab5b7f6f0588825f31510ae",
+        "casebrainOutputSha256": "a511abac6d97d61281f4f0a6eda0fe9ae0b60aa9126c8460154d5b04cd292018",
+        "truthKeySha256": "4131057fd66d347eb039a3ab391cac63f9225d505f4317997be499ec789c2fdb"
+      },
+      "selectionReason": "strata:offence_family_bucket=motoring",
+      "strata": {
+        "caseId": "sim-120",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-120",
+        "hashes": {
+          "bundleTextSha256": "39c52c623fa25e5f6dc5cd006cb92504891522a59ab5b7f6f0588825f31510ae",
+          "casebrainOutputSha256": "a511abac6d97d61281f4f0a6eda0fe9ae0b60aa9126c8460154d5b04cd292018",
+          "truthKeySha256": "4131057fd66d347eb039a3ab391cac63f9225d505f4317997be499ec789c2fdb"
+        },
+        "familyRaw": "motoring",
+        "familyBucket": "motoring",
+        "evidenceTypeBuckets": [
+          "unknown_only"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 45,
+        "truthItemCount": 4,
+        "surfaceCount": 25,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "07bc38d90447a4fd0b4c5b62f35f2c5d656139784a6b13d0c4cee4ba9c058033"
+      },
+      "orderIndex": 1
+    },
+    {
+      "caseId": "sim-250",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-250",
+      "hashes": {
+        "bundleTextSha256": "2efd0cc039a122ee027aed36f8c27067ccc78c25fcecdbcf4b980d71f8c221e5",
+        "casebrainOutputSha256": "d50506a82b4dddd748d71a90c1a526fdb08eaa6bcf2dc366c5fba29f5dbe5197",
+        "truthKeySha256": "bd63f577172d798afbe257876e3f91b39e2c32dda53a5d1061814f850b8f75b3"
+      },
+      "selectionReason": "strata:offence_family_bucket=drugs",
+      "strata": {
+        "caseId": "sim-250",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-250",
+        "hashes": {
+          "bundleTextSha256": "2efd0cc039a122ee027aed36f8c27067ccc78c25fcecdbcf4b980d71f8c221e5",
+          "casebrainOutputSha256": "d50506a82b4dddd748d71a90c1a526fdb08eaa6bcf2dc366c5fba29f5dbe5197",
+          "truthKeySha256": "bd63f577172d798afbe257876e3f91b39e2c32dda53a5d1061814f850b8f75b3"
+        },
+        "familyRaw": "drugs_conspiracy",
+        "familyBucket": "drugs",
+        "evidenceTypeBuckets": [
+          "mg5"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 43,
+        "truthItemCount": 6,
+        "surfaceCount": 22,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "02d879128f347af5efd8a2aa743c6999ba33118160cd877a838c6b29698c21b7"
+      },
+      "orderIndex": 2
+    },
+    {
+      "caseId": "sim-345",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-345",
+      "hashes": {
+        "bundleTextSha256": "212e0101372547001b5598e91d588aad908341e21c2e11cfa130e76fa4980eca",
+        "casebrainOutputSha256": "61ba07edba54f37f76e5ffb856bc7990624a5e562506a499c3d85f5720875b4e",
+        "truthKeySha256": "3176d7058282f58c3603a223b06d13b53ea08452cf620fa3f9da377ccb729994"
+      },
+      "selectionReason": "strata:offence_family_bucket=violence",
+      "strata": {
+        "caseId": "sim-345",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-345",
+        "hashes": {
+          "bundleTextSha256": "212e0101372547001b5598e91d588aad908341e21c2e11cfa130e76fa4980eca",
+          "casebrainOutputSha256": "61ba07edba54f37f76e5ffb856bc7990624a5e562506a499c3d85f5720875b4e",
+          "truthKeySha256": "3176d7058282f58c3603a223b06d13b53ea08452cf620fa3f9da377ccb729994"
+        },
+        "familyRaw": "aew_police_contact",
+        "familyBucket": "violence",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "digital"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 43,
+        "truthItemCount": 6,
+        "surfaceCount": 22,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "013ff4448ed0084e09cdd3207c840c5a7fc4483da18b57c0d15aeef6960a12f9"
+      },
+      "orderIndex": 3
+    },
+    {
+      "caseId": "sc-00025",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-00025",
+      "hashes": {
+        "bundleTextSha256": "716879d63ecdf748834b481f79fa056f1a54c1136c0412817e2b0602b7bdabfd",
+        "casebrainOutputSha256": "2fe4f2c71e13780f32f8a9a39f2d24a21ec533b923f74d9ea9ca61b0bb668111",
+        "truthKeySha256": "e79efcc9d9c0bb7743a81ae8dc19c98f6c78f0ee2d6090bbeb5e6227ef864410"
+      },
+      "selectionReason": "strata:offence_family_bucket=fraud",
+      "strata": {
+        "caseId": "sc-00025",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sc-00025",
+        "hashes": {
+          "bundleTextSha256": "716879d63ecdf748834b481f79fa056f1a54c1136c0412817e2b0602b7bdabfd",
+          "casebrainOutputSha256": "2fe4f2c71e13780f32f8a9a39f2d24a21ec533b923f74d9ea9ca61b0bb668111",
+          "truthKeySha256": "e79efcc9d9c0bb7743a81ae8dc19c98f6c78f0ee2d6090bbeb5e6227ef864410"
+        },
+        "familyRaw": "fraud_account_control",
+        "familyBucket": "fraud",
+        "evidenceTypeBuckets": [
+          "unknown_only"
+        ],
+        "stateFlags": [
+          "has_referred_only",
+          "has_served"
+        ],
+        "issueTags": [
+          "attribution",
+          "chronology",
+          "hearing",
+          "document_version",
+          "extract_vs_full",
+          "draft_vs_signed",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 67,
+        "truthItemCount": 13,
+        "surfaceCount": 33,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "01c24110856006ca98cf2d167cce9fc088b005c0ce7136eca9eb01216442e3dd"
+      },
+      "orderIndex": 4
+    },
+    {
+      "caseId": "sim-104",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-104",
+      "hashes": {
+        "bundleTextSha256": "618b3559194080f68e23072d930fc1737f120509bea66cf3919fb42e9b410f06",
+        "casebrainOutputSha256": "bd96c99d45094946e59b96de1f61caa772219ce03116e681c214cf676c91d986",
+        "truthKeySha256": "9eae0041a73d97442bfb0b4eb7960ab0d1f06bdcc6f3475ca05026c129b1caee"
+      },
+      "selectionReason": "strata:offence_family_bucket=sexual",
+      "strata": {
+        "caseId": "sim-104",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-104",
+        "hashes": {
+          "bundleTextSha256": "618b3559194080f68e23072d930fc1737f120509bea66cf3919fb42e9b410f06",
+          "casebrainOutputSha256": "bd96c99d45094946e59b96de1f61caa772219ce03116e681c214cf676c91d986",
+          "truthKeySha256": "9eae0041a73d97442bfb0b4eb7960ab0d1f06bdcc6f3475ca05026c129b1caee"
+        },
+        "familyRaw": "sexual",
+        "familyBucket": "sexual",
+        "evidenceTypeBuckets": [
+          "mg5"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "draft_vs_signed",
+          "recording_vs_transcript",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 48,
+        "truthItemCount": 5,
+        "surfaceCount": 27,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "002a4ac0f3ecdc40fd19e1d0466c992030f486e0e801545d6e6baf792be67352"
+      },
+      "orderIndex": 5
+    },
+    {
+      "caseId": "sim-373",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-373",
+      "hashes": {
+        "bundleTextSha256": "6c89b6776cb41dbfc8488bf97ad3325999157c42bdfbd0793105e7ba5064bf7d",
+        "casebrainOutputSha256": "f8911646004dac1a36ef4434774539eab79062baa99e12e0b3ff739fc97322ac",
+        "truthKeySha256": "4421a743502d02d596ae944f56d79d9a5d3dd188bc8a3fdf7a5822664944fa02"
+      },
+      "selectionReason": "strata:offence_family_bucket=harassment_domestic",
+      "strata": {
+        "caseId": "sim-373",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-373",
+        "hashes": {
+          "bundleTextSha256": "6c89b6776cb41dbfc8488bf97ad3325999157c42bdfbd0793105e7ba5064bf7d",
+          "casebrainOutputSha256": "f8911646004dac1a36ef4434774539eab79062baa99e12e0b3ff739fc97322ac",
+          "truthKeySha256": "4421a743502d02d596ae944f56d79d9a5d3dd188bc8a3fdf7a5822664944fa02"
+        },
+        "familyRaw": "harassment",
+        "familyBucket": "harassment_domestic",
+        "evidenceTypeBuckets": [
+          "mg5"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "extract_vs_full",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 50,
+        "truthItemCount": 6,
+        "surfaceCount": 27,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0a3a2035991649f56d01cad357e3d8542838b0612c0703ff7a25ecf4eca79c5e"
+      },
+      "orderIndex": 6
+    },
+    {
+      "caseId": "sim-377",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-377",
+      "hashes": {
+        "bundleTextSha256": "24a607b7f7ab1b3e34e8dda26d055fb94c57e3cf565e0e1e88b105f0f6c0522b",
+        "casebrainOutputSha256": "5f419bddb3f9a6a756e742815f06aacfdb3a8912849e45df2511f967b01ddc84",
+        "truthKeySha256": "576602779e279c9e6e651fc2a98d43b0d2587bc69ba02c1505df3f5cbf1cf225"
+      },
+      "selectionReason": "strata:offence_family_bucket=weapons",
+      "strata": {
+        "caseId": "sim-377",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-377",
+        "hashes": {
+          "bundleTextSha256": "24a607b7f7ab1b3e34e8dda26d055fb94c57e3cf565e0e1e88b105f0f6c0522b",
+          "casebrainOutputSha256": "5f419bddb3f9a6a756e742815f06aacfdb3a8912849e45df2511f967b01ddc84",
+          "truthKeySha256": "576602779e279c9e6e651fc2a98d43b0d2587bc69ba02c1505df3f5cbf1cf225"
+        },
+        "familyRaw": "weapons",
+        "familyBucket": "weapons",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "bwv"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 54,
+        "truthItemCount": 6,
+        "surfaceCount": 29,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "18f8002bcdb3d888564c7c36c3ef6a3a6264f38a99f7244429e9646101e71c67"
+      },
+      "orderIndex": 7
+    },
+    {
+      "caseId": "sim-321",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-321",
+      "hashes": {
+        "bundleTextSha256": "9e28dbeba6886b8592b27426b4e834be0f9a461579e2e41220174845ba4d52fa",
+        "casebrainOutputSha256": "0975ed87bc8486f862f214d803691bdc7a3e9defd50180c63ce19e9eb9ed1588",
+        "truthKeySha256": "fe3679820b26adece72d1f5c352860cb6fe4d5ff48d53a0899a6592529297b07"
+      },
+      "selectionReason": "strata:offence_family_bucket=youth",
+      "strata": {
+        "caseId": "sim-321",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-321",
+        "hashes": {
+          "bundleTextSha256": "9e28dbeba6886b8592b27426b4e834be0f9a461579e2e41220174845ba4d52fa",
+          "casebrainOutputSha256": "0975ed87bc8486f862f214d803691bdc7a3e9defd50180c63ce19e9eb9ed1588",
+          "truthKeySha256": "fe3679820b26adece72d1f5c352860cb6fe4d5ff48d53a0899a6592529297b07"
+        },
+        "familyRaw": "youth",
+        "familyBucket": "youth",
+        "evidenceTypeBuckets": [
+          "mg5"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "extract_vs_full",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 44,
+        "truthItemCount": 6,
+        "surfaceCount": 23,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0c356bc50e4ef0d18c53935e7683ea39841240d5f151e87a8732c00c4163bf57"
+      },
+      "orderIndex": 8
+    },
+    {
+      "caseId": "sim-182",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-182",
+      "hashes": {
+        "bundleTextSha256": "80319ef76656c17ba3ede588033608b47c570d176f205b664246a08765bf1fac",
+        "casebrainOutputSha256": "00a1caa5e31907bb0c1ad06a5d5d819e04b411176687f13cdea8cc691fe82819",
+        "truthKeySha256": "ac1f835d18fffe78997397c9c2c75b6c40baca4d1b443c0b2f4021253f29306f"
+      },
+      "selectionReason": "strata:offence_family_bucket=public_order",
+      "strata": {
+        "caseId": "sim-182",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-182",
+        "hashes": {
+          "bundleTextSha256": "80319ef76656c17ba3ede588033608b47c570d176f205b664246a08765bf1fac",
+          "casebrainOutputSha256": "00a1caa5e31907bb0c1ad06a5d5d819e04b411176687f13cdea8cc691fe82819",
+          "truthKeySha256": "ac1f835d18fffe78997397c9c2c75b6c40baca4d1b443c0b2f4021253f29306f"
+        },
+        "familyRaw": "public_order",
+        "familyBucket": "public_order",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "digital",
+          "interview"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "recording_vs_transcript",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 53,
+        "truthItemCount": 6,
+        "surfaceCount": 29,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0b1a139c737f875e82e8a4b935c3963f9f668ef61f3cbaaf0fbe9060b693d43d"
+      },
+      "orderIndex": 9
+    },
+    {
+      "caseId": "sim-224",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-224",
+      "hashes": {
+        "bundleTextSha256": "57577bdb504faf6efb424938504b82a11ca88663e3afb65c6b52c610502ec034",
+        "casebrainOutputSha256": "d013835dc5515435473c1777aa91f66c408689bd0180e48d2a2ad9c9310d3c2d",
+        "truthKeySha256": "f31a747802afa53adace7e05de0777245f8dafc35de7b1a09cb531f4ac3043bb"
+      },
+      "selectionReason": "strata:offence_family_bucket=custody_pace",
+      "strata": {
+        "caseId": "sim-224",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-224",
+        "hashes": {
+          "bundleTextSha256": "57577bdb504faf6efb424938504b82a11ca88663e3afb65c6b52c610502ec034",
+          "casebrainOutputSha256": "d013835dc5515435473c1777aa91f66c408689bd0180e48d2a2ad9c9310d3c2d",
+          "truthKeySha256": "f31a747802afa53adace7e05de0777245f8dafc35de7b1a09cb531f4ac3043bb"
+        },
+        "familyRaw": "custody_pace",
+        "familyBucket": "custody_pace",
+        "evidenceTypeBuckets": [
+          "cctv",
+          "mg5",
+          "digital"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "chronology",
+          "hearing",
+          "document_version",
+          "clip_vs_master",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 64,
+        "truthItemCount": 6,
+        "surfaceCount": 35,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "12f4f7d3d55caa7a6236a3a622b99b1d4f5af9c3bb84ecd598678e443b0125f7"
+      },
+      "orderIndex": 10
+    },
+    {
+      "caseId": "sim-222",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-222",
+      "hashes": {
+        "bundleTextSha256": "b72645ae5659aa7bc58e21515eefd2ea19c3e329640c0709322e59effe847a16",
+        "casebrainOutputSha256": "70583d072789e93d7e6812a35b78f167b69276ed760672e925b0a063a5507f9a",
+        "truthKeySha256": "27cb84f129ca14203a4ab7889770e2734cb596d3964d991e346232bca7cffa57"
+      },
+      "selectionReason": "strata:offence_family_bucket=breach",
+      "strata": {
+        "caseId": "sim-222",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-222",
+        "hashes": {
+          "bundleTextSha256": "b72645ae5659aa7bc58e21515eefd2ea19c3e329640c0709322e59effe847a16",
+          "casebrainOutputSha256": "70583d072789e93d7e6812a35b78f167b69276ed760672e925b0a063a5507f9a",
+          "truthKeySha256": "27cb84f129ca14203a4ab7889770e2734cb596d3964d991e346232bca7cffa57"
+        },
+        "familyRaw": "breach_order",
+        "familyBucket": "breach",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "cctv"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "chronology",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 59,
+        "truthItemCount": 6,
+        "surfaceCount": 33,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0e4314170ecbee7df2e3b3719e57ee1492e9373fdca5816fcd67f45238944a9f"
+      },
+      "orderIndex": 11
+    },
+    {
+      "caseId": "sim-190",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-190",
+      "hashes": {
+        "bundleTextSha256": "c779861bb34a23fc7699ae515e7e8e60dfab53d16a281fc74150c73bdd59bef6",
+        "casebrainOutputSha256": "a9dbbfebd80ad82045bd1e6d24708fd9893694a49208b3c4d8eafaa703fcdff0",
+        "truthKeySha256": "578df5880045d406ab2265b05332870bc068c5ba3d70083943c754202fafb6df"
+      },
+      "selectionReason": "strata:offence_family_bucket=encro_digital",
+      "strata": {
+        "caseId": "sim-190",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-190",
+        "hashes": {
+          "bundleTextSha256": "c779861bb34a23fc7699ae515e7e8e60dfab53d16a281fc74150c73bdd59bef6",
+          "casebrainOutputSha256": "a9dbbfebd80ad82045bd1e6d24708fd9893694a49208b3c4d8eafaa703fcdff0",
+          "truthKeySha256": "578df5880045d406ab2265b05332870bc068c5ba3d70083943c754202fafb6df"
+        },
+        "familyRaw": "encro_encrypted_comms",
+        "familyBucket": "encro_digital",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "bwv",
+          "witness_statement"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 51,
+        "truthItemCount": 6,
+        "surfaceCount": 27,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "045fb2260569c1b5faa60bc92f1be651a262021646b8740e8b2bf096d8a6842d"
+      },
+      "orderIndex": 12
+    },
+    {
+      "caseId": "sim-142",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-142",
+      "hashes": {
+        "bundleTextSha256": "bc07e99e846b5481cc753139c2964f1a6ea818c504426261ee82570d6a23eb46",
+        "casebrainOutputSha256": "4bd129f2995b4baa36d2aba61117ba3559539b04f23390d90af494a090c274ec",
+        "truthKeySha256": "d07ef8e8fd0c5811b8a252444fc0909f87eee41ea28e61b69d24dc97ef698f91"
+      },
+      "selectionReason": "strata:offence_family_bucket=perverting",
+      "strata": {
+        "caseId": "sim-142",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-142",
+        "hashes": {
+          "bundleTextSha256": "bc07e99e846b5481cc753139c2964f1a6ea818c504426261ee82570d6a23eb46",
+          "casebrainOutputSha256": "4bd129f2995b4baa36d2aba61117ba3559539b04f23390d90af494a090c274ec",
+          "truthKeySha256": "d07ef8e8fd0c5811b8a252444fc0909f87eee41ea28e61b69d24dc97ef698f91"
+        },
+        "familyRaw": "perverting_justice",
+        "familyBucket": "perverting",
+        "evidenceTypeBuckets": [
+          "unknown_only"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "chronology",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 45,
+        "truthItemCount": 4,
+        "surfaceCount": 25,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "05af2731c948f8151d51020967b6d778e0f17bec81cf206924822650ae7b3197"
+      },
+      "orderIndex": 13
+    },
+    {
+      "caseId": "sim-018",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-018",
+      "hashes": {
+        "bundleTextSha256": "f5ccc370a548a84d107209f28a4b73f55a4600cebbe9427dc4553b8f35621059",
+        "casebrainOutputSha256": "2b8b0fac106e93091f2a98fbf6e394dd3ec0b57bf3f031e937d103a8cdabdd68",
+        "truthKeySha256": "08ee4cbac0c2ba0d6f62a9312264a2db9f7d79ce8f53c57dc0ed2af5101c39cd"
+      },
+      "selectionReason": "strata:offence_family_bucket=mixed_generic",
+      "strata": {
+        "caseId": "sim-018",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-018",
+        "hashes": {
+          "bundleTextSha256": "f5ccc370a548a84d107209f28a4b73f55a4600cebbe9427dc4553b8f35621059",
+          "casebrainOutputSha256": "2b8b0fac106e93091f2a98fbf6e394dd3ec0b57bf3f031e937d103a8cdabdd68",
+          "truthKeySha256": "08ee4cbac0c2ba0d6f62a9312264a2db9f7d79ce8f53c57dc0ed2af5101c39cd"
+        },
+        "familyRaw": "generic",
+        "familyBucket": "mixed_generic",
+        "evidenceTypeBuckets": [
+          "unknown_only"
+        ],
+        "stateFlags": [],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "draft_vs_signed",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 37,
+        "truthItemCount": 0,
+        "surfaceCount": 24,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "00a4f7590ba6b55294f8fda098040f64a2bdab53068a6c62c37038acb1726836"
+      },
+      "orderIndex": 14
+    },
+    {
+      "caseId": "sim-055",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-055",
+      "hashes": {
+        "bundleTextSha256": "e0d3db95e073a910ffb2e95c54bb4c91074ff039b2870b63eb4c559db9f4f0b7",
+        "casebrainOutputSha256": "7eea1eef87efbb2c7b59aae2d507bd370c787ddf2b351b8200fe75cfe122fcbf",
+        "truthKeySha256": "47da45d448709871515533043880765f99fc5beb1cab9ae0382a2b92add71586"
+      },
+      "selectionReason": "strata:offence_family_bucket=other",
+      "strata": {
+        "caseId": "sim-055",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-055",
+        "hashes": {
+          "bundleTextSha256": "e0d3db95e073a910ffb2e95c54bb4c91074ff039b2870b63eb4c559db9f4f0b7",
+          "casebrainOutputSha256": "7eea1eef87efbb2c7b59aae2d507bd370c787ddf2b351b8200fe75cfe122fcbf",
+          "truthKeySha256": "47da45d448709871515533043880765f99fc5beb1cab9ae0382a2b92add71586"
+        },
+        "familyRaw": "bwv_police_contact",
+        "familyBucket": "other",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "witness_statement",
+          "custody_pace",
+          "bwv",
+          "interview",
+          "inference"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing",
+          "has_not_safely_confirmed"
+        ],
+        "issueTags": [
+          "attribution",
+          "chronology",
+          "hearing",
+          "document_version",
+          "extract_vs_full",
+          "recording_vs_transcript",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 71,
+        "truthItemCount": 12,
+        "surfaceCount": 35,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "19c6c71a9bee7f68af39f75ad37f326c15d84f29401d8b3d644901242d126d99"
+      },
+      "orderIndex": 15
+    },
+    {
+      "caseId": "sim-172",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-172",
+      "hashes": {
+        "bundleTextSha256": "69562aa9da9397dd6a5bf588e655ab9ec2eb0354b19e79e64f1e78b602efd26b",
+        "casebrainOutputSha256": "f88facff6edb85d08041213c264569cf730bf02b8bccb0e6acb696b6300a42d1",
+        "truthKeySha256": "1c2c202f4764522f71e39e9feb9b916f071f7a264f759be1f4ebb38eeeedbfd9"
+      },
+      "selectionReason": "strata:evidence_type=encro",
+      "strata": {
+        "caseId": "sim-172",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-172",
+        "hashes": {
+          "bundleTextSha256": "69562aa9da9397dd6a5bf588e655ab9ec2eb0354b19e79e64f1e78b602efd26b",
+          "casebrainOutputSha256": "f88facff6edb85d08041213c264569cf730bf02b8bccb0e6acb696b6300a42d1",
+          "truthKeySha256": "1c2c202f4764522f71e39e9feb9b916f071f7a264f759be1f4ebb38eeeedbfd9"
+        },
+        "familyRaw": "drugs_pwits",
+        "familyBucket": "drugs",
+        "evidenceTypeBuckets": [
+          "cctv",
+          "mg5",
+          "encro"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "chronology",
+          "hearing",
+          "document_version",
+          "clip_vs_master",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 67,
+        "truthItemCount": 6,
+        "surfaceCount": 37,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0438b66dff5b1834ef8dd508a3f4527f18ae3485e98997fd4a528e13a6a9fe63"
+      },
+      "orderIndex": 16
+    },
+    {
+      "caseId": "sim-048",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-048",
+      "hashes": {
+        "bundleTextSha256": "3e4d3e8fce79f59d796dddaaa8e6686229a5831a2c7098b807b6ba9392235293",
+        "casebrainOutputSha256": "c57c88513b8a08bdc11ce8bdca3a3471e279c339878be8ae946ecf47a43a2382",
+        "truthKeySha256": "8a4f6f21ff0e7b89c5ed2a6fb165866418aa73e3528fc65536719e2683b041d3"
+      },
+      "selectionReason": "strata:evidence_type=other_typed",
+      "strata": {
+        "caseId": "sim-048",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-048",
+        "hashes": {
+          "bundleTextSha256": "3e4d3e8fce79f59d796dddaaa8e6686229a5831a2c7098b807b6ba9392235293",
+          "casebrainOutputSha256": "c57c88513b8a08bdc11ce8bdca3a3471e279c339878be8ae946ecf47a43a2382",
+          "truthKeySha256": "8a4f6f21ff0e7b89c5ed2a6fb165866418aa73e3528fc65536719e2683b041d3"
+        },
+        "familyRaw": "sexual_abe",
+        "familyBucket": "sexual",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "witness_statement",
+          "other_typed",
+          "inference"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing",
+          "has_not_safely_confirmed"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "recording_vs_transcript",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 71,
+        "truthItemCount": 11,
+        "surfaceCount": 36,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "43c5b483f92af964ee31e8cd73b6c8c59ce26b34fa9294da278bdc6225b93581"
+      },
+      "orderIndex": 17
+    },
+    {
+      "caseId": "sim-063",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-063",
+      "hashes": {
+        "bundleTextSha256": "67b979eca5dbd718bd4d20efc121ca460f2718621ef8198494a807946e2b7e87",
+        "casebrainOutputSha256": "2c08108f49ceb1543a886729d62bcd15b6c1d761c231a820b1bfb8bf70632f5f",
+        "truthKeySha256": "ce9c446b260f5fb64156f713bc19d16099bde1f45d8fbc158d41ad11844ce875"
+      },
+      "selectionReason": "strata:evidence_state=incomplete",
+      "strata": {
+        "caseId": "sim-063",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-063",
+        "hashes": {
+          "bundleTextSha256": "67b979eca5dbd718bd4d20efc121ca460f2718621ef8198494a807946e2b7e87",
+          "casebrainOutputSha256": "2c08108f49ceb1543a886729d62bcd15b6c1d761c231a820b1bfb8bf70632f5f",
+          "truthKeySha256": "ce9c446b260f5fb64156f713bc19d16099bde1f45d8fbc158d41ad11844ce875"
+        },
+        "familyRaw": "fraud_account",
+        "familyBucket": "fraud",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "interview",
+          "inference"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_incomplete",
+          "has_referred_only",
+          "has_missing",
+          "has_inferred_only"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "recording_vs_transcript",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 59,
+        "truthItemCount": 11,
+        "surfaceCount": 29,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "1e86ac207038c0e776242dba9f63388fbaa8766f03244f9aa66faade5d1c3e84"
+      },
+      "orderIndex": 18
+    },
+    {
+      "caseId": "sim-038",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-038",
+      "hashes": {
+        "bundleTextSha256": "125a806b68b25b724d5a75a278a720c3ce56d263eaf5d5ec3da90927cbd71b69",
+        "casebrainOutputSha256": "ef70e189d1d19cc052736a2ac183ee67f364b5102042f65e00fcebee0af8f393",
+        "truthKeySha256": "9887be342b84d5c96285ad1d300f0e25a1fe9c54bbf443937a66852ff40cb93e"
+      },
+      "selectionReason": "strata:evidence_state=other_defendant_only",
+      "strata": {
+        "caseId": "sim-038",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-038",
+        "hashes": {
+          "bundleTextSha256": "125a806b68b25b724d5a75a278a720c3ce56d263eaf5d5ec3da90927cbd71b69",
+          "casebrainOutputSha256": "ef70e189d1d19cc052736a2ac183ee67f364b5102042f65e00fcebee0af8f393",
+          "truthKeySha256": "9887be342b84d5c96285ad1d300f0e25a1fe9c54bbf443937a66852ff40cb93e"
+        },
+        "familyRaw": "drugs_conspiracy",
+        "familyBucket": "drugs",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "encro",
+          "witness_statement",
+          "digital",
+          "inference"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_other_defendant_only",
+          "has_missing",
+          "has_inferred_only"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 61,
+        "truthItemCount": 11,
+        "surfaceCount": 30,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "12a14513c1993204dc8037fdaca57c82664bb75a7cc87cfcb874c5c56ab2966a"
+      },
+      "orderIndex": 19
+    },
+    {
+      "caseId": "sim-017",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-017",
+      "hashes": {
+        "bundleTextSha256": "ed34c9d0b646e230385005eb1a6286b412baca5d8feb8792073a9da6b22a5d68",
+        "casebrainOutputSha256": "8ecdcf83f12004296b6b7d4a6c9228feeb4a8a72ae093a4d8b69e89979a47372",
+        "truthKeySha256": "b788fbbaf3d653ca2fe7538ccf02485009d45998f524c21f8533fdca91e5067c"
+      },
+      "selectionReason": "strata:complexity=moderate",
+      "strata": {
+        "caseId": "sim-017",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-017",
+        "hashes": {
+          "bundleTextSha256": "ed34c9d0b646e230385005eb1a6286b412baca5d8feb8792073a9da6b22a5d68",
+          "casebrainOutputSha256": "8ecdcf83f12004296b6b7d4a6c9228feeb4a8a72ae093a4d8b69e89979a47372",
+          "truthKeySha256": "b788fbbaf3d653ca2fe7538ccf02485009d45998f524c21f8533fdca91e5067c"
+        },
+        "familyRaw": "generic",
+        "familyBucket": "mixed_generic",
+        "evidenceTypeBuckets": [
+          "unknown_only"
+        ],
+        "stateFlags": [],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "moderate",
+        "complexityScore": 26,
+        "truthItemCount": 0,
+        "surfaceCount": 17,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "12a908496a60de66f5b090b727de6588aa47b4650a0d3bca5f3d9e6a0866f09e"
+      },
+      "orderIndex": 20
+    },
+    {
+      "caseId": "sim-014",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-014",
+      "hashes": {
+        "bundleTextSha256": "e88be9186a19a2ff667865289601c0913c9ddb4f5528b82d9b6200dec2c4cecd",
+        "casebrainOutputSha256": "aeafc2f1a06de29ce4647596cb619bb848ab7a038f692e6295450c235d6eaabd",
+        "truthKeySha256": "ef331fb14bc693fff1432e0a365dfbc7d978f5516dc63c49f0329910bdd996be"
+      },
+      "selectionReason": "strata:complexity=moderate",
+      "strata": {
+        "caseId": "sim-014",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-014",
+        "hashes": {
+          "bundleTextSha256": "e88be9186a19a2ff667865289601c0913c9ddb4f5528b82d9b6200dec2c4cecd",
+          "casebrainOutputSha256": "aeafc2f1a06de29ce4647596cb619bb848ab7a038f692e6295450c235d6eaabd",
+          "truthKeySha256": "ef331fb14bc693fff1432e0a365dfbc7d978f5516dc63c49f0329910bdd996be"
+        },
+        "familyRaw": "motoring",
+        "familyBucket": "motoring",
+        "evidenceTypeBuckets": [
+          "unknown_only"
+        ],
+        "stateFlags": [],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "moderate",
+        "complexityScore": 24,
+        "truthItemCount": 0,
+        "surfaceCount": 16,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "27d0884509c1dee5de4e9071e7cd3fe8e97497ed17c409ee5240e4c60acc3dce"
+      },
+      "orderIndex": 21
+    },
+    {
+      "caseId": "sim-015",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-015",
+      "hashes": {
+        "bundleTextSha256": "f01f223f8d412cdf28e2e2ecc9739fbd823b00ca34cc030a407601218002990b",
+        "casebrainOutputSha256": "de366bcd23c82cadf914e5dc2031fe0e26807ee1910fe1f7143313bcfa39458f",
+        "truthKeySha256": "a3c0cc4a7db3b1951fce2a7bbf00d72d35c69fe19ed2174e25549072ef8f8213"
+      },
+      "selectionReason": "strata:complexity=moderate",
+      "strata": {
+        "caseId": "sim-015",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-015",
+        "hashes": {
+          "bundleTextSha256": "f01f223f8d412cdf28e2e2ecc9739fbd823b00ca34cc030a407601218002990b",
+          "casebrainOutputSha256": "de366bcd23c82cadf914e5dc2031fe0e26807ee1910fe1f7143313bcfa39458f",
+          "truthKeySha256": "a3c0cc4a7db3b1951fce2a7bbf00d72d35c69fe19ed2174e25549072ef8f8213"
+        },
+        "familyRaw": "motoring",
+        "familyBucket": "motoring",
+        "evidenceTypeBuckets": [
+          "unknown_only"
+        ],
+        "stateFlags": [],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "moderate",
+        "complexityScore": 28,
+        "truthItemCount": 0,
+        "surfaceCount": 18,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "32be5b285f4ea436fcbf0659a35848e8ce396530c345497567d793cd06cec6af"
+      },
+      "orderIndex": 22
+    },
+    {
+      "caseId": "sim-020",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-020",
+      "hashes": {
+        "bundleTextSha256": "e21d3181c8e095aa6cb98a31ee030a202cde0c346ef0394064783eb9fb367db7",
+        "casebrainOutputSha256": "b335594df9d058d52b1338c40ae110583dccee060fe57c6de801bea0a19b627f",
+        "truthKeySha256": "31574edc15901fd3718593ef6fcd60901d0c98192c0a5b7aea6f3a120c3cc29a"
+      },
+      "selectionReason": "strata:complexity=moderate",
+      "strata": {
+        "caseId": "sim-020",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-020",
+        "hashes": {
+          "bundleTextSha256": "e21d3181c8e095aa6cb98a31ee030a202cde0c346ef0394064783eb9fb367db7",
+          "casebrainOutputSha256": "b335594df9d058d52b1338c40ae110583dccee060fe57c6de801bea0a19b627f",
+          "truthKeySha256": "31574edc15901fd3718593ef6fcd60901d0c98192c0a5b7aea6f3a120c3cc29a"
+        },
+        "familyRaw": "violence_domestic",
+        "familyBucket": "violence",
+        "evidenceTypeBuckets": [
+          "witness_statement"
+        ],
+        "stateFlags": [
+          "has_not_safely_confirmed"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "moderate",
+        "complexityScore": 31,
+        "truthItemCount": 1,
+        "surfaceCount": 19,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "4a42897ee6f8bc983ecf48baa93eb73f669c9620c67ad43472f507cc13b87cdf"
+      },
+      "orderIndex": 23
+    },
+    {
+      "caseId": "sim-007",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-007",
+      "hashes": {
+        "bundleTextSha256": "f8e583318f83d2f0227d4d8e17a07106450de4408bdd34aea7833da240052494",
+        "casebrainOutputSha256": "f9c254d21cdb71da3ce86414f1856916bd9c24f7cd0d5b5acdc3b8efcaa7fbd2",
+        "truthKeySha256": "9b16f1342be6458160e94b7f236a0d58fc7c27782ad5c5f71ddcdd19ec5f7d0c"
+      },
+      "selectionReason": "strata:complexity=moderate",
+      "strata": {
+        "caseId": "sim-007",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-007",
+        "hashes": {
+          "bundleTextSha256": "f8e583318f83d2f0227d4d8e17a07106450de4408bdd34aea7833da240052494",
+          "casebrainOutputSha256": "f9c254d21cdb71da3ce86414f1856916bd9c24f7cd0d5b5acdc3b8efcaa7fbd2",
+          "truthKeySha256": "9b16f1342be6458160e94b7f236a0d58fc7c27782ad5c5f71ddcdd19ec5f7d0c"
+        },
+        "familyRaw": "violence_s20",
+        "familyBucket": "violence",
+        "evidenceTypeBuckets": [
+          "unknown_only"
+        ],
+        "stateFlags": [],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "moderate",
+        "complexityScore": 28,
+        "truthItemCount": 0,
+        "surfaceCount": 18,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "6a530613d78cec095afc488ee14c4c2dabdac207330cacf488667130e9cd16c1"
+      },
+      "orderIndex": 24
+    },
+    {
+      "caseId": "sim-073",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-073",
+      "hashes": {
+        "bundleTextSha256": "65fc2dbbc787a002df7422f85c94fe387aa911e1ae01ddc9df5688b5350180f0",
+        "casebrainOutputSha256": "818d36d2bee8a9411222625900df3e3b1ec70274ca0313569356c0b503a51130",
+        "truthKeySha256": "5ce47df39d3fbdc0f9a6f0a09257278390548deb7a71cd9e616c8e53d87755c0"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-073",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-073",
+        "hashes": {
+          "bundleTextSha256": "65fc2dbbc787a002df7422f85c94fe387aa911e1ae01ddc9df5688b5350180f0",
+          "casebrainOutputSha256": "818d36d2bee8a9411222625900df3e3b1ec70274ca0313569356c0b503a51130",
+          "truthKeySha256": "5ce47df39d3fbdc0f9a6f0a09257278390548deb7a71cd9e616c8e53d87755c0"
+        },
+        "familyRaw": "robbery_id",
+        "familyBucket": "robbery",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "interview",
+          "custody_pace"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing",
+          "has_not_safely_confirmed"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "recording_vs_transcript",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 68,
+        "truthItemCount": 12,
+        "surfaceCount": 33,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "042d5316ad0d5c25e7ab4a24a96161b38fe535552b579eeb75a78b9faa64b7bc"
+      },
+      "orderIndex": 25
+    },
+    {
+      "caseId": "sim-138",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-138",
+      "hashes": {
+        "bundleTextSha256": "819dbc0617b0e48d485abefee80a3150162b6d0402e4a7178f48094ab6686db5",
+        "casebrainOutputSha256": "941f09c530f1d54663053dd5ab7c695bde691bb583fa471ae64a91c586504a7d",
+        "truthKeySha256": "1f9407be5754af3496c48f7fb8201ffedd9146dd480143fd2883a66069ef49b0"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-138",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-138",
+        "hashes": {
+          "bundleTextSha256": "819dbc0617b0e48d485abefee80a3150162b6d0402e4a7178f48094ab6686db5",
+          "casebrainOutputSha256": "941f09c530f1d54663053dd5ab7c695bde691bb583fa471ae64a91c586504a7d",
+          "truthKeySha256": "1f9407be5754af3496c48f7fb8201ffedd9146dd480143fd2883a66069ef49b0"
+        },
+        "familyRaw": "mixed_unclear",
+        "familyBucket": "mixed_generic",
+        "evidenceTypeBuckets": [
+          "inference"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing",
+          "has_not_safely_confirmed"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 44,
+        "truthItemCount": 6,
+        "surfaceCount": 23,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "059eeb3dbf9b5a9a370c996c9ae2fd606cd1a9e05181779dba3c0e681259c37f"
+      },
+      "orderIndex": 26
+    },
+    {
+      "caseId": "sim-265",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-265",
+      "hashes": {
+        "bundleTextSha256": "1db6e047a30f8385b8075103a06d85493a45bbaf7b152b6d6a58feabfe222eab",
+        "casebrainOutputSha256": "d76a686ca304caeffad3b6050a9fc1794b6b4128d03f401192dafc940c4205ae",
+        "truthKeySha256": "44f9f11e46b1ebe7c18b44f943b2440b6611533f294b0418f61b3b19a9c133e7"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-265",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-265",
+        "hashes": {
+          "bundleTextSha256": "1db6e047a30f8385b8075103a06d85493a45bbaf7b152b6d6a58feabfe222eab",
+          "casebrainOutputSha256": "d76a686ca304caeffad3b6050a9fc1794b6b4128d03f401192dafc940c4205ae",
+          "truthKeySha256": "44f9f11e46b1ebe7c18b44f943b2440b6611533f294b0418f61b3b19a9c133e7"
+        },
+        "familyRaw": "digital_attribution",
+        "familyBucket": "encro_digital",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "interview"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "recording_vs_transcript",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 52,
+        "truthItemCount": 6,
+        "surfaceCount": 28,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "05e250be629faaeab1aeef99b00f8213e9f7f60371dac8b7e41b85618a9a334f"
+      },
+      "orderIndex": 27
+    },
+    {
+      "caseId": "sim-072",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-072",
+      "hashes": {
+        "bundleTextSha256": "9a61ae84f655738d9fc15fdc2ff89ea74f5b5f208757ade03c82e91bc7678e1d",
+        "casebrainOutputSha256": "86bd880ad2a7ada7aec26a1affeb832277112803570f24d30d193242b3d47600",
+        "truthKeySha256": "331d6b26fd03341da9509f663caa3147571209cdf09e11968c4ed8a8963f2602"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-072",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-072",
+        "hashes": {
+          "bundleTextSha256": "9a61ae84f655738d9fc15fdc2ff89ea74f5b5f208757ade03c82e91bc7678e1d",
+          "casebrainOutputSha256": "86bd880ad2a7ada7aec26a1affeb832277112803570f24d30d193242b3d47600",
+          "truthKeySha256": "331d6b26fd03341da9509f663caa3147571209cdf09e11968c4ed8a8963f2602"
+        },
+        "familyRaw": "false_documents",
+        "familyBucket": "fraud",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "interview",
+          "inference"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing",
+          "has_not_safely_confirmed"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "recording_vs_transcript",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 58,
+        "truthItemCount": 11,
+        "surfaceCount": 29,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0668872380f1a312aa652ca63449400be4e29d9dc7f2e0d483e772d8573061cc"
+      },
+      "orderIndex": 28
+    },
+    {
+      "caseId": "sim-387",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-387",
+      "hashes": {
+        "bundleTextSha256": "f93965a0de243ec80b5b1e3a8f8c13e840238372bf9597ee74b7a94bbfb3a16f",
+        "casebrainOutputSha256": "28b774a6039a353660e82dd4a8582b8b74e38ee41c872238f03924e822b5e4e4",
+        "truthKeySha256": "315b2d951d4e252e0c31e3b35f3e74018013434131f5a1736b155400f7e4a5bb"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-387",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-387",
+        "hashes": {
+          "bundleTextSha256": "f93965a0de243ec80b5b1e3a8f8c13e840238372bf9597ee74b7a94bbfb3a16f",
+          "casebrainOutputSha256": "28b774a6039a353660e82dd4a8582b8b74e38ee41c872238f03924e822b5e4e4",
+          "truthKeySha256": "315b2d951d4e252e0c31e3b35f3e74018013434131f5a1736b155400f7e4a5bb"
+        },
+        "familyRaw": "drugs_conspiracy",
+        "familyBucket": "drugs",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "digital"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 46,
+        "truthItemCount": 6,
+        "surfaceCount": 24,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "06e240fbc1f784b8ca2ae2f55e7b30c700d7f5369e120232ed693ecbd34447e2"
+      },
+      "orderIndex": 29
+    },
+    {
+      "caseId": "sim-128",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-128",
+      "hashes": {
+        "bundleTextSha256": "fa8a78cc8fc39f06b99c1a414605606c0aab7a5da6d7e7e592c436cb3cbeb2f7",
+        "casebrainOutputSha256": "22ee5f678ab9e3eee0f533db7aec83ac4f4d3163588aba4f40059893d6b3990d",
+        "truthKeySha256": "ae023e53a2c395bb938e6f9ab5053e678e74fbffb96f086faf181802bf1b5ca6"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-128",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-128",
+        "hashes": {
+          "bundleTextSha256": "fa8a78cc8fc39f06b99c1a414605606c0aab7a5da6d7e7e592c436cb3cbeb2f7",
+          "casebrainOutputSha256": "22ee5f678ab9e3eee0f533db7aec83ac4f4d3163588aba4f40059893d6b3990d",
+          "truthKeySha256": "ae023e53a2c395bb938e6f9ab5053e678e74fbffb96f086faf181802bf1b5ca6"
+        },
+        "familyRaw": "fraud_account",
+        "familyBucket": "fraud",
+        "evidenceTypeBuckets": [
+          "unknown_only"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 45,
+        "truthItemCount": 4,
+        "surfaceCount": 25,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "075df3e277466144957de410c37281beb890d5900ef32432de037648eb384ff5"
+      },
+      "orderIndex": 30
+    },
+    {
+      "caseId": "sim-332",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-332",
+      "hashes": {
+        "bundleTextSha256": "d03d1e731e998356c6f86abe07bab9c976f4c1e0f7530807507709534e0b030f",
+        "casebrainOutputSha256": "4ba87d80e133e2d64bbe7f8b48f555802158ec92cb9405a6a90cbcb857728e20",
+        "truthKeySha256": "5c954ce821ab728c984ad2a56ddf6409ed9bf5facf1146f1e63fe6940585df3e"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-332",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-332",
+        "hashes": {
+          "bundleTextSha256": "d03d1e731e998356c6f86abe07bab9c976f4c1e0f7530807507709534e0b030f",
+          "casebrainOutputSha256": "4ba87d80e133e2d64bbe7f8b48f555802158ec92cb9405a6a90cbcb857728e20",
+          "truthKeySha256": "5c954ce821ab728c984ad2a56ddf6409ed9bf5facf1146f1e63fe6940585df3e"
+        },
+        "familyRaw": "robbery_id",
+        "familyBucket": "robbery",
+        "evidenceTypeBuckets": [
+          "interview",
+          "mg5",
+          "digital"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "recording_vs_transcript",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 58,
+        "truthItemCount": 6,
+        "surfaceCount": 31,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0a66833f440097632167b35fb6c3d6d4b5f6f4014964c3b0f2eede9096576f12"
+      },
+      "orderIndex": 31
+    },
+    {
+      "caseId": "sim-329",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-329",
+      "hashes": {
+        "bundleTextSha256": "028a47b514fcf2cf735898202d7989d0fb18de69342a8e3169eb623f092ed4a8",
+        "casebrainOutputSha256": "ef42607390e13e178af839cb2d81e817f567c416c30232827f9bc1c0d0d8f35b",
+        "truthKeySha256": "49f5196288789b73ee1aec292085dedb8ac9febf6b2562aa4616df81b0b5d731"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-329",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-329",
+        "hashes": {
+          "bundleTextSha256": "028a47b514fcf2cf735898202d7989d0fb18de69342a8e3169eb623f092ed4a8",
+          "casebrainOutputSha256": "ef42607390e13e178af839cb2d81e817f567c416c30232827f9bc1c0d0d8f35b",
+          "truthKeySha256": "49f5196288789b73ee1aec292085dedb8ac9febf6b2562aa4616df81b0b5d731"
+        },
+        "familyRaw": "drugs_pwits",
+        "familyBucket": "drugs",
+        "evidenceTypeBuckets": [
+          "digital",
+          "mg5"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "extract_vs_full",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 58,
+        "truthItemCount": 6,
+        "surfaceCount": 31,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0ac274579d2ebb9cb3cd957bf72d59fb8b339b0f0d1132f775369c8cd185487b"
+      },
+      "orderIndex": 32
+    },
+    {
+      "caseId": "sim-198",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-198",
+      "hashes": {
+        "bundleTextSha256": "9922c8b93161793e09c03f5eb68376d9aa8e4f80411c61324fe06d4003a070ac",
+        "casebrainOutputSha256": "7bf017feaebfe8608c0e4c0ccbc142fa1060d3b545cfc4b6678f0e27b71a3cba",
+        "truthKeySha256": "aa5bd3fb5024b34a890f044902a36009edf5601c003e4700b3c9f26545c2bc9b"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-198",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-198",
+        "hashes": {
+          "bundleTextSha256": "9922c8b93161793e09c03f5eb68376d9aa8e4f80411c61324fe06d4003a070ac",
+          "casebrainOutputSha256": "7bf017feaebfe8608c0e4c0ccbc142fa1060d3b545cfc4b6678f0e27b71a3cba",
+          "truthKeySha256": "aa5bd3fb5024b34a890f044902a36009edf5601c003e4700b3c9f26545c2bc9b"
+        },
+        "familyRaw": "sexual",
+        "familyBucket": "sexual",
+        "evidenceTypeBuckets": [
+          "mg5"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 39,
+        "truthItemCount": 6,
+        "surfaceCount": 20,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0aefecdc64e974c94e8d065e511b474f3825966c4c750fa60880c35b3d85cdee"
+      },
+      "orderIndex": 33
+    },
+    {
+      "caseId": "sim-337",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-337",
+      "hashes": {
+        "bundleTextSha256": "249148acbff349338459dab36fa3bdbbc6117ad9bf6d5c157f6b63fe3dfeb81e",
+        "casebrainOutputSha256": "a41bbd4c5585a6777d8b5f0bb4d81685e714c7ea38b7ceb83c1061a83b01b62c",
+        "truthKeySha256": "b23dab5bc03056332565270f2d1461d046aa99f312dcb0d7b31639c91c0f3595"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-337",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-337",
+        "hashes": {
+          "bundleTextSha256": "249148acbff349338459dab36fa3bdbbc6117ad9bf6d5c157f6b63fe3dfeb81e",
+          "casebrainOutputSha256": "a41bbd4c5585a6777d8b5f0bb4d81685e714c7ea38b7ceb83c1061a83b01b62c",
+          "truthKeySha256": "b23dab5bc03056332565270f2d1461d046aa99f312dcb0d7b31639c91c0f3595"
+        },
+        "familyRaw": "fraud_account",
+        "familyBucket": "fraud",
+        "evidenceTypeBuckets": [
+          "encro",
+          "mg5"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 47,
+        "truthItemCount": 6,
+        "surfaceCount": 25,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0ba4771d66edcc8928abd00572ac794613de38617110a59109845be5a41b4394"
+      },
+      "orderIndex": 34
+    },
+    {
+      "caseId": "sim-366",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-366",
+      "hashes": {
+        "bundleTextSha256": "23e6eaa2cc4dde3d5c9335d1dfb0f151b616c4be7a28ae68b7ee01709c221c97",
+        "casebrainOutputSha256": "ac9db9cc1905a595a482ac3a07f1b17be40889ad0b300e30a246a093d60e8660",
+        "truthKeySha256": "8b319566b5ef4744e0a4e275c3b0956f9cae7d876f2ee0ff00871b88d6fb2d8e"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-366",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-366",
+        "hashes": {
+          "bundleTextSha256": "23e6eaa2cc4dde3d5c9335d1dfb0f151b616c4be7a28ae68b7ee01709c221c97",
+          "casebrainOutputSha256": "ac9db9cc1905a595a482ac3a07f1b17be40889ad0b300e30a246a093d60e8660",
+          "truthKeySha256": "8b319566b5ef4744e0a4e275c3b0956f9cae7d876f2ee0ff00871b88d6fb2d8e"
+        },
+        "familyRaw": "encro_encrypted_comms",
+        "familyBucket": "encro_digital",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "inference"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing",
+          "has_not_safely_confirmed"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 50,
+        "truthItemCount": 7,
+        "surfaceCount": 26,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0cddd667c16443b265ae6be8a3637f93caf180cd01c6539ab87d53cc64c248de"
+      },
+      "orderIndex": 35
+    },
+    {
+      "caseId": "sim-336",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-336",
+      "hashes": {
+        "bundleTextSha256": "87af7d50ca8829ce70074ea893651c5a8f299696831ed5c535a358a297106991",
+        "casebrainOutputSha256": "2c5e3df2da25bc23d3b4543e913b44cfe6c42204787a03527420c20eb6e484d9",
+        "truthKeySha256": "c8248c0b49a99cadee7ae26e5c851c37f29d2b0e1a0804b8e9e8830345d25e21"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-336",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-336",
+        "hashes": {
+          "bundleTextSha256": "87af7d50ca8829ce70074ea893651c5a8f299696831ed5c535a358a297106991",
+          "casebrainOutputSha256": "2c5e3df2da25bc23d3b4543e913b44cfe6c42204787a03527420c20eb6e484d9",
+          "truthKeySha256": "c8248c0b49a99cadee7ae26e5c851c37f29d2b0e1a0804b8e9e8830345d25e21"
+        },
+        "familyRaw": "motoring",
+        "familyBucket": "motoring",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "cctv",
+          "custody_pace",
+          "inference"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing",
+          "has_not_safely_confirmed"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 61,
+        "truthItemCount": 7,
+        "surfaceCount": 34,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0dab01bac91f4274f7107d515f5fc015ad8cd50b48f337e6ba4d7cf374c249c6"
+      },
+      "orderIndex": 36
+    },
+    {
+      "caseId": "sim-286",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-286",
+      "hashes": {
+        "bundleTextSha256": "c9fc16891717c03db82986e1118ba8701051ac08156cf0bf9fa716fa1c46787f",
+        "casebrainOutputSha256": "73f2336c4594a2b56236c508b917226284c0d7d8ee36f035077330f0b873f0f0",
+        "truthKeySha256": "c7c7aa49fd2bb30d2a3a3d25e435e4c022b4c93a320a80aeba76353b46840025"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-286",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-286",
+        "hashes": {
+          "bundleTextSha256": "c9fc16891717c03db82986e1118ba8701051ac08156cf0bf9fa716fa1c46787f",
+          "casebrainOutputSha256": "73f2336c4594a2b56236c508b917226284c0d7d8ee36f035077330f0b873f0f0",
+          "truthKeySha256": "c7c7aa49fd2bb30d2a3a3d25e435e4c022b4c93a320a80aeba76353b46840025"
+        },
+        "familyRaw": "aew_police_contact",
+        "familyBucket": "violence",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "digital"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "chronology",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 43,
+        "truthItemCount": 6,
+        "surfaceCount": 22,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0eb161c13e623ce3b806ab07579d7e03969bf03301901643874cb512a6edfbeb"
+      },
+      "orderIndex": 37
+    },
+    {
+      "caseId": "sim-199",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-199",
+      "hashes": {
+        "bundleTextSha256": "be91e6090e695bd548fdc31f4c7365d56d913ba68a2191d3f02e42858b1351ad",
+        "casebrainOutputSha256": "f4f4679c3a3dadca063a41cc5ac58c6035c9a91788b3e3d1796814dfe9ce2f42",
+        "truthKeySha256": "d8ff8923747119ecbe6d4ea0ad4cea610df4af7da444b6387870d0d8daf79beb"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-199",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-199",
+        "hashes": {
+          "bundleTextSha256": "be91e6090e695bd548fdc31f4c7365d56d913ba68a2191d3f02e42858b1351ad",
+          "casebrainOutputSha256": "f4f4679c3a3dadca063a41cc5ac58c6035c9a91788b3e3d1796814dfe9ce2f42",
+          "truthKeySha256": "d8ff8923747119ecbe6d4ea0ad4cea610df4af7da444b6387870d0d8daf79beb"
+        },
+        "familyRaw": "motoring",
+        "familyBucket": "motoring",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "digital"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 47,
+        "truthItemCount": 6,
+        "surfaceCount": 25,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "0f3bf26830d65b455370ea835b3c496469f667b9985b1d06792ebc1c27d5d9f3"
+      },
+      "orderIndex": 38
+    },
+    {
+      "caseId": "sim-354",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-354",
+      "hashes": {
+        "bundleTextSha256": "c1f2eaf3c06e25f73f6f5b02dea10d2a362f54b760b366c77c314ddf7c423d8d",
+        "casebrainOutputSha256": "d858c4d3500ed1cc1122821965b4ba5a2debdf2a7b4c24f743f44d1ebf77c625",
+        "truthKeySha256": "db0df8bc95c99eac50c1cf9b6f244b3f3e243dc795c60252d08d016e6c8d4af8"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-354",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-354",
+        "hashes": {
+          "bundleTextSha256": "c1f2eaf3c06e25f73f6f5b02dea10d2a362f54b760b366c77c314ddf7c423d8d",
+          "casebrainOutputSha256": "d858c4d3500ed1cc1122821965b4ba5a2debdf2a7b4c24f743f44d1ebf77c625",
+          "truthKeySha256": "db0df8bc95c99eac50c1cf9b6f244b3f3e243dc795c60252d08d016e6c8d4af8"
+        },
+        "familyRaw": "harassment",
+        "familyBucket": "harassment_domestic",
+        "evidenceTypeBuckets": [
+          "mg5"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 44,
+        "truthItemCount": 6,
+        "surfaceCount": 23,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "110950dafe75d478caef3e4b23c85e187955e821ec391798b392f5daf626faef"
+      },
+      "orderIndex": 39
+    },
+    {
+      "caseId": "sim-145",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-145",
+      "hashes": {
+        "bundleTextSha256": "f03ff668a0f27b379e6cc64f88518ec1421c557c9a7a09a2baefe287a9c2579a",
+        "casebrainOutputSha256": "61853639298331cea7cd90db57cf96c9a94eeb2004ff21f464567c3723e768ff",
+        "truthKeySha256": "eda0247dcc89527d6b19a82bc2570cf5a15bc6f1829ff36142a014333edd0748"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-145",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-145",
+        "hashes": {
+          "bundleTextSha256": "f03ff668a0f27b379e6cc64f88518ec1421c557c9a7a09a2baefe287a9c2579a",
+          "casebrainOutputSha256": "61853639298331cea7cd90db57cf96c9a94eeb2004ff21f464567c3723e768ff",
+          "truthKeySha256": "eda0247dcc89527d6b19a82bc2570cf5a15bc6f1829ff36142a014333edd0748"
+        },
+        "familyRaw": "aew_police_contact",
+        "familyBucket": "violence",
+        "evidenceTypeBuckets": [
+          "custody_pace",
+          "bwv"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "extract_vs_full",
+          "draft_vs_signed",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 60,
+        "truthItemCount": 4,
+        "surfaceCount": 34,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "110d26212225b7626ee119e804c4e1aeb0c4915565e1dbde9ffaeb5af9fc512e"
+      },
+      "orderIndex": 40
+    },
+    {
+      "caseId": "sim-257",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-257",
+      "hashes": {
+        "bundleTextSha256": "351f68a5b1cf8b75a60cc18153d70787bfa53bc40e672b89bfb02e42681502a5",
+        "casebrainOutputSha256": "a8cebf6d148fe3dc32a11eef78b468fda3708dd7a417fd17ab82659792fe3c7e",
+        "truthKeySha256": "76e4a9ff80da51739c5f59f66d06d1c636ff803413fa479b3e52eda4e6f15f42"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-257",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-257",
+        "hashes": {
+          "bundleTextSha256": "351f68a5b1cf8b75a60cc18153d70787bfa53bc40e672b89bfb02e42681502a5",
+          "casebrainOutputSha256": "a8cebf6d148fe3dc32a11eef78b468fda3708dd7a417fd17ab82659792fe3c7e",
+          "truthKeySha256": "76e4a9ff80da51739c5f59f66d06d1c636ff803413fa479b3e52eda4e6f15f42"
+        },
+        "familyRaw": "motoring",
+        "familyBucket": "motoring",
+        "evidenceTypeBuckets": [
+          "interview",
+          "mg5",
+          "custody_pace"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "recording_vs_transcript",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 59,
+        "truthItemCount": 7,
+        "surfaceCount": 31,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "11b33a15634b87f8063ec30831af95ca35b4440c30f027137d1e19d96060f8ba"
+      },
+      "orderIndex": 41
+    },
+    {
+      "caseId": "sim-245",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-245",
+      "hashes": {
+        "bundleTextSha256": "c9c196923b0a3ae8502218b980a39fc2f51d71587661b84d8833640ea7c2f0e4",
+        "casebrainOutputSha256": "1f398562391add8e9b7bf142a5e821feb4fef2f9206654d9f35f07a5ed26f540",
+        "truthKeySha256": "65b8318ba6682acc0756258a769e2a50e877876a980f760b194a3828ea861e2c"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-245",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-245",
+        "hashes": {
+          "bundleTextSha256": "c9c196923b0a3ae8502218b980a39fc2f51d71587661b84d8833640ea7c2f0e4",
+          "casebrainOutputSha256": "1f398562391add8e9b7bf142a5e821feb4fef2f9206654d9f35f07a5ed26f540",
+          "truthKeySha256": "65b8318ba6682acc0756258a769e2a50e877876a980f760b194a3828ea861e2c"
+        },
+        "familyRaw": "mixed_unclear",
+        "familyBucket": "mixed_generic",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "digital"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 50,
+        "truthItemCount": 6,
+        "surfaceCount": 27,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "128cc8bc8c6fa73953074a2216882984fcdd41244c566164d8af2fab050ce334"
+      },
+      "orderIndex": 42
+    },
+    {
+      "caseId": "sim-395",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-395",
+      "hashes": {
+        "bundleTextSha256": "826e3fa13a15a77b95ac9d37c894ad0c52b57565986e093e348d8c453e388479",
+        "casebrainOutputSha256": "01782a01c16274643695c73875cbd5e3543548135d7f7f89d04cd1af7255e189",
+        "truthKeySha256": "f417c96dbf5d7b8b161545b759d6337f7fa09726ad1f4b4a60f3431282fdf9cb"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-395",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-395",
+        "hashes": {
+          "bundleTextSha256": "826e3fa13a15a77b95ac9d37c894ad0c52b57565986e093e348d8c453e388479",
+          "casebrainOutputSha256": "01782a01c16274643695c73875cbd5e3543548135d7f7f89d04cd1af7255e189",
+          "truthKeySha256": "f417c96dbf5d7b8b161545b759d6337f7fa09726ad1f4b4a60f3431282fdf9cb"
+        },
+        "familyRaw": "motoring",
+        "familyBucket": "motoring",
+        "evidenceTypeBuckets": [
+          "mg5",
+          "cctv",
+          "bwv"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 60,
+        "truthItemCount": 7,
+        "surfaceCount": 33,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "135a45042f63e2a7a26fbf7ffd09522ee875d373e052e6dea828931d8c802e5d"
+      },
+      "orderIndex": 43
+    },
+    {
+      "caseId": "sim-271",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-271",
+      "hashes": {
+        "bundleTextSha256": "334a3bf157ac637325b7ec2d799df6655f1303b156764c853de7d4ab45b81b00",
+        "casebrainOutputSha256": "0365c31a9c2012017a5cc863ccb756d0657914972657e7875772e670a37ef1bd",
+        "truthKeySha256": "25361a8c98d79c329be77fe7e6c6cedb6ac475942abcbf0116371721eebb6211"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-271",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-271",
+        "hashes": {
+          "bundleTextSha256": "334a3bf157ac637325b7ec2d799df6655f1303b156764c853de7d4ab45b81b00",
+          "casebrainOutputSha256": "0365c31a9c2012017a5cc863ccb756d0657914972657e7875772e670a37ef1bd",
+          "truthKeySha256": "25361a8c98d79c329be77fe7e6c6cedb6ac475942abcbf0116371721eebb6211"
+        },
+        "familyRaw": "drugs_supply",
+        "familyBucket": "drugs",
+        "evidenceTypeBuckets": [
+          "mg5"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "draft_vs_signed",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 54,
+        "truthItemCount": 7,
+        "surfaceCount": 29,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "140c7ec681685cf5de2fc236703892abd5dbf7bdd0d9a298d35f61013e5c7d13"
+      },
+      "orderIndex": 44
+    },
+    {
+      "caseId": "sim-389",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-389",
+      "hashes": {
+        "bundleTextSha256": "baacdda4bbdf20615ef6c1ccffd9cf248a36da7480976f4d2b250e6356f2390a",
+        "casebrainOutputSha256": "15c6a0b4e88e9f9a97c14f6512c864149aaaa519473a2e5a2b716c6b6a16ead4",
+        "truthKeySha256": "07647df74dddb1cd51104d4caeb695059cc570952591895f56b1980cb87580c1"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-389",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-389",
+        "hashes": {
+          "bundleTextSha256": "baacdda4bbdf20615ef6c1ccffd9cf248a36da7480976f4d2b250e6356f2390a",
+          "casebrainOutputSha256": "15c6a0b4e88e9f9a97c14f6512c864149aaaa519473a2e5a2b716c6b6a16ead4",
+          "truthKeySha256": "07647df74dddb1cd51104d4caeb695059cc570952591895f56b1980cb87580c1"
+        },
+        "familyRaw": "drugs_supply",
+        "familyBucket": "drugs",
+        "evidenceTypeBuckets": [
+          "encro",
+          "mg5"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 50,
+        "truthItemCount": 6,
+        "surfaceCount": 28,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "1439be133511fc5b7f17eb7bc9a70d57a2a8ef1763827151af227547f59cefd7"
+      },
+      "orderIndex": 45
+    },
+    {
+      "caseId": "sim-360",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-360",
+      "hashes": {
+        "bundleTextSha256": "7e6cdf389ae71bff63ad73da875b9d387b924aec6b8cdc604153341587847c3e",
+        "casebrainOutputSha256": "5c9879aabd03a502924ba584d81de4218e34fdf35dee1f0fd07a3543b50f80e5",
+        "truthKeySha256": "24d6595bed988bc4a054d32b5547780f419e1d4afb45404a833c3b484b32b6ba"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-360",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-360",
+        "hashes": {
+          "bundleTextSha256": "7e6cdf389ae71bff63ad73da875b9d387b924aec6b8cdc604153341587847c3e",
+          "casebrainOutputSha256": "5c9879aabd03a502924ba584d81de4218e34fdf35dee1f0fd07a3543b50f80e5",
+          "truthKeySha256": "24d6595bed988bc4a054d32b5547780f419e1d4afb45404a833c3b484b32b6ba"
+        },
+        "familyRaw": "youth",
+        "familyBucket": "youth",
+        "evidenceTypeBuckets": [
+          "mg5"
+        ],
+        "stateFlags": [
+          "has_served",
+          "has_referred_only",
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 50,
+        "truthItemCount": 6,
+        "surfaceCount": 26,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "1490394345ada6c5b4e3c630a3e18f2df122399801736c3ba7f44a8fe34a5ee7"
+      },
+      "orderIndex": 46
+    },
+    {
+      "caseId": "sc-0006a",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0006a",
+      "hashes": {
+        "bundleTextSha256": "8042abdb0bc406656b2203a82b665d0c0486e0f6301532f9b0a5959aaa3d9f34",
+        "casebrainOutputSha256": "a423a1d8b078d9e8e47a750e014795da7ab4f79e8960bc28ddf68eb464d438d4",
+        "truthKeySha256": "52e6fc40ce7a160d0a2600616355269c576ff285bb610631e34d15e868cb060c"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sc-0006a",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0006a",
+        "hashes": {
+          "bundleTextSha256": "8042abdb0bc406656b2203a82b665d0c0486e0f6301532f9b0a5959aaa3d9f34",
+          "casebrainOutputSha256": "a423a1d8b078d9e8e47a750e014795da7ab4f79e8960bc28ddf68eb464d438d4",
+          "truthKeySha256": "52e6fc40ce7a160d0a2600616355269c576ff285bb610631e34d15e868cb060c"
+        },
+        "familyRaw": "violence_gbh_s18",
+        "familyBucket": "violence",
+        "evidenceTypeBuckets": [
+          "unknown_only"
+        ],
+        "stateFlags": [
+          "has_referred_only",
+          "has_served"
+        ],
+        "issueTags": [
+          "attribution",
+          "chronology",
+          "hearing",
+          "document_version",
+          "extract_vs_full",
+          "clip_vs_master",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 76,
+        "truthItemCount": 13,
+        "surfaceCount": 38,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "1495de47f63557e35517b68e05e36bf944a6f9c9df908f05c73cd10fd34370c5"
+      },
+      "orderIndex": 47
+    },
+    {
+      "caseId": "sc-0002e",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0002e",
+      "hashes": {
+        "bundleTextSha256": "1c77c39bbf6ed820bf5a8383c9a712990a1e91fc06ae746e00b4bec4e88dddbc",
+        "casebrainOutputSha256": "cd06f696655119b38d6c768855939ebd42a69128602b4c44179022801562317d",
+        "truthKeySha256": "a7d9579153cb8c709e9c30702d4027d81fd3c6e1439a7544cd8f61e962adf90f"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sc-0002e",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0002e",
+        "hashes": {
+          "bundleTextSha256": "1c77c39bbf6ed820bf5a8383c9a712990a1e91fc06ae746e00b4bec4e88dddbc",
+          "casebrainOutputSha256": "cd06f696655119b38d6c768855939ebd42a69128602b4c44179022801562317d",
+          "truthKeySha256": "a7d9579153cb8c709e9c30702d4027d81fd3c6e1439a7544cd8f61e962adf90f"
+        },
+        "familyRaw": "violence_gbh_s18",
+        "familyBucket": "violence",
+        "evidenceTypeBuckets": [
+          "unknown_only"
+        ],
+        "stateFlags": [
+          "has_referred_only",
+          "has_served"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "extract_vs_full",
+          "clip_vs_master",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 74,
+        "truthItemCount": 13,
+        "surfaceCount": 37,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "14a265b0bb12025932956c01043d489fcacaf1770ff0f70c6680e562154505c7"
+      },
+      "orderIndex": 48
+    },
+    {
+      "caseId": "sim-024",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-024",
+      "hashes": {
+        "bundleTextSha256": "107096b3f5fc9bb9783abfb2057c6943b5373cbc5c205300e70c5192fe423575",
+        "casebrainOutputSha256": "96899fb6bf7966f6a94c3de367d95f79ca4ab47b93a47d8208baf403e4d62486",
+        "truthKeySha256": "1cd3a834deccab95471a85af934184b3f3a940a886e4f06f71107ef8d221dfd4"
+      },
+      "selectionReason": "fill:deterministic_selection_key",
+      "strata": {
+        "caseId": "sim-024",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-024",
+        "hashes": {
+          "bundleTextSha256": "107096b3f5fc9bb9783abfb2057c6943b5373cbc5c205300e70c5192fe423575",
+          "casebrainOutputSha256": "96899fb6bf7966f6a94c3de367d95f79ca4ab47b93a47d8208baf403e4d62486",
+          "truthKeySha256": "1cd3a834deccab95471a85af934184b3f3a940a886e4f06f71107ef8d221dfd4"
+        },
+        "familyRaw": "generic",
+        "familyBucket": "mixed_generic",
+        "evidenceTypeBuckets": [
+          "unknown_only"
+        ],
+        "stateFlags": [
+          "has_missing"
+        ],
+        "issueTags": [
+          "attribution",
+          "hearing",
+          "document_version",
+          "fn_incomplete_disclaimer_class"
+        ],
+        "complexityBand": "complex",
+        "complexityScore": 34,
+        "truthItemCount": 2,
+        "surfaceCount": 20,
+        "missingFieldCount": 2,
+        "hasCopyableSurface": true,
+        "hasNonCopyableSurface": true,
+        "exitModesPresent": [
+          "view",
+          "copy"
+        ],
+        "outputShape": {
+          "hasFiveAnswers": true,
+          "hasEvidenceStates": true,
+          "hasChase": true,
+          "hasCourtNote": true,
+          "hasDoNotOverstate": true,
+          "missingFieldHeavy": false
+        },
+        "selectionKey": "15bbb762df7a63984913d29cec05f4f09633b1557aed3bb1233a3094e129d9e0"
+      },
+      "orderIndex": 49
+    }
+  ],
+  "coverage": {
+    "familyBucketsCovered": [
+      "breach",
+      "custody_pace",
+      "drugs",
+      "encro_digital",
+      "fraud",
+      "harassment_domestic",
+      "mixed_generic",
+      "motoring",
+      "other",
+      "perverting",
+      "public_order",
+      "robbery",
+      "sexual",
+      "violence",
+      "weapons",
+      "youth"
+    ],
+    "familyBucketCounts": {
+      "robbery": 3,
+      "motoring": 7,
+      "drugs": 7,
+      "violence": 7,
+      "fraud": 5,
+      "sexual": 3,
+      "harassment_domestic": 2,
+      "weapons": 1,
+      "youth": 2,
+      "public_order": 1,
+      "custody_pace": 1,
+      "breach": 1,
+      "encro_digital": 3,
+      "perverting": 1,
+      "mixed_generic": 5,
+      "other": 1
+    },
+    "evidenceTypeBucketsCovered": [
+      "bwv",
+      "cctv",
+      "custody_pace",
+      "digital",
+      "encro",
+      "inference",
+      "interview",
+      "mg5",
+      "other_typed",
+      "unknown_only",
+      "witness_statement"
+    ],
+    "evidenceTypeBucketCounts": {
+      "unknown_only": 13,
+      "mg5": 34,
+      "digital": 10,
+      "bwv": 5,
+      "interview": 8,
+      "cctv": 5,
+      "witness_statement": 5,
+      "custody_pace": 5,
+      "inference": 8,
+      "encro": 4,
+      "other_typed": 1
+    },
+    "stateFlagsCovered": [
+      "has_incomplete",
+      "has_inferred_only",
+      "has_missing",
+      "has_not_safely_confirmed",
+      "has_other_defendant_only",
+      "has_referred_only",
+      "has_served"
+    ],
+    "issueTagsCovered": [
+      "attribution",
+      "chronology",
+      "clip_vs_master",
+      "document_version",
+      "draft_vs_signed",
+      "extract_vs_full",
+      "fn_incomplete_disclaimer_class",
+      "hearing",
+      "recording_vs_transcript"
+    ],
+    "complexityBands": {
+      "simple": 0,
+      "moderate": 5,
+      "complex": 45
+    },
+    "copyableCases": 50,
+    "nonCopyableCases": 50,
+    "outputShapes": {
+      "fiveAnswers": 50,
+      "evidenceStates": 50,
+      "chase": 50,
+      "courtNote": 50,
+      "doNotOverstate": 50,
+      "missingFieldHeavy": 0
+    },
+    "exitApplicability": {
+      "view": {
+        "presentOnCases": 50,
+        "status": "exercisable"
+      },
+      "copy": {
+        "presentOnCases": 50,
+        "status": "exercisable"
+      },
+      "export": {
+        "presentOnCases": 0,
+        "status": "not_exercised"
+      },
+      "api": {
+        "presentOnCases": 0,
+        "status": "not_exercised"
+      },
+      "pdf": {
+        "presentOnCases": 0,
+        "status": "not_exercised"
+      },
+      "composed_prose": {
+        "presentOnCases": 0,
+        "status": "not_exercised"
+      }
+    },
+    "laneExercisePotential": [
+      {
+        "laneTheme": "evidence_state",
+        "covered": true,
+        "note": "state flags covered: has_referred_only, has_served, has_missing, has_not_safely_confirmed, has_incomplete, has_inferred_only, has_other_defendant_only"
+      },
+      {
+        "laneTheme": "attribution_parties",
+        "covered": true,
+        "note": "attribution-tagged cases present"
+      },
+      {
+        "laneTheme": "chronology_hearing",
+        "covered": true,
+        "note": "chronology=true hearing=true"
+      },
+      {
+        "laneTheme": "document_version_identity",
+        "covered": true,
+        "note": "draft/signed/extract/full/version tags"
+      },
+      {
+        "laneTheme": "completeness_disclaimer",
+        "covered": true,
+        "note": "FN-INCOMPLETE-DISCLAIMER / GOLD-11-039 class markers in output"
+      },
+      {
+        "laneTheme": "cross_surface_chase",
+        "covered": true,
+        "note": "chase + fiveAnswers present"
+      },
+      {
+        "laneTheme": "defence_lens_dno",
+        "covered": true,
+        "note": "doNotOverstate surfaces present"
+      },
+      {
+        "laneTheme": "copyable_vs_containment",
+        "covered": true,
+        "note": "copyable=50 non_copyable=50"
+      },
+      {
+        "laneTheme": "export_api_pdf_composed",
+        "covered": false,
+        "note": "ESA format cannot exercise these exits — remain not_exercised"
+      }
+    ]
+  },
+  "rules": {
+    "deterministic": true,
+    "blindToAuditorOutcomes": true,
+    "controlsExecuted": false,
+    "findingsGenerated": false,
+    "sourceOutputTruthSeparated": true,
+    "absentExitsRemainNotExercised": [
+      "export",
+      "api",
+      "pdf",
+      "composed_prose"
+    ]
+  }
+}

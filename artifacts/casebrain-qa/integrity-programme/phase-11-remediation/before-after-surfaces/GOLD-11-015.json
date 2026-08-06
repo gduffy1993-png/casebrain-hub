@@ -1,0 +1,35 @@
+{
+  "goldId": "GOLD-11-015",
+  "changes": [
+    {
+      "surface": "court_line",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "5ae64061df01",
+        "textPreview": "The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain"
+      },
+      "after": {
+        "gateStatus": "qualified_solicitor_review_queue",
+        "canCopy": false,
+        "textHash": "4ceb0ee8feaa",
+        "textPreview": "Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export."
+      }
+    },
+    {
+      "surface": "truth_map",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "386bf2361c67",
+        "textPreview": "• Screenshot / message pack — served\n• Phone extraction summary — served\n• Device metadata export — referred_only\n• Complainant MG11 (draft) — served\n• Attribut"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "7807f6f23ed1",
+        "textPreview": "• Screenshot / message pack — served\n• Phone extraction source material — served\n• Device metadata export — referred_only\n• Complainant MG11 (draft) — served\n• "
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":380,"approved_band":"250-500","rule":"may reduce where authentic content does not justify plan"},
+  "planned_documents":[
+    {"id":"S01","structure":"case summary, proposed charges, person/count matrix and chronology","pages":"20-30","purpose":"orient without collapsing roles or states"},
+    {"id":"S02","structure":"search, surveillance, stop, seizure and continuity records","pages":"45-65","purpose":"observations, recognition limits and physical exhibits"},
+    {"id":"S03","structure":"adult custody/interviews and defence statements","pages":"35-50","purpose":"maker-specific positions"},
+    {"id":"S04","structure":"child custody, AA/legal-advice logs, audio indices and interviews","pages":"45-65","purpose":"minute-level safeguards, changing account and admissibility issue"},
+    {"id":"S05","structure":"device extractions, fictional encrypted chats, call/deal-line schedules","pages":"55-80","purpose":"attribution, context, deletion and completeness"},
+    {"id":"S06","structure":"cell-site, mapping and transport evidence","pages":"30-45","purpose":"location evidence with precision limits"},
+    {"id":"S07","structure":"drug laboratory, cash and packaging evidence","pages":"25-40","purpose":"substance, sampling, quantity and continuity"},
+    {"id":"S08","structure":"missing-person, education/social-care and safeguarding records","pages":"30-45","purpose":"vulnerability indicators with privacy controls"},
+    {"id":"S09","structure":"NRM referral and decisions; legal submissions kept separately","pages":"20-35","purpose":"lifecycle state separation"},
+    {"id":"S10","structure":"disclosure schedules, DMD, multi-force logs, applications/rulings and bail records","pages":"40-60","purpose":"service, contamination, procedural and late-disclosure states"}
+  ],
+  "format_mix":["born-digital and scanned PDF","JSON message export with hash","CSV call schedule","images","audio metadata/transcript index","maps","confidential structured records"],
+  "boundary":"No malicious inputs; those remain in the separate security harness. No full Youth Court trial design; rank 7 retains that coverage."
+}

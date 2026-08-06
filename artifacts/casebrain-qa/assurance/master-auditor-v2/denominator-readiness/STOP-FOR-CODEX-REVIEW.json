@@ -1,0 +1,683 @@
+{
+  "schemaVersion": "maa-v2-stage150-batch4-stop@2.0.0",
+  "title": "ACCEPTED — Denominator readiness after Batch 4 honesty remediation",
+  "status": "STAGE150_BATCH4_HONESTY_REMEDIATION_ACCEPTED",
+  "createdAt": "2026-07-30T18:29:47.919Z",
+  "elapsedMs": 19934,
+  "baselineCommit": "da98277c3038b40b2408a7af6a41475e88b21e17",
+  "headCommit": "da98277c3038b40b2408a7af6a41475e88b21e17",
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "programmePassSupported": false,
+  "applicationBehaviourChanged": false,
+  "caseBrainRepaired": false,
+  "committed": true,
+  "pushed": true,
+  "freezeHashStage50Preserved": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "honesty": {
+    "counts": {
+      "partially_implemented_detector": 0,
+      "adapter_foundation_only": 48,
+      "specified_not_implemented": 0,
+      "deferred_stage300": 7
+    },
+    "realDetectorCount": 0,
+    "adapterFoundationOnlyCount": 48,
+    "sniOrDeferredCount": 7,
+    "fortyEight": [
+      {
+        "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "version_pair",
+        "reason": "Adapter eld_source_change_drafting + ELD schema only; evaluateBatch4 returns [] unconditionally for this id. Synthetic fixtures alone. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "affected_sentence",
+        "reason": "Shares classifyWordingOutcomes with ELD-10; adapter refuses non-synthetic version pairs → not Stage-150 exercisable from accepted live inputs. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "version_pair",
+        "reason": "Uses detectStaleDrafting on synthetic pairs only; no resolving per-control contracts. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "version_pair",
+        "reason": "Shares ELD-03 staleLeaksAcrossExits path; synthetic-only; not independently contracted. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "version_pair",
+        "reason": "assessReceiptPreservation on synthetic pairs only; no unavailable/positive/negative contract resolution. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "version_pair",
+        "reason": "Unconditional return [] after adapter presence — no control-specific detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "version_pair",
+        "reason": "Unconditional return [] after adapter presence — approval-receipt detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "version_pair",
+        "reason": "Unconditional return [] — revision-history detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "version_pair",
+        "reason": "Unconditional return [] — audience-redraft truth lock not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "affected_sentence",
+        "reason": "Shares ELD-02 path; synthetic-only adapter blocks non-synthetic pairs. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "version_pair",
+        "reason": "Unconditional return [] — provenance qualification detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "version_pair",
+        "reason": "Unconditional return [] — cross-exit propagation detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "version_pair",
+        "reason": "Unconditional return [] — rollback detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "version_pair",
+        "reason": "Unconditional return [] — actor/time/source/approval audit detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "authority_proposition",
+        "reason": "Pinned registry adapter schema only; no category-set coverage detector (returns []). Schema ≠ authority taxonomy. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "authority_proposition",
+        "reason": "Adapter reads officialSource fields; no control-specific finding emitter (returns []). Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-LEG-02-JURISDICTION",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "authority_proposition",
+        "reason": "Adapter stores jurisdiction; no jurisdiction-mismatch detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-LEG-03-EFFECTIVE-DATE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "authority_proposition",
+        "reason": "Adapter stores effectiveDate; no effective-date honesty detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-LEG-05-RETRIEVAL-DATE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "authority_proposition",
+        "reason": "Adapter stores retrievalDate; no retrieval-date detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "authority_proposition",
+        "reason": "Adapter stores registryVersionId; no version-id detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "authority_proposition",
+        "reason": "Adapter stores authorityType; no type-distinction detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-LEG-08-CURRENCY-WARNING",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "authority_proposition",
+        "reason": "Thin stale→warning heuristic on fixture bags; shared with XEX-04; lacks resolving multi-negative/unavailable contracts. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "citation",
+        "reason": "Thin contrary-to citation heuristic; not a full validator/contract suite. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "authority_proposition",
+        "reason": "Shares LEG-08 family path — not an independent control detector with own contracts. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-PRC-03-YOUTH-STATE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "procedural_event",
+        "reason": "Presence-null check on youthState only; not a youth-state honesty detector with contracts. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "procedural_event",
+        "reason": "Presence-null check on fitnessParticipation only. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "procedural_event",
+        "reason": "Presence-null check on disclosurePiiState only. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "calc_ledger",
+        "reason": "dob_age_calc_ledger adapter present; CHR-06 returns [] with no age computation detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "calc_ledger",
+        "reason": "Empty calcInputs presence check only — not calibrated calc-input honesty detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "audience_surface_set",
+        "reason": "Multi-audience adapter bag only; no client-plain surface comparison detector (returns []). Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-AUD-03-COURT-PRECISE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "audience_surface_set",
+        "reason": "Adapter foundation only; court-precise detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "audience_surface_set",
+        "reason": "Adapter foundation only; CPS-specific detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "audience_surface_set",
+        "reason": "Adapter foundation only; supervisor-risk detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "audience_surface_set",
+        "reason": "Counts audiences≥2 only — not independent audience test suite with contracts. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "perspective_surface_set",
+        "reason": "Perspective adapter bag only; defence-solicitor perspective detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "perspective_surface_set",
+        "reason": "Adapter foundation only; prosecution-challenge detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "perspective_surface_set",
+        "reason": "Adapter foundation only; judicial-neutrality detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "perspective_surface_set",
+        "reason": "Adapter foundation only; client-comprehension detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "perspective_surface_set",
+        "reason": "Adapter foundation only; supervisor-risk perspective detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "run_receipt",
+        "reason": "Empty sourceCaseHashes bag check only; not a run/artefact receipt reproducibility detector suite. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "run_receipt",
+        "reason": "Empty frozenMembershipOrder check only. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "run_receipt",
+        "reason": "Adapter stores commit/build fields; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "artefact_receipt",
+        "reason": "Adapter stores version pins; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "artefact_receipt",
+        "reason": "Adapter optional modelPromptVersion; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "artefact_receipt",
+        "reason": "Adapter stores exactFindingIds; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "artefact_receipt",
+        "reason": "Adapter stores timestampsDispositions; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "artefact_receipt",
+        "reason": "Adapter stores beforeAfterMap; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      },
+      {
+        "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+        "status": "adapter_foundation_only",
+        "denominatorUnit": "artefact_receipt",
+        "reason": "Adapter stores addedRemovedRetained; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector."
+      }
+    ]
+  },
+  "implementationTotals": {
+    "before": {
+      "partially_implemented": 106,
+      "specified_not_implemented": 55,
+      "implemented": 0
+    },
+    "after": {
+      "partially_implemented": 106,
+      "specified_not_implemented": 55,
+      "implemented": 0
+    },
+    "packetLocalHandlerCount": 106
+  },
+  "dispositionCounts": {
+    "stage150_essential_implement": 48,
+    "stage300_heavy_binary_ocr": 4,
+    "stage300_semantic_model": 1,
+    "stage300_human_external": 2,
+    "esa_unavailable_without_adapter": 0
+  },
+  "selectedCount": 48,
+  "remainingSni": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "familyCode": "SRC",
+      "priorBlocker": "source_binary_ocr_adapter_absent",
+      "lane": "stage300_heavy_binary_ocr",
+      "essentialBeforeStage150": false,
+      "esaSufficientInputs": false,
+      "adapterId": "heavy_source_document_evidence",
+      "implementInBatch4": false,
+      "preciseReason": "Requires original binaries + OCR/visual metadata; ESA packets lack source binaries. Adapter schema built for Stage-300; Stage-150 remains SNI."
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "familyCode": "SRC",
+      "priorBlocker": "source_binary_ocr_adapter_absent",
+      "lane": "stage300_heavy_binary_ocr",
+      "essentialBeforeStage150": false,
+      "esaSufficientInputs": false,
+      "adapterId": "heavy_source_document_evidence",
+      "implementInBatch4": false,
+      "preciseReason": "Pagination continuity needs page-unit OCR evidence absent on ESA H5."
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "familyCode": "SRC",
+      "priorBlocker": "source_binary_ocr_adapter_absent",
+      "lane": "stage300_heavy_binary_ocr",
+      "essentialBeforeStage150": false,
+      "esaSufficientInputs": false,
+      "adapterId": "heavy_source_document_evidence",
+      "implementInBatch4": false,
+      "preciseReason": "Attachment-absence vs binary inventory needs heavy source adapter; not inventable from wording."
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "familyCode": "SRC",
+      "priorBlocker": "source_binary_ocr_adapter_absent",
+      "lane": "stage300_heavy_binary_ocr",
+      "essentialBeforeStage150": false,
+      "esaSufficientInputs": false,
+      "adapterId": "heavy_source_document_evidence",
+      "implementInBatch4": false,
+      "preciseReason": "Extracted-text provenance binding requires source-binary/OCR receipts."
+    },
+    {
+      "controlId": "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "familyCode": "FID",
+      "priorBlocker": "semantic_alignment_model_adapter_absent",
+      "lane": "stage300_semantic_model",
+      "essentialBeforeStage150": false,
+      "esaSufficientInputs": false,
+      "adapterId": null,
+      "implementInBatch4": false,
+      "preciseReason": "Semantic alignment needs an approved model adapter / external assurance lane — not packet-local Stage-150."
+    },
+    {
+      "controlId": "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "familyCode": "ATR",
+      "priorBlocker": "device_account_attribution_adapter_absent",
+      "lane": "stage300_human_external",
+      "essentialBeforeStage150": false,
+      "esaSufficientInputs": false,
+      "adapterId": "device_account_attribution",
+      "implementInBatch4": false,
+      "preciseReason": "Device/account/user attribution needs forensic/device records or human judgment — not on ESA."
+    },
+    {
+      "controlId": "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+      "familyCode": "ATR",
+      "priorBlocker": "possession_knowledge_adapter_absent",
+      "lane": "stage300_human_external",
+      "essentialBeforeStage150": false,
+      "esaSufficientInputs": false,
+      "adapterId": "possession_knowledge",
+      "implementInBatch4": false,
+      "preciseReason": "Possession/use/knowledge distinctions need structured attribution beyond ESA wording."
+    }
+  ],
+  "adaptersAdded": [
+    "eld_source_change_drafting",
+    "pinned_legal_authority_registry",
+    "versioned_deterministic_receipts",
+    "heavy_source_document_evidence",
+    "multi_audience_perspective",
+    "dob_age_calc_ledger",
+    "structured_procedural_party_state"
+  ],
+  "denominators": {
+    "counts": {
+      "PENDING_INPUT_ADAPTER": 48,
+      "PENDING_CALIBRATION": 106,
+      "PENDING_REVIEW": 0,
+      "APPROVED_FOR_SELECTION": 0,
+      "DEFERRED_STAGE300": 7
+    },
+    "approvedForSelectionCount": 0,
+    "approvedWithZeroEligibleForbidden": true
+  },
+  "contractResolutionAudit": {
+    "allUnresolved": true,
+    "scaffoldCount": 48
+  },
+  "sizeProjections": {
+    "measurementKind": "estimate",
+    "projections": [
+      {
+        "stage": "150",
+        "assumedCases": 150,
+        "assumedControls": 161,
+        "avgReceiptBytes": 1525,
+        "projectedRawReceiptBytes": 36828750,
+        "gitCommitAdvice": "JSONL local-only + commit hash index + summary; do not commit monolithic JSON.",
+        "projectedRawReceiptMiB": 35.1,
+        "projectedGzipMiBEstimate": 7,
+        "measurementKind": "estimate",
+        "estimateAssumptions": "cases=150 × controls=161 × avgReceiptBytes=1525 (Batch-3 observed avg). Gzip factor 0.2 planning-only. Not measured Stage-150 output."
+      },
+      {
+        "stage": "300",
+        "assumedCases": 300,
+        "assumedControls": 200,
+        "avgReceiptBytes": 1525,
+        "projectedRawReceiptBytes": 91500000,
+        "gitCommitAdvice": "Same retention; heavy/binary artefacts stay local with hash receipts only.",
+        "projectedRawReceiptMiB": 87.3,
+        "projectedGzipMiBEstimate": 17.5,
+        "measurementKind": "estimate",
+        "estimateAssumptions": "cases=300 × controls=200 × avgReceiptBytes=1525 (Batch-3 observed avg). Gzip factor 0.2 planning-only. Not measured Stage-300 output."
+      },
+      {
+        "stage": "3000",
+        "assumedCases": 3000,
+        "assumedControls": 250,
+        "avgReceiptBytes": 1525,
+        "projectedRawReceiptBytes": 1143750000,
+        "gitCommitAdvice": "Must be JSONL(+optional deterministic gzip) outside Git; commit indexes only.",
+        "projectedRawReceiptMiB": 1090.8,
+        "projectedGzipMiBEstimate": 218.2,
+        "measurementKind": "estimate",
+        "estimateAssumptions": "cases=3000 × controls=250 × avgReceiptBytes=1525 (Batch-3 observed avg). Gzip factor 0.2 planning-only. Not measured Stage-3000 output."
+      }
+    ]
+  },
+  "retention": {
+    "schemaVersion": "maa-v2-evidence-retention@1.0.0",
+    "gitignoreGlobs": [
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/**/stage150-*-control-receipts.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/**/stage150-*-eligibility-receipts.jsonl",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/**/stage150-*-eligibility-receipts.jsonl.gz",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/**/raw-receipts/"
+    ],
+    "reproduction": {
+      "byteIdentical": true,
+      "cleanSha256": "3a2e15be4b86873fad65f0374d16674a35c6922d54a253f5cd98f0bab3525d25",
+      "resumedSha256": "3a2e15be4b86873fad65f0374d16674a35c6922d54a253f5cd98f0bab3525d25",
+      "lineCount": 12
+    }
+  },
+  "gate": {
+    "schemaVersion": "stage150-execution-readiness-gate@1.4.0",
+    "baselineCommit": "da98277c3038b40b2408a7af6a41475e88b21e17",
+    "programmePassSupported": false,
+    "stage150SampleSelectionAllowed": false,
+    "stage150ExecutionAllowed": false,
+    "freezeAllowed": false,
+    "reasons": [
+      "48 Batch-4 controls are adapter_foundation_only (0 real detectors)",
+      "7 controls deferred_stage300",
+      "No control APPROVED_FOR_SELECTION",
+      "Contract IDs for Batch-4 scaffolds unresolved",
+      "Stage-150 case selection not performed",
+      "partially_implemented never counts as fully exercised"
+    ],
+    "prerequisites": {
+      "registryComplete": true,
+      "detectorImplementationComplete": false,
+      "inputReadinessComplete": false,
+      "denominatorReadinessComplete": false,
+      "adapterReadinessComplete": false,
+      "receiptValidationComplete": false,
+      "contractReadinessComplete": false,
+      "relationshipComplete": true,
+      "protectedAssetsPreserved": true
+    }
+  },
+  "protectedAssets": {
+    "brain1GuardianBlobUnchanged": true,
+    "brain1RowsUnchanged": true,
+    "guardianRowsUnchanged": true,
+    "methodology": "git rev-parse <baseline>:<exact-file> vs git rev-parse HEAD:<exact-file>. No directory/tree IDs; no working-tree bytes.",
+    "rows": [
+      {
+        "path": "lib/criminal/strategy-fight-engine.ts",
+        "family": "brain1",
+        "baselineBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+        "headBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-fight-engine-generators.ts",
+        "family": "brain1",
+        "baselineBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+        "headBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/get-aggressive-defense.ts",
+        "family": "brain1",
+        "baselineBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+        "headBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-battleboard.ts",
+        "family": "brain1",
+        "baselineBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+        "headBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-routes.ts",
+        "family": "brain1",
+        "baselineBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+        "headBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/bundle-truth-ledger.ts",
+        "family": "brain1",
+        "baselineBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+        "headBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/bundle-material-normalizer.ts",
+        "family": "brain1",
+        "baselineBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+        "headBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/fingerprint.ts",
+        "family": "guardian",
+        "baselineBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+        "headBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/guardian.ts",
+        "family": "guardian",
+        "baselineBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+        "headBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/index.ts",
+        "family": "guardian",
+        "baselineBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+        "headBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/types.ts",
+        "family": "guardian",
+        "baselineBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+        "headBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+        "blobUnchanged": true
+      }
+    ]
+  },
+  "changedFileManifest": {
+    "schemaVersion": "maa-v2-batch4-changed-file-manifest@1.0.0",
+    "baselineCommit": "da98277c3038b40b2408a7af6a41475e88b21e17",
+    "headCommit": "da98277c3038b40b2408a7af6a41475e88b21e17",
+    "note": "Working-tree paths related to Batch-4 honesty remediation (uncommitted).",
+    "paths": [
+      ".gitignore",
+      "artifacts/_stage150-sni-inventory.md",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/denominator-readiness/STOP-FOR-CODEX-REVIEW.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/denominator-readiness/batch4-control-denominators.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/denominator-readiness/eligibility-vs-denominator-matrix.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/STOP-FOR-CODEX-REVIEW.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/batch4-adapters.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/batch4-contract-resolution-audit.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/batch4-control-classification.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/batch4-control-denominators.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/batch4-disposition-of-55.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/batch4-foundation-scaffolds.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/batch4-selected.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/brain1-guardian-blob-compare.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/changed-file-manifest.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/evidence-retention-policy.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/evidence-size-projections.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/retention-receipt-index.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/retention-reproduction-result.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/stage150-execution-readiness-gate.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/stage150-implementation-capability-matrix.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/stage150-implementation-totals.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/typescript-baseline.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch4/typescript-delta.json",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+      "artifacts/tmp-stage150-accept-build.txt",
+      "artifacts/tmp-stage150-sni-candidates.json",
+      "docs/integrity-programme/maa-v2-denominator-readiness/README.md",
+      "docs/integrity-programme/maa-v2-denominator-readiness/approval-blocker-register.md",
+      "docs/integrity-programme/maa-v2-denominator-readiness/coverage-gap-priorities.md",
+      "docs/integrity-programme/maa-v2-denominator-readiness/eligibility-vs-denominator-matrix.md",
+      "docs/integrity-programme/maa-v2-denominator-readiness/per-control-denominator-proposal.md",
+      "docs/integrity-programme/maa-v2-denominator-readiness/stage150-blinded-selection-policy.md",
+      "lib/eval/master-assurance-auditor/v2/eld/foundation-status.ts",
+      "lib/eval/master-assurance-auditor/v2/eld/types.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/batch4-adapters.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/batch4-control-classification.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/batch4-denominators.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/batch4-detectors.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/batch4-disposition.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/batch4-registry.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/detector-registry.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/detectors.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/eld-dependency-spec.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/eligibility.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/evidence-retention-writer.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/evidence-retention.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/index.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/input-adapters.ts",
+      "scripts/assurance/emit-maa-v2-stage150-batch2.ts",
+      "scripts/assurance/emit-maa-v2-stage150-batch4.ts",
+      "scripts/maa-v2-stage150-batch2-contracts.test.ts",
+      "scripts/maa-v2-stage150-batch3-contracts.test.ts",
+      "scripts/maa-v2-stage150-batch4-contracts.test.ts"
+    ]
+  },
+  "typescript": {
+    "exitCode": 1,
+    "stage150PathErrors": 0
+  },
+  "blockers": [
+    "0 Batch-4 partially_implemented_detector; 48 adapter_foundation_only; 7 deferred_stage300",
+    "0 APPROVED_FOR_SELECTION denominators",
+    "Batch-4 claimed contract IDs unresolved",
+    "Stage-150 sample selection and execution gates false",
+    "No programme PASS"
+  ]
+}

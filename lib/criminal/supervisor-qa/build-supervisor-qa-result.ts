@@ -5,6 +5,7 @@ import type { PreHearingReadinessInput } from "@/lib/criminal/pre-hearing-readin
 import type { ReasoningFeedbackRecord } from "@/lib/criminal/reasoning-v2/feedback/reasoning-feedback-types";
 import { REASONING_FEEDBACK_OPTIONS } from "@/lib/criminal/reasoning-v2/feedback/reasoning-feedback-types";
 import type { ReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/reasoning-v2-types";
+import { utcDayDiff } from "@/lib/criminal/solicitor-time-clock";
 import { sanitizeSupervisorQALine } from "./supervisor-qa-sanitize";
 import type { SupervisorQAOutcome, SupervisorQAResult, SupervisorReviewStatus } from "./supervisor-qa-types";
 
@@ -53,12 +54,10 @@ function statusLabel(status: SupervisorReviewStatus): string {
   }
 }
 
-function hearingWithinDays(iso: string | null | undefined, days: number): boolean {
+function hearingWithinDays(iso: string | null | undefined, days: number, asOf: Date = new Date()): boolean {
   if (!iso) return false;
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return false;
-  const diff = d.getTime() - Date.now();
-  return diff >= 0 && diff <= days * 86_400_000;
+  const diff = utcDayDiff(asOf, iso.trim().slice(0, 10));
+  return diff !== null && diff >= 0 && diff <= days;
 }
 
 function isGenericProvisional(reasoning: ReasoningV2ViewModel, hint?: string | null): boolean {

@@ -1,0 +1,61 @@
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 C:/Users/gduff/casebrain-hub
+
+stdout | scripts/solicitor-output-gate.test.ts
+{
+  "ok": true,
+  "blockedAssertions": 6,
+  "passAssertions": 6
+}
+solicitor-output-gate.test.ts: PASS
+
+ ÔØ» scripts/solicitor-output-gate.test.ts (0 test)
+stdout | scripts/solicitor-output-integrity.test.ts
+solicitor-output-integrity.test.ts: PASS
+
+ ÔØ» scripts/solicitor-output-integrity.test.ts (0 test)
+stdout | scripts/phase6-validator-contracts.test.ts
+{
+  "ok": true,
+  "validatorVersion": "1.0.0",
+  "surfacesContracted": 31,
+  "expected": 31
+}
+phase6-validator-contracts.test.ts: PASS
+
+ ÔØ» scripts/phase6-validator-contracts.test.ts (0 test)
+stdout | scripts/solicitor-surface-contract.test.ts
+{
+  "ok": true,
+  "centralSurfaces": 31,
+  "blockAssertions": 32,
+  "passAssertions": 34
+}
+solicitor-surface-contract.test.ts: PASS
+
+ ÔØ» scripts/solicitor-surface-contract.test.ts (0 test)
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ» Failed Suites 4 ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»
+
+ FAIL  scripts/phase6-validator-contracts.test.ts [ scripts/phase6-validator-contracts.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/phase6-validator-contracts.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[1/4]ÔÄ»
+
+ FAIL  scripts/solicitor-output-gate.test.ts [ scripts/solicitor-output-gate.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/solicitor-output-gate.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[2/4]ÔÄ»
+
+ FAIL  scripts/solicitor-output-integrity.test.ts [ scripts/solicitor-output-integrity.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/solicitor-output-integrity.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[3/4]ÔÄ»
+
+ FAIL  scripts/solicitor-surface-contract.test.ts [ scripts/solicitor-surface-contract.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/solicitor-surface-contract.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[4/4]ÔÄ»
+
+ Test Files  4 failed (4)
+      Tests  no tests
+   Start at  19:07:15
+   Duration  5.70s (transform 2.08s, setup 0ms, collect 6.02s, tests 0ms, environment 2ms, prepare 1.62s)
+

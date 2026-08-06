@@ -1,0 +1,2 @@
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+JSON report written to C:/Users/gduff/casebrain-hub/artifacts/casebrain-qa/reviewer-dossier-vitest.json

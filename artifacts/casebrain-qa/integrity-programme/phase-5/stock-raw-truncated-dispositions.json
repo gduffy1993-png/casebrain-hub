@@ -1,0 +1,894 @@
+{
+  "generatedAt": "2026-07-21T01:15:29.185Z",
+  "priorRaw": 72,
+  "priorTrunc": 28,
+  "raw": {
+    "reconstructed": 41,
+    "safely_omitted": 1,
+    "still_blocked": 0,
+    "total": 42
+  },
+  "truncated": {
+    "reconstructed": 0,
+    "safely_omitted": 55,
+    "still_blocked": 0,
+    "total": 55
+  },
+  "hits": [
+    {
+      "fixtureId": "cb-fresh-001-taylor-brookes",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=30;hash=4c54c565ecbb",
+      "disposition": "reconstructed",
+      "before": "len=30;hash=4c54c565ecbb",
+      "after": "len=145;hash=ac6f24e8352d"
+    },
+    {
+      "fixtureId": "cb-fresh-002-jordan-hale",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sc-00032",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sc-0003e",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sc-00044",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sc-00056",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sc-00062",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sc-00068",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sc-0006e",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-001",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-002",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-003",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-005",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-007",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-010",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-011",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-013",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-014",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-015",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-017",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-020",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-021",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-024",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-027",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-028",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-030",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-038",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-048",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-049",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-069",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=52;hash=220bf0b5851c",
+      "disposition": "safely_omitted",
+      "before": "len=52;hash=220bf0b5851c",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-108",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-109",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-110",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-112",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-115",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-121",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-122",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-123",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-124",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-129",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-138",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-139",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-158",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-162",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-165",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-174",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-174",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-178",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-179",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-184",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-197",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-198",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-200",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-214",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-215",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-219",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-226",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-226",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-238",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-241",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-248",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-250",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-252",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-262",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-266",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-278",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-278",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-286",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-293",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-297",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-300",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-302",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-304",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-318",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-319",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-320",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-321",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-329",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-330",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-330",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-335",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-345",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-352",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-353",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-354",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-356",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-359",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-363",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-370",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-371",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-372",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-373",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-375",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-382",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-382",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    },
+    {
+      "fixtureId": "sim-390",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.truncated_fragment",
+      "diagnostic": "len=21;hash=4dc9a04370a2",
+      "disposition": "safely_omitted",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null
+    },
+    {
+      "fixtureId": "sim-392",
+      "surface": "casebrain_output.copy",
+      "ruleId": "sentence.raw_extraction_marker",
+      "diagnostic": "len=28;hash=e6e25826b9ab",
+      "disposition": "reconstructed",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f"
+    }
+  ],
+  "truncatedHitsList": true,
+  "totalHits": 97
+}

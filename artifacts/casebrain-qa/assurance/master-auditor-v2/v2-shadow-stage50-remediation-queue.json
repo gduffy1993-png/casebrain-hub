@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "v2-shadow-stage50-remediation-queue@1.0.0",
+  "fpDispositions": [
+    {
+      "candidateId": "V2CAND-e722e2d0dee4fac05b91b414",
+      "caseId": "sim-224",
+      "findingCode": "BND_STILL_MASTER_COLLAPSE",
+      "exactWording": "Grainy stills served — master timeline and continuity missing.",
+      "disposition": "detector_false_positive",
+      "reason": "Phrase correctly distinguishes stills served from master timeline/continuity missing; not a still-as-master collapse.",
+      "detectorRepair": "detectsStillMasterCollapse",
+      "preservedEvidence": true
+    },
+    {
+      "candidateId": "V2CAND-be78a6ad0e4ae78e91cd1b2a",
+      "caseId": "sim-172",
+      "findingCode": "BND_STILL_MASTER_COLLAPSE",
+      "exactWording": "Grainy stills served — master timeline and continuity missing.",
+      "disposition": "detector_false_positive",
+      "reason": "Phrase correctly distinguishes stills served from master timeline/continuity missing; not a still-as-master collapse.",
+      "detectorRepair": "detectsStillMasterCollapse",
+      "preservedEvidence": true
+    }
+  ],
+  "openCandidates": []
+}

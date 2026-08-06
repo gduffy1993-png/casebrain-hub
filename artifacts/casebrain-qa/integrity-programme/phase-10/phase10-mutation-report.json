@@ -1,0 +1,385 @@
+{
+  "programme": "criminal-defence-integrity-corpus",
+  "phase": 10,
+  "generatedAt": "2026-07-22T14:47:58.913Z",
+  "disclaimer": "Phase 10 mutation/adversarial — CORPUS containment proof only. Blocked ≠ repaired. Not a corpus/programme PASS. Do not merge / deploy. No Phase 11+.",
+  "canonicalSchemaVersion": "1.1.0",
+  "mutants": [
+    {
+      "id": "M10-TRUNC-01",
+      "category": "truncation_omission",
+      "description": "Mid-phrase truncation in copy exit",
+      "expectedDetectionPoint": "validateSolicitorSurface(copy) → sentence.truncated_fragment / integrity_blocked",
+      "actualResult": "status=integrity_blocked;rules=sentence.truncated_fragment;canCopy=false",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-TRUNC-02",
+      "category": "truncation_omission",
+      "description": "Truncated excerpt used as evidence title",
+      "expectedDetectionPoint": "assertSafeEvidenceTitle / isTruncatedExcerptUsedAsTitle",
+      "actualResult": "truncTitle=true;safeTitle=null",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-TRUNC-600",
+      "category": "truncation_omission",
+      "description": "Post-composition 600-char client-summary hard-cap cut (incomplete disclaimer)",
+      "expectedDetectionPoint": "finalizeSolicitorVisibleProse + gateSolicitorOutput(copy) fail-closed",
+      "actualResult": "len=600;incomplete=true;finalOk=false;status=integrity_blocked;canCopy=false",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-OMIT-01",
+      "category": "truncation_omission",
+      "description": "Unsafe legacy string safely omitted (review-required display)",
+      "expectedDetectionPoint": "displayForSafelyOmitted → review-required neutral (not silent drop)",
+      "actualResult": "kind=missing_material_warning;silentLossPrevented=true;hasNeutral=true",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-WORD-01",
+      "category": "changed_substituted_wording",
+      "description": "Broken/duplicate punctuation substitution",
+      "expectedDetectionPoint": "assessSolicitorSentence + copy gate",
+      "actualResult": "gate=integrity_blocked;issues=malformed_punctuation",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-WORD-02",
+      "category": "changed_substituted_wording",
+      "description": "Unresolved placeholder in API wording",
+      "expectedDetectionPoint": "sentence.unresolved_placeholder or integrity_blocked",
+      "actualResult": "gate=integrity_blocked;issues=unresolved_placeholder",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-WORD-03",
+      "category": "changed_substituted_wording",
+      "description": "Raw pipe/table fragment substituted into legacy composer path",
+      "expectedDetectionPoint": "migrateLegacySolicitorString disposition omit/block/reconstruct-without-raw",
+      "actualResult": "ok=false;disposition=safely_omitted;textRaw=false",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-FAM-01",
+      "category": "incorrect_offence_family",
+      "description": "Harassment matter with drugs/defence-force leak (copy)",
+      "expectedDetectionPoint": "gateSolicitorOutput / wrong_family rules",
+      "actualResult": "status=integrity_blocked;canCopy=false;unsupported=2;rules=wrong_family.unsupported_template_leakage",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-FAM-02",
+      "category": "incorrect_offence_family",
+      "description": "Motoring/vehicle concept in harassment export",
+      "expectedDetectionPoint": "gateSolicitorOutput(export)",
+      "actualResult": "status=integrity_blocked;canCopy=false;rules=wrong_family.unsupported_template_leakage",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-FAM-03",
+      "category": "incorrect_offence_family",
+      "description": "Mixed-family injection (harassment + PWITS)",
+      "expectedDetectionPoint": "classifyTextsAgainstConceptRegistry + api gate",
+      "actualResult": "blocked=integrity_blocked;leakage=true",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-FP-01",
+      "category": "fingerprint_disagreement",
+      "description": "Surface claims wrong canonical fingerprint",
+      "expectedDetectionPoint": "validateSolicitorSurface fingerprint mismatch → integrity_blocked",
+      "actualResult": "status=integrity_blocked;fpRule=mismatch",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-FP-02",
+      "category": "fingerprint_disagreement",
+      "description": "Conflicting evidence counts must disagree fingerprints",
+      "expectedDetectionPoint": "assertSameCanonicalFingerprint === false",
+      "actualResult": "a=v1.1.0:0f713ae1f6700;b=v1.1.0:801679db250a8",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-PROV-01",
+      "category": "missing_incorrect_provenance",
+      "description": "Substantive API without offence-family context",
+      "expectedDetectionPoint": "offence_family_uncertain fail-closed",
+      "actualResult": "status=integrity_blocked;rules=offence_family_uncertain",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-PROV-02",
+      "category": "missing_incorrect_provenance",
+      "description": "Incomplete quotation omitted from provenance block",
+      "expectedDetectionPoint": "buildExtractionProvenanceBlock / detectIncompleteQuotation",
+      "actualResult": "excerptNull=true;codes=boundary.incomplete_quotation",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-PROV-03",
+      "category": "missing_incorrect_provenance",
+      "description": "Raw extraction syntax in evidence title",
+      "expectedDetectionPoint": "boundary.raw_extraction_syntax",
+      "actualResult": "ok=false;codes=boundary.raw_extraction_syntax",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-ALIAS-01",
+      "category": "alias_source_mismatch",
+      "description": "Duplicate alias labels must dedupe before display",
+      "expectedDetectionPoint": "dedupeDisplayLabels via buildExtractionProvenanceBlock",
+      "actualResult": "deduped=1;title=Phone extraction",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-ALIAS-02",
+      "category": "alias_source_mismatch",
+      "description": "Same MG11 label with conflicting existence states",
+      "expectedDetectionPoint": "canonical mg11 + fingerprint diverge",
+      "actualResult": "mg11=servedvsmissing;fpDiffer=true",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-HEAR-01",
+      "category": "hearing_date_time_errors",
+      "description": "Mutated hearing dates must classify into distinct kinds",
+      "expectedDetectionPoint": "resolveSolicitorHearingStatus kinds",
+      "actualResult": "same=same_day;listed=listed;passed=passed",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-HEAR-02",
+      "category": "hearing_date_time_errors",
+      "description": "Ambiguous/historical snapshot must not look like live listing",
+      "expectedDetectionPoint": "snapshot kind + as-at marker",
+      "actualResult": "live=upcoming;snap=snapshot;asAt=true",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-HEAR-03",
+      "category": "hearing_date_time_errors",
+      "description": "Canonical hearing mutation changes fingerprint/kind",
+      "expectedDetectionPoint": "canonical hearing diverge",
+      "actualResult": "kinds=listed/unknown;fpDiffer=true",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-EXIT-COPY",
+      "category": "unsafe_copy_export_api_prose",
+      "description": "Raw fragment blocked on copy exit",
+      "expectedDetectionPoint": "gateSolicitorOutput(copy) fail-closed",
+      "actualResult": "status=integrity_blocked;canCopy=false;dataNull=true",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-EXIT-EXPORT",
+      "category": "unsafe_copy_export_api_prose",
+      "description": "Raw fragment blocked on export exit",
+      "expectedDetectionPoint": "gateSolicitorOutput(export) fail-closed",
+      "actualResult": "status=integrity_blocked;canCopy=false;dataNull=true",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-EXIT-API",
+      "category": "unsafe_copy_export_api_prose",
+      "description": "Raw fragment blocked on api exit",
+      "expectedDetectionPoint": "gateSolicitorOutput(api) fail-closed",
+      "actualResult": "status=integrity_blocked;canCopy=false;dataNull=true",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-EXIT-CONSUMER",
+      "category": "unsafe_copy_export_api_prose",
+      "description": "HTTP-200 integrity_blocked must not be treated as usable content",
+      "expectedDetectionPoint": "canUseSolicitorApiResponse / assertConsumerRejectsIntegrityBlocked",
+      "actualResult": "usable=false;recognised=true;consumerRejects=true",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-EXIT-MAYBE-API",
+      "category": "unsafe_copy_export_api_prose",
+      "description": "maybeIntegrityBlockedResponse returns typed block for unsafe letter draft",
+      "expectedDetectionPoint": "maybeIntegrityBlockedResponse → NextResponse (not null)",
+      "actualResult": "blockedResponse=true",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-BYPASS-01",
+      "category": "gate_bypass_attempts",
+      "description": "Unsafe payload must not bypass any of 31 central surfaces",
+      "expectedDetectionPoint": "validateSolicitorSurface across phase2CentralSurfaceIds",
+      "actualResult": "central=31;bypasses=0",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-BYPASS-02",
+      "category": "gate_bypass_attempts",
+      "description": "View-mode unsafe text must not enable canCopy",
+      "expectedDetectionPoint": "gateSolicitorOutput(view).canCopy === false",
+      "actualResult": "status=integrity_blocked;canCopy=false",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-REVIEW-01",
+      "category": "review_required_fail_closed",
+      "description": "Review-required neutral constant present for safe omission display",
+      "expectedDetectionPoint": "REVIEW_REQUIRED_NEUTRAL",
+      "actualResult": "len=161",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": false
+    },
+    {
+      "id": "M10-REVIEW-02",
+      "category": "review_required_fail_closed",
+      "description": "Uncertain family substantive API fail-closed",
+      "expectedDetectionPoint": "offence_family_uncertain integrity_blocked",
+      "actualResult": "status=integrity_blocked;canCopy=false;rules=offence_family_uncertain",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-REVIEW-03",
+      "category": "review_required_fail_closed",
+      "description": "Neutral non-substantive ack remains usable (control)",
+      "expectedDetectionPoint": "gate allows neutral ack",
+      "actualResult": "status=ok;canCopy=true",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": false
+    },
+    {
+      "id": "M10-INV-01",
+      "category": "invariants",
+      "description": "Schema 1.1.0 and 31 central surfaces preserved",
+      "expectedDetectionPoint": "CANONICAL_MATTER_STATE_VERSION + phase2CentralSurfaceIds",
+      "actualResult": "schema=1.1.0;central=31",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": false
+    }
+  ],
+  "summary": {
+    "total": 31,
+    "killed": 31,
+    "survived": 0,
+    "couldNotExercise": 0,
+    "killRate": 1,
+    "safetyRelevantSurvivors": []
+  },
+  "contracts": [
+    {
+      "name": "schema_1_1_0_preserved",
+      "pass": true,
+      "detail": "1.1.0"
+    },
+    {
+      "name": "central_surfaces_31",
+      "pass": true,
+      "detail": "central=31"
+    },
+    {
+      "name": "phase6_ledger_untouched",
+      "pass": true,
+      "detail": "status=LEDGER_BALANCED;42=42;55=55"
+    },
+    {
+      "name": "no_safety_relevant_survivors",
+      "pass": true,
+      "detail": "safetySurvivors=none"
+    },
+    {
+      "name": "mutation_inventory_nonempty",
+      "pass": true,
+      "detail": "mutants=31;killed=31;survived=0;unexercised=0"
+    },
+    {
+      "name": "blocked_not_equated_to_repaired",
+      "pass": true,
+      "detail": "all mutants carry blockedDoesNotMeanRepaired=true"
+    }
+  ],
+  "contractPass": true,
+  "phase10Complete": true,
+  "ledgerImpact": {
+    "impact": "none",
+    "phase6Status": "LEDGER_BALANCED",
+    "prior72_28_unit": "copyable_exportable_rule_firing_occurrence",
+    "current42_55_unit": "per_string_copyable_hit",
+    "doNotMix": true,
+    "preserved": {
+      "prior72RawBalanced": true,
+      "prior28TruncBalanced": true,
+      "current42Raw": 42,
+      "current55Trunc": 55
+    }
+  },
+  "remainingRisks": [
+    "Blocked mutants prove containment, not substantive wording repair",
+    "Scale lane still lacks full on-disk solicitor models for all 3000 identities (Phase 9 residual)",
+    "Phase 11 gold/rendered human FP–FN sign-off still outstanding",
+    "Registered pre-existing TS/Vitest remediation items remain"
+  ],
+  "phase11Readiness": {
+    "readyToBegin": true,
+    "blockers": [],
+    "next": "Phase 11 — rendered coverage + 30–50 gold human word-for-word review"
+  }
+}

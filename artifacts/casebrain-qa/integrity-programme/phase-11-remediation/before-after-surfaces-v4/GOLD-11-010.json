@@ -1,0 +1,86 @@
+{
+  "goldId": "GOLD-11-010",
+  "reviewEligibility": "substantive",
+  "isNewInV4": false,
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "v4FreezeHash": "d887114aac265e00e9a8d66c98c82fa087a85388e60f1fc930a6996b5d6ab883",
+  "changes": [
+    {
+      "surface": "source_context",
+      "before": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "ce8e1c2f0bc9",
+        "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: Proof Pack 01 — mixed evidence states (fictional)\nHearing: Hearing date "
+      },
+      "after": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "97a11856d18c",
+        "textPreview": "Controlled evidence reference: proof-pack-01\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: Proof Pack 01 — mixed evide"
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "765516bc8918",
+        "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "25ffafca1df2",
+        "textPreview": "Item: Solicitor copy candidate — review required (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed fr"
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "0e4f1395c371",
+        "textPreview": "Item: Disclosure / chase wording (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fi"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "6634df0862d8",
+        "textPreview": "Item: Disclosure chase request (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fiel"
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "66b5c3961ffb",
+        "textPreview": "Item: Solicitor wording candidate (3)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "17e07d55926d",
+        "textPreview": "Item: Solicitor copy candidate — review required (3)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed fr"
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "c050842dd516",
+        "textPreview": "Item: Disclosure / chase wording (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fi"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "81d6ccfbdcc2",
+        "textPreview": "Item: Disclosure chase request (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fiel"
+      }
+    }
+  ]
+}

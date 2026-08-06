@@ -1,0 +1,195 @@
+/**
+ * Exact selection of 30 Batch-2 Stage-150 controls with rationale.
+ */
+
+export type Batch2Selection = {
+  controlId: string;
+  familyCode: string;
+  reason: string;
+  intelligenceFamily: string;
+};
+
+export const BATCH2_SELECTED_30: Batch2Selection[] = [
+  {
+    controlId: "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+    familyCode: "CHG",
+    intelligenceFamily: "charge_integrity",
+    reason: "Recorded charge source visibility on ESA court/chase wording; high solicitor safety.",
+  },
+  {
+    controlId: "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+    familyCode: "CHG",
+    intelligenceFamily: "charge_integrity",
+    reason: "Charge truncation on primary surfaces; deterministic string cue.",
+  },
+  {
+    controlId: "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+    familyCode: "CHG",
+    intelligenceFamily: "charge_integrity",
+    reason: "Operative vs draft/amended instrument cues in wording/evidence labels.",
+  },
+  {
+    controlId: "MAA2-CHG-06-AMENDMENT-HISTORY",
+    familyCode: "CHG",
+    intelligenceFamily: "charge_integrity",
+    reason: "Amendment/supersession language without history cue.",
+  },
+  {
+    controlId: "MAA2-CHG-10-WARNING-INSEPARABLE",
+    familyCode: "CHG",
+    intelligenceFamily: "charge_integrity",
+    reason: "Charge warning inseparability using court + doNotOverstate.",
+  },
+  {
+    controlId: "MAA2-FID-02-COUNT-NUMBERS",
+    familyCode: "FID",
+    intelligenceFamily: "charge_integrity",
+    reason: "Count-number fidelity cues on solicitor-visible wording.",
+  },
+  {
+    controlId: "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+    familyCode: "FID",
+    intelligenceFamily: "charge_integrity",
+    reason: "Charge particulars completeness cues.",
+  },
+  {
+    controlId: "MAA2-FID-06-PRESERVE-NEGATIVES",
+    familyCode: "FID",
+    intelligenceFamily: "charge_integrity",
+    reason: "Negation stripping risk on court/chase wording.",
+  },
+  {
+    controlId: "MAA2-FID-07-PRESERVE-QUALIFIERS",
+    familyCode: "FID",
+    intelligenceFamily: "charge_integrity",
+    reason: "Qualifier stripping (alleged/possible) risk.",
+  },
+  {
+    controlId: "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+    familyCode: "LSL",
+    intelligenceFamily: "charge_integrity",
+    reason: "Statement classification collapse cues.",
+  },
+  {
+    controlId: "MAA2-BND-02-INSTRUMENT-STATUS",
+    familyCode: "BND",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Operative/amended/superseded/draft instrument status on labels.",
+  },
+  {
+    controlId: "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+    familyCode: "BND",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Unsafe alias collapse sibling to BND-09 ownership.",
+  },
+  {
+    controlId: "MAA2-BND-08-EXTRACT-VS-FULL",
+    familyCode: "BND",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Extract vs full download collapse on wording.",
+  },
+  {
+    controlId: "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+    familyCode: "BND",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Complete vs partial disclosure contradiction on ESA states.",
+  },
+  {
+    controlId: "MAA2-BND-14-QUARANTINED-CONFLICTING",
+    familyCode: "BND",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Quarantined vs served conflict using evidenceStates.",
+  },
+  {
+    controlId: "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+    familyCode: "BND",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Excluded-row totals vs visible counts.",
+  },
+  {
+    controlId: "MAA2-EVS-01-DIMENSION-SEPARATION",
+    familyCode: "EVS",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Existence vs reliability dimension separation on fiveAnswers.",
+  },
+  {
+    controlId: "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+    familyCode: "ATR",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Defendant bleed / wrong-matter attribution cues.",
+  },
+  {
+    controlId: "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+    familyCode: "ATR",
+    intelligenceFamily: "provenance_reliability",
+    reason: "Source-linked limitation refinement over EVS reliability owner.",
+  },
+  {
+    controlId: "MAA2-CHR-01-EXACT-DATES-TZ",
+    familyCode: "CHR",
+    intelligenceFamily: "chronology_procedure",
+    reason: "Exact date/timezone identity cues in wording.",
+  },
+  {
+    controlId: "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+    familyCode: "CHR",
+    intelligenceFamily: "chronology_procedure",
+    reason: "Custody/interview clock cues on ESA text.",
+  },
+  {
+    controlId: "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+    familyCode: "CHR",
+    intelligenceFamily: "chronology_procedure",
+    reason: "Hearing-notice lifecycle wording cues.",
+  },
+  {
+    controlId: "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+    familyCode: "CHR",
+    intelligenceFamily: "chronology_procedure",
+    reason: "Evidence/page/doc total consistency cues.",
+  },
+  {
+    controlId: "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+    familyCode: "XEX",
+    intelligenceFamily: "cross_output_consistency",
+    reason: "Partial evidence warning attachment across court/warnings.",
+  },
+  {
+    controlId: "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+    familyCode: "XEX",
+    intelligenceFamily: "cross_output_consistency",
+    reason: "Quarantine partial vs total disclosure consistency.",
+  },
+  {
+    controlId: "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+    familyCode: "XEX",
+    intelligenceFamily: "cross_output_consistency",
+    reason: "Force not_exercised for absent exits — never invent.",
+  },
+  {
+    controlId: "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+    familyCode: "WRD",
+    intelligenceFamily: "professional_wording",
+    reason: "Duplicate phrase hygiene on included wording.",
+  },
+  {
+    controlId: "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+    familyCode: "WRD",
+    intelligenceFamily: "professional_wording",
+    reason: "Hostile/sensational tone on solicitor surfaces.",
+  },
+  {
+    controlId: "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+    familyCode: "AUD",
+    intelligenceFamily: "professional_wording",
+    reason: "Internal/audit language leakage into solicitor-visible wording.",
+  },
+  {
+    controlId: "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+    familyCode: "CHS",
+    intelligenceFamily: "professional_wording",
+    reason: "Chase of already-served or alias-duplicate items.",
+  },
+];
+
+export const BATCH2_CONTROL_IDS = new Set(BATCH2_SELECTED_30.map((c) => c.controlId));

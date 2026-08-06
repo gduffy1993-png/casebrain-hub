@@ -1,0 +1,86 @@
+
+> casebrain-hub@0.1.0 build
+> next build
+
+  Ôû▓ Next.js 14.2.15
+
+   Creating an optimized production build ...
+   Using tsconfig file: ./tsconfig.build.json
+   Using tsconfig file: ./tsconfig.build.json
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (130kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ÔÜá Compiled with warnings
+
+../casebrain-hub/node_modules/@supabase/realtime-js/dist/module/lib/websocket-factory.js
+A Node.js API is used (process.versions at line: 39) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+Import trace for requested module:
+../casebrain-hub/node_modules/@supabase/realtime-js/dist/module/lib/websocket-factory.js
+../casebrain-hub/node_modules/@supabase/realtime-js/dist/module/index.js
+../casebrain-hub/node_modules/@supabase/supabase-js/dist/index.mjs
+../casebrain-hub/node_modules/@supabase/ssr/dist/module/createBrowserClient.js
+../casebrain-hub/node_modules/@supabase/ssr/dist/module/index.js
+
+../casebrain-hub/node_modules/@supabase/supabase-js/dist/index.mjs
+A Node.js API is used (process.version at line: 395) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+Import trace for requested module:
+../casebrain-hub/node_modules/@supabase/supabase-js/dist/index.mjs
+../casebrain-hub/node_modules/@supabase/ssr/dist/module/createBrowserClient.js
+../casebrain-hub/node_modules/@supabase/ssr/dist/module/index.js
+
+   Using tsconfig file: ./tsconfig.build.json
+Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ Ô£ô Compiled successfully
+   Skipping linting
+   Checking validity of types ...
+   
+Your tsconfig.json extends another configuration, which means we cannot add the Next.js TypeScript plugin automatically. To improve your development experience, we recommend adding the Next.js plugin (`"plugins": [{ "name": "next" }]`) manually to your TypeScript configuration. Learn more: https://nextjs.org/docs/app/building-your-application/configuring/typescript#the-typescript-plugin
+
+   Collecting page data ...
+Error: Missing env: NEXT_PUBLIC_SUPABASE_URL
+    at r (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\chunks\2837.js:1:8868)
+    at 40047 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\chunks\2837.js:1:8933)
+    at t (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\webpack-runtime.js:1:128)
+    at 7133 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\chunks\2837.js:1:10401)
+    at t (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\webpack-runtime.js:1:128)
+    at 95238 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\chunks\2837.js:1:173)
+    at t (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\webpack-runtime.js:1:128)
+    at 96549 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\chunks\2837.js:1:4909)
+    at t (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\webpack-runtime.js:1:128)
+    at 2737 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\app\api\billing\invoices\route.js:1:795)
+Error: Missing env: NEXT_PUBLIC_SUPABASE_URL
+    at r (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\chunks\2837.js:1:8868)
+    at 40047 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\chunks\2837.js:1:8933)
+    at t (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\webpack-runtime.js:1:128)
+    at 7133 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\chunks\2837.js:1:10401)
+    at t (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\webpack-runtime.js:1:128)
+    at 95238 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\chunks\2837.js:1:173)
+    at t (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\webpack-runtime.js:1:128)
+    at 96549 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\chunks\2837.js:1:4909)
+    at t (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\webpack-runtime.js:1:128)
+    at 70796 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\app\api\billing\invoices\[invoiceId]\route.js:1:797)
+Error: Missing env: NEXT_PUBLIC_SUPABASE_URL
+    at a (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\app\api\admin\organisations\route.js:1:7527)
+    at 40047 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\app\api\admin\organisations\route.js:1:7592)
+    at t (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\webpack-runtime.js:1:128)
+    at 7133 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\app\api\admin\organisations\route.js:1:9060)
+    at t (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\webpack-runtime.js:1:128)
+    at 95238 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\app\api\admin\organisations\route.js:1:2709)
+    at t (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\webpack-runtime.js:1:128)
+    at 96549 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\app\api\admin\organisations\route.js:1:7445)
+    at t (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\webpack-runtime.js:1:128)
+    at 11945 (C:\Users\gduff\casebrain-hub-pr65-base-wt\.next\server\app\api\admin\organisations\route.js:1:797)
+
+> Build error occurred
+Error: Failed to collect page data for /api/billing/invoices
+    at C:\Users\gduff\casebrain-hub\node_modules\next\dist\build\utils.js:1268:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+  type: 'Error'
+}

@@ -1,0 +1,104 @@
+{
+  "schema_version":"1.0","matter_id":"R18-LARKFIELD-APPEAL","status":"design-only","matching_rule":"Exactly one specification per planned document ID; no extras.",
+  "specifications":[
+    {
+      "document_id":"S01",
+      "expected_professional_structure_and_purpose":"Controlled appeal cover, people/non-operative charge, Magistrates-to-Crown chronology, evidence, notice/deadline, rehearing and current-order map.",
+      "realistic_page_range_and_information_density":"10-14 pages; 300-500 words per narrative page or 10-22 sourced rows/events per table page.",
+      "required_fields_headings_and_provenance":["matter/version/preparer/reviewer","person/charge/status","Magistrates event/source","notice/deadline/extension","stay/current order","rehearing issue/evidence","decision/order/unknown"],
+      "native_scan_or_media_characteristics":"Born-digital accessible PDF with stable links, bookmarks and controlled repeated headers.",
+      "legitimate_imperfections_and_version_history":"Missing certificate, disputed clock offset and pending extension/order retained through dated versions.",
+      "confidentiality_redaction_and_audience_restrictions":"Health, custody and privileged strategy excluded from open overview; role variants enforce minimum access.",
+      "prohibited_filler_duplication_and_padding":"No copied record, generic appeal law, repeated chronology or blank padding.",
+      "document_specific_visual_and_content_checks":["charge/outcomes non-operative","current order prominent","deadline inputs sourced","device/medical/legal states distinct","record gaps visible","links/redactions safe"]
+    },
+    {
+      "document_id":"S02",
+      "expected_professional_structure_and_purpose":"Magistrates' charge, plea and case-management forms, formal admissions, witness/exhibit index, applications/orders and certified hearing record.",
+      "realistic_page_range_and_information_density":"22-32 pages; forms at authentic density, transcript/notes 300-550 words/page and indexes 10-24 entries/page.",
+      "required_fields_headings_and_provenance":["court/case/charge/version","plea/admission/maker/scope","hearing/date/bench/legal adviser","application/ruling/order","witness/exhibit/source","transcript/note certification","service/restriction","record-transfer/completeness"],
+      "native_scan_or_media_characteristics":"Mixed certified court scans and born-digital indexes/records; audio referenced if official source exists.",
+      "legitimate_imperfections_and_version_history":"Corrected charge label, incomplete note and later-certified record retained with version history.",
+      "confidentiality_redaction_and_audience_restrictions":"Custody/health and personal details restricted; transferred record carries original access restrictions.",
+      "prohibited_filler_duplication_and_padding":"No reconstructed hearing, duplicated forms, invented admission, repeated indexes or working note presented as certified.",
+      "document_specific_visual_and_content_checks":["charge versions reconcile","admission scope exact","application/ruling distinct","certification/source visible","record gaps registered","restrictions carried forward"]
+    },
+    {
+      "document_id":"S03",
+      "expected_professional_structure_and_purpose":"Officer and healthcare statements, custody record, native audio/transcript, breath-device printouts/event logs, maintenance/calibration records and continuity schedule.",
+      "realistic_page_range_and_information_density":"26-38 pages; statements/transcript 300-600 words/page, logs 10-28 rows/page and device outputs at authentic sparse density.",
+      "required_fields_headings_and_provenance":["maker/role/date/signature","custody/event/time/source clock","request/instruction/attempt/result","device ID/software/version","printout/session/error code","calibration/maintenance/certificate period","audio file/hash/segment/offset","health observation/report","continuity/service/version"],
+      "native_scan_or_media_characteristics":"Signed scans, native audio by hash, searchable transcript, original-format device printouts and native/born-digital logs; no simulated machine data.",
+      "legitimate_imperfections_and_version_history":"Clock offset, error session, abbreviated health note and missing calibration certificate allowed as designed gaps.",
+      "confidentiality_redaction_and_audience_restrictions":"Custody audio and health data minimised; native logs restricted to authorised parties/expert; served extracts preserve context.",
+      "prohibited_filler_duplication_and_padding":"No repeated transcript, invented attempt, decorative device screens, duplicated logs or assumed calibration record.",
+      "document_specific_visual_and_content_checks":["attempts reconcile by source without forced merge","clock basis/offset visible","device IDs and sessions resolve","audio/transcript links work","missing certificate explicit","health observation not diagnosis"]
+    },
+    {
+      "document_id":"S04",
+      "expected_professional_structure_and_purpose":"Magistrates' reasons, verdict/conviction record, sentence remarks, disqualification/costs decisions and perfected/service orders.",
+      "realistic_page_range_and_information_density":"14-22 pages; reasons 250-500 words/page and verdict/order forms at authentic sparse density.",
+      "required_fields_headings_and_provenance":["court/bench/date","charge/verdict/conviction","finding/reason/source reference","sentence component","disqualification/start/duration","costs/surcharge if applicable","oral/perfected order","service/notification","signature/seal/version"],
+      "native_scan_or_media_characteristics":"Born-digital certified reasons and signed/sealed scanned orders; drafts visibly non-operative.",
+      "legitimate_imperfections_and_version_history":"Later-perfected reasons or corrected order allowed with audit trail and no silent overwrite.",
+      "confidentiality_redaction_and_audience_restrictions":"Public/restricted versions separated; health detail minimised in open reasons while material reasoning retained lawfully.",
+      "prohibited_filler_duplication_and_padding":"No invented reasons, duplicate orders, generic sentencing text or appeal interpretation inserted into historical record.",
+      "document_specific_visual_and_content_checks":["reason/finding source exact","conviction and sentence components separate","oral/perfected records reconcile","operative dates visible","draft marked","service state shown"]
+    },
+    {
+      "document_id":"S05",
+      "expected_professional_structure_and_purpose":"Signed appeal notice/grounds, deadline worksheet, service/address evidence, late explanation, extension application/response and stay/suspension applications/orders.",
+      "realistic_page_range_and_information_density":"14-22 pages; prescribed-style forms authentic, statements/applications 250-500 words/page and deadline/service tables 8-18 events/page.",
+      "required_fields_headings_and_provenance":["appellant/order challenged/scope","notice signature/date","deadline authority/trigger/calculation","sent/filed/received/service","late reason/source evidence","extension application/response/decision","stay/suspension request/jurisdiction/order","digital signature/filing state","version"],
+      "native_scan_or_media_characteristics":"Born-digital forms and schedules with signed/scanned evidence; digital signature validation read-only and separate from filing receipt.",
+      "legitimate_imperfections_and_version_history":"Address mismatch, corrected notice, late receipt and expired certificate permitted with full history.",
+      "confidentiality_redaction_and_audience_restrictions":"Defence advice/drafts privileged; filed forms role-available; addresses and health reasons minimised.",
+      "prohibited_filler_duplication_and_padding":"No invented receipt, hard-coded deadline conclusion, duplicate notices, generic law or automatic-stay statement.",
+      "document_specific_visual_and_content_checks":["appeal scope exact","trigger/calculation evidence visible","sent/filed/received distinct","extension unruled until source","stay order required","signature/filing/truth separate"]
+    },
+    {
+      "document_id":"S06",
+      "expected_professional_structure_and_purpose":"Respondent notice/skeleton, Magistrates-record response, agreed/disputed chronology, service log and prosecution rehearing position.",
+      "realistic_page_range_and_information_density":"14-22 pages; skeleton 300-500 words/page and record/chronology/service tables 8-20 rows/page.",
+      "required_fields_headings_and_provenance":["respondent author/date","appeal ground response","record item/request/status","chronology event/source/agreement","evidence/witness position","expert response state","file/service","restriction/version"],
+      "native_scan_or_media_characteristics":"Born-digital filed skeleton and schedules; signed correspondence where realistic; stable record IDs.",
+      "legitimate_imperfections_and_version_history":"Late record item, corrected chronology and amended expert response retained with history.",
+      "confidentiality_redaction_and_audience_restrictions":"No defence privilege; health/custody and personal data limited to necessary filed material; internal CPS advice excluded.",
+      "prohibited_filler_duplication_and_padding":"No repeated Magistrates bundle, generic submissions, duplicate chronology or respondent claim shown as judicial finding.",
+      "document_specific_visual_and_content_checks":["response maps to live ground","record gaps visible","agreement scope exact","service dates clear","medical/device claims attributed","restrictions retained"]
+    },
+    {
+      "document_id":"S07",
+      "expected_professional_structure_and_purpose":"Crown Court case-management/directions, witness availability, expert issue/instruction pack, respiratory report/addendum, device material index and separate counsel/expert extracts.",
+      "realistic_page_range_and_information_density":"18-28 pages; directions/forms authentic, report 250-450 words/page and issue/material tables 8-18 rows/page.",
+      "required_fields_headings_and_provenance":["court/hearing/judge/date","direction/deadline/compliance","witness/availability/summons state","expert qualifications/duty/instructions","medical/device material list","method/opinion/alternative/limitation","report/addendum/service/ruling","counsel/expert extract audience/version"],
+      "native_scan_or_media_characteristics":"Born-digital directions and expert report with signed declaration; native device data referenced by hash; recipient extracts separately controlled.",
+      "legitimate_imperfections_and_version_history":"Unavailable witness, amended direction and narrowed expert opinion retained with transparent versions.",
+      "confidentiality_redaction_and_audience_restrictions":"Expert gets minimum health/device material; counsel receives authorised record plus privilege; drafts and unrelated data restricted.",
+      "prohibited_filler_duplication_and_padding":"No full duplicate record, generic medical text, invented expert conclusion, repeated directions or overbroad recipient pack.",
+      "document_specific_visual_and_content_checks":["directions/deadlines operative version clear","expert limits prominent","draft/addendum changes traced","service not admissibility","recipient manifests exact","hash links resolve"]
+    },
+    {
+      "document_id":"S08",
+      "expected_professional_structure_and_purpose":"Certified Crown Court rehearing transcript/extracts, exhibit index, formal admissions, witness/expert evidence and attributed party submissions.",
+      "realistic_page_range_and_information_density":"28-42 pages; transcript 350-650 words/page and indexes/admissions 8-20 entries/page.",
+      "required_fields_headings_and_provenance":["court/panel/date/session","transcriber/certification","speaker/witness/oath","page/line/time","exhibit/source/hash","admission/maker/scope","evidence versus submission","objection/ruling","restriction/version"],
+      "native_scan_or_media_characteristics":"Certified born-digital/scanned transcript and born-digital indexes; hearing audio referenced where authorised; no generated dialogue.",
+      "legitimate_imperfections_and_version_history":"Inaudible marker, corrected speaker and later-certified replacement page retained.",
+      "confidentiality_redaction_and_audience_restrictions":"Health/custody restrictions persist; privileged conferences excluded; expert and client extracts role-limited.",
+      "prohibited_filler_duplication_and_padding":"No reconstructed speech, duplicated Magistrates evidence, synthetic questions, repeated exhibits or submission presented as finding.",
+      "document_specific_visual_and_content_checks":["certification and panel visible","page-line citations stable","admissions narrow","evidence/submission/ruling distinct","corrections traced","restricted data controlled"]
+    },
+    {
+      "document_id":"S09",
+      "expected_professional_structure_and_purpose":"Crown Court appeal decision/reasons, allowed/dismissed scope, conviction and sentence/disqualification/costs consequences, perfected orders, service and any further-deadline record.",
+      "realistic_page_range_and_information_density":"16-24 pages; reasons 300-550 words/page and orders/forms at authentic sparse density.",
+      "required_fields_headings_and_provenance":["court/panel/date","appeal scope","finding/reason/charge","allowed/dismissed","conviction outcome","sentence/disqualification/costs consequence","stay/interim termination","order/seal/service","further advice/notice/deadline state","version"],
+      "native_scan_or_media_characteristics":"Born-digital certified reasons and signed/sealed orders; draft/oral/perfected versions visibly separated.",
+      "legitimate_imperfections_and_version_history":"Reserved reasons, oral announcement and corrected consequential order retained with history.",
+      "confidentiality_redaction_and_audience_restrictions":"Public/restricted decision variants separated; health detail minimised; privileged further advice excluded.",
+      "prohibited_filler_duplication_and_padding":"No invented reasons, duplicate orders, automatic consequences, generic appeal law or draft outcome shown as final.",
+      "document_specific_visual_and_content_checks":["outcome scope exact","conviction/sentence/disqualification/costs distinct","original-order change sourced","oral/perfected records reconcile","operative order obvious","service/deadline states precise"]
+    }
+  ]
+}

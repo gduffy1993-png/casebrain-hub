@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "stage300-batch-b-adapter-before-after@1.0.0",
+  "rows": [
+    {
+      "adapterId": "evidence_unit_identity_with_aliases",
+      "before": {
+        "eligible": 0,
+        "partial": 120,
+        "unavailable": 0
+      },
+      "after": {
+        "eligible": 120,
+        "partial": 0,
+        "unavailable": 0
+      },
+      "strongestHonestState": "eligible_on_all_120_cohort_b_packets"
+    },
+    {
+      "adapterId": "source_vs_compiled_page_binding",
+      "before": {
+        "eligible": 0,
+        "partial": 120,
+        "unavailable": 0
+      },
+      "after": {
+        "eligible": 120,
+        "partial": 0,
+        "unavailable": 0
+      },
+      "strongestHonestState": "eligible_on_all_120_cohort_b_packets"
+    },
+    {
+      "adapterId": "chase_item_to_evidence_unit_edges",
+      "before": {
+        "eligible": 0,
+        "partial": 120,
+        "unavailable": 0
+      },
+      "after": {
+        "eligible": 0,
+        "partial": 120,
+        "unavailable": 0
+      },
+      "strongestHonestState": "partial_remaining"
+    },
+    {
+      "adapterId": "view_copy_export_api_pdf_composed_prose_capture",
+      "before": {
+        "eligible": 0,
+        "partial": 120,
+        "unavailable": 0
+      },
+      "after": {
+        "eligible": 120,
+        "partial": 0,
+        "unavailable": 0
+      },
+      "strongestHonestState": "eligible_on_all_120_cohort_b_packets"
+    }
+  ],
+  "note": "capabilityStatus column = namedControlPrerequisiteComplete. See dual-status-capability-summary.json for schemaValidRepresentation."
+}

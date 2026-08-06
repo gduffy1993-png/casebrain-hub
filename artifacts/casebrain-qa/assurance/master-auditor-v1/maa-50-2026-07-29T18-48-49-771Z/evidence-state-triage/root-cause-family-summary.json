@@ -1,0 +1,293 @@
+{
+  "schema": "root-cause-family-summary/v1",
+  "runId": "maa-50-2026-07-29T18-48-49-771Z",
+  "frozenMembershipHash": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "totalFindings": 93,
+  "dispositionCounts": {
+    "confirmed_app_defect": 43,
+    "detector_false_positive": 22,
+    "unresolved_source": 21,
+    "truth_key_defect": 7
+  },
+  "unitCounts": {
+    "occurrenceFindings": 93,
+    "uniqueStrings": 76,
+    "templates": 76,
+    "cases": 44,
+    "note": "Counts kept separate — do not equate occurrence, unique-string, template, or case units."
+  },
+  "families": [
+    {
+      "familyId": "F01_mg6_referred_not_served_as_missing",
+      "count": 26,
+      "dispositions": {
+        "confirmed_app_defect": 26
+      },
+      "findingIds": [
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-120-truth_map-11586a2d88bb",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-250-truth_map-7d7ef59ef631",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-345-truth_map-d0341edd2e12",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-104-truth_map-8061a6796568",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-373-truth_map-62a10105f91a",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-321-truth_map-51f52c928876",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-182-truth_map-8e3e8a83db8a",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-142-truth_map-2c5122f9a790",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-063-truth_map-602364eac3a1",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-063-truth_map-d5495e3018d9",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-063-truth_map-bd1a940b72d5",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-038-truth_map-6bc3406f3753",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-038-truth_map-ceec74273f8c",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-138-truth_map-39350a182d53",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-387-truth_map-646cbe215156",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-128-truth_map-4d952a0b1ae1",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-329-truth_map-d1aece2ea119",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-198-truth_map-5ef9a3eff6ee",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-337-truth_map-98cb117423c7",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-366-truth_map-ed34b5ecb304",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-286-truth_map-0625ee459062",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-199-truth_map-adf452765859",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-354-truth_map-c7e884f17d22",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-145-truth_map-04ef5376552d",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-271-truth_map-3b323453d735",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-389-truth_map-069de7858b03"
+      ],
+      "caseIds": [
+        "sim-120",
+        "sim-250",
+        "sim-345",
+        "sim-104",
+        "sim-373",
+        "sim-321",
+        "sim-182",
+        "sim-142",
+        "sim-063",
+        "sim-038",
+        "sim-138",
+        "sim-387",
+        "sim-128",
+        "sim-329",
+        "sim-198",
+        "sim-337",
+        "sim-366",
+        "sim-286",
+        "sim-199",
+        "sim-354",
+        "sim-145",
+        "sim-271",
+        "sim-389"
+      ]
+    },
+    {
+      "familyId": "F03_outstanding_alone_vs_referred_only",
+      "count": 21,
+      "dispositions": {
+        "unresolved_source": 20,
+        "detector_false_positive": 1
+      },
+      "findingIds": [
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002d-truth_map-47e3fc02fd54",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002d-truth_map-d29b8110de4b",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002d-truth_map-2043a759b85c",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002d-truth_map-7a829dc32cab",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002d-truth_map-c8f3e39c3e33",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-00025-truth_map-78bc4b000259",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-00025-truth_map-9dffe859a684",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-00025-truth_map-a01278cea7c6",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-00025-truth_map-95f380e7efc1",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-00025-truth_map-6a1d17104678",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-9ec190bb882c",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-97ea0d131514",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-0efe66f30804",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-1fbeece45902",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-c8f3e39c3e33",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-9ec190bb882c",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-97ea0d131514",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-0efe66f30804",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-1fbeece45902",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-d5c7a6385417",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-bb0aab79736b"
+      ],
+      "caseIds": [
+        "sc-0002d",
+        "sc-00025",
+        "sc-0006a",
+        "sc-0002e"
+      ]
+    },
+    {
+      "familyId": "F02_referred_only_label_as_incomplete",
+      "count": 15,
+      "dispositions": {
+        "confirmed_app_defect": 15
+      },
+      "findingIds": [
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-377-truth_map-291e8ae5b385",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-224-truth_map-840e7f13872e",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-222-truth_map-338bc97ffe54",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-190-truth_map-eba365a1c20d",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-055-truth_map-be3c721fbe1b",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-172-truth_map-e135e03c17ed",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-048-truth_map-54dc6ac97320",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-073-truth_map-79ed8d7ea32d",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-265-truth_map-52fce672ab4a",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-072-truth_map-8104b6f618f0",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-332-truth_map-79e3b3b52bbe",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-336-truth_map-2ec7e6ee8e9c",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-257-truth_map-17056effcc38",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-395-truth_map-88ce6f6c851d",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-360-truth_map-696aa8e3616a"
+      ],
+      "caseIds": [
+        "sim-377",
+        "sim-224",
+        "sim-222",
+        "sim-190",
+        "sim-055",
+        "sim-172",
+        "sim-048",
+        "sim-073",
+        "sim-265",
+        "sim-072",
+        "sim-332",
+        "sim-336",
+        "sim-257",
+        "sim-395",
+        "sim-360"
+      ]
+    },
+    {
+      "familyId": "F05_unit_conflation_aggregate_or_meta_row",
+      "count": 11,
+      "dispositions": {
+        "detector_false_positive": 11
+      },
+      "findingIds": [
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002d-truth_map-e30b96d9a0ed",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-00025-truth_map-fccd721a5a4c",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-00025-truth_map-e30b96d9a0ed",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-055-truth_map-6837ee55474b",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-063-truth_map-a7f5dc239de8",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-073-truth_map-2b412d6035bd",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-332-truth_map-c6e94f994cb3",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-329-truth_map-e673be6d31bc",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-257-truth_map-73e57feaf516",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-fccd721a5a4c",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-e30b96d9a0ed"
+      ],
+      "caseIds": [
+        "sc-0002d",
+        "sc-00025",
+        "sim-055",
+        "sim-063",
+        "sim-073",
+        "sim-332",
+        "sim-329",
+        "sim-257",
+        "sc-0006a"
+      ]
+    },
+    {
+      "familyId": "F04_partial_incomplete_vs_served",
+      "count": 7,
+      "dispositions": {
+        "truth_key_defect": 7
+      },
+      "findingIds": [
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002d-truth_map-a21728817d67",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002d-truth_map-e288055ba799",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-00025-truth_map-a21728817d67",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-a21728817d67",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-e288055ba799",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-a21728817d67",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-e288055ba799"
+      ],
+      "caseIds": [
+        "sc-0002d",
+        "sc-00025",
+        "sc-0006a",
+        "sc-0002e"
+      ]
+    },
+    {
+      "familyId": "F07_recording_transcript_or_unknown_identity",
+      "count": 5,
+      "dispositions": {
+        "unresolved_source": 1,
+        "detector_false_positive": 4
+      },
+      "findingIds": [
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-055-truth_map-bdc2eb65e76a",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-055-truth_map-157cc0935d67",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-073-truth_map-157cc0935d67",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-072-truth_map-157cc0935d67",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-145-truth_map-d9b6f4b6dac1"
+      ],
+      "caseIds": [
+        "sim-055",
+        "sim-073",
+        "sim-072",
+        "sim-145"
+      ]
+    },
+    {
+      "familyId": "F06_mg6_clarification_vs_mg6_document",
+      "count": 4,
+      "dispositions": {
+        "detector_false_positive": 4
+      },
+      "findingIds": [
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002d-truth_map-d3d1cbc2f835",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-d3d1cbc2f835",
+        "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-a125fd6ea562",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-024-truth_map-d3d1cbc2f835"
+      ],
+      "caseIds": [
+        "sc-0002d",
+        "sc-0006a",
+        "sc-0002e",
+        "sim-024"
+      ]
+    },
+    {
+      "familyId": "F08_co_defendant_only_more_precise",
+      "count": 2,
+      "dispositions": {
+        "detector_false_positive": 2
+      },
+      "findingIds": [
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-245-truth_map-1220c57ef865",
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-389-truth_map-49a5e3981406"
+      ],
+      "caseIds": [
+        "sim-245",
+        "sim-389"
+      ]
+    },
+    {
+      "familyId": "F10_other_edge",
+      "count": 1,
+      "dispositions": {
+        "confirmed_app_defect": 1
+      },
+      "findingIds": [
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-104-truth_map-3b0fe9ad645d"
+      ],
+      "caseIds": [
+        "sim-104"
+      ]
+    },
+    {
+      "familyId": "F09_truth_expects_served_source_partial_or_absent",
+      "count": 1,
+      "dispositions": {
+        "confirmed_app_defect": 1
+      },
+      "findingIds": [
+        "MAA-EVIDENCE-STATE-state_mismatch-sim-138-truth_map-bd976983d644"
+      ],
+      "caseIds": [
+        "sim-138"
+      ]
+    }
+  ]
+}

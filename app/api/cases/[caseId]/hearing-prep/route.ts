@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { buildHearingPrepPack } from "@/lib/hearing-prep";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 
 type RouteParams = {
   params: { caseId: string };
@@ -37,7 +38,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       hearingDate,
     );
 
-    return NextResponse.json({ pack });
+    return gatedJsonResponse("api_cases_hearing_prep", { pack });
   } catch (error) {
     console.error("Failed to generate hearing prep pack:", error);
     return NextResponse.json(

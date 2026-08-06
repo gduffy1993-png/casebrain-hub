@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "batch10-per-control-batch9-runnable@1.0.0",
+  "note": "Counts of structured packets where Batch-9 control is exercised (not not_exercised). ESA originals unchanged.",
+  "controlSpecs": [
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "runnablePacketCount": 28
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "runnablePacketCount": 28
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "runnablePacketCount": 28
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "runnablePacketCount": 28
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "runnablePacketCount": 28
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "runnablePacketCount": 28
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "runnablePacketCount": 28
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "runnablePacketCount": 28
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "runnablePacketCount": 0
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "runnablePacketCount": 0
+    }
+  ],
+  "byControlId": {
+    "MAA2-ATR-01-DEFENDANT-SEPARATION": 28,
+    "MAA2-ATR-08-NO-DEFENDANT-BLEED": 28,
+    "MAA2-BND-07-ALIAS-SAFE-COLLAPSE": 28,
+    "MAA2-BND-08-EXTRACT-VS-FULL": 28,
+    "MAA2-BND-09-STILL-CLIP-VS-MASTER": 28,
+    "MAA2-BND-10-RECORDING-VS-TRANSCRIPT": 28,
+    "MAA2-BND-11-DRAFT-VS-SIGNED": 28,
+    "MAA2-EVS-04-REASON-TAXONOMY": 28
+  }
+}

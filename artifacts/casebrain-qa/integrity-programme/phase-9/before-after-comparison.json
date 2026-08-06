@@ -1,0 +1,32 @@
+{
+  "phase": 9,
+  "generatedAt": "2026-07-21T20:20:00.000Z",
+  "typecheck": {
+    "before": 47,
+    "after": 47,
+    "delta": 0,
+    "note": "Attributed baseline preserved; no Phase-9-introduced TypeScript errors"
+  },
+  "dateAnchoredVitest": {
+    "before": { "failed": 0, "passed": 22 },
+    "after": { "failed": 0, "passed": 22 },
+    "deltaFailed": 0
+  },
+  "build": "BUILD_OK",
+  "phase6ValidatorContracts": { "surfaces": 31, "pass": true },
+  "phase8FocusedContracts": { "pass": true },
+  "phase9FocusedContracts": { "pass": true },
+  "phase9Corpus": {
+    "completed": 3530,
+    "assertFailureOccurrences": 0,
+    "contractsPass": true,
+    "corpusAssertPass": true,
+    "fpFnSamples": 32,
+    "ledgerImpact": "none"
+  },
+  "remediationRegister": {
+    "unchanged": ["PRE-TS-EVAL", "PRE-TS-SCRIPTS", "PRE-VITEST-COPY", "PRE-VITEST-CONFIG", "PRE-BUILD-ENV", "PRE-E2E"],
+    "phase8ResolvedRemains": ["PRE-VITEST-DATE"],
+    "humanFpFn": "PHASE_9_CORPUS_PACK_RECORDED__PHASE_11_GOLD_REMAINING"
+  }
+}

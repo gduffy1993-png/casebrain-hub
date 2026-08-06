@@ -37,6 +37,9 @@ export type SolicitorExportBuilderPanelProps = {
   clientStressResult?: ClientStressResult | null;
   readinessInput?: PreHearingReadinessInput | null;
   loading?: boolean;
+  /** When false, copy is disabled (solicitor output integrity). */
+  canCopyExport?: boolean;
+  copyBlockedReason?: string | null;
 };
 
 const EXPORT_OPTIONS: { value: SolicitorExportType; label: string }[] = [
@@ -62,6 +65,8 @@ export function SolicitorExportBuilderPanel({
   clientStressResult = null,
   readinessInput = null,
   loading = false,
+  canCopyExport = true,
+  copyBlockedReason = null,
 }: SolicitorExportBuilderPanelProps) {
   const exportReviewPersistence = useExportReviewPersistenceEnabled();
   const [exportType, setExportType] = useState<SolicitorExportType>("disclosure_chase");
@@ -165,7 +170,7 @@ export function SolicitorExportBuilderPanel({
   }, [exportReviewPersistence, exportDraft, exportType, metadataCtx, persistReview]);
 
   const onCopy = async () => {
-    if (!exportDraft?.fullText) return;
+    if (!exportDraft?.fullText || !canCopyExport) return;
     try {
       await navigator.clipboard.writeText(exportDraft.fullText);
       setCopied(true);
@@ -292,10 +297,21 @@ export function SolicitorExportBuilderPanel({
               />
             </div>
             <div className="flex flex-wrap gap-2 items-center">
-              <Button type="button" size="sm" className="h-8 text-xs gap-1.5" onClick={() => void onCopy()}>
+              <Button
+                type="button"
+                size="sm"
+                className="h-8 text-xs gap-1.5"
+                disabled={!canCopyExport}
+                onClick={() => void onCopy()}
+              >
                 <Copy className="h-3.5 w-3.5" />
                 {copied ? "Copied" : "Copy draft"}
               </Button>
+              {!canCopyExport && copyBlockedReason ? (
+                <p className="text-[10px] text-amber-700 mt-1" data-testid="export-copy-blocked">
+                  {copyBlockedReason}
+                </p>
+              ) : null}
               {exportReviewPersistence ? (
                 <>
                   <Button

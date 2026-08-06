@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "batch6-contract-resolution-audit@1.0.0",
+  "allResolve": true,
+  "rows": [
+    {
+      "controlId": "MAA2-EVS-02-STATE-ENUM",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#evs_state_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#evs_state_negatives",
+      "mutationContract": "scripts/maa-v2-stage150-batch6-contracts.test.ts#evs02_mutation",
+      "unavailableContract": "scripts/maa-v2-stage150-batch6-contracts.test.ts#evs02_unavailable",
+      "positiveResolves": true,
+      "negativesResolve": true,
+      "mutationResolves": true,
+      "unavailableResolves": true
+    },
+    {
+      "controlId": "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#evs_reliability_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#evs_reliability_negatives",
+      "mutationContract": "scripts/maa-v2-stage150-batch6-contracts.test.ts#evs03_mutation",
+      "unavailableContract": "scripts/maa-v2-stage150-batch6-contracts.test.ts#evs03_unavailable",
+      "positiveResolves": true,
+      "negativesResolve": true,
+      "mutationResolves": true,
+      "unavailableResolves": true
+    }
+  ]
+}

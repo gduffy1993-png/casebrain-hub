@@ -1,0 +1,50 @@
+{
+  "root": "artifacts/casebrain-qa/solicitor-duplicate-display-smoke",
+  "exists": true,
+  "fileCount": 7,
+  "totalBytes": 1451450,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/solicitor-duplicate-display-smoke/01-overview.png",
+      "size": 251468,
+      "mtime": "2026-07-13T23:03:07.150Z",
+      "sha256": "6d148f2352f61e10578d55eb79c0c1a03ba79967afe3354ed11d16ebfbe80987"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-duplicate-display-smoke/02-today.png",
+      "size": 217228,
+      "mtime": "2026-07-13T23:03:42.548Z",
+      "sha256": "161fd93b4b4627245a1f8293369f3f3ffbf53b75b251680a9aa522209705ae32"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-duplicate-display-smoke/03-papers.png",
+      "size": 361853,
+      "mtime": "2026-07-13T23:04:20.743Z",
+      "sha256": "a641d0ad2d5ad1e043a04a4594a6067b9303594638f7f0f7c364203805be0cca"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-duplicate-display-smoke/04-summary.png",
+      "size": 348831,
+      "mtime": "2026-07-13T23:06:30.692Z",
+      "sha256": "cd75532fddf580fa49a30d9c7fbf0ac13902267a3883de9a13349cd9476c04bc"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-duplicate-display-smoke/05-chase.png",
+      "size": 177480,
+      "mtime": "2026-07-13T23:07:07.526Z",
+      "sha256": "9c041c9ada21425566c9ea81b75f7e41a9f95b8761b67ca0fb9fc0f554f88097"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-duplicate-display-smoke/06-overview-mobile.png",
+      "size": 92582,
+      "mtime": "2026-07-13T23:07:40.527Z",
+      "sha256": "859c07ef7e73976aa96ec59bf723f5afcca9d54eddda0162b5d2407497786068"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-duplicate-display-smoke/report.json",
+      "size": 2008,
+      "mtime": "2026-07-13T23:07:45.477Z",
+      "sha256": "148a1eed15f3e1c70c66acfce7c13668ae732db2749fc5a213b90cd1b2691c25"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "goldId": "GOLD-11-027",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: SYN-HEAR-SAME-DAY\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe's own rendered output).\nProbe design: Controlled hearing-status probe — hearing date equals reference time\nControlled input construction: Test harness fixes the next-hearing date to the same calendar day as its fixed controlled reference time, independent of any real client bundle.\nExpected behaviour under test: Hearing status must read as a same-day hearing.",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "synthetic — controlled technical control",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Same-day hearing · 21 Jul 2026",
+      "gateStatus": "same_day",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "synthetic",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

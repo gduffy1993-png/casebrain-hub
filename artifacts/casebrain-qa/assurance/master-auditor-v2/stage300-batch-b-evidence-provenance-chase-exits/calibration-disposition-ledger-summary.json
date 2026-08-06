@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "stage300-batch-b-calibration-disposition-summary@1.0.0",
+  "candidates": 0,
+  "unresolved": 0,
+  "dispositions": {},
+  "truthOpened": false,
+  "note": "No candidates; truth remains closed."
+}

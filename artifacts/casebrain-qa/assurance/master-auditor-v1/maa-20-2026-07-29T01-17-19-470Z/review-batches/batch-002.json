@@ -1,0 +1,74 @@
+{
+  "batchIndex": 2,
+  "humanReviewDisposition": null,
+  "items": [
+    {
+      "textHash": "c58effd41ed62f7e24e0531030f4bb28a57f34fa08bd148479d794e0afc352ef",
+      "templateHash": "a52d75f54e63725a7bc7d28c51f1fbb0638586ebb346a73aef2c4bee485d36cb",
+      "text": "Conspiracy to import a controlled drug, contrary to section 4(3) of the Misuse of Drugs Act 1971",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-18",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-18-allegation-c58effd41ed6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "56645240a4d783b8af73659a118cef7288f9c39da96e3baf6cea859def0af954",
+      "templateHash": "941eabeb3b74c3ff89cb058d09a19d4d2a371388fd00b0dc960c6d5a7a66f7cc",
+      "text": "Malicious communications, contrary to section 1 of the Malicious Communications Act 1988",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-19",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-19-allegation-56645240a4d7"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "93d2e1dc76bdc4fff47e47b43abf50cec619fefa811fd001432ceed3ff0aa9d0",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-20",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-93d2e1dc76bd"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "945446aea94be880bd453a65742594dd812ef4eeae65abf15f2f3bb0adc7ed77",
+      "templateHash": "0984bf74e575256b7c1b09f166011818848fc5328b667ba1ac456828ba4e66a0",
+      "text": "Master CCTV footage · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-20",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-20-disclosure_chase-945446aea94b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import { formatDisplayLabelCasing } from "@/lib/criminal/bundle-truth-ledger";
+import { sentenceCasePreservingAcronyms } from "@/lib/criminal/solicitor-visible-quality";
 import type {
   ChaseFamilyId,
   DisclosureChaseItem,
@@ -40,6 +41,11 @@ export function humanizeChaseFragmentLabel(raw: string): string {
   let t = stripCourtLinePrefix(stripPagePipeFragments(raw.trim()));
   if (!t) return "";
 
+  // BWV / footage status fragments → natural prose (shared; not gold-ID patches)
+  if (/bwv\s*\/\s*footage/i.test(t) && /not served/i.test(t) && /log only/i.test(t)) {
+    return "BWV/footage is not served. Only a log entry is available; the clip remains outstanding.";
+  }
+
   const mg6 = t.match(/\bMG6C?\/\d+\s*[—–-]\s*(.+?)(?:\s*[—–-]\s*.+)?\.?$/i);
   if (mg6?.[1]) {
     const core = mg6[1]
@@ -72,19 +78,19 @@ export function humanizeChaseFragmentLabel(raw: string): string {
     if (unique.length > 1 && unique.every((p) => p.length <= 48)) {
       return unique.slice(0, 3).join("; ");
     }
-    return "Additional source-material on file";
+    return "Further papers on the file";
   }
 
   if (t.length > 72 && /outstanding|served|draft|summary/i.test(t)) {
-    return "Additional source-material on file";
+    return "Further papers on the file";
   }
 
   if (t.length > 56 && /notes|tension|tests mg5|clock drift|statement notes/i.test(t)) {
-    return "Additional source-material on file";
+    return "Further papers on the file";
   }
 
   if (/^["']/.test(raw.trim()) || /"\s*$/.test(raw.trim())) {
-    return "Additional source-material on file";
+    return "Further papers on the file";
   }
 
   return formatDisplayLabelCasing(t);
@@ -121,7 +127,7 @@ function familyLabelForId(familyId: ChaseFamilyId): string {
     case "exhibit_provenance":
       return "Exhibit mapping / provenance";
     default:
-      return "Additional source-material issue";
+      return "Further papers issue";
   }
 }
 
@@ -130,8 +136,8 @@ function humanOverflowCardLabel(mergedFrom: string[]): string {
     mergedFrom.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
   ).filter(
     (h) =>
-      h !== "Additional source-material on file" &&
-      !/^additional source-material issues/i.test(h),
+      h !== "Further papers on the file" &&
+      !/^Further papers issues/i.test(h),
   );
 
   if (humanized.length === 0) return "Outstanding source material on disclosure schedule";
@@ -147,8 +153,8 @@ function buildOverflowDraftWording(mergedFrom: string[]): string {
     mergedFrom.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
   ).filter(
     (h) =>
-      h !== "Additional source-material on file" &&
-      !/^additional source-material issues/i.test(h),
+      h !== "Further papers on the file" &&
+      !/^Further papers issues/i.test(h),
   );
 
   const suffix = " or confirm in writing why it is not available.";
@@ -159,7 +165,7 @@ function buildOverflowDraftWording(mergedFrom: string[]): string {
 
   if (humanized.length <= 5) {
     const list = humanized
-      .map((h) => (h.charAt(0).toLowerCase() + h.slice(1)).replace(/\.$/, ""))
+      .map((h) => sentenceCasePreservingAcronyms(h).replace(/\.$/, ""))
       .join(", ");
     return `Please provide the outstanding source material identified on the disclosure schedule, including ${list}${suffix}`;
   }
@@ -169,7 +175,7 @@ function buildOverflowDraftWording(mergedFrom: string[]): string {
 
 function cleanDraftWording(label: string, mergedFrom: string[] = []): string {
   if (
-    /^additional source-material issues \(\d+ on file\)$/i.test(label) ||
+    /^Further papers issues \(\d+ on file\)$/i.test(label) ||
     /^outstanding source material on disclosure schedule$/i.test(label) ||
     /^outstanding source material \(/i.test(label)
   ) {
@@ -178,22 +184,22 @@ function cleanDraftWording(label: string, mergedFrom: string[] = []): string {
 
   const provision = humanizeChaseFragmentLabel(label);
   const core = provision || "the outstanding source material";
-  return `Please provide ${core.charAt(0).toLowerCase()}${core.slice(1)} or confirm in writing why it is not available.`;
+  return `Please provide ${sentenceCasePreservingAcronyms(core)} or confirm in writing why it is not available.`;
 }
 
 function sanitizeWhyItMatters(text: string, mergedCount: number): string {
   if (mergedCount > 2 || text.length > 160 || /forensic report|metadata timeline|additional bwv/i.test(text)) {
-    return "Additional source-material appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position.";
+    return "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position.";
   }
   return text;
 }
 
 function cleanCourtLine(label: string): string {
   const core = humanizeChaseFragmentLabel(label);
-  if (!core || core === "Additional source-material on file") {
+  if (!core || core === "Further papers on the file") {
     return `${COURT_RECORD_PREFIX} that outstanding source material remains on the disclosure schedule and should be timetabled.`;
   }
-  return `${COURT_RECORD_PREFIX} that ${core.charAt(0).toLowerCase()}${core.slice(1)} appears outstanding on the current file and should be disclosed on a timetable.`;
+  return `${COURT_RECORD_PREFIX} that ${sentenceCasePreservingAcronyms(core)} appears outstanding on the current file and should be disclosed on a timetable.`;
 }
 
 function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
@@ -234,7 +240,7 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
     if (isRawChaseFragmentLabel(evidenceAnchor)) evidenceAnchor = null;
   }
 
-  if (/^additional source-material issues \(\d+ on file\)$/i.test(label)) {
+  if (/^Further papers issues \(\d+ on file\)$/i.test(label)) {
     label = humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : item.mergedFrom);
   }
 

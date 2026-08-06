@@ -1,0 +1,1065 @@
+{
+  "schemaVersion": "stage300-batch-a-ownership-dedup-graph@1.0.0",
+  "essentialControlCount": 43,
+  "engineeringJobCount": 6,
+  "clusters": [
+    {
+      "duplicateRiskCluster": "heavy_ocr_binary_lane",
+      "adapterIds": [],
+      "controlIds": [
+        "MAA2-SRC-07-REDACTION-DETECT",
+        "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+        "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+        "MAA2-SRC-13-PASSWORD-CORRUPT",
+        "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE"
+      ],
+      "batchAInScope": false,
+      "note": "Out of Batch-A scope — later batch."
+    },
+    {
+      "duplicateRiskCluster": "charge_instrument_graph",
+      "adapterIds": [
+        "structured_charge_instrument_graph"
+      ],
+      "controlIds": [
+        "MAA2-LSL-05-CATEGORY-SET-COVERAGE"
+      ],
+      "batchAInScope": true,
+      "note": "One shared adapter serves this control cluster — count 1 engineering job."
+    },
+    {
+      "duplicateRiskCluster": "chronology_procedural_state",
+      "adapterIds": [
+        "timezone_aware_chronology_events"
+      ],
+      "controlIds": [
+        "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+        "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+        "MAA2-PRC-03-YOUTH-STATE",
+        "MAA2-PRC-04-FITNESS-PARTICIPATION",
+        "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+      ],
+      "batchAInScope": true,
+      "note": "One shared adapter serves this control cluster — count 1 engineering job."
+    },
+    {
+      "duplicateRiskCluster": "audience_perspective_depth",
+      "adapterIds": [],
+      "controlIds": [
+        "MAA2-AUD-02-CLIENT-PLAIN",
+        "MAA2-AUD-03-COURT-PRECISE",
+        "MAA2-AUD-04-CPS-SPECIFIC",
+        "MAA2-AUD-05-SUPERVISOR-RISK",
+        "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+        "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+        "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+        "MAA2-XPP-04-CLIENT-COMPREHENSION",
+        "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE"
+      ],
+      "batchAInScope": false,
+      "note": "Out of Batch-A scope — later batch."
+    },
+    {
+      "duplicateRiskCluster": "versioned_deterministic_receipts",
+      "adapterIds": [],
+      "controlIds": [
+        "MAA2-VDR-01-SOURCE-CASE-HASHES",
+        "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+        "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+        "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+        "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+        "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+        "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+        "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+        "MAA2-VDR-09-ADDED-REMOVED-RETAINED"
+      ],
+      "batchAInScope": false,
+      "note": "Out of Batch-A scope — later batch."
+    },
+    {
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "adapterIds": [],
+      "controlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "batchAInScope": false,
+      "note": "Out of Batch-A scope — later batch."
+    },
+    {
+      "duplicateRiskCluster": "evidence_unit_identity",
+      "adapterIds": [
+        "evidence_unit_identity_with_aliases"
+      ],
+      "controlIds": [],
+      "batchAInScope": true,
+      "note": "Adapter foundation registered; no essential-43 control unlocked yet."
+    },
+    {
+      "duplicateRiskCluster": "provenance_page_identity",
+      "adapterIds": [
+        "source_vs_compiled_page_binding"
+      ],
+      "controlIds": [],
+      "batchAInScope": true,
+      "note": "Adapter foundation registered; no essential-43 control unlocked yet."
+    },
+    {
+      "duplicateRiskCluster": "chase_evidence_edges",
+      "adapterIds": [
+        "chase_item_to_evidence_unit_edges"
+      ],
+      "controlIds": [],
+      "batchAInScope": true,
+      "note": "Adapter foundation registered; no essential-43 control unlocked yet."
+    },
+    {
+      "duplicateRiskCluster": "genuine_multi_exit",
+      "adapterIds": [
+        "view_copy_export_api_pdf_composed_prose_capture"
+      ],
+      "controlIds": [],
+      "batchAInScope": true,
+      "note": "Adapter foundation registered; no essential-43 control unlocked yet."
+    }
+  ],
+  "rows": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-SRC-07-REDACTION-DETECT",
+        "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+        "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+        "MAA2-SRC-13-PASSWORD-CORRUPT",
+        "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE"
+      ],
+      "duplicateRiskCluster": "heavy_ocr_binary_lane",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Heavy PDF/OCR/binary adapters + original source documents (Batch later).",
+      "beforeStatus": "specified_not_implemented"
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-SRC-07-REDACTION-DETECT",
+        "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+        "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+        "MAA2-SRC-13-PASSWORD-CORRUPT",
+        "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE"
+      ],
+      "duplicateRiskCluster": "heavy_ocr_binary_lane",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Heavy PDF/OCR/binary adapters + original source documents (Batch later).",
+      "beforeStatus": "specified_not_implemented"
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-SRC-07-REDACTION-DETECT",
+        "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+        "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+        "MAA2-SRC-13-PASSWORD-CORRUPT",
+        "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE"
+      ],
+      "duplicateRiskCluster": "heavy_ocr_binary_lane",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Heavy PDF/OCR/binary adapters + original source documents (Batch later).",
+      "beforeStatus": "specified_not_implemented"
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-SRC-07-REDACTION-DETECT",
+        "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+        "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+        "MAA2-SRC-13-PASSWORD-CORRUPT",
+        "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE"
+      ],
+      "duplicateRiskCluster": "heavy_ocr_binary_lane",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Heavy PDF/OCR/binary adapters + original source documents (Batch later).",
+      "beforeStatus": "partially_implemented_pending_calibration"
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-SRC-07-REDACTION-DETECT",
+        "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+        "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+        "MAA2-SRC-13-PASSWORD-CORRUPT",
+        "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE"
+      ],
+      "duplicateRiskCluster": "heavy_ocr_binary_lane",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Heavy PDF/OCR/binary adapters + original source documents (Batch later).",
+      "beforeStatus": "specified_not_implemented"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "theme": "structured_charge_instruments",
+      "owningAdapterId": "structured_charge_instrument_graph",
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-LSL-05-CATEGORY-SET-COVERAGE"
+      ],
+      "duplicateRiskCluster": "charge_instrument_graph",
+      "batchAInScope": true,
+      "stage300AcceptanceRequirement": "Eligible chargeInstruments[] + substantive category-set coverage evaluator + contracts + calibration.",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "theme": "chronology_competing_timestamps",
+      "owningAdapterId": "timezone_aware_chronology_events",
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+        "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+        "MAA2-PRC-03-YOUTH-STATE",
+        "MAA2-PRC-04-FITNESS-PARTICIPATION",
+        "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+      ],
+      "duplicateRiskCluster": "chronology_procedural_state",
+      "batchAInScope": true,
+      "stage300AcceptanceRequirement": "Eligible chronology/procedural structured fields + control-specific evaluator (age/calc/youth/fitness/PII) + contracts + calibration.",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "theme": "chronology_competing_timestamps",
+      "owningAdapterId": "timezone_aware_chronology_events",
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+        "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+        "MAA2-PRC-03-YOUTH-STATE",
+        "MAA2-PRC-04-FITNESS-PARTICIPATION",
+        "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+      ],
+      "duplicateRiskCluster": "chronology_procedural_state",
+      "batchAInScope": true,
+      "stage300AcceptanceRequirement": "Eligible chronology/procedural structured fields + control-specific evaluator (age/calc/youth/fitness/PII) + contracts + calibration.",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "theme": "chronology_competing_timestamps",
+      "owningAdapterId": "timezone_aware_chronology_events",
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+        "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+        "MAA2-PRC-03-YOUTH-STATE",
+        "MAA2-PRC-04-FITNESS-PARTICIPATION",
+        "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+      ],
+      "duplicateRiskCluster": "chronology_procedural_state",
+      "batchAInScope": true,
+      "stage300AcceptanceRequirement": "Eligible chronology/procedural structured fields + control-specific evaluator (age/calc/youth/fitness/PII) + contracts + calibration.",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "theme": "chronology_competing_timestamps",
+      "owningAdapterId": "timezone_aware_chronology_events",
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+        "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+        "MAA2-PRC-03-YOUTH-STATE",
+        "MAA2-PRC-04-FITNESS-PARTICIPATION",
+        "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+      ],
+      "duplicateRiskCluster": "chronology_procedural_state",
+      "batchAInScope": true,
+      "stage300AcceptanceRequirement": "Eligible chronology/procedural structured fields + control-specific evaluator (age/calc/youth/fitness/PII) + contracts + calibration.",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "theme": "chronology_competing_timestamps",
+      "owningAdapterId": "timezone_aware_chronology_events",
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+        "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+        "MAA2-PRC-03-YOUTH-STATE",
+        "MAA2-PRC-04-FITNESS-PARTICIPATION",
+        "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+      ],
+      "duplicateRiskCluster": "chronology_procedural_state",
+      "batchAInScope": true,
+      "stage300AcceptanceRequirement": "Eligible chronology/procedural structured fields + control-specific evaluator (age/calc/youth/fitness/PII) + contracts + calibration.",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-AUD-02-CLIENT-PLAIN",
+        "MAA2-AUD-03-COURT-PRECISE",
+        "MAA2-AUD-04-CPS-SPECIFIC",
+        "MAA2-AUD-05-SUPERVISOR-RISK",
+        "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+        "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+        "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+        "MAA2-XPP-04-CLIENT-COMPREHENSION",
+        "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE"
+      ],
+      "duplicateRiskCluster": "audience_perspective_depth",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Multi-audience / perspective adapter packs (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-AUD-02-CLIENT-PLAIN",
+        "MAA2-AUD-03-COURT-PRECISE",
+        "MAA2-AUD-04-CPS-SPECIFIC",
+        "MAA2-AUD-05-SUPERVISOR-RISK",
+        "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+        "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+        "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+        "MAA2-XPP-04-CLIENT-COMPREHENSION",
+        "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE"
+      ],
+      "duplicateRiskCluster": "audience_perspective_depth",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Multi-audience / perspective adapter packs (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-AUD-02-CLIENT-PLAIN",
+        "MAA2-AUD-03-COURT-PRECISE",
+        "MAA2-AUD-04-CPS-SPECIFIC",
+        "MAA2-AUD-05-SUPERVISOR-RISK",
+        "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+        "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+        "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+        "MAA2-XPP-04-CLIENT-COMPREHENSION",
+        "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE"
+      ],
+      "duplicateRiskCluster": "audience_perspective_depth",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Multi-audience / perspective adapter packs (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-AUD-02-CLIENT-PLAIN",
+        "MAA2-AUD-03-COURT-PRECISE",
+        "MAA2-AUD-04-CPS-SPECIFIC",
+        "MAA2-AUD-05-SUPERVISOR-RISK",
+        "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+        "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+        "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+        "MAA2-XPP-04-CLIENT-COMPREHENSION",
+        "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE"
+      ],
+      "duplicateRiskCluster": "audience_perspective_depth",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Multi-audience / perspective adapter packs (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-AUD-02-CLIENT-PLAIN",
+        "MAA2-AUD-03-COURT-PRECISE",
+        "MAA2-AUD-04-CPS-SPECIFIC",
+        "MAA2-AUD-05-SUPERVISOR-RISK",
+        "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+        "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+        "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+        "MAA2-XPP-04-CLIENT-COMPREHENSION",
+        "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE"
+      ],
+      "duplicateRiskCluster": "audience_perspective_depth",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Multi-audience / perspective adapter packs (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-AUD-02-CLIENT-PLAIN",
+        "MAA2-AUD-03-COURT-PRECISE",
+        "MAA2-AUD-04-CPS-SPECIFIC",
+        "MAA2-AUD-05-SUPERVISOR-RISK",
+        "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+        "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+        "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+        "MAA2-XPP-04-CLIENT-COMPREHENSION",
+        "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE"
+      ],
+      "duplicateRiskCluster": "audience_perspective_depth",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Multi-audience / perspective adapter packs (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-AUD-02-CLIENT-PLAIN",
+        "MAA2-AUD-03-COURT-PRECISE",
+        "MAA2-AUD-04-CPS-SPECIFIC",
+        "MAA2-AUD-05-SUPERVISOR-RISK",
+        "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+        "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+        "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+        "MAA2-XPP-04-CLIENT-COMPREHENSION",
+        "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE"
+      ],
+      "duplicateRiskCluster": "audience_perspective_depth",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Multi-audience / perspective adapter packs (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-AUD-02-CLIENT-PLAIN",
+        "MAA2-AUD-03-COURT-PRECISE",
+        "MAA2-AUD-04-CPS-SPECIFIC",
+        "MAA2-AUD-05-SUPERVISOR-RISK",
+        "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+        "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+        "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+        "MAA2-XPP-04-CLIENT-COMPREHENSION",
+        "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE"
+      ],
+      "duplicateRiskCluster": "audience_perspective_depth",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Multi-audience / perspective adapter packs (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-AUD-02-CLIENT-PLAIN",
+        "MAA2-AUD-03-COURT-PRECISE",
+        "MAA2-AUD-04-CPS-SPECIFIC",
+        "MAA2-AUD-05-SUPERVISOR-RISK",
+        "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+        "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+        "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+        "MAA2-XPP-04-CLIENT-COMPREHENSION",
+        "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE"
+      ],
+      "duplicateRiskCluster": "audience_perspective_depth",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Multi-audience / perspective adapter packs (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-VDR-01-SOURCE-CASE-HASHES",
+        "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+        "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+        "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+        "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+        "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+        "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+        "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+        "MAA2-VDR-09-ADDED-REMOVED-RETAINED"
+      ],
+      "duplicateRiskCluster": "versioned_deterministic_receipts",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-VDR-01-SOURCE-CASE-HASHES",
+        "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+        "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+        "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+        "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+        "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+        "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+        "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+        "MAA2-VDR-09-ADDED-REMOVED-RETAINED"
+      ],
+      "duplicateRiskCluster": "versioned_deterministic_receipts",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-VDR-01-SOURCE-CASE-HASHES",
+        "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+        "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+        "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+        "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+        "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+        "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+        "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+        "MAA2-VDR-09-ADDED-REMOVED-RETAINED"
+      ],
+      "duplicateRiskCluster": "versioned_deterministic_receipts",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-VDR-01-SOURCE-CASE-HASHES",
+        "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+        "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+        "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+        "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+        "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+        "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+        "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+        "MAA2-VDR-09-ADDED-REMOVED-RETAINED"
+      ],
+      "duplicateRiskCluster": "versioned_deterministic_receipts",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-VDR-01-SOURCE-CASE-HASHES",
+        "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+        "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+        "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+        "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+        "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+        "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+        "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+        "MAA2-VDR-09-ADDED-REMOVED-RETAINED"
+      ],
+      "duplicateRiskCluster": "versioned_deterministic_receipts",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-VDR-01-SOURCE-CASE-HASHES",
+        "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+        "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+        "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+        "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+        "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+        "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+        "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+        "MAA2-VDR-09-ADDED-REMOVED-RETAINED"
+      ],
+      "duplicateRiskCluster": "versioned_deterministic_receipts",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-VDR-01-SOURCE-CASE-HASHES",
+        "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+        "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+        "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+        "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+        "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+        "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+        "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+        "MAA2-VDR-09-ADDED-REMOVED-RETAINED"
+      ],
+      "duplicateRiskCluster": "versioned_deterministic_receipts",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-VDR-01-SOURCE-CASE-HASHES",
+        "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+        "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+        "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+        "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+        "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+        "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+        "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+        "MAA2-VDR-09-ADDED-REMOVED-RETAINED"
+      ],
+      "duplicateRiskCluster": "versioned_deterministic_receipts",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-VDR-01-SOURCE-CASE-HASHES",
+        "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+        "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+        "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+        "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+        "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+        "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+        "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+        "MAA2-VDR-09-ADDED-REMOVED-RETAINED"
+      ],
+      "duplicateRiskCluster": "versioned_deterministic_receipts",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "theme": "out_of_batch_a_scope",
+      "owningAdapterId": null,
+      "owningEvaluatorId": null,
+      "relatedControlIds": [
+        "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+        "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+        "MAA2-ELD-03-STALE-DRAFT-MARKING",
+        "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+        "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+        "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+        "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+        "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+        "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+        "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+        "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+        "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+      ],
+      "duplicateRiskCluster": "evidence_locked_drafting",
+      "batchAInScope": false,
+      "stage300AcceptanceRequirement": "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+      "beforeStatus": "adapter_foundation_only"
+    }
+  ]
+}

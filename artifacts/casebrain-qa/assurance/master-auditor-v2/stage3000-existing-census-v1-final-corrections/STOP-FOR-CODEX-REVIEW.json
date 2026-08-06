@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "stage3000-existing-census-final-corrections-stop@1.0.0",
+  "stoppedAt": "2026-08-02T17:38:21.803Z",
+  "authorityBaselineCommit": "ca51ecba8fd70762488c43c69a4cdda3de9b8566",
+  "headCommit": "ca51ecba8fd70762488c43c69a4cdda3de9b8566",
+  "runId": "stage3000-existing-census-v1-final-corrections",
+  "programmePassSupported": false,
+  "stage3000CompletionAllowed": false,
+  "uncommitted": true,
+  "populationCount": 3000,
+  "orderedMembershipSha256": "dcf6c382fe1b41ef34624c03764c8dc785de04a13f5344784aee03b9a192d4ae",
+  "registryControlCount": 361,
+  "handlerMappedCount": 347,
+  "processed": 3000,
+  "occurrenceCount": 80598,
+  "candidateCount": 3570,
+  "dispositionCounts": {
+    "containment": 2200,
+    "unresolved_source": 980,
+    "professional_wording_review_required": 390
+  },
+  "uniqueContentOutputFingerprints": 70,
+  "checkpoints": [
+    20,
+    50,
+    150,
+    300,
+    500,
+    1000,
+    3000
+  ],
+  "decisionCard": "DECISION-CARD.md",
+  "doNot": [
+    "claim_programme_PASS",
+    "claim_stage3000_completion",
+    "commit_push_merge_deploy",
+    "repair_casebrain_in_this_unit",
+    "merge_stage300_into_this_denominator",
+    "generate_second_new_3000_corpus"
+  ],
+  "intermediateHistoricalPreserved": true,
+  "intermediateHistoricalPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-post-fix-intermediate-historical",
+  "surfacesLane": "run-v11",
+  "rawEnumCandidates": 0,
+  "surfaceIssueCodeLeaks": 0,
+  "surfaceSystemLanguageLeaks": 0,
+  "findingCodeDeltaRef": "finding-code-delta-reconciliation.json",
+  "exactChangedFileManifest": "exact-changed-file-manifest.json",
+  "exactChangedFileManifestDigest": "exact-changed-file-manifest.DIGEST.json",
+  "brain1GuardianBlobUnchanged": true,
+  "acceptance": {
+    "rawEnum_319_to_0": true,
+    "internalSystemLanguage_0": true,
+    "membershipUnchanged": true,
+    "containmentReconciledNotHandwaved": true,
+    "genuineContainmentRemains": true
+  },
+  "verification": {
+    "enumBoundaryContracts": "PASS 13",
+    "scale3000RunV9Acceptance": "PASS",
+    "npmBuildExit": 0,
+    "npmBuildReceipt": "npm-build-receipt.txt",
+    "brain1GuardianBlobUnchanged": true,
+    "findingCodeDelta": "finding-code-delta-reconciliation.json",
+    "exactManifest": "exact-changed-file-manifest.json",
+    "exactManifestDigest": "exact-changed-file-manifest.DIGEST.json",
+    "intermediateHistoricalPreserved": true
+  }
+}

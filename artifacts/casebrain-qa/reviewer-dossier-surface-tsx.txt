@@ -1,0 +1,7 @@
+{
+  "ok": true,
+  "centralSurfaces": 31,
+  "blockAssertions": 32,
+  "passAssertions": 34
+}
+solicitor-surface-contract.test.ts: PASS

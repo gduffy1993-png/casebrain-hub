@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "source-to-ledger-reconciliation@1.0.0",
+  "runId": "v2-shadow-stage50-2026-07-29T23-52-36-465Z",
+  "sourceLeafCount": 8437,
+  "includedLedgerRowCount": 3413,
+  "excludedLedgerRowCount": 5024,
+  "identity": true,
+  "formula": "source_leaves = included_ledger_rows + excluded_ledger_rows",
+  "cases": 50,
+  "note": "Counts taken from distinct included/excluded partitions of the independent inventory."
+}

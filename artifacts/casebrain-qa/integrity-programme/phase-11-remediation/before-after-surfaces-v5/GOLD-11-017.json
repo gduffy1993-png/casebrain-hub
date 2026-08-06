@@ -1,0 +1,72 @@
+{
+  "goldId": "GOLD-11-017",
+  "reviewEligibility": "substantive",
+  "isNewInV5": false,
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "parentV4FreezeHash": "d887114aac265e00e9a8d66c98c82fa087a85388e60f1fc930a6996b5d6ab883",
+  "v5FreezeHash": "3e2479c86769e3cd5342903997eaa548cfdc98a8339a34d0890bfc0178536f5d",
+  "changes": [
+    {
+      "surface": "client_summary",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "dbb2c229aa66",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Jordan Hale). This is early-stage — nothing is final until we have full di"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "f44031db2528",
+        "textPreview": "Item: Client-safe summary wording\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured field"
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "b3d4c068bc0e",
+        "textPreview": "Please provide corrected charge sheet or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "2980230f6f8a",
+        "textPreview": "Item: CPS chase — Corrected charge sheet\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structure"
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "46117d5a236c",
+        "textPreview": "Please provide updated MG5 or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "090211102f47",
+        "textPreview": "Item: CPS chase — Updated MG5\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fields. C"
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "4c695f105ddd",
+        "textPreview": "Please provide court listing confirmation or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "f52739f0ae44",
+        "textPreview": "Item: CPS chase — Court listing confirmation\nStatus: Copy unavailable\nReason: Offence family could not be safely resolved for this matter, so free copy is unava"
+      }
+    }
+  ]
+}

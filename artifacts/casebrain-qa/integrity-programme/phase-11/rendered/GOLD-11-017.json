@@ -1,0 +1,69 @@
+{
+  "goldId": "GOLD-11-017",
+  "def": {
+    "goldId": "GOLD-11-017",
+    "stratum": "hearing_time",
+    "sourceKind": "gold_manual_pack",
+    "fixtureId": "CASE-08:demo-audit-69-charge-mg5-hearing",
+    "selectionReason": "Gold pack charge/MG5/hearing surface",
+    "reviewFocus": "Hearing/date presentation accuracy."
+  },
+  "surfaces": [
+    {
+      "surface": "case_header",
+      "label": "Case header (solicitor view)",
+      "solicitorVisibleText": "Client: Jordan Hale\nAllegation: Battery, contrary to section 39 of the Criminal Justice Act 1988",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "court_line",
+      "label": "Court line (copy preview)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nUnderlying court line was gated (blocked ≠ repaired):\nThe defence asks the court to record that the charge wording, MG5 summary, and hearing/listing position require alignment before the defence position is fixed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "client_summary",
+      "label": "Client-safe summary preview",
+      "solicitorVisibleText": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Jordan Hale). This is early-stage — nothing is final until we have full disclosure and your instructions. The live issue is whether the charge wording, the MG5 offence summary, and the court listing/hearing position line up. Until those are aligned and confirmed, treat the charge/listing position as provisional — do not assume the papers already fix the offence wording or hearing date.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — corrected charge sheet",
+      "solicitorVisibleText": "Please provide corrected charge sheet or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — updated mg5",
+      "solicitorVisibleText": "Please provide updated mg5 or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — court listing confirmation",
+      "solicitorVisibleText": "Please provide court listing confirmation or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "truth_map",
+      "label": "Evidence truth map (Overview)",
+      "solicitorVisibleText": "• witness MG11 — not_safely_confirmed\n• custody extract — not_safely_confirmed\n• corrected charge sheet — missing\n• updated mg5 — missing\n• court listing confirmation — missing",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "do_not_overstate",
+      "label": "Do-not-overstate warnings",
+      "solicitorVisibleText": "• unsafe proof/outcome wording blocked\n• Do not treat draft/unsigned MG11 as a final served statement.",
+      "gateStatus": "warning",
+      "canCopy": false
+    }
+  ]
+}

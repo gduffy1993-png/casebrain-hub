@@ -1,0 +1,245 @@
+{
+  "batch2": {
+    "accepted": true,
+    "corrected": [
+      "FID-10 exact provenance requires independent structured binding",
+      "quotation MG5/MG6 self-mention cannot certify linked provenance",
+      "occurrence disposition JSONL regenerated",
+      "499 packet-local exit capability receipts + aggregate map"
+    ],
+    "selected30": [
+      "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "MAA2-FID-02-COUNT-NUMBERS",
+      "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "MAA2-BND-02-INSTRUMENT-STATUS",
+      "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "MAA2-BND-08-EXTRACT-VS-FULL",
+      "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "MAA2-CHR-01-EXACT-DATES-TZ",
+      "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP"
+    ],
+    "partially_implemented": 55,
+    "specified_not_implemented": 106,
+    "implemented": 0,
+    "receipts": {
+      "evaluated": 27434,
+      "unresolved": 11,
+      "not_exercised": 0,
+      "total": 27445
+    },
+    "exitCapabilityReceipts": 499,
+    "exitMapPopulation": 499
+  },
+  "multiExitAdapters": {
+    "accepted": true,
+    "corrected": [
+      "canCopy alone insufficient",
+      "view requires solicitor-visible non-empty string",
+      "structured artefact receipts require valid SHA-256/schema/ISO/run+capture",
+      "stage150/multi-exit-map derived from 499 packet receipts (not representative packet)",
+      "evidenceObserved / evidenceRequired / evidenceMissing separated"
+    ],
+    "rejected": [
+      "Independent Batch-2 multi-exit algorithm (superseded)",
+      "Representative synthetic packet as programme evidence",
+      "evidenceOnEsa for absent API/PDF/browser artefacts"
+    ],
+    "exitMatrix": [
+      {
+        "exit": "view",
+        "populationDenominator": 499,
+        "exercisableCount": 499,
+        "partialCount": 0,
+        "notExercisedCount": 0,
+        "evidenceObservedUnion": [
+          "/courtNote/text",
+          "/evidenceStates",
+          "/fiveAnswersEvidenceRows",
+          "/warningsAndGaps/doNotOverstate"
+        ],
+        "evidenceRequired": [
+          "/courtNote/text",
+          "/fiveAnswersEvidenceRows",
+          "/evidenceStates",
+          "/warningsAndGaps/doNotOverstate"
+        ],
+        "evidenceMissingUnion": [],
+        "missingAdapterCounts": {},
+        "note": "view: aggregated from 499 packet-local capability receipts."
+      },
+      {
+        "exit": "copy",
+        "populationDenominator": 499,
+        "exercisableCount": 499,
+        "partialCount": 0,
+        "notExercisedCount": 0,
+        "evidenceObservedUnion": [
+          "/courtNote/canCopy",
+          "/warningsAndGaps/chaseItems/*/copySuggestion"
+        ],
+        "evidenceRequired": [
+          "/courtNote/canCopy",
+          "/warningsAndGaps/chaseItems/*/copySuggestion",
+          "/courtNote/canCopy=true_or_nonempty_copySuggestion"
+        ],
+        "evidenceMissingUnion": [],
+        "missingAdapterCounts": {},
+        "note": "copy: aggregated from 499 packet-local capability receipts."
+      },
+      {
+        "exit": "export",
+        "populationDenominator": 499,
+        "exercisableCount": 0,
+        "partialCount": 499,
+        "notExercisedCount": 0,
+        "evidenceObservedUnion": [
+          "/exportVersion/blockedReason",
+          "/exportVersion/reviewFooter",
+          "/exportVersion/sendability"
+        ],
+        "evidenceRequired": [
+          "/exportVersion/reviewFooter",
+          "/exportVersion/sendability",
+          "/exportVersion/blockedReason",
+          "full_export_exit_payload_bytes"
+        ],
+        "evidenceMissingUnion": [
+          "full_export_exit_payload_bytes"
+        ],
+        "missingAdapterCounts": {
+          "full_export_exit_payload_bytes": 499
+        },
+        "note": "export: aggregated from 499 packet-local capability receipts."
+      },
+      {
+        "exit": "api",
+        "populationDenominator": 499,
+        "exercisableCount": 0,
+        "partialCount": 0,
+        "notExercisedCount": 499,
+        "evidenceObservedUnion": [],
+        "evidenceRequired": [
+          "api_exit_payload",
+          "api_response_headers_receipt"
+        ],
+        "evidenceMissingUnion": [
+          "api_exit_payload",
+          "api_response_headers_receipt"
+        ],
+        "missingAdapterCounts": {
+          "api_exit_adapter": 499
+        },
+        "note": "api: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
+      },
+      {
+        "exit": "pdf",
+        "populationDenominator": 499,
+        "exercisableCount": 0,
+        "partialCount": 0,
+        "notExercisedCount": 499,
+        "evidenceObservedUnion": [],
+        "evidenceRequired": [
+          "pdf_exit_payload_bytes",
+          "pdf_text_extraction_receipt"
+        ],
+        "evidenceMissingUnion": [
+          "pdf_exit_payload_bytes",
+          "pdf_text_extraction_receipt"
+        ],
+        "missingAdapterCounts": {
+          "pdf_exit_adapter": 499
+        },
+        "note": "pdf: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
+      },
+      {
+        "exit": "composed_prose",
+        "populationDenominator": 499,
+        "exercisableCount": 0,
+        "partialCount": 0,
+        "notExercisedCount": 499,
+        "evidenceObservedUnion": [],
+        "evidenceRequired": [
+          "composed_prose_exit_payload"
+        ],
+        "evidenceMissingUnion": [
+          "composed_prose_exit_payload"
+        ],
+        "missingAdapterCounts": {
+          "composed_prose_exit_adapter": 499
+        },
+        "note": "composed_prose: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
+      },
+      {
+        "exit": "authenticated_browser",
+        "populationDenominator": 499,
+        "exercisableCount": 0,
+        "partialCount": 0,
+        "notExercisedCount": 499,
+        "evidenceObservedUnion": [],
+        "evidenceRequired": [
+          "browser_session_receipt",
+          "authenticated_screenshot_hash",
+          "dom_text_extraction_receipt",
+          "exit_click_path_receipt"
+        ],
+        "evidenceMissingUnion": [
+          "authenticated_screenshot_hash",
+          "browser_session_receipt",
+          "dom_text_extraction_receipt",
+          "exit_click_path_receipt"
+        ],
+        "missingAdapterCounts": {
+          "authenticated_browser_evidence_adapter": 499
+        },
+        "note": "authenticated_browser: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
+      }
+    ]
+  },
+  "eldFoundation": {
+    "accepted": true,
+    "corrected": [
+      "graph validation: duplicates, cycles, changed-nodes, direction, identity"
+    ],
+    "status": "specified_not_implemented",
+    "controls": 14,
+    "currentlyRunnable": false,
+    "connectedToLiveDrafting": false,
+    "canonicalSpec": "eld-dependency-specification@1.1.0"
+  },
+  "denominatorReadiness": {
+    "accepted": false,
+    "corrected": true,
+    "rejectedStale": true,
+    "note": "Regenerated; FID-10 unresolved uses BLOCKED_UNRESOLVED_PROVENANCE (not detector noise). Approvals remain PENDING.",
+    "approvalCounts": {
+      "PENDING_APPROVAL": 54,
+      "BLOCKED_MISSING_INPUT": 106,
+      "BLOCKED_DETECTOR_NOISE": 0,
+      "BLOCKED_UNRESOLVED_PROVENANCE": 1,
+      "PENDING_SOURCE_REVIEW": 0,
+      "APPROVED_FOR_CALIBRATION": 0,
+      "APPROVED_FOR_FROZEN_RUN": 0
+    }
+  }
+}

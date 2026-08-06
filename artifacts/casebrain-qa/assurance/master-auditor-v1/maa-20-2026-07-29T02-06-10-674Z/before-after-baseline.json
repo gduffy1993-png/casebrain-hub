@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "1.1.0",
+  "pipelineVersion": "master-assurance-auditor@v1.1",
+  "corpusPlanVersion": "corpus-plan-v1",
+  "stage": "20",
+  "uniqueCases": 20,
+  "findings": 799,
+  "programmePassSupported": false
+}

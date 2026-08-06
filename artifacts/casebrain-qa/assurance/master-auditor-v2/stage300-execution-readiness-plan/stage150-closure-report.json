@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "stage150-calibration-closure@1.0.0",
+  "baselineCommit": "b2f7cbe3817b6fbeffc53805bc50566cf25c80b8",
+  "headCommit": "b2f7cbe3817b6fbeffc53805bc50566cf25c80b8",
+  "status": "CALIBRATION_COMPLETE__NO_CONFIRMED_CASEBRAIN_DEFECTS_IN_GENUINE_EXERCISED_SCOPE",
+  "meaning": {
+    "frozenCensus": 150,
+    "genuineOutputPackets": 120,
+    "projectionOnlyPackets": 30,
+    "confirmedCaseBrainDefectsAfterHarnessRemediation": 0,
+    "unavailableNotExercisedControlsRemainOpen": true,
+    "corpusOrProgrammePass": false
+  },
+  "frozenRunId": "s150-cal-2026-07-31T16-55-01-119Z-a33adbda",
+  "orderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+  "candidateFreezeSha256": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202",
+  "originalCandidateCount": 58,
+  "triageDispositions": {
+    "confirmed_app_defect": 1,
+    "detector_false_positive": 0,
+    "unresolved_source": 0,
+    "truth_key_defect": 0,
+    "safe_containment": 0,
+    "duplicate_occurrence_of_confirmed_root": 1,
+    "not_exercised_projection_only": 56
+  },
+  "cohortAProjectionHonesty": {
+    "cohortAOccurrences": 56,
+    "cohortAConfirmedForbidden": 0,
+    "allProjectionOnly": true
+  },
+  "postRemediation": {
+    "pri01RootCleared": true,
+    "remainingPri01": 0,
+    "newDefectCount": 0,
+    "regressionCount": 0,
+    "corpusHarnessRemediation": true,
+    "applicationRepair": false
+  },
+  "exitDenominators": {
+    "view": {
+      "genuine_production_payload": 120,
+      "unavailable": 30,
+      "not_exercised": 0
+    },
+    "copy": {
+      "genuine_production_payload": 120,
+      "unavailable": 30,
+      "not_exercised": 0
+    },
+    "export": {
+      "genuine_production_payload": 120,
+      "unavailable": 30,
+      "not_exercised": 0
+    },
+    "api": {
+      "genuine_production_payload": 120,
+      "unavailable": 30,
+      "not_exercised": 0
+    },
+    "pdf": {
+      "genuine_production_payload": 120,
+      "unavailable": 30,
+      "not_exercised": 0
+    },
+    "composed_prose": {
+      "genuine_production_payload": 120,
+      "unavailable": 30,
+      "not_exercised": 0
+    },
+    "authenticated_browser": {
+      "genuine_production_payload": 0,
+      "unavailable": 0,
+      "not_exercised": 150
+    }
+  },
+  "stage150ExecutionAllowed": false,
+  "stage150SampleSelectionAllowed": false,
+  "freezeAllowed": false,
+  "programmePassSupported": false,
+  "note": "Stage-150 calibration is closed as measurement. Completion does not authorise Stage-300 generation, freeze, or execution."
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version":"1.0","status":"design truth only; no charge, conviction, excuse or appeal outcome operative",
+  "hierarchy":["signed/sealed Crown Court appeal judgment/order governs appeal outcome actually recorded","until changed, certified Magistrates' reasons and perfected orders govern historical conviction/sentence state","latest individual X1 report/addendum governs X1's position where not superseded or judicially limited","native device records, audio and signed statements prove only their recorded propositions","party notices, grounds and submissions remain attributed; truth key cannot decide reasonable excuse"],
+  "state_separations":[
+    "proposed charge | plea | Magistrates verdict/conviction | sentence/order",
+    "specimen requirement/request | instruction | attempt | machine acceptance/rejection/error | alleged failure",
+    "A1 symptom report | H1 observation | medical record | diagnosis | X1 opinion | limitation",
+    "physical capacity opinion | party reasonable-excuse submission | judicial finding",
+    "officer recollection | custody log | device clock/log | audio/transcript | court finding",
+    "Magistrates reason | appeal ground | respondent submission | rehearing evidence | Crown Court reason",
+    "notice drafted | signed | filed | served | received | scope of appeal",
+    "deadline source | trigger | calculation | late explanation | extension application | extension decision",
+    "appeal filed | stay/suspension requested | interim order | original order operative state",
+    "expert instruction | draft | report | addendum | service | admissibility | permitted use",
+    "digital signature state | filing state | document integrity | substantive truth",
+    "appeal allowed/dismissed | conviction outcome | sentence/disqualification/costs consequence | service"
+  ],
+  "conflict_omission_contradiction_traps":[
+    {"id":"T18-01","trap":"O1 statement records three attempts; device log shows two completed sessions and one error","safe_result":"preserve source-specific event states"},
+    {"id":"T18-02","trap":"custody audio clock is four minutes behind booking log","safe_result":"show offset; do not silently normalise"},
+    {"id":"T18-03","trap":"H1 note records wheeze but summary says medically fit to provide","safe_result":"retain exact limited observation and source of summary"},
+    {"id":"T18-04","trap":"Magistrates reasons refer to a calibration certificate absent from transferred record","safe_result":"flag missing material, not invent it"},
+    {"id":"T18-05","trap":"typed conviction date differs from sentence/order date used in deadline worksheet","safe_result":"qualified reviewer selects lawful trigger; no automated deadline conclusion"},
+    {"id":"T18-06","trap":"notice email sent on one date and court receipt stamped later","safe_result":"file/sent/received states separate"},
+    {"id":"T18-07","trap":"extension explanation cites an address error not supported by complete service records","safe_result":"keep explanation alleged and evidence gap visible"},
+    {"id":"T18-08","trap":"client assumes appeal filing suspends disqualification","safe_result":"no stay absent authoritative order"},
+    {"id":"T18-09","trap":"X1 draft uses stronger capacity language than signed report","safe_result":"signed/latest position controls; change visible"},
+    {"id":"T18-10","trap":"respondent paraphrases expert as deciding reasonable excuse","safe_result":"restore discipline/legal-state boundary"},
+    {"id":"T18-11","trap":"rehearing note and draft order differ on appeal result","safe_result":"await signed judgment/order; no output conclusion"},
+    {"id":"T18-12","trap":"appeal against conviction is composed as sentence-only relief","safe_result":"preserve notice and order scope exactly"}
+  ],
+  "required_findings":["charge and all outcomes are non-operative","device/audio/operator events retain provenance and clock state","medical facts/opinion/reasonable-excuse finding remain separate","Magistrates record completeness and missing certificate visible","notice scope and filing/service states persist","deadline/extension inputs remain sourced and unfilled","no automatic stay or suspension","expert changes and limitations survive all exits","appeal is treated as rehearing only if qualified route confirms","final orders control conviction/sentence/disqualification/costs separately"],
+  "forbidden_findings":["A1 committed PC1","attempt count selected by majority of sources","symptom report proves diagnosis or excuse","expert decides reasonable excuse","missing certificate is assumed valid/invalid","notice was timely/late without reviewed trigger and proof","appeal filing automatically stays order","Magistrates reasons bind Crown Court fact finding beyond lawful role","draft report/order is operative","allowed appeal automatically produces every consequential result"]
+}

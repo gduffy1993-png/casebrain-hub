@@ -1,0 +1,28 @@
+{
+  "goldId": "GOLD-11-003",
+  "freezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "surfaceCount": 9,
+  "evidenceFiles": [
+    "solicitor-visible-render.md",
+    "solicitor-visible-render.json"
+  ],
+  "judgmentFields": {
+    "expectedClassification": null,
+    "actualClassification": null,
+    "falsePositive": null,
+    "falseNegative": null,
+    "substantiveWordingJudgment": null,
+    "reviewerDecision": null,
+    "rationale": null,
+    "reviewerIdentity": null,
+    "reviewerRole": null,
+    "reviewDate": null,
+    "disagreement": null,
+    "adjudication": null,
+    "unresolved": true,
+    "notes": null
+  },
+  "blindingNote": "No stratum, selectionReason, reviewFocus, hypothesis, expected classification, or prediction metadata.",
+  "sourceContextNote": "ESA truth-key for cb-found-2003-nguyen (+ casebrain-output)."
+}

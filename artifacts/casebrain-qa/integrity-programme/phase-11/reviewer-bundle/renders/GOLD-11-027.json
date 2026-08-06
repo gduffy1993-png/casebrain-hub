@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-027",
+  "def": {
+    "goldId": "GOLD-11-027",
+    "stratum": "hearing_time",
+    "sourceKind": "synthetic_controlled",
+    "fixtureId": "SYN-HEAR-SAME-DAY",
+    "selectionReason": "Same-day hearing display",
+    "reviewFocus": "Same-day hearing label exactness."
+  },
+  "surfaces": [
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status (Overview / Court Today strip)",
+      "solicitorVisibleText": "Same-day hearing · 21 Jul 2026",
+      "gateStatus": "same_day",
+      "canCopy": true
+    }
+  ]
+}

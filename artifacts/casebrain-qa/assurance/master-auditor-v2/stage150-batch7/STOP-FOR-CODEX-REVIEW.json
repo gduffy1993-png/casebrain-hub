@@ -1,0 +1,272 @@
+{
+  "schemaVersion": "maa-v2-stage150-batch7-stop@1.1.0",
+  "title": "STOP FOR CODEX REVIEW — MAA V2 Stage-150 Batch 7 Honesty Correction",
+  "status": "STAGE150_BATCH7_UNCOMMITTED",
+  "createdAt": "2026-07-30T21:13:24.666Z",
+  "elapsedMs": 45093,
+  "baselineCommit": "200c3e4d79ac7e1a837a538a723445d7e9c3884f",
+  "headCommit": "200c3e4d79ac7e1a837a538a723445d7e9c3884f",
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "programmePassSupported": false,
+  "applicationBehaviourChanged": false,
+  "caseBrainRepaired": false,
+  "committed": false,
+  "pushed": false,
+  "freezeHashStage50Preserved": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "selectedCount": 2,
+  "selectedControlIds": [
+    "MAA2-EVS-01-DIMENSION-SEPARATION",
+    "MAA2-ATR-01-DEFENDANT-SEPARATION"
+  ],
+  "promotionEligibleIds": [
+    "MAA2-EVS-01-DIMENSION-SEPARATION"
+  ],
+  "promotedToImplemented": [
+    "MAA2-EVS-01-DIMENSION-SEPARATION"
+  ],
+  "atr01ReturnedToPartial": true,
+  "batch5PreservedImplemented": 5,
+  "batch6PreservedImplemented": 2,
+  "stage150ImplementedIds": [
+    "MAA2-WRD-10-NO-PLACEHOLDERS",
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+    "MAA2-WRD-02-NO-MID-TRUNCATION",
+    "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+    "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+    "MAA2-EVS-02-STATE-ENUM",
+    "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+    "MAA2-EVS-01-DIMENSION-SEPARATION"
+  ],
+  "remainingPartialCount": 98,
+  "implementationTotals": {
+    "stage150ControlCount": 161,
+    "partially_implemented": 98,
+    "specified_not_implemented": 55,
+    "implemented": 8,
+    "other": 0
+  },
+  "calibration": {
+    "population": 499,
+    "passACandidates": 0,
+    "passBCandidates": 0,
+    "truthOpened": false,
+    "freeze": {
+      "schemaVersion": "batch7-candidate-freeze@1.0.0",
+      "baselineCommit": "200c3e4d79ac7e1a837a538a723445d7e9c3884f",
+      "headCommit": "200c3e4d79ac7e1a837a538a723445d7e9c3884f",
+      "frozenAt": "2026-07-30T21:12:50.264Z",
+      "truthOpenedBeforeFreeze": false,
+      "caseCount": 499,
+      "candidateCount": 0,
+      "outputFreezeSha256": "dff3d5a6b6ef079f362be3259288c283ecd1e586a33abe9211bd725fe49831d6",
+      "candidateIdSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "note": "Output hashes and candidate IDs frozen before triage. Truth/source not opened."
+    }
+  },
+  "triage": {
+    "total": 0,
+    "byBucket": {
+      "confirmed_app_defect": 0,
+      "output_intrinsic_confirmed_app_defect": 0,
+      "detector_false_positive": 0,
+      "unresolved_source": 0,
+      "truth_key_defect": 0,
+      "duplicate_occurrence": 0,
+      "safe_qualified_output": 0
+    },
+    "byControl": {
+      "MAA2-EVS-01-DIMENSION-SEPARATION": {
+        "total": 0,
+        "byBucket": {},
+        "fpRate": null,
+        "unresolvedRate": null,
+        "confirmedRate": null,
+        "humanFpFnRecall": "unavailable",
+        "rateHonestyNote": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+        "occurrenceDenominator": 0,
+        "caseDenominatorNote": "case denominator = 499 calibration population (separate from candidates)",
+        "stringDenominatorNote": "string/template denominators not conflated with candidate rates"
+      },
+      "MAA2-ATR-01-DEFENDANT-SEPARATION": {
+        "total": 0,
+        "byBucket": {},
+        "fpRate": null,
+        "unresolvedRate": null,
+        "confirmedRate": null,
+        "humanFpFnRecall": "unavailable",
+        "rateHonestyNote": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+        "occurrenceDenominator": 0,
+        "caseDenominatorNote": "case denominator = 499 calibration population (separate from candidates)",
+        "stringDenominatorNote": "string/template denominators not conflated with candidate rates"
+      }
+    }
+  },
+  "exerciseReceiptSummary": {
+    "schemaVersion": "batch7-exercise-receipt-summary@1.1.0",
+    "byControl": {
+      "MAA2-EVS-01-DIMENSION-SEPARATION": {
+        "caseCount": 499,
+        "applicableCaseCount": 499,
+        "nonApplicableNotExercisedCaseCount": 0,
+        "partiallyExercisedCases": 499,
+        "applicableEvidenceRowUnitsSum": 9317,
+        "unitCountSeparateFromCaseCount": true,
+        "findingCount": 0,
+        "honesty": "fiveAnswers row-units kept separate from case count; empty fiveAnswers => not_exercised."
+      },
+      "MAA2-ATR-01-DEFENDANT-SEPARATION": {
+        "caseCount": 499,
+        "applicableCaseCount": 21,
+        "nonApplicableNotExercisedCaseCount": 478,
+        "partiallyExercisedCases": 21,
+        "applicableEvidenceRowUnitsSum": 41,
+        "unitCountSeparateFromCaseCount": true,
+        "findingCount": 0,
+        "honesty": "41 other_defendant_only units kept separate from 499 case denominator; zero-unit cases are not_exercised."
+      }
+    }
+  },
+  "honestyCorrections": {
+    "zeroCandidateRatesNull": true,
+    "zeroCandidateWording": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+    "fid10NotReconsidered": true,
+    "batch5PromotionsPreservedExactly": true,
+    "batch6PromotionsPreservedExactly": true,
+    "batch6ReturnedNotRePromoted": true,
+    "atr01ReturnedToPartial": true,
+    "atr01ReturnReasons": [
+      "Cases with zero other_defendant_only units are not_exercised, not partially_exercised.",
+      "Generic MG labels are not reliable evidence-unit identity.",
+      "Current logic checks only courtNote + doNotOverstate, not all applicable surfaces.",
+      "Full defendant separation requires explicit subjectDefendantId/personId and evidenceUnitId/sourceEvidenceId relationships, plus cross-surface receipts."
+    ],
+    "evidenceDimensionDomainRegistryVersion": "1.0.0",
+    "domainsDisjoint": true,
+    "promotedOnly": [
+      "MAA2-EVS-01-DIMENSION-SEPARATION"
+    ],
+    "expectedTotals": {
+      "implemented": 8,
+      "partially_implemented": 98,
+      "specified_not_implemented": 55
+    },
+    "honestNamedReceiptsRequired": true,
+    "promotionAuthority": "STAGE150_IMMUTABLE_PROMOTION_REGISTRY",
+    "mutablePromotionSetterAbsent": true,
+    "denominatorApproval": "PENDING_REVIEW",
+    "noTargetCount": true,
+    "structuredOnly": true
+  },
+  "contractResolution": {
+    "allResolve": true
+  },
+  "gate": {
+    "schemaVersion": "stage150-execution-readiness-gate@1.6.0",
+    "baselineCommit": "200c3e4d79ac7e1a837a538a723445d7e9c3884f",
+    "programmePassSupported": false,
+    "stage150SampleSelectionAllowed": false,
+    "stage150ExecutionAllowed": false,
+    "freezeAllowed": false,
+    "reasons": [
+      "98 controls remain partially_implemented",
+      "55 controls remain SNI",
+      "Stage-150 sample selection not performed",
+      "Denominator approval not invented — reviewer/date blank",
+      "currentlyRunnableOnStage150 remains false"
+    ],
+    "prerequisites": {
+      "registryComplete": true,
+      "detectorImplementationComplete": false,
+      "inputReadinessComplete": false,
+      "denominatorReadinessComplete": false,
+      "adapterReadinessComplete": false,
+      "receiptValidationComplete": true,
+      "contractReadinessComplete": true,
+      "relationshipComplete": true,
+      "protectedAssetsPreserved": true
+    }
+  },
+  "protectedAssets": {
+    "brain1GuardianBlobUnchanged": true,
+    "rows": [
+      {
+        "path": "lib/criminal/strategy-fight-engine.ts",
+        "baselineBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+        "headBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-fight-engine-generators.ts",
+        "baselineBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+        "headBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/get-aggressive-defense.ts",
+        "baselineBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+        "headBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-battleboard.ts",
+        "baselineBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+        "headBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-routes.ts",
+        "baselineBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+        "headBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/bundle-truth-ledger.ts",
+        "baselineBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+        "headBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/bundle-material-normalizer.ts",
+        "baselineBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+        "headBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/fingerprint.ts",
+        "baselineBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+        "headBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/guardian.ts",
+        "baselineBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+        "headBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/index.ts",
+        "baselineBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+        "headBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/types.ts",
+        "baselineBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+        "headBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+        "blobUnchanged": true
+      }
+    ]
+  },
+  "typescript": {
+    "exitCode": 1,
+    "stage150PathErrors": 0
+  },
+  "blockers": [
+    "Stage-150 selection and execution gates remain FALSE",
+    "Denominator approvals not invented (PENDING_REVIEW, blank reviewer)",
+    "ATR-01 remains partially_implemented",
+    "98 controls remain partially_implemented or SNI blockers remain",
+    "No programme PASS"
+  ]
+}

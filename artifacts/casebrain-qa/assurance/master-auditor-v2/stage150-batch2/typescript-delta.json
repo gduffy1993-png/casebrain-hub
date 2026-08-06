@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "stage150-typescript-delta@1.0.0",
+  "baselineCommit": "17361223248b41d719c8de2b98c1eaf2cb4125f6",
+  "comparison": "vs stage150-intelligence/typescript-baseline.json from accepted tip",
+  "priorStdoutSha256": "9488dc47ff1948968634ca1d57409e53a0bf383f9f4ca4543d0f22782f19961b",
+  "currentStdoutSha256": "23954300782b971c157991f67474a8a07d8778272bf77fab33d78453a72175c2",
+  "delta": "changed_hash_preexisting_unrelated",
+  "stage150PathErrors": 0,
+  "multiExitAdapterPathErrors": 0,
+  "eldPathErrors": 0,
+  "note": "Repo-wide tsc still exits non-zero on pre-existing unrelated eval/simulator paths; integrated correction sources introduce no new tsc errors under stage150/multi-exit-adapters/eld paths."
+}

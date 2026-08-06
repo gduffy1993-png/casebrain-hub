@@ -1,0 +1,95 @@
+{
+  "matterId": "rank2-homicide-harbour-yard",
+  "version": "design-freeze-draft-v0.1",
+  "status": "DRAFT_PENDING_REVIEW_NO_GENERATION",
+  "programmePassSupported": false,
+  "fictionNotice": "All people, places, events and evidence are fictional. Public official structures inform format only.",
+  "jurisdiction": "England and Wales",
+  "venue": {
+    "magistratesSendingCourt": "Northport Magistrates' Court",
+    "crownCourt": "Northport Crown Court",
+    "courtNamesAreFictional": true
+  },
+  "stage": "post-sending_pre-PTPH_design",
+  "workingTargetCompiledPages": 360,
+  "approvedCompiledPageBand": [250, 500],
+  "pageCountPolicy": "Authentic content controls length. The total may fall below 360 within the approved band; filler, repeated boilerplate and artificial page inflation are prohibited.",
+  "pageBand": "homicide_250_500",
+  "incident": {
+    "date": "2026-02-14",
+    "window": "22:36–22:44",
+    "location": "service yard behind The Lantern Rooms, Harbour Yard, Northport",
+    "locationIsFictional": true,
+    "summary": "After a private music event, a short confrontation occurred in a poorly lit service yard. The prosecution theory is that Daniel Mercer struck Idris Bell with a metal torch and that Saira Nadeem then pushed or kicked him while he was unsteady or on the ground. CCTV is incomplete and does not clearly show the decisive head impact. Idris Bell walked with assistance, later deteriorated, was admitted to hospital and died on 16 February 2026. Mechanism, individual causal contribution and intent are disputed.",
+    "neutralityRule": "Allegations and expert hypotheses must not be promoted to findings of fact."
+  },
+  "deceased": {
+    "name": "Idris Bell",
+    "dateOfBirth": "1988-09-22",
+    "dateOfDeath": "2026-02-16",
+    "pronouns": "he/him"
+  },
+  "defendants": [
+    {
+      "defendantId": "D1_MERCER",
+      "name": "Daniel Mercer",
+      "dateOfBirth": "1992-04-08",
+      "pronouns": "he/him",
+      "prosecutionAllegation": "Delivered a forceful blow to the left side of Idris Bell's head with a metal torch, intending at least really serious injury.",
+      "defencePosition": "Admits holding the torch and a brief confrontation but denies striking the head; says Idris fell after stepping backwards on a kerb.",
+      "proposedChargeState": "pending_qualified_review_non_operative"
+    },
+    {
+      "defendantId": "D2_NADEEM",
+      "name": "Saira Nadeem",
+      "dateOfBirth": "1995-11-19",
+      "pronouns": "she/her",
+      "prosecutionAllegation": "Intentionally pushed or kicked Idris Bell during the confrontation and thereby made a legally significant contribution to the fatal injury or dangerous sequence.",
+      "defencePosition": "Admits approaching and pushing an arm away but denies kicking, causing a fall, assisting Daniel Mercer or foreseeing serious violence.",
+      "proposedChargeState": "pending_qualified_review_non_operative"
+    }
+  ],
+  "deceasedMedicalContext": {
+    "frozenDesignFacts": [
+      "Idris Bell had a prescribed anticoagulant recorded in primary-care and hospital material.",
+      "He had consumed alcohol before the incident.",
+      "He was initially responsive and later deteriorated.",
+      "Clinical response timing is relevant but no clinician is accused of an offence in this matter."
+    ],
+    "safeRule": "Medication, alcohol and clinical care may be contributing/contextual factors; none may be described as an independent or superseding cause without qualified expert support and legal review."
+  },
+  "coreIssues": [
+    "identity and act of each defendant",
+    "whether a torch strike occurred",
+    "whether a push or kick occurred and its timing",
+    "mechanism of the fatal head injury",
+    "causal contribution of each alleged act",
+    "intent for murder allegation against D1",
+    "elements and route of any manslaughter allegation",
+    "effect and limits of anticoagulant and alcohol evidence",
+    "effect and limits of clinical-care evidence",
+    "CCTV and witness timing conflicts",
+    "continuity and testing of the recovered torch",
+    "state and scope of admissions and agreed facts"
+  ],
+  "proceduralObjects": {
+    "proposedIndictment": "draft_only_pending_qualified_review",
+    "PTPHNotice": "planned_source_document",
+    "prosecutionCaseSummary": "planned_source_document_not_truth_source",
+    "defenceStatements": "planned_separate_documents_per_defendant",
+    "expertIssueSchedule": "planned",
+    "jointExpertStatement": "planned_with_disputed_and_agreed_columns",
+    "admissions": "stateful_proposed_accepted_signed_withdrawn_model",
+    "agreedFacts": "stateful_proposed_accepted_signed_filed_admitted_model"
+  },
+  "hardSeparationRules": [
+    "D1 and D2 acts, intent, interviews, admissions and evidence must remain separately scoped.",
+    "A proposed charge is not an operative charge or judicial finding.",
+    "Pathology mechanism opinion is not proof of actor identity or intent.",
+    "No AI-generated conclusion may determine whether treatment, alcohol or anticoagulants break or preserve legal causation; factual contribution, medical cause, susceptibility, alleged intervening act, expert opinion, party submission, court ruling and verdict remain distinct.",
+    "Toxicology concentration is not a behavioural or causation conclusion without a stated expert basis.",
+    "Admission, agreed fact, prosecution assertion, expert opinion and judicial finding are distinct states.",
+    "Death after clinical treatment does not by itself resolve legal causation."
+  ],
+  "generationAuthorised": false
+}

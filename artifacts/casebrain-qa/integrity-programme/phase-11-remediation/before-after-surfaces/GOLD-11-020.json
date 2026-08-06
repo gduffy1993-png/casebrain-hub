@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-020",
+  "changes": [
+    {
+      "surface": "court_line",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "79b048fea8c8",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nUnderlying court line was gated (blocked ≠ repaired):\nThe defence asks the court t"
+      },
+      "after": {
+        "gateStatus": "qualified_solicitor_review_queue",
+        "canCopy": false,
+        "textHash": "4ceb0ee8feaa",
+        "textPreview": "Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export."
+      }
+    }
+  ]
+}

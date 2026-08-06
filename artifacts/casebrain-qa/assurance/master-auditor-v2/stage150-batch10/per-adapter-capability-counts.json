@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "batch10-per-adapter-capability@1.0.0",
+  "totals": {
+    "sourceManifest": {
+      "eligible": 30,
+      "partial": 0,
+      "unavailable": 0
+    },
+    "chargeInstruments": {
+      "eligible": 0,
+      "partial": 30,
+      "unavailable": 0
+    },
+    "evidenceUnits": {
+      "eligible": 28,
+      "partial": 0,
+      "unavailable": 2
+    },
+    "chronologyEvents": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 30
+    },
+    "provenance": {
+      "eligible": 0,
+      "partial": 30,
+      "unavailable": 0
+    },
+    "chaseRelationships": {
+      "eligible": 0,
+      "partial": 10,
+      "unavailable": 20
+    },
+    "exitPayloadReceipts": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 30
+    }
+  }
+}

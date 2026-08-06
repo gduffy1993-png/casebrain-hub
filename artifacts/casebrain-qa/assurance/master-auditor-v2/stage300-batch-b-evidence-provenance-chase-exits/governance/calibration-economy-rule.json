@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "stage300-calibration-economy-rule@1.0.0",
+  "permanent": true,
+  "rules": [
+    "Do not run corpus calibration when named eligible denominator = 0",
+    "Fixtures prove evaluator behaviour only and are never corpus calibration",
+    "Unavailable-behaviour contracts may run without corpus eligibility",
+    "Calibration begins only when ≥1 genuine packet satisfies the exact named prerequisite",
+    "Zero-candidate FP/FN/recall rates remain null"
+  ],
+  "metricsToRecordEachCalibration": [
+    "runtimeMs",
+    "casesScanned",
+    "controlsExercised",
+    "namedEligibleDenominators",
+    "artefactBytes",
+    "humanReviewBurdenEstimate"
+  ],
+  "batchBApplication": {
+    "namedEligibleDenominator": 0,
+    "corpusCalibrationRun": false,
+    "fixtureContractsAllowed": true,
+    "fpFnRecall": null
+  }
+}

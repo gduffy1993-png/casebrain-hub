@@ -1,0 +1,26 @@
+{
+  "goldId": "GOLD-11-022",
+  "reviewEligibility": "INSUFFICIENT_SOURCE_CONTEXT",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded from substantive FP/FN denominators until controlled source context is available.",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": false,
+      "sourceEvidenceNote": "synthetic — insufficient controlled source",
+      "reviewEligibility": "INSUFFICIENT_SOURCE_CONTEXT"
+    },
+    {
+      "surface": "evidence_title",
+      "label": "Evidence title",
+      "solicitorVisibleText": "Evidence title withheld — incomplete quotation or truncated excerpt cannot be shown as a title. Check the source papers.",
+      "gateStatus": "blocked_title",
+      "canCopy": false,
+      "sourceEvidenceAvailable": false,
+      "sourceEvidenceNote": "synthetic",
+      "reviewEligibility": "INSUFFICIENT_SOURCE_CONTEXT"
+    }
+  ]
+}

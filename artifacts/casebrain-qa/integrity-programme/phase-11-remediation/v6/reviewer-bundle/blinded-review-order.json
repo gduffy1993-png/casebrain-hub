@@ -1,0 +1,269 @@
+{
+  "purpose": "Blinded v5 order — no automated predictions, stratum, selectionReason, reviewFocus, or expected classification",
+  "freezeHash": "f41a0fc688bee60f6ffd32a4a24d45d69203f799931cd7142f603dca461c38fd",
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "parentV5FreezeHash": "3e2479c86769e3cd5342903997eaa548cfdc98a8339a34d0890bfc0178536f5d",
+  "sampleSize": 43,
+  "sequence": [
+    {
+      "reviewSequence": 1,
+      "goldId": "GOLD-11-015",
+      "packetPath": "cases/GOLD-11-015/",
+      "renderMarkdown": "renders/GOLD-11-015.md"
+    },
+    {
+      "reviewSequence": 2,
+      "goldId": "GOLD-11-014",
+      "packetPath": "cases/GOLD-11-014/",
+      "renderMarkdown": "renders/GOLD-11-014.md"
+    },
+    {
+      "reviewSequence": 3,
+      "goldId": "GOLD-11-009",
+      "packetPath": "cases/GOLD-11-009/",
+      "renderMarkdown": "renders/GOLD-11-009.md"
+    },
+    {
+      "reviewSequence": 4,
+      "goldId": "GOLD-11-008",
+      "packetPath": "cases/GOLD-11-008/",
+      "renderMarkdown": "renders/GOLD-11-008.md"
+    },
+    {
+      "reviewSequence": 5,
+      "goldId": "GOLD-11-019",
+      "packetPath": "cases/GOLD-11-019/",
+      "renderMarkdown": "renders/GOLD-11-019.md"
+    },
+    {
+      "reviewSequence": 6,
+      "goldId": "GOLD-11-022",
+      "packetPath": "cases/GOLD-11-022/",
+      "renderMarkdown": "renders/GOLD-11-022.md"
+    },
+    {
+      "reviewSequence": 7,
+      "goldId": "GOLD-11-031",
+      "packetPath": "cases/GOLD-11-031/",
+      "renderMarkdown": "renders/GOLD-11-031.md"
+    },
+    {
+      "reviewSequence": 8,
+      "goldId": "GOLD-11-034",
+      "packetPath": "cases/GOLD-11-034/",
+      "renderMarkdown": "renders/GOLD-11-034.md"
+    },
+    {
+      "reviewSequence": 9,
+      "goldId": "GOLD-11-026",
+      "packetPath": "cases/GOLD-11-026/",
+      "renderMarkdown": "renders/GOLD-11-026.md"
+    },
+    {
+      "reviewSequence": 10,
+      "goldId": "GOLD-11-023",
+      "packetPath": "cases/GOLD-11-023/",
+      "renderMarkdown": "renders/GOLD-11-023.md"
+    },
+    {
+      "reviewSequence": 11,
+      "goldId": "GOLD-11-013",
+      "packetPath": "cases/GOLD-11-013/",
+      "renderMarkdown": "renders/GOLD-11-013.md"
+    },
+    {
+      "reviewSequence": 12,
+      "goldId": "GOLD-11-042",
+      "packetPath": "cases/GOLD-11-042/",
+      "renderMarkdown": "renders/GOLD-11-042.md"
+    },
+    {
+      "reviewSequence": 13,
+      "goldId": "GOLD-11-032",
+      "packetPath": "cases/GOLD-11-032/",
+      "renderMarkdown": "renders/GOLD-11-032.md"
+    },
+    {
+      "reviewSequence": 14,
+      "goldId": "GOLD-11-018",
+      "packetPath": "cases/GOLD-11-018/",
+      "renderMarkdown": "renders/GOLD-11-018.md"
+    },
+    {
+      "reviewSequence": 15,
+      "goldId": "GOLD-11-025",
+      "packetPath": "cases/GOLD-11-025/",
+      "renderMarkdown": "renders/GOLD-11-025.md"
+    },
+    {
+      "reviewSequence": 16,
+      "goldId": "GOLD-11-027",
+      "packetPath": "cases/GOLD-11-027/",
+      "renderMarkdown": "renders/GOLD-11-027.md"
+    },
+    {
+      "reviewSequence": 17,
+      "goldId": "GOLD-11-035",
+      "packetPath": "cases/GOLD-11-035/",
+      "renderMarkdown": "renders/GOLD-11-035.md"
+    },
+    {
+      "reviewSequence": 18,
+      "goldId": "GOLD-11-010",
+      "packetPath": "cases/GOLD-11-010/",
+      "renderMarkdown": "renders/GOLD-11-010.md"
+    },
+    {
+      "reviewSequence": 19,
+      "goldId": "GOLD-11-024",
+      "packetPath": "cases/GOLD-11-024/",
+      "renderMarkdown": "renders/GOLD-11-024.md"
+    },
+    {
+      "reviewSequence": 20,
+      "goldId": "GOLD-11-020",
+      "packetPath": "cases/GOLD-11-020/",
+      "renderMarkdown": "renders/GOLD-11-020.md"
+    },
+    {
+      "reviewSequence": 21,
+      "goldId": "GOLD-11-039",
+      "packetPath": "cases/GOLD-11-039/",
+      "renderMarkdown": "renders/GOLD-11-039.md"
+    },
+    {
+      "reviewSequence": 22,
+      "goldId": "GOLD-11-038",
+      "packetPath": "cases/GOLD-11-038/",
+      "renderMarkdown": "renders/GOLD-11-038.md"
+    },
+    {
+      "reviewSequence": 23,
+      "goldId": "GOLD-11-021",
+      "packetPath": "cases/GOLD-11-021/",
+      "renderMarkdown": "renders/GOLD-11-021.md"
+    },
+    {
+      "reviewSequence": 24,
+      "goldId": "GOLD-11-005",
+      "packetPath": "cases/GOLD-11-005/",
+      "renderMarkdown": "renders/GOLD-11-005.md"
+    },
+    {
+      "reviewSequence": 25,
+      "goldId": "GOLD-11-043",
+      "packetPath": "cases/GOLD-11-043/",
+      "renderMarkdown": "renders/GOLD-11-043.md"
+    },
+    {
+      "reviewSequence": 26,
+      "goldId": "GOLD-11-006",
+      "packetPath": "cases/GOLD-11-006/",
+      "renderMarkdown": "renders/GOLD-11-006.md"
+    },
+    {
+      "reviewSequence": 27,
+      "goldId": "GOLD-11-033",
+      "packetPath": "cases/GOLD-11-033/",
+      "renderMarkdown": "renders/GOLD-11-033.md"
+    },
+    {
+      "reviewSequence": 28,
+      "goldId": "GOLD-11-029",
+      "packetPath": "cases/GOLD-11-029/",
+      "renderMarkdown": "renders/GOLD-11-029.md"
+    },
+    {
+      "reviewSequence": 29,
+      "goldId": "GOLD-11-040",
+      "packetPath": "cases/GOLD-11-040/",
+      "renderMarkdown": "renders/GOLD-11-040.md"
+    },
+    {
+      "reviewSequence": 30,
+      "goldId": "GOLD-11-007",
+      "packetPath": "cases/GOLD-11-007/",
+      "renderMarkdown": "renders/GOLD-11-007.md"
+    },
+    {
+      "reviewSequence": 31,
+      "goldId": "GOLD-11-036",
+      "packetPath": "cases/GOLD-11-036/",
+      "renderMarkdown": "renders/GOLD-11-036.md"
+    },
+    {
+      "reviewSequence": 32,
+      "goldId": "GOLD-11-011",
+      "packetPath": "cases/GOLD-11-011/",
+      "renderMarkdown": "renders/GOLD-11-011.md"
+    },
+    {
+      "reviewSequence": 33,
+      "goldId": "GOLD-11-003",
+      "packetPath": "cases/GOLD-11-003/",
+      "renderMarkdown": "renders/GOLD-11-003.md"
+    },
+    {
+      "reviewSequence": 34,
+      "goldId": "GOLD-11-037",
+      "packetPath": "cases/GOLD-11-037/",
+      "renderMarkdown": "renders/GOLD-11-037.md"
+    },
+    {
+      "reviewSequence": 35,
+      "goldId": "GOLD-11-004",
+      "packetPath": "cases/GOLD-11-004/",
+      "renderMarkdown": "renders/GOLD-11-004.md"
+    },
+    {
+      "reviewSequence": 36,
+      "goldId": "GOLD-11-028",
+      "packetPath": "cases/GOLD-11-028/",
+      "renderMarkdown": "renders/GOLD-11-028.md"
+    },
+    {
+      "reviewSequence": 37,
+      "goldId": "GOLD-11-030",
+      "packetPath": "cases/GOLD-11-030/",
+      "renderMarkdown": "renders/GOLD-11-030.md"
+    },
+    {
+      "reviewSequence": 38,
+      "goldId": "GOLD-11-001",
+      "packetPath": "cases/GOLD-11-001/",
+      "renderMarkdown": "renders/GOLD-11-001.md"
+    },
+    {
+      "reviewSequence": 39,
+      "goldId": "GOLD-11-016",
+      "packetPath": "cases/GOLD-11-016/",
+      "renderMarkdown": "renders/GOLD-11-016.md"
+    },
+    {
+      "reviewSequence": 40,
+      "goldId": "GOLD-11-012",
+      "packetPath": "cases/GOLD-11-012/",
+      "renderMarkdown": "renders/GOLD-11-012.md"
+    },
+    {
+      "reviewSequence": 41,
+      "goldId": "GOLD-11-017",
+      "packetPath": "cases/GOLD-11-017/",
+      "renderMarkdown": "renders/GOLD-11-017.md"
+    },
+    {
+      "reviewSequence": 42,
+      "goldId": "GOLD-11-041",
+      "packetPath": "cases/GOLD-11-041/",
+      "renderMarkdown": "renders/GOLD-11-041.md"
+    },
+    {
+      "reviewSequence": 43,
+      "goldId": "GOLD-11-002",
+      "packetPath": "cases/GOLD-11-002/",
+      "renderMarkdown": "renders/GOLD-11-002.md"
+    }
+  ]
+}

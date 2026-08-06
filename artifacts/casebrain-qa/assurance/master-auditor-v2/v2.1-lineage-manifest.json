@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "maa-v2.1-lineage-manifest@1.0.0",
+  "createdAt": "2026-07-29T22:42:14.883Z",
+  "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+  "parentRegistryVersion": "2.1.0",
+  "parentSchemaVersion": "maa-control-registry@v2.1.0",
+  "migrationReason": "Extend V2.1 execution-readiness into every-word Stage-150 foundation (v2.2) without forking a second registry. Cursor hardening addendum accepted.",
+  "nextRegistryVersion": "2.2.0",
+  "nextSchemaVersion": "maa-control-registry@v2.2.0",
+  "v21RegistryHash": "14f0d93794c7a8a39cc6ce8c7004b373240bb6462385fd095f4f0971b63adcdc",
+  "artifactInventory": [
+    {
+      "file": "auditor-control-registry-v2.json",
+      "bytes": 1375792,
+      "sha256": "14f0d93794c7a8a39cc6ce8c7004b373240bb6462385fd095f4f0971b63adcdc",
+      "retainedAs": "v2.1-snapshot/auditor-control-registry-v2.json"
+    },
+    {
+      "file": "control-evidence-requirements.json",
+      "bytes": 175227,
+      "sha256": "d9027c0ed7e2f4499384bbebf245288de9884492c1add51369b2af5f5ce569ff",
+      "retainedAs": "v2.1-snapshot/control-evidence-requirements.json"
+    },
+    {
+      "file": "control-stage-activation-matrix.json",
+      "bytes": 34335,
+      "sha256": "97bddf24aca9bf08969bf2341bfcef5713ceaea20904c963a80ff37328a2e226",
+      "retainedAs": "v2.1-snapshot/control-stage-activation-matrix.json"
+    },
+    {
+      "file": "esa-population-input-capability-audit.json",
+      "bytes": 12718,
+      "sha256": "dc0c99a8d6b4af2b165719f6505fe835c5ee5cf89cb2303b8f0529b9897cec3d",
+      "retainedAs": "v2.1-snapshot/esa-population-input-capability-audit.json"
+    },
+    {
+      "file": "execution-readiness-report.md",
+      "bytes": 1998,
+      "sha256": "e41e958c9822f4dd57215661c2fe878d3e6678ee2f034fab1dfa47af1e963a72",
+      "retainedAs": "v2.1-snapshot/execution-readiness-report.md"
+    },
+    {
+      "file": "stage150-control-exerciseability.json",
+      "bytes": 74105,
+      "sha256": "608329c82530003a4248a72b248d8cc59ee16238b99edca45dd5f63efe465198",
+      "retainedAs": "v2.1-snapshot/stage150-control-exerciseability.json"
+    },
+    {
+      "file": "stage150-detector-implementation-map.json",
+      "bytes": 148889,
+      "sha256": "54901fa74cbbe653df929160fbe891834a75c97afd2146d664e301436c72c082",
+      "retainedAs": "v2.1-snapshot/stage150-detector-implementation-map.json"
+    },
+    {
+      "file": "stage150-execution-readiness-gate.json",
+      "bytes": 1326,
+      "sha256": "d47a37d7c0fccb8e8563c0d65f365f8fe62b355395673cf15aee2395abc0cf2b",
+      "retainedAs": "v2.1-snapshot/stage150-execution-readiness-gate.json"
+    },
+    {
+      "file": "stage150-minimum-denominators.json",
+      "bytes": 143160,
+      "sha256": "da1eb1dff74a49713670d4b173c67094026b3e1553282b2afb78f5598e31d330",
+      "retainedAs": "v2.1-snapshot/stage150-minimum-denominators.json"
+    },
+    {
+      "file": "stage20-historical-activation-correction.json",
+      "bytes": 1447,
+      "sha256": "f66525f69c932bdb40e95c96467a277b987814ae8b85b4b49cc8a1a08414a9a8",
+      "retainedAs": "v2.1-snapshot/stage20-historical-activation-correction.json"
+    },
+    {
+      "file": "STOP-FOR-CODEX-REVIEW.json",
+      "bytes": 2046,
+      "sha256": "10d27d9546252bf570e31143d76fcccc84d982c20738473fb5d611faa4481046",
+      "retainedAs": "v2.1-snapshot/STOP-FOR-CODEX-REVIEW.json"
+    },
+    {
+      "file": "v1-to-v2-registry-migration.json",
+      "bytes": 102606,
+      "sha256": "261f963b20cd4c616ee5868fb1a5cb4b215e63456da4f0560d5a8390f42f6e52",
+      "retainedAs": "v2.1-snapshot/v1-to-v2-registry-migration.json"
+    },
+    {
+      "file": "v2-control-execution-status.json",
+      "bytes": 395140,
+      "sha256": "377285be7e8158c2dbf40c7903f95776fd0eac68bf9c27c9d684094bcc621bfb",
+      "retainedAs": "v2.1-snapshot/v2-control-execution-status.json"
+    },
+    {
+      "file": "v2-control-relationship-audit.json",
+      "bytes": 166179,
+      "sha256": "0b88a89475f223b09031dd4e11ebaf4e836b98287e5bf43c643e891b10b5d069",
+      "retainedAs": "v2.1-snapshot/v2-control-relationship-audit.json"
+    }
+  ],
+  "dispositionPolicy": {
+    "superseded": "Live files under master-auditor-v2/ will be extended by v2.2 artefacts; V2.1 meaning preserved in v2.1-snapshot/",
+    "retained": "v2.1-snapshot/* immutable copy",
+    "extended": "control IDs retained; fields added; no silent meaning rewrite"
+  },
+  "v22ExtensionApplied": {
+    "appliedAt": "2026-07-29T23:00:45.504Z",
+    "liveRegistryVersion": "2.2.0",
+    "liveSchemaVersion": "maa-control-registry@v2.2.0",
+    "liveRegistryHash": "997074868cb1d65199d543f0f605e24b082b32128895b98a30a9c900099d5005",
+    "parentRegistryHash": "14f0d93794c7a8a39cc6ce8c7004b373240bb6462385fd095f4f0971b63adcdc",
+    "supersededLiveArtifacts": [
+      "auditor-control-registry-v2.json",
+      "v2-control-execution-status.json",
+      "stage150-execution-readiness-gate.json",
+      "stage150-detector-implementation-map.json",
+      "stage150-control-exerciseability.json",
+      "stage150-minimum-denominators.json",
+      "STOP-FOR-CODEX-REVIEW.json"
+    ],
+    "retainedImmutable": "v2.1-snapshot/*",
+    "extendedWithoutFork": true,
+    "controlMeaningSilentRewrite": false,
+    "shadowRunId": "v2-shadow-stage50-2026-07-29T23-00-45-504Z"
+  },
+  "stage150RemainsBlocked": true,
+  "hardeningAddendumAccepted": true
+}

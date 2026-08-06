@@ -1,0 +1,5 @@
+{
+  "schema_version":"1.0","principles":["public professional structures only","fictional content","no real-case fact copying","no filler/repeated boilerplate/artificial inflation","accountant and counsel extracts mandatory where relevant"],
+  "density_profiles":{"narrative":"300-550 substantive words/page","transaction_tables":"15-35 meaningful rows/page with legible headers","email":"natural thread length, quoted-text deduplication and attachment markers","spreadsheet_render":"legible columns, formula/display note, continuation headers","appendices":"only necessary transaction, methodology, asset or source schedules"},
+  "future_QA_required":["exact and near-duplicate page checks","full-page visual QA","density and suspicious-padding analysis","spreadsheet clipping/scale/continuation review","transaction total reconciliation","native-to-render sampling","ZIP/email attachment completeness","pagination/index/cross-reference checks"],"generation_authorised":false
+}

@@ -1,0 +1,97 @@
+{
+  "goldId": "GOLD-11-013",
+  "def": {
+    "goldId": "GOLD-11-013",
+    "stratum": "uncertain_family",
+    "sourceKind": "phase9_pack_seed",
+    "fixtureId": "demo-audit-03-bwv-custody",
+    "selectionReason": "Phase 9 uncertain_family stratum",
+    "reviewFocus": "Is uncertain / fail-closed presentation correct for the solicitor?"
+  },
+  "surfaces": [
+    {
+      "surface": "overview_counts",
+      "label": "Overview evidence counts",
+      "solicitorVisibleText": "Served 3 · Referred 1 · Missing 4 · Incomplete 0 · Not safely confirmed 2",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence-family resolution",
+      "solicitorVisibleText": "Resolved family: violence\nAudit family seed: assault_emergency_worker",
+      "gateStatus": "resolved",
+      "canCopy": true
+    },
+    {
+      "surface": "chase_brief",
+      "label": "Disclosure chase brief (solicitor list)",
+      "solicitorVisibleText": "Total 3\n• Body-worn video (BWV)\n• Interview recording / transcript\n• officer MG11",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\ndemo-audit-03-bwv-custody",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nDA-03 Casey Fry — BWV referred / custody extract only",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nassault_emergency_worker",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nAssault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nprovisional_check_source",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nPACE safeguards were followed",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "family_leak_probe",
+      "label": "Cross-family leak probe (copy)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — family containment blocked probe.\nBanner: Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "central_surface_sample",
+      "label": "Central surface sample (overview_safe_wording_card)",
+      "solicitorVisibleText": "SURFACE NOT COPYABLE — status=integrity_blocked; rules=offence_family_uncertain",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    }
+  ]
+}

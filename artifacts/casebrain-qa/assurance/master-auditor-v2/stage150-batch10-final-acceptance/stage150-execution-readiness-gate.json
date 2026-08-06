@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "stage150-execution-readiness-gate@1.11.0",
+  "baselineCommit": "78d16bb1a2606f7187f69fc8474e97629bce69ca",
+  "programmePassSupported": false,
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "freezeAllowed": false,
+  "populationPacketReadinessMet": true,
+  "reasons": [
+    "populationPacketReadinessMet=true — 150 unique packets independently verified; does NOT imply Stage-150/detector/programme readiness",
+    "Stage-150 sample selection, freeze and execution remain FALSE",
+    "No detector readiness implied",
+    "No programme PASS"
+  ],
+  "prerequisites": {
+    "registryComplete": true,
+    "detectorImplementationComplete": false,
+    "inputReadinessComplete": true,
+    "denominatorReadinessComplete": true,
+    "adapterReadinessComplete": false,
+    "receiptValidationComplete": true,
+    "contractReadinessComplete": true,
+    "relationshipComplete": false,
+    "protectedAssetsPreserved": true,
+    "structuredRematerialisationComplete": true
+  }
+}

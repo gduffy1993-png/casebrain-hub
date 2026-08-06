@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "batch6-promotions@1.0.0",
+  "promotionAuthority": "STAGE150_IMMUTABLE_PROMOTION_REGISTRY",
+  "batch5Preserved": true,
+  "promotedIds": [
+    "MAA2-EVS-02-STATE-ENUM",
+    "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED"
+  ],
+  "stage150ImplementedIds": [
+    "MAA2-WRD-10-NO-PLACEHOLDERS",
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+    "MAA2-WRD-02-NO-MID-TRUNCATION",
+    "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+    "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+    "MAA2-EVS-02-STATE-ENUM",
+    "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED"
+  ],
+  "promotions": [
+    {
+      "controlId": "MAA2-EVS-02-STATE-ENUM",
+      "promoted": true,
+      "implementationStatus": "implemented",
+      "reason": "Structured evidenceStates inferredSourceState enum check with honest named-control receipts (row counts, field refs/hashes, not_exercised when no rows). Zero candidates — rates unavailable (not 0/0).",
+      "advisoryReason": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+      "calibrationPassId": "batch6-pass-B",
+      "triagePassId": "batch6-triage-pass-B",
+      "contractResolutionOk": true,
+      "fpRate": null,
+      "unresolvedRate": null,
+      "confirmedRate": null,
+      "humanFpFnRecall": "unavailable",
+      "rateHonestyNote": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+      "candidateTotal": 0,
+      "candidateDenominator": 0,
+      "occurrenceDenominator": 0,
+      "caseDenominatorNote": "case denominator = 499 calibration population (separate from candidates)",
+      "stringDenominatorNote": "string/template denominators not conflated with candidate rates",
+      "byBucket": {},
+      "denominatorApprovalState": "PENDING_REVIEW",
+      "implementationEvidenceRefs": [
+        "lib/eval/master-assurance-auditor/v2/stage150/detectors.ts#evaluateEvidenceIdentityState",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch6/batch6-candidate-freeze.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch6/batch6-triage-pass-B.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch6/batch6-499-exercise-receipt-index.json"
+      ],
+      "contractRefs": {
+        "positive": "scripts/maa-v2-stage150-batch6-contracts.test.ts#evs02_positive",
+        "negatives": "scripts/maa-v2-stage150-batch6-contracts.test.ts#evs02_negatives",
+        "unavailable": "scripts/maa-v2-stage150-batch6-contracts.test.ts#evs02_unavailable",
+        "mutation": "scripts/maa-v2-stage150-batch6-contracts.test.ts#evs02_mutation"
+      },
+      "calibrationPopulation": 499,
+      "reviewer": "",
+      "reviewDate": "",
+      "promotionAuthority": "STAGE150_IMMUTABLE_PROMOTION_REGISTRY"
+    },
+    {
+      "controlId": "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "promoted": true,
+      "implementationStatus": "implemented",
+      "reason": "Structured fiveAnswers unreliable-without-reason check with honest named-control receipts. Zero candidates — rates unavailable (not 0/0).",
+      "advisoryReason": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+      "calibrationPassId": "batch6-pass-B",
+      "triagePassId": "batch6-triage-pass-B",
+      "contractResolutionOk": true,
+      "fpRate": null,
+      "unresolvedRate": null,
+      "confirmedRate": null,
+      "humanFpFnRecall": "unavailable",
+      "rateHonestyNote": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+      "candidateTotal": 0,
+      "candidateDenominator": 0,
+      "occurrenceDenominator": 0,
+      "caseDenominatorNote": "case denominator = 499 calibration population (separate from candidates)",
+      "stringDenominatorNote": "string/template denominators not conflated with candidate rates",
+      "byBucket": {},
+      "denominatorApprovalState": "PENDING_REVIEW",
+      "implementationEvidenceRefs": [
+        "lib/eval/master-assurance-auditor/v2/stage150/detectors.ts#evaluateEvidenceIdentityState",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch6/batch6-candidate-freeze.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch6/batch6-triage-pass-B.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch6/batch6-499-exercise-receipt-index.json"
+      ],
+      "contractRefs": {
+        "positive": "scripts/maa-v2-stage150-batch6-contracts.test.ts#evs03_positive",
+        "negatives": "scripts/maa-v2-stage150-batch6-contracts.test.ts#evs03_negatives",
+        "unavailable": "scripts/maa-v2-stage150-batch6-contracts.test.ts#evs03_unavailable",
+        "mutation": "scripts/maa-v2-stage150-batch6-contracts.test.ts#evs03_mutation"
+      },
+      "calibrationPopulation": 499,
+      "reviewer": "",
+      "reviewDate": "",
+      "promotionAuthority": "STAGE150_IMMUTABLE_PROMOTION_REGISTRY"
+    }
+  ],
+  "zeroCandidateRateNote": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated."
+}

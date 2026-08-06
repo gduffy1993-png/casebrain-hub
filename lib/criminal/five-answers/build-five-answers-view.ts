@@ -1,7 +1,13 @@
 import type { DisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import type { HearingWarRoomBrief } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
+import {
+  formatChargeWithInseparableWarning,
+  resolveChargeCompleteness,
+  type ChargeCompletenessResult,
+} from "@/lib/criminal/charge-allegation-completeness";
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 import { inferChaseItemSourceState, buildCopySafeResult } from "@/lib/criminal/trust/copy-safe";
+import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
 import { FIRM_SENDABILITY_LABELS } from "@/lib/criminal/trust/firm-facing-labels";
 import { surfaceContradictions } from "./contradiction-surface";
 import { evidenceRowFromSourceState, FIVE_ANSWERS_HARD_RULES } from "./evidence-trace";
@@ -12,12 +18,18 @@ import { mapSourceStateToExistence } from "./types";
 
 export type BuildFiveAnswersViewInput = {
   allegation: string;
+  /** Optional pre-resolved structured charge completeness (preferred over string-only allegation). */
+  chargeCompleteness?: ChargeCompletenessResult;
   warRoom: HearingWarRoomBrief;
   chase: DisclosureChaseBrief;
   matterConfidence: MatterConfidenceResult | null;
   doNotOverstate: string[];
   truthKey?: import("@/lib/eval/evidence-state-audit/types").EvidenceStateTruthKey;
   bundleText?: string;
+  /** When set (live document pipeline), prefer these rows over chase-inferred existence. */
+  evidenceRowsOverride?: import("./types").FiveAnswersEvidenceRow[];
+  /** Canonical findings projected into must-not-overstate / truth-map notes. */
+  canonicalFindings?: Array<{ title: string; summary: string; unresolved: boolean; provenanceLine: string }>;
 };
 
 function nextActionFromConfidence(confidence: MatterConfidenceResult | null): string {
@@ -26,24 +38,45 @@ function nextActionFromConfidence(confidence: MatterConfidenceResult | null): st
 }
 
 export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnswersViewModel {
-  const { allegation, warRoom, chase, matterConfidence, doNotOverstate } = input;
-
-  const rawEvidenceRows = chase.primaryItems.slice(0, 8).map((item) => {
-    const state = inferChaseItemSourceState({
-      label: item.label,
-      source: item.source,
-      baseStatus: item.baseStatus,
-      evidenceAnchor: item.evidenceAnchor,
+  // Structured charge completeness — never replace recorded wording with a generic hide string.
+  const chargeCompleteness =
+    input.chargeCompleteness ??
+    resolveChargeCompleteness({
+      recordedChargeText: input.allegation,
+      courtNoteText: input.chase.safeCourtLine ?? input.warRoom.safePositionToday ?? null,
     });
-    const row = evidenceRowFromSourceState(item.label, state, item.whyItMatters?.trim() || undefined);
-    if (state === "missing") {
-      row.note = row.note ? `${row.note} — still chase if disclosure-relevant.` : "Still chase if disclosure-relevant.";
-    }
-    if (state === "referred_only") {
-      row.note = row.note ? `${row.note} — referred only, not usable as proof.` : "Referred only — not usable as proof.";
-    }
-    return row;
-  });
+  const allegation = chargeCompleteness.displayedChargeText;
+  const allegationWithStatus = formatChargeWithInseparableWarning(chargeCompleteness);
+  const { warRoom, chase, matterConfidence, doNotOverstate } = input;
+
+  const rawEvidenceRows =
+    input.evidenceRowsOverride && input.evidenceRowsOverride.length > 0
+      ? input.evidenceRowsOverride.slice(0, 12)
+      : chase.primaryItems.slice(0, 8).map((item) => {
+          const state = inferChaseItemSourceState({
+            label: item.label,
+            source: item.source,
+            baseStatus: item.baseStatus,
+            evidenceAnchor: item.evidenceAnchor,
+          });
+          const row = evidenceRowFromSourceState(item.label, state, item.whyItMatters?.trim() || undefined);
+          if (state === "missing") {
+            const note = row.note ?? "";
+            const alreadyGuidesChase =
+              /still chase|confirm their relevance|appear to be outstanding|confirm relevance/i.test(note);
+            if (!alreadyGuidesChase) {
+              row.note = note
+                ? `${note} — still chase if disclosure-relevant.`
+                : "Still chase if disclosure-relevant.";
+            }
+          }
+          if (state === "referred_only") {
+            row.note = row.note
+              ? `${row.note} — referred only, not usable as proof.`
+              : "Referred only — not usable as proof.";
+          }
+          return row;
+        });
 
   const evidenceRows = expandTruthMapRowsForDisplay({
     rows: rawEvidenceRows,
@@ -68,12 +101,13 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
       sourceLabel: item.source,
       matterLevel: matterConfidence?.chaseSendability,
     });
+    const finalized = finalizeSolicitorVisibleProse(copy.textForClipboard);
     return {
       label: item.label,
       existence: mapSourceStateToExistence(state),
-      copySuggestion: copy.textForClipboard.slice(0, 280),
+      copySuggestion: finalized.ok ? finalized.text : item.label,
       sendabilityLabel: FIRM_SENDABILITY_LABELS[copy.sendability] ?? copy.sendabilityLabel,
-      canCopy: copy.canCopy,
+      canCopy: copy.canCopy && finalized.ok,
     };
   });
 
@@ -85,23 +119,33 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
     matterLevel: matterConfidence?.level === "blocked" ? "blocked" : "needs_solicitor_review",
   });
 
-  const mainIssue =
+  const mainIssueRaw =
     matterConfidence?.mainIssue?.trim() ||
     warRoom.safePositionToday?.trim() ||
     chase.disclosureSummary?.trim() ||
     "Provisional — review served papers before relying on any line.";
+  const mainIssueFinal = finalizeSolicitorVisibleProse(mainIssueRaw);
 
   return {
     caseSaying: {
-      allegation: allegation.trim() || "Charge not on papers",
-      mainIssue: mainIssue.slice(0, 320),
+      allegation: allegation.trim() || chargeCompleteness.sourceChargeText || "",
+      chargeCompleteness,
+      allegationWithStatus,
+      mainIssue: mainIssueFinal.ok
+        ? mainIssueFinal.text
+        : "Provisional — review served papers before relying on any line.",
       nextAction: nextActionFromConfidence(matterConfidence),
     },
     evidenceState: {
       rows: evidenceRows,
       hardRules: [...FIVE_ANSWERS_HARD_RULES],
     },
-    mustNotOverstate: doNotOverstate.slice(0, 8),
+    mustNotOverstate: [
+      ...doNotOverstate,
+      ...(input.canonicalFindings ?? [])
+        .filter((f) => f.unresolved)
+        .map((f) => `${f.title}: ${f.summary}`),
+    ].slice(0, 8),
     chase: chaseRows,
     courtNote: {
       text: courtCopy.textForClipboard,

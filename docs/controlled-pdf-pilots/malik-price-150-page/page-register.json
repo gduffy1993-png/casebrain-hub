@@ -1,0 +1,232 @@
+{
+  "pilotId": "malik-price-150-page",
+  "version": "design-freeze-v1.1",
+  "authoritativePagination": "compiled_pdf_page_numbers",
+  "totalPages": 150,
+  "note": "Individual source documents retained; compiled continuous PDF page numbers are authoritative for provenance.",
+  "register": [
+    {
+      "pages": [1],
+      "docId": "DOC-COVER",
+      "title": "Bundle cover",
+      "sourceFileHint": "01-bundle-cover.pdf",
+      "traps": []
+    },
+    {
+      "pages": [2, 3, 4, 5, 6],
+      "docId": "DOC-INDEX",
+      "title": "Index with one deliberate error",
+      "sourceFileHint": "02-bundle-index.pdf",
+      "traps": [
+        "TRAP-INDEX-CCTV-MASTER-SERVED",
+        "TRAP-DUPLICATE-WITNESS-INDEX-REFS"
+      ],
+      "indexErrors": [
+        {
+          "trapId": "TRAP-INDEX-CCTV-MASTER-SERVED",
+          "indexClaims": "Master CCTV footage — served",
+          "truth": "Only CCTV clips present; master missing"
+        },
+        {
+          "trapId": "TRAP-DUPLICATE-WITNESS-INDEX-REFS",
+          "indexClaims": "Same witness statement listed under two different index references pointing to overlapping but differently labelled page ranges",
+          "truth": "Duplicate presentation under different refs — not two independent statements"
+        }
+      ]
+    },
+    {
+      "pages": [7, 8, 9, 10, 11, 12, 13],
+      "docId": "DOC-MG5-V1",
+      "title": "MG5 version 1",
+      "sourceFileHint": "03-mg5-v1.pdf",
+      "traps": [
+        "TRAP-MG5-OVERSTATES-CCTV",
+        "TRAP-HEARING-VS-MG5-DATETIME"
+      ],
+      "notes": "Older hearing date/time 2026-08-28 14:00; overstates what CCTV shows."
+    },
+    {
+      "pages": [14, 15, 16, 17, 18, 19],
+      "docId": "DOC-MG5-REVISED",
+      "title": "Revised MG5",
+      "sourceFileHint": "04-mg5-revised.pdf",
+      "traps": ["TRAP-MG5-OVERSTATES-CCTV"],
+      "notes": "Still a prosecution summary — not substitute for native exhibits. May partially correct narrative but must not erase CCTV limitation."
+    },
+    {
+      "pages": [20, 21, 22],
+      "docId": "DOC-INDICTMENT-ORIGINAL",
+      "title": "Original indictment",
+      "sourceFileHint": "05-indictment-original.pdf",
+      "traps": ["TRAP-INDICTMENT-WRONG-DATE"],
+      "notes": "Wrong incident date 2026-06-01. Not operative."
+    },
+    {
+      "pages": [23, 24, 25],
+      "docId": "DOC-INDICTMENT-AMENDED",
+      "title": "Amended indictment",
+      "sourceFileHint": "06-indictment-amended.pdf",
+      "traps": [],
+      "notes": "Operative charges and true incident date 2026-06-03. Specimen wording frozen in truth-key.json."
+    },
+    {
+      "pages": [26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37],
+      "docId": "DOC-MG6",
+      "title": "MG6 disclosure schedule",
+      "sourceFileHint": "07-mg6-schedule.pdf",
+      "traps": ["TRAP-ALIAS-ALREADY-SERVED-CHASE"],
+      "notes": "Service status only — not proof of underlying fact."
+    },
+    {
+      "pages": [38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55],
+      "docId": "DOC-MG6C",
+      "title": "Long MG6C schedule",
+      "sourceFileHint": "08-mg6c-schedule.pdf",
+      "traps": ["TRAP-CODEF-EVIDENCE-BLEED"],
+      "notes": "Must clearly segregate Malik / Price unused material. Bleed trap plants a Price-only unused line that a naive aggregator could attach to Malik."
+    },
+    {
+      "pages": [56, 57, 58, 59, 60, 61, 62],
+      "docId": "DOC-MG11-DRAFT-C1",
+      "title": "Complainant draft MG11",
+      "sourceFileHint": "09-mg11-complainant-draft.pdf",
+      "traps": ["TRAP-CLOTHING-DESCRIPTION-CHANGE"],
+      "notes": "Earlier clothing description."
+    },
+    {
+      "pages": [63, 64, 65, 66, 67, 68, 69],
+      "docId": "DOC-MG11-SIGNED-C1",
+      "title": "Complainant signed MG11",
+      "sourceFileHint": "10-mg11-complainant-signed.pdf",
+      "traps": ["TRAP-CLOTHING-DESCRIPTION-CHANGE"],
+      "notes": "Changed clothing description. Signed does not erase draft inconsistency."
+    },
+    {
+      "pages": [70, 71, 72, 73, 74],
+      "docId": "DOC-MG11-W1",
+      "title": "Independent witness — Priya Shah",
+      "sourceFileHint": "11-mg11-witness-shah.pdf",
+      "traps": ["TRAP-DUPLICATE-WITNESS-INDEX-REFS"]
+    },
+    {
+      "pages": [75, 76, 77, 78, 79],
+      "docId": "DOC-MG11-W2",
+      "title": "Independent witness — Callum Briggs",
+      "sourceFileHint": "12-mg11-witness-briggs.pdf",
+      "traps": []
+    },
+    {
+      "pages": [80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91],
+      "docId": "DOC-POLICE-STATEMENTS",
+      "title": "Police statements and exhibit continuity",
+      "sourceFileHint": "13-police-statements-continuity.pdf",
+      "traps": [
+        "TRAP-KNIFE-CONTINUITY-GAP",
+        "TRAP-EXHIBIT-LABEL-COLLISION"
+      ],
+      "exhibitNotes": [
+        {
+          "trapId": "TRAP-EXHIBIT-LABEL-COLLISION",
+          "detail": "Exhibit number NJ/1 used for both knife photograph and knife property-bag continuity log — collision, not proof they are the same complete continuity chain."
+        },
+        {
+          "trapId": "TRAP-KNIFE-CONTINUITY-GAP",
+          "detail": "Price knife exhibit continuity break between seizure and lab submission.",
+          "defendantScope": "price_only"
+        }
+      ]
+    },
+    {
+      "pages": [92, 93, 94, 95, 96, 97, 98, 99, 100],
+      "docId": "DOC-INTERVIEW-MALIK",
+      "title": "PACE interview — Malik Hassan",
+      "sourceFileHint": "14-pace-interview-malik.pdf",
+      "traps": [
+        "TRAP-INTERVIEW-TRANSCRIPT-PAGE-MISSING",
+        "TRAP-CUSTODY-INTERVIEW-CLOCK-CONFLICT",
+        "TRAP-CODEF-EVIDENCE-BLEED"
+      ],
+      "presentation": {
+        "audio": "served_complete",
+        "transcript": "incomplete_missing_one_page",
+        "requiredLabel": "recording served / transcript incomplete",
+        "forbiddenLabel": "interview missing"
+      },
+      "missingTranscriptPageInCompiledBundle": 97
+    },
+    {
+      "pages": [101, 102, 103, 104, 105, 106, 107, 108, 109],
+      "docId": "DOC-INTERVIEW-PRICE",
+      "title": "PACE interview — Jordan Price",
+      "sourceFileHint": "15-pace-interview-price.pdf",
+      "traps": ["TRAP-CODEF-EVIDENCE-BLEED"],
+      "notes": "Must not leak into Malik-only surfaces."
+    },
+    {
+      "pages": [110, 111, 112, 113, 114, 115, 116, 117, 118, 119],
+      "docId": "DOC-CUSTODY-PACE",
+      "title": "Custody and PACE material",
+      "sourceFileHint": "16-custody-pace.pdf",
+      "traps": ["TRAP-CUSTODY-INTERVIEW-CLOCK-CONFLICT"],
+      "notes": "Custody detention clock conflicts with Malik interview start/end times on face of interview record."
+    },
+    {
+      "pages": [120, 121, 122, 123, 124, 125, 126, 127, 128, 129],
+      "docId": "DOC-CCTV-BWV-CAD",
+      "title": "CCTV, BWV, CAD and 999 records",
+      "sourceFileHint": "17-cctv-bwv-cad-999.pdf",
+      "traps": [
+        "TRAP-INDEX-CCTV-MASTER-SERVED",
+        "TRAP-CCTV-CLOCK-PLUS-7",
+        "TRAP-MG5-OVERSTATES-CCTV",
+        "TRAP-ALIAS-ALREADY-SERVED-CHASE"
+      ],
+      "mediaStates": {
+        "cctvClips": "served",
+        "cctvMaster": "missing",
+        "bwv": "referred_only_or_partial_as_authored",
+        "cad999": "served"
+      },
+      "cctvClockOffsetMinutesFast": 7
+    },
+    {
+      "pages": [130, 131, 132, 133, 134, 135, 136, 137],
+      "docId": "DOC-MEDICAL-FORENSIC",
+      "title": "Medical and forensic evidence",
+      "sourceFileHint": "18-medical-forensic.pdf",
+      "traps": ["TRAP-MEDICAL-INJURY-NOT-IDENTITY-OR-INTENT"],
+      "notes": "Establishes injury; not identity of assailant; not intent."
+    },
+    {
+      "pages": [138, 139, 140, 141, 142, 143, 144],
+      "docId": "DOC-PHONE-ATTRIBUTION",
+      "title": "Telephone extraction and attribution",
+      "sourceFileHint": "19-telephone-extraction-attribution.pdf",
+      "traps": [
+        "TRAP-PHONE-ASSOCIATION-NOT-AUTHORSHIP",
+        "TRAP-ALIAS-ALREADY-SERVED-CHASE"
+      ],
+      "defendantScope": "malik_associated_account",
+      "separations": ["ownership", "account_association", "message_authorship"]
+    },
+    {
+      "pages": [145, 146, 147, 148],
+      "docId": "DOC-DISCLOSURE-CORRESPONDENCE",
+      "title": "Disclosure correspondence",
+      "sourceFileHint": "20-disclosure-correspondence.pdf",
+      "traps": [
+        "TRAP-EMAIL-ATTACHMENT-ABSENT",
+        "TRAP-ALIAS-ALREADY-SERVED-CHASE"
+      ],
+      "notes": "Email refers to attachment that is absent from the bundle. Separate chase line re-requests already-served phone extract under an alias label."
+    },
+    {
+      "pages": [149, 150],
+      "docId": "DOC-HEARING-NOTICE-PTPH",
+      "title": "Hearing notice — PTPH",
+      "sourceFileHint": "21-hearing-notice-ptph.pdf",
+      "traps": ["TRAP-HEARING-VS-MG5-DATETIME"],
+      "notes": "Operative PTPH 2026-09-14 10:00 Court 3."
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "goldId": "GOLD-11-016",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: CASE-05:demo-audit-05-encro-attribution\nControlled source context (safely redacted for review)\nClient label: Liam Craft\nAllegation: Being concerned in the supply of a controlled drug of Class A, namely cocaine\nEvidence states:\n• Encro message extracts LC/MSG/01 — Served\n• Platform / source extraction — Referred only\n• Handle attribution report — Missing\n• Subscriber / account data — Missing\n• Device continuity — Missing\n• Co-defendant material — Missing\nChase / outstanding items:\n• Platform / source extraction\n• Handle attribution report\n• Subscriber / account data\n• Device continuity\n• Full download / export",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family resolved for this matter.",
+      "gateStatus": "resolved",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "case_header",
+      "label": "Case header",
+      "solicitorVisibleText": "Client: Liam Craft\nAllegation: Being concerned in the supply of a controlled drug of Class A, namely cocaine",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "court_line",
+      "label": "Court line",
+      "solicitorVisibleText": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review.",
+      "gateStatus": "qualified_solicitor_review_queue",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "client_summary",
+      "label": "Client-safe summary",
+      "solicitorVisibleText": "Item: Client-safe summary wording\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Platform / source extraction",
+      "solicitorVisibleText": "Please provide Platform / source extraction (see MG6C/ENC/02) or confirm in writing why it is not available.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Handle attribution report",
+      "solicitorVisibleText": "Item: CPS chase — Handle attribution report\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Subscriber / account data",
+      "solicitorVisibleText": "Item: CPS chase — Subscriber / account data\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Device continuity",
+      "solicitorVisibleText": "Please provide Device continuity (see MG6C/ENC/05) or confirm in writing why it is not available.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "truth_map",
+      "label": "Evidence truth map",
+      "solicitorVisibleText": "• Encro message extracts LC/MSG/01 — Served\n• Platform / source extraction — Referred only\n• Handle attribution report — Missing\n• Subscriber / account data — Missing\n• Device continuity — Missing\n• Co-defendant material — Missing",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "do_not_overstate",
+      "label": "Do-not-overstate warnings",
+      "solicitorVisibleText": "• handle proves defendant\n• NIGHTLINE-77 is Liam Craft\n• phone proves role\n• Do not treat handle or phone reference as proof of the defendant role without served attribution.",
+      "gateStatus": "warning",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "1.0.0",
+  "fingerprintEqualityOnRebuild": true,
+  "materialisedFingerprintsChecked": 530,
+  "distinctFingerprints": 6,
+  "compatibilityFailures": [],
+  "overviewMigratedToCanonical": true,
+  "confidenceDashboardStillIndependentCounts": true,
+  "overviewPresentationHelpersLegacy": true,
+  "centralSurfacesContracted": 31,
+  "sampleFingerprints": [
+    {
+      "fixtureId": "cb-found-2001-ellis",
+      "ok": true,
+      "fingerprint": "v1.0.0:336113b420fa0b8db61ce14d"
+    },
+    {
+      "fixtureId": "cb-found-2002-smith",
+      "ok": true,
+      "fingerprint": "v1.0.0:336113b420fa0b8db61ce14d"
+    },
+    {
+      "fixtureId": "cb-found-2003-nguyen",
+      "ok": true,
+      "fingerprint": "v1.0.0:a35fe9e717972df358016dd0"
+    },
+    {
+      "fixtureId": "cb-found-2004-clarke",
+      "ok": true,
+      "fingerprint": "v1.0.0:ce6f846dc3f92c2daa39789b"
+    },
+    {
+      "fixtureId": "cb-found-2005-okafor",
+      "ok": true,
+      "fingerprint": "v1.0.0:336113b420fa0b8db61ce14d"
+    },
+    {
+      "fixtureId": "cb-found-2006-carter",
+      "ok": true,
+      "fingerprint": "v1.0.0:336113b420fa0b8db61ce14d"
+    },
+    {
+      "fixtureId": "cb-found-2007-morrison",
+      "ok": true,
+      "fingerprint": "v1.0.0:336113b420fa0b8db61ce14d"
+    },
+    {
+      "fixtureId": "cb-fresh-001-taylor-brookes",
+      "ok": true,
+      "fingerprint": "v1.0.0:10c8d496ebca3334d2939bca"
+    },
+    {
+      "fixtureId": "cb-fresh-002-jordan-hale",
+      "ok": true,
+      "fingerprint": "v1.0.0:336113b420fa0b8db61ce14d"
+    },
+    {
+      "fixtureId": "crown-court-patterson",
+      "ok": true,
+      "fingerprint": "v1.0.0:a35fe9e717972df358016dd0"
+    },
+    {
+      "fixtureId": "demo-audit-01-phone-harassment",
+      "ok": true,
+      "fingerprint": "v1.0.0:10c8d496ebca3334d2939bca"
+    },
+    {
+      "fixtureId": "demo-audit-02-cctv-stills",
+      "ok": true,
+      "fingerprint": "v1.0.0:336113b420fa0b8db61ce14d"
+    },
+    {
+      "fixtureId": "demo-audit-03-bwv-custody",
+      "ok": true,
+      "fingerprint": "v1.0.0:336113b420fa0b8db61ce14d"
+    },
+    {
+      "fixtureId": "demo-audit-04-co-def-interview",
+      "ok": true,
+      "fingerprint": "v1.0.0:336113b420fa0b8db61ce14d"
+    },
+    {
+      "fixtureId": "demo-audit-05-encro-attribution",
+      "ok": true,
+      "fingerprint": "v1.0.0:336113b420fa0b8db61ce14d"
+    },
+    {
+      "fixtureId": "demo-audit-06-domestic-stalking",
+      "ok": true,
+      "fingerprint": "v1.0.0:10c8d496ebca3334d2939bca"
+    },
+    {
+      "fixtureId": "demo-audit-07-phone-ocr-trap",
+      "ok": true,
+      "fingerprint": "v1.0.0:10c8d496ebca3334d2939bca"
+    },
+    {
+      "fixtureId": "demo-audit-08-cctv-night-stills",
+      "ok": true,
+      "fingerprint": "v1.0.0:336113b420fa0b8db61ce14d"
+    },
+    {
+      "fixtureId": "demo-audit-09-cctv-index-only",
+      "ok": true,
+      "fingerprint": "v1.0.0:336113b420fa0b8db61ce14d"
+    },
+    {
+      "fixtureId": "demo-audit-10-bwv-public-order",
+      "ok": true,
+      "fingerprint": "v1.0.0:336113b420fa0b8db61ce14d"
+    }
+  ]
+}

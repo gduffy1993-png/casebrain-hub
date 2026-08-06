@@ -1,0 +1,106 @@
+{
+  "goldId": "GOLD-11-036",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: CASE-09:demo-audit-32-restraining-order-breach\nControlled source context (safely redacted for review)\nClient label: Lena Ortiz\nAllegation: Breach of a restraining order, contrary to section 5(5) of the Protection from Harassment Act 1997\nEvidence states:\n• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Full sealed restraining order — Missing\n• Service proof — Missing\n• Breach location map — Missing\nChase / outstanding items:\n• Full sealed restraining order\n• Service proof\n• Breach location map",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family resolved for this matter.",
+      "gateStatus": "resolved",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "case_header",
+      "label": "Case header",
+      "solicitorVisibleText": "Client: Lena Ortiz\nAllegation: Breach of a restraining order, contrary to section 5(5) of the Protection from Harassment Act 1997",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "court_line",
+      "label": "Court line",
+      "solicitorVisibleText": "The defence asks the court to record that sealed order and service-proof material remain outstanding on the current papers.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "client_summary",
+      "label": "Client-safe summary",
+      "solicitorVisibleText": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Lena Ortiz. This is early-stage — nothing is final until we have full disclosure and your instructions. The live issue is the restraining/domestic order position: sealed order, proof of service, and breach location material. An order extract alone is not enough to treat sealed order or service as proved.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Full sealed restraining order",
+      "solicitorVisibleText": "Please provide full sealed restraining order or confirm in writing why it is not available.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Service proof",
+      "solicitorVisibleText": "Please provide service proof or confirm in writing why it is not available.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Breach location map",
+      "solicitorVisibleText": "Please provide breach location map or confirm in writing why it is not available.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "truth_map",
+      "label": "Evidence truth map",
+      "solicitorVisibleText": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Full sealed restraining order — Missing\n• Service proof — Missing\n• Breach location map — Missing",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "do_not_overstate",
+      "label": "Do-not-overstate warnings",
+      "solicitorVisibleText": "• Do not treat incomplete or blocked proof wording as a concluded outcome. Check the source papers before relying on identity or offence findings.\n• Do not treat an order extract alone as proof of sealed order or service.",
+      "gateStatus": "warning",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "stage150-execution-readiness-gate@1.4.0",
+  "baselineCommit": "da98277c3038b40b2408a7af6a41475e88b21e17",
+  "programmePassSupported": false,
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "freezeAllowed": false,
+  "reasons": [
+    "48 Batch-4 controls are adapter_foundation_only (0 real detectors)",
+    "7 controls deferred_stage300",
+    "No control APPROVED_FOR_SELECTION",
+    "Contract IDs for Batch-4 scaffolds unresolved",
+    "Stage-150 case selection not performed",
+    "partially_implemented never counts as fully exercised"
+  ],
+  "prerequisites": {
+    "registryComplete": true,
+    "detectorImplementationComplete": false,
+    "inputReadinessComplete": false,
+    "denominatorReadinessComplete": false,
+    "adapterReadinessComplete": false,
+    "receiptValidationComplete": false,
+    "contractReadinessComplete": false,
+    "relationshipComplete": true,
+    "protectedAssetsPreserved": true
+  }
+}

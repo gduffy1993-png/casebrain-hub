@@ -1,0 +1,14 @@
+{
+  "root": "artifacts/casebrain-startup-diagnostic",
+  "exists": true,
+  "fileCount": 1,
+  "totalBytes": 9270,
+  "files": [
+    {
+      "path": "artifacts/casebrain-startup-diagnostic/2026-07-24/root-cause-report.md",
+      "size": 9270,
+      "mtime": "2026-07-23T23:12:58.149Z",
+      "sha256": "8a292ea0d011bb2d748247dfb09e2318d24dce3e1333e443499c5fde6d4dae55"
+    }
+  ]
+}

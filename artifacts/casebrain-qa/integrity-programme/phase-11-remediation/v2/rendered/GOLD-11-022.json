@@ -1,0 +1,14 @@
+{
+  "goldId": "GOLD-11-022",
+  "surfaces": [
+    {
+      "surface": "evidence_title",
+      "label": "Evidence title",
+      "solicitorVisibleText": "Evidence title withheld — incomplete quotation or truncated excerpt cannot be shown as a title. Check the source papers.",
+      "gateStatus": "blocked_title",
+      "canCopy": false,
+      "sourceEvidenceAvailable": false,
+      "sourceEvidenceNote": "Controlled synthetic probe — no client bundle on disk."
+    }
+  ]
+}

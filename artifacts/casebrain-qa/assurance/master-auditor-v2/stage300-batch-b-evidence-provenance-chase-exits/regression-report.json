@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "stage300-batch-b-regression@1.1.0",
+  "batchAContractsOk": true,
+  "batch8ContractsOk": true,
+  "batch9ContractsOk": true,
+  "batch10ContractsOk": true,
+  "note": "Batch-B remediation: dualStatus on Batch-8 @1.3.0; chase unresolved ≠ linked edge."
+}

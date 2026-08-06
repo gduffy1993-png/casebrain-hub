@@ -1,0 +1,6 @@
+{
+  "schema_version":"1.0","audiences":{"solicitor":"served native evidence, calculation trails, applications, conflicts and own-client privilege","client":"plain-language own-case and asset-order explanation without third-party/private or co-defendant leakage","court":"authorised schedules, evidence, submissions and orders with state labels","CPS":"lawfully obtained/served material after privilege and confidentiality controls","internal_review":"truth, native-file and leakage audit under access control"},
+  "exits":["view","copy","export","API","composed prose"],
+  "exit_contracts":["native provenance survives all capable exits","rendered-only exits disclose limitations","no formula/display collapse","no audience widening","no cross-matter rows","substantive repair and containment scored separately"],
+  "source_scoring":{"mandatory_finding_recall":"per required financial/procedural state","unsupported_statement_precision":"penalise unsupported attribution and totals","provenance_correctness":"source/member/sheet/cell/message/attachment/date/hash","defendant_matter_isolation":"per person, entity, account and count","audience_leakage":"zero tolerance for privilege, irrelevant third-party data or cross-matter content"}
+}

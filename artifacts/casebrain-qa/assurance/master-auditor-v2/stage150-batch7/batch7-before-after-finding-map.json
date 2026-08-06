@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "batch7-before-after-finding-map@1.0.0",
+  "passA": {
+    "candidateCount": 0,
+    "byControl": {
+      "MAA2-EVS-01-DIMENSION-SEPARATION": 0,
+      "MAA2-ATR-01-DEFENDANT-SEPARATION": 0
+    }
+  },
+  "passB": {
+    "candidateCount": 0,
+    "byControl": {
+      "MAA2-EVS-01-DIMENSION-SEPARATION": 0,
+      "MAA2-ATR-01-DEFENDANT-SEPARATION": 0
+    }
+  },
+  "note": "Not forced to zero. Detector corrections only; CaseBrain wording unrepaired."
+}

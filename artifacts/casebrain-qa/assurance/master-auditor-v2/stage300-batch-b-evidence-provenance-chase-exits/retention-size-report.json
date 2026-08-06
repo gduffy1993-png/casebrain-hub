@@ -1,0 +1,5 @@
+{
+  "schemaVersion": "stage300-batch-b-retention-size@1.0.0",
+  "compactArtifactsCommitted": true,
+  "rawReceiptsGitignored": true
+}

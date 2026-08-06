@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "stage300-canonical-freeze-excluded-regenerable-hashes@1.0.0",
+  "generatedAt": "2026-08-02T00:47:55.217Z",
+  "policy": "Bulk rematerialised solicitor outputs are regenerable and excluded from the canonical freeze packet.",
+  "excludedPaths": [
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2/rematerialised-outputs/",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/rematerialised-outputs/",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/sources/",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-sources/"
+  ],
+  "includedCompactEvidence": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/frozen-membership-v2.json",
+      "sha256": "11f350bc9ee73125b3cd512d3acf6ab745aa2ee56cac8dc0f24de1456757a7f7",
+      "byteLength": 239944
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/candidate-freeze-receipt.json",
+      "sha256": "c4cf4366063b1dbf9b9afb82b2940d6f405dc57925a7ba04ab126ad67ad2aea5",
+      "byteLength": 320
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/membership-freeze-receipt.json",
+      "sha256": "8c147304738ca819028140bf7d8da39fb2df84e49aeccf1abaf0b25a342efb2b",
+      "byteLength": 1297
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/300-270-30-reconciliation.json",
+      "sha256": "bf1d061f124e91a5cc3f35e4f1123333432b19b8ad4cbff0dfe60841383188e4",
+      "byteLength": 1389
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/remaining-review-honesty-split.json",
+      "sha256": "d812ff1da2d47791c44416bf90277a9d6323fa8a9f0976b3f152a303d5d0b1a2",
+      "byteLength": 258
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/remaining-qualified-legal-review-items.json",
+      "sha256": "4ebac11731e47a1df5d408ccfbc204638c7a769c52cfd565c14cd8c5093086b5",
+      "byteLength": 4092
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/remaining-unresolved-ownership-items.json",
+      "sha256": "32ac973e9a0c65f900a284bbbd386ce5e184c9b204405d131291eb1804e7870c",
+      "byteLength": 100002
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/uniqueness-and-pins-validation-v2.json",
+      "sha256": "2d1a68e7c2ed8ac868f6e0f7c4e37c6f013b089a4fea24e638e6a487148d1112",
+      "byteLength": 9897
+    }
+  ],
+  "remainingHonestySplit": {
+    "genuineQualifiedLegalReviewCount": 2,
+    "unresolvedOwnershipCount": 20,
+    "totalRemaining": 22,
+    "doNotDescribeAllAsLegalReview": true,
+    "technicalDispositionsAreProposalsOnly": true,
+    "reviewerDecisionBlank": true,
+    "reviewerIdentityBlank": true
+  },
+  "qualifiedLegalReviewItemCount": 2,
+  "unresolvedOwnershipItemCount": 20,
+  "unresolvedOwnershipByClass": {
+    "audience_pack_supervisor_source": 20
+  }
+}

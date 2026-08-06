@@ -1,0 +1,337 @@
+{
+  "generatedAt": "2026-07-21T21:44:04.601Z",
+  "freezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "separationRule": "AUTOMATED ONLY — must not be treated as human/solicitor sign-off",
+  "predictions": [
+    {
+      "goldId": "GOLD-11-001",
+      "predictedClassification": "uncertain",
+      "predictedGateStatus": "containmentBlocks=6;copyableUnsafe=0;family=unknown;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "uncertain",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "ESA/phase9 render for cb-found-2001-ellis; outputPresent=true; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-001.md"
+    },
+    {
+      "goldId": "GOLD-11-002",
+      "predictedClassification": "uncertain",
+      "predictedGateStatus": "containmentBlocks=6;copyableUnsafe=0;family=unknown;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "uncertain",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "ESA/phase9 render for cb-found-2002-smith; outputPresent=true; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-002.md"
+    },
+    {
+      "goldId": "GOLD-11-003",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "containmentBlocks=6;copyableUnsafe=0;family=violence;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "possible_fp_overblock",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "ESA/phase9 render for cb-found-2003-nguyen; outputPresent=true; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-003.md"
+    },
+    {
+      "goldId": "GOLD-11-004",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "containmentBlocks=6;copyableUnsafe=0;family=motoring;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "possible_fp_overblock",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "ESA/phase9 render for cb-found-2004-clarke; outputPresent=true; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-004.md"
+    },
+    {
+      "goldId": "GOLD-11-005",
+      "predictedClassification": "uncertain",
+      "predictedGateStatus": "containmentBlocks=6;copyableUnsafe=0;family=unknown;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "uncertain",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "ESA/phase9 render for cb-found-2005-okafor; outputPresent=true; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-005.md"
+    },
+    {
+      "goldId": "GOLD-11-006",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "containmentBlocks=6;copyableUnsafe=0;family=violence;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "possible_fp_overblock",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "ESA/phase9 render for cb-found-2003-nguyen; outputPresent=true; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-006.md"
+    },
+    {
+      "goldId": "GOLD-11-007",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "containmentBlocks=0;copyableUnsafe=0;family=harassment_digital;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "possible_fp_overblock",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "ESA/phase9 render for cb-fresh-001-taylor-brookes; outputPresent=true; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-007.md"
+    },
+    {
+      "goldId": "GOLD-11-008",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "containmentBlocks=6;copyableUnsafe=0;family=violence;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "possible_fp_overblock",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "ESA/phase9 render for cb-fresh-002-jordan-hale; outputPresent=true; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-008.md"
+    },
+    {
+      "goldId": "GOLD-11-009",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "containmentBlocks=6;copyableUnsafe=0;family=theft;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "possible_fp_overblock",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "ESA/phase9 render for pilot-3-marcus-vale; outputPresent=true; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-009.md"
+    },
+    {
+      "goldId": "GOLD-11-010",
+      "predictedClassification": "uncertain",
+      "predictedGateStatus": "containmentBlocks=6;copyableUnsafe=0;family=unknown;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "possible_fp_overblock",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "ESA/phase9 render for proof-pack-01; outputPresent=true; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-010.md"
+    },
+    {
+      "goldId": "GOLD-11-011",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "containmentBlocks=6;copyableUnsafe=0;family=violence;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "possible_fp_overblock",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "ESA/phase9 render for cb-found-2003-nguyen; outputPresent=true; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-011.md"
+    },
+    {
+      "goldId": "GOLD-11-012",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "containmentBlocks=6;copyableUnsafe=0;family=violence;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "possible_fp_overblock",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "ESA/phase9 render for cb-fresh-002-jordan-hale; outputPresent=true; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-012.md"
+    },
+    {
+      "goldId": "GOLD-11-013",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "containmentBlocks=6;copyableUnsafe=0;family=violence;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "possible_fp_overblock",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "ESA/phase9 render for demo-audit-03-bwv-custody; outputPresent=false; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-013.md"
+    },
+    {
+      "goldId": "GOLD-11-014",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "containmentBlocks=5;copyableUnsafe=0;family=violence;classifUnsupported=0",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "possible_fp_overblock",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "ESA/phase9 render for demo-audit-10-bwv-public-order; outputPresent=false; schema=1.1.0",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-014.md"
+    },
+    {
+      "goldId": "GOLD-11-015",
+      "predictedClassification": "accepted",
+      "predictedGateStatus": "display_ok",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "uncertain",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "Gold-manual actual-summary rendered for word-for-word human review; automation does not certify wording.",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-015.md"
+    },
+    {
+      "goldId": "GOLD-11-016",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "mixed_blocked",
+      "predictedCanCopy": false,
+      "predictedFpFnHypothesis": "uncertain",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "Gold-manual actual-summary rendered for word-for-word human review; automation does not certify wording.",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-016.md"
+    },
+    {
+      "goldId": "GOLD-11-017",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "mixed_blocked",
+      "predictedCanCopy": false,
+      "predictedFpFnHypothesis": "uncertain",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "Gold-manual actual-summary rendered for word-for-word human review; automation does not certify wording.",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-017.md"
+    },
+    {
+      "goldId": "GOLD-11-018",
+      "predictedClassification": "accepted",
+      "predictedGateStatus": "display_ok",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "uncertain",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "Gold-manual actual-summary rendered for word-for-word human review; automation does not certify wording.",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-018.md"
+    },
+    {
+      "goldId": "GOLD-11-019",
+      "predictedClassification": "accepted",
+      "predictedGateStatus": "display_ok",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "uncertain",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "Gold-manual actual-summary rendered for word-for-word human review; automation does not certify wording.",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-019.md"
+    },
+    {
+      "goldId": "GOLD-11-020",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "mixed_blocked",
+      "predictedCanCopy": false,
+      "predictedFpFnHypothesis": "uncertain",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "Gold-manual actual-summary rendered for word-for-word human review; automation does not certify wording.",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-020.md"
+    },
+    {
+      "goldId": "GOLD-11-021",
+      "predictedClassification": "unsafe_if_copyable",
+      "predictedGateStatus": "ok",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "possible_fn_leak",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "truncation gate status=ok; canCopy=true",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-021.md"
+    },
+    {
+      "goldId": "GOLD-11-022",
+      "predictedClassification": "accepted",
+      "predictedGateStatus": "ok",
+      "predictedCanCopy": false,
+      "predictedFpFnHypothesis": "possible_fn_leak",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "truncatedTitle=false; safeOk=true",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-022.md"
+    },
+    {
+      "goldId": "GOLD-11-023",
+      "predictedClassification": "review_required",
+      "predictedGateStatus": "other_substantive",
+      "predictedCanCopy": false,
+      "predictedFpFnHypothesis": "neither",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "omit kind=other_substantive; silentLossPrevented=true",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-023.md"
+    },
+    {
+      "goldId": "GOLD-11-024",
+      "predictedClassification": "review_required",
+      "predictedGateStatus": "other_substantive",
+      "predictedCanCopy": false,
+      "predictedFpFnHypothesis": "neither",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "omit kind=other_substantive; silentLossPrevented=true",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-024.md"
+    },
+    {
+      "goldId": "GOLD-11-025",
+      "predictedClassification": "unsafe_if_copyable",
+      "predictedGateStatus": "ok",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "possible_fn_leak",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "placeholder gate=ok",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-025.md"
+    },
+    {
+      "goldId": "GOLD-11-026",
+      "predictedClassification": "uncertain",
+      "predictedGateStatus": "unknown",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "neither",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "hearing.kind=unknown; label=Hearing date not safely extracted",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-026.md"
+    },
+    {
+      "goldId": "GOLD-11-027",
+      "predictedClassification": "accepted",
+      "predictedGateStatus": "same_day",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "neither",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "hearing.kind=same_day; label=Same-day hearing · 21 Jul 2026",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-027.md"
+    },
+    {
+      "goldId": "GOLD-11-028",
+      "predictedClassification": "accepted",
+      "predictedGateStatus": "passed",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "neither",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "hearing.kind=passed; label=Hearing date passed · 1 Jun 2026",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-028.md"
+    },
+    {
+      "goldId": "GOLD-11-029",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "integrity_blocked",
+      "predictedCanCopy": false,
+      "predictedFpFnHypothesis": "neither",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "usable=false; ui.canCopy=false",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-029.md"
+    },
+    {
+      "goldId": "GOLD-11-030",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "integrity_blocked",
+      "predictedCanCopy": false,
+      "predictedFpFnHypothesis": "neither",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "family export gate=integrity_blocked; canCopy=false",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-030.md"
+    },
+    {
+      "goldId": "GOLD-11-031",
+      "predictedClassification": "accepted",
+      "predictedGateStatus": "ok",
+      "predictedCanCopy": true,
+      "predictedFpFnHypothesis": "neither",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "safe line gate=ok; canCopy=true",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-031.md"
+    },
+    {
+      "goldId": "GOLD-11-032",
+      "predictedClassification": "blocked",
+      "predictedGateStatus": "integrity_blocked",
+      "predictedCanCopy": false,
+      "predictedFpFnHypothesis": "neither",
+      "predictedSubstantiveWording": "blocked_not_repaired",
+      "rationale": "family export gate=integrity_blocked; canCopy=false",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-032.md"
+    },
+    {
+      "goldId": "GOLD-11-033",
+      "predictedClassification": "accepted",
+      "predictedGateStatus": "ok",
+      "predictedCanCopy": false,
+      "predictedFpFnHypothesis": "neither",
+      "predictedSubstantiveWording": "not_assessed_by_automation",
+      "rationale": "prov title trunc=false; safeOk=true",
+      "evidenceReference": "artifacts/casebrain-qa/integrity-programme/phase-11/rendered/GOLD-11-033.md"
+    }
+  ]
+}

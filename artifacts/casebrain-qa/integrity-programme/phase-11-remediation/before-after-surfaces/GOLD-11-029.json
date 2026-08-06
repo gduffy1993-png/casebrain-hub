@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-029",
+  "changes": [
+    {
+      "surface": "api_usable_check",
+      "before": {
+        "gateStatus": "consumer_reject",
+        "canCopy": false,
+        "textHash": "39773fef748a",
+        "textPreview": "NOT USABLE — integrity_blocked payload rejected by consumer"
+      },
+      "after": {
+        "gateStatus": "consumer_reject",
+        "canCopy": false,
+        "textHash": "ddd165f3ba47",
+        "textPreview": "NOT USABLE — integrity-blocked response rejected"
+      }
+    }
+  ]
+}

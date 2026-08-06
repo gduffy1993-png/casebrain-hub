@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "batch8-unlock-map@1.0.0",
+  "note": "Could-later-unlock only — Batch-8 does not promote detectors.",
+  "rows": [
+    {
+      "adapterId": "charge_instruments",
+      "couldLaterUnlockControlIds": [
+        "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+        "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+        "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+        "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+        "MAA2-CHG-06-AMENDMENT-HISTORY",
+        "MAA2-CHG-10-WARNING-INSEPARABLE",
+        "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+        "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+        "MAA2-BND-02-INSTRUMENT-STATUS",
+        "MAA2-BND-03-REPLACEMENT-LINKS",
+        "MAA2-BND-04-VERSION-PRECEDENCE"
+      ],
+      "stillBlockedWithout": [
+        "structured chargeInstruments[] with instrumentId/type/wording/count/defendantAllocation",
+        "source document/page identity",
+        "status/version/supersession links"
+      ],
+      "note": "ESA has no chargeInstruments bag — free-text courtNote cannot invent instruments."
+    },
+    {
+      "adapterId": "evidence_units",
+      "couldLaterUnlockControlIds": [
+        "MAA2-ATR-01-DEFENDANT-SEPARATION",
+        "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+        "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+        "MAA2-BND-08-EXTRACT-VS-FULL",
+        "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+        "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+        "MAA2-BND-11-DRAFT-VS-SIGNED",
+        "MAA2-EVS-04-REASON-TAXONOMY"
+      ],
+      "stillBlockedWithout": [
+        "evidenceUnitId / sourceEvidenceId",
+        "subjectDefendantId / personId",
+        "structured draft/final and extract/full relationships",
+        "sourcePage with pageIdentityKnown"
+      ],
+      "note": "Partial rows from fiveAnswers/evidenceStates; IDs and relationships remain null."
+    },
+    {
+      "adapterId": "chronology_events",
+      "couldLaterUnlockControlIds": [
+        "MAA2-CHR-01-EXACT-DATES-TZ",
+        "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+        "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+        "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+        "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE"
+      ],
+      "stillBlockedWithout": [
+        "chronologyEvents[] with eventId/type/timestamp/timezone",
+        "competing-event group IDs",
+        "confidence field"
+      ],
+      "note": "exportVersion.generatedAt is export metadata, not a chronology event."
+    },
+    {
+      "adapterId": "provenance",
+      "couldLaterUnlockControlIds": [
+        "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+        "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+        "MAA2-FID-10-QUOTATION-FIDELITY",
+        "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS"
+      ],
+      "stillBlockedWithout": [
+        "sourcePage / compiledPage",
+        "pageIdentityKnown=true with non-invented pages",
+        "source-document identity distinct from free-text source string"
+      ],
+      "note": "Anchors/notes captured raw; pageIdentityKnown stays false on ESA."
+    },
+    {
+      "adapterId": "chase_relationships",
+      "couldLaterUnlockControlIds": [
+        "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+        "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+        "MAA2-BND-05-MISSING-ATTACHMENTS",
+        "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE"
+      ],
+      "stillBlockedWithout": [
+        "requestId linked by explicit evidenceUnitId",
+        "resolution state ledger",
+        "five-part chase finding schema"
+      ],
+      "note": "Exact-label links only; no free-text similarity joins."
+    },
+    {
+      "adapterId": "exit_snapshots",
+      "couldLaterUnlockControlIds": [
+        "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+        "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+        "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+        "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+        "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL"
+      ],
+      "stillBlockedWithout": [
+        "real view/copy/export/API/PDF/composed/browser payload identity receipts",
+        "structured sendability with unavailableReason per exit"
+      ],
+      "note": "exportVersion/courtNote metadata ≠ real exit payloads; metadata stays partial/unavailable."
+    }
+  ]
+}

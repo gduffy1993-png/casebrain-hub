@@ -1,0 +1,37 @@
+
+> casebrain-hub@0.1.0 build
+> next build
+
+  Ôû▓ Next.js 14.2.15
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+   Using tsconfig file: ./tsconfig.build.json
+   Using tsconfig file: ./tsconfig.build.json
+   Using tsconfig file: ./tsconfig.build.json
+Failed to compile.
+
+node:crypto
+Module build failed: UnhandledSchemeError: Reading from "node:crypto" is not handled by plugins (Unhandled scheme).
+Webpack supports "data:" and "file:" URIs by default.
+You may need an additional plugin to handle "node:" URIs.
+    at C:\Users\gduff\casebrain-hub\node_modules\next\dist\compiled\webpack\bundle5.js:28:401757
+    at Hook.eval [as callAsync] (eval at create (C:\Users\gduff\casebrain-hub\node_modules\next\dist\compiled\webpack\bundle5.js:13:28858), <anonymous>:6:1)
+    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (C:\Users\gduff\casebrain-hub\node_modules\next\dist\compiled\webpack\bundle5.js:13:26012)
+    at Object.processResource (C:\Users\gduff\casebrain-hub\node_modules\next\dist\compiled\webpack\bundle5.js:28:401682)
+    at processResource (C:\Users\gduff\casebrain-hub\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:5308)
+    at iteratePitchingLoaders (C:\Users\gduff\casebrain-hub\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:4667)
+    at runLoaders (C:\Users\gduff\casebrain-hub\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js:1:8590)
+    at NormalModule._doBuild (C:\Users\gduff\casebrain-hub\node_modules\next\dist\compiled\webpack\bundle5.js:28:401544)
+    at NormalModule.build (C:\Users\gduff\casebrain-hub\node_modules\next\dist\compiled\webpack\bundle5.js:28:403572)
+    at C:\Users\gduff\casebrain-hub\node_modules\next\dist\compiled\webpack\bundle5.js:28:82055
+
+Import trace for requested module:
+node:crypto
+./lib/criminal/solicitor-output-gate.ts
+./components/criminal/control-room/ClientExplanationPanel.tsx
+./components/criminal/CaseControlRoom.tsx
+./components/criminal/CriminalCaseView.tsx
+
+
+> Build failed because of webpack errors

@@ -1,0 +1,1920 @@
+{
+  "schemaVersion": "batch9-behavioural-contract-report@1.0.0",
+  "genuineBehaviouralContractsExecuted": 148,
+  "controlCount": 37,
+  "fixtureKindsExecuted": {
+    "positive": 37,
+    "negative": 37,
+    "unavailable": 37,
+    "mutation": 37
+  },
+  "totalExecutions": 148,
+  "traces": [
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHG_01_RECORDED_SOURCE_VISIBLE"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "charge_instruments adapter not eligible — structured chargeInstruments[] with sourceDocument absent"
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "charge_instruments adapter not eligible — structured chargeInstruments[] with sourceDocument absent"
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHG_02_DEFENDANT_COUNT_ALLOC"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "charge_instruments adapter not eligible — count/defendantAllocation structured fields absent"
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "charge_instruments adapter not eligible — count/defendantAllocation structured fields absent"
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHG_04_COMPLETE_NOT_TRUNCATED"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "charge_instruments adapter not eligible — exactWording absent"
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHG_04_COMPLETE_NOT_TRUNCATED"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHG_05_OPERATIVE_INSTRUMENT"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "charge_instruments adapter not eligible — status/operative instrument graph absent"
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHG_05_OPERATIVE_INSTRUMENT"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHG_06_AMENDMENT_HISTORY"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "charge_instruments adapter not eligible — amendment/supersession links absent"
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHG_06_AMENDMENT_HISTORY"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHG_10_WARNING_INSEPARABLE"
+      ],
+      "evidenceRefs": [
+        "/exitPayloadReceipts/view",
+        "/chargeInstruments"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — exitPayloadReceipts.*.chargeWarningAttached coupled to instruments absent on ESA"
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHG_10_WARNING_INSEPARABLE"
+      ],
+      "evidenceRefs": [
+        "/exitPayloadReceipts/view",
+        "/chargeInstruments"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_LSL_01_STATEMENT_CLASSIFICATION"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — statementClassification structured legal state absent (prose heuristics forbidden)"
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — statementClassification structured legal state absent (prose heuristics forbidden)"
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_LSL_03_NO_SUBMISSION_TO_FINDING"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — legalStateRole structured field absent (prose heuristics forbidden)"
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — legalStateRole structured field absent (prose heuristics forbidden)"
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_02_INSTRUMENT_STATUS"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "charge_instruments adapter not eligible — instrument status absent"
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_02_INSTRUMENT_STATUS"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_03_REPLACEMENT_LINKS"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "charge_instruments adapter not eligible — replacement links absent"
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_03_REPLACEMENT_LINKS"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_04_VERSION_PRECEDENCE"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "charge_instruments adapter not eligible — version precedence graph absent"
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_04_VERSION_PRECEDENCE"
+      ],
+      "evidenceRefs": [
+        "/chargeInstruments/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_ATR_01_DEFENDANT_SEPARATION"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "evidence_units adapter not eligible — subjectDefendantId/personId and evidenceUnitId absent"
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_ATR_01_DEFENDANT_SEPARATION"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_ATR_08_NO_DEFENDANT_BLEED"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "evidence_units adapter not eligible — defendant identity fields absent"
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_ATR_08_NO_DEFENDANT_BLEED"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_07_ALIAS_SAFE_COLLAPSE"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0",
+        "/fiveAnswersEvidenceRows/1"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "evidence_units adapter not eligible — evidenceUnitId/alias structure incomplete"
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_07_ALIAS_SAFE_COLLAPSE"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0",
+        "/fiveAnswersEvidenceRows/1"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_08_EXTRACT_VS_FULL"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "evidence_units adapter not eligible — extract/full-capable units absent"
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_08_EXTRACT_VS_FULL"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_09_STILL_CLIP_VS_MASTER"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "evidence_units adapter not eligible — modality/identity incomplete for still≠master"
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_09_STILL_CLIP_VS_MASTER"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_10_RECORDING_VS_TRANSCRIPT"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "evidence_units adapter not eligible — recording/transcript relationship absent"
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_10_RECORDING_VS_TRANSCRIPT"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_11_DRAFT_VS_SIGNED"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "evidence_units adapter not eligible — version-state-relevant units absent"
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_11_DRAFT_VS_SIGNED"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "unresolved",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_EVS_04_REASON_TAXONOMY"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "evidence_units adapter not eligible — complete units with taxonomy reason fields absent"
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "unresolved",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_EVS_04_REASON_TAXONOMY"
+      ],
+      "evidenceRefs": [
+        "/fiveAnswersEvidenceRows/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHR_01_EXACT_DATES_TZ"
+      ],
+      "evidenceRefs": [
+        "/chronologyEvents/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "chronology_events adapter not eligible — structured chronologyEvents absent"
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHR_01_EXACT_DATES_TZ"
+      ],
+      "evidenceRefs": [
+        "/chronologyEvents/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "unresolved",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHR_02_COMPETING_TIMESTAMPS"
+      ],
+      "evidenceRefs": [
+        "/chronologyEvents/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "chronology_events adapter not eligible — competing-event groups absent"
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "unresolved",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHR_02_COMPETING_TIMESTAMPS"
+      ],
+      "evidenceRefs": [
+        "/chronologyEvents/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHR_03_IMPOSSIBLE_CHRONOLOGY"
+      ],
+      "evidenceRefs": [
+        "/chronologyEvents/0",
+        "/chronologyEvents/1"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "chronology_events adapter not eligible — structured events absent"
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHR_03_IMPOSSIBLE_CHRONOLOGY"
+      ],
+      "evidenceRefs": [
+        "/chronologyEvents/0",
+        "/chronologyEvents/1"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHR_04_CUSTODY_INTERVIEW_TIMING"
+      ],
+      "evidenceRefs": [
+        "/chronologyEvents/0",
+        "/chronologyEvents/1"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "chronology_events adapter not eligible — custody/interview clocks absent"
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHR_04_CUSTODY_INTERVIEW_TIMING"
+      ],
+      "evidenceRefs": [
+        "/chronologyEvents/0",
+        "/chronologyEvents/1"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHR_05_HEARING_NOTICE_LIFECYCLE"
+      ],
+      "evidenceRefs": [
+        "/chronologyEvents/0",
+        "/chronologyEvents/1"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "chronology_events adapter not eligible — hearing/notice lifecycle absent"
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHR_05_HEARING_NOTICE_LIFECYCLE"
+      ],
+      "evidenceRefs": [
+        "/chronologyEvents/0",
+        "/chronologyEvents/1"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_SRC_10_SOURCE_VS_COMPILED_PAGE"
+      ],
+      "evidenceRefs": [
+        "/evidenceStates/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "provenance adapter not eligible — genuine sourceDocumentIdentity/page identity absent"
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_SRC_10_SOURCE_VS_COMPILED_PAGE"
+      ],
+      "evidenceRefs": [
+        "/evidenceStates/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_ATR_09_SOURCE_LINKED_LIMITATIONS"
+      ],
+      "evidenceRefs": [
+        "/evidenceStates/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "provenance adapter not eligible — source-linked limitation fields incomplete"
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_ATR_09_SOURCE_LINKED_LIMITATIONS"
+      ],
+      "evidenceRefs": [
+        "/evidenceStates/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_FID_10_QUOTATION_FIDELITY"
+      ],
+      "evidenceRefs": [
+        "/evidenceStates/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — quotationExactText/quotedSpan structured fields absent (page identity alone insufficient)"
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — quotationExactText/quotedSpan structured fields absent (page identity alone insufficient)"
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHR_09_PAGE_DOC_EVIDENCE_TOTALS"
+      ],
+      "evidenceRefs": [
+        "/pageDocEvidenceTotals"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — pageDocEvidenceTotals ledger absent (identity rows alone insufficient)"
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHR_09_PAGE_DOC_EVIDENCE_TOTALS"
+      ],
+      "evidenceRefs": [
+        "/pageDocEvidenceTotals"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHS_02_SPECIFIC_ITEM_REQUEST"
+      ],
+      "evidenceRefs": [
+        "/warningsAndGaps/chaseItems/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "chase_relationships adapter not eligible — requestId/explicit evidenceUnitId/resolutionState incomplete"
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHS_02_SPECIFIC_ITEM_REQUEST"
+      ],
+      "evidenceRefs": [
+        "/warningsAndGaps/chaseItems/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "unresolved",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHS_06_NO_ALIAS_OR_SERVED_DUP"
+      ],
+      "evidenceRefs": [
+        "/warningsAndGaps/chaseItems/0",
+        "/evidenceStates/0",
+        "/evidenceStates/1"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "chase_relationships adapter not eligible — complete chase links absent"
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "unresolved",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_CHS_06_NO_ALIAS_OR_SERVED_DUP"
+      ],
+      "evidenceRefs": [
+        "/warningsAndGaps/chaseItems/0",
+        "/evidenceStates/0",
+        "/evidenceStates/1"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_05_MISSING_ATTACHMENTS"
+      ],
+      "evidenceRefs": [
+        "/warningsAndGaps/chaseItems/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "chase_relationships adapter not eligible — complete chase attachment links absent"
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_05_MISSING_ATTACHMENTS"
+      ],
+      "evidenceRefs": [
+        "/warningsAndGaps/chaseItems/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_12_COMPLETE_VS_PARTIAL_DISCLOSURE"
+      ],
+      "evidenceRefs": [
+        "/warningsAndGaps/chaseItems/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "chase_relationships adapter not eligible — complete vs partial disclosure graph absent"
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_BND_12_COMPLETE_VS_PARTIAL_DISCLOSURE"
+      ],
+      "evidenceRefs": [
+        "/warningsAndGaps/chaseItems/0"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_XEX_01_CHARGE_WARNING_ATTACHED"
+      ],
+      "evidenceRefs": [
+        "/exitPayloadReceipts/copy"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — chargeWarningAttached on genuine exits + instruments required (generic sendability insufficient)"
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — chargeWarningAttached on genuine exits + instruments required (generic sendability insufficient)"
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_XEX_07_NO_SAFE_VIEW_UNSAFE_COPY"
+      ],
+      "evidenceRefs": [
+        "/exitPayloadReceipts/view",
+        "/exitPayloadReceipts/copy"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "exit_snapshots adapter not eligible — genuine view/copy payloads absent"
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_XEX_07_NO_SAFE_VIEW_UNSAFE_COPY"
+      ],
+      "evidenceRefs": [
+        "/exitPayloadReceipts/view",
+        "/exitPayloadReceipts/copy"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_XEX_08_UNAVAILABLE_EXIT_NOT_EXERCISED"
+      ],
+      "evidenceRefs": [
+        "/exportVersion/exportId",
+        "/exportVersion/sendability",
+        "/exportVersion/reviewFooter"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "exit_snapshots adapter produced zero exit records"
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "exit_snapshots adapter produced zero exit records"
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 1,
+      "findingCodes": [
+        "B9_XEX_02_EVIDENCE_PARTIAL_WARNING"
+      ],
+      "evidenceRefs": [
+        "/exitPayloadReceipts/view"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — evidencePartialWarning on genuine exits required (generic sendability insufficient)"
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — evidencePartialWarning on genuine exits required (generic sendability insufficient)"
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "kind": "positive",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "kind": "negative",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "evaluated",
+      "findingCount": 2,
+      "findingCodes": [
+        "B9_XEX_06_QUARANTINE_PARTIAL_TOTAL"
+      ],
+      "evidenceRefs": [
+        "/exitPayloadReceipts/api"
+      ],
+      "missingInputReason": null
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "kind": "unavailable",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — quarantineScope on genuine exits required (generic sendability insufficient)"
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "kind": "mutation",
+      "invokedEvaluateBatch9Control": true,
+      "invokedBuildBatch9ExerciseReceipt": true,
+      "exerciseStatus": "not_exercised",
+      "findingCount": 0,
+      "findingCodes": [],
+      "evidenceRefs": [],
+      "missingInputReason": "unavailable_missing_structured_field — quarantineScope on genuine exits required (generic sendability insufficient)"
+    }
+  ]
+}

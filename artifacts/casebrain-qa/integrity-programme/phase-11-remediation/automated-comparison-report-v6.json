@@ -1,0 +1,1498 @@
+{
+  "generatedAt": "2026-07-22T12:08:08.387Z",
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "parentV5FreezeHash": "3e2479c86769e3cd5342903997eaa548cfdc98a8339a34d0890bfc0178536f5d",
+  "v6FreezeHash": "f41a0fc688bee60f6ffd32a4a24d45d69203f799931cd7142f603dca461c38fd",
+  "separationRule": "AUTOMATED ONLY — excluded from blinded reviewer bundle",
+  "keyGolds": [
+    "GOLD-11-001",
+    "GOLD-11-002",
+    "GOLD-11-003",
+    "GOLD-11-004",
+    "GOLD-11-005",
+    "GOLD-11-006",
+    "GOLD-11-007",
+    "GOLD-11-008",
+    "GOLD-11-009",
+    "GOLD-11-010",
+    "GOLD-11-011",
+    "GOLD-11-012",
+    "GOLD-11-013",
+    "GOLD-11-014",
+    "GOLD-11-018",
+    "GOLD-11-019",
+    "GOLD-11-021",
+    "GOLD-11-022",
+    "GOLD-11-025",
+    "GOLD-11-029",
+    "GOLD-11-033",
+    "GOLD-11-034",
+    "GOLD-11-035",
+    "GOLD-11-036",
+    "GOLD-11-037",
+    "GOLD-11-038",
+    "GOLD-11-039",
+    "GOLD-11-040",
+    "GOLD-11-041",
+    "GOLD-11-042",
+    "GOLD-11-043"
+  ],
+  "comparisons": [
+    {
+      "goldId": "GOLD-11-001",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": false,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "85c4575caf4b",
+          "textPreview": "Controlled evidence reference: cb-found-2001-ellis\nControlled source context (safely redacted for review)\nClient label: "
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "a4db3be8b6db",
+          "textPreview": "Served 4 · Referred 1 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "uncertain",
+          "canCopy": true,
+          "textHash": "95265efb52df",
+          "textPreview": "Offence family not safely resolved — treat wording as provisional."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-002",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": false,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "c54df31b7bf5",
+          "textPreview": "Controlled evidence reference: cb-found-2002-smith\nControlled source context (safely redacted for review)\nClient label: "
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "a4db3be8b6db",
+          "textPreview": "Served 4 · Referred 1 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "uncertain",
+          "canCopy": true,
+          "textHash": "95265efb52df",
+          "textPreview": "Offence family not safely resolved — treat wording as provisional."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-003",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": true,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "d0f3167e687d",
+          "textPreview": "Controlled evidence reference: cb-found-2003-nguyen\nControlled source context (safely redacted for review)\nClient label:"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "2da05461783e",
+          "textPreview": "Served 4 · Referred 2 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-004",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": false,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "aa21227125b8",
+          "textPreview": "Controlled evidence reference: cb-found-2004-clarke\nControlled source context (safely redacted for review)\nClient label:"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "2da05461783e",
+          "textPreview": "Served 4 · Referred 2 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-005",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": false,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "289e690cbd76",
+          "textPreview": "Controlled evidence reference: cb-found-2005-okafor\nControlled source context (safely redacted for review)\nClient label:"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "2da05461783e",
+          "textPreview": "Served 4 · Referred 2 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "uncertain",
+          "canCopy": true,
+          "textHash": "95265efb52df",
+          "textPreview": "Offence family not safely resolved — treat wording as provisional."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-006",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": true,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "d0f3167e687d",
+          "textPreview": "Controlled evidence reference: cb-found-2003-nguyen\nControlled source context (safely redacted for review)\nClient label:"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "2da05461783e",
+          "textPreview": "Served 4 · Referred 2 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-007",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": true,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "c977653d063d",
+          "textPreview": "Controlled evidence reference: cb-fresh-001-taylor-brookes\nControlled source context (safely redacted for review)\nClient"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "03c6c216d412",
+          "textPreview": "Served 4 · Referred 3 · Missing 1 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-008",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": false,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "50ff31dfa114",
+          "textPreview": "Controlled evidence reference: cb-fresh-002-jordan-hale\nControlled source context (safely redacted for review)\nClient la"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "1a6b2f5c7596",
+          "textPreview": "Served 4 · Referred 2 · Missing 1 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-009",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": true,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "d3339b0ccefa",
+          "textPreview": "Controlled evidence reference: pilot-3-marcus-vale\nControlled source context (safely redacted for review)\nClient label: "
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "f7bf572c4c3e",
+          "textPreview": "Served 1 · Referred 0 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-010",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": false,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "97a11856d18c",
+          "textPreview": "Controlled evidence reference: proof-pack-01\nControlled source context (safely redacted for review)\nClient label: Client"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "b013aa9b5ce1",
+          "textPreview": "Served 2 · Referred 1 · Missing 1 · Incomplete 0 · Not safely confirmed 3"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "uncertain",
+          "canCopy": true,
+          "textHash": "95265efb52df",
+          "textPreview": "Offence family not safely resolved — treat wording as provisional."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-011",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": true,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "d0f3167e687d",
+          "textPreview": "Controlled evidence reference: cb-found-2003-nguyen\nControlled source context (safely redacted for review)\nClient label:"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "2da05461783e",
+          "textPreview": "Served 4 · Referred 2 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-012",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": false,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "50ff31dfa114",
+          "textPreview": "Controlled evidence reference: cb-fresh-002-jordan-hale\nControlled source context (safely redacted for review)\nClient la"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "1a6b2f5c7596",
+          "textPreview": "Served 4 · Referred 2 · Missing 1 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-013",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": false,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "554a5ed82b4a",
+          "textPreview": "Controlled evidence reference: demo-audit-03-bwv-custody\nControlled source context (safely redacted for review)\nClient l"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "7fe4f1de3878",
+          "textPreview": "Served 3 · Referred 1 · Missing 4 · Incomplete 0 · Not safely confirmed 2"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-014",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 11,
+        "v2": 9,
+        "v3": 9,
+        "v4": 9,
+        "v5": 9,
+        "v6": 9
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": false,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "bf4a66253dc5",
+          "textPreview": "Controlled evidence reference: demo-audit-10-bwv-public-order\nControlled source context (safely redacted for review)\nCli"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "f4b3e492cc1c",
+          "textPreview": "Served 3 · Referred 1 · Missing 3 · Incomplete 0 · Not safely confirmed 2"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-018",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 9,
+        "v2": 9,
+        "v3": 10,
+        "v4": 11,
+        "v5": 11,
+        "v6": 11
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": true,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "234a2f9f6101",
+          "textPreview": "Controlled evidence reference: CASE-04:demo-audit-02-cctv-stills\nControlled source context (safely redacted for review)\n"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "qualified_solicitor_review_queue",
+          "canCopy": false,
+          "textHash": "85417fcf3fb3",
+          "textPreview": "Client: Devon Walsh\nAllegation: Queued for qualified solicitor review — legally sensitive wording is not available for f"
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "qualified_solicitor_review_queue",
+          "canCopy": false,
+          "textHash": "3595cf6f9543",
+          "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified sol"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-019",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 8,
+        "v2": 8,
+        "v3": 9,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "ed9fb7681455",
+          "textPreview": "Controlled evidence reference: CASE-07:demo-audit-44-bad-redaction\nControlled source context (safely redacted for review"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "7fee4a1e3ef4",
+          "textPreview": "Client: Farah Kent\nAllegation: Stalking, contrary to section 2A of the Protection from Harassment Act 1997"
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "ok",
+          "canCopy": true,
+          "textHash": "a51306ee547d",
+          "textPreview": "The defence asks the court to record that redacted papers are served but the unredacted MG11, redaction schedule, and fu"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-021",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 1,
+        "v2": 1,
+        "v3": 2,
+        "v4": 2,
+        "v5": 2,
+        "v6": 2
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "6e764a4f237a",
+          "textPreview": "Controlled evidence reference: SYN-TRUNC-01\nControlled synthetic technical control — independent expected-truth source ("
+        },
+        {
+          "surface": "copy_preview",
+          "gateStatus": "boundary_blocked",
+          "canCopy": false,
+          "textHash": "604cfb0eaa5e",
+          "textPreview": "Item: Evidence-status wording (1)\nStatus: Copy unavailable\nReason: Text is cut off mid-word and must not be copied until"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-022",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 1,
+        "v2": 1,
+        "v3": 2,
+        "v4": 2,
+        "v5": 2,
+        "v6": 2
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": false,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "da24fa57d2a6",
+          "textPreview": "Controlled evidence reference: SYN-TRUNC-TITLE-01\nControlled synthetic technical control — independent expected-truth so"
+        },
+        {
+          "surface": "evidence_title",
+          "gateStatus": "blocked_title",
+          "canCopy": false,
+          "textHash": "f3fb7c4a1613",
+          "textPreview": "Evidence title withheld — incomplete quotation or truncated excerpt cannot be shown as a title. Check the source papers."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-025",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 1,
+        "v2": 1,
+        "v3": 2,
+        "v4": 2,
+        "v5": 2,
+        "v6": 2
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": false,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "53b660a3f24c",
+          "textPreview": "Controlled evidence reference: SYN-RR-PLACEHOLDER-01\nControlled synthetic technical control — independent expected-truth"
+        },
+        {
+          "surface": "copy_preview",
+          "gateStatus": "integrity_blocked",
+          "canCopy": false,
+          "textHash": "13223acf7263",
+          "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Unresolved placeholder text must not be copied."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-029",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 2,
+        "v2": 2,
+        "v3": 2,
+        "v4": 2,
+        "v5": 2,
+        "v6": 2
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": false,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "39a935364af4",
+          "textPreview": "Controlled evidence reference: SYN-API-BLOCK-01\nControlled synthetic technical control — independent expected-truth sour"
+        },
+        {
+          "surface": "api_blocked_banner",
+          "gateStatus": "integrity_blocked",
+          "canCopy": false,
+          "textHash": "c9bd5dd3a652",
+          "textPreview": "Copy and send are unavailable for this output. Review the source papers before relying on or sending this content."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-033",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 1,
+        "v2": 1,
+        "v3": 2,
+        "v4": 2,
+        "v5": 2,
+        "v6": 2
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "changedV3toV4": true,
+      "changedV4toV5": false,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "f933a8efb5ab",
+          "textPreview": "Controlled evidence reference: SYN-PROV-TITLE-01\nControlled synthetic technical control — independent expected-truth sou"
+        },
+        {
+          "surface": "evidence_title",
+          "gateStatus": "blocked_title",
+          "canCopy": false,
+          "textHash": "f3fb7c4a1613",
+          "textPreview": "Evidence title withheld — incomplete quotation or truncated excerpt cannot be shown as a title. Check the source papers."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-034",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 11,
+        "v5": 11,
+        "v6": 11
+      },
+      "changedV1toV2": false,
+      "changedV2toV3": false,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "80244125c05c",
+          "textPreview": "Controlled evidence reference: CASE-03:demo-audit-27-custody-pace-missing\nControlled source context (safely redacted for"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "3e0f65d120d0",
+          "textPreview": "Client: Sam Okonkwo\nAllegation: Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers "
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "qualified_solicitor_review_queue",
+          "canCopy": false,
+          "textHash": "3595cf6f9543",
+          "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified sol"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-035",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 11,
+        "v5": 11,
+        "v6": 11
+      },
+      "changedV1toV2": false,
+      "changedV2toV3": false,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "c9abb67382e3",
+          "textPreview": "Controlled evidence reference: CASE-06:demo-audit-04-co-def-interview\nControlled source context (safely redacted for rev"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "qualified_solicitor_review_queue",
+          "canCopy": false,
+          "textHash": "8ff7c23838bf",
+          "textPreview": "Client: Morgan Reid\nAllegation: Queued for qualified solicitor review — legally sensitive wording is not available for f"
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "qualified_solicitor_review_queue",
+          "canCopy": false,
+          "textHash": "3595cf6f9543",
+          "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified sol"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-036",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": false,
+      "changedV2toV3": false,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "216e2f7fd4b0",
+          "textPreview": "Controlled evidence reference: CASE-09:demo-audit-32-restraining-order-breach\nControlled source context (safely redacted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "2f5385a0d519",
+          "textPreview": "Client: Lena Ortiz\nAllegation: Breach of a restraining order, contrary to section 5(5) of the Protection from Harassment"
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "ok",
+          "canCopy": true,
+          "textHash": "eb3500d7473f",
+          "textPreview": "The defence asks the court to record that sealed order and service-proof material remain outstanding on the current pape"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-037",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": false,
+      "changedV2toV3": false,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "e0c68b3371d9",
+          "textPreview": "Controlled evidence reference: CASE-10:demo-audit-41-translated-messages\nControlled source context (safely redacted for "
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "4be43d7d3304",
+          "textPreview": "Client: Aiden Cole\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment Act 1997"
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "ok",
+          "canCopy": true,
+          "textHash": "9214b185dfb1",
+          "textPreview": "The defence asks the court to record that certified translations, interpreter notes, and the original-language export re"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-038",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 11,
+        "v5": 11,
+        "v6": 11
+      },
+      "changedV1toV2": false,
+      "changedV2toV3": false,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": true,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "0a5f213c4668",
+          "textPreview": "Controlled evidence reference: CASE-11:demo-audit-22-youth-interview\nControlled source context (safely redacted for revi"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "qualified_solicitor_review_queue",
+          "canCopy": false,
+          "textHash": "82abff15f9af",
+          "textPreview": "Client: Kian Doyle (youth — 17 years)\nAllegation: Queued for qualified solicitor review — legally sensitive wording is n"
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "qualified_solicitor_review_queue",
+          "canCopy": false,
+          "textHash": "3595cf6f9543",
+          "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified sol"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-039",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 11,
+        "v5": 11,
+        "v6": 11
+      },
+      "changedV1toV2": false,
+      "changedV2toV3": false,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": true,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "8282e5394c9c",
+          "textPreview": "Controlled evidence reference: CASE-12:demo-audit-21-historic-sexual-abe\nControlled source context (safely redacted for "
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "5ac384b07e26",
+          "textPreview": "Client: Daniel Pike\nAllegation: Sexual assault, contrary to section 3 of the Sexual Offences Act 2003"
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "qualified_solicitor_review_queue",
+          "canCopy": false,
+          "textHash": "3595cf6f9543",
+          "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified sol"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-040",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": false,
+      "changedV2toV3": false,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": true,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "6bcf0028725d",
+          "textPreview": "Controlled evidence reference: CASE-13:demo-audit-50-lab-continuity-conflict\nControlled source context (safely redacted "
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "09c3f37b12ff",
+          "textPreview": "Client: Holly Reed\nAllegation: Possession with intent to supply a controlled drug, contrary to section 5(3) of the Misus"
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "ok",
+          "canCopy": true,
+          "textHash": "0f7e841364aa",
+          "textPreview": "The defence asks the court to record that lab intake, continuity chain, and SFR/drugs analysis material remain outstandi"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-041",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": false,
+      "changedV2toV3": false,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": false,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "8dd17b08f5c4",
+          "textPreview": "Controlled evidence reference: CASE-14:demo-audit-16-fraud-bank-statements\nControlled source context (safely redacted fo"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "43320ce68548",
+          "textPreview": "Client: Isla Grant\nAllegation: Fraud by false representation, contrary to section 1 of the Fraud Act 2006"
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "qualified_solicitor_review_queue",
+          "canCopy": false,
+          "textHash": "3595cf6f9543",
+          "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified sol"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-042",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 11,
+        "v5": 11,
+        "v6": 11
+      },
+      "changedV1toV2": false,
+      "changedV2toV3": false,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": true,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "ef090cae4477",
+          "textPreview": "Controlled evidence reference: CASE-15:demo-audit-18-motoring-sjp-thin\nControlled source context (safely redacted for re"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "309e165bc376",
+          "textPreview": "Client: Ella Shaw\nAllegation: Fail to provide driver details, contrary to section 172(2) of the Road Traffic Act 1988"
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "ok",
+          "canCopy": true,
+          "textHash": "341a02d219c0",
+          "textPreview": "The defence asks the court to record that the s172 notice/requirement to identify the driver, keeper position, and servi"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-043",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 10,
+        "v5": 10,
+        "v6": 10
+      },
+      "changedV1toV2": false,
+      "changedV2toV3": false,
+      "changedV3toV4": true,
+      "changedV4toV5": true,
+      "changedV5toV6": true,
+      "v6Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "dd9c41af5f92",
+          "textPreview": "Controlled evidence reference: CASE-16:demo-audit-49-anpr-trap\nControlled source context (safely redacted for review)\nCl"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "qualified_solicitor_review_queue",
+          "canCopy": false,
+          "textHash": "48cb674b1f73",
+          "textPreview": "Client: Maya Singh\nAllegation: Queued for qualified solicitor review — legally sensitive wording is not available for fr"
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "integrity_blocked",
+          "canCopy": false,
+          "textHash": "22fb8ab81c1c",
+          "textPreview": "Item: Evidence-status wording (1)\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked."
+        }
+      ]
+    }
+  ],
+  "carriedForwardSummary": [
+    {
+      "goldId": "GOLD-11-034",
+      "fixtureId": "CASE-03:demo-audit-27-custody-pace-missing",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 11
+    },
+    {
+      "goldId": "GOLD-11-035",
+      "fixtureId": "CASE-06:demo-audit-04-co-def-interview",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 11
+    },
+    {
+      "goldId": "GOLD-11-036",
+      "fixtureId": "CASE-09:demo-audit-32-restraining-order-breach",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 10
+    },
+    {
+      "goldId": "GOLD-11-037",
+      "fixtureId": "CASE-10:demo-audit-41-translated-messages",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 10
+    },
+    {
+      "goldId": "GOLD-11-038",
+      "fixtureId": "CASE-11:demo-audit-22-youth-interview",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 11
+    },
+    {
+      "goldId": "GOLD-11-039",
+      "fixtureId": "CASE-12:demo-audit-21-historic-sexual-abe",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 11
+    },
+    {
+      "goldId": "GOLD-11-040",
+      "fixtureId": "CASE-13:demo-audit-50-lab-continuity-conflict",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 10
+    },
+    {
+      "goldId": "GOLD-11-041",
+      "fixtureId": "CASE-14:demo-audit-16-fraud-bank-statements",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 10
+    },
+    {
+      "goldId": "GOLD-11-042",
+      "fixtureId": "CASE-15:demo-audit-18-motoring-sjp-thin",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 11
+    },
+    {
+      "goldId": "GOLD-11-043",
+      "fixtureId": "CASE-16:demo-audit-49-anpr-trap",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 10
+    }
+  ],
+  "summary": {
+    "keyGoldCount": 31,
+    "changedV4toV5Count": 18,
+    "insufficientAmongKey": 0
+  }
+}

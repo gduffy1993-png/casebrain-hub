@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "stage300-v2-solicitor-boundary-containment-freeze-hash-verify@1.0.0",
+  "source": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2/frozen-membership-v2.json",
+  "sourceSha256": "11f350bc9ee73125b3cd512d3acf6ab745aa2ee56cac8dc0f24de1456757a7f7",
+  "orderedMembershipSha256V2": "23ae1b9df0a09b80b9ab51e3f597aad9103360f5f11c26606e1633b2c82c3c5a",
+  "expectedOrderedMembershipSha256V2": "23ae1b9df0a09b80b9ab51e3f597aad9103360f5f11c26606e1633b2c82c3c5a",
+  "unchanged": true,
+  "membershipCount": 300
+}

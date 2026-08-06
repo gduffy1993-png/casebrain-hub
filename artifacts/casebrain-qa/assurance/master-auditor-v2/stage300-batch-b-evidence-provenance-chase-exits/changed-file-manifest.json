@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "stage300-batch-b-changed-file-manifest@1.1.0",
+  "baselineCommit": "43125b6fa06fa8e5e682d8811b1478b37daf9dfa",
+  "headCommit": "43125b6fa06fa8e5e682d8811b1478b37daf9dfa",
+  "rematerialisation": {
+    "required": false,
+    "priorOutputsPreserved": true,
+    "truthOpenedDuringCapture": false
+  },
+  "paths": [
+    "lib/eval/master-assurance-auditor/v2/stage150/batch8/",
+    "lib/eval/master-assurance-auditor/v2/stage300/batch-a/",
+    "lib/eval/master-assurance-auditor/v2/stage300/batch-b/",
+    "scripts/assurance/emit-maa-v2-stage300-batch-b-evidence-provenance-chase-exits.ts",
+    "scripts/maa-v2-stage300-batch-b-contracts.test.ts",
+    "scripts/maa-v2-stage150-batch8-contracts.test.ts",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-b-evidence-provenance-chase-exits"
+  ]
+}

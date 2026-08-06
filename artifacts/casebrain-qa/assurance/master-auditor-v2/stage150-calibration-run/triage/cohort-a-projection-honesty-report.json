@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "stage150-cohort-a-projection-honesty@1.0.0",
+  "rule": "A projection is not a CaseBrain output. No Cohort-A projection-only finding may be confirmed_app_defect / confirmed_output_intrinsic.",
+  "cohortAOccurrenceCount": 56,
+  "cohortAConfirmedAppDefectCount": 0,
+  "cohortAAllProjectionOnly": true,
+  "genuineCasebrainOutputOnCohortA": false,
+  "projectionMechanism": "structuredPacketToEvalOutput(Batch10StructuredCasePacket)",
+  "controlsTriggered": [
+    "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+    "MAA2-CHS-01-FIVE-PART-FINDING"
+  ],
+  "explanation": "All 56 Cohort A findings are chase-label / empty-copySuggestion probes on projected bags. ESA truth keys exist but were only consulted for context; they do not convert projections into CaseBrain outputs."
+}

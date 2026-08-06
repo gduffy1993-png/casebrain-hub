@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "maa-v2-stage300-batch-b-stop@1.2.0",
+  "status": "BATCH_B_ACCEPTED_STOP_AFTER_PUSH",
+  "baselineCommit": "43125b6fa06fa8e5e682d8811b1478b37daf9dfa",
+  "programmeObjective": "CONTROL_COVERAGE",
+  "workUncommittedAtAcceptancePrep": true,
+  "programmePass": false,
+  "stage300FrozenOrRun": false,
+  "casebrainBehaviourChanged": false,
+  "liveAppModified": false,
+  "rematerialisationPerformed": false,
+  "controlsPromoted": false,
+  "essentialControlsUnlocked": [],
+  "essentialControlsRemainingBlocked": 43,
+  "decisionCard": "BATCH-B-DECISION-CARD.md",
+  "acceptanceReceipt": "BATCH-B-ACCEPTANCE.json",
+  "governanceRelativeDir": "governance/",
+  "dualStatusHonesty": {
+    "rule": "Never treat schema-valid unresolved/unknown data as complete named-control evidence.",
+    "capabilityStatusEqualsNamedPrerequisiteOnly": true,
+    "byFocusAdapter": [
+      {
+        "adapterId": "evidence_unit_identity_with_aliases",
+        "schemaValidEligible": 120,
+        "namedPrerequisiteEligible": 120,
+        "exclusionLedgerEntries": 840
+      },
+      {
+        "adapterId": "source_vs_compiled_page_binding",
+        "schemaValidEligible": 120,
+        "namedPrerequisiteEligible": 120,
+        "provenancePageClassTotals": {
+          "exact_source_page": 840,
+          "compiled_page_only": 0,
+          "document_only": 0,
+          "honest_unknown_page": 0,
+          "invalid_defaulted": 0
+        },
+        "exclusionLedgerEntries": 0
+      },
+      {
+        "adapterId": "chase_item_to_evidence_unit_edges",
+        "schemaValidEligible": 120,
+        "namedPrerequisiteEligible": 0,
+        "chaseRelationshipTotals": {
+          "linked": 480,
+          "unresolved": 257,
+          "unavailable": 0,
+          "ambiguous": 0
+        },
+        "exclusionLedgerEntries": 0
+      },
+      {
+        "adapterId": "view_copy_export_api_pdf_composed_prose_capture",
+        "schemaValidEligible": 120,
+        "namedPrerequisiteEligible": 120,
+        "exclusionLedgerEntries": 0
+      }
+    ]
+  },
+  "chaseHonesty": {
+    "linked": 480,
+    "unresolved": 257,
+    "unavailable": 0,
+    "ambiguous": 0
+  },
+  "remaining43Totals": {
+    "specified_not_implemented": 4,
+    "partially_implemented_pending_calibration": 1,
+    "substantive_evaluator_implemented_pending_review": 6,
+    "adapter_foundation_only": 32
+  },
+  "brain1GuardianBlobUnchanged": true,
+  "stage150FreezesUnchanged": {
+    "orderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+    "candidateFreezeSha256": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202"
+  },
+  "verification": {
+    "batchBContracts": true,
+    "batch8Contracts": true,
+    "buildOk": true,
+    "batchBPathTscErrors": 0
+  },
+  "postAcceptanceStopConditions": {
+    "noMerge": true,
+    "noDeploy": true,
+    "noPass": true,
+    "noStage300FreezeOrRun": true,
+    "noNewCaseGeneration": true,
+    "noDetectorPromotions": true,
+    "noFoundationOnlyBatchWithoutUnlockOrInputOrSafetyGap": true
+  }
+}

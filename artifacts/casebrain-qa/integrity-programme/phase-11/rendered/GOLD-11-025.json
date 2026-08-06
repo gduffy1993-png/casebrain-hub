@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-025",
+  "def": {
+    "goldId": "GOLD-11-025",
+    "stratum": "review_required",
+    "sourceKind": "synthetic_controlled",
+    "fixtureId": "SYN-RR-PLACEHOLDER-01",
+    "selectionReason": "Unresolved placeholder blocked at copy",
+    "reviewFocus": "Placeholder must not be copyable."
+  },
+  "surfaces": [
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Please chase {{MISSING_ITEM}} before the hearing.",
+      "gateStatus": "ok",
+      "canCopy": true
+    }
+  ]
+}

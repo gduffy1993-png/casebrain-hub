@@ -2,12 +2,15 @@ import { NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { buildBundleSourcePayload } from "@/lib/bundle/parse-bundle-display";
+import { buildAuthenticatedMatterCanonicalFromDocuments } from "@/lib/criminal/authenticated-matter-canonical";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
 /**
  * GET /api/criminal/[caseId]/bundle-source
- * Bundle header fields, document health, and MG5/MG6/exhibits snippets for the Strategy UI.
+ * Bundle header fields, document health, MG snippets, and live canonical pipeline
+ * from authenticated uploaded documents (matter-loading path used by Overview / War Room /
+ * Chase / Control Room / truth map).
  */
 export async function GET(_request: Request, { params }: RouteParams) {
   try {
@@ -19,7 +22,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     const { data: caseRow, error: caseErr } = await supabase
       .from("cases")
-      .select("id")
+      .select("id, title")
       .eq("id", caseId)
       .eq("org_id", orgId)
       .maybeSingle();
@@ -40,6 +43,11 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     const rows = docs ?? [];
     const payload = buildBundleSourcePayload(rows);
+    const { canonical } = buildAuthenticatedMatterCanonicalFromDocuments(rows, {
+      caseId,
+      caseTitle: typeof caseRow.title === "string" ? caseRow.title : null,
+      allegation: payload.caseMetadata?.offenceDisplay ?? payload.header?.shortTitle ?? null,
+    });
 
     return NextResponse.json({
       ok: true,
@@ -54,6 +62,8 @@ export async function GET(_request: Request, { params }: RouteParams) {
         sizeProfile: payload.sizeProfile,
         frontMatterScanLength: payload.frontMatterScan.length,
         frontMatterScan: payload.frontMatterScan,
+        /** Live canonical pipeline from uploaded document/page units. */
+        canonical,
       },
     });
   } catch (e) {

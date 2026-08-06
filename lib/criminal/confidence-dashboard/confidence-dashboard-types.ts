@@ -59,6 +59,8 @@ export type ConfidenceDashboardModel = {
   statusLabel: string;
   reviewDisclaimer: string;
   evidenceCounts: EvidenceStateCounts;
+  /** CanonicalMatterStateV1.fingerprint echoed for cross-surface proof. */
+  canonicalFingerprint: string | null;
   outputSendability: OutputSendabilityRow[];
   unresolvedWork: string[];
   riskWarnings: string[];

@@ -58,6 +58,7 @@ export function OverviewSnapshotBoxes({
   evidenceCounts,
   topChaseLabels,
   riskFlags,
+  canonicalFingerprint = null,
 }: {
   evidenceCounts: {
     served: number;
@@ -68,9 +69,15 @@ export function OverviewSnapshotBoxes({
   };
   topChaseLabels: string[];
   riskFlags: string[];
+  /** Echo of CanonicalMatterStateV1.fingerprint — proves shared state consumption. */
+  canonicalFingerprint?: string | null;
 }) {
   return (
-    <section className={`${workflowPilotCard} px-3 py-3 sm:px-4 space-y-2`} data-testid="overview-snapshot-boxes">
+    <section
+      className={`${workflowPilotCard} px-3 py-3 sm:px-4 space-y-2`}
+      data-testid="overview-snapshot-boxes"
+      data-canonical-fingerprint={canonicalFingerprint ?? undefined}
+    >
       <h2 className={workflowSectionTitle}>Case snapshot</h2>
       <div className="grid gap-2 sm:grid-cols-3">
         <SnapshotBox title="Evidence state" testId="five-answers-evidence-state">

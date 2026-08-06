@@ -39,6 +39,11 @@ import { sortCasesForEvalScan } from "@/lib/eval-case-sort";
 import { buildDefencePlanDebugBundleV1, downloadJsonObject } from "@/lib/debug-bundle";
 import { createClient } from "@/lib/supabase/browser";
 import { isCriminalPilotMode, shouldShowInternalDevTools } from "@/lib/pilot-mode";
+import {
+  canUseSolicitorApiResponse,
+  isIntegrityBlockedPayload,
+  solicitorUiStateFromApiBody,
+} from "@/lib/criminal/integrity-blocked-consumer";
 
 const DEV_CASE_PICKER_ENABLED =
   /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_DEV_CASE_PICKER ?? "").trim()) ||
@@ -444,9 +449,23 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
             ok?: boolean;
             reply?: string;
             error?: string;
+            status?: string;
             eval_meta?: EvalMetaV1;
           };
           const em = data.eval_meta && data.eval_meta.v === 1 ? data.eval_meta : null;
+          if (isIntegrityBlockedPayload(data) || !canUseSolicitorApiResponse(data)) {
+            clearTimeout(timeoutId);
+            const ui = solicitorUiStateFromApiBody(data);
+            return {
+              answer: "",
+              error: ui.banner ?? "integrity_blocked",
+              duration_ms,
+              route_tag,
+              http_status: res.status,
+              ok: false,
+              eval_meta: em,
+            };
+          }
           if (res.ok && data.ok && typeof data.reply === "string" && data.reply.trim().length > 0) {
             clearTimeout(timeoutId);
             return { answer: data.reply, duration_ms, route_tag, http_status: res.status, ok: true, eval_meta: em };
@@ -1176,7 +1195,16 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
         }),
       });
       const data = await res.json().catch(() => ({}));
-      if (data.ok && typeof data.reply === "string") {
+      if (isIntegrityBlockedPayload(data) || !canUseSolicitorApiResponse(data)) {
+        const ui = solicitorUiStateFromApiBody(data);
+        setChatMessages((prev) => [
+          ...prev,
+          {
+            role: "assistant",
+            content: ui.banner ?? "Solicitor review required — output integrity check failed.",
+          },
+        ]);
+      } else if (data.ok && typeof data.reply === "string") {
         setChatMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
       } else {
         setChatMessages((prev) => [...prev, { role: "assistant", content: "Sorry, I couldn’t get a response. Try again." }]);

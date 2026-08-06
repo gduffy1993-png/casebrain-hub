@@ -1,0 +1,210 @@
+{
+  "pilotId": "malik-price-150-page",
+  "version": "design-freeze-v1.1",
+  "status": "DESIGN_FROZEN_PENDING_INDEPENDENT_CHARGE_CHECK",
+  "count3Correction": {
+    "correctedAt": "2026-07-22",
+    "changes": [
+      "folding knife → locking knife",
+      "removed 'without good reason or lawful authority' from particulars (statutory defence, not particulars element)"
+    ]
+  },
+  "programmePassSupported": false,
+  "citationPolicy": {
+    "neverSilentlySubstituteSuggestedCitation": true,
+    "specimenWordingMustBeIndependentlyCheckedBeforeGeneration": true,
+    "operativeChargeSource": "DOC-INDICTMENT-AMENDED",
+    "earlierIndictmentMustRemainVisible": true
+  },
+  "specimenCharges": {
+    "checkStatus": "PENDING_INDEPENDENT_LEGAL_CHECK",
+    "doNotGenerateUntilChecked": true,
+    "counts": [
+      {
+        "countId": "COUNT_1_ROBBERY",
+        "defendants": ["Malik Hassan", "Jordan Price"],
+        "operative": true,
+        "specimenWording": "STATEMENT OF OFFENCE — Robbery, contrary to section 8(1) of the Theft Act 1968. PARTICULARS OF OFFENCE — Malik Hassan and Jordan Price, on 3 June 2026, at Merton Parade, Northgate, robbed Daniel Okeke of a mobile telephone and cash.",
+        "citation": "Theft Act 1968 s.8(1)",
+        "authorityUrl": "https://www.legislation.gov.uk/ukpga/1968/60/section/8",
+        "notes": "Joint count. Specimen draft for freeze — must be independently checked before PDF generation."
+      },
+      {
+        "countId": "COUNT_2_S18",
+        "defendants": ["Malik Hassan"],
+        "operative": true,
+        "specimenWording": "STATEMENT OF OFFENCE — Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861. PARTICULARS OF OFFENCE — Malik Hassan, on 3 June 2026, at Merton Parade, Northgate, unlawfully and maliciously wounded Daniel Okeke with intent to do him grievous bodily harm.",
+        "citation": "Offences Against the Person Act 1861 s.18",
+        "authorityUrl": "https://www.legislation.gov.uk/ukpga/Vict/24-25/100/section/18",
+        "notes": "Malik only. Must never be shown as Price's count."
+      },
+      {
+        "countId": "COUNT_3_BLADED_ARTICLE",
+        "defendants": ["Jordan Price"],
+        "operative": true,
+        "specimenWording": "STATEMENT OF OFFENCE — Having an article with a blade or point in a public place, contrary to section 139(1) of the Criminal Justice Act 1988. PARTICULARS OF OFFENCE — Jordan Price, on 3 June 2026, at Merton Parade, Northgate, had with him in a public place a locking knife, being an article which had a blade or was sharply pointed.",
+        "citation": "Criminal Justice Act 1988 s.139(1)",
+        "authorityUrl": "https://www.legislation.gov.uk/ukpga/1988/33/section/139",
+        "notes": "Price only. Use s.139(1) — not CJA 1988 s.1. Particulars use 'locking knife' (not 'folding knife'). 'Without good reason or lawful authority' omitted from particulars — that is a statutory defence, not an element to plead. Separate possession allegation; no inference of use, wound causation, or knowledge of another weapon."
+      }
+    ],
+    "originalIndictmentNonOperative": {
+      "docId": "DOC-INDICTMENT-ORIGINAL",
+      "compiledPages": [20, 21, 22],
+      "wrongIncidentDate": "1 June 2026",
+      "mustSurface": "earlier indictment exists; date discrepancy with amended indictment / true incident date"
+    }
+  },
+  "truthHierarchy": [
+    "court_order_or_amended_indictment_for_operative_charge_and_hearing_position",
+    "native_exhibit_or_primary_record_for_evidential_content",
+    "signed_statement_while_preserving_draft_differences",
+    "disclosure_schedule_for_service_status_only",
+    "mg5_as_prosecution_summary_not_source_substitute",
+    "bundle_index_as_navigation_only"
+  ],
+  "requiredFindings": [
+    {
+      "findingId": "RF-OPERATIVE-AMENDED-CHARGE",
+      "must": "Display amended indictment charges as operative and show that an earlier indictment exists",
+      "provenance": { "docId": "DOC-INDICTMENT-AMENDED", "pages": [23, 24, 25], "alsoShow": { "docId": "DOC-INDICTMENT-ORIGINAL", "pages": [20, 21, 22] } }
+    },
+    {
+      "findingId": "RF-SEPARATE-DEFENDANTS",
+      "must": "Separate Malik's and Price's evidence on every solicitor-visible evidence/chase/summary line",
+      "provenance": "per_row_defendant_scope"
+    },
+    {
+      "findingId": "RF-CCTV-NOT-CLEAR-STABBING",
+      "must": "State that CCTV does not show the stabbing clearly",
+      "provenance": { "docId": "DOC-CCTV-BWV-CAD", "pages": [120, 129] }
+    },
+    {
+      "findingId": "RF-CCTV-CLOCK-PLUS-7",
+      "must": "Preserve the seven-minute CCTV clock issue as an open discrepancy (do not silently correct times)",
+      "provenance": { "docId": "DOC-CCTV-BWV-CAD", "pages": [120, 129] }
+    },
+    {
+      "findingId": "RF-PHONE-THREE-WAY-SPLIT",
+      "must": "Separate telephone ownership, account association, and message authorship",
+      "provenance": { "docId": "DOC-PHONE-ATTRIBUTION", "pages": [138, 144] }
+    },
+    {
+      "findingId": "RF-MASTER-CCTV-MISSING",
+      "must": "Flag master CCTV as missing despite index claiming served; clips may be served",
+      "provenance": {
+        "index": { "docId": "DOC-INDEX", "pages": [2, 6] },
+        "media": { "docId": "DOC-CCTV-BWV-CAD", "pages": [120, 129] }
+      }
+    },
+    {
+      "findingId": "RF-KNIFE-CONTINUITY-BREAK",
+      "must": "Flag continuity break on Price's knife exhibit; do not infer wound causation or use",
+      "provenance": { "docId": "DOC-POLICE-STATEMENTS", "pages": [80, 91] },
+      "defendantScope": "price_only"
+    },
+    {
+      "findingId": "RF-CLOTHING-DESCRIPTION-CHANGE",
+      "must": "Show changing complainant clothing description between draft and signed MG11",
+      "provenance": {
+        "draft": { "docId": "DOC-MG11-DRAFT-C1", "pages": [56, 62] },
+        "signed": { "docId": "DOC-MG11-SIGNED-C1", "pages": [63, 69] }
+      }
+    },
+    {
+      "findingId": "RF-MEDICAL-THREE-QUESTIONS",
+      "must": "Treat medical causation/injury, identity, and intent as separate questions — injury supported; identity and intent not established by medical evidence alone",
+      "provenance": { "docId": "DOC-MEDICAL-FORENSIC", "pages": [130, 137] }
+    },
+    {
+      "findingId": "RF-MALIK-TRANSCRIPT-INCOMPLETE",
+      "must": "Identify missing Malik interview transcript page; present as recording served / transcript incomplete",
+      "provenance": { "docId": "DOC-INTERVIEW-MALIK", "pages": [92, 100], "missingPage": 97 }
+    },
+    {
+      "findingId": "RF-EMAIL-ATTACHMENT-ABSENT",
+      "must": "Identify disclosure email that mentions an attachment absent from the bundle",
+      "provenance": { "docId": "DOC-DISCLOSURE-CORRESPONDENCE", "pages": [145, 148] }
+    },
+    {
+      "findingId": "RF-HEARING-NOTICE-OPERATIVE",
+      "must": "Use latest court notice for operative PTPH; preserve and explain conflict with older MG5 date/time",
+      "provenance": {
+        "operative": { "docId": "DOC-HEARING-NOTICE-PTPH", "pages": [149, 150] },
+        "conflict": { "docId": "DOC-MG5-V1", "pages": [7, 13] }
+      }
+    },
+    {
+      "findingId": "RF-EXHIBIT-LABEL-COLLISION",
+      "must": "Flag NJ/1 exhibit-label collision between knife photograph and property-bag log",
+      "provenance": { "docId": "DOC-POLICE-STATEMENTS", "pages": [80, 91] }
+    },
+    {
+      "findingId": "RF-CUSTODY-INTERVIEW-CLOCK",
+      "must": "Flag custody detention clock conflict with Malik interview start/end times",
+      "provenance": {
+        "custody": { "docId": "DOC-CUSTODY-PACE", "pages": [110, 119] },
+        "interview": { "docId": "DOC-INTERVIEW-MALIK", "pages": [92, 100] }
+      }
+    },
+    {
+      "findingId": "RF-ALIAS-ALREADY-SERVED",
+      "must": "Identify chase/request for an already-served item under an alias label; do not treat as new missing item without reconciliation",
+      "provenance": {
+        "servedMaterial": { "docId": "DOC-PHONE-ATTRIBUTION", "pages": [138, 144] },
+        "request": { "docId": "DOC-DISCLOSURE-CORRESPONDENCE", "pages": [145, 148] }
+      }
+    },
+    {
+      "findingId": "RF-CODEF-NO-BLEED",
+      "must": "Resist co-defendant evidence bleed planted in MG6C / interview materials",
+      "provenance": {
+        "mg6c": { "docId": "DOC-MG6C", "pages": [38, 55] },
+        "interviews": [
+          { "docId": "DOC-INTERVIEW-MALIK", "pages": [92, 100] },
+          { "docId": "DOC-INTERVIEW-PRICE", "pages": [101, 109] }
+        ]
+      }
+    },
+    {
+      "findingId": "RF-PROVENANCE-EVERY-IMPORTANT",
+      "must": "Attach document title/type and compiled page provenance to every important finding"
+    }
+  ],
+  "forbiddenConclusions": [
+    "CCTV proves either defendant committed the robbery",
+    "CCTV clearly shows the stabbing",
+    "Malik authored the messages",
+    "Price knowingly possessed the knife as an inferred fact beyond the separate possession count without source support",
+    "Price used the knife in the robbery or wounding",
+    "Price's knife caused the wound",
+    "Price knew Malik had another weapon",
+    "Medical evidence proves intent",
+    "Medical evidence identifies the assailant",
+    "The signed statement erases the earlier inconsistency",
+    "The master CCTV was served",
+    "The bundle is complete",
+    "Either defendant is guilty",
+    "Either defendant is certain to be convicted",
+    "Either defendant is certain to be acquitted",
+    "Malik's interview is missing (when audio is served)",
+    "Absolute proof / fully proved on current disclosure wording"
+  ],
+  "evidenceStateExpectations": {
+    "cctvClips": "served",
+    "cctvMaster": "missing",
+    "malikInterviewAudio": "served",
+    "malikInterviewTranscript": "incomplete",
+    "priceInterviewAudio": "served",
+    "priceInterviewTranscript": "served",
+    "priceKnifeExhibit": "incomplete_continuity_gap",
+    "phoneExtract": "served_with_attribution_limits",
+    "emailAttachmentReferenced": "missing"
+  },
+  "audienceSeparation": {
+    "client": "plain_calm_non_technical_no_court_cps_strategy",
+    "court": "precise_procedural_source_supported",
+    "cps_chase": "specific_requests_linked_to_evidence_and_provenance",
+    "internal_review": "never_presented_as_client_or_court_wording"
+  }
+}

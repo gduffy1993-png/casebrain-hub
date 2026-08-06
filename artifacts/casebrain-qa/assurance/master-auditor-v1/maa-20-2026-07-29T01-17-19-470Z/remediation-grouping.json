@@ -1,0 +1,54 @@
+[
+  {
+    "rootCauseFamily": "evidence_state",
+    "count": 24,
+    "suggestedRemediation": "Repair evidence-state reconcile or update gold after human review.",
+    "findingIds": [
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-01-truth_map-fabcca1bab8f",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-02-truth_map-596b41fa5f48",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-03-truth_map-596b41fa5f48",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-07-truth_map-998b72c6657a",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-07-truth_map-f933adb40907",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-08-truth_map-7b7fe09d4a8a",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-08-truth_map-d34843a648b5",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-08-truth_map-998b72c6657a",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-08-truth_map-f933adb40907",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-09-truth_map-998b72c6657a",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-09-truth_map-f933adb40907",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-10-truth_map-998b72c6657a",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-10-truth_map-f933adb40907",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-12-truth_map-fabcca1bab8f",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-13-truth_map-998b72c6657a",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-13-truth_map-f933adb40907",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-16-truth_map-998b72c6657a",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-16-truth_map-f933adb40907",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-17-truth_map-998b72c6657a",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-17-truth_map-f933adb40907",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-18-truth_map-998b72c6657a",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-18-truth_map-f933adb40907",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-19-truth_map-998b72c6657a",
+      "MAA-EVIDENCE-STATE-state_mismatch-CASE-19-truth_map-f933adb40907"
+    ]
+  },
+  {
+    "rootCauseFamily": "cross_exit_contradiction",
+    "count": 5,
+    "suggestedRemediation": "enforceCrossExitConsistency before surface emit.",
+    "findingIds": [
+      "MAA-CROSS-EXIT-served_state_contradicted-CASE-01-copy-6f13ee0a91cd",
+      "MAA-CROSS-EXIT-served_state_contradicted-CASE-02-copy-2c84a5dcf002",
+      "MAA-CROSS-EXIT-served_state_contradicted-CASE-03-copy-2c84a5dcf002",
+      "MAA-CROSS-EXIT-served_state_contradicted-CASE-11-copy-988808303ca1",
+      "MAA-CROSS-EXIT-served_state_contradicted-CASE-12-copy-5e44a3358967"
+    ]
+  },
+  {
+    "rootCauseFamily": "cross_surface_consistency",
+    "count": 2,
+    "suggestedRemediation": "Suppress chase for served units; chase incomplete siblings only.",
+    "findingIds": [
+      "MAA-CROSS-SURFACE-served_item_chased-CASE-02-disclosure_chase-0e99216b364b",
+      "MAA-CROSS-SURFACE-served_item_chased-CASE-03-disclosure_chase-0e99216b364b"
+    ]
+  }
+]

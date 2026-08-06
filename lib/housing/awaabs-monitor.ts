@@ -57,6 +57,7 @@ export type AwaabsLawStatus = {
 export function calculateAwaabsLawStatus(
   housingCase: HousingCaseRecord,
   caseTitle: string,
+  opts?: { asOf?: Date },
 ): AwaabsLawStatus {
   const isSocialLandlord =
     housingCase.landlord_type === "social" || housingCase.landlord_type === "council";
@@ -84,7 +85,7 @@ export function calculateAwaabsLawStatus(
     };
   }
 
-  const now = new Date();
+  const now = opts?.asOf ?? new Date();
   const firstReportDate = housingCase.first_report_date
     ? new Date(housingCase.first_report_date)
     : null;

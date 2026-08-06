@@ -10,6 +10,7 @@ import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getOpenAIClient } from "@/lib/openai";
 import { retrieveLawChunks } from "@/lib/criminal/criminal-law-corpus";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 import type { CriminalHearingPrepStructured } from "@/lib/types/casebrain";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
@@ -148,9 +149,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const structured = parseStructured(raw);
   const text = raw.slice(0, MAX_TEXT_LENGTH);
 
-  return NextResponse.json({
+  return gatedJsonResponse("api_hearing_prep", {
     ok: true,
     text,
     ...(structured ? { structured } : {}),
-  }, { status: 200 });
+  });
 }

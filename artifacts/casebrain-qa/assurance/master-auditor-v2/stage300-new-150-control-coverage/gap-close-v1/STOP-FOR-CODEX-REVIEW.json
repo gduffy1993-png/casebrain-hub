@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "stage300-new150-gap-close-stop@1.0.0",
+  "status": "STOP_UNCOMMITTED_GAP_CLOSE_REMATERIALISATION",
+  "baselineCommit": "d03e0a57c279d9e155ea20cf89c2e40b3f6848c9",
+  "headCommit": "d03e0a57c279d9e155ea20cf89c2e40b3f6848c9",
+  "beforeReady": 9,
+  "afterReady": 43,
+  "unlockedCount": 34,
+  "stillBlockedCount": 0,
+  "regressions": 0,
+  "frozen150Unchanged": true,
+  "brain1GuardianUnchanged": true,
+  "contractsOk": true,
+  "buildOk": true,
+  "doNot": [
+    "freeze_or_run_stage_300",
+    "commit_push_merge_deploy",
+    "claim_PASS",
+    "promote_from_fixtures"
+  ]
+}

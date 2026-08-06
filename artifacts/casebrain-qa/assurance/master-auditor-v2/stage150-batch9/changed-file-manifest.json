@@ -1,0 +1,242 @@
+{
+  "schemaVersion": "maa-v2-batch9-changed-file-manifest@1.0.0",
+  "baselineCommit": "1493fe5409006dcea163f65a3ac64463f6060f03",
+  "headCommit": "1493fe5409006dcea163f65a3ac64463f6060f03",
+  "rule": "Literal relative paths only — SHA-256 + byteLength + classification. No wildcards.",
+  "intendedScopePathCount": 31,
+  "intendedScopePaths": [
+    "lib/eval/master-assurance-auditor/v2/stage150/batch9/schemas.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch9/control-specs.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch9/evaluators.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch9/receipts.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch9/disposition.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch9/registry-validation.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch9/behavioural-fixtures.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch9/behavioural-harness.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch9/index.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch8/adapters.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/detectors.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/index.ts",
+    "scripts/assurance/emit-maa-v2-stage150-batch9.ts",
+    "scripts/maa-v2-stage150-batch9-contracts.test.ts",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/STOP-FOR-CODEX-REVIEW.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-499-exercise-receipt-index.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-adapter-applicability-summary.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-behavioural-contract-report.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-candidate-freeze.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-control-dispositions.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-evaluator-class-summary.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-real-exit-capture-gap-register.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-structured-rematerialisation-gap-register.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/brain1-guardian-blob-compare.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/changed-file-manifest.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/stage150-execution-readiness-gate.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/stage150-implementation-capability-matrix.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/stage150-implementation-totals.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/typescript-baseline.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/typescript-delta.json"
+  ],
+  "entryCount": 31,
+  "entries": [
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch9/schemas.ts",
+      "sha256": "0bdb50437246750bc4817607ea1e6a8701a384884f29b21290df6607a311c856",
+      "byteLength": 5240,
+      "classification": "source_lib_batch9"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch9/control-specs.ts",
+      "sha256": "99074715993c4820bc3489cae8d3be26116fd2f534d611a3597ea72de0a5f7bb",
+      "byteLength": 35664,
+      "classification": "source_lib_batch9"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch9/evaluators.ts",
+      "sha256": "1453bc8ced0ee88f1d025da9e7513da1374c953990814859ab3479e14fd0ddcf",
+      "byteLength": 40681,
+      "classification": "source_lib_batch9"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch9/receipts.ts",
+      "sha256": "0714fac0f658638c4b6021ef8dde6d23ddb17b30e00172c6b188a7001da4ab4f",
+      "byteLength": 3548,
+      "classification": "source_lib_batch9"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch9/disposition.ts",
+      "sha256": "592ac63dd1f02c5c70beb39bdba6b4d32c96d75c0b73839f4732d7df57dcf66d",
+      "byteLength": 7762,
+      "classification": "source_lib_batch9"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch9/registry-validation.ts",
+      "sha256": "0dcd6615d5d48972f04124a04644398247f029482fcb8795b67d7a3f07bf3249",
+      "byteLength": 3594,
+      "classification": "source_lib_batch9"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch9/behavioural-fixtures.ts",
+      "sha256": "aeaf5b689ec21f6306f4e020b6a399c198357f248013cb0b2b57a034e025df5c",
+      "byteLength": 41566,
+      "classification": "source_lib_batch9"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch9/behavioural-harness.ts",
+      "sha256": "afcb96da983afd761ffe852d622c5da8b0ee8bf5a64c82ef69fc8be60e6c0486",
+      "byteLength": 8226,
+      "classification": "source_lib_batch9"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch9/index.ts",
+      "sha256": "1320f75a6b4ef26c69f3e00eca72821dd7976a923416f7617fbc00658142f44a",
+      "byteLength": 334,
+      "classification": "source_lib_batch9"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch8/adapters.ts",
+      "sha256": "a3d3bb47144be2b8d12520d32e3ee49901c818efdb4a5bf5d4ad52bb357ab098",
+      "byteLength": 36536,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/detectors.ts",
+      "sha256": "988ad85729434599d6df76e3cf2172c4aa602a5cfd044fd283a979c5462c36b4",
+      "byteLength": 33319,
+      "classification": "source_lib_wire"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/index.ts",
+      "sha256": "0e7dffe0d3281a270e7a57564c30430033ae1c766c2a92b467817e1d0e7636f7",
+      "byteLength": 1515,
+      "classification": "source_lib_wire"
+    },
+    {
+      "relativePath": "scripts/assurance/emit-maa-v2-stage150-batch9.ts",
+      "sha256": "0b7cf1228d770e7b710b37a33d05aee7bc856a050e9953be4cd7418f474cbc70",
+      "byteLength": 25717,
+      "classification": "emit_script"
+    },
+    {
+      "relativePath": "scripts/maa-v2-stage150-batch9-contracts.test.ts",
+      "sha256": "3aeea9eadfe874afb9aa999205155359770550cbac9f9def912d7b70328f25f6",
+      "byteLength": 8978,
+      "classification": "contract_test"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+      "sha256": "6f394724a42dd21aede1c68a46a66b33f493acd7bc824532f367850376b064d7",
+      "byteLength": 908,
+      "classification": "checkpoint_gate"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "2f28ea912206a9807656cc193c5033fe60273c389faf25e819d1d14e934e3ef7",
+      "byteLength": 23729,
+      "classification": "checkpoint_stop"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-499-exercise-receipt-index.json",
+      "sha256": "0f5b4483e1214b59ca6d6bcb4366b80d98dfc0be0f663a8100fb84046fb510fe",
+      "byteLength": 356,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-adapter-applicability-summary.json",
+      "sha256": "3d0553eb69c99be30bd6650958bc16675844895880fec8befc0875abfed7b7fc",
+      "byteLength": 58007,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-behavioural-contract-report.json",
+      "sha256": "1a98b05b8587c2a272d6c289c3779687e85372d42a5aaf7c3b7c6a9a099ff2d2",
+      "byteLength": 60723,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-candidate-freeze.json",
+      "sha256": "d238ca830df57df476882604647644631669491625d56e197b35235852d66057",
+      "byteLength": 497,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-control-dispositions.json",
+      "sha256": "fa6149305d50727d378ee79e243b7ef4a95882bad99a5f14953356d0a8e1552e",
+      "byteLength": 52676,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-evaluator-class-summary.json",
+      "sha256": "4f01a534231999fe4f2f4bdca223bb13d70290b486e080efb5682bedbf4819fb",
+      "byteLength": 40513,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-real-exit-capture-gap-register.json",
+      "sha256": "d4b32d80d391b3348bbca1724e1311702f61cc567e64ae3a8380d4ae5f1f103e",
+      "byteLength": 3296,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-structured-rematerialisation-gap-register.json",
+      "sha256": "9b906cc54f0251b70d6c6ff89b2955fc45d5a91439985dbfaf0ea3688972f849",
+      "byteLength": 2551,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/brain1-guardian-blob-compare.json",
+      "sha256": "4d55ab611304548ed89725eb24d7d75699a4d4fcd0099b1e3e13efa80b046e5d",
+      "byteLength": 2867,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/stage150-execution-readiness-gate.json",
+      "sha256": "6f394724a42dd21aede1c68a46a66b33f493acd7bc824532f367850376b064d7",
+      "byteLength": 908,
+      "classification": "checkpoint_gate"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/stage150-implementation-capability-matrix.json",
+      "sha256": "fe25728520838fff3fa45abc6a91462bd723df3beb3e9193c96fc5187ab96b6c",
+      "byteLength": 172551,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/stage150-implementation-totals.json",
+      "sha256": "d01c1d3891e568d53987a776ef14388a565ccfd30ae47550bcec2d66adde762d",
+      "byteLength": 662,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/typescript-baseline.json",
+      "sha256": "e7fcc8520cd4410eb400378ccf6476f920ec17508deedf16d080065ff3d912a6",
+      "byteLength": 4284,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/typescript-delta.json",
+      "sha256": "5771e3c4bd3decba6f4ca40cef2419fa581ca6d157eec383e0ed492307029eef",
+      "byteLength": 148,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/changed-file-manifest.json",
+      "sha256": "454d0acc6899ff8127fbae3a345a81962847655e46f39e891c633ad7031e103a",
+      "byteLength": 11998,
+      "classification": "checkpoint_manifest"
+    }
+  ],
+  "thisManifest": {
+    "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/changed-file-manifest.json",
+    "sha256": "454d0acc6899ff8127fbae3a345a81962847655e46f39e891c633ad7031e103a",
+    "byteLength": 11998,
+    "classification": "checkpoint_manifest",
+    "hashesDocumentWithThisManifestNull": true
+  },
+  "gitignoredRegenerable": {
+    "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/raw-receipts/batch9-499-exercise-receipts.jsonl",
+    "retainedByIndex": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/batch9-499-exercise-receipt-index.json",
+    "policy": "gitignore_regenerate"
+  },
+  "digestSha256": "a591e23835e7bbc49502a0ed2fbb3bca795757e16e9bacb79fee19187a688f6a"
+}

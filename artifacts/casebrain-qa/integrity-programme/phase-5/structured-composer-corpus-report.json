@@ -1,0 +1,428 @@
+{
+  "programme": "criminal-defence-integrity-corpus",
+  "phase": 5,
+  "generatedAt": "2026-07-21T01:15:29.185Z",
+  "disclaimer": "Phase 5 structured-composer repair — not a corpus PASS. Phase 4 remains safe-but-unresolved. Hidden-by-gate ≠ repaired. Do not merge / do not deploy.",
+  "structuredComposerVersion": "1.0.0",
+  "phase4Closure": {
+    "materialisedMixedCount": 281,
+    "materialisedUncertainCount": 400,
+    "mixedAndUncertainOverlap": 196,
+    "mixedOnly": 85,
+    "uncertainOnly": 204,
+    "overlapCaseIdsSample": [
+      "cb-found-2001-ellis",
+      "cb-found-2002-smith",
+      "cb-found-2005-okafor",
+      "cb-found-2006-carter",
+      "cb-found-2007-morrison",
+      "cb-fresh-002-jordan-hale",
+      "demo-audit-03-bwv-custody",
+      "demo-audit-05-encro-attribution",
+      "demo-audit-10-bwv-public-order",
+      "demo-audit-11-custody-pace-ocr",
+      "demo-audit-14-encro-retail",
+      "demo-audit-15-county-lines-runners",
+      "demo-audit-21-historic-sexual-abe",
+      "demo-audit-25-charge-bundle-mismatch",
+      "demo-audit-27-custody-pace-missing",
+      "demo-audit-28-fraud-subscriber-trap",
+      "generic-provisional-sam-okonkwo",
+      "proof-pack-01",
+      "sc-00001",
+      "sc-00002",
+      "sc-00003",
+      "sc-00007",
+      "sc-00008",
+      "sc-00009",
+      "sc-0000b",
+      "sc-0000d",
+      "sc-0000e",
+      "sc-0000f",
+      "sc-00013",
+      "sc-00014",
+      "sc-00015",
+      "sc-00019",
+      "sc-0001a",
+      "sc-0001b",
+      "sc-0001f",
+      "sc-00020",
+      "sc-00021",
+      "sc-00023",
+      "sc-00025",
+      "sc-00026"
+    ],
+    "coverageTable": [
+      {
+        "family": "harassment_digital",
+        "resolvedCases": 23,
+        "mixedResolvedCases": 23,
+        "uncertainCases": 0,
+        "unsupportedConceptsBlocked": 0,
+        "conditionalConceptsAllowed": 0,
+        "substantiveCopyExportUnavailable": 6
+      },
+      {
+        "family": "harassment_other",
+        "resolvedCases": 8,
+        "mixedResolvedCases": 2,
+        "uncertainCases": 0,
+        "unsupportedConceptsBlocked": 0,
+        "conditionalConceptsAllowed": 0,
+        "substantiveCopyExportUnavailable": 4
+      },
+      {
+        "family": "motoring",
+        "resolvedCases": 47,
+        "mixedResolvedCases": 29,
+        "uncertainCases": 0,
+        "unsupportedConceptsBlocked": 0,
+        "conditionalConceptsAllowed": 0,
+        "substantiveCopyExportUnavailable": 12
+      },
+      {
+        "family": "theft",
+        "resolvedCases": 2,
+        "mixedResolvedCases": 1,
+        "uncertainCases": 0,
+        "unsupportedConceptsBlocked": 0,
+        "conditionalConceptsAllowed": 0,
+        "substantiveCopyExportUnavailable": 0
+      },
+      {
+        "family": "unknown",
+        "resolvedCases": 0,
+        "mixedResolvedCases": 0,
+        "uncertainCases": 400,
+        "unsupportedConceptsBlocked": 1,
+        "conditionalConceptsAllowed": 10,
+        "substantiveCopyExportUnavailable": 378
+      },
+      {
+        "family": "violence",
+        "resolvedCases": 50,
+        "mixedResolvedCases": 30,
+        "uncertainCases": 0,
+        "unsupportedConceptsBlocked": 0,
+        "conditionalConceptsAllowed": 0,
+        "substantiveCopyExportUnavailable": 7
+      }
+    ],
+    "stratifiedFalsePositiveFalseNegativeReview": {
+      "note": "Human review sample across charge families — not auto-PASS. Includes uncertain, mixed, allowed, blocked.",
+      "samples": [
+        {
+          "stratum": "uncertain",
+          "caseId": "cb-found-2001-ellis",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "uncertain",
+          "caseId": "cb-found-2002-smith",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "uncertain",
+          "caseId": "cb-found-2005-okafor",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "uncertain",
+          "caseId": "cb-found-2006-carter",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "mixed_resolved",
+          "caseId": "cb-found-2003-nguyen",
+          "primaryFamily": "violence",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=53;hash=90340bc431ab"
+        },
+        {
+          "stratum": "mixed_resolved",
+          "caseId": "cb-found-2004-clarke",
+          "primaryFamily": "motoring",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=53;hash=de7d5e6f27b5"
+        },
+        {
+          "stratum": "mixed_resolved",
+          "caseId": "cb-fresh-001-taylor-brookes",
+          "primaryFamily": "harassment_digital",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=54;hash=1da15a7d19a8"
+        },
+        {
+          "stratum": "mixed_resolved",
+          "caseId": "crown-court-patterson",
+          "primaryFamily": "violence",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=53;hash=90340bc431ab"
+        },
+        {
+          "stratum": "allowed_clean",
+          "caseId": "cb-found-2003-nguyen",
+          "primaryFamily": "violence",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=53;hash=90340bc431ab"
+        },
+        {
+          "stratum": "allowed_clean",
+          "caseId": "cb-found-2004-clarke",
+          "primaryFamily": "motoring",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=53;hash=de7d5e6f27b5"
+        },
+        {
+          "stratum": "allowed_clean",
+          "caseId": "cb-fresh-001-taylor-brookes",
+          "primaryFamily": "harassment_digital",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=54;hash=1da15a7d19a8"
+        },
+        {
+          "stratum": "allowed_clean",
+          "caseId": "crown-court-patterson",
+          "primaryFamily": "violence",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=53;hash=90340bc431ab"
+        },
+        {
+          "stratum": "blocked_unsupported",
+          "caseId": "fictional-theft-ashleigh-merritt",
+          "primaryFamily": "unknown",
+          "mixed": false,
+          "uncertain": true,
+          "unsupportedBlocked": 1,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=8;hash=7ad6abec8ea0"
+        },
+        {
+          "stratum": "copy_unavailable",
+          "caseId": "cb-found-2001-ellis",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "copy_unavailable",
+          "caseId": "cb-found-2002-smith",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "copy_unavailable",
+          "caseId": "cb-found-2005-okafor",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "copy_unavailable",
+          "caseId": "cb-found-2006-carter",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        }
+      ]
+    },
+    "provenanceRule": "Conditional / source-backed requires evidenceId AND label content supporting the concept — ID alone insufficient."
+  },
+  "adversarialVersusProduction": {
+    "note": "Adversarial probe results only — NOT combined into production defect rates.",
+    "scaleProbe": {
+      "identities": 3000,
+      "method": "Cross-family probe texts per audit family (Phase 4) — containment proof only",
+      "doNotCombineWithProduction": true
+    },
+    "productionMaterialised": {
+      "casesScanned": 530,
+      "stockRawCopyableHits": 42,
+      "stockTruncCopyableHits": 55
+    }
+  },
+  "stockRepair": {
+    "priorPhase3CopyableRaw": 72,
+    "priorPhase3CopyableTruncated": 28,
+    "scannedCopyableRaw": {
+      "reconstructed": 41,
+      "safely_omitted": 1,
+      "still_blocked": 0,
+      "total": 42
+    },
+    "scannedCopyableTruncated": {
+      "reconstructed": 0,
+      "safely_omitted": 55,
+      "still_blocked": 0,
+      "total": 55
+    },
+    "uniqueCasesAffected": 92,
+    "uniqueSurfacesAffected": 1,
+    "note": "Disposition is reconstructed | safely_omitted | still_blocked. Gate-hidden without reconstruction is still_blocked."
+  },
+  "composersMigrated": [
+    "structured-solicitor-output (new v1.0.0)",
+    "buildDisclosureChaseBrief.toCourtLine / draftChaseWording",
+    "pack-aa-messy-parsers MG6 list joins (pipe → semicolon)",
+    "HearingWarRoom sayThis export (pipe → bullets)",
+    "build-client-explanation dedupe + structured field assess",
+    "solicitor-sentence-composer abbreviation-safe truncation"
+  ],
+  "legacyComposersRemaining": [
+    "app/api/criminal/[caseId]/defence-plan-chat/route.ts (eval evidence joins — isolated / gated)",
+    "confidence_dashboard countEvidenceStates (canonical migration ≤ Phase 6)",
+    "overview-presentation count helpers (canonical migration ≤ Phase 6)",
+    "solicitor-matter-state display counts (canonical migration ≤ Phase 6)",
+    "Some disclosure-export assembleFullText section joiners (newline OK; migrate to structured blocks next)"
+  ],
+  "beforeAfterExamples": [
+    {
+      "fixtureId": "cb-fresh-001-taylor-brookes",
+      "ruleId": "sentence.raw_extraction_marker",
+      "before": "len=30;hash=4c54c565ecbb",
+      "after": "len=145;hash=ac6f24e8352d",
+      "disposition": "reconstructed"
+    },
+    {
+      "fixtureId": "cb-fresh-002-jordan-hale",
+      "ruleId": "sentence.raw_extraction_marker",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f",
+      "disposition": "reconstructed"
+    },
+    {
+      "fixtureId": "sc-00032",
+      "ruleId": "sentence.raw_extraction_marker",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f",
+      "disposition": "reconstructed"
+    },
+    {
+      "fixtureId": "sc-0003e",
+      "ruleId": "sentence.raw_extraction_marker",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f",
+      "disposition": "reconstructed"
+    },
+    {
+      "fixtureId": "sc-00044",
+      "ruleId": "sentence.raw_extraction_marker",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f",
+      "disposition": "reconstructed"
+    },
+    {
+      "fixtureId": "sc-00056",
+      "ruleId": "sentence.raw_extraction_marker",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f",
+      "disposition": "reconstructed"
+    },
+    {
+      "fixtureId": "sc-00062",
+      "ruleId": "sentence.raw_extraction_marker",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f",
+      "disposition": "reconstructed"
+    },
+    {
+      "fixtureId": "sc-00068",
+      "ruleId": "sentence.raw_extraction_marker",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f",
+      "disposition": "reconstructed"
+    },
+    {
+      "fixtureId": "sc-0006e",
+      "ruleId": "sentence.raw_extraction_marker",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f",
+      "disposition": "reconstructed"
+    },
+    {
+      "fixtureId": "sim-001",
+      "ruleId": "sentence.truncated_fragment",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null,
+      "disposition": "safely_omitted"
+    },
+    {
+      "fixtureId": "sim-002",
+      "ruleId": "sentence.truncated_fragment",
+      "before": "len=21;hash=4dc9a04370a2",
+      "after": null,
+      "disposition": "safely_omitted"
+    },
+    {
+      "fixtureId": "sim-003",
+      "ruleId": "sentence.raw_extraction_marker",
+      "before": "len=28;hash=e6e25826b9ab",
+      "after": "len=155;hash=14aa2a25de7f",
+      "disposition": "reconstructed"
+    }
+  ],
+  "compatibilityFailures": [],
+  "uncertainFamilyUsabilityImpact": {
+    "uncertainCases": 400,
+    "mixedAndUncertainOverlap": 196,
+    "note": "Uncertain family still fail-closes substantive copy/API/export; neutral non-substantive ack remains usable. Scoped view can keep clean lines."
+  },
+  "canonicalMigrationDeadline": "Phase 6 — confidence dashboard, overview-presentation helpers, solicitor-matter-state"
+}

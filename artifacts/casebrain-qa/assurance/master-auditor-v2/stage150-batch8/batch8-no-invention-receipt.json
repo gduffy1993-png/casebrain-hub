@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "batch8-no-invention-receipt@1.0.0",
+  "truthContentsOpened": false,
+  "inventedFlagsObserved": 0,
+  "receiptValidationIssues": 0,
+  "fabricatedIdPolicy": "reject auto-/gen-/default-/synthetic-/tmp-/uuid- prefixes",
+  "pagePolicy": "sourcePage/compiledPage only when pageIdentityKnown===true; evidenceAnchor is raw text only",
+  "exitPolicy": "exportVersion/courtNote metadata never eligible as real exit payload; overall eligible only when all seven required exits have genuine payloads",
+  "labelLinkPolicy": "exact string equality only; unique match required; ambiguous/zero matches select no target; never Map overwrite/last-row wins",
+  "aggregateEligibilityPolicy": "eligible only when every applicable/required record is complete"
+}

@@ -23,7 +23,8 @@ import { extractCriminalCaseMeta, persistCriminalCaseMeta } from "@/lib/criminal
 import { normalizePracticeArea } from "@/lib/types/casebrain";
 import { expandZipsToFolderCaseGroups } from "@/lib/upload/zip-to-case-groups";
 import { evalPackNameForStorage, inferEvalPackFromTitle, parseEvalPackId } from "@/lib/eval-packs";
-import { extractTextFromFile } from "@/lib/upload/extract-text-from-file";
+import { extractTextAndMetaFromFile } from "@/lib/upload/extract-text-from-file";
+import { toPersistedPageUnits, type ExtractedPageUnit } from "@/lib/upload/pdf-page-units";
 
 export const runtime = "nodejs";
 
@@ -444,9 +445,16 @@ export async function POST(request: Request) {
     
     // Extract text with error handling for corrupted PDFs
     let text: string;
+    let pageCount: number | null = null;
+    let pageUnits: ExtractedPageUnit[] = [];
+    let textLayerLimitation: string | null = null;
     let extractionError: string | null = null;
     try {
-      text = await extractTextFromFile(file, buffer);
+      const meta = await extractTextAndMetaFromFile(file, buffer);
+      text = meta.text;
+      pageCount = meta.pageCount;
+      pageUnits = meta.pageUnits;
+      textLayerLimitation = meta.textLayerLimitation;
     } catch (error) {
       console.error(`[upload] Failed to extract text from ${file.name}`, error);
       extractionError = error instanceof Error ? error.message : "Unknown extraction error";
@@ -472,6 +480,26 @@ export async function POST(request: Request) {
       text,
       env.REDACTION_SECRET,
     );
+
+    // Page units are persisted so later matter loads keep exact-page provenance even
+    // when AI enrichment was unavailable. Redacted with the same secret as the body.
+    const redactedPageUnits = toPersistedPageUnits(
+      pageUnits.map((unit) => ({
+        ...unit,
+        text: redact(unit.text, env.REDACTION_SECRET).redactedText,
+      })),
+    );
+    const pageProvenance =
+      redactedPageUnits.length > 0
+        ? {
+            pages: redactedPageUnits,
+            pageProvenance: {
+              compiledPageCount: redactedPageUnits.length,
+              pagesWithoutTextLayer: redactedPageUnits.filter((p) => p.textLayerEmpty).length,
+              ...(textLayerLimitation ? { textLayerLimitation } : {}),
+            },
+          }
+        : {};
     
     // Only attempt AI extraction if we have valid text (not an error message)
     let extracted;
@@ -493,6 +521,8 @@ export async function POST(request: Request) {
         ...extracted,
         aiSummary: null,
         extractionError,
+        ...(pageCount != null ? { pageCount } : {}),
+        ...pageProvenance,
       };
     } else {
       try {
@@ -509,6 +539,8 @@ export async function POST(request: Request) {
         enrichedExtraction = {
           ...extracted,
           aiSummary: summary,
+          ...(pageCount != null ? { pageCount } : {}),
+          ...pageProvenance,
         };
       } catch (error) {
         console.error(`[upload] Failed to extract case facts from ${file.name}`, error);
@@ -526,6 +558,8 @@ export async function POST(request: Request) {
           ...extracted,
           aiSummary: null,
           extractionError: error instanceof Error ? error.message : "AI extraction failed",
+          ...(pageCount != null ? { pageCount } : {}),
+          ...pageProvenance,
         };
       }
     }
@@ -622,12 +656,16 @@ export async function POST(request: Request) {
     if (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")) {
       try {
         const { summariseBundlePhaseA } = await import("@/lib/bundle-navigator");
-        // Extract page count from text (look for "Page X of Y" patterns)
-        const pageCountMatch = text.match(/(?:page|p\.?)\s*(\d+)\s*(?:of|\/)\s*(\d+)/i) ||
-          text.match(/page\s+(\d+)/gi);
-        const pageCount = pageCountMatch 
-          ? (pageCountMatch[0].match(/\d+/g)?.[1] ? parseInt(pageCountMatch[0].match(/\d+/g)![1]) : undefined)
-          : undefined;
+        // Prefer parser pageCount; fall back to weak text hint only when unknown
+        const pageCountFromText = (() => {
+          const pageCountMatch = text.match(/(?:page|p\.?)\s*(\d+)\s*(?:of|\/)\s*(\d+)/i) ||
+            text.match(/page\s+(\d+)/gi);
+          if (!pageCountMatch) return undefined;
+          return pageCountMatch[0].match(/\d+/g)?.[1]
+            ? parseInt(pageCountMatch[0].match(/\d+/g)![1], 10)
+            : undefined;
+        })();
+        const resolvedPageCount = pageCount ?? pageCountFromText;
         
         // Non-blocking: keep upload fast; bundle summary can complete in background.
         void summariseBundlePhaseA({
@@ -636,7 +674,7 @@ export async function POST(request: Request) {
           bundleId: document.id,
           bundleName: file.name,
           textContent: text.substring(0, 50000), // Limit to first 50k chars for Phase A
-          pageCount,
+          pageCount: resolvedPageCount,
         }).catch((bundleError) => {
           console.error(`[upload] Failed to run bundle analysis for ${file.name}:`, bundleError);
         });

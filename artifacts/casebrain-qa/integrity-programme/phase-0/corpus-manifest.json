@@ -1,0 +1,23 @@
+{
+  "programme": "criminal-defence-integrity-corpus",
+  "phase": 0,
+  "generatedAt": "2026-07-20T23:46:20.464Z",
+  "disclaimer": "Discovery only — fixtures not altered. Diagnostics are redacted. Not a PASS claim.",
+  "N_union_all_lanes": 3530,
+  "N_approved_scale3000": 3000,
+  "N_materialised_truth_keys": 530,
+  "laneCounts": {
+    "messy_scale3000": 3000,
+    "evidence_state_audit": 530,
+    "bundle_fidelity_gold": 102,
+    "family40": 0,
+    "family40_confirmed": 0,
+    "demo_audit_template": 5,
+    "h4_simulator": 322
+  },
+  "sources": {
+    "messySummary": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\messy-pdf-proof-v9-scale3000\\MESSY-PDF-PROOF-SUMMARY.json",
+    "controlledMetrics": "artifacts/casebrain-proof/controlled-3000-proof-metrics.json"
+  },
+  "note": "Programme N for full corpus runs is N_approved_scale3000 when the messy v9 identity list is present; materialised truth-key fixtures are the on-disk baseline scan set."
+}

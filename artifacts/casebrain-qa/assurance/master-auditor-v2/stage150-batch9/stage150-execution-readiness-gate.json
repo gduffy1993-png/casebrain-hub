@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "stage150-execution-readiness-gate@1.8.0",
+  "baselineCommit": "1493fe5409006dcea163f65a3ac64463f6060f03",
+  "programmePassSupported": false,
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "freezeAllowed": false,
+  "reasons": [
+    "98 controls remain partially_implemented",
+    "55 controls remain SNI",
+    "Batch-9 evaluators exist but immutable promotion registry is empty",
+    "Stage-150 sample selection not performed",
+    "currentlyRunnableOnStage150 remains false"
+  ],
+  "prerequisites": {
+    "registryComplete": true,
+    "detectorImplementationComplete": false,
+    "inputReadinessComplete": false,
+    "denominatorReadinessComplete": false,
+    "adapterReadinessComplete": false,
+    "receiptValidationComplete": true,
+    "contractReadinessComplete": true,
+    "relationshipComplete": false,
+    "protectedAssetsPreserved": true
+  }
+}

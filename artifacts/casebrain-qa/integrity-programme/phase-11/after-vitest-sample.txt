@@ -1,0 +1,69 @@
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 C:/Users/gduff/casebrain-hub
+
+ ÔØ» lib/housing/__tests__/supervision-pack.test.ts (4 tests | 1 failed) 27ms
+   ├ù Supervision Pack Generator > should include disclaimer in all outputs 18ms
+     ÔåÆ expected 'This supervision pack is generated frÔÇª' to contain 'not legal advice'
+stderr | lib/criminal/__tests__/criminal-purity.test.ts > Criminal purity + probability gating > criminal missing evidence must not include CFA/retainer/Part36/PAP/quantum items
+[criminal/purity] Stripped civil-only items from criminal output: {
+  context: 'packs/getEvidenceChecklist(merged)',
+  stripped: [
+    { id: 'base-client-id', label: 'Client Identification' },
+    {
+      id: 'base-retainer',
+      label: 'Retainer / CFA / Engagement Letter'
+    },
+    { id: 'base-pre-action', label: 'Pre-Action Correspondence' },
+    { id: 'base-schedule-loss', label: 'Schedule of Loss / Damages' },
+    { id: 'base-funding-docs', label: 'Funding Documentation' }
+  ],
+  totalStripped: 5
+}
+ ÔØ» lib/criminal/__tests__/criminal-purity.test.ts (2 tests | 1 failed) 44ms
+   ├ù Criminal purity + probability gating > probabilities are suppressed when completeness is low 20ms
+     ÔåÆ expected 'Decision support only ÔÇö upload servedÔÇª' to match /insufficient bundle/i
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 4 passed (6)
+   Start at  22:35:08
+   Duration  20.32s (transform 6.72s, setup 0ms, collect 7.38s, tests 71ms, environment 1ms, prepare 3.78s)
+
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ» Failed Tests 2 ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»
+
+ FAIL  lib/criminal/__tests__/criminal-purity.test.ts > Criminal purity + probability gating > probabilities are suppressed when completeness is low
+AssertionError: expected 'Decision support only ÔÇö upload servedÔÇª' to match /insufficient bundle/i
+
+- Expected: 
+/insufficient bundle/i
+
++ Received: 
+"Decision support only ÔÇö upload served prosecution case papers (MG forms, custody/interview records, primary media logs)"
+
+ ÔØ» lib/criminal/__tests__/criminal-purity.test.ts:19:24
+     17|     });
+     18|     expect(res.show).toBe(false);
+     19|     expect(res.reason).toMatch(/insufficient bundle/i);
+       |                        ^
+     20|   });
+     21| });
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[1/2]ÔÄ»
+
+ FAIL  lib/housing/__tests__/supervision-pack.test.ts > Supervision Pack Generator > should include disclaimer in all outputs
+AssertionError: expected 'This supervision pack is generated frÔÇª' to contain 'not legal advice'
+
+Expected: "not legal advice"
+Received: "This supervision pack is generated from extracted evidence and case data. It is procedural guidance only and does not constitute legal advice."
+
+ ÔØ» lib/housing/__tests__/supervision-pack.test.ts:74:24
+     72| 
+     73|     expect(disclaimer).toContain("procedural guidance only");
+     74|     expect(disclaimer).toContain("not legal advice");
+       |                        ^
+     75|   });
+     76| });
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[2/2]ÔÄ»
+

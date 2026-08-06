@@ -1,0 +1,5 @@
+{
+  "schema_version":"1.0","principles":["current public child-justice structures","fictional content only","child-first and developmentally appropriate language","no copied real-case facts","no filler/repeated boilerplate/artificial inflation","counsel/specialist extracts mandatory where relevant"],
+  "density_profiles":{"child_facing":"short sentences, defined terms and usable whitespace without loss of substance","professional_narrative":"280-500 substantive words/page","custody_forms":"authentic entries and legitimate whitespace","message_tables":"8-22 meaningful rows/page","bilingual_material":"aligned purpose and versioning; readability in each controlled language","appendices":"only necessary age, media, participation or YJS schedules"},
+  "future_QA_required":["duplicate/filler/density scan","full-page visual QA","child readability review","Welsh/English source/version/issuer verification by qualified reviewer","reporting-restriction inspection","custody/audio/transcript timing reconciliation","message/CCTV cross-reference check","pagination/index/exhibit validation"],"generation_authorised":false
+}

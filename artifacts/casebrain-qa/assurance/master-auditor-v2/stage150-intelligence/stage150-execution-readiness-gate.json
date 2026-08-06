@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "stage150-execution-readiness-gate@v1.0.0",
+  "generatedAt": "2026-07-30T01:07:31.625Z",
+  "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+  "effectiveDate": "2026-07-29",
+  "programmePassSupported": false,
+  "stage150Started": false,
+  "stage150SampleFrozen": false,
+  "stage150ControlsRun": false,
+  "prerequisites": {
+    "registryComplete": true,
+    "detectorImplementationComplete": false,
+    "inputReadinessComplete": false,
+    "denominatorReadinessComplete": false,
+    "adapterReadinessComplete": false,
+    "receiptValidationComplete": false,
+    "contractReadinessComplete": false,
+    "relationshipOverlapClassificationComplete": true
+  },
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "overallAllowed": false,
+  "blockingReasons": [
+    "detectorImplementationComplete",
+    "inputReadinessComplete",
+    "denominatorReadinessComplete",
+    "adapterReadinessComplete",
+    "receiptValidationComplete",
+    "contractReadinessComplete"
+  ],
+  "counts": {
+    "totalControls": 361,
+    "stage150Controls": 161,
+    "fullyExercisable": 0,
+    "pendingDenominatorApprovals": 161,
+    "unresolvedRelationships": 0
+  },
+  "note": "Overall allowed is false unless every required prerequisite is true. Blocking Stage 150 is expected and correct."
+}

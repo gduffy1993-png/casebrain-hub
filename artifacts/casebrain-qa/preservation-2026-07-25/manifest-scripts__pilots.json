@@ -1,0 +1,56 @@
+{
+  "root": "scripts/pilots",
+  "exists": true,
+  "fileCount": 8,
+  "totalBytes": 524667,
+  "files": [
+    {
+      "path": "scripts/pilots/__pycache__/generate-malik-price-heavy-bundle-v2.cpython-312.pyc",
+      "size": 122250,
+      "mtime": "2026-07-23T22:28:25.524Z",
+      "sha256": "66d75c082f07775a3c020352816982092e1842970219d39f13a4e66e10b547b8"
+    },
+    {
+      "path": "scripts/pilots/__pycache__/generate-malik-price-heavy-bundle.cpython-312.pyc",
+      "size": 96355,
+      "mtime": "2026-07-23T21:53:49.801Z",
+      "sha256": "183640942cd30c1d3cda7a697e8b45b5c0956a132464a42a269825a671b9f763"
+    },
+    {
+      "path": "scripts/pilots/__pycache__/qa-malik-price-heavy-bundle-v2.cpython-311.pyc",
+      "size": 43319,
+      "mtime": "2026-07-23T22:04:31.192Z",
+      "sha256": "7644840000db329318b68cf1dfd03cfa937ea0ecc121ff8ffa57bd68b9e7a017"
+    },
+    {
+      "path": "scripts/pilots/__pycache__/qa-malik-price-heavy-bundle-v2.cpython-312.pyc",
+      "size": 36089,
+      "mtime": "2026-07-23T22:07:25.459Z",
+      "sha256": "88580dd112abd77d3b290daff43669260d4172e0f2c35390e01c82828bfff2bd"
+    },
+    {
+      "path": "scripts/pilots/generate-malik-price-heavy-bundle-v2.py",
+      "size": 104485,
+      "mtime": "2026-07-23T22:28:14.897Z",
+      "sha256": "c27a1aca5460d230684391c5926ee978f5b7f2068a18a2084d70d0a4d0a455a8"
+    },
+    {
+      "path": "scripts/pilots/generate-malik-price-heavy-bundle.py",
+      "size": 86782,
+      "mtime": "2026-07-23T21:07:30.631Z",
+      "sha256": "ea8aba63d130e16da961548cc891f1cb9f189eabcd542d3af344321e75fa8547"
+    },
+    {
+      "path": "scripts/pilots/qa-malik-price-heavy-bundle-v2.py",
+      "size": 23497,
+      "mtime": "2026-07-23T22:07:18.492Z",
+      "sha256": "ebfbbf3f442aa6d6e1682bdadc171417ef1992669750632f834701f123ec8dfe"
+    },
+    {
+      "path": "scripts/pilots/qa-malik-price-heavy-bundle.py",
+      "size": 11890,
+      "mtime": "2026-07-23T21:03:12.602Z",
+      "sha256": "19707cdc6b32687d77f1a6e8ce56dc8493e0164ea19ec30de2ee205f795487ba"
+    }
+  ]
+}

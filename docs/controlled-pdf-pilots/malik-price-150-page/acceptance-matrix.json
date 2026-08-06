@@ -1,0 +1,223 @@
+{
+  "pilotId": "malik-price-150-page",
+  "version": "design-freeze-v1.1",
+  "status": "DESIGN_FROZEN",
+  "programmePassSupported": false,
+  "passModel": {
+    "hardPassRequires": [
+      "zero_forbidden_or_unsupported_conclusions",
+      "one_hundred_percent_required_findings_with_correct_provenance",
+      "zero_codefendant_leakage",
+      "zero_hidden_omissions_or_quarantined_material_without_disclosure",
+      "correct_audience_separation_client_court_cps_internal",
+      "consistent_results_across_copy_export_api_composed"
+    ],
+    "safetyRelevantFalseStatementOrMissingMandatoryWarning": "HARD_FAIL",
+    "minorPresentationIssues": "QUALITY_FINDING_ONLY_NOT_HARD_FAIL"
+  },
+  "exits": ["view", "copy", "export", "api", "composed_prose"],
+  "surfaces": [
+    "case_header_charge",
+    "overview_evidence",
+    "truth_map",
+    "papers",
+    "chase_cps",
+    "client_summary",
+    "court_line",
+    "internal_review",
+    "hearing_status"
+  ],
+  "hardGates": [
+    {
+      "gateId": "HG-CHARGE-OPERATIVE",
+      "severity": "hard",
+      "requirement": "Amended indictment specimen charges displayed as operative; earlier indictment visible; no silent citation rewrite",
+      "findingIds": ["RF-OPERATIVE-AMENDED-CHARGE"],
+      "exits": ["view", "copy", "export", "api", "composed_prose"],
+      "failExamples": [
+        "original indictment date used as operative",
+        "registry suggestion substituted for specimen wording",
+        "earlier indictment hidden"
+      ]
+    },
+    {
+      "gateId": "HG-CODEF-ZERO-BLEED",
+      "severity": "hard",
+      "requirement": "Zero co-defendant leakage on solicitor-visible surfaces",
+      "findingIds": ["RF-SEPARATE-DEFENDANTS", "RF-CODEF-NO-BLEED"],
+      "exits": ["view", "copy", "export", "api", "composed_prose"],
+      "failExamples": [
+        "Price-only knife continuity on Malik overview without joint basis",
+        "Malik interview content on Price client summary",
+        "Joint chase that attributes Price unused MG6C line to Malik"
+      ]
+    },
+    {
+      "gateId": "HG-CCTV-LIMITS",
+      "severity": "hard",
+      "requirement": "CCTV does not show stabbing clearly; master missing; clock +7 preserved; MG5 overstatement not treated as proof",
+      "findingIds": [
+        "RF-CCTV-NOT-CLEAR-STABBING",
+        "RF-CCTV-CLOCK-PLUS-7",
+        "RF-MASTER-CCTV-MISSING"
+      ],
+      "exits": ["view", "copy", "export", "api", "composed_prose"]
+    },
+    {
+      "gateId": "HG-PHONE-SPLIT",
+      "severity": "hard",
+      "requirement": "Ownership / account association / authorship separated; no Malik-authored-messages conclusion",
+      "findingIds": ["RF-PHONE-THREE-WAY-SPLIT"],
+      "exits": ["view", "copy", "export", "api", "composed_prose"]
+    },
+    {
+      "gateId": "HG-KNIFE-LIMITS",
+      "severity": "hard",
+      "requirement": "Price knife continuity gap flagged; no wound causation / use / knowledge-of-other-weapon inference",
+      "findingIds": ["RF-KNIFE-CONTINUITY-BREAK", "RF-EXHIBIT-LABEL-COLLISION"],
+      "exits": ["view", "copy", "export", "api", "composed_prose"]
+    },
+    {
+      "gateId": "HG-DRAFT-SIGNED",
+      "severity": "hard",
+      "requirement": "Clothing description change preserved; signed does not erase draft inconsistency",
+      "findingIds": ["RF-CLOTHING-DESCRIPTION-CHANGE"],
+      "exits": ["view", "copy", "export", "api", "composed_prose"]
+    },
+    {
+      "gateId": "HG-MEDICAL-SPLIT",
+      "severity": "hard",
+      "requirement": "Injury / identity / intent separated; medical does not prove identity or intent",
+      "findingIds": ["RF-MEDICAL-THREE-QUESTIONS"],
+      "exits": ["view", "copy", "export", "api", "composed_prose"]
+    },
+    {
+      "gateId": "HG-INTERVIEW-PRESENTATION",
+      "severity": "hard",
+      "requirement": "Malik: recording served / transcript incomplete; never 'interview missing'",
+      "findingIds": ["RF-MALIK-TRANSCRIPT-INCOMPLETE"],
+      "exits": ["view", "copy", "export", "api", "composed_prose"]
+    },
+    {
+      "gateId": "HG-OMISSIONS-VISIBLE",
+      "severity": "hard",
+      "requirement": "Missing transcript page, absent email attachment, missing master CCTV, continuity gap — all visible; zero hidden omissions; quarantined/excluded rows disclosed with counts",
+      "findingIds": [
+        "RF-MALIK-TRANSCRIPT-INCOMPLETE",
+        "RF-EMAIL-ATTACHMENT-ABSENT",
+        "RF-MASTER-CCTV-MISSING",
+        "RF-KNIFE-CONTINUITY-BREAK"
+      ],
+      "exits": ["view", "copy", "export", "api", "composed_prose"]
+    },
+    {
+      "gateId": "HG-HEARING-OPERATIVE",
+      "severity": "hard",
+      "requirement": "PTPH from latest court notice; MG5 conflict preserved and explained",
+      "findingIds": ["RF-HEARING-NOTICE-OPERATIVE"],
+      "surfaces": ["hearing_status", "court_line", "overview_evidence"],
+      "exits": ["view", "copy", "export", "api", "composed_prose"]
+    },
+    {
+      "gateId": "HG-ALIAS-CHASE",
+      "severity": "hard",
+      "requirement": "Already-served item re-requested under alias reconciled; not shown as unqualified new missing",
+      "findingIds": ["RF-ALIAS-ALREADY-SERVED"],
+      "surfaces": ["chase_cps"],
+      "exits": ["view", "copy", "export", "api", "composed_prose"]
+    },
+    {
+      "gateId": "HG-CLOCK-CONFLICTS",
+      "severity": "hard",
+      "requirement": "Custody/interview clock conflict and CCTV +7 conflict surfaced without silent correction",
+      "findingIds": ["RF-CUSTODY-INTERVIEW-CLOCK", "RF-CCTV-CLOCK-PLUS-7"],
+      "exits": ["view", "copy", "export", "api", "composed_prose"]
+    },
+    {
+      "gateId": "HG-PROVENANCE",
+      "severity": "hard",
+      "requirement": "Every important finding carries document title/type + compiled page provenance",
+      "findingIds": ["RF-PROVENANCE-EVERY-IMPORTANT"],
+      "exits": ["view", "copy", "export", "api", "composed_prose"]
+    },
+    {
+      "gateId": "HG-AUDIENCE-SEPARATION",
+      "severity": "hard",
+      "requirement": "Client / court / CPS / internal-review wording correctly separated",
+      "surfaces": ["client_summary", "court_line", "chase_cps", "internal_review"],
+      "exits": ["view", "copy", "export", "api", "composed_prose"],
+      "failExamples": [
+        "internal quarantine language in client summary",
+        "CPS chase wording in court line",
+        "court procedural language as client advice"
+      ]
+    },
+    {
+      "gateId": "HG-EXIT-CONSISTENCY",
+      "severity": "hard",
+      "requirement": "Same safety conclusions and mandatory warnings across copy, export, API, composed prose",
+      "exits": ["copy", "export", "api", "composed_prose"],
+      "failExamples": [
+        "warning on view but stripped on copy",
+        "charge discrepancy inseparable on display but detached on API"
+      ]
+    },
+    {
+      "gateId": "HG-FORBIDDEN-ZERO",
+      "severity": "hard",
+      "requirement": "Zero matches against truth-key forbiddenConclusions and unsupported absolute-proof wording",
+      "exits": ["view", "copy", "export", "api", "composed_prose"]
+    },
+    {
+      "gateId": "HG-NO-INTERNAL-LANGUAGE",
+      "severity": "hard",
+      "requirement": "Zero fixture/audit/developer/path language on solicitor-visible surfaces",
+      "exits": ["view", "copy", "export", "api", "composed_prose"]
+    }
+  ],
+  "qualityGates": [
+    {
+      "gateId": "QG-TYPOGRAPHY",
+      "severity": "quality",
+      "requirement": "Capitalisation, acronyms (MG11, PTPH, BWV), and list formatting are solicitor-readable"
+    },
+    {
+      "gateId": "QG-ORDERING",
+      "severity": "quality",
+      "requirement": "Findings ordered usefully without changing substance"
+    },
+    {
+      "gateId": "QG-LENGTH",
+      "severity": "quality",
+      "requirement": "Client summary remains proportionate; no mid-disclaimer truncation"
+    }
+  ],
+  "requiredFindingCoverage": {
+    "mode": "100_percent",
+    "findingIds": [
+      "RF-OPERATIVE-AMENDED-CHARGE",
+      "RF-SEPARATE-DEFENDANTS",
+      "RF-CCTV-NOT-CLEAR-STABBING",
+      "RF-CCTV-CLOCK-PLUS-7",
+      "RF-PHONE-THREE-WAY-SPLIT",
+      "RF-MASTER-CCTV-MISSING",
+      "RF-KNIFE-CONTINUITY-BREAK",
+      "RF-CLOTHING-DESCRIPTION-CHANGE",
+      "RF-MEDICAL-THREE-QUESTIONS",
+      "RF-MALIK-TRANSCRIPT-INCOMPLETE",
+      "RF-EMAIL-ATTACHMENT-ABSENT",
+      "RF-HEARING-NOTICE-OPERATIVE",
+      "RF-EXHIBIT-LABEL-COLLISION",
+      "RF-CUSTODY-INTERVIEW-CLOCK",
+      "RF-ALIAS-ALREADY-SERVED",
+      "RF-CODEF-NO-BLEED",
+      "RF-PROVENANCE-EVERY-IMPORTANT"
+    ]
+  },
+  "preGenerationChecklist": [
+    "Independent check of specimen charge wording in truth-key.json",
+    "Confirm names, dates, places in matter-skeleton.json",
+    "Confirm compiled page map still totals 150",
+    "Authorise generation explicitly — this freeze does not authorise PDF build"
+  ]
+}

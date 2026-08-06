@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "stage300-version-and-drift-control@1.0.0",
+  "pins": {
+    "appCommitBaseline": "43125b6fa06fa8e5e682d8811b1478b37daf9dfa",
+    "appCommitHeadAtAcceptance": "43125b6fa06fa8e5e682d8811b1478b37daf9dfa",
+    "batchBSchemaVersion": "maa-v2-stage300-batch-b-evidence-provenance-chase-exits@1.0.0",
+    "batch8SchemaVersion": "maa-v2-stage150-batch8-structured-adapter@1.3.0",
+    "essentialControlRegister": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/stage300-essential-control-register.json",
+    "essentialControlRegisterSchema": "stage300-essential-control-register@1.0.0",
+    "orderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+    "candidateFreezeSha256": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202"
+  },
+  "rule": "Any later change must emit a migration/diff receipt. Historical results must never be silently reinterpreted."
+}

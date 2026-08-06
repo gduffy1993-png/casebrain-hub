@@ -1,0 +1,86 @@
+{
+  "goldId": "GOLD-11-011",
+  "surfaces": [
+    {
+      "surface": "overview_counts",
+      "label": "Overview evidence counts",
+      "solicitorVisibleText": "Served 4 · Referred 2 · Missing 0 · Incomplete 0 · Not safely confirmed 0",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for cb-found-2003-nguyen (+ casebrain-output)."
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for cb-found-2003-nguyen (+ casebrain-output)."
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family resolved for this matter.",
+      "gateStatus": "resolved",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for cb-found-2003-nguyen (+ casebrain-output)."
+    },
+    {
+      "surface": "chase_brief",
+      "label": "Disclosure chase list",
+      "solicitorVisibleText": "Total 5\n• CCTV Continuity / provenance\n• CCTV full window / master footage\n• CAD / 999 audio / control-room material\n• Body-worn video (BWV)\n• Officer notes",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for cb-found-2003-nguyen (+ casebrain-output)."
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for cb-found-2003-nguyen (+ casebrain-output)."
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for cb-found-2003-nguyen (+ casebrain-output)."
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for cb-found-2003-nguyen (+ casebrain-output)."
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for cb-found-2003-nguyen (+ casebrain-output)."
+    },
+    {
+      "surface": "family_leak_probe",
+      "label": "Cross-family containment probe",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for cb-found-2003-nguyen (+ casebrain-output)."
+    }
+  ]
+}

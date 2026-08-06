@@ -1,0 +1,36 @@
+{
+  "goldId": "GOLD-11-030",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: SYN-EXPORT-FAMILY-01\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe's own rendered output).\nProbe design: Controlled cross-family leak probe on an export surface\nControlled input construction: Test harness supplies a harassment-matter export line that deliberately references defensive-force / PWITS drugs-supply concepts foreign to the matter's resolved family, independent of any real client bundle.\nExpected behaviour under test: Cross-family wording must be blocked on export (a false negative if it remains copyable).",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "synthetic — controlled technical control",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family resolved for this matter.",
+      "gateStatus": "resolved",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "synthetic — controlled technical control",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "export_preview",
+      "label": "Export preview",
+      "solicitorVisibleText": "Item: Cross-family containment probe (1)\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "synthetic",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

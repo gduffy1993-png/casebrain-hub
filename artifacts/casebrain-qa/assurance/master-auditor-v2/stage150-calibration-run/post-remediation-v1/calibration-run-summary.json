@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "maa-v2-stage150-calibration-run@1.0.0",
+  "runId": "s150-cal-postrem-v1-2026-07-31T17-47-26-721Z",
+  "postRemediation": true,
+  "populationCount": 150,
+  "orderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+  "candidateFreezeSha256": "de2e63b82b0aa37e7db68e736b32198b9d0c397b8e54194ab516aef2e9bf0264",
+  "stage150CalibrationRunCompleted": true,
+  "stage150ExecutionAllowed": false,
+  "programmePassSupported": false,
+  "caseBrainRepaired": false,
+  "applicationRepair": false,
+  "corpusHarnessRemediation": true
+}

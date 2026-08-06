@@ -1,0 +1,76 @@
+{
+  "matterId": "rank2-homicide-harbour-yard",
+  "version": "design-freeze-draft-v0.1",
+  "status": "DRAFT_ACCEPTANCE_DESIGN",
+  "programmePassSupported": false,
+  "audiences": {
+    "solicitor": "complete professional analysis with defendant scope, uncertainty, provenance and review state",
+    "client_D1": "plain calm D1-specific explanation; no D2 privileged/instruction material; allegations not facts",
+    "client_D2": "plain calm D2-specific explanation; no D1 privileged/instruction material; allegations not facts",
+    "court": "precise procedural and source-supported drafting; proposals/applications/opinions not outcomes",
+    "CPS": "specific disclosure/case-management requests without defence privilege, internal strategy or co-defendant instructions",
+    "internal_review": "full risk, conflict, containment and provenance detail clearly labelled internal",
+    "counsel": "mandatory relevant extract for homicide/causation and charge review; privilege/service state explicit",
+    "expert": "mandatory discipline-specific instructions/issues extract; excludes credibility, guilt and material outside authorised scope"
+  },
+  "exits": ["view", "copy", "export", "api", "composed_prose"],
+  "surfaces": [
+    "case_header_charge_state",
+    "overview_evidence",
+    "defendant_evidence_matrix",
+    "truth_provenance_map",
+    "papers",
+    "disclosure_chase",
+    "client_D1_summary",
+    "client_D2_summary",
+    "court_case_management_line",
+    "internal_review",
+    "counsel_causation_extract",
+    "expert_issue_extract",
+    "hearing_status",
+    "admissions_agreed_facts_status"
+  ],
+  "hardGates": [
+    {"gateId":"HG_CHARGE_PENDING","requirement":"All three proposals remain non-operative/pending qualified review across every surface/exit; no silent wording or route substitution.","findingIds":["HF01_CHARGES_PROPOSED"],"audiences":"all","exits":"all"},
+    {"gateId":"HG_DEFENDANT_ISOLATION","requirement":"Zero misattribution and zero unauthorised leakage. Properly served relevant co-defendant allegations may be visible to the relevant solicitor with source, owner, admission owner, service, privilege, admissibility/ruling and permitted-audience state; never rewrite them as the other defendant's admission or established fact.","findingIds":["HF02_D1_D2_SEPARATION"],"audiences":"all","exits":"all"},
+    {"gateId":"HG_VISUAL_LIMIT","requirement":"Occlusion and clock uncertainty preserved; no clear-impact conclusion.","findingIds":["HF03_CCTV_OCCLUDED","HF04_CCTV_CLOCK"],"audiences":"all","exits":"all"},
+    {"gateId":"HG_WITNESS_VERSIONS","requirement":"Draft/signed difference visible and attributed without credibility conclusion.","findingIds":["HF05_WITNESS_VERSION"],"audiences":"all_relevant","exits":"all"},
+    {"gateId":"HG_TORCH_LIMITS","requirement":"Continuity and biology limitations present; no use/causation overclaim.","findingIds":["HF06_TORCH_CONTINUITY","HF07_TORCH_BIOLOGY_LIMIT"],"audiences":"all_relevant","exits":"all"},
+    {"gateId":"HG_PHONE_ATTRIBUTION","requirement":"Device/account/user/authorship separated with missing context visible.","findingIds":["HF08_PHONE_ATTRIBUTION"],"audiences":"all_relevant","exits":"all"},
+    {"gateId":"HG_EXPERT_LIMITS","requirement":"Agreements, disagreements, versions, materials and discipline limits preserved.","findingIds":["HF09_PATHOLOGY_AGREEMENT","HF10_PATHOLOGY_DISAGREEMENT","HF11_TOX_LIMITS"],"audiences":"all_relevant","exits":"all"},
+    {"gateId":"HG_CAUSATION_SEPARATION","requirement":"Factual contribution, medical cause, operating/substantial-cause submission, susceptibility/thin-skull evidence, alleged intervening treatment, expert opinion, party submission, ruling and verdict never collapse. No AI-generated output decides whether treatment, alcohol or anticoagulants break or preserve legal causation.","findingIds":["HF12_CLINICAL_TIME_CONFLICT","HF13_CAUSATION_LAYERS","HF19_NO_CLINICIAN_ACCUSATION"],"audiences":"all","exits":"all"},
+    {"gateId":"HG_ADMISSIONS_STATE","requirement":"Exact proposition, defendant, scope and procedural state retained; no proposal promoted to admitted fact.","findingIds":["HF14_D1_ADMISSION_SCOPE","HF15_AGREED_FACT_STATE"],"audiences":"all_relevant","exits":"all"},
+    {"gateId":"HG_EXPERT_DISCLOSURE","requirement":"Scheduled/referred expert material not shown as substantively served/reviewed.","findingIds":["HF16_EXPERT_UNUSED_STATE"],"audiences":"all_relevant","exits":"all"},
+    {"gateId":"HG_PROVENANCE","requirement":"Every important finding has correct matter/document/version/page/defendant provenance.","findingIds":["HF18_PROVENANCE"],"audiences":"all_relevant","exits":"all"},
+    {"gateId":"HG_AUDIENCE_LEAKAGE","requirement":"Zero defence privilege, co-defendant instructions, internal strategy or inappropriate medical detail in unauthorised outputs.","findingIds":["HF02_D1_D2_SEPARATION"],"audiences":"all","exits":"all"},
+    {"gateId":"HG_EXIT_CONSISTENCY","requirement":"Mandatory limits/warnings and current states remain consistent across view/copy/export/API/composed prose.","findingIds":["HF20_LIMITATIONS_VISIBLE"],"audiences":"all","exits":"all"},
+    {"gateId":"HG_FORBIDDEN_ZERO","requirement":"Zero forbidden findings or unsupported categorical guilt/causation/intent wording.","findingIds":[],"audiences":"all","exits":"all"}
+  ],
+  "sourceLevelScoring": {
+    "mandatoryFindingRecall": "correctly_surfaced_required_findings / applicable_required_findings",
+    "unsupportedStatementPrecision": "supported_or_correctly_qualified_substantive_statements / all_substantive_affirmative_statements",
+    "provenanceCorrectness": "fully_correct_matter_document_version_page_defendant_state_anchors / required_anchors",
+    "defendantMatterIsolation": "zero_misattribution_and_zero_unauthorised_leakage_required_while_allowing_properly_served_relevant_source_backed_allegations_to_authorised_solicitors",
+    "audienceLeakage": "zero_protected_content_in_unauthorised_audience_exit_pairs_required",
+    "substantiveRepairSeparateFromContainment": true,
+    "blockedOutputDoesNotEarnRepairCredit": true
+  },
+  "hardPassIntent": [
+    "100_percent_applicable_mandatory_findings",
+    "zero_forbidden_or_unsupported_safety_statements",
+    "zero_misattribution_and_zero_unauthorised_defendant_or_matter_leakage",
+    "zero_audience_leakage",
+    "correct_provenance_for_every_important_finding",
+    "consistent_state_and_limits_across_all_exits"
+  ],
+  "futureDocumentQualityGates": [
+    "no_filler_repeated_boilerplate_or_artificial_page_inflation",
+    "per_document_purpose_density_and_appendices_match_document_realism_specification",
+    "duplication_scan_complete_for_text_tables_and_images",
+    "density_review_complete_with_justified_exceptions",
+    "full_page_visual_QA_complete_for_every_generated_page_not_sampling_only",
+    "compiled_total_within_250_500_and_allowed_below_360_when_authentic_content_requires"
+  ],
+  "humanReviewRequiredBeforeGeneration": true,
+  "generationAuthorised": false
+}

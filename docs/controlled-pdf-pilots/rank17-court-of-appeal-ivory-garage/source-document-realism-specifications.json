@@ -1,0 +1,104 @@
+{
+  "schema_version":"1.0","matter_id":"R17-IVORY-GARAGE","status":"design-only","matching_rule":"Exactly one specification per planned document ID; no extras.",
+  "specifications":[
+    {
+      "document_id":"S01",
+      "expected_professional_structure_and_purpose":"Controlled appeal cover, people/non-operative counts, trial-to-appeal chronology, grounds, permission, fresh-evidence and order map.",
+      "realistic_page_range_and_information_density":"10-14 pages; 300-500 words per narrative page or 10-22 sourced rows/events per table page.",
+      "required_fields_headings_and_provenance":["matter/version/preparer/reviewer","person/count/trial outcome state","event/source/date","ground/version/status","fresh item/application/ruling","permission/hearing/order","deadline/unknown"],
+      "native_scan_or_media_characteristics":"Born-digital accessible PDF with stable links, bookmarks and controlled repeated headers.",
+      "legitimate_imperfections_and_version_history":"Missing transcript, unresolved filing date and pending ruling retained across dated revisions.",
+      "confidentiality_redaction_and_audience_restrictions":"No privileged advice, sealed content or protected contacts in open orientation; role variants enforce access.",
+      "prohibited_filler_duplication_and_padding":"No copied transcript, generic appeal law, repeated chronology or blank padding.",
+      "document_specific_visual_and_content_checks":["counts and outcomes source-specific","grounds/permission states visible","transcript gaps prominent","fresh evidence not called admitted","deadline inputs sourced","links/redactions safe"]
+    },
+    {
+      "document_id":"S02",
+      "expected_professional_structure_and_purpose":"Historical indictment/count versions, case-management orders, formal admissions, trial exhibit register and witness index.",
+      "realistic_page_range_and_information_density":"16-22 pages; forms/orders at authentic density and indexes 10-24 entries/page.",
+      "required_fields_headings_and_provenance":["court/case/count/version","arraignment/plea","application/ruling/order","admission/maker/scope","exhibit/holder/hash","witness/role/date","service/use","supersession"],
+      "native_scan_or_media_characteristics":"Certified/scanned trial forms and orders with born-digital indexes; native exhibits referenced, not duplicated.",
+      "legitimate_imperfections_and_version_history":"Amended count, corrected exhibit number and later-perfected order retained with history.",
+      "confidentiality_redaction_and_audience_restrictions":"Trial restrictions and personal data persist; appeal expert/counsel receive only authorised subsets.",
+      "prohibited_filler_duplication_and_padding":"No full trial evidence reproduction, duplicate forms, artificial witness entries or silently normalised count wording.",
+      "document_specific_visual_and_content_checks":["count versions reconcile","admission maker/scope exact","orders not applications","exhibit IDs unique","restrictions visible","historical record not relabelled appellate finding"]
+    },
+    {
+      "document_id":"S03",
+      "expected_professional_structure_and_purpose":"Certified trial transcript extracts with day/session/witness structure, page-line citation and a register of missing, requested, unavailable or corrected transcript.",
+      "realistic_page_range_and_information_density":"35-50 pages; transcript 350-650 words/page with authentic speaker turns; register 8-20 entries/page.",
+      "required_fields_headings_and_provenance":["court/date/day/session","transcriber/certification/version","speaker/witness/oath","page/line/time if available","evidence/submission/judgment type","inaudible/correction","request/status/date","restriction"],
+      "native_scan_or_media_characteristics":"Certified born-digital or scanned transcript; OCR/search layer verified against image; no generated replacement text.",
+      "legitimate_imperfections_and_version_history":"Inaudible markers, corrected speaker labels, missing session and replacement certified page retained transparently.",
+      "confidentiality_redaction_and_audience_restrictions":"Existing reporting/sealing restrictions persist; privileged side notes excluded; page-line extracts limited by role.",
+      "prohibited_filler_duplication_and_padding":"No reconstructed missing speech, duplicate days, repeated extracts, synthetic colloquy or artificially widened spacing.",
+      "document_specific_visual_and_content_checks":["certification/version clear","page-line references stable","speaker labels consistent","missing portions explicitly registered","OCR spot-check passes","no content invented"]
+    },
+    {
+      "document_id":"S04",
+      "expected_professional_structure_and_purpose":"Certified trial rulings, summing-up, jury questions/answers, verdict sheet, sentence remarks and perfected count-level orders.",
+      "realistic_page_range_and_information_density":"22-30 pages; rulings/summing-up 300-550 words/page and verdict/order pages at authentic sparse density.",
+      "required_fields_headings_and_provenance":["court/judge/date","application/ruling scope","direction/count/issue","jury question/time/response","verdict/count/date","conviction/sentence/order","oral/perfected version","signature/seal/service/restriction"],
+      "native_scan_or_media_characteristics":"Born-digital certified records and signed/sealed scans; working copies visibly differentiated.",
+      "legitimate_imperfections_and_version_history":"Corrected jury-question transcription and later-perfected order allowed with version history.",
+      "confidentiality_redaction_and_audience_restrictions":"Reporting restrictions and protected identities carried into appeal copies; public/restricted judgments separated.",
+      "prohibited_filler_duplication_and_padding":"No invented directions/reasons, duplicate summing-up, repeated order, reconstructed verdict or decorative court pages.",
+      "document_specific_visual_and_content_checks":["ruling scope exact","jury material chronological","verdict per count","oral/perfected records reconcile","working draft non-operative","restrictions visible"]
+    },
+    {
+      "document_id":"S05",
+      "expected_professional_structure_and_purpose":"Controlled privileged-advice register, counsel advice, signed grounds, appeal notice, deadline/extension material, filing receipt and service log with waiver boundaries.",
+      "realistic_page_range_and_information_density":"18-25 pages; advice/grounds 300-550 words/page, forms authentic and deadline/service tables 8-18 events/page.",
+      "required_fields_headings_and_provenance":["author/role/date/client","privilege/waiver scope","ground ID/text/version","client authority/signature","notice field/count/order challenged","deadline source/trigger/calculation","late reason/evidence","file/receipt/service","signature validation/filing state"],
+      "native_scan_or_media_characteristics":"Separate access-controlled advice and born-digital signed/filed forms; digital signature validation read-only and logged.",
+      "legitimate_imperfections_and_version_history":"Draft ground omitted from filing, corrected notice, late receipt and expired certificate allowed with history.",
+      "confidentiality_redaction_and_audience_restrictions":"Advice and instructions restricted to defence/counsel/internal authorised review; filed grounds do not waive unrelated content.",
+      "prohibited_filler_duplication_and_padding":"No copied advice into open bundle, generic grounds, duplicate forms, invented filing proof or signature status treated as truth.",
+      "document_specific_visual_and_content_checks":["privileged/open files separated","ground versions and authority clear","filing receipt visible","deadline inputs sourced","waiver narrow","signature/filing/content states distinct"]
+    },
+    {
+      "document_id":"S06",
+      "expected_professional_structure_and_purpose":"Signed fresh-witness account, prior-account search, provenance/contact log, availability record and due-diligence chronology explaining timing.",
+      "realistic_page_range_and_information_density":"12-18 pages; statements 250-450 words/page and chronology/search logs 8-20 events/page.",
+      "required_fields_headings_and_provenance":["maker/role/date/signature","account source/taker","event/knowledge basis","prior account/search result","first contact/date/actor","delay explanation/source","availability/contact restriction","file/service/application link","version"],
+      "native_scan_or_media_characteristics":"Signed statement scan plus born-digital controlled provenance and due-diligence logs.",
+      "legitimate_imperfections_and_version_history":"Changed key-holder detail, uncertain time and delayed signature retained through versions.",
+      "confidentiality_redaction_and_audience_restrictions":"Contact/safety data restricted; served statement and authorised chronology available to parties/court.",
+      "prohibited_filler_duplication_and_padding":"No coached narrative, invented search event, repeated statement, credibility label or fresh/admissible conclusion.",
+      "document_specific_visual_and_content_checks":["versions compared","knowledge source explicit","delay events sourced","availability current","contact redactions safe","credibility/materiality remain unruled"]
+    },
+    {
+      "document_id":"S07",
+      "expected_professional_structure_and_purpose":"Vehicle-system source register, native extraction and signature/hash log, expert instructions, report/addendum, calculations and limitations.",
+      "realistic_page_range_and_information_density":"22-30 pages; report 250-450 words/page, data tables 8-22 rows/page and only necessary technical diagrams.",
+      "required_fields_headings_and_provenance":["expert qualifications/duty/date","instructions/material","vehicle/system/configuration","tool/software/version","native file/hash/signature state","timestamp/timezone/offset","method/input/calculation/uncertainty","opinion/alternative/limitation","report/addendum/service/application/ruling"],
+      "native_scan_or_media_characteristics":"Native vehicle data retained by hash; safe read-only validation; born-digital report with selectable tables and signed declaration.",
+      "legitimate_imperfections_and_version_history":"Expired certificate, unsupported parameter and narrowed offset range in addendum allowed with full history.",
+      "confidentiality_redaction_and_audience_restrictions":"Defence instructions/drafts privileged until service; proprietary and irrelevant vehicle data restricted.",
+      "prohibited_filler_duplication_and_padding":"No raw hex dumps, invented parameters, decorative charts, repeated methodology or opinion on guilt/safety.",
+      "document_specific_visual_and_content_checks":["hash/signature/tool lineage resolves","signature not truth","units/time basis visible","uncertainty prominent","addendum changes traceable","service not admission"]
+    },
+    {
+      "document_id":"S08",
+      "expected_professional_structure_and_purpose":"Respondent notice/skeleton, record-completeness correspondence, disclosure/scheduling, agreed chronology and responses to grounds/fresh-evidence application.",
+      "realistic_page_range_and_information_density":"15-22 pages; skeleton/correspondence 300-500 words/page and schedules 8-20 rows/page.",
+      "required_fields_headings_and_provenance":["respondent author/date","ground response/status","record item/request/response","disclosure item/decision/service","chronology event/source/agreement","freshness/admissibility submission","filing/service","restriction/version"],
+      "native_scan_or_media_characteristics":"Born-digital filed skeleton and schedules; signed/scanned correspondence where realistic; stable record IDs.",
+      "legitimate_imperfections_and_version_history":"Late transcript response, corrected chronology and narrowed opposition retained with history.",
+      "confidentiality_redaction_and_audience_restrictions":"No defence privilege; protected trial material follows existing restrictions; internal CPS advice excluded.",
+      "prohibited_filler_duplication_and_padding":"No repeated trial narrative, generic safety test, duplicate schedules, copied grounds or party submission presented as ruling.",
+      "document_specific_visual_and_content_checks":["response maps to live ground","record gaps unresolved where appropriate","agreement scope exact","service dates visible","freshness remains submission","restrictions carried forward"]
+    },
+    {
+      "document_id":"S09",
+      "expected_professional_structure_and_purpose":"Permission application/decision, renewal, fresh-evidence application and ruling, hearing record, reserved/oral/written judgment, count-level disposition and consequential orders.",
+      "realistic_page_range_and_information_density":"22-30 pages; applications/judgment 300-550 words/page and orders/forms at authentic sparse density.",
+      "required_fields_headings_and_provenance":["court/case/judges/date","ground/permission scope","single judge/renewal state","fresh item/application/response/ruling/use","hearing attendance/submissions","judgment/reasons/count","allowed/dismissed state","quash/acquit/substitute/retrial/sentence order","seal/service/version"],
+      "native_scan_or_media_characteristics":"Born-digital filed records and signed/sealed decisions; draft, oral and perfected versions visibly separated.",
+      "legitimate_imperfections_and_version_history":"Partial permission, abandoned ground, reserved judgment and corrected consequential order retained with history.",
+      "confidentiality_redaction_and_audience_restrictions":"Public/restricted judgment variants and protected identities controlled; no privileged advice embedded.",
+      "prohibited_filler_duplication_and_padding":"No invented reasons, duplicate judgments, generic law, expanded renewal scope or draft outcome shown as final.",
+      "document_specific_visual_and_content_checks":["permission per ground","fresh-evidence ruling item-specific","judgment count scope exact","quash/acquit/retrial distinct","operative order obvious","service and restrictions correct"]
+    }
+  ]
+}

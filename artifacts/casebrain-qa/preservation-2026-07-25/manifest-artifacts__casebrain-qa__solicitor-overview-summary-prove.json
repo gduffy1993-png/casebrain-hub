@@ -1,0 +1,26 @@
+{
+  "root": "artifacts/casebrain-qa/solicitor-overview-summary-prove",
+  "exists": true,
+  "fileCount": 3,
+  "totalBytes": 577354,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/solicitor-overview-summary-prove/01-overview.png",
+      "size": 229034,
+      "mtime": "2026-07-14T21:20:31.294Z",
+      "sha256": "4c6f2b6c286c48f8b2593515b65128e3b4395bd2bb91dd6a596f04aa72020bab"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-overview-summary-prove/02-summary.png",
+      "size": 346579,
+      "mtime": "2026-07-14T21:21:14.357Z",
+      "sha256": "27eb27cf5067a89ed8b432bdee5bb7f5321723c9be0e3babd7a68bcc58a28e18"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-overview-summary-prove/report.json",
+      "size": 1741,
+      "mtime": "2026-07-14T21:21:15.100Z",
+      "sha256": "585faa4658f3ec84dc8a6c37b04e91cead37f28aa7d3fcae220d4f362fb97488"
+    }
+  ]
+}

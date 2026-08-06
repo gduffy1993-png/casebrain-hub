@@ -55,6 +55,47 @@ function categorizeCriminalFact(keyFact: string): StructuredKeyFact["category"] 
 }
 
 /**
+ * Append canonical relationship findings into Key Facts evidence/disclosure/risk buckets.
+ * Shared production path — not a parallel synthetic surface.
+ */
+export function appendCanonicalFindingsToKeyFacts(
+  hierarchy: KeyFactsV2Hierarchy,
+  findings: Array<{ kind: string; title: string; summary: string; provenanceLine: string; unresolved: boolean }>,
+): KeyFactsV2Hierarchy {
+  const out: KeyFactsV2Hierarchy = {
+    people: [...hierarchy.people],
+    places: [...hierarchy.places],
+    times: [...hierarchy.times],
+    evidence: [...hierarchy.evidence],
+    disclosure: [...hierarchy.disclosure],
+    risks: [...hierarchy.risks],
+    statements: [...hierarchy.statements],
+    cctvRefs: [...hierarchy.cctvRefs],
+    forensicRefs: [...hierarchy.forensicRefs],
+    charge: [...hierarchy.charge],
+  };
+  for (const f of findings) {
+    const text = `${f.title}: ${f.summary}`;
+    const source = f.provenanceLine || "canonical finding";
+    const item = fact(text, "evidence", source, f.unresolved ? "medium" : "high");
+    if (f.kind === "draft_vs_signed" || f.kind === "recording_vs_transcript") {
+      out.evidence.push({ ...item, category: "evidence" });
+    } else if (
+      f.kind === "referenced_absent_attachment" ||
+      f.kind === "alias_already_served" ||
+      f.kind === "exhibit_label_collision"
+    ) {
+      out.disclosure.push({ ...item, category: "disclosure" });
+    } else if (f.kind === "custody_interview_clock" || f.kind === "document_role") {
+      out.risks.push({ ...item, category: "risks" });
+    } else {
+      out.evidence.push({ ...item, category: "evidence" });
+    }
+  }
+  return out;
+}
+
+/**
  * Build V2 key facts hierarchy from criminal structured extractor output.
  * Uses only discrete facts (keyFacts array); no narrative/summary text.
  */

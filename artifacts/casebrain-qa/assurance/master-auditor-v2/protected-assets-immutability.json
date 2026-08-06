@@ -1,0 +1,395 @@
+{
+  "schemaVersion": "protected-assets-immutability@3.0.0",
+  "applicationBehaviourChanged": false,
+  "truthKeysRewritten": false,
+  "packetsRewritten": false,
+  "brain1": [
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/strategy-fight-engine.ts",
+      "exists": true,
+      "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "baselineBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+      "baselineObjectType": "blob",
+      "headCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "headBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+      "headObjectType": "blob",
+      "dirtyVsHead": false,
+      "untracked": false,
+      "porcelain": "",
+      "note": "blob"
+    },
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/strategy-fight-engine-generators.ts",
+      "exists": true,
+      "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "baselineBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+      "baselineObjectType": "blob",
+      "headCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "headBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+      "headObjectType": "blob",
+      "dirtyVsHead": false,
+      "untracked": false,
+      "porcelain": "",
+      "note": "blob"
+    },
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/get-aggressive-defense.ts",
+      "exists": true,
+      "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "baselineBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+      "baselineObjectType": "blob",
+      "headCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "headBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+      "headObjectType": "blob",
+      "dirtyVsHead": false,
+      "untracked": false,
+      "porcelain": "",
+      "note": "blob"
+    },
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/strategy-battleboard.ts",
+      "exists": true,
+      "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "baselineBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+      "baselineObjectType": "blob",
+      "headCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "headBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+      "headObjectType": "blob",
+      "dirtyVsHead": false,
+      "untracked": false,
+      "porcelain": "",
+      "note": "blob"
+    },
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/strategy-routes.ts",
+      "exists": true,
+      "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "baselineBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+      "baselineObjectType": "blob",
+      "headCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "headBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+      "headObjectType": "blob",
+      "dirtyVsHead": false,
+      "untracked": false,
+      "porcelain": "",
+      "note": "blob"
+    },
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/bundle-truth-ledger.ts",
+      "exists": true,
+      "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "baselineBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+      "baselineObjectType": "blob",
+      "headCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "headBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+      "headObjectType": "blob",
+      "dirtyVsHead": false,
+      "untracked": false,
+      "porcelain": "",
+      "note": "blob"
+    },
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/bundle-material-normalizer.ts",
+      "exists": true,
+      "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "baselineBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+      "baselineObjectType": "blob",
+      "headCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "headBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+      "headObjectType": "blob",
+      "dirtyVsHead": false,
+      "untracked": false,
+      "porcelain": "",
+      "note": "blob"
+    }
+  ],
+  "guardian": [
+    {
+      "group": "Guardian",
+      "path": "lib/criminal/source-truth-guardian/fingerprint.ts",
+      "exists": true,
+      "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "baselineBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+      "baselineObjectType": "blob",
+      "headCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "headBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+      "headObjectType": "blob",
+      "dirtyVsHead": false,
+      "untracked": false,
+      "porcelain": "",
+      "note": "blob"
+    },
+    {
+      "group": "Guardian",
+      "path": "lib/criminal/source-truth-guardian/guardian.ts",
+      "exists": true,
+      "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "baselineBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+      "baselineObjectType": "blob",
+      "headCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "headBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+      "headObjectType": "blob",
+      "dirtyVsHead": false,
+      "untracked": false,
+      "porcelain": "",
+      "note": "blob"
+    },
+    {
+      "group": "Guardian",
+      "path": "lib/criminal/source-truth-guardian/index.ts",
+      "exists": true,
+      "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "baselineBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+      "baselineObjectType": "blob",
+      "headCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "headBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+      "headObjectType": "blob",
+      "dirtyVsHead": false,
+      "untracked": false,
+      "porcelain": "",
+      "note": "blob"
+    },
+    {
+      "group": "Guardian",
+      "path": "lib/criminal/source-truth-guardian/types.ts",
+      "exists": true,
+      "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "baselineBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+      "baselineObjectType": "blob",
+      "headCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+      "headBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+      "headObjectType": "blob",
+      "dirtyVsHead": false,
+      "untracked": false,
+      "porcelain": "",
+      "note": "blob"
+    }
+  ],
+  "ledgerNote": "bundle-truth-ledger.ts is listed under Brain 1 protected set; no separate lib/ledger placeholder.",
+  "evidenceRoots": [
+    {
+      "path": "artifacts/evidence-state-audit-local/cases",
+      "kind": "directory_freeze50_fingerprint",
+      "freeze50ConcatSha256": "65392a012dc8daf2f25be5dd964a8aee240bc553da8eea618b648d66d32ddea2",
+      "freeze50FileCount": 50,
+      "note": "Fingerprint over frozen-50 packet outputs only.",
+      "files": [
+        {
+          "caseId": "sc-0002d",
+          "sha256": "c8598fa492848200e90cc2daf7876a895e857a14082b7a2c569d2cafe0382868"
+        },
+        {
+          "caseId": "sim-120",
+          "sha256": "a511abac6d97d61281f4f0a6eda0fe9ae0b60aa9126c8460154d5b04cd292018"
+        },
+        {
+          "caseId": "sim-250",
+          "sha256": "d50506a82b4dddd748d71a90c1a526fdb08eaa6bcf2dc366c5fba29f5dbe5197"
+        },
+        {
+          "caseId": "sim-345",
+          "sha256": "61ba07edba54f37f76e5ffb856bc7990624a5e562506a499c3d85f5720875b4e"
+        },
+        {
+          "caseId": "sc-00025",
+          "sha256": "2fe4f2c71e13780f32f8a9a39f2d24a21ec533b923f74d9ea9ca61b0bb668111"
+        },
+        {
+          "caseId": "sim-104",
+          "sha256": "bd96c99d45094946e59b96de1f61caa772219ce03116e681c214cf676c91d986"
+        },
+        {
+          "caseId": "sim-373",
+          "sha256": "f8911646004dac1a36ef4434774539eab79062baa99e12e0b3ff739fc97322ac"
+        },
+        {
+          "caseId": "sim-377",
+          "sha256": "5f419bddb3f9a6a756e742815f06aacfdb3a8912849e45df2511f967b01ddc84"
+        },
+        {
+          "caseId": "sim-321",
+          "sha256": "0975ed87bc8486f862f214d803691bdc7a3e9defd50180c63ce19e9eb9ed1588"
+        },
+        {
+          "caseId": "sim-182",
+          "sha256": "00a1caa5e31907bb0c1ad06a5d5d819e04b411176687f13cdea8cc691fe82819"
+        },
+        {
+          "caseId": "sim-224",
+          "sha256": "d013835dc5515435473c1777aa91f66c408689bd0180e48d2a2ad9c9310d3c2d"
+        },
+        {
+          "caseId": "sim-222",
+          "sha256": "70583d072789e93d7e6812a35b78f167b69276ed760672e925b0a063a5507f9a"
+        },
+        {
+          "caseId": "sim-190",
+          "sha256": "a9dbbfebd80ad82045bd1e6d24708fd9893694a49208b3c4d8eafaa703fcdff0"
+        },
+        {
+          "caseId": "sim-142",
+          "sha256": "4bd129f2995b4baa36d2aba61117ba3559539b04f23390d90af494a090c274ec"
+        },
+        {
+          "caseId": "sim-018",
+          "sha256": "2b8b0fac106e93091f2a98fbf6e394dd3ec0b57bf3f031e937d103a8cdabdd68"
+        },
+        {
+          "caseId": "sim-055",
+          "sha256": "7eea1eef87efbb2c7b59aae2d507bd370c787ddf2b351b8200fe75cfe122fcbf"
+        },
+        {
+          "caseId": "sim-172",
+          "sha256": "f88facff6edb85d08041213c264569cf730bf02b8bccb0e6acb696b6300a42d1"
+        },
+        {
+          "caseId": "sim-048",
+          "sha256": "c57c88513b8a08bdc11ce8bdca3a3471e279c339878be8ae946ecf47a43a2382"
+        },
+        {
+          "caseId": "sim-063",
+          "sha256": "2c08108f49ceb1543a886729d62bcd15b6c1d761c231a820b1bfb8bf70632f5f"
+        },
+        {
+          "caseId": "sim-038",
+          "sha256": "ef70e189d1d19cc052736a2ac183ee67f364b5102042f65e00fcebee0af8f393"
+        },
+        {
+          "caseId": "sim-017",
+          "sha256": "8ecdcf83f12004296b6b7d4a6c9228feeb4a8a72ae093a4d8b69e89979a47372"
+        },
+        {
+          "caseId": "sim-014",
+          "sha256": "aeafc2f1a06de29ce4647596cb619bb848ab7a038f692e6295450c235d6eaabd"
+        },
+        {
+          "caseId": "sim-015",
+          "sha256": "de366bcd23c82cadf914e5dc2031fe0e26807ee1910fe1f7143313bcfa39458f"
+        },
+        {
+          "caseId": "sim-020",
+          "sha256": "b335594df9d058d52b1338c40ae110583dccee060fe57c6de801bea0a19b627f"
+        },
+        {
+          "caseId": "sim-007",
+          "sha256": "f9c254d21cdb71da3ce86414f1856916bd9c24f7cd0d5b5acdc3b8efcaa7fbd2"
+        },
+        {
+          "caseId": "sim-073",
+          "sha256": "818d36d2bee8a9411222625900df3e3b1ec70274ca0313569356c0b503a51130"
+        },
+        {
+          "caseId": "sim-138",
+          "sha256": "941f09c530f1d54663053dd5ab7c695bde691bb583fa471ae64a91c586504a7d"
+        },
+        {
+          "caseId": "sim-265",
+          "sha256": "d76a686ca304caeffad3b6050a9fc1794b6b4128d03f401192dafc940c4205ae"
+        },
+        {
+          "caseId": "sim-072",
+          "sha256": "86bd880ad2a7ada7aec26a1affeb832277112803570f24d30d193242b3d47600"
+        },
+        {
+          "caseId": "sim-387",
+          "sha256": "28b774a6039a353660e82dd4a8582b8b74e38ee41c872238f03924e822b5e4e4"
+        },
+        {
+          "caseId": "sim-128",
+          "sha256": "22ee5f678ab9e3eee0f533db7aec83ac4f4d3163588aba4f40059893d6b3990d"
+        },
+        {
+          "caseId": "sim-332",
+          "sha256": "4ba87d80e133e2d64bbe7f8b48f555802158ec92cb9405a6a90cbcb857728e20"
+        },
+        {
+          "caseId": "sim-329",
+          "sha256": "ef42607390e13e178af839cb2d81e817f567c416c30232827f9bc1c0d0d8f35b"
+        },
+        {
+          "caseId": "sim-198",
+          "sha256": "7bf017feaebfe8608c0e4c0ccbc142fa1060d3b545cfc4b6678f0e27b71a3cba"
+        },
+        {
+          "caseId": "sim-337",
+          "sha256": "a41bbd4c5585a6777d8b5f0bb4d81685e714c7ea38b7ceb83c1061a83b01b62c"
+        },
+        {
+          "caseId": "sim-366",
+          "sha256": "ac9db9cc1905a595a482ac3a07f1b17be40889ad0b300e30a246a093d60e8660"
+        },
+        {
+          "caseId": "sim-336",
+          "sha256": "2c5e3df2da25bc23d3b4543e913b44cfe6c42204787a03527420c20eb6e484d9"
+        },
+        {
+          "caseId": "sim-286",
+          "sha256": "73f2336c4594a2b56236c508b917226284c0d7d8ee36f035077330f0b873f0f0"
+        },
+        {
+          "caseId": "sim-199",
+          "sha256": "f4f4679c3a3dadca063a41cc5ac58c6035c9a91788b3e3d1796814dfe9ce2f42"
+        },
+        {
+          "caseId": "sim-354",
+          "sha256": "d858c4d3500ed1cc1122821965b4ba5a2debdf2a7b4c24f743f44d1ebf77c625"
+        },
+        {
+          "caseId": "sim-145",
+          "sha256": "61853639298331cea7cd90db57cf96c9a94eeb2004ff21f464567c3723e768ff"
+        },
+        {
+          "caseId": "sim-257",
+          "sha256": "a8cebf6d148fe3dc32a11eef78b468fda3708dd7a417fd17ab82659792fe3c7e"
+        },
+        {
+          "caseId": "sim-245",
+          "sha256": "1f398562391add8e9b7bf142a5e821feb4fef2f9206654d9f35f07a5ed26f540"
+        },
+        {
+          "caseId": "sim-395",
+          "sha256": "01782a01c16274643695c73875cbd5e3543548135d7f7f89d04cd1af7255e189"
+        },
+        {
+          "caseId": "sim-271",
+          "sha256": "0365c31a9c2012017a5cc863ccb756d0657914972657e7875772e670a37ef1bd"
+        },
+        {
+          "caseId": "sim-389",
+          "sha256": "15c6a0b4e88e9f9a97c14f6512c864149aaaa519473a2e5a2b716c6b6a16ead4"
+        },
+        {
+          "caseId": "sim-360",
+          "sha256": "5c9879aabd03a502924ba584d81de4218e34fdf35dee1f0fd07a3543b50f80e5"
+        },
+        {
+          "caseId": "sc-0006a",
+          "sha256": "a423a1d8b078d9e8e47a750e014795da7ab4f79e8960bc28ddf68eb464d438d4"
+        },
+        {
+          "caseId": "sc-0002e",
+          "sha256": "cd06f696655119b38d6c768855939ebd42a69128602b4c44179022801562317d"
+        },
+        {
+          "caseId": "sim-024",
+          "sha256": "96899fb6bf7966f6a94c3de367d95f79ca4ab47b93a47d8208baf403e4d62486"
+        }
+      ]
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v1/esa-stage50-sample-freeze/STAGE-50-SAMPLE-FREEZE.json",
+      "sha256": "573a92b99a60b0013297bfd80c576e1d9944e1412546cf1458db8c93d9595199",
+      "kind": "file"
+    }
+  ],
+  "freezeHash": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+  "headCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127"
+}

@@ -1,0 +1,108 @@
+{
+  "matterId": "rank2-homicide-harbour-yard",
+  "version": "design-freeze-draft-v0.1",
+  "status": "DRAFT_DIAGNOSTIC_REGISTER",
+  "traps": [
+    {
+      "trapId": "HT01_CCTV_CLOCK_OFFSET",
+      "sources": ["DOC_CCTV_BWV_SCHEDULE", "DOC_CAD_999_TRANSCRIPTS"],
+      "conflict": "Venue CCTV display is 4 minutes 18 seconds slow against the CAD/native reference; one derived schedule applies a rounded 4-minute correction.",
+      "requiredHandling": "Preserve raw and corrected times, method and uncertainty; never silently rewrite source timestamps.",
+      "forbiddenConclusion": "Exact act order is proved solely by rounded corrected time."
+    },
+    {
+      "trapId": "HT02_IMPACT_NOT_VISIBLE",
+      "sources": ["DOC_CCTV_BWV_SCHEDULE"],
+      "conflict": "A pillar and parked vehicle obscure the critical seconds; stills can appear more certain than video context.",
+      "requiredHandling": "State occlusion and distinguish visible movement from inferred contact.",
+      "forbiddenConclusion": "CCTV clearly shows D1 striking or D2 kicking Idris."
+    },
+    {
+      "trapId": "HT03_DRAFT_SIGNED_WITNESS_CHANGE",
+      "sources": ["DOC_MG11_HOLT_DRAFT", "DOC_MG11_HOLT_SIGNED"],
+      "conflict": "Draft records one downward movement and no observed kick; signed statement records two movements and a possible kick.",
+      "requiredHandling": "Surface the version difference, status and source pages without deciding credibility.",
+      "forbiddenConclusion": "The signed statement erases or proves the draft was wrong."
+    },
+    {
+      "trapId": "HT04_TORCH_PACKAGING_TIME",
+      "sources": ["DOC_SCENE_EXHIBIT_LOG", "DOC_FORENSIC_TORCH_REPORT"],
+      "conflict": "Exhibit log and laboratory receipt refer to packaging/seal times that differ by 47 minutes; seal identifier matches.",
+      "requiredHandling": "Flag continuity timing discrepancy and matching identifier; do not invent reconciliation.",
+      "forbiddenConclusion": "Continuity is complete or broken as a final fact without review."
+    },
+    {
+      "trapId": "HT05_MIXED_BIOLOGY_OVERCLAIM",
+      "sources": ["DOC_FORENSIC_TORCH_REPORT"],
+      "conflict": "Low-level mixed biological result includes a component that cannot exclude the deceased, with transfer/time limitations.",
+      "requiredHandling": "Use the expert's evaluative and limitation language; keep association, source and use distinct.",
+      "forbiddenConclusion": "The deceased's blood is conclusively on the torch or the torch caused the fatal injury."
+    },
+    {
+      "trapId": "HT06_PHONE_AUTHORSHIP",
+      "sources": ["DOC_PHONE_LOCATION_MESSAGES"],
+      "conflict": "Account, handset and message-author evidence do not align for every message; export omits part of preceding thread.",
+      "requiredHandling": "Separate device, account, user and authorship; expose missing context.",
+      "forbiddenConclusion": "D1 or D2 authored every message on an associated device/account."
+    },
+    {
+      "trapId": "HT07_CLINICAL_TIME_DISCREPANCY",
+      "sources": ["DOC_AMBULANCE_HOSPITAL_RECORD", "DOC_CLINICAL_TIMELINE"],
+      "conflict": "Narrative note time and system event time differ for escalation/imaging request.",
+      "requiredHandling": "Show both timestamps and their source types; derived chronology must not choose silently.",
+      "forbiddenConclusion": "A clinician delayed care by a fixed period established as fact."
+    },
+    {
+      "trapId": "HT08_MECHANISM_DISAGREEMENT",
+      "sources": ["DOC_POST_MORTEM", "DOC_NEUROPATH_ADDENDUM", "DOC_DEFENCE_PATHOLOGY", "DOC_EXPERT_JOINT_STATEMENT"],
+      "conflict": "Experts agree blunt head trauma caused fatal intracranial injury but disagree whether the pattern favours direct-object impact, fall impact, or cannot discriminate.",
+      "requiredHandling": "Attribute each opinion/version; preserve joint agreements and disagreements.",
+      "forbiddenConclusion": "Pathology proves which defendant acted or conclusively identifies the mechanism."
+    },
+    {
+      "trapId": "HT09_TOXICOLOGY_BEHAVIOUR_CAUSATION",
+      "sources": ["DOC_TOXICOLOGY_REPORT", "DOC_TOXICOLOGY_ADDENDUM"],
+      "conflict": "Alcohol and prescribed anticoagulant findings have sampling, post-incident and individual-response limits.",
+      "requiredHandling": "Report analytical result separately from cautious interpretation.",
+      "forbiddenConclusion": "A concentration proves exact behaviour, consent, aggression, fall, or an independent cause of death."
+    },
+    {
+      "trapId": "HT10_CAUSATION_LAYER_COLLAPSE",
+      "sources": ["DOC_POST_MORTEM", "DOC_CLINICAL_TIMELINE", "DOC_EXPERT_JOINT_STATEMENT"],
+      "conflict": "Factual contribution, medical cause, susceptibility/thin-skull evidence, alleged intervening treatment, expert opinion, operating/substantial-cause submissions and legal causation decisions are addressed by different sources and decision-makers.",
+      "requiredHandling": "Keep factual contribution, medical cause, susceptibility, intervening-act allegation, expert opinion, each party submission, court ruling and verdict separately sourced and stated.",
+      "forbiddenConclusion": "Expert or AI use of 'caused' decides whether treatment, alcohol or anticoagulants break or preserve legal causation."
+    },
+    {
+      "trapId": "HT11_ADMISSION_SCOPE_DRIFT",
+      "sources": ["DOC_ADMISSIONS_AGREED_FACTS"],
+      "conflict": "D1 proposes admitting possession of the torch, not use; a summary paraphrases this as admitting 'the weapon'.",
+      "requiredHandling": "Preserve exact text, defendant, object and procedural state.",
+      "forbiddenConclusion": "D1 admitted using a weapon or causing injury."
+    },
+    {
+      "trapId": "HT12_AGREED_FACT_VERSION",
+      "sources": ["DOC_ADMISSIONS_AGREED_FACTS"],
+      "conflict": "A proposed fact says both defendants were present throughout; signed version narrows this to presence during parts visible on CCTV.",
+      "requiredHandling": "Use signed/final scope only when its state is evidenced; preserve proposal history.",
+      "forbiddenConclusion": "The broader proposed wording is an agreed fact."
+    },
+    {
+      "trapId": "HT13_EXPERT_UNUSED_MATERIAL",
+      "sources": ["DOC_MG6_SERIES", "DOC_POST_MORTEM", "DOC_TOXICOLOGY_REPORT"],
+      "conflict": "Working notes, image selection log and an analytical rerun appear on expert unused-material schedules but are not substantive served reports.",
+      "requiredHandling": "Distinguish scheduled/referred material from served substantive content and identify disclosure/review action.",
+      "forbiddenConclusion": "Scheduled expert material has been served and reviewed in full."
+    },
+    {
+      "trapId": "HT14_CHARGE_PROPOSAL_PROMOTION",
+      "sources": ["DOC_PROPOSED_INDICTMENT", "DOC_MG5_CASE_SUMMARY"],
+      "conflict": "MG5 may use categorical charge language while the indictment remains proposed and unreviewed.",
+      "requiredHandling": "Every surface labels charges proposed/non-operative pending qualified review.",
+      "forbiddenConclusion": "The defendants are charged on an approved indictment or guilty of the proposed offences."
+    }
+  ],
+  "caseSpecificPatchForbidden": true,
+  "expectedRootCauseLanes": ["extraction", "classification", "evidence_state", "provenance", "charge", "composer", "gate", "presentation"],
+  "generationAuthorised": false
+}

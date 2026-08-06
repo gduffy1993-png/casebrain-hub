@@ -22,6 +22,10 @@ import type { KeyFactsSummary, KeyFactsKeyDate, KeyFactsV2Hierarchy, KeyFactCate
 import type { ExtractedCaseFacts } from "@/types";
 import { selectDefaultRole } from "@/lib/layered-summary/default-role";
 import type { CaseSolicitorRole, DomainKey } from "@/lib/layered-summary/types";
+import {
+  assertFindingProvenanceOrLimitation,
+  formatFindingProvenanceLine,
+} from "@/lib/criminal/finding-provenance";
 
 type KeyFactsPanelProps = {
   caseId: string;
@@ -91,7 +95,15 @@ function StructuredKeyFactsBlock({ hierarchy }: { hierarchy: KeyFactsV2Hierarchy
                 <li key={`${category}-${i}`} className="flex flex-wrap items-baseline gap-2 text-sm text-accent/90">
                   <span>- {f.text}</span>
                   <span className="text-xs text-accent/50">
-                    [{f.source} · {f.confidence}]
+                    {formatFindingProvenanceLine(
+                      assertFindingProvenanceOrLimitation({
+                        sourceDocumentTitle: /[A-Za-z]{3,}/.test(f.source) ? f.source : null,
+                        sourceFilename: f.source,
+                        evidenceState: null,
+                      }),
+                    )}
+                    {" · "}
+                    {f.confidence}
                   </span>
                 </li>
               ))}

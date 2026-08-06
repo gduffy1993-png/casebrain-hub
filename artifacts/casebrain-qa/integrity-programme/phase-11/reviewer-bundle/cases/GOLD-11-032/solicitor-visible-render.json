@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-032",
+  "def": {
+    "goldId": "GOLD-11-032",
+    "stratum": "offence_family",
+    "sourceKind": "synthetic_controlled",
+    "fixtureId": "SYN-FAM-LEAK-01",
+    "selectionReason": "Harassment matter + defence-force/PWITS leak probe",
+    "reviewFocus": "Wrong-family material must not remain copyable (FN if it does)."
+  },
+  "surfaces": [
+    {
+      "surface": "export_preview",
+      "label": "Export preview",
+      "solicitorVisibleText": "EXPORT BLOCKED — Solicitor review required — output integrity check failed.\n(Wrong-family / unsupported material must not leave the system.)",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    }
+  ]
+}

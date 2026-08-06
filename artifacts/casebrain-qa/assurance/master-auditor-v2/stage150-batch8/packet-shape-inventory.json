@@ -1,0 +1,552 @@
+{
+  "schemaVersion": "batch8-shape-inventory@1.0.0",
+  "caseCount": 499,
+  "truthContentsOpened": false,
+  "topLevelKeyCounts": {
+    "caseId": 499,
+    "courtNote": 499,
+    "evidenceStates": 499,
+    "exportVersion": 499,
+    "fiveAnswersEvidenceRows": 499,
+    "generatedAt": 499,
+    "matterConfidence": 499,
+    "source": 499,
+    "truthKeyComparison": 499,
+    "warningsAndGaps": 499
+  },
+  "evidenceStateKeys": {
+    "baseStatus": 1407,
+    "evidenceAnchor": 1407,
+    "existenceLabel": 1407,
+    "inferredSourceState": 1407,
+    "label": 1407,
+    "sendability": 1407,
+    "source": 1407
+  },
+  "fiveAnswersKeys": {
+    "existence": 9317,
+    "label": 9317,
+    "note": 9317,
+    "reliability": 9317
+  },
+  "chaseItemKeys": {
+    "copySuggestion": 1366,
+    "label": 1366,
+    "sendabilityLabel": 1366
+  },
+  "structuredIdFieldPresenceInOutputJson": {
+    "subjectDefendantId": 0,
+    "personId": 0,
+    "evidenceUnitId": 0,
+    "sourceEvidenceId": 0,
+    "sourcePage": 0,
+    "compiledPage": 0,
+    "pageIdentityKnown": 0,
+    "instrumentId": 0,
+    "timezone": 0,
+    "chargeInstruments": 0,
+    "chronologyEvents": 0
+  },
+  "bundlePageCueHeuristic": {
+    "yes": 0,
+    "no": 499
+  },
+  "fieldRows": [
+    {
+      "path": "/caseId",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/courtNote",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "object"
+      ]
+    },
+    {
+      "path": "/courtNote/blockedReason",
+      "presentCases": 499,
+      "nonemptyCases": 0,
+      "types": [
+        "null"
+      ]
+    },
+    {
+      "path": "/courtNote/canCopy",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "boolean"
+      ]
+    },
+    {
+      "path": "/courtNote/sendabilityLabel",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/courtNote/text",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/evidenceStates",
+      "presentCases": 998,
+      "nonemptyCases": 998,
+      "types": [
+        "array",
+        "array[1]",
+        "array[2]",
+        "array[3]",
+        "array[4]",
+        "array[5]",
+        "array[6]",
+        "array[7]"
+      ]
+    },
+    {
+      "path": "/evidenceStates/*/baseStatus",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/evidenceStates/*/evidenceAnchor",
+      "presentCases": 499,
+      "nonemptyCases": 332,
+      "types": [
+        "null",
+        "string"
+      ]
+    },
+    {
+      "path": "/evidenceStates/*/existenceLabel",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/evidenceStates/*/inferredSourceState",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/evidenceStates/*/label",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/evidenceStates/*/sendability",
+      "presentCases": 499,
+      "nonemptyCases": 0,
+      "types": [
+        "null"
+      ]
+    },
+    {
+      "path": "/evidenceStates/*/source",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/exportVersion",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "object"
+      ]
+    },
+    {
+      "path": "/exportVersion/appVersion",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/exportVersion/blockedReason",
+      "presentCases": 499,
+      "nonemptyCases": 0,
+      "types": [
+        "null"
+      ]
+    },
+    {
+      "path": "/exportVersion/bundleVersionLabel",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/exportVersion/caseId",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/exportVersion/exportId",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/exportVersion/exportType",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/exportVersion/generatedAt",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/exportVersion/reviewFooter",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/exportVersion/sendability",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/exportVersion/sourceStatesIncluded",
+      "presentCases": 998,
+      "nonemptyCases": 998,
+      "types": [
+        "array",
+        "array[4]"
+      ]
+    },
+    {
+      "path": "/exportVersion/warningCount",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "number"
+      ]
+    },
+    {
+      "path": "/fiveAnswersEvidenceRows",
+      "presentCases": 998,
+      "nonemptyCases": 998,
+      "types": [
+        "array",
+        "array[10]",
+        "array[11]",
+        "array[12]",
+        "array[13]",
+        "array[14]",
+        "array[15]",
+        "array[16]",
+        "array[17]",
+        "array[18]",
+        "array[19]",
+        "array[20]",
+        "array[21]",
+        "array[22]",
+        "array[23]",
+        "array[24]",
+        "array[25]",
+        "array[26]",
+        "array[27]",
+        "array[28]",
+        "array[31]",
+        "array[7]",
+        "array[8]",
+        "array[9]"
+      ]
+    },
+    {
+      "path": "/fiveAnswersEvidenceRows/*/existence",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/fiveAnswersEvidenceRows/*/label",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/fiveAnswersEvidenceRows/*/note",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/fiveAnswersEvidenceRows/*/reliability",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/generatedAt",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/matterConfidence",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "object"
+      ]
+    },
+    {
+      "path": "/matterConfidence/chaseSendability",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/matterConfidence/doNotRelyYetReason",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/matterConfidence/label",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/matterConfidence/level",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/matterConfidence/safeCourtLineStatus",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/matterConfidence/sourceBadges",
+      "presentCases": 998,
+      "nonemptyCases": 998,
+      "types": [
+        "array",
+        "array[4]"
+      ]
+    },
+    {
+      "path": "/matterConfidence/summarySendability",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/source",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/truthKeyComparison",
+      "presentCases": 998,
+      "nonemptyCases": 976,
+      "types": [
+        "array",
+        "array[0]",
+        "array[10]",
+        "array[11]",
+        "array[12]",
+        "array[13]",
+        "array[14]",
+        "array[15]",
+        "array[1]",
+        "array[2]",
+        "array[3]",
+        "array[4]",
+        "array[5]",
+        "array[6]",
+        "array[7]",
+        "array[8]",
+        "array[9]"
+      ]
+    },
+    {
+      "path": "/truthKeyComparison/*/aligned",
+      "presentCases": 488,
+      "nonemptyCases": 39,
+      "types": [
+        "boolean",
+        "null"
+      ]
+    },
+    {
+      "path": "/truthKeyComparison/*/casebrainLabel",
+      "presentCases": 488,
+      "nonemptyCases": 39,
+      "types": [
+        "null",
+        "string"
+      ]
+    },
+    {
+      "path": "/truthKeyComparison/*/casebrainState",
+      "presentCases": 488,
+      "nonemptyCases": 488,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/truthKeyComparison/*/truthItem",
+      "presentCases": 488,
+      "nonemptyCases": 488,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/truthKeyComparison/*/truthState",
+      "presentCases": 488,
+      "nonemptyCases": 488,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/warningsAndGaps",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "object"
+      ]
+    },
+    {
+      "path": "/warningsAndGaps/chaseItems",
+      "presentCases": 998,
+      "nonemptyCases": 998,
+      "types": [
+        "array",
+        "array[1]",
+        "array[2]",
+        "array[3]",
+        "array[4]",
+        "array[5]"
+      ]
+    },
+    {
+      "path": "/warningsAndGaps/chaseItems/*/copySuggestion",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/warningsAndGaps/chaseItems/*/label",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/warningsAndGaps/chaseItems/*/sendabilityLabel",
+      "presentCases": 499,
+      "nonemptyCases": 499,
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "path": "/warningsAndGaps/doNotOverstate",
+      "presentCases": 998,
+      "nonemptyCases": 998,
+      "types": [
+        "array",
+        "array[10]",
+        "array[11]",
+        "array[5]",
+        "array[6]",
+        "array[7]",
+        "array[8]",
+        "array[9]"
+      ]
+    },
+    {
+      "path": "/warningsAndGaps/hardRules",
+      "presentCases": 998,
+      "nonemptyCases": 998,
+      "types": [
+        "array",
+        "array[5]"
+      ]
+    }
+  ]
+}

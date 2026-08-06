@@ -1,0 +1,856 @@
+{
+  "batchIndex": 11,
+  "humanReviewDisposition": null,
+  "items": [
+    {
+      "textHash": "905773795a55b485f9b88a07f04d4718e26fa50e0368a8e5aa0093567de376ba",
+      "templateHash": "c19066644a1d1c116a0767ad505681db94525173d7dd5639092b5a9b662c87c6",
+      "text": "per-defendant segregation — Rhea Xenon · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-245",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-245-disclosure_chase-905773795a55"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "9d8d677c08824b7d78717c150725251304b28ab82ab40d5268d6ca5861b2ae07",
+      "templateHash": "b1eebfc781ef5b99ac8ad2b3eed0599a5df820855552fb6effb95dbc8e50c6c2",
+      "text": "attribution map — Rhea Xenon · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-245",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-245-disclosure_chase-9d8d677c0882"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "87640d48fe2570203b7ad4e8abf7df1e63d7564402810ba5fe8c757ef945bd8a",
+      "templateHash": "a9a6cd715b77b6b35478e7e5c1e1cd4b45c1551c299bcfbc3538f22694897f5b",
+      "text": "youth court safeguarding plan (Xenon / folio 245) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-245",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-245-disclosure_chase-87640d48fe25"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "6d7ea4df2c6219a20ca7fc32c0a656aea00516d708881ffa8581e188f441e920",
+      "templateHash": "dcdf77be55af670dad5df1da3a64913bf496c81f4bc9e762dfc9bb6c0caa68ad",
+      "text": "per-defendant digital map — Rhea Xenon · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-245",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-245-disclosure_chase-6d7ea4df2c62"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "49810f04f6489b0e51841aa18943584749c008881f100b2a881fd8077350332d",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-395",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-395-truth_map-49810f04f648"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "c9b53ca74b2355673c9eccdeaaae30a399af48a976091023107c7e60ada38ae1",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-395",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-395-truth_map-c9b53ca74b23"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "64e5b6d1646b0347d5487d915766c57b6a8384ba32f7edf57246dadc51767c29",
+      "templateHash": "2d245720411173b2b4985b7c40fa5917c7a96e243207ccdc2385f41449856a45",
+      "text": "Provisional — export cps chase risk on index only bwv papers · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-64e5b6d1646b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ad3573a381fbd331f3b2574872b5c79243e4af32384bd060305eee18cd06f14b",
+      "templateHash": "4e92c47e044ec1e794abc5268217480993dd6282375dc63c80f69715775cb8c9",
+      "text": "MG6C/CCT — CCTV — Ned Ulric — referred on MG6 — export not served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-ad3573a381fb"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d2d0cca6893879ba931b0cb7934c187bec1bd700b71df379d5923a90c2f70acd",
+      "templateHash": "0b2bcad18460982c02d78fdf495bcfe6223dd6e604f6a7ce347884f4456564e0",
+      "text": "MG6C/BWV — BWV — Ned Ulric — referred on MG6 — export not served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-d2d0cca68938"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "c0eadbec3fd5e8badb8e75e9cb546c11077b7c2681e5360dc19c51bae893e623",
+      "templateHash": "a2d1bf7ff89b9a2083811a300e1beece994b0af4bdbf798e442f32b355762012",
+      "text": "MG6C/CCT — CCTV export — Ned Ulric — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-c0eadbec3fd5"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "0070bf9cae3cf51f8076774c268a7641b1e5e4f0f1935b751b72c8856fbf3d3b",
+      "templateHash": "719210f64e8dc0ad647321a074c063de729c658b4a3df69bd95466d11dc040ad",
+      "text": "MG6C/BWV — BWV export — Ned Ulric — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-0070bf9cae3c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "cb5c2c40fabd5c31e1dc687888cc74d7f4f42228dc8ce0272aeec0c85d45a3f5",
+      "templateHash": "f1cc881945d26a3d639d89f1433638998e9d4029d53aca5dd26bed35ae87400a",
+      "text": "MG6C/MES — message platform export hash (Ulric / folio 395) — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-cb5c2c40fabd"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "362dc65ea1d099eacd8a50edd49bd8812ee8cf35f43c62fc97b32e5646a39140",
+      "templateHash": "e4d3a9b281d23665d5e50e65f45c2609956e388e313c5cbabb0ee1a64acef35e",
+      "text": "Outstanding: CCTV export — Ned Ulric; BWV export — Ned Ulric; message platform export hash (Ulric / folio 395). · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-362dc65ea1d0"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "712568df9d41c4ead1b012763fe0dbc7cc42590569c1e7cb5c0385f8dca587a4",
+      "templateHash": "d030bc1031dca8a6922b7e64f8abb3fa8a179f389ad7bfce3c5659db558ba64a",
+      "text": "CCTV export — Ned Ulric · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-712568df9d41"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b36a16b78ff5e04aae1dd9203a7e10448ac4d42ec6ddf608fde4a966404dd48d",
+      "templateHash": "f7bc90e3476176d3d5b97786c90d88d971ab432add4d5cb1255aaa8de0383448",
+      "text": "BWV export — Ned Ulric · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-b36a16b78ff5"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "4e13d7c595b2031443adb48e97903adb38cbd01b4217de8d544d0c4ab9be603c",
+      "templateHash": "d10c1b12e5bf9c45b3de46d4c6b463b9330a33c27576fe68753f0275b133a57a",
+      "text": "message platform export hash (Ulric / folio 395) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-4e13d7c595b2"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "91cf1308e4cd1d566e20a33bab8c208a9c8e8da281ba7bec4863aeda31f9a1fc",
+      "templateHash": "673a8e7929b973a08bb4bd2f853c1fd75a3726e4f0eb86a9f8de5b66e291d827",
+      "text": "CCTV — Ned Ulric · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-91cf1308e4cd"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "346a6a4ee97f7c0e6da5de68a69ff52ed657eccf593eef28902bce1b9d4f5482",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-271",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-271-truth_map-346a6a4ee97f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "8bc37bd839c11fa9b104aa54012bb2ea79ce2dff0f870dab911e93b191695389",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-271",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-271-truth_map-8bc37bd839c1"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "e5db8ed599fb6124f4c11d129c6891b8c668ffada07c895bd74552e54d77f171",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-271",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-271-truth_map-e5db8ed599fb"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "0b8b005f4298a6933776cb5390174a11bfc33f390b976ca786f44e3340c4586c",
+      "templateHash": "c8f869810d703000cbd1b0193d212ebdd949e6bbbea1540231704e207f63830c",
+      "text": "Provisional — corrected charge old family on bwv screenshots only papers · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-0b8b005f4298"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "86f38b2006e7ec70d1f4e1ed1f451ede13be6d5f1d7f9edc1c16cb18a8df73a6",
+      "templateHash": "a050aafcd68fa34815d1d90b5676b99f438ccd509ecd3934a0f560f4db09e568",
+      "text": "MG6C/COU — count linkage schedule — Soren Yule — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-86f38b2006e7"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "457bedb358d4de26544f8d616ff7ccf1060a92237478a7ba2b68f1fbe195018c",
+      "templateHash": "e799c372816366692b5fecd6978ab1e55f86d54b7e66fc7f8d8017e90410286e",
+      "text": "MG6C/AME — amended particulars — Soren Yule — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-457bedb358d4"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "4a4374d995fda2549a8c8b25161b24f10cf3e37ae578002edb31867aa950d2f7",
+      "templateHash": "7df172783bad6a122e7cf2a288d4ac6b5f3593f0d175db5a72605c79778ebe31",
+      "text": "MG6C/MED — medical imaging disc (Yule / folio 271) — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-4a4374d995fd"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "6c5dbb499d33c89a12efc3451680852b5c0c56467b77dcbf5ed9ea48aef33311",
+      "templateHash": "71ecf94a3f5d4aa0e4b2b3fde13cbf891968b8aa555025dc93ef37a69db114cb",
+      "text": "Outstanding: count linkage schedule — Soren Yule; amended particulars — Soren Yule; medical imaging disc (Yule / folio 271). · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-6c5dbb499d33"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "c65dc4fd3ab04556059050da5a9b2940abc1d591ae11183f507a28b182405012",
+      "templateHash": "adba955a9da27fb3794cfe25024a2627045df6c16798863e1d3a16d53f09bcb5",
+      "text": "count linkage schedule — Soren Yule · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-c65dc4fd3ab0"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "61f0408deeb09e1e041b92a294eb3da44075b42d316327c9cb251958d9f64a9e",
+      "templateHash": "9f04b8ea6954cb98ac358e015ee8b57f9b7e7be06046aa95a7e80f94a6e811e6",
+      "text": "amended particulars — Soren Yule · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-61f0408deeb0"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "067926b0681aad9176a852fec2f8a2f1ab861a67f7d6921cc6e0cef5fd680f3d",
+      "templateHash": "17b0d043774bcd42d80e19770ff76e8cabb915ea8701d9a2531a19f3caf3bf78",
+      "text": "medical imaging disc (Yule / folio 271) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-067926b0681a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "7effe362e44137aec0ad568c1c14374c2cbd4271c27fe1611cef718e8b6da136",
+      "templateHash": "3024471d09a72ca54637fda18416b0a81f78d949c8aa327afe64ca2e45c3063c",
+      "text": "original MG5 — Soren Yule · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-7effe362e441"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "9be0110ccfe39e93f55aa93cfdc5036fb104bf2ef2abdb9b0090f4e33cbba5b7",
+      "templateHash": "7980b098b45ad7d23cf687d27660e42e5a6aa99aa9b4e30ce01dd503884c154f",
+      "text": "amended indictment clarity — Soren Yule · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-9be0110ccfe3"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "fdfd2f75258a76dedca95f201292b4473b10fca7790200ffb86d748773a204a3",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-389",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-389-truth_map-fdfd2f75258a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "020ecedd42436e002a26f6d9f1a6f98d05da1b5e832e34fb42709e96cc16f5f9",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-389",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-389-truth_map-020ecedd4243"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "49a5e3981406d7ba976a2c8e5228f81c945cd44c203e991ca8adf79eb08c396b",
+      "templateHash": "7cc06e6dee177aed0c65d225d8407e7aafb8b1ae45e62f48d02df6b78def9ea3",
+      "text": "MG6C/CO — co-defendant-only — co-defendant segregation map (Oaken / folio 389) — not this defendant — outstanding — not on bundle. · other_defendant_only · needs_review",
+      "verdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-389",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sim-389-truth_map-49a5e3981406"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "22bcd67b169e3dd8b63bc0a920d475f3da818e5312e3a797327fcb3e8185381e",
+      "templateHash": "83b4ead15d0065656938daf9f1f9bd7db35d5826b563d643cb7cf199d53989bf",
+      "text": "MG6C/HAN — handle mapping certificate — Hux Oaken — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-22bcd67b169e"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "04fe48b98f74ffcc9e7b1ec86a94eab1c80cecb65e4e8aec01df1109d1548f10",
+      "templateHash": "06cd006ab63bf3aff15fb765aba989549f41f71337821d69929e356c262a6048",
+      "text": "MG6C/CON — continuity — Hux Oaken — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-04fe48b98f74"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "13505f5696e78a9fbef2e5bc7df004316c0ae20712e13e1146deb6508cd774fe",
+      "templateHash": "b665453e693177321d049979882eec9790370243ee4499d2f4f949b31a6b6fc0",
+      "text": "handle mapping certificate — Hux Oaken · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-13505f5696e7"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "07d52a9e2ac21ce4b246d71ba631a53174d45dd43437d4cbcbcc9f0679069cff",
+      "templateHash": "fef2d02aadddffee4cd9eab1735db3fee83af0e597d0d9e28999a3231aa155f6",
+      "text": "continuity — Hux Oaken · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-07d52a9e2ac2"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "e45a2ccbf787c38d6edb11389dd3572ea3d589f55ad315442820545f2ca1f451",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-360",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-360-truth_map-e45a2ccbf787"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "47170bf52ac0f4172fbb17dc046a04833ab341bb40ec880069c6bcc4a52db23e",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-360",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-360-truth_map-47170bf52ac0"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "1e75110127104b93eb556c9b38b86e71d6474917b36d27ab2639d1926eda5a6e",
+      "templateHash": "d12fe7435b3180d9279564fbd715157172292194ee34c1636c80bfa18ada8292",
+      "text": "Officer MG5 summary describes knife recovery; exhibit continuity log missing and MG11 differs on location. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-1e7511012710"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "08ef97f55bb1eaad37394f4197126d26a4bac39fbd2d82e9bbb1a2058faa4ef7",
+      "templateHash": "2bda1872c5f8499a4d0fc1ff4a2cb7ed97b616253ec8c82ea8d196795641fd04",
+      "text": "MG6C/EXH — exhibit continuity log — Demi Kest — referred on MG6 — export not served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-08ef97f55bb1"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "94747112f97ed02c8e56eb61f7a41001b5e89ac5fea0f13dfdec1fd144918f9c",
+      "templateHash": "9f336c9cd6eda71fa9a6a222e7b1a3fd8833f45b0251addbc60a671374417360",
+      "text": "MG6C/CON — continuity log — Demi Kest — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-94747112f97e"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "465f22375f25f2a25d6268febee1c9244ce4babc75e718502cd218808f14918d",
+      "templateHash": "d1929e46163c675a03b982793d6973c5fa38a994b625b746e13742e65dc01632",
+      "text": "MG6C/SEI — seizure photographs — Demi Kest — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-465f22375f25"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "922cb41be38fa6b9b232a4318b8e4884f73124775ea4acea21bc77f6ec2b830d",
+      "templateHash": "d73c7e50855c3f398a4d60e9eadcc0476c6ff2ba11e01146b230948af39f4b4c",
+      "text": "MG6C/MOT — motoring calibration trace (Kest / folio 360) — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-922cb41be38f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "831c53f823435bbe8b3fe95934da2a5f7dca4581f5412b16ca7b01db98f944f1",
+      "templateHash": "e1b4471a4de8b22926d55afa5da6b6cd92bbf5e2e9622cd61091b48752fceaac",
+      "text": "Outstanding: continuity log — Demi Kest; seizure photographs — Demi Kest; motoring calibration trace (Kest / folio 360). · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-831c53f82343"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "24b8ad8f01a2512c6dc1e9daa582c8173a8fe9b6f56a2d494b550b0d404f3afc",
+      "templateHash": "67c39737f031a26d0fd8b9f139c11f55370e81cbdd03ea639913f9b778e83c2f",
+      "text": "continuity log — Demi Kest · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-24b8ad8f01a2"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b808c070c63bab45f14cb342799bb5cecfa86a52dc47d7f9d47b00cf7f7a8bd4",
+      "templateHash": "0003180f7a3a4a243c280e4c117cd1e5d224763636ee179f6109acc51648265e",
+      "text": "seizure photographs — Demi Kest · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-b808c070c63b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d63955cbbf52be30e6b2b587e8a1d6dae590ab0102ab1b12d6d2956d42c33818",
+      "templateHash": "0a230accdf5678b231578eeb176cfce4b136d8a77e09fc986bf92020e31d18e0",
+      "text": "motoring calibration trace (Kest / folio 360) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-d63955cbbf52"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "149ee9a5173a02db4cacbb6f70081e624f8678f2d818c1a5b621e39cc508458c",
+      "templateHash": "919c3e14dc6db089fc8fe3753b1d216f025f873f05b42167c1a96ee1a624c474",
+      "text": "exhibit continuity log — Demi Kest · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-149ee9a5173a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b8f4f25ef878664fd0b5f75a478f2225ba1c5cb608d5597c236b79b832882e4f",
+      "templateHash": "0f3a2f5c5fdc14feac038480b7a5160287150fd839a73e738f8081a0da83c7dc",
+      "text": "exhibit continuity — Demi Kest · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-b8f4f25ef878"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    }
+  ]
+}

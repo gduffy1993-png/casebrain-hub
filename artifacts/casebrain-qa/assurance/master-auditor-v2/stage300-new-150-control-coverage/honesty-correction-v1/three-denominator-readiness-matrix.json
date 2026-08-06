@@ -1,0 +1,373 @@
+{
+  "schemaVersion": "stage300-new150-three-denominator-readiness@1.0.0",
+  "totals": {
+    "auditorTestableControlsWithDenomGe1": 43,
+    "productionBackedControlsWithDenomGe1": 37,
+    "harnessOnlySpecialtyControlsWithDenomGe1": 6,
+    "essentialControlCount": 43
+  },
+  "headline": {
+    "auditorTestable": "43/43",
+    "productionBacked": "37/43",
+    "harnessOnlySpecialty": "6/43"
+  },
+  "harnessOnlySpecialtyControlIds": [
+    "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+    "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+    "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+    "MAA2-PRC-03-YOUTH-STATE",
+    "MAA2-PRC-04-FITNESS-PARTICIPATION",
+    "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+  ],
+  "productionBackedControlIds": [
+    "MAA2-SRC-07-REDACTION-DETECT",
+    "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+    "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+    "MAA2-SRC-13-PASSWORD-CORRUPT",
+    "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+    "MAA2-AUD-02-CLIENT-PLAIN",
+    "MAA2-AUD-03-COURT-PRECISE",
+    "MAA2-AUD-04-CPS-SPECIFIC",
+    "MAA2-AUD-05-SUPERVISOR-RISK",
+    "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+    "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+    "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+    "MAA2-XPP-04-CLIENT-COMPREHENSION",
+    "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+    "MAA2-VDR-01-SOURCE-CASE-HASHES",
+    "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+    "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+    "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+    "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+    "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+    "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+    "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+    "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+    "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+    "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+    "MAA2-ELD-03-STALE-DRAFT-MARKING",
+    "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+    "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+    "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+    "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+    "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+    "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+    "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+    "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+    "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+    "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+    "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+  ],
+  "productGaps": {
+    "missingCaseBrainSpecialtyEmitters": [
+      "legalStateTaxonomy",
+      "dobAgeCalcLedger",
+      "proceduralPartyState",
+      "derivedNumericClaims"
+    ],
+    "note": "Harness specialty bags are independent source-side expectations only — never CaseBrain output."
+  },
+  "rows": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "auditorTestableAchieved": 38,
+      "productionBackedAchieved": 38,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "source_corpus"
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "auditorTestableAchieved": 38,
+      "productionBackedAchieved": 38,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "source_corpus"
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "auditorTestableAchieved": 38,
+      "productionBackedAchieved": 38,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "source_corpus"
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "auditorTestableAchieved": 38,
+      "productionBackedAchieved": 38,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "source_corpus"
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "auditorTestableAchieved": 38,
+      "productionBackedAchieved": 38,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "source_corpus"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "auditorTestableAchieved": 18,
+      "productionBackedAchieved": 0,
+      "backing": "independent_source_parse_harness_expectations_only",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "auditorTestableAchieved": 43,
+      "productionBackedAchieved": 0,
+      "backing": "independent_source_parse_harness_expectations_only",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "auditorTestableAchieved": 43,
+      "productionBackedAchieved": 0,
+      "backing": "independent_source_parse_harness_expectations_only",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "auditorTestableAchieved": 23,
+      "productionBackedAchieved": 0,
+      "backing": "independent_source_parse_harness_expectations_only",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "auditorTestableAchieved": 17,
+      "productionBackedAchieved": 0,
+      "backing": "independent_source_parse_harness_expectations_only",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "auditorTestableAchieved": 18,
+      "productionBackedAchieved": 0,
+      "backing": "independent_source_parse_harness_expectations_only",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "auditorTestableAchieved": 150,
+      "productionBackedAchieved": 150,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "capture_materialisation_harness"
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "auditorTestableAchieved": 15,
+      "productionBackedAchieved": 15,
+      "backing": "genuine_casebrain_production_or_authorised_non_specialty_harness",
+      "ownership": "production_casebrain"
+    }
+  ]
+}

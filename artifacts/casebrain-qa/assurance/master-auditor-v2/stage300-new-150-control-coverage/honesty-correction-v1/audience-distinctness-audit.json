@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "stage300-new150-audience-distinctness-audit@1.0.0",
+  "casesChecked": 150,
+  "casesWithGenuinelyDistinctPacks": 150,
+  "casesWithIdenticalOrInsufficientPacks": 0,
+  "minDistinctPayloads": 7,
+  "maxDistinctPayloads": 7,
+  "sampleFailures": [],
+  "rule": "Genuinely distinct requires ≥4 distinct payloadSha256 values and ≥3 distinct among court/cps/client/supervisor — not identical wording with relabelled audiences."
+}

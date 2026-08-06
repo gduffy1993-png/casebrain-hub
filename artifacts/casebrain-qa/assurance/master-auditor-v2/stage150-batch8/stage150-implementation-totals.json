@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "stage150-implementation-totals@1.7.0",
+  "baselineCommit": "e60790458f6c1030300c52c029e2318a28139252",
+  "before": {
+    "stage150ControlCount": 161,
+    "partially_implemented": 98,
+    "specified_not_implemented": 55,
+    "implemented": 8,
+    "other": 0
+  },
+  "after": {
+    "stage150ControlCount": 161,
+    "partially_implemented": 98,
+    "specified_not_implemented": 55,
+    "implemented": 8,
+    "other": 0
+  },
+  "batch8DetectorPromotions": [],
+  "note": "Batch-8 adapter foundation only — implementation totals unchanged (8/98/55).",
+  "preserved": {
+    "batch5": 5,
+    "batch6": 2,
+    "batch7": 1,
+    "stage150": 8
+  }
+}

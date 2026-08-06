@@ -1,0 +1,818 @@
+{
+  "root": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25",
+  "exists": true,
+  "fileCount": 135,
+  "totalBytes": 33003142,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/03-host-auth-result.json",
+      "size": 13639,
+      "mtime": "2026-07-25T00:23:01.861Z",
+      "sha256": "0ca999315fcfb4cfea87f444e7e59a09c4e7dc7720c2e0dfea63d0000143c2c8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/03-host-auth-result.png",
+      "size": 198755,
+      "mtime": "2026-07-25T00:23:01.542Z",
+      "sha256": "367a86ea7141f03e3f7df6feb71c387fc5aceff65600022de0f37a8baa651723"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/04-upload-before-selection.json",
+      "size": 10064,
+      "mtime": "2026-07-25T00:02:34.548Z",
+      "sha256": "f8c62219441131ed52460bd3b294a7f3d0514b0c6c54938ae7cf33bf8441bf82"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/04-upload-before-selection.png",
+      "size": 241140,
+      "mtime": "2026-07-25T00:02:34.439Z",
+      "sha256": "6b12e8f664bfa1f962677904d772e58423f50a0376f815786e54b984b7d82573"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/05-upload-selected-before-submit.json",
+      "size": 10254,
+      "mtime": "2026-07-25T00:03:20.315Z",
+      "sha256": "7b9ded9d0acdcb04f32524f6c5a6acc3124cc38e972cef20ff23329ba719af95"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/05-upload-selected-before-submit.png",
+      "size": 252108,
+      "mtime": "2026-07-25T00:03:20.097Z",
+      "sha256": "645f145bc6518434f4fc822eaf1cf405ccde0b83b264e77a8339456e573f7cbf"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/06-after-single-upload.json",
+      "size": 16893,
+      "mtime": "2026-07-25T00:04:18.950Z",
+      "sha256": "f197a514176dfe49cd234e1f1303ec55cc29fe306aa85429ef6d38cffe91b2cc"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/06-after-single-upload.png",
+      "size": 535441,
+      "mtime": "2026-07-25T00:04:18.788Z",
+      "sha256": "a729ec52ec215d255103b8b3c00157f619fa6c76bb6b518b3c9f15dc8baf3513"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/07-current-rerun-control-room.json",
+      "size": 12918,
+      "mtime": "2026-07-25T00:06:58.205Z",
+      "sha256": "ce4dacb2eb9f7b149e0c4c3c3a33e55e9d13b933431bfefcd6be04c6e45f4b7b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/07-current-rerun-control-room.png",
+      "size": 408503,
+      "mtime": "2026-07-25T00:06:58.202Z",
+      "sha256": "3d8bc20c9249e61e7e14facb05fd547fccee421dcb531c5928bde6041addbde9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/08-current-control-room.json",
+      "size": 17670,
+      "mtime": "2026-07-25T00:18:11.923Z",
+      "sha256": "631e81be69f1e8c38d3b55cb6ecb9c312ed9425580a00d927dbf4c278738e8c0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/08-current-control-room.png",
+      "size": 408185,
+      "mtime": "2026-07-25T00:18:11.916Z",
+      "sha256": "cdcd717e73f93fadfe6c4bd8147a57654550b77118ed9aed13a764ed8c505c4d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/09-current-classic-strategy.json",
+      "size": 17656,
+      "mtime": "2026-07-25T00:18:58.663Z",
+      "sha256": "badbca3024d135bd91a984d00423812192894076a66f52dbfff4e21c0b32a04b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/09-current-classic-strategy.png",
+      "size": 408209,
+      "mtime": "2026-07-25T00:18:58.659Z",
+      "sha256": "2ed6175e4114e591bba476e57a9ef0a016bc2d8023560fd994804eeb0cc4d982"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/10-current-classic-strategy.json",
+      "size": 18632,
+      "mtime": "2026-07-25T00:28:03.375Z",
+      "sha256": "54fbb8d04dc63b513f6657130dc2199f5516803d2fd3f587999b6e457364ebba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/10-current-classic-strategy.png",
+      "size": 438904,
+      "mtime": "2026-07-25T00:28:03.361Z",
+      "sha256": "816ed865bd50adde151f5e79f70ce6bab681586fc78558044502d0409903bb56"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/11-current-control-room-after-export.png",
+      "size": 380984,
+      "mtime": "2026-07-25T00:29:38.544Z",
+      "sha256": "68d1d128d5fddb4d6d58179ba27d9c59ec44ad115bfa3d36090ec4eb017c1696"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/12-current-classic-strategy-after-exports.png",
+      "size": 2309329,
+      "mtime": "2026-07-25T00:32:46.233Z",
+      "sha256": "763ed1cb4603834049fe088b90ad583aa999996a03e5f7479f5b6eabf9428740"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/13-current-classic-strategy-api-settled.json",
+      "size": 23002,
+      "mtime": "2026-07-25T00:39:35.494Z",
+      "sha256": "fefa606b4cad03d6d3d9ff54d0ea119556347c11f20fe89ea45c41d0fcb859fb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/30-actual-summary-after-exits.json",
+      "size": 15881,
+      "mtime": "2026-07-25T00:07:50.165Z",
+      "sha256": "4d8d1b58e445f6d2a4a1b1fd2d7aceea32a386b29f02799d62daea2cbd372e2c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/30-actual-summary-after-exits.png",
+      "size": 343590,
+      "mtime": "2026-07-25T00:07:50.123Z",
+      "sha256": "158475683e885198c74a73e91ba356d60c2cbfbb1b49b06d675779661c7a5f2f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/30-actual-summary.json",
+      "size": 15881,
+      "mtime": "2026-07-25T00:07:45.148Z",
+      "sha256": "a256f229e506d0fe9c74663d4c83ab41eeadca4ab9e7624952dd2c3f7ba09c35"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/30-actual-summary.png",
+      "size": 343590,
+      "mtime": "2026-07-25T00:07:44.976Z",
+      "sha256": "158475683e885198c74a73e91ba356d60c2cbfbb1b49b06d675779661c7a5f2f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/31-actual-charges-after-exits.json",
+      "size": 15675,
+      "mtime": "2026-07-25T00:08:10.174Z",
+      "sha256": "4b896de95b06a98b43a18ae78632f16349d5a84f8ed11d42bd5871d5558b8e9a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/31-actual-charges-after-exits.png",
+      "size": 442818,
+      "mtime": "2026-07-25T00:08:10.113Z",
+      "sha256": "e5683b7760820ee8ebae7ebe910899fb06fa333616152115f8ef75be9a2cf300"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/31-actual-charges.json",
+      "size": 15675,
+      "mtime": "2026-07-25T00:08:07.863Z",
+      "sha256": "cf9dec680df6bfc818d7ede646bdc71ebae3cc339c7e65956647c7f97520ed85"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/31-actual-charges.png",
+      "size": 442798,
+      "mtime": "2026-07-25T00:08:07.790Z",
+      "sha256": "b53fdd0df254c446b351c0508684b452f543a64aa9b6872e2e09cdfc5ab49436"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/32-actual-disclosure-after-exits.json",
+      "size": 15678,
+      "mtime": "2026-07-25T00:09:03.751Z",
+      "sha256": "c158165ffa44f1ac26c9b3087814925e3c3bce92e838c13cc94839ffecb48953"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/32-actual-disclosure-after-exits.png",
+      "size": 442814,
+      "mtime": "2026-07-25T00:09:03.713Z",
+      "sha256": "c47864aed83b1e3cedaa0fd8afb5a5acbbed3aeb0c4b189ba9d895090d732ceb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/32-actual-disclosure.json",
+      "size": 15678,
+      "mtime": "2026-07-25T00:09:01.398Z",
+      "sha256": "86bde724c134f51e052337befde2abd422496a9faccd7fe0ffa055b7eb11cbd5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/32-actual-disclosure.png",
+      "size": 442817,
+      "mtime": "2026-07-25T00:09:01.331Z",
+      "sha256": "0e92e7440beaec06197267524248a1e9a2c7f26e3ceefbda269b3fd45368da18"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/33-actual-next-steps-after-exits.json",
+      "size": 15678,
+      "mtime": "2026-07-25T00:09:32.615Z",
+      "sha256": "90ed53736071b20c7d803ea76dd085b00e655ed266217829e3e5f65956ba16ff"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/33-actual-next-steps-after-exits.png",
+      "size": 442806,
+      "mtime": "2026-07-25T00:09:32.457Z",
+      "sha256": "76d992197223d8bdd9bb7b2feae7a00668b6e92e6c4215d56238d32e2506a2f2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/33-actual-next-steps.json",
+      "size": 15678,
+      "mtime": "2026-07-25T00:09:30.488Z",
+      "sha256": "a986ea472824fe0af17401730b60e8c5a861c6cf325da567fd59921c1838f94d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/33-actual-next-steps.png",
+      "size": 442694,
+      "mtime": "2026-07-25T00:09:30.409Z",
+      "sha256": "18178372830661ff2863021bef27d71a79c9dc323e58dedd7c35b38a470e7832"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/34-actual-hearings-after-exits.json",
+      "size": 16893,
+      "mtime": "2026-07-25T00:10:11.510Z",
+      "sha256": "5d9931750377d382811612fca7941fa125d927285150bd4598e2fe628003b588"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/34-actual-hearings-after-exits.png",
+      "size": 535437,
+      "mtime": "2026-07-25T00:10:11.473Z",
+      "sha256": "4f5df5e98c2ee3471fed31a911b395d2d38675c4350b19ad1d8176138c3fe83d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/34-actual-hearings.json",
+      "size": 16893,
+      "mtime": "2026-07-25T00:10:09.229Z",
+      "sha256": "e669d36bc4c95dab562f48696e981768633ce7a8622d3e3cff8518544786da30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/34-actual-hearings.png",
+      "size": 535454,
+      "mtime": "2026-07-25T00:10:09.160Z",
+      "sha256": "9764d1cc19f4ab9b198ed4723a05358258a7b56bd148d3873e6b38a447289706"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/35-actual-hearing-war-room-after-exits.json",
+      "size": 21758,
+      "mtime": "2026-07-25T00:10:54.129Z",
+      "sha256": "743b09665bbae5a3ce26d07c1d3543c297cd6b13795a6a6e8383bee5056ff4e1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/35-actual-hearing-war-room-after-exits.png",
+      "size": 761648,
+      "mtime": "2026-07-25T00:10:54.087Z",
+      "sha256": "90e600ba99027c5353a80d27aff0d7cfa06ef284c5edaed35ecdc31cc4fc48ef"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/35-actual-hearing-war-room.json",
+      "size": 21758,
+      "mtime": "2026-07-25T00:10:51.736Z",
+      "sha256": "74a9171763e82b83112c579f3ce3c4e0ccf3fc30710701576dedcd8397c74982"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/35-actual-hearing-war-room.png",
+      "size": 264650,
+      "mtime": "2026-07-25T00:10:51.573Z",
+      "sha256": "3f7b4955b2c0057f373387fe0c164138634f91da5d125d7db2c8824a33f86a81"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/36-actual-disclosure-chase-after-exits.json",
+      "size": 16628,
+      "mtime": "2026-07-25T00:11:28.519Z",
+      "sha256": "22f68b06daf0163413bdbbaa7afb42ea81a4f8bb0604cefe727a9d0d712d18a2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/36-actual-disclosure-chase-after-exits.png",
+      "size": 416782,
+      "mtime": "2026-07-25T00:11:28.472Z",
+      "sha256": "5d2dc4729a97fd641cf0921a2f7c2c1da60a485b19c103e28300a171bc7a70d9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/36-actual-disclosure-chase.json",
+      "size": 16223,
+      "mtime": "2026-07-25T00:11:22.166Z",
+      "sha256": "bb5465f854049c770f9e6ed8bdb45718bd7e62a4211b44a2ed90d03011280231"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/36-actual-disclosure-chase.png",
+      "size": 402743,
+      "mtime": "2026-07-25T00:11:22.090Z",
+      "sha256": "2a837b78f43f15d80a0b74330a7f7d45e1c562701b86888fa439872426c0145c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/37-actual-timeline-after-exits.json",
+      "size": 15676,
+      "mtime": "2026-07-25T00:11:47.863Z",
+      "sha256": "1078050fcf899658b3dbf3e47725d231003f4f756302ec0cdbd7767d5217f3cd"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/37-actual-timeline-after-exits.png",
+      "size": 442837,
+      "mtime": "2026-07-25T00:11:47.799Z",
+      "sha256": "0a2fa6118ef144116f4ac2f553d6d1c6ddf539e403248fc8d4a11dafd8a4d308"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/37-actual-timeline.json",
+      "size": 15676,
+      "mtime": "2026-07-25T00:11:45.966Z",
+      "sha256": "cfbb189110dca586637ba46056cf9343c36932a561e62e21a8dbeab834a2a787"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/37-actual-timeline.png",
+      "size": 442796,
+      "mtime": "2026-07-25T00:11:45.900Z",
+      "sha256": "71b37d20a227c76149c5525d9bb8d7d6a6d26012127a51134fdc3d58c1bf1762"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/38-actual-client-instructions-after-exits.json",
+      "size": 13336,
+      "mtime": "2026-07-25T00:12:16.247Z",
+      "sha256": "f23f8726a3ad36bbe5b18b6e6302bff38665f968ac2c00098c483b90a65e1d44"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/38-actual-client-instructions-after-exits.png",
+      "size": 242740,
+      "mtime": "2026-07-25T00:12:16.214Z",
+      "sha256": "81e9e9eaa34108338f6b12fe53376c471ce0cdaf6112bbbb6efa7c2149e3a0a1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/38-actual-client-instructions.json",
+      "size": 13336,
+      "mtime": "2026-07-25T00:12:14.463Z",
+      "sha256": "0b813282baf0207da2edb6f5e7663bc63868954978badea7e2f3c1046dd12308"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/38-actual-client-instructions.png",
+      "size": 242928,
+      "mtime": "2026-07-25T00:12:14.404Z",
+      "sha256": "f33ab76629a39268387ebc71880292d90ba3009dc4043275708e92632be571a6"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/39-actual-sentencing-after-exits.json",
+      "size": 16895,
+      "mtime": "2026-07-25T00:12:49.106Z",
+      "sha256": "c2bd9e372d8306e5910c096c4e1520c2db8eafaa2b0ab5d9340b290a266585e7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/39-actual-sentencing-after-exits.png",
+      "size": 535423,
+      "mtime": "2026-07-25T00:12:49.073Z",
+      "sha256": "f9e68b49b2875d3f79640c11c024ea17a2b5ba72d743b8000b8f90d6358b6bd1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/39-actual-sentencing.json",
+      "size": 16895,
+      "mtime": "2026-07-25T00:12:45.601Z",
+      "sha256": "fbe43b97770ca9ca17ebe00fa7d5876d03a0290075550009b30584b2f02887c7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/39-actual-sentencing.png",
+      "size": 535440,
+      "mtime": "2026-07-25T00:12:45.411Z",
+      "sha256": "aaa509180e2d137907479c4ebbc107b2ad3b32bb2d2fb54f9ceed81e74d85e59"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/40-actual-key-facts-after-exits.json",
+      "size": 16879,
+      "mtime": "2026-07-25T00:13:13.466Z",
+      "sha256": "4edff6831b13cf39aee1c679597acdf7ba6d48701a39bb901b948940ae6bbc82"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/40-actual-key-facts-after-exits.png",
+      "size": 535444,
+      "mtime": "2026-07-25T00:13:13.389Z",
+      "sha256": "51cb7da28e57e19d21dcf2d79fdb9d6837b650df81ea9c676f8dc68587eae9f9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/40-actual-key-facts.json",
+      "size": 16894,
+      "mtime": "2026-07-25T00:13:10.581Z",
+      "sha256": "b703e61c27d0fcd7a759060760be84cf210e12674f82d7b4629b49ded4feef4f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/40-actual-key-facts.png",
+      "size": 535432,
+      "mtime": "2026-07-25T00:13:10.524Z",
+      "sha256": "75ca104fac09091b3978186c9fe2b30f107137173aef68e56362d99b92a66fa6"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/41-actual-safety-procedural-after-exits.json",
+      "size": 16887,
+      "mtime": "2026-07-25T00:13:34.443Z",
+      "sha256": "fbc61bc06be68fac57a9e6d2f7d46966244d02c45b8682aa00232bf71078f231"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/41-actual-safety-procedural-after-exits.png",
+      "size": 533795,
+      "mtime": "2026-07-25T00:13:34.408Z",
+      "sha256": "e756e643f8d74835c8fdcb3b22f376d039111c31c56a2335ca41a68fb1d86673"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/41-actual-safety-procedural.json",
+      "size": 16902,
+      "mtime": "2026-07-25T00:13:31.085Z",
+      "sha256": "ebbf25b0ce3980e40b0ac6f81ae6aa053fa9740f23254f12c431d81c29c2e0f4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/41-actual-safety-procedural.png",
+      "size": 535442,
+      "mtime": "2026-07-25T00:13:31.001Z",
+      "sha256": "1078cebae12cda18f11724ee13deae157775f89de6cd9e6efb64eea97414817e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/42-actual-additional-tools-after-exits.json",
+      "size": 15936,
+      "mtime": "2026-07-25T00:13:55.698Z",
+      "sha256": "e400b50beeb4f35fbad90183d393cc585c0abd6d8200ef16000e050003d9d8f3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/42-actual-additional-tools-after-exits.png",
+      "size": 450721,
+      "mtime": "2026-07-25T00:13:55.665Z",
+      "sha256": "c84de1a67d29c98ffef2f84495162a97f63dd412fec18d5a32dea886b76197a8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/42-actual-additional-tools.json",
+      "size": 15936,
+      "mtime": "2026-07-25T00:13:53.745Z",
+      "sha256": "0f25516bc2932a8c3a8501e498ebfb7593c4e0c994930bd17349d5b74779edbe"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/42-actual-additional-tools.png",
+      "size": 442831,
+      "mtime": "2026-07-25T00:13:53.636Z",
+      "sha256": "e2653ea2f37bdf65874a9d33be849e847ca0927edb19cb2267a71cf11978dc53"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/43-actual-police-station-after-exits.json",
+      "size": 15888,
+      "mtime": "2026-07-25T00:14:20.386Z",
+      "sha256": "279072578e169ba75758b4d2682f6abdaf7eaa9e462feab75bf93ee82c11d4ff"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/43-actual-police-station-after-exits.png",
+      "size": 343482,
+      "mtime": "2026-07-25T00:14:20.349Z",
+      "sha256": "fe9356071df5d8cc8b172d26ae10bc555fada165e8451a7e178803ba4cf3561c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/43-actual-police-station.json",
+      "size": 15888,
+      "mtime": "2026-07-25T00:14:18.513Z",
+      "sha256": "1b953755b70b039b2693ac9d899c8600a0fde8ce93d67943a01b78e646e0371a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/43-actual-police-station.png",
+      "size": 343423,
+      "mtime": "2026-07-25T00:14:18.464Z",
+      "sha256": "2acb944b5ad71ed0277732f327440fe4370ee6f39851a0c9ba6d16879c9e274c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/44-actual-documents-after-exits.json",
+      "size": 14232,
+      "mtime": "2026-07-25T00:14:47.009Z",
+      "sha256": "690f6b5a45c19b1ad2027bef5d176f7ffd532db160b57aad60184d387c41276b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/44-actual-documents-after-exits.png",
+      "size": 246538,
+      "mtime": "2026-07-25T00:14:46.975Z",
+      "sha256": "6d6a19bd86daa259227aa6fda988d35414aa958269d7113de90db685fe4062c0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/44-actual-documents.json",
+      "size": 14232,
+      "mtime": "2026-07-25T00:14:46.435Z",
+      "sha256": "4fa10e59a78402ed6f87c08c6263edcf1b6ef5c86998c1709237f6551e0391ca"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/44-actual-documents.png",
+      "size": 246291,
+      "mtime": "2026-07-25T00:14:46.383Z",
+      "sha256": "91b80b2de9db53f1cfceaccde7c1a2b6d14d1976c405baf8a7102dcf65417535"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/45-composed-assistant-prompts.json",
+      "size": 19362,
+      "mtime": "2026-07-25T00:16:54.063Z",
+      "sha256": "d394dfc0c8fcfbe604c09dff67684faa4966fc13ee6a3fe26504edba5afd4cce"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/45-composed-assistant-prompts.png",
+      "size": 534403,
+      "mtime": "2026-07-25T00:16:54.011Z",
+      "sha256": "7e93a849383c13ccb7de64ce3ee9e749eec91ce15e077c10c2524e7e063d381c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/46-composed-initial-disclosure-draft.json",
+      "size": 18299,
+      "mtime": "2026-07-25T00:17:03.575Z",
+      "sha256": "f5496d5e6ffc5f05b59e831e56beb6420079a360f9b6be9e748dafd4c3b68857"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/46-composed-initial-disclosure-draft.png",
+      "size": 432422,
+      "mtime": "2026-07-25T00:17:03.504Z",
+      "sha256": "b2860314bb8c1d4d5cc41d6a4a49f22c6634855df8de872c1bfa65e187afef65"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/50-classic-charges.json",
+      "size": 12450,
+      "mtime": "2026-07-25T00:45:13.735Z",
+      "sha256": "aa7cc756ac7e74aaf2bb2078ddcbbd57f014c641c01fb35de4d74001cdb7f2b9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/50-classic-charges.png",
+      "size": 381031,
+      "mtime": "2026-07-25T00:45:13.726Z",
+      "sha256": "aa519ee80de1de797edbdf74c900460088597762ec44d0e7603d88894c53ceb3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/51-classic-disclosure.json",
+      "size": 12453,
+      "mtime": "2026-07-25T00:45:42.925Z",
+      "sha256": "b41ccd91b0d92aa1f47d4069fdf5af9eb40d433ab23ff629d2cfd1d3d18410ee"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/51-classic-disclosure.png",
+      "size": 381012,
+      "mtime": "2026-07-25T00:45:42.918Z",
+      "sha256": "79670dac002d1ebb02120c283bb6337299c45469b4c5b825769de2f58accc24e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/52-classic-next-steps.json",
+      "size": 13656,
+      "mtime": "2026-07-25T00:46:11.442Z",
+      "sha256": "5dfe9aee429d9cf5377d4c1dac831ecd084a359c6f3b90e53913a5ebb945150a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/52-classic-next-steps.png",
+      "size": 476559,
+      "mtime": "2026-07-25T00:46:11.436Z",
+      "sha256": "0713abd6d845f8b6073ffca18eb23373dad4ea58948c3212405f7d94aec4e30d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/53-classic-hearings.json",
+      "size": 12451,
+      "mtime": "2026-07-25T00:47:02.821Z",
+      "sha256": "662db58bf1a4a4ba33efa242af273694bd53f92c6f189e53d395461afaca0c73"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/53-classic-hearings.png",
+      "size": 414023,
+      "mtime": "2026-07-25T00:47:02.806Z",
+      "sha256": "18bdbf41f08d3099595b23d770a5932fe9cf1ac44c54ac7a29ab352d060c8680"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/54-classic-timeline.json",
+      "size": 13343,
+      "mtime": "2026-07-25T00:47:31.057Z",
+      "sha256": "2e2af0c024a4b40105d39db85095ef2acaa04dccf0dcb12e2346d84630b39490"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/54-classic-timeline.png",
+      "size": 476580,
+      "mtime": "2026-07-25T00:47:30.955Z",
+      "sha256": "3a41f167ac81267ef30a6dbe3137f4dcb02d6608e86729af367412844c36910a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/55-classic-client-instructions.json",
+      "size": 10096,
+      "mtime": "2026-07-25T00:48:19.851Z",
+      "sha256": "fb82dbdf52dc0c8233e946426da4e5d16fe5f9374ff9924f043440247764eb19"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/55-classic-client-instructions.png",
+      "size": 180259,
+      "mtime": "2026-07-25T00:48:19.846Z",
+      "sha256": "4217b1f1e79f9083fcd5515af6291be816b6f5f5950f31f45ba050e7732b6d4e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/56-classic-sentencing.json",
+      "size": 12453,
+      "mtime": "2026-07-25T00:48:49.484Z",
+      "sha256": "91f14a858a9ba0bc132a45d8cc576998fe9f446a027786bac7f3cdb72c1c19d9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/56-classic-sentencing.png",
+      "size": 381025,
+      "mtime": "2026-07-25T00:48:49.478Z",
+      "sha256": "1560af98eaf6b398ec2e62a1e114e4413db9cada783989fae2d97896df2b6ee0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/57-classic-key-facts.json",
+      "size": 12452,
+      "mtime": "2026-07-25T00:49:16.931Z",
+      "sha256": "9e4b50ac048b75385d17b2c305f146be48d195652ff0465ab5205dc0e1eaf4f8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/57-classic-key-facts.png",
+      "size": 381014,
+      "mtime": "2026-07-25T00:49:16.902Z",
+      "sha256": "4dba3016ec3bab5ae22f16a2a6a25c772fd1f26a164d68dcca2e7bca5b28e9c4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/58-classic-safety-procedural.json",
+      "size": 12727,
+      "mtime": "2026-07-25T00:49:46.901Z",
+      "sha256": "6e86706bf7e30decd1d5e8d7a9e6eae2103d333fc5ed31a383848d8af28cb1b4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/58-classic-safety-procedural.png",
+      "size": 390650,
+      "mtime": "2026-07-25T00:49:46.837Z",
+      "sha256": "9787f73cfef5525cd5c956735e4f49e24e4db930ab7cf6d830015d8f3327d1f4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/59-classic-additional-tools.json",
+      "size": 12459,
+      "mtime": "2026-07-25T00:50:16.542Z",
+      "sha256": "37becf466d0829aab89e83dcf7886d435ed51ea8a9c1b6d2a080d1c62cc9f869"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/59-classic-additional-tools.png",
+      "size": 380993,
+      "mtime": "2026-07-25T00:50:16.537Z",
+      "sha256": "a5434c2f5da4ebd0d5645164ac1751f0e8f0355e448dddadc17a15010b8ccb10"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/60-classic-police-station.json",
+      "size": 14582,
+      "mtime": "2026-07-25T00:50:45.100Z",
+      "sha256": "54a8e8dd1393cabc1da10c5ac9a76cd00c0af5236ec7e2206555e4faf51fc83f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/60-classic-police-station.png",
+      "size": 335066,
+      "mtime": "2026-07-25T00:50:45.096Z",
+      "sha256": "65ec8586008022b33ccc2339b38a3b0ec57242bd87951b094460714d10b45897"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/classic-tabs-result.json",
+      "size": 4768,
+      "mtime": "2026-07-25T00:50:45.101Z",
+      "sha256": "f0db392209e97231e9530d1cbf113a62114f942235e5a25fa36dc9996d1cad6f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/composed-exits-result.json",
+      "size": 51517,
+      "mtime": "2026-07-25T00:17:03.584Z",
+      "sha256": "94fdf56652e69be8f80d38630c1f0cbad080ce0a2496d27d5054a3a2de1160cf"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/evidence-file-manifest.json",
+      "size": 30545,
+      "mtime": "2026-07-25T01:00:52.898Z",
+      "sha256": "41b288e407940e392c551eb50046a35afb5e694a6a905c634410806acfb9f7d8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-auth-console.json",
+      "size": 310,
+      "mtime": "2026-07-25T00:23:02.425Z",
+      "sha256": "4ee268e7cfb44b31c62be272e8fa281dfe5d0ac80e42cbafade7cf63c8999377"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-auth-network.json",
+      "size": 78461,
+      "mtime": "2026-07-25T00:23:02.424Z",
+      "sha256": "00a4364933ddb58330c0bac239713633f70ee68917e4ddda280953710e3090d8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-auth-result.json",
+      "size": 1774,
+      "mtime": "2026-07-25T00:23:01.862Z",
+      "sha256": "436ac668df9d50c004720ffe02f140011ba3521ab81bbce9ee71d46585df6872"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-capture-composed-exits-console.json",
+      "size": 1011,
+      "mtime": "2026-07-25T00:17:04.103Z",
+      "sha256": "82285bcc68a412fd8105c1b83d63ae8788b46856aac03846a55d97b201091f6f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-capture-composed-exits-network.json",
+      "size": 548009,
+      "mtime": "2026-07-25T00:17:04.100Z",
+      "sha256": "186ed74b8fe293e7f7c9cdd9cb9f877070f74e4af5e282ac214368614d7c1004"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-capture-missing-exits-console.json",
+      "size": 32294,
+      "mtime": "2026-07-25T00:14:47.645Z",
+      "sha256": "b33bd9b881adec821fb2ab5386ea5bcc58bcd914c47feb607899199227761bba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-capture-missing-exits-network.json",
+      "size": 3653938,
+      "mtime": "2026-07-25T00:14:47.639Z",
+      "sha256": "fb95284e3bd840d57cfe51d28980a1b164c051567ea7c027ceef5ab981395ffd"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-classic-strategy-api.jsonl",
+      "size": 701231,
+      "mtime": "2026-07-25T00:39:37.032Z",
+      "sha256": "ebf75485b21ffc9fe138475628c1b4e3dd82483c394582c14b19343f04d69b58"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-classic-tabs-api.jsonl",
+      "size": 1575539,
+      "mtime": "2026-07-25T00:50:45.182Z",
+      "sha256": "212a9f93a9045dcd186adde379fb82ee1ffc61004e85fadbb0c6dd2425712e2a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-current-rerun-console.json",
+      "size": 7939,
+      "mtime": "2026-07-25T00:06:58.222Z",
+      "sha256": "f675b217dab13557700643e78473288c36c449ad2864556afa5050fa6e94f05a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-current-rerun-network.json",
+      "size": 20497,
+      "mtime": "2026-07-25T00:06:58.212Z",
+      "sha256": "014f91b8f0d0c776b5a0ec39f5dceb89477bd8adcdc0b798f4bea737ef4bb04d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-inspect-upload-console.json",
+      "size": 370,
+      "mtime": "2026-07-25T00:02:35.098Z",
+      "sha256": "2939de55d7ad811c8ede0ef5c11444f67e8bc62a61e9ccdf571f05838113be8d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-inspect-upload-network.json",
+      "size": 32753,
+      "mtime": "2026-07-25T00:02:35.097Z",
+      "sha256": "caf5a41ba52e5cb4f3c6873743c4f319a9e836c08f2a7140e3cd5bdc4169dd4f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-ui-run.cjs",
+      "size": 37293,
+      "mtime": "2026-07-24T00:20:08.966Z",
+      "sha256": "0afa7231d98b7c280c4aba97201a3cba7ebfcdc2dfae1335dbd747413023675a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-upload-once-console.json",
+      "size": 650,
+      "mtime": "2026-07-25T00:04:19.491Z",
+      "sha256": "5a0184bb6bff742dba9a345a4b3c92662744a97de459999949d8003c059f58e1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/host-upload-once-network.json",
+      "size": 205068,
+      "mtime": "2026-07-25T00:04:19.487Z",
+      "sha256": "e7af87fa292d69004c213f3c3a53d7fc7a1e6d115893db18f7753130a228405a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/missing-exits-progress.json",
+      "size": 15190,
+      "mtime": "2026-07-25T00:14:20.387Z",
+      "sha256": "cc6955ce1438d3e15309df82614ec73b991aa670f08e1fdec4143211aaa6a99c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/missing-exits-result.json",
+      "size": 15595,
+      "mtime": "2026-07-25T00:14:47.011Z",
+      "sha256": "216dafe6c3f956d7c858499344aa6afc263888d87186d99f7ec06405889ade2c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/npm-build.stderr.log",
+      "size": 0,
+      "mtime": "2026-07-24T23:51:12.384Z",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/npm-build.stdout.log",
+      "size": 27029,
+      "mtime": "2026-07-24T23:59:29.254Z",
+      "sha256": "13467da35385e6ffb46a37b796178b429085b2201e768bce9e2fd32863eb52ea"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/npm-start.stderr.log",
+      "size": 183290,
+      "mtime": "2026-07-25T00:50:23.783Z",
+      "sha256": "15af12c714cd68cdbe23c25fe7aa7a5db679aaf2afae6ce985108c140d38c6e4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/npm-start.stdout.log",
+      "size": 1293899,
+      "mtime": "2026-07-25T00:50:25.187Z",
+      "sha256": "5a03d6feee409860c778453725be05759ea456e60c847822850ec9d1ec073530"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/required-finding-scores.json",
+      "size": 14905,
+      "mtime": "2026-07-25T00:56:00.821Z",
+      "sha256": "74c9eb93e4de6a1189dbe0f640480813468cc17fbfa92dfb7e29f079603e9c8c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/run-scoring-report.md",
+      "size": 9822,
+      "mtime": "2026-07-25T01:00:18.659Z",
+      "sha256": "723369a776160dda00bbfe8087710a6d2d27faaabd2cd2e904af251724cfb151"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/run-validation.json",
+      "size": 3021,
+      "mtime": "2026-07-25T01:01:22.428Z",
+      "sha256": "3e57c7fb38a772992f354ac48e0aac7b6ecbdd0a7105d19b0b49b372b1d33cfe"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/single-upload-result.json",
+      "size": 8446,
+      "mtime": "2026-07-25T00:04:18.953Z",
+      "sha256": "257fa76daaecf13d5da8bb7224ff6a49d51306fd372f3d60158eea8579b1d624"
+    },
+    {
+      "path": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25/upload-progress.json",
+      "size": 203,
+      "mtime": "2026-07-25T00:03:30.333Z",
+      "sha256": "9dc2e1a658c068724971d414ec31afc132ba3d6c0391e1d1d9704164bdf781c1"
+    }
+  ]
+}

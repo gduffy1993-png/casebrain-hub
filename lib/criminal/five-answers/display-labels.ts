@@ -66,6 +66,7 @@ export function displayTruthMapAction(
   existence: EvidenceExistence,
   reliability: EvidenceReliability,
 ): string {
+  if (existence === "incomplete") return "Chase remainder";
   if (existence === "missing" || existence === "referred_only") return "Chase";
   if (existence === "not_safely_confirmed" || existence === "unknown") return "Chase";
   if (reliability === "unsafe" || reliability === "inference_only") return "Chase";

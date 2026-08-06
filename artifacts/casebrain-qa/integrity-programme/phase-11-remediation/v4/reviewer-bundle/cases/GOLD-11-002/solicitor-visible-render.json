@@ -1,0 +1,106 @@
+{
+  "goldId": "GOLD-11-002",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: cb-found-2002-smith\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Jordan Smith — first appearance listing\nHearing: Hearing date not safely extracted\nEvidence states:\n• MG11 witness statement — Served\n• Full CCTV Continuity — Referred only\n• Charge sheet — Served\nChase / outstanding items:\n• Full CCTV Continuity",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "overview_counts",
+      "label": "Overview evidence counts",
+      "solicitorVisibleText": "Served 4 · Referred 1 · Missing 0 · Incomplete 0 · Not safely confirmed 0",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family not safely resolved — treat wording as provisional.",
+      "gateStatus": "uncertain",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "chase_brief",
+      "label": "Disclosure chase list",
+      "solicitorVisibleText": "Total 4\n• CCTV Continuity / provenance\n• CCTV full window / master footage\n• CAD / 999 audio / control-room material\n• MG6 / unused schedule clarification",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Item: Solicitor copy candidate — review required (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Item: Solicitor copy candidate — review required (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Item: Disclosure chase request (3)\nStatus: Copy unavailable\nReason: Offence family could not be safely resolved for this matter, so free copy is unavailable.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Item: Solicitor copy candidate — review required (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "family_leak_probe",
+      "label": "Cross-family containment probe",
+      "solicitorVisibleText": "Item: Cross-family containment probe (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

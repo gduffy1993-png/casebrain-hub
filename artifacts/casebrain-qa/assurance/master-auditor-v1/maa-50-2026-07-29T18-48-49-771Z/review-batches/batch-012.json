@@ -1,0 +1,142 @@
+{
+  "batchIndex": 12,
+  "humanReviewDisposition": null,
+  "items": [
+    {
+      "textHash": "7990a69f3d946794ecb6e44c35a2d21c94af60ea5298efe20fda9e84b8b2dda4",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002e",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sc-0002e-truth_map-7990a69f3d94"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a125fd6ea5622a8f9fc6b76f9d76c4a520cfdecccb2a1a48cbafebb12b41136a",
+      "templateHash": "45cc56245c08de2695617a79c4531a3541d06348400eefc5f4e1055c9fb5d380",
+      "text": "MG6 / unused schedule clarification · missing · needs_review",
+      "verdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002e",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-a125fd6ea562"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "fcb72d6e3a145d3251d53ea53f67199600b1ec28fa064ad742ccc6510209b584",
+      "templateHash": "958d07886608aa8e28b31a58c38e78b59accaa3101327f935cd1c3222d3d4a4b",
+      "text": "Partial CAD extract attached — 00:24 dispatch reference; full CAD log retained/outstanding. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-fcb72d6e3a14"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5d5a27d650128398098a49bfe2fd89701359d7c686a14725968e29bb72bfe711",
+      "templateHash": "e8bfc2ba47db2cd876e548f2fe5cdf4899421b14524f993e7e90828fd27886d9",
+      "text": "| CCTV partial extract only Outstanding Chase before fixing hearing position. | · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-5d5a27d65012"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5dceb8b07f50f6f18fc18338e74201b1dd22e50e24f94e5fb3776a52e2f501a9",
+      "templateHash": "024b6c4d21c6a4a72bead468b1bbf83724d2b5c5e853f1aac6fb255a5e5c5ebf",
+      "text": "CCTV footage is being arranged/held by OIC; MG6 lists export/continuity as outstanding or not yet served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-5dceb8b07f50"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "8c9f056d852b84360cd8d3f5bb45be091daed285c0a2286f78044eaddc17d22d",
+      "templateHash": "dd0d809c93ce4bc842b1de436240125ff154baa9ac6c6cd0c98cd554f15cb991",
+      "text": "MG6C/MG6 — MG6 — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-8c9f056d852b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "4323cfa895dda67a158e00b585067fe57d078591b3f03c9e9c9e17af0622341d",
+      "templateHash": "7cf94fd920cf7d411066af44bd5ff66dfa7f449c6fc441f70eb113247efc75a2",
+      "text": "MG6C/UNU — unused schedule detail — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-4323cfa895dd"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "959397d3497c4ead8d26c0e85d7d79e60ebfad17b9bb7f12f4a399fa1419a18e",
+      "templateHash": "959397d3497c4ead8d26c0e85d7d79e60ebfad17b9bb7f12f4a399fa1419a18e",
+      "text": "unused schedule detail · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-959397d3497c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    }
+  ]
+}

@@ -1,4 +1,18 @@
 import type { SendabilityLevel, SourceStateKind } from "@/lib/criminal/matter-confidence/matter-confidence-types";
+import {
+  applyIntegrityToCopyGate,
+  evaluateSentenceIntegrityOnly,
+  evaluateTextIntegrity,
+  type SolicitorIntegrityResult,
+} from "@/lib/criminal/solicitor-output-integrity";
+import {
+  reconcileEvidenceState,
+  sharedStateToSourceStateKind,
+} from "@/lib/criminal/evidence-state-reconcile";
+import {
+  attachFindingProvenance,
+  type FindingProvenanceInput,
+} from "@/lib/criminal/finding-provenance";
 
 export type CopyKind = "cps_chase" | "court_line" | "client_summary";
 
@@ -7,7 +21,14 @@ export type CopySafeInput = {
   kind: CopyKind;
   sourceState: SourceStateKind | null;
   sourceLabel?: string | null;
+  /** Structured provenance — filename-only is insufficient; limitation is appended when incomplete. */
+  provenance?: FindingProvenanceInput | null;
   matterLevel?: SendabilityLevel;
+  /** Optional precomputed integrity; otherwise text is assessed against allegation/hay. */
+  integrity?: SolicitorIntegrityResult | null;
+  allegation?: string | null;
+  bundleHay?: string | null;
+  chargeWording?: string | null;
 };
 
 export type CopySafeResult = {
@@ -35,6 +56,7 @@ function sendabilityFromSourceState(sourceState: SourceStateKind | null): Sendab
       return "needs_solicitor_review";
     case "referred_only":
     case "missing":
+    case "incomplete":
     case "not_safely_confirmed":
     case "needs_review":
       return "provisional_check_source";
@@ -50,16 +72,26 @@ function courtLineInCpsChase(text: string, kind: CopyKind): boolean {
   return /\bask the court to record\b/i.test(text);
 }
 
-function buildFooter(kind: CopyKind, sourceState: SourceStateKind | null, sourceLabel?: string | null): string {
+function buildFooter(
+  kind: CopyKind,
+  sourceState: SourceStateKind | null,
+  sourceLabel?: string | null,
+  provenance?: FindingProvenanceInput | null,
+): string {
   const state = sourceState ? sourceState.replace(/_/g, " ") : "not confirmed";
   const src = sourceLabel?.trim() ? ` Source: ${sourceLabel.trim()}.` : "";
+  const attached = attachFindingProvenance({
+    ...(provenance ?? {}),
+    evidenceState: provenance?.evidenceState ?? sourceState,
+  });
+  const prov = ` Provenance: ${attached.line}.`;
   if (kind === "cps_chase") {
-    return `[CaseBrain — CPS chase copy. Evidence state: ${state}.${src} Solicitor review required before sending.]`;
+    return `[CaseBrain — CPS chase copy. Evidence state: ${state}.${src}${prov} Solicitor review required before sending.]`;
   }
   if (kind === "court_line") {
-    return `[CaseBrain — court line copy. Evidence state: ${state}.${src} Confirm before addressing the court.]`;
+    return `[CaseBrain — court line copy. Evidence state: ${state}.${src}${prov} Confirm before addressing the court.]`;
   }
-  return `[CaseBrain — client-safe summary. Evidence state: ${state}.${src} Not for court or CPS use.]`;
+  return `[CaseBrain — client-safe summary. Evidence state: ${state}.${src}${prov} Not for court or CPS use.]`;
 }
 
 /** Infer source state from chase item fields (H3 chunk 1 — heuristic, no Brain change). */
@@ -69,16 +101,18 @@ export function inferChaseItemSourceState(input: {
   baseStatus: string;
   evidenceAnchor?: string | null;
 }): SourceStateKind {
-  const hay = `${input.label} ${input.source} ${input.evidenceAnchor ?? ""}`.toLowerCase();
-  if (/\boutstanding|not served|missing|partial|limited on export\b/.test(hay)) {
-    return "missing";
-  }
-  if (/\breferred|mentioned but|not safely|confirm on file\b/.test(hay)) {
-    return "referred_only";
-  }
-  if (input.baseStatus === "received") {
-    return "served";
-  }
+  const shared = reconcileEvidenceState({
+    label: input.label,
+    source: input.source,
+    baseStatus: input.baseStatus,
+    evidenceAnchor: input.evidenceAnchor,
+  });
+  const mapped = sharedStateToSourceStateKind(shared);
+  if (mapped === "incomplete") return "incomplete";
+  if (mapped === "served") return "served";
+  if (mapped === "referred_only") return "referred_only";
+  if (mapped === "missing") return "missing";
+  if (mapped === "not_safely_confirmed") return "not_safely_confirmed";
   return "provisional";
 }
 
@@ -97,17 +131,34 @@ export function buildCopySafeResult(input: CopySafeInput): CopySafeResult {
   }
 
   const effectiveSendability: SendabilityLevel = blockedReason ? "blocked" : sendability;
-  const canCopy = effectiveSendability !== "blocked";
-  const footer = buildFooter(input.kind, input.sourceState, input.sourceLabel);
+  let canCopy = effectiveSendability !== "blocked";
+  let reason = blockedReason;
+
+  const integrity =
+    input.integrity ??
+    (input.allegation || input.bundleHay || input.chargeWording
+      ? evaluateTextIntegrity({
+          text: input.text,
+          allegation: input.allegation,
+          bundleHay: input.bundleHay,
+          chargeWording: input.chargeWording,
+        })
+      : evaluateSentenceIntegrityOnly(input.text));
+  const gated = applyIntegrityToCopyGate(canCopy, reason, integrity);
+  canCopy = gated.canCopy;
+  reason = gated.blockedReason;
+  const finalSendability: SendabilityLevel = !canCopy ? "blocked" : effectiveSendability;
+
+  const footer = buildFooter(input.kind, input.sourceState, input.sourceLabel, input.provenance);
   const body = input.text.trim();
   const textForClipboard = canCopy ? `${body}\n\n${footer}` : body;
 
   return {
-    sendability: effectiveSendability,
-    sendabilityLabel: SENDABILITY_LABELS[effectiveSendability],
+    sendability: finalSendability,
+    sendabilityLabel: SENDABILITY_LABELS[finalSendability],
     canCopy,
     footer,
     textForClipboard,
-    blockedReason,
+    blockedReason: reason,
   };
 }

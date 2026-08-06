@@ -1,0 +1,23 @@
+{
+  "goldId": "GOLD-11-029",
+  "surfaces": [
+    {
+      "surface": "api_consumer_ui",
+      "label": "API consumer message",
+      "solicitorVisibleText": "Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": false,
+      "sourceEvidenceNote": "Controlled synthetic probe — no client bundle on disk."
+    },
+    {
+      "surface": "api_usable_check",
+      "label": "API usability",
+      "solicitorVisibleText": "NOT USABLE — integrity-blocked response rejected",
+      "gateStatus": "consumer_reject",
+      "canCopy": false,
+      "sourceEvidenceAvailable": false,
+      "sourceEvidenceNote": "Controlled synthetic probe — no client bundle on disk."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "maa-v2-stage150-pri01-remediation-stop@1.0.0",
+  "title": "ACCEPTED — STAGE-150 PRI-01 SERIALISATION REMEDIATION (corpus harness)",
+  "status": "STAGE150_PRI01_REMEDIATION_ACCEPTED_UNMERGED",
+  "createdAt": "2026-07-31T17:51:29.108Z",
+  "elapsedMs": 244533,
+  "baselineCommit": "9cdd8fd66773872cb94a21c0a202ee63c40f6a83",
+  "headCommit": "9cdd8fd66773872cb94a21c0a202ee63c40f6a83",
+  "frozenRunId": "s150-cal-2026-07-31T16-55-01-119Z-a33adbda",
+  "rootCauseId": "RC-S150-PRI01-EMPTY-FIVEANSWERS-WITH-COURT",
+  "ownershipClass": "batch10_materialisation_serialisation_defect",
+  "applicationRepair": false,
+  "corpusHarnessRemediation": true,
+  "caseBrainRepaired": false,
+  "frozenRunAltered": false,
+  "frozenPacketsAltered": false,
+  "frozenCandidateFreezeAltered": false,
+  "frozenTriageAltered": false,
+  "orderedMembershipSha256Preserved": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+  "rematerialisedOutputVersionSha256": "29ade4158db8cc113ba4d703e76d15c86dcc972b2e2fb445f605252fd03466c1",
+  "repairedCaseIds": [
+    "s150-d120-001-homicide-causation-clean",
+    "s150-d120-002-homicide-causation-messy"
+  ],
+  "pri01RootCleared": true,
+  "pri01DuplicateCleared": true,
+  "originalPri01CandidateIds": [
+    "V2CAND-0f712a9691af65f0265f9043",
+    "V2CAND-c0deea51596ed1baf3acd6ec"
+  ],
+  "remainingPri01CandidateIds": [],
+  "newDefectCount": 0,
+  "regressionCount": 0,
+  "stage150ExecutionAllowed": false,
+  "programmePassSupported": false,
+  "stage150ControlCount": 161,
+  "freezeHashStage50": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "capabilityMatrixControlCount": 161,
+  "brain1GuardianBlobUnchanged": true,
+  "typescript": {
+    "tscOk": false,
+    "stage150PathErrorCount": 0,
+    "probeScriptErrorCount": 0
+  },
+  "buildOk": true,
+  "committed": true,
+  "pushed": true,
+  "artefacts": [
+    "ownership-trace.json",
+    "rematerialise-receipt.json",
+    "before-after-finding-map.json",
+    "regression-report.json",
+    "freeze-reference.json",
+    "candidate-freeze-receipt.json",
+    "calibration-run-summary.json",
+    "brain1-guardian-blob-compare.json",
+    "typescript-delta.json",
+    "build-receipt.json",
+    "STOP-FOR-CODEX-REVIEW.json"
+  ],
+  "acceptanceNote": "Accepted onto programme/criminal-defence-integrity-corpus for PR #65. stage150ExecutionAllowed remains false. No Stage 300 / merge / deploy / programme PASS."
+}
+

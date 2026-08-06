@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-021",
+  "changes": [
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "dca11f979c74",
+        "textPreview": "The attribution remains outstan"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "fa6639659e0c",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed."
+      }
+    }
+  ]
+}

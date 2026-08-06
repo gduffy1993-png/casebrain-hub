@@ -1,0 +1,250 @@
+{
+  "schemaVersion": "batch7-selection@1.1.0",
+  "selectedCount": 2,
+  "promotionEligibleCount": 1,
+  "domainsDisjoint": true,
+  "selected": [
+    {
+      "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "selected": true,
+      "promotionEligible": true,
+      "rank": 1,
+      "reason": "Bidirectional existence/reliability dimension separation against versioned domain registry derived from canonical five-answers schema + observed ESA tokens.",
+      "bucket": "promotable_now",
+      "esaInputsAvailable": "/fiveAnswersEvidenceRows/*/existence,/fiveAnswersEvidenceRows/*/reliability",
+      "requiredContracts": [
+        "positive",
+        "multiple_safe_negatives",
+        "unavailable_input",
+        "mutation"
+      ]
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "selected": true,
+      "promotionEligible": false,
+      "rank": 2,
+      "reason": "Calibrated for honesty receipts only — remains partially_implemented (missing subjectDefendantId/personId + evidenceUnitId relationships + cross-surface receipts).",
+      "bucket": "returned_atr01",
+      "esaInputsAvailable": "/fiveAnswersEvidenceRows/*/existence (other_defendant_only units); courtNote/doNotOverstate only",
+      "requiredContracts": [
+        "positive",
+        "multiple_safe_negatives",
+        "unavailable_input",
+        "mutation"
+      ]
+    }
+  ],
+  "auditBucketCounts": {
+    "batch6_returned": 6,
+    "blocked_missing_adapter": 18,
+    "overpromise_narrow_probe": 25,
+    "returned_atr01": 1,
+    "excluded_fid10": 1,
+    "out_of_priority_string_quality": 12,
+    "promotable_now": 1,
+    "phrase_probe": 35
+  },
+  "notPromotedHighPrioritySample": [
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "bucket": "returned_atr01",
+      "reason": "Returned to partially_implemented: zero-unit cases not_exercised; MG labels ≠ unit identity; surfaces incomplete; missing person/evidence IDs."
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "bucket": "overpromise_narrow_probe",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "bucket": "overpromise_narrow_probe",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "bucket": "overpromise_narrow_probe",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "bucket": "overpromise_narrow_probe",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "bucket": "overpromise_narrow_probe",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "bucket": "overpromise_narrow_probe",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "bucket": "overpromise_narrow_probe",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "bucket": "overpromise_narrow_probe",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "bucket": "overpromise_narrow_probe",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "bucket": "overpromise_narrow_probe",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "bucket": "overpromise_narrow_probe",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "bucket": "overpromise_narrow_probe",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "bucket": "blocked_missing_adapter",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "bucket": "blocked_missing_adapter",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "bucket": "blocked_missing_adapter",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "bucket": "blocked_missing_adapter",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "bucket": "blocked_missing_adapter",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "bucket": "blocked_missing_adapter",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "bucket": "phrase_probe",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "bucket": "blocked_missing_adapter",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "bucket": "blocked_missing_adapter",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "bucket": "blocked_missing_adapter",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "bucket": "blocked_missing_adapter",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "bucket": "blocked_missing_adapter",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    }
+  ]
+}

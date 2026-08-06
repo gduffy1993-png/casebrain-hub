@@ -1,0 +1,1155 @@
+{
+  "schemaVersion": "batch9-adapter-applicability-summary@1.2.0",
+  "scan": {
+    "byControl": {
+      "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-CHG-05-OPERATIVE-INSTRUMENT": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-CHG-06-AMENDMENT-HISTORY": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-CHG-10-WARNING-INSEPARABLE": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-LSL-01-STATEMENT-CLASSIFICATION": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-BND-02-INSTRUMENT-STATUS": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-BND-03-REPLACEMENT-LINKS": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-BND-04-VERSION-PRECEDENCE": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-ATR-01-DEFENDANT-SEPARATION": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-ATR-08-NO-DEFENDANT-BLEED": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-BND-07-ALIAS-SAFE-COLLAPSE": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-BND-08-EXTRACT-VS-FULL": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-BND-09-STILL-CLIP-VS-MASTER": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-BND-10-RECORDING-VS-TRANSCRIPT": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-BND-11-DRAFT-VS-SIGNED": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-EVS-04-REASON-TAXONOMY": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-CHR-01-EXACT-DATES-TZ": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-CHR-02-COMPETING-TIMESTAMPS": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-FID-10-QUOTATION-FIDELITY": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-BND-05-MISSING-ATTACHMENTS": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-XEX-01-CHARGE-WARNING-ATTACHED": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED": {
+        "applicableCaseCount": 499,
+        "notExercisedCaseCount": 0,
+        "evaluatedCaseCount": 499,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      },
+      "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL": {
+        "applicableCaseCount": 0,
+        "notExercisedCaseCount": 499,
+        "evaluatedCaseCount": 0,
+        "unresolvedCaseCount": 0,
+        "candidateOccurrenceCount": 0,
+        "candidateCaseIds": [],
+        "findingCodes": []
+      }
+    }
+  },
+  "controlSpecs": [
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "adapterId": "charge_instruments",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chargeInstruments[].instrumentId",
+        "chargeInstruments[].sourceDocument"
+      ],
+      "applicabilityRule": "Applicable when complete chargeInstruments[] include sourceDocument.",
+      "findingOwnership": "Batch-9 owns recorded-source visibility on structured instruments.",
+      "unavailableBehaviour": "namedControlExerciseStatus=not_exercised; no findings invented from courtNote prose.",
+      "missingInputReason": "charge_instruments adapter not eligible — structured chargeInstruments[] with sourceDocument absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg01_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg01_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg01_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg01_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "adapterId": "charge_instruments",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chargeInstruments[].count",
+        "chargeInstruments[].defendantAllocation"
+      ],
+      "applicabilityRule": "Applicable when complete instruments expose count + defendantAllocation.",
+      "findingOwnership": "Batch-9 owns defendant/count allocation on structured instruments.",
+      "unavailableBehaviour": "not_exercised until complete instrument allocation fields exist.",
+      "missingInputReason": "charge_instruments adapter not eligible — count/defendantAllocation structured fields absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg02_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg02_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg02_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg02_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "adapterId": "charge_instruments",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chargeInstruments[].exactWording"
+      ],
+      "applicabilityRule": "Applicable when structured exactWording is present on complete instruments.",
+      "findingOwnership": "Batch-9 owns truncation checks on structured exactWording.",
+      "unavailableBehaviour": "not_exercised; prose truncation probes are non-authoritative.",
+      "missingInputReason": "charge_instruments adapter not eligible — exactWording absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg04_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg04_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg04_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg04_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "adapterId": "charge_instruments",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chargeInstruments[].status"
+      ],
+      "applicabilityRule": "Applicable when status is present; amended instruments may be operative — only draft+operative collision is a defect.",
+      "findingOwnership": "Batch-9 owns operative vs draft collision on structured status.",
+      "unavailableBehaviour": "not_exercised without structured status.",
+      "missingInputReason": "charge_instruments adapter not eligible — status/operative instrument graph absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg05_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg05_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg05_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg05_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "adapterId": "charge_instruments",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chargeInstruments[].version",
+        "chargeInstruments[].replacesInstrumentId|supersededByInstrumentId"
+      ],
+      "applicabilityRule": "Applicable when supersession links exist on complete instruments.",
+      "findingOwnership": "Batch-9 owns amendment history completeness on instrument graph.",
+      "unavailableBehaviour": "not_exercised without supersession/version fields.",
+      "missingInputReason": "charge_instruments adapter not eligible — amendment/supersession links absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg06_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg06_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg06_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg06_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "adapterId": "charge_instruments",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chargeInstruments[]",
+        "exitPayloadReceipts.*.payloadIdentity",
+        "exitPayloadReceipts.*.chargeWarningAttached"
+      ],
+      "applicabilityRule": "Applicable only when complete instruments AND all seven genuine exits carry chargeWarningAttached.",
+      "findingOwnership": "Batch-9 owns inseparability when coupled exit warning fields exist.",
+      "unavailableBehaviour": "not_exercised until chargeWarningAttached exists on genuine exits.",
+      "missingInputReason": "unavailable_missing_structured_field — exitPayloadReceipts.*.chargeWarningAttached coupled to instruments absent on ESA",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg10_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg10_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg10_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg10_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "adapterId": "charge_instruments",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chargeInstruments[].statementClassification"
+      ],
+      "applicabilityRule": "Applicable only when structured statementClassification is present — prose allegation/fact heuristics are insufficient.",
+      "findingOwnership": "Batch-9 owns LSL only with structured statementClassification.",
+      "unavailableBehaviour": "not_exercised; prior phrase probes remain non-authoritative.",
+      "missingInputReason": "unavailable_missing_structured_field — statementClassification structured legal state absent (prose heuristics forbidden)",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_lsl01_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_lsl01_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_lsl01_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_lsl01_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "adapterId": "charge_instruments",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chargeInstruments[].legalStateRole"
+      ],
+      "applicabilityRule": "Applicable only when structured legalStateRole distinguishes submission vs finding.",
+      "findingOwnership": "Batch-9 owns LSL-03 only with structured legalStateRole.",
+      "unavailableBehaviour": "not_exercised until structured legalStateRole exists.",
+      "missingInputReason": "unavailable_missing_structured_field — legalStateRole structured field absent (prose heuristics forbidden)",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_lsl03_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_lsl03_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_lsl03_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_lsl03_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "adapterId": "charge_instruments",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chargeInstruments[].status"
+      ],
+      "applicabilityRule": "Applicable when status is present on complete instruments.",
+      "findingOwnership": "Batch-9 owns instrument status binding.",
+      "unavailableBehaviour": "not_exercised without status.",
+      "missingInputReason": "charge_instruments adapter not eligible — instrument status absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd02_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd02_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd02_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd02_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "adapterId": "charge_instruments",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chargeInstruments[].replacesInstrumentId",
+        "chargeInstruments[].supersededByInstrumentId"
+      ],
+      "applicabilityRule": "Applicable when replacement/supersession ids are present.",
+      "findingOwnership": "Batch-9 owns replacement link integrity.",
+      "unavailableBehaviour": "not_exercised without replacement graph.",
+      "missingInputReason": "charge_instruments adapter not eligible — replacement links absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd03_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd03_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd03_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd03_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "adapterId": "charge_instruments",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chargeInstruments[].version",
+        "chargeInstruments[].instrumentId"
+      ],
+      "applicabilityRule": "Applicable when version + instrumentId present on complete instruments.",
+      "findingOwnership": "Batch-9 owns version precedence self-cycle checks.",
+      "unavailableBehaviour": "not_exercised without version graph.",
+      "missingInputReason": "charge_instruments adapter not eligible — version precedence graph absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd04_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd04_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd04_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd04_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "adapterId": "evidence_units",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "evidenceUnitId",
+        "subjectDefendantId|personId"
+      ],
+      "applicabilityRule": "Applicable when every unit has evidenceUnitId + subjectDefendantId/personId.",
+      "findingOwnership": "Batch-9 owns defendant separation on complete units.",
+      "unavailableBehaviour": "not_exercised on partial ESA rows.",
+      "missingInputReason": "evidence_units adapter not eligible — subjectDefendantId/personId and evidenceUnitId absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr01_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr01_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr01_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr01_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "adapterId": "evidence_units",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "evidenceUnitId",
+        "subjectDefendantId|personId"
+      ],
+      "applicabilityRule": "Applicable when complete units carry defendant identity fields.",
+      "findingOwnership": "Batch-9 owns defendant-bleed checks on complete units.",
+      "unavailableBehaviour": "not_exercised without identity bindings.",
+      "missingInputReason": "evidence_units adapter not eligible — defendant identity fields absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr08_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr08_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr08_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr08_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "adapterId": "evidence_units",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "evidenceUnitId",
+        "aliases"
+      ],
+      "applicabilityRule": "Applicable when complete units expose aliases + evidenceUnitId.",
+      "findingOwnership": "Batch-9 owns alias-safe collapse.",
+      "unavailableBehaviour": "not_exercised without unit identity.",
+      "missingInputReason": "evidence_units adapter not eligible — evidenceUnitId/alias structure incomplete",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd07_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd07_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd07_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd07_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "adapterId": "evidence_units",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "extractFullRelationship|extract_full_capable_modality"
+      ],
+      "applicabilityRule": "Applicable only to extract/full-capable units (explicit relationship or extract/full modality).",
+      "findingOwnership": "Batch-9 owns extract≠full only on capable units.",
+      "unavailableBehaviour": "not_exercised when no extract/full-capable units; non-capable rows ignored.",
+      "missingInputReason": "evidence_units adapter not eligible — extract/full-capable units absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd08_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd08_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd08_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd08_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "adapterId": "evidence_units",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "evidenceUnitId",
+        "evidenceTypeOrModality|label"
+      ],
+      "applicabilityRule": "Applicable when modality/label indicates still/clip vs master on complete units.",
+      "findingOwnership": "Batch-9 owns still/clip≠master on complete units.",
+      "unavailableBehaviour": "not_exercised without complete units.",
+      "missingInputReason": "evidence_units adapter not eligible — modality/identity incomplete for still≠master",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd09_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd09_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd09_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd09_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "adapterId": "evidence_units",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "evidenceUnitId",
+        "evidenceTypeOrModality|label"
+      ],
+      "applicabilityRule": "Applicable when modality/label indicates recording vs transcript.",
+      "findingOwnership": "Batch-9 owns recording≠transcript on complete units.",
+      "unavailableBehaviour": "not_exercised without complete units.",
+      "missingInputReason": "evidence_units adapter not eligible — recording/transcript relationship absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd10_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd10_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd10_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd10_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "adapterId": "evidence_units",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "draftFinalRelationship|version_state_relevant"
+      ],
+      "applicabilityRule": "Applicable only where version state is relevant (draftFinalRelationship or draft/signed/final cues).",
+      "findingOwnership": "Batch-9 owns draft≠signed only on version-relevant units.",
+      "unavailableBehaviour": "not_exercised when no version-relevant units; others ignored.",
+      "missingInputReason": "evidence_units adapter not eligible — version-state-relevant units absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd11_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd11_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd11_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd11_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "adapterId": "evidence_units",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "existence",
+        "reliability|taxonomyReason"
+      ],
+      "applicabilityRule": "Applicable when complete units carry existence with taxonomy reason fields.",
+      "findingOwnership": "Batch-9 owns reason taxonomy on complete units.",
+      "unavailableBehaviour": "not_exercised without complete units.",
+      "missingInputReason": "evidence_units adapter not eligible — complete units with taxonomy reason fields absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_evs04_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_evs04_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_evs04_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_evs04_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "adapterId": "chronology_events",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chronologyEvents[].timestamp",
+        "chronologyEvents[].timezone"
+      ],
+      "applicabilityRule": "Applicable when chronologyEvents[] are complete with timestamp+timezone.",
+      "findingOwnership": "Batch-9 owns exact date/timezone on structured chronology.",
+      "unavailableBehaviour": "not_exercised; exportVersion.generatedAt is not a chronology event.",
+      "missingInputReason": "chronology_events adapter not eligible — structured chronologyEvents absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr01_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr01_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr01_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr01_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "adapterId": "chronology_events",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chronologyEvents[].competingEventGroupId",
+        "chronologyEvents[].confidence"
+      ],
+      "applicabilityRule": "Applicable when competingEventGroupId is present among complete events.",
+      "findingOwnership": "Batch-9 owns competing timestamp confidence.",
+      "unavailableBehaviour": "not_exercised without competing groups.",
+      "missingInputReason": "chronology_events adapter not eligible — competing-event groups absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr02_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr02_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr02_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr02_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "adapterId": "chronology_events",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chronologyEvents[].eventType",
+        "chronologyEvents[].timestamp"
+      ],
+      "applicabilityRule": "Applicable when ≥2 typed events have timestamps; compares typed stage relationships, not array order.",
+      "findingOwnership": "Batch-9 owns impossible chronology via typed stage vs timestamp.",
+      "unavailableBehaviour": "not_exercised without typed chronology clocks.",
+      "missingInputReason": "chronology_events adapter not eligible — structured events absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr03_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr03_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr03_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr03_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "adapterId": "chronology_events",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chronologyEvents[eventType=custody|interview].timestamp"
+      ],
+      "applicabilityRule": "Applicable when custody/interview typed events exist on complete chronology.",
+      "findingOwnership": "Batch-9 owns custody/interview timing.",
+      "unavailableBehaviour": "not_exercised without custody/interview event types.",
+      "missingInputReason": "chronology_events adapter not eligible — custody/interview clocks absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr04_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr04_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr04_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr04_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "adapterId": "chronology_events",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "chronologyEvents[eventType=hearing|notice].timestamp"
+      ],
+      "applicabilityRule": "Applicable when hearing/notice typed events exist on complete chronology.",
+      "findingOwnership": "Batch-9 owns hearing/notice lifecycle.",
+      "unavailableBehaviour": "not_exercised without hearing/notice event types.",
+      "missingInputReason": "chronology_events adapter not eligible — hearing/notice lifecycle absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr05_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr05_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr05_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr05_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "adapterId": "provenance",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "pageIdentityKnown=true",
+        "sourceDocumentIdentity",
+        "sourcePage",
+        "compiledPage"
+      ],
+      "applicabilityRule": "Applicable when genuine document/page identity exists (pageIdentityKnown + sourceDocumentIdentity + both pages).",
+      "findingOwnership": "Batch-9 owns source vs compiled page identity integrity.",
+      "unavailableBehaviour": "not_exercised without genuine document/page identity.",
+      "missingInputReason": "provenance adapter not eligible — genuine sourceDocumentIdentity/page identity absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_src10_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_src10_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_src10_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_src10_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "adapterId": "provenance",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "sourceDocumentIdentity",
+        "limitationReason|pageIdentityKnown"
+      ],
+      "applicabilityRule": "Applicable when complete provenance rows carry source identity.",
+      "findingOwnership": "Batch-9 owns source-linked limitation binding.",
+      "unavailableBehaviour": "not_exercised without complete provenance identity.",
+      "missingInputReason": "provenance adapter not eligible — source-linked limitation fields incomplete",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr09_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr09_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr09_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr09_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "adapterId": "provenance",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "pageIdentityKnown=true",
+        "sourceDocumentIdentity",
+        "quotationExactText|quotedSpan"
+      ],
+      "applicabilityRule": "Applicable only when structured quotationExactText/quotedSpan binds to page-identity provenance.",
+      "findingOwnership": "Batch-9 owns FID-10 only with quotation binding fields.",
+      "unavailableBehaviour": "not_exercised until quotation binding fields exist.",
+      "missingInputReason": "unavailable_missing_structured_field — quotationExactText/quotedSpan structured fields absent (page identity alone insufficient)",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_fid10_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_fid10_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_fid10_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_fid10_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "adapterId": "provenance",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "pageDocEvidenceTotals|sourceDocumentIdentity+sourcePage+totalCount"
+      ],
+      "applicabilityRule": "Applicable only when structured page/doc/evidence totals ledger is present.",
+      "findingOwnership": "Batch-9 owns CHR-09 only with totals ledger.",
+      "unavailableBehaviour": "not_exercised until totals ledger exists.",
+      "missingInputReason": "unavailable_missing_structured_field — pageDocEvidenceTotals ledger absent (identity rows alone insufficient)",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr09_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr09_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr09_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr09_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "adapterId": "chase_relationships",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "requestId",
+        "linkMethod=explicit_id",
+        "resolutionState"
+      ],
+      "applicabilityRule": "Applicable when every chase row has requestId + explicit evidenceUnitId + resolutionState.",
+      "findingOwnership": "Batch-9 owns specific-item chase completeness.",
+      "unavailableBehaviour": "not_exercised on partial ESA chase rows.",
+      "missingInputReason": "chase_relationships adapter not eligible — requestId/explicit evidenceUnitId/resolutionState incomplete",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chs02_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chs02_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chs02_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chs02_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "adapterId": "chase_relationships",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "requestId",
+        "resolutionState",
+        "linkAmbiguity"
+      ],
+      "applicabilityRule": "Applicable when complete chase relationships are present.",
+      "findingOwnership": "Batch-9 owns alias/served-dup ambiguity on complete chase.",
+      "unavailableBehaviour": "not_exercised without complete chase.",
+      "missingInputReason": "chase_relationships adapter not eligible — complete chase links absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chs06_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chs06_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chs06_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chs06_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "adapterId": "chase_relationships",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "requestId",
+        "resolutionState",
+        "linkedEvidenceOccurrenceRef"
+      ],
+      "applicabilityRule": "Applicable when complete chase relationships identify missing attachments.",
+      "findingOwnership": "Batch-9 owns missing-attachment chase binding.",
+      "unavailableBehaviour": "not_exercised without complete chase.",
+      "missingInputReason": "chase_relationships adapter not eligible — complete chase attachment links absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd05_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd05_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd05_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd05_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "adapterId": "chase_relationships",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "resolutionState"
+      ],
+      "applicabilityRule": "Applicable when complete chase relationships expose resolutionState.",
+      "findingOwnership": "Batch-9 owns complete≠partial disclosure via resolutionState.",
+      "unavailableBehaviour": "not_exercised without complete chase.",
+      "missingInputReason": "chase_relationships adapter not eligible — complete vs partial disclosure graph absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd12_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd12_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd12_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd12_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "adapterId": "exit_snapshots",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "exitPayloadReceipts.*.payloadIdentity",
+        "exitPayloadReceipts.*.chargeWarningAttached",
+        "chargeInstruments[]"
+      ],
+      "applicabilityRule": "Applicable when genuine exits carry chargeWarningAttached coupled to structured instruments.",
+      "findingOwnership": "Batch-9 owns XEX-01 only with coupled charge-warning fields.",
+      "unavailableBehaviour": "not_exercised; does not imply real exit testing via sendability alone.",
+      "missingInputReason": "unavailable_missing_structured_field — chargeWarningAttached on genuine exits + instruments required (generic sendability insufficient)",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex01_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex01_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex01_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex01_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "adapterId": "exit_snapshots",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_real_exit",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "exitPayloadReceipts.view.payloadIdentity",
+        "exitPayloadReceipts.copy.payloadIdentity",
+        "exitPayloadReceipts.view.sendability",
+        "exitPayloadReceipts.copy.sendability"
+      ],
+      "applicabilityRule": "Applicable when view+copy genuine payloads include sendability.",
+      "findingOwnership": "Batch-9 owns inverted view/copy safety on real exit payloads.",
+      "unavailableBehaviour": "not_exercised without genuine view+copy payloads.",
+      "missingInputReason": "exit_snapshots adapter not eligible — genuine view/copy payloads absent",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex07_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex07_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex07_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex07_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "adapterId": "exit_snapshots",
+      "evaluatorImplementationClass": "adapter_integrity_evaluator",
+      "executionAvailability": "runnable_on_ESA",
+      "minAdapterCapability": "partial",
+      "requireCompleteRecords": false,
+      "exactPrerequisites": [
+        "exit_snapshots records materialised"
+      ],
+      "applicabilityRule": "Applicable when exit snapshot records exist; proves unavailable/metadata exits were not falsely marked eligible.",
+      "findingOwnership": "Batch-9 adapter-integrity only — must not imply real exit testing occurred.",
+      "unavailableBehaviour": "Evaluates adapter honesty; emptyHits≠PASS; does not claim view/copy/export/api/pdf/composed/browser exercise.",
+      "missingInputReason": "exit_snapshots adapter produced zero exit records",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex08_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex08_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex08_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex08_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "adapterId": "exit_snapshots",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "exitPayloadReceipts.*.payloadIdentity",
+        "exitPayloadReceipts.*.evidencePartialWarning",
+        "evidence_units complete|partial rows"
+      ],
+      "applicabilityRule": "Applicable when genuine exits expose evidencePartialWarning coupled to evidence units.",
+      "findingOwnership": "Batch-9 owns XEX-02 only with coupled evidence-partial warning fields.",
+      "unavailableBehaviour": "not_exercised without coupled warning fields.",
+      "missingInputReason": "unavailable_missing_structured_field — evidencePartialWarning on genuine exits required (generic sendability insufficient)",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex02_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex02_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex02_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex02_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "adapterId": "exit_snapshots",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "minAdapterCapability": "eligible",
+      "requireCompleteRecords": true,
+      "exactPrerequisites": [
+        "exitPayloadReceipts.*.payloadIdentity",
+        "exitPayloadReceipts.*.quarantineScope"
+      ],
+      "applicabilityRule": "Applicable when genuine exits expose quarantineScope (partial|total) distinctly.",
+      "findingOwnership": "Batch-9 owns XEX-06 only with quarantineScope fields.",
+      "unavailableBehaviour": "not_exercised without quarantineScope.",
+      "missingInputReason": "unavailable_missing_structured_field — quarantineScope on genuine exits required (generic sendability insufficient)",
+      "contractRefs": {
+        "positiveContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex06_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex06_negative",
+        "unavailableContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex06_unavailable",
+        "mutationContract": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex06_mutation"
+      }
+    }
+  ]
+}

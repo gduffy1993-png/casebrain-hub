@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "implementation-status-reclassification@1.0.0",
+  "before": {
+    "implemented": 24,
+    "specified_not_implemented": 235,
+    "partially_implemented": 3,
+    "browser_required": 47,
+    "engineering_required": 11,
+    "operational_evidence_required": 24,
+    "human_required": 8,
+    "external_assurance_required": 9
+  },
+  "after": {
+    "implemented": 24,
+    "specified_not_implemented": 235,
+    "partially_implemented": 3,
+    "browser_required": 47,
+    "engineering_required": 11,
+    "operational_evidence_required": 24,
+    "human_required": 8,
+    "external_assurance_required": 9
+  },
+  "byFamily": {
+    "V1": {
+      "implemented": 24
+    },
+    "SRC": {
+      "specified_not_implemented": 17
+    },
+    "BND": {
+      "specified_not_implemented": 15,
+      "partially_implemented": 1
+    },
+    "FID": {
+      "specified_not_implemented": 11
+    },
+    "LSL": {
+      "specified_not_implemented": 5
+    },
+    "CHG": {
+      "specified_not_implemented": 13
+    },
+    "EVS": {
+      "specified_not_implemented": 4
+    },
+    "ATR": {
+      "specified_not_implemented": 9
+    },
+    "CHR": {
+      "specified_not_implemented": 12
+    },
+    "LEG": {
+      "specified_not_implemented": 10
+    },
+    "PRC": {
+      "specified_not_implemented": 8
+    },
+    "CHS": {
+      "specified_not_implemented": 8,
+      "partially_implemented": 1
+    },
+    "WRD": {
+      "specified_not_implemented": 14,
+      "partially_implemented": 1
+    },
+    "AUD": {
+      "specified_not_implemented": 8
+    },
+    "XEX": {
+      "specified_not_implemented": 8
+    },
+    "PRI": {
+      "specified_not_implemented": 3,
+      "browser_required": 1
+    },
+    "CTX": {
+      "specified_not_implemented": 2
+    },
+    "DEF": {
+      "specified_not_implemented": 2
+    },
+    "XPP": {
+      "specified_not_implemented": 6
+    },
+    "BIA": {
+      "specified_not_implemented": 11
+    },
+    "PRV": {
+      "specified_not_implemented": 10,
+      "browser_required": 2
+    },
+    "SEC": {
+      "specified_not_implemented": 11,
+      "browser_required": 6
+    },
+    "IAM": {
+      "engineering_required": 11
+    },
+    "RES": {
+      "operational_evidence_required": 10
+    },
+    "OPS": {
+      "operational_evidence_required": 14
+    },
+    "HVY": {
+      "specified_not_implemented": 11
+    },
+    "BRW": {
+      "browser_required": 9
+    },
+    "DSN": {
+      "browser_required": 12
+    },
+    "A11Y": {
+      "browser_required": 13
+    },
+    "PERF": {
+      "browser_required": 4,
+      "specified_not_implemented": 6
+    },
+    "HUM": {
+      "human_required": 8
+    },
+    "VDR": {
+      "specified_not_implemented": 9
+    },
+    "EXT": {
+      "external_assurance_required": 9
+    },
+    "SCL": {
+      "specified_not_implemented": 8
+    },
+    "ELD": {
+      "specified_not_implemented": 14
+    }
+  },
+  "byEngine": {
+    "professional_wording": {
+      "implemented": 24,
+      "specified_not_implemented": 60,
+      "partially_implemented": 1,
+      "browser_required": 46,
+      "engineering_required": 11,
+      "operational_evidence_required": 24,
+      "human_required": 8,
+      "external_assurance_required": 9
+    },
+    "source_provenance": {
+      "specified_not_implemented": 28
+    },
+    "document_relationship": {
+      "specified_not_implemented": 15,
+      "partially_implemented": 1
+    },
+    "charge_legal_state": {
+      "specified_not_implemented": 18
+    },
+    "evidence_attribution": {
+      "specified_not_implemented": 13
+    },
+    "chronology_procedure": {
+      "specified_not_implemented": 20
+    },
+    "authority_currency": {
+      "specified_not_implemented": 10
+    },
+    "chase_actionability": {
+      "specified_not_implemented": 8,
+      "partially_implemented": 1
+    },
+    "audience_context": {
+      "specified_not_implemented": 19
+    },
+    "cross_output_completeness": {
+      "specified_not_implemented": 11,
+      "browser_required": 1
+    },
+    "contradiction_perspective": {
+      "specified_not_implemented": 10
+    },
+    "version_reproducibility": {
+      "specified_not_implemented": 23
+    }
+  },
+  "partialControls": [
+    "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+    "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF"
+  ],
+  "note": "partially_implemented only for control-specific handlers with probes + receipt validator + non-empty runtime."
+}

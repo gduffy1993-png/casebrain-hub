@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "stage150-freeze-receipt@1.0.0",
+  "runId": "s150-cal-2026-07-31T16-55-01-119Z-a33adbda",
+  "frozenAt": "2026-07-31T16:55:01.337Z",
+  "orderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+  "populationCount": 150,
+  "baselineCommit": "9cdd8fd66773872cb94a21c0a202ee63c40f6a83",
+  "headCommit": "9cdd8fd66773872cb94a21c0a202ee63c40f6a83",
+  "censusNotSubsample": true,
+  "detectorsRunBeforeFreeze": false,
+  "truthOpenedBeforeFreeze": false
+}

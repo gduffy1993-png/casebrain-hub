@@ -1,0 +1,28 @@
+# Control coverage / not-exercised
+
+| Control | Lane | Status | Cases | Findings | Reason |
+|---|---|---|---:|---:|---|
+| MAA-INGEST-COVERAGE | LANE-01-INGESTION | exercised | 20 | 20 |  |
+| MAA-DOC-LIFECYCLE | LANE-02-DOCUMENT-IDENTITY | exercised | 20 | 20 |  |
+| MAA-PARTIES-ATTRIBUTION | LANE-03-PARTIES-ATTRIBUTION | exercised | 20 | 22 |  |
+| MAA-CHARGE-MODEL | LANE-04-CHARGE-MODEL | exercised | 20 | 20 |  |
+| MAA-EVIDENCE-STATE | LANE-05-EVIDENCE-STATE | exercised | 20 | 174 |  |
+| MAA-CHRONOLOGY-HEARING | LANE-06-CHRONOLOGY-HEARING | exercised | 20 | 20 |  |
+| MAA-PROVENANCE | LANE-07-PROVENANCE | exercised | 20 | 20 |  |
+| MAA-RELIABILITY | LANE-08-RELIABILITY | exercised | 20 | 112 |  |
+| MAA-COMPLETENESS | LANE-09-COMPLETENESS | exercised | 20 | 20 |  |
+| MAA-DEFENCE-LENS | LANE-10-DEFENCE-LENS | exercised | 20 | 20 |  |
+| MAA-PROSECUTION-LENS | LANE-11-PROSECUTION-LENS | exercised | 20 | 20 |  |
+| MAA-JUDICIAL-LENS | LANE-12-JUDICIAL-LENS | exercised | 20 | 20 |  |
+| MAA-LEGAL-CURRENTNESS | LANE-13-LEGAL-CURRENTNESS | exercised | 20 | 20 |  |
+| MAA-AUDIENCE-WORDING | LANE-14-AUDIENCE-WORDING | exercised | 20 | 20 |  |
+| MAA-ACTION-QUALITY | LANE-15-ACTION-QUALITY | exercised | 20 | 20 |  |
+| MAA-CROSS-EXIT | LANE-16-CROSS-EXIT | exercised | 20 | 33 |  |
+| MAA-CROSS-SURFACE | LANE-17-CROSS-SURFACE | exercised | 20 | 22 |  |
+| MAA-CHASE-QUALITY | LANE-18-CHASE-QUALITY | exercised | 20 | 71 |  |
+| MAA-HALLUCINATION | LANE-19-HALLUCINATION | exercised | 20 | 20 |  |
+| MAA-SECURITY-PRIVACY | LANE-20-SECURITY-PRIVACY | exercised | 20 | 20 |  |
+| MAA-RESILIENCE | LANE-21-RESILIENCE | exercised | 20 | 20 |  |
+| MAA-OUTPUT-DESIGN | LANE-22-OUTPUT-DESIGN | exercised | 20 | 20 |  |
+| MAA-HUMAN-SUPERVISION | LANE-23-HUMAN-SUPERVISION | exercised | 20 | 20 |  |
+| MAA-BIAS-FAIRNESS | LANE-24-BIAS-FAIRNESS | exercised | 20 | 20 |  |

@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "stage150-typescript-delta@1.0.0",
+  "baselineCommit": "da98277c3038b40b2408a7af6a41475e88b21e17",
+  "stage150PathErrors": 0,
+  "note": "Repo-wide tsc may be non-zero on unrelated paths; Batch-4 requires stage150 path errors = 0."
+}

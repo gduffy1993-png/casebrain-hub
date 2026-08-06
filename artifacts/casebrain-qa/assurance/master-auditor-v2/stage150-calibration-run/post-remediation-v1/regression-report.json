@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "stage150-pri01-regression-report@1.0.0",
+  "newDefectCount": 0,
+  "regressionCount": 0,
+  "newDefects": [],
+  "note": "Regressions are new occurrences absent from the frozen candidate freeze. Unavailable/not_exercised denominators unchanged by design.",
+  "exitDenominatorsUnchanged": true,
+  "authenticatedBrowserNotExercised": 150
+}

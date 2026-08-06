@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "stage150-proposed-shared-remediation-order@1.0.0",
+  "implementedInThisWorkUnit": false,
+  "items": [
+    {
+      "order": 1,
+      "rootCauseId": "RC-S150-PRI01-EMPTY-FIVEANSWERS-WITH-COURT",
+      "title": "Genuine production output: empty fiveAnswersEvidenceRows while court wording present (evidence rows exist on view exit)",
+      "occurrenceCount": 2,
+      "caseIds": [
+        "s150-d120-001-homicide-causation-clean",
+        "s150-d120-002-homicide-causation-messy"
+      ],
+      "controlIds": [
+        "MAA2-PRI-01-NO-IMPORTANT-OMISSION"
+      ],
+      "sharedProductionModuleResponsible": "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/production-capture.ts (casebrain-output.fiveAnswersEvidenceRows ← surfaces.truthMap.evidenceState.rows) and/or lib/criminal/canonical-live-surface-adapter.ts truthMap row population consistency with persisted output bag",
+      "whyItOccurred": "Persisted genuine casebrain-output left fiveAnswersEvidenceRows empty while courtNote.text was populated, even though the view exit payload from the same production builder carried non-empty truthMap.evidenceState.rows. PRI-01 correctly treats empty fiveAnswers + court as an omission. Truth keys expect evidence distinctions.",
+      "affectedAudiencesExits": [
+        "casebrain-output bag (detector-facing)",
+        "view exit carries evidence (inconsistency)",
+        "solicitor-visible evidence map consumers reading fiveAnswersEvidenceRows"
+      ],
+      "oneSharedRemediation": "When writing casebrain-output, copy the exact truthMap.evidenceState.rows array used for the view exit payload (byte-identical rows). Add an invariant: if courtNote.text is non-empty and view truthMap has rows, fiveAnswersEvidenceRows must be non-empty. Do not invent rows; only persist what production surfaces already produced.",
+      "contracts": {
+        "positive": "court present + view truthMap rows ≥1 ⇒ fiveAnswersEvidenceRows length matches view rows and detector PRI-01 does not fire",
+        "negative": "court present + fiveAnswersEvidenceRows=[] + view rows≥1 ⇒ PRI-01 candidate remains (fail closed until mapping fixed)",
+        "mutation": "Zero fiveAnswersEvidenceRows after capture while view rows unchanged ⇒ calibration contract fails; restoring copy from truthMap clears PRI-01"
+      },
+      "frozenRerunAcceptanceCondition": "Re-run frozen 150 calibration without packet rewrite: Cohort B PRI-01 occurrence count for this root = 0 on packs where view truthMap.evidenceState.rows were non-empty at capture; Cohort A projection-only dispositions unchanged; stage150ExecutionAllowed remains false; no promotions."
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+{
+  "selectionMethod": {
+    "version": "phase11-gold-sample-v1",
+    "frozenAt": "2026-07-21T21:44:04.601Z",
+    "targetSize": "30–50",
+    "actualSize": 33,
+    "method": [
+      "Seed from Phase 9 human-fp-fn-corpus-pack strata (clean_pass, possible_fp_overblock, uncertain_family).",
+      "Add gold-manual-proof-set-v1 CASE packets with solicitor-facing actual-summary renders.",
+      "Add controlled synthetic renders for omission/truncation, review-required, hearing/time, copy/export/API, offence-family leak, provenance.",
+      "Freeze sample definition (ids+strata+reasons) with content hash BEFORE writing human judgment slots.",
+      "Automated predictions written to a separate artefact; human workbook starts empty (null judgments)."
+    ],
+    "strataTargets": [
+      "accepted_clean",
+      "blocked_containment",
+      "review_required",
+      "uncertain_family",
+      "offence_family",
+      "provenance",
+      "omission_truncation",
+      "hearing_time",
+      "copy_export_api",
+      "composed_prose"
+    ]
+  },
+  "samples": [
+    {
+      "goldId": "GOLD-11-001",
+      "stratum": "accepted_clean",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2001-ellis",
+      "selectionReason": "Phase 9 clean_pass stratum — accepted containment candidate",
+      "reviewFocus": "Confirm solicitor-visible wording remains acceptable and not over-blocked."
+    },
+    {
+      "goldId": "GOLD-11-002",
+      "stratum": "accepted_clean",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2002-smith",
+      "selectionReason": "Phase 9 clean_pass stratum — accepted containment candidate",
+      "reviewFocus": "Confirm solicitor-visible wording remains acceptable and not over-blocked."
+    },
+    {
+      "goldId": "GOLD-11-003",
+      "stratum": "accepted_clean",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2003-nguyen",
+      "selectionReason": "Phase 9 clean_pass stratum — accepted containment candidate",
+      "reviewFocus": "Confirm solicitor-visible wording remains acceptable and not over-blocked."
+    },
+    {
+      "goldId": "GOLD-11-004",
+      "stratum": "accepted_clean",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2004-clarke",
+      "selectionReason": "Phase 9 clean_pass stratum — accepted containment candidate",
+      "reviewFocus": "Confirm solicitor-visible wording remains acceptable and not over-blocked."
+    },
+    {
+      "goldId": "GOLD-11-005",
+      "stratum": "accepted_clean",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2005-okafor",
+      "selectionReason": "Phase 9 clean_pass stratum — accepted containment candidate",
+      "reviewFocus": "Confirm solicitor-visible wording remains acceptable and not over-blocked."
+    },
+    {
+      "goldId": "GOLD-11-006",
+      "stratum": "blocked_containment",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2003-nguyen",
+      "selectionReason": "Phase 9 possible_fp_overblock — containment blocks present",
+      "reviewFocus": "Is fail-closed over-blocking safe solicitor wording? (FP). Blocked ≠ repaired."
+    },
+    {
+      "goldId": "GOLD-11-007",
+      "stratum": "blocked_containment",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-fresh-001-taylor-brookes",
+      "selectionReason": "Phase 9 possible_fp_overblock — containment blocks present",
+      "reviewFocus": "Is fail-closed over-blocking safe solicitor wording? (FP). Blocked ≠ repaired."
+    },
+    {
+      "goldId": "GOLD-11-008",
+      "stratum": "blocked_containment",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-fresh-002-jordan-hale",
+      "selectionReason": "Phase 9 possible_fp_overblock — containment blocks present",
+      "reviewFocus": "Is fail-closed over-blocking safe solicitor wording? (FP). Blocked ≠ repaired."
+    },
+    {
+      "goldId": "GOLD-11-009",
+      "stratum": "blocked_containment",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "pilot-3-marcus-vale",
+      "selectionReason": "Phase 9 possible_fp_overblock — containment blocks present",
+      "reviewFocus": "Is fail-closed over-blocking safe solicitor wording? (FP). Blocked ≠ repaired."
+    },
+    {
+      "goldId": "GOLD-11-010",
+      "stratum": "blocked_containment",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "proof-pack-01",
+      "selectionReason": "Phase 9 possible_fp_overblock — containment blocks present",
+      "reviewFocus": "Is fail-closed over-blocking safe solicitor wording? (FP). Blocked ≠ repaired."
+    },
+    {
+      "goldId": "GOLD-11-011",
+      "stratum": "uncertain_family",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2003-nguyen",
+      "selectionReason": "Phase 9 uncertain_family stratum",
+      "reviewFocus": "Is uncertain / fail-closed presentation correct for the solicitor?"
+    },
+    {
+      "goldId": "GOLD-11-012",
+      "stratum": "uncertain_family",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-fresh-002-jordan-hale",
+      "selectionReason": "Phase 9 uncertain_family stratum",
+      "reviewFocus": "Is uncertain / fail-closed presentation correct for the solicitor?"
+    },
+    {
+      "goldId": "GOLD-11-013",
+      "stratum": "uncertain_family",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "demo-audit-03-bwv-custody",
+      "selectionReason": "Phase 9 uncertain_family stratum",
+      "reviewFocus": "Is uncertain / fail-closed presentation correct for the solicitor?"
+    },
+    {
+      "goldId": "GOLD-11-014",
+      "stratum": "uncertain_family",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "demo-audit-10-bwv-public-order",
+      "selectionReason": "Phase 9 uncertain_family stratum",
+      "reviewFocus": "Is uncertain / fail-closed presentation correct for the solicitor?"
+    },
+    {
+      "goldId": "GOLD-11-015",
+      "stratum": "offence_family",
+      "sourceKind": "gold_manual_pack",
+      "fixtureId": "CASE-01:demo-audit-01-phone-harassment",
+      "selectionReason": "Gold pack harassment family with attribution gaps",
+      "reviewFocus": "Family-correct wording; no overstated attribution."
+    },
+    {
+      "goldId": "GOLD-11-016",
+      "stratum": "provenance",
+      "sourceKind": "gold_manual_pack",
+      "fixtureId": "CASE-05:demo-audit-05-encro-attribution",
+      "selectionReason": "Gold pack attribution / provenance pressure",
+      "reviewFocus": "Provenance and attribution must not overstate."
+    },
+    {
+      "goldId": "GOLD-11-017",
+      "stratum": "hearing_time",
+      "sourceKind": "gold_manual_pack",
+      "fixtureId": "CASE-08:demo-audit-69-charge-mg5-hearing",
+      "selectionReason": "Gold pack charge/MG5/hearing surface",
+      "reviewFocus": "Hearing/date presentation accuracy."
+    },
+    {
+      "goldId": "GOLD-11-018",
+      "stratum": "composed_prose",
+      "sourceKind": "gold_manual_pack",
+      "fixtureId": "CASE-04:demo-audit-02-cctv-stills",
+      "selectionReason": "Gold pack CCTV stills composed court/client lines",
+      "reviewFocus": "Composed prose acceptability word-for-word."
+    },
+    {
+      "goldId": "GOLD-11-019",
+      "stratum": "provenance",
+      "sourceKind": "gold_manual_pack",
+      "fixtureId": "CASE-07:demo-audit-44-bad-redaction",
+      "selectionReason": "Gold pack bad-redaction provenance risk",
+      "reviewFocus": "Provenance / redaction-safe display."
+    },
+    {
+      "goldId": "GOLD-11-020",
+      "stratum": "composed_prose",
+      "sourceKind": "gold_manual_pack",
+      "fixtureId": "CASE-02:demo-audit-03-bwv-custody",
+      "selectionReason": "Gold pack BWV/custody composed surfaces",
+      "reviewFocus": "Client/court composed lines word-for-word."
+    },
+    {
+      "goldId": "GOLD-11-021",
+      "stratum": "omission_truncation",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-TRUNC-01",
+      "selectionReason": "Controlled truncated fragment at copy exit",
+      "reviewFocus": "Truncation must block copy; blocked ≠ repaired wording."
+    },
+    {
+      "goldId": "GOLD-11-022",
+      "stratum": "omission_truncation",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-TRUNC-TITLE-01",
+      "selectionReason": "Truncated excerpt used as evidence title",
+      "reviewFocus": "Unsafe title must not be presented as safe evidence title."
+    },
+    {
+      "goldId": "GOLD-11-023",
+      "stratum": "omission_truncation",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-OMIT-01",
+      "selectionReason": "Safely omitted legacy → review-required display",
+      "reviewFocus": "Omission must show review-required neutral, not silent drop."
+    },
+    {
+      "goldId": "GOLD-11-024",
+      "stratum": "review_required",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-RR-01",
+      "selectionReason": "Review-required neutral banner path",
+      "reviewFocus": "Solicitor sees review-required; not treated as repaired prose."
+    },
+    {
+      "goldId": "GOLD-11-025",
+      "stratum": "review_required",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-RR-PLACEHOLDER-01",
+      "selectionReason": "Unresolved placeholder blocked at copy",
+      "reviewFocus": "Placeholder must not be copyable."
+    },
+    {
+      "goldId": "GOLD-11-026",
+      "stratum": "hearing_time",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-HEAR-UNKNOWN",
+      "selectionReason": "Unknown hearing date display",
+      "reviewFocus": "Hearing unknown wording exactness."
+    },
+    {
+      "goldId": "GOLD-11-027",
+      "stratum": "hearing_time",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-HEAR-SAME-DAY",
+      "selectionReason": "Same-day hearing display",
+      "reviewFocus": "Same-day hearing label exactness."
+    },
+    {
+      "goldId": "GOLD-11-028",
+      "stratum": "hearing_time",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-HEAR-PASSED",
+      "selectionReason": "Passed hearing display",
+      "reviewFocus": "Passed hearing label exactness."
+    },
+    {
+      "goldId": "GOLD-11-029",
+      "stratum": "copy_export_api",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-API-BLOCK-01",
+      "selectionReason": "Integrity-blocked API body must not be usable content",
+      "reviewFocus": "API/UI banner and canCopy=false; blocked ≠ repaired."
+    },
+    {
+      "goldId": "GOLD-11-030",
+      "stratum": "copy_export_api",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-EXPORT-FAMILY-01",
+      "selectionReason": "Wrong-family leak blocked on export/copy",
+      "reviewFocus": "Export/copy gate blocks wrong-family material."
+    },
+    {
+      "goldId": "GOLD-11-031",
+      "stratum": "copy_export_api",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-COPY-SAFE-01",
+      "selectionReason": "Safe line should remain copyable (accepted control)",
+      "reviewFocus": "Safe wording remains available — check FP over-block."
+    },
+    {
+      "goldId": "GOLD-11-032",
+      "stratum": "offence_family",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-FAM-LEAK-01",
+      "selectionReason": "Harassment matter + defence-force/PWITS leak probe",
+      "reviewFocus": "Wrong-family material must not remain copyable (FN if it does)."
+    },
+    {
+      "goldId": "GOLD-11-033",
+      "stratum": "provenance",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-PROV-TITLE-01",
+      "selectionReason": "Raw extraction / truncated title provenance boundary",
+      "reviewFocus": "Provenance boundary must refuse unsafe titles."
+    }
+  ],
+  "freezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "frozen": true,
+  "disclaimer": "Sample frozen prior to human judgments. Do not alter membership without a new freeze version."
+}

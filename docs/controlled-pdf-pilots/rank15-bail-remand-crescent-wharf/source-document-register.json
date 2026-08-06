@@ -1,0 +1,13 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":76,"approved_band":"40-90","rule":"Authentic application need controls total; flexible ranges are not quotas and no padding is permitted."},
+  "planned_documents":[
+    {"id":"S01","structure":"controlled application overview, non-operative charges, people, event and order chronology","pages":"5-7","purpose":"neutral live-risk, application, condition and deadline map"},
+    {"id":"S02","structure":"charge/context pack, MG5-style summary, core statements and exhibit schedule","pages":"7-10","purpose":"proportionate allegation context without deciding merits"},
+    {"id":"S03","structure":"antecedent, failure-to-surrender, prior-order and bail-history records","pages":"6-9","purpose":"source-specific history and identity matching"},
+    {"id":"S04","structure":"prosecution risk evidence, witness-safety material and bail representations","pages":"7-10","purpose":"separate asserted risks, source proof and requested outcome"},
+    {"id":"S05","structure":"defence address, employment, treatment, surety/security evidence and proposal","pages":"8-11","purpose":"verify proposed safeguards without treating an offer as accepted"},
+    {"id":"S06","structure":"first-remand forms, submissions, hearing record, reasons and bail/remand order","pages":"8-11","purpose":"initial application-to-order lifecycle"},
+    {"id":"S07","structure":"variation application, supporting change, response, service, hearing and varied/refused order","pages":"6-9","purpose":"condition versioning and variation state"},
+    {"id":"S08","structure":"alleged-breach arrest material, digital contact, response, renewed hearing, operative order and CTL/deadline tracker","pages":"9-13","purpose":"breach allegation, court opinion, renewed decision and time-control separation"}
+  ]
+}

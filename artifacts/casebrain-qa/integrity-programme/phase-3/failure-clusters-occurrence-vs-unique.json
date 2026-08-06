@@ -1,0 +1,389 @@
+{
+  "generatedAt": "2026-07-21T00:42:06.152Z",
+  "note": "Every cluster reports totalOccurrences, uniqueCasesAffected, uniqueSurfacesAffected, copyableExportableOccurrences.",
+  "combined": [
+    {
+      "ruleId": "sentence.raw_extraction_marker",
+      "totalOccurrences": 2423,
+      "uniqueCasesAffected": 493,
+      "uniqueSurfacesAffected": 4,
+      "copyableExportableOccurrences": 72,
+      "byLane": {
+        "scale": 0,
+        "materialised": 2423,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 493,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "offence_family_uncertain",
+      "totalOccurrences": 792,
+      "uniqueCasesAffected": 396,
+      "uniqueSurfacesAffected": 2,
+      "copyableExportableOccurrences": 792,
+      "byLane": {
+        "scale": 0,
+        "materialised": 792,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 396,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "sentence.truncated_fragment",
+      "totalOccurrences": 439,
+      "uniqueCasesAffected": 407,
+      "uniqueSurfacesAffected": 3,
+      "copyableExportableOccurrences": 28,
+      "byLane": {
+        "scale": 0,
+        "materialised": 439,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 407,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "family.wrong_term.drugs_supply_PWITS",
+      "totalOccurrences": 94,
+      "uniqueCasesAffected": 92,
+      "uniqueSurfacesAffected": 2,
+      "copyableExportableOccurrences": 0,
+      "byLane": {
+        "scale": 0,
+        "materialised": 94,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 92,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "sentence.contradictory_clause",
+      "totalOccurrences": 50,
+      "uniqueCasesAffected": 38,
+      "uniqueSurfacesAffected": 3,
+      "copyableExportableOccurrences": 8,
+      "byLane": {
+        "scale": 0,
+        "materialised": 50,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 38,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "family.wrong_term.drugs_possession",
+      "totalOccurrences": 35,
+      "uniqueCasesAffected": 27,
+      "uniqueSurfacesAffected": 1,
+      "copyableExportableOccurrences": 0,
+      "byLane": {
+        "scale": 0,
+        "materialised": 35,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 27,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "family.wrong_term.pwits",
+      "totalOccurrences": 28,
+      "uniqueCasesAffected": 27,
+      "uniqueSurfacesAffected": 1,
+      "copyableExportableOccurrences": 0,
+      "byLane": {
+        "scale": 0,
+        "materialised": 28,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 27,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "sentence.unresolved_placeholder",
+      "totalOccurrences": 2,
+      "uniqueCasesAffected": 2,
+      "uniqueSurfacesAffected": 2,
+      "copyableExportableOccurrences": 0,
+      "byLane": {
+        "scale": 0,
+        "materialised": 2,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 2,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "wrong_family.unsupported_template_leakage",
+      "totalOccurrences": 2,
+      "uniqueCasesAffected": 1,
+      "uniqueSurfacesAffected": 2,
+      "copyableExportableOccurrences": 2,
+      "byLane": {
+        "scale": 0,
+        "materialised": 2,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 1,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "family.wrong_term.intent_to_supply",
+      "totalOccurrences": 1,
+      "uniqueCasesAffected": 1,
+      "uniqueSurfacesAffected": 1,
+      "copyableExportableOccurrences": 0,
+      "byLane": {
+        "scale": 0,
+        "materialised": 1,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 1,
+        "both": 0,
+        "neither": 0
+      }
+    }
+  ],
+  "scale": [],
+  "materialised": [
+    {
+      "ruleId": "sentence.raw_extraction_marker",
+      "totalOccurrences": 2423,
+      "uniqueCasesAffected": 493,
+      "uniqueSurfacesAffected": 4,
+      "copyableExportableOccurrences": 72,
+      "byLane": {
+        "scale": 0,
+        "materialised": 2423,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 493,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "offence_family_uncertain",
+      "totalOccurrences": 792,
+      "uniqueCasesAffected": 396,
+      "uniqueSurfacesAffected": 2,
+      "copyableExportableOccurrences": 792,
+      "byLane": {
+        "scale": 0,
+        "materialised": 792,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 396,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "sentence.truncated_fragment",
+      "totalOccurrences": 439,
+      "uniqueCasesAffected": 407,
+      "uniqueSurfacesAffected": 3,
+      "copyableExportableOccurrences": 28,
+      "byLane": {
+        "scale": 0,
+        "materialised": 439,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 407,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "family.wrong_term.drugs_supply_PWITS",
+      "totalOccurrences": 94,
+      "uniqueCasesAffected": 92,
+      "uniqueSurfacesAffected": 2,
+      "copyableExportableOccurrences": 0,
+      "byLane": {
+        "scale": 0,
+        "materialised": 94,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 92,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "sentence.contradictory_clause",
+      "totalOccurrences": 50,
+      "uniqueCasesAffected": 38,
+      "uniqueSurfacesAffected": 3,
+      "copyableExportableOccurrences": 8,
+      "byLane": {
+        "scale": 0,
+        "materialised": 50,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 38,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "family.wrong_term.drugs_possession",
+      "totalOccurrences": 35,
+      "uniqueCasesAffected": 27,
+      "uniqueSurfacesAffected": 1,
+      "copyableExportableOccurrences": 0,
+      "byLane": {
+        "scale": 0,
+        "materialised": 35,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 27,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "family.wrong_term.pwits",
+      "totalOccurrences": 28,
+      "uniqueCasesAffected": 27,
+      "uniqueSurfacesAffected": 1,
+      "copyableExportableOccurrences": 0,
+      "byLane": {
+        "scale": 0,
+        "materialised": 28,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 27,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "sentence.unresolved_placeholder",
+      "totalOccurrences": 2,
+      "uniqueCasesAffected": 2,
+      "uniqueSurfacesAffected": 2,
+      "copyableExportableOccurrences": 0,
+      "byLane": {
+        "scale": 0,
+        "materialised": 2,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 2,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "wrong_family.unsupported_template_leakage",
+      "totalOccurrences": 2,
+      "uniqueCasesAffected": 1,
+      "uniqueSurfacesAffected": 2,
+      "copyableExportableOccurrences": 2,
+      "byLane": {
+        "scale": 0,
+        "materialised": 2,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 1,
+        "both": 0,
+        "neither": 0
+      }
+    },
+    {
+      "ruleId": "family.wrong_term.intent_to_supply",
+      "totalOccurrences": 1,
+      "uniqueCasesAffected": 1,
+      "uniqueSurfacesAffected": 1,
+      "copyableExportableOccurrences": 0,
+      "byLane": {
+        "scale": 0,
+        "materialised": 1,
+        "both": 0,
+        "neither": 0
+      },
+      "uniqueCasesByLane": {
+        "scale": 0,
+        "materialised": 1,
+        "both": 0,
+        "neither": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "stage150-fid10-output-freeze-receipt@1.0.0",
+  "purpose": "Prove solicitor-visible output ledger was frozen before FID-10 source-packet review for Batch 3.",
+  "baselineCommit": "d92e28c25a1dcc239f3c0d434174cc45851fd908",
+  "frozenAt": "2026-07-30T13:52:15.771Z",
+  "sourceCandidateList": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch2/stage150-fid10-remaining-unresolved.json",
+  "occurrenceTotal": 19,
+  "caseTotal": 2,
+  "rule": "No CaseBrain repair; no case-specific patches; source review uses frozen output hashes + bundle-text.md only; truth keys not opened for verdicts.",
+  "cases": [
+    {
+      "caseId": "crown-court-patterson",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/crown-court-patterson",
+      "casebrainOutputSha256": "864016bbb85bf82572a3afc331d956d4786b3c5aee50e61292aaa709e044782e",
+      "bundleTextSha256": "a96bd585bc5e8cacac78c099d66c2eede6a377d441e3546a7d9a3a59a4d7a1a5",
+      "occurrenceCount": 2,
+      "occurrences": [
+        {
+          "caseId": "crown-court-patterson",
+          "surfaceReference": "/fiveAnswersEvidenceRows/8/label",
+          "priorFamily": "genuinely_unresolved",
+          "exactText": "*[Defendant provided \"no comment\" responses to all questions throughout the interview. No alibi provided, no explanation given for presence at scene, no admission or denial of involvement, no explanation for fingerprints on weapon.]**",
+          "exactTextSha256": "e296cd81f0bb25ead668f3f91450de2738a8b2fd8d6095561a3f71c8afa2e37a",
+          "textPreview": "*[Defendant provided \"no comment\" responses to all questions throughout the interview. No alibi provided, no explanation given for presence at scene, no admission or denial of invo"
+        },
+        {
+          "caseId": "crown-court-patterson",
+          "surfaceReference": "/fiveAnswersEvidenceRows/11/label",
+          "priorFamily": "genuinely_unresolved",
+          "exactText": "Defendant provided \"no comment\" interview, failing to provide any account or alibi",
+          "exactTextSha256": "0d871890ac6e5c74b74e88e77c98942360e13cc2830dcad8b223b09a081babdc",
+          "textPreview": "Defendant provided \"no comment\" interview, failing to provide any account or alibi"
+        }
+      ]
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/gbh-pike-jordan-pike",
+      "casebrainOutputSha256": "6084b6cbbda9e651d6fb78f88a0b145663fe1cfb29e8e42de4ce28939a9059bd",
+      "bundleTextSha256": "fcb5412570f7e9836966c2b3322eb776e00eb1fe03c07e54a26d4d512a1391db",
+      "occurrenceCount": 17,
+      "occurrences": [
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/evidenceStates/0/evidenceAnchor",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"CCTV requested not in bundle\",",
+          "exactTextSha256": "67ee580a0d16d6c82ac266f8b82cd84c964cafed8ca4711082deea4e7f5b9e81",
+          "textPreview": "\"CCTV requested not in bundle\","
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/evidenceStates/1/evidenceAnchor",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"CCTV requested not in bundle\",",
+          "exactTextSha256": "67ee580a0d16d6c82ac266f8b82cd84c964cafed8ca4711082deea4e7f5b9e81",
+          "textPreview": "\"CCTV requested not in bundle\","
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/evidenceStates/2/evidenceAnchor",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"partial 999 transcript only\"",
+          "exactTextSha256": "5ae2ead6ae0714ca2d605fcadb0b5b6af98578e0c70fb2971a0f6a4887e54449",
+          "textPreview": "\"partial 999 transcript only\""
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/evidenceStates/3/evidenceAnchor",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"partial 999 transcript only\"",
+          "exactTextSha256": "5ae2ead6ae0714ca2d605fcadb0b5b6af98578e0c70fb2971a0f6a4887e54449",
+          "textPreview": "\"partial 999 transcript only\""
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/evidenceStates/4/evidenceAnchor",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"Tests MG5 vs MG6 vs CCTV list tension (footage 'held' vs not served).\",",
+          "exactTextSha256": "fdecf2092cc94bbe2457f8478b41ceed8d987eefc6f94814f763a4bf0f333c0b",
+          "textPreview": "\"Tests MG5 vs MG6 vs CCTV list tension (footage 'held' vs not served).\","
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/evidenceStates/5/evidenceAnchor",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"medical records requested not served\",",
+          "exactTextSha256": "1a5ff769059ec9cf891d99ea90cff9309fa1099a18b9bd671a4064b65c11214b",
+          "textPreview": "\"medical records requested not served\","
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/fiveAnswersEvidenceRows/13/label",
+          "priorFamily": "genuinely_unresolved",
+          "exactText": "\"friend witness\",",
+          "exactTextSha256": "0d6b80975fabd56786fb34c47b8b931e2042282be721a67bef34102463f49293",
+          "textPreview": "\"friend witness\","
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/fiveAnswersEvidenceRows/14/label",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"CCTV requested not in bundle\",",
+          "exactTextSha256": "67ee580a0d16d6c82ac266f8b82cd84c964cafed8ca4711082deea4e7f5b9e81",
+          "textPreview": "\"CCTV requested not in bundle\","
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/fiveAnswersEvidenceRows/15/label",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"partial 999 transcript only\"",
+          "exactTextSha256": "5ae2ead6ae0714ca2d605fcadb0b5b6af98578e0c70fb2971a0f6a4887e54449",
+          "textPreview": "\"partial 999 transcript only\""
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/fiveAnswersEvidenceRows/16/label",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"PC Vale attendance time 00:30; CAD fragment shows 00:24 dispatch\"",
+          "exactTextSha256": "16ae410fb1ef379655ee97af8496dcc84e8f1e3e01e882d0413e62902a1d00f1",
+          "textPreview": "\"PC Vale attendance time 00:30; CAD fragment shows 00:24 dispatch\""
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/fiveAnswersEvidenceRows/17/label",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"CCTV continuity statement notes clock drift vs shop stated times.\"",
+          "exactTextSha256": "c7a066665a8ffb0e8910d25c9ddb6e06c4abf83540b1a88761466943e187b0fa",
+          "textPreview": "\"CCTV continuity statement notes clock drift vs shop stated times.\""
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/fiveAnswersEvidenceRows/21/label",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"Tests MG5 vs MG6 vs CCTV list tension (footage 'held' vs not served).\",",
+          "exactTextSha256": "fdecf2092cc94bbe2457f8478b41ceed8d987eefc6f94814f763a4bf0f333c0b",
+          "textPreview": "\"Tests MG5 vs MG6 vs CCTV list tension (footage 'held' vs not served).\","
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/fiveAnswersEvidenceRows/23/label",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"medical records requested not served\",",
+          "exactTextSha256": "1a5ff769059ec9cf891d99ea90cff9309fa1099a18b9bd671a4064b65c11214b",
+          "textPreview": "\"medical records requested not served\","
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/fiveAnswersEvidenceRows/24/label",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"MG5 para 3 suggests footage secured/hold; MG6(a) and CCTV list: footage awaiting service.\",",
+          "exactTextSha256": "09800e11be0b0aa20772b99459fd4e3dc85457c8e0d202a0b49ecbe7c542df55",
+          "textPreview": "\"MG5 para 3 suggests footage secured/hold; MG6(a) and CCTV list: footage awaiting service.\","
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/fiveAnswersEvidenceRows/25/label",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"MG5 evidence checklist consistent with outstanding BWV/999/CAD; align chat with MG6 rows.\",",
+          "exactTextSha256": "7e4308c4ea96c831d7b351a7f07fc564a107f7012f32cf2aa9bf87f42cc6d035",
+          "textPreview": "\"MG5 evidence checklist consistent with outstanding BWV/999/CAD; align chat with MG6 rows.\","
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/fiveAnswersEvidenceRows/26/label",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"Do not invent that medical records are served — MG6 says requested / not served.\",",
+          "exactTextSha256": "bc83cf5822000c4a5f094b915c6ccfe41d714941458e6c6b51f605f83777dc76",
+          "textPreview": "\"Do not invent that medical records are served — MG6 says requested / not served.\","
+        },
+        {
+          "caseId": "gbh-pike-jordan-pike",
+          "surfaceReference": "/fiveAnswersEvidenceRows/27/label",
+          "priorFamily": "substantive_quote_needs_provenance",
+          "exactText": "\"Do not invent CCTV in hand — list says requested, continuity outstanding.\",",
+          "exactTextSha256": "8c64985b9308378f07bdf3aae91408e2877ae971db798c4cfe74362d92dabbdc",
+          "textPreview": "\"Do not invent CCTV in hand — list says requested, continuity outstanding.\","
+        }
+      ]
+    }
+  ],
+  "freezeDigestSha256": "c9a25044ed8052a8fea89c884cdc26ac51c90b0f837f9df381c7244da6ebc26a"
+}

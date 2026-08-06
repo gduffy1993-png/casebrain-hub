@@ -1,0 +1,153 @@
+{
+  "goldId": "GOLD-11-016",
+  "reviewEligibility": "substantive",
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "v3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "changes": [
+    {
+      "surface": "source_context",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "7f5c8e601a1e",
+        "textPreview": "Client: Liam Craft\nAllegation: Being concerned in the supply of a controlled drug of Class A, namely cocaine"
+      },
+      "after": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "6af6c503d453",
+        "textPreview": "Controlled source context (safely redacted for review)\nClient label: Liam Craft\nAllegation: Being concerned in the supply of a controlled drug of Class A, namel"
+      }
+    },
+    {
+      "surface": "case_header",
+      "before": {
+        "gateStatus": "qualified_solicitor_review_queue",
+        "canCopy": false,
+        "textHash": "4ceb0ee8feaa",
+        "textPreview": "Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "7f5c8e601a1e",
+        "textPreview": "Client: Liam Craft\nAllegation: Being concerned in the supply of a controlled drug of Class A, namely cocaine"
+      }
+    },
+    {
+      "surface": "court_line",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "a88b010827f5",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Liam Craft). This is early-stage — nothing is final until we have full dis"
+      },
+      "after": {
+        "gateStatus": "qualified_solicitor_review_queue",
+        "canCopy": false,
+        "textHash": "49a991c43a31",
+        "textPreview": "Item: Disclosure / chase wording (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+      }
+    },
+    {
+      "surface": "client_summary",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "a163890f6cbc",
+        "textPreview": "Please provide Platform / source extraction (see MG6C/ENC/02) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "a88b010827f5",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Liam Craft). This is early-stage — nothing is final until we have full dis"
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "87cf63c5816f",
+        "textPreview": "Please provide Handle attribution report (see MG6C/ENC/03) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "a163890f6cbc",
+        "textPreview": "Please provide Platform / source extraction (see MG6C/ENC/02) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "a9095a1b3d9f",
+        "textPreview": "Please provide Subscriber / account data (see MG6C/ENC/04) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "87cf63c5816f",
+        "textPreview": "Please provide Handle attribution report (see MG6C/ENC/03) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "764954526442",
+        "textPreview": "Please provide Device continuity (see MG6C/ENC/05) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "a9095a1b3d9f",
+        "textPreview": "Please provide Subscriber / account data (see MG6C/ENC/04) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "0af0015ba6a3",
+        "textPreview": "• Encro message extracts LC/MSG/01 — served\n• Platform / source extraction — referred_only\n• Handle attribution report — missing\n• Subscriber / account data — m"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "764954526442",
+        "textPreview": "Please provide Device continuity (see MG6C/ENC/05) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "truth_map",
+      "before": {
+        "gateStatus": "warning",
+        "canCopy": false,
+        "textHash": "a60ab78371bc",
+        "textPreview": "• handle proves defendant\n• NIGHTLINE-77 is Liam Craft\n• phone proves role\n• Do not treat handle or phone reference as proof of the defendant role without serve"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "06715005d122",
+        "textPreview": "• Encro message extracts LC/MSG/01 — Served\n• Platform / source extraction — Referred only\n• Handle attribution report — Missing\n• Subscriber / account data — M"
+      }
+    },
+    {
+      "surface": "do_not_overstate",
+      "before": null,
+      "after": {
+        "gateStatus": "warning",
+        "canCopy": false,
+        "textPreview": "• handle proves defendant\n• NIGHTLINE-77 is Liam Craft\n• phone proves role\n• Do not treat handle or phone reference as proof of the defendant role without serve"
+      }
+    }
+  ]
+}

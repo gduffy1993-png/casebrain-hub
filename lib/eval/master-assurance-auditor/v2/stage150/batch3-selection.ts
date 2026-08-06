@@ -1,0 +1,612 @@
+/**
+ * Batch-3 Stage-150 selection — all genuinely packet-local ESA-feasible SNI controls.
+ * No arbitrary count target. Adapter-blocked controls listed separately and remain SNI.
+ */
+
+export type Batch3Selection = {
+  controlId: string;
+  familyCode: string;
+  intelligenceFamily: string;
+  reason: string;
+};
+
+export type Batch3Blocked = {
+  controlId: string;
+  familyCode: string;
+  blocker: string;
+};
+
+export const BATCH3_SELECTED: Batch3Selection[] = [
+  {
+    controlId: "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+    familyCode: "BND",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-BND-03-REPLACEMENT-LINKS",
+    familyCode: "BND",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-BND-04-VERSION-PRECEDENCE",
+    familyCode: "BND",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-BND-05-MISSING-ATTACHMENTS",
+    familyCode: "BND",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+    familyCode: "BND",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-BND-13-CODEFENDANT-ONLY",
+    familyCode: "BND",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+    familyCode: "BND",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+    familyCode: "FID",
+    intelligenceFamily: "charge_integrity",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+    familyCode: "FID",
+    intelligenceFamily: "charge_integrity",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-FID-05-EXHIBIT-DOC-REFS",
+    familyCode: "FID",
+    intelligenceFamily: "charge_integrity",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+    familyCode: "FID",
+    intelligenceFamily: "charge_integrity",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+    familyCode: "LSL",
+    intelligenceFamily: "charge_integrity",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+    familyCode: "CHG",
+    intelligenceFamily: "charge_integrity",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHG-07-STATUTORY-PROVISION",
+    familyCode: "CHG",
+    intelligenceFamily: "charge_integrity",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+    familyCode: "CHG",
+    intelligenceFamily: "charge_integrity",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+    familyCode: "CHG",
+    intelligenceFamily: "charge_integrity",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+    familyCode: "CHG",
+    intelligenceFamily: "charge_integrity",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+    familyCode: "CHG",
+    intelligenceFamily: "charge_integrity",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-EVS-04-REASON-TAXONOMY",
+    familyCode: "EVS",
+    intelligenceFamily: "evidence_identity_state",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+    familyCode: "ATR",
+    intelligenceFamily: "evidence_attribution",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+    familyCode: "ATR",
+    intelligenceFamily: "evidence_attribution",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+    familyCode: "ATR",
+    intelligenceFamily: "evidence_attribution",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+    familyCode: "ATR",
+    intelligenceFamily: "evidence_attribution",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+    familyCode: "CHR",
+    intelligenceFamily: "chronology_procedure",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+    familyCode: "CHR",
+    intelligenceFamily: "chronology_procedure",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-PRC-01-STAGE-TAGGING",
+    familyCode: "PRC",
+    intelligenceFamily: "chronology_procedure",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-PRC-02-WRONG-STAGE-DETECT",
+    familyCode: "PRC",
+    intelligenceFamily: "chronology_procedure",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHS-01-FIVE-PART-FINDING",
+    familyCode: "CHS",
+    intelligenceFamily: "chase_actionability",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHS-03-PROVENANCE-LINK",
+    familyCode: "CHS",
+    intelligenceFamily: "chase_actionability",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+    familyCode: "CHS",
+    intelligenceFamily: "chase_actionability",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+    familyCode: "CHS",
+    intelligenceFamily: "chase_actionability",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+    familyCode: "CHS",
+    intelligenceFamily: "chase_actionability",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+    familyCode: "CHS",
+    intelligenceFamily: "chase_actionability",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+    familyCode: "CHS",
+    intelligenceFamily: "chase_actionability",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-WRD-01-GRAMMAR-SENTENCES",
+    familyCode: "WRD",
+    intelligenceFamily: "professional_wording",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+    familyCode: "WRD",
+    intelligenceFamily: "professional_wording",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-WRD-05-TEMPLATE-JOINS",
+    familyCode: "WRD",
+    intelligenceFamily: "professional_wording",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-WRD-06-SPACES-PUNCTUATION",
+    familyCode: "WRD",
+    intelligenceFamily: "professional_wording",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+    familyCode: "WRD",
+    intelligenceFamily: "professional_wording",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-WRD-08-CAPITALISATION",
+    familyCode: "WRD",
+    intelligenceFamily: "professional_wording",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-WRD-09-PROTECTED-ACRONYMS",
+    familyCode: "WRD",
+    intelligenceFamily: "professional_wording",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+    familyCode: "WRD",
+    intelligenceFamily: "professional_wording",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+    familyCode: "WRD",
+    intelligenceFamily: "professional_wording",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-AUD-01-SOLICITOR-COMPLETE",
+    familyCode: "AUD",
+    intelligenceFamily: "audience_context",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+    familyCode: "XEX",
+    intelligenceFamily: "cross_output",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+    familyCode: "XEX",
+    intelligenceFamily: "cross_output",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+    familyCode: "PRI",
+    intelligenceFamily: "cross_output",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-PRI-03-PRIORITY-CHECKLIST",
+    familyCode: "PRI",
+    intelligenceFamily: "cross_output",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+    familyCode: "CTX",
+    intelligenceFamily: "contradiction_perspective",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+    familyCode: "CTX",
+    intelligenceFamily: "contradiction_perspective",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+  {
+    controlId: "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+    familyCode: "DEF",
+    intelligenceFamily: "contradiction_perspective",
+    reason: "Packet-local ESA cues available via wording/evidenceStates/chase/export surfaces; shared detector (no case-specific patch).",
+  },
+];
+
+export const BATCH3_BLOCKED_REMAINING_SNI: Batch3Blocked[] = [
+  {
+    controlId: "MAA2-SRC-07-REDACTION-DETECT",
+    familyCode: "SRC",
+    blocker: "source_binary_ocr_adapter_absent",
+  },
+  {
+    controlId: "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+    familyCode: "SRC",
+    blocker: "source_binary_ocr_adapter_absent",
+  },
+  {
+    controlId: "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+    familyCode: "SRC",
+    blocker: "source_binary_ocr_adapter_absent",
+  },
+  {
+    controlId: "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+    familyCode: "SRC",
+    blocker: "source_binary_ocr_adapter_absent",
+  },
+  {
+    controlId: "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+    familyCode: "FID",
+    blocker: "semantic_alignment_model_adapter_absent",
+  },
+  {
+    controlId: "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+    familyCode: "LSL",
+    blocker: "legal_category_taxonomy_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+    familyCode: "ATR",
+    blocker: "device_account_attribution_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+    familyCode: "ATR",
+    blocker: "possession_knowledge_adapter_absent",
+  },
+  {
+    controlId: "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+    familyCode: "CHR",
+    blocker: "dob_age_calc_adapter_absent",
+  },
+  {
+    controlId: "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+    familyCode: "CHR",
+    blocker: "calc_input_ledger_adapter_absent",
+  },
+  {
+    controlId: "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+    familyCode: "LEG",
+    blocker: "pinned_authority_registry_absent",
+  },
+  {
+    controlId: "MAA2-LEG-02-JURISDICTION",
+    familyCode: "LEG",
+    blocker: "pinned_authority_registry_absent",
+  },
+  {
+    controlId: "MAA2-LEG-03-EFFECTIVE-DATE",
+    familyCode: "LEG",
+    blocker: "pinned_authority_registry_absent",
+  },
+  {
+    controlId: "MAA2-LEG-05-RETRIEVAL-DATE",
+    familyCode: "LEG",
+    blocker: "pinned_authority_registry_absent",
+  },
+  {
+    controlId: "MAA2-LEG-06-REGISTRY-VERSION-ID",
+    familyCode: "LEG",
+    blocker: "pinned_authority_registry_absent",
+  },
+  {
+    controlId: "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+    familyCode: "LEG",
+    blocker: "pinned_authority_registry_absent",
+  },
+  {
+    controlId: "MAA2-LEG-08-CURRENCY-WARNING",
+    familyCode: "LEG",
+    blocker: "pinned_authority_registry_absent",
+  },
+  {
+    controlId: "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+    familyCode: "LEG",
+    blocker: "pinned_authority_registry_absent",
+  },
+  {
+    controlId: "MAA2-PRC-03-YOUTH-STATE",
+    familyCode: "PRC",
+    blocker: "structured_youth_state_adapter_absent",
+  },
+  {
+    controlId: "MAA2-PRC-04-FITNESS-PARTICIPATION",
+    familyCode: "PRC",
+    blocker: "structured_fitness_adapter_absent",
+  },
+  {
+    controlId: "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+    familyCode: "PRC",
+    blocker: "structured_pii_disclosure_adapter_absent",
+  },
+  {
+    controlId: "MAA2-AUD-02-CLIENT-PLAIN",
+    familyCode: "AUD",
+    blocker: "multi_audience_exit_adapter_absent",
+  },
+  {
+    controlId: "MAA2-AUD-03-COURT-PRECISE",
+    familyCode: "AUD",
+    blocker: "multi_audience_exit_adapter_absent",
+  },
+  {
+    controlId: "MAA2-AUD-04-CPS-SPECIFIC",
+    familyCode: "AUD",
+    blocker: "multi_audience_exit_adapter_absent",
+  },
+  {
+    controlId: "MAA2-AUD-05-SUPERVISOR-RISK",
+    familyCode: "AUD",
+    blocker: "multi_audience_exit_adapter_absent",
+  },
+  {
+    controlId: "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+    familyCode: "AUD",
+    blocker: "multi_audience_exit_adapter_absent",
+  },
+  {
+    controlId: "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+    familyCode: "XEX",
+    blocker: "pinned_authority_registry_absent",
+  },
+  {
+    controlId: "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+    familyCode: "XPP",
+    blocker: "multi_perspective_adapter_absent",
+  },
+  {
+    controlId: "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+    familyCode: "XPP",
+    blocker: "multi_perspective_adapter_absent",
+  },
+  {
+    controlId: "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+    familyCode: "XPP",
+    blocker: "multi_perspective_adapter_absent",
+  },
+  {
+    controlId: "MAA2-XPP-04-CLIENT-COMPREHENSION",
+    familyCode: "XPP",
+    blocker: "multi_perspective_adapter_absent",
+  },
+  {
+    controlId: "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+    familyCode: "XPP",
+    blocker: "multi_perspective_adapter_absent",
+  },
+  {
+    controlId: "MAA2-VDR-01-SOURCE-CASE-HASHES",
+    familyCode: "VDR",
+    blocker: "frozen_run_reproducibility_adapter_absent",
+  },
+  {
+    controlId: "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+    familyCode: "VDR",
+    blocker: "frozen_run_reproducibility_adapter_absent",
+  },
+  {
+    controlId: "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+    familyCode: "VDR",
+    blocker: "frozen_run_reproducibility_adapter_absent",
+  },
+  {
+    controlId: "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+    familyCode: "VDR",
+    blocker: "frozen_run_reproducibility_adapter_absent",
+  },
+  {
+    controlId: "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+    familyCode: "VDR",
+    blocker: "frozen_run_reproducibility_adapter_absent",
+  },
+  {
+    controlId: "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+    familyCode: "VDR",
+    blocker: "frozen_run_reproducibility_adapter_absent",
+  },
+  {
+    controlId: "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+    familyCode: "VDR",
+    blocker: "frozen_run_reproducibility_adapter_absent",
+  },
+  {
+    controlId: "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+    familyCode: "VDR",
+    blocker: "frozen_run_reproducibility_adapter_absent",
+  },
+  {
+    controlId: "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+    familyCode: "VDR",
+    blocker: "frozen_run_reproducibility_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-03-STALE-DRAFT-MARKING",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+  {
+    controlId: "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+    familyCode: "ELD",
+    blocker: "eld_adapter_absent",
+  },
+];
+
+export const BATCH3_CONTROL_IDS = new Set(BATCH3_SELECTED.map((c) => c.controlId));
+
+if (BATCH3_SELECTED.length + BATCH3_BLOCKED_REMAINING_SNI.length !== 106) {
+  throw new Error(
+    `Batch3 selection+blocked must cover 106 SNI (got ${BATCH3_SELECTED.length}+${BATCH3_BLOCKED_REMAINING_SNI.length})`,
+  );
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0.0",
+  "dispositionDate": "2026-07-29",
+  "reviewerRole": "independent technical auditor, not solicitor",
+  "legalSignOff": "none",
+  "priorDefectDenominator": 31,
+  "detectorFalsePositives": 25,
+  "unresolvedIdentityVersionCandidates": 6,
+  "sourceConfirmedDefects": 0,
+  "note": "The six candidate_pending_source findings involve potentially distinct document units (served draft MG11 ≠ missing final signed MG11; served custody extract ≠ missing full custody record; original charge sheet ≠ corrected charge sheet; original MG5 ≠ updated MG5). They are unresolved — not counted as confirmed defects or false positives. A mismatch may become a defect only when canonical identity/version binding proves the actual and expected rows refer to the same unit.",
+  "disclaimerKnownFn": {
+    "corpusState": "unknown",
+    "contractsProve": "detector behaviour only, not corpus recall"
+  },
+  "stage50Adapter": {
+    "adapterId": "esa-local-materialised",
+    "requiredUniqueCases": 50,
+    "corpusRoot": "artifacts/evidence-state-audit-local/cases",
+    "bound": true,
+    "runnable": false,
+    "reason": "Bound but not run — requires ≥50 unique ESA materialised cases with auditor-readable packets"
+  }
+}

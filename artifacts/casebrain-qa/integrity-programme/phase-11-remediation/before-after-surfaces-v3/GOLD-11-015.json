@@ -1,0 +1,153 @@
+{
+  "goldId": "GOLD-11-015",
+  "reviewEligibility": "substantive",
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "v3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "changes": [
+    {
+      "surface": "source_context",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "ba2d2fb978ad",
+        "textPreview": "Client: Riley Moss\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment Act 1997"
+      },
+      "after": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "c08b720a6d47",
+        "textPreview": "Controlled source context (safely redacted for review)\nClient label: Riley Moss\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment "
+      }
+    },
+    {
+      "surface": "case_header",
+      "before": {
+        "gateStatus": "qualified_solicitor_review_queue",
+        "canCopy": false,
+        "textHash": "4ceb0ee8feaa",
+        "textPreview": "Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "ba2d2fb978ad",
+        "textPreview": "Client: Riley Moss\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment Act 1997"
+      }
+    },
+    {
+      "surface": "court_line",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "3ace51736976",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full dis"
+      },
+      "after": {
+        "gateStatus": "qualified_solicitor_review_queue",
+        "canCopy": false,
+        "textHash": "49a991c43a31",
+        "textPreview": "Item: Disclosure / chase wording (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+      }
+    },
+    {
+      "surface": "client_summary",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "59f792f49944",
+        "textPreview": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "3ace51736976",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full dis"
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "542227bd1736",
+        "textPreview": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "59f792f49944",
+        "textPreview": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "698e68cd5fac",
+        "textPreview": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "542227bd1736",
+        "textPreview": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "7019bec82016",
+        "textPreview": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "698e68cd5fac",
+        "textPreview": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "7807f6f23ed1",
+        "textPreview": "• Screenshot / message pack — served\n• Phone extraction source material — served\n• Device metadata export — referred_only\n• Complainant MG11 (draft) — served\n• "
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "7019bec82016",
+        "textPreview": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "truth_map",
+      "before": {
+        "gateStatus": "warning",
+        "canCopy": false,
+        "textHash": "e7a37bb6861d",
+        "textPreview": "• defendant sent the messages\n• Riley Moss sent\n• attribution is proved\n• Do not state the defendant sent messages unless attribution is served and safe.\n• Do n"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "35d39acea9d3",
+        "textPreview": "• Screenshot / message pack — Served\n• Phone extraction source material — Served\n• Device metadata export — Referred only\n• Complainant MG11 (draft) — Served\n• "
+      }
+    },
+    {
+      "surface": "do_not_overstate",
+      "before": null,
+      "after": {
+        "gateStatus": "warning",
+        "canCopy": false,
+        "textPreview": "• defendant sent the messages\n• Riley Moss sent\n• attribution is proved\n• Do not state the defendant sent messages unless attribution is served and safe.\n• Do n"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-033",
+  "changes": [
+    {
+      "surface": "evidence_title",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": false,
+        "textHash": "1da1ae314a8c",
+        "textPreview": "MG11 extract: \"I saw him\"…"
+      },
+      "after": {
+        "gateStatus": "blocked_title",
+        "canCopy": false,
+        "textHash": "f3fb7c4a1613",
+        "textPreview": "Evidence title withheld — incomplete quotation or truncated excerpt cannot be shown as a title. Check the source papers."
+      }
+    }
+  ]
+}

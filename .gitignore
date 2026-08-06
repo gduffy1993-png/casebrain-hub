@@ -18,6 +18,44 @@ tsconfig.tsbuildinfo
 # CaseBrain Auditor generated reports (never commit case snippets / review data)
 artifacts/casebrain-auditor/
 
+# MAA V2 Stage-150+ large regenerable receipt corpora (commit indexes/summaries only)
+artifacts/casebrain-qa/assurance/master-auditor-v2/**/stage150-*-control-receipts.json
+artifacts/casebrain-qa/assurance/master-auditor-v2/**/stage150-*-eligibility-receipts.jsonl
+artifacts/casebrain-qa/assurance/master-auditor-v2/**/stage150-*-eligibility-receipts.jsonl.gz
+artifacts/casebrain-qa/assurance/master-auditor-v2/**/raw-receipts/
+
+# Batch-10 population corpus — local hash-locked; regenerate via emit-maa-v2-stage150-batch10*.ts
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-sources/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/
+
+# Stage-150 calibration regenerable work/receipts (commit indexes + STOP/summaries only)
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/work/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/raw-receipts/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/pre-truth-ledgers/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/truth-open-receipts/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/candidate-freeze.jsonl
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/post-remediation-v1/work/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/post-remediation-v1/raw-receipts/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/post-remediation-v1/pre-truth-ledgers/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/post-remediation-v1/truth-open-receipts/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/post-remediation-v1/candidate-freeze.jsonl
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/post-remediation-v1/rematerialised-outputs/
+
+# Stage-300 Batch-A regenerable per-case receipts / calibration work (commit indexes+hashes only)
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/120-packet-capability-receipts/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-evaluator-calibration/raw-receipts/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-evaluator-calibration/work/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-evaluator-calibration/candidate-freeze.jsonl
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-evaluator-calibration/exercise-rows.jsonl
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-evaluator-calibration/disposition-ledger.jsonl
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-evaluator-calibration/truth-open-sequencing.jsonl
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-b-evidence-provenance-chase-exits/raw/
+
+# Stage-300 new-150 regenerable sources/candidates (commit compact manifests/hashes only)
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/sources/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/
+
 # Local bundle fidelity — real PDFs, client truth keys, pasted bundle text (never commit)
 artifacts/bundle-fidelity-local/
 

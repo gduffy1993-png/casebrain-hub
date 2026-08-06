@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "stage300-v2-membership-freeze-receipt@1.0.0",
+  "generatedAt": "2026-08-02T00:47:55.217Z",
+  "headCommit": "bda75a83dcc061d6ed7bbdb21f976015d1b16535",
+  "runId": "s300-cal-v2-2026-08-01T02-37-52-299Z-ec2a88fb",
+  "frozenAt": "2026-08-01T02:37:52.896Z",
+  "frozenMembershipPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2/frozen-membership-v2.json",
+  "frozenMembershipSha256": "11f350bc9ee73125b3cd512d3acf6ab745aa2ee56cac8dc0f24de1456757a7f7",
+  "orderedMembershipSha256V2": "23ae1b9df0a09b80b9ab51e3f597aad9103360f5f11c26606e1633b2c82c3c5a",
+  "populationCount": 300,
+  "productionOutputCases": 270,
+  "projectionOnlyCases": 30,
+  "stage150OrderedMembershipSha256Pin": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+  "stage150CandidateFreezeSha256Pin": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202",
+  "candidateFreezeReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2/candidate-freeze-receipt.json",
+  "candidateFreezeSha256": "1c538ca751833a5c0021a3723fa1b7412dd749a306408b60a0c634a6141e1857",
+  "freezeAuthorityOk": true,
+  "note": "Canonical freeze recovered byte-identically from preserved Stage-300 V2 run; rematerialised-outputs excluded."
+}

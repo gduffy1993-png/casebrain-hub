@@ -175,15 +175,22 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
   const playbook = CRIMINAL_BRIEF_PLAYBOOKS[profile];
   const buckets = bucketMaterials(ledger?.materials ?? []);
 
-  const servedEvidence = uniqueEvidence(buckets.served.map(toEvidenceItem), 8);
-  const limitedEvidence = uniqueEvidence(buckets.limited.map(toEvidenceItem), 8);
+  const servedEvidence = uniqueEvidence(buckets.served.map(toEvidenceItem), 24);
+  const limitedEvidence = uniqueEvidence(
+    // Prefer referred_only / schedule lines so they are not truncated out of the ledger
+    [
+      ...buckets.limited.filter((r) => r.status === "referred_only"),
+      ...buckets.limited.filter((r) => r.status !== "referred_only"),
+    ].map(toEvidenceItem),
+    24,
+  );
   const missingEvidence = uniqueEvidence(
     [
       ...buckets.missing.map(toEvidenceItem),
       ...(input.missingMaterial ?? []).map(missingLabelToEvidenceItem),
       ...playbook.missingMaterial.map(missingLabelToEvidenceItem),
     ],
-    10,
+    24,
   );
 
   const contradictionRequired = contradictions.length

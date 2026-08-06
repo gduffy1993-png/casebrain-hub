@@ -1,0 +1,824 @@
+{
+  "status": "STOP_FOR_CODEX_REVIEW",
+  "programmePassSupported": false,
+  "doNot": [
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "claim_programme_PASS",
+    "start_stage_150",
+    "start_stage_300",
+    "start_stage_3000",
+    "remediate",
+    "rerun_malik"
+  ],
+  "runId": "maa-50-2026-07-29T18-48-49-771Z",
+  "pipelineVersion": "master-assurance-auditor@v1.1",
+  "stageCompleted": "50",
+  "nextCommand": "npx tsx scripts/assurance/run-master-assurance-auditor.ts --stage=150  # refused until Codex clearance — do not run",
+  "startedAt": "2026-07-29T18:48:49.775Z",
+  "stoppedAt": "2026-07-29T18:48:50.465Z",
+  "corpus": {
+    "planVersion": "corpus-plan-v1",
+    "stage": "50",
+    "adapterId": "esa-local-materialised",
+    "requiredUniqueCases": 50,
+    "uniqueCaseCount": 50,
+    "membership": [
+      {
+        "caseId": "sc-0002d",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0002d"
+      },
+      {
+        "caseId": "sim-120",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-120"
+      },
+      {
+        "caseId": "sim-250",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-250"
+      },
+      {
+        "caseId": "sim-345",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-345"
+      },
+      {
+        "caseId": "sc-00025",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sc-00025"
+      },
+      {
+        "caseId": "sim-104",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-104"
+      },
+      {
+        "caseId": "sim-373",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-373"
+      },
+      {
+        "caseId": "sim-377",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-377"
+      },
+      {
+        "caseId": "sim-321",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-321"
+      },
+      {
+        "caseId": "sim-182",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-182"
+      },
+      {
+        "caseId": "sim-224",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-224"
+      },
+      {
+        "caseId": "sim-222",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-222"
+      },
+      {
+        "caseId": "sim-190",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-190"
+      },
+      {
+        "caseId": "sim-142",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-142"
+      },
+      {
+        "caseId": "sim-018",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-018"
+      },
+      {
+        "caseId": "sim-055",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-055"
+      },
+      {
+        "caseId": "sim-172",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-172"
+      },
+      {
+        "caseId": "sim-048",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-048"
+      },
+      {
+        "caseId": "sim-063",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-063"
+      },
+      {
+        "caseId": "sim-038",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-038"
+      },
+      {
+        "caseId": "sim-017",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-017"
+      },
+      {
+        "caseId": "sim-014",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-014"
+      },
+      {
+        "caseId": "sim-015",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-015"
+      },
+      {
+        "caseId": "sim-020",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-020"
+      },
+      {
+        "caseId": "sim-007",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-007"
+      },
+      {
+        "caseId": "sim-073",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-073"
+      },
+      {
+        "caseId": "sim-138",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-138"
+      },
+      {
+        "caseId": "sim-265",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-265"
+      },
+      {
+        "caseId": "sim-072",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-072"
+      },
+      {
+        "caseId": "sim-387",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-387"
+      },
+      {
+        "caseId": "sim-128",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-128"
+      },
+      {
+        "caseId": "sim-332",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-332"
+      },
+      {
+        "caseId": "sim-329",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-329"
+      },
+      {
+        "caseId": "sim-198",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-198"
+      },
+      {
+        "caseId": "sim-337",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-337"
+      },
+      {
+        "caseId": "sim-366",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-366"
+      },
+      {
+        "caseId": "sim-336",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-336"
+      },
+      {
+        "caseId": "sim-286",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-286"
+      },
+      {
+        "caseId": "sim-199",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-199"
+      },
+      {
+        "caseId": "sim-354",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-354"
+      },
+      {
+        "caseId": "sim-145",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-145"
+      },
+      {
+        "caseId": "sim-257",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-257"
+      },
+      {
+        "caseId": "sim-245",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-245"
+      },
+      {
+        "caseId": "sim-395",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-395"
+      },
+      {
+        "caseId": "sim-271",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-271"
+      },
+      {
+        "caseId": "sim-389",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-389"
+      },
+      {
+        "caseId": "sim-360",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-360"
+      },
+      {
+        "caseId": "sc-0006a",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0006a"
+      },
+      {
+        "caseId": "sc-0002e",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0002e"
+      },
+      {
+        "caseId": "sim-024",
+        "sourceCaseId": null,
+        "adapterId": "esa-local-materialised",
+        "packetPath": "artifacts/evidence-state-audit-local/cases/sim-024"
+      }
+    ],
+    "refused": false,
+    "refuseReason": null,
+    "denominators": {
+      "uniqueCases": 50,
+      "duplicateCaseIdsDropped": 0,
+      "surfaces": 1372
+    }
+  },
+  "safetyFn": {
+    "knownSafetyCriticalFn": null,
+    "knowledgeState": "unknown",
+    "registerPath": "artifacts/casebrain-qa/assurance/master-auditor-v1/known-fn-register.json",
+    "entries": [
+      {
+        "id": "FN-INCOMPLETE-DISCLAIMER",
+        "controlId": "MAA-COMPLETENESS",
+        "status": "open",
+        "note": "GOLD-11-039 class incomplete disclaimer. Detector contracts exercise complete pass, mid-disclaimer truncation defect, disclaimer absent defect, and non-copyable containment recorded separately. Corpus coverage remains unreviewed — reviewed=false; no human/legal sign-off invented."
+      }
+    ]
+  },
+  "humanRates": {
+    "humanConfirmationRate": null,
+    "detectorFalsePositiveRate": null,
+    "knowledgeState": "unavailable",
+    "reviewedSampleCount": 0,
+    "confirmedDefectCount": 0,
+    "detectorFalsePositiveCount": 0,
+    "blankOrUnverifiedCount": 0,
+    "reviewerIds": [],
+    "denominators": {
+      "reviewedSamples": 0,
+      "dispositionedSamples": 0
+    }
+  },
+  "totals": {
+    "cases": 50,
+    "uniqueCases": 50,
+    "surfaces": 1372,
+    "findings": 2991,
+    "defects": 93,
+    "containment": 0,
+    "unresolved": 878,
+    "pass": 1811,
+    "notExercised": 209,
+    "detectorFalsePositives": null,
+    "designFindings": 50,
+    "controlsFullyExercised": 18,
+    "controlsPartiallyExercised": 4,
+    "controlsNotExercised": 2
+  },
+  "controls": [
+    {
+      "controlId": "MAA-INGEST-COVERAGE",
+      "laneId": "LANE-01-INGESTION",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 50,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-DOC-LIFECYCLE",
+      "laneId": "LANE-02-DOCUMENT-IDENTITY",
+      "status": "partially_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 2,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 48,
+      "findingsEmitted": 50,
+      "passCount": 2,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 48,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-PARTIES-ATTRIBUTION",
+      "laneId": "LANE-03-PARTIES-ATTRIBUTION",
+      "status": "partially_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 1,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 49,
+      "findingsEmitted": 50,
+      "passCount": 1,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 49,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-CHARGE-MODEL",
+      "laneId": "LANE-04-CHARGE-MODEL",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 0,
+      "defectCount": 0,
+      "unresolvedCount": 50,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-EVIDENCE-STATE",
+      "laneId": "LANE-05-EVIDENCE-STATE",
+      "status": "partially_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 45,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 5,
+      "findingsEmitted": 287,
+      "passCount": 116,
+      "defectCount": 93,
+      "unresolvedCount": 73,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 5,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "laneId": "LANE-06-CHRONOLOGY-HEARING",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 50,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-PROVENANCE",
+      "laneId": "LANE-07-PROVENANCE",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 50,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-RELIABILITY",
+      "laneId": "LANE-08-RELIABILITY",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 874,
+      "passCount": 874,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "laneId": "LANE-09-COMPLETENESS",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 50,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-DEFENCE-LENS",
+      "laneId": "LANE-10-DEFENCE-LENS",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 50,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-PROSECUTION-LENS",
+      "laneId": "LANE-11-PROSECUTION-LENS",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 50,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-JUDICIAL-LENS",
+      "laneId": "LANE-12-JUDICIAL-LENS",
+      "status": "partially_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 43,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 7,
+      "findingsEmitted": 50,
+      "passCount": 43,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 7,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "laneId": "LANE-13-LEGAL-CURRENTNESS",
+      "status": "not_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 0,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 50,
+      "findingsEmitted": 50,
+      "passCount": 0,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 50,
+      "notExercisedReason": "only not_exercised findings"
+    },
+    {
+      "controlId": "MAA-AUDIENCE-WORDING",
+      "laneId": "LANE-14-AUDIENCE-WORDING",
+      "status": "not_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 0,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 50,
+      "findingsEmitted": 50,
+      "passCount": 0,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 50,
+      "notExercisedReason": "only not_exercised findings"
+    },
+    {
+      "controlId": "MAA-ACTION-QUALITY",
+      "laneId": "LANE-15-ACTION-QUALITY",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 0,
+      "defectCount": 0,
+      "unresolvedCount": 50,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-CROSS-EXIT",
+      "laneId": "LANE-16-CROSS-EXIT",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 50,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-CROSS-SURFACE",
+      "laneId": "LANE-17-CROSS-SURFACE",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 710,
+      "passCount": 5,
+      "defectCount": 0,
+      "unresolvedCount": 705,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-CHASE-QUALITY",
+      "laneId": "LANE-18-CHASE-QUALITY",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 120,
+      "passCount": 120,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-HALLUCINATION",
+      "laneId": "LANE-19-HALLUCINATION",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 50,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "laneId": "LANE-20-SECURITY-PRIVACY",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 50,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-RESILIENCE",
+      "laneId": "LANE-21-RESILIENCE",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 50,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-OUTPUT-DESIGN",
+      "laneId": "LANE-22-OUTPUT-DESIGN",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 50,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "laneId": "LANE-23-HUMAN-SUPERVISION",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 50,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "laneId": "LANE-24-BIAS-FAIRNESS",
+      "status": "fully_exercised",
+      "casesApplicable": 50,
+      "casesFullyExercised": 50,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 0,
+      "findingsEmitted": 50,
+      "passCount": 50,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 0,
+      "notExercisedReason": null
+    }
+  ],
+  "gate": {
+    "stage": "50",
+    "allowedToProgress": false,
+    "stopReason": "STOP FOR CODEX REVIEW — stage 50 complete; do not start 150/300/3000 until review passes (blocking: safety-FN knowledge unknown; human rates unavailable)",
+    "nextStage": "150",
+    "checks": {
+      "manifestValid": true,
+      "hashesValid": true,
+      "corpusRefused": false,
+      "crashCount": 0,
+      "corruptRecordCount": 0,
+      "casesProcessed": 50,
+      "expectedCases": 50,
+      "controlsFullyExercised": 18,
+      "controlsPartiallyExercised": 4,
+      "controlsNotExercised": 2,
+      "controlsTotal": 24,
+      "safetyFnKnowledgeState": "unknown",
+      "knownSafetyCriticalFn": null,
+      "humanRateKnowledgeState": "unavailable",
+      "humanConfirmationRate": null,
+      "detectorFalsePositiveRate": null,
+      "humanReviewedSamples": 0,
+      "defectFindings": 93
+    }
+  },
+  "preserved": [
+    "brain1",
+    "guardian",
+    "bundle-truth-ledger",
+    "phase11",
+    "scale3000-run-v1",
+    "malik-evidence",
+    "occurrence-ledger",
+    "gold-manual-proof-set-v1-source-packets",
+    "esa-stage50-sample-freeze",
+    "maa-20-stage20-evidence"
+  ],
+  "artefactPaths": [
+    "INPUT-MANIFEST.json",
+    "CORPUS-RESOLUTION.json",
+    "EVIDENCE-LEDGER.json",
+    "findings.jsonl",
+    "control-registry.json",
+    "migration-register.json",
+    "coverage-report.md",
+    "calibration-50-report.md",
+    "remediation-grouping.json",
+    "cross-exit-matrix.json",
+    "cross-surface-matrix.json",
+    "fp-fn-calibration-record.json",
+    "before-after-baseline.json",
+    "freeze-hash-validation.json",
+    "alignment-receipts.jsonl",
+    "review-batches/",
+    "STOP-FOR-CODEX-REVIEW.json"
+  ]
+}

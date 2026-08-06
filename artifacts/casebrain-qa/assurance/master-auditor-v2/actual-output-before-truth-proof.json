@@ -1,0 +1,1061 @@
+{
+  "schemaVersion": "actual-output-before-truth-sequence@1.1.0",
+  "runId": "v2-shadow-stage50-2026-07-29T23-52-36-465Z",
+  "cases": [
+    {
+      "caseId": "sc-0002d",
+      "outputFileHash": "c8598fa492848200e90cc2daf7876a895e857a14082b7a2c569d2cafe0382868",
+      "preTruthOccurrenceLedgerHash": "1fd86eb7eeaaa36b16d7ca28d637d276270a79130d10c3b60e299950a0803471",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sc-0002d.occurrence.jsonl",
+      "truthKeyHash": "40a4e5f9aae801816fe45583b89caa5da0ba20e767db2cdbd0c5688df6da762a",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-120",
+      "outputFileHash": "a511abac6d97d61281f4f0a6eda0fe9ae0b60aa9126c8460154d5b04cd292018",
+      "preTruthOccurrenceLedgerHash": "1b75d0cafd0429bb52db582a70e0c3a520def7cf57245600a0c2e30e229e25a0",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-120.occurrence.jsonl",
+      "truthKeyHash": "4131057fd66d347eb039a3ab391cac63f9225d505f4317997be499ec789c2fdb",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-250",
+      "outputFileHash": "d50506a82b4dddd748d71a90c1a526fdb08eaa6bcf2dc366c5fba29f5dbe5197",
+      "preTruthOccurrenceLedgerHash": "3b8e48bdc89968a4e062e3f9533088666c2961f80339960a1890266532471100",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-250.occurrence.jsonl",
+      "truthKeyHash": "bd63f577172d798afbe257876e3f91b39e2c32dda53a5d1061814f850b8f75b3",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-345",
+      "outputFileHash": "61ba07edba54f37f76e5ffb856bc7990624a5e562506a499c3d85f5720875b4e",
+      "preTruthOccurrenceLedgerHash": "f8c7c3a2ce85f2430661f6b24d4a677e12f603128bebcf938855641ec64aa9b1",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-345.occurrence.jsonl",
+      "truthKeyHash": "3176d7058282f58c3603a223b06d13b53ea08452cf620fa3f9da377ccb729994",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sc-00025",
+      "outputFileHash": "2fe4f2c71e13780f32f8a9a39f2d24a21ec533b923f74d9ea9ca61b0bb668111",
+      "preTruthOccurrenceLedgerHash": "611acafb5b9832134fe5bbae94fb739577c71c62289f4de561507c96186eba3c",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sc-00025.occurrence.jsonl",
+      "truthKeyHash": "e79efcc9d9c0bb7743a81ae8dc19c98f6c78f0ee2d6090bbeb5e6227ef864410",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-104",
+      "outputFileHash": "bd96c99d45094946e59b96de1f61caa772219ce03116e681c214cf676c91d986",
+      "preTruthOccurrenceLedgerHash": "c21e7b9335c86400d97642775b940b6f41e813a07afbf9ed857f1a10f644f415",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-104.occurrence.jsonl",
+      "truthKeyHash": "9eae0041a73d97442bfb0b4eb7960ab0d1f06bdcc6f3475ca05026c129b1caee",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-373",
+      "outputFileHash": "f8911646004dac1a36ef4434774539eab79062baa99e12e0b3ff739fc97322ac",
+      "preTruthOccurrenceLedgerHash": "4bccea77265e6e6b509ad9c6711d7bc54e72890b6da05a553cac5afcf38061a6",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-373.occurrence.jsonl",
+      "truthKeyHash": "4421a743502d02d596ae944f56d79d9a5d3dd188bc8a3fdf7a5822664944fa02",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-377",
+      "outputFileHash": "5f419bddb3f9a6a756e742815f06aacfdb3a8912849e45df2511f967b01ddc84",
+      "preTruthOccurrenceLedgerHash": "2b53b5ec71aac7fb1298bbe0682486bad218896a9dcf8fddf215f81d76af844a",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-377.occurrence.jsonl",
+      "truthKeyHash": "576602779e279c9e6e651fc2a98d43b0d2587bc69ba02c1505df3f5cbf1cf225",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-321",
+      "outputFileHash": "0975ed87bc8486f862f214d803691bdc7a3e9defd50180c63ce19e9eb9ed1588",
+      "preTruthOccurrenceLedgerHash": "c9880c05074da71510ceedd12ffefb644f9f026df4ad6fdd718220ae6369856e",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-321.occurrence.jsonl",
+      "truthKeyHash": "fe3679820b26adece72d1f5c352860cb6fe4d5ff48d53a0899a6592529297b07",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-182",
+      "outputFileHash": "00a1caa5e31907bb0c1ad06a5d5d819e04b411176687f13cdea8cc691fe82819",
+      "preTruthOccurrenceLedgerHash": "7a6ada7ceade12113516397241476d7bb2c7b31d407a1565c55d9eac6addadb0",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-182.occurrence.jsonl",
+      "truthKeyHash": "ac1f835d18fffe78997397c9c2c75b6c40baca4d1b443c0b2f4021253f29306f",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-224",
+      "outputFileHash": "d013835dc5515435473c1777aa91f66c408689bd0180e48d2a2ad9c9310d3c2d",
+      "preTruthOccurrenceLedgerHash": "cb1fe5e4fa8d7de3fdf6e215ad98050b306a95c59aa76902cecc0b78d1890bc7",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-224.occurrence.jsonl",
+      "truthKeyHash": "f31a747802afa53adace7e05de0777245f8dafc35de7b1a09cb531f4ac3043bb",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-222",
+      "outputFileHash": "70583d072789e93d7e6812a35b78f167b69276ed760672e925b0a063a5507f9a",
+      "preTruthOccurrenceLedgerHash": "b742ab04996f68f36f54e7d981e2b35c91b5011eb8943a76903f8ea4269f2d18",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-222.occurrence.jsonl",
+      "truthKeyHash": "27cb84f129ca14203a4ab7889770e2734cb596d3964d991e346232bca7cffa57",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-190",
+      "outputFileHash": "a9dbbfebd80ad82045bd1e6d24708fd9893694a49208b3c4d8eafaa703fcdff0",
+      "preTruthOccurrenceLedgerHash": "c1271cde8c2f9fc6bd55a2876f216e1d4a231e0565e9ad701d3863bf55dd79ca",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-190.occurrence.jsonl",
+      "truthKeyHash": "578df5880045d406ab2265b05332870bc068c5ba3d70083943c754202fafb6df",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-142",
+      "outputFileHash": "4bd129f2995b4baa36d2aba61117ba3559539b04f23390d90af494a090c274ec",
+      "preTruthOccurrenceLedgerHash": "a951f333a9f08bd945284688c869ecccf0e13ca2af257b14584156b6e3a53c23",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-142.occurrence.jsonl",
+      "truthKeyHash": "d07ef8e8fd0c5811b8a252444fc0909f87eee41ea28e61b69d24dc97ef698f91",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-018",
+      "outputFileHash": "2b8b0fac106e93091f2a98fbf6e394dd3ec0b57bf3f031e937d103a8cdabdd68",
+      "preTruthOccurrenceLedgerHash": "ae8805c2d27411eaa878897caecb8ccd794d85690137ee54ff38ef6cb9c64fea",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-018.occurrence.jsonl",
+      "truthKeyHash": "08ee4cbac0c2ba0d6f62a9312264a2db9f7d79ce8f53c57dc0ed2af5101c39cd",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-055",
+      "outputFileHash": "7eea1eef87efbb2c7b59aae2d507bd370c787ddf2b351b8200fe75cfe122fcbf",
+      "preTruthOccurrenceLedgerHash": "ffab748498fbb1b449537b0c867ebab61541d551d52214a367e9869fb208647b",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-055.occurrence.jsonl",
+      "truthKeyHash": "47da45d448709871515533043880765f99fc5beb1cab9ae0382a2b92add71586",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-172",
+      "outputFileHash": "f88facff6edb85d08041213c264569cf730bf02b8bccb0e6acb696b6300a42d1",
+      "preTruthOccurrenceLedgerHash": "070013b72e9daee009ba818eb7bd9df104443d54258d70c123af265162c48156",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-172.occurrence.jsonl",
+      "truthKeyHash": "1c2c202f4764522f71e39e9feb9b916f071f7a264f759be1f4ebb38eeeedbfd9",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-048",
+      "outputFileHash": "c57c88513b8a08bdc11ce8bdca3a3471e279c339878be8ae946ecf47a43a2382",
+      "preTruthOccurrenceLedgerHash": "798c9841206fe549631c3c4f344bbfb2901325ede6c75a6c1d4f2cf270a276e2",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-048.occurrence.jsonl",
+      "truthKeyHash": "8a4f6f21ff0e7b89c5ed2a6fb165866418aa73e3528fc65536719e2683b041d3",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-063",
+      "outputFileHash": "2c08108f49ceb1543a886729d62bcd15b6c1d761c231a820b1bfb8bf70632f5f",
+      "preTruthOccurrenceLedgerHash": "85088bfb132443ddc436487c2ab36ddb526555064b3ef999f38aaf12092e3e92",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-063.occurrence.jsonl",
+      "truthKeyHash": "ce9c446b260f5fb64156f713bc19d16099bde1f45d8fbc158d41ad11844ce875",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-038",
+      "outputFileHash": "ef70e189d1d19cc052736a2ac183ee67f364b5102042f65e00fcebee0af8f393",
+      "preTruthOccurrenceLedgerHash": "f438aafe034003aba3167385e5dc11eab12be138a9af9714eb5dc57303fa8893",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-038.occurrence.jsonl",
+      "truthKeyHash": "9887be342b84d5c96285ad1d300f0e25a1fe9c54bbf443937a66852ff40cb93e",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-017",
+      "outputFileHash": "8ecdcf83f12004296b6b7d4a6c9228feeb4a8a72ae093a4d8b69e89979a47372",
+      "preTruthOccurrenceLedgerHash": "502e80b6fd0a22e8f92321f263bea04dcd2ce99b85a47dd6825bc3d3590613f2",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-017.occurrence.jsonl",
+      "truthKeyHash": "b788fbbaf3d653ca2fe7538ccf02485009d45998f524c21f8533fdca91e5067c",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-014",
+      "outputFileHash": "aeafc2f1a06de29ce4647596cb619bb848ab7a038f692e6295450c235d6eaabd",
+      "preTruthOccurrenceLedgerHash": "920b6cd77baee90befb6ed60365f7699f68c0283d0696d06c02043a3f89264fe",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-014.occurrence.jsonl",
+      "truthKeyHash": "ef331fb14bc693fff1432e0a365dfbc7d978f5516dc63c49f0329910bdd996be",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-015",
+      "outputFileHash": "de366bcd23c82cadf914e5dc2031fe0e26807ee1910fe1f7143313bcfa39458f",
+      "preTruthOccurrenceLedgerHash": "32812ce521dc76d2b7648dbc01b4e9a6edf02046b8d1059394594a7f00aa66b2",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-015.occurrence.jsonl",
+      "truthKeyHash": "a3c0cc4a7db3b1951fce2a7bbf00d72d35c69fe19ed2174e25549072ef8f8213",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-020",
+      "outputFileHash": "b335594df9d058d52b1338c40ae110583dccee060fe57c6de801bea0a19b627f",
+      "preTruthOccurrenceLedgerHash": "2c2d1664ede01b2231b27641d74720271581474e70fb1490ecdc0b3f8da7633c",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-020.occurrence.jsonl",
+      "truthKeyHash": "31574edc15901fd3718593ef6fcd60901d0c98192c0a5b7aea6f3a120c3cc29a",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-007",
+      "outputFileHash": "f9c254d21cdb71da3ce86414f1856916bd9c24f7cd0d5b5acdc3b8efcaa7fbd2",
+      "preTruthOccurrenceLedgerHash": "c84c84be34d6a1c606d4fe60159c9a8fa34956d5c8fbe1ef767fe498c05c6f48",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-007.occurrence.jsonl",
+      "truthKeyHash": "9b16f1342be6458160e94b7f236a0d58fc7c27782ad5c5f71ddcdd19ec5f7d0c",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-073",
+      "outputFileHash": "818d36d2bee8a9411222625900df3e3b1ec70274ca0313569356c0b503a51130",
+      "preTruthOccurrenceLedgerHash": "4bce4a517bbd491c7017adf2db92027122270614e112aac19f2584ce633801de",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-073.occurrence.jsonl",
+      "truthKeyHash": "5ce47df39d3fbdc0f9a6f0a09257278390548deb7a71cd9e616c8e53d87755c0",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-138",
+      "outputFileHash": "941f09c530f1d54663053dd5ab7c695bde691bb583fa471ae64a91c586504a7d",
+      "preTruthOccurrenceLedgerHash": "5a493ca3b9978177e8c72e0a48893085be644dc4ebe3c06146d1a4bea76a74ed",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-138.occurrence.jsonl",
+      "truthKeyHash": "1f9407be5754af3496c48f7fb8201ffedd9146dd480143fd2883a66069ef49b0",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-265",
+      "outputFileHash": "d76a686ca304caeffad3b6050a9fc1794b6b4128d03f401192dafc940c4205ae",
+      "preTruthOccurrenceLedgerHash": "0891794a8cd50bd9b742a33cdc780ed07d2a1000b30326efe01d00e5c5801b76",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-265.occurrence.jsonl",
+      "truthKeyHash": "44f9f11e46b1ebe7c18b44f943b2440b6611533f294b0418f61b3b19a9c133e7",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-072",
+      "outputFileHash": "86bd880ad2a7ada7aec26a1affeb832277112803570f24d30d193242b3d47600",
+      "preTruthOccurrenceLedgerHash": "9130c512e01fa9684e5d96d3d3a9309154cdcd487a579eddab55bcaf2c1b4124",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-072.occurrence.jsonl",
+      "truthKeyHash": "331d6b26fd03341da9509f663caa3147571209cdf09e11968c4ed8a8963f2602",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-387",
+      "outputFileHash": "28b774a6039a353660e82dd4a8582b8b74e38ee41c872238f03924e822b5e4e4",
+      "preTruthOccurrenceLedgerHash": "a94f757ac32deb5246b05e1de4b05ced3267df71ce7897478767fce30bd788a0",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-387.occurrence.jsonl",
+      "truthKeyHash": "315b2d951d4e252e0c31e3b35f3e74018013434131f5a1736b155400f7e4a5bb",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-128",
+      "outputFileHash": "22ee5f678ab9e3eee0f533db7aec83ac4f4d3163588aba4f40059893d6b3990d",
+      "preTruthOccurrenceLedgerHash": "b62820d99681404c229343c89cad299f7acdb6fb84d0f3af4ac98adfcbf12cf8",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-128.occurrence.jsonl",
+      "truthKeyHash": "ae023e53a2c395bb938e6f9ab5053e678e74fbffb96f086faf181802bf1b5ca6",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-332",
+      "outputFileHash": "4ba87d80e133e2d64bbe7f8b48f555802158ec92cb9405a6a90cbcb857728e20",
+      "preTruthOccurrenceLedgerHash": "61db2cba5b9e3d41d2e60cee98e28cb6d45071316f7b5ebe402c152961ca3a93",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-332.occurrence.jsonl",
+      "truthKeyHash": "5c954ce821ab728c984ad2a56ddf6409ed9bf5facf1146f1e63fe6940585df3e",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-329",
+      "outputFileHash": "ef42607390e13e178af839cb2d81e817f567c416c30232827f9bc1c0d0d8f35b",
+      "preTruthOccurrenceLedgerHash": "b23b1ce6d030ac6260779cd4b293f20f70cd6b1e882a3cdbe26905986ec28a29",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-329.occurrence.jsonl",
+      "truthKeyHash": "49f5196288789b73ee1aec292085dedb8ac9febf6b2562aa4616df81b0b5d731",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-198",
+      "outputFileHash": "7bf017feaebfe8608c0e4c0ccbc142fa1060d3b545cfc4b6678f0e27b71a3cba",
+      "preTruthOccurrenceLedgerHash": "ace0c530b5cdf92f5371f410fcc4bdd937c46cc66e905930c329c3909c1cdf4d",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-198.occurrence.jsonl",
+      "truthKeyHash": "aa5bd3fb5024b34a890f044902a36009edf5601c003e4700b3c9f26545c2bc9b",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-337",
+      "outputFileHash": "a41bbd4c5585a6777d8b5f0bb4d81685e714c7ea38b7ceb83c1061a83b01b62c",
+      "preTruthOccurrenceLedgerHash": "81a3e0048530e5b7f80de73be9c68bcd46f9eace57b1a0f70009d07a4fb7ecf9",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-337.occurrence.jsonl",
+      "truthKeyHash": "b23dab5bc03056332565270f2d1461d046aa99f312dcb0d7b31639c91c0f3595",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-366",
+      "outputFileHash": "ac9db9cc1905a595a482ac3a07f1b17be40889ad0b300e30a246a093d60e8660",
+      "preTruthOccurrenceLedgerHash": "25bcdca5c14ec98cda7aa0b65656a41d4b2888383fe2db1e6a5d131d6e8c27c7",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-366.occurrence.jsonl",
+      "truthKeyHash": "8b319566b5ef4744e0a4e275c3b0956f9cae7d876f2ee0ff00871b88d6fb2d8e",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-336",
+      "outputFileHash": "2c5e3df2da25bc23d3b4543e913b44cfe6c42204787a03527420c20eb6e484d9",
+      "preTruthOccurrenceLedgerHash": "ebde29aaf913da4752ff7c24f6a5d7866eff70037be26ecc8ee6041d8bb629e6",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-336.occurrence.jsonl",
+      "truthKeyHash": "c8248c0b49a99cadee7ae26e5c851c37f29d2b0e1a0804b8e9e8830345d25e21",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-286",
+      "outputFileHash": "73f2336c4594a2b56236c508b917226284c0d7d8ee36f035077330f0b873f0f0",
+      "preTruthOccurrenceLedgerHash": "9fe0a4ab4db1c26391668ce1779e004d98ead46cd6925e109a1667bc0c74b17e",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-286.occurrence.jsonl",
+      "truthKeyHash": "c7c7aa49fd2bb30d2a3a3d25e435e4c022b4c93a320a80aeba76353b46840025",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-199",
+      "outputFileHash": "f4f4679c3a3dadca063a41cc5ac58c6035c9a91788b3e3d1796814dfe9ce2f42",
+      "preTruthOccurrenceLedgerHash": "9c29c814ae96b2e38cdb790f6121604e16ff41bae96a839b3867bd06e02332f4",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-199.occurrence.jsonl",
+      "truthKeyHash": "d8ff8923747119ecbe6d4ea0ad4cea610df4af7da444b6387870d0d8daf79beb",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-354",
+      "outputFileHash": "d858c4d3500ed1cc1122821965b4ba5a2debdf2a7b4c24f743f44d1ebf77c625",
+      "preTruthOccurrenceLedgerHash": "5cba2d16ec2d75620a50e84fbd10c29d3e382a82bbc7e262799eacb4fad97df2",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-354.occurrence.jsonl",
+      "truthKeyHash": "db0df8bc95c99eac50c1cf9b6f244b3f3e243dc795c60252d08d016e6c8d4af8",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-145",
+      "outputFileHash": "61853639298331cea7cd90db57cf96c9a94eeb2004ff21f464567c3723e768ff",
+      "preTruthOccurrenceLedgerHash": "7dc0a4ace4b1199aeda98a99e76c15958c75d95b46728dae71108068d1405734",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-145.occurrence.jsonl",
+      "truthKeyHash": "eda0247dcc89527d6b19a82bc2570cf5a15bc6f1829ff36142a014333edd0748",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-257",
+      "outputFileHash": "a8cebf6d148fe3dc32a11eef78b468fda3708dd7a417fd17ab82659792fe3c7e",
+      "preTruthOccurrenceLedgerHash": "f7d77cb49de4182a4550fe29dfed9db63b04849d4fd958044ef45183882ab7a6",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-257.occurrence.jsonl",
+      "truthKeyHash": "76e4a9ff80da51739c5f59f66d06d1c636ff803413fa479b3e52eda4e6f15f42",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-245",
+      "outputFileHash": "1f398562391add8e9b7bf142a5e821feb4fef2f9206654d9f35f07a5ed26f540",
+      "preTruthOccurrenceLedgerHash": "24a819af9a511e6b80ef55964fa99b13c6bcc34e36095396d8be0d068c005875",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-245.occurrence.jsonl",
+      "truthKeyHash": "65b8318ba6682acc0756258a769e2a50e877876a980f760b194a3828ea861e2c",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-395",
+      "outputFileHash": "01782a01c16274643695c73875cbd5e3543548135d7f7f89d04cd1af7255e189",
+      "preTruthOccurrenceLedgerHash": "813dc0e33bf95a5e913a059cb7c7ab6d0d94d2266509f975a19bddabe592635a",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-395.occurrence.jsonl",
+      "truthKeyHash": "f417c96dbf5d7b8b161545b759d6337f7fa09726ad1f4b4a60f3431282fdf9cb",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-271",
+      "outputFileHash": "0365c31a9c2012017a5cc863ccb756d0657914972657e7875772e670a37ef1bd",
+      "preTruthOccurrenceLedgerHash": "0b60b262fb0a70f6ae4fc0222354a61897f6c5b3a5552ce5e38d9397796c84c7",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-271.occurrence.jsonl",
+      "truthKeyHash": "25361a8c98d79c329be77fe7e6c6cedb6ac475942abcbf0116371721eebb6211",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-389",
+      "outputFileHash": "15c6a0b4e88e9f9a97c14f6512c864149aaaa519473a2e5a2b716c6b6a16ead4",
+      "preTruthOccurrenceLedgerHash": "1302e2e9a63bab0e6681ca84b21fd0ecba1e8aa36ac2935df4f36d5aa11e4a83",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-389.occurrence.jsonl",
+      "truthKeyHash": "07647df74dddb1cd51104d4caeb695059cc570952591895f56b1980cb87580c1",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-360",
+      "outputFileHash": "5c9879aabd03a502924ba584d81de4218e34fdf35dee1f0fd07a3543b50f80e5",
+      "preTruthOccurrenceLedgerHash": "1f7482e89a3b0fa2dc6563212f75680cfeb7a9ad1cd5a35cdc0c5199ef5e6758",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-360.occurrence.jsonl",
+      "truthKeyHash": "24d6595bed988bc4a054d32b5547780f419e1d4afb45404a833c3b484b32b6ba",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sc-0006a",
+      "outputFileHash": "a423a1d8b078d9e8e47a750e014795da7ab4f79e8960bc28ddf68eb464d438d4",
+      "preTruthOccurrenceLedgerHash": "964f827d7ecbbc10cefdae50c08116a08fe3691aeb4804bf9936fc49e02fdda7",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sc-0006a.occurrence.jsonl",
+      "truthKeyHash": "52e6fc40ce7a160d0a2600616355269c576ff285bb610631e34d15e868cb060c",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sc-0002e",
+      "outputFileHash": "cd06f696655119b38d6c768855939ebd42a69128602b4c44179022801562317d",
+      "preTruthOccurrenceLedgerHash": "1dc5447068faca616287ddff8461ffbb1cb50e8c5388d977fc0f8d82cca8998f",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sc-0002e.occurrence.jsonl",
+      "truthKeyHash": "a7d9579153cb8c709e9c30702d4027d81fd3c6e1439a7544cd8f61e962adf90f",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    },
+    {
+      "caseId": "sim-024",
+      "outputFileHash": "96899fb6bf7966f6a94c3de367d95f79ca4ab47b93a47d8208baf403e4d62486",
+      "preTruthOccurrenceLedgerHash": "3db0c566e81897b83c7ddc2e9cf6787f899e49220786989ceb171727f8dce5a5",
+      "persistedLedgerPath": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\v2-shadow-stage50-run\\v2-shadow-stage50-2026-07-29T23-52-36-465Z\\pre-truth-case-ledgers\\sim-024.occurrence.jsonl",
+      "truthKeyHash": "1cd3a834deccab95471a85af934184b3f3a940a886e4f06f71107ef8d221dfd4",
+      "ordering": [
+        "output_read",
+        "leaf_inventory_complete",
+        "occurrence_ledger_persisted",
+        "truth_open",
+        "truth_hashed",
+        "comparison_start"
+      ],
+      "proof": {
+        "truthOpenedAfterCaptureComplete": true,
+        "comparisonStartedAfterTruthHash": true,
+        "hashIsOfPersistedBytes": true,
+        "booleanAloneInsufficient": true
+      }
+    }
+  ],
+  "aggregateProof": {
+    "allTruthOpenedAfterLedgerHash": true,
+    "allHashesOfPersistedBytes": true,
+    "booleanAloneInsufficient": true
+  }
+}

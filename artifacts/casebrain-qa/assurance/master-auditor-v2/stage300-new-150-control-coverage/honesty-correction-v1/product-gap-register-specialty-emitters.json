@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "stage300-new150-specialty-product-gaps@1.0.0",
+  "gaps": [
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "gapClass": "production_does_not_emit",
+      "missingEmitter": "CaseBrain specialty bag emitter",
+      "exactMissingFields": [
+        "legalStateTaxonomy"
+      ],
+      "independentExpectationAvailable": true,
+      "expectationArtefact": "specialty-bags-harness.json",
+      "liveProductWorkEventuallyRequired": true
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "gapClass": "production_does_not_emit",
+      "missingEmitter": "CaseBrain specialty bag emitter",
+      "exactMissingFields": [
+        "dobAgeCalcLedger",
+        "derivedNumericClaims"
+      ],
+      "independentExpectationAvailable": true,
+      "expectationArtefact": "specialty-bags-harness.json",
+      "liveProductWorkEventuallyRequired": true
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "gapClass": "production_does_not_emit",
+      "missingEmitter": "CaseBrain specialty bag emitter",
+      "exactMissingFields": [
+        "dobAgeCalcLedger",
+        "derivedNumericClaims"
+      ],
+      "independentExpectationAvailable": true,
+      "expectationArtefact": "specialty-bags-harness.json",
+      "liveProductWorkEventuallyRequired": true
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "gapClass": "production_does_not_emit",
+      "missingEmitter": "CaseBrain specialty bag emitter",
+      "exactMissingFields": [
+        "proceduralPartyState"
+      ],
+      "independentExpectationAvailable": true,
+      "expectationArtefact": "specialty-bags-harness.json",
+      "liveProductWorkEventuallyRequired": true
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "gapClass": "production_does_not_emit",
+      "missingEmitter": "CaseBrain specialty bag emitter",
+      "exactMissingFields": [
+        "proceduralPartyState"
+      ],
+      "independentExpectationAvailable": true,
+      "expectationArtefact": "specialty-bags-harness.json",
+      "liveProductWorkEventuallyRequired": true
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "gapClass": "production_does_not_emit",
+      "missingEmitter": "CaseBrain specialty bag emitter",
+      "exactMissingFields": [
+        "proceduralPartyState"
+      ],
+      "independentExpectationAvailable": true,
+      "expectationArtefact": "specialty-bags-harness.json",
+      "liveProductWorkEventuallyRequired": true
+    }
+  ]
+}

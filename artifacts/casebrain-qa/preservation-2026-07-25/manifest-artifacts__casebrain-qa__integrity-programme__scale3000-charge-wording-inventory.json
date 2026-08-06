@@ -1,0 +1,20 @@
+{
+  "root": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory",
+  "exists": true,
+  "fileCount": 2,
+  "totalBytes": 50651,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+      "size": 40912,
+      "mtime": "2026-07-22T22:29:19.870Z",
+      "sha256": "cbde2b2d8c37cb042ab3ab46e7f956cae4230b494ac66cd45fe3077cd04ee49e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.md",
+      "size": 9739,
+      "mtime": "2026-07-22T22:29:19.872Z",
+      "sha256": "e59603f1ad48296b75c556d90f3285c25caeafac9000db20f17cbd2e7531f481"
+    }
+  ]
+}

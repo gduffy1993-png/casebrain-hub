@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "stage150-pri01-ownership-trace@1.0.0",
+  "rootCauseId": "RC-S150-PRI01-EMPTY-FIVEANSWERS-WITH-COURT",
+  "tracedCaseId": "s150-d120-001-homicide-causation-clean",
+  "duplicateCaseId": "s150-d120-002-homicide-causation-messy",
+  "ownershipClass": "batch10_materialisation_serialisation_defect",
+  "applicationRepair": false,
+  "corpusHarnessRemediation": true,
+  "courtNoteDoesNotProveEvidenceRows": true,
+  "liveBuilderHasRows": true,
+  "frozenViewHasRows": true,
+  "frozenCasebrainFiveEmpty": true,
+  "liveMatchesFrozenView": true,
+  "sourceHashes": {
+    "canonicalBundleSha256": "bcb5ea22693c7c140d1a540a57acf98eb3681f6a2f13f8060bedf4faf36f2cf7",
+    "bundlePdfSha256": "4d0e4ca2f45b5ee374f4e6ce30c4789d66c4820bef79a24397eab3c08c597d93",
+    "pdfExtractionMetaSha256": "01c01a556cb775968d7339e161197141fddfcb4d494753134ff74cd65108518d"
+  },
+  "boundaries": [
+    {
+      "boundary": "1_source_document_units",
+      "value": {
+        "documentCount": 1,
+        "pageCount": 7,
+        "pdfFileName": "bundle.pdf"
+      },
+      "hash": "42a724651ddd9c2b0cbc0b0a43df40ed1e325a8cd438b1959680a54eadbb1a7e"
+    },
+    {
+      "boundary": "2_canonical_evidence_view_live",
+      "value": {
+        "pipelineEvidenceRows": 2,
+        "evidenceStateItems": 6
+      },
+      "hash": "640db8cb7a5086293ea70f0939b956b7863a7bcefb270f382b0cb8d4c5098f4a"
+    },
+    {
+      "boundary": "3_buildLiveProductionSurfacesFromDocumentUnits",
+      "value": {
+        "truthMapRows": 2,
+        "courtLinePresent": true
+      },
+      "hash": "dca10c5db7b539e38c17b8885465e97d8bd4a8c2e8561e9ef0a412cd778f06d1"
+    },
+    {
+      "boundary": "4_five_answers_builder_serialisation",
+      "value": {
+        "serialisedRows": 2,
+        "inventedFromCourt": false
+      },
+      "hash": "dca10c5db7b539e38c17b8885465e97d8bd4a8c2e8561e9ef0a412cd778f06d1"
+    },
+    {
+      "boundary": "5_batch10_casebrain_output_frozen",
+      "value": {
+        "fiveAnswersEvidenceRows": 0,
+        "courtNotePresent": true,
+        "viewExitRows": 2
+      },
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "viewRowsHash": "dca10c5db7b539e38c17b8885465e97d8bd4a8c2e8561e9ef0a412cd778f06d1",
+      "mismatch": true
+    },
+    {
+      "boundary": "6_maa_adapter_eval_context",
+      "value": {
+        "outputFiveLen": 0,
+        "courtLen": 218
+      },
+      "hash": "4c828999edf0977f3f77c09024ae7d0ff1e743c183f0c316d3ec3b8097ee9ae2"
+    },
+    {
+      "boundary": "7_pri01_detector",
+      "value": {
+        "hitCount": 1,
+        "findingCodes": [
+          "XEX_MISSING_TRUTH_MAP"
+        ]
+      },
+      "hash": "beb078d6db136e0fa1d9e870eb63bda6a2be00e6af275302a4370f793c8d2197"
+    }
+  ],
+  "verdict": "Live CaseBrain surfaces and frozen view exit carry evidence rows; frozen casebrain-output.fiveAnswersEvidenceRows is empty. PRI-01 correctly fires on the incomplete bag. Owning layer = Batch-10 materialisation/serialisation (corpus harness), not the production Five Answers builder."
+}

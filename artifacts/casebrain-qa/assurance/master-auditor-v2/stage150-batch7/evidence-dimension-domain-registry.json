@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Evidence dimension domain registry (existence vs reliability)",
+  "sources": [
+    "lib/criminal/five-answers/types.ts#EvidenceExistence",
+    "lib/criminal/five-answers/types.ts#EvidenceReliability",
+    "lib/criminal/five-answers/evidence-trace.ts#FIVE_ANSWERS_HARD_RULES",
+    "lib/criminal/evidence-state-reconcile.ts#canonicalizeEvidenceExistence",
+    "ESA unique-valid fiveAnswersEvidenceRows token inventory (499)"
+  ],
+  "existenceDomain": {
+    "canonical": [
+      "served",
+      "referred_only",
+      "missing",
+      "incomplete",
+      "unknown",
+      "not_safely_confirmed"
+    ],
+    "observedExtensions": [
+      "other_defendant_only"
+    ],
+    "observedOnEsa": [
+      "unknown",
+      "incomplete",
+      "missing",
+      "referred_only",
+      "served",
+      "other_defendant_only"
+    ],
+    "permitted": [
+      "incomplete",
+      "missing",
+      "not_safely_confirmed",
+      "other_defendant_only",
+      "referred_only",
+      "served",
+      "unknown"
+    ]
+  },
+  "reliabilityDomain": {
+    "canonical": [
+      "strong",
+      "weak",
+      "contested",
+      "unsafe",
+      "inference_only",
+      "needs_review"
+    ],
+    "observedOnEsa": [
+      "needs_review",
+      "weak"
+    ],
+    "permitted": [
+      "contested",
+      "inference_only",
+      "needs_review",
+      "strong",
+      "unsafe",
+      "weak"
+    ]
+  },
+  "intersection": [],
+  "domainsDisjoint": true,
+  "promotionEligible": true,
+  "ambiguityNote": null,
+  "hardRules": [
+    "Served does not mean reliable.",
+    "Missing does not mean irrelevant.",
+    "Referred only does not mean usable.",
+    "Inference must be labelled as inference.",
+    "No line is sendable just because a source exists."
+  ]
+}

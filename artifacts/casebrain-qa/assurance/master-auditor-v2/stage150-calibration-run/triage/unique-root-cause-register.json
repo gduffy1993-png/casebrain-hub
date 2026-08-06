@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "stage150-unique-root-cause-register@1.0.0",
+  "roots": [
+    {
+      "rootCauseId": "RC-S150-COHORTA-PROJECTION-CHS-MISSING-COPYSUGGESTION",
+      "title": "Cohort A projection-only chase draft/five-part incompleteness",
+      "dispositionClass": "not_exercised_projection_only",
+      "controlIds": [
+        "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+        "MAA2-CHS-01-FIVE-PART-FINDING"
+      ],
+      "cohort": "A",
+      "primaryCandidateId": "V2CAND-53665a3dd59e983ec7339571",
+      "occurrenceIds": [
+        "V2CAND-53665a3dd59e983ec7339571",
+        "V2CAND-c3564eb4af8372497e25827a",
+        "V2CAND-8fbccc5b149548634fe13050",
+        "V2CAND-e5188b6fe56940fc37f7698e",
+        "V2CAND-88abd1f298a7d3ffc31611aa",
+        "V2CAND-207984ac53d34cd2adde0b1d",
+        "V2CAND-685cf4fdc924a9ac4d1adb55",
+        "V2CAND-e1890ca30cd31ea1512d2f5d",
+        "V2CAND-5cb366168f7018872ce0cd00",
+        "V2CAND-698023bed0223ac1bd6425ce",
+        "V2CAND-16c15ee083cba018d107657a",
+        "V2CAND-be4350121e2214123dcf370a",
+        "V2CAND-958e90c1b10487e3f7051e2f",
+        "V2CAND-1186242bd7f74d229d1fb6cf",
+        "V2CAND-b9f8e41a218c52cc162b4600",
+        "V2CAND-befbaf8d97359c0e35d3f5cf",
+        "V2CAND-b53d451f964f76b524b33670",
+        "V2CAND-af90178d235aba34ab54301a",
+        "V2CAND-976b52db076e376adcb597f0",
+        "V2CAND-0cb6dbe66727476850e7b83b",
+        "V2CAND-970b67f2a252263476dc9192",
+        "V2CAND-85fe6ffbf4b706b49ae29e7a",
+        "V2CAND-6c94700044596762d12cf822",
+        "V2CAND-de5aef5ae0312983e4d81bc1",
+        "V2CAND-39efa0bc3c2fd013a16b6afa",
+        "V2CAND-51d5132890aa7443e324feb8",
+        "V2CAND-959f39bd9f831c502a2d9eca",
+        "V2CAND-06036678c769471e8b2c299a",
+        "V2CAND-87a4ed007889cb4cc70803d2",
+        "V2CAND-8e82b8ff6ecf2b1e35e31c34",
+        "V2CAND-04aec306596334fa68851dd0",
+        "V2CAND-c44930d19bdae8bc31efd04e",
+        "V2CAND-cb99e468ddd367b47ce225de",
+        "V2CAND-821846903335ccfed384d42e",
+        "V2CAND-acb14563df0bd835de750491",
+        "V2CAND-8035785289f72f56031113f4",
+        "V2CAND-b5512197dbc84e32f2c45eba",
+        "V2CAND-7f5b6bb8836852d30d936ee8",
+        "V2CAND-822163a2fa1068237af24211",
+        "V2CAND-b3024b5e29731163be3fcb03",
+        "V2CAND-8c11d5f2d4a2485d289ae292",
+        "V2CAND-27b87c2392c28e0b00fbbb19",
+        "V2CAND-773cfa8f2a269d9fd13850ea",
+        "V2CAND-6ea184cb538290300874a750",
+        "V2CAND-58723cd91dcb30af352fd414",
+        "V2CAND-b22822f0d079650b456714f6",
+        "V2CAND-035f6fb2efbc183348948a45",
+        "V2CAND-83629d85e58821186d7631d3",
+        "V2CAND-b1d75e391aaa1eba37dfc8a0",
+        "V2CAND-5faaf3127e013ccd65ed5a65",
+        "V2CAND-088fbcd16acb78adba7c60a7",
+        "V2CAND-246bee93a420f1113e7cdc7c",
+        "V2CAND-66dd26cc4e21ccf195649466",
+        "V2CAND-51b77866a16d9e6dd7cc8a95",
+        "V2CAND-fd9f52cffe344a5d359aa8e6",
+        "V2CAND-49a17faf49481a82d3e76196"
+      ],
+      "caseIds": [
+        "demo-audit-01-phone-harassment",
+        "demo-audit-03-bwv-custody",
+        "demo-audit-06-domestic-stalking",
+        "demo-audit-07-phone-ocr-trap",
+        "demo-audit-10-bwv-public-order",
+        "demo-audit-11-custody-pace-ocr",
+        "demo-audit-20-domestic-harassment",
+        "demo-audit-23-duplicate-pages",
+        "demo-audit-26-phone-referred-metadata",
+        "demo-audit-27-custody-pace-missing"
+      ],
+      "surfaces": [
+        "/warningsAndGaps/chaseItems/0/copySuggestion",
+        "/warningsAndGaps/chaseItems/1/copySuggestion",
+        "/warningsAndGaps/chaseItems/2/copySuggestion",
+        "/warningsAndGaps/chaseItems/3/copySuggestion",
+        "/warningsAndGaps/chaseItems/0",
+        "/warningsAndGaps/chaseItems/1",
+        "/warningsAndGaps/chaseItems/2",
+        "/warningsAndGaps/chaseItems/3"
+      ],
+      "exits": [
+        "copy",
+        null
+      ]
+    },
+    {
+      "rootCauseId": "RC-S150-PRI01-EMPTY-FIVEANSWERS-WITH-COURT",
+      "title": "Genuine production output: empty fiveAnswersEvidenceRows while court wording present (evidence rows exist on view exit)",
+      "dispositionClass": "confirmed_app_defect",
+      "controlIds": [
+        "MAA2-PRI-01-NO-IMPORTANT-OMISSION"
+      ],
+      "cohort": "B",
+      "primaryCandidateId": "V2CAND-0f712a9691af65f0265f9043",
+      "occurrenceIds": [
+        "V2CAND-0f712a9691af65f0265f9043",
+        "V2CAND-c0deea51596ed1baf3acd6ec"
+      ],
+      "caseIds": [
+        "s150-d120-001-homicide-causation-clean",
+        "s150-d120-002-homicide-causation-messy"
+      ],
+      "surfaces": [
+        "/fiveAnswersEvidenceRows"
+      ],
+      "exits": [
+        null
+      ]
+    }
+  ],
+  "confirmedRootCount": 1
+}

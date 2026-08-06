@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "maa-v2-stage300-execution-readiness-plan-stop@1.0.0",
+  "title": "ACCEPTED — STAGE-150 CLOSURE + STAGE-300 EXECUTION-READINESS PLAN",
+  "status": "STAGE300_EXECUTION_READINESS_PLAN_ACCEPTED_UNMERGED",
+  "createdAt": "2026-07-31T18:30:00.322Z",
+  "elapsedMs": 5559,
+  "baselineCommit": "b2f7cbe3817b6fbeffc53805bc50566cf25c80b8",
+  "headCommit": "b2f7cbe3817b6fbeffc53805bc50566cf25c80b8",
+  "stage150ClosureStatus": "CALIBRATION_COMPLETE__NO_CONFIRMED_CASEBRAIN_DEFECTS_IN_GENUINE_EXERCISED_SCOPE",
+  "orderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+  "candidateFreezeSha256": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202",
+  "freezeHashesVerified": true,
+  "controlDispositionCount": 161,
+  "controlTotalsReconcile": true,
+  "implementationTotals": {
+    "implemented": 8,
+    "partially_implemented": 98,
+    "specified_not_implemented": 55,
+    "other": 0
+  },
+  "requiredBeforeStage300Count": 43,
+  "essentialControlRegisterCount": 43,
+  "deferralLaneTotals": {
+    "heavy_ocr_binary": 5,
+    "stage300_essential": 112,
+    "external_assurance": 3,
+    "legal_authority_registry": 9,
+    "remain_stage150_measurement": 17,
+    "audience_perspective_depth": 14,
+    "penetration_security": 1
+  },
+  "stage300CorpusGenerationAllowed": false,
+  "stage300PopulationAcceptanceAllowed": false,
+  "stage300BlindFreezeAllowed": false,
+  "stage300CalibrationExecutionAllowed": false,
+  "stage300RemediationRerunAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "programmePassSupported": false,
+  "stage300Generated": false,
+  "stage300Frozen": false,
+  "stage300Run": false,
+  "applicationRepaired": false,
+  "caseGeneration": false,
+  "freezeHashStage50": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "brain1GuardianBlobUnchanged": true,
+  "committed": true,
+  "pushed": true,
+  "artefacts": [
+    "stage150-closure-report.json",
+    "stage150-161-control-disposition-matrix.json",
+    "stage300-essential-control-register.json",
+    "missing-adapter-implementation-order.json",
+    "new-150-coverage-specification.json",
+    "denominator-lineage-policy.json",
+    "stage300-execution-readiness-gate.json",
+    "changed-file-manifest.json",
+    "brain1-guardian-blob-compare.json",
+    "STOP-FOR-CODEX-REVIEW.json"
+  ],
+  "gateSnapshot": {
+    "stage300CorpusGenerationAllowed": false,
+    "stage300PopulationAcceptanceAllowed": false,
+    "stage300BlindFreezeAllowed": false,
+    "stage300CalibrationExecutionAllowed": false,
+    "stage300RemediationRerunAllowed": false
+  },
+  "blockers": [
+    "Uncommitted — stop for Codex review",
+    "No Stage-300 generation/freeze/run",
+    "No commit/push/merge/deploy",
+    "No corpus or programme PASS",
+    "Stage-150 completion does not flip any Stage-300 gate"
+  ],
+  "acceptanceNote": "Accepted onto programme/criminal-defence-integrity-corpus for PR #65. No Stage-300 generation/freeze/run. All Stage-300 gates remain false. No programme PASS."
+}
+

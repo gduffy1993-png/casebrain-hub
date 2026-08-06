@@ -1,0 +1,20 @@
+{
+  "completedCaseIds": [
+    "sc-0002d",
+    "sim-120",
+    "sim-250",
+    "sim-345",
+    "sc-00025",
+    "sim-104",
+    "sim-373",
+    "sim-377",
+    "sim-321",
+    "sim-182"
+  ],
+  "nextIndex": 10,
+  "orderResume": 673,
+  "phase1OccurrenceCount": 673,
+  "phase1CandidateCount": 0,
+  "phase1OccurrenceHash": "9d1842abc7bbc6010b428dbefb27d7c29daffa8425e466d7193487e9e8b37e86",
+  "phase1CandidateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

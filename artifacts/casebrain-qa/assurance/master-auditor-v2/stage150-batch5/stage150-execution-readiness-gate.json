@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "stage150-execution-readiness-gate@1.5.0",
+  "baselineCommit": "6000d156b51dc13191d9edaeb2854c82534e3b25",
+  "programmePassSupported": false,
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "freezeAllowed": false,
+  "reasons": [
+    "101 controls remain partially_implemented",
+    "55 controls remain SNI",
+    "Stage-150 sample selection not performed",
+    "Denominator approval not invented — reviewer/date blank",
+    "currentlyRunnableOnStage150 remains false"
+  ],
+  "prerequisites": {
+    "registryComplete": true,
+    "detectorImplementationComplete": false,
+    "inputReadinessComplete": false,
+    "denominatorReadinessComplete": false,
+    "adapterReadinessComplete": false,
+    "receiptValidationComplete": true,
+    "contractReadinessComplete": true,
+    "relationshipComplete": true,
+    "protectedAssetsPreserved": true
+  }
+}

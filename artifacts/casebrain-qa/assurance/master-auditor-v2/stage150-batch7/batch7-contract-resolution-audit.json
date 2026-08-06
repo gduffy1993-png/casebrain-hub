@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "batch7-contract-resolution-audit@1.1.0",
+  "allResolve": true,
+  "rows": [
+    {
+      "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "positiveContract": "scripts/maa-v2-stage150-batch7-contracts.test.ts#evs01_positive_differing_token_collapse",
+      "negativeContract": "scripts/maa-v2-stage150-batch7-contracts.test.ts#evs01_negatives_valid_separated",
+      "mutationContract": "scripts/maa-v2-stage150-batch7-contracts.test.ts#evs01_mutation",
+      "unavailableContract": "scripts/maa-v2-stage150-batch7-contracts.test.ts#evs01_unavailable",
+      "positiveResolves": true,
+      "negativesResolve": true,
+      "mutationResolves": true,
+      "unavailableResolves": true
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "positiveContract": "scripts/maa-v2-stage150-batch7-contracts.test.ts#atr01_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch7-contracts.test.ts#atr01_negatives",
+      "mutationContract": "scripts/maa-v2-stage150-batch7-contracts.test.ts#atr01_mutation",
+      "unavailableContract": "scripts/maa-v2-stage150-batch7-contracts.test.ts#atr01_unavailable",
+      "positiveResolves": true,
+      "negativesResolve": true,
+      "mutationResolves": true,
+      "unavailableResolves": true
+    }
+  ]
+}

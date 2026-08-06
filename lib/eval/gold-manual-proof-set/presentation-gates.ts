@@ -4,6 +4,12 @@
  * and block off-family digital court templates.
  */
 
+import {
+  composeCompleteClientSummaryFromStructured,
+  wrapClientSummaryBody,
+} from "@/lib/criminal/client-safe-summary-compose";
+import { sanitizeSolicitorProse } from "@/lib/criminal/solicitor-visible-sanitization";
+
 export function isGenericMg6ChaseLabel(label: string): boolean {
   return /mg6c?\s*clarification|mg6\s*\/\s*unused|schedule clarification|unused material/i.test(label);
 }
@@ -541,15 +547,7 @@ export function presentClientSummaryForFamily(
   existing: string | null,
 ): string | null {
   const f = familyLabel.toLowerCase();
-  const wrap = (body: string) =>
-    [
-      "CLIENT-SAFE SUMMARY",
-      "(not for court or CPS)",
-      "",
-      body,
-      "",
-      "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
-    ].join("\n");
+  const wrap = (body: string) => sanitizeSolicitorProse(wrapClientSummaryBody(body));
 
   if (/motoring|sjp/.test(f)) {
     return wrap(
@@ -601,8 +599,12 @@ export function presentClientSummaryForFamily(
       `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. Social/handle material may be on the papers, but platform disclosure, handle-to-defendant mapping, and IP/subscriber data remain outstanding. A handle alone does not prove account attribution.`,
     );
   }
-  // Prefer existing non-empty summaries for other families (Wave A local packs).
-  return existing;
+  // Prefer complete structured existing summaries (Wave A local packs); never hard-slice.
+  const structured = composeCompleteClientSummaryFromStructured(existing);
+  if (structured.ok) {
+    return sanitizeSolicitorProse(structured.text);
+  }
+  return existing ? sanitizeSolicitorProse(existing) : existing;
 }
 
 /** Re-order / inject family-led truth-map rows for Wave B secondary-surface polish. */

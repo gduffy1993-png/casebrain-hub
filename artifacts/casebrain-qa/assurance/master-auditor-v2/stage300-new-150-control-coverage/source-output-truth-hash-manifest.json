@@ -1,0 +1,2106 @@
+{
+  "schemaVersion": "stage300-new-150-hash-manifest@1.0.0",
+  "note": "Compact hashes only — raw sources/candidates remain gitignored",
+  "rows": [
+    {
+      "caseId": "s300-n150-001-homicide-causation-ocr-binary-heavy",
+      "packetSha256": "56670fffc6376f1cf958d20e80df583c031021b3d67c9a6ac7519e33b94daa07",
+      "hashes": {
+        "canonical-bundle.md": "d6e4eac8dd4fe99b021edfbcdfe89298353bbe75ae88e1c18c270c6ded84eb7f",
+        "truth-key.json": "180a76a8a043b14896301e2ff13018485090b7913d176518e77d6d9f79b26a7b",
+        "casebrain-output.json": "b655521050f605e99bd49e9be78474200c1cd906f6a2b97d9ca32a66f57f0a18",
+        "source-capability-inventory.json": "963c333f29283649a3177935ec3da015a9d30a7b11ccfa51fda1f10d8ea2d14e",
+        "vdr-run-receipt.json": "ba2ebaa421f53ba7cf50777c7505478fb1fca436b8e04f274cdc75ac15c7cbfd",
+        "lineage.json": "716186633badb41b59a30597b8c9a764f0b062ecc4deb3d85f2a734e4580294f",
+        "bundle.pdf": "d1354694912b266f5c4bdd107c4965e50d439246a3a1a28c84eabb93d2b8c11c",
+        "ocr-page-unit-receipts.json": "fa10790b977e13b1108d262b2a54fc9698fbde12ea488e130c68d5a8d197a375"
+      }
+    },
+    {
+      "caseId": "s300-n150-002-violence-robbery-weapons-ocr-binary-heavy",
+      "packetSha256": "c1c682186f64708a9d8beefbdfa5d580dd7b8c364af3c0a1e3f3b4f0b0e4e0f6",
+      "hashes": {
+        "canonical-bundle.md": "85fc4810719bf244be3c23063c444794350e35cb976f986bbebb906ff334c1ad",
+        "truth-key.json": "490754787460c71a103f5ebfc2a547fe850c4ad2972b82d3ffc4c50266011660",
+        "casebrain-output.json": "5c16d3d70a61c90943c118a9fb46ff7392da694f55a4576d39a91d7b5166d7ac",
+        "source-capability-inventory.json": "9dba53f76102a874100c26db6f338d0ec4c217ee5e2299a1f7f34356c4d6996d",
+        "vdr-run-receipt.json": "e23d43520d03daaa6d1e1d319362ba1506f881cec2ab2be2066348d1d2a804e2",
+        "lineage.json": "15c5f3304e6035d58eea80d4e1054011957f8a7870a44d65c816b602a7daea2f",
+        "bundle.pdf": "fadca0de3f8ac2948aab58c0a4f7cc811b33b25b257a071a624031106bb96978",
+        "ocr-page-unit-receipts.json": "795f37f3f63fd13106a51289efbb1a30a2cc8eb8045f81828a5292f029295f88"
+      }
+    },
+    {
+      "caseId": "s300-n150-003-firearms-ocr-binary-heavy",
+      "packetSha256": "907948cb4ceccd3abe677bfb40e7f47656db9f1ce1943548fe89f3d394471c94",
+      "hashes": {
+        "canonical-bundle.md": "9be86cb12713e37664e651a43b6bd33d7ffc6f13745aad41e9ef4fdaa866ee9a",
+        "truth-key.json": "7f54e0c6b1172c80db41e4c3727aad7a8c2c6e2e8e561d9e77c35b3804f30a28",
+        "casebrain-output.json": "7b14dcfceeeed40b6f245bc3519a71581637514a4479f8492d60ae669b2f3585",
+        "source-capability-inventory.json": "4dd3d2715eb7f5ac672f9eadc32b106e318749d992fa63c1943529945258f2f9",
+        "vdr-run-receipt.json": "7d20cb5c287a5bdd8fd386967f4ef3fd5a7f444cbab22e173cde4e4b3935719e",
+        "lineage.json": "0c1565565e76979b20328db4f4b0fc7cb65b2a53ca0217b2353f9a064616db49",
+        "bundle.pdf": "840ef210006725a439e56fe5bb48ea3ba598feedcf11d40f74e913c6047534fc",
+        "ocr-page-unit-receipts.json": "c6c72e9c028ef3e0135757d0ff990405d2af34d94868b8efc8f2520481ac5996"
+      }
+    },
+    {
+      "caseId": "s300-n150-004-sexual-abe-ocr-binary-heavy",
+      "packetSha256": "cb821e35307ce68adce922d63a1f4a47e200c016203b85a97c2e93b4fd1df3c8",
+      "hashes": {
+        "canonical-bundle.md": "0e536352384282d21e8aed5c24c1938a98bed960056170816bc528e28abd804b",
+        "truth-key.json": "48c392f9262bd76eaab3fee6a14a9a0ee6cfbc50b27017cf7b459135133e3888",
+        "casebrain-output.json": "33e6ff55625636b33b162f2e0ac6228a2299cd5a19a6bdc05cca6aa29567717f",
+        "source-capability-inventory.json": "f4bfb03097d8a5165ace01dbcbf4677fcb284e67fc80ced1ed202d05150bdc6e",
+        "vdr-run-receipt.json": "c6c1a8a0b265c224cfad973a3ef5613603aa4f984400c22959137896bf4e2433",
+        "lineage.json": "603dd4616afe1e47510720934847521ebf4de1eb4bab5507faaee8d29e16a39e",
+        "bundle.pdf": "e6b4318f21a63efda87a54d301d2e58e0a30f3a0a19e0e084a50deba10b9ff87",
+        "ocr-page-unit-receipts.json": "1cc28c985d730296df138ae6346892bb351e8981e3481330c022ef273008f69c"
+      }
+    },
+    {
+      "caseId": "s300-n150-005-domestic-abuse-ocr-binary-heavy",
+      "packetSha256": "c300dde76de8a014d9eccc871fa72dfb679e57ac77d11c63839f688c10af46db",
+      "hashes": {
+        "canonical-bundle.md": "73b9a1722b3b59665800270970dd15daa33033ed937080fdf309f9fc3a8019f7",
+        "truth-key.json": "b9aaf4b38a8106cef66b5af75f02698a0913ae287c4239d12648ced398497145",
+        "casebrain-output.json": "c3bab87475a4550b6d09dc5d63763bf5fd2a3fbc9b4cc72566213e20e7f0a584",
+        "source-capability-inventory.json": "4cd686fa74667e85fa0e95cf35a49cff70c7e6f11ee68d3561cc0c259901d6b3",
+        "vdr-run-receipt.json": "005b329d2f7b2d3b582f4b81ef3d9646898481e5a77ab6e78b28a71b3147351d",
+        "lineage.json": "88b0be8742203b334cd6765b2d56844d7dfcfe115a3e2e5da5e4a7ba96e86d51",
+        "bundle.pdf": "5f4b72cee1259871929fe80de5be8a8bdba116a1d5b053fcf8234021985bc3a8",
+        "ocr-page-unit-receipts.json": "a3e11054001560022a0d73241df5ab976de87512d5771373c7436b56e3ddf827"
+      }
+    },
+    {
+      "caseId": "s300-n150-006-youth-participation-ocr-binary-heavy",
+      "packetSha256": "fcc808f8ade5886ec749e0cd9f7d178efc7dc820035c108be50a3686cc6ea31a",
+      "hashes": {
+        "canonical-bundle.md": "c1ad46ab07c54ed7dced99d539a611599fee93d11abc396ea294df7ee05d27c0",
+        "truth-key.json": "b2f6286130b6fd7718807245ef8785ad6a84d0e7706cf8b1f3c10b23b21de627",
+        "casebrain-output.json": "0825bb7f22d3e88ab756a5f29c6722b60505091edd1ca8c8fef78785a7c34a78",
+        "source-capability-inventory.json": "fd39db0c99bc9cba13ba41c2545994309dda4b3675a4e280ce82888cd645d294",
+        "vdr-run-receipt.json": "46b253ef02523304bca75d4427381d2c64eac8427eda87679d7b78952668df41",
+        "lineage.json": "fa077ce4ab3fba33f327bc0ae59ea3ac30ae9660ea73399e1b4799b218217353",
+        "bundle.pdf": "79fdd93da1001fe57a73ba54794717c0dd1369ba71f73691ce9bc48f783fbe2a",
+        "ocr-page-unit-receipts.json": "a7d9a18fc8260e791ef8168e22f2b44f145520297ddbcf416e161fcf5b9e90fc"
+      }
+    },
+    {
+      "caseId": "s300-n150-007-county-lines-nrm-ocr-binary-heavy",
+      "packetSha256": "c1239a85b7971874f4a1c037b3e596217929f2ad0fbae63df6d9c6ed8532944e",
+      "hashes": {
+        "canonical-bundle.md": "a161da0535f2da41e8a28954e74aa5d39be9a33d335f2ee485c867d07c20a2c9",
+        "truth-key.json": "d3434a9b1ef542699af1788258b6771447f6096f66ed2d99a1fade25a70d7ea3",
+        "casebrain-output.json": "b6fdceeac8bd2a0e3e1e048562dd38021a39fe12aca33000b71c2b7068851657",
+        "source-capability-inventory.json": "36e356a179768d9af82495bacf2ab3ce30631ee63b5380d499f038671b88ac0e",
+        "vdr-run-receipt.json": "2b97a7d5e4fd5e557765cc63832efbd422297e522f1e48ad8aaec10d3aa9d0c0",
+        "lineage.json": "fa26a8d9a3c7a3d5b9cb5a76c87004b31bbdc37f01e20e4c19c92114bd545d43",
+        "bundle.pdf": "8709dca9e497cb92e65a98aa23d568dd1656c678ea5fbd73869131409b67b7be",
+        "ocr-page-unit-receipts.json": "b6fd629ad9f016ae49e029580304d214206ced1748c3b280d704570a301ad65a"
+      }
+    },
+    {
+      "caseId": "s300-n150-008-fraud-poca-ocr-binary-heavy",
+      "packetSha256": "de0dea5ffe8478046dbdf80f15b6f2c6c611db02c96ffb3a00560351108049bd",
+      "hashes": {
+        "canonical-bundle.md": "9cdc1dd884d0074b8fe5756a7e4113ade978c2ca21fef33932266725609e337b",
+        "truth-key.json": "5fa00148bd97ab378e0c5ffbed8c00ca9692f0e2902126515de857945365eedc",
+        "casebrain-output.json": "d17c1685e4dc31c09990ad204a7aedde8bb62168ef5bab77be71d3f5ab7d4418",
+        "source-capability-inventory.json": "2e25415a5fc60bfdcfde3cadc9d1ba8e100915469ac79afa11349ed7ed3df03f",
+        "vdr-run-receipt.json": "365c01a34d8d89edea68fb8fa591fe703394b8201810dd39effe23d1068c2e6b",
+        "lineage.json": "8c8e0f2824c79727c6fdb1f03538ce8bb21b82c5a5deadb9e909651e7039f8fa",
+        "bundle.pdf": "394190149557a03bc2ba36b12fe2b37f911c393dbc2bceb0b5b24b3ced8bc563",
+        "ocr-page-unit-receipts.json": "5a10e6c9b999d2fa654869b0cfe51cb1b7a61ce21d288343ad0c21fbcb9e9958"
+      }
+    },
+    {
+      "caseId": "s300-n150-009-digital-attribution-ocr-binary-heavy",
+      "packetSha256": "46561f14339c338ce1e74c7f724db268dba81b13d8886692e859289fdcf30747",
+      "hashes": {
+        "canonical-bundle.md": "970b3b0a3723d403fb7763c554b2b5a8294c6ede79c5500393421746608a1748",
+        "truth-key.json": "d40c50815a9a21553684d66a264c13c3105067bfa2db40b1381777a5fb7f11b7",
+        "casebrain-output.json": "ab0cf4df59e4054eba8bbc74cefe6b5c46e76891d52cbaac2f1d2c84cb49ff12",
+        "source-capability-inventory.json": "fdbb83e5e7c14030f6cf179f8597502063f9c7dc41f78beea307037aee8ce974",
+        "vdr-run-receipt.json": "22a445345a3a34f3a6cdd6b74c9ff1e3db15b2d0a31d5345400d131692d37257",
+        "lineage.json": "ff2abe3ab49a8801bb0e231be42ce171f9fc4e7e8703e9ab778f1421e8151e8f",
+        "bundle.pdf": "62c06a521b3be929025e76b5598eae33ca3c487e6f29b410f6f089aac5c7fd1b",
+        "ocr-page-unit-receipts.json": "742300b10d1d55b55d8beaa2743874442876fd51d6b85aa2794dbfdb4636011f"
+      }
+    },
+    {
+      "caseId": "s300-n150-010-identification-code-d-ocr-binary-heavy",
+      "packetSha256": "b7ad8ea8458b0dd5ba673b105d40702a0b01025e86ea45c93ba4cdfb9de78b67",
+      "hashes": {
+        "canonical-bundle.md": "3849e3593add47d7ecbef9ee4c661d57afa6c9cd305e2552733ba8995a4e32d5",
+        "truth-key.json": "aa64031c18bfd4c2027d2d6b7f1ba86bdc7e2c0752c9a0fa0c41ea94a116e800",
+        "casebrain-output.json": "3dfd70066d0ba09b79eb59a1d7549addd8a3e65c0bc1a009dbd143cd7c34be6f",
+        "source-capability-inventory.json": "bfd7f4b2d568bd7e48eee77973d24464b2306927280baedbd7bcca234ce7f676",
+        "vdr-run-receipt.json": "166d6d2d8fdd7edd71413d66eaeb6199a981e366bc7e3d523b74a4249a6cb3b5",
+        "lineage.json": "c7e7772fdf072ef7e6601b69660b911c07ea8a6367a63a51c4d7c5242204afcd",
+        "bundle.pdf": "77389088b0d69b9abbed6ccaad9c591a60b378eb800aceccd535b23f01338f98",
+        "ocr-page-unit-receipts.json": "5b147905a63dffab0383c243780e359b042270d28e16b18e469eb59d1528e0f5"
+      }
+    },
+    {
+      "caseId": "s300-n150-011-mental-health-fitness-ocr-binary-heavy",
+      "packetSha256": "d9880f85c51f8f707563b57f63e912a199ae2c282d78d700dfd3293cd6965c13",
+      "hashes": {
+        "canonical-bundle.md": "bf2a61545b975e39af05f9b52bb2e97110985d62692ac04d9ed957bae4b32344",
+        "truth-key.json": "561820de8680a3dcb06cfe6e04d6c254ee87ac8b5cbe75127f2a823d2187228c",
+        "casebrain-output.json": "c6782f11b869588b918a01fb4ac01bf4bda24e21b1a94841e6da5f294153a158",
+        "source-capability-inventory.json": "635505d861adab8bc835613135b9062b3195afb483cd3269ad97744bdb8fb530",
+        "vdr-run-receipt.json": "93be84b6ddceebf1b3c997a89418300ad7864c1048b5d09ef42427e7539e23c3",
+        "lineage.json": "652407ce9c3a833249b2ec3782549ad5e793e71e9c5ebc25654a11d3170b5588",
+        "bundle.pdf": "1c34204ab208d24436b788028616ffaaf7e2c2f2f294b56541469c98b57ce5ff",
+        "ocr-page-unit-receipts.json": "f204784d42efccd25e7627584d168c44bda44b87378cafee23b32d081ac10f51"
+      }
+    },
+    {
+      "caseId": "s300-n150-012-disclosure-pii-ocr-binary-heavy",
+      "packetSha256": "b417b50a63cb7f68c928c635bc6d4fad6db6b79211bea0ffa70c83badd7579b7",
+      "hashes": {
+        "canonical-bundle.md": "1973b3bc42805d26e7a9bb0766e2a7fede8aceeead43ddc0c80d443a5de42ab6",
+        "truth-key.json": "d7c2b5099868e4259bf295fee978f26f9dcb753a6dd686087eb27c5aa71e2002",
+        "casebrain-output.json": "8cf2d04c2e77063677058f0dc99cc54c4100643d89e2bd63d5bc6351f314018e",
+        "source-capability-inventory.json": "d88a22b20f6ab7e6c92a93bf0b0fc073787ac5133f9b849a3a1d42ecba6bb904",
+        "vdr-run-receipt.json": "072b0ed11f2e223151a73e8e1be26a5218b706c47d369072ed9c9f2269754e6d",
+        "lineage.json": "d62f76087cfefda89f92d0e342e38e4b47f7dbce17a6cb6e1740b736864f7ba2",
+        "bundle.pdf": "9cdeefbccf631d2c102d506076a0bd9fba1f5590c158aab3c6c7234b9d31d789",
+        "ocr-page-unit-receipts.json": "7e9e30f083cbd4a81ccd241e8b403b37f907c34656e0c1d1323a419f9fd553a0"
+      }
+    },
+    {
+      "caseId": "s300-n150-013-road-traffic-fatal-ocr-binary-heavy",
+      "packetSha256": "47e4acfac2861cef451433524900743eea571b5ee4b13e04466811437efae9a7",
+      "hashes": {
+        "canonical-bundle.md": "96024f893a1428b2bb0d4eff650cba199cceaf7e76fb1d4bf30775096c9c46c7",
+        "truth-key.json": "980ec569cd6928031e28dbc39864bcf520bf3f96be1b4bc8669b3986e1604e49",
+        "casebrain-output.json": "9b73162f9060daa61703c5fb91fcfebd51691cec1c525083b9be3c5bbfd398e5",
+        "source-capability-inventory.json": "ad213161d8ac496ec1838bb85c8774fddd51854d09e58acfeac4bf8852b7c0b5",
+        "vdr-run-receipt.json": "b2eae5931d98862ad00e2d2ab795628905121b07a2f905f45e4fc41369b61f46",
+        "lineage.json": "db7f965e327f36e980dc82cbf3685dd4179338402b9ca33a5cedde40573bd538",
+        "bundle.pdf": "68009964ffd3c29a0d30f0667635016379b845cb924de6ac259e00a460fb56e1",
+        "ocr-page-unit-receipts.json": "3ca1194d65f24a4f807bfcb3c7f8d615ebbec2a1f78bbb268701904a5c9022bb"
+      }
+    },
+    {
+      "caseId": "s300-n150-014-magistrates-procedure-ocr-binary-heavy",
+      "packetSha256": "a5f13e27b39397152b1a5669a3e90f90501d92a44472f034f5644ab4d6b89729",
+      "hashes": {
+        "canonical-bundle.md": "85ace2ede09ca43490c1707c2ee8d04bbf33e7895cd0394d64cfd2d8023c30ff",
+        "truth-key.json": "4ca1008e5a35c8e3c015f72aec7dc633d40f855a668cfdcf0c5d7fbbcc845be9",
+        "casebrain-output.json": "0138cf7d9e0e61043256e58fada0973995e5c2e626dc272b4ef07df29561a864",
+        "source-capability-inventory.json": "6b303de2a2c6fa314e0a2968742da74b74aab6de70867e3abb2fa3f256bbc7a6",
+        "vdr-run-receipt.json": "3acee7299926ecfd30970edf975dedb627ca2c605595d0bd6c7c99ce08aee5bd",
+        "lineage.json": "8712efb5682ebf9afa355f4fdab12dbd65c364b43cf5a3079ecdcec31edf0ae3",
+        "bundle.pdf": "06f7c3f326ff5c82a934e72cc46e520278a0b1f2fa0853bf6ebf787f5ec37533",
+        "ocr-page-unit-receipts.json": "d350d74d1f71b0652ef20077cb0df4f45fb9ed5d0b218a0db00e6d732f3693d5"
+      }
+    },
+    {
+      "caseId": "s300-n150-015-bail-remand-ocr-binary-heavy",
+      "packetSha256": "e0388897808ca0cdf82aa9fbc9cc2478ac3dba92ddbd83002ae043753ec7f4cd",
+      "hashes": {
+        "canonical-bundle.md": "5e2fee245a83ac18c7a16a557cc5305cd041b840f65d1d06bd40af94284d43c0",
+        "truth-key.json": "d4d09cdfeb12dc938e1c3384eb91138dc8b4f37f1e20bd6c1f022170dc1b8ff8",
+        "casebrain-output.json": "1c027380f5a4abde800c054e68fe51ea249aca857c53cb3d4043c2f3ed0564fc",
+        "source-capability-inventory.json": "60a21dd4858c85586701ad60cbc9aca366f5f565f66c71ebaeba3773af7dde64",
+        "vdr-run-receipt.json": "98ab2799cb5a35e8da57b8f98217ac9c046a1c37c9f4d0ffa8b4da6795e7e5ad",
+        "lineage.json": "8820e7591dc18e0a14eea03e34af38e02da681104aae3fd2862fa9c84c7037ad",
+        "bundle.pdf": "0e90b8e612f1555508e3be47644525eb1fb568b6ce3dd75510c89be1c1e9cedf",
+        "ocr-page-unit-receipts.json": "9b46a8defe4efc1317a651943d118c6458ac17bad00ec6125df9e737f0f34c66"
+      }
+    },
+    {
+      "caseId": "s300-n150-016-sentencing-newton-ocr-binary-heavy",
+      "packetSha256": "c0ba5324629a685c02b7fd9d43d6a36e2028416720569599c5c658d03923332e",
+      "hashes": {
+        "canonical-bundle.md": "2478f9b778eb84eedb0496842a1ed8dfc39ac25896d4cf813cf03676c0031008",
+        "truth-key.json": "47fda8df0df16901b516a62a316f8f461eadcf3adfc806d5569287b8b6869a81",
+        "casebrain-output.json": "d5aca4402171a72785bfca333e0bf9f1b651fcb9e1be9d56fc7e0549dd4d2cba",
+        "source-capability-inventory.json": "132270ed8521cf08d5903569a3816163f17f3752f98d7d4af8bf8ef6cc5d34f8",
+        "vdr-run-receipt.json": "e8511d4489e2b386cdfcd2205af3d58b8cfd9e0ddd5daf4ac64490f049525132",
+        "lineage.json": "434fa78b8178b60cc9d7df0873508fefe58a6b4fd30b135578969652641d49f0",
+        "bundle.pdf": "23747d02ea224360b21c8cce07a50e78d9931ca51f765678046bfc0a65831a88",
+        "ocr-page-unit-receipts.json": "f89152537d726702fd228f39a49c966b051a4c005d600b559d9b4671656d396f"
+      }
+    },
+    {
+      "caseId": "s300-n150-017-appeals-ocr-binary-heavy",
+      "packetSha256": "df821c09a45efca359a6f0404de9f0d5e75b8be925c274e01606ecba7ba44728",
+      "hashes": {
+        "canonical-bundle.md": "2d9b12546ecb7acf1b7660246d2bdf642283ba8d780a4411b180069fe57781d3",
+        "truth-key.json": "c38da628a5222620ad7d3924da9b11b417b81c0a6859d8f0748e7d43ac626303",
+        "casebrain-output.json": "d58641d2f05e959ca7333be619b9a30bbc6c2745daf3591d2c30fa420363cf86",
+        "source-capability-inventory.json": "9a8df96b78796b0bafe7e89057517d30e9161008ab952c8ef9596ea0473e3597",
+        "vdr-run-receipt.json": "317c53059b1a7e45f13cf4a9e8a6b3d354fbfe6eaa08de84c53c2e7c26296877",
+        "lineage.json": "01c6877a5f75cd9b84200517203c712d36881192deb6f951b03069933a7a3743",
+        "bundle.pdf": "4ae7c16c96ad14997571d921348e156a419f2084b669f97b7a6b6483b2dd47ce",
+        "ocr-page-unit-receipts.json": "b01246d266b8bed513c291d9ccf52b6a3f9a540d848270bfd51fffcce53dbc68"
+      }
+    },
+    {
+      "caseId": "s300-n150-018-multi-defendant-attribution-ocr-binary-heavy",
+      "packetSha256": "f22da72baebb5f5b4681fffced9c88876e557945d5d40a7a3ea25ab7b16b80d1",
+      "hashes": {
+        "canonical-bundle.md": "6e392d9376dfa5a9a0b9e99f18b1e3d06079e360b830afb7f3cd0190097d2e11",
+        "truth-key.json": "95d9d6e6cec4ba56235886be5a9d90d1cbaf1498bdcaaa686fce914446160f24",
+        "casebrain-output.json": "8bc699529ec4cf0ed4c558001323e49189f0ded9f0ed923ddc3229e887cdeeaf",
+        "source-capability-inventory.json": "3792872502f1943df4afc736c4a6dd8eaf88dbf8964265e056882909ab40c222",
+        "vdr-run-receipt.json": "64f10a55901af0f558dbaa82b2dea2761ffd7c1cabd6563503a78342c9582d54",
+        "lineage.json": "4c35df3478cb304a211c2e8b854871aab6303a8a0d64c5fa601ed33aa34784d3",
+        "bundle.pdf": "29f976b6114e2c2f1782d226407d7c7c62d532f606b297b70e20f8815878e92d",
+        "ocr-page-unit-receipts.json": "9ee38ecb6363db414cddd47295cae4ee9642ee190c9688f1cecc2018a6c9b54d"
+      }
+    },
+    {
+      "caseId": "s300-n150-019-homicide-causation-ocr-binary-heavy",
+      "packetSha256": "7ca14781eec0dca1cfee88b1b77a222d0c9ae3f20d475ded18ade0825b9fbb79",
+      "hashes": {
+        "canonical-bundle.md": "0b94476843bf493e681f112c9d8cd298e0e3199dc8b28a04a707bafc2b70a6bf",
+        "truth-key.json": "9f7175e9d1b09cfff35fee0ae2cc35afc5fb0a9b59aa2b0032330aa4a128304c",
+        "casebrain-output.json": "c5a0b690c564a5f1269fb6a0abf1a5b5d12168dff133c67416a69ed2fb859875",
+        "source-capability-inventory.json": "12c39ed13b95524941570eeeaf89e96a397ae9431797f0c11e3811dbb31ec09d",
+        "vdr-run-receipt.json": "c836b0a189225175ca4e85620bd4c590e374c59956d0e49bb4e8ddbe9b405920",
+        "lineage.json": "828c98fc28ae4a6e7c03694a7f4e4c96d8068fdbeff545265d1749fb55a5450a",
+        "bundle.pdf": "8c39274374ab05e205812676033ec122b76c876f7292479bc890c89bf724ed27",
+        "ocr-page-unit-receipts.json": "5d39a9b462df7f2b0672ccb090caf6e2526135cca30ff3803a74cc1d814fd114"
+      }
+    },
+    {
+      "caseId": "s300-n150-020-violence-robbery-weapons-ocr-binary-heavy",
+      "packetSha256": "c4e49793a85dc1c2677cdb63316af135ae707729b1e2171755319858f6a2abb6",
+      "hashes": {
+        "canonical-bundle.md": "3a1f974d27d7b4a1a42fb67ee71577d81dea69eeb40177af237f07181ecb5c72",
+        "truth-key.json": "31a3239366e31be78b844c1cf36d6d7fa968388c88f8954a029b4552f6e7d6a7",
+        "casebrain-output.json": "caf57695fa58b7a144c25cbec2ad1217536b4ba3fea0e8d01e3a86a44964aa0a",
+        "source-capability-inventory.json": "20a02b571ff2c26ac4425e58b22e516bcbfebb6b9e9d28aaefdef0bd67c609b3",
+        "vdr-run-receipt.json": "d06a95d7e3a8e45fbee3c8a7098cd66dda19606161b6a4453582f7643dc0446b",
+        "lineage.json": "1eecc0c368a5d5ce963fe16dcc8d2a1c0ee9877439227f2b04d05ebe3d4e9cc3",
+        "bundle.pdf": "cdb98408f3098357b1be409d32dac03c64596fd5949dc118ac22f0c552cfb7ed",
+        "ocr-page-unit-receipts.json": "8a84c6a67df070087be423fd7618b44293b59f913d873c54a7fe8666942773ca"
+      }
+    },
+    {
+      "caseId": "s300-n150-021-firearms-ocr-binary-heavy",
+      "packetSha256": "abf95203923140e5eae1a32d8306e64013ef77cab031f992f8083123b9c9b188",
+      "hashes": {
+        "canonical-bundle.md": "070e4684303d89a3d75eefd2ae2d2af3afa3637b240ba52e4c1467854b37aa7f",
+        "truth-key.json": "a598164c7a6de3048fc4f059013c29d3e9d02ddace53e1c04fb175e73a91ca5f",
+        "casebrain-output.json": "cb04674b6ca67dacdf8115e59a9b613ca1ff6479208bdac193c94961ce7beab3",
+        "source-capability-inventory.json": "2881e94fc0ca74d4b24b7cb93906d8f3f8645fc9a8618b570abc74161db7456e",
+        "vdr-run-receipt.json": "78ff8b7339f8c22eeb4732867fe8e4c940e039ed127a55400cc5c588a1a55c4f",
+        "lineage.json": "b146096e48a9e2dc0b7307a34b7c6a0a1f73973da88791648cab5f5063fc311d",
+        "bundle.pdf": "ca73fd0a456720c278615e1ee3d8ce335467e5131cbffb5989338e50d3a9d5e3",
+        "ocr-page-unit-receipts.json": "5f241bca4437e5017dd38e65206faf461e616ede89625971691dc0707b5e7cd9"
+      }
+    },
+    {
+      "caseId": "s300-n150-022-sexual-abe-ocr-binary-heavy",
+      "packetSha256": "b0635e98ad0884371f215a76f233ca082b4dbd641d6e46cb1535a3ee0451b6ec",
+      "hashes": {
+        "canonical-bundle.md": "95caf729ea55b46ec06935d3ec9d3898e6b6103ba89f6f3954b16e4aa91a6d4a",
+        "truth-key.json": "f0824eaf84d626eabc7bf894c31d2a784809ac63f70043b76eac94a115041b36",
+        "casebrain-output.json": "1b8aa7847b3ef1ba842f2592989d276026f54816d8b02224b0e5cbeb7fa20774",
+        "source-capability-inventory.json": "519fca6573b523d0e946d43df25478283472a3c58662685314e9f57f39ae798f",
+        "vdr-run-receipt.json": "2c53e142f74575162d7f98a0812c0463f2edee3d457ea6c24ec842bf1f544d95",
+        "lineage.json": "313ad3e226a12978228d01706e2b0c1b397f9d10cd3aa4107f3349e20f0f3c97",
+        "bundle.pdf": "1daef1d680409315d6436c44df40417c1a97db86565cc951680f7b099d0d43fc",
+        "ocr-page-unit-receipts.json": "67090ca0353d6f76a126146bb31f236862035d6493d8f91031746d178628756a"
+      }
+    },
+    {
+      "caseId": "s300-n150-023-domestic-abuse-ocr-binary-heavy",
+      "packetSha256": "f9f230335c28ea7de3aeb5683cf27c94a706ae3dddf2f84d975895c39e99fcb9",
+      "hashes": {
+        "canonical-bundle.md": "f9c8eb6732bd40e9e7c244d69e000c984ee0763bf94dbcbdfbf732a6823e0979",
+        "truth-key.json": "784b3793b7dfe2a24525db13468a218a6b1b3621055a3ab68e88169d762c995f",
+        "casebrain-output.json": "ed39bf319ec0002b19e981d6e02c1acd5c60378cbdb9bd87d7146909746080f1",
+        "source-capability-inventory.json": "6e395bafb36757f5af7c9314fd6b04173f641bbbd798f86b505ba3db232e030a",
+        "vdr-run-receipt.json": "c816b2aa83aabf85d2326c6d0d84b260b5c710b6178f83efd3ff3fa2e6e6b827",
+        "lineage.json": "ba73a4d660ffcc28ad38f32ae01c36b7659ca4206669ba5b2a8dda4320ed89b0",
+        "bundle.pdf": "1d2c1bc8a5495b9522c9f4519d5b28467e390102415649b4dc6a152464a70abe",
+        "ocr-page-unit-receipts.json": "2ccafd55391cc7fa5f0c687e02e4c8f2b292bdf5cf79d9fbded3406da1b5d431"
+      }
+    },
+    {
+      "caseId": "s300-n150-024-youth-participation-ocr-binary-heavy",
+      "packetSha256": "3542ea55f35a1c2f0d544df250cd4a011489c67ad834a45c0a97971fe5d0c72a",
+      "hashes": {
+        "canonical-bundle.md": "9b4330ad8baade77eda12cc5802e16e44ca2b49175df135b20532950e33d48cf",
+        "truth-key.json": "60279850d72cdaf0c693cb99cbd62147f5a9e7bfd3404ea5b6c69524c71ff471",
+        "casebrain-output.json": "741d3b1c4611264383e8c3c86f3013f16bb90050b035fa1d31b5606a48a6583c",
+        "source-capability-inventory.json": "e80741c566b5ff179db9d347bc3022ad20eacf329f66c7a3a5fab7c06ff96dfb",
+        "vdr-run-receipt.json": "20ca8c8f25c13008c064850ecfc42fbde1baa2b8214bbc634a6e669879875bea",
+        "lineage.json": "46503af3a52d58847a23d2232fa1b1c78ced0556cfb1f9847bc930e14d261b6d",
+        "bundle.pdf": "a06c357112bdf75085a91bf7153e2418b71efed9b9fa5695a74164dd32e83056",
+        "ocr-page-unit-receipts.json": "56167750a358d7c6cf1d492de2368131002f451da2b268dcabb9c440c0333be2"
+      }
+    },
+    {
+      "caseId": "s300-n150-025-county-lines-nrm-ocr-binary-heavy",
+      "packetSha256": "ebc416fdfdd8c78044a7ea78003e532141c7a3096118b9765a02cbee86631929",
+      "hashes": {
+        "canonical-bundle.md": "3a9754df8ee87e06ac36f2d5d4b5e77ce208edc5bcd2082508dabf28d298f8c9",
+        "truth-key.json": "f990f9c2b72725f80d2b0ab93b2685c8b9a1d98a2246c252d12a43d2bbc44598",
+        "casebrain-output.json": "3cc8e6e3f352a901cb5c1e2a6307e47506b5eefaf0647063eb9541df41bfe53a",
+        "source-capability-inventory.json": "1fd1b9b50a1150477b9a20d9dd321166f8d7d01da8dbb0410e4fc46e162d464d",
+        "vdr-run-receipt.json": "ac2fe0ebede4b7b9d68314d3c4b5456208e61d4039e5f336113c19e0c6f0c0dc",
+        "lineage.json": "0dc684b40a08f9038128a6bed880e8f4b7ddd275317d868ec82f462b57dd8038",
+        "bundle.pdf": "2640fb2d38209b6cf7ea05d597863290dd9bc4940dfd8e0ec783b318c64142d3",
+        "ocr-page-unit-receipts.json": "9bd0b5fa4441b1fdeb33d6ecf2e836890c8aa675fc4b068ca0e85219086d159e"
+      }
+    },
+    {
+      "caseId": "s300-n150-026-fraud-poca-ocr-binary-heavy",
+      "packetSha256": "69942b81769c70687d790ccfbd7c51bf88abae2268b32a0d1c4cc2f9624c688b",
+      "hashes": {
+        "canonical-bundle.md": "f85b4958ae33d3cccb33df80590862c6a696fb123638ac5324e9a7481bc64f58",
+        "truth-key.json": "030010a2c702067d0f86fd2a7eedc885a61d701d3600f2c09075bcd7a6c29464",
+        "casebrain-output.json": "3c30d0e41d9570273ed230e356f01e5a9237a89018d725fd04f387cf0165f5f6",
+        "source-capability-inventory.json": "1ee4d0faa3482367a6977da16eb920a8b763a6d09f243f469f54b7a87a7f2e79",
+        "vdr-run-receipt.json": "a4dc18c3ed7413f71209083e5c0b41787da2728e1e997b05cc0f1a46da8e7431",
+        "lineage.json": "e9a287c3538a0495f1c1ce2534d5f783369c4a0dd27be01189442e32a83620da",
+        "bundle.pdf": "32a2fb46b913ff232e46886ab39910cb6e350e86419db8cf1ce7ef75958a2638",
+        "ocr-page-unit-receipts.json": "a53f2caeb0ee256f4d35e7e95f8d9b22bbf76eaf8fd2ddf594915862c82ee15a"
+      }
+    },
+    {
+      "caseId": "s300-n150-027-digital-attribution-ocr-binary-heavy",
+      "packetSha256": "35a1681c567119c6940ae40af93001a5aecbe65a37c1777d443c5c186a6d4da9",
+      "hashes": {
+        "canonical-bundle.md": "66a230a59216d095ea536020024af19e3e350c2910ebb10e9f6b515bd2b64794",
+        "truth-key.json": "22f6f3d9d2ad7897e6366b73e1250f81728394cdd8fe9690c9748804f2d323c2",
+        "casebrain-output.json": "c049feb81c58fe374c0d3c4f0221fb8261eab5b991a6baef1f8ecee7a8ffe257",
+        "source-capability-inventory.json": "1fc46c52d32074281ec23af26e43d2fe13e1dcafe9b523fb085f45fdee9a8829",
+        "vdr-run-receipt.json": "cbb8376ad9f5c4b8c003e8abf6b6a6887deffd5de5f15c5d163836677ecdaeff",
+        "lineage.json": "a5dd11af64d03a311521f91e006be696890081893aaa6c220a51c571ac3aa6c5",
+        "bundle.pdf": "589ad4e00073788c223b778a8f6f707bd7327c88adef97f9f4692d9c5362ee9f",
+        "ocr-page-unit-receipts.json": "5712d7f3d773f1cbe5df17880ce54797441e4c70b5646c98a35e1f873fdc49fd"
+      }
+    },
+    {
+      "caseId": "s300-n150-028-identification-code-d-ocr-binary-heavy",
+      "packetSha256": "cbb033f85f07ddd0fbefc1153c0a4233375d200180316ca8538dbb0e70234148",
+      "hashes": {
+        "canonical-bundle.md": "77adc9c52f5c065b06dcc8adb0e9a95fe7421ba3d69d29fb74dd9a943cf081f2",
+        "truth-key.json": "5592c906c7013ed869f8dc5a7ffd4989631e16628c4eabeb3087b50abd3a95d9",
+        "casebrain-output.json": "d9b0f122002c17c603b67edc753edcfef5de0e25510ff32ca3e92c99fea08935",
+        "source-capability-inventory.json": "d7fa2bd0feadf3169b48ad4c0bf384c17d131ce211e62de7ee5b9315df1d19b3",
+        "vdr-run-receipt.json": "d719d5a5d51622d5a5e43fdc57004eacd326ab6297c81ca8e5569837e655f5d3",
+        "lineage.json": "daae6611fe0746ce9bf1c33791c06f1dc09b1bfb20dbfaeded8df696e73a44c8",
+        "bundle.pdf": "89a256801ae911e96017d60455f98ff651ea2f6152c3ae53f5f2b4a1bbee3c9d",
+        "ocr-page-unit-receipts.json": "2ace7485cc11f23e1dac91af890633a39c88c13a846178f9b73bf63bcf2f7151"
+      }
+    },
+    {
+      "caseId": "s300-n150-029-mental-health-fitness-ocr-binary-heavy",
+      "packetSha256": "45df434d51bb2dba1e1bbc5528eace79ffa355e39bdf22e46d9fb2ccb8f5bf92",
+      "hashes": {
+        "canonical-bundle.md": "aaf6c8d6d902bef53379376b7074254aa2f7449d961d485ac0c15d32d836e72b",
+        "truth-key.json": "2830df8aeaa6f1e825d17295678d8a4cc574cc674b890a62912211fb844fec5f",
+        "casebrain-output.json": "5c1a02109bb3c43a7074e18dd106a32685b983171accc5ac0fb456b192521631",
+        "source-capability-inventory.json": "cc740a858fd0a1b74149e4b8f039a516dd3c2a5bc28e5d86fa140dea2f6ccd46",
+        "vdr-run-receipt.json": "b56c6995b5600a914f972e3cbb3ee4a576ffb35efb908c8740607975dad06a35",
+        "lineage.json": "be3685d1ce84572b6a929f857aae493bb03deb96444d71a21f73a4c50e550bc7",
+        "bundle.pdf": "2e716e55bc627cdc2383c2dea9dcb77e47819a26f46f447fb8fd3f5fb0f12a4a",
+        "ocr-page-unit-receipts.json": "a32e4d010458ed50d70431526b85b64d98d982eaa92eb2ec42f314b9bc0b8f73"
+      }
+    },
+    {
+      "caseId": "s300-n150-030-disclosure-pii-ocr-binary-heavy",
+      "packetSha256": "6bbb2b68de8f3bc4496803d1286b778fa2771d96fcece272cb966e7aaca1f945",
+      "hashes": {
+        "canonical-bundle.md": "c9fe964e3b1fceeaab19c8d25fe232bf93ec5e6038e85f0136711c80839c8c32",
+        "truth-key.json": "eb2f5e095819e754ca8cc644145c2b0ffb6909ab8eafc7f5584b1eeb3d3d1050",
+        "casebrain-output.json": "f61dea3edf9ed292a0764e5b78862beb6235fda0a2b36cc670134b753fb51f5d",
+        "source-capability-inventory.json": "d09618211a4076fced5660dc00d8b6341b0073d6662f40cd68c8614e68f9fb83",
+        "vdr-run-receipt.json": "1eb00e7b6321802130885c902461f438c874758ddf7457a23588212d8d1632e2",
+        "lineage.json": "17c4e8dca1adb2880edf1965479557b0af6409084cb60616ac81af95046e08fa",
+        "bundle.pdf": "dbac504eecf496e1925b9d47dae92984f0a1309060d6e8a2e2d84c07df5bec56",
+        "ocr-page-unit-receipts.json": "3e99e7511fa3cd8346cdd81b2c947005dcc8b0051eb33da486507c6d69f21d74"
+      }
+    },
+    {
+      "caseId": "s300-n150-031-road-traffic-fatal-specialty-youth-dob",
+      "packetSha256": "a5d51619815acdd0c156985fde837bbd2c21780a430aee6a4f4a1ec7c776b211",
+      "hashes": {
+        "canonical-bundle.md": "5a72d412642d7108784b4409f056749402af500330192053b0a8f789afe8ce1b",
+        "truth-key.json": "dad6a96bf982c8cbf05aabd4d95b2ceae71fa8902f0d00c43ce8ab79b31bb3c1",
+        "casebrain-output.json": "9981117a09e1a2c6a3ad1321e5243d256bff869ec7049696281e04df9807ef6f",
+        "source-capability-inventory.json": "ac07ad3d7b23f79ef17d20c4d936901c45ec5e894852f9c9f5ca9097644d2623",
+        "vdr-run-receipt.json": "05dd0fe3cbf5e0d499a4882170890bd983fa93c24060e892f19b4da249f8d619",
+        "lineage.json": "bfabb1b3876f145fc0698563c0c5ed61e5e3a81e663143b1227b72cae99b4821",
+        "bundle.pdf": "bdf03580e628b100e48262ae6d3a276aa26fd10b1956e0d346d10c828b2c31d4",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-032-magistrates-procedure-specialty-youth-dob",
+      "packetSha256": "fd25bb45ccaf1d4eea1431fab5c6b9d67a637eb565797875d73b839542bee3b8",
+      "hashes": {
+        "canonical-bundle.md": "c166434ced62aae5e39c97de913ab8229247708d6c42c1a2bf0dffb261349482",
+        "truth-key.json": "09456446b7366d9d898f4cdc6f75160cd7a754fd60c4be89e51979153f7a7413",
+        "casebrain-output.json": "a762b63e93fa4a45ac0bc6c79b433d590eba6c3063c7fdcd587864859daea458",
+        "source-capability-inventory.json": "786857caa38ab2345057ae75836734568b8f64a355b1179b130cf211e316f415",
+        "vdr-run-receipt.json": "f820b1a340ac5ab5b46ca51333c7ef73c976667ca9490e8e535519e4ac87e167",
+        "lineage.json": "ed5556efebe88d4e73399f107e701ef980371c0215ea3192cb2b548582f04b5d",
+        "bundle.pdf": "373987706ffc4964d381606d83d79fe93c93d1deac5cf6b256ecbc264c2bf9f0",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-033-bail-remand-specialty-youth-dob",
+      "packetSha256": "305c2eef01c6637205af91b8f1145d68a2ecbd8a23899a7e1579941608911824",
+      "hashes": {
+        "canonical-bundle.md": "116e883448ad7080e02b7a651e1471b488ec7b16bc9c364b55dd9301710fccbf",
+        "truth-key.json": "b3178191bc17a070551d0ebdc7b3a9db6d773c3c8fd3a7b5110e77db4c6789ea",
+        "casebrain-output.json": "cbc3b503276810164fca6a3953cba2ce4b770c6734bf164c3c070e3ee140b72c",
+        "source-capability-inventory.json": "a665c7b5168cf5d27232c264d1ff4499d1d91a2b96fef2a6fd42e5c05c194956",
+        "vdr-run-receipt.json": "da48f940bc58d5a78e22ee7b34d942796449c5f88628d2d56195b29d7a041c9e",
+        "lineage.json": "1e0589560e815c7df2091405fed281f41680b8b6f81bfc786e29d1f36b5c1c6c",
+        "bundle.pdf": "ae09c12aea2f37f2ffb0041697139c55e19a75ea8141743c8f5c75e83b8d3157",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-034-sentencing-newton-specialty-youth-dob",
+      "packetSha256": "701301214a16fa29a14d0c0ec0a1357ea5979653f7687d1b541bbf1be4d8232b",
+      "hashes": {
+        "canonical-bundle.md": "ddb45329df06906f6662eacaae522405b7ea18b5cab3a24ae9051a84d0012fbf",
+        "truth-key.json": "ab79c09577d26f1e19189cf0c9110abbcdaccd7e84ad1aaa63908d9a82aeaf59",
+        "casebrain-output.json": "a5b68a09b7cd67bb6673087670081856180b019c6dec59bbb6251c5a87f5c548",
+        "source-capability-inventory.json": "a8886c5a9353f2fb1f12b901bcadaef84289495e777956aa392fc09826a0261a",
+        "vdr-run-receipt.json": "e3e738e4de831e5351a3539cfa2b354e7ac39f93271d557de54436f3627b847e",
+        "lineage.json": "2fb8cb6b6b86058e5dac53e0c16b2f91716b2cb9634462f00cf72761d45e2120",
+        "bundle.pdf": "4089cb2f138eb9f8ca8e7772355e09608b388ed60ef982414dcd0b1389e89f31",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-035-appeals-specialty-youth-dob",
+      "packetSha256": "ebcdfe84a00f7adb737275bb6989336289cbae7f760fd00fe2aa876814270bbe",
+      "hashes": {
+        "canonical-bundle.md": "9d950e93a68ff4cfeed3b9a87b6288043d9ed72ada3b45ba27c0a129d2d9a5f4",
+        "truth-key.json": "69cb22a7ff7ffb8b33bc4b9cbf43a9b5e70ef3146bb6567f0b5b2ddd1627c20f",
+        "casebrain-output.json": "1df101702aef5b926d6822535b6a78bcbd0e49f4c2af7daeb68c09dff5b35211",
+        "source-capability-inventory.json": "2cb95fb3c294ba60837d5682eac071f5b2c2d5b873f77458e7041eaff74e9fb3",
+        "vdr-run-receipt.json": "918e584fc246a328f6e2ea4588ca89229e97783de48a8d749c617f2c15ad76a5",
+        "lineage.json": "e8a0c83936c50c8f09abb934a1c00d82616bc06d41e72e03d348a045e148ed32",
+        "bundle.pdf": "e2076d4a33530e2a4929e4856d62a08f8bd1cc09b176341afd440011aa8446b4",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-036-multi-defendant-attribution-specialty-youth-dob",
+      "packetSha256": "54c0e6f07719a42c0e60a36e027b377f29fb46e8852b5584fa48ac82b8a18e40",
+      "hashes": {
+        "canonical-bundle.md": "fd420fcfe81cb324bfee6e93091e50dcf2eddcea00014eefcf31b96bc24765c7",
+        "truth-key.json": "0fa3805c29a4ba0fcdb45174d43e1a3496c2b6b2804c380ad67d0dfa935f1de8",
+        "casebrain-output.json": "22184519692203d583d1ef7cd0b4d3804d58de43cef4b9345e73b68653dac6d7",
+        "source-capability-inventory.json": "b6b5acd3bea73023cf496a9d4d6bbc63a6fc661e3656df2af418966f00223491",
+        "vdr-run-receipt.json": "cef692d86e5fd0874490d0575c5ced3481081bef81465a408a3f5d904ac70891",
+        "lineage.json": "cb4947090d87bf942e61ebb05fefec18abef94a700ae9cc53f15ec1705e81b20",
+        "bundle.pdf": "4bbe4cd44d0a5463775904d29bda1aa2daec260f22cdf238ecf9c37d9f5929af",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-037-homicide-causation-specialty-youth-dob",
+      "packetSha256": "57cb47c6dac59ec7abaf897335397442be0820f812e7c7e4d8b9c5a304f13f56",
+      "hashes": {
+        "canonical-bundle.md": "22d91b87bf213acabc466592d3be155c43cfd8ca3e8331b9557a57e457afb5fa",
+        "truth-key.json": "3d1281917b0606e5d693b597d0dafd8d2b2e0da4dc9a99e4ac89ecfdbf2c2d2a",
+        "casebrain-output.json": "6eafbfef5e9dc5a47ced7609db1b2ad747dd4441be7d8415cdfc29ac125deff9",
+        "source-capability-inventory.json": "39d638fd9d1353ee03f3ed39ba9b6683cedc656c6d701700291d7e0b33ee2ce9",
+        "vdr-run-receipt.json": "0b27ed0878361f9de53955f4291b36751d73f64ac54d57cb4fb6b17235fb0ba9",
+        "lineage.json": "cca3e0da7bbe6363d9bb6c44e76f540b102a160a5b799a41288c3e8e475eb926",
+        "bundle.pdf": "ab4b61bcae21f51f5bef92dfb3c9ca5d1edff23a8e2fd494677d35cae8728c39",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-038-violence-robbery-weapons-specialty-youth-dob",
+      "packetSha256": "fc36760021fbbdbe9667795678926f0c23fdb9aea6b2e987680c13b5b712d26a",
+      "hashes": {
+        "canonical-bundle.md": "3d543b9649c98de1f0340b4f3b17921bf0c5f8ef16e0ed71067119cf4ec6813e",
+        "truth-key.json": "da3d2959820ae5c4afe3314a13b236bc0fff785fbf19a311c3f2afaf06b020a9",
+        "casebrain-output.json": "9d482043caec127ce0eadb3607701b8fc9945ac9c91b027fee9e1069eea967cd",
+        "source-capability-inventory.json": "0ce2355f06c0c38dbf7a2d66770c1be90a97872d9d342d655b8c6d5f600135ad",
+        "vdr-run-receipt.json": "b59e82e41ca341f356f61a24d7920683f9c13fbe2468871771b3c7455b09ad01",
+        "lineage.json": "481309b92bb6131b8e5e7ce0361f6eede3185f6c8ad1da05cb74cc765b8d4be4",
+        "bundle.pdf": "9db42f8bc2b5cd5197bb4e66b2969ac6d5a8af2801c3dea8c3a7e019a9523284",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-039-firearms-specialty-youth-dob",
+      "packetSha256": "e8312aece6098e56184fe79ed8f58e65228066d665360f5db51097435b5728b9",
+      "hashes": {
+        "canonical-bundle.md": "d765b5f5a0b5d422bf9e92bc30327e59379f8aeac559219b28323493d35927b0",
+        "truth-key.json": "7f57c45f20d99886c792746511bc105a028a35aa8ada21724350f499dac3675d",
+        "casebrain-output.json": "d36ebaa230bb1f5287c2e4b9711659170bb9295d9ab6a755f3494ecdacd3104f",
+        "source-capability-inventory.json": "b44cfba594ead0b2b515554ea46fbd469930939ae69b3af042fe3dc59d68c0a2",
+        "vdr-run-receipt.json": "e9af558007350064d46ec0a4e55041463a36ce4f275f5d9eb38ab062e5ed9d25",
+        "lineage.json": "ed40ae48b71cf93d04d93b454ecd806fc99e18add4ddcd98f4222877c4099818",
+        "bundle.pdf": "de52b8fedf07c8e0fda48398f79965a112b2b2ba37656a83d3bf53e814cc35e9",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-040-sexual-abe-specialty-youth-dob",
+      "packetSha256": "c4c178d26e1602ee69bcb836eb28f019df9e053b8a5ba804b168b369aa26a248",
+      "hashes": {
+        "canonical-bundle.md": "f95011787a65b4a310f555f20e32dd62915220c055e8677896150bd3bede256a",
+        "truth-key.json": "60d0c43dde5b18f81a44e7db3578e766d3b4b057eeef57b327172acaedef1e14",
+        "casebrain-output.json": "a0f0084ef06f24b9466c9596a73c23a04b1a309108498dd2f399488925b14a28",
+        "source-capability-inventory.json": "f2534fb2beb466fa1ac2a40fbe7e6f7599204e1b084b33ca5e873970ce89df21",
+        "vdr-run-receipt.json": "70fd53cc13298a5f735ee4721861b9dcb13a9be71d5bea6a8135d5b34450d108",
+        "lineage.json": "2f043082753d43098c52f61c2a1e49a6134bb896b5cf290fa9d6758163295986",
+        "bundle.pdf": "7a5b840e47ce08e7da242eef7d3dff651868451fec78af2c4df387ec0dc0078d",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-041-domestic-abuse-specialty-youth-dob",
+      "packetSha256": "60876a3660f0486b083aec8c6ceec0061ff02f8912d2387773c5ec206a9fe16d",
+      "hashes": {
+        "canonical-bundle.md": "b015bef67da037eb9afdf63f6cd0845779a22b91fc9c22da655220f885c91acc",
+        "truth-key.json": "b357420feb4d6ed1e903968d75e5196c214ee8c8dafd2f82977d4361f7e50119",
+        "casebrain-output.json": "5a88d7cba654d1e90a0f47db95ffcf12ac1b7715733e26d6baf2941ee33cddc7",
+        "source-capability-inventory.json": "3b4812e58b92c38f9e9b4d8f5b8bcad6c093cb97fa4dc12268193b23da59f909",
+        "vdr-run-receipt.json": "9942870f8e65d78b5cbaaa090ce488a3ef51e556f31e8417852d0011c14fd3b4",
+        "lineage.json": "0bf64fde31f038bf15e3a7fea8069d280fe39eb289fd42ff0ec8bd6855060f7f",
+        "bundle.pdf": "7a0acc4df84a2e822dbb675bcc86c3ae86ba2e303ad4c607fc2b3576df9f1248",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-042-youth-participation-specialty-youth-dob",
+      "packetSha256": "b4277b5f1147d07a4681ee138fbe8ad62a2ccc8c3f98b3dbc07d342c8e8a828d",
+      "hashes": {
+        "canonical-bundle.md": "9e2bc401690a73ce1eb3fbb759bf421d261a901245c8c319dac3cfaa63565f06",
+        "truth-key.json": "0c49e33d83326d581f90e9acfa85547b3617b2dd5d364a676c1eec71eb02ab5b",
+        "casebrain-output.json": "f931e6f2f036f2f21aff8980567d416a981252351ab9dd113255682cb87712f3",
+        "source-capability-inventory.json": "a7af7577d08e2d598df888ce328b1b97d79e0e171bbd851bed235c4ff76842af",
+        "vdr-run-receipt.json": "d5cb7b5be94d93fd31748b134555bb603971f10e375bc8806208699e3972ec40",
+        "lineage.json": "dc29f6f53a07e6642584da05f837d387e59cf1c2798fe65faebb1b3ee49194c6",
+        "bundle.pdf": "c69eed9d5ac588fa0434bc881468747d9630b127488a781d41bf2ea594932ee1",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-043-county-lines-nrm-specialty-youth-dob",
+      "packetSha256": "2086160a114ff002b2f0e91c3276e408e991f3fd19bf2c43cb80916ff7e1be81",
+      "hashes": {
+        "canonical-bundle.md": "564a9de4e088c70b31722c731e60d5db4cbb2f8cb52f0b6e3515a17b24bb6646",
+        "truth-key.json": "c5266e11a610b7b6b0990d793b99589100148ba44051069c958fe218b0542738",
+        "casebrain-output.json": "685d3dc512e594c45892fc9fe3bafcb7b4fa41b45b6f5ff049ebe65592941d81",
+        "source-capability-inventory.json": "63a46ba8a4500a75a7160ebf09faaecdfebd15b287061fd0d7df2ee678f0f9d1",
+        "vdr-run-receipt.json": "be99ca46b885d4bbe76d1ff2f6d0ec74809b4c8acca2e4ff8b5566bd17d6e7a9",
+        "lineage.json": "3a4b46aa2a567e919316ed0b7993bcadfd92079fdd9ab39a0ff174d7eb66498f",
+        "bundle.pdf": "3da9fd26b873e83f34d77679c8467f7c193812e4f3cd1d2746c8e806f4b5d4df",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-044-fraud-poca-specialty-youth-dob",
+      "packetSha256": "c38343d28d701303681b2808e9cf92a4d3d2848a6f6457ebc0dbe6f6aa1bfbc6",
+      "hashes": {
+        "canonical-bundle.md": "1c2d418766b98ab61ae04bc26ee585ab1722ef184a89ad305e8712c127d3a007",
+        "truth-key.json": "2bec558fed22b84134d8a8076e445aa324b2c5e06fba116af6063605730dbd10",
+        "casebrain-output.json": "512442bbc40d5ba111b201d5ec803c075ffe84dc92a06442641837e2a2543c36",
+        "source-capability-inventory.json": "57e57d73c4a1e3ff284984106f3f917adb0aa6f663073ab4272485b89fc62c26",
+        "vdr-run-receipt.json": "fd5cc2915f3293697b0ed6b0102e3be8f701f593d497df2dc5123d1f7a9df8ab",
+        "lineage.json": "97d6c8c52c1c913e8b00ca448991cd36bde43356fb9594791c79684a7c7b1e14",
+        "bundle.pdf": "94e05114d8b3c05f70c3f7477b325ad3e090e1ad267ba79566a39e7b12665e35",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-045-digital-attribution-specialty-youth-dob",
+      "packetSha256": "06849fba5c98ddee63333377ba2fcb28abd9665dc49a419e81d0badd76091832",
+      "hashes": {
+        "canonical-bundle.md": "f6fa3a55c341f7222e3991a28bab2fd2b6300da4989239fc3850de14aecbe47f",
+        "truth-key.json": "030bf6f01b3b115d5dd85df036a8da6f1f45341d6806e81158df52958763eb0a",
+        "casebrain-output.json": "e7a446aef4771e8a4b81d54899515ca6e51b187dacf650ec3c4043136b3b77ec",
+        "source-capability-inventory.json": "464df73ea556894dbfe00c27886e1e641d83552d53a48e399375bb0801f78a40",
+        "vdr-run-receipt.json": "46d876431593e0175a5ead1bf1465ccf07e8ad6884e73a36538355d35ea52233",
+        "lineage.json": "e9f261022cd8d548556ec165d0832c2dbe6828f2752f8251cf84f2c6206190b6",
+        "bundle.pdf": "f1927060939882deae2d8fc98b76fe132a819c53c679460fc525a1d5d5c3c956",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-046-identification-code-d-specialty-fitness",
+      "packetSha256": "fa75e6052574ec844a88cc8b29a4d0743a334e2908161e9fb1fb2567c34c2775",
+      "hashes": {
+        "canonical-bundle.md": "54aa5e07b88ba48703aaed691765a66806e14ed8fc3d4b0e160fe80dcb14969c",
+        "truth-key.json": "0dc5b015aefd42fcb3ad5ec461bf70d4a242efd8ed718d97fd2c31c848e96981",
+        "casebrain-output.json": "9b9ae246ff766fd4333b6a1aa41af6a54bafe6a796a0454ee2feddab11033d50",
+        "source-capability-inventory.json": "7e35311bed3567ad1ab0f53f9c0be59b51c8cda6286cbe2c6edc8e99045b732f",
+        "vdr-run-receipt.json": "8a4c0019b48f790ca4d53442ca896a48c6469ebaf823f183b73c6ad8bfd26791",
+        "lineage.json": "c8c266b114586f4138271ba765a42e38a0e7153fd4fe7b1fd8ac29edcd0778cf",
+        "bundle.pdf": "4bdb9e21899db44f5b3f87fbdb1c5b0fe611490e22ea0ef08f9df0f28a89298b",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-047-mental-health-fitness-specialty-fitness",
+      "packetSha256": "aa31900381970a5ff6f8ab2bae10b6eb951b4a3b37d1c4bde07c70e53ee6af90",
+      "hashes": {
+        "canonical-bundle.md": "733cec207e4384a55aebee2d5ecbe1b980ca35be9d190d251653e3250e4c14e8",
+        "truth-key.json": "0ce874fa2fb468215facde416a8555eee539f913b98b99052e599c593b764b52",
+        "casebrain-output.json": "682716d63652c0e53c285c87e4d55249b3fab27e9999a3bcecb53ca2c31c4c15",
+        "source-capability-inventory.json": "0a20a9540096f75e8b5629c4d48b7562815488192c15a7d8d0d4bb4f1956cb43",
+        "vdr-run-receipt.json": "9624cf63d0bf04f3da2aec80b30f47fe13007ba07980d830c1418c616abfc59c",
+        "lineage.json": "3f3f475f7cac93177001364c155aa4b29147db12b9169e14fed1c683db913918",
+        "bundle.pdf": "6c19c1ed2c8863f16b454510d9d2f8a4478f23a3544e2f78f28f8986c9b4c219",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-048-disclosure-pii-specialty-fitness",
+      "packetSha256": "0950343e235bef86a8b1ed380cfb7d0b6e1f2d73bff4caa3363664c4ec7760c1",
+      "hashes": {
+        "canonical-bundle.md": "eb8dc82376affb42e6336b2b4729d166edfe4a57c91f21b0c15fa8b534ca91fd",
+        "truth-key.json": "b231a6a794726abec9e2cf9f6169ded9f2d7ac4bd1c29d92712f2e131c268cd5",
+        "casebrain-output.json": "3fe901c6b41dd513fc48cd8039cf58e0df0fd98c213922d4833247a0b29fdabf",
+        "source-capability-inventory.json": "6321031c37ac958a036e9fff0817ae35ef90788fe436e56b3efbd1e7e30f250f",
+        "vdr-run-receipt.json": "e3d7d53edbe00547fe002a4a9a9fc8dcca7b42d67f8b7f63bc97fae0a8373667",
+        "lineage.json": "8a692001c83d135a20af4448abc75ac4e4057114cc59f74108b480799af568a5",
+        "bundle.pdf": "93f8de57f8d13e8f2b1323e91e7ef70ea30bf71226afb0a3dc1295b16a589736",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-049-road-traffic-fatal-specialty-fitness",
+      "packetSha256": "cfd94fca138c665f9dd7e68914385b1a0c016b519c3f1b17ad89d8dcbafdb993",
+      "hashes": {
+        "canonical-bundle.md": "558299280f81848eaa29fc6fe9c28b94e7a42a3346cc8ccdf1e4afc18112ee95",
+        "truth-key.json": "e6f8c2585958406104c6c70604f38524428fe9f5b7592aede50eee9e6f920707",
+        "casebrain-output.json": "6b732fc4de84091ee1aa37a5c4fce5de472074c8ee4e92b9630768a00f2e6365",
+        "source-capability-inventory.json": "e65d4e181fac2b7c54834841808d04e68d989f1f98bf8d65c9998c5503e1e466",
+        "vdr-run-receipt.json": "cea990c329ae5cab3e3aac6b164099896871723e5e2f5af8e58393b1e731e0c5",
+        "lineage.json": "dfe65f4a1c0b968cd5aab58de6a654d5d264866bc80db6af903ce31669864402",
+        "bundle.pdf": "9b9302781575049e5aa72dd4d14f239fd7747a588ce5037d1fa756a276f3590a",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-050-magistrates-procedure-specialty-fitness",
+      "packetSha256": "93334057753a103b91abcd28a2312a9aff018d4e929b39bb8f83af391ea17a1a",
+      "hashes": {
+        "canonical-bundle.md": "21966a37268a8d052240930229bcc917236d9da169a625b484f1de38bf783ec5",
+        "truth-key.json": "38fc527efbeac26e9db05878760b5911e74d94e1860e5565487071101f9a1033",
+        "casebrain-output.json": "eed9a720360db51b73d3a8ef8d4224c8526b49c11e462d765f2636b2ecda400b",
+        "source-capability-inventory.json": "24802e716421ae93e0cf74efc8ac557326d60faef023dab72ea39269dea137d3",
+        "vdr-run-receipt.json": "26c2046bab3e28105d08a953468fbc9841dff1cfd27a37af2afa956e65eb73a8",
+        "lineage.json": "8103b56756dc4535acab709350d4c6dac5f4e4eb7cc50ed29a50a1d7610a5171",
+        "bundle.pdf": "15eb551993b635ffe4632a6d862d691596210a9924ef893caecab797e0cfb52a",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-051-bail-remand-specialty-fitness",
+      "packetSha256": "b102989f9b01b65e19673d5d48952cb59c90501926939bb9aea673526fc13619",
+      "hashes": {
+        "canonical-bundle.md": "49fc337d2296884c95d9ef2b3d47c3091c397e829c99352bcef38c7664bfee15",
+        "truth-key.json": "dd9096410a919163875fd210b1f4126bc5d03f7a51a807b67a6073ec3086ec68",
+        "casebrain-output.json": "6f14f2273a89bfe3c3849eb5c2375534760b60367a2657a068fa47d3cfdbe656",
+        "source-capability-inventory.json": "5e08ead5edaf5e4f273d9943ab9d85ec75ffdae90fdcef8d63527a39db56a84c",
+        "vdr-run-receipt.json": "70a85a6742b70595be56cd0afd699e0b885ef0549ca879192b57149a914b064f",
+        "lineage.json": "e55ac6ed7454931702729c604f44949755af1be16de12b05f718733086e1c746",
+        "bundle.pdf": "3374d0fd7bb2fce2519e11c63816905a0a99b175fdf0e293d656dfd76d90798e",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-052-sentencing-newton-specialty-fitness",
+      "packetSha256": "ebb149cf93eb9b5237fe548f262a2dec102755602d842ddbd3884250404c87d0",
+      "hashes": {
+        "canonical-bundle.md": "bb7575d3ec7dfa3798f76131c80d4b0350a0e65e68917b56fa4adba914db9cf6",
+        "truth-key.json": "adee25f6e2e5d21c569e6fd0310f10ee62e8d8f20d92a265d20088b40e978389",
+        "casebrain-output.json": "ee9b598050600cc39856db7816205cd19e48d41b6e7c649fe0c35b4ec25a308e",
+        "source-capability-inventory.json": "292c7ebef4cfeeb9bd9ddb21258e292e6e5661cf4f380ea0ff94f165342c8d90",
+        "vdr-run-receipt.json": "aa1447f3f1f0fbc55566d60a18db1020d1fabce9faad640aca0bd015f5709bc7",
+        "lineage.json": "6340487a69065bf4abbda9765ff613c48b2c553c679a1fb7a89de357e28eb261",
+        "bundle.pdf": "edcb931ba3efbddc0c1e019469f22c40ad32e199ac1cada731d9f6eb9cd7d967",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-053-appeals-specialty-fitness",
+      "packetSha256": "301155790daad2c7ba0a099f0a3b7f80b50404446cf133fe8200e5fb7ed5328e",
+      "hashes": {
+        "canonical-bundle.md": "523655c736e5b19ad7a0412a4123492f21cbafd42c03d574fbfcea5e7996c5ca",
+        "truth-key.json": "5c90528052a28fa30ad92dfc3a20b755ca180c0cfbc11c88b9de363d22d112c1",
+        "casebrain-output.json": "18792c3a85777359ee7226916cd1f1d50629d26e2e7763a312bb0a48858fb31e",
+        "source-capability-inventory.json": "ace1a70f32306df5ba357593bd7a77fe327d0f07350be87500d3ad29b8a60563",
+        "vdr-run-receipt.json": "25401ce86c19f03f8da332db9619d33c8eda2db62e64805645bc5ec0763c3baa",
+        "lineage.json": "2f61ee7894c338258ab2e9543b7ae8f18419455795adfddc1505863f803bbe28",
+        "bundle.pdf": "b82dc4830307296fa5858f8dba79d2441c16f823093b5e18d41e9b77209f317a",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-054-multi-defendant-attribution-specialty-fitness",
+      "packetSha256": "32bb90fcc4d70436b5886ffa4a2970b4d90bf5a9a84d9e0c6f8d28f53e4b0af5",
+      "hashes": {
+        "canonical-bundle.md": "5d11a2a175247256998b6cd019ee44177c4734f1ef80ec5fe8ed84580e5b7ec4",
+        "truth-key.json": "4d3d2ac1e60342e7a965304bb5abd6a4afa2fc2eb8f99705d5ff1350f3febd36",
+        "casebrain-output.json": "85466535c104269fe045017b68d47045efb76b8dd686cb30b1b35bcac8b0a947",
+        "source-capability-inventory.json": "649e9b472b10c7a11ecfdbc28111163c99d76d47cf428b8c6cf93d41d1b5acde",
+        "vdr-run-receipt.json": "d32ff82cfbb27cea9a1dbc8b369bbbf028de4f6d6dfcb800e7bc3b00dbafbe24",
+        "lineage.json": "a8064e8245e935e944d6557383d206abba1a7849bc3df2615e234e638365f009",
+        "bundle.pdf": "d5a00b372a6644733a458834321802997affb3c9ce8804b618921b1116a3a31e",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-055-homicide-causation-specialty-fitness",
+      "packetSha256": "f1269c263187a341175c815227be793207225f8e04d6bbe7927a4357498a3065",
+      "hashes": {
+        "canonical-bundle.md": "8c9c97bbeebdc0ddd791cb780ecf7dfaa3e0def96319d7a9a9f9b5ff83ace822",
+        "truth-key.json": "ec22c64a554b7314399ff5dcd20df3cad1c3e6e6e70e7fa7b8f6b4f2bb4f0f81",
+        "casebrain-output.json": "45f36fbf52ce279cc6f5e74713425bc32525aac09d96e0dafb747bb9f346abd1",
+        "source-capability-inventory.json": "188e7b3f8294d2b27a014d0cb870e9ac67c4033d636e00eb3635742012cf666a",
+        "vdr-run-receipt.json": "f3106e618f0e78f231705017f4a0614308d75eee6ac8e2d65d8ccf3e52ce128d",
+        "lineage.json": "0861aa2e3b88b58b5201f78b23b55ed07ad320ee9032c824c9691c2d42bd55df",
+        "bundle.pdf": "4474f50043a784e6f60fc27e1e136bd930ab5a33bac2e72a55a2e27eeea27df0",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-056-violence-robbery-weapons-specialty-disclosure-pii",
+      "packetSha256": "81bac69736bd5005ef7eb71b8e57a6b7605e444ec2413c64ae5491f25a6a45d4",
+      "hashes": {
+        "canonical-bundle.md": "3d4e1ab3f3ff79acda039bf816eb5fff21417b57b8dc684532841b9d90779e9f",
+        "truth-key.json": "91c3c16177c22c7af3dc6813cd4f520a6052ea34d4462c33554901ac7f54892c",
+        "casebrain-output.json": "809840ec634e5accda3632abeaa5bc035020a561a13596f521ea9a79f86eb0b3",
+        "source-capability-inventory.json": "18241cd1088adcfa150f01bcffd6620f9eb5419f3c92ac31e1fb55ec076f5ce2",
+        "vdr-run-receipt.json": "f1c8698392ea51ff3ce50924ca3dd5c4e252734e119dd037c9e765f9943b604a",
+        "lineage.json": "1e96f17f25945ca3c1d4d0d0332fc19997873407b9346d14c82469c9e7168937",
+        "bundle.pdf": "a9738ec7c0bc3eb566e32833da33209d673fa7a4cbd333a87d15e0108dfdf1ff",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-057-firearms-specialty-disclosure-pii",
+      "packetSha256": "0dd49701fda1aeb6b0925b7a0e8d16c306110759937d5a9777424a349c925df3",
+      "hashes": {
+        "canonical-bundle.md": "ab6d98173b01071c187493831f9ee51cee7cd525606a5206cf30b3bba9a79691",
+        "truth-key.json": "c8e27bc1ccff2e45e8c1dd37118bf177d57303c3d6603f67e796c9d417f7ba1c",
+        "casebrain-output.json": "9650a3ba61ab7ee344cf8f1858e0fdec70aa34e23edea7dc218730ec1a5448c8",
+        "source-capability-inventory.json": "a70feaa14e01cfbad055d57dee6cdca25d2516dddc46fa1d954d808bca48ced7",
+        "vdr-run-receipt.json": "fe2bf8422bbfade145480e55546f0bc2f22ea359c5e5f460232e386b4fd61d4d",
+        "lineage.json": "ed38d0339bbc4eb6cfb765908fc8dfe9eb5273d2ea6d696a5c36ec04749eb449",
+        "bundle.pdf": "99bbda1304792af1e546668f3adac9e3f42edba3fdbf265f7e48fe65df5d82ba",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-058-sexual-abe-specialty-disclosure-pii",
+      "packetSha256": "8343f5a566098989109b3b941de745ee76283c9cc37cf2c79e4b67816477bc4e",
+      "hashes": {
+        "canonical-bundle.md": "7033608cc5b6884c0c2029d15e1ffb7519a1893d959188103ae9c1c8c03d226c",
+        "truth-key.json": "a219c6f6620f754c8c790703056c89e688044da6922e71e9f048cfc86e9dd3df",
+        "casebrain-output.json": "12d4d2ef80837939d36ad0244b5d4d2f780baffa1ee32cb7f7ea3a318b1442c3",
+        "source-capability-inventory.json": "eeefcb41ee86416b8e8747a62f18fa8842cebf22767b6221b58544bafdd6cae7",
+        "vdr-run-receipt.json": "b71f9893fba5c87831d240aaed5b1deff703279923790755332541ac93567542",
+        "lineage.json": "66f04a10e04aa2869f6ea48a6fcc5edddd8f6233e2123cd7237a4bc37ed0ab16",
+        "bundle.pdf": "3d35928740f1f55ff1ad08bfce7d83004729153becfb3ba8b5f2df0e5a1d27c9",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-059-domestic-abuse-specialty-disclosure-pii",
+      "packetSha256": "7ba8084e07e89afbf0af60647dbb6efbef2dbd50f617cbc5dd73143a0c2d85b5",
+      "hashes": {
+        "canonical-bundle.md": "5442f69c78179d01ca9a87524aaa56683e53cd7a05083b8caf8475c156044e40",
+        "truth-key.json": "d1544515afdfc6b4fc0755bc3f7d048648ba867f020b9c57ad58d9e4c019727f",
+        "casebrain-output.json": "ad9957e9687bda62cfeed27083826f0c92a16e026223f2183bab2fd389460510",
+        "source-capability-inventory.json": "e30ac3e8f6158999ba4c11318b3963f88edb7b2bfa2523bd0689677c27370c95",
+        "vdr-run-receipt.json": "1bc1e7ea6f896c46799a684eecb9f6055d1ebf818099ac0b5a2b7bd385a253f5",
+        "lineage.json": "7a281b9c0c4d1f5430b00162ca1382072a6866eb00bf153965e8c3eb5db4b8c7",
+        "bundle.pdf": "4a4326e9d3e6988409743dec4974627c71466c9cfd96f141c9df83e73061f3b9",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-060-youth-participation-specialty-disclosure-pii",
+      "packetSha256": "07b7e69986464a23110905720d39545d67716b83ba60ff5b6d745777e6664466",
+      "hashes": {
+        "canonical-bundle.md": "ec1c9ac6d0c3cb92dc9c0f32f7b0ca5a593891d80c645d30730a998331b27ace",
+        "truth-key.json": "0458512d35e9655154b8fa65798e9ac7cabbde415099c4324969a563b233b3d1",
+        "casebrain-output.json": "ae4e03a8333a294861b8c36615fc0e29262836d39395634e9b202c5c1f66f0d3",
+        "source-capability-inventory.json": "0d9bdc8a724638f31d3de7b0476fa3ed766ad37d06c2f775dc371371d61a2699",
+        "vdr-run-receipt.json": "caa0af212a045e1f772d601f21cb9020bad3eb44bc1a53ce8db9ac6fb8380437",
+        "lineage.json": "1e6e072b1ecbb4a2fc74d027b30a924a9ca2cbbcdda43e0e2de95e0fa58980d5",
+        "bundle.pdf": "0e34e2fb64c2af3e0e031b53d2776e8a1e4adc5bfcdfa468c27cfde388ef4892",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-061-county-lines-nrm-specialty-disclosure-pii",
+      "packetSha256": "e109ab7ce905d1a619e387ab2db5f76edf71cd51391a76128552670d586955c7",
+      "hashes": {
+        "canonical-bundle.md": "07810712749e24ee88e0ccd8aa400f0dc5763cd9ad225e413ac7a671d47ce6cf",
+        "truth-key.json": "1d9df5f866a370649627688d3e47fd27b66892e8f15cb3af9f756d7ad314b1b7",
+        "casebrain-output.json": "93c86ae5435e6486d8f47a43f683955f1855f86053b39384b482331b021ce955",
+        "source-capability-inventory.json": "39a77457303973f48cfff5f8bc9417180c357f3463d6a1fce9ffd1329842b6e9",
+        "vdr-run-receipt.json": "d895cc54d0cde9e7381612490fc68237bbedfc41694a607e02c6350c969f36b3",
+        "lineage.json": "f0b8edc540037b35a583d1084337d65a7a7bca07f1ee1a36c81a7f2f2e242c19",
+        "bundle.pdf": "58f4534485327d04336d91fa918caeb2a8eb109809c0b9cef427cf28a95216ab",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-062-fraud-poca-specialty-disclosure-pii",
+      "packetSha256": "22cf029de009e06f1956e7783ad19eb34f112f201279ea9776deef393da20902",
+      "hashes": {
+        "canonical-bundle.md": "93178e91f386da598a8d0acc853dc28f3a1b471f8767ee8425b034aab3ee8527",
+        "truth-key.json": "7b2fdf33a58a9664fd3b36e5ebc0ac28956b6957835570313afb52491edd6bbd",
+        "casebrain-output.json": "bd4d6a9538395365dc8ad126309e65c8453c81941b214bb96d1ebba8af5c3fb0",
+        "source-capability-inventory.json": "53ddc138d6ace17be500133fa13755075d30df441b733647ef3a7d98394679c0",
+        "vdr-run-receipt.json": "431e2c09bbf4d3e3e511b8030d9622dce763124f55e3fafb5100229dc7bce1a5",
+        "lineage.json": "67826dcf49ae6a3c6906ae85b4095acc7ab0d060379dc520f5e731ab0c23e2f5",
+        "bundle.pdf": "06e27b3e94e98766834640e3f04073de0b7776b58cf10f7b1a854c3aa2631271",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-063-digital-attribution-specialty-disclosure-pii",
+      "packetSha256": "24163e7f2406356b5d58a0d29ae12cf2bc5c680426145db90bd19d19144f9fac",
+      "hashes": {
+        "canonical-bundle.md": "7f41102b7be78bacad7e532fc514bf81f89ac3509a9191b53a12176c92bb5b34",
+        "truth-key.json": "c02c84ea31a54c637574694f8a4a1bc1887a259a55fae7d4be7f2a37df6bffc3",
+        "casebrain-output.json": "a50af9af903acf3d9c2e4085c73fd3ce941a500dc7c0aed077eb4e2330e6d2ae",
+        "source-capability-inventory.json": "5aca700b571f3e7d89cfc41db1275789b4ea8026c6d39603226f6f9ea644a842",
+        "vdr-run-receipt.json": "bad59d2b36a367ae698ed1fe2b5bb4f39de2ecab7650fa3d55e7f5c28778e723",
+        "lineage.json": "f98a9ff74d6f7657a3fae8d023f9795e1dc7fc6d63a134d8ff880d3f428f1f2d",
+        "bundle.pdf": "825cd7cd936fa5e063e6517ddbe2a7d56e5e3adaedb575f4ce23a0ca37d4a034",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-064-identification-code-d-specialty-disclosure-pii",
+      "packetSha256": "ce504d9e53cc58016b6a30e3b6086c471e057aaa6f30c5dd8b547870d95cd8c9",
+      "hashes": {
+        "canonical-bundle.md": "4437fdeb5be302593c87970f9d27489b09150a05b4a7db7f388a900a018444d4",
+        "truth-key.json": "ee24d11e8af1ba8b8cc630f79b76bbfe25f8315d19a30bb949907e2b9a6bf852",
+        "casebrain-output.json": "d5f5bef36c11c325f4d9772c61a18a0f818fa612dc3b22e1ffd012ebf84a8f5e",
+        "source-capability-inventory.json": "3558071aa258f114baeb5c047b670bd6abfb6d25c017e663bb97061e1f8ff7e2",
+        "vdr-run-receipt.json": "c290b87f7289fc5fe3401c45eb722f930a9096b9f76f9db16080fb8966f0aed1",
+        "lineage.json": "d9e05b77a12db33abc8baac310aa4c634dd3bc56afaee9fc68875babd10d1549",
+        "bundle.pdf": "af0c208e84daa7c18711d548662f8985e358c974b6078721ebfdf9b4e2026748",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-065-mental-health-fitness-specialty-disclosure-pii",
+      "packetSha256": "5cc44cd1548401b00e434a446269a887190639c934ba43693d29675de3769414",
+      "hashes": {
+        "canonical-bundle.md": "57d04207c9ebda46c14b655ea253a3769323be6ab064c039f64a5a7ecdf38395",
+        "truth-key.json": "2bb6c946a6f97a996a5aaa6f4d73346f7f84878565e33d6b636b5a063f45e323",
+        "casebrain-output.json": "23a507bda9f82db8d6dafca35a25543f02dbbc3049d47e752a152e3a7f153058",
+        "source-capability-inventory.json": "732bafbdb016b4a24c6bd54bb05fa20f5d56f9d26d9d1778a81460724fa65b71",
+        "vdr-run-receipt.json": "b06c0b4b9f5e6c8b36fcb0e1abec8441e017e6e1e6f419056cdd489f11ad2325",
+        "lineage.json": "04ffae987d113c5383582899a714b65a27909547708faeb447700b2aa0a79d6a",
+        "bundle.pdf": "c06d96817b873895c941d3ad6e655340ea386fbdfba4f25711e50cbd8d4c0f55",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-066-disclosure-pii-specialty-legal-taxonomy",
+      "packetSha256": "4366c0d7c544c4c388496e0881f284be59de2ffce0ddac5d72864debb68740a6",
+      "hashes": {
+        "canonical-bundle.md": "be7abe20c2c23b52860475e3cbc21616e43e94ee1a8a5f4b84e944cb1aa3ae95",
+        "truth-key.json": "e634ebed0f8913ef4fdd97a0a19536efa1dfa53bd805fb5634cad1d53717531a",
+        "casebrain-output.json": "180aca5ebbeea23166e0644e31b60b288e6994928a4517a010701bf98cc3c3cf",
+        "source-capability-inventory.json": "69d94ac26b34345310fecd9bf37cd712250a86b4fad7064283d8a2aa38ed5992",
+        "vdr-run-receipt.json": "491347ebf75f204afefe1c42f4c35244e4e785accfa35643a1c13728f1d15bcb",
+        "lineage.json": "b1d0e8ce8c57aba9b3781ca7deb7d88657392ac5c12f4b0e16856edd95971521",
+        "bundle.pdf": "1323862d7aa977f5c2bf79525ab9fa4fb8b9131278110f99aa830b1b499cb143",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-067-road-traffic-fatal-specialty-legal-taxonomy",
+      "packetSha256": "25554f2075f434a0693bfb60b73776dc1552281d15b0ce55cc63556ce1d852d5",
+      "hashes": {
+        "canonical-bundle.md": "7cb87ce73ac584bd816e259be819b001785ea77cb13ec80a5e431390888c4a86",
+        "truth-key.json": "f58135f2393e17714ac2cf1ac3d01a04f6c85949f9d6427410cdf1e763e04bd0",
+        "casebrain-output.json": "64b78c9777084a401b18ce6b084addaecbab14d1ce48f594845aeb6f910b138f",
+        "source-capability-inventory.json": "cf7b7030014ce5d42d002267fc882cf648c66c9851aa69a0b86d8795c615c8a1",
+        "vdr-run-receipt.json": "385be41feef42af4be70ab27979688d743f27c84dcccc98f81cdf27bfe0111b7",
+        "lineage.json": "d099b7f52a4fe1e26d75a6773ea8f153a0fc0defd74f679e97950ff2985edf40",
+        "bundle.pdf": "9804d57817589100939811386b6d9b84c5946021c235eaad5c1aa9e4e9f9db1d",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-068-magistrates-procedure-specialty-legal-taxonomy",
+      "packetSha256": "5c59643b2ff0350f1687d6c8610bd3479dc875752a0c50cc7c7d09b134fbd61c",
+      "hashes": {
+        "canonical-bundle.md": "6db73894be5945e3b788bb74f46efb35f0c1ef94f3b81e031b83db04f0c56956",
+        "truth-key.json": "73e4fd3f01c993245a3282ba4281fbc6c9b3beef7f04f922ebba9136857e0232",
+        "casebrain-output.json": "d90b030bd846b3ba5e9d72e3de1e0156e7f70086d6d3d49169566ee15dc5b6fe",
+        "source-capability-inventory.json": "169e84ad1d74dc57d15dc18e20cfdb5fc0dd02bc03804d77ef9b4a227eb4d18a",
+        "vdr-run-receipt.json": "d43caedbc8086138df315e279ebda4599ade2d3f7847f29202973dc37124b366",
+        "lineage.json": "eb1b0ad26f64f90d14aa47b175b0f5144c143924f059e25db2ceb5e1e9c7b0b1",
+        "bundle.pdf": "e41784388b8eac845b980625916e0207195a9a2ecb3810dc285c3ac72888d409",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-069-bail-remand-specialty-legal-taxonomy",
+      "packetSha256": "3361a268d488675adfd9f37ec719e2430dab9c4be4862593154c3e3a6e8931f2",
+      "hashes": {
+        "canonical-bundle.md": "a69a3112d078aeecc2ff02ce2a5f4d0d95496bdaa4ceb56caec3d968c998e424",
+        "truth-key.json": "891b371a10db9125e0ea66e46758d5bfdaf99111e01f5eeaeb16c1db16bc2ce4",
+        "casebrain-output.json": "5d75b6ea0d217d4c58b8f8f1e17d0d7ffc41fd45ab7b815f0c3849b4687844a9",
+        "source-capability-inventory.json": "4c43411885d0c03872d8cd40e819a487d49316aa4aebf7070fe9b85239513986",
+        "vdr-run-receipt.json": "5839e65409a047822407b8cef90a17d23398fc2c1d73e65a0ca15a758583b508",
+        "lineage.json": "4ad11475bbddd445cd8640be2c51246d1348d2533aa07b485be3d8667de77ba9",
+        "bundle.pdf": "01f642c21cf5b6d901561020fc51688176fd305b855b1bafa397f58c8df3cba1",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-070-sentencing-newton-specialty-legal-taxonomy",
+      "packetSha256": "95ac3679f9ecde95b02c85f92a52e51a912995240e1fb46632d21f037c45f531",
+      "hashes": {
+        "canonical-bundle.md": "e86085b4c69a6f02ba569cbe94853b43be32bff455435b75d41a53c57cfc4d9a",
+        "truth-key.json": "648b08452d925feebbe53dc2a58f23c90047cb04ed007efbefa2ae171480c5d9",
+        "casebrain-output.json": "602b419b96a4f0eaf1933869b77b34d514e5e84a6ec286f2168d5cd94dbd44d4",
+        "source-capability-inventory.json": "cb706d7f95f24cde1938fcd4f913764b4eb57e527c609efb747e6d25e107f6be",
+        "vdr-run-receipt.json": "c2a288563626fbd9139e7f6a1f39a0c93bbc7ce5ac59ae127443eda7e47cd918",
+        "lineage.json": "25b79b06773d62f9af867c02cfe471715253571018734b24ac413f4ad89e2b7d",
+        "bundle.pdf": "f72c035f1e6c6e5d67dc368dd880030b1d4848be1c0b7e7e39078f9ec0210ea4",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-071-appeals-specialty-legal-taxonomy",
+      "packetSha256": "09277976bc2c1fa83b504601fdb183d4d68cd60039dff8613f8deb3b6c7f2c67",
+      "hashes": {
+        "canonical-bundle.md": "332a445fbe5b8778b8aa2e0913a74e7b634bd78ec6581d86918f9daab96eeb9e",
+        "truth-key.json": "a3f13e7e4cb70024b386e522f1b2abe4c3ea584e4498caf1eaca8e29e1bfe228",
+        "casebrain-output.json": "4d74a92913e547563e6f5bedc9165e0821e56830f737a8d1e71d4ab62ab802a5",
+        "source-capability-inventory.json": "3df0dc7dd061dbbd54b3a2947b855468576e587c62fd70b84b7d2b44fa15467c",
+        "vdr-run-receipt.json": "ff2f508e5b370b662185358440ae189f300c11bf6e582e5fb54face53a598dee",
+        "lineage.json": "c07e5c5bd004cc986b5e1303073ff9eb886c90df078f82a7a80784097dad0b2d",
+        "bundle.pdf": "10b8c4cab2a980e2cec824b327f700d323f83a47c63c35eaad7b6c2b7e3fae19",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-072-multi-defendant-attribution-specialty-legal-taxonomy",
+      "packetSha256": "a10f34fe4fd83a061858f91408aec94ad2c3379a338f23f8216fd4a83f75ead5",
+      "hashes": {
+        "canonical-bundle.md": "b572a86654b58ced43e1507e388bc7466d9cfacdafeb195c362984ace635c03e",
+        "truth-key.json": "9cdb1ee5577f33f42dfadb0f60fff63695b23d8edddfb2052a296f2d69187f0f",
+        "casebrain-output.json": "b8b9e3a52cc31ca1b68b3aaa24b22492c2b4bc3ad0d5332c52988b5272337f22",
+        "source-capability-inventory.json": "cfb4157204c3d323d90c56fc6d8f398a598f7b4ef5074bde9ae4a1f5cd7cd0d2",
+        "vdr-run-receipt.json": "f9bd2fab11c4ea42a4351282a9dac5c6c1ac30e0ca0e4ba321d0e80017d8d80a",
+        "lineage.json": "966da56e73e306c49599ef34ceb05754e6412c7e9e6f756c923595bdcbf074c0",
+        "bundle.pdf": "6bb57553f2219f3df7a2e1000e48b86395c74aabe123ba165f0c387eeb9fbd40",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-073-homicide-causation-specialty-legal-taxonomy",
+      "packetSha256": "3909a900e9f1e71081316b23c91402043740303c5ecc19e424ba4049757ccb85",
+      "hashes": {
+        "canonical-bundle.md": "89e177117c72514d557468785c1394d5b88ed9be3ed7b432859b75417724d1fa",
+        "truth-key.json": "842ab51cae3d614f6ff8bda667d5c49ee23e7a304ab4224e8fd3aad66b850f78",
+        "casebrain-output.json": "ad352e21297db713b5915e24e1860c61d0937f439fc081ce3b7d747099e602b8",
+        "source-capability-inventory.json": "de68b1454048e18833b389d42ec88c4007e2025b7f7f5739bc34ca64aad83d31",
+        "vdr-run-receipt.json": "62e52734b9e8993572655d6e20149b14cd96115c49ebcbda8c220d2d28e4fbb8",
+        "lineage.json": "20fd530444f161fa94331fa33ebe4a872d78c47efe2af2c37ec4b7c6513ee184",
+        "bundle.pdf": "10faed58180384def7da99b2dc8f99cf09186fec35ef2bc59ded871cac2fd708",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-074-violence-robbery-weapons-specialty-legal-taxonomy",
+      "packetSha256": "531ef24dcbf1aed7542a95914f9a2d39266f4122337194106cc98687bb09e1f0",
+      "hashes": {
+        "canonical-bundle.md": "13b0b5cfb4a9d6953eb16151d082509c29fd51fd3a0ca659549a9d55909afd22",
+        "truth-key.json": "eeaacd6b893663bb0a6c53d1ea759c4e436b3a21546cd64529b3ad4c4aa865b0",
+        "casebrain-output.json": "6b3b1eb62aaa99be995cc542addf0601ad0dcd45904a2cef5633af535811a652",
+        "source-capability-inventory.json": "0d44a6cc8a506ab9e55f09baac6339ebc24e46957db0f37d14c14cbe70da402b",
+        "vdr-run-receipt.json": "b4e745cd2381948b4dbda4d5da9e7635ab28fd113c8d50f92065457e17d348dd",
+        "lineage.json": "c159c760892148c96a2b498378452d579ae156320fd458e734488ccb6ac994fd",
+        "bundle.pdf": "79f97e4d55641852e16c1ba7bc4bce5608a42da12b1af210e13a8d253ed55b2c",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-075-firearms-specialty-legal-taxonomy",
+      "packetSha256": "1914568e7fbea5e98f53508a4239e316182b3b85e158c87d9cc7c296f2229c1f",
+      "hashes": {
+        "canonical-bundle.md": "723055e8173f7fcf0058a8e78522074e9d128c78f9e436ed9c5111c83c181c35",
+        "truth-key.json": "6fb7f70851de3e6fc3aae71de77cee0a29ea6c0f3044769fc2e497382239b346",
+        "casebrain-output.json": "43e7d70d9711948049fe9e2a9057be82dc76c8f0f36bf6be3bd15bb91ac575bf",
+        "source-capability-inventory.json": "15a447343f9ee6b4e5b14eab7fc6af121cb558457d09a1d041fa7c39d1011b49",
+        "vdr-run-receipt.json": "14f2221c5a631dba0d7c24f57bf05ec3821aac8d8edc6416fcb5fe9c92fa90cc",
+        "lineage.json": "d2cb7a326a0eab7c86a9992d163c8cf9beec821abf461b8045a157877267d242",
+        "bundle.pdf": "8852b7c49efe914327244206fef4778328a0b0c6f5eb02d6cd5841e6e7375af2",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-076-sexual-abe-version-draft-pair",
+      "packetSha256": "6fb6032fbf5625fc1ff0379ffd33b6e7e55c20c90d6d51c02e479e590bbaece4",
+      "hashes": {
+        "canonical-bundle.md": "08dbc77135d14fa5619afaaa9561bafc20deccf3fcd5518b4e2fae0afbb24ae6",
+        "truth-key.json": "760a8cd8241020fd26872ceede08f2a509d46039d7bcfc7b2b4b3ba4a046c44b",
+        "casebrain-output.json": "821a9f38f884c3a2809ad9905a5e35fae655a6acaaed1a0da060d4b5ad0e249b",
+        "source-capability-inventory.json": "775e94881771a8981a09fa144388c11b1c76c7f083d695d34a79bb2e81a8d4ad",
+        "vdr-run-receipt.json": "ea3872598fdd2d69997e37d972097da8f98bd0098b91c1179d06bde94eae8a18",
+        "lineage.json": "df35c22d637b93591c805e8127824eca2bfd47d323196d7d127e4cc87f0216c2",
+        "bundle.pdf": "2d3cfa469ce9a89f43bdec68df1d498e21842f60b18b4dc29f06690eea108cba",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-077-domestic-abuse-version-draft-pair",
+      "packetSha256": "a2bbaeeae71950630a7dd965192967f170c215a6b780c32c3d2539109252836c",
+      "hashes": {
+        "canonical-bundle.md": "5ea246eed86c31c463904babbf736a7e968c8b7f1d17443ed47a69a6b64eb45b",
+        "truth-key.json": "c1244166f623ee214635d9b7f612349a9671a1abbaa3aa6d95dcb7d535a9db96",
+        "casebrain-output.json": "596faea15741905ea4ef654c143f71ad2499db0a4c7842defd06db1bbceddc4a",
+        "source-capability-inventory.json": "4c961ae24f37da1ec8fde5c00fec291f2ae0feb7f3570469d920f4c82019667d",
+        "vdr-run-receipt.json": "911f9ba96bc768d17410c2757a8b2cd7d3d6fcc5ea9a4dc9287cdc975e07cefa",
+        "lineage.json": "d0cfe4d38438fa45ce5c123a069779aa2557350c0538bf0fce977b2f49785d60",
+        "bundle.pdf": "f0bc4eb4bc3821c159a7652c1d720ab36bdc4d1cb0ad7385a5ca711a8946a1de",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-078-youth-participation-version-draft-pair",
+      "packetSha256": "2eef925eea23ffa89350278e90ae6e7f71f235cf54cfc88f9a6ae4ad1236c5ff",
+      "hashes": {
+        "canonical-bundle.md": "d6b944f49c36f7e7c33943f1b3de728bd8ffda88ac54b598934ce00764840eaf",
+        "truth-key.json": "bdc00be0cc3f1a14e5531aa4fad4119ed02f466a8aa1641c4226509d758baeaa",
+        "casebrain-output.json": "988d3e040646d41a96d4ab768f1ca059dcdfd8612bf625a830f7a361dd6d0335",
+        "source-capability-inventory.json": "bcbfc23a9abd537636a106892ca925f009373eea46de351879cb65896720121b",
+        "vdr-run-receipt.json": "44957fbc7fc0ef3167b5527e5cb79127e14d1ab22f91230b28f4445eff9b04e4",
+        "lineage.json": "d3b6417f50ddf1ba93767df527a76fcff53f8010091f133c5242a8b6220dbdf3",
+        "bundle.pdf": "39b1f8739458cb8baa08799f15b7b76340af4d7c79e8b9d73d95b20fa2b7ed8a",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-079-county-lines-nrm-version-draft-pair",
+      "packetSha256": "4c318bfa6f34310c6b54a0e404196f5e327e2682dcb79c0d4f1adc0e931b607e",
+      "hashes": {
+        "canonical-bundle.md": "c79db7476dc3145623f3a15b9d2a11dde52b7beae93e151164c9af1855b2d2b4",
+        "truth-key.json": "958c019f2a6a623eed6eb49eab7ec78fc4d2fe2563ce7c697c7da04444615a07",
+        "casebrain-output.json": "29d42dbfa539d54f2f8617185c1bde67b507752606e054a5f91303af2e5f8290",
+        "source-capability-inventory.json": "89497ee0ad9419f55edfcf7d1c6a7b0eabb9e2db6fa0de4227960b8da6e54433",
+        "vdr-run-receipt.json": "87f40e4b4775ee55d05dd571a5bcf0ee359fbad333172bffd9c82a06e1de383e",
+        "lineage.json": "a6ad16b25c1b3a95e57ef862f4db244ceba472081b1445ef87bd62968a1e4bd8",
+        "bundle.pdf": "4b6a550ff13064b2d616949f5bb6993f6a63a8d9a64d70a9a88822a91973aa4c",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-080-fraud-poca-version-draft-pair",
+      "packetSha256": "292b3c7813a7835b902bd5404a47749b7664391a49d117475209bd04ce9088e4",
+      "hashes": {
+        "canonical-bundle.md": "57f30b6a0e96c7d546f2f7a9b39eb7fea52e471a3bd66a0d51755d35895a36ca",
+        "truth-key.json": "28aea762a1e8c6b9a4c4bbb4a260529e2b0c4e833626ad6c36aa3d63efb333b6",
+        "casebrain-output.json": "68f456dc1bdd321c670fbe9ddcee667bb4e1ab4de3254a4b8d6c18de968777f8",
+        "source-capability-inventory.json": "b9bb5a1e7af322178984c00ae893e86a0e86342ca2165a535898f046ed2d74ce",
+        "vdr-run-receipt.json": "15a365fbcc0e57a2295c010c3370c04f0d0d8fbb2f82e86644d04af5e4a48161",
+        "lineage.json": "1cefd0c291ba9eb8a8288f68a26a8a5362ed222f4ed120ba840cfb20fd021e54",
+        "bundle.pdf": "33c0c521a8c3cf67dd134de4e97005c3c9f7ff5af928aac08bc0a19f1464bb01",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-081-digital-attribution-version-draft-pair",
+      "packetSha256": "98107c0a24ff7e81835b85fd45f2f51f34663a6282e03e269b0f6f5c6f282f24",
+      "hashes": {
+        "canonical-bundle.md": "997234e734685be98fdabad805a9faadee3e8ebcea8aeca15645f7017c44c374",
+        "truth-key.json": "f84352bc82e1840ea7669764c3ef0ed363e74793bbf16b480a26de570d2f4a03",
+        "casebrain-output.json": "c774caf9c16a1f2850cc6455575ec615036c2cac8dee1a32e63b5a632a9adfc9",
+        "source-capability-inventory.json": "51a9ded582c0cdd626ca83568d14ec1022fa0cdf13d098d1a75fd3f538ca8a8a",
+        "vdr-run-receipt.json": "ac68c7cb20772754647a911ddbc66711b27484a0091204264d9f5792a820eb98",
+        "lineage.json": "796133ccd32fd3d4611e6a760d33dd98f1a4d4165c0c16ee009a8da722f74a03",
+        "bundle.pdf": "e9abf727964d94104e0a04bc4dadf4515b71970f182a6465a6a95ce8b6ad8ea9",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-082-identification-code-d-version-draft-pair",
+      "packetSha256": "d80a9b5ab0f1bd85ae74215ce4e446b4b5e991b415cb8db35a172dc18300f47a",
+      "hashes": {
+        "canonical-bundle.md": "f6786c8c6f5315aadaf4610b009c78fdef9b70dbfa210543c75589455006ee22",
+        "truth-key.json": "ce4fff7fe83347d834d39f268685a21b16c49b7e3e34fd009051ddc5471cf00a",
+        "casebrain-output.json": "4be95cccbec07a185e451d2720959cf94951f0dfc680ff7d6320ef50ae387fa8",
+        "source-capability-inventory.json": "2c1556f83e695d9a44534e434cbfd182320e5f77c1dd5618452f5b5733cc12ec",
+        "vdr-run-receipt.json": "ff09811ba01d80044c278262894e361dfbec6168b69c52715efb3cc7a00c11d1",
+        "lineage.json": "ae5664ba991aedccd5694944aa4999b57bf8bcfc763eaeb30a7e34a16b49264f",
+        "bundle.pdf": "749c3b22ccacb6fb33a34bd079b44143c3cbd35e98688efa3ae9f7c246512df3",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-083-mental-health-fitness-version-draft-pair",
+      "packetSha256": "65facee306070bdf0f349de9d17cf28e2a8f6b0cbfc0e4cfb8221cff88867869",
+      "hashes": {
+        "canonical-bundle.md": "af7e801e4f23b32c06a65af8545a0bac5e4b53d163727a670ad34bc56e1988b2",
+        "truth-key.json": "49c867770b5d011ca5900c6b0671365c877a30d18d7999b16c21d645a12c4081",
+        "casebrain-output.json": "8ce07320fa27d2ecf0d1f470ac4f3eab35ab2ee417cd96aaa82ca50356abfe09",
+        "source-capability-inventory.json": "abe5989efe8018d155919a473665321d374bfe44c479ffb9d2c10d68268771ee",
+        "vdr-run-receipt.json": "0b4032f9ba75248d72190954015c93e47a802b28f30b980e80b29902e43373a9",
+        "lineage.json": "0834b33644d50d55e9c1c904c039e9b9aad559116490b649b15391e8494fd134",
+        "bundle.pdf": "c1c0835907d56633abafb3257daebd252efed7b43b2241ae6ae6ea13b417ff14",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-084-disclosure-pii-version-draft-pair",
+      "packetSha256": "3d9f4d42e322a02a2037e20249fafd4ad6bf9b42250bc39dc6109ff02361445a",
+      "hashes": {
+        "canonical-bundle.md": "f61a2c21ab4e7b60fd9e35e55baa85045f04f93977900e6a912b5d2c323fd001",
+        "truth-key.json": "548ac9cb83aac63ddfc5d96f7bdef71e629cd2f0a0bb3107b9b7b8552c542ae4",
+        "casebrain-output.json": "01fac802030b5425bed67ef5a88afc1101aec8e314cfbd0f05879149422377ec",
+        "source-capability-inventory.json": "a2d77a70bdcbb6ab1d7e672ade82b2faa7e7062cb31fbe16b583c84ea1c54061",
+        "vdr-run-receipt.json": "99623734e604e93665f060c999628022d8531a8e646ebe47362b4bd22dd6f6cd",
+        "lineage.json": "2574aea064c23c71dfd7c2a63162971bb92993cade964cc2763ea0b0432bfd3f",
+        "bundle.pdf": "83bb712307c8553507812b584d1f547e4007403d17f74539660a69b37add0741",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-085-road-traffic-fatal-version-draft-pair",
+      "packetSha256": "445a2e33e345d15c249cdcc2398aa7832d441d28715bc3acac3b9e76ed8662f3",
+      "hashes": {
+        "canonical-bundle.md": "10a8a36c74e2264835cf82f1b13fa1cca545d1a892a4bcbaee19b27801597acf",
+        "truth-key.json": "91b843449fe024ea99a32d5d680084ca612ef8876b612236e487e08e4bfc124b",
+        "casebrain-output.json": "b1cb2538a28a8f3b923043b215fa574dc6de6cd8ae73e1e017acc6bd830e5b8a",
+        "source-capability-inventory.json": "3d8ea6468ef08049099fda9dbea12117bd566a940f3c562024db793c4a3e6e6d",
+        "vdr-run-receipt.json": "d870085e8ae929d68ae9c69eddb6871e7656783790c8552336b86c946e6ad692",
+        "lineage.json": "eff770907bf27b7578e46e7bc0a18808c910a17bc3252dda22b2831bc89172ee",
+        "bundle.pdf": "dd0f37e96d0ba50b0fc060f55e0c53886f6d515939cfa2d4a76beb3fa10661e4",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-086-magistrates-procedure-version-draft-pair",
+      "packetSha256": "7e36fc57780592e5962afff6c64ca6033e78a3e31b8ce3f8090dd9d58055c002",
+      "hashes": {
+        "canonical-bundle.md": "10900613ea1622e3a909da82010a58fa69634e373abfff932b54a8f3a9650c53",
+        "truth-key.json": "906e7f7206583d568cc6b5c9b60dcdd4f33c0352d62f0535e0e4e3884edc568c",
+        "casebrain-output.json": "9bd88ed884fd0a8fab5370ea3a0ea8f647d5e75aea9379c3f0dba152eece2aed",
+        "source-capability-inventory.json": "31548397588f9015f44f6145317075fd2a73c724bfa4a5e883196e07e44f7f2b",
+        "vdr-run-receipt.json": "c91b5f0cedabb2ceee32e72b653fe5239a1c592abc836165073d207866cf829a",
+        "lineage.json": "b72280dd70f7419b73f073669da09a675132c7e698c1fdf0eef4cfb1a5b7e1b8",
+        "bundle.pdf": "181b28a74361a33a99bbd8fe85784ab05f50648bb81c0f85e7df315d1ba62f1d",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-087-bail-remand-version-draft-pair",
+      "packetSha256": "1efe98511f08efa13efa4c284f5f094b1c8939e88b0ae139a4c6b1975357d834",
+      "hashes": {
+        "canonical-bundle.md": "aded429ce9667f8934cac459a07584136f6c3c42f83087e3df7150c9389819f9",
+        "truth-key.json": "82086b4bd3e9f65d99218901bbb30411020a50b0d8f74a1bc1a92d30f493b3aa",
+        "casebrain-output.json": "f1fa012668ddea9923f47ccbaa8352922010f59ce5bda54f743601f3e2d43e94",
+        "source-capability-inventory.json": "25cb976fe3c395cd23528c9c913711174d2aaedfa59a31aba1d5fc70a68a46a9",
+        "vdr-run-receipt.json": "ba6e2b20e0746130a873b9f968c3d2c6280baf3d8f3c0b9325319dcd30b7245c",
+        "lineage.json": "27673bb05c26a18746c374cf184667ac2f0451884d30fb1baae06888fe80e7e4",
+        "bundle.pdf": "cb8b3cc78c1e5aaf558ac5c338c176e44d2318e66b41aa6e7e9c57050076c7f7",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-088-sentencing-newton-version-draft-pair",
+      "packetSha256": "6ce718739217df60834cacecbb9c339899c6c1bef739e655b7024dfe4bb210ee",
+      "hashes": {
+        "canonical-bundle.md": "317d022cbc9d66286a12734042f84976ddc0d94c8dbb879c0ca1d73b65147f0f",
+        "truth-key.json": "58a48e8b8f574a641e4c3af824b8767c80281dccae7c989998c472f887dde7dd",
+        "casebrain-output.json": "0d565c1974f66efad9ba9bab822f59d6b3d0f4786f63662c5ad43e910981995a",
+        "source-capability-inventory.json": "eb79e6020834d5c19dc95d210ac06060868a98e2ddd7e6f8b110bf0ac65eddbe",
+        "vdr-run-receipt.json": "54ab4be6e3649d8636e895af06278892202f5fbc101b2d373b724b4352cba770",
+        "lineage.json": "9c3ff6055031ed52cc6ce33df9babd3cd40c2b26bdcccb80cc9f88a737d4712c",
+        "bundle.pdf": "6d5b9f11688ab7a3a26f5969e2c70840963dcf93fbf3a0bdc3c165ed0a9d0dc7",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-089-appeals-version-draft-pair",
+      "packetSha256": "e1ea4855e4d046780d20e1a9698719c4a353b594ea7c1cf9b894a66705bd9456",
+      "hashes": {
+        "canonical-bundle.md": "94a9341f62cdfd6619dc3f1210fa53bfb54e7ca5355bd2abcfb503c4c76422a4",
+        "truth-key.json": "fe27764c0f9596e53dfa494aa259b5ec4de8a8d9de2dc9da6ad77832d7fa4588",
+        "casebrain-output.json": "9d092f4c538d408baddfc31065727a6907f87898c2410408a9b19f4ba5d30ed6",
+        "source-capability-inventory.json": "2834716554dc6fb06f70e8952af4c37a4591e9e19fa4a70b944e1c3f5db55f6d",
+        "vdr-run-receipt.json": "68e983dcd23cdb97e7fa345d6e2f399bbf5a236ab54ef4b119cd00b4d4a83aef",
+        "lineage.json": "d0383e32dfc93e987335c75cc2ac2026a01541a325440b7d149e3aded7c34ef6",
+        "bundle.pdf": "50553f0769e903ca2b61d39c0b46fbec1bc609149b69b5f6ed316d05d3149d49",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-090-multi-defendant-attribution-version-draft-pair",
+      "packetSha256": "57feac5a355a83e58a0fb09ff392e8c4b54891c462f09db2884d0b1345da1e23",
+      "hashes": {
+        "canonical-bundle.md": "936b1e06e66c53d89f6e888a9d98e5201fb10740627c2e247c55e96dd8ce2c06",
+        "truth-key.json": "bafd79d634dd8ef09d69dfd95f82bc204b23a2de13f73da607a086a1e7ce4558",
+        "casebrain-output.json": "8470831a9fc75129aeceacd09fcdc92828424af165b15a54500e35a09da6402d",
+        "source-capability-inventory.json": "f4e08e7ce3bf8755d4b6d422cc6f5e331080b77cac639d378dba57e2e787986e",
+        "vdr-run-receipt.json": "0d3092e08ece0b1248802f6d3a6b47acdfdb020e6e72347eeb1178c06b128c98",
+        "lineage.json": "491ca928e98de59fbaa78f152f33b63202beb4aa9c33028c38ba802cab2e1c0b",
+        "bundle.pdf": "aee22e7b266cf7a0ab2094115c833f3c4cb14fcd2ae32d5d07c9f07650b25069",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-091-homicide-causation-audience-multi-pack-attempt",
+      "packetSha256": "452745f2570fee335400fd0bda93231b760962fe46b4b06f35eecc420d87c618",
+      "hashes": {
+        "canonical-bundle.md": "5641312c0497b8c36b5901dd8529d592f43775e9adb2100ad5b6cfed95ef6cc8",
+        "truth-key.json": "02fb25ebb17d934fd7feb75e1d7c51fec10ecbb6ce7f55e68a365900f979413c",
+        "casebrain-output.json": "951364d2ddb2f42b56d734952285ffc89b7621ea6d6632121b45102ec8f9e65d",
+        "source-capability-inventory.json": "fcd53cb15b466036b24bd79a0a2aaaee0e9a9ee7296a78c83783522a3e97a661",
+        "vdr-run-receipt.json": "5d665e6785115facbcd24c67460337c4cebc8ee6f335fe2cf464d3b6f778f2db",
+        "lineage.json": "3ab72c16d428b60530fa7f663dfd7ac0e6b727acdfc4f1250023f0276613b816",
+        "bundle.pdf": "de617032970d9c02e3a54982f0ad1c2617355889a0f59f0213c6434787032b92",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-092-violence-robbery-weapons-audience-multi-pack-attempt",
+      "packetSha256": "c62f3fb02c7bd791f2ae6d127d2fb60da5a60c57cddf72cc4fc2a67689f0bf80",
+      "hashes": {
+        "canonical-bundle.md": "61b468f2aacf9a0f69fb6040c5509020460a4f5186d96e7228dfe7cb7a9d6d5b",
+        "truth-key.json": "2fcc5dbc9ba7e4097646118621eda03df5ef907feff87f2a6c6e9180938f1ef2",
+        "casebrain-output.json": "34e91a1d43fcaa2fd53b637ac8936bca32312195c1cbaa4add37512b3ace3833",
+        "source-capability-inventory.json": "f383cf91dbeaf286b56d4993d05f3f5f9cc0f2fedc0f8bd37b2d4acf151966d2",
+        "vdr-run-receipt.json": "8ad26c4f6f5219a67cacf8cb2853043355f9b4944d6412bc55e1076b40ff6e4f",
+        "lineage.json": "a7f4f35ce7411884ee1dcd64c6a2de959fc16e79d6374b033b09bd2ddcac4894",
+        "bundle.pdf": "25b46bb9e3d1156cde9b15d461dcf958bf915cd69de6c245fc40dcb791985552",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-093-firearms-audience-multi-pack-attempt",
+      "packetSha256": "bfc8387c5e7895230e04f9897fab3cd00fd2b41e3ab9ef8fb7b43265cbb20056",
+      "hashes": {
+        "canonical-bundle.md": "1ab6086a7a776fd2ef6fa1d98d09cdc7c8edbeacc09b5edc16638a9bd4330396",
+        "truth-key.json": "0a0d3eb1ce0a1298a1f98d6458be822b9286d1e94b2799f9b494a4b4d2af6026",
+        "casebrain-output.json": "b6855a4578786af0aabc7c3904ada632fbdace5d005af3ad210edadeb3ffa626",
+        "source-capability-inventory.json": "08612bbb5652c779b353728f616e19ac9be6ba9114769e88006275c82be92ae8",
+        "vdr-run-receipt.json": "ada7d147e0f14fad553e6195c2cd6059852c9d435d0c4ccf5158a86d50333d70",
+        "lineage.json": "c95df8ab05a19255b0bdefbf245ea959904af9403ead6612aee3b99db83d5fa7",
+        "bundle.pdf": "f4de37388a3bd97c167aae794c1ffbc3e14ce2667832b5f5c449809f940078c7",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-094-sexual-abe-audience-multi-pack-attempt",
+      "packetSha256": "f9df70651d961eee28fa6f8083693eefb22e75d2d5fb96c4047076d3248bee89",
+      "hashes": {
+        "canonical-bundle.md": "60743192b7fcad6adf5954942e63c47090f1775a002b00fe0194cd0d6a995a05",
+        "truth-key.json": "4751b5f52aa03e5274a2d334755916199f85dd7c2005f04b5f4a2ecdf8a73227",
+        "casebrain-output.json": "9a78da42d55773abe79d5388c0dd220bd3815019baf41c2f625fd294bfb9098a",
+        "source-capability-inventory.json": "1f4fd27dc45f982c385bc329682631a6d5b30804d54ff80483806079ee29aba0",
+        "vdr-run-receipt.json": "ae8be3d79c5070e9efd5577bbaa94e8f5f914d7a888a1809c92422cc7a52a07b",
+        "lineage.json": "9a5cb7f066decc8b616b3d5c8a0fd6eddd0d691f767787a861a2474b32db845f",
+        "bundle.pdf": "64fa552779ebae71de3ad532de45758d2db4a21fd97db98712c4676de9c91612",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-095-domestic-abuse-audience-multi-pack-attempt",
+      "packetSha256": "9d6a598575eb9e1965af3676693a94cec2a1421c81383d84d4637f47b83b01ac",
+      "hashes": {
+        "canonical-bundle.md": "5b908bddbaafe8cbfb8b6618b98989e03629aa6383f344229e280da5527b76f7",
+        "truth-key.json": "617e2571b732ea05bfe9893eb28a46c28b816f35f17ee2c16f00255b14edf7d4",
+        "casebrain-output.json": "714045788ce6908b8a36e4533082bd223a7223d138f61d3ca7fe388193cbaa4f",
+        "source-capability-inventory.json": "5461ff25907dc9802f9add531d1cc527422bb2fa94c8b544bb10c5a0d4e851cd",
+        "vdr-run-receipt.json": "402c93bb272788fc39b30ee2e911422ee711078a938410897a2a8dfb61c93114",
+        "lineage.json": "00a9fd39e59f9b04db82514fb2c19254abff7c2dd3403814cbfe27cc66ec50ed",
+        "bundle.pdf": "f6994f2da60b69c1005533d735d3f047dd40fe54144285b2f8f29be5995760ef",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-096-youth-participation-audience-multi-pack-attempt",
+      "packetSha256": "f8a4a9d128a18600e5ba7c2e0ac70bd54cce378536e171c7b9537aec0884255d",
+      "hashes": {
+        "canonical-bundle.md": "02bca410c6686d340bd8b17f8257b32f11a2de09a4dac42610cd93c6f613a245",
+        "truth-key.json": "1c85eadbc2fa0bb6ac9e4c5df7ff33ea9cea9450c9b67ec9e45dc09df4ee2240",
+        "casebrain-output.json": "734664f29e9dc46e59623ddf97ebf5b52a9c38bd4caf2004b5a4d5711287edb7",
+        "source-capability-inventory.json": "93c85bd9c831ae4ce1c47dd3daf9af5de30f52b12f77494c87ed0653853e45bc",
+        "vdr-run-receipt.json": "03a1965706176a84fe2902c012bffc7720a012aa5c11f013f2033c0bc8604450",
+        "lineage.json": "755760b6dd9094c0b2fe36b95146ae17df1882033b8237caa3c349dedbacff8b",
+        "bundle.pdf": "9cc8bab0feee4a3d0952fb35831e576b66e6f690034d9407d131c8af4d83ef01",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-097-county-lines-nrm-audience-multi-pack-attempt",
+      "packetSha256": "ec278e77ed8a173ea5cae28309e1c1ff57804d866388e0d77f6a55567aefc4f1",
+      "hashes": {
+        "canonical-bundle.md": "c796eb36be2b383b62a411887612a24cba66a82ea4c6394f0f254f2dafd1c4cc",
+        "truth-key.json": "b9f727f3ffd58e81442495bbd5f6efc82d5a2bc19f1ddbcbf1dd41501e3be08c",
+        "casebrain-output.json": "690a594c2a946ce421dd50376ff8b19d6e5f0ae949a142b06b49b73c3664c064",
+        "source-capability-inventory.json": "0b3deaea745308e3c83fffd296a66a9be6c3de0d91180dc64223ba18f740e65c",
+        "vdr-run-receipt.json": "c6cfe17135affe6237b8c2c95b4f3255beb42db8441db4e50970d8b8719d1b25",
+        "lineage.json": "ddfab4ea20393325e91b7f6344a2c5df248db5e0ccac79c74f86a1c75de4e0f4",
+        "bundle.pdf": "f6929b2b6094654965e13ac05538b7ad5e7cb477f33d117c75dfe808ff528b76",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-098-fraud-poca-audience-multi-pack-attempt",
+      "packetSha256": "5b3e19f05f830f261e3ce9c8993cb8c56da9598dea40cb0bef5ef33ffc80edd8",
+      "hashes": {
+        "canonical-bundle.md": "5de9ee7aeebfc4de3f6349872149827a08d20165a44f2c4d38394c8d285b7df2",
+        "truth-key.json": "aef77d9d77ca890ee5785b88a0a87edb30eaf936cd1d6fc0e8b99664d364bfb6",
+        "casebrain-output.json": "eec57e98573e8a5e0c74c57d4fdaef12ff2a7c811e63cd1913b8cdcc68829533",
+        "source-capability-inventory.json": "a3956ceb77fe7f83a049cf48adf6a092296600984d49a529f56e535a9f1d57b1",
+        "vdr-run-receipt.json": "26f64d03749645f86d16fafee56543a12a54b1f401910efc176c1bdce4bb06d0",
+        "lineage.json": "5f60ba0e9fd4fb479e5f67e2fafef67677b63de53206b21ffaff1e52fbe01bdd",
+        "bundle.pdf": "052801dbe630f3d7a5d3aa8d10b1dfd022745dc6268e33d0bedf1017fa298916",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-099-digital-attribution-audience-multi-pack-attempt",
+      "packetSha256": "75f04c3af38a1b0db2770de734b8bed2c18ebdce8b47c4a1bb970e768721d4f2",
+      "hashes": {
+        "canonical-bundle.md": "c574201966815ca9b8a72013cac638eb3b26dbf8a49d160720cd8eeb4d214554",
+        "truth-key.json": "852c77a9d4ff24f38e9b30c4525abec080d8a461788ae1ced9923bb2a24607e8",
+        "casebrain-output.json": "fb7681ba87e881ffe4e7f8a43c80f7a4ec5131b24ae4596fe23f2c23364318f0",
+        "source-capability-inventory.json": "ac5fa53031c16f077f2a49a2bd5e29eec76ff957f4d4107eb808c2378021beab",
+        "vdr-run-receipt.json": "3d8bcc6cf9d2a9ae779c8ba755c41d289b0eea703238c5494808cdf7b4e02583",
+        "lineage.json": "cc0b8d8085ea52732bd298ad734548a159fbe25146eae425d685bf3ce8f68a2a",
+        "bundle.pdf": "fa084ca94aaa81cd99a11697c99a2a511d259a9d6e4806063c9fa974ba6a08e9",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-100-identification-code-d-audience-multi-pack-attempt",
+      "packetSha256": "f46b124863ea002b4c96517b1b44d36fb9f902df604957a504d5afec5c4732a0",
+      "hashes": {
+        "canonical-bundle.md": "5632e64ef094c8052a32c3d07be079853781341db0e2ab527e407d82ec460d52",
+        "truth-key.json": "287b3c558483d5ff844deb500a001e88835ccc26b08ebe04247f8b39773eae27",
+        "casebrain-output.json": "05dc4c6939a554b51fea82088a13746ae785fe5f2edc81f9ce7124c7ee5b2f41",
+        "source-capability-inventory.json": "584b9be54b83b1f0ebc9157a76ffb49a2e72a35e201c149f7c17c012c1db9dac",
+        "vdr-run-receipt.json": "eefa69384c0abd9bc2ed4ae19d7bc418254a6ad8d4740354a39b6cd006c03d26",
+        "lineage.json": "473b14959e149dece257af3081980311296f95edd69defe26546522202792970",
+        "bundle.pdf": "732d3f26d8d10315705943468c71fc5b02b7b48b14ba2efb284db2c4859665e2",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-101-mental-health-fitness-audience-multi-pack-attempt",
+      "packetSha256": "44a09851dfa2e8ee834e756d9bfeedd8812e86cb625314a9859bad88edcd04b5",
+      "hashes": {
+        "canonical-bundle.md": "100266cf6f46cb00b6136b3b1dd64d21cbe98e36e8ee0ef959f3c18604c2a0a7",
+        "truth-key.json": "6da12481ce0012ef7cb1b1a338685078d3454b995f0953f8804ffbc5f872b600",
+        "casebrain-output.json": "86dbde4fd38e7b8bc118018e66d091020cc63440c161b08d809883415cb263ac",
+        "source-capability-inventory.json": "ba32baf883228bf9a5a9f4408159e0aef2381fc05003e9b12c612a25e2f585d1",
+        "vdr-run-receipt.json": "a7d379932951ef03b1f5d817e74f01674586650138c9043d7de67d583302f844",
+        "lineage.json": "1c1b21d5b8e9056e6ed319901834ca0bf57fe01a1c0d6f81b11e551935ece52e",
+        "bundle.pdf": "4e111b055bf85eb5af27cd1a9d91f889bae4167b98427a787c54630c3eab34d1",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-102-disclosure-pii-audience-multi-pack-attempt",
+      "packetSha256": "5812afc03d278b27d10994944242ba0b50525a7e8fc91eea0d731452021d6ca2",
+      "hashes": {
+        "canonical-bundle.md": "7a1ee3858a0e98e0b6ea366810c2e6a1a1971bb2576bd1c991a0fc8ef812b853",
+        "truth-key.json": "6b306e035ca2b3402c9a21e72d6a834e028ac2529b2ab1d9016abcf390534743",
+        "casebrain-output.json": "4190c8ae633dc7280373c1366c692c5bdb342d49f3ffc13c600be90519dd919b",
+        "source-capability-inventory.json": "a6ae9dec02728d84fc3317f8c0912f6e7942c3194466ae3fe3dae7315d7696d9",
+        "vdr-run-receipt.json": "a66499d963bda80449c5837842021c68b68f93402d9536ac56c3edf4590fa566",
+        "lineage.json": "d382cf7296d3e26c346750fae8a23dd1e78a9be99234b60e3bc18cb3378b2646",
+        "bundle.pdf": "684ae6905c930f8f58f2acc740d739aebea3896569320ac30d8b39f1eef2a744",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-103-road-traffic-fatal-native-email-json-csv",
+      "packetSha256": "0c7397c417a6c03630e988ed5fc76ff7daaaba9aebcc7d9f4fa412de370c094f",
+      "hashes": {
+        "canonical-bundle.md": "0d56a385487f299078a190351dc5b12ffe159b3f4d9864b87f2aeaae5bc5fb86",
+        "truth-key.json": "d1452d6aa6dd1f796d8f698443bbccdf7d1fe6d9679ddef014b4da8c1761684e",
+        "casebrain-output.json": "146fe46da402d83169b6879a2fbd1a4d8e282d4140e5da8ebe97a623b9b097cb",
+        "source-capability-inventory.json": "24604939db1cde98ab2d15aa18a9f2a431b4de2fb68a97a6f466b58cd82906cb",
+        "vdr-run-receipt.json": "abcdd2626652ee31c0ca4bdbaa82aba3aefaf44875e6cfafaa2b607e2b594150",
+        "lineage.json": "96a1224adae671096780e44088eb3bb077901b7fde9b0aec0fad384597cf6721",
+        "bundle.pdf": "92a496c472f18b9ac94b7730e1dd41d5e52c620177bc903cd3ad37ada084e078",
+        "ocr-page-unit-receipts.json": "656efc5cfe4d6c3f30bbba96934ef2cdfbb4def2942e2cbb612c2e98bb76e316"
+      }
+    },
+    {
+      "caseId": "s300-n150-104-magistrates-procedure-native-email-json-csv",
+      "packetSha256": "34705916c62331291ae4a00c2665c37de18eb88958845b8562dafb774e58b2a9",
+      "hashes": {
+        "canonical-bundle.md": "d2eeab8fc094df9c56c70cfd46254a125b959d04fc853624a1a55285f03a0094",
+        "truth-key.json": "fd79ea2b4891e0eaff1fb7d10c3e71a9af14737eea36af99e0d29559c259779c",
+        "casebrain-output.json": "c0a937ff3dcb546efe7c8c18c4cc8817fe65b62af95877b59ff70e4605121125",
+        "source-capability-inventory.json": "d9a4a158610a8026e40ffee36d7eeadcdc89d2c98ba2be61ff9268f678a77e10",
+        "vdr-run-receipt.json": "ad74e2c70b4a6c56c235b02183fd6246597aee42ba7dca88cb4f15cb538dc524",
+        "lineage.json": "5c364aa1c58fafb781d92aed06bcd0b6074c39d9186832554fa17a7d05d32266",
+        "bundle.pdf": "abea169e8263ada08d604abdb9f5546ae391e1d2792c76a263bc97120ec4ff40",
+        "ocr-page-unit-receipts.json": "690bf91bb306c31dbd0f9ec5ee0996c91b56f9aa4e29125b7ddc3c1a990f3c88"
+      }
+    },
+    {
+      "caseId": "s300-n150-105-bail-remand-native-email-json-csv",
+      "packetSha256": "310918bb0bf7f034ddcae2375aec177c845ed6d99ab63f9cada128ebdce5fcc4",
+      "hashes": {
+        "canonical-bundle.md": "f80ae70748130a6b5a776fafde11d375c42b8ed85e818b294b2df260054ef6e6",
+        "truth-key.json": "a2eb1cb390420642987b76a211284ac8a61e947b6fbf5f4b6b89d69dd018f252",
+        "casebrain-output.json": "b4364d037939347d35756af29e7b7762fe344d3dd7523c331a5ca6ffc914051e",
+        "source-capability-inventory.json": "22dc435cb6d29de3924007cbf9ee9521232f1622130fdaee510f81ece4fdc6d3",
+        "vdr-run-receipt.json": "a6e43537ffb51bc5d23b0b5a7e9893639ea1233295f05221a901c194cb36253e",
+        "lineage.json": "52fe938329c111a0cf1639bb240f7efc14c24d50e689cd3592266fa448c01703",
+        "bundle.pdf": "f839ba73af39cc4e9bb8f8a64b7524d4e5666ee0ad367397c8eec460e9b863b5",
+        "ocr-page-unit-receipts.json": "0a1b1ae7db81b4abc7e3df7e3a5b1bafaf3567f326bd7e326ebd6fd52636ab50"
+      }
+    },
+    {
+      "caseId": "s300-n150-106-sentencing-newton-native-email-json-csv",
+      "packetSha256": "fdcff3d1411bef4a934d18b9e6e6dc2ed2a7ef2942be33363bb823d098666925",
+      "hashes": {
+        "canonical-bundle.md": "74ba1de66164f81c4c89afee8cf65c5edcec61803e43fd484c54a979efe1ab57",
+        "truth-key.json": "4851544c6b17753c7378dcda08422308b51cff71b056a7d7299f9f47290a5e93",
+        "casebrain-output.json": "e66c8011a5722bc31e82c8433f0c60dca065411e4ffcbb493ae96ee8aa9c4b9a",
+        "source-capability-inventory.json": "142c26c34d34c86d85691f4c2b4d18c75b2cbeaaf5975907f24dfdbc039aa5ca",
+        "vdr-run-receipt.json": "e3e1614ed78b2dc45d546e41d5c17a251e265c714a7705ca551ba209d0e8fde3",
+        "lineage.json": "4162d1b0c301972914f4a8a8a1cca6b1a4ecaf22cafd683519608455d8050d35",
+        "bundle.pdf": "a95da20c178443bf5fb4a881c66cd0178811ec0af1a306f253a1e5218dc2ecb5",
+        "ocr-page-unit-receipts.json": "de7c8ef04d59f38ee6d515fca59f891e3723219bcbb9dc0773e918217a06143e"
+      }
+    },
+    {
+      "caseId": "s300-n150-107-appeals-native-email-json-csv",
+      "packetSha256": "b3cd26210a8fff2f087f5ca2b7786a82a344221e890f15f566267fca690ee000",
+      "hashes": {
+        "canonical-bundle.md": "73b787aadc35593a461d6bdbc32616861557cd6139c1aed0c03a33e194731a51",
+        "truth-key.json": "ce4f50a699f9cb264ff2ec2494df61002fb65ada5573ea6480529e9904ac9ec2",
+        "casebrain-output.json": "994a47ec3fed78d2a529450ae437dbfbbabeeebd4bea9ea4f8c8fa777a598e78",
+        "source-capability-inventory.json": "158568c9e21a1f8befe436618c9f0a92ee451289482d04d7efd852d12c133736",
+        "vdr-run-receipt.json": "146f6661a4005f1d211180b7a1e0c28587d8989d62f3d8c325ac6add94c6ddde",
+        "lineage.json": "7525f95b9e0b787ced4adcae049316ae4e192dd948b227a16b636a59f0259d67",
+        "bundle.pdf": "0b0b5cf3ff6ee117c5b5d2878c2857e4b0f3233cd0cbdf073f7fcd37571f9e88",
+        "ocr-page-unit-receipts.json": "40dac84c6d163b8b187b9697cec1eb7e2cf2fbcdbff899623fcde5b42f14505e"
+      }
+    },
+    {
+      "caseId": "s300-n150-108-multi-defendant-attribution-native-email-json-csv",
+      "packetSha256": "08d2945f745424d1e113ee4cb5e9003faee23781f9b721300dff57be789340af",
+      "hashes": {
+        "canonical-bundle.md": "f7cf512ee87efcf6a953daa2a4f43a05a39f7d1f980d20bb6bfdcf89165f4e49",
+        "truth-key.json": "ac89bf6cb29e46d897e33837c52ab4ca018bf801e699f3ce42cb5016dc6e5773",
+        "casebrain-output.json": "1ec6de68e0b9b783ae66624df3f40d444985cd1638c6d542182db7348430c2fd",
+        "source-capability-inventory.json": "3b96b57165a5b856267c8390bf6efb0f878692205b0e6b417b444f726d3e3434",
+        "vdr-run-receipt.json": "b67e7ea09655922466ed2414c35100aec5a706d77fdc769360e9274f5ae84de0",
+        "lineage.json": "7b83ae13da2fafd88f90d45d7b64d370e6fe7c89ec682b1ef676dc7230d5d9a6",
+        "bundle.pdf": "a142332592d630c9d323e339912a76fd7754f7d214a5ec442eba4a49140b5110",
+        "ocr-page-unit-receipts.json": "4af61ce496b2faba7ad420677e2ef828d25a379cea9cd7bc057d28814ab70aa9"
+      }
+    },
+    {
+      "caseId": "s300-n150-109-homicide-causation-native-email-json-csv",
+      "packetSha256": "9ef22be46d84669824a7abc7e5cf9f23c3c248206e41a519b3402e17f7405961",
+      "hashes": {
+        "canonical-bundle.md": "5e486fa2a2a4d8c58c7eb100c9f929dd787894c0495eb7f71ce82fefb641f45e",
+        "truth-key.json": "19f4c250d890bb3ef1788d66a639ba8df48d74d5dee18a1ceac56d011b83f20d",
+        "casebrain-output.json": "85d1580a744415b58d7d18cd7f42659f52a10f30c73cd54b5d9924d18e1520f5",
+        "source-capability-inventory.json": "01f38ff73aeaa4c1cd89eb4ebbd889dee14673fcc9c16a49257b2cd636efd6da",
+        "vdr-run-receipt.json": "9b6b698014435457407c6e61c81bfcbd1107084e034561972651a21385a0da8e",
+        "lineage.json": "dd66ab003dc4fb743c26bcc5e0668d5b9b9241776ede580986684abe9c254b84",
+        "bundle.pdf": "780ec20d6141a552a81f222ceb15145a2b47e7806e8655927a3286f21a45e5e8",
+        "ocr-page-unit-receipts.json": "59bfbd76232c6ea28e56beca4661c06ede0803fe2b78daa10dfcb1a72ce0439d"
+      }
+    },
+    {
+      "caseId": "s300-n150-110-violence-robbery-weapons-native-email-json-csv",
+      "packetSha256": "0202fa4515373584cf9e54fcc02338eb9aa7e972ac6ca812c4c5b76e5a92698f",
+      "hashes": {
+        "canonical-bundle.md": "a16adbfffc5246568e13cddd36d35bf7f4ab51ac838b73fb3860eeb0bc1b15e9",
+        "truth-key.json": "51b178e5398fd8acc5ac00b8d353f649026e5be9c05ff624bf6912e3b542b966",
+        "casebrain-output.json": "ffb24a834ffa78d774a06106a16043364dff06f76f1f27683b1eecdd07dd1dde",
+        "source-capability-inventory.json": "f8eeb40de176cca12e12d85b418a07004b2eef4cdaa1ededf8634d3c4982d93d",
+        "vdr-run-receipt.json": "2f57018ff19fcaa787058817abeb64dd17d884fd3faa2b6132c29b60045acb70",
+        "lineage.json": "1e77314ba060d68f951f6de4e66fb8ca996ad34d62f23cd4c16f827b6e681caf",
+        "bundle.pdf": "e8f10b81129adf66b65f9cada3ec7bd4196d72dffef501902e4c2ddd35eb4450",
+        "ocr-page-unit-receipts.json": "12a32a4f11c99b97e27b336d971b354f0ef77d5458410f3842e3e62fa351cb34"
+      }
+    },
+    {
+      "caseId": "s300-n150-111-firearms-multi-defendant",
+      "packetSha256": "47cdcc88603fc05148bbdc9e5749d3ced205dec28feac712c6eb2c0403998f61",
+      "hashes": {
+        "canonical-bundle.md": "7e96472cd4154882562b23575f9df25f4e998079a68f3204725ddcdc95e4f5a8",
+        "truth-key.json": "948fa8960882763b10d04f34ee7e56d48ddad822d13c6c5f0ee06702fbde2add",
+        "casebrain-output.json": "ca273fc34f25814de7e4b9d061b9d7e0c94920d6caaf4a37f56566deae3ad593",
+        "source-capability-inventory.json": "e3665efe346df3e165e9204d9d37949acbf00f10ffb3f58fbbf85abe0283a118",
+        "vdr-run-receipt.json": "0bc7c3886c5851887619e90a2a8151e3e4cfe2a75e48efe898fb54425aa60a5b",
+        "lineage.json": "0d09a3ac59d32a45bc645dcec967bcc3b481bc131f0832ac1a211b0e0d474ee3",
+        "bundle.pdf": "0a73e80245a8c6b96215dd77d297a4a8b7a41425ec431b23f22747a547787109",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-112-sexual-abe-multi-defendant",
+      "packetSha256": "dd12a0c7cbdeeaa8a8b0c68e80288d3743e298c870204a087ec692f023ecf67d",
+      "hashes": {
+        "canonical-bundle.md": "bd32d20c4c2a7734cf8b5acbd0a3246f6597fec52e19e7db91dc20f83f495a47",
+        "truth-key.json": "9458a48f42408f7611b9f5d50f7436be77fdd3caf9f3b263c21428e16d838505",
+        "casebrain-output.json": "840ecf7745629d40ca8a567f3df06af651c6aa900064af961fd042e58f9ec70a",
+        "source-capability-inventory.json": "9f616ec5a6e60f9531a297bd5ddcdd864e3927b66eb8282507d5fd195bd9d191",
+        "vdr-run-receipt.json": "fe763b0d42297d7c4bd117ee06f03f3546746c8277b372d5ebe373c28792657a",
+        "lineage.json": "e2f1fe896418275460017846b61dc69c75b5d67c4d0ceafa5a9f57bdff65021d",
+        "bundle.pdf": "3d8cc3f08a5a298f8039f5db8d007e631a5df003067e68cecf59ef9948197ae6",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-113-domestic-abuse-multi-defendant",
+      "packetSha256": "9c18ee0ccfa0b2130bd92a5214b7cc5bd8fc1f7088ccebacf2fbfbfbf20e4f04",
+      "hashes": {
+        "canonical-bundle.md": "b0415c46143b679ac27667934769609a921b3f14a0a3afd44ca99372d0aada5a",
+        "truth-key.json": "f914b27e89549f7f54dc3a9307b4f5dbec4381b363daea6b0712eafa92874225",
+        "casebrain-output.json": "9efdd405497c27ecbdd48c816c776ff88b6004a3ba11c375a75dc144453559b5",
+        "source-capability-inventory.json": "7de265c2108847a23c0cc5d5fa7d3dca458e27f002b75fe708cdcef6c607a592",
+        "vdr-run-receipt.json": "36d5d96607c29330f17ec3bc178758ef1a0525a1576845a2d13df0e0fcdbcebd",
+        "lineage.json": "0baeaf6edb59a95280fc29caa43b3162195244f4e8aeb8719acbced5962e1f89",
+        "bundle.pdf": "28d9ad6faa68339257c0ac435b5397fe8d672c8ac233d634fe574129481009f3",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-114-youth-participation-multi-defendant",
+      "packetSha256": "79a3dea4c94cdecbf55e91f90d45225a0ed28f77cff562d1ae924a20caec725e",
+      "hashes": {
+        "canonical-bundle.md": "94eedf78c4615990d4a9e15c51bc69f545e20d08238506e71269fa4896e1b296",
+        "truth-key.json": "5280beda595e251f7e46875a6de15c81b56e9904223b62387450409193fb0808",
+        "casebrain-output.json": "337560d429d5b4d2da1d28ef030d28193292faea2db97ad4847be14fb0d4bcab",
+        "source-capability-inventory.json": "4cc80d9c25db6aaa98a21f3f75ee9a424c61cb73ced7dfaae90cd3895fed8b65",
+        "vdr-run-receipt.json": "36951b325adfb628ba6b9825f272dc70f6af3a1066a10bdca4d16c69f6863e9e",
+        "lineage.json": "f247a1286e2ce342d6aa4bfa0a2e3418de6b4ca24236b2186a1f47a60eaafcd4",
+        "bundle.pdf": "5c562568a42d2a0fc412b00abd4011b6feb438c7fc719db00518a989dcc3b6b9",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-115-county-lines-nrm-multi-defendant",
+      "packetSha256": "4f3a296c2261f1185926cf1f35441836b0619c88bfb07fa355e278901fe4a304",
+      "hashes": {
+        "canonical-bundle.md": "c7da0305dd903caa47ab147a0ad7329d0becd42c66a4b69471ecfd399616d2c4",
+        "truth-key.json": "6f3c1e5598cf0462608db0473dc0200a8f8f00439bffcab425d3c2454c506dde",
+        "casebrain-output.json": "a4088a02d5b3e54166805d3607bfeddaa4fc0b9b3215c1583c54d04656e1a70b",
+        "source-capability-inventory.json": "13d9c0ac0d7a75bbd571b840a9c4c084d6ad5ba6c6f9c07784189f257db8fb57",
+        "vdr-run-receipt.json": "01919b55178b75b18c9532f1e5a17bc66a259e8a2da22e346518176b6c1b0c1d",
+        "lineage.json": "d98cc6285534b17192e583994b1a9c6397fdde4036cca82540d4fda4853fc7a5",
+        "bundle.pdf": "7889db09017cfac420a0b73605171f6a4cddcf4aadaabe48bf7f951bead9d818",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-116-fraud-poca-multi-defendant",
+      "packetSha256": "ac6206f3c903b29ed2cafe2eec7bed3cdabf3d833a81928c9aef0a5513128439",
+      "hashes": {
+        "canonical-bundle.md": "c49833d0170c3159018f6bb3deb49419d1f5d3112614db9395ee174941a0950a",
+        "truth-key.json": "7423af43325f9ff15f629bf613c063c6aece83578d63d4596084840fb2bf1c60",
+        "casebrain-output.json": "1e455702c1d9099b244240bd256495f4dbcfe8f70a8eb266ae6bc988a95b0db8",
+        "source-capability-inventory.json": "bb78663460a23de796cedeb5bae2e720a06df94b622122dc8fcc311ccec4a95b",
+        "vdr-run-receipt.json": "8bfbf11fc3d2a27f7de1dfc7a68ea2b7351b15686955083617424355f53e6a6e",
+        "lineage.json": "88eea13cb40eb79eb6dfcbd8b815f88c4a9de1aa40c7100ddbf4537950f713f6",
+        "bundle.pdf": "ee92fb873c904a7d82616a007b486347b9d8f2422f834153fd2a88dfbdb1d8a6",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-117-digital-attribution-multi-defendant",
+      "packetSha256": "e221113d68bf152fcc43346d96386237d1c66f2633c178ea5fdb1605ce90ab24",
+      "hashes": {
+        "canonical-bundle.md": "d74bc6682b3a8aa8981b4a57cec39e0765a5849eaf5c3df454b8a02199f60a14",
+        "truth-key.json": "1ab5bcc80b359e5dad4c715f0dee015535f708eafe8fae2826b280a20fb562ba",
+        "casebrain-output.json": "60e1ffb7b94380d19fb82d3a515b5eb4ae6db6eecb597ddcfd355f7182c3e28a",
+        "source-capability-inventory.json": "b379c12101a9c0adf8d59ec9f971840c14835ffc7e295413488125164bb1b9fd",
+        "vdr-run-receipt.json": "6b60964ea923277313a82c5235ddecc483d8582f2ccd50b51a7cdf89dfa58031",
+        "lineage.json": "346e498669d44cc698bdec33f14af8e945a0b90261e16aaf0bcdf28f9b6c99c8",
+        "bundle.pdf": "c8fcc0ed2dddcbfaac4c433c61e5c5bbf9728ffc32a5ed348120bf013f0d5dc3",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-118-identification-code-d-multi-defendant",
+      "packetSha256": "0280d8b5480cfbffa72ec6fb895efe60f6ff97ca6dd6c9be6887f765c96e5dbc",
+      "hashes": {
+        "canonical-bundle.md": "86828c17df4ea61d73d28a7472b99b07feac64f9bbcea63ae7967a7c5c42256a",
+        "truth-key.json": "7751e087eea14d6846f41bc0236bf3c42ff0908966e8d750f5a71eb09f7fcd56",
+        "casebrain-output.json": "ad52cbb0d2bdfc4e10200a9bedda8f6ed1561d5a638342d98f63f6a3d1f1de05",
+        "source-capability-inventory.json": "0a1702f62f29fd43052f8f98dcf937787fe78b997645755736a3fe042fe66b77",
+        "vdr-run-receipt.json": "aae167806e09d845aa2070396c451aab5cb7b1e12a3bb8af043b05cb1a63e337",
+        "lineage.json": "04dfacda7a30066a2ec178d7c6a45b8fe32e152ac1b524b567c4031a9bf30fe3",
+        "bundle.pdf": "5a57ea8131f0476a8003be4eda2018d1f0a804223664ad3f435569a447c47477",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-119-mental-health-fitness-later-disclosure",
+      "packetSha256": "62d829145ef89a1faf2406c15b3ee11040f5999fe94888f4c7b172c66f963c39",
+      "hashes": {
+        "canonical-bundle.md": "e98b89109be12e8143a792af38300c5d0fdb9d5d1f4f326c88f22994d8587503",
+        "truth-key.json": "8b4ad47a12cfa3f465f170fa89877b2c666eb97ade28aed30c712fc0c9b45795",
+        "casebrain-output.json": "01fe79aae19e9813a8d974585ea78c8397e4333105ccc45e628f2b8c21b01b25",
+        "source-capability-inventory.json": "18be0a4f976da9fa8d8d8d226962fbe21f5a0fa3d3dc3ccecd547293df485e35",
+        "vdr-run-receipt.json": "cb0e79855a075bdf58ef565ad8afc40037f680bf02c77e73a683e485f6b02db3",
+        "lineage.json": "75908fd90b8f241d88e72221d7793e671e02a4372d993cf6995d00d4550cb5f3",
+        "bundle.pdf": "6a7da41f3f7223e031dbdf0fe9e035201dd065381ec60a2febd967bf1cf9daa7",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-120-disclosure-pii-later-disclosure",
+      "packetSha256": "d39621f7bf6f873ee11ddbce1b39f9704638b1efead4c8f0ea7a8f0453cecb76",
+      "hashes": {
+        "canonical-bundle.md": "a2231293ed25867d92c166025f5f1a3584b3b40178c9adf483a0722711d52eac",
+        "truth-key.json": "7ef8a1f887fcabb73f85180bc80a497692821c083ca0be528f748f6133011e9e",
+        "casebrain-output.json": "439389bd7e3c082fe301dfa802a07a454c72fe7096748ab21b552fa2c988d075",
+        "source-capability-inventory.json": "97da4269bbb1e1c12216503cd648982e91d94b1136ca7c2217ce9fcdcdbc85df",
+        "vdr-run-receipt.json": "3262c39795fa49fa27453f0bab549ede5101c3b1c5152fecafef6be4d448553a",
+        "lineage.json": "1333823bcf50e1883bff33b1b64fa3c855b45bce6751b7604bc7f535e51edf36",
+        "bundle.pdf": "7e59271b064b1092d969902d1aceb6451b0f86b3d79fab2abee91b6c0ac7dc4d",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-121-road-traffic-fatal-later-disclosure",
+      "packetSha256": "8ccb786281ef0147acd191891a506abd58b7a8cc50e52eddcccc447ec3ad4004",
+      "hashes": {
+        "canonical-bundle.md": "812c7e481dc1d2183000a6c79f759fad77944ca683b8b70d5681aae6ee4ab8f0",
+        "truth-key.json": "38502d306c4f23cba8ff12e5dcedf2834cd091ae0c917884e97f4157a3436459",
+        "casebrain-output.json": "8c65ac43f92dd261620776b7ddd27cbd301d3b0dab70e5082ca52481862a9b88",
+        "source-capability-inventory.json": "0b53a4493357d267912601f3b1d367717c43e66d95700edca0c74dc16f79343e",
+        "vdr-run-receipt.json": "c5e3446f82e7cda958b1b68f3e7636d7e432e9972aac5d24ce8bc1e9eb756eaf",
+        "lineage.json": "ffe51dc9c47b79a017f1912a0e5f880c0895dc1c6333d01adc52becaa38dcccf",
+        "bundle.pdf": "61c72d2afaeee8dfbb4209c4931c7763f2edeadcfb347a40fbde56c374ab5c1e",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-122-magistrates-procedure-later-disclosure",
+      "packetSha256": "b1e290c8abc2ebf1dbc3b6d382aa9ad1c84e6be1ae26adacb8c98202f7128270",
+      "hashes": {
+        "canonical-bundle.md": "033042e66639fb8168e9103109f6ffa8cb87910b318bc3f0d8aa1ad04480a088",
+        "truth-key.json": "c9a13b15628a918ac0e02b1c5bceda2d5ec2b978bf86312bc4b1120509e38548",
+        "casebrain-output.json": "a7be3f027ebf45ae58b0f8ee6e185179c98ae7b39f69711494a6cabbeaf20281",
+        "source-capability-inventory.json": "3bb5355f8a28819b3576a304bbcf9082ee8bf71252756215d9ad11ded8b682c4",
+        "vdr-run-receipt.json": "d806fa2f1d9f036905704426893afcc16380ff5f2bb6b76ea60a2cc1ac8b49dd",
+        "lineage.json": "e0d02de0944db60fc0beaa2df72af9b5f1bcfd372d632ab42a0f666636e34b7b",
+        "bundle.pdf": "24561dbebfa3e29ca173d7ff4362f2c6faf2453b03d9a4d0be83e625137ad990",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-123-bail-remand-later-disclosure",
+      "packetSha256": "62eaad6672ef649148c192d11873342b0553c7b31fe277e7e027154cd374ef6e",
+      "hashes": {
+        "canonical-bundle.md": "cdd80ecac9398622d92837f18366ad79e805084afafe44c662f5c5db4769ec8f",
+        "truth-key.json": "aeef6df7985cd19d47de0b2860035c12870f73b8516ed5bb38ea1c51d531395b",
+        "casebrain-output.json": "5b8d179149957dd6d5790e3c52e7a7605eb63dff3ebecda2a65826c00fed47f7",
+        "source-capability-inventory.json": "473f0e4649e3022c6732090e534ec91e5df6b800dbfab643e41994905fe629fe",
+        "vdr-run-receipt.json": "4dcefd4edf77fe47be75e79dbaa34b8c7b93ec1a1d41506a4c887434f816d9e8",
+        "lineage.json": "ea0a3dd610412a29339f5ca3c9922e7dcf9dbb8bcc27d624f1d9312ae0f4971a",
+        "bundle.pdf": "701cb411133f15e7a006f0abb50c4480fba07891aefbd23881fe53c5e30ef895",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-124-sentencing-newton-later-disclosure",
+      "packetSha256": "8c8a1f18968e502df874d528d5b5033fd21e7fddebaaf8bc13729fa6bea8dc34",
+      "hashes": {
+        "canonical-bundle.md": "ae1bae29b454625626eb2169238519b7f69b5705b7c844de9749c8fa729335f4",
+        "truth-key.json": "43bc6cda6a121b5d2a6db223de5bd92f14a91815ee37858d5124e1a198bc09fb",
+        "casebrain-output.json": "e3594d5e3653bcf23c42427eecf35b2a35fd953f32e673b7fb541e792390dabe",
+        "source-capability-inventory.json": "5cdde3621eb76776c66563afc9bf7ba204483ff1d48a325024e827e54d8b6562",
+        "vdr-run-receipt.json": "394f7a0e6ad7241310d99d647bfcd86b5ebb24d4b5a44464123eb565cc468da1",
+        "lineage.json": "af818871cbf2e75fb8b86b69cab53d1d85ef967fc83f0fefeb9c16fc23bcb8f1",
+        "bundle.pdf": "009c9cbbee9ca9698786843f6dd0409d564732741f9c6b60e119e281cb31333a",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-125-appeals-later-disclosure",
+      "packetSha256": "33a4d81d86762704a43729a7ba5b2b4d77124456ccf3a1089109ce7656a65245",
+      "hashes": {
+        "canonical-bundle.md": "b85d5d38241875ab44f4551e20648a10fee36c755fc177de371e6123474ded6d",
+        "truth-key.json": "d339c084f243048fd721c229e1f7e5b659f666c673ad00b93126089764450a96",
+        "casebrain-output.json": "1aff296878ce12132fc444637e34ba6a556ff09bf28a82693771a6e42651f35a",
+        "source-capability-inventory.json": "7ea40c3b88e80119ee864834ed2f659a67fd5318d173df5bc8cfe5a8294e430a",
+        "vdr-run-receipt.json": "fa01387fbc2bc32b28f06236530feaa4406712d21964ffa855777d483f105523",
+        "lineage.json": "4f7ae0680a679191e1daf10c7d93a568873d23dc43ae9a4980ff8e7d0941776d",
+        "bundle.pdf": "0ad74d40ec139ef7efbcc00ddd1282f75ecdd154781f6e09637dcf90d118ddcf",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-126-multi-defendant-attribution-later-disclosure",
+      "packetSha256": "9c35943a571d7a8f9a03a4ae5de89b98358a1faef16f44eb426ba8d266ad3f45",
+      "hashes": {
+        "canonical-bundle.md": "6dc08ddaf1848c557d20af00e6f01dc67f810310cc0d023a724411946b9a9222",
+        "truth-key.json": "029043edd2bda4f87bc4364b0ac2db0150ab6bf1b9c1d59fa46d578a083b5175",
+        "casebrain-output.json": "ede8da870f0d774d5b09856bc666c393eb758de213a0599b763ff7bf7118d844",
+        "source-capability-inventory.json": "8069fac8010aef43b38cbed53220f2cfdf759ca3670d318060774b00348eeeb5",
+        "vdr-run-receipt.json": "269f7fc7a811eb0815cbd0e84ad178c417cc9b57eed3824a7285418a195f6a32",
+        "lineage.json": "438af9adf7f47299a97ae37373827571e3d8a3cd3701c22cf0d5be8ea79f3429",
+        "bundle.pdf": "1630359199952362d0e03d1e051258e78ef12739e2940cbfe608cd46fc5cd9ae",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-127-homicide-causation-amended-instrument",
+      "packetSha256": "b15333cd3a328ca195792473f21ae21d5d2a3101f89b1513db05c979e36537b2",
+      "hashes": {
+        "canonical-bundle.md": "0ffd5b233fb3c102852dcc97f008edeb8480f3354de5033a0218b18498f8d8a8",
+        "truth-key.json": "139a503eb59a4a6899a1f69d75c410a07c40fdc7e1a09816315adf210ed2061f",
+        "casebrain-output.json": "21adc1f1b9fc530d5d1db4f2dd676ae3c6c4c1acd11ba6141c16b015677b6a7b",
+        "source-capability-inventory.json": "08b19d3114f7f06f3b45c353e2921273f7a5c9fc8e474d352969b66414582a2f",
+        "vdr-run-receipt.json": "966f6e36639106ccdb7f8897f13661a9c3533d91cc6d5e5c6251919f3c93b0d7",
+        "lineage.json": "3c45eae4810912c8c00ac4278ce331e2156e8e191490838a13782842f8581d57",
+        "bundle.pdf": "0ff82aa1f84b283e39ca2da15c77f065daaede41b932b59bec2789abd255c071",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-128-violence-robbery-weapons-amended-instrument",
+      "packetSha256": "fa5fdb346019e501f5d99426102f829fed5d8f2e8f6ebfe0d9ba3a913093649c",
+      "hashes": {
+        "canonical-bundle.md": "cc2d8994f32b01a9713ddc598267ec38749635dd91c9ecc3a8121f143d0a9df9",
+        "truth-key.json": "1de4355488986b10cb8d4f7b1303c73497683fd424f241bd692c0da0abae6ce5",
+        "casebrain-output.json": "51799576cd3b4bf94a98fa57c9a2b827eada690d814528927df6e4eae06a829b",
+        "source-capability-inventory.json": "9fa3bbf40ef9fd2343b03e8954a2b8d3e5327c714b4d3fefc1c291a6b329805c",
+        "vdr-run-receipt.json": "ce822cc4a06132e95be7bbd39587161de2970af06962d5e04820c5a7235086b6",
+        "lineage.json": "d5f28cbb4ca6a7efa5126d308777f90cb0c57c5ae9179461f4b34006bee73e1d",
+        "bundle.pdf": "c36331181fa376cd74e7f7db899f4f06dc19e399660e45018a04fa347aecb381",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-129-firearms-amended-instrument",
+      "packetSha256": "e0cfa4fdeb2f5192d4fc692386b0cf0136b084468f2603a84a34a1c7f52012f2",
+      "hashes": {
+        "canonical-bundle.md": "8bcbb024a95e3da7c0346e52d7f6dbc7ef3f87f07b2a86e342195f9d4d8ef066",
+        "truth-key.json": "a263a3b01df87ea4c5db921a9ee4beac9497ce35e9feb96c55dec0a3dd06b247",
+        "casebrain-output.json": "fa6320b64a45a3892eedcf32d4fa104ff5338815a1b1481fca9582da772dd73d",
+        "source-capability-inventory.json": "d3ddacd26751ed47b3d7d611376a207d7d59d0177c053296ce3b4b5c28a655ce",
+        "vdr-run-receipt.json": "084cb1cb8035342756c1411941d397b6281083d78b89dee81e87e5dc894474d7",
+        "lineage.json": "594d114cab43c123907b304c6c4fa62c9f0c1e0c841ab3bfcd6606c6b8b4c03f",
+        "bundle.pdf": "7ea9df1b0a9bbd4e6074f9474a5bfb730cdbb7aad1de97c695d9b88c19a0a79e",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-130-sexual-abe-amended-instrument",
+      "packetSha256": "981386971dfbf249012d665c47a75331a407332b3992ada104e4317b93c05645",
+      "hashes": {
+        "canonical-bundle.md": "e4a919614f34daed65ea1ee42c9844f40a795a3c4948096d44be7809d14ec77a",
+        "truth-key.json": "4e85a9aea696b701936f6138d254729f315c30de659827850c9e7d4d17902822",
+        "casebrain-output.json": "3e98c27f437af383c069681b48354b28e5bb8b2e9e4f14e887d33a276cd0548a",
+        "source-capability-inventory.json": "ed8d3e04fbe649156ee73891496d6cbb452726203e389f3befb7408a9f2688b5",
+        "vdr-run-receipt.json": "82e9ea7c614820cf9fa527d848746477a6b312e30d79931a63cfff6a49c389a8",
+        "lineage.json": "51aac6eb7e76702b1a164e2440cdd3a9b0dea1335dc9d82db8ec00ca4a107c9f",
+        "bundle.pdf": "e710ec00a306946c93d8bfcf5ddc3c1153490fcc84c6ef6cb3ccb0f10e8d586d",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-131-domestic-abuse-amended-instrument",
+      "packetSha256": "cab7daa4106e0df977a8ba77a9e25c401738d383281995326d9939c76b54b392",
+      "hashes": {
+        "canonical-bundle.md": "1dd2f20f43fbfb3836672e7dc471808be859a5fa11cef966b412ea7ed099cb72",
+        "truth-key.json": "8e36d5d91ba84bb343991d14b54ced639dccd74c5469aa4bf7ca3e12dcaa8ff4",
+        "casebrain-output.json": "fda57eb67e2db43f9c3a30ffb23873917497aa9e5cf77e99b17c7460c07b7ef2",
+        "source-capability-inventory.json": "93211d14c5a191603f716a63b56ed07e79c439465e6ca660ae8086b155283cfd",
+        "vdr-run-receipt.json": "e705fcd24d8d55ff7648dfbe26da49b1fa3611a2fac0f6b8239083ff11434bcb",
+        "lineage.json": "cdc2c2f956c31c9bd100dace748a572b06e4eb81c2f01003d37ffdf7665cc343",
+        "bundle.pdf": "b4737c4a32efa787184336b887130172b7fb61e018cbd5ec4990a26f41832ab6",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-132-youth-participation-amended-instrument",
+      "packetSha256": "18033ab46fe89b51ce384f59e95f82d0957ca0e1bf36153590c117512afbe0a9",
+      "hashes": {
+        "canonical-bundle.md": "1d4d54c97c9a048349667a0f9e8d953f012e0c58eae26ed266c697c32f326fae",
+        "truth-key.json": "7d82aafeb97c1961be8a0d0a2827b96d7d2e9585c545a045152f0595a020624c",
+        "casebrain-output.json": "ee8c1a4e7e829af62da2aebbd1d26ce2b317c2eea3dd31fa22d3e3e3d22befef",
+        "source-capability-inventory.json": "d9279adcf7dcd859393ef574b1d1f0d6b7da0476eee0ba74900dff22409830a3",
+        "vdr-run-receipt.json": "bc7f2f88e800c35733b1774c580dd2000d14f91404e47a9613c93630905834e0",
+        "lineage.json": "253a2ab69119519850b624262954bc29211a7eb8309c4868a60f9c2383a0c38b",
+        "bundle.pdf": "947d21f0caa81be097981ba885051f65cf4264bc7b141e8dfa8155751e8c5a21",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-133-county-lines-nrm-amended-instrument",
+      "packetSha256": "77fda98624187cb780a47de6e1e628bad2f0a145add1d52c6ca4838307530b30",
+      "hashes": {
+        "canonical-bundle.md": "c694b672cb62607bc5d12f73205e97f743f8a8acccce29a9632072057cce0f0a",
+        "truth-key.json": "d87a673413bcb0281edfa6e226fe81e1f07014e0556bcb7715df8033b68743cb",
+        "casebrain-output.json": "4a16518803d4c676fde323fbe05d2b185d5c6d76c7de65e444849d3b19d8396d",
+        "source-capability-inventory.json": "50793f48b1b09215204a64227393678300edf12d7c9c978c8ab4400cdb02d4e1",
+        "vdr-run-receipt.json": "86db221bed75eaff600d5c234130266db1aa3958e53cc7ce7d676efe2a7d446d",
+        "lineage.json": "73aa2f8da4055c1eba83fea47842cdaad6bc6911e9e89c2548c9203b1ba211da",
+        "bundle.pdf": "69478fd62b3ca2431b88a719867ecf3d7eb2134eb25f46c05866c12822c4735e",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-134-fraud-poca-amended-instrument",
+      "packetSha256": "6d90de34aa594e50b4bcc0f0f22fae065d9721e0143b8ff1612db3653441c182",
+      "hashes": {
+        "canonical-bundle.md": "1861e90f8182ebc7911a422064ace0a22919d2652350ff8fec86f95d7bc9cdab",
+        "truth-key.json": "39e14fe0cc70d0545ca88753462280592c62fbf552254265384f72b92905b2b6",
+        "casebrain-output.json": "dd9f5c86ed4642309f777bae1ec0ab4dc170e8a36c079b8c0666acbcb9d27a05",
+        "source-capability-inventory.json": "8ea39da683984d6cb5aff2ec3c4c2fedf1dab011b3e478ad61e5ee4bc54ce367",
+        "vdr-run-receipt.json": "d5312b99b85d0442a7aae951d6ed848e8898bbe58ca28d20518c01ea54047041",
+        "lineage.json": "914968638f5284401bf43ab74d2a9c385e6e8351ee8f514b9d92804071410027",
+        "bundle.pdf": "805d9ebde39b553b254ed7bfa32df02f5bf002bbeffbfbc40037cb0c74ade6f7",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-135-digital-attribution-chase-mixed-linkage",
+      "packetSha256": "ed646021805bb609f2e85205fb9c009d8c5f3e277b67b41094e111d31c2b8f24",
+      "hashes": {
+        "canonical-bundle.md": "f6b0da1cbe59c08823b7ae1eb2c497a1fefc9c02d647f957bff3ed5518a10701",
+        "truth-key.json": "157fbf3b98fc536866c1893828dc5d41f3636b60c31dc1bf81958d3c0b70c151",
+        "casebrain-output.json": "6e01a905a864a0cd60ff74e7c9064b21a596f394993e9035e93b5e1936816617",
+        "source-capability-inventory.json": "b684b66f2cf1ab2714edafc2bfbfdf11aadd15fe20391392398d55d0d312e6c9",
+        "vdr-run-receipt.json": "ce9e4a89672fc4953769e1981d720126fc978411266628312380e53326fbf0e9",
+        "lineage.json": "e8db300a1ee77ff19ec4c03a50be8a65c1eb633595bd6766184773e486fef658",
+        "bundle.pdf": "c944d6c318d09cc84e253a642efd6be89bdeeec398a8f481949952e690159c83",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-136-identification-code-d-chase-mixed-linkage",
+      "packetSha256": "2681a232b05275835e811d50d3f302cee6d932e5914a8cf416ef9d9ad6a89a1d",
+      "hashes": {
+        "canonical-bundle.md": "3b379f746e4571269421e088a43146cc398dadab7df5e68c625c7a38c5205998",
+        "truth-key.json": "80f24da303d2d0932c5ce3382c0b79ee9fbab77bb39e148a83c92b1808babf51",
+        "casebrain-output.json": "5ad52e403d4fbe02c0a7a3341f010cf66232098ebb23163b4aa80ff76dc6bf08",
+        "source-capability-inventory.json": "3f25ee9c38fa3e7ac3b4371a3433f8898f0882c7b91f152713bdd0b13b35be6a",
+        "vdr-run-receipt.json": "8410125951e5760cc2fe5c500d86e1eea48841c88992a1449193745bee79e444",
+        "lineage.json": "897bf73654b47702b45e17ab34556b4dab8f448a9f01776868b16581086ee249",
+        "bundle.pdf": "a0814ddbdd3bed86d397bfcbea93ac277e7d0686e522ef218a732a208caef80e",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-137-mental-health-fitness-chase-mixed-linkage",
+      "packetSha256": "0460edcf8b0e3bc2ddb95e4a2d30364d3d1cf04f6372c232b9a626fe3c0e25a2",
+      "hashes": {
+        "canonical-bundle.md": "28fb02e1a719bf511b5af478ea5bc4e95408d5a41038a1778ca48e10bb186e06",
+        "truth-key.json": "54402182c40f784dbca81687642878a967d273d2071e397191729609bfb56995",
+        "casebrain-output.json": "d6778274f5dceaa04b391d65942ed6a5c97a982a938e7b3ed4af6af75b9495b5",
+        "source-capability-inventory.json": "6a22db348fb6876d9c75d2fcc53608cb7b0100114b16b0d0fa960d2c92f0388e",
+        "vdr-run-receipt.json": "3ff2f2316de688439f9be5bca443943e7245851a0df3749d5b8593fde6d41e9c",
+        "lineage.json": "550d3d0b6226a6ecb8bb09d3a2a42083db2f722ea1f074526ea44924846a7df8",
+        "bundle.pdf": "7afec4f5d11f0f937d657d0414ab45a537e70fd4a24d0d9b1d22f5c7e138e30a",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-138-disclosure-pii-chase-mixed-linkage",
+      "packetSha256": "361d8e453e8f45975b3f683155c3d0667bce6aae48c38f6f79cf50fddf7614eb",
+      "hashes": {
+        "canonical-bundle.md": "e0e47b7545ea3c0e5035083784dd301a61590146d00ce1aa2ceb54975487ed2d",
+        "truth-key.json": "4aeb37e55e0f3aa7bdd29c1836b073d2ed19334a741acd51d98d47e557244a14",
+        "casebrain-output.json": "90e028cfb4db1d47613a77879b50b94d3021091b6d92d7945dfe89e07c86a9ab",
+        "source-capability-inventory.json": "7960be1895f7884f9d6bf81bc0bf098d9d79eac26be2b03bd5462c9142931976",
+        "vdr-run-receipt.json": "75c1d6e349cd5400b77764889af54f9f60bdb9b01d84a63283400201c159ba99",
+        "lineage.json": "4f68c7c01d71bae8e7fb89a2d09f1e4a48b81c8b8913de99be22f00afcc4a6bb",
+        "bundle.pdf": "8d49e4a0a4b0dcd9ad91126491752efd236632dc6219f1e036f2693132efeb1b",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-139-road-traffic-fatal-chase-mixed-linkage",
+      "packetSha256": "ec78abdcd2e8997cdafd8bf7008ef3ea38a73c521d4846f9e5fad53246152e2c",
+      "hashes": {
+        "canonical-bundle.md": "3019a7e9156e925392a3ca12cf99be3b269605aab3d9f033315c81fef027932e",
+        "truth-key.json": "b2f4627e8d78f45a39504c0946f51960769e86948778e4ca91967ad837ff2eb2",
+        "casebrain-output.json": "10fa5c78aef41a0505738f7fa972c06a00258194724af69042ee3d2644ce05fb",
+        "source-capability-inventory.json": "5866d37a810f9590f5c6b5f501a5394e19c6009f91faba8981d5e69c77f49e00",
+        "vdr-run-receipt.json": "013fc4e7e2d458a707793f10ca984f3e4e45e2fd01c274b63d7b10963e75e8c2",
+        "lineage.json": "f3d0e63cdab6f5c335f09f9502dd7ba8936408ebccfc94d5c4ed8f1e83a42cc6",
+        "bundle.pdf": "e98a3a595c98efa78b42afd315269770cea58c884f56c9ac7243188ba0133d39",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-140-magistrates-procedure-chase-mixed-linkage",
+      "packetSha256": "7b149890213d5eba4f3bb3793ffb018ba6fdc0f135c00c4738d6ba03888038ec",
+      "hashes": {
+        "canonical-bundle.md": "a1e63e5cb827f9ec8b9e2fff6ec6adb9588efbf01686c2a13c750456248a7439",
+        "truth-key.json": "24c3ee52c6f1c00c42037332ff0676c8fa3fb3dbf690d7c79606af50b7d59637",
+        "casebrain-output.json": "4c6cefec522d314594bd8b21ad896405fc22c637591fb4eb1ae452f4ee38415a",
+        "source-capability-inventory.json": "5613bd72a97cc9c98a6a60922fbc32be13bfaaf345457b83a30199e4c9c91e87",
+        "vdr-run-receipt.json": "2aa98fee5d8d8b709912a7c25e9ccbc286fd86aefaa893197bcb434b6f11b9ab",
+        "lineage.json": "84143654b9a1dd79547a21562bf128103eee3a620e8dc69fec142156ca732615",
+        "bundle.pdf": "ebec0487fa8bd3b9b73bce47896c7b58457031c5d6ebd4755b47d75b6f1de9d2",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-141-bail-remand-dense-bundle",
+      "packetSha256": "1e2e86909164a13b4c432130cfcd1e09982d4172f776ab73bd97c3cc8a6f6ff7",
+      "hashes": {
+        "canonical-bundle.md": "13dc119af7fd77777d7dd21b714c049012e0c9d325e63a22d9d9382889c8f5db",
+        "truth-key.json": "bdc669409f97a3cb7872555f50cd00480ae1046fd2b197b06bdcd526c0f3e7e9",
+        "casebrain-output.json": "ebc41e40ab8d44f56eb3f89871b4405f471c5a1f6480457f1c2d2d269453a925",
+        "source-capability-inventory.json": "b3d4a9dade89a5c178cbe3d2119806d930fe30173f0fe323b70bba8cac464162",
+        "vdr-run-receipt.json": "f1e622e3ecef84992e94a0701bc03067a5f5d9c03de75f619f18be89e9a7fd42",
+        "lineage.json": "f1d5ed990194dad978debec40c7143075702d5aca5285e9b2af94d9eeabcb8b3",
+        "bundle.pdf": "12b66fc8c3ed88b9ba94a95e73ee9b2c6192785146a1b0fc1b10b4086ee71215",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-142-sentencing-newton-dense-bundle",
+      "packetSha256": "42b34f07688813a7f4b02bf1c7c568e4f7a0813bc52ce4ee6774ff4da0a46b24",
+      "hashes": {
+        "canonical-bundle.md": "44820565c458653bbc59c4c495373ab46ad74cd3f80cc192b3d6c7b1b3695ecc",
+        "truth-key.json": "f62957fa3a14cc2b2fa2ffb8162e9f04ef9c298c15d4304d470834e21fcb5d75",
+        "casebrain-output.json": "233e29687a2ff9d5d178d8bcaaaccd1ca0a6ea4048c394f2608a668fa3d28733",
+        "source-capability-inventory.json": "5b673356b3887e842683b5ad1fb6f818f5da0635f15ed1605b8be1952ce14017",
+        "vdr-run-receipt.json": "caaee1b5f9499931c8d5af4dc07875013d177a365e4ff517fc0c940f37595ba6",
+        "lineage.json": "be56e4875530d25b21172ace0b9dcb329495c679aa12cc8051d1779b6187a07c",
+        "bundle.pdf": "df8f16d486c63824609ea9a5c189ccda951088db49824327a9642fbcfbed39fa",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-143-appeals-dense-bundle",
+      "packetSha256": "13b893d1699e8b0b177eaed0d1c60d6ee84de0d4bc9e650e61e358f428b31ea6",
+      "hashes": {
+        "canonical-bundle.md": "f010fe0d17460725ce7825cedee9b0bdb6f011c19b4b2876db2e45a9840db699",
+        "truth-key.json": "5580d296d4c4e2a1bd475de515e0765b8f67631c0377ad5f0e231bac24ccf16d",
+        "casebrain-output.json": "9f8f3fa2b617ef917dd164a5b1efa5f5ff650b28b67d1ccbb9c5cb2b5457a84b",
+        "source-capability-inventory.json": "f91729c52ba978cda3ddb82ada656fe9200c4df0636f7b590d96bea7edb02dd2",
+        "vdr-run-receipt.json": "a5aca70ba7ddfb0ddbbcc2a699fa7dd6a758d0ffef9bdfa101cc2d917cf428f6",
+        "lineage.json": "d3c4638b564b16eb256011b68f442e2384af182e2ddf11f6c82491368d93c1ca",
+        "bundle.pdf": "de06ce6d2525045945fc0eb27cffe8020cf37bf4ba19954666f15f0acc79dca0",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-144-multi-defendant-attribution-dense-bundle",
+      "packetSha256": "e7da22274141368cabc3af8d49acff9af7ad42d87cd59371abf547f272795652",
+      "hashes": {
+        "canonical-bundle.md": "1f1a5fcede69ddb2db5b7f6789d91ab170e4dfff3ff1de69a4002cfeb344675e",
+        "truth-key.json": "81fd9b88ce12ec24589d604dd780653c27dd3418cabf2a6b630ab429042f820a",
+        "casebrain-output.json": "160d289fd7ad5f25a07a29ae894aa4dba9944023a6d2ff412910b1bf54343107",
+        "source-capability-inventory.json": "914f703dcba91d8722e1c9c67d48fab453c333296105dcfdf2b2dfd831cf93fe",
+        "vdr-run-receipt.json": "bcc7f46a9694de632c9d65c93f9941f465d94742ac0f60dc27e310f4c66ec578",
+        "lineage.json": "9e146df94c101325176fb62470a6dcaaf85b6c846ee31c3352aee6f05313014d",
+        "bundle.pdf": "65b6ca33b5c6db7b5f7ff6f871edd90c32fd80e1c8b38c698087fac06463cba1",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-145-homicide-causation-dense-bundle",
+      "packetSha256": "0cfdc15a905c4cfbb31770ff73998afd57a73d26bcfca47ef10e104aefcbf430",
+      "hashes": {
+        "canonical-bundle.md": "5cef7f4c5fb8f398f39662e8b47282633b563aafa62e6646adf5bb88669d5ced",
+        "truth-key.json": "e3fc4b39b072d96baf46249087fbe5dc539e9784413fe1dbe31fbb81e48bab40",
+        "casebrain-output.json": "dd80f0279144f5149dce85ffb5202346ed8b4789a0ce0806e1101ec712f9fef2",
+        "source-capability-inventory.json": "9550faece08b7abbf56d2d1afd76b0f2083f4c27a94e1d190c41a04d4a13366e",
+        "vdr-run-receipt.json": "6a900996fa3e8a402ee39d1284a29d553caba242223be23e42145d63af729b5e",
+        "lineage.json": "1a8b793f0dfe1f7646f753c16434571e29653a197663bda2a3e68670e7b0750a",
+        "bundle.pdf": "df6e73b754acc6f1d8707d61bcc42009c667f43ef72d1cc5abd7dc6c70dfa3cc",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-146-violence-robbery-weapons-recording-transcript-clip",
+      "packetSha256": "9829909ce6e6d0477b341bbf0eb9ad3574f1e6af4f625491f7e4bfd65765c0ca",
+      "hashes": {
+        "canonical-bundle.md": "f7251e834b7c985479fcf73e40faf5f72b1103757bcbabc2f0155da532576849",
+        "truth-key.json": "5a4bd7fc686b95ab28895bbfe40e03fb78b82c6b5d6a35a623375337e1fe056b",
+        "casebrain-output.json": "4cd1ebb090a0e451a94b4bd55a86342e8d30c1d841eb9f6d2d00ca2eafb52208",
+        "source-capability-inventory.json": "5d1b3baae459ee7f00c8531a199ceaa0ba93d283ccec05548aad7deb6ae4aac2",
+        "vdr-run-receipt.json": "79e93158fa01bb04f6fc316aab0861fae87d5b7eaef568a9ce5463384a8b535e",
+        "lineage.json": "09a7f4b5e3b13bf3742a89f1d0ad62405c40c4dc3ef62d7359704e14e47b8749",
+        "bundle.pdf": "5858ab54ca35df3e49521dabcbc6b4055e0a9317f3a013720e2de083c18be4c4",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-147-firearms-recording-transcript-clip",
+      "packetSha256": "39c44c6d39d2a85546dcafe9b9420d3eef966a9b85ae0a9a768cbef30937188d",
+      "hashes": {
+        "canonical-bundle.md": "8160c025d4c295c7d38e1ad22b3833af9e0591770ce4d9f9bca1ba66a8c3be53",
+        "truth-key.json": "7a1e828554e7884ee90cf9ad7580efb0711acfa455b5d5808ea23215c3d9901d",
+        "casebrain-output.json": "0da067a6fcf7a7c7162be1f26fbc2f562840f6a26ae0da36d6c294b18371e7e1",
+        "source-capability-inventory.json": "795a17627db12e1990607b1b444c21c04fea53e6957330c3347c2e7cf64661e4",
+        "vdr-run-receipt.json": "e87c305f3b88111c594db2285e49105be5dff72eebcd36ba48d1fb8dcbc8e670",
+        "lineage.json": "e126d916fb31f6647a1fdb71120b9f9622af0370e0fb7077bb723f85c959538a",
+        "bundle.pdf": "668937293daa05529813adf224e76cc1720b7a822821abe2ae0a6aac4909a4f5",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-148-sexual-abe-recording-transcript-clip",
+      "packetSha256": "2fd442c58cc1765cd1c445f1615353a7e660eb04070b2b216901031bdcc2fc1b",
+      "hashes": {
+        "canonical-bundle.md": "aea28d1af6fc9713e004706287bd0d184652a98bbadbaf02aea6c854edda930d",
+        "truth-key.json": "87e4a7632222136cd6c05060fd1d54368aef19c382c7b452f4f1f66a2cc641d4",
+        "casebrain-output.json": "93abd21419a68b30b86724a17ba556dbb67b4e0673e23f420f4b1dbd98faf20e",
+        "source-capability-inventory.json": "6ad7014b438800458c1687928f674ce9be3e588262d2008c6dde682f145edb2e",
+        "vdr-run-receipt.json": "e684bc10ef9a1db9b4c9d508568dd866ce30dfa9607973a81e148963b679ba7c",
+        "lineage.json": "c2fbb71b6736d9004508a115a1e5ecd9ee3b6bd5a7e39fee2413123b772b35d0",
+        "bundle.pdf": "f7c9b2041c633e0e2d4d2a695216f7f762968ad9b57ac89980a4512f2bd2d121",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-149-domestic-abuse-conflicting-source",
+      "packetSha256": "74e0c43c3b6753f1833dbfc327febf4f0d2e6982cc693e757eea7452c4c377a5",
+      "hashes": {
+        "canonical-bundle.md": "62e9375d463ce14e7d1de851710346ae2c35cd55e84c8169b0e9bc0815d53812",
+        "truth-key.json": "a960272d434a152edad06b9ee29939b49e527d12bdfc1837e9f8f31eddd570d2",
+        "casebrain-output.json": "7450b617add2d7b7b0bd4c147a9f891ace8766fd604a76b652d3492bb2ff3855",
+        "source-capability-inventory.json": "3feadf329c55fb443a7e71c121154da97cf049135df51dee4814817e1869bd82",
+        "vdr-run-receipt.json": "c91ed15cd5330fcee842114507987d7b7eabd3265c722325adf2827f5f7b2ee4",
+        "lineage.json": "dea1f5d3b6ea3af9c0c0e0f73619e4db4c57e4adaa16ec7ddefe5d1bb07eb873",
+        "bundle.pdf": "1b42763b7227c1046fe0c1e5b6f8d223d28c5ab62d583c4b249a13819298890f",
+        "ocr-page-unit-receipts.json": null
+      }
+    },
+    {
+      "caseId": "s300-n150-150-youth-participation-conflicting-source",
+      "packetSha256": "73ee2376629b4c5b2d9bbe654bd8f4453ac3043406f3732c113f58c5ea1b15c6",
+      "hashes": {
+        "canonical-bundle.md": "d9535dd5c3c921c5028f72f226e771f8da2b09476f316faeeef794695107003a",
+        "truth-key.json": "eaca98363e0e77f2929f8423db1389aff999d0804ea51cf65d7f507a6731966b",
+        "casebrain-output.json": "11840719d5cd82ee1d267fc651d511b846007848b2cb549f4e32f4898589e9a4",
+        "source-capability-inventory.json": "8bdab89b70cab4df09075b5f31d67a91cfcb5b39ab4b1dfecdb2669361cf4437",
+        "vdr-run-receipt.json": "393d361190f980eb040aa53fc777ebc7e0515ebaadfa1df5bae0e6fbbce6499e",
+        "lineage.json": "97b65b589dbd71658ee3dc415e2dd30f31d7707cff7305de162a4f98add4d14c",
+        "bundle.pdf": "b43127bcaedc9c1c0bc5fef43aa9f6b84d9ab911e67c5c27bb81c8871f3abce3",
+        "ocr-page-unit-receipts.json": null
+      }
+    }
+  ]
+}

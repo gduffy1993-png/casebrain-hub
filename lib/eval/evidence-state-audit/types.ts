@@ -80,11 +80,22 @@ export type AdaptedPrediction = {
 export type CaseBrainAuditOutput = {
   caseId: string;
   generatedAt?: string;
+  source?: string;
+  truthKeyComparison?: Array<{
+    truthItem: string;
+    truthState: string;
+    casebrainLabel?: string | null;
+    casebrainState?: string | null;
+    aligned?: boolean | null;
+  }>;
   matterConfidence?: {
     level?: string;
+    label?: string;
     chaseSendability?: string;
     summarySendability?: string;
     safeCourtLineStatus?: string;
+    doNotRelyYetReason?: string | null;
+    sourceBadges?: string[];
   };
   evidenceStates?: Array<{
     label: string;

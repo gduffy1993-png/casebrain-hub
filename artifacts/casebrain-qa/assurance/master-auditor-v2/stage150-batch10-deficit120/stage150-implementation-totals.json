@@ -1,0 +1,10 @@
+{
+  "totals": {
+    "stage150ControlCount": 161,
+    "partially_implemented": 98,
+    "specified_not_implemented": 55,
+    "implemented": 8,
+    "other": 0
+  },
+  "implementedIdCount": 8
+}

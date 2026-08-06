@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { buildCaseContext, guardAnalysis, AnalysisGateError } from "@/lib/case-context";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -95,7 +96,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
           ? "Mixed evidence. Consider strategic approach - challenge weak charges, consider plea on strong charges."
           : "Prosecution evidence is strong. Consider early guilty plea for sentence reduction, or focus on mitigation.";
 
-    return NextResponse.json({
+    return gatedJsonResponse("api_client_advice", {
       doActions,
       dontActions,
       risks,

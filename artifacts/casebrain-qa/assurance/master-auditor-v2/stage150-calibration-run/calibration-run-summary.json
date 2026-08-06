@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "maa-v2-stage150-calibration-run@1.0.0",
+  "runId": "s150-cal-2026-07-31T16-55-01-119Z-a33adbda",
+  "populationCount": 150,
+  "orderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+  "candidateFreezeSha256": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202",
+  "findingUnits": {
+    "cases": 150,
+    "surfaces": 9,
+    "occurrenceFindings": 58,
+    "exactStrings": 6,
+    "normalisedTemplates": 6,
+    "casesWithFindings": 12,
+    "controlsExercisedFully": 0,
+    "controlsExercisedPartially": 16,
+    "controlsNotExercised": 145,
+    "candidateDefects": 58,
+    "confirmedOutputIntrinsicDefects": 10,
+    "unresolvedSourceProvenance": 0,
+    "containment": 0,
+    "detectorFalsePositives": 0,
+    "duplicateOccurrences": 48
+  },
+  "stage150CalibrationRunCompleted": true,
+  "stage150ExecutionAllowed": false,
+  "stage150SampleSelectionAllowed": false,
+  "freezeAllowed": false,
+  "programmePassSupported": false,
+  "caseBrainRepaired": false,
+  "detectorsAlteredAfterResults": false,
+  "controlsPromoted": []
+}

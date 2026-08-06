@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "maa-v2-batch10-deficit120-changed-file-manifest@1.0.0",
+  "baselineCommit": "78d16bb1a2606f7187f69fc8474e97629bce69ca",
+  "headCommit": "78d16bb1a2606f7187f69fc8474e97629bce69ca",
+  "intendedScopePaths": [
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/constants.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/coverage-catalog.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/source-builder.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/production-capture.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/strict-validators.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/cohort-pipeline.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/index.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/materialise.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/schemas.ts",
+    "scripts/assurance/emit-maa-v2-stage150-batch10-deficit120.ts",
+    "scripts/maa-v2-stage150-batch10-deficit120-contracts.test.ts",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120/STOP-FOR-CODEX-REVIEW.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120/population-manifest-150.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120/changed-file-manifest.json"
+  ],
+  "entries": [
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/constants.ts",
+      "sha256": "2bd35afc7fb7e84180718019ad9319c2bbbbd199bd2db07b7c3b61f4c16fddcf",
+      "byteLength": 1772
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/coverage-catalog.ts",
+      "sha256": "33ed82216cf3385ff3b6191da506892aadac9d0205d7fda2bcbbf54d111d8b17",
+      "byteLength": 8622
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/source-builder.ts",
+      "sha256": "28f0904b2f287e92e1389acad45e9cb6ab4dff4f65cc889481e5ff2c74b2cbad",
+      "byteLength": 5676
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/production-capture.ts",
+      "sha256": "9b5691444712be5eb9fa2c487e78bc8acaa58ea7fc45f809bb724f805099de0b",
+      "byteLength": 8633
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/strict-validators.ts",
+      "sha256": "24030b060cacf899540efd7b65efc4674b982e45a1c4278c424e927cd3d5ecb6",
+      "byteLength": 5501
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/cohort-pipeline.ts",
+      "sha256": "147bb080123341a729c0df49bf536ef19ae7d5f425aecd0c32f7e385ffc02870",
+      "byteLength": 10030
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/index.ts",
+      "sha256": "91d821a83c3e8556855f955ab6b49752a60d28c9cec16145bd594e9d55e46f16",
+      "byteLength": 246
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/materialise.ts",
+      "sha256": "50125ef2da16ae1e5b9637d5355373d9c2aceeda69a89822892c44b53c561d76",
+      "byteLength": 23590
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/schemas.ts",
+      "sha256": "51e9e1091214524ac9bbf4711e14c0f4880a987a90cb9fe98be9de50cf9a91ff",
+      "byteLength": 7116
+    },
+    {
+      "relativePath": "scripts/assurance/emit-maa-v2-stage150-batch10-deficit120.ts",
+      "sha256": "1813e1f1d5266a03b6c5f39ab45b24cb8c27a95ec91d5857388acd29bfcd33ce",
+      "byteLength": 15243
+    },
+    {
+      "relativePath": "scripts/maa-v2-stage150-batch10-deficit120-contracts.test.ts",
+      "sha256": "c0fb50efdf8f10adb0e5f6b017468883fa09dad53cdc6ddcfdb9151d957f3078",
+      "byteLength": 4524
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+      "sha256": "2fd46284ce37f28709ce3a472ae695b6d4f054629b0a229bda6493f00ee2e800",
+      "byteLength": 939
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "3b55c22432f0b106bf07826c81a838d908c8a6759010717c243c35b93bf1f2c7",
+      "byteLength": 6419
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120/population-manifest-150.json",
+      "sha256": "f9c88a33c7c4e9190abae7392ab01dc9d652b445cf5eb84b48bbfa7eaab96ced",
+      "byteLength": 56996
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120/changed-file-manifest.json",
+      "sha256": "c35ea358c600d3df85c0017ee122d71e3dcdc1b194fb0d731093354b62c96133",
+      "byteLength": 4821
+    }
+  ],
+  "thisManifest": {
+    "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120/changed-file-manifest.json",
+    "sha256": "c35ea358c600d3df85c0017ee122d71e3dcdc1b194fb0d731093354b62c96133",
+    "byteLength": 4821
+  }
+}

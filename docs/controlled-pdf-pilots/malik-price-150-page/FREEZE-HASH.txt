@@ -1,0 +1,6 @@
+pilotId=malik-price-150-page
+version=design-freeze-v1.1
+algorithm=SHA-256
+freezeHash=75b4df080358baa20bd44a80344dff181e6cb623981bed69f192d133e992773e
+inputs=matter-skeleton.json,page-register.json,truth-key.json,conflict-table.json,acceptance-matrix.json
+note=Hash covers JSON design artefacts only (excludes README/STOP/FREEZE-HASH stamps). PDF generation not authorised.

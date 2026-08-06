@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "stage300-v2-solicitor-boundary-reporting-honesty@1.1.0",
+  "ordinaryVisibleCopyableSendableProse": {
+    "claim": "zero internal identifiers / fixture / Stage-300 language; supervisor copy has zero machine/audit JSON terms",
+    "status": "PASS"
+  },
+  "protectedRawSourceReviewRecords": {
+    "claim": "exact internal/source text retained; deliberately viewable only through the blocked labelled review control",
+    "status": "PASS",
+    "records": 270,
+    "byteIdentical": 270,
+    "canCopy": false,
+    "sendability": "blocked",
+    "excludedFromExport": true
+  },
+  "copyExportApiPdfComposedProse": {
+    "claim": "zero protected raw text",
+    "status": "PASS"
+  },
+  "manifestSelfHash": {
+    "claim": "manifest excluded from files[]; detached digest after finalisation; zero claimed-digest mismatches",
+    "status": "PASS",
+    "hashedPayloadFileCount": 56
+  }
+}

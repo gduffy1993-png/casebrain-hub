@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "stage3000-final-corrections-exact-changed-file-manifest-digest@1.0.0",
+  "generatedAt": "2026-08-02T17:47:23.252Z",
+  "manifestPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/exact-changed-file-manifest.json",
+  "manifestSha256": "64f26674311f7ad1aec9d67315edd8f5e69b6fc237dc63b6b802508e6822c2bc",
+  "manifestByteLength": 10728,
+  "fileCount": 28,
+  "intendedCommitCount": 22,
+  "excludedCount": 6
+}

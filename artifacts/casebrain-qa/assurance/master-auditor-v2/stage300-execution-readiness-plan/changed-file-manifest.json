@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "changed-file-manifest@1.0.0",
+  "baselineCommit": "b2f7cbe3817b6fbeffc53805bc50566cf25c80b8",
+  "headCommit": "b2f7cbe3817b6fbeffc53805bc50566cf25c80b8",
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/brain1-guardian-blob-compare.json",
+      "kind": "untracked",
+      "sha256": "61c59286fa962609f3d2a5a7c600363764c5320691b798927e0a2c863dd89d70"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/changed-file-manifest.json",
+      "kind": "untracked",
+      "sha256": "6388c4c1a04a1250a2066679ef079a857fa43a226dd67b87b0a300002f8a0007"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/denominator-lineage-policy.json",
+      "kind": "untracked",
+      "sha256": "f37b49bf510b75e640b9e9ea3ac7a1d2f6385d0f381aa1d532bcefa38ddcc10e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/missing-adapter-implementation-order.json",
+      "kind": "untracked",
+      "sha256": "d38a903741aa5ff098c268500723ba565e9c5bad1d893bcf7967415ee80364c3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/new-150-coverage-specification.json",
+      "kind": "untracked",
+      "sha256": "7932e108bbbcb1a20928b78cc48de6ff44d0ad8ce0ca2eee36fe48840e344c70"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/stage150-161-control-disposition-matrix.json",
+      "kind": "untracked",
+      "sha256": "9a83ad459fbc84cefab9e324e168b34d91bd40f19ffb74b2975c9cad7a8af370"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/stage150-closure-report.json",
+      "kind": "untracked",
+      "sha256": "506de37d07ece992c0a9ea5dc1ab74e01f8431a3d5bd1802ec7010d30fdf0ee4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/stage300-essential-control-register.json",
+      "kind": "untracked",
+      "sha256": "8db1f5b49a210b2dc4296870e9fdce3b658a46a1900cff2037534a7ce0d7433b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/stage300-execution-readiness-gate.json",
+      "kind": "untracked",
+      "sha256": "3b734421c81ffb9d6d43f9cf565117b8914c8220c856504ca8125cf679d20b71"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/STOP-FOR-CODEX-REVIEW.json",
+      "kind": "untracked",
+      "sha256": "ad4b1a5ec63f03727d52ccb687a311a3cc62592fdb6f17ec4e82a303e07c0ac1"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage150/index.ts",
+      "kind": "modified",
+      "sha256": "bbf43f83b47b3829b22056f83a1c57b1b70e80e7d57687460be76eccb6febf7d"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage150/stage300-readiness-plan.ts",
+      "kind": "untracked",
+      "sha256": "6243d7b0978f32098034b9cfd182ff6c72f44c2eb46dc3a16e45afd5a042e757"
+    },
+    {
+      "path": "scripts/assurance/emit-maa-v2-stage300-execution-readiness-plan.ts",
+      "kind": "untracked",
+      "sha256": "18780974f5cd5f313bbc4676b6d080b93d4de64d5f106155098c45154143cdc0"
+    }
+  ],
+  "count": 13
+}

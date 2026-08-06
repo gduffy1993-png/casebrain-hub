@@ -1,0 +1,107 @@
+{
+  "schema_version":"1.0",
+  "matter_id":"R13-EMBER-JUNCTION",
+  "status":"design-only",
+  "matching_rule":"Exactly one specification per planned document ID; no extras.",
+  "specifications":[
+    {
+      "document_id":"S01",
+      "expected_professional_structure_and_purpose":"Controlled cover, version record, persons, non-operative charges, collision chronology, issue map and procedural actions; neutral orientation without deciding dangerousness, distraction or causation.",
+      "realistic_page_range_and_information_density":"14-20 pages; 300-500 words per narrative page or 10-22 sourced events/rows per table page.",
+      "required_fields_headings_and_provenance":["matter/version/preparer/reviewer","person and vehicle IDs","charge/status","event/time/source locator","issue/count relevance","evidence and service state","hearing/deadline/order","unknown/supersession"],
+      "native_scan_or_media_characteristics":"Born-digital accessible PDF with searchable text, stable source links and repeated controlled headers.",
+      "legitimate_imperfections_and_version_history":"Unresolved time offsets and later corrected event links retained through dated versions.",
+      "confidentiality_redaction_and_audience_restrictions":"Open orientation excludes privileged advice, irrelevant victim data and restricted device content; audience variants follow recorded permissions.",
+      "prohibited_filler_duplication_and_padding":"No copied witness/report prose, repeated chronology, generic offence summaries or blank padding.",
+      "document_specific_visual_and_content_checks":["non-operative charge label visible","each event source-linked","fact/expert/party/court states distinct","times carry basis and offset","tables fit page","bookmarks and redactions safe"]
+    },
+    {
+      "document_id":"S02",
+      "expected_professional_structure_and_purpose":"Incident response records, signed witness and responder statements, scene photographs, dashcam/CCTV register, transcripts and continuity; preserves observations separately from reconstruction.",
+      "realistic_page_range_and_information_density":"28-40 pages; statements 250-450 words/page, registers 8-22 rows/page, and 1-4 necessary labelled images/page.",
+      "required_fields_headings_and_provenance":["maker/role/date/signature","incident/log reference","exhibit/source/holder","master/working-copy/hash","capture clock/offset","continuity event/person/date","person/count relevance","service/redaction/version"],
+      "native_scan_or_media_characteristics":"Mixed signed statement scans, native video retained externally, lossless evidential stills and born-digital media/continuity registers.",
+      "legitimate_imperfections_and_version_history":"Witness uncertainty, obstructed view, camera-clock drift and corrected exhibit labels allowed with explicit history.",
+      "confidentiality_redaction_and_audience_restrictions":"Bystander contact and irrelevant imagery minimised; only served material reaches defence/client/court; masters restricted to authorised handlers.",
+      "prohibited_filler_duplication_and_padding":"No near-identical still sequences, repeated statements, decorative scene images or transcript/media duplication.",
+      "document_specific_visual_and_content_checks":["maker accounts remain allegations","image captions identify source/time","clock correction shown","media hashes resolve","signatures legible","continuity complete","redactions irreversible"]
+    },
+    {
+      "document_id":"S03",
+      "expected_professional_structure_and_purpose":"Collision-investigation survey and reconstruction: instructions, qualifications, scene measurements, assumptions, calculations, plans, uncertainty, opinion and addendum; tests speed, visibility and braking without determining the legal standard.",
+      "realistic_page_range_and_information_density":"35-48 pages; narrative 250-450 words/page, calculation tables 6-16 rows/page, and only evidentially necessary diagrams/plans.",
+      "required_fields_headings_and_provenance":["expert/discipline/duty/declaration/date","instructions/material reviewed","survey method/equipment/calibration","coordinate/measurement/source","formula/input/unit/uncertainty","assumption and alternative","opinion limitation","report/addendum/version/service"],
+      "native_scan_or_media_characteristics":"Born-digital report with vector plans and selectable tables; signed declaration page may be scanned; native calculation files referenced and hashed.",
+      "legitimate_imperfections_and_version_history":"Measurement tolerance, incomplete sight-line datum and corrected calculation permitted; original report remains visible beside addendum.",
+      "confidentiality_redaction_and_audience_restrictions":"Expert drafts and privileged instructions restricted; signed/served report distributed according to service and ruling state.",
+      "prohibited_filler_duplication_and_padding":"No repeated diagrams, unexplained precision, ornamental equations, duplicated methodology or artificial appendices.",
+      "document_specific_visual_and_content_checks":["units consistent","plans have scale/north/key","inputs source-linked","uncertainty visible","addendum changes traceable","opinion not legal conclusion","tables and diagrams readable"]
+    },
+    {
+      "document_id":"S04",
+      "expected_professional_structure_and_purpose":"Vehicle seizure/retention, inspection, brake and mechanical testing, EDR/ECU acquisition, decoded output, expert reports and addenda; separates physical defect, data state, knowledge and inference.",
+      "realistic_page_range_and_information_density":"30-42 pages; inspection narrative 250-450 words/page, test/download tables 8-20 rows/page and 1-3 diagnostic images/page.",
+      "required_fields_headings_and_provenance":["vehicle/VIN/component IDs","seizure/seal/storage/handler","inspection date/condition/method","tool/adapter/software/version","raw file/hash/acquisition log","parameter/unit/time basis","defect/test/result/limitation","knowledge evidence source","report/addendum/service/ruling state"],
+      "native_scan_or_media_characteristics":"Mixed custody scans, born-digital inspection report, native binary download retained by hash and safe decoded tables; photographs retain metadata.",
+      "legitimate_imperfections_and_version_history":"Unsupported parameter, firmware mismatch, post-collision damage ambiguity and repeat test allowed with version trail.",
+      "confidentiality_redaction_and_audience_restrictions":"Native downloads and personal vehicle data limited to authorised experts/parties; served extracts reflect order and relevance.",
+      "prohibited_filler_duplication_and_padding":"No invented parameters, repetitive component photos, raw hex page dumps, duplicated custody records or unsupported defect conclusions.",
+      "document_specific_visual_and_content_checks":["VIN/seal continuity reconciles","raw and decoded hashes linked","parameter support stated","post-impact condition not pre-impact fact","defect and driver knowledge separate","images labelled","versions preserved"]
+    },
+    {
+      "document_id":"S05",
+      "expected_professional_structure_and_purpose":"Provider and extraction statements, phone/navigation attribution records, native CSV/XLSX telematics schedules, journey/event mapping and methodology; supplies timing and device state without equating activity with driver use.",
+      "realistic_page_range_and_information_density":"28-40 rendered-equivalent pages; spreadsheets 15-35 substantive rows/view, concise methodology, and limited plotted views with source rows.",
+      "required_fields_headings_and_provenance":["device/account/vehicle attribution state","provider/source/export ID","collector/tool/version/date","native filename/hash","timestamp/timezone/offset","record/event/field/value/unit","missing/filtered/duplicate state","person/count relevance","service/redaction/version"],
+      "native_scan_or_media_characteristics":"Native CSV/XLSX and provider exports are primary; formulas/filters/hidden rows declared; readable PDF previews are non-authoritative; no macro execution.",
+      "legitimate_imperfections_and_version_history":"Clock drift, null fields, duplicate pings, coverage gaps and corrected timezone interpretation retained transparently.",
+      "confidentiality_redaction_and_audience_restrictions":"Irrelevant location/communications and third-party data minimised; native data restricted; client/court receive authorised schedules or extracts.",
+      "prohibited_filler_duplication_and_padding":"No screenshot-only tables, repeated rows, unlabelled filtering, invented interpolation, chart decoration or formula-driven padding.",
+      "document_specific_visual_and_content_checks":["native files open safely","hashes match","headers/units/timezone visible","filters and formulas disclosed","row-to-plot trace works","activity not labelled driver use","redactions do not alter calculations"]
+    },
+    {
+      "document_id":"S06",
+      "expected_professional_structure_and_purpose":"Emergency treatment records, post-mortem materials, pathology report and addendum with instructions, findings, medical cause and limitations; excludes autonomous legal-causation conclusions.",
+      "realistic_page_range_and_information_density":"22-32 pages; clinical entries retain authentic density, reports 250-450 words/page and images appear only when necessary and controlled.",
+      "required_fields_headings_and_provenance":["patient/deceased ID","author/role/date/time/source system","treatment/observation/intervention","specimen/examination/continuity","expert qualifications/duty","materials/instructions","finding/opinion/limitation","medical cause","report/addendum/service/ruling"],
+      "native_scan_or_media_characteristics":"Mixed certified clinical extracts/scans and born-digital signed expert report; restricted images separately indexed and hashed.",
+      "legitimate_imperfections_and_version_history":"Contemporaneous abbreviation, amended clinical entry and expert addendum permitted with audit/source history.",
+      "confidentiality_redaction_and_audience_restrictions":"Health and post-mortem material is need-to-know; sensitive images excluded from client/general exports unless authorised; served report follows ruling state.",
+      "prohibited_filler_duplication_and_padding":"No wholesale unrelated medical history, repeated observations, decorative anatomy, copied generic pathology text or invented legal conclusion.",
+      "document_specific_visual_and_content_checks":["clinical chronology source-linked","medical and legal causation separate","opinion limitations prominent","addendum change visible","image access controlled","identifiers consistent","service not treated as admissibility"]
+    },
+    {
+      "document_id":"S07",
+      "expected_professional_structure_and_purpose":"Authoritative road geometry, signal-controller logs, traffic orders, lighting/weather observations, survey maps and mapping reconciliation; establishes environmental records with source hierarchy.",
+      "realistic_page_range_and_information_density":"20-30 pages; logs 12-30 rows/page, orders/plans at authentic density, and maps only at scales that preserve legibility.",
+      "required_fields_headings_and_provenance":["authority/custodian/reference","junction/location/coordinate system","controller/device/channel","event/time/timezone/clock status","order number/made/commenced/version","survey/date/equipment","weather/lighting source","map scale/north/legend","service/version"],
+      "native_scan_or_media_characteristics":"Native controller CSV/logs and GIS/vector outputs where available; certified order scans; born-digital reconciled map with source layers identified.",
+      "legitimate_imperfections_and_version_history":"Controller reset, missing log interval, revised map layer and superseded traffic order allowed with explicit status.",
+      "confidentiality_redaction_and_audience_restrictions":"Public/order material broadly shareable; infrastructure-sensitive or personal location detail restricted as recorded.",
+      "prohibited_filler_duplication_and_padding":"No repeated maps at trivial scales, unexplained route overlays, generic weather pages, duplicate log dumps or irrelevant orders.",
+      "document_specific_visual_and_content_checks":["maps have scale/north/key","controller times reconciled","gaps visible","operative order identified","layers/source dates clear","route is evidence not assumption","print remains readable"]
+    },
+    {
+      "document_id":"S08",
+      "expected_professional_structure_and_purpose":"Custody/interview record, audio/transcript completeness, defence position, prosecution admissions request, maker response, signed admissions and agreed-facts schedule; preserves each lifecycle and binding scope.",
+      "realistic_page_range_and_information_density":"20-30 pages; interview transcript 300-550 words/page, forms at authentic density and admissions tables 6-16 propositions/page.",
+      "required_fields_headings_and_provenance":["custody/interview IDs","rights/advice/caution/time/persons","audio file/hash/segment/time","speaker/utterance/page-time link","defence maker/date/service","proposition/source/count/person","request/response/signed status","agreement scope/qualification","court acceptance/use/order/version"],
+      "native_scan_or_media_characteristics":"Signed custody/form scans, native interview audio retained by hash, searchable transcript and born-digital admissions/agreed-facts schedules.",
+      "legitimate_imperfections_and_version_history":"Transcript inaudible marker, corrected speaker label, qualified admission and amended agreed-fact draft allowed with history.",
+      "confidentiality_redaction_and_audience_restrictions":"Privileged advice excluded; interview and signed/served positions shared only as authorised; draft defence material remains privileged.",
+      "prohibited_filler_duplication_and_padding":"No repeated interview text, invented answers, unsigned propositions presented as agreed, generic defence prose or duplicate schedules.",
+      "document_specific_visual_and_content_checks":["audio/transcript links resolve","maker-specific admissions","request/response/signature/court-use distinct","qualifications preserved","draft not binding","agreed fact not legal conclusion","audience variants clean"]
+    },
+    {
+      "document_id":"S09",
+      "expected_professional_structure_and_purpose":"Disclosure records, expert directions and joint statement, hearing chronology, bail/order states, plea and sentencing materials, deadline tracker and later-stage outcomes; provides procedural control without predicting decisions.",
+      "realistic_page_range_and_information_density":"28-40 pages; schedules 10-24 rows/page, orders/forms at authentic density and submissions 250-500 words/page.",
+      "required_fields_headings_and_provenance":["item/disclosure/inspection/service state","expert direction/date/scope","joint agreement/disagreement/date","hearing/court/judge/attendance","application/submission/ruling/order","bail condition/start/end/supersession","plea offered/entered/accepted","sentence material/outcome status","deadline source/trigger/calculation/filing/version"],
+      "native_scan_or_media_characteristics":"Born-digital trackers/schedules and signed or sealed court/expert records; superseded orders retained and visibly watermarked as such.",
+      "legitimate_imperfections_and_version_history":"Late item, amended direction, adjournment, varied bail and corrected deadline allowed with complete state history.",
+      "confidentiality_redaction_and_audience_restrictions":"Privileged submissions/advice restricted; court/CPS/client receive only filed, served or authorised versions; personal sentencing data minimised.",
+      "prohibited_filler_duplication_and_padding":"No duplicate orders, generic sentencing essays, repeated schedules, speculative hearing outcomes or artificial procedural pages.",
+      "document_specific_visual_and_content_checks":["latest operative order obvious","application/submission/ruling distinct","joint statement scope/date respected","service not admissibility","deadline inputs sourced","plea states separate","superseded versions visible but not operative"]
+    }
+  ]
+}

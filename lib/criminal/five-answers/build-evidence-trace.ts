@@ -1,6 +1,10 @@
 import type { DisclosureChaseBrief, DisclosureChaseItem } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import type { HearingWarRoomBrief } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
+import {
+  sanitizeSolicitorVisibleAnchor,
+  stripInternalCorpusIdentifiers,
+} from "@/lib/criminal/solicitor-visible-matter-reference";
 import { inferChaseItemSourceState } from "@/lib/criminal/trust/copy-safe";
 import { evidenceRowFromSourceState, reliabilityForSourceState } from "./evidence-trace";
 import { surfaceContradictions } from "./contradiction-surface";
@@ -80,10 +84,10 @@ function rowFromChaseItem(
   return {
     id: traceId(section, index),
     section,
-    claim: item.label,
+    claim: stripInternalCorpusIdentifiers(item.label) || item.label,
     existence,
     reliability,
-    sourceAnchor: item.evidenceAnchor,
+    sourceAnchor: sanitizeSolicitorVisibleAnchor(item.evidenceAnchor),
     sourceLabel: item.source?.trim() || null,
     critical: options?.critical ?? (existence === "missing" && item.baseStatus !== "Received"),
     inference: false,
@@ -109,7 +113,7 @@ export function buildEvidenceTrace(input: BuildEvidenceTraceInput): EvidenceTrac
     claim: allegation.trim() || "Charge not on papers",
     existence: allegation.trim() ? "served" : "unknown",
     reliability: allegationReliability(allegation),
-    sourceAnchor: chase.primaryItems[0]?.evidenceAnchor ?? null,
+    sourceAnchor: sanitizeSolicitorVisibleAnchor(chase.primaryItems[0]?.evidenceAnchor),
     sourceLabel: "Charge sheet / papers",
     inference: !allegation.trim(),
   });

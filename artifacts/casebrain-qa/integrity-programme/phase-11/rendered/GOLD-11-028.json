@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-028",
+  "def": {
+    "goldId": "GOLD-11-028",
+    "stratum": "hearing_time",
+    "sourceKind": "synthetic_controlled",
+    "fixtureId": "SYN-HEAR-PASSED",
+    "selectionReason": "Passed hearing display",
+    "reviewFocus": "Passed hearing label exactness."
+  },
+  "surfaces": [
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status (Overview / Court Today strip)",
+      "solicitorVisibleText": "Hearing date passed · 1 Jun 2026",
+      "gateStatus": "passed",
+      "canCopy": true
+    }
+  ]
+}

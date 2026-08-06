@@ -1,0 +1,79 @@
+{
+  "matterId": "rank2-homicide-harbour-yard",
+  "version": "design-freeze-draft-v0.1",
+  "status": "PROPOSED_ONLY_PENDING_GENUINE_QUALIFIED_REVIEW",
+  "operative": false,
+  "doNotGenerateFromTheseCharges": true,
+  "warning": "These are drafting hypotheses for reviewer consideration, not approved charges, legal advice or an indictment.",
+  "proposals": [
+    {
+      "proposalId": "PC1_D1_MURDER",
+      "defendants": ["D1_MERCER"],
+      "relationship": "primary_prosecution_hypothesis_subject_to_review",
+      "specimenStatement": "MURDER",
+      "specimenParticulars": "Daniel Mercer, on 14 February 2026, murdered Idris Bell.",
+      "legalBasisLabel": "common law murder",
+      "reviewStatus": "pending",
+      "reviewQuestions": [
+        "Is murder properly charged on the designed evidence and intent hypothesis?",
+        "Is the specimen form compliant with the current Criminal Procedure Rules, Practice Directions and indictment form?",
+        "Should any particulars identify the location or alleged act, or would that be inappropriate?",
+        "Does the evidence support intent to kill or cause grievous bodily harm without overreliance on mechanism evidence?"
+      ]
+    },
+    {
+      "proposalId": "PC2_D1_MANSLAUGHTER_ALTERNATIVE",
+      "defendants": ["D1_MERCER"],
+      "relationship": "possible_alternative_to_PC1_not_concurrent_guilt",
+      "specimenStatement": "MANSLAUGHTER",
+      "specimenParticulars": "Daniel Mercer, on 14 February 2026, unlawfully killed Idris Bell.",
+      "legalBasisLabel": "route_requires_qualified_selection_and_particularisation",
+      "reviewStatus": "pending",
+      "reviewQuestions": [
+        "Should an alternative manslaughter count appear on the indictment at all, and if so in what form and relationship to murder?",
+        "Is the intended route unlawful-act manslaughter, another route, or a jury alternative rather than a separate count?",
+        "Are the specimen statement and particulars legally and procedurally sufficient?",
+        "How must alternative-count state be represented to avoid presenting both outcomes as simultaneously operative?"
+      ]
+    },
+    {
+      "proposalId": "PC3_D2_MANSLAUGHTER",
+      "defendants": ["D2_NADEEM"],
+      "relationship": "separate_defendant_route_subject_to_causation_review",
+      "specimenStatement": "MANSLAUGHTER",
+      "specimenParticulars": "Saira Nadeem, on 14 February 2026, unlawfully killed Idris Bell.",
+      "legalBasisLabel": "proposed_unlawful_act_manslaughter_subject_to_review",
+      "reviewStatus": "pending",
+      "reviewQuestions": [
+        "Does the designed evidence support every required element of the proposed manslaughter route against D2?",
+        "Is the alleged push/kick a sufficiently identified unlawful and dangerous act on the frozen design facts?",
+        "Is there a sufficient evidence-based and legally sufficient causal contribution?",
+        "Do participation or secondary-liability alternatives arise, and if so should they be excluded or expressly designed?",
+        "Are the specimen statement and particulars compliant and sufficiently particularised?"
+      ]
+    }
+  ],
+  "globalReviewQuestions": [
+    "Are joinder, ordering and alternatives proper for a two-defendant indictment?",
+    "Would any proposal be duplicative, mutually inconsistent or prejudicial?",
+    "What prosecution election or count/routing amendment is required before a freeze?",
+    "Are all homicide routes, intent standards and causation propositions accurately represented?",
+    "Does any consent, special handling or referral requirement apply?",
+    "What exact approved wording should replace each proposal, if any?"
+  ],
+  "qualifiedReviewer": {
+    "name": null,
+    "role": null,
+    "qualification": null,
+    "organisationOrIndependentCapacity": null,
+    "reviewDate": null,
+    "decisionByProposal": {
+      "PC1_D1_MURDER": null,
+      "PC2_D1_MANSLAUGHTER_ALTERNATIVE": null,
+      "PC3_D2_MANSLAUGHTER": null
+    },
+    "wholeSetDecision": null,
+    "approvedWording": null,
+    "reasonsAndAuthorities": null
+  }
+}

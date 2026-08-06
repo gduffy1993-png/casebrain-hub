@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":200,"approved_band":"120-250","rule":"authentic content controls total; no padding"},
+  "planned_documents":[
+    {"id":"S01","structure":"neutral case summary, proposed charges and master chronology","pages":"15-22","purpose":"course/incident/order/charge states without guilt conclusion"},
+    {"id":"S02","structure":"incident logs, 999 audio/BWV registers, transcripts and statements","pages":"30-42","purpose":"first accounts, response and media provenance"},
+    {"id":"S03","structure":"Romanian original statement, certified English translation and certification/version records","pages":"18-26","purpose":"source-language authority and translation traceability"},
+    {"id":"S04","structure":"interpreter needs, requests, bookings, absence/replacement, attendance and quality challenge","pages":"12-18","purpose":"full police/court interpreter lifecycle"},
+    {"id":"S05","structure":"message/call extraction report and chronology schedules","pages":"30-42","purpose":"course evidence, authorship and gaps"},
+    {"id":"S06","structure":"focused medical, support and risk records","pages":"16-24","purpose":"observations/support needs without truth determination"},
+    {"id":"S07","structure":"family/civil orders, service, variations, criminal bail and term comparison","pages":"22-32","purpose":"operative-order and service chronology"},
+    {"id":"S08","structure":"retraction/current-wishes, availability and special-measures records","pages":"12-20","purpose":"distinct participation and support states"},
+    {"id":"S09","structure":"hearsay/res-gestae, restraining-order and PC4 discontinuance/time-limit records","pages":"18-28","purpose":"application/decision/ruling/order/disposal provenance"},
+    {"id":"S10","structure":"interview, defence statement, disclosure schedules and counsel extracts","pages":"20-30","purpose":"defence, unused material and trial preparation"}
+  ],
+  "format_mix":["born-digital/scanned PDF","original-language signed statement","certified translation","audio/video metadata and transcripts","message/call tables","court orders with seals/versioning","EML notice as secondary email evidence"],
+  "boundary":"Rank 8 is the primary translation/interpreter pilot. Native EML/MSG mechanics remain rank 9; malicious inputs remain the security harness."
+}

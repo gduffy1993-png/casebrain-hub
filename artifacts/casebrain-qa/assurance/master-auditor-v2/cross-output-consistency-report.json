@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "cross-output-consistency-report@1.0.0",
+  "comparedSurfaces": [
+    "court_line",
+    "court_line_sendability",
+    "truth_map_row",
+    "evidence_state_row",
+    "cps_chase_item",
+    "do_not_overstate",
+    "hard_rule",
+    "matter_confidence"
+  ],
+  "excludedLiveSurfaces": [
+    "cockpit",
+    "war_room",
+    "control_room",
+    "key_facts",
+    "client_summary",
+    "export",
+    "api",
+    "pdf",
+    "composed_prose",
+    "papers_workspace",
+    "proof_receipt_ui"
+  ]
+}

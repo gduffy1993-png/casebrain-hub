@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "batch6-before-after-finding-map@1.0.0",
+  "passA": {
+    "candidateCount": 0,
+    "byControl": {
+      "MAA2-EVS-02-STATE-ENUM": 0,
+      "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED": 0
+    }
+  },
+  "passB": {
+    "candidateCount": 0,
+    "byControl": {
+      "MAA2-EVS-02-STATE-ENUM": 0,
+      "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED": 0
+    }
+  },
+  "note": "Not forced to zero. Detector corrections only; CaseBrain wording unrepaired."
+}

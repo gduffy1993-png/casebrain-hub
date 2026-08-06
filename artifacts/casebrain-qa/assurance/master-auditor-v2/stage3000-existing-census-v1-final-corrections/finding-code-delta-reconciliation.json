@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "stage3000-existing-census-finding-code-delta@1.0.0",
+  "generatedAt": "2026-08-02T17:38:17.519Z",
+  "orderedMembershipSha256": "dcf6c382fe1b41ef34624c03764c8dc785de04a13f5344784aee03b9a192d4ae",
+  "membershipUnchanged": true,
+  "runs": {
+    "v1": {
+      "candidates": 15889,
+      "dispositions": {
+        "containment": 6600,
+        "professional_wording_review_required": 4790,
+        "unresolved_source": 4220,
+        "confirmed_app_defect": 279
+      },
+      "byFinding": {
+        "INTERNAL_LANGUAGE_LEAK": 8380,
+        "COPY_QUALITY_ISSUE": 6390,
+        "RAW_ENUM_OR_MACHINE_KEY": 319,
+        "ABSOLUTE_PROOF_WORDING": 800
+      }
+    },
+    "postFixIntermediate": {
+      "preservedAt": "C:\\Users\\gduff\\casebrain-hub-wt-s3000-census\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-existing-census-v1-post-fix-intermediate-historical",
+      "candidates": 3570,
+      "dispositions": {
+        "containment": 2200,
+        "unresolved_source": 980,
+        "professional_wording_review_required": 390
+      },
+      "byFinding": {
+        "INTERNAL_LANGUAGE_LEAK": 2380,
+        "ABSOLUTE_PROOF_WORDING": 800,
+        "COPY_QUALITY_PROTECTED_ACRONYM_CASING": 390
+      }
+    },
+    "finalCorrections": {
+      "candidates": 3570,
+      "dispositions": {
+        "containment": 2200,
+        "unresolved_source": 980,
+        "professional_wording_review_required": 390
+      },
+      "byFinding": {
+        "INTERNAL_LANGUAGE_LEAK": 2380,
+        "ABSOLUTE_PROOF_WORDING": 800,
+        "COPY_QUALITY_PROTECTED_ACRONYM_CASING": 390
+      },
+      "surfaceIssueCodeLeaks": 0,
+      "surfaceSystemLanguageLeaks": 0
+    }
+  },
+  "reconciliation": {
+    "rawEnum": {
+      "v1TotalVisible": 319,
+      "breakdown": {
+        "previouslyConfirmed": 279,
+        "previouslyUnresolved": 40,
+        "note": "279 confirmed_app_defect + 40 unresolved_source RAW_ENUM on court_line (v9_catalog stratum without truth) = 319"
+      },
+      "postFixAndFinal": 0,
+      "removedCorrectly": true
+    },
+    "mg5Mg6TitleFalsePositives": {
+      "professionalReviewTitleOccurrencesRemoved": 4400,
+      "unresolvedTitleOccurrencesRemoved": 3200,
+      "totalTitleFalsePositivesRemoved": 7600,
+      "note": "2200 mg5 + 2200 mg6 professional-review on ESA stratum; plus unresolved duplicates on 800 no-truth cases (1600+1600). Surface-role calibration correctly removed these.",
+      "remainingInFinal": 0
+    },
+    "containment": {
+      "v1": 6600,
+      "final": 2200,
+      "reduction": 4400,
+      "explanation": "Containment fell 6600→2200 because 4400 MG5/MG6 provenance_title false positives previously disposed as containment/internal-language were removed — not because unsafe containment disappeared. Genuine remaining containment stays exercised (2200).",
+      "genuineRemainingExercised": true
+    },
+    "professionalReview": {
+      "v1": 4790,
+      "final": 390,
+      "removedTitleFalsePositives": 4400,
+      "remainingCourtLineAndQuarantine": 390
+    },
+    "unresolvedSource": {
+      "v1": 4220,
+      "final": 980,
+      "removedTitleFalsePositives": 3200,
+      "remainingHonestGaps": 980
+    }
+  },
+  "doNotClaimContainmentPreservedWithoutThisReconciliation": true
+}

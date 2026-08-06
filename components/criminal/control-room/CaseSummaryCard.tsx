@@ -2,6 +2,10 @@
 
 import { FileText } from "lucide-react";
 import { workflowCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
+import {
+  assertFindingProvenanceOrLimitation,
+  formatFindingProvenanceLine,
+} from "@/lib/criminal/finding-provenance";
 
 export function CaseSummaryCard({
   summary,
@@ -11,6 +15,7 @@ export function CaseSummaryCard({
   loading?: boolean;
 }) {
   const paragraphs = summary.split(/\n/).filter(Boolean);
+  const provenanceLine = formatFindingProvenanceLine(assertFindingProvenanceOrLimitation({}));
 
   return (
     <section className={`${workflowCard} p-4`} aria-labelledby="case-summary-heading">
@@ -29,7 +34,7 @@ export function CaseSummaryCard({
           ))
         )}
       </div>
-      <p className="text-[10px] text-slate-400 mt-2">Provisional · source-linked · solicitor review</p>
+      <p className="text-[10px] text-slate-400 mt-2">Provisional · solicitor review · {provenanceLine}</p>
     </section>
   );
 }

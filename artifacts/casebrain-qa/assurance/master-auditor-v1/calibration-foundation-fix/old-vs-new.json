@@ -1,0 +1,4836 @@
+{
+  "oldRunId": "maa-20-2026-07-29T00-54-16-877Z",
+  "newRunId": "maa-20-2026-07-29T01-17-19-470Z",
+  "oldTotals": {
+    "cases": 20,
+    "surfaces": 462,
+    "findings": 781,
+    "defects": 31,
+    "containment": 0,
+    "unresolved": 106,
+    "pass": 607,
+    "notExercised": 37,
+    "detectorFalsePositives": 0,
+    "designFindings": 20
+  },
+  "newTotals": {
+    "cases": 20,
+    "uniqueCases": 20,
+    "surfaces": 462,
+    "findings": 781,
+    "defects": 31,
+    "containment": 0,
+    "unresolved": 106,
+    "pass": 607,
+    "notExercised": 37,
+    "detectorFalsePositives": null,
+    "designFindings": 20,
+    "controlsFullyExercised": 20,
+    "controlsPartiallyExercised": 4,
+    "controlsNotExercised": 0
+  },
+  "oldVerdictTally": {
+    "pass": 607,
+    "defect": 31,
+    "containment": 0,
+    "unresolved": 106,
+    "not_exercised": 37
+  },
+  "newVerdictTally": {
+    "pass": 607,
+    "defect": 31,
+    "containment": 0,
+    "unresolved": 106,
+    "not_exercised": 37
+  },
+  "findingCountOld": 781,
+  "findingCountNew": 781,
+  "changeSummary": {
+    "added": 350,
+    "removed": 350
+  },
+  "changes": [
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-338462537cd1",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"screenshot and message pack\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-01-truth_map-e0f71b2dff1c",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Phone extraction summary\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-01-truth_map-0de1b0a14ffe",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Full phone download\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-61e52c3be7ee",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"subscriber/account data\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-01-truth_map-96ffff2a17d7",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Full message export\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-d3217ba94123",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"call logs\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-01-truth_map-7717f142c6ab",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Device metadata export\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-01-truth_map-fabcca1bab8f",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"Complainant MG11 (draft)\" is \"served\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-f1cac2d0fcf5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"attribution material\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-01-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-01-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-01-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-01-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-01-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-01-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-01-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-01-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-02-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-02-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-02-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-02-truth_map-8572b9bd74c4",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"officer MG11\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-02-truth_map-596b41fa5f48",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"Custody record extract\" is \"served\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-02-truth_map-5050ddc3436f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Body-worn video (BWV)\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-02-truth_map-b6ba9ddbb874",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Full custody record\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-02-truth_map-c0d088d98610",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Interview audio\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-02-truth_map-e2d33d9c4e91",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Interview transcript\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-02-truth_map-bbf0c79d4748",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"PACE safeguards detail\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-02-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-02-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-02-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-02-disclosure_chase-e2d33d9c4e91",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "Truth map marks \"Interview transcript\" missing/incomplete but no matching chase draft found."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-02-disclosure_chase-bbf0c79d4748",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "Truth map marks \"PACE safeguards detail\" missing/incomplete but no matching chase draft found."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-02-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-02-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-02-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-02-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-03-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-03-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-03-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-03-truth_map-8572b9bd74c4",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"officer MG11\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-03-truth_map-596b41fa5f48",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"Custody record extract\" is \"served\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-03-truth_map-5050ddc3436f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Body-worn video (BWV)\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-03-truth_map-b6ba9ddbb874",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Full custody record\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-03-truth_map-c0d088d98610",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Interview audio\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-03-truth_map-bbf0c79d4748",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"PACE safeguards detail\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-03-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-03-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-03-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-03-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-03-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-03-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-03-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-04-truth_map-ab5b6278246b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"CCTV still images\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-04-truth_map-945446aea94b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Master CCTV footage\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-04-truth_map-32abb3b0d757",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Full CCTV export\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-0e2ca2e3dd55",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"continuity/provenance\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-04-truth_map-747b8fb95891",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"CCTV audit trail / source hash record\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-e88a344ed30c",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"recognition/ID basis\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-04-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-04-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-04-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-04-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-04-disclosure_chase-52d6b1b3908d",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "Truth map marks \"Recognition / ID basis\" missing/incomplete but no matching chase draft found."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-04-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-04-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-04-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-04-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-05-truth_map-d1c3d583ba1a",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Encro message extracts LC/MSG/01\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-0e201e7c6401",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"platform/source extraction\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-05-truth_map-636b581d28e5",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Handle attribution report\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-61e52c3be7ee",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"subscriber/account data\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-05-truth_map-c97db2653ff0",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Device continuity\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-05-truth_map-7d3bf1f22e04",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"co-defendant material\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-a3c0192b7b5c",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"full download/export\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-e1c1a24e646a",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"handle/phone attribution\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-05-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-05-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-05-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-05-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-05-disclosure_chase-7d3bf1f22e04",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "Truth map marks \"co-defendant material\" missing/incomplete but no matching chase draft found."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-05-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-05-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-05-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-05-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-06-truth_map-2094305a2ab6",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Officer statement\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-ea0bc385643c",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"co-defendant Tara Vale interview summary\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-c979b37084a3",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"Morgan Reid interview summary\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-d71d59deffc7",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"Morgan Reid interview audio\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-5acccc6b4420",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"Morgan Reid interview transcript\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-06-truth_map-1e1aaae7e16a",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Co-defendant attribution / continuity\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-06-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-06-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-06-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-06-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-06-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-06-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-06-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-06-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-06-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-07-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-07-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-07-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-07-truth_map-998b72c6657a",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"witness MG11\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-07-truth_map-f933adb40907",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"custody extract\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-07-truth_map-93e9c7b05cbd",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"unredacted mg11\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-07-truth_map-b6b55c894b6c",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"redaction schedule\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-07-truth_map-73bcfda499fe",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"full police note\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-07-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-07-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-07-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-07-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-07-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-07-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-07-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-07-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-07-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-08-truth_map-7b7fe09d4a8a",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"corrected charge sheet\" is \"missing\" but expected \"served\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-08-truth_map-d34843a648b5",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"updated mg5\" is \"missing\" but expected \"served\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-08-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-08-truth_map-998b72c6657a",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"witness MG11\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-08-truth_map-f933adb40907",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"custody extract\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-08-truth_map-7b7fe09d4a8a",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"corrected charge sheet\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-08-truth_map-d34843a648b5",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"updated mg5\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-08-truth_map-d347096eef0d",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"court listing confirmation\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-08-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-08-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-08-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-08-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-08-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-08-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-08-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-08-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-08-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-09-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-09-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-09-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-09-truth_map-998b72c6657a",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"witness MG11\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-09-truth_map-f933adb40907",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"custody extract\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-09-truth_map-20f7c943f319",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"full sealed restraining order\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-09-truth_map-dd5691879b16",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"service proof\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-09-truth_map-3e1f3cbaa457",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"breach location map\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-09-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-09-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-09-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-09-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-09-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-09-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-09-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-09-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-09-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-10-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-10-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-10-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-10-truth_map-998b72c6657a",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"witness MG11\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-10-truth_map-f933adb40907",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"custody extract\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-10-truth_map-278f165e7f52",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"certified translation\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-10-truth_map-e653bead57aa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"interpreter contemporaneous note\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-10-truth_map-6b7567a4ac29",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"original language export\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-10-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-10-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-10-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-10-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-10-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-10-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-10-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-10-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-10-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-11-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-11-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-11-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-11-truth_map-2094305a2ab6",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Officer statement\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-11-truth_map-d257f5b7c82e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"YJS report extract\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-11-truth_map-7e51398c5fde",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Full YJS pre-sentence report\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-11-truth_map-99336d7dcb9e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Vulnerability assessment\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-11-truth_map-04d54b73bd4d",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Youth interview audio\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-11-truth_map-e989ff565e93",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Appropriate adult continuity\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-11-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-11-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-11-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-11-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-11-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-11-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-11-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-11-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-12-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-12-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-12-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-12-truth_map-fabcca1bab8f",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"Complainant MG11 (draft)\" is \"served\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-12-truth_map-cf401372f133",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"ABE interview video\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-12-truth_map-de041b9415ec",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"ABE interview transcript\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-12-truth_map-d54f5ed3ec81",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Third-party counselling notes\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-12-truth_map-32a63c77e0d9",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Final signed MG11\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-12-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-12-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-12-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-12-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-12-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-12-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-12-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-12-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-13-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-13-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-13-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-13-truth_map-998b72c6657a",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"witness MG11\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-13-truth_map-f933adb40907",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"custody extract\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-13-truth_map-1680a0c7f4fe",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"lab intake sheet\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-13-truth_map-ae0d941ab776",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"full continuity chain\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-13-truth_map-96578214997c",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"sfr drugs analysis\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-13-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-13-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-13-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-13-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-13-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-13-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-13-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-13-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-13-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-14-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-14-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-14-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-14-truth_map-6086a9c33eb5",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Bank statement summaries\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-14-truth_map-2094305a2ab6",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Officer statement\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-14-truth_map-e120ccacf9b0",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Full transaction export\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-14-truth_map-c7edce3be25a",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Source banking records\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-14-truth_map-998a89651d98",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Beneficiary tracing report\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-14-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-14-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-14-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-14-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-14-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-14-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-14-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-14-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-14-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-f854005c79d7",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"officer MG11\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-193125cfed90",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"breath/device procedure summary\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-0889d39b7575",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"device calibration certificate\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-1a1cc4a13915",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"full intoxilyser record\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-53b7991f2731",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"cctv/dashcam export\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-15-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-15-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-15-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-15-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-15-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-15-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-15-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-15-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-15-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-16-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-16-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-16-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-16-truth_map-998b72c6657a",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"witness MG11\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-16-truth_map-f933adb40907",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"custody extract\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-16-truth_map-dba358ce3601",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"anpr image export\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-16-truth_map-216b8b0d8dd7",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"national anpr audit trail\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-16-truth_map-1dbeb2e0458c",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"vehicle keeper response\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-16-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-16-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-16-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-16-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-16-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-16-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-16-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-16-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-16-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-17-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-17-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-17-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-17-truth_map-998b72c6657a",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"witness MG11\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-17-truth_map-f933adb40907",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"custody extract\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-17-truth_map-bffb0462b467",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"hospital records\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-17-truth_map-ef92a105a82d",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"consultant medical report\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-17-truth_map-70eb45ad0d97",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"injury photographs\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-17-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-17-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-17-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-AUDIENCE-WORDING-no_client_summary-CASE-17-client_summary-bfc398c568c6",
+      "change": "added",
+      "newVerdict": "not_exercised",
+      "controlId": "MAA-AUDIENCE-WORDING",
+      "note": "No client summary surface."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-17-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-17-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-17-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-17-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-17-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-17-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-18-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-18-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-18-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-18-truth_map-998b72c6657a",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"witness MG11\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-18-truth_map-f933adb40907",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"custody extract\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-18-truth_map-b4a4d05c1b69",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"prison call recordings\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-18-truth_map-1a23f3155869",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"pin attribution report\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-18-truth_map-56ae69b84746",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"full prison telecom export\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-18-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-18-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-18-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-18-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-18-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-18-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-18-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-18-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-18-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-19-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-19-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-19-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-19-truth_map-998b72c6657a",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"witness MG11\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-19-truth_map-f933adb40907",
+      "change": "added",
+      "newVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state for \"custody extract\" is \"not_safely_confirmed\" but expected \"incomplete\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-19-truth_map-9ff3b3aeaa3a",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"platform disclosure response\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-19-truth_map-b7be7dcc7787",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"handle mapping report\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-19-truth_map-77bcb6683eb7",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"ip/subscriber data\"."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-19-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-19-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-19-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-19-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-19-packet-b38fdb5a7a5f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "No missing-un chased or served-rechased contradictions detected."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-19-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-19-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-19-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-19-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-7990a69f3d94",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"charge sheet\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-23022c3b1fe5",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg5\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-02fb5f2a8e8f",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"mg6\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-20-truth_map-ab5b6278246b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"CCTV still images\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-20-truth_map-945446aea94b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Master CCTV footage\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-20-truth_map-32abb3b0d757",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Evidence state matches expected for \"Full CCTV export\"."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-0e2ca2e3dd55",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"continuity/provenance\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-93d2e1dc76bd",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"audit trail\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-e88a344ed30c",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "note": "Expected evidence item \"recognition/ID basis\" not found on truth map labels — unresolved without actual CaseBrain output to cite."
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-20-composed-35224f9f945e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "note": "No affirmative PACE OK / no-breach wording found on saved surfaces."
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-20-packet-f07ed5f43277",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-PROVENANCE",
+      "note": "No synthetic page references detected on saved surfaces."
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-20-packet-dcf8fda3560e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS",
+      "note": "No incomplete disclaimer or profile-aware boundary failures on saved surfaces."
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-20-packet-b863a925371f",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT",
+      "note": "Cross-exit scanner found no contradictions on reconstructed exits."
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-20-disclosure_chase-945446aea94b",
+      "change": "added",
+      "newVerdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "note": "Truth map marks \"Master CCTV footage\" missing/incomplete but no matching chase draft found."
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-20-packet-6deedee6caaa",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION",
+      "note": "No absolute-proof wording on non-warning surfaces."
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-20-packet-25aaf50e344b",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "note": "No internal fixture/path leak patterns detected."
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-20-packet-ae51619ca4eb",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "note": "No fabricated human sign-off language detected; auditor human fields remain blank."
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-20-packet-2556459dc66e",
+      "change": "added",
+      "newVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "note": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns."
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-684daaf36eb6",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-01-truth_map-25cae4437329",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-01-truth_map-11e4d5613da6",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-81c30e42c1ec",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-01-truth_map-98510b768530",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-fb5a8b947599",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-01-truth_map-1c07afeec8bd",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-01-truth_map-fc0ba83f1476",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-7c0b267509fb",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-01-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-01-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-01-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-01-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-01-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-01-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-01-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-01-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-02-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-02-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-02-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-02-truth_map-5800f47951b1",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-02-truth_map-f7e2a5d42abc",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-02-truth_map-679d5629884d",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-02-truth_map-ae0d0365610a",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-02-truth_map-ab2f3b264025",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-02-truth_map-27d61118af47",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-02-truth_map-5f299fbc23db",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-02-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-02-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-02-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-02-disclosure_chase-c7bd5024642d",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-02-disclosure_chase-a57975ed213b",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-02-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-02-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-02-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-02-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-03-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-03-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-03-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-03-truth_map-5800f47951b1",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-03-truth_map-f7e2a5d42abc",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-03-truth_map-679d5629884d",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-03-truth_map-ae0d0365610a",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-03-truth_map-ab2f3b264025",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-03-truth_map-5f299fbc23db",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-03-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-03-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-03-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-03-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-03-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-03-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-03-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-04-truth_map-d906e7869585",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-04-truth_map-e7310d49809d",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-04-truth_map-e9f1113d1747",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-e8c43a1a8b69",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-04-truth_map-f8cadf7f059f",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-e026b6116984",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-04-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-04-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-04-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-04-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-04-disclosure_chase-5408456c2272",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-04-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-04-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-04-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-04-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-05-truth_map-31a7ffd8bfbd",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-601943aa10a2",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-05-truth_map-43f8f17e7698",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-81c30e42c1ec",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-05-truth_map-14a69c3b941d",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-05-truth_map-0e490d9c9906",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-cb4f39ed4ce0",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-3f61b376903e",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-05-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-05-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-05-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-05-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-05-disclosure_chase-b638d7e31bd5",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-05-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-05-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-05-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-05-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-06-truth_map-33a601e62a52",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-80c8bfd9d025",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-bfd4b1200485",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-a2e3a0d17b93",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-acd48d20853b",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-06-truth_map-0e5c0b792475",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-06-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-06-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-06-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-06-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-06-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-06-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-06-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-06-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-06-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-07-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-07-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-07-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-07-truth_map-9251bd71499d",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-07-truth_map-ce38b654d451",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-07-truth_map-43b3c602782d",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-07-truth_map-c9dfa3d53e48",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-07-truth_map-83f00a53eeb5",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-07-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-07-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-07-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-07-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-07-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-07-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-07-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-07-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-07-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-08-truth_map-101fbeba4474",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-08-truth_map-1a8a1ea3c7c5",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-08-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-08-truth_map-9251bd71499d",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-08-truth_map-ce38b654d451",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-08-truth_map-101fbeba4474",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-08-truth_map-1a8a1ea3c7c5",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-08-truth_map-dff5181fc4b2",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-08-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-08-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-08-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-08-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-08-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-08-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-08-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-08-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-08-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-09-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-09-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-09-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-09-truth_map-9251bd71499d",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-09-truth_map-ce38b654d451",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-09-truth_map-c56fdb40ca59",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-09-truth_map-4731ac3235e5",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-09-truth_map-14271aa3222d",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-09-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-09-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-09-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-09-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-09-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-09-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-09-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-09-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-09-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-10-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-10-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-10-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-10-truth_map-9251bd71499d",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-10-truth_map-ce38b654d451",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-10-truth_map-90c293e5dc4f",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-10-truth_map-53dae09ab24e",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-10-truth_map-93d8723acc9c",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-10-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-10-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-10-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-10-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-10-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-10-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-10-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-10-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-10-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-11-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-11-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-11-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-11-truth_map-33a601e62a52",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-11-truth_map-76568843685e",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-11-truth_map-d2105c1a4f66",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-11-truth_map-b60b802d886b",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-11-truth_map-e7ba16d098ce",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-11-truth_map-10857c97de4d",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-11-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-11-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-11-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-11-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-11-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-11-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-11-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-11-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-12-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-12-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-12-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-12-truth_map-fc0ba83f1476",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-12-truth_map-4cd015f951c2",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-12-truth_map-4880d7c7448c",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-12-truth_map-b4c5a50db18a",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-12-truth_map-7bad6c6d5130",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-12-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-12-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-12-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-12-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-12-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-12-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-12-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-12-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-13-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-13-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-13-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-13-truth_map-9251bd71499d",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-13-truth_map-ce38b654d451",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-13-truth_map-106be1f5add9",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-13-truth_map-9002052daed5",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-13-truth_map-930f0f346cd4",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-13-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-13-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-13-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-13-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-13-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-13-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-13-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-13-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-13-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-14-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-14-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-14-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-14-truth_map-f97ba594ced9",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-14-truth_map-33a601e62a52",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-14-truth_map-edf253e23b88",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-14-truth_map-d0ce78224f1c",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-14-truth_map-751b9ec97abe",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-14-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-14-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-14-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-14-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-14-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-14-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-14-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-14-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-14-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-5800f47951b1",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-551d14d6e467",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-171cf87db5c9",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-77a5ac513e3a",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-53fe52c5e37f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-15-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-15-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-15-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-15-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-15-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-15-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-15-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-15-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-15-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-16-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-16-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-16-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-16-truth_map-9251bd71499d",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-16-truth_map-ce38b654d451",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-16-truth_map-60c3f28194fd",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-16-truth_map-c92bcce470b0",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-16-truth_map-77dfc298b436",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-16-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-16-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-16-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-16-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-16-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-16-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-16-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-16-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-16-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-17-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-17-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-17-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-17-truth_map-9251bd71499d",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-17-truth_map-ce38b654d451",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-17-truth_map-45820dd1898e",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-17-truth_map-3ccc0f1cfe28",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-17-truth_map-f419d278822b",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-17-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-17-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-17-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-AUDIENCE-WORDING-no_client_summary-CASE-17-client_summary-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "not_exercised",
+      "controlId": "MAA-AUDIENCE-WORDING"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-17-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-17-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-17-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-17-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-17-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-17-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-18-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-18-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-18-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-18-truth_map-9251bd71499d",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-18-truth_map-ce38b654d451",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-18-truth_map-ac3fffe3bf92",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-18-truth_map-2407a584b5fe",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-18-truth_map-963cb664da43",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-18-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-18-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-18-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-18-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-18-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-18-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-18-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-18-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-18-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-19-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-19-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-19-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-19-truth_map-9251bd71499d",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_mismatch-CASE-19-truth_map-ce38b654d451",
+      "change": "removed",
+      "oldVerdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-19-truth_map-f1b9dda65959",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-19-truth_map-4838bf348875",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-19-truth_map-ab592a5bdd04",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-19-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-19-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-19-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-19-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-cross_surface_aligned-CASE-19-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-19-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-19-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-19-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-19-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-69bdd140bd1f",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-af31d338940c",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-5920b168a0ad",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-20-truth_map-d906e7869585",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-20-truth_map-e7310d49809d",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-state_match-CASE-20-truth_map-e9f1113d1747",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-e8c43a1a8b69",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-dbee1d659c24",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-e026b6116984",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE"
+    },
+    {
+      "findingId": "MAA-CHRONOLOGY-HEARING-no_pace_safe_claim-CASE-20-composed-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CHRONOLOGY-HEARING"
+    },
+    {
+      "findingId": "MAA-PROVENANCE-no_synthetic_page-CASE-20-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-PROVENANCE"
+    },
+    {
+      "findingId": "MAA-COMPLETENESS-boundary_clean-CASE-20-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-COMPLETENESS"
+    },
+    {
+      "findingId": "MAA-CROSS-EXIT-no_cross_exit_hit-CASE-20-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-CROSS-EXIT"
+    },
+    {
+      "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-20-disclosure_chase-dfb97e241a33",
+      "change": "removed",
+      "oldVerdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE"
+    },
+    {
+      "findingId": "MAA-HALLUCINATION-no_absolute_proof-CASE-20-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HALLUCINATION"
+    },
+    {
+      "findingId": "MAA-SECURITY-PRIVACY-no_internal_leak-CASE-20-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-SECURITY-PRIVACY"
+    },
+    {
+      "findingId": "MAA-HUMAN-SUPERVISION-no_fabricated_signoff-CASE-20-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-HUMAN-SUPERVISION"
+    },
+    {
+      "findingId": "MAA-BIAS-FAIRNESS-no_prejudice_hit-CASE-20-packet-e3b0c44298fc",
+      "change": "removed",
+      "oldVerdict": "pass",
+      "controlId": "MAA-BIAS-FAIRNESS"
+    }
+  ],
+  "controlExerciseNewNotFully": [
+    {
+      "controlId": "MAA-DOC-LIFECYCLE",
+      "laneId": "LANE-02-DOCUMENT-IDENTITY",
+      "status": "partially_exercised",
+      "casesApplicable": 20,
+      "casesFullyExercised": 3,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 17,
+      "findingsEmitted": 20,
+      "passCount": 3,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 17,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-PARTIES-ATTRIBUTION",
+      "laneId": "LANE-03-PARTIES-ATTRIBUTION",
+      "status": "partially_exercised",
+      "casesApplicable": 20,
+      "casesFullyExercised": 2,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 18,
+      "findingsEmitted": 22,
+      "passCount": 4,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 18,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "laneId": "LANE-13-LEGAL-CURRENTNESS",
+      "status": "partially_exercised",
+      "casesApplicable": 20,
+      "casesFullyExercised": 19,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 1,
+      "findingsEmitted": 20,
+      "passCount": 0,
+      "defectCount": 0,
+      "unresolvedCount": 19,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 1,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-AUDIENCE-WORDING",
+      "laneId": "LANE-14-AUDIENCE-WORDING",
+      "status": "partially_exercised",
+      "casesApplicable": 20,
+      "casesFullyExercised": 19,
+      "casesPartiallyExercised": 0,
+      "casesNotExercised": 1,
+      "findingsEmitted": 20,
+      "passCount": 19,
+      "defectCount": 0,
+      "unresolvedCount": 0,
+      "containmentCount": 0,
+      "notExercisedFindingCount": 1,
+      "notExercisedReason": null
+    }
+  ],
+  "gateNew": {
+    "safetyFn": {
+      "knownSafetyCriticalFn": null,
+      "knowledgeState": "unknown",
+      "registerPath": "artifacts/casebrain-qa/assurance/master-auditor-v1/known-fn-register.json",
+      "entries": [
+        {
+          "id": "FN-INCOMPLETE-DISCLAIMER",
+          "controlId": "MAA-COMPLETENESS",
+          "status": "open",
+          "note": "GOLD-11-039 class incomplete disclaimer — detector active but corpus coverage unreviewed for this calibration."
+        }
+      ]
+    },
+    "humanRates": {
+      "humanConfirmationRate": null,
+      "detectorFalsePositiveRate": null,
+      "knowledgeState": "unavailable",
+      "reviewedSampleCount": 0,
+      "confirmedDefectCount": 0,
+      "detectorFalsePositiveCount": 0,
+      "blankOrUnverifiedCount": 0,
+      "reviewerIds": [],
+      "denominators": {
+        "reviewedSamples": 0,
+        "dispositionedSamples": 0
+      }
+    },
+    "stopReason": "STOP FOR CODEX REVIEW — stage 20 complete; do not start 50/150/300/3000 until review passes (blocking: safety-FN knowledge unknown; human rates unavailable)"
+  },
+  "corpusNew": {
+    "planVersion": "corpus-plan-v1",
+    "stage": "20",
+    "adapterId": "gold-manual-proof-set-v1",
+    "requiredUniqueCases": 20,
+    "uniqueCaseCount": 20,
+    "membership": [
+      {
+        "caseId": "CASE-01",
+        "sourceCaseId": "demo-audit-01-phone-harassment",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-01"
+      },
+      {
+        "caseId": "CASE-02",
+        "sourceCaseId": "demo-audit-03-bwv-custody",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-02"
+      },
+      {
+        "caseId": "CASE-03",
+        "sourceCaseId": "demo-audit-27-custody-pace-missing",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-03"
+      },
+      {
+        "caseId": "CASE-04",
+        "sourceCaseId": "demo-audit-02-cctv-stills",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-04"
+      },
+      {
+        "caseId": "CASE-05",
+        "sourceCaseId": "demo-audit-05-encro-attribution",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-05"
+      },
+      {
+        "caseId": "CASE-06",
+        "sourceCaseId": "demo-audit-04-co-def-interview",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-06"
+      },
+      {
+        "caseId": "CASE-07",
+        "sourceCaseId": "demo-audit-44-bad-redaction",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-07"
+      },
+      {
+        "caseId": "CASE-08",
+        "sourceCaseId": "demo-audit-69-charge-mg5-hearing",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-08"
+      },
+      {
+        "caseId": "CASE-09",
+        "sourceCaseId": "demo-audit-32-restraining-order-breach",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-09"
+      },
+      {
+        "caseId": "CASE-10",
+        "sourceCaseId": "demo-audit-41-translated-messages",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-10"
+      },
+      {
+        "caseId": "CASE-11",
+        "sourceCaseId": "demo-audit-22-youth-interview",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-11"
+      },
+      {
+        "caseId": "CASE-12",
+        "sourceCaseId": "demo-audit-21-historic-sexual-abe",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-12"
+      },
+      {
+        "caseId": "CASE-13",
+        "sourceCaseId": "demo-audit-50-lab-continuity-conflict",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-13"
+      },
+      {
+        "caseId": "CASE-14",
+        "sourceCaseId": "demo-audit-16-fraud-bank-statements",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-14"
+      },
+      {
+        "caseId": "CASE-15",
+        "sourceCaseId": "demo-audit-18-motoring-sjp-thin",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-15"
+      },
+      {
+        "caseId": "CASE-16",
+        "sourceCaseId": "demo-audit-49-anpr-trap",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-16"
+      },
+      {
+        "caseId": "CASE-17",
+        "sourceCaseId": "demo-audit-61-medical-triage-partial",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-17"
+      },
+      {
+        "caseId": "CASE-18",
+        "sourceCaseId": "demo-audit-46-prison-calls",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-18"
+      },
+      {
+        "caseId": "CASE-19",
+        "sourceCaseId": "demo-audit-47-social-media-handles",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-19"
+      },
+      {
+        "caseId": "CASE-20",
+        "sourceCaseId": "demo-audit-30-layout-hearing-date",
+        "adapterId": "gold-manual-proof-set-v1",
+        "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-20"
+      }
+    ],
+    "refused": false,
+    "refuseReason": null,
+    "denominators": {
+      "uniqueCases": 20,
+      "duplicateCaseIdsDropped": 0,
+      "surfaces": 462
+    }
+  }
+}

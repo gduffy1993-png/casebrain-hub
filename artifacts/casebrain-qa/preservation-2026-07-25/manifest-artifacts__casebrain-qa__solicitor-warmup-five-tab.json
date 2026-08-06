@@ -1,0 +1,56 @@
+{
+  "root": "artifacts/casebrain-qa/solicitor-warmup-five-tab",
+  "exists": true,
+  "fileCount": 8,
+  "totalBytes": 1982782,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/solicitor-warmup-five-tab/01-overview.png",
+      "size": 416896,
+      "mtime": "2026-07-14T17:58:52.738Z",
+      "sha256": "e34cec85740d2957fa085ab1bf3be62cd9f44fdbded643a4ac7760705a90ffcb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-warmup-five-tab/02-today.png",
+      "size": 249013,
+      "mtime": "2026-07-13T23:47:36.720Z",
+      "sha256": "4dc7b4ccc32c999813d3b11b2c7cca29301e6dc19f7d3384cf5d13fe8a1cd3e3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-warmup-five-tab/03-papers.png",
+      "size": 208930,
+      "mtime": "2026-07-13T23:48:07.529Z",
+      "sha256": "16a4d838d3e42bbf460c64537bf9ea7cb52719e7ada23e8405f692b0133b9e77"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-warmup-five-tab/04-summary.png",
+      "size": 416896,
+      "mtime": "2026-07-14T18:01:56.579Z",
+      "sha256": "e34cec85740d2957fa085ab1bf3be62cd9f44fdbded643a4ac7760705a90ffcb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-warmup-five-tab/05-chase.png",
+      "size": 416896,
+      "mtime": "2026-07-14T18:04:59.471Z",
+      "sha256": "e34cec85740d2957fa085ab1bf3be62cd9f44fdbded643a4ac7760705a90ffcb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-warmup-five-tab/06-overview-mobile.png",
+      "size": 265109,
+      "mtime": "2026-07-14T18:06:35.812Z",
+      "sha256": "cb1c97e3540d8c11cb9457647ac10435b20a0115281f8372f8d0d1c9ce736f05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-warmup-five-tab/report.json",
+      "size": 6425,
+      "mtime": "2026-07-13T23:50:46.008Z",
+      "sha256": "5dab045beaa780c929ee90de4b4836a266611f08506cf1e9a6ba04fd1c8af239"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-warmup-five-tab/reshoot-notes.json",
+      "size": 2617,
+      "mtime": "2026-07-14T18:06:35.831Z",
+      "sha256": "83f62a26d2178ac0b495a782a75ccac05eb1e24abeba5456f22f5f21a5e4ac51"
+    }
+  ]
+}

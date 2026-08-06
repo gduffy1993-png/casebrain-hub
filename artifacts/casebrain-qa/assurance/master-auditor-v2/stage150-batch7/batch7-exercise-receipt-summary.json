@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "batch7-exercise-receipt-summary@1.1.0",
+  "byControl": {
+    "MAA2-EVS-01-DIMENSION-SEPARATION": {
+      "caseCount": 499,
+      "applicableCaseCount": 499,
+      "nonApplicableNotExercisedCaseCount": 0,
+      "partiallyExercisedCases": 499,
+      "applicableEvidenceRowUnitsSum": 9317,
+      "unitCountSeparateFromCaseCount": true,
+      "findingCount": 0,
+      "honesty": "fiveAnswers row-units kept separate from case count; empty fiveAnswers => not_exercised."
+    },
+    "MAA2-ATR-01-DEFENDANT-SEPARATION": {
+      "caseCount": 499,
+      "applicableCaseCount": 21,
+      "nonApplicableNotExercisedCaseCount": 478,
+      "partiallyExercisedCases": 21,
+      "applicableEvidenceRowUnitsSum": 41,
+      "unitCountSeparateFromCaseCount": true,
+      "findingCount": 0,
+      "honesty": "41 other_defendant_only units kept separate from 499 case denominator; zero-unit cases are not_exercised."
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "ok": true,
+  "blockedAssertions": 6,
+  "passAssertions": 6
+}
+solicitor-output-gate.test.ts: PASS

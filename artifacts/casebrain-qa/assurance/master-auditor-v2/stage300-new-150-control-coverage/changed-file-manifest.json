@@ -1,0 +1,12 @@
+{
+  "note": "Compact artefacts + code; sources/candidates gitignored",
+  "paths": [
+    ".gitignore",
+    "lib/eval/master-assurance-auditor/v2/stage300/new150/",
+    "scripts/assurance/emit-maa-v2-stage300-new-150-control-coverage.ts",
+    "scripts/assurance/rescan-maa-v2-stage300-new-150-denominators.ts",
+    "scripts/maa-v2-stage300-new-150-contracts.test.ts",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/"
+  ],
+  "schemaVersion": "stage300-new-150-changed-file-manifest@1.0.0"
+}

@@ -1,0 +1,26 @@
+{
+  "root": "docs/cb-fresh-adversarial",
+  "exists": true,
+  "fileCount": 3,
+  "totalBytes": 51070,
+  "files": [
+    {
+      "path": "docs/cb-fresh-adversarial/pdfs/CB-FRESH-001_Taylor_Brookes.pdf",
+      "size": 47396,
+      "mtime": "2026-07-10T08:03:55.449Z",
+      "sha256": "3f8becd073ad0279e63844de1be0cab73ced759362ec2a37b647d6f0670a0825"
+    },
+    {
+      "path": "docs/cb-fresh-adversarial/sources/CB-FRESH-001_Taylor_Brookes.txt",
+      "size": 1856,
+      "mtime": "2026-06-23T04:03:26.236Z",
+      "sha256": "b3b34dbf59fa520f58c4b2803b803131c59a4437602aedf9b38e399ac2effc75"
+    },
+    {
+      "path": "docs/cb-fresh-adversarial/sources/CB-FRESH-002_Jordan_Hale.txt",
+      "size": 1818,
+      "mtime": "2026-06-23T04:03:36.189Z",
+      "sha256": "2b9942f0292fb65b178cc56e55fe497f81c5cf6ac24d0d6cade2d76379c2adf3"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "schema_version":"1.0","principles":["professional current public-document structure","fictional content only","no copied real-case facts","no filler, repeated boilerplate or artificial page inflation","counsel and expert extracts mandatory where relevant"],
+  "density_profiles":{"narrative":"approximately 300-550 words/page when substantively justified","tables":"approximately 10-28 meaningful rows/page","image_pages":"one to four evidential images with captions, scale and exhibit reference","forms":"authentic field density with legitimate whitespace","appendices":"only source-supporting schedules, methods, images or continuity material"},
+  "future_QA_required":["duplicate-page and near-duplicate scan","word/table/image density outlier review","full-page visual inspection","pagination/index/exhibit cross-reference validation","blank/clipped/rotated/page-order checks","appendix necessity review"],
+  "generation_authorised":false
+}

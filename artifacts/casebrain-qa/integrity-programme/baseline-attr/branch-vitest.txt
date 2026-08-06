@@ -1,0 +1,1153 @@
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 C:/Users/gduff/casebrain-hub
+
+ ÔØ» scripts/pilot-workflow-profile.test.ts (0 test)
+stdout | scripts/gold-manual-proof-set.test.ts
+gold-manual-proof-set.test.ts: PASS
+
+ ÔØ» scripts/gold-manual-proof-set.test.ts (0 test)
+stdout | scripts/bundle-shape-regression.test.ts
+bundle-shape-regression.test.ts: ok
+
+ ÔØ» scripts/bundle-shape-regression.test.ts (0 test)
+stdout | scripts/supervisor-queue.test.ts
+supervisor-queue.test.ts: ok
+
+ ÔØ» scripts/supervisor-queue.test.ts (0 test)
+stdout | scripts/evidence-change-detector.test.ts
+evidence-change-detector.test.ts: ok
+
+ ÔØ» scripts/evidence-change-detector.test.ts (0 test)
+ ÔØ» scripts/bundle-truth-ledger.test.ts (0 test)
+ ÔØ» scripts/chase-source-gate.test.ts (0 test)
+ Ô£ô lib/housing/__tests__/compliance.test.ts (21 tests) 52ms
+stdout | scripts/pack-aa-messy-parsers.test.ts
+pack-aa-messy-parsers.test.ts: ok
+
+ ÔØ» scripts/pack-aa-messy-parsers.test.ts (0 test)
+ Ô£ô lib/housing/__tests__/stage.test.ts (14 tests) 113ms
+stdout | scripts/disclosure-export-builder.test.ts
+disclosure-export-builder.test.ts: ok
+
+ ÔØ» scripts/disclosure-export-builder.test.ts (0 test)
+stdout | scripts/bundle-contradiction-extract.test.ts
+bundle-contradiction-extract.test.ts: ok
+
+ ÔØ» scripts/bundle-contradiction-extract.test.ts (0 test)
+stdout | scripts/solicitor-output-integrity.test.ts
+solicitor-output-integrity.test.ts: PASS
+
+ ÔØ» scripts/solicitor-output-integrity.test.ts (0 test)
+ ÔØ» scripts/evidence-state-audit.test.ts (0 test)
+stdout | scripts/solicitor-output-gate.test.ts
+{
+  "ok": true,
+  "blockedAssertions": 6,
+  "passAssertions": 6
+}
+solicitor-output-gate.test.ts: PASS
+
+ ÔØ» scripts/solicitor-output-gate.test.ts (0 test)
+stdout | scripts/proof-map-product.test.ts
+proof-map-product.test.ts: ok
+
+ ÔØ» scripts/proof-map-product.test.ts (0 test)
+ Ô£ô scripts/source-truth-guardian.test.ts (4 tests) 623ms
+   Ô£ô source truth guardian > blocks Taylor-style BWV/drugs bleed on a digital bundle without flattening safe output 303ms
+ Ô£ô scripts/fresh-audit-regression.test.ts (2 tests) 740ms
+   Ô£ô CB-FRESH audit regressions > does not route harassment/digital Taylor matter into PWITS workflow pack 605ms
+stdout | scripts/reasoning-feedback.test.ts
+reasoning-feedback.test.ts: ok
+
+ ÔØ» scripts/reasoning-feedback.test.ts (0 test)
+stdout | scripts/pre-hearing-readiness.test.ts
+pre-hearing-readiness.test.ts: ok
+
+ ÔØ» scripts/pre-hearing-readiness.test.ts (0 test)
+stdout | scripts/live-battleboard-gauntlet-header.test.ts
+live-battleboard-gauntlet-header.test.ts: ok
+
+ ÔØ» scripts/live-battleboard-gauntlet-header.test.ts (0 test)
+stdout | scripts/client-account-stress.test.ts
+client-account-stress.test.ts: ok
+
+ ÔØ» scripts/client-account-stress.test.ts (0 test)
+stdout | scripts/offence-family-concept-registry.test.ts
+{
+  "ok": true,
+  "registryVersion": "1.0.0",
+  "adversarialAssertions": 8
+}
+offence-family-concept-registry.test.ts: PASS
+
+ ÔØ» scripts/offence-family-concept-registry.test.ts (0 test)
+stdout | scripts/corpus-playback-checks.test.ts
+corpus-playback-checks.test.ts: ok
+
+ ÔØ» scripts/corpus-playback-checks.test.ts (0 test)
+ Ô£ô lib/core/__tests__/drafting.integration.test.ts (6 tests) 16ms
+stdout | scripts/phase6-validator-contracts.test.ts
+{
+  "ok": true,
+  "validatorVersion": "1.0.0",
+  "surfacesContracted": 31,
+  "expected": 31
+}
+phase6-validator-contracts.test.ts: PASS
+
+ ÔØ» scripts/phase6-validator-contracts.test.ts (0 test)
+stdout | scripts/case-review-audit-events.test.ts
+case-review-audit-events.test.ts: ok
+
+ ÔØ» scripts/case-review-audit-events.test.ts (0 test)
+ Ô£ô scripts/partner-score-lint.test.ts (2 tests) 24ms
+ Ô£ô lib/layered-summary/__tests__/layered-summary.test.ts (3 tests) 630ms
+   Ô£ô Layered Summary System > buildLayeredSummary calls domain extraction once (role lenses derive from domain outputs) 354ms
+stdout | scripts/solicitor-surface-contract.test.ts
+{
+  "ok": true,
+  "centralSurfaces": 31,
+  "blockAssertions": 32,
+  "passAssertions": 34
+}
+solicitor-surface-contract.test.ts: PASS
+
+ ÔØ» scripts/solicitor-surface-contract.test.ts (0 test)
+stdout | scripts/proof-receipt-panel.test.ts
+proof-receipt-panel.test.ts: PASS
+
+ ÔØ» scripts/proof-receipt-panel.test.ts (0 test)
+ Ô£ô lib/core/__tests__/analysis.factRuleMatrix.test.ts (4 tests) 19ms
+stdout | scripts/supervisor-qa-view.test.ts
+supervisor-qa-view.test.ts: ok
+
+ ÔØ» scripts/supervisor-qa-view.test.ts (0 test)
+ ÔØ» scripts/demo-audit-presentation-polish.test.ts (0 test)
+stdout | scripts/export-pack.test.ts
+export-pack.test.ts: all assertions passed
+
+ ÔØ» scripts/export-pack.test.ts (0 test)
+ ÔØ» lib/core/__tests__/riskCopy.test.ts (11 tests | 1 failed) 153ms
+   ├ù riskCopy > limitation > should build messages with limitation date 130ms
+     ÔåÆ expected 'Possible limitation deadline around 3ÔÇª' to contain '2025-12-31'
+stdout | scripts/confidence-dashboard.test.ts
+confidence-dashboard.test.ts: ok
+
+ ÔØ» scripts/confidence-dashboard.test.ts (0 test)
+ ÔØ» lib/core/__tests__/limitation.test.ts (8 tests | 3 failed) 174ms
+   ├ù calculateLimitation > should calculate 3-year limitation for PI cases 36ms
+     ÔåÆ expected '2028-01-01T00:00:00.000Z' to be '2025-01-01T00:00:00.000Z' // Object.is equality
+   ├ù calculateLimitation > should use date of knowledge if provided 12ms
+     ÔåÆ expected 'Possible limitation deadline around 0ÔÇª' to contain 'date of knowledge'
+   ├ù calculateLimitation > should set severity based on days remaining 2ms
+     ÔåÆ expected 'low' to be 'critical' // Object.is equality
+stdout | scripts/criminal-workflow-flag-defaults.test.ts
+criminal-workflow-flag-defaults.test.ts: ok
+
+ ÔØ» scripts/criminal-workflow-flag-defaults.test.ts (0 test)
+stdout | scripts/client-explanation-mode.test.ts
+client-explanation-mode.test.ts: ok
+
+ ÔØ» scripts/client-explanation-mode.test.ts (0 test)
+ Ô£ô lib/packs/criminal/__tests__/violent-offences-beastmode.test.ts (4 tests) 23ms
+stdout | scripts/supervisor-queue-live-path.test.ts
+supervisor-queue-live-path.test.ts: ok
+
+ ÔØ» scripts/supervisor-queue-live-path.test.ts (0 test)
+stdout | scripts/trust-feedback.test.ts
+trust-feedback.test.ts: all assertions passed
+
+ ÔØ» scripts/trust-feedback.test.ts (0 test)
+ ÔØ» lib/criminal/__tests__/structured-extractor.test.ts (10 tests | 8 failed) 68ms
+   ├ù validateCourtName > rejects markdown headings starting with # 13ms
+     ÔåÆ validateCourtName is not defined
+   ├ù validateCourtName > rejects values containing BUNDLE 5ms
+     ÔåÆ validateCourtName is not defined
+   ├ù validateCourtName > rejects ALL CAPS headings without court keyword 1ms
+     ÔåÆ validateCourtName is not defined
+   ├ù validateCourtName > rejects values containing PROSECUTION BUNDLE 1ms
+     ÔåÆ validateCourtName is not defined
+   ├ù validateCourtName > accepts valid court names with court keywords 1ms
+     ÔåÆ validateCourtName is not defined
+   ├ù validateCourtName > rejects null, undefined, and empty strings 6ms
+     ÔåÆ validateCourtName is not defined
+   ├ù validateCourtName > rejects values without court keywords 1ms
+     ÔåÆ validateCourtName is not defined
+   ├ù validateCourtName > handles edge cases 1ms
+     ÔåÆ validateCourtName is not defined
+stdout | scripts/pack-z-primary-allegation.test.ts
+  ok real_charge_sheet_extract (particulars via charge_sheet_extract)
+  ok pdfish_single_flow (particulars via charge_sheet_extract)
+  ok truncated_block_before_particulars (particulars via charge_sheet_extract)
+pack-z-primary-allegation.test.ts: ok
+
+ ÔØ» scripts/pack-z-primary-allegation.test.ts (0 test)
+stdout | scripts/advice-change-radar.test.ts
+advice-change-radar.test.ts: PASS
+
+ ÔØ» scripts/advice-change-radar.test.ts (0 test)
+stdout | scripts/murder-bundle-metadata-extract.test.ts
+murder-bundle-metadata-extract.test.ts: OK
+
+ ÔØ» scripts/murder-bundle-metadata-extract.test.ts (0 test)
+stdout | scripts/supervisor-signoff.test.ts
+supervisor-signoff.test.ts: ok
+
+ ÔØ» scripts/supervisor-signoff.test.ts (0 test)
+stdout | scripts/bundle-triangulation-extract.test.ts
+bundle-triangulation-extract.test.ts: ok
+
+ ÔØ» scripts/bundle-triangulation-extract.test.ts (0 test)
+ Ô£ô lib/core/__tests__/timeline.filter.test.ts (7 tests) 15ms
+ ÔØ» scripts/reasoning-v2-bridge.test.ts (0 test)
+stdout | scripts/weirdness-detector.test.ts
+weirdness-detector.test.ts: ok
+
+ ÔØ» scripts/weirdness-detector.test.ts (0 test)
+stdout | scripts/disclosure-chase-finalize.test.ts
+disclosure-chase-finalize.test.ts: all assertions passed
+
+ ÔØ» scripts/disclosure-chase-finalize.test.ts (0 test)
+stdout | scripts/phase7-extraction-provenance.test.ts
+{
+  "ok": true,
+  "boundaryVersion": "1.0.0",
+  "suite": "phase7-extraction-provenance.test.ts"
+}
+phase7-extraction-provenance.test.ts: PASS
+
+ ÔØ» scripts/phase7-extraction-provenance.test.ts (0 test)
+stdout | scripts/bundle-multi-incident-extract.test.ts
+bundle-multi-incident-extract.test.ts: ok
+
+ ÔØ» scripts/bundle-multi-incident-extract.test.ts (0 test)
+stdout | scripts/overview-presentation.test.ts
+overview-presentation.test.ts: PASS
+
+ ÔØ» scripts/overview-presentation.test.ts (0 test)
+stdout | scripts/matter-brief-assembler.test.ts
+matter-brief-assembler.test.ts: ok
+
+ ÔØ» scripts/matter-brief-assembler.test.ts (0 test)
+stdout | scripts/real-layout-pdf-ocr-stress.test.ts
+real-layout-pdf-ocr-stress.test.ts: ok
+
+ ÔØ» scripts/real-layout-pdf-ocr-stress.test.ts (0 test)
+stdout | scripts/bundle-client-safe-extract.test.ts
+bundle-client-safe-extract.test.ts: ok
+
+ ÔØ» scripts/bundle-client-safe-extract.test.ts (0 test)
+stdout | scripts/structured-solicitor-output.test.ts
+{
+  "ok": true,
+  "schemaVersion": "1.0.0",
+  "assertions": 6
+}
+structured-solicitor-output.test.ts: PASS
+
+ ÔØ» scripts/structured-solicitor-output.test.ts (0 test)
+stdout | scripts/demo-presentation-polish.test.ts
+demo-presentation-polish.test.ts: PASS
+
+ ÔØ» scripts/demo-presentation-polish.test.ts (0 test)
+ ÔØ» scripts/pilot-case-visibility.test.ts (0 test)
+stdout | scripts/expand-truth-map-rows.test.ts
+expand-truth-map-rows.test.ts: PASS
+
+ ÔØ» scripts/expand-truth-map-rows.test.ts (0 test)
+stdout | scripts/bundle-strength-extract.test.ts
+bundle-strength-extract.test.ts: ok
+
+ ÔØ» scripts/bundle-strength-extract.test.ts (0 test)
+stdout | scripts/hearing-mode.test.ts
+hearing-mode.test.ts: PASS
+
+ ÔØ» scripts/hearing-mode.test.ts (0 test)
+ Ô£ô lib/criminal/phase1-detection.test.ts (7 tests) 21ms
+stdout | scripts/audit-log.test.ts
+audit-log.test.ts: ok
+
+ ÔØ» scripts/audit-log.test.ts (0 test)
+stdout | scripts/real-matter-auditor.test.ts
+real-matter-auditor.test.ts: ok
+
+ ÔØ» scripts/real-matter-auditor.test.ts (0 test)
+stdout | scripts/solicitor-display-dedupe.test.ts
+solicitor-display-dedupe.test.ts: PASS
+
+ ÔØ» scripts/solicitor-display-dedupe.test.ts (0 test)
+stdout | scripts/bundle-sequence-extract.test.ts
+bundle-sequence-extract.test.ts: ok
+
+ ÔØ» scripts/bundle-sequence-extract.test.ts (0 test)
+stdout | scripts/simulator-manifest-v2.test.ts
+simulator-manifest-v2.test.ts: all assertions passed
+
+ ÔØ» scripts/simulator-manifest-v2.test.ts (0 test)
+stdout | scripts/provisional-offence-policy.test.ts
+provisional-offence-policy.test.ts: ok
+
+ ÔØ» scripts/provisional-offence-policy.test.ts (0 test)
+stdout | scripts/evidence-trace.test.ts
+evidence-trace.test.ts: PASS
+
+ ÔØ» scripts/evidence-trace.test.ts (0 test)
+stdout | scripts/pack-y-route-family.test.ts
+pack-y-route-family.test.ts: OK
+
+ ÔØ» scripts/pack-y-route-family.test.ts (0 test)
+stdout | scripts/bundle-scope-extract.test.ts
+bundle-scope-extract.test.ts: ok
+
+ ÔØ» scripts/bundle-scope-extract.test.ts (0 test)
+stdout | scripts/decision-board.test.ts
+decision-board.test.ts: PASS
+
+ ÔØ» scripts/decision-board.test.ts (0 test)
+stdout | scripts/eval-pack-import-preview.test.ts
+eval-pack-import-preview.test.ts: ok
+
+ ÔØ» scripts/eval-pack-import-preview.test.ts (0 test)
+stdout | scripts/rerun-diff.test.ts
+rerun-diff.test.ts: ok
+
+ ÔØ» scripts/rerun-diff.test.ts (0 test)
+ ÔØ» lib/housing/__tests__/awaabs-monitor.test.ts (4 tests | 1 failed) 26ms
+   ├ù Awaab's Law Monitor > should calculate investigation deadline for social landlord 14ms
+     ÔåÆ expected -918 to be greater than -365
+ Ô£ô lib/housing/__tests__/bundle-checker.test.ts (4 tests) 10ms
+ ÔØ» lib/housing/__tests__/supervision-pack.test.ts (4 tests | 1 failed) 33ms
+   ├ù Supervision Pack Generator > should include disclaimer in all outputs 21ms
+     ÔåÆ expected 'This supervision pack is generated frÔÇª' to contain 'not legal advice'
+stdout | scripts/extract-bundle-case-metadata-gold.test.ts
+extract-bundle-case-metadata-gold.test.ts: ok
+
+ ÔØ» scripts/extract-bundle-case-metadata-gold.test.ts (0 test)
+ ÔØ» scripts/case-workflow-zones.test.ts (0 test)
+stdout | scripts/simulator-manifest-v1.1.test.ts
+simulator-manifest-v1.1.test.ts: all assertions passed
+
+ ÔØ» scripts/simulator-manifest-v1.1.test.ts (0 test)
+stdout | scripts/pilot-matter-display-polish.test.ts
+pilot-matter-display-polish.test.ts: all assertions passed
+
+ ÔØ» scripts/pilot-matter-display-polish.test.ts (0 test)
+stdout | scripts/matter-confidence.test.ts
+matter-confidence.test.ts: all assertions passed
+
+ ÔØ» scripts/matter-confidence.test.ts (0 test)
+ Ô£ô scripts/contradiction-actions.test.ts (2 tests) 21ms
+stdout | scripts/feedback-console.test.ts
+feedback-console.test.ts: all assertions passed
+
+ ÔØ» scripts/feedback-console.test.ts (0 test)
+stdout | scripts/five-answers-view.test.ts
+five-answers-view.test.ts: PASS
+
+ ÔØ» scripts/five-answers-view.test.ts (0 test)
+stdout | scripts/eval-pack-aa-registry.test.ts
+eval-pack-aa-registry.test.ts: OK
+
+ ÔØ» scripts/eval-pack-aa-registry.test.ts (0 test)
+ ÔØ» scripts/explanation-fidelity-gold.test.ts (0 test)
+stdout | scripts/battleboard-view-fidelity-gold.test.ts
+battleboard-view-fidelity-gold.test.ts: ok (7/7)
+
+ ÔØ» scripts/battleboard-view-fidelity-gold.test.ts (0 test)
+ Ô£ô scripts/brief-plan.test.ts (2 tests) 324ms
+stdout | scripts/pack-y-golden-answer-quality.test.ts
+pack-y-golden-answer-quality.test.ts: ok
+
+ ÔØ» scripts/pack-y-golden-answer-quality.test.ts (0 test)
+stdout | scripts/war-room-view-fidelity-gold.test.ts
+war-room-view-fidelity-gold.test.ts: ok (7/7)
+
+ ÔØ» scripts/war-room-view-fidelity-gold.test.ts (0 test)
+ ÔØ» scripts/proof-map-fidelity-gold.test.ts (0 test)
+stdout | scripts/eval-pack-z-registry.test.ts
+eval-pack-z-registry.test.ts: OK
+
+ ÔØ» scripts/eval-pack-z-registry.test.ts (0 test)
+stdout | scripts/simulator-manifest-v1.test.ts
+simulator-manifest-v1.test.ts: all assertions passed
+
+ ÔØ» scripts/simulator-manifest-v1.test.ts (0 test)
+stderr | lib/strategic/__tests__/criminal-safety.test.ts > Criminal safety: practice area + sanitization > forces criminal when criminal signals exist even if stored practice_area is other
+[practice-area] Criminal signals present but stored practice_area is not criminal: { context: 'test', storedPracticeArea: 'other_litigation' }
+
+ Ô£ô lib/strategic/__tests__/criminal-safety.test.ts (3 tests) 27ms
+stdout | scripts/explanation-fidelity-local.test.ts
+explanation-fidelity-local.test.ts: skip (no gitignored explanation-expect.json ÔÇö copy from docs/bundle-fidelity-set/local/explanation-expect.template.json)
+
+ ÔØ» scripts/explanation-fidelity-local.test.ts (0 test)
+stdout | scripts/pilot-hearing-extract.test.ts
+pilot-hearing-extract.test.ts OK
+
+ ÔØ» scripts/pilot-hearing-extract.test.ts (0 test)
+stdout | scripts/solicitor-hearing-display.test.ts
+solicitor-hearing-display.test.ts: PASS
+
+ ÔØ» scripts/solicitor-hearing-display.test.ts (0 test)
+stdout | scripts/golden-truth-key-v2.test.ts
+golden-truth-key-v2.test.ts: all assertions passed
+
+ ÔØ» scripts/golden-truth-key-v2.test.ts (0 test)
+ Ô£ô lib/core/__tests__/overview-pdf.test.ts (3 tests) 13ms
+stdout | scripts/strategy-corpus-traps.test.ts
+strategy-corpus-traps.test.ts: ok (5 traps)
+
+ ÔØ» scripts/strategy-corpus-traps.test.ts (0 test)
+ Ô£ô lib/core/__tests__/supervisor-review.test.ts (2 tests) 12ms
+stderr | lib/criminal/__tests__/criminal-purity.test.ts > Criminal purity + probability gating > criminal missing evidence must not include CFA/retainer/Part36/PAP/quantum items
+[criminal/purity] Stripped civil-only items from criminal output: {
+  context: 'packs/getEvidenceChecklist(merged)',
+  stripped: [
+    { id: 'base-client-id', label: 'Client Identification' },
+    {
+      id: 'base-retainer',
+      label: 'Retainer / CFA / Engagement Letter'
+    },
+    { id: 'base-pre-action', label: 'Pre-Action Correspondence' },
+    { id: 'base-schedule-loss', label: 'Schedule of Loss / Damages' },
+    { id: 'base-funding-docs', label: 'Funding Documentation' }
+  ],
+  totalStripped: 5
+}
+
+ ÔØ» lib/criminal/__tests__/criminal-purity.test.ts (2 tests | 1 failed) 47ms
+   ├ù Criminal purity + probability gating > probabilities are suppressed when completeness is low 16ms
+     ÔåÆ expected 'Decision support only ÔÇö upload servedÔÇª' to match /insufficient bundle/i
+stdout | scripts/eval-pack-y-registry.test.ts
+eval-pack-y-registry.test.ts: OK
+
+ ÔØ» scripts/eval-pack-y-registry.test.ts (0 test)
+stdout | scripts/criminal-law-chunks-rls.test.ts
+criminal-law-chunks-rls.test.ts OK
+
+ ÔØ» scripts/criminal-law-chunks-rls.test.ts (0 test)
+stdout | scripts/display-labels.test.ts
+display-labels.test.ts: ok
+
+ ÔØ» scripts/display-labels.test.ts (0 test)
+stdout | scripts/strategy-corpus.test.ts
+strategy-corpus.test.ts: ok
+
+ ÔØ» scripts/strategy-corpus.test.ts (0 test)
+stdout | scripts/merge-offence-signals.test.ts
+merge-offence-signals.test.ts OK
+
+ ÔØ» scripts/merge-offence-signals.test.ts (0 test)
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ» Failed Suites 89 ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»
+
+ FAIL  scripts/advice-change-radar.test.ts [ scripts/advice-change-radar.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/advice-change-radar.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[1/104]ÔÄ»
+
+ FAIL  scripts/audit-log.test.ts [ scripts/audit-log.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/audit-log.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[2/104]ÔÄ»
+
+ FAIL  scripts/battleboard-view-fidelity-gold.test.ts [ scripts/battleboard-view-fidelity-gold.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/battleboard-view-fidelity-gold.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[3/104]ÔÄ»
+
+ FAIL  scripts/bundle-client-safe-extract.test.ts [ scripts/bundle-client-safe-extract.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/bundle-client-safe-extract.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[4/104]ÔÄ»
+
+ FAIL  scripts/bundle-contradiction-extract.test.ts [ scripts/bundle-contradiction-extract.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/bundle-contradiction-extract.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[5/104]ÔÄ»
+
+ FAIL  scripts/bundle-multi-incident-extract.test.ts [ scripts/bundle-multi-incident-extract.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/bundle-multi-incident-extract.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[6/104]ÔÄ»
+
+ FAIL  scripts/bundle-scope-extract.test.ts [ scripts/bundle-scope-extract.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/bundle-scope-extract.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[7/104]ÔÄ»
+
+ FAIL  scripts/bundle-sequence-extract.test.ts [ scripts/bundle-sequence-extract.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/bundle-sequence-extract.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[8/104]ÔÄ»
+
+ FAIL  scripts/bundle-shape-regression.test.ts [ scripts/bundle-shape-regression.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/bundle-shape-regression.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[9/104]ÔÄ»
+
+ FAIL  scripts/bundle-strength-extract.test.ts [ scripts/bundle-strength-extract.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/bundle-strength-extract.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[10/104]ÔÄ»
+
+ FAIL  scripts/bundle-triangulation-extract.test.ts [ scripts/bundle-triangulation-extract.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/bundle-triangulation-extract.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[11/104]ÔÄ»
+
+ FAIL  scripts/bundle-truth-ledger.test.ts [ scripts/bundle-truth-ledger.test.ts ]
+AssertionError: medical chase should anchor MG6C/002
+
+- Expected
++ Received
+
+- true
++ false
+
+ ÔØ» scripts/bundle-truth-ledger.test.ts:378:8
+    376|   (i) => i.familyId === "interview" || /\binterview\b/i.test(i.label),
+    377| );
+    378| assert.ok(medAnchorItem?.evidenceAnchor?.includes("MG6C/002"), "medicaÔÇª
+       |        ^
+    379| assert.ok(interviewAnchorItem?.evidenceAnchor?.includes("MG6C/003"), "ÔÇª
+    380| assert.ok(
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[12/104]ÔÄ»
+
+ FAIL  scripts/case-review-audit-events.test.ts [ scripts/case-review-audit-events.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/case-review-audit-events.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[13/104]ÔÄ»
+
+ FAIL  scripts/case-workflow-zones.test.ts [ scripts/case-workflow-zones.test.ts ]
+Error: Cannot find module '../lib/criminal/case-workflow-zones'
+Require stack:
+- C:\Users\gduff\casebrain-hub\scripts\case-workflow-zones.test.ts
+ ÔØ» scripts/case-workflow-zones.test.ts:15:5
+     13|   resolvePilotWorkflowZone,
+     14|   getDefaultCriminalCaseTab,
+     15| } = require("../lib/criminal/case-workflow-zones") as typeof import(".ÔÇª
+       |     ^
+     16| 
+     17| const { resolveCaseWorkflowActiveTab } =
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[14/104]ÔÄ»
+
+ FAIL  scripts/chase-source-gate.test.ts [ scripts/chase-source-gate.test.ts ]
+AssertionError: CCTV item converted to confirm-none
+
+- Expected: 
+/none exists/i
+
++ Received: 
+"CCTV full window / master footage"
+
+ ÔØ» scripts/chase-source-gate.test.ts:131:12
+    129| for (const item of briefNegated.items) {
+    130|   if (/cctv/i.test(item.label)) {
+    131|     assert.match(item.label, /none exists/i, "CCTV item converted to cÔÇª
+       |            ^
+    132|     assert.match(item.draftChaseWording, /confirm in writing/i, "no chÔÇª
+    133|   }
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[15/104]ÔÄ»
+
+ FAIL  scripts/client-account-stress.test.ts [ scripts/client-account-stress.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/client-account-stress.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[16/104]ÔÄ»
+
+ FAIL  scripts/client-explanation-mode.test.ts [ scripts/client-explanation-mode.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/client-explanation-mode.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[17/104]ÔÄ»
+
+ FAIL  scripts/confidence-dashboard.test.ts [ scripts/confidence-dashboard.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/confidence-dashboard.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[18/104]ÔÄ»
+
+ FAIL  scripts/corpus-playback-checks.test.ts [ scripts/corpus-playback-checks.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/corpus-playback-checks.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[19/104]ÔÄ»
+
+ FAIL  scripts/criminal-law-chunks-rls.test.ts [ scripts/criminal-law-chunks-rls.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/criminal-law-chunks-rls.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[20/104]ÔÄ»
+
+ FAIL  scripts/criminal-workflow-flag-defaults.test.ts [ scripts/criminal-workflow-flag-defaults.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/criminal-workflow-flag-defaults.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[21/104]ÔÄ»
+
+ FAIL  scripts/decision-board.test.ts [ scripts/decision-board.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/decision-board.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[22/104]ÔÄ»
+
+ FAIL  scripts/demo-audit-presentation-polish.test.ts [ scripts/demo-audit-presentation-polish.test.ts ]
+Error: Cannot find module '@/lib/criminal/trust/bad-output-memory' imported from 'C:/Users/gduff/casebrain-hub/lib/eval/line-source-proof/audit-lines.ts'.
+
+- If you rely on tsconfig.json's "paths" to resolve modules, please install "vite-tsconfig-paths" plugin to handle module resolution.
+- Make sure you don't have relative aliases in your Vitest config. Use absolute paths instead. Read more: https://vitest.dev/guide/common-errors
+ ÔØ» lib/eval/line-source-proof/audit-lines.ts:1:1
+      1| import { lintBadOutputMemory } from "@/lib/criminal/trust/bad-output-mÔÇª
+       | ^
+      2| import { isDemoAuditCase } from "../demo-audit-packs/presentation-poliÔÇª
+      3| import type { H5CaseModels } from "./build-case-models";
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[23/104]ÔÄ»
+
+ FAIL  scripts/demo-presentation-polish.test.ts [ scripts/demo-presentation-polish.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/demo-presentation-polish.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[24/104]ÔÄ»
+
+ FAIL  scripts/disclosure-chase-finalize.test.ts [ scripts/disclosure-chase-finalize.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/disclosure-chase-finalize.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[25/104]ÔÄ»
+
+ FAIL  scripts/disclosure-export-builder.test.ts [ scripts/disclosure-export-builder.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/disclosure-export-builder.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[26/104]ÔÄ»
+
+ FAIL  scripts/display-labels.test.ts [ scripts/display-labels.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/display-labels.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[27/104]ÔÄ»
+
+ FAIL  scripts/eval-pack-aa-registry.test.ts [ scripts/eval-pack-aa-registry.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/eval-pack-aa-registry.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[28/104]ÔÄ»
+
+ FAIL  scripts/eval-pack-import-preview.test.ts [ scripts/eval-pack-import-preview.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/eval-pack-import-preview.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[29/104]ÔÄ»
+
+ FAIL  scripts/eval-pack-y-registry.test.ts [ scripts/eval-pack-y-registry.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/eval-pack-y-registry.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[30/104]ÔÄ»
+
+ FAIL  scripts/eval-pack-z-registry.test.ts [ scripts/eval-pack-z-registry.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/eval-pack-z-registry.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[31/104]ÔÄ»
+
+ FAIL  scripts/evidence-change-detector.test.ts [ scripts/evidence-change-detector.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/evidence-change-detector.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[32/104]ÔÄ»
+
+ FAIL  scripts/evidence-state-audit.test.ts [ scripts/evidence-state-audit.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\gduff\casebrain-hub\content\casebrain-proof\simulator-bundle-01\truth-key.json'
+ ÔØ» loadJsonFile lib/eval/evidence-state-audit/fixtures.ts:31:18
+     29| 
+     30| export function loadJsonFile<T>(absolutePath: string): T {
+     31|   const raw = fs.readFileSync(absolutePath, "utf8");
+       |                  ^
+     32|   return JSON.parse(raw) as T;
+     33| }
+ ÔØ» loadTruthKeyFromFile lib/eval/evidence-state-audit/fixtures.ts:36:28
+ ÔØ» Module.loadFixture lib/eval/evidence-state-audit/fixtures.ts:47:20
+ ÔØ» scripts/evidence-state-audit.test.ts:184:30
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[33/104]ÔÄ»
+
+ FAIL  scripts/evidence-trace.test.ts [ scripts/evidence-trace.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/evidence-trace.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[34/104]ÔÄ»
+
+ FAIL  scripts/expand-truth-map-rows.test.ts [ scripts/expand-truth-map-rows.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/expand-truth-map-rows.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[35/104]ÔÄ»
+
+ FAIL  scripts/explanation-fidelity-gold.test.ts [ scripts/explanation-fidelity-gold.test.ts ]
+AssertionError: missing expect for cb-found-2001-ellis
+
+- Expected: 
+true
+
++ Received: 
+null
+
+ ÔØ» scripts/explanation-fidelity-gold.test.ts:23:10
+     21| 
+     22|   const expect = loadGoldExplanationExpect(id);
+     23|   assert.ok(expect, `missing expect for ${id}`);
+       |          ^
+     24| 
+     25|   const text = readBundleText(entry.bundleTextPaths);
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[36/104]ÔÄ»
+
+ FAIL  scripts/explanation-fidelity-local.test.ts [ scripts/explanation-fidelity-local.test.ts ]
+Error: process.exit unexpectedly called with "0"
+ ÔØ» scripts/explanation-fidelity-local.test.ts:23:11
+     21|     "explanation-fidelity-local.test.ts: skip (no gitignored explanatiÔÇª
+     22|   );
+     23|   process.exit(0);
+       |           ^
+     24| }
+     25| 
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[37/104]ÔÄ»
+
+ FAIL  scripts/export-pack.test.ts [ scripts/export-pack.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/export-pack.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[38/104]ÔÄ»
+
+ FAIL  scripts/extract-bundle-case-metadata-gold.test.ts [ scripts/extract-bundle-case-metadata-gold.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/extract-bundle-case-metadata-gold.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[39/104]ÔÄ»
+
+ FAIL  scripts/feedback-console.test.ts [ scripts/feedback-console.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/feedback-console.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[40/104]ÔÄ»
+
+ FAIL  scripts/five-answers-view.test.ts [ scripts/five-answers-view.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/five-answers-view.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[41/104]ÔÄ»
+
+ FAIL  scripts/gold-manual-proof-set.test.ts [ scripts/gold-manual-proof-set.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/gold-manual-proof-set.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[42/104]ÔÄ»
+
+ FAIL  scripts/golden-truth-key-v2.test.ts [ scripts/golden-truth-key-v2.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/golden-truth-key-v2.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[43/104]ÔÄ»
+
+ FAIL  scripts/hearing-mode.test.ts [ scripts/hearing-mode.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/hearing-mode.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[44/104]ÔÄ»
+
+ FAIL  scripts/live-battleboard-gauntlet-header.test.ts [ scripts/live-battleboard-gauntlet-header.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/live-battleboard-gauntlet-header.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[45/104]ÔÄ»
+
+ FAIL  scripts/matter-brief-assembler.test.ts [ scripts/matter-brief-assembler.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/matter-brief-assembler.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[46/104]ÔÄ»
+
+ FAIL  scripts/matter-confidence.test.ts [ scripts/matter-confidence.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/matter-confidence.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[47/104]ÔÄ»
+
+ FAIL  scripts/merge-offence-signals.test.ts [ scripts/merge-offence-signals.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/merge-offence-signals.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[48/104]ÔÄ»
+
+ FAIL  scripts/murder-bundle-metadata-extract.test.ts [ scripts/murder-bundle-metadata-extract.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/murder-bundle-metadata-extract.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[49/104]ÔÄ»
+
+ FAIL  scripts/offence-family-concept-registry.test.ts [ scripts/offence-family-concept-registry.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/offence-family-concept-registry.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[50/104]ÔÄ»
+
+ FAIL  scripts/overview-presentation.test.ts [ scripts/overview-presentation.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/overview-presentation.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[51/104]ÔÄ»
+
+ FAIL  scripts/pack-aa-messy-parsers.test.ts [ scripts/pack-aa-messy-parsers.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/pack-aa-messy-parsers.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[52/104]ÔÄ»
+
+ FAIL  scripts/pack-y-golden-answer-quality.test.ts [ scripts/pack-y-golden-answer-quality.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/pack-y-golden-answer-quality.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[53/104]ÔÄ»
+
+ FAIL  scripts/pack-y-route-family.test.ts [ scripts/pack-y-route-family.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/pack-y-route-family.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[54/104]ÔÄ»
+
+ FAIL  scripts/pack-z-primary-allegation.test.ts [ scripts/pack-z-primary-allegation.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/pack-z-primary-allegation.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[55/104]ÔÄ»
+
+ FAIL  scripts/phase6-validator-contracts.test.ts [ scripts/phase6-validator-contracts.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/phase6-validator-contracts.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[56/104]ÔÄ»
+
+ FAIL  scripts/phase7-extraction-provenance.test.ts [ scripts/phase7-extraction-provenance.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/phase7-extraction-provenance.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[57/104]ÔÄ»
+
+ FAIL  scripts/pilot-case-visibility.test.ts [ scripts/pilot-case-visibility.test.ts ]
+Error: Cannot find module '../lib/pilot-mode'
+Require stack:
+- C:\Users\gduff\casebrain-hub\scripts\pilot-case-visibility.test.ts
+ ÔØ» scripts/pilot-case-visibility.test.ts:15:5
+     13|   isPilotReadyCase,
+     14|   summarizePilotCaseFilter,
+     15| } = require("../lib/pilot-mode") as typeof import("../lib/pilot-mode");
+       |     ^
+     16| 
+     17| const { isValidCaseId, buildControlRoomCaseHref } =
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[58/104]ÔÄ»
+
+ FAIL  scripts/pilot-hearing-extract.test.ts [ scripts/pilot-hearing-extract.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/pilot-hearing-extract.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[59/104]ÔÄ»
+
+ FAIL  scripts/pilot-matter-display-polish.test.ts [ scripts/pilot-matter-display-polish.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/pilot-matter-display-polish.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[60/104]ÔÄ»
+
+ FAIL  scripts/pilot-workflow-profile.test.ts [ scripts/pilot-workflow-profile.test.ts ]
+Error: Cannot find module '../lib/criminal/pilot-workflow'
+Require stack:
+- C:\Users\gduff\casebrain-hub\scripts\pilot-workflow-profile.test.ts
+ ÔØ» scripts/pilot-workflow-profile.test.ts:40:5
+     38|   workflowDisclosureCaseWideLine,
+     39|   pilotReadinessWithoutSavedPosition,
+     40| } = require("../lib/criminal/pilot-workflow") as typeof import("../libÔÇª
+       |     ^
+     41| 
+     42| const {
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[61/104]ÔÄ»
+
+ FAIL  scripts/pre-hearing-readiness.test.ts [ scripts/pre-hearing-readiness.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/pre-hearing-readiness.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[62/104]ÔÄ»
+
+ FAIL  scripts/proof-map-fidelity-gold.test.ts [ scripts/proof-map-fidelity-gold.test.ts ]
+AssertionError: generic-provisional-sam-okonkwo:
+  missing proof point id: pp-witness-messaging
+
+1 !== 0
+
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ÔØ» scripts/proof-map-fidelity-gold.test.ts:25:10
+     23|   const { map, failures } = evaluateProofMapCase(id, entry.truthKey.laÔÇª
+     24|   assert.equal(lintProofMapResult(map).length, 0, `${id}: forbidden phÔÇª
+     25|   assert.equal(failures.length, 0, `${id}:\n  ${failures.join("\n  ")}ÔÇª
+       |          ^
+     26|   assert.ok(map.proofPoints.length >= 2);
+     27|   assert.ok(map.links.length >= 3);
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[63/104]ÔÄ»
+
+ FAIL  scripts/proof-map-product.test.ts [ scripts/proof-map-product.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/proof-map-product.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[64/104]ÔÄ»
+
+ FAIL  scripts/proof-receipt-panel.test.ts [ scripts/proof-receipt-panel.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/proof-receipt-panel.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[65/104]ÔÄ»
+
+ FAIL  scripts/provisional-offence-policy.test.ts [ scripts/provisional-offence-policy.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/provisional-offence-policy.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[66/104]ÔÄ»
+
+ FAIL  scripts/real-layout-pdf-ocr-stress.test.ts [ scripts/real-layout-pdf-ocr-stress.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/real-layout-pdf-ocr-stress.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[67/104]ÔÄ»
+
+ FAIL  scripts/real-matter-auditor.test.ts [ scripts/real-matter-auditor.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/real-matter-auditor.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[68/104]ÔÄ»
+
+ FAIL  scripts/reasoning-feedback.test.ts [ scripts/reasoning-feedback.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/reasoning-feedback.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[69/104]ÔÄ»
+
+ FAIL  scripts/reasoning-v2-bridge.test.ts [ scripts/reasoning-v2-bridge.test.ts ]
+AssertionError: expected 7 runnable gold bundles
+
+102 !== 7
+
+
+- Expected
++ Received
+
+- 7
++ 102
+
+ ÔØ» scripts/reasoning-v2-bridge.test.ts:69:8
+     67| }
+     68| 
+     69| assert.equal(passed, 7, "expected 7 runnable gold bundles");
+       |        ^
+     70| 
+     71| for (const manifest of PILOT_3_TRUTH_MANIFESTS) {
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[70/104]ÔÄ»
+
+ FAIL  scripts/rerun-diff.test.ts [ scripts/rerun-diff.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/rerun-diff.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[71/104]ÔÄ»
+
+ FAIL  scripts/simulator-manifest-v1.1.test.ts [ scripts/simulator-manifest-v1.1.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/simulator-manifest-v1.1.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[72/104]ÔÄ»
+
+ FAIL  scripts/simulator-manifest-v1.test.ts [ scripts/simulator-manifest-v1.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/simulator-manifest-v1.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[73/104]ÔÄ»
+
+ FAIL  scripts/simulator-manifest-v2.test.ts [ scripts/simulator-manifest-v2.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/simulator-manifest-v2.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[74/104]ÔÄ»
+
+ FAIL  scripts/solicitor-display-dedupe.test.ts [ scripts/solicitor-display-dedupe.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/solicitor-display-dedupe.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[75/104]ÔÄ»
+
+ FAIL  scripts/solicitor-hearing-display.test.ts [ scripts/solicitor-hearing-display.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/solicitor-hearing-display.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[76/104]ÔÄ»
+
+ FAIL  scripts/solicitor-output-gate.test.ts [ scripts/solicitor-output-gate.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/solicitor-output-gate.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[77/104]ÔÄ»
+
+ FAIL  scripts/solicitor-output-integrity.test.ts [ scripts/solicitor-output-integrity.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/solicitor-output-integrity.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[78/104]ÔÄ»
+
+ FAIL  scripts/solicitor-surface-contract.test.ts [ scripts/solicitor-surface-contract.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/solicitor-surface-contract.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[79/104]ÔÄ»
+
+ FAIL  scripts/strategy-corpus-traps.test.ts [ scripts/strategy-corpus-traps.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/strategy-corpus-traps.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[80/104]ÔÄ»
+
+ FAIL  scripts/strategy-corpus.test.ts [ scripts/strategy-corpus.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/strategy-corpus.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[81/104]ÔÄ»
+
+ FAIL  scripts/structured-solicitor-output.test.ts [ scripts/structured-solicitor-output.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/structured-solicitor-output.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[82/104]ÔÄ»
+
+ FAIL  scripts/supervisor-qa-view.test.ts [ scripts/supervisor-qa-view.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/supervisor-qa-view.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[83/104]ÔÄ»
+
+ FAIL  scripts/supervisor-queue-live-path.test.ts [ scripts/supervisor-queue-live-path.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/supervisor-queue-live-path.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[84/104]ÔÄ»
+
+ FAIL  scripts/supervisor-queue.test.ts [ scripts/supervisor-queue.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/supervisor-queue.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[85/104]ÔÄ»
+
+ FAIL  scripts/supervisor-signoff.test.ts [ scripts/supervisor-signoff.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/supervisor-signoff.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[86/104]ÔÄ»
+
+ FAIL  scripts/trust-feedback.test.ts [ scripts/trust-feedback.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/trust-feedback.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[87/104]ÔÄ»
+
+ FAIL  scripts/war-room-view-fidelity-gold.test.ts [ scripts/war-room-view-fidelity-gold.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/war-room-view-fidelity-gold.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[88/104]ÔÄ»
+
+ FAIL  scripts/weirdness-detector.test.ts [ scripts/weirdness-detector.test.ts ]
+Error: No test suite found in file C:/Users/gduff/casebrain-hub/scripts/weirdness-detector.test.ts
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[89/104]ÔÄ»
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ» Failed Tests 15 ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»
+
+ FAIL  lib/core/__tests__/limitation.test.ts > calculateLimitation > should calculate 3-year limitation for PI cases
+AssertionError: expected '2028-01-01T00:00:00.000Z' to be '2025-01-01T00:00:00.000Z' // Object.is equality
+
+Expected: "2025-01-01T00:00:00.000Z"
+Received: "2028-01-01T00:00:00.000Z"
+
+ ÔØ» lib/core/__tests__/limitation.test.ts:32:35
+     30|     });
+     31| 
+     32|     expect(result.limitationDate).toBe("2025-01-01T00:00:00.000Z");
+       |                                   ^
+     33|     expect(result.severity).toBe("critical"); // Within 90 days
+     34|     expect(result.isExpired).toBe(false);
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[90/104]ÔÄ»
+
+ FAIL  lib/core/__tests__/limitation.test.ts > calculateLimitation > should use date of knowledge if provided
+AssertionError: expected 'Possible limitation deadline around 0ÔÇª' to contain 'date of knowledge'
+
+Expected: "date of knowledge"
+Received: "Possible limitation deadline around 01/01/2026 (365 days remaining). This is procedural guidance only and does not constitute legal advice. Dates must be confirmed with a qualified legal advisor."
+
+ ÔØ» lib/core/__tests__/limitation.test.ts:80:32
+     78|     // Should use date of knowledge (2020) + 6 years = 2026
+     79|     expect(result.limitationDate).toBe("2026-01-01T00:00:00.000Z");
+     80|     expect(result.explanation).toContain("date of knowledge");
+       |                                ^
+     81|   });
+     82| 
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[91/104]ÔÄ»
+
+ FAIL  lib/core/__tests__/limitation.test.ts > calculateLimitation > should set severity based on days remaining
+AssertionError: expected 'low' to be 'critical' // Object.is equality
+
+Expected: "critical"
+Received: "low"
+
+ ÔØ» lib/core/__tests__/limitation.test.ts:110:30
+    108|       today: "2024-12-01", // ~30 days before limitation
+    109|     });
+    110|     expect(result1.severity).toBe("critical");
+       |                              ^
+    111| 
+    112|     // Test high (90-180 days)
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[92/104]ÔÄ»
+
+ FAIL  lib/core/__tests__/riskCopy.test.ts > riskCopy > limitation > should build messages with limitation date
+AssertionError: expected 'Possible limitation deadline around 3ÔÇª' to contain '2025-12-31'
+
+Expected: "2025-12-31"
+Received: "Possible limitation deadline around 31/12/2025 (90 days remaining). This is procedural guidance only and does not constitute legal advice. Dates must be confirmed with a qualified legal advisor."
+
+ ÔØ» lib/core/__tests__/riskCopy.test.ts:19:23
+     17|       });
+     18| 
+     19|       expect(message).toContain("2025-12-31");
+       |                       ^
+     20|       expect(message).toContain("procedural guidance only");
+     21|       expect(message).toContain("does not constitute legal advice");
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[93/104]ÔÄ»
+
+ FAIL  lib/criminal/__tests__/criminal-purity.test.ts > Criminal purity + probability gating > probabilities are suppressed when completeness is low
+AssertionError: expected 'Decision support only ÔÇö upload servedÔÇª' to match /insufficient bundle/i
+
+- Expected: 
+/insufficient bundle/i
+
++ Received: 
+"Decision support only ÔÇö upload served prosecution case papers (MG forms, custody/interview records, primary media logs)"
+
+ ÔØ» lib/criminal/__tests__/criminal-purity.test.ts:19:24
+     17|     });
+     18|     expect(res.show).toBe(false);
+     19|     expect(res.reason).toMatch(/insufficient bundle/i);
+       |                        ^
+     20|   });
+     21| });
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[94/104]ÔÄ»
+
+ FAIL  lib/criminal/__tests__/structured-extractor.test.ts > validateCourtName > rejects markdown headings starting with #
+ReferenceError: validateCourtName is not defined
+ ÔØ» lib/criminal/__tests__/structured-extractor.test.ts:43:5
+     41| describe("validateCourtName", () => {
+     42|   it("rejects markdown headings starting with #", () => {
+     43|     expect(validateCourtName("# CROWN COURT PROSECUTION BUNDLE")).toBeÔÇª
+       |     ^
+     44|     expect(validateCourtName("# Crown Court at Manchester")).toBeNull(ÔÇª
+     45|   });
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[95/104]ÔÄ»
+
+ FAIL  lib/criminal/__tests__/structured-extractor.test.ts > validateCourtName > rejects values containing BUNDLE
+ReferenceError: validateCourtName is not defined
+ ÔØ» lib/criminal/__tests__/structured-extractor.test.ts:48:5
+     46| 
+     47|   it("rejects values containing BUNDLE", () => {
+     48|     expect(validateCourtName("CROWN COURT PROSECUTION BUNDLE")).toBeNuÔÇª
+       |     ^
+     49|     expect(validateCourtName("Crown Court Bundle")).toBeNull();
+     50|   });
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[96/104]ÔÄ»
+
+ FAIL  lib/criminal/__tests__/structured-extractor.test.ts > validateCourtName > rejects ALL CAPS headings without court keyword
+ReferenceError: validateCourtName is not defined
+ ÔØ» lib/criminal/__tests__/structured-extractor.test.ts:53:5
+     51| 
+     52|   it("rejects ALL CAPS headings without court keyword", () => {
+     53|     expect(validateCourtName("PROSECUTION BUNDLE")).toBeNull();
+       |     ^
+     54|     expect(validateCourtName("CASE DETAILS")).toBeNull();
+     55|   });
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[97/104]ÔÄ»
+
+ FAIL  lib/criminal/__tests__/structured-extractor.test.ts > validateCourtName > rejects values containing PROSECUTION BUNDLE
+ReferenceError: validateCourtName is not defined
+ ÔØ» lib/criminal/__tests__/structured-extractor.test.ts:58:5
+     56| 
+     57|   it("rejects values containing PROSECUTION BUNDLE", () => {
+     58|     expect(validateCourtName("Crown Court PROSECUTION BUNDLE")).toBeNuÔÇª
+       |     ^
+     59|   });
+     60| 
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[98/104]ÔÄ»
+
+ FAIL  lib/criminal/__tests__/structured-extractor.test.ts > validateCourtName > accepts valid court names with court keywords
+ReferenceError: validateCourtName is not defined
+ ÔØ» lib/criminal/__tests__/structured-extractor.test.ts:62:5
+     60| 
+     61|   it("accepts valid court names with court keywords", () => {
+     62|     expect(validateCourtName("Crown Court at Manchester")).toBe("CrownÔÇª
+       |     ^
+     63|     expect(validateCourtName("Birmingham Magistrates' Court")).toBe("BÔÇª
+     64|     expect(validateCourtName("Manchester Crown Court")).toBe("ManchestÔÇª
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[99/104]ÔÄ»
+
+ FAIL  lib/criminal/__tests__/structured-extractor.test.ts > validateCourtName > rejects null, undefined, and empty strings
+ReferenceError: validateCourtName is not defined
+ ÔØ» lib/criminal/__tests__/structured-extractor.test.ts:70:5
+     68| 
+     69|   it("rejects null, undefined, and empty strings", () => {
+     70|     expect(validateCourtName(null)).toBeNull();
+       |     ^
+     71|     expect(validateCourtName(undefined)).toBeNull();
+     72|     expect(validateCourtName("")).toBeNull();
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[100/104]ÔÄ»
+
+ FAIL  lib/criminal/__tests__/structured-extractor.test.ts > validateCourtName > rejects values without court keywords
+ReferenceError: validateCourtName is not defined
+ ÔØ» lib/criminal/__tests__/structured-extractor.test.ts:77:5
+     75| 
+     76|   it("rejects values without court keywords", () => {
+     77|     expect(validateCourtName("Manchester")).toBeNull();
+       |     ^
+     78|     expect(validateCourtName("Birmingham")).toBeNull();
+     79|     expect(validateCourtName("Court Building")).toBeNull(); // "Court"ÔÇª
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[101/104]ÔÄ»
+
+ FAIL  lib/criminal/__tests__/structured-extractor.test.ts > validateCourtName > handles edge cases
+ReferenceError: validateCourtName is not defined
+ ÔØ» lib/criminal/__tests__/structured-extractor.test.ts:83:5
+     81| 
+     82|   it("handles edge cases", () => {
+     83|     expect(validateCourtName("# Crown Court")).toBeNull(); // Starts wÔÇª
+       |     ^
+     84|     expect(validateCourtName("CROWN COURT BUNDLE")).toBeNull(); // ConÔÇª
+     85|     expect(validateCourtName("Crown Court at Manchester")).toBe("CrownÔÇª
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[102/104]ÔÄ»
+
+ FAIL  lib/housing/__tests__/awaabs-monitor.test.ts > Awaab's Law Monitor > should calculate investigation deadline for social landlord
+AssertionError: expected -918 to be greater than -365
+ ÔØ» lib/housing/__tests__/awaabs-monitor.test.ts:45:31
+     43| 
+     44|     expect(daysUntilDeadline).toBeLessThanOrEqual(14);
+     45|     expect(daysUntilDeadline).toBeGreaterThan(-365); // Should be withÔÇª
+       |                               ^
+     46|   });
+     47| 
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[103/104]ÔÄ»
+
+ FAIL  lib/housing/__tests__/supervision-pack.test.ts > Supervision Pack Generator > should include disclaimer in all outputs
+AssertionError: expected 'This supervision pack is generated frÔÇª' to contain 'not legal advice'
+
+Expected: "not legal advice"
+Received: "This supervision pack is generated from extracted evidence and case data. It is procedural guidance only and does not constitute legal advice."
+
+ ÔØ» lib/housing/__tests__/supervision-pack.test.ts:74:24
+     72| 
+     73|     expect(disclaimer).toContain("procedural guidance only");
+     74|     expect(disclaimer).toContain("not legal advice");
+       |                        ^
+     75|   });
+     76| });
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[104/104]ÔÄ»
+
+ Test Files  95 failed | 17 passed (112)
+      Tests  15 failed | 114 passed (129)
+   Start at  19:35:45
+   Duration  129.30s (transform 24.24s, setup 0ms, collect 158.75s, tests 3.18s, environment 151ms, prepare 71.31s)
+

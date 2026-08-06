@@ -1,0 +1,327 @@
+{
+  "schemaVersion": "stage150-inventory-reconciliation@1.0.0",
+  "identityFailures": 0,
+  "meanIncludedSolicitorVisibleWording": 69.75951903807615,
+  "sample": [
+    {
+      "caseId": "cb-found-2001-ellis",
+      "reconciliation": {
+        "sourceLeafCount": 177,
+        "includedCount": 78,
+        "includedSolicitorVisible": 75,
+        "includedStructuralEmpty": 3,
+        "excludedCount": 99,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 64,
+          "excluded_truth_comparison": 25
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "cb-found-2002-smith",
+      "reconciliation": {
+        "sourceLeafCount": 185,
+        "includedCount": 82,
+        "includedSolicitorVisible": 79,
+        "includedStructuralEmpty": 3,
+        "excludedCount": 103,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 68,
+          "excluded_truth_comparison": 25
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "cb-found-2003-nguyen",
+      "reconciliation": {
+        "sourceLeafCount": 214,
+        "includedCount": 94,
+        "includedSolicitorVisible": 89,
+        "includedStructuralEmpty": 5,
+        "excludedCount": 120,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 80,
+          "excluded_truth_comparison": 30
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "cb-found-2004-clarke",
+      "reconciliation": {
+        "sourceLeafCount": 156,
+        "includedCount": 62,
+        "includedSolicitorVisible": 58,
+        "includedStructuralEmpty": 4,
+        "excludedCount": 94,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 54,
+          "excluded_truth_comparison": 30
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "cb-found-2005-okafor",
+      "reconciliation": {
+        "sourceLeafCount": 178,
+        "includedCount": 74,
+        "includedSolicitorVisible": 70,
+        "includedStructuralEmpty": 4,
+        "excludedCount": 104,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 64,
+          "excluded_truth_comparison": 30
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "cb-found-2006-carter",
+      "reconciliation": {
+        "sourceLeafCount": 167,
+        "includedCount": 72,
+        "includedSolicitorVisible": 70,
+        "includedStructuralEmpty": 2,
+        "excludedCount": 95,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 60,
+          "excluded_truth_comparison": 25
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "cb-found-2007-morrison",
+      "reconciliation": {
+        "sourceLeafCount": 155,
+        "includedCount": 66,
+        "includedSolicitorVisible": 63,
+        "includedStructuralEmpty": 3,
+        "excludedCount": 89,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 54,
+          "excluded_truth_comparison": 25
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "cb-fresh-001-taylor-brookes",
+      "reconciliation": {
+        "sourceLeafCount": 162,
+        "includedCount": 60,
+        "includedSolicitorVisible": 57,
+        "includedStructuralEmpty": 3,
+        "excludedCount": 102,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 52,
+          "excluded_truth_comparison": 40
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "cb-fresh-002-jordan-hale",
+      "reconciliation": {
+        "sourceLeafCount": 200,
+        "includedCount": 79,
+        "includedSolicitorVisible": 75,
+        "includedStructuralEmpty": 4,
+        "excludedCount": 121,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 66,
+          "excluded_truth_comparison": 45
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "crown-court-patterson",
+      "reconciliation": {
+        "sourceLeafCount": 234,
+        "includedCount": 101,
+        "includedSolicitorVisible": 98,
+        "includedStructuralEmpty": 3,
+        "excludedCount": 133,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 88,
+          "excluded_truth_comparison": 35
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "fictional-theft-ashleigh-merritt",
+      "reconciliation": {
+        "sourceLeafCount": 212,
+        "includedCount": 101,
+        "includedSolicitorVisible": 98,
+        "includedStructuralEmpty": 3,
+        "excludedCount": 111,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 86,
+          "excluded_truth_comparison": 15
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "reconciliation": {
+        "sourceLeafCount": 296,
+        "includedCount": 117,
+        "includedSolicitorVisible": 115,
+        "includedStructuralEmpty": 2,
+        "excludedCount": 179,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 104,
+          "excluded_truth_comparison": 65
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "generic-provisional-sam-okonkwo",
+      "reconciliation": {
+        "sourceLeafCount": 209,
+        "includedCount": 82,
+        "includedSolicitorVisible": 79,
+        "includedStructuralEmpty": 3,
+        "excludedCount": 127,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 72,
+          "excluded_truth_comparison": 45
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "motoring-thin-ella-shaw",
+      "reconciliation": {
+        "sourceLeafCount": 197,
+        "includedCount": 78,
+        "includedSolicitorVisible": 76,
+        "includedStructuralEmpty": 2,
+        "excludedCount": 119,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 64,
+          "excluded_truth_comparison": 45
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "pilot-3-kian-doyle",
+      "reconciliation": {
+        "sourceLeafCount": 108,
+        "includedCount": 51,
+        "includedSolicitorVisible": 49,
+        "includedStructuralEmpty": 2,
+        "excludedCount": 57,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 42,
+          "excluded_truth_comparison": 5
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "pilot-3-leon-marsh",
+      "reconciliation": {
+        "sourceLeafCount": 155,
+        "includedCount": 78,
+        "includedSolicitorVisible": 75,
+        "includedStructuralEmpty": 3,
+        "excludedCount": 77,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 62,
+          "excluded_truth_comparison": 5
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "pilot-3-marcus-vale",
+      "reconciliation": {
+        "sourceLeafCount": 85,
+        "includedCount": 38,
+        "includedSolicitorVisible": 36,
+        "includedStructuralEmpty": 2,
+        "excludedCount": 47,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 32,
+          "excluded_truth_comparison": 5
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "s18-charge-reduction-jordan-clarke",
+      "reconciliation": {
+        "sourceLeafCount": 255,
+        "includedCount": 102,
+        "includedSolicitorVisible": 100,
+        "includedStructuralEmpty": 2,
+        "excludedCount": 153,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 88,
+          "excluded_truth_comparison": 55
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "sc-00001",
+      "reconciliation": {
+        "sourceLeafCount": 182,
+        "includedCount": 63,
+        "includedSolicitorVisible": 61,
+        "includedStructuralEmpty": 2,
+        "excludedCount": 119,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 54,
+          "excluded_truth_comparison": 55
+        },
+        "identity": true
+      }
+    },
+    {
+      "caseId": "sc-00002",
+      "reconciliation": {
+        "sourceLeafCount": 230,
+        "includedCount": 82,
+        "includedSolicitorVisible": 79,
+        "includedStructuralEmpty": 3,
+        "excludedCount": 148,
+        "excludedByDisposition": {
+          "excluded_internal_metadata": 10,
+          "excluded_non_wording_machine_state": 68,
+          "excluded_truth_comparison": 70
+        },
+        "identity": true
+      }
+    }
+  ]
+}

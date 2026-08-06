@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-022",
+  "def": {
+    "goldId": "GOLD-11-022",
+    "stratum": "omission_truncation",
+    "sourceKind": "synthetic_controlled",
+    "fixtureId": "SYN-TRUNC-TITLE-01",
+    "selectionReason": "Truncated excerpt used as evidence title",
+    "reviewFocus": "Unsafe title must not be presented as safe evidence title."
+  },
+  "surfaces": [
+    {
+      "surface": "evidence_title",
+      "label": "Evidence title (Papers / truth map)",
+      "solicitorVisibleText": "WhatsApp extract shows defendant said…",
+      "gateStatus": "ok",
+      "canCopy": false
+    }
+  ]
+}

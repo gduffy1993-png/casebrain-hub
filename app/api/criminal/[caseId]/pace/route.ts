@@ -3,6 +3,8 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { buildCaseContext } from "@/lib/case-context";
 import { makeOk, makeGateFail, makeNotFound, makeError, type ApiResponse } from "@/lib/api/response";
 import { checkAnalysisGate } from "@/lib/analysis/text-gate";
+import { gatePaceAffirmativeStatus } from "@/lib/criminal/pace-affirmative-gate";
+import { buildFindingProvenance } from "@/lib/criminal/finding-provenance";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -144,10 +146,22 @@ export async function GET(_request: Request, { params }: RouteParams) {
         }
       }
 
-      // If extraction found PACE data, use it
+      // If extraction found PACE data, use shared affirmative gate (never OK on clock conflict / incomplete provenance).
       if (extractedPACE) {
-        const hasBreaches = extractedPACE.breachesDetected && extractedPACE.breachesDetected.length > 0;
-        paceStatus = hasBreaches ? "BREACH_FLAGGED" : "CHECKED_NO_BREACHES";
+        const combinedForClock =
+          context.documents
+            .map((d) => (typeof d.raw_text === "string" ? d.raw_text : ""))
+            .join("\n") || "";
+        const gate = gatePaceAffirmativeStatus({
+          custodyRecord: extractedPACE.custodyRecord,
+          interviewRecording: extractedPACE.interviewRecording,
+          legalAdviceLog: extractedPACE.legalAdviceLog,
+          breachesDetected: extractedPACE.breachesDetected || [],
+          bundleText: combinedForClock,
+          provenance: buildFindingProvenance({
+            evidenceState: extractedPACE.status === "issues_detected" ? "not_safely_confirmed" : "served",
+          }),
+        });
 
         return makeOk(
           {
@@ -160,10 +174,8 @@ export async function GET(_request: Request, { params }: RouteParams) {
             detentionTimeExceeded: null,
             breachesDetected: extractedPACE.breachesDetected || [],
             breachSeverity: extractedPACE.breachSeverity,
-            paceStatus,
-            statusMessage: hasBreaches
-              ? "PACE breaches detected"
-              : "No PACE breaches detected (in provided material)",
+            paceStatus: gate.paceStatus,
+            statusMessage: gate.statusMessage,
             extracted: true, // Flag to indicate this was extracted, not from DB
           },
           context,
@@ -171,7 +183,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
         );
       }
 
-      // Fallback: check if critical evidence exists in documents (old logic)
+      // Fallback: check if critical evidence exists in documents (old logic) — still gated.
       const corpus = context.documents
         .map((d) => {
           let text = "";
@@ -184,20 +196,24 @@ export async function GET(_request: Request, { params }: RouteParams) {
       
       const hasCustodyRecord = /custody\s+record|custody\s+review|legal\s+advice/i.test(corpus);
       const hasInterviewRecording = /interview\s+recording|audio\s+interview|video\s+interview|transcript|recorded\s+interview/i.test(corpus);
-      const hasLegalAdviceLog = /legal\s+advice|solicitor\s+present|legal\s+representative|jennifer\s+walsh/i.test(corpus);
+      const hasLegalAdviceLog = /legal\s+advice|solicitor\s+present|legal\s+representative/i.test(corpus);
       const hasCautionSolicitorFlags = /caution|right\s+to\s+solicitor|legal\s+advice/i.test(corpus);
       
       const criticalPaceMissing = !hasCustodyRecord || !hasInterviewRecording || !hasLegalAdviceLog || !hasCautionSolicitorFlags;
-      paceStatus = criticalPaceMissing ? "UNKNOWN" : "CHECKED_NO_BREACHES";
+      const gate = gatePaceAffirmativeStatus({
+        custodyRecord: hasCustodyRecord ? "present" : "missing",
+        interviewRecording: hasInterviewRecording ? "present" : "missing",
+        legalAdviceLog: hasLegalAdviceLog ? "present" : "missing",
+        breachesDetected: [],
+        bundleText: corpus,
+        criticalMaterialMissing: criticalPaceMissing,
+        provenance: buildFindingProvenance({ evidenceState: criticalPaceMissing ? "missing" : "served" }),
+      });
       
       const missingItems: string[] = [];
       if (!hasCustodyRecord) missingItems.push("custody record");
       if (!hasInterviewRecording) missingItems.push("interview recording/transcript");
       if (!hasLegalAdviceLog || !hasCautionSolicitorFlags) missingItems.push("legal advice/solicitor attendance");
-      
-      const statusMessage = criticalPaceMissing
-        ? `PACE status: UNKNOWN — key ${missingItems.join(", ")} material missing in provided bundle`
-        : "No PACE breaches detected (in provided material)";
       
       return makeOk(
         {
@@ -210,8 +226,8 @@ export async function GET(_request: Request, { params }: RouteParams) {
           detentionTimeExceeded: null,
           breachesDetected: [],
           breachSeverity: null,
-          paceStatus,
-          statusMessage,
+          paceStatus: gate.paceStatus,
+          statusMessage: gate.statusMessage,
           extracted: false,
         },
         context,
@@ -226,35 +242,36 @@ export async function GET(_request: Request, { params }: RouteParams) {
       pace.right_to_solicitor === null &&
       pace.solicitor_present === null;
 
-    const hasBreaches = (pace.breaches_detected && Array.isArray(pace.breaches_detected) && pace.breaches_detected.length > 0) ||
-                        (pace.breach_severity && pace.breach_severity !== "LOW");
-
-    if (criticalMissing) {
-      paceStatus = "UNKNOWN";
-    } else if (hasBreaches) {
-      paceStatus = "BREACH_FLAGGED";
-    } else {
-      paceStatus = "CHECKED_NO_BREACHES";
-    }
-
-    // Build status message
-    let statusMessage: string;
-    if (paceStatus === "UNKNOWN") {
-      const missingItems: string[] = [];
-      if (pace.caution_given === null) missingItems.push("caution");
-      if (pace.interview_recorded === null) missingItems.push("interview recording/transcript");
-      if (pace.right_to_solicitor === null || pace.solicitor_present === null) missingItems.push("legal advice/solicitor attendance");
-      
-      if (missingItems.length > 0) {
-        statusMessage = `PACE status: UNKNOWN — key ${missingItems.join(", ")} material missing in provided bundle`;
-      } else {
-        statusMessage = "PACE status: UNKNOWN — key custody/interview/legal advice material missing in provided bundle";
-      }
-    } else if (paceStatus === "BREACH_FLAGGED") {
-      statusMessage = "PACE breaches detected";
-    } else {
-      statusMessage = "No PACE breaches detected (in provided material)";
-    }
+    const bundleText = context.documents
+      .map((d) => (typeof d.raw_text === "string" ? d.raw_text : ""))
+      .join("\n");
+    const gate = gatePaceAffirmativeStatus({
+      custodyRecord: pace.caution_given === null ? (criticalMissing ? "missing" : "unclear") : pace.caution_given ? "present" : "missing",
+      interviewRecording:
+        pace.interview_recorded === null
+          ? criticalMissing
+            ? "missing"
+            : "unclear"
+          : pace.interview_recorded
+            ? "present"
+            : "missing",
+      legalAdviceLog:
+        pace.right_to_solicitor === null && pace.solicitor_present === null
+          ? criticalMissing
+            ? "missing"
+            : "unclear"
+          : pace.right_to_solicitor || pace.solicitor_present
+            ? "present"
+            : "missing",
+      breachesDetected: Array.isArray(pace.breaches_detected) ? pace.breaches_detected : [],
+      bundleText,
+      criticalMaterialMissing: criticalMissing,
+      provenance: buildFindingProvenance({
+        evidenceState: criticalMissing ? "missing" : "served",
+      }),
+    });
+    paceStatus = gate.paceStatus;
+    const statusMessage = gate.statusMessage;
 
     return makeOk(
       {

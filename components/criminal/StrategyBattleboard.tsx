@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp, Loader2, Shield, Swords } from "lucide-react";
 import type { BattleboardOutput, BattleboardRoute, BattleboardRouteStatus } from "@/lib/criminal/strategy-battleboard";
+import { presentSolicitorBattleboard } from "@/lib/criminal/solicitor-visible-sanitization";
 
 export type StrategyBattleboardProps = {
   caseId: string;
@@ -427,7 +428,9 @@ export function StrategyBattleboard({
   const [error, setError] = useState<string | null>(null);
   const [showFull, setShowFull] = useState(false);
 
-  const data = parentOwnsData ? battleboardData : internalData;
+  const rawData = parentOwnsData ? battleboardData : internalData;
+  /** Solicitor rendering expands professional wording; Brain 1 underlying values stay canonical. */
+  const data = rawData ? presentSolicitorBattleboard(rawData) : rawData;
   const loading = parentOwnsData ? Boolean(battleboardLoading) : internalLoading;
 
   useEffect(() => {

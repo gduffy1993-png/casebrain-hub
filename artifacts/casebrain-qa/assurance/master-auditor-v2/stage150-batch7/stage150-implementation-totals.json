@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "stage150-implementation-totals@1.6.1",
+  "baselineCommit": "200c3e4d79ac7e1a837a538a723445d7e9c3884f",
+  "before": {
+    "partially_implemented": 99,
+    "specified_not_implemented": 55,
+    "implemented": 7
+  },
+  "after": {
+    "stage150ControlCount": 161,
+    "partially_implemented": 98,
+    "specified_not_implemented": 55,
+    "implemented": 8,
+    "other": 0
+  },
+  "batch7Promoted": [
+    "MAA2-EVS-01-DIMENSION-SEPARATION"
+  ],
+  "atr01ReturnedToPartial": true,
+  "note": "Honesty correction: EVS-01 only. ATR-01 partial. Stage-150 currentlyRunnable remains false."
+}

@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "changed-file-manifest@1.1.0",
+  "baselineCommit": "ee3c70c6f010b1c81535aed8bc00d1b782a29b4e",
+  "headCommit": "ee3c70c6f010b1c81535aed8bc00d1b782a29b4e",
+  "note": "Acceptance commit scope: 39 compact files; excludes 4 gitignored regenerable jsonl ledgers from prior 43 label.",
+  "files": [
+    {
+      "path": ".gitignore",
+      "kind": "untracked",
+      "sha256": "68401dbfd45bb64e26ec2a1fb0a8fc7ebc7cefbe4bbc585419e8824f934ec0ad"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/120-packet-capability-receipt-index.json",
+      "kind": "untracked",
+      "sha256": "a3bfee34efcd1f1aa177d8ea064ede40bebb9424e9ff780f79dc174c2d24dbc3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/120-packet-capability-summary.json",
+      "kind": "untracked",
+      "sha256": "5b12d93370279bbe5746e0aa9bf36b4a24feea26cf2cf35524b2a013ed9bb8fa"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/43-control-before-after-matrix.json",
+      "kind": "untracked",
+      "sha256": "7f6e8691c49f52153c8212bb7391c09c81bc144f45420123e46f3887485bf763"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/batch-a-adapter-registry.json",
+      "kind": "untracked",
+      "sha256": "b37e2d5ac4655e180156efe54d65ed3b36bc443dcf2d69978fcdec0179a229f5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/brain1-guardian-blob-compare.json",
+      "kind": "untracked",
+      "sha256": "afb203e92d5ba9560403d57b714500024f39726ed5992912f1037dd73744a3cc"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/calibration-disposition-ledger-summary.json",
+      "kind": "untracked",
+      "sha256": "fbfd75435a057a8b26ce2e5dc8dd729ab531fdd1368f7fbd4dad86eace8dfcc7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/changed-file-manifest.json",
+      "kind": "untracked",
+      "sha256": "3402ae718a9a08f58db5f063063b0e0813d81368f4d883d3ad1d54697700bd15"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/ownership-deduplication-graph.json",
+      "kind": "untracked",
+      "sha256": "2a415a9dd8449f2a4f1689a0d3986c1483a84205ace2c0ab4dbc49b0e991b43a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/regression-report.json",
+      "kind": "untracked",
+      "sha256": "674b17b8ad14ba8333d30a93b01fb1bf871e83818517866e52b996ae5f00d14c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/remaining-essential-blocker-register.json",
+      "kind": "untracked",
+      "sha256": "72714ef51dcb62ee0c966e1b4cd6e840e419d2d4db789448264f15df6b722dcd"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/retention-size-report.json",
+      "kind": "untracked",
+      "sha256": "43c558d99c4516840e95666c393f32fd31f7e8bd809f94b0a04e3f76de5f48c0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-control-eligibility-exercise-matrix.json",
+      "kind": "untracked",
+      "sha256": "7c0db5df4108abc17c29fc9d41a8ed97bbe93ff4ee4e45737ca7db22d35ac620"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-control-evaluator-registry.json",
+      "kind": "untracked",
+      "sha256": "418f65fbc05d2503a5170c59421ad65c100a274484233db5d5714484f7eb4944"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-evaluator-calibration/candidate-freeze-receipt.json",
+      "kind": "untracked",
+      "sha256": "0703626d13b72f80dc8aed107d48f8cc1fc73d3cb50ce74c18f6374d801b4522"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-evaluator-calibration/fixture-harness-report.json",
+      "kind": "untracked",
+      "sha256": "fe19111313f6478d47d3576acfc42a9b39d963edd8c505980e460547d675041b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-evaluator-calibration/truth-open-sequencing-receipt.json",
+      "kind": "untracked",
+      "sha256": "2a1b1042d012f5417a0427cf8d88dd51cd3ef89c9c9c262bb80f3fece65d8e98"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/STOP-FOR-CODEX-REVIEW.json",
+      "kind": "untracked",
+      "sha256": "a7d449d03f4eaf094ebfbf0a890ae6bd1f9ce46e9aee0ddab282eebe7fdcacc3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/verification-results.json",
+      "kind": "untracked",
+      "sha256": "aed070c494ea8382fd82c50d974766da9a185e2a7edc1b4017d833d800ff29c9"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/adapters.ts",
+      "kind": "untracked",
+      "sha256": "23a87169e24390d7686d533e8159a76e3729628db7388552eb4bec5fc5474114"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/before-after.ts",
+      "kind": "untracked",
+      "sha256": "c85a118e4182c2425d0b3960c91dcdeccaee8bf8b810da4e22adc5c9c97afd83"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/constants.ts",
+      "kind": "untracked",
+      "sha256": "64f03644d4ee2ff412cbf035aeae78855a9367eded974811c5be98838d2a82ba"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/dry-scan.ts",
+      "kind": "untracked",
+      "sha256": "41e87ed596ef6253bf9851ae243158f4929d7aca669b06b4794cf781ead744f5"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/evaluators/calibration.ts",
+      "kind": "untracked",
+      "sha256": "d04603300756818ab6fb3c03b5e03802e9e49d90deb1f831b3d3e787db2d8761"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/evaluators/constants.ts",
+      "kind": "untracked",
+      "sha256": "dad22deb66c00210224929bc53d430ba39c8b1d97e5787d6a9f526ab7daa631a"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/evaluators/evaluate.ts",
+      "kind": "untracked",
+      "sha256": "859e0d35c1bf464a89d7b80bd3631128e45d164f4527ff2d49bc22416069f33b"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/evaluators/fixtures.ts",
+      "kind": "untracked",
+      "sha256": "a56ee3a941648b4e5e8806600fce43a240837d9582f94d33cdf7776dada831d8"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/evaluators/harness.ts",
+      "kind": "untracked",
+      "sha256": "eb7b310877e00b5206a8b8dbf7dfdfd74fd241361601f927018879bfda8fe880"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/evaluators/index.ts",
+      "kind": "untracked",
+      "sha256": "b05e4e0f6c0697129b91ca03cccd7f4bfd739ef034a3028f000c7fb47e7f6ca2"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/evaluators/specs.ts",
+      "kind": "untracked",
+      "sha256": "dbb8ed9210e5496f42e6152bcac021c19f0aa89ef2939fa27a8b4cf53aeb9543"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/index.ts",
+      "kind": "untracked",
+      "sha256": "43f6fc90d4d84381f263f07676ef986bb35053b52a83dde9df40741efa5b11d7"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/ownership.ts",
+      "kind": "untracked",
+      "sha256": "1a716d6db6c8b0bd193a35940705e1ae4b2acba4df4000987d664148d2a10f86"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/project-structured-packet.ts",
+      "kind": "untracked",
+      "sha256": "e314ce11bf56f44b9d4b639ca7777f2e17d866b81e17b205c625b2186419b769"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/registry.ts",
+      "kind": "untracked",
+      "sha256": "98ca2ac114cc7b66237f437714bdec49542ea1343e0d0144ce4a75df283f64bd"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/batch-a/remaining-blockers.ts",
+      "kind": "untracked",
+      "sha256": "0c2cbdee3d7cc316ba41785fc57216bc945abb795bed94d3c5ba6e5d2d5bb2ac"
+    },
+    {
+      "path": "scripts/assurance/emit-maa-v2-stage300-batch-a-six-evaluators.ts",
+      "kind": "untracked",
+      "sha256": "c68a27a41ed4a715889ea6cbee4a86d8875af4a17c9a68cdebb3bfefdcde1e5b"
+    },
+    {
+      "path": "scripts/assurance/emit-maa-v2-stage300-batch-a-structured-adapters.ts",
+      "kind": "untracked",
+      "sha256": "0ac637b9fe580bd67d5af9b723262477a7439baf9ab0bca6d20d80fc1d992fd2"
+    },
+    {
+      "path": "scripts/maa-v2-stage300-batch-a-contracts.test.ts",
+      "kind": "untracked",
+      "sha256": "639017a0b8e1f25c986aa23b8f93bf30a64627d375b452ceac56ca972b9393d1"
+    },
+    {
+      "path": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts",
+      "kind": "untracked",
+      "sha256": "566cd5c40ae05f83ace6b5aebe1768d24023bf0c37a967eed638b0a16790648f"
+    }
+  ],
+  "count": 39
+}

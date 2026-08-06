@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":210,"approved_band":"120-250","rule":"authentic need controls total; no padding"},
+  "planned_documents":[
+    {"id":"S01","structure":"case summary, proposed charges, clinical/procedural chronology and issue map","pages":"14-20","purpose":"neutral separation of offence, event-state, current fitness and procedural questions"},
+    {"id":"S02","structure":"fire-scene, exhibits, witnesses, CCTV and fire-investigation report","pages":"30-42","purpose":"act/damage/cause evidence independent of mental-health conclusions"},
+    {"id":"S03","structure":"custody, interview, healthcare, observation and reasonable-adjustment records","pages":"22-32","purpose":"contemporaneous behaviour, safeguards and support without retrospective diagnosis"},
+    {"id":"S04","structure":"focused GP/hospital/clinical history records and provenance log","pages":"25-35","purpose":"longitudinal clinical source with minimisation and gaps"},
+    {"id":"S05","structure":"defence psychiatric reports, addendum, materials and limitations","pages":"22-32","purpose":"qualified individual opinion on expressly framed questions"},
+    {"id":"S06","structure":"prosecution psychiatric reports, addendum and expert joint statement","pages":"25-36","purpose":"competing opinion and dated agreements/disagreements"},
+    {"id":"S07","structure":"intermediary/communication assessment, participation plan and ground-rules records","pages":"12-20","purpose":"functional support recommendation, application and direction states"},
+    {"id":"S08","structure":"fitness, fact-finding/special-verdict and hospital/remand applications, evidence, hearings and orders","pages":"28-40","purpose":"legal procedure and judicial decision provenance"},
+    {"id":"S09","structure":"disclosure, counsel extracts, hearing/deadline tracker and trial/resumption-state preparation","pages":"20-30","purpose":"service, privilege, deadlines and alternative-route readiness"}
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "schemaVersion": "stage3000-existing-census-v1-hash-lock@1.0.0",
+  "lockedAt": "2026-08-02T16:12:55.440Z",
+  "manifestSha256": "eaaebf6c39af6efb4c6e52f992bd3842cf6cb0d04e15c2177feba236731179b0",
+  "orderedMembershipSha256": "dcf6c382fe1b41ef34624c03764c8dc785de04a13f5344784aee03b9a192d4ae",
+  "candidateLedgerSha256": "6c5d46a1c199c4027c8ee98772eeb511053638f913044d69d380efa3c6fec6ca",
+  "inputsUnchangedAtV1Close": true,
+  "entries": [
+    {
+      "path": "_census-run.log",
+      "bytes": 733,
+      "sha256": "89104520b0c0db6348288548b485ff421799a989b5c786aef36f9a719f48c3a5"
+    },
+    {
+      "path": "_discovery-candidates.jsonl",
+      "bytes": 5039053,
+      "sha256": "a24cf3b7910bf3d7186b94a7b79c06fa382c05ba7ec7b0a6dace3158c77f55ac"
+    },
+    {
+      "path": "_run-progress.json",
+      "bytes": 271,
+      "sha256": "b6a0a10a4b5a87b4628d672bc2388624ac8a05eac4d8d20b90b1d84390eee317"
+    },
+    {
+      "path": "_surface-index.jsonl",
+      "bytes": 22539730,
+      "sha256": "8a0cb0f4519d5f2d0de0284a107c38a7fc290d2e4b3705ae0c3286e61b595772"
+    },
+    {
+      "path": "candidate-freeze-receipt.json",
+      "bytes": 479,
+      "sha256": "6095cc18d4451a97fd0f8d7b8d527c6eb8d13dd6ab173b5a86d377d7019810a7"
+    },
+    {
+      "path": "candidate-ledger.jsonl",
+      "bytes": 8063211,
+      "sha256": "6c5d46a1c199c4027c8ee98772eeb511053638f913044d69d380efa3c6fec6ca"
+    },
+    {
+      "path": "charge-wording-audit.json",
+      "bytes": 219,
+      "sha256": "010b30ccedbf391d1694380d7ea3fd928ff932a0cdaf5ad4234e1d139a92c859"
+    },
+    {
+      "path": "checkpoint-0020-receipt.json",
+      "bytes": 894,
+      "sha256": "11f0e0ca2ac6d5f25eeaf3f571e8f3cd38d6f253f4704d8b082b04f6fed67865"
+    },
+    {
+      "path": "checkpoint-0050-receipt.json",
+      "bytes": 899,
+      "sha256": "8898e50bbbf9ded0a96a95147a5ebe3e1844daffbd7c2db65d44e5168fbe2504"
+    },
+    {
+      "path": "checkpoint-0150-receipt.json",
+      "bytes": 909,
+      "sha256": "bb375f757c29b462f06ac4e07a2a83703d7454b0be2e1bb076dd57ce6f55e947"
+    },
+    {
+      "path": "checkpoint-0300-receipt.json",
+      "bytes": 910,
+      "sha256": "99408b9252c88084bf5c910cffe2d312ec6d4195450f8ce8670d5caa04e209d2"
+    },
+    {
+      "path": "checkpoint-0500-receipt.json",
+      "bytes": 917,
+      "sha256": "27dfb683a12bdfd81bd6323e962b840102f3b31bac0545c6321a3699cd21ccd4"
+    },
+    {
+      "path": "checkpoint-1000-receipt.json",
+      "bytes": 927,
+      "sha256": "53bdb007ffe46263abc21b6163d735f912bc37ba58993624f3bfba4a6f029698"
+    },
+    {
+      "path": "checkpoint-3000-receipt.json",
+      "bytes": 926,
+      "sha256": "8193539c0e6cb1a7b60f5f14f269eaa66b4eed15ea608b7bf3697a692feff2fc"
+    },
+    {
+      "path": "control-implementation-and-exercise-matrix.json",
+      "bytes": 44805,
+      "sha256": "6409139327ff67b7e162bbd8d8d1a60020c88c06a6854b199dbec10959b0d855"
+    },
+    {
+      "path": "coverage-and-gap-matrix.json",
+      "bytes": 5297,
+      "sha256": "a4511543a333431d9b5ca614d24d6c97b1c6f67473b76171e5b89c7345253da9"
+    },
+    {
+      "path": "cross-exit-contradiction-report.json",
+      "bytes": 278,
+      "sha256": "0c204a3870793c0f1d74916b75a7c45b1837d91bc0b7fee457146c21f81fff5b"
+    },
+    {
+      "path": "DECISION-CARD.md",
+      "bytes": 2689,
+      "sha256": "f1e66e300298daa044e1f61963b4f7b02f387d96d1a2c4050477e37dd6132078"
+    },
+    {
+      "path": "duplicate-root-cause-graph.json",
+      "bytes": 580,
+      "sha256": "3a7d4b37eea8dc7e56ffa50637d60c593642c2386bc195bfa06ae7c58a508a54"
+    },
+    {
+      "path": "every-word-occurrence-index.json",
+      "bytes": 7241,
+      "sha256": "6d440e548ccfae4de9183eed48404c5a78faf982d537e497a6a8b51e128a8164"
+    },
+    {
+      "path": "evidence-attribution-procedure-audit.json",
+      "bytes": 265,
+      "sha256": "f61f9ed0f38eb3f90223097401fb6c92423f037b2ffd60edbea78c61c5a31ade"
+    },
+    {
+      "path": "exact-changed-file-manifest.json",
+      "bytes": 5287,
+      "sha256": "049bbcd69b985d1b4ef7c1e88b929789e4e950efacab257e4aa1088daa260dc4"
+    },
+    {
+      "path": "exact-exclusion-register.json",
+      "bytes": 141,
+      "sha256": "e6a5c25d47fff959c0e9ac956f9de079ba6b48f50c648a9834693f70ce67b41e"
+    },
+    {
+      "path": "exercise-detail.jsonl",
+      "bytes": 167410672,
+      "sha256": "08fd42ffbe981dd44adca9044f17bbcd58ecae62fbffff92821d7d65bcc0e3ad"
+    },
+    {
+      "path": "exercise-ledger.jsonl",
+      "bytes": 1107816,
+      "sha256": "3eef92a7472bf4d4e84532c92857ebf61a2a5771ee46ca7b49e638989e45730e"
+    },
+    {
+      "path": "freeze-receipt.json",
+      "bytes": 816,
+      "sha256": "099ff0b7666faaadc62f01978def7cb2a7a57a07be1fe09ee9289f19286008ff"
+    },
+    {
+      "path": "frozen-membership-3000.json",
+      "bytes": 6479326,
+      "sha256": "b1adecfde136c37398956e7a5cf89d4aba6c7296e96507b1eff37d18ef50d5e0"
+    },
+    {
+      "path": "LOCKED-ACCEPTANCE-CONTRACT.json",
+      "bytes": 7610,
+      "sha256": "67703694e33bf30e2edead22dcff340026d99266832061ee4aa6a039710d3e7f"
+    },
+    {
+      "path": "LOCKED-ACCEPTANCE-CONTRACT.sha256",
+      "bytes": 65,
+      "sha256": "178eb659a2bbed5ed8dfb5f73dc153abfff8615349d8f8ee1224a271968c9bed"
+    },
+    {
+      "path": "occurrence-ledger.jsonl",
+      "bytes": 49303874,
+      "sha256": "11e4344a6cab9100a56536932d27f8c806a288a905d3e77a539a3bd32365bf74"
+    },
+    {
+      "path": "per-exit-audience-surface-capability-matrix.json",
+      "bytes": 369,
+      "sha256": "5909530763fb12e2623df08a5b9fccd0f995aff04ff4d2d3d8dde3e2cb7de3e7"
+    },
+    {
+      "path": "performance-resume-report.json",
+      "bytes": 413,
+      "sha256": "e0ae431825df6db0b82e47f431cbd7a1a20899593d9913e39d699833ca106b3f"
+    },
+    {
+      "path": "population-discovery-report.json",
+      "bytes": 6262,
+      "sha256": "c5366db349923dd1eb1677aa1dc24d86e7acbf5a1ed1e30759d8a2ff3a5c9151"
+    },
+    {
+      "path": "post-truth-input-hashes.json",
+      "bytes": 651,
+      "sha256": "e7d683bc48fcc64c18663decbc1a5f32dc675fd54ec934fa3632c2583699de22"
+    },
+    {
+      "path": "pre-truth-input-hashes.json",
+      "bytes": 290,
+      "sha256": "04f5b59f776fcad9cf79a523661fb2f03f9d1024feb00fc8a0d2ac16576c1c81"
+    },
+    {
+      "path": "regression-and-stage300-comparison.json",
+      "bytes": 576,
+      "sha256": "4fe20681f9462a7a512ab11ac10922c6dbd626faf5f962975b94e0d15cab0615"
+    },
+    {
+      "path": "retention-report.json",
+      "bytes": 403,
+      "sha256": "4a3dcd463d6260c446f4a5de935ce7e6a691c29d5b61816981e0045928b3ed66"
+    },
+    {
+      "path": "review-batches/batch-001.json",
+      "bytes": 18810,
+      "sha256": "63e582ab4d87d5803bc1289250cf07b253fd4e2349f69390fb892b75a8d4cb48"
+    },
+    {
+      "path": "review-batches/INDEX.md",
+      "bytes": 121,
+      "sha256": "67cf60a45bbc05b7a584d744d88d9e8b806f36303880c3f7491bd07a56e5801d"
+    },
+    {
+      "path": "security-internal-language-boundary-report.json",
+      "bytes": 302,
+      "sha256": "53f3e285f14b896af12dcd36c2d8494472339656aa3315ff1269ac8bfe0994c9"
+    },
+    {
+      "path": "solicitor-wording-quality-report.json",
+      "bytes": 369,
+      "sha256": "16f4517a7a4bb28854d2ed72637f10f667dd39daa44907890aa63a727fbb7dab"
+    },
+    {
+      "path": "source-alignment-ledger.jsonl",
+      "bytes": 5700560,
+      "sha256": "aed877773fd07c99414473e3b291e8740bc56f5217c409fdc2cb3b9995d5e77e"
+    },
+    {
+      "path": "source-alignment-provenance-matrix.json",
+      "bytes": 195,
+      "sha256": "11c95ed43d4bad442218fd37be94a5acaa877e088afe0d308c861ce04552d1e8"
+    },
+    {
+      "path": "STOP-FOR-CODEX-REVIEW.json",
+      "bytes": 1202,
+      "sha256": "80924ad14b5ceb8a5c9f1f8ac74041c512d1b7dcae9b9bb550d465574c2ab72c"
+    },
+    {
+      "path": "technical-disposition-ledger-summary.json",
+      "bytes": 379,
+      "sha256": "dae0ed7bb566bfae888dfc649944ace00e8cf8b5f88233fc466beac8e547246b"
+    },
+    {
+      "path": "truth-disposition-ledger.jsonl",
+      "bytes": 6979588,
+      "sha256": "ab54eb4d0b980c816d98277123056e76302446089e92ee31a1626d52a8cb6757"
+    }
+  ]
+}

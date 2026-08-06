@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "stage150-triage-before-after@1.0.0",
+  "beforeAutoTriageUnits": {
+    "cases": 150,
+    "surfaces": 9,
+    "occurrenceFindings": 58,
+    "exactStrings": 6,
+    "normalisedTemplates": 6,
+    "casesWithFindings": 12,
+    "controlsExercisedFully": 0,
+    "controlsExercisedPartially": 16,
+    "controlsNotExercised": 145,
+    "candidateDefects": 58,
+    "confirmedOutputIntrinsicDefects": 10,
+    "unresolvedSourceProvenance": 0,
+    "containment": 0,
+    "detectorFalsePositives": 0,
+    "duplicateOccurrences": 48
+  },
+  "afterIndependentTriage": {
+    "confirmed_app_defect": 1,
+    "detector_false_positive": 0,
+    "unresolved_source": 0,
+    "truth_key_defect": 0,
+    "safe_containment": 0,
+    "duplicate_occurrence_of_confirmed_root": 1,
+    "not_exercised_projection_only": 56
+  },
+  "deltaNote": "Auto-triage previously counted confirmed_output_intrinsic without projection honesty. After triage, Cohort A cannot confirm app defects; unique confirmed roots collapse to Cohort B PRI-01 only.",
+  "uniqueConfirmedRootsBeforeClaimed": 10,
+  "uniqueConfirmedRootsAfter": 1,
+  "occurrencesStill58": true
+}

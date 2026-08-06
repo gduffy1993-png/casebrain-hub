@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "stage300-new-150-locked-acceptance-contract@1.0.0",
+  "lockedBeforeImplementation": true,
+  "lockedAt": "2026-07-31T22:10:00Z",
+  "baselineCommit": "d03e0a57c279d9e155ea20cf89c2e40b3f6848c9",
+  "authorityRegisters": [
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-b-evidence-provenance-chase-exits/governance/43-control-unlock-path.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-b-evidence-provenance-chase-exits/governance/control-priority-severity-register.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/stage300-essential-control-register.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/new-150-coverage-specification.json"
+  ],
+  "batchId": "Stage-300-NEW-150-CONTROL-COVERAGE-MATERIALISATION",
+  "objective": "Materialise 150 genuinely new Stage-300 cases whose source packs and genuine CaseBrain production captures supply exact named inputs from the 43-control unlock path. Not an adapter-foundation batch. Do not freeze or run Stage 300.",
+  "priorityOrder": ["P0", "P1", "P2", "P3"],
+  "namedPrerequisiteDefinition": "A case is named-prerequisite-complete for a control only when the exact missing input listed in the unlock-path register is present on a genuine production capture channel or an authorised harness capture artefact that the control's evaluator/adapter reads — never because the truth key contains the fact, never because schema-valid representation alone exists, and never because a field was copied from the truth key into CaseBrain output.",
+  "eligibilityMeaning": {
+    "corpusDesignSatisfied": "Source pack contains the exact facts/documents/binaries the control needs (inventory only).",
+    "productionOrHarnessNamedComplete": "CaseBrain production output or authorised harness receipt actually carries the structured named prerequisite.",
+    "readyForStage300Calibration": "productionOrHarnessNamedComplete === true AND independenceClass !== TAUTOLOGICAL_UNSAFE AND detector/evaluator exists or is scheduled — still not a PASS or promotion.",
+    "notEligibleIf": [
+      "Source has the fact but CaseBrain/harness did not emit/capture the structured prerequisite",
+      "Field populated from truth key",
+      "Unresolved chase counted as linked",
+      "Unknown-page counted as exact-page",
+      "Metadata-only exit counted as genuine exit",
+      "Fixture bags counted as corpus"
+    ]
+  },
+  "exactControlsTargeted": {
+    "P0": [
+      "MAA2-SRC-07-REDACTION-DETECT",
+      "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "MAA2-PRC-03-YOUTH-STATE",
+      "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL"
+    ],
+    "P1": "all remaining 29 essential controls from the unlock-path register (AUD/XPP/VDR/ELD remainder)"
+  },
+  "requiredDenominatorPerControl": {
+    "defaultMinimumEligible": 1,
+    "SRC_*": {
+      "targetEligible": 5,
+      "sourceFieldsDocuments": "Original PDF/binary bytes + page-unit OCR extraction receipts (pageIdentityKnown, redaction masks, attachment inventory, password/corrupt flags)",
+      "productionOutputsNeeded": "none required for input eligibility; live extraction detectors remain later product work",
+      "cohortCanSupply": true
+    },
+    "LSL-05": {
+      "targetEligible": 1,
+      "sourceFieldsDocuments": "Charge instruments with category-set authority wording; MG5/charge pages",
+      "productionOutputsNeeded": "structured legalStateTaxonomy on CaseBrain output (taxonomyVersion + usedCategories)",
+      "cohortCanSupply": "source yes; production emit unknown — if absent, gap=production_does_not_emit / prose_only, eligible=0, do not invent"
+    },
+    "CHR-06_CHR-12": {
+      "targetEligible": 1,
+      "sourceFieldsDocuments": "DOB + offence/hearing dates + timezone on custody/listing/MG pages",
+      "productionOutputsNeeded": "dobAgeCalcLedger and/or derivedNumericClaims with calcInputs on CaseBrain output",
+      "cohortCanSupply": "source yes; production emit unknown — if absent eligible=0"
+    },
+    "PRC-03_04_07": {
+      "targetEligible": 1,
+      "sourceFieldsDocuments": "Youth court markers, fitness allegation/decision boundaries, disclosure vs PII states in source",
+      "productionOutputsNeeded": "proceduralPartyState.{youthState,fitnessParticipation,disclosurePiiState} on CaseBrain output",
+      "cohortCanSupply": "source yes; production emit unknown — if absent eligible=0"
+    },
+    "AUD_*_XPP_*": {
+      "targetEligible": 1,
+      "sourceFieldsDocuments": "Matter packs suitable for multi-audience wording",
+      "productionOutputsNeeded": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial)",
+      "cohortCanSupply": "source yes; production multi-audience packs currently not emitted — expect eligible=0 unless genuine packs appear"
+    },
+    "VDR_*": {
+      "targetEligible": 1,
+      "sourceFieldsDocuments": "Frozen source hashes + membership order inputs",
+      "productionOutputsNeeded": "Non-synthetic versioned run receipts (harness-authorised) with commit/build/schema pins",
+      "cohortCanSupply": true
+    },
+    "ELD_*": {
+      "targetEligible": 1,
+      "sourceFieldsDocuments": "Draft/signed and amended/superseded document pairs in source",
+      "productionOutputsNeeded": "Evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, cross-exit propagation",
+      "cohortCanSupply": "source yes; production ELD path currently not emitted — expect eligible=0 unless genuine pairs appear"
+    }
+  },
+  "productionOutputsNeededAll150": [
+    "view",
+    "copy",
+    "export",
+    "api",
+    "pdf",
+    "composed_prose"
+  ],
+  "authenticatedBrowser": "separate_lane_not_exercised_unless_genuine_auth_capture_available",
+  "rejectionConditions": [
+    "Duplicate caseId or source/packet fingerprint collision",
+    "Near-duplicate beyond disclosed template lineage without meaningful fact variation",
+    "Truth key opened during CaseBrain output generation",
+    "CaseBrain output field populated from truth key",
+    "Specialty/OCR/audience/ELD bag invented into CaseBrain output without production/harness producer",
+    "Missing any of the six genuine production exits",
+    "Frozen Stage-150 membership or packet hashes mutated",
+    "Case-ID branching inside production builders",
+    "Truth phrases embedded in production code"
+  ],
+  "permittedOutcomes": [
+    "accepted case with genuine exits + hashed artefacts",
+    "corpusDesignSatisfied with productionOrHarnessNamedComplete false (gap registered)",
+    "productionOrHarnessNamedComplete true for SRC/VDR (and others only if genuinely emitted)",
+    "explicit defer where cohort cannot supply without live product work"
+  ],
+  "whatCompletionDoesProve": [
+    "150 unique new Stage-300 identities exist with source+truth frozen separately from production capture",
+    "Genuine production builders produced six non-browser exits where available",
+    "Per-control denominator report against the 43-control unlock path",
+    "Honest production-vs-harness-vs-corpus ownership for every miss",
+    "Blinding order observed; no audit verdicts run"
+  ],
+  "whatCompletionDoesNotProve": [
+    "Stage-300 freeze or run",
+    "Corpus/programme PASS",
+    "Control promotions or completed-control counts",
+    "CaseBrain behaviour change",
+    "Fixture rates as corpus rates",
+    "That specialty bags exist on production if they do not",
+    "That AUD/XPP/ELD are eligible if production does not emit required packs"
+  ],
+  "blindingOrder": [
+    "1_create_and_hash_source_packs_and_truth_keys",
+    "2_generate_casebrain_outputs_without_opening_truth",
+    "3_persist_and_hash_outputs",
+    "4_run_named_prerequisite_capability_checks",
+    "5_do_not_run_audit_verdicts",
+    "6_keep_truth_unopened"
+  ],
+  "checkpoints": {
+    "autoContinue": [5, 20, 150],
+    "stopEarlyOnlyFor": "genuine_shared_blocker",
+    "noRoutineApprovalBetweenCheckpoints": true
+  },
+  "preserveFrozen150": {
+    "orderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+    "candidateFreezeSha256": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202",
+    "mustRemainUnchanged": true
+  },
+  "stopRules": [
+    "stop_uncommitted",
+    "no_stage300_freeze_or_run",
+    "no_casebrain_repair_in_this_unit",
+    "no_commit_push_merge_deploy_or_PASS_claim"
+  ]
+}

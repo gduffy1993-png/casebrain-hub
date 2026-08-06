@@ -1,0 +1,14 @@
+{
+  "goldId": "GOLD-11-026",
+  "surfaces": [
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true,
+      "sourceEvidenceAvailable": false,
+      "sourceEvidenceNote": "Controlled synthetic probe — no client bundle on disk."
+    }
+  ]
+}

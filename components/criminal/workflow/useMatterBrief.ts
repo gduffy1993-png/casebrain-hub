@@ -31,8 +31,18 @@ import { buildCriminalBriefPlan } from "@/lib/criminal/brief-plan";
 import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-matter-confidence";
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 import type { CriminalBriefPlan } from "@/lib/criminal/brief-plan/types";
-import { resolveDemoPresentationHearingLabel } from "@/lib/criminal/demo-presentation-polish";
+import {
+  isDemoPresentationCase,
+  resolveDemoPresentationHearingLabel,
+} from "@/lib/criminal/demo-presentation-polish";
 import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
+import { evaluateMatterIntegrity } from "@/lib/criminal/solicitor-output-integrity";
+import { resolveSolicitorHearingDateIso } from "@/lib/criminal/solicitor-hearing-display";
+import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
+import { buildSolicitorMatterStateVm } from "@/lib/criminal/solicitor-matter-state";
+import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
+import { computeCounters } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import type { AuthenticatedMatterCanonicalPayload } from "@/lib/criminal/authenticated-matter-canonical";
 
 function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
   if (docCount === 0) return "unknown";
@@ -61,6 +71,8 @@ type BundleSourceSummary = {
   };
   header?: { shortTitle: string | null; stage: string | null; accused?: string | null };
   caseMetadata?: ExtractedBundleCaseMetadata | null;
+  /** Live canonical pipeline from authenticated document/page units. */
+  canonical?: AuthenticatedMatterCanonicalPayload | null;
 };
 
 function deriveBundleHealth(
@@ -146,6 +158,7 @@ export function useMatterBrief(caseId: string) {
           snippets: d.snippets ?? undefined,
           header: d.header,
           caseMetadata: d.caseMetadata ?? null,
+          canonical: (d as BundleSourceSummary).canonical ?? null,
         });
       })
       .catch(() => {})
@@ -233,18 +246,29 @@ export function useMatterBrief(caseId: string) {
   const stage = headerMeta.stage
     ? collapseHeaderCellDuplicates(headerMeta.stage) || headerMeta.stage
     : headerMeta.stage;
-    const hearingDateIso =
-      bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
+    const bundleHayForHearing = [
+      bundleSource?.caseMetadata?.nextHearingRaw,
+      bundleSource?.frontMatterScan,
+      bundleSource?.header?.shortTitle,
+    ]
+      .filter(Boolean)
+      .join("\n");
+    const hearingDateIso = resolveSolicitorHearingDateIso({
+      bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
+      snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+      nextHearingRaw: bundleSource?.caseMetadata?.nextHearingRaw,
+      bundleHay: bundleHayForHearing,
+    });
+    const hearingResolvedEarly = resolveSolicitorHearingStatus({
+      bundleNextHearingIso: hearingDateIso,
+      snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt ?? null,
+      nextHearingRaw: headerMeta.nextHearing,
+      bundleHay: bundleHayForHearing,
+    });
     const hearingStatus = resolveDemoPresentationHearingLabel({
       caseId,
-      currentLabel: headerMeta.nextHearing?.trim() || "Hearing not on file",
-      bundleHay: [
-        bundleSource?.caseMetadata?.nextHearingRaw,
-        bundleSource?.frontMatterScan,
-        bundleSource?.header?.shortTitle,
-      ]
-        .filter(Boolean)
-        .join("\n"),
+      currentLabel: hearingResolvedEarly.statusLabel,
+      bundleHay: bundleHayForHearing,
     });
     const bundleHealth = deriveBundleHealth(snapshot, bundleSource, battleboard);
 
@@ -264,7 +288,13 @@ export function useMatterBrief(caseId: string) {
 
     const chaseItemsAll = buildChaseItemsForHearing({
       battleboard,
-      snapshotMissing: snapshot?.evidence.missingEvidence,
+      snapshotMissing: [
+        ...(snapshot?.evidence.missingEvidence ?? []),
+        ...(bundleSource?.canonical?.chaseLabels ?? []).map((label) => ({
+          label,
+          status: "Outstanding",
+        })),
+      ],
       proceduralOutstanding: undefined,
     });
     const briefPlan = buildCriminalBriefPlan({
@@ -272,8 +302,27 @@ export function useMatterBrief(caseId: string) {
       missingMaterial: [
         ...chaseItemsAll,
         ...(snapshot?.evidence.missingEvidence?.map((item) => item.label) ?? []),
+        ...(bundleSource?.canonical?.chaseLabels ?? []),
       ],
       allegation,
+    });
+
+    const canonicalFindings = bundleSource?.canonical?.findingSummaries ?? [];
+    const canonicalEvidenceRows = (bundleSource?.canonical?.evidenceRows ?? []).map((r) => ({
+      label: r.label,
+      state: r.existence,
+    }));
+    const evidenceRowsFromCanonical: FiveAnswersEvidenceRow[] = (
+      bundleSource?.canonical?.evidenceRows ?? []
+    ).map((r) => {
+      const row: FiveAnswersEvidenceRow = {
+        label: r.label,
+        existence: r.existence as FiveAnswersEvidenceRow["existence"],
+        reliability: "needs_review",
+      };
+      if (r.note) row.note = r.note;
+      else if (r.sourcePage) row.note = `${r.sourceDocumentTitle ?? "source"} · ${r.sourcePage}`;
+      return row;
     });
 
     let positionRaw: string;
@@ -325,6 +374,7 @@ export function useMatterBrief(caseId: string) {
       bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
       profileHint: pilotHeader?.profile ?? null,
       briefPlan,
+      canonicalFindings,
     });
 
     const chase = buildDisclosureChaseBrief({
@@ -338,10 +388,18 @@ export function useMatterBrief(caseId: string) {
       bundleHealth,
       positionStatus,
       battleboard,
-      snapshotMissing: snapshot?.evidence.missingEvidence,
+      snapshotMissing: [
+        ...(snapshot?.evidence.missingEvidence ?? []),
+        ...(bundleSource?.canonical?.chaseLabels ?? []).map((label) => ({
+          label,
+          status: "Outstanding",
+        })),
+      ],
       bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
       profileHint: pilotHeader?.profile ?? null,
       briefPlan,
+      canonicalFindings,
+      canonicalEvidenceRows,
     });
 
     const primaryRouteTitle = workflowPrimaryRouteTitle(workflowContext);
@@ -360,6 +418,45 @@ export function useMatterBrief(caseId: string) {
       hasSafeCourtLine: Boolean(warRoom.safePositionToday?.trim()),
     });
 
+    const bundleHay = `${bundleTextForBrief || bundleSource?.frontMatterScan || ""}`;
+    const hearingResolved = resolveSolicitorHearingStatus({
+      bundleNextHearingIso: hearingDateIso,
+      snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt ?? null,
+      nextHearingRaw: hearingStatus,
+      bundleHay: bundleHayForHearing || bundleHay,
+    });
+    // Prefer demo polish label when present; otherwise shared Phase-8 status line.
+    const hearingLabel =
+      isDemoPresentationCase(caseId) && hearingStatus !== hearingResolvedEarly.statusLabel
+        ? hearingStatus
+        : hearingResolved.statusLabel;
+    const chaseCounters = computeCounters(chase.items, {});
+    const matterStateVm = buildSolicitorMatterStateVm({
+      evidenceRows: evidenceRowsFromCanonical,
+      chaseCounters,
+      allegation,
+      bundleHay,
+      caseId,
+      chaseLabels: chase.items.map((i) => i.label).slice(0, 40),
+    });
+    const sampleTexts = [
+      warRoom.safePositionToday,
+      ...warRoom.sayThis.slice(0, 4),
+      ...warRoom.doNotOverstate.slice(0, 4),
+      warRoom.draftWording?.disclosureTimetable,
+      warRoom.draftWording?.adjournment,
+      warRoom.draftWording?.clientExplanation,
+    ].filter((t): t is string => Boolean(t?.trim()));
+
+    const outputIntegrity = evaluateMatterIntegrity({
+      allegation,
+      bundleHay,
+      matterLevel: matterConfidence.level === "blocked" ? "blocked" : matterConfidence.summarySendability,
+      sampleTexts,
+      matterState: matterStateVm,
+      hearing: hearingResolved,
+    });
+
     return {
       matterBrief,
       matterConfidence,
@@ -369,9 +466,14 @@ export function useMatterBrief(caseId: string) {
       allegation,
       clientLabel,
       courtLabel: headerMeta.court?.trim() || null,
-      hearingLabel: hearingStatus,
+      hearingLabel,
+      hearingStatusResolved: hearingResolved,
+      matterStateVm,
+      outputIntegrity,
       briefPlan,
       primaryRouteTitle,
+      canonical: bundleSource?.canonical ?? null,
+      evidenceRowsOverride: evidenceRowsFromCanonical,
       bundleMeta: bundleSource
         ? {
             documentCount: Math.max(snapshot?.analysis.docCount ?? 0, bundleSource.documentCount ?? 0),
@@ -379,6 +481,7 @@ export function useMatterBrief(caseId: string) {
             documentRows: bundleSource.documentRows,
             snippets: bundleSource.snippets,
             frontMatterScan: bundleSource.frontMatterScan,
+            canonical: bundleSource.canonical ?? null,
           }
         : null,
     };
@@ -407,9 +510,14 @@ export function useMatterBrief(caseId: string) {
     clientLabel: pilotMatter?.clientLabel ?? null,
     courtLabel: pilotMatter?.courtLabel ?? null,
     hearingLabel: pilotMatter?.hearingLabel ?? null,
+    hearingStatusResolved: pilotMatter?.hearingStatusResolved ?? null,
+    matterStateVm: pilotMatter?.matterStateVm ?? null,
+    outputIntegrity: pilotMatter?.outputIntegrity ?? null,
     briefPlan: pilotMatter?.briefPlan ?? null,
     primaryRouteTitle: pilotMatter?.primaryRouteTitle ?? null,
     bundleMeta: pilotMatter?.bundleMeta ?? null,
+    canonical: pilotMatter?.canonical ?? null,
+    evidenceRowsOverride: pilotMatter?.evidenceRowsOverride ?? [],
     caseTitle: snapshot?.caseMeta?.title?.trim() || "Criminal case",
   };
 }

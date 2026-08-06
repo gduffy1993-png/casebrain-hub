@@ -1,0 +1,29 @@
+[
+  {
+    "rootCauseFamily": "evidence_state",
+    "count": 4,
+    "suggestedRemediation": "Repair evidence-state reconcile or update gold after human review.",
+    "findingIds": [
+      "MAA-EVIDENCE-STATE-state_mismatch-sim-063-truth_map-14bc79198358",
+      "MAA-EVIDENCE-STATE-state_mismatch-sim-063-truth_map-c43eb9297001",
+      "MAA-EVIDENCE-STATE-state_mismatch-sim-072-truth_map-14bc79198358",
+      "MAA-EVIDENCE-STATE-state_mismatch-sim-329-truth_map-14864a89a2d5"
+    ]
+  },
+  {
+    "rootCauseFamily": "cross_exit_contradiction",
+    "count": 1,
+    "suggestedRemediation": "enforceCrossExitConsistency before surface emit.",
+    "findingIds": [
+      "MAA-CROSS-EXIT-alias_rechased-sim-329-copy-22306f4db708"
+    ]
+  },
+  {
+    "rootCauseFamily": "cross_surface_consistency",
+    "count": 1,
+    "suggestedRemediation": "Suppress chase for served units; chase incomplete siblings only.",
+    "findingIds": [
+      "MAA-CROSS-SURFACE-served_item_chased-sim-329-disclosure_chase-310d753ce8c6"
+    ]
+  }
+]

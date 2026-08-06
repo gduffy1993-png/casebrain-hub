@@ -6,6 +6,7 @@
  */
 
 import type { RiskSeverity, RiskRecommendedAction } from "./types";
+import { formatIsoDateOnly } from "@/lib/criminal/solicitor-time-clock";
 
 /**
  * Context for building limitation alert messages
@@ -171,7 +172,7 @@ export const riskCopy = {
 
       if (opts.isExpired && opts.limitationDate) {
         parts.push(
-          `Possible limitation period may have expired (calculated date: ${new Date(opts.limitationDate).toLocaleDateString("en-GB")}).`,
+          `Possible limitation period may have expired (calculated date: ${formatIsoDateOnly(opts.limitationDate)}).`,
         );
       } else if (opts.limitationDate) {
         const daysText =
@@ -181,7 +182,7 @@ export const riskCopy = {
               : `${opts.daysRemaining} days remaining`
             : "";
         parts.push(
-          `Possible limitation deadline around ${new Date(opts.limitationDate).toLocaleDateString("en-GB")}${daysText ? ` (${daysText})` : ""}.`,
+          `Possible limitation deadline around ${formatIsoDateOnly(opts.limitationDate)}${daysText ? ` (${daysText})` : ""}.`,
         );
       } else {
         parts.push("Possible limitation issue detected.");

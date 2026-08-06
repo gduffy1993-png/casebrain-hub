@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "stage300-v2-structural-boundary-scan@1.0.0",
+  "reportingHonesty": {
+    "ordinaryCopyableSendables": "zero internal identifiers required in ordinary visible/copyable/sendable outputs",
+    "protectedRawSourceReviewRecords": "exact internal/source text retained; deliberately viewable only via blocked review control",
+    "copyExportApiPdfComposed": "zero protected raw text"
+  },
+  "scan": {
+    "ordinaryCopyableFixtureHits": 0,
+    "ordinaryCopyableStageHits": 0,
+    "ordinaryCopyableCaseIdHits": 0,
+    "payloadTextRawSourceHits": 0,
+    "exitCopyExportApiPdfComposedRawHits": 0,
+    "protectedRawRecords": 270,
+    "protectedRawByteIdentical": 270,
+    "protectedRawCanCopyViolations": 0,
+    "samples": []
+  },
+  "acceptance": {
+    "zeroOrdinaryCopyableInternalLanguage": true,
+    "zeroRawInAudiencePayloadText": true,
+    "protectedRawRetainedByteIdentically": true,
+    "zeroProtectedBoundaryViolations": true,
+    "zeroRawOnCopyExportApiPdfComposed": true
+  }
+}

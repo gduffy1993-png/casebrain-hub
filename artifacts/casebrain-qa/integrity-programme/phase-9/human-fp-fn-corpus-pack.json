@@ -1,0 +1,242 @@
+{
+  "generatedAt": "2026-07-21T20:13:16.751Z",
+  "purpose": "Phase 9 corpus FP–FN stratified pack for human review (not Phase 11 gold rendered sign-off)",
+  "instructions": [
+    "For each sample, answer the reviewQuestion with Pass / Fail / Needs discussion.",
+    "Do not treat gate-blocked unsafe output as PASS of underlying correctness.",
+    "Record fixtureId, stratum, and a one-line redacted note only."
+  ],
+  "rates": {
+    "materialisedCases": 530,
+    "uncertainFamilyCasesApprox": 303,
+    "containmentBlockCases": 74,
+    "crossFamilyLeakAssertFailures": 0,
+    "note": "FP = possible over-block; FN = assert failures where unsupported concepts remained copyable. Rates are corpus evidence for human review — not auto-PASS."
+  },
+  "samples": [
+    {
+      "stratum": "possible_fp_overblock",
+      "fixtureId": "cb-found-2003-nguyen",
+      "family": "unknown",
+      "reviewQuestion": "Is fail-closed over-blocking safe solicitor wording? (FP)",
+      "diagnostic": "len=25;hash=9b3dcf3cd7f4"
+    },
+    {
+      "stratum": "possible_fp_overblock",
+      "fixtureId": "cb-fresh-001-taylor-brookes",
+      "family": "harassment_digital",
+      "reviewQuestion": "Is fail-closed over-blocking safe solicitor wording? (FP)",
+      "diagnostic": "len=35;hash=cd69ffe7af8b"
+    },
+    {
+      "stratum": "possible_fp_overblock",
+      "fixtureId": "cb-fresh-002-jordan-hale",
+      "family": "unknown",
+      "reviewQuestion": "Is fail-closed over-blocking safe solicitor wording? (FP)",
+      "diagnostic": "len=25;hash=9b3dcf3cd7f4"
+    },
+    {
+      "stratum": "possible_fp_overblock",
+      "fixtureId": "pilot-3-marcus-vale",
+      "family": "unknown",
+      "reviewQuestion": "Is fail-closed over-blocking safe solicitor wording? (FP)",
+      "diagnostic": "len=25;hash=9b3dcf3cd7f4"
+    },
+    {
+      "stratum": "possible_fp_overblock",
+      "fixtureId": "proof-pack-01",
+      "family": "unknown",
+      "reviewQuestion": "Is fail-closed over-blocking safe solicitor wording? (FP)",
+      "diagnostic": "len=25;hash=9b3dcf3cd7f4"
+    },
+    {
+      "stratum": "possible_fp_overblock",
+      "fixtureId": "sc-00001",
+      "family": "unknown",
+      "reviewQuestion": "Is fail-closed over-blocking safe solicitor wording? (FP)",
+      "diagnostic": "len=25;hash=9b3dcf3cd7f4"
+    },
+    {
+      "stratum": "possible_fp_overblock",
+      "fixtureId": "sc-00007",
+      "family": "unknown",
+      "reviewQuestion": "Is fail-closed over-blocking safe solicitor wording? (FP)",
+      "diagnostic": "len=25;hash=9b3dcf3cd7f4"
+    },
+    {
+      "stratum": "possible_fp_overblock",
+      "fixtureId": "sc-0000b",
+      "family": "unknown",
+      "reviewQuestion": "Is fail-closed over-blocking safe solicitor wording? (FP)",
+      "diagnostic": "len=25;hash=9b3dcf3cd7f4"
+    },
+    {
+      "stratum": "uncertain_family",
+      "fixtureId": "cb-found-2003-nguyen",
+      "family": "unknown",
+      "reviewQuestion": "Is uncertain/fail-closed presentation correct?",
+      "diagnostic": "len=25;hash=9b3dcf3cd7f4"
+    },
+    {
+      "stratum": "uncertain_family",
+      "fixtureId": "cb-fresh-002-jordan-hale",
+      "family": "unknown",
+      "reviewQuestion": "Is uncertain/fail-closed presentation correct?",
+      "diagnostic": "len=25;hash=9b3dcf3cd7f4"
+    },
+    {
+      "stratum": "uncertain_family",
+      "fixtureId": "demo-audit-03-bwv-custody",
+      "family": "unknown",
+      "reviewQuestion": "Is uncertain/fail-closed presentation correct?",
+      "diagnostic": "len=24;hash=df56f77a3d5c"
+    },
+    {
+      "stratum": "uncertain_family",
+      "fixtureId": "demo-audit-10-bwv-public-order",
+      "family": "unknown",
+      "reviewQuestion": "Is uncertain/fail-closed presentation correct?",
+      "diagnostic": "len=24;hash=df56f77a3d5c"
+    },
+    {
+      "stratum": "uncertain_family",
+      "fixtureId": "demo-audit-11-custody-pace-ocr",
+      "family": "unknown",
+      "reviewQuestion": "Is uncertain/fail-closed presentation correct?",
+      "diagnostic": "len=24;hash=df56f77a3d5c"
+    },
+    {
+      "stratum": "uncertain_family",
+      "fixtureId": "demo-audit-16-fraud-bank-statements",
+      "family": "unknown",
+      "reviewQuestion": "Is uncertain/fail-closed presentation correct?",
+      "diagnostic": "len=24;hash=df56f77a3d5c"
+    },
+    {
+      "stratum": "uncertain_family",
+      "fixtureId": "demo-audit-17-fraud-transaction-export",
+      "family": "unknown",
+      "reviewQuestion": "Is uncertain/fail-closed presentation correct?",
+      "diagnostic": "len=24;hash=df56f77a3d5c"
+    },
+    {
+      "stratum": "uncertain_family",
+      "fixtureId": "demo-audit-21-historic-sexual-abe",
+      "family": "unknown",
+      "reviewQuestion": "Is uncertain/fail-closed presentation correct?",
+      "diagnostic": "len=24;hash=df56f77a3d5c"
+    },
+    {
+      "stratum": "clean_pass",
+      "fixtureId": "cb-found-2001-ellis",
+      "family": "theft",
+      "reviewQuestion": "Confirm clean full-model case remains correct.",
+      "diagnostic": "len=22;hash=7d9c93aba8ce"
+    },
+    {
+      "stratum": "clean_pass",
+      "fixtureId": "cb-found-2002-smith",
+      "family": "theft",
+      "reviewQuestion": "Confirm clean full-model case remains correct.",
+      "diagnostic": "len=22;hash=2d05cb6d164e"
+    },
+    {
+      "stratum": "clean_pass",
+      "fixtureId": "cb-found-2003-nguyen",
+      "family": "unknown",
+      "reviewQuestion": "Confirm clean full-model case remains correct.",
+      "diagnostic": "len=25;hash=9b3dcf3cd7f4"
+    },
+    {
+      "stratum": "clean_pass",
+      "fixtureId": "cb-found-2004-clarke",
+      "family": "motoring",
+      "reviewQuestion": "Confirm clean full-model case remains correct.",
+      "diagnostic": "len=25;hash=0614ed91057f"
+    },
+    {
+      "stratum": "clean_pass",
+      "fixtureId": "cb-found-2005-okafor",
+      "family": "drugs_possession",
+      "reviewQuestion": "Confirm clean full-model case remains correct.",
+      "diagnostic": "len=33;hash=4e9c652913fe"
+    },
+    {
+      "stratum": "clean_pass",
+      "fixtureId": "cb-found-2006-carter",
+      "family": "theft",
+      "reviewQuestion": "Confirm clean full-model case remains correct.",
+      "diagnostic": "len=22;hash=2d05cb6d164e"
+    },
+    {
+      "stratum": "clean_pass",
+      "fixtureId": "cb-found-2007-morrison",
+      "family": "theft",
+      "reviewQuestion": "Confirm clean full-model case remains correct.",
+      "diagnostic": "len=22;hash=2d05cb6d164e"
+    },
+    {
+      "stratum": "clean_pass",
+      "fixtureId": "cb-fresh-001-taylor-brookes",
+      "family": "harassment_digital",
+      "reviewQuestion": "Confirm clean full-model case remains correct.",
+      "diagnostic": "len=35;hash=cd69ffe7af8b"
+    },
+    {
+      "stratum": "scale_containment_probe",
+      "fixtureId": "messy-pdf-v1-01-phone-harassment",
+      "family": "harassment_digital",
+      "reviewQuestion": "Scale probe blocked cross-family leak — confirm expected (containment, not production wording).",
+      "diagnostic": "len=27;hash=45f0015ef06a"
+    },
+    {
+      "stratum": "scale_containment_probe",
+      "fixtureId": "messy-pdf-v1-02-bwv-custody",
+      "family": "theft",
+      "reviewQuestion": "Scale probe blocked cross-family leak — confirm expected (containment, not production wording).",
+      "diagnostic": "len=14;hash=83fd5213cf10"
+    },
+    {
+      "stratum": "scale_containment_probe",
+      "fixtureId": "messy-pdf-v1-03-cctv-stills-master-missing",
+      "family": "theft",
+      "reviewQuestion": "Scale probe blocked cross-family leak — confirm expected (containment, not production wording).",
+      "diagnostic": "len=14;hash=83fd5213cf10"
+    },
+    {
+      "stratum": "scale_containment_probe",
+      "fixtureId": "messy-pdf-v1-04-codefendant-material",
+      "family": "unknown",
+      "reviewQuestion": "Scale probe blocked cross-family leak — confirm expected (containment, not production wording).",
+      "diagnostic": "len=16;hash=78b7e79da154"
+    },
+    {
+      "stratum": "scale_containment_probe",
+      "fixtureId": "messy-pdf-v1-05-encro-handle-attribution",
+      "family": "harassment_digital",
+      "reviewQuestion": "Scale probe blocked cross-family leak — confirm expected (containment, not production wording).",
+      "diagnostic": "len=27;hash=45f0015ef06a"
+    },
+    {
+      "stratum": "scale_containment_probe",
+      "fixtureId": "messy-pdf-v1-06-index-contradiction",
+      "family": "unknown",
+      "reviewQuestion": "Scale probe blocked cross-family leak — confirm expected (containment, not production wording).",
+      "diagnostic": "len=16;hash=78b7e79da154"
+    },
+    {
+      "stratum": "scale_containment_probe",
+      "fixtureId": "messy-pdf-v1-07-duplicate-rotated-ocr",
+      "family": "unknown",
+      "reviewQuestion": "Scale probe blocked cross-family leak — confirm expected (containment, not production wording).",
+      "diagnostic": "len=16;hash=78b7e79da154"
+    },
+    {
+      "stratum": "scale_containment_probe",
+      "fixtureId": "messy-pdf-v1-08-charge-mismatch",
+      "family": "unknown",
+      "reviewQuestion": "Scale probe blocked cross-family leak — confirm expected (containment, not production wording).",
+      "diagnostic": "len=16;hash=78b7e79da154"
+    }
+  ]
+}

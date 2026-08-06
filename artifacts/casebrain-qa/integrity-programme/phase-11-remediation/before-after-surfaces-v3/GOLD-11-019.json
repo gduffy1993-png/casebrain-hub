@@ -1,0 +1,138 @@
+{
+  "goldId": "GOLD-11-019",
+  "reviewEligibility": "substantive",
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "v3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "changes": [
+    {
+      "surface": "source_context",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "7fee4a1e3ef4",
+        "textPreview": "Client: Farah Kent\nAllegation: Stalking, contrary to section 2A of the Protection from Harassment Act 1997"
+      },
+      "after": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "ffdce5bb8142",
+        "textPreview": "Controlled source context (safely redacted for review)\nClient label: Farah Kent\nAllegation: Stalking, contrary to section 2A of the Protection from Harassment A"
+      }
+    },
+    {
+      "surface": "case_header",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "a51306ee547d",
+        "textPreview": "The defence asks the court to record that redacted papers are served but the unredacted MG11, redaction schedule, and full police note remain outstanding before"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "7fee4a1e3ef4",
+        "textPreview": "Client: Farah Kent\nAllegation: Stalking, contrary to section 2A of the Protection from Harassment Act 1997"
+      }
+    },
+    {
+      "surface": "court_line",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "d750065183d2",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Farah Kent). This is early-stage — nothing is final until we have full dis"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "a51306ee547d",
+        "textPreview": "The defence asks the court to record that redacted papers are served but the unredacted MG11, redaction schedule, and full police note remain outstanding before"
+      }
+    },
+    {
+      "surface": "client_summary",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "b03ff4df4b4b",
+        "textPreview": "Please provide unredacted MG11 or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "e904ed57e9ae",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Farah Kent). This is early-stage — nothing is final until we have full dis"
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "efd21216809f",
+        "textPreview": "Please provide redaction schedule or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "b03ff4df4b4b",
+        "textPreview": "Please provide unredacted MG11 or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "88b5f6bfb09a",
+        "textPreview": "Please provide full police note or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "efd21216809f",
+        "textPreview": "Please provide redaction schedule or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "5761023ac35d",
+        "textPreview": "• Witness MG11 — not_safely_confirmed\n• Custody extract — not_safely_confirmed\n• Unredacted MG11 — missing\n• Redaction schedule — missing\n• Full police note — m"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "88b5f6bfb09a",
+        "textPreview": "Please provide full police note or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "truth_map",
+      "before": {
+        "gateStatus": "warning",
+        "canCopy": false,
+        "textHash": "7b59b120475b",
+        "textPreview": "• unsafe proof/outcome wording blocked\n• Do not rely on redacted text as if the unredacted MG11 and schedule were served."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "1a2a3f172653",
+        "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Unredacted MG11 — Missing\n• Redaction schedule — Missing\n• Full police note — M"
+      }
+    },
+    {
+      "surface": "do_not_overstate",
+      "before": null,
+      "after": {
+        "gateStatus": "warning",
+        "canCopy": false,
+        "textPreview": "• Do not treat incomplete or blocked proof wording as a concluded outcome. Check the source papers before relying on identity or offence findings.\n• Do not rely"
+      }
+    }
+  ]
+}

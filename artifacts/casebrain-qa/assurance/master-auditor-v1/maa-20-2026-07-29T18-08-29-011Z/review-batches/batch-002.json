@@ -1,0 +1,40 @@
+{
+  "batchIndex": 2,
+  "humanReviewDisposition": null,
+  "items": [
+    {
+      "textHash": "4e64f8a8ed9a15fd6c443fc8bcf2f0b6912602aeac63d9320a5cd2dbb8f4cdbf",
+      "templateHash": "42b7dd9bf043b020c39f4104a7017f8f310ac851c54900c7356b00a524345f7c",
+      "text": "Court listing / hearing date · not_safely_confirmed · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-20",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-20-disclosure_chase-4e64f8a8ed9a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "945446aea94be880bd453a65742594dd812ef4eeae65abf15f2f3bb0adc7ed77",
+      "templateHash": "0984bf74e575256b7c1b09f166011818848fc5328b667ba1ac456828ba4e66a0",
+      "text": "Master CCTV footage · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-20",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-20-disclosure_chase-945446aea94b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    }
+  ]
+}

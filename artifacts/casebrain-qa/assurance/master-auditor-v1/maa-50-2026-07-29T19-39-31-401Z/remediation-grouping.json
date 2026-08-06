@@ -1,0 +1,18 @@
+[
+  {
+    "rootCauseFamily": "cross_exit_contradiction",
+    "count": 1,
+    "suggestedRemediation": "enforceCrossExitConsistency before surface emit.",
+    "findingIds": [
+      "MAA-CROSS-EXIT-alias_rechased-sim-329-copy-22306f4db708"
+    ]
+  },
+  {
+    "rootCauseFamily": "cross_surface_consistency",
+    "count": 1,
+    "suggestedRemediation": "Suppress chase for served units; chase incomplete siblings only.",
+    "findingIds": [
+      "MAA-CROSS-SURFACE-served_item_chased-sim-329-disclosure_chase-a6387a3f6d91"
+    ]
+  }
+]

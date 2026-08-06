@@ -1,0 +1,86 @@
+{
+  "goldId": "GOLD-11-012",
+  "reviewEligibility": "substantive",
+  "isNewInV4": false,
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "v4FreezeHash": "d887114aac265e00e9a8d66c98c82fa087a85388e60f1fc930a6996b5d6ab883",
+  "changes": [
+    {
+      "surface": "source_context",
+      "before": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "f1603da40cc5",
+        "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: Allegation not safely labelled from source\nHearing: Hearing date not saf"
+      },
+      "after": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "50ff31dfa114",
+        "textPreview": "Controlled evidence reference: cb-fresh-002-jordan-hale\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: Allegation not s"
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "765516bc8918",
+        "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "0f2cffadad78",
+        "textPreview": "Human review or material gaps flagged on current papers."
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "378b1b5cfec1",
+        "textPreview": "Item: Solicitor wording candidate (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "6a8cc68fb89a",
+        "textPreview": "Officers attended following a call. There was contact between the defendant and officers. Body-worn video is referred to on the schedule but not attached. Custo"
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "8dd5de918907",
+        "textPreview": "Item: Disclosure / chase wording (3)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "fb6d5ebfa9f6",
+        "textPreview": "MG6 / unused schedule clarification"
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "215d818a1962",
+        "textPreview": "Item: Solicitor wording candidate (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "2cd5c984c584",
+        "textPreview": "Full custody record / PACE material"
+      }
+    }
+  ]
+}

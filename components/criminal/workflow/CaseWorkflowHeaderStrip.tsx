@@ -23,6 +23,8 @@ import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing
 import { MatterConfidenceHeader } from "@/components/criminal/trust/MatterConfidenceHeader";
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 import { resolveDemoPresentationHearingLabel } from "@/lib/criminal/demo-presentation-polish";
+import { resolveSolicitorHearingDateIso } from "@/lib/criminal/solicitor-hearing-display";
+import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 
 const LEVEL_VARIANTS: Record<
   MatterConfidenceResult["level"],
@@ -100,16 +102,27 @@ export function CaseWorkflowHeaderStrip({
         const hearingClean = pilot
           ? cleanPilotHearingHeaderCell(meta.nextHearing, json.data.caseMetadata?.nextHearingIso)
           : meta.nextHearing?.trim() || "";
+        const hearingHay = [
+          json.data.caseMetadata?.nextHearingRaw,
+          json.data.frontMatterScan,
+          json.data.header?.shortTitle,
+        ]
+          .filter(Boolean)
+          .join("\n");
+        const hearingDateIso = resolveSolicitorHearingDateIso({
+          bundleNextHearingIso: json.data.caseMetadata?.nextHearingIso,
+          nextHearingRaw: meta.nextHearing,
+          bundleHay: hearingHay,
+        });
+        const hearingResolved = resolveSolicitorHearingStatus({
+          bundleNextHearingIso: hearingDateIso,
+          nextHearingRaw: meta.nextHearing,
+          bundleHay: hearingHay,
+        });
         const hearingDisplay = resolveDemoPresentationHearingLabel({
           caseId,
-          currentLabel: hearingClean,
-          bundleHay: [
-            json.data.caseMetadata?.nextHearingRaw,
-            json.data.frontMatterScan,
-            json.data.header?.shortTitle,
-          ]
-            .filter(Boolean)
-            .join("\n"),
+          currentLabel: hearingResolved.statusLabel || hearingClean,
+          bundleHay: hearingHay,
         });
         const safeguards: string[] = [];
         if (matter?.station?.riskAppropriateAdult) safeguards.push("AA");

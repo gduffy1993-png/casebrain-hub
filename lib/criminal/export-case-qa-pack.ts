@@ -30,6 +30,7 @@ import {
   guardSolicitorLines,
   type TruthSurfaceGuardContext,
 } from "@/lib/criminal/bundle-truth-ledger";
+import { sanitizeSolicitorProse } from "@/lib/criminal/solicitor-visible-sanitization";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 
 const NOT_AVAILABLE = "Not available on this view";
@@ -146,7 +147,10 @@ function formatBattleboardSection(bb: BattleboardOutput | null, guard: TruthSurf
   if (!bb) return NOT_AVAILABLE;
   const lines: string[] = [];
   const summary = bb.solicitor_safe_summary?.trim()
-    ? guardSolicitorLine(bb.solicitor_safe_summary, guard)
+    ? (() => {
+        const g = guardSolicitorLine(bb.solicitor_safe_summary, guard);
+        return g ? sanitizeSolicitorProse(g) : null;
+      })()
     : null;
   if (summary) {
     lines.push(`**Summary:** ${summary}`);
@@ -154,13 +158,19 @@ function formatBattleboardSection(bb: BattleboardOutput | null, guard: TruthSurf
   const primary = bb.primary_route;
   if (primary) {
     lines.push(`**Primary route:** ${primary.title} (${primary.status})`);
-    if (primary.hearing_line?.trim()) lines.push(`**Hearing line:** ${primary.hearing_line.trim()}`);
-    const collapseRisks = guardSolicitorLines(primary.collapse_risks ?? [], guard, 6);
+    if (primary.hearing_line?.trim()) {
+      lines.push(`**Hearing line:** ${sanitizeSolicitorProse(primary.hearing_line.trim())}`);
+    }
+    const collapseRisks = guardSolicitorLines(primary.collapse_risks ?? [], guard, 6).map((s) =>
+      sanitizeSolicitorProse(s),
+    );
     if (collapseRisks.length) {
       lines.push("**Collapse risks:**");
       lines.push(bulletList(collapseRisks));
     }
-    const whyHelps = guardSolicitorLines(primary.why_it_helps ?? [], guard, 4);
+    const whyHelps = guardSolicitorLines(primary.why_it_helps ?? [], guard, 4).map((s) =>
+      sanitizeSolicitorProse(s),
+    );
     if (whyHelps.length) {
       lines.push("**Why it helps:**");
       lines.push(bulletList(whyHelps));
@@ -175,7 +185,9 @@ function formatBattleboardSection(bb: BattleboardOutput | null, guard: TruthSurf
       ),
     );
   }
-  const globalRisks = guardSolicitorLines(bb.global_collapse_risks ?? [], guard, 6);
+  const globalRisks = guardSolicitorLines(bb.global_collapse_risks ?? [], guard, 6).map((s) =>
+    sanitizeSolicitorProse(s),
+  );
   if (globalRisks.length) {
     lines.push("**Global collapse risks:**");
     lines.push(bulletList(globalRisks));

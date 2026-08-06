@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "stage150-fid10-remaining-unresolved@1.0.0",
+  "count": 19,
+  "cases": 2,
+  "candidates": [
+    {
+      "caseId": "crown-court-patterson",
+      "ref": "/fiveAnswersEvidenceRows/8/label",
+      "family": "genuinely_unresolved",
+      "reason": "Quoted material without clear family — unresolved candidate only.",
+      "textPreview": "*[Defendant provided \"no comment\" responses to all questions throughout the interview. No alibi provided, no explanation given for presence at scene, no admissi"
+    },
+    {
+      "caseId": "crown-court-patterson",
+      "ref": "/fiveAnswersEvidenceRows/11/label",
+      "family": "genuinely_unresolved",
+      "reason": "Quoted material without clear family — unresolved candidate only.",
+      "textPreview": "Defendant provided \"no comment\" interview, failing to provide any account or alibi"
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/evidenceStates/0/evidenceAnchor",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"CCTV requested not in bundle\","
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/evidenceStates/1/evidenceAnchor",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"CCTV requested not in bundle\","
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/evidenceStates/2/evidenceAnchor",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"partial 999 transcript only\""
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/evidenceStates/3/evidenceAnchor",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"partial 999 transcript only\""
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/evidenceStates/4/evidenceAnchor",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"Tests MG5 vs MG6 vs CCTV list tension (footage 'held' vs not served).\","
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/evidenceStates/5/evidenceAnchor",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"medical records requested not served\","
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/fiveAnswersEvidenceRows/13/label",
+      "family": "genuinely_unresolved",
+      "reason": "Quoted material without clear family — unresolved candidate only.",
+      "textPreview": "\"friend witness\","
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/fiveAnswersEvidenceRows/14/label",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"CCTV requested not in bundle\","
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/fiveAnswersEvidenceRows/15/label",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"partial 999 transcript only\""
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/fiveAnswersEvidenceRows/16/label",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"PC Vale attendance time 00:30; CAD fragment shows 00:24 dispatch\""
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/fiveAnswersEvidenceRows/17/label",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"CCTV continuity statement notes clock drift vs shop stated times.\""
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/fiveAnswersEvidenceRows/21/label",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"Tests MG5 vs MG6 vs CCTV list tension (footage 'held' vs not served).\","
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/fiveAnswersEvidenceRows/23/label",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"medical records requested not served\","
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/fiveAnswersEvidenceRows/24/label",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"MG5 para 3 suggests footage secured/hold; MG6(a) and CCTV list: footage awaiting service.\","
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/fiveAnswersEvidenceRows/25/label",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"MG5 evidence checklist consistent with outstanding BWV/999/CAD; align chat with MG6 rows.\","
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/fiveAnswersEvidenceRows/26/label",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"Do not invent that medical records are served — MG6 says requested / not served.\","
+    },
+    {
+      "caseId": "gbh-pike-jordan-pike",
+      "ref": "/fiveAnswersEvidenceRows/27/label",
+      "family": "substantive_quote_needs_provenance",
+      "reason": "Substantive quoted span without independent structured provenance — unresolved candidate only (not a confirmed defect).",
+      "textPreview": "\"Do not invent CCTV in hand — list says requested, continuity outstanding.\","
+    }
+  ]
+}

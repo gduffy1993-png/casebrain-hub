@@ -30,6 +30,11 @@ import {
   type HearingWarRoomBrief,
 } from "./buildHearingWarRoomBrief";
 import { buildDisclosureChaseHref } from "@/components/criminal/disclosure-chase/disclosureChaseLinks";
+import { fetchJsonWithSurfaceContract } from "@/lib/criminal/surface-load-contract";
+import {
+  assertFindingProvenanceOrLimitation,
+  formatFindingProvenanceLine,
+} from "@/lib/criminal/finding-provenance";
 import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowShell";
 import { buildControlRoomHref } from "./hearingWarRoomLinks";
 import { HearingWarRoomAssistant } from "./HearingWarRoomAssistant";
@@ -66,6 +71,8 @@ import {
   displayPilotStripHearing,
   displayPilotStripStage,
 } from "@/components/criminal/workflow/workflowPilotDisplay";
+import { resolveSolicitorHearingDateIso } from "@/lib/criminal/solicitor-hearing-display";
+import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
 import { useReadinessEnabled } from "@/lib/criminal/pre-hearing-readiness/readiness-flag";
@@ -78,6 +85,8 @@ import {
   filterBundleFamilyWarnings,
   polishPresentationLine,
 } from "@/lib/criminal/demo-presentation-polish";
+import { evaluateMatterIntegrity } from "@/lib/criminal/solicitor-output-integrity";
+import { SolicitorDeepDetailGate } from "@/components/criminal/trust/SolicitorDeepDetailGate";
 
 const ABOVE_FOLD_LIST_CAP = 5;
 
@@ -109,6 +118,7 @@ type BundleSourceSummary = {
     mg6?: string | null;
     exhibits?: string | null;
   };
+  canonical?: import("@/lib/criminal/authenticated-matter-canonical").AuthenticatedMatterCanonicalPayload | null;
 };
 
 export type HearingWarRoomProps = {
@@ -223,9 +233,20 @@ function BriefListCard({
   );
 }
 
-function DraftBlock({ title, text }: { title: string; text: string }) {
+function DraftBlock({
+  title,
+  text,
+  canCopy = true,
+  blockedReason = null,
+}: {
+  title: string;
+  text: string;
+  canCopy?: boolean;
+  blockedReason?: string | null;
+}) {
   const [copied, setCopied] = useState(false);
   const copy = async () => {
+    if (!canCopy) return;
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
@@ -241,18 +262,35 @@ function DraftBlock({ title, text }: { title: string; text: string }) {
         <button
           type="button"
           onClick={() => void copy()}
-          className="shrink-0 inline-flex items-center gap-1 text-[10px] font-medium text-slate-600 hover:text-slate-900"
+          disabled={!canCopy}
+          className="shrink-0 inline-flex items-center gap-1 text-[10px] font-medium text-slate-600 hover:text-slate-900 disabled:opacity-40 disabled:cursor-not-allowed"
+          data-testid="war-room-draft-copy"
         >
           <Copy className="h-3 w-3" />
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
       <p className="mt-2 text-sm text-slate-800 leading-relaxed italic">{text}</p>
+      {!canCopy && blockedReason ? (
+        <p className="mt-1.5 text-[10px] text-amber-700" data-testid="war-room-draft-copy-blocked">
+          {blockedReason}
+        </p>
+      ) : null}
     </div>
   );
 }
 
-function PilotWarRoomMoreDetail({ brief, bundleHay = "" }: { brief: HearingWarRoomBrief; bundleHay?: string }) {
+function PilotWarRoomMoreDetail({
+  brief,
+  bundleHay = "",
+  canCopyDrafts = true,
+  copyBlockedReason = null,
+}: {
+  brief: HearingWarRoomBrief;
+  bundleHay?: string;
+  canCopyDrafts?: boolean;
+  copyBlockedReason?: string | null;
+}) {
   const sayThis = filterBundleFamilyWarnings(brief.sayThis, bundleHay).map((line) =>
     polishPresentationLine(line, bundleHay),
   );
@@ -288,9 +326,24 @@ function PilotWarRoomMoreDetail({ brief, bundleHay = "" }: { brief: HearingWarRo
         ) : null}
         <div className="space-y-3">
           <p className={workflowSectionTitle}>Draft wording blocks</p>
-          <DraftBlock title="Disclosure timetable request" text={brief.draftWording.disclosureTimetable} />
-          <DraftBlock title="Adjournment / provisional position" text={brief.draftWording.adjournment} />
-          <DraftBlock title="Client explanation (plain language)" text={brief.draftWording.clientExplanation} />
+          <DraftBlock
+            title="Disclosure timetable request"
+            text={brief.draftWording.disclosureTimetable}
+            canCopy={canCopyDrafts}
+            blockedReason={copyBlockedReason}
+          />
+          <DraftBlock
+            title="Adjournment / provisional position"
+            text={brief.draftWording.adjournment}
+            canCopy={canCopyDrafts}
+            blockedReason={copyBlockedReason}
+          />
+          <DraftBlock
+            title="Client explanation (plain language)"
+            text={brief.draftWording.clientExplanation}
+            canCopy={canCopyDrafts}
+            blockedReason={copyBlockedReason}
+          />
         </div>
       </div>
     </section>
@@ -321,22 +374,25 @@ export function HearingWarRoom({
   const [battleboardLoading, setBattleboardLoading] = useState(true);
   const [bundleSource, setBundleSource] = useState<BundleSourceSummary | null>(null);
   const [bundleLoading, setBundleLoading] = useState(true);
+  const [surfaceError, setSurfaceError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
-    fetch(`/api/criminal/${caseId}/matter`, { credentials: "include" })
-      .then((r) => r.json())
-      .then((data) => {
-        if (cancelled || !data) return;
-        setMatter({
-          clientInitials: data.clientInitials ?? data.station?.clientInitials ?? null,
-          allegedOffence: data.station?.allegedOffence ?? data.allegedOffence ?? null,
-          stageDetected: data.matterState ?? data.stage ?? null,
-          defendantName: data.defendantName ?? null,
-          bailOutcome: data.bailOutcome ?? null,
-        });
-      })
-      .catch(() => {});
+    fetchJsonWithSurfaceContract<any>(`/api/criminal/${caseId}/matter`, {
+      cache: "default",
+      mapOk: (json) => (json && typeof json === "object" ? json : null),
+    }).then((res) => {
+      if (cancelled) return;
+      if (!res.ok) return;
+      const data = res.data;
+      setMatter({
+        clientInitials: data.clientInitials ?? data.station?.clientInitials ?? null,
+        allegedOffence: data.station?.allegedOffence ?? data.allegedOffence ?? null,
+        stageDetected: data.matterState ?? data.stage ?? null,
+        defendantName: data.defendantName ?? null,
+        bailOutcome: data.bailOutcome ?? null,
+      });
+    });
     return () => {
       cancelled = true;
     };
@@ -345,15 +401,25 @@ export function HearingWarRoom({
   useEffect(() => {
     let cancelled = false;
     setBattleboardLoading(true);
-    fetch(`/api/criminal/${caseId}/strategy-battleboard`, { cache: "no-store", credentials: "include" })
-      .then((r) => r.json())
+    fetchJsonWithSurfaceContract<BattleboardOutput | "empty">(
+      `/api/criminal/${caseId}/strategy-battleboard`,
+      {
+        mapOk: (json) => {
+          const res = json as { ok?: boolean; data?: unknown } | null;
+          if (res?.ok && res?.data) return res.data as BattleboardOutput;
+          return "empty";
+        },
+      },
+    )
       .then((res) => {
         if (cancelled) return;
-        if (res?.ok && res?.data) setBattleboard(res.data as BattleboardOutput);
-        else setBattleboard(null);
-      })
-      .catch(() => {
-        if (!cancelled) setBattleboard(null);
+        if (res.ok) {
+          setBattleboard(res.data === "empty" ? null : (res.data as BattleboardOutput));
+          setSurfaceError(null);
+        } else {
+          setBattleboard(null);
+          setSurfaceError(res.error);
+        }
       })
       .finally(() => {
         if (!cancelled) setBattleboardLoading(false);
@@ -366,10 +432,23 @@ export function HearingWarRoom({
   useEffect(() => {
     let cancelled = false;
     setBundleLoading(true);
-    fetch(`/api/criminal/${caseId}/bundle-source`, { cache: "no-store", credentials: "include" })
-      .then((r) => r.json())
+    fetchJsonWithSurfaceContract<BundleSourceSummary | "empty">(
+      `/api/criminal/${caseId}/bundle-source`,
+      {
+        mapOk: (json) => {
+          const res = json as { ok?: boolean; data?: unknown } | null;
+          if (res?.ok && res?.data) return res.data as BundleSourceSummary;
+          return "empty";
+        },
+      },
+    )
       .then((res) => {
-        if (cancelled || !res?.ok || !res?.data) return;
+        if (cancelled) return;
+        if (!res.ok) {
+          setSurfaceError((prev) => prev ?? res.error);
+          return;
+        }
+        if (res.data === "empty") return;
         const d = res.data as BundleSourceSummary;
         setBundleSource({
           documentCount: d.documentCount ?? 0,
@@ -391,6 +470,7 @@ export function HearingWarRoom({
                 exhibits: d.snippets.exhibits ?? null,
               }
             : undefined,
+          canonical: (d as BundleSourceSummary).canonical ?? null,
         });
       })
       .catch(() => {})
@@ -482,26 +562,38 @@ export function HearingWarRoom({
   const usePilotDeskUi = embedInShell || pilotMode;
   const { uploadDisabled: pilotUploadDisabled, recordPositionDisabled: pilotRecordPositionHidden } =
     usePilotDemoSession();
-  const hearingDateIso =
-    bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
+  const hearingDateIso = resolveSolicitorHearingDateIso({
+    bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
+    snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+    nextHearingRaw: bundleSource?.caseMetadata?.nextHearingRaw,
+    bundleHay: bundleSource?.frontMatterScan,
+  });
   const courtDisplay = pilotMode
     ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
       cleanPilotCourtHeaderCell(headerMeta.court)
     : headerMeta.court?.trim() || "Court not safely extracted";
-  const hearingDisplay = pilotMode
-    ? displayPilotStripHearing(
-        cleanPilotHearingHeaderCell(
-          snapshotLoading || bundleLoading ? "…" : headerMeta.nextHearing,
-          hearingDateIso,
-        ),
-      ) ||
-      cleanPilotHearingHeaderCell(
-        snapshotLoading || bundleLoading ? "…" : headerMeta.nextHearing,
-        hearingDateIso,
-      )
-    : (snapshotLoading || bundleLoading) && /not safely extracted/i.test(headerMeta.nextHearing)
-      ? "…"
-      : headerMeta.nextHearing;
+  const hearingResolved = resolveSolicitorHearingStatus({
+    bundleNextHearingIso: hearingDateIso,
+    snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+    nextHearingRaw: headerMeta.nextHearing,
+    bundleHay: [
+      bundleSource?.caseMetadata?.nextHearingRaw,
+      bundleSource?.frontMatterScan,
+    ]
+      .filter(Boolean)
+      .join("\n"),
+  });
+  const hearingDisplay = (() => {
+    if (
+      (snapshotLoading || bundleLoading) &&
+      /not safely extracted/i.test(headerMeta.nextHearing)
+    ) {
+      return "…";
+    }
+    const statusLine = hearingResolved.statusLabel;
+    if (!pilotMode) return statusLine;
+    return displayPilotStripHearing(statusLine) || statusLine;
+  })();
   const hearingStatus = hearingDisplay;
 
   const chaseItemsAll = useMemo(
@@ -576,6 +668,7 @@ export function HearingWarRoom({
         bundleText: bundleSource?.frontMatterScan ?? null,
         profileHint: pilotHeader?.profile ?? null,
         pilotDemoReadOnly: pilotRecordPositionHidden,
+        canonicalFindings: bundleSource?.canonical?.findingSummaries ?? [],
       }),
     [
       caseId,
@@ -601,10 +694,20 @@ export function HearingWarRoom({
     const parts = [
       `Hearing War Room — ${caseTitle}`,
       `Safe position: ${brief.safePositionToday}`,
-      brief.sayThis.length ? `Say this: ${brief.sayThis.join(" | ")}` : "",
+      brief.sayThis.length ? `Say this:\n${brief.sayThis.map((s) => `• ${s}`).join("\n")}` : "",
     ];
     return parts.filter(Boolean).join("\n");
   }, [brief, caseTitle]);
+
+  const positionProvenanceLine = useMemo(
+    () =>
+      formatFindingProvenanceLine(
+        assertFindingProvenanceOrLimitation({
+          evidenceState: "not_safely_confirmed",
+        }),
+      ),
+    [],
+  );
 
   const assistantContext: ControlRoomAssistantContext = useMemo(
     () => ({
@@ -639,6 +742,24 @@ export function HearingWarRoom({
       ].join(" "),
     [bundleSource, allegation, brief.bundleHealth],
   );
+
+  const outputIntegrity = useMemo(
+    () =>
+      evaluateMatterIntegrity({
+        allegation,
+        bundleHay: bundleContextHay,
+        sampleTexts: [
+          brief.safePositionToday,
+          ...brief.sayThis.slice(0, 3),
+          brief.draftWording.disclosureTimetable,
+          brief.draftWording.adjournment,
+          brief.draftWording.clientExplanation,
+        ],
+      }),
+    [allegation, bundleContextHay, brief],
+  );
+  const canCopyDrafts = outputIntegrity.canCopy;
+  const copyBlockedReason = outputIntegrity.banner;
 
   const pilotTodayView = useMemo((): PilotTodayDashboardView | null => {
     if (!usePilotDeskUi || snapshotLoading) return null;
@@ -698,15 +819,31 @@ export function HearingWarRoom({
             <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
             Loading matter dashboard…
           </div>
+        ) : surfaceError && !pilotTodayView ? (
+          <div
+            className={`${workflowCard} p-6 text-sm text-red-800 border-red-200 bg-red-50/60`}
+            data-testid="hearing-war-room-error"
+          >
+            <p className="font-semibold">Hearing War Room could not load.</p>
+            <p className="mt-1 text-red-700">{surfaceError}</p>
+            <p className="mt-2 text-xs text-red-700/80">
+              Retry from the case page, or check that documents are uploaded and analysis can run.
+            </p>
+          </div>
         ) : pilotTodayView ? (
           <PilotTodayDashboard
             caseId={caseId}
             view={pilotTodayView}
             deskChargeLine={deskChargeLine}
             moreDetail={
-              <>
-                <PilotWarRoomMoreDetail brief={brief} bundleHay={bundleContextHay} />
-              </>
+              <SolicitorDeepDetailGate integrity={outputIntegrity} label="Court more detail">
+                <PilotWarRoomMoreDetail
+                  brief={brief}
+                  bundleHay={bundleContextHay}
+                  canCopyDrafts={canCopyDrafts}
+                  copyBlockedReason={copyBlockedReason}
+                />
+              </SolicitorDeepDetailGate>
             }
           />
         ) : (
@@ -796,19 +933,35 @@ export function HearingWarRoom({
         ) : null}
 
         {pilotMode ? (
-          loading || !pilotTodayView ? (
+          loading ? (
             <div className={`${workflowCard} p-8 flex items-center justify-center gap-2 text-slate-600`}>
               <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
               Loading matter dashboard…
+            </div>
+          ) : !pilotTodayView ? (
+            <div
+              className={`${workflowCard} p-6 text-sm text-red-800 border-red-200 bg-red-50/60`}
+              data-testid="hearing-war-room-error"
+            >
+              <p className="font-semibold">Hearing War Room could not load.</p>
+              <p className="mt-1 text-red-700">
+                {surfaceError ??
+                  "Matter dashboard data is unavailable for this case. Upload or re-run analysis, then retry."}
+              </p>
             </div>
           ) : (
             <PilotTodayDashboard
               caseId={caseId}
               view={pilotTodayView}
               moreDetail={
-                <>
-                  <PilotWarRoomMoreDetail brief={brief} bundleHay={bundleContextHay} />
-                </>
+                <SolicitorDeepDetailGate integrity={outputIntegrity} label="Court more detail">
+                  <PilotWarRoomMoreDetail
+                    brief={brief}
+                    bundleHay={bundleContextHay}
+                    canCopyDrafts={canCopyDrafts}
+                    copyBlockedReason={copyBlockedReason}
+                  />
+                </SolicitorDeepDetailGate>
               }
             />
           )
@@ -830,6 +983,7 @@ export function HearingWarRoom({
               <p className="text-[10px] text-slate-500 mt-2">
                 Provisional · conditional on served material · solicitor review required
               </p>
+              <p className="text-[10px] text-slate-500 mt-1">{positionProvenanceLine}</p>
             </section>
 
             <PreHearingReadinessBadge
@@ -909,6 +1063,8 @@ export function HearingWarRoom({
                 workflowProfileHint: pilotHeader?.profile ?? null,
               }}
               loading={bundleLoading}
+              canCopyExport={canCopyDrafts}
+              copyBlockedReason={copyBlockedReason}
             />
 
             {reasoningV2Enabled && reasoningV2Result?.available ? (
@@ -978,7 +1134,17 @@ export function HearingWarRoom({
                     <p className={workflowSectionTitle}>Evidence anchors</p>
                     <ul className="mt-2 text-sm text-slate-800 list-disc pl-4 space-y-1">
                       {brief.evidenceAnchors.map((a, i) => (
-                        <li key={i}>{a}</li>
+                        <li key={i}>
+                          <span>{a}</span>
+                          <p className="text-[10px] text-slate-500 mt-0.5 list-none">
+                            {formatFindingProvenanceLine(
+                              assertFindingProvenanceOrLimitation({
+                                evidenceState: "not_safely_confirmed",
+                                sourceFilename: a,
+                              }),
+                            )}
+                          </p>
+                        </li>
                       ))}
                     </ul>
                   </div>
@@ -998,9 +1164,24 @@ export function HearingWarRoom({
                 )}
                 <div className="space-y-3">
                   <p className={workflowSectionTitle}>Draft wording blocks</p>
-                  <DraftBlock title="Disclosure timetable request" text={brief.draftWording.disclosureTimetable} />
-                  <DraftBlock title="Adjournment / provisional position" text={brief.draftWording.adjournment} />
-                  <DraftBlock title="Client explanation (plain language)" text={brief.draftWording.clientExplanation} />
+                  <DraftBlock
+                    title="Disclosure timetable request"
+                    text={brief.draftWording.disclosureTimetable}
+                    canCopy={canCopyDrafts}
+                    blockedReason={copyBlockedReason}
+                  />
+                  <DraftBlock
+                    title="Adjournment / provisional position"
+                    text={brief.draftWording.adjournment}
+                    canCopy={canCopyDrafts}
+                    blockedReason={copyBlockedReason}
+                  />
+                  <DraftBlock
+                    title="Client explanation (plain language)"
+                    text={brief.draftWording.clientExplanation}
+                    canCopy={canCopyDrafts}
+                    blockedReason={copyBlockedReason}
+                  />
                 </div>
               </div>
             </section>

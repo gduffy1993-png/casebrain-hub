@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "stage300-batch-a-120-receipt-index@1.1.0",
+  "count": 120,
+  "truthOpened": false,
+  "candidatesGenerated": false,
+  "projectionOnlyExcluded": 30,
+  "regenerable": true,
+  "gitignored": true,
+  "note": "Raw per-case receipts regenerable via emit-maa-v2-stage300-batch-a-structured-adapters.ts; not committed."
+}

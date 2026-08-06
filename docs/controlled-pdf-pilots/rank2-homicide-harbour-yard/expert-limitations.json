@@ -1,0 +1,77 @@
+{
+  "matterId": "rank2-homicide-harbour-yard",
+  "version": "design-freeze-draft-v0.1",
+  "status": "DRAFT_PENDING_SPECIALIST_REVIEW",
+  "globalRules": [
+    "Every opinion is attributed to a named fictional discipline/report/version and materials considered.",
+    "Analytical results, observations, interpretations, factual causation and legal causation remain separate.",
+    "An expert does not determine actor identity, intent, guilt, witness credibility or the ultimate legal issue.",
+    "A joint statement is authoritative for the agreements and disagreements it records at its date; it does not become a judicial finding or rewrite scientific truth.",
+    "The latest individual report or addendum governs that expert's individual position where the point is not superseded or covered by the joint statement; earlier reports remain visible for opinion changes.",
+    "Service does not prove admissibility. Any judicial ruling governs permitted use, not the underlying scientific observation or opinion.",
+    "Prosecution and defence expert disclosure/service/privilege states are explicit.",
+    "No numerical probability or categorical conclusion is invented beyond the fictional expert source."
+  ],
+  "disciplines": [
+    {
+      "discipline": "forensic_pathology",
+      "plannedDocuments": ["DOC_POST_MORTEM", "DOC_DEFENCE_PATHOLOGY", "DOC_EXPERT_JOINT_STATEMENT"],
+      "mayAddress": ["injury description", "medical cause of death", "plausible mechanisms", "compatibility and limitations", "sampling and post-mortem findings"],
+      "mustNotBeUsedAloneFor": ["actor identity", "intent", "precise sequence", "legal causation", "whether an alleged act occurred"],
+      "designedLimitations": ["more than one blunt-impact mechanism medically plausible", "injury pattern does not uniquely identify object", "limited ability to time injury within a narrow incident window", "clinical treatment and susceptibility require contextual analysis"]
+    },
+    {
+      "discipline": "neuropathology",
+      "plannedDocuments": ["DOC_NEUROPATH_ADDENDUM", "DOC_EXPERT_JOINT_STATEMENT"],
+      "mayAddress": ["intracranial injury", "neuropathological sequence", "compatibility with deterioration pattern"],
+      "mustNotBeUsedAloneFor": ["external impact source", "actor identity", "intent", "exact time of impact"],
+      "designedLimitations": ["overlap between direct blow and fall patterns", "timing range rather than exact timestamp", "dependence on clinical/imaging material quality"]
+    },
+    {
+      "discipline": "toxicology",
+      "plannedDocuments": ["DOC_TOXICOLOGY_REPORT", "DOC_TOXICOLOGY_ADDENDUM"],
+      "mayAddress": ["detected substances", "analytical method/uncertainty", "general interpretive limitations", "possible pharmacological relevance"],
+      "mustNotBeUsedAloneFor": ["exact behaviour", "aggression", "balance at a precise moment", "intent", "independent/superseding legal cause"],
+      "designedLimitations": ["sampling occurred after incident and treatment", "individual alcohol response varies", "medication adherence/timing not proved by one result", "post-event clinical administration must be excluded from interpretation where relevant"]
+    },
+    {
+      "discipline": "forensic_biology_and_trace",
+      "plannedDocuments": ["DOC_FORENSIC_TORCH_REPORT"],
+      "mayAddress": ["test result", "mixture/quality", "transfer/persistence propositions within report", "continuity limitations"],
+      "mustNotBeUsedAloneFor": ["weapon use", "time of deposition", "fatal mechanism", "intent", "categorical source attribution where mixture does not support it"],
+      "designedLimitations": ["low-level mixed result", "transfer and persistence alternatives", "packaging-time discrepancy", "damaged edge is not proof of impact"]
+    },
+    {
+      "discipline": "clinical_timeline",
+      "plannedDocuments": ["DOC_AMBULANCE_HOSPITAL_RECORD", "DOC_CLINICAL_TIMELINE"],
+      "mayAddress": ["recorded observations", "treatment events", "source timestamps", "imaging/report chronology"],
+      "mustNotBeUsedAloneFor": ["criminal negligence", "superseding cause", "homicide route", "actor identity"],
+      "designedLimitations": ["system and narrative timestamps differ", "derived timeline has no authority beyond cited sources", "absence of note is not proof event did not occur"]
+    }
+  ],
+  "requiredExpertStateFields": [
+    "expertId",
+    "discipline",
+    "instructingParty",
+    "qualificationStatus",
+    "reportVersion",
+    "reportDate",
+    "materialsConsidered",
+    "materialsNotAvailable",
+    "observations",
+    "analyticalResults",
+    "opinions",
+    "limitations",
+    "changeFromPriorOpinion",
+    "declaration/complianceState",
+    "serviceState",
+    "unusedMaterialState",
+    "jointStatementState"
+  ],
+  "specialistReviewRequired": [
+    "Home Office registered forensic pathologist or appropriately qualified homicide-pathology reviewer for realism/limits",
+    "appropriately qualified toxicology reviewer for analytical and interpretive design",
+    "criminal practitioner for admissibility, expert directions, service, disclosure and legal-causation boundaries",
+    "forensic-quality reviewer against the then-current Forensic Science Regulator Code and CrimPR Part 19"
+  ]
+}

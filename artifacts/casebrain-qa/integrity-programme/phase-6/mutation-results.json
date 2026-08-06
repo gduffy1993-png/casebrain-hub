@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-07-21T02:11:33.377Z",
+  "mutations": [
+    {
+      "name": "conflicting_counts",
+      "pass": true,
+      "detail": "Different evidence counts yield different fingerprints"
+    },
+    {
+      "name": "conflicting_mg11_states",
+      "pass": true,
+      "detail": "mg11 served vs missing"
+    },
+    {
+      "name": "raw_markers",
+      "pass": true,
+      "detail": "sentence.raw_extraction_marker"
+    },
+    {
+      "name": "truncation",
+      "pass": true,
+      "detail": "sentence.truncated_fragment"
+    },
+    {
+      "name": "wrong_family_terms",
+      "pass": true,
+      "detail": "wrong_family.unsupported_template_leakage"
+    },
+    {
+      "name": "missing_provenance_family",
+      "pass": true,
+      "detail": "offence_family_uncertain"
+    },
+    {
+      "name": "hearing_conflicts",
+      "pass": true,
+      "detail": "upcoming/2026-08-01 vs unknown/null"
+    },
+    {
+      "name": "broken_punctuation",
+      "pass": true,
+      "detail": "malformed_punctuation"
+    },
+    {
+      "name": "fingerprint_mismatch_blocks",
+      "pass": true,
+      "detail": "mismatch"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "stage150-root-cause-summary@1.0.0",
+  "byControlFamilyPrefix": {
+    "MAA2-CHS": 56,
+    "MAA2-PRI": 2
+  },
+  "ownershipLinked": 28,
+  "duplicatesLinked": 48
+}

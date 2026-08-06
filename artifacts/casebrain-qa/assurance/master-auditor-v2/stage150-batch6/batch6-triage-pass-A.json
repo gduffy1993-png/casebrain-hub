@@ -1,0 +1,16 @@
+{
+  "summary": {
+    "total": 0,
+    "byBucket": {
+      "confirmed_app_defect": 0,
+      "output_intrinsic_confirmed_app_defect": 0,
+      "detector_false_positive": 0,
+      "unresolved_source": 0,
+      "truth_key_defect": 0,
+      "duplicate_occurrence": 0,
+      "safe_qualified_output": 0
+    },
+    "byControl": {}
+  },
+  "rows": []
+}

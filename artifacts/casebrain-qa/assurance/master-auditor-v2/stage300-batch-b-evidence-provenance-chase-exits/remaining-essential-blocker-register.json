@@ -1,0 +1,633 @@
+{
+  "schemaVersion": "stage300-batch-b-remaining-essential-blocker-register@1.0.0",
+  "essentialControlCount": 43,
+  "fullyImplementedCount": 0,
+  "unlockedByBatchB": 0,
+  "afterStatusTotals": {
+    "specified_not_implemented": 4,
+    "partially_implemented_pending_calibration": 1,
+    "substantive_evaluator_implemented_pending_review": 6,
+    "adapter_foundation_only": 32
+  },
+  "rows": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "afterStatus": "specified_not_implemented",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Heavy PDF/OCR/binary adapters + original source documents required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit adapters do not supply OCR/binary redaction/pagination/password/attachment receipts.",
+      "nextRequiredWork": "Heavy PDF/OCR/binary adapters + original source documents required"
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "afterStatus": "specified_not_implemented",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Heavy PDF/OCR/binary adapters + original source documents required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit adapters do not supply OCR/binary redaction/pagination/password/attachment receipts.",
+      "nextRequiredWork": "Heavy PDF/OCR/binary adapters + original source documents required"
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "afterStatus": "specified_not_implemented",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Heavy PDF/OCR/binary adapters + original source documents required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit adapters do not supply OCR/binary redaction/pagination/password/attachment receipts.",
+      "nextRequiredWork": "Heavy PDF/OCR/binary adapters + original source documents required"
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "afterStatus": "partially_implemented_pending_calibration",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Heavy PDF/OCR/binary adapters + original source documents required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit adapters do not supply OCR/binary redaction/pagination/password/attachment receipts.",
+      "nextRequiredWork": "Heavy PDF/OCR/binary adapters + original source documents required"
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "afterStatus": "specified_not_implemented",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Heavy PDF/OCR/binary adapters + original source documents required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit adapters do not supply OCR/binary redaction/pagination/password/attachment receipts.",
+      "nextRequiredWork": "Heavy PDF/OCR/binary adapters + original source documents required"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "afterStatus": "substantive_evaluator_implemented_pending_review",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": "Shared charge/chronology adapter foundation eligible on 120",
+      "blockersRemaining": [
+        "Specialty structured fields (legalStateTaxonomy / dobAgeCalcLedger / proceduralPartyState) absent on Stage-150 packets",
+        "Batch-A substantive evaluator pending review — not promoted; eligible denominator remains 0"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Adapter dependency may be satisfied, but named control prerequisites (specialty taxonomy/calc/party bags) are still absent — schema-valid shared adapters ≠ control-complete.",
+      "nextRequiredWork": "Specialty structured fields (legalStateTaxonomy / dobAgeCalcLedger / proceduralPartyState) absent on Stage-150 packets"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "afterStatus": "substantive_evaluator_implemented_pending_review",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": "Shared charge/chronology adapter foundation eligible on 120",
+      "blockersRemaining": [
+        "Specialty structured fields (legalStateTaxonomy / dobAgeCalcLedger / proceduralPartyState) absent on Stage-150 packets",
+        "Batch-A substantive evaluator pending review — not promoted; eligible denominator remains 0"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Adapter dependency may be satisfied, but named control prerequisites (specialty taxonomy/calc/party bags) are still absent — schema-valid shared adapters ≠ control-complete.",
+      "nextRequiredWork": "Specialty structured fields (legalStateTaxonomy / dobAgeCalcLedger / proceduralPartyState) absent on Stage-150 packets"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "afterStatus": "substantive_evaluator_implemented_pending_review",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": "Shared charge/chronology adapter foundation eligible on 120",
+      "blockersRemaining": [
+        "Specialty structured fields (legalStateTaxonomy / dobAgeCalcLedger / proceduralPartyState) absent on Stage-150 packets",
+        "Batch-A substantive evaluator pending review — not promoted; eligible denominator remains 0"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Adapter dependency may be satisfied, but named control prerequisites (specialty taxonomy/calc/party bags) are still absent — schema-valid shared adapters ≠ control-complete.",
+      "nextRequiredWork": "Specialty structured fields (legalStateTaxonomy / dobAgeCalcLedger / proceduralPartyState) absent on Stage-150 packets"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "afterStatus": "substantive_evaluator_implemented_pending_review",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": "Shared charge/chronology adapter foundation eligible on 120",
+      "blockersRemaining": [
+        "Specialty structured fields (legalStateTaxonomy / dobAgeCalcLedger / proceduralPartyState) absent on Stage-150 packets",
+        "Batch-A substantive evaluator pending review — not promoted; eligible denominator remains 0"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Adapter dependency may be satisfied, but named control prerequisites (specialty taxonomy/calc/party bags) are still absent — schema-valid shared adapters ≠ control-complete.",
+      "nextRequiredWork": "Specialty structured fields (legalStateTaxonomy / dobAgeCalcLedger / proceduralPartyState) absent on Stage-150 packets"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "afterStatus": "substantive_evaluator_implemented_pending_review",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": "Shared charge/chronology adapter foundation eligible on 120",
+      "blockersRemaining": [
+        "Specialty structured fields (legalStateTaxonomy / dobAgeCalcLedger / proceduralPartyState) absent on Stage-150 packets",
+        "Batch-A substantive evaluator pending review — not promoted; eligible denominator remains 0"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Adapter dependency may be satisfied, but named control prerequisites (specialty taxonomy/calc/party bags) are still absent — schema-valid shared adapters ≠ control-complete.",
+      "nextRequiredWork": "Specialty structured fields (legalStateTaxonomy / dobAgeCalcLedger / proceduralPartyState) absent on Stage-150 packets"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "afterStatus": "substantive_evaluator_implemented_pending_review",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": "Shared charge/chronology adapter foundation eligible on 120",
+      "blockersRemaining": [
+        "Specialty structured fields (legalStateTaxonomy / dobAgeCalcLedger / proceduralPartyState) absent on Stage-150 packets",
+        "Batch-A substantive evaluator pending review — not promoted; eligible denominator remains 0"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Adapter dependency may be satisfied, but named control prerequisites (specialty taxonomy/calc/party bags) are still absent — schema-valid shared adapters ≠ control-complete.",
+      "nextRequiredWork": "Specialty structured fields (legalStateTaxonomy / dobAgeCalcLedger / proceduralPartyState) absent on Stage-150 packets"
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": true,
+      "unavailable": false,
+      "blockerRemoved": "Genuine six-exit production payloads present (schema-valid multi-exit)",
+      "blockersRemaining": [
+        "Multi-audience / perspective surface packs required beyond shared exit capture",
+        "Exit payload presence ≠ audience-specific comparison detector inputs"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Multi-exit adapter may be schema-valid, but AUD/XPP require independent audience/perspective packs and named evaluators — not unlocked by exit capture alone.",
+      "nextRequiredWork": "Multi-audience / perspective surface packs required beyond shared exit capture"
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": true,
+      "unavailable": false,
+      "blockerRemoved": "Genuine six-exit production payloads present (schema-valid multi-exit)",
+      "blockersRemaining": [
+        "Multi-audience / perspective surface packs required beyond shared exit capture",
+        "Exit payload presence ≠ audience-specific comparison detector inputs"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Multi-exit adapter may be schema-valid, but AUD/XPP require independent audience/perspective packs and named evaluators — not unlocked by exit capture alone.",
+      "nextRequiredWork": "Multi-audience / perspective surface packs required beyond shared exit capture"
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": true,
+      "unavailable": false,
+      "blockerRemoved": "Genuine six-exit production payloads present (schema-valid multi-exit)",
+      "blockersRemaining": [
+        "Multi-audience / perspective surface packs required beyond shared exit capture",
+        "Exit payload presence ≠ audience-specific comparison detector inputs"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Multi-exit adapter may be schema-valid, but AUD/XPP require independent audience/perspective packs and named evaluators — not unlocked by exit capture alone.",
+      "nextRequiredWork": "Multi-audience / perspective surface packs required beyond shared exit capture"
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": true,
+      "unavailable": false,
+      "blockerRemoved": "Genuine six-exit production payloads present (schema-valid multi-exit)",
+      "blockersRemaining": [
+        "Multi-audience / perspective surface packs required beyond shared exit capture",
+        "Exit payload presence ≠ audience-specific comparison detector inputs"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Multi-exit adapter may be schema-valid, but AUD/XPP require independent audience/perspective packs and named evaluators — not unlocked by exit capture alone.",
+      "nextRequiredWork": "Multi-audience / perspective surface packs required beyond shared exit capture"
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": true,
+      "unavailable": false,
+      "blockerRemoved": "Genuine six-exit production payloads present (schema-valid multi-exit)",
+      "blockersRemaining": [
+        "Multi-audience / perspective surface packs required beyond shared exit capture",
+        "Exit payload presence ≠ audience-specific comparison detector inputs"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Multi-exit adapter may be schema-valid, but AUD/XPP require independent audience/perspective packs and named evaluators — not unlocked by exit capture alone.",
+      "nextRequiredWork": "Multi-audience / perspective surface packs required beyond shared exit capture"
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": true,
+      "unavailable": false,
+      "blockerRemoved": "Genuine six-exit production payloads present (schema-valid multi-exit)",
+      "blockersRemaining": [
+        "Multi-audience / perspective surface packs required beyond shared exit capture",
+        "Exit payload presence ≠ audience-specific comparison detector inputs"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Multi-exit adapter may be schema-valid, but AUD/XPP require independent audience/perspective packs and named evaluators — not unlocked by exit capture alone.",
+      "nextRequiredWork": "Multi-audience / perspective surface packs required beyond shared exit capture"
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": true,
+      "unavailable": false,
+      "blockerRemoved": "Genuine six-exit production payloads present (schema-valid multi-exit)",
+      "blockersRemaining": [
+        "Multi-audience / perspective surface packs required beyond shared exit capture",
+        "Exit payload presence ≠ audience-specific comparison detector inputs"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Multi-exit adapter may be schema-valid, but AUD/XPP require independent audience/perspective packs and named evaluators — not unlocked by exit capture alone.",
+      "nextRequiredWork": "Multi-audience / perspective surface packs required beyond shared exit capture"
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": true,
+      "unavailable": false,
+      "blockerRemoved": "Genuine six-exit production payloads present (schema-valid multi-exit)",
+      "blockersRemaining": [
+        "Multi-audience / perspective surface packs required beyond shared exit capture",
+        "Exit payload presence ≠ audience-specific comparison detector inputs"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Multi-exit adapter may be schema-valid, but AUD/XPP require independent audience/perspective packs and named evaluators — not unlocked by exit capture alone.",
+      "nextRequiredWork": "Multi-audience / perspective surface packs required beyond shared exit capture"
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": true,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": true,
+      "unavailable": false,
+      "blockerRemoved": "Genuine six-exit production payloads present (schema-valid multi-exit)",
+      "blockersRemaining": [
+        "Multi-audience / perspective surface packs required beyond shared exit capture",
+        "Exit payload presence ≠ audience-specific comparison detector inputs"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Multi-exit adapter may be schema-valid, but AUD/XPP require independent audience/perspective packs and named evaluators — not unlocked by exit capture alone.",
+      "nextRequiredWork": "Multi-audience / perspective surface packs required beyond shared exit capture"
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "afterStatus": "adapter_foundation_only",
+      "adapterDependencySatisfied": false,
+      "namedPrerequisiteComplete": false,
+      "partiallyAvailable": false,
+      "unavailable": true,
+      "blockerRemoved": null,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+      ],
+      "whyStillBlockedDespiteValidAdapters": "Evidence/provenance/chase/exit foundations do not provide version-pair hashes, frozen draft lineage, or ELD sentence receipts.",
+      "nextRequiredWork": "Non-synthetic version-pair / ELD-VDR adapters + evaluators required"
+    }
+  ],
+  "note": "Batch B adapter eligibility does not promote or unlock essential evaluators.",
+  "whyZeroUnlocked": "Schema-valid adapters ≠ named-control prerequisites. SRC needs OCR; AUD/XPP need audience packs; ELD/VDR need version pairs; Batch-A six lack specialty bags; EVS/CHS/ATR/XEX deepen-partials are outside the essential 43."
+}

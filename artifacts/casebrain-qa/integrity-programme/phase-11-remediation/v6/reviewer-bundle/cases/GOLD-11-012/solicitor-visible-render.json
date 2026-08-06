@@ -1,0 +1,106 @@
+{
+  "goldId": "GOLD-11-012",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: cb-fresh-002-jordan-hale\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: Allegation not safely labelled from source\nHearing: Hearing date not safely extracted\nEvidence states:\n• MG11 witness statement — Served\n• Body-worn video (BWV) — Referred only\n• Custody record / PACE material — Referred only\n• Body worn video — Missing\n• Full custody record — Missing\n• Complainant MG11 — Missing\n• Charge sheet — Served\nChase / outstanding items:\n• Body-worn video (BWV)\n• Interview recording / transcript\n• Complainant MG11",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "overview_counts",
+      "label": "Overview evidence counts",
+      "solicitorVisibleText": "Served 4 · Referred 2 · Missing 1 · Incomplete 0 · Not safely confirmed 0",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family resolved for this matter.",
+      "gateStatus": "resolved",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "chase_brief",
+      "label": "Disclosure chase list",
+      "solicitorVisibleText": "Total 3\n• CCTV full window / master footage\n• Full custody record / PACE material\n• Complainant MG11",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Human review or material gaps flagged on current papers.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Officers attended following a call. There was contact between the defendant and officers. Body-worn video is referred to on the schedule but not attached. Custody record is extract only.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "MG6 / unused schedule clarification",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Full custody record / PACE material",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "family_leak_probe",
+      "label": "Cross-family containment probe",
+      "solicitorVisibleText": "Item: Cross-family containment probe (1)\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

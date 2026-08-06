@@ -1,0 +1,1376 @@
+{
+  "root": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation",
+  "exists": true,
+  "fileCount": 228,
+  "totalBytes": 925586120,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/existence-mapping-policy-migration.json",
+      "size": 2649,
+      "mtime": "2026-07-22T17:04:35.068Z",
+      "sha256": "3be1b05d04e1f2f997273360ff5ab4367f007c60dc0ad348425921f115edfe0a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/findings.jsonl",
+      "size": 2169121,
+      "mtime": "2026-07-22T15:31:35.432Z",
+      "sha256": "7a461ba06e96b8ee68dd9970df095a312f54c7a12f52e7bd24bad994a3405ff3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/hashes.json",
+      "size": 604,
+      "mtime": "2026-07-22T15:31:37.170Z",
+      "sha256": "4fe6487ededcdefc8a1ee7f722b81455053e30e2b673d81905d9fb819997c4dd"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/identity-manifest.jsonl",
+      "size": 1024300,
+      "mtime": "2026-07-22T15:31:35.433Z",
+      "sha256": "fbe35264c9763f2a9876f82b48efbc952da31db6bd80bcf8b7a0294bef8d41e6"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/lane-separation.json",
+      "size": 226,
+      "mtime": "2026-07-22T15:30:48.811Z",
+      "sha256": "d8e1e382fe25ca5e46c65e81501d2d4d5adaf3b384d67a7e7b96485cf8211254"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/occurrence-map.jsonl",
+      "size": 7708538,
+      "mtime": "2026-07-22T15:31:35.625Z",
+      "sha256": "2c74f01bc6ae5c3334fd5bd447cb69aed9755575a0b28084a7cc4d33933d4b99"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/posthoc-quality-scan.json",
+      "size": 798,
+      "mtime": "2026-07-22T15:45:18.826Z",
+      "sha256": "add131bd55be5b817b304fb740df83e55c925d760fd457584048f2908f3be001"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/PRESERVE.json",
+      "size": 796,
+      "mtime": "2026-07-22T15:55:03.569Z",
+      "sha256": "660e2619e422fb7945cd4ab9cd643f23e61b5da9b394c34abec02b12a47adfd9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/progress-report.md",
+      "size": 416,
+      "mtime": "2026-07-22T15:31:37.219Z",
+      "sha256": "c2a302c54be618585f1689cd53bfc97c8b227e1f306a7294b33c89f244dfb583"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/review-batches/batch-001.json",
+      "size": 3024284,
+      "mtime": "2026-07-22T15:31:35.758Z",
+      "sha256": "c279eb820bc52f262d948eb33263509e2fd83595d8ae3a51ef12321cf083ee0b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/review-batches/batch-002.json",
+      "size": 829444,
+      "mtime": "2026-07-22T15:31:35.771Z",
+      "sha256": "a8940a6ff3a1113398d0fa4fba84772338773c4cfc56e835c38090dac49b74fc"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/review-batches/batch-003.json",
+      "size": 768980,
+      "mtime": "2026-07-22T15:31:35.817Z",
+      "sha256": "8024f32b0933e858eb85771568b2ea123897dd15cd2d6e59f7ab9c7d25e3f9b8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/review-batches/batch-004.json",
+      "size": 218162,
+      "mtime": "2026-07-22T15:31:35.822Z",
+      "sha256": "bc7042c2f4a7421482df7c0329605ef29079c5c2a38ca37d98480045450416da"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/review-batches/batch-005.json",
+      "size": 202339,
+      "mtime": "2026-07-22T15:31:35.826Z",
+      "sha256": "519d39987cadd2c458553576f14525d4cf920d2896b74ba5f9655b33baf9aa50"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/review-batches/batch-006.json",
+      "size": 141907,
+      "mtime": "2026-07-22T15:31:35.829Z",
+      "sha256": "81d34b5901b1542298e279ad1363ce374d186ca38f7e8daee21415df7a55a5d0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/review-batches/batch-007.json",
+      "size": 4670586,
+      "mtime": "2026-07-22T15:31:35.983Z",
+      "sha256": "d39e8b5992bcfb8cd75ff6b8302ce4a166a78ded491e78bf5fdf63624ade975d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/review-batches/batch-008.json",
+      "size": 820910,
+      "mtime": "2026-07-22T15:31:35.998Z",
+      "sha256": "7b806858fc69f3af44055f2fafda7dabfc7acf230ae5011adc3989662dc7f405"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/review-batches/batch-009.json",
+      "size": 98765,
+      "mtime": "2026-07-22T15:31:36.001Z",
+      "sha256": "3f389fa6ea7a7f5e752260dcb196e36728f523b7014b6603b62fbcad7bd80fdb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/review-batches/INDEX.md",
+      "size": 505,
+      "mtime": "2026-07-22T15:31:36.101Z",
+      "sha256": "b7ef6e11679c7a77432a22295221890ca20d351bcdbe4c3e7f9a665377b90218"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/RUN-MANIFEST.json",
+      "size": 1730,
+      "mtime": "2026-07-22T15:30:48.815Z",
+      "sha256": "0dc551a02efd7e9080fe4c6af64686ff076c979c27f87b24554d15e7a97aa24b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/run-progress.json",
+      "size": 213709,
+      "mtime": "2026-07-22T15:31:37.267Z",
+      "sha256": "0b0ffa1ed86dc5d5cfed2d2aab819afdb3e088ac109e50dcea04cf73184255a4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/string-index.json",
+      "size": 159006,
+      "mtime": "2026-07-22T15:31:35.630Z",
+      "sha256": "e77162b65c9384de9db031f6c51eac22a689c2ee4f9f4d4d7645765701337b5d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/surfaces.jsonl",
+      "size": 67318695,
+      "mtime": "2026-07-22T15:31:35.432Z",
+      "sha256": "2f1b3089761c22975f40300c2e30b3da0ca50953b3a27c0006b3995627ef486e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/template-index.json",
+      "size": 117436,
+      "mtime": "2026-07-22T15:31:35.684Z",
+      "sha256": "e5074d4ce3852bed4c7e6fc9f65bd61179d95518df402b1a894f47fe4918a2db"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v1/tsc-comparison-raw.txt",
+      "size": 9661,
+      "mtime": "2026-07-22T15:43:04.200Z",
+      "sha256": "814ab280697af2387da04b22b2c602975423edca00ddc5e55b04692dd27cbd43"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/findings.jsonl",
+      "size": 0,
+      "mtime": "2026-07-22T16:19:08.245Z",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/hashes.json",
+      "size": 893,
+      "mtime": "2026-07-22T16:19:08.276Z",
+      "sha256": "344c0bdfaa232112052a09763940a8aed29d8c15ff8ae5ee370221b6448310e1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/identity-manifest.jsonl",
+      "size": 1024300,
+      "mtime": "2026-07-22T16:07:11.931Z",
+      "sha256": "fbe35264c9763f2a9876f82b48efbc952da31db6bd80bcf8b7a0294bef8d41e6"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/lane-separation.json",
+      "size": 354,
+      "mtime": "2026-07-22T16:06:34.942Z",
+      "sha256": "95fbe7160bcd275ab68d049c53c2df5c2b7a94f1c287f3999433c34de20f06ce"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/occurrence-map.jsonl",
+      "size": 7708538,
+      "mtime": "2026-07-22T16:07:12.091Z",
+      "sha256": "0a1bd98420f200e180b9760ae716bb13fa336f7fd89a5e4b19ab1e316fec28cf"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/progress-report.md",
+      "size": 750,
+      "mtime": "2026-07-22T16:07:17.786Z",
+      "sha256": "71465e0bf2c2c2b267ad329074fd0d8122dbfacef4fa05e4c37edbc5d492e0b3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/review-batches/batch-001.json",
+      "size": 3024284,
+      "mtime": "2026-07-22T16:07:12.179Z",
+      "sha256": "947fd103e13881b1de714d3a5bf440aa08e8729caf4ab31e06b872fc35c8858a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/review-batches/batch-002.json",
+      "size": 829444,
+      "mtime": "2026-07-22T16:07:12.234Z",
+      "sha256": "a8940a6ff3a1113398d0fa4fba84772338773c4cfc56e835c38090dac49b74fc"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/review-batches/batch-003.json",
+      "size": 768980,
+      "mtime": "2026-07-22T16:07:12.261Z",
+      "sha256": "8024f32b0933e858eb85771568b2ea123897dd15cd2d6e59f7ab9c7d25e3f9b8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/review-batches/batch-004.json",
+      "size": 218162,
+      "mtime": "2026-07-22T16:07:12.266Z",
+      "sha256": "bc7042c2f4a7421482df7c0329605ef29079c5c2a38ca37d98480045450416da"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/review-batches/batch-005.json",
+      "size": 202339,
+      "mtime": "2026-07-22T16:07:12.270Z",
+      "sha256": "519d39987cadd2c458553576f14525d4cf920d2896b74ba5f9655b33baf9aa50"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/review-batches/batch-006.json",
+      "size": 141907,
+      "mtime": "2026-07-22T16:07:12.298Z",
+      "sha256": "81d34b5901b1542298e279ad1363ce374d186ca38f7e8daee21415df7a55a5d0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/review-batches/batch-007.json",
+      "size": 4670586,
+      "mtime": "2026-07-22T16:07:12.384Z",
+      "sha256": "d39e8b5992bcfb8cd75ff6b8302ce4a166a78ded491e78bf5fdf63624ade975d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/review-batches/batch-008.json",
+      "size": 820910,
+      "mtime": "2026-07-22T16:07:12.397Z",
+      "sha256": "7b806858fc69f3af44055f2fafda7dabfc7acf230ae5011adc3989662dc7f405"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/review-batches/batch-009.json",
+      "size": 98765,
+      "mtime": "2026-07-22T16:07:12.400Z",
+      "sha256": "3f389fa6ea7a7f5e752260dcb196e36728f523b7014b6603b62fbcad7bd80fdb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/review-batches/INDEX.md",
+      "size": 575,
+      "mtime": "2026-07-22T16:07:12.402Z",
+      "sha256": "0b009e612c9828ca745d5c3450af42e95c83eb7bb9f2446423d3623a6837642d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/RUN-MANIFEST.json",
+      "size": 1738,
+      "mtime": "2026-07-22T16:06:34.947Z",
+      "sha256": "54f20c3695eb31e98c760eb530782905ab1e83667ec772809ee265dea6de1bf1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/run-progress.json",
+      "size": 213728,
+      "mtime": "2026-07-22T16:07:17.790Z",
+      "sha256": "e8dece7beb252045af2a98c0b8336dad4942da9de76d82c0c415b7fce0962b09"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/string-index.json",
+      "size": 159006,
+      "mtime": "2026-07-22T16:07:12.099Z",
+      "sha256": "4be14acf039743ba20e5aad9162d53d254dd641c5b2c303c2e4d2336a5149e2d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/surfaces.jsonl",
+      "size": 68316237,
+      "mtime": "2026-07-22T16:07:11.930Z",
+      "sha256": "2d7753570c8740e086435a5b68643e119bf3007f6b14f384d7f0d671c3fb06f2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/template-index.json",
+      "size": 117436,
+      "mtime": "2026-07-22T16:07:12.103Z",
+      "sha256": "999dc100fc583c86a4306a172d69086f9f90cca2e5eb6aee02e478e49465655a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/v1-finding-disposition-map.jsonl",
+      "size": 2940230,
+      "mtime": "2026-07-22T16:19:08.241Z",
+      "sha256": "815b9ec58d4898d72c70d22b426172de4d01eda785a0411a6187d5dc071d1504"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v2/v1-finding-disposition-summary.json",
+      "size": 574,
+      "mtime": "2026-07-22T16:19:08.245Z",
+      "sha256": "de10ae269239492d8573beb08513654c9153f9a20ada3da4f828d807a810778e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/brain1-guardian-classification-immutability-audit.json",
+      "size": 5799,
+      "mtime": "2026-07-22T18:01:08.618Z",
+      "sha256": "262acd31f47503c426c2a458f3ee98de350be69fe12fa18b7bcfcc10353ca710"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/existence-mapping-policy-migration.json",
+      "size": 2649,
+      "mtime": "2026-07-22T17:04:35.068Z",
+      "sha256": "3be1b05d04e1f2f997273360ff5ab4367f007c60dc0ad348425921f115edfe0a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/hashes.json",
+      "size": 831,
+      "mtime": "2026-07-22T16:43:39.645Z",
+      "sha256": "5618a312a6fa39bba62cf8b35952d84a88cbd4ba3e4ed33e542e0c8e09b88bba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/identity-manifest.jsonl",
+      "size": 1024300,
+      "mtime": "2026-07-22T16:43:33.909Z",
+      "sha256": "ddb54c51a4c5a47b853589bd60d52e6aa521b3ec16188a335c8e77cc9d07238a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/lane-separation.json",
+      "size": 354,
+      "mtime": "2026-07-22T16:42:50.897Z",
+      "sha256": "6bc0a58f6697f3f2de97745791d32bb2d6e9083f5054607cf5b488f57a049986"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/occurrence-map.jsonl",
+      "size": 8058496,
+      "mtime": "2026-07-22T16:43:34.039Z",
+      "sha256": "f97252420a6906fadadf0b1bd850adb17b656fe3d08f21dc36fc1c0af66a8058"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/progress-report.md",
+      "size": 767,
+      "mtime": "2026-07-22T16:43:39.647Z",
+      "sha256": "4a07550914ee705575713a8babf62cebb0ed2e7f51b3dd4c635f39a54595e0d1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/review-batches/batch-001.json",
+      "size": 3024093,
+      "mtime": "2026-07-22T16:43:34.106Z",
+      "sha256": "8892fc2ee1359e8f954277ddca3cfdd9c568633d07de580f1c75ef61335779fd"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/review-batches/batch-002.json",
+      "size": 829409,
+      "mtime": "2026-07-22T16:43:34.120Z",
+      "sha256": "138344d230fe836e609c43c12e89fb35a2a9724c8cfb7f8bdf0056679ad961a1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/review-batches/batch-003.json",
+      "size": 768947,
+      "mtime": "2026-07-22T16:43:34.133Z",
+      "sha256": "203fd4fd13592c26b086d5fccdd159ab96af81d2f52ec075b694bf0aa2791cdc"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/review-batches/batch-004.json",
+      "size": 218129,
+      "mtime": "2026-07-22T16:43:34.137Z",
+      "sha256": "64f2d83412f8f7d35a46ae98aa6ec097bb0d3e1f516d40de5d08e494231542bd"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/review-batches/batch-005.json",
+      "size": 202273,
+      "mtime": "2026-07-22T16:43:34.142Z",
+      "sha256": "ac2b9078b89b206f6818bebf93ccfbc1018c42ee587acfb244ffe25145e075db"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/review-batches/batch-006.json",
+      "size": 141907,
+      "mtime": "2026-07-22T16:43:34.145Z",
+      "sha256": "4365bcfcbb16c5e4063fe65e935791d54c242d0e73078ef090b653e4a5b19128"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/review-batches/batch-007.json",
+      "size": 5074170,
+      "mtime": "2026-07-22T16:43:34.289Z",
+      "sha256": "07c38da065a55345a99e448263757326448cb508371637c7ff1da3d53b066002"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/review-batches/batch-008.json",
+      "size": 847562,
+      "mtime": "2026-07-22T16:43:34.307Z",
+      "sha256": "7c9bde762529e5feb4b09bc0f38dba0f885f49795a62e9015333476f51d05f05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/review-batches/batch-009.json",
+      "size": 145283,
+      "mtime": "2026-07-22T16:43:34.310Z",
+      "sha256": "7b7619aaf2d7cedb14fee3d681a666af9c054ad1ecb272f9e53a91c48912a7b8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/review-batches/INDEX.md",
+      "size": 575,
+      "mtime": "2026-07-22T16:43:34.312Z",
+      "sha256": "89ccef0259e11dc049b69bf466086cef07b4ffd9c8d56f220f73e88b751f9105"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/RUN-MANIFEST.json",
+      "size": 1755,
+      "mtime": "2026-07-22T16:42:50.901Z",
+      "sha256": "38504470512b9cde29e504d836051c2b2beb4117cdfdd05459cceeff236370a6"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/run-progress.json",
+      "size": 213728,
+      "mtime": "2026-07-22T16:43:39.649Z",
+      "sha256": "9e52bc3896e4fe52f12fecf62ea1210756d81a64e2646914b278c6125e4e09b7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/string-index.json",
+      "size": 161097,
+      "mtime": "2026-07-22T16:43:34.046Z",
+      "sha256": "a9839994fd65654d5ca4a3d4a7855f607383607ad20af2449e55dd2487c816b3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/surfaces.jsonl",
+      "size": 72391573,
+      "mtime": "2026-07-22T16:43:33.908Z",
+      "sha256": "df50592d737b677b26a292f36d80501213f197161eb964beaec331bf015e2873"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/template-index.json",
+      "size": 119574,
+      "mtime": "2026-07-22T16:43:34.050Z",
+      "sha256": "ae5ede8d58a0fef9715efc9466264c23a4f2c3fcaa8952c482fe8f2ad2fc5444"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/v1-finding-disposition-map.jsonl",
+      "size": 2940230,
+      "mtime": "2026-07-22T16:43:38.211Z",
+      "sha256": "815b9ec58d4898d72c70d22b426172de4d01eda785a0411a6187d5dc071d1504"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v3/v1-finding-disposition-summary.json",
+      "size": 653,
+      "mtime": "2026-07-22T16:43:38.217Z",
+      "sha256": "db6122762f2cacebf1d29da6484f5f80f52d1da6d650309eb5415af5ea2968b7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/brain1-guardian-classification-immutability-audit.json",
+      "size": 5799,
+      "mtime": "2026-07-25T20:26:50.963Z",
+      "sha256": "262acd31f47503c426c2a458f3ee98de350be69fe12fa18b7bcfcc10353ca710"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/hashes.json",
+      "size": 831,
+      "mtime": "2026-07-22T18:19:36.915Z",
+      "sha256": "ab6319253e4de2c91377dbee24e6ffb1f440254d6970964cb292e369cc1c813d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/identity-manifest.jsonl",
+      "size": 1024300,
+      "mtime": "2026-07-22T18:19:34.027Z",
+      "sha256": "ddb54c51a4c5a47b853589bd60d52e6aa521b3ec16188a335c8e77cc9d07238a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/lane-separation.json",
+      "size": 354,
+      "mtime": "2026-07-22T18:19:08.112Z",
+      "sha256": "ae5ebe9850b71eb8cd623e031364e1fc4a9db822d09e008feea83cc06b455289"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/occurrence-map.jsonl",
+      "size": 8055990,
+      "mtime": "2026-07-22T18:19:34.122Z",
+      "sha256": "d3fb3b9504bd61dff78c443cdfef1a5289c11dad4fbd98b37301cedc4b7f4f4c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/progress-report.md",
+      "size": 785,
+      "mtime": "2026-07-22T18:19:36.916Z",
+      "sha256": "1430a08af0ed55586b46afb143cf43d0b32e48dba5c31a199e205588fd968be9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/review-batches/batch-001.json",
+      "size": 3008809,
+      "mtime": "2026-07-22T18:19:34.167Z",
+      "sha256": "b64d12675649c7936a32483fa95bfb82c2a27db5c81bdc55cb272d2a049fd378"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/review-batches/batch-002.json",
+      "size": 839494,
+      "mtime": "2026-07-22T18:19:34.178Z",
+      "sha256": "6fe69bc7a2be8b7f7e114a0db94e3074cfd5c75c9fb642da4f1e099ad9a953d5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/review-batches/batch-003.json",
+      "size": 681691,
+      "mtime": "2026-07-22T18:19:34.188Z",
+      "sha256": "78cd416434339bcd68089725deadd1c1e2ca2ff9ff3cf4ba438cfe82d1c4ae51"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/review-batches/batch-004.json",
+      "size": 202744,
+      "mtime": "2026-07-22T18:19:34.192Z",
+      "sha256": "ead91bb5c6b7149998c3f8ba761b27f3d414c538579db303b04fb89269378005"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/review-batches/batch-005.json",
+      "size": 209119,
+      "mtime": "2026-07-22T18:19:34.196Z",
+      "sha256": "b17f7c61e7aadce83a5f0527009fd3b62503328e527e64c4a404409a64b211ca"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/review-batches/batch-006.json",
+      "size": 88723,
+      "mtime": "2026-07-22T18:19:34.198Z",
+      "sha256": "ca035bacd89e8ca682022ae1b8aec1f8dc3ccee26e2f170d44337126210c8ce8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/review-batches/batch-007.json",
+      "size": 5196021,
+      "mtime": "2026-07-22T18:19:34.280Z",
+      "sha256": "f9be4068ba3d95cbd5f54bad9ea18f378126c75785ebe0e8ea6769f735909cd7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/review-batches/batch-008.json",
+      "size": 876836,
+      "mtime": "2026-07-22T18:19:34.289Z",
+      "sha256": "ae628976b5a29f18133c9be7e86751b3c8fa591a08a557b99b35dc2f6f4a448a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/review-batches/batch-009.json",
+      "size": 144836,
+      "mtime": "2026-07-22T18:19:34.292Z",
+      "sha256": "11a6b978569fe05859aa4e28deccf202fa4d0678adabf84a3de8853d7479184c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/review-batches/INDEX.md",
+      "size": 575,
+      "mtime": "2026-07-22T18:19:34.293Z",
+      "sha256": "cb5a941707d96a5543f6e93b0a0767e83eb2b25b71f6303ac2e9fc05335cf7d5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/RUN-MANIFEST.json",
+      "size": 1773,
+      "mtime": "2026-07-22T18:19:08.114Z",
+      "sha256": "5b0195da57f7352afbb38f6c67e8445b9c5fc9dc74d2d4460c8c7788eb6ba1d6"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/run-progress.json",
+      "size": 213728,
+      "mtime": "2026-07-22T18:19:36.919Z",
+      "sha256": "4e9c5effa7abb332ec529129bc8d0a08dab25355750b208d32a2c33842b2340e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/run-v4-evidence-pack.json",
+      "size": 16880,
+      "mtime": "2026-07-22T18:20:18.060Z",
+      "sha256": "026c9377e74c5ecbfcbeb0bba7850c99b15c1345ea6910ed742b85e035bb8be1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/STOP-FOR-CODEX.json",
+      "size": 1939,
+      "mtime": "2026-07-22T18:16:56.028Z",
+      "sha256": "0299c1b6695fbb556e319c1937007ad44dcf3305438013be439c9bc941b21a72"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/string-index.json",
+      "size": 157234,
+      "mtime": "2026-07-22T18:19:34.126Z",
+      "sha256": "486f9f4b3b19a074613f54d8f0f816168c08f9ba018541198e947bb696141b97"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/surfaces.jsonl",
+      "size": 73882420,
+      "mtime": "2026-07-22T18:19:34.026Z",
+      "sha256": "ca6b448db6f36622d336b071ae9a062a9eb386c115d4284c18ffee26fbf66562"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/template-index.json",
+      "size": 118100,
+      "mtime": "2026-07-22T18:19:34.129Z",
+      "sha256": "2abaf26289d1bac6f32804bc083c3ad1437ab519aa1cedf931b60c70f05150a9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/v1-finding-disposition-map.jsonl",
+      "size": 2940230,
+      "mtime": "2026-07-22T18:19:35.823Z",
+      "sha256": "815b9ec58d4898d72c70d22b426172de4d01eda785a0411a6187d5dc071d1504"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/v1-finding-disposition-summary.json",
+      "size": 653,
+      "mtime": "2026-07-22T18:19:35.826Z",
+      "sha256": "db6122762f2cacebf1d29da6484f5f80f52d1da6d650309eb5415af5ea2968b7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/v3-to-v4-blocker-disposition.json",
+      "size": 4949,
+      "mtime": "2026-07-22T18:20:12.674Z",
+      "sha256": "ef29059d8bc3819ff31a88c79ca0e5de837f6a8571a2550dac8fe6915d58108e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v4/verify-build.log",
+      "size": 29129,
+      "mtime": "2026-07-22T18:06:53.801Z",
+      "sha256": "d358f0c6213220ad1b5d3089abd29942c96c6c3e8d140e96d5e16fa784cb3f2c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/brain1-guardian-classification-immutability-audit.json",
+      "size": 5799,
+      "mtime": "2026-07-22T19:20:51.025Z",
+      "sha256": "262acd31f47503c426c2a458f3ee98de350be69fe12fa18b7bcfcc10353ca710"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/findings.jsonl",
+      "size": 50604,
+      "mtime": "2026-07-22T18:54:47.248Z",
+      "sha256": "3c203b94b15c852b2f11d7553b9af43e3e1dd31ae83c0e25eca3d4f1cb431385"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/hashes.json",
+      "size": 893,
+      "mtime": "2026-07-22T18:55:05.174Z",
+      "sha256": "14edd01f06b8152886bbfcfb64049290b219c58fb4b0aa7c3b53718d7df3ac67"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/identity-manifest.jsonl",
+      "size": 1024300,
+      "mtime": "2026-07-22T18:55:00.476Z",
+      "sha256": "b27e39f913907bc8148aeeb8173c763c7b0b0deba5d6c9d5448e73caa7ed0cfb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/lane-separation.json",
+      "size": 354,
+      "mtime": "2026-07-22T18:54:32.209Z",
+      "sha256": "66da8ee106604f1e67cbd9692080c0c75fba24c22671a3898ba64ab6b147a4ca"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/occurrence-map.jsonl",
+      "size": 8433699,
+      "mtime": "2026-07-22T18:55:00.607Z",
+      "sha256": "43ba5a3137743fd0ddbc74b908bbc21d645f5637b01df538f3b359740705492d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/progress-report.md",
+      "size": 804,
+      "mtime": "2026-07-22T18:55:05.175Z",
+      "sha256": "bbc0ff7001241129d530794baf80d80bc47cc92ce90c6b29188921f9141428c8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/review-batches/batch-001.json",
+      "size": 2956774,
+      "mtime": "2026-07-22T18:55:00.727Z",
+      "sha256": "9f60ed222b5220085c3b20f491fd7b7dcaa64d73c5858f5a1282803c3dcad730"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/review-batches/batch-002.json",
+      "size": 818384,
+      "mtime": "2026-07-22T18:55:00.763Z",
+      "sha256": "a1cc485761eacea79dc5750d848112d32bdb04016d74900fdcfd5d94bc0902c9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/review-batches/batch-003.json",
+      "size": 709773,
+      "mtime": "2026-07-22T18:55:00.778Z",
+      "sha256": "118858aac5cd334d92db120ab7545e155ea918f4dbc94a6ff27162e1bea5e668"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/review-batches/batch-004.json",
+      "size": 199854,
+      "mtime": "2026-07-22T18:55:00.782Z",
+      "sha256": "20a8c499cee5d822f52739443105fe38f74984355732e4f252aa8ba356f2996c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/review-batches/batch-005.json",
+      "size": 209040,
+      "mtime": "2026-07-22T18:55:00.785Z",
+      "sha256": "5e229c2d487c9b90eb845a4d7c556126a1d3d844fd68087a4aa7600636cdc575"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/review-batches/batch-006.json",
+      "size": 92230,
+      "mtime": "2026-07-22T18:55:00.787Z",
+      "sha256": "261a4a95930e72a513fcc5fc73d3881ac6cf24d0f7723112c998bdc09cb2c9d7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/review-batches/batch-007.json",
+      "size": 5602606,
+      "mtime": "2026-07-22T18:55:00.913Z",
+      "sha256": "be000658342013bac600ce4127b68709b66a0b8701036cf5db8aaeb97ab5c02b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/review-batches/batch-008.json",
+      "size": 973667,
+      "mtime": "2026-07-22T18:55:00.933Z",
+      "sha256": "22c8ddfbca4b6efca186a3251edb9ec2a14fac3dd1a69c053c83ea45db74c128"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/review-batches/batch-009.json",
+      "size": 200398,
+      "mtime": "2026-07-22T18:55:00.938Z",
+      "sha256": "f83ad741439511e7a80d4947d1eea7456ecc3ff20117899e41752616e1eec1b6"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/review-batches/INDEX.md",
+      "size": 575,
+      "mtime": "2026-07-22T18:55:00.939Z",
+      "sha256": "a8f65afd4eb02b6dcff099b5746572c78d3241d755fea5c111bccc26729aa87d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/RUN-MANIFEST.json",
+      "size": 1791,
+      "mtime": "2026-07-22T18:54:32.211Z",
+      "sha256": "df8f5de1dd94052175dae3f5b8fc5440b6c21f51f6c449140967a11d605a15d5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/run-progress.json",
+      "size": 213728,
+      "mtime": "2026-07-22T18:55:05.178Z",
+      "sha256": "836dff4d008f8bdd03d8f27b4b1b88fb6c27f187ac7c43f578f92bee54896fd9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/STOP-FOR-CODEX.json",
+      "size": 1740,
+      "mtime": "2026-07-22T19:21:40.355Z",
+      "sha256": "c5639df3668d36e21d586db5806454998544a86f2d0d78ade42ad897083bcfa9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/string-index.json",
+      "size": 162841,
+      "mtime": "2026-07-22T18:55:00.613Z",
+      "sha256": "efaf57ec4c57d4e63b89fb6c264f791621a0f0e780ad56b6874979a68b215206"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/surfaces.jsonl",
+      "size": 78451939,
+      "mtime": "2026-07-22T18:55:00.475Z",
+      "sha256": "3f0cf3b1d766ac595ad9a7e1d305c3a528ece93fe14ef205ae0f4a96e7b476ed"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/template-index.json",
+      "size": 123718,
+      "mtime": "2026-07-22T18:55:00.648Z",
+      "sha256": "b6e03f9dc1e97dffde57d10b78e724a21b05798831f960da1a448d2f972f2319"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/v1-finding-disposition-map.jsonl",
+      "size": 2940230,
+      "mtime": "2026-07-22T18:55:03.788Z",
+      "sha256": "815b9ec58d4898d72c70d22b426172de4d01eda785a0411a6187d5dc071d1504"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/v1-finding-disposition-summary.json",
+      "size": 653,
+      "mtime": "2026-07-22T18:55:03.796Z",
+      "sha256": "db6122762f2cacebf1d29da6484f5f80f52d1da6d650309eb5415af5ea2968b7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v5/v4-to-v5-blocker-disposition.json",
+      "size": 2379,
+      "mtime": "2026-07-22T20:08:35.308Z",
+      "sha256": "311bb1a1ec7416bbab21ddd4ba261300b57d599f4bffbb6b556b1934fa2d1909"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/brain1-guardian-classification-immutability-audit.json",
+      "size": 5799,
+      "mtime": "2026-07-22T19:34:37.192Z",
+      "sha256": "262acd31f47503c426c2a458f3ee98de350be69fe12fa18b7bcfcc10353ca710"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/findings.jsonl",
+      "size": 93582,
+      "mtime": "2026-07-22T19:33:07.575Z",
+      "sha256": "e38fbd6032025af229d9e69c31220490c68a6905bdcf976dde9a5d0ba16f977d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/hashes.json",
+      "size": 893,
+      "mtime": "2026-07-22T19:33:30.230Z",
+      "sha256": "91a026301c22414979a85a7bf9c206119ba6764c887e2ea428b8f32347428bea"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/identity-manifest.jsonl",
+      "size": 1024300,
+      "mtime": "2026-07-22T19:33:21.729Z",
+      "sha256": "b27e39f913907bc8148aeeb8173c763c7b0b0deba5d6c9d5448e73caa7ed0cfb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/lane-separation.json",
+      "size": 354,
+      "mtime": "2026-07-22T19:32:45.054Z",
+      "sha256": "1541d805d6c8b925c80cb3393b107c93083166b4172d0a53f2924f7f7ce5a2e1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/occurrence-map.jsonl",
+      "size": 8433878,
+      "mtime": "2026-07-22T19:33:22.237Z",
+      "sha256": "e5b18d1cea6a4c31d086e62933f1093ae7f5e4ee9fd9777295b673a304bc7886"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/progress-report.md",
+      "size": 824,
+      "mtime": "2026-07-22T19:33:30.231Z",
+      "sha256": "be030798ac250a98e3561ca31d8e028d9e66de5c94b1d4d628ab18aa2e4e74be"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/review-batches/batch-001.json",
+      "size": 2956774,
+      "mtime": "2026-07-22T19:33:22.448Z",
+      "sha256": "9f60ed222b5220085c3b20f491fd7b7dcaa64d73c5858f5a1282803c3dcad730"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/review-batches/batch-002.json",
+      "size": 806087,
+      "mtime": "2026-07-22T19:33:22.463Z",
+      "sha256": "3d53594ebb52bb9dd067c211aedd43e3fd22baa193f3ecba99f946302b724562"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/review-batches/batch-003.json",
+      "size": 709773,
+      "mtime": "2026-07-22T19:33:22.474Z",
+      "sha256": "118858aac5cd334d92db120ab7545e155ea918f4dbc94a6ff27162e1bea5e668"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/review-batches/batch-004.json",
+      "size": 199854,
+      "mtime": "2026-07-22T19:33:22.478Z",
+      "sha256": "20a8c499cee5d822f52739443105fe38f74984355732e4f252aa8ba356f2996c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/review-batches/batch-005.json",
+      "size": 209040,
+      "mtime": "2026-07-22T19:33:22.528Z",
+      "sha256": "5e229c2d487c9b90eb845a4d7c556126a1d3d844fd68087a4aa7600636cdc575"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/review-batches/batch-006.json",
+      "size": 92230,
+      "mtime": "2026-07-22T19:33:22.578Z",
+      "sha256": "261a4a95930e72a513fcc5fc73d3881ac6cf24d0f7723112c998bdc09cb2c9d7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/review-batches/batch-007.json",
+      "size": 5602606,
+      "mtime": "2026-07-22T19:33:22.754Z",
+      "sha256": "be000658342013bac600ce4127b68709b66a0b8701036cf5db8aaeb97ab5c02b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/review-batches/batch-008.json",
+      "size": 983345,
+      "mtime": "2026-07-22T19:33:22.775Z",
+      "sha256": "c3ef1bad60e3b09ebdd426d2ac8616e4ab0ea843b5ac366590632de89861c152"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/review-batches/batch-009.json",
+      "size": 203907,
+      "mtime": "2026-07-22T19:33:22.780Z",
+      "sha256": "05624b4c307b802db5fe2109db37fcd66337a2aef815e2d2df7652afe1f80441"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/review-batches/INDEX.md",
+      "size": 575,
+      "mtime": "2026-07-22T19:33:22.781Z",
+      "sha256": "d53e76d8718c3709631e669a077d15981d962cffe6e04305fe93dcbd8d7c0544"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/RUN-MANIFEST.json",
+      "size": 1810,
+      "mtime": "2026-07-22T19:32:45.056Z",
+      "sha256": "1ecd68ba13b3be153810d4d965d7bf1946cb106d0c2f66d84ac1df0380f67b80"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/run-progress.json",
+      "size": 213728,
+      "mtime": "2026-07-22T19:33:30.233Z",
+      "sha256": "269291351fcc447af9d4ef7a7f05c0f6071194965a552c9676ce382e4ae92927"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/string-index.json",
+      "size": 163758,
+      "mtime": "2026-07-22T19:33:22.313Z",
+      "sha256": "c7eb55e8f772600570e414cdf138460790d7079a044ce5f9fa87bdbb009230b4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/surfaces.jsonl",
+      "size": 79988845,
+      "mtime": "2026-07-22T19:33:21.728Z",
+      "sha256": "06c203733d68ffbc44c35959879263b2e93c8781d908875abe9ae30ab6555448"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/template-index.json",
+      "size": 124635,
+      "mtime": "2026-07-22T19:33:22.363Z",
+      "sha256": "41f40b71bc80afccb9ee346261e9529e589218f50e28933e0704341fc3101777"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/v1-finding-disposition-map.jsonl",
+      "size": 2940230,
+      "mtime": "2026-07-22T19:33:28.468Z",
+      "sha256": "815b9ec58d4898d72c70d22b426172de4d01eda785a0411a6187d5dc071d1504"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/v1-finding-disposition-summary.json",
+      "size": 653,
+      "mtime": "2026-07-22T19:33:28.474Z",
+      "sha256": "db6122762f2cacebf1d29da6484f5f80f52d1da6d650309eb5415af5ea2968b7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v6/v5-to-v6-blocker-disposition.json",
+      "size": 933,
+      "mtime": "2026-07-22T19:34:12.530Z",
+      "sha256": "d32f5d4fe762c6204c88dbb9c008b1cffeaf97a6e15b073cb2ff73c1f0319b8e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/findings.jsonl",
+      "size": 669954,
+      "mtime": "2026-07-22T19:42:04.182Z",
+      "sha256": "358c21d89c52b8bb5674cd92db15c28749ff75e71fbf44d78f85f7bf8ec84fc0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/hashes.json",
+      "size": 893,
+      "mtime": "2026-07-22T19:42:15.904Z",
+      "sha256": "e4bdaefda16da7862eb8834e68016c9cdb0724bda75b162dc59d04ebc96e130a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/identity-manifest.jsonl",
+      "size": 1024300,
+      "mtime": "2026-07-22T19:42:04.183Z",
+      "sha256": "858c315e0ce5dc2cf840335db40586eb65eb805a9c6cfb721925941ea8b897ed"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/lane-separation.json",
+      "size": 354,
+      "mtime": "2026-07-22T19:41:19.329Z",
+      "sha256": "48c7fe5c21e40e05ec6240460dc94a8a74f00463eca9698ea0999403f41a9acb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/occurrence-map.jsonl",
+      "size": 8567458,
+      "mtime": "2026-07-22T19:42:04.592Z",
+      "sha256": "3117865d59ef67b26e19e81eaeba30dbce5400cf038e2e23fb07a2866149907d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/progress-report.md",
+      "size": 870,
+      "mtime": "2026-07-22T19:42:15.905Z",
+      "sha256": "66acbf0901cf4347a3bf85814972a4cd819f4f0cf1fab14c61a5430f6e983424"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/review-batches/batch-001.json",
+      "size": 2964653,
+      "mtime": "2026-07-22T19:42:04.806Z",
+      "sha256": "5c444a7233d99e0f9b0178b2d18087a5f9257e41427b756b465fdc7db46aeb17"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/review-batches/batch-002.json",
+      "size": 769588,
+      "mtime": "2026-07-22T19:42:04.940Z",
+      "sha256": "c6c74e23d668f5c20b45384192555ca487ec05e361e2221e0db4a4c96a5f06ea"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/review-batches/batch-003.json",
+      "size": 784415,
+      "mtime": "2026-07-22T19:42:05.005Z",
+      "sha256": "3933fe9d73d6e4285dedfc674f363894589bdc749b525721bcc30bdc01f8c21c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/review-batches/batch-004.json",
+      "size": 205427,
+      "mtime": "2026-07-22T19:42:05.018Z",
+      "sha256": "bd0fae36d94b8248c9d673932d21c39fd95f81581b8fa95119b80cad41bd7031"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/review-batches/batch-005.json",
+      "size": 208504,
+      "mtime": "2026-07-22T19:42:05.022Z",
+      "sha256": "300d06da1c8147816a6d23c6a9c54ab134330f94add3aa2ad1efe46619e15b6e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/review-batches/batch-006.json",
+      "size": 140669,
+      "mtime": "2026-07-22T19:42:05.026Z",
+      "sha256": "44b73e2da2137d9576ccd2c1729b4ae56c4919f49de2d4edf55c828a26858d90"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/review-batches/batch-007.json",
+      "size": 5616697,
+      "mtime": "2026-07-22T19:42:05.218Z",
+      "sha256": "57422c0124f5f3f01a2cd399cb3ab4baef4c50b9678d2625140544b2448e552c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/review-batches/batch-008.json",
+      "size": 788575,
+      "mtime": "2026-07-22T19:42:05.256Z",
+      "sha256": "8bd4b3948e7c5d6c4415183cc6fd36fa7ae7f803b6c97176130df96f91734645"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/review-batches/batch-009.json",
+      "size": 448111,
+      "mtime": "2026-07-22T19:42:05.265Z",
+      "sha256": "c9e9e5c574ba368a25b50c4b8149043d48e79c6283314151d8fedccc014b64ea"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/review-batches/batch-010.json",
+      "size": 35684,
+      "mtime": "2026-07-22T19:42:05.269Z",
+      "sha256": "22ef903b630e20542e53093d65a73c8661fa907c8e8026a680d933599a529491"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/review-batches/INDEX.md",
+      "size": 614,
+      "mtime": "2026-07-22T19:42:05.270Z",
+      "sha256": "6f3353ee83beb81398c8e0993603ed1d3a8920f4536e0e9b3bd4698cb7f26b4f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/RUN-MANIFEST.json",
+      "size": 1829,
+      "mtime": "2026-07-22T19:41:19.331Z",
+      "sha256": "8e68950af61935414c78589da6a35179efbaf391b1d3ebfdf7a50711387c3b7f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/run-progress.json",
+      "size": 213728,
+      "mtime": "2026-07-22T19:42:15.908Z",
+      "sha256": "7e3fe866d684f7ab130cd5f8d5c1c36f5c0be3bf44c25d392ee9e965ee3cd4fe"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/string-index.json",
+      "size": 188546,
+      "mtime": "2026-07-22T19:42:04.603Z",
+      "sha256": "f5a84c61eee5925291ea3d783c2c872874b5c0b8676149a162879973af400179"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/surfaces.jsonl",
+      "size": 83394322,
+      "mtime": "2026-07-22T19:42:04.181Z",
+      "sha256": "b0e0540b210b7b4c697bee7c7557c1a94bc8cf84c799e56f44cdd8e50fc2f99c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/template-index.json",
+      "size": 138419,
+      "mtime": "2026-07-22T19:42:04.654Z",
+      "sha256": "39f549eee9f48b001a49ed3fdb65cecebb3599bba37274344276c621b79a242f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/v1-finding-disposition-map.jsonl",
+      "size": 2905434,
+      "mtime": "2026-07-22T19:42:11.420Z",
+      "sha256": "974389319726837309acac45efe6931605b3181727c75d4ed52e3f6b9fb1afc1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v7/v1-finding-disposition-summary.json",
+      "size": 713,
+      "mtime": "2026-07-22T19:42:11.499Z",
+      "sha256": "368552f9ea8a082a248722f2365d0032c13e3a91a419141f2fbad6151755c035"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/brain1-guardian-classification-immutability-audit.json",
+      "size": 5799,
+      "mtime": "2026-07-22T20:23:26.481Z",
+      "sha256": "262acd31f47503c426c2a458f3ee98de350be69fe12fa18b7bcfcc10353ca710"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/findings.jsonl",
+      "size": 6970431,
+      "mtime": "2026-07-22T20:21:50.095Z",
+      "sha256": "2942608475aee8e6fa5bc8059bb04cf0886fbcee6e824c9afbe46f44842c0fa3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/hashes.json",
+      "size": 893,
+      "mtime": "2026-07-22T20:21:57.540Z",
+      "sha256": "23c4394e355b3efa3093f626eca1cf72d456e87e25e027de95dddf8132d59a30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/identity-manifest.jsonl",
+      "size": 1024300,
+      "mtime": "2026-07-22T20:21:50.096Z",
+      "sha256": "8ef6aa77cb90ef4e782515d6828083c946d81979f4654a7fa02abff82581018d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/lane-separation.json",
+      "size": 354,
+      "mtime": "2026-07-22T20:21:14.024Z",
+      "sha256": "c05f8f89e1bab4fb8fc40b706c799ec63a4bdb7d9f0d4e1616cf54c69ae25c82"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/occurrence-map.jsonl",
+      "size": 8847714,
+      "mtime": "2026-07-22T20:21:50.476Z",
+      "sha256": "e7257796ebbb6e3d5bbb14d9088f7dfca1536f3ad692873f136d633280987ccf"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/progress-report.md",
+      "size": 850,
+      "mtime": "2026-07-22T20:21:57.542Z",
+      "sha256": "b4fdb07e6c457860a3b6fa2ac42aeb55f44a21066fb8c3f4a811dce83427e6b8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/review-batches/batch-001.json",
+      "size": 3050773,
+      "mtime": "2026-07-22T20:21:50.619Z",
+      "sha256": "af5e3d6bfa5144ce8f4b18aea24b1fcc74a4b7a72e8802a5006d6257cb329835"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/review-batches/batch-002.json",
+      "size": 821329,
+      "mtime": "2026-07-22T20:21:50.720Z",
+      "sha256": "61d52b0355a3ad2f34e9c8f36e141ccc3f3cbd107d254572a4cf437f54e81498"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/review-batches/batch-003.json",
+      "size": 497424,
+      "mtime": "2026-07-22T20:21:50.729Z",
+      "sha256": "021b000d0af852b5e3dfc61cffc83e591a8fdc0e775fb357df4528404a7d49ed"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/review-batches/batch-004.json",
+      "size": 220199,
+      "mtime": "2026-07-22T20:21:50.733Z",
+      "sha256": "9c73af6577db73a779b25f1f4aee2a1d13e95ba5229a8e6a687914fd591b61ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/review-batches/batch-005.json",
+      "size": 121355,
+      "mtime": "2026-07-22T20:21:50.736Z",
+      "sha256": "1cb3690e04daec234405d2a61656f8f76838908000a9c1db29afc2f039ecaed4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/review-batches/batch-006.json",
+      "size": 5682287,
+      "mtime": "2026-07-22T20:21:51.000Z",
+      "sha256": "6732d4237e5de72c830cb48984b6be6dd5867f76eeec7c64df5652bd9898e4c2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/review-batches/batch-007.json",
+      "size": 725199,
+      "mtime": "2026-07-22T20:21:51.012Z",
+      "sha256": "e20600074fda68489240d5d1eea7fb84306767d5db47d7d1e762251f26a8ea09"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/review-batches/batch-008.json",
+      "size": 887998,
+      "mtime": "2026-07-22T20:21:51.026Z",
+      "sha256": "623c3d3b42fa067917614ca9eea3e74d39298b33244a18df394e6d76d129c0c0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/review-batches/batch-009.json",
+      "size": 262302,
+      "mtime": "2026-07-22T20:21:51.031Z",
+      "sha256": "671e2cfb0771e6381f4036ebb17f94adf2173ce96113cd5ae192ff2c94b85c01"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/review-batches/batch-010.json",
+      "size": 80422,
+      "mtime": "2026-07-22T20:21:51.033Z",
+      "sha256": "99f6f28002c1a7620c66ef2f6bac4c5a3d763633cc6c48d94be6bef5853d1424"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/review-batches/INDEX.md",
+      "size": 614,
+      "mtime": "2026-07-22T20:21:51.034Z",
+      "sha256": "8b925f07f7768f3a62af43b1df6f85abef996ca9005cfc54e4c31f2fb7556c87"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/RUN-MANIFEST.json",
+      "size": 1808,
+      "mtime": "2026-07-22T20:21:14.028Z",
+      "sha256": "1ee5d5307227ccc36ee33e106b85218f3d7e82008bb5eccfd41b7a0ab55ea242"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/run-progress.json",
+      "size": 213728,
+      "mtime": "2026-07-22T20:21:57.544Z",
+      "sha256": "9801657afb9a880718900c8a6ab8d35b2126aecf398450272f43d1c628c6f97c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/run-v8-evidence-pack.json",
+      "size": 140274,
+      "mtime": "2026-07-22T20:23:14.773Z",
+      "sha256": "79b73bc23cff783e53788e49e14aeac81313991fe4191f5986472196e92ab184"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/STOP-FOR-CODEX.json",
+      "size": 2488,
+      "mtime": "2026-07-22T20:32:44.623Z",
+      "sha256": "0c7152c604fcd340cb4ce1d47fa591d909f0dc33652bcbcc0ca5454b0c95c833"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/string-index.json",
+      "size": 192128,
+      "mtime": "2026-07-22T20:21:50.484Z",
+      "sha256": "e560b81f2abc7a956ca91e39574ef8d63af07dfa73cd01483ce3644688a5590a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/surfaces.jsonl",
+      "size": 84913130,
+      "mtime": "2026-07-22T20:21:50.094Z",
+      "sha256": "08f868c813cb00d81a7c89a5d6522a2d4d7fba76eca442ee5dfe246a63c2db1b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/template-index.json",
+      "size": 142452,
+      "mtime": "2026-07-22T20:21:50.488Z",
+      "sha256": "810abbadf87e65eda5bc85d727bfffbfb0eeb1511675d64eec85c4ee363c8480"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/v1-finding-disposition-map.jsonl",
+      "size": 2905434,
+      "mtime": "2026-07-22T20:21:55.669Z",
+      "sha256": "974389319726837309acac45efe6931605b3181727c75d4ed52e3f6b9fb1afc1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v8/v1-finding-disposition-summary.json",
+      "size": 713,
+      "mtime": "2026-07-22T20:21:55.676Z",
+      "sha256": "368552f9ea8a082a248722f2365d0032c13e3a91a419141f2fbad6151755c035"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/brain1-guardian-classification-immutability-audit.json",
+      "size": 5799,
+      "mtime": "2026-07-22T20:50:27.773Z",
+      "sha256": "262acd31f47503c426c2a458f3ee98de350be69fe12fa18b7bcfcc10353ca710"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/findings.jsonl",
+      "size": 4148532,
+      "mtime": "2026-07-22T20:49:13.690Z",
+      "sha256": "0a054f6ee7e854f70d07caa5ccbf3a5ca8cc01c9dc92b1adcbfbb36d8233cc87"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/hashes.json",
+      "size": 893,
+      "mtime": "2026-07-22T20:49:18.957Z",
+      "sha256": "8ca816efbe6517ff9c442a80a905c29ec24372df043380f5361088394c9786e1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/identity-manifest.jsonl",
+      "size": 1024300,
+      "mtime": "2026-07-22T20:49:13.691Z",
+      "sha256": "8ef6aa77cb90ef4e782515d6828083c946d81979f4654a7fa02abff82581018d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/lane-separation.json",
+      "size": 354,
+      "mtime": "2026-07-22T20:48:17.141Z",
+      "sha256": "c80b25fd35fbe2b659409bf0fa63877c078d229aa0e0bdaca91aa50aee9bdbe2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/occurrence-map.jsonl",
+      "size": 8847535,
+      "mtime": "2026-07-22T20:49:13.973Z",
+      "sha256": "959b42d2523be1a2a7ac09ed469ff680ac7ddf39a499528971e3f6cd03bd4c6c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/progress-report.md",
+      "size": 865,
+      "mtime": "2026-07-22T20:49:18.958Z",
+      "sha256": "8f8b4d739868007f23d875add54ee99aaad2efdaac2224abefbb7c8db507ec62"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/review-batches/batch-001.json",
+      "size": 3050824,
+      "mtime": "2026-07-22T20:49:14.040Z",
+      "sha256": "3cd81ba45bf9ff142952691a1cf1f0935745d416ba36692984461ba6f8cbb58f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/review-batches/batch-002.json",
+      "size": 821628,
+      "mtime": "2026-07-22T20:49:14.053Z",
+      "sha256": "b3b9f4862991257e5550a71370be9612a1a73a50b080e5039da219dcc180be34"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/review-batches/batch-003.json",
+      "size": 497513,
+      "mtime": "2026-07-22T20:49:14.092Z",
+      "sha256": "ea3a89fbf4d43c2c2457e6dc97497f75ead7540385a0c212650ae8cb5e57544f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/review-batches/batch-004.json",
+      "size": 220251,
+      "mtime": "2026-07-22T20:49:14.097Z",
+      "sha256": "9980c1f6e9dd389e5ad7b2cd0b45393a186656ce62812e5e13991b163572c499"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/review-batches/batch-005.json",
+      "size": 121444,
+      "mtime": "2026-07-22T20:49:14.100Z",
+      "sha256": "deb195293afcfeed478d4a4431d55c1b9ab94fc074bdc90496224b26a6a16dee"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/review-batches/batch-006.json",
+      "size": 5682153,
+      "mtime": "2026-07-22T20:49:14.240Z",
+      "sha256": "0c7a085ee77e0d3951dd49cc8cc74dffd5f8e20ed6d0033ff3f7f2a71f1cfddb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/review-batches/batch-007.json",
+      "size": 746971,
+      "mtime": "2026-07-22T20:49:14.254Z",
+      "sha256": "6f23727bd492dd0657918880c1f4ca30545549c087150f4d997e20f8dbb7caed"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/review-batches/batch-008.json",
+      "size": 871610,
+      "mtime": "2026-07-22T20:49:14.283Z",
+      "sha256": "4d07d6f59f4d8f420a20408ab4aac273af611121933bfa154f7c5c00ce00a1dd"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/review-batches/batch-009.json",
+      "size": 261822,
+      "mtime": "2026-07-22T20:49:14.288Z",
+      "sha256": "7bd4b3a7b8a2b52ac7e308339ba4d583d5066274416bc41728433994409c5f30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/review-batches/batch-010.json",
+      "size": 73518,
+      "mtime": "2026-07-22T20:49:14.290Z",
+      "sha256": "dc43a7c85aaeae91646e5cffd44efff09d4c7fe1db08eb2d473714765e3c6efd"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/review-batches/INDEX.md",
+      "size": 614,
+      "mtime": "2026-07-22T20:49:14.292Z",
+      "sha256": "89cbceabe2da842661b8eb41f000854ef82ca510b6008bdda7b73a48fd71cf6a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/RUN-MANIFEST.json",
+      "size": 1824,
+      "mtime": "2026-07-22T20:48:17.146Z",
+      "sha256": "8db6b9d2a7409fcf39013cf6d4a048abebef3974a64c48fc4ebebfb9f114d9c7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/run-progress.json",
+      "size": 213728,
+      "mtime": "2026-07-22T20:49:18.961Z",
+      "sha256": "1958495f684bef903140c21f802d8555b7b15cffa58f7a01f8b26e1ded771e85"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/run-v9-evidence-pack.json",
+      "size": 126570,
+      "mtime": "2026-07-22T20:50:14.809Z",
+      "sha256": "75883c9210c1fc644a541b1b6d365f51b4e1269a71019a04678c050b76ca5574"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/STOP-FOR-CODEX.json",
+      "size": 2972,
+      "mtime": "2026-07-22T20:54:32.603Z",
+      "sha256": "83df8e8db24316fc9fc0f9eea25c0f7f4be50c252598856e617fae9b1d246e32"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/string-index.json",
+      "size": 190546,
+      "mtime": "2026-07-22T20:49:13.980Z",
+      "sha256": "98769990e5cdadb96a2bf17c1066a88a41406e0412858b865d51efa091613def"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/surfaces.jsonl",
+      "size": 86264433,
+      "mtime": "2026-07-22T20:49:13.689Z",
+      "sha256": "443d084efaabc80de0fcfffd89e0bf718e8b93716bf351156af939d2871fb833"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/template-index.json",
+      "size": 142534,
+      "mtime": "2026-07-22T20:49:13.985Z",
+      "sha256": "b2922f315639a3f2bfe0be4c1c46cb65d0cfb16be6f5b0b6de9efaadc05c9a8a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/v1-finding-disposition-map.jsonl",
+      "size": 2905434,
+      "mtime": "2026-07-22T20:49:17.467Z",
+      "sha256": "974389319726837309acac45efe6931605b3181727c75d4ed52e3f6b9fb1afc1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9/v1-finding-disposition-summary.json",
+      "size": 713,
+      "mtime": "2026-07-22T20:49:17.474Z",
+      "sha256": "368552f9ea8a082a248722f2365d0032c13e3a91a419141f2fbad6151755c035"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":200,"approved_band":"120-250","rule":"authentic need controls total; no padding"},
+  "planned_documents":[
+    {"id":"S01","structure":"open case summary, non-operative charges, chronology and disclosure issue map","pages":"12-18","purpose":"neutral orientation without sensitive detail leakage"},
+    {"id":"S02","structure":"core served statements, exhibits, CCTV/vehicle/phone registers and defence issue matrix","pages":"28-40","purpose":"carrier-case evidence and attribution context"},
+    {"id":"S03","structure":"MG6-series non-sensitive schedules, disclosure officer report and decision/service history","pages":"24-34","purpose":"item-level revelation, review, decision and continuity"},
+    {"id":"S04","structure":"sensitive schedules, intelligence provenance and controlled review log","pages":"18-28","purpose":"sensitivity, source, relevance and access states"},
+    {"id":"S05","structure":"defence statement, section 8/further-disclosure and third-party request/viewing records","pages":"20-30","purpose":"defence issues, requests, response and third-party lifecycle"},
+    {"id":"S06","structure":"PII application, open/closed materials, hearing records, rulings, redaction and gist history","pages":"25-38","purpose":"application/ruling/permitted-use and audience provenance"},
+    {"id":"S07","structure":"embedded-attachment/PDF-portfolio and digital-signature verification register","pages":"14-22","purpose":"parent/child enumeration and signature state without auto-execution"},
+    {"id":"S08","structure":"privilege, inadvertent-disclosure, quarantine, notification, clawback and waiver log","pages":"12-20","purpose":"zero-leak privilege lifecycle"},
+    {"id":"S09","structure":"late-disclosure, cross-matter isolation, hearing/deadline and trial-readiness records","pages":"20-30","purpose":"change control, contamination negatives and procedural timing"}
+  ],
+  "boundary":"Valid controlled files only. Malicious/polyglot/corrupt inputs and parser attacks remain the separate security harness."
+}

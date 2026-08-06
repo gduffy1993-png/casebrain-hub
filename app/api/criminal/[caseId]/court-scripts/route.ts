@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 
 export const runtime = "nodejs";
 
@@ -192,7 +193,7 @@ I submit the defendant is not guilty and should be acquitted.`,
       closingSubmissions,
     };
 
-    return NextResponse.json({ ok: true, data: scripts });
+    return gatedJsonResponse("api_court_scripts", { ok: true, data: scripts });
   } catch (error: any) {
     console.error("[court-scripts] Error:", error);
     return NextResponse.json(

@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "surface-field-census@1.0.0",
+  "basedOnFrozenPackets": 50,
+  "surfaces": [
+    {
+      "surfaceId": "court_line",
+      "count": 50,
+      "dispositions": {
+        "included_solicitor_visible": 50
+      },
+      "examplePointers": [
+        "/courtNote/text"
+      ]
+    },
+    {
+      "surfaceId": "court_line_blocked_reason",
+      "count": 50,
+      "dispositions": {
+        "included_structural_empty": 50
+      },
+      "examplePointers": [
+        "/courtNote/blockedReason"
+      ]
+    },
+    {
+      "surfaceId": "cps_chase_item",
+      "count": 240,
+      "dispositions": {
+        "included_solicitor_visible": 240
+      },
+      "examplePointers": [
+        "/warningsAndGaps/chaseItems/0/copySuggestion",
+        "/warningsAndGaps/chaseItems/0/label",
+        "/warningsAndGaps/chaseItems/1/copySuggestion"
+      ]
+    },
+    {
+      "surfaceId": "do_not_overstate",
+      "count": 328,
+      "dispositions": {
+        "included_solicitor_visible": 328
+      },
+      "examplePointers": [
+        "/warningsAndGaps/doNotOverstate/0",
+        "/warningsAndGaps/doNotOverstate/1",
+        "/warningsAndGaps/doNotOverstate/2"
+      ]
+    },
+    {
+      "surfaceId": "empty_array_section",
+      "count": 5,
+      "dispositions": {
+        "included_structural_empty": 5
+      },
+      "examplePointers": [
+        "/truthKeyComparison"
+      ]
+    },
+    {
+      "surfaceId": "evidence_state_row",
+      "count": 372,
+      "dispositions": {
+        "included_solicitor_visible": 322,
+        "included_structural_empty": 50
+      },
+      "examplePointers": [
+        "/evidenceStates/0/evidenceAnchor",
+        "/evidenceStates/0/existenceLabel",
+        "/evidenceStates/0/label"
+      ]
+    },
+    {
+      "surfaceId": "export_blocked_reason",
+      "count": 50,
+      "dispositions": {
+        "included_structural_empty": 50
+      },
+      "examplePointers": [
+        "/exportVersion/blockedReason"
+      ]
+    },
+    {
+      "surfaceId": "export_review_footer",
+      "count": 50,
+      "dispositions": {
+        "included_solicitor_visible": 50
+      },
+      "examplePointers": [
+        "/exportVersion/reviewFooter"
+      ]
+    },
+    {
+      "surfaceId": "export_sendability",
+      "count": 50,
+      "dispositions": {
+        "excluded_non_wording_machine_state": 50
+      },
+      "examplePointers": [
+        "/exportVersion/sendability"
+      ]
+    },
+    {
+      "surfaceId": "export_source_states",
+      "count": 200,
+      "dispositions": {
+        "excluded_non_wording_machine_state": 200
+      },
+      "examplePointers": [
+        "/exportVersion/sourceStatesIncluded/0",
+        "/exportVersion/sourceStatesIncluded/1",
+        "/exportVersion/sourceStatesIncluded/2"
+      ]
+    },
+    {
+      "surfaceId": "hard_rule",
+      "count": 250,
+      "dispositions": {
+        "included_solicitor_visible": 250
+      },
+      "examplePointers": [
+        "/warningsAndGaps/hardRules/0",
+        "/warningsAndGaps/hardRules/1",
+        "/warningsAndGaps/hardRules/2"
+      ]
+    },
+    {
+      "surfaceId": "internal_metadata",
+      "count": 500,
+      "dispositions": {
+        "excluded_internal_metadata": 500
+      },
+      "examplePointers": [
+        "/caseId",
+        "/exportVersion/appVersion",
+        "/exportVersion/bundleVersionLabel"
+      ]
+    },
+    {
+      "surfaceId": "machine_state_field",
+      "count": 2294,
+      "dispositions": {
+        "excluded_non_wording_machine_state": 2294
+      },
+      "examplePointers": [
+        "/courtNote/canCopy",
+        "/evidenceStates/0/baseStatus",
+        "/evidenceStates/0/inferredSourceState"
+      ]
+    },
+    {
+      "surfaceId": "matter_confidence",
+      "count": 100,
+      "dispositions": {
+        "included_solicitor_visible": 100
+      },
+      "examplePointers": [
+        "/matterConfidence/doNotRelyYetReason",
+        "/matterConfidence/label"
+      ]
+    },
+    {
+      "surfaceId": "matter_confidence_badge",
+      "count": 200,
+      "dispositions": {
+        "excluded_non_wording_machine_state": 200
+      },
+      "examplePointers": [
+        "/matterConfidence/sourceBadges/0",
+        "/matterConfidence/sourceBadges/1",
+        "/matterConfidence/sourceBadges/2"
+      ]
+    },
+    {
+      "surfaceId": "matter_confidence_status",
+      "count": 200,
+      "dispositions": {
+        "excluded_non_wording_machine_state": 200
+      },
+      "examplePointers": [
+        "/matterConfidence/chaseSendability",
+        "/matterConfidence/level",
+        "/matterConfidence/safeCourtLineStatus"
+      ]
+    },
+    {
+      "surfaceId": "sendability_label",
+      "count": 170,
+      "dispositions": {
+        "included_solicitor_visible": 170
+      },
+      "examplePointers": [
+        "/courtNote/sendabilityLabel",
+        "/warningsAndGaps/chaseItems/0/sendabilityLabel",
+        "/warningsAndGaps/chaseItems/1/sendabilityLabel"
+      ]
+    },
+    {
+      "surfaceId": "truth_comparison",
+      "count": 1580,
+      "dispositions": {
+        "excluded_truth_comparison": 1580
+      },
+      "examplePointers": [
+        "/truthKeyComparison/0/aligned",
+        "/truthKeyComparison/0/casebrainLabel",
+        "/truthKeyComparison/0/casebrainState"
+      ]
+    },
+    {
+      "surfaceId": "truth_map_row",
+      "count": 1748,
+      "dispositions": {
+        "included_solicitor_visible": 1748
+      },
+      "examplePointers": [
+        "/fiveAnswersEvidenceRows/0/label",
+        "/fiveAnswersEvidenceRows/0/note",
+        "/fiveAnswersEvidenceRows/1/label"
+      ]
+    }
+  ]
+}

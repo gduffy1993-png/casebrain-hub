@@ -1,0 +1,3496 @@
+{
+  "batchIndex": 1,
+  "humanReviewDisposition": null,
+  "items": [
+    {
+      "textHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-CHARGE-MODEL",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sc-0002d-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sc-0002d",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sc-0002d-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-120",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-120-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-120",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-120-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-250",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-250-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-250",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-250-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-345",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-345-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-345",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-345-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sc-00025-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sc-00025-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-104",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-104-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-104",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-104-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-373",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-373-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-373",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-373-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-377",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-377-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-377",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-377-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-321",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-321-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-321",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-321-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-182",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-182-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-182",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-182-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-224",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-224-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-224",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-224-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-222",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-222-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-222",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-222-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-190",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-190-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-190",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-190-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-142",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-142-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-142",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-142-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-018",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-018-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-018",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-018-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-055",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-055-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-055",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-055-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-172",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-172-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-172",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-172-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-048",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-048-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-048",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-048-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-063",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-063-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-063",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-063-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-038",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-038-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-038",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-038-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-017-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-017-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-014",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-014-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-014",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-014-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-015",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-015-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-015",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-015-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-020",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-020-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-020",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-020-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-007-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-007-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-073",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-073-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-073",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-073-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-138",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-138-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-138",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-138-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-265",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-265-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-265",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-265-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-072",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-072-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-072",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-072-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-387",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-387-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-387",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-387-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-128",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-128-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-128",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-128-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-332",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-332-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-332",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-332-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-329",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-329-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-329",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-329-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-198",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-198-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-198",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-198-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-337",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-337-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-337",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-337-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-366",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-366-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-366",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-366-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-336",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-336-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-336",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-336-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-286",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-286-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-286",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-286-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-199",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-199-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-199",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-199-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-354",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-354-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-354",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-354-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-145",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-145-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-145",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-145-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-257",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-257-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-257",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-257-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-245",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-245-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-245",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-245-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-395",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-395-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-395",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-395-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-271",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-271-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-271",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-271-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-389-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-389-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-360",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-360-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-360",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-360-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sc-0006a-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sc-0006a-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sc-0002e-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sc-0002e-packet-106cfa5e4856"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "allegation",
+          "findingId": "MAA-CHARGE-MODEL-allegation_missing-sim-024-allegation-7d7f71074fee"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "packet",
+          "findingId": "MAA-ACTION-QUALITY-actionability_gap-sim-024-packet-106cfa5e4856"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "1a7f216b760199532983669c7052b54f952a17a1aa8bb125fbe14eeccee9054f",
+      "templateHash": "037a84bf28e6263821a8e007d9e22bbcf218540bbcbeefffbba919329ab1f8a5",
+      "text": "=== SECTION: MG5 === · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-120",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-120-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-250",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-250-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-345",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-345-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-104",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-104-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-373",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-373-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-377",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-377-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-321",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-321-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-182",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-182-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-224",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-224-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-222",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-222-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-190",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-190-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-018",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-018-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-055",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sim-055-truth_map-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-172",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-172-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-048",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sim-048-truth_map-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-048",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-048-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-063",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-063-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-038",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-038-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-017-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-014",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-014-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-015",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-015-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-020",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-020-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-073",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sim-073-truth_map-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-199",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-199-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-354",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-354-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-145",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-145-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-257",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-257-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-245",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-245-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-1a7f216b7601"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-1a7f216b7601"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "739e914de2439ed654a5cd7a2b0ccf6a1cecefe39e1e7a7a1e578a553d3b46a2",
+      "templateHash": "42416043cbfce5ab0c5990e12953433a538eb04f9abbba6ab866cb48e334d13c",
+      "text": "Charge sheet | 1 | · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-120",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-120-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-250",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-250-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-345",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-345-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-104",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-104-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-373",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-373-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-377",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-377-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-321",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-321-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-182",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-182-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-224",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-224-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-222",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-222-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-190",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-190-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-018",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-018-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-172",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-172-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-048",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sim-048-truth_map-739e914de243"
+        },
+        {
+          "caseId": "sim-048",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-048-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-063",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-063-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-038",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-038-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-017-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-014",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-014-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-015",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-015-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-020",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-020-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-199",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-199-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-354",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-354-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-145",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-145-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-257",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-257-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-245",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-245-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-739e914de243"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-739e914de243"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5f9b5561108385db55cb3f95d9b5835a11c0849f3c3d89c0f7e729c42dd8433e",
+      "templateHash": "f40ce7ac9af6be7750f64bbc91dc6dfd9141b6afc8846d3566bdff1803e40a49",
+      "text": "MG5 case summary | 2-3 | · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-120",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-120-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-250",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-250-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-345",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-345-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-104",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-104-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-373",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-373-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-377",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-377-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-321",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-321-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-182",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-182-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-224",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-224-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-222",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-222-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-190",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-190-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-018",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-018-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-172",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-172-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-048",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-048-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-063",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-063-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-038",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sim-038-truth_map-5f9b55611083"
+        },
+        {
+          "caseId": "sim-038",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-038-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-017-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-014",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-014-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-015",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-015-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-020",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-020-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-199",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-199-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-354",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-354-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-145",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-145-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-257",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-257-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-245",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-245-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-5f9b55611083"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-5f9b55611083"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "6812db658901e0350ac458275b8817772e47faeea6c1eadc2830954bca5cec7b",
+      "templateHash": "de5d21575558085031fb6a5543c7fe8c74016641b63e4ff83bcb4d1f579c65a8",
+      "text": "Statement of Offence: · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-120",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-120-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-250",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-250-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-345",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-345-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-104",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-104-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-373",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-373-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-377",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-377-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-321",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-321-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-182",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-182-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-224",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-224-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-222",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-222-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-190",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-190-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-018",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-018-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-172",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-172-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-048",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-048-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-063",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-063-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-038",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-038-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-017-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-014",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-014-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-015",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-015-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-020",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-020-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-199",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-199-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-354",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-354-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-145",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-145-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-257",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-257-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-245",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-245-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-6812db658901"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-6812db658901"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "8b8748d5cebc3bda0a13777a2441eeb413b0e8bd5afc49dd39a61ebc492bf22b",
+      "templateHash": "6a476bee799789a26c4161db42792f40f2d675ee6270881f60d75aca11a2caf0",
+      "text": "=== SECTION: MG11 === · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-120",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-120-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-250",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-250-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-345",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-345-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-104",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-104-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-373",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-373-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-377",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-377-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-321",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-321-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-224",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-224-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-222",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-222-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-190",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-190-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-018",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-018-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-172",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-172-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-017-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-014",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-014-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-015",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-015-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-020",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-020-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-199",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-199-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-354",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-354-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-257",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-257-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-8b8748d5cebc"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-8b8748d5cebc"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a3893194365620581ab10c53c84322176256ddc8502ae00c37fb22d53e8e094a",
+      "templateHash": "a99fcf7b6e0e5d32982e45887f3161eac65db60b21576cf32a4fb2f62eb231c9",
+      "text": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-345",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-345-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-104",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-104-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-373",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-373-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-377",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-377-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-182",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-182-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-224",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-224-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-222",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-222-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-190",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-190-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-172",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-172-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-038",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-038-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-145",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-145-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-245",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-245-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-a38931943656"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-a38931943656"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "f3065f14935baefa0afefdb4873d26bcaf0ef4df5d9a04dac622b4f29b78b79e",
+      "templateHash": "f38207a5368819f08e52e2fd781618ff60d0efb6c1d200a1fc64b3c0b8952d24",
+      "text": "Between 1 January 2026 and 28 February 2026 at Northgate Magistrates Court — particulars per MG5. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-120",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-120-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-250",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-250-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-018",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-018-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-017-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-014",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-014-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-015",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-015-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-020",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-020-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-199",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-199-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-354",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-354-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-257",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-257-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-f3065f14935b"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-f3065f14935b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "79931e3f8072c1cc9e64d4ba7e7d6e310b70b05f078f099cc1e32dc2c1d074a1",
+      "templateHash": "f747993ae0847b2daa43e14084058141de1304d8d6c558bfc5ff0faf636db066",
+      "text": "MG11 — COMPLAINANT/WITNESS STATEMENT · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-120",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-120-disclosure_chase-79931e3f8072"
+        },
+        {
+          "caseId": "sim-250",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-250-disclosure_chase-79931e3f8072"
+        },
+        {
+          "caseId": "sim-345",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-345-disclosure_chase-79931e3f8072"
+        },
+        {
+          "caseId": "sim-321",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-321-disclosure_chase-79931e3f8072"
+        },
+        {
+          "caseId": "sim-224",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-224-disclosure_chase-79931e3f8072"
+        },
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-79931e3f8072"
+        },
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-79931e3f8072"
+        },
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-79931e3f8072"
+        },
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-79931e3f8072"
+        },
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-79931e3f8072"
+        },
+        {
+          "caseId": "sim-199",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-199-disclosure_chase-79931e3f8072"
+        },
+        {
+          "caseId": "sim-354",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-354-disclosure_chase-79931e3f8072"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-79931e3f8072"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "14bc79198358af673fe51bbb1488351177370f040c6debbe5d274eb54c0c32f3",
+      "templateHash": "ac98de6b5aec17a45c2a38d4102452f913bfeabc8bc31ed8c3804fc744ea5cb2",
+      "text": "MG5 · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-321",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-321-disclosure_chase-14bc79198358"
+        },
+        {
+          "caseId": "sim-222",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-222-disclosure_chase-14bc79198358"
+        },
+        {
+          "caseId": "sim-063",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sim-063-truth_map-14bc79198358"
+        },
+        {
+          "caseId": "sim-063",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-063-disclosure_chase-14bc79198358"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-017-disclosure_chase-14bc79198358"
+        },
+        {
+          "caseId": "sim-014",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-014-disclosure_chase-14bc79198358"
+        },
+        {
+          "caseId": "sim-020",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-020-disclosure_chase-14bc79198358"
+        },
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-14bc79198358"
+        },
+        {
+          "caseId": "sim-072",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sim-072-truth_map-14bc79198358"
+        },
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-14bc79198358"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-14bc79198358"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "267b088a7525388182a3a7cd3c16678e0e03ea102d632e363872ee822a8110c2",
+      "templateHash": "b530812df239a30103a10cac8a8e3df5abb09bb0f8e037ad0bb8519e31438131",
+      "text": "MG6 · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-321",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-321-disclosure_chase-267b088a7525"
+        },
+        {
+          "caseId": "sim-222",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-222-disclosure_chase-267b088a7525"
+        },
+        {
+          "caseId": "sim-063",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-063-disclosure_chase-267b088a7525"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-017-disclosure_chase-267b088a7525"
+        },
+        {
+          "caseId": "sim-014",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-014-disclosure_chase-267b088a7525"
+        },
+        {
+          "caseId": "sim-020",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-020-disclosure_chase-267b088a7525"
+        },
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-267b088a7525"
+        },
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-267b088a7525"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-267b088a7525"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "52530487949d6cb184abb473a08d83fcc440bb4a4181dc43f9118d54e0ffa6ab",
+      "templateHash": "52530487949d6cb184abb473a08d83fcc440bb4a4181dc43f9118d54e0ffa6ab",
+      "text": "source evidence behind allegation · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-321",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-321-disclosure_chase-52530487949d"
+        },
+        {
+          "caseId": "sim-222",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-222-disclosure_chase-52530487949d"
+        },
+        {
+          "caseId": "sim-063",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-063-disclosure_chase-52530487949d"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-017-disclosure_chase-52530487949d"
+        },
+        {
+          "caseId": "sim-014",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-014-disclosure_chase-52530487949d"
+        },
+        {
+          "caseId": "sim-020",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-020-disclosure_chase-52530487949d"
+        },
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-52530487949d"
+        },
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-52530487949d"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-52530487949d"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "28623e5a39e246c714cbfbc1151f076ad8056ff677bb6cb7c0150ecf4a5e6074",
+      "templateHash": "e84cc64d59bf0bc00eb8343d7a4e4f5546569e64c055761cbc700c1fdeb2228b",
+      "text": "3. **MG5** — partial on export · incomplete · needs_review",
+      "verdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sc-0002d-truth_map-28623e5a39e2"
+        },
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-28623e5a39e2"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sc-00025-truth_map-28623e5a39e2"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-28623e5a39e2"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-28623e5a39e2"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-28623e5a39e2"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-28623e5a39e2"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-28623e5a39e2"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "c87b47b391cb2ce2c6dc5517ab3614b93c046f366bc30668418224e599ce58ba",
+      "templateHash": "cb5eb887b7ce1b2eb0be017e9223c224e736ba538544861430412d0202b79aae",
+      "text": "MG11 — COMPLAINANT STATEMENT · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-018",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-018-disclosure_chase-c87b47b391cb"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-017-disclosure_chase-c87b47b391cb"
+        },
+        {
+          "caseId": "sim-014",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-014-disclosure_chase-c87b47b391cb"
+        },
+        {
+          "caseId": "sim-015",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-015-disclosure_chase-c87b47b391cb"
+        },
+        {
+          "caseId": "sim-020",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-020-disclosure_chase-c87b47b391cb"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-c87b47b391cb"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-c87b47b391cb"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "9a87690303f4bfe9df61fb6d51f6d65c1eb962e923498c71b21f5ed9bbe0b226",
+      "templateHash": "9a87690303f4bfe9df61fb6d51f6d65c1eb962e923498c71b21f5ed9bbe0b226",
+      "text": "lab report · missing · needs_review",
+      "verdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-120",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sim-120-truth_map-9a87690303f4"
+        },
+        {
+          "caseId": "sim-120",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-120-disclosure_chase-9a87690303f4"
+        },
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-9a87690303f4"
+        },
+        {
+          "caseId": "sim-172",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-172-disclosure_chase-9a87690303f4"
+        },
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-9a87690303f4"
+        },
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-9a87690303f4"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "573bd06a62beabb2819fbb911f7dceaa5093ac4296bf2756d0a5cedecace498e",
+      "templateHash": "573bd06a62beabb2819fbb911f7dceaa5093ac4296bf2756d0a5cedecace498e",
+      "text": "full phone extraction · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-224",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-224-disclosure_chase-573bd06a62be"
+        },
+        {
+          "caseId": "sim-038",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-038-disclosure_chase-573bd06a62be"
+        },
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-573bd06a62be"
+        },
+        {
+          "caseId": "sim-245",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-245-disclosure_chase-573bd06a62be"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-573bd06a62be"
+        },
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-573bd06a62be"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "50011adca113b02001eb2613d4722d1691b55b66fb593836d808a1485c2fdd59",
+      "templateHash": "50011adca113b02001eb2613d4722d1691b55b66fb593836d808a1485c2fdd59",
+      "text": "metadata/source download · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-224",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-224-disclosure_chase-50011adca113"
+        },
+        {
+          "caseId": "sim-038",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-038-disclosure_chase-50011adca113"
+        },
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-50011adca113"
+        },
+        {
+          "caseId": "sim-245",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-245-disclosure_chase-50011adca113"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-50011adca113"
+        },
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-50011adca113"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "24b67cd5b927a894a0079a0d2d6e86cb86e7467314308cee5e19dfcf9b554629",
+      "templateHash": "24b67cd5b927a894a0079a0d2d6e86cb86e7467314308cee5e19dfcf9b554629",
+      "text": "device continuity · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-224",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-224-disclosure_chase-24b67cd5b927"
+        },
+        {
+          "caseId": "sim-038",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-038-disclosure_chase-24b67cd5b927"
+        },
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-24b67cd5b927"
+        },
+        {
+          "caseId": "sim-245",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-245-disclosure_chase-24b67cd5b927"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-24b67cd5b927"
+        },
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-24b67cd5b927"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b12de1773cf59075a6ebc7b5877d7b7e66da326ac31507f94203e0e476c9bfb5",
+      "templateHash": "55d4246bf27a0b879b532c40e66692ddfb0745babfa4f347ff7e4a561c78e068",
+      "text": "Witness account on file — attribution and context require review. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-018",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-018-disclosure_chase-b12de1773cf5"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-017-disclosure_chase-b12de1773cf5"
+        },
+        {
+          "caseId": "sim-014",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-014-disclosure_chase-b12de1773cf5"
+        },
+        {
+          "caseId": "sim-015",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-015-disclosure_chase-b12de1773cf5"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-b12de1773cf5"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-b12de1773cf5"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "604ed6bb1d39fd29613ce0a4d0167d81b35dfe63edf3d6a4639c31d48b6850b6",
+      "templateHash": "6634a18b9cbae78aae53c361900e18c6be7063e84ff2001d7e5063863918b97c",
+      "text": "Provisional pending disclosure · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-018",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-018-disclosure_chase-604ed6bb1d39"
+        },
+        {
+          "caseId": "sim-017",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-017-disclosure_chase-604ed6bb1d39"
+        },
+        {
+          "caseId": "sim-015",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-015-disclosure_chase-604ed6bb1d39"
+        },
+        {
+          "caseId": "sim-020",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-020-disclosure_chase-604ed6bb1d39"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-604ed6bb1d39"
+        },
+        {
+          "caseId": "sim-024",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-024-disclosure_chase-604ed6bb1d39"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a21728817d677472e3497852968a5361b3e4a391de2d80f78a8ef93f6c600d02",
+      "templateHash": "409d421b6f57582dd58054a048934d313ba20e2cf8b374850ef093f8fa9e6cf5",
+      "text": "5. **MG11 officer** — partial on export · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-a21728817d67"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sc-00025-truth_map-a21728817d67"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-a21728817d67"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-a21728817d67"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-a21728817d67"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ee7606bca2a98de387fb791534577a7b312e24eecd4971ab2860d843ccbc6a20",
+      "templateHash": "ee7606bca2a98de387fb791534577a7b312e24eecd4971ab2860d843ccbc6a20",
+      "text": "drug continuity · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-120",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-120-disclosure_chase-ee7606bca2a9"
+        },
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-ee7606bca2a9"
+        },
+        {
+          "caseId": "sim-172",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-172-disclosure_chase-ee7606bca2a9"
+        },
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-ee7606bca2a9"
+        },
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-ee7606bca2a9"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "3a16289a5f5960f45944ebbc3d2063a42d930ff0074a6264f173a09b30430bc3",
+      "templateHash": "3a16289a5f5960f45944ebbc3d2063a42d930ff0074a6264f173a09b30430bc3",
+      "text": "phone download · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-120",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-120-disclosure_chase-3a16289a5f59"
+        },
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-3a16289a5f59"
+        },
+        {
+          "caseId": "sim-172",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-172-disclosure_chase-3a16289a5f59"
+        },
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-3a16289a5f59"
+        },
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-3a16289a5f59"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "e18e341e352f969bc9cab8ee929decea3e667f9d13ee7443d89042ad896116ac",
+      "templateHash": "e18e341e352f969bc9cab8ee929decea3e667f9d13ee7443d89042ad896116ac",
+      "text": "search record · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-120",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-120-disclosure_chase-e18e341e352f"
+        },
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-e18e341e352f"
+        },
+        {
+          "caseId": "sim-172",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-172-disclosure_chase-e18e341e352f"
+        },
+        {
+          "caseId": "sim-329",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-329-disclosure_chase-e18e341e352f"
+        },
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-e18e341e352f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "407f96cb25ba99b39a42cf4793ae58306e0c3341d3073d281abcf137d6a2a936",
+      "templateHash": "d7866dcbffa9c2802ea21029e067b6b34a63e2659ff957720a0edafbb9ba8c21",
+      "text": "full BWV · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-377",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-377-disclosure_chase-407f96cb25ba"
+        },
+        {
+          "caseId": "sim-182",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-182-disclosure_chase-407f96cb25ba"
+        },
+        {
+          "caseId": "sim-190",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-190-disclosure_chase-407f96cb25ba"
+        },
+        {
+          "caseId": "sim-018",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-018-disclosure_chase-407f96cb25ba"
+        },
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-407f96cb25ba"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "c63d02b0c4454d1e72aba71e1fc06d05fbe15f4b5312d56290320b1126e4e771",
+      "templateHash": "d57b5cb15b51c228c53b50e283fa49108cb77c045dce36d9d72ad1285e8fd128",
+      "text": "BWV continuity · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-377",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-377-disclosure_chase-c63d02b0c445"
+        },
+        {
+          "caseId": "sim-182",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-182-disclosure_chase-c63d02b0c445"
+        },
+        {
+          "caseId": "sim-190",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-190-disclosure_chase-c63d02b0c445"
+        },
+        {
+          "caseId": "sim-018",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-018-disclosure_chase-c63d02b0c445"
+        },
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-c63d02b0c445"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "2c328aba280c96d1b29b545eab40304e3ee0f6aa5e601e189e1a9fedbfcc9e21",
+      "templateHash": "2c328aba280c96d1b29b545eab40304e3ee0f6aa5e601e189e1a9fedbfcc9e21",
+      "text": "officer notes · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-377",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-377-disclosure_chase-2c328aba280c"
+        },
+        {
+          "caseId": "sim-182",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-182-disclosure_chase-2c328aba280c"
+        },
+        {
+          "caseId": "sim-190",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-190-disclosure_chase-2c328aba280c"
+        },
+        {
+          "caseId": "sim-018",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-018-disclosure_chase-2c328aba280c"
+        },
+        {
+          "caseId": "sim-271",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-271-disclosure_chase-2c328aba280c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "c8f3e39c3e3376a62b33632a463400a0debc0a857b0aa91c6ed90f5f219fb389",
+      "templateHash": "c8f3e39c3e3376a62b33632a463400a0debc0a857b0aa91c6ed90f5f219fb389",
+      "text": "999 summary without audio recording — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0002d-truth_map-c8f3e39c3e33"
+        },
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-c8f3e39c3e33"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0006a-truth_map-c8f3e39c3e33"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-c8f3e39c3e33"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "1f46a43373a852f2f39075b2ba2be73a898aef975ae6b2f387b1297552774b55",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sc-0002d-truth_map-1f46a43373a8"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sc-00025-truth_map-1f46a43373a8"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sc-0006a-truth_map-1f46a43373a8"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sc-0002e-truth_map-1f46a43373a8"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "513f3661910ce0bf3fdd507443a4eff3cc2abe745ead73d9f6d782940b1614dd",
+      "templateHash": "a2367aee52e7a09afe59b11867caa4f86a8b32182b9492632b89b37c555e02a3",
+      "text": "## Disclosure chase (outstanding on export) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-513f3661910c"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-513f3661910c"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-513f3661910c"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-513f3661910c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "27b520510c2730fced65f47bd822071688562d130d2f16afe5b14e8acc963e13",
+      "templateHash": "27b520510c2730fced65f47bd822071688562d130d2f16afe5b14e8acc963e13",
+      "text": "medical report · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-250",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-250-disclosure_chase-27b520510c27"
+        },
+        {
+          "caseId": "sim-345",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-345-disclosure_chase-27b520510c27"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-27b520510c27"
+        },
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-27b520510c27"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "1eb12f9d9bcd1ab4807e12e01aa7b356883dbd12a6b2a89c0abeda7b394aaf1b",
+      "templateHash": "e2658aa09087cb38d054dccd96f5aa398bb0241283a31b4d8fc00b4905d24d3b",
+      "text": "CCTV/BWV · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-250",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-250-disclosure_chase-1eb12f9d9bcd"
+        },
+        {
+          "caseId": "sim-345",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-345-disclosure_chase-1eb12f9d9bcd"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-1eb12f9d9bcd"
+        },
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-1eb12f9d9bcd"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "9af755ed45940b56b38ecca10347be4465e0f424355adae7749bd2a8f40feefe",
+      "templateHash": "8e8049379f00c6ebc8d699aa6249c7a25901a60bd374764b0580fbfca3f3a2c6",
+      "text": "MG11 statements · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-250",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-250-disclosure_chase-9af755ed4594"
+        },
+        {
+          "caseId": "sim-345",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-345-disclosure_chase-9af755ed4594"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-9af755ed4594"
+        },
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-9af755ed4594"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "09d5667e16cedaa949418c13c6788182ef6486c56a261e8ad8cddc12a38a0c31",
+      "templateHash": "5e96ae1f644aa7794c54e08264fdc602138df4724facb4961006f6a34cfe5f94",
+      "text": "999/CAD · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-250",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-250-disclosure_chase-09d5667e16ce"
+        },
+        {
+          "caseId": "sim-345",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-345-disclosure_chase-09d5667e16ce"
+        },
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-09d5667e16ce"
+        },
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-09d5667e16ce"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "f56ec44d46b0e496715c963b7507209b640e1a2f5a93198afa722c8c3c761097",
+      "templateHash": "f56ec44d46b0e496715c963b7507209b640e1a2f5a93198afa722c8c3c761097",
+      "text": "unused disclosure · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-104",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-104-disclosure_chase-f56ec44d46b0"
+        },
+        {
+          "caseId": "sim-048",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-048-disclosure_chase-f56ec44d46b0"
+        },
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-f56ec44d46b0"
+        },
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-f56ec44d46b0"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "2e3540f22f128e174ed2e1b74750632c105ff977e77964c0349e5dc0c5313c3d",
+      "templateHash": "2e3540f22f128e174ed2e1b74750632c105ff977e77964c0349e5dc0c5313c3d",
+      "text": "medical/forensic material · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-104",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-104-disclosure_chase-2e3540f22f12"
+        },
+        {
+          "caseId": "sim-048",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-048-disclosure_chase-2e3540f22f12"
+        },
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-2e3540f22f12"
+        },
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-2e3540f22f12"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "026dff70e742936f9fcb64118910b380cb9580cf172599173bea7872e8b3f2da",
+      "templateHash": "026dff70e742936f9fcb64118910b380cb9580cf172599173bea7872e8b3f2da",
+      "text": "device records · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-026dff70e742"
+        },
+        {
+          "caseId": "sim-199",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-199-disclosure_chase-026dff70e742"
+        },
+        {
+          "caseId": "sim-257",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-257-disclosure_chase-026dff70e742"
+        },
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-026dff70e742"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "50ec96db424590cf76a4f79c56ba9ed701736dbd01dd39c144cfa93c2b5de913",
+      "templateHash": "50ec96db424590cf76a4f79c56ba9ed701736dbd01dd39c144cfa93c2b5de913",
+      "text": "calibration · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-50ec96db4245"
+        },
+        {
+          "caseId": "sim-199",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-199-disclosure_chase-50ec96db4245"
+        },
+        {
+          "caseId": "sim-257",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-257-disclosure_chase-50ec96db4245"
+        },
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-50ec96db4245"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ada2b79ba415a0436994611c8fd9c5982a6070b4315d55cec749f052672c83a6",
+      "templateHash": "314780192fbc08f205dbc407ca88b62a82315306e823a60982a9cea0ad23f430",
+      "text": "bodycam/CCTV · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-ada2b79ba415"
+        },
+        {
+          "caseId": "sim-199",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-199-disclosure_chase-ada2b79ba415"
+        },
+        {
+          "caseId": "sim-257",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-257-disclosure_chase-ada2b79ba415"
+        },
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-ada2b79ba415"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "9c3dcf5a10ce9dcf622a0eae83fb7b4f04e4d14a421a0f1746e9e7df1ebb4d48",
+      "templateHash": "9c3dcf5a10ce9dcf622a0eae83fb7b4f04e4d14a421a0f1746e9e7df1ebb4d48",
+      "text": "procedure logs · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-9c3dcf5a10ce"
+        },
+        {
+          "caseId": "sim-199",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-199-disclosure_chase-9c3dcf5a10ce"
+        },
+        {
+          "caseId": "sim-257",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-257-disclosure_chase-9c3dcf5a10ce"
+        },
+        {
+          "caseId": "sim-395",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-395-disclosure_chase-9c3dcf5a10ce"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "9ec190bb882cb6ffbe950e1ececf2a457331086e49196ce598002c91b44aaf25",
+      "templateHash": "df0668c0fb8be15d6b671c53ac3c9df97c62fe8289af544a872a91881803517d",
+      "text": "CCTV export and continuity — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0006a",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0006a-truth_map-9ec190bb882c"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-9ec190bb882c"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0002e-truth_map-9ec190bb882c"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-9ec190bb882c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "97ea0d1315144d52693495a857b861bc07e8c6d6aef13262e1ee2aa382040113",
+      "templateHash": "e1d8e784733e8413dbab90fdb693aaa63a7bef773d6058fe77b9cea404e3ca67",
+      "text": "Full 999/CAD — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0006a",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0006a-truth_map-97ea0d131514"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-97ea0d131514"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0002e-truth_map-97ea0d131514"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-97ea0d131514"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "8fd424c2996cd912d153b213f8ee5a3d15cbf690d6d4904c4956442a263759ab",
+      "templateHash": "19a6cf6d769620d6088763a163d54612dd205aadd4fe33f494225a66f82079c7",
+      "text": "Medical / expert source report · missing · needs_review",
+      "verdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0006a",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-8fd424c2996c"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-8fd424c2996c"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-8fd424c2996c"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-8fd424c2996c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "02fb5f2a8e8fafd86d515dd24645798d2a1ef0ccb16c2765d82eb67f4460cec2",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sc-0002d-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sc-0006a-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sc-0002e-truth_map-02fb5f2a8e8f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "e30b96d9a0ed75637b5ebd102217985b213362b5754c2fafcc0b521f45f6f2e1",
+      "templateHash": "7464c527201e968ab61a75f7152bab0515b3208f97e67b7067a06cbc023ba530",
+      "text": "*Source section:** Charge sheet / MG5 / witness material · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-e30b96d9a0ed"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-e30b96d9a0ed"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-e30b96d9a0ed"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "952a08beb72a27f98060b00544a77f6f464d0baf6f41041ff01123ee6baca656",
+      "templateHash": "56772dd45184c6d5122e45e1fc36baa9218042757c0527018610bb5e11f58dd6",
+      "text": "Prosecution summary on current papers remains provisional. Core identification, attribution, and continuity material may be outstanding. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-952a08beb72a"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-952a08beb72a"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-952a08beb72a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "8e8ce0c9bb4b8cdc023bb840b2fe4a6f0d381bf6d7ea96889ab91d68e955ac7f",
+      "templateHash": "8e8ce0c9bb4b8cdc023bb840b2fe4a6f0d381bf6d7ea96889ab91d68e955ac7f",
+      "text": "full custody record · missing · needs_review",
+      "verdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sim-055-truth_map-8e8ce0c9bb4b"
+        },
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-8e8ce0c9bb4b"
+        },
+        {
+          "caseId": "sim-145",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-145-disclosure_chase-8e8ce0c9bb4b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ba00f26a0f52cede30badcde19ddc9d5c7d6f094feadce7ea97d795a011493eb",
+      "templateHash": "7cfe7aeb291fdd79b6d1d58e46a5beef12486c3af47e4e3d2d32e2047c5112fd",
+      "text": "MG6C/INT — interview recording — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sim-055-truth_map-ba00f26a0f52"
+        },
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-ba00f26a0f52"
+        },
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-ba00f26a0f52"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "159fd05e6cd95ec29becc3f7566ffb5e4e69e103477cd1a20d75cab173c94b81",
+      "templateHash": "775ccfc946508876182ebe340fba0d5690e21e764464baa58b4fa96dd2f2a036",
+      "text": "MG6C/FUL — full custody record — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-159fd05e6cd9"
+        },
+        {
+          "caseId": "sim-073",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sim-073-truth_map-159fd05e6cd9"
+        },
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-159fd05e6cd9"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "6ddcf68bb530b33c7d0cc5bdba0fa73cd30b40946294342a556533b6b3e3d298",
+      "templateHash": "6ddcf68bb530b33c7d0cc5bdba0fa73cd30b40946294342a556533b6b3e3d298",
+      "text": "bank records · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-015",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-015-disclosure_chase-6ddcf68bb530"
+        },
+        {
+          "caseId": "sim-128",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-128-disclosure_chase-6ddcf68bb530"
+        },
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-6ddcf68bb530"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    }
+  ]
+}

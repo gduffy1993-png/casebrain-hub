@@ -4,6 +4,9 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: "25mb",
     },
+    // Next.js 14: keep pdfkit (and AFM font data) outside the webpack server
+    // chunk so Helvetica.afm resolves from node_modules/pdfkit/js/data at runtime.
+    serverComponentsExternalPackages: ["pdfkit"],
   },
   images: {
     remotePatterns: [

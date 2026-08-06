@@ -10,6 +10,7 @@ export type SourceStateKind =
   | "served"
   | "referred_only"
   | "missing"
+  | "incomplete"
   | "not_safely_confirmed"
   | "provisional"
   | "needs_review";

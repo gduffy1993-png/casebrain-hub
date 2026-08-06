@@ -1,0 +1,77 @@
+{
+  "goldId": "GOLD-11-017",
+  "surfaces": [
+    {
+      "surface": "case_header",
+      "label": "Case header",
+      "solicitorVisibleText": "Client: Jordan Hale\nAllegation: Battery, contrary to section 39 of the Criminal Justice Act 1988",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual packet CASE-08 actual-summary (controlled fictional bundle)."
+    },
+    {
+      "surface": "court_line",
+      "label": "Court line",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual packet CASE-08 actual-summary (controlled fictional bundle)."
+    },
+    {
+      "surface": "client_summary",
+      "label": "Client-safe summary",
+      "solicitorVisibleText": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Jordan Hale). This is early-stage — nothing is final until we have full disclosure and your instructions. The live issue is whether the charge wording, the MG5 offence summary, and the court listing/hearing position line up. Until those are aligned and confirmed, treat the charge/listing position as provisional — do not assume the papers already fix the offence wording or hearing date.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual packet CASE-08 actual-summary (controlled fictional bundle)."
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Corrected charge sheet",
+      "solicitorVisibleText": "Please provide corrected charge sheet or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual packet CASE-08 actual-summary (controlled fictional bundle)."
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Updated MG5",
+      "solicitorVisibleText": "Please provide updated MG5 or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual packet CASE-08 actual-summary (controlled fictional bundle)."
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Court listing confirmation",
+      "solicitorVisibleText": "Please provide court listing confirmation or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual packet CASE-08 actual-summary (controlled fictional bundle)."
+    },
+    {
+      "surface": "truth_map",
+      "label": "Evidence truth map",
+      "solicitorVisibleText": "• Witness MG11 — not_safely_confirmed\n• Custody extract — not_safely_confirmed\n• Corrected charge sheet — missing\n• Updated MG5 — missing\n• Court listing confirmation — missing",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual packet CASE-08 actual-summary (controlled fictional bundle)."
+    },
+    {
+      "surface": "do_not_overstate",
+      "label": "Do-not-overstate warnings",
+      "solicitorVisibleText": "• unsafe proof/outcome wording blocked\n• Do not treat draft/unsigned MG11 as a final served statement.",
+      "gateStatus": "warning",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual packet CASE-08 actual-summary (controlled fictional bundle)."
+    }
+  ]
+}

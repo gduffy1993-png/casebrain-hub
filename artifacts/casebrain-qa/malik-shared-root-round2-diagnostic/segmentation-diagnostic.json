@@ -1,0 +1,1252 @@
+{
+  "pdf": "output/pdf/malik-price-150-page/generation-v2/malik-price-generation-v2-compiled-150-page-bundle.pdf",
+  "physicalPageUnits": 150,
+  "pageCount": 150,
+  "currentSegmentCount": 21,
+  "identitySupportedSegments": 21,
+  "boundaryCandidates": [
+    {
+      "compiledPage": 1,
+      "title": "DIGITAL CASE SYSTEM - PROSECUTION CASE PAPERS",
+      "type": "bundle_index",
+      "printedSource": 1,
+      "headerPreview": "NORTHGATE CROWN COURT | DIGITAL CASE SYSTEM - PROSECUTION CASE PAPERS | R | - v -"
+    },
+    {
+      "compiledPage": 2,
+      "title": "Bundle index and document control",
+      "type": "bundle_index",
+      "printedSource": 1,
+      "headerPreview": "NORTHGATE CROWN COURTT202600417 | NG/4417/26 | Bundle index and document control | R v Malik Hassan and Jordan Price | source page 1 of 5OFFICIAL - COURT/CASE U"
+    },
+    {
+      "compiledPage": 3,
+      "title": "Bundle index and document control",
+      "type": "bundle_index",
+      "printedSource": 2,
+      "headerPreview": "NORTHGATE CROWN COURTT202600417 | NG/4417/26 | Bundle index and document control | R v Malik Hassan and Jordan Price | source page 2 of 5OFFICIAL - COURT/CASE U"
+    },
+    {
+      "compiledPage": 4,
+      "title": "Bundle index and document control",
+      "type": "bundle_index",
+      "printedSource": 3,
+      "headerPreview": "NORTHGATE CROWN COURTT202600417 | NG/4417/26 | Bundle index and document control | R v Malik Hassan and Jordan Price | source page 3 of 5OFFICIAL - COURT/CASE U"
+    },
+    {
+      "compiledPage": 5,
+      "title": "Bundle index and document control",
+      "type": "bundle_index",
+      "printedSource": 4,
+      "headerPreview": "NORTHGATE CROWN COURTT202600417 | NG/4417/26 | Bundle index and document control | R v Malik Hassan and Jordan Price | source page 4 of 5OFFICIAL - COURT/CASE U"
+    },
+    {
+      "compiledPage": 6,
+      "title": "Bundle index and document control",
+      "type": "bundle_index",
+      "printedSource": 5,
+      "headerPreview": "NORTHGATE CROWN COURTT202600417 | NG/4417/26 | Bundle index and document control | R v Malik Hassan and Jordan Price | source page 5 of 5OFFICIAL - COURT/CASE U"
+    },
+    {
+      "compiledPage": 7,
+      "title": "MG5 - Offence report / case summary",
+      "type": "offence_report",
+      "printedSource": 1,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL CASE FILET202600417 | NG/4417/26 | MG5 - Offence report / case summary | R v Malik Hassan and Jordan Price | source page 1 of 7"
+    },
+    {
+      "compiledPage": 8,
+      "title": "MG5 - Offence report / case summary",
+      "type": "offence_report",
+      "printedSource": 2,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL CASE FILET202600417 | NG/4417/26 | MG5 - Offence report / case summary | R v Malik Hassan and Jordan Price | source page 2 of 7"
+    },
+    {
+      "compiledPage": 9,
+      "title": "MG5 - Offence report / case summary",
+      "type": "offence_report",
+      "printedSource": 3,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL CASE FILET202600417 | NG/4417/26 | MG5 - Offence report / case summary | R v Malik Hassan and Jordan Price | source page 3 of 7"
+    },
+    {
+      "compiledPage": 10,
+      "title": "MG5 - Offence report / case summary",
+      "type": "offence_report",
+      "printedSource": 4,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL CASE FILET202600417 | NG/4417/26 | MG5 - Offence report / case summary | R v Malik Hassan and Jordan Price | source page 4 of 7"
+    },
+    {
+      "compiledPage": 11,
+      "title": "MG5 - Offence report / case summary",
+      "type": "offence_report",
+      "printedSource": 5,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL CASE FILET202600417 | NG/4417/26 | MG5 - Offence report / case summary | R v Malik Hassan and Jordan Price | source page 5 of 7"
+    },
+    {
+      "compiledPage": 12,
+      "title": "MG5 - Offence report / case summary",
+      "type": "offence_report",
+      "printedSource": 6,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL CASE FILET202600417 | NG/4417/26 | MG5 - Offence report / case summary | R v Malik Hassan and Jordan Price | source page 6 of 7"
+    },
+    {
+      "compiledPage": 13,
+      "title": "MG5 - Offence report / case summary",
+      "type": "offence_report",
+      "printedSource": 7,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL CASE FILET202600417 | NG/4417/26 | MG5 - Offence report / case summary | R v Malik Hassan and Jordan Price | source page 7 of 7"
+    },
+    {
+      "compiledPage": 14,
+      "title": "MG5 - Offence report / case summary",
+      "type": "offence_report",
+      "printedSource": 1,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL CASE FILET202600417 | NG/4417/26 | MG5 - Offence report / case summary | R v Malik Hassan and Jordan Price | source page 1 of 6"
+    },
+    {
+      "compiledPage": 15,
+      "title": "MG5 - Offence report / case summary",
+      "type": "offence_report",
+      "printedSource": 2,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL CASE FILET202600417 | NG/4417/26 | MG5 - Offence report / case summary | R v Malik Hassan and Jordan Price | source page 2 of 6"
+    },
+    {
+      "compiledPage": 16,
+      "title": "MG5 - Offence report / case summary",
+      "type": "offence_report",
+      "printedSource": 3,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL CASE FILET202600417 | NG/4417/26 | MG5 - Offence report / case summary | R v Malik Hassan and Jordan Price | source page 3 of 6"
+    },
+    {
+      "compiledPage": 17,
+      "title": "MG5 - Offence report / case summary",
+      "type": "offence_report",
+      "printedSource": 4,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL CASE FILET202600417 | NG/4417/26 | MG5 - Offence report / case summary | R v Malik Hassan and Jordan Price | source page 4 of 6"
+    },
+    {
+      "compiledPage": 18,
+      "title": "MG5 - Offence report / case summary",
+      "type": "offence_report",
+      "printedSource": 5,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL CASE FILET202600417 | NG/4417/26 | MG5 - Offence report / case summary | R v Malik Hassan and Jordan Price | source page 5 of 6"
+    },
+    {
+      "compiledPage": 19,
+      "title": "MG5 - Offence report / case summary",
+      "type": "offence_report",
+      "printedSource": 6,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL CASE FILET202600417 | NG/4417/26 | MG5 - Offence report / case summary | R v Malik Hassan and Jordan Price | source page 6 of 6"
+    },
+    {
+      "compiledPage": 20,
+      "title": "FIRST INDICTMENT - SUPERSEDED",
+      "type": "indictment",
+      "printedSource": 1,
+      "headerPreview": "IN THE CROWN COURT AT NORTHGATE | Case No. T202600417 | INDICTMENT | FIRST INDICTMENT - SUPERSEDED"
+    },
+    {
+      "compiledPage": 21,
+      "title": "FIRST INDICTMENT - SUPERSEDED",
+      "type": "indictment",
+      "printedSource": 2,
+      "headerPreview": "IN THE CROWN COURT AT NORTHGATE | Case No. T202600417 | INDICTMENT | FIRST INDICTMENT - SUPERSEDED"
+    },
+    {
+      "compiledPage": 22,
+      "title": "FIRST INDICTMENT - SUPERSEDED",
+      "type": "indictment",
+      "printedSource": 3,
+      "headerPreview": "IN THE CROWN COURT AT NORTHGATE | Case No. T202600417 | INDICTMENT | FIRST INDICTMENT - SUPERSEDED"
+    },
+    {
+      "compiledPage": 23,
+      "title": "PROPOSED AMENDED INDICTMENT",
+      "type": "indictment",
+      "printedSource": 1,
+      "headerPreview": "IN THE CROWN COURT AT NORTHGATE | Case No. T202600417 | INDICTMENT | PROPOSED AMENDED INDICTMENT"
+    },
+    {
+      "compiledPage": 24,
+      "title": "PROPOSED AMENDED INDICTMENT",
+      "type": "indictment",
+      "printedSource": 2,
+      "headerPreview": "IN THE CROWN COURT AT NORTHGATE | Case No. T202600417 | INDICTMENT | PROPOSED AMENDED INDICTMENT"
+    },
+    {
+      "compiledPage": 25,
+      "title": "PROPOSED AMENDED INDICTMENT",
+      "type": "indictment",
+      "printedSource": 3,
+      "headerPreview": "IN THE CROWN COURT AT NORTHGATE | Case No. T202600417 | INDICTMENT | PROPOSED AMENDED INDICTMENT"
+    },
+    {
+      "compiledPage": 26,
+      "title": "MG6 - Disclosure and service record",
+      "type": "disclosure_record",
+      "printedSource": 1,
+      "headerPreview": "NORTHGATE CONSTABULARY / CPST202600417 | NG/4417/26 | MG6 - Disclosure and service record | R v Malik Hassan and Jordan Price | source page 1 of 12OFFICIAL - CA"
+    },
+    {
+      "compiledPage": 27,
+      "title": "MG6 continuation - disclosure and service",
+      "type": "disclosure_record",
+      "printedSource": 2,
+      "headerPreview": "NORTHGATE CONSTABULARY / CPST202600417 | NG/4417/26 | MG6 continuation - disclosure and service | R v Malik Hassan and Jordan Price | source page 2 of 12OFFICIA"
+    },
+    {
+      "compiledPage": 28,
+      "title": "MG6 continuation - disclosure and service",
+      "type": "disclosure_record",
+      "printedSource": 3,
+      "headerPreview": "NORTHGATE CONSTABULARY / CPST202600417 | NG/4417/26 | MG6 continuation - disclosure and service | R v Malik Hassan and Jordan Price | source page 3 of 12OFFICIA"
+    },
+    {
+      "compiledPage": 29,
+      "title": "MG6 continuation - disclosure and service",
+      "type": "disclosure_record",
+      "printedSource": 4,
+      "headerPreview": "NORTHGATE CONSTABULARY / CPST202600417 | NG/4417/26 | MG6 continuation - disclosure and service | R v Malik Hassan and Jordan Price | source page 4 of 12OFFICIA"
+    },
+    {
+      "compiledPage": 30,
+      "title": "MG6 continuation - disclosure and service",
+      "type": "disclosure_record",
+      "printedSource": 5,
+      "headerPreview": "NORTHGATE CONSTABULARY / CPST202600417 | NG/4417/26 | MG6 continuation - disclosure and service | R v Malik Hassan and Jordan Price | source page 5 of 12OFFICIA"
+    },
+    {
+      "compiledPage": 31,
+      "title": "MG6 continuation - disclosure and service",
+      "type": "disclosure_record",
+      "printedSource": 6,
+      "headerPreview": "NORTHGATE CONSTABULARY / CPST202600417 | NG/4417/26 | MG6 continuation - disclosure and service | R v Malik Hassan and Jordan Price | source page 6 of 12OFFICIA"
+    },
+    {
+      "compiledPage": 32,
+      "title": "MG6 continuation - disclosure and service",
+      "type": "disclosure_record",
+      "printedSource": 7,
+      "headerPreview": "NORTHGATE CONSTABULARY / CPST202600417 | NG/4417/26 | MG6 continuation - disclosure and service | R v Malik Hassan and Jordan Price | source page 7 of 12OFFICIA"
+    },
+    {
+      "compiledPage": 33,
+      "title": "MG6 continuation - disclosure and service",
+      "type": "disclosure_record",
+      "printedSource": 8,
+      "headerPreview": "NORTHGATE CONSTABULARY / CPST202600417 | NG/4417/26 | MG6 continuation - disclosure and service | R v Malik Hassan and Jordan Price | source page 8 of 12OFFICIA"
+    },
+    {
+      "compiledPage": 34,
+      "title": "MG6 continuation - disclosure and service",
+      "type": "disclosure_record",
+      "printedSource": 9,
+      "headerPreview": "NORTHGATE CONSTABULARY / CPST202600417 | NG/4417/26 | MG6 continuation - disclosure and service | R v Malik Hassan and Jordan Price | source page 9 of 12OFFICIA"
+    },
+    {
+      "compiledPage": 35,
+      "title": "MG6 continuation - disclosure and service",
+      "type": "disclosure_record",
+      "printedSource": 10,
+      "headerPreview": "NORTHGATE CONSTABULARY / CPST202600417 | NG/4417/26 | MG6 continuation - disclosure and service | R v Malik Hassan and Jordan Price | source page 10 of 12OFFICI"
+    },
+    {
+      "compiledPage": 36,
+      "title": "MG6 continuation - disclosure and service",
+      "type": "disclosure_record",
+      "printedSource": 11,
+      "headerPreview": "NORTHGATE CONSTABULARY / CPST202600417 | NG/4417/26 | MG6 continuation - disclosure and service | R v Malik Hassan and Jordan Price | source page 11 of 12OFFICI"
+    },
+    {
+      "compiledPage": 37,
+      "title": "MG6 continuation - disclosure and service",
+      "type": "disclosure_record",
+      "printedSource": 12,
+      "headerPreview": "NORTHGATE CONSTABULARY / CPST202600417 | NG/4417/26 | MG6 continuation - disclosure and service | R v Malik Hassan and Jordan Price | source page 12 of 12OFFICI"
+    },
+    {
+      "compiledPage": 38,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 1,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 39,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 2,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 40,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 3,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 41,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 4,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 42,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 5,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 43,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 6,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 44,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 7,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 45,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 8,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 46,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 9,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 47,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 10,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 48,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 11,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 49,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 12,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 50,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 13,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 51,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 14,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 52,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 15,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 53,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 16,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 54,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 17,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 55,
+      "title": "MG6C - Schedule of relevant non-sensitive unused material",
+      "type": "disclosure_schedule",
+      "printedSource": 18,
+      "headerPreview": "NORTHGATE CONSTABULARY - DISCLOSURE UNITT202600417 | NG/4417/26 | MG6C - Schedule of relevant non-sensitive unused material | R v Malik Hassan and Jordan Price "
+    },
+    {
+      "compiledPage": 56,
+      "title": "Daniel Okeke - draft account",
+      "type": "statement",
+      "printedSource": 1,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - draft account"
+    },
+    {
+      "compiledPage": 57,
+      "title": "Daniel Okeke - draft account",
+      "type": "statement",
+      "printedSource": 2,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - draft account"
+    },
+    {
+      "compiledPage": 58,
+      "title": "Daniel Okeke - draft account",
+      "type": "statement",
+      "printedSource": 3,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - draft account"
+    },
+    {
+      "compiledPage": 59,
+      "title": "Daniel Okeke - draft account",
+      "type": "statement",
+      "printedSource": 4,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - draft account"
+    },
+    {
+      "compiledPage": 60,
+      "title": "Daniel Okeke - draft account",
+      "type": "statement",
+      "printedSource": 5,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - draft account"
+    },
+    {
+      "compiledPage": 61,
+      "title": "Daniel Okeke - draft account",
+      "type": "statement",
+      "printedSource": 6,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - draft account"
+    },
+    {
+      "compiledPage": 62,
+      "title": "Daniel Okeke - draft account",
+      "type": "statement",
+      "printedSource": 7,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - draft account"
+    },
+    {
+      "compiledPage": 63,
+      "title": "Daniel Okeke - signed statement",
+      "type": "statement",
+      "printedSource": 1,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - signed statement"
+    },
+    {
+      "compiledPage": 64,
+      "title": "Daniel Okeke - signed statement",
+      "type": "statement",
+      "printedSource": 2,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - signed statement"
+    },
+    {
+      "compiledPage": 65,
+      "title": "Daniel Okeke - signed statement",
+      "type": "statement",
+      "printedSource": 3,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - signed statement"
+    },
+    {
+      "compiledPage": 66,
+      "title": "Daniel Okeke - signed statement",
+      "type": "statement",
+      "printedSource": 4,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - signed statement"
+    },
+    {
+      "compiledPage": 67,
+      "title": "Daniel Okeke - signed statement",
+      "type": "statement",
+      "printedSource": 5,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - signed statement"
+    },
+    {
+      "compiledPage": 68,
+      "title": "Daniel Okeke - signed statement",
+      "type": "statement",
+      "printedSource": 6,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - signed statement"
+    },
+    {
+      "compiledPage": 69,
+      "title": "Daniel Okeke - signed statement",
+      "type": "statement",
+      "printedSource": 7,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Daniel Okeke - signed statement"
+    },
+    {
+      "compiledPage": 70,
+      "title": "Priya Shah - signed statement",
+      "type": "statement",
+      "printedSource": 1,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Priya Shah - signed statement"
+    },
+    {
+      "compiledPage": 71,
+      "title": "Priya Shah - signed statement",
+      "type": "statement",
+      "printedSource": 2,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Priya Shah - signed statement"
+    },
+    {
+      "compiledPage": 72,
+      "title": "Priya Shah - signed statement",
+      "type": "statement",
+      "printedSource": 3,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Priya Shah - signed statement"
+    },
+    {
+      "compiledPage": 73,
+      "title": "Priya Shah - signed statement",
+      "type": "statement",
+      "printedSource": 4,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Priya Shah - signed statement"
+    },
+    {
+      "compiledPage": 74,
+      "title": "Priya Shah - signed statement",
+      "type": "statement",
+      "printedSource": 5,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Priya Shah - signed statement"
+    },
+    {
+      "compiledPage": 75,
+      "title": "Callum Briggs - signed statement",
+      "type": "statement",
+      "printedSource": 1,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Callum Briggs - signed statement"
+    },
+    {
+      "compiledPage": 76,
+      "title": "Callum Briggs - signed statement",
+      "type": "statement",
+      "printedSource": 2,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Callum Briggs - signed statement"
+    },
+    {
+      "compiledPage": 77,
+      "title": "Callum Briggs - signed statement",
+      "type": "statement",
+      "printedSource": 3,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Callum Briggs - signed statement"
+    },
+    {
+      "compiledPage": 78,
+      "title": "Callum Briggs - signed statement",
+      "type": "statement",
+      "printedSource": 4,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Callum Briggs - signed statement"
+    },
+    {
+      "compiledPage": 79,
+      "title": "Callum Briggs - signed statement",
+      "type": "statement",
+      "printedSource": 5,
+      "headerPreview": "WITNESS STATEMENT | Criminal Justice Act 1967, s.9 | Criminal Procedure Rules, Part 16 | Callum Briggs - signed statement"
+    },
+    {
+      "compiledPage": 80,
+      "title": "Officer statement / exhibit continuity",
+      "type": "exhibit_list",
+      "printedSource": 1,
+      "headerPreview": "NORTHGATE CONSTABULARY - INVESTIGATION FILET202600417 | NG/4417/26 | Officer statement / exhibit continuity | R v Malik Hassan and Jordan Price | source page 1 "
+    },
+    {
+      "compiledPage": 81,
+      "title": "Officer statement / exhibit continuity",
+      "type": "exhibit_list",
+      "printedSource": 2,
+      "headerPreview": "NORTHGATE CONSTABULARY - INVESTIGATION FILET202600417 | NG/4417/26 | Officer statement / exhibit continuity | R v Malik Hassan and Jordan Price | source page 2 "
+    },
+    {
+      "compiledPage": 82,
+      "title": "Officer statement / exhibit continuity",
+      "type": "exhibit_list",
+      "printedSource": 3,
+      "headerPreview": "NORTHGATE CONSTABULARY - INVESTIGATION FILET202600417 | NG/4417/26 | Officer statement / exhibit continuity | R v Malik Hassan and Jordan Price | source page 3 "
+    },
+    {
+      "compiledPage": 83,
+      "title": "Officer statement / exhibit continuity",
+      "type": "exhibit_list",
+      "printedSource": 4,
+      "headerPreview": "NORTHGATE CONSTABULARY - INVESTIGATION FILET202600417 | NG/4417/26 | Officer statement / exhibit continuity | R v Malik Hassan and Jordan Price | source page 4 "
+    },
+    {
+      "compiledPage": 84,
+      "title": "Officer statement / exhibit continuity",
+      "type": "exhibit_list",
+      "printedSource": 5,
+      "headerPreview": "NORTHGATE CONSTABULARY - INVESTIGATION FILET202600417 | NG/4417/26 | Officer statement / exhibit continuity | R v Malik Hassan and Jordan Price | source page 5 "
+    },
+    {
+      "compiledPage": 85,
+      "title": "Officer statement / exhibit continuity",
+      "type": "exhibit_list",
+      "printedSource": 6,
+      "headerPreview": "NORTHGATE CONSTABULARY - INVESTIGATION FILET202600417 | NG/4417/26 | Officer statement / exhibit continuity | R v Malik Hassan and Jordan Price | source page 6 "
+    },
+    {
+      "compiledPage": 86,
+      "title": "Officer statement / exhibit continuity",
+      "type": "exhibit_list",
+      "printedSource": 7,
+      "headerPreview": "NORTHGATE CONSTABULARY - INVESTIGATION FILET202600417 | NG/4417/26 | Officer statement / exhibit continuity | R v Malik Hassan and Jordan Price | source page 7 "
+    },
+    {
+      "compiledPage": 87,
+      "title": "Officer statement / exhibit continuity",
+      "type": "exhibit_list",
+      "printedSource": 8,
+      "headerPreview": "NORTHGATE CONSTABULARY - INVESTIGATION FILET202600417 | NG/4417/26 | Officer statement / exhibit continuity | R v Malik Hassan and Jordan Price | source page 8 "
+    },
+    {
+      "compiledPage": 88,
+      "title": "Officer statement / exhibit continuity",
+      "type": "exhibit_list",
+      "printedSource": 9,
+      "headerPreview": "NORTHGATE CONSTABULARY - INVESTIGATION FILET202600417 | NG/4417/26 | Officer statement / exhibit continuity | R v Malik Hassan and Jordan Price | source page 9 "
+    },
+    {
+      "compiledPage": 89,
+      "title": "Officer statement / exhibit continuity",
+      "type": "exhibit_list",
+      "printedSource": 10,
+      "headerPreview": "NORTHGATE CONSTABULARY - INVESTIGATION FILET202600417 | NG/4417/26 | Officer statement / exhibit continuity | R v Malik Hassan and Jordan Price | source page 10"
+    },
+    {
+      "compiledPage": 90,
+      "title": "Officer statement / exhibit continuity",
+      "type": "exhibit_list",
+      "printedSource": 11,
+      "headerPreview": "NORTHGATE CONSTABULARY - INVESTIGATION FILET202600417 | NG/4417/26 | Officer statement / exhibit continuity | R v Malik Hassan and Jordan Price | source page 11"
+    },
+    {
+      "compiledPage": 91,
+      "title": "Officer statement / exhibit continuity",
+      "type": "exhibit_list",
+      "printedSource": 12,
+      "headerPreview": "NORTHGATE CONSTABULARY - INVESTIGATION FILET202600417 | NG/4417/26 | Officer statement / exhibit continuity | R v Malik Hassan and Jordan Price | source page 12"
+    },
+    {
+      "compiledPage": 92,
+      "title": "PACE audio interview record - Malik Hassan",
+      "type": "interview_record",
+      "printedSource": 1,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Malik Hassan | R v Malik Hassan and Jordan Price | source page 1"
+    },
+    {
+      "compiledPage": 93,
+      "title": "PACE audio interview record - Malik Hassan",
+      "type": "interview_record",
+      "printedSource": 2,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Malik Hassan | R v Malik Hassan and Jordan Price | source page 2"
+    },
+    {
+      "compiledPage": 94,
+      "title": "PACE audio interview record - Malik Hassan",
+      "type": "interview_record",
+      "printedSource": 3,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Malik Hassan | R v Malik Hassan and Jordan Price | source page 3"
+    },
+    {
+      "compiledPage": 95,
+      "title": "PACE audio interview record - Malik Hassan",
+      "type": "interview_record",
+      "printedSource": 4,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Malik Hassan | R v Malik Hassan and Jordan Price | source page 4"
+    },
+    {
+      "compiledPage": 96,
+      "title": "PACE audio interview record - Malik Hassan",
+      "type": "interview_record",
+      "printedSource": 5,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Malik Hassan | R v Malik Hassan and Jordan Price | source page 5"
+    },
+    {
+      "compiledPage": 97,
+      "title": "TRANSCRIPT CONTINUATION PAGE NOT IN SERVED SET",
+      "type": "interview_record",
+      "printedSource": 6,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Malik Hassan | R v Malik Hassan and Jordan Price | source page 6"
+    },
+    {
+      "compiledPage": 98,
+      "title": "PACE audio interview record - Malik Hassan",
+      "type": "interview_record",
+      "printedSource": 7,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Malik Hassan | R v Malik Hassan and Jordan Price | source page 7"
+    },
+    {
+      "compiledPage": 99,
+      "title": "PACE audio interview record - Malik Hassan",
+      "type": "interview_record",
+      "printedSource": 8,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Malik Hassan | R v Malik Hassan and Jordan Price | source page 8"
+    },
+    {
+      "compiledPage": 100,
+      "title": "PACE audio interview record - Malik Hassan",
+      "type": "interview_record",
+      "printedSource": 9,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Malik Hassan | R v Malik Hassan and Jordan Price | source page 9"
+    },
+    {
+      "compiledPage": 101,
+      "title": "PACE audio interview record - Price",
+      "type": "interview_record",
+      "printedSource": 1,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Price Price | R v Malik Hassan and Jordan Price | source page 1 "
+    },
+    {
+      "compiledPage": 102,
+      "title": "PACE audio interview record - Price",
+      "type": "interview_record",
+      "printedSource": 2,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Price Price | R v Malik Hassan and Jordan Price | source page 2 "
+    },
+    {
+      "compiledPage": 103,
+      "title": "PACE audio interview record - Price",
+      "type": "interview_record",
+      "printedSource": 3,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Price Price | R v Malik Hassan and Jordan Price | source page 3 "
+    },
+    {
+      "compiledPage": 104,
+      "title": "PACE audio interview record - Price",
+      "type": "interview_record",
+      "printedSource": 4,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Price Price | R v Malik Hassan and Jordan Price | source page 4 "
+    },
+    {
+      "compiledPage": 105,
+      "title": "PACE audio interview record - Price",
+      "type": "interview_record",
+      "printedSource": 5,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Price Price | R v Malik Hassan and Jordan Price | source page 5 "
+    },
+    {
+      "compiledPage": 106,
+      "title": "PACE audio interview record - Price",
+      "type": "interview_record",
+      "printedSource": 6,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Price Price | R v Malik Hassan and Jordan Price | source page 6 "
+    },
+    {
+      "compiledPage": 107,
+      "title": "PACE audio interview record - Price",
+      "type": "interview_record",
+      "printedSource": 7,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Price Price | R v Malik Hassan and Jordan Price | source page 7 "
+    },
+    {
+      "compiledPage": 108,
+      "title": "PACE audio interview record - Price",
+      "type": "interview_record",
+      "printedSource": 8,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Price Price | R v Malik Hassan and Jordan Price | source page 8 "
+    },
+    {
+      "compiledPage": 109,
+      "title": "PACE audio interview record - Price",
+      "type": "interview_record",
+      "printedSource": 9,
+      "headerPreview": "NORTHGATE CONSTABULARY - INTERVIEW SUITET202600417 | NG/4417/26 | PACE audio interview record - Price Price | R v Malik Hassan and Jordan Price | source page 9 "
+    },
+    {
+      "compiledPage": 110,
+      "title": "Custody record extract",
+      "type": "custody_record",
+      "printedSource": 1,
+      "headerPreview": "NORTHGATE CENTRAL CUSTODYT202600417 | NG/4417/26 | Custody record extract | R v Malik Hassan and Jordan Price | source page 1 of 10OFFICIAL - CUSTODY RECORD COP"
+    },
+    {
+      "compiledPage": 111,
+      "title": "Custody record extract",
+      "type": "custody_record",
+      "printedSource": 2,
+      "headerPreview": "NORTHGATE CENTRAL CUSTODYT202600417 | NG/4417/26 | Custody record extract | R v Malik Hassan and Jordan Price | source page 2 of 10OFFICIAL - CUSTODY RECORD COP"
+    },
+    {
+      "compiledPage": 112,
+      "title": "Custody record extract",
+      "type": "custody_record",
+      "printedSource": 3,
+      "headerPreview": "NORTHGATE CENTRAL CUSTODYT202600417 | NG/4417/26 | Custody record extract | R v Malik Hassan and Jordan Price | source page 3 of 10OFFICIAL - CUSTODY RECORD COP"
+    },
+    {
+      "compiledPage": 113,
+      "title": "Custody record extract",
+      "type": "custody_record",
+      "printedSource": 4,
+      "headerPreview": "NORTHGATE CENTRAL CUSTODYT202600417 | NG/4417/26 | Custody record extract | R v Malik Hassan and Jordan Price | source page 4 of 10OFFICIAL - CUSTODY RECORD COP"
+    },
+    {
+      "compiledPage": 114,
+      "title": "Custody record extract",
+      "type": "custody_record",
+      "printedSource": 5,
+      "headerPreview": "NORTHGATE CENTRAL CUSTODYT202600417 | NG/4417/26 | Custody record extract | R v Malik Hassan and Jordan Price | source page 5 of 10OFFICIAL - CUSTODY RECORD COP"
+    },
+    {
+      "compiledPage": 115,
+      "title": "Custody record extract",
+      "type": "custody_record",
+      "printedSource": 6,
+      "headerPreview": "NORTHGATE CENTRAL CUSTODYT202600417 | NG/4417/26 | Custody record extract | R v Malik Hassan and Jordan Price | source page 6 of 10OFFICIAL - CUSTODY RECORD COP"
+    },
+    {
+      "compiledPage": 116,
+      "title": "Custody record extract",
+      "type": "custody_record",
+      "printedSource": 7,
+      "headerPreview": "NORTHGATE CENTRAL CUSTODYT202600417 | NG/4417/26 | Custody record extract | R v Malik Hassan and Jordan Price | source page 7 of 10OFFICIAL - CUSTODY RECORD COP"
+    },
+    {
+      "compiledPage": 117,
+      "title": "Custody record extract",
+      "type": "custody_record",
+      "printedSource": 8,
+      "headerPreview": "NORTHGATE CENTRAL CUSTODYT202600417 | NG/4417/26 | Custody record extract | R v Malik Hassan and Jordan Price | source page 8 of 10OFFICIAL - CUSTODY RECORD COP"
+    },
+    {
+      "compiledPage": 118,
+      "title": "Custody record extract",
+      "type": "custody_record",
+      "printedSource": 9,
+      "headerPreview": "NORTHGATE CENTRAL CUSTODYT202600417 | NG/4417/26 | Custody record extract | R v Malik Hassan and Jordan Price | source page 9 of 10OFFICIAL - CUSTODY RECORD COP"
+    },
+    {
+      "compiledPage": 119,
+      "title": "Custody record extract",
+      "type": "custody_record",
+      "printedSource": 10,
+      "headerPreview": "NORTHGATE CENTRAL CUSTODYT202600417 | NG/4417/26 | Custody record extract | R v Malik Hassan and Jordan Price | source page 10 of 10OFFICIAL - CUSTODY RECORD CO"
+    },
+    {
+      "compiledPage": 120,
+      "title": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26",
+      "type": "digital_media",
+      "printedSource": 1,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26 | Digital media and incident records | R v Malik Hassan and Jordan Price | source page 1 of 1"
+    },
+    {
+      "compiledPage": 121,
+      "title": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26",
+      "type": "digital_media",
+      "printedSource": 2,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26 | Digital media and incident records | R v Malik Hassan and Jordan Price | source page 2 of 1"
+    },
+    {
+      "compiledPage": 122,
+      "title": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26",
+      "type": "digital_media",
+      "printedSource": 3,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26 | Digital media and incident records | R v Malik Hassan and Jordan Price | source page 3 of 1"
+    },
+    {
+      "compiledPage": 123,
+      "title": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26",
+      "type": "digital_media",
+      "printedSource": 4,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26 | Digital media and incident records | R v Malik Hassan and Jordan Price | source page 4 of 1"
+    },
+    {
+      "compiledPage": 124,
+      "title": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26",
+      "type": "digital_media",
+      "printedSource": 5,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26 | Digital media and incident records | R v Malik Hassan and Jordan Price | source page 5 of 1"
+    },
+    {
+      "compiledPage": 125,
+      "title": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26",
+      "type": "digital_media",
+      "printedSource": 6,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26 | Digital media and incident records | R v Malik Hassan and Jordan Price | source page 6 of 1"
+    },
+    {
+      "compiledPage": 126,
+      "title": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26",
+      "type": "digital_media",
+      "printedSource": 7,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26 | Digital media and incident records | R v Malik Hassan and Jordan Price | source page 7 of 1"
+    },
+    {
+      "compiledPage": 127,
+      "title": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26",
+      "type": "digital_media",
+      "printedSource": 8,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26 | Digital media and incident records | R v Malik Hassan and Jordan Price | source page 8 of 1"
+    },
+    {
+      "compiledPage": 128,
+      "title": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26",
+      "type": "digital_media",
+      "printedSource": 9,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26 | Digital media and incident records | R v Malik Hassan and Jordan Price | source page 9 of 1"
+    },
+    {
+      "compiledPage": 129,
+      "title": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26",
+      "type": "digital_media",
+      "printedSource": 10,
+      "headerPreview": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26 | Digital media and incident records | R v Malik Hassan and Jordan Price | source page 10 of "
+    },
+    {
+      "compiledPage": 130,
+      "title": "Clinical record extract",
+      "type": "medical_report",
+      "printedSource": 1,
+      "headerPreview": "NORTHGATE UNIVERSITY HOSPITALT202600417 | NG/4417/26 | Clinical record extract | R v Malik Hassan and Jordan Price | source page 1 of 8CONFIDENTIAL MEDICAL - AU"
+    },
+    {
+      "compiledPage": 131,
+      "title": "Clinical record extract",
+      "type": "medical_report",
+      "printedSource": 2,
+      "headerPreview": "NORTHGATE UNIVERSITY HOSPITALT202600417 | NG/4417/26 | Clinical record extract | R v Malik Hassan and Jordan Price | source page 2 of 8CONFIDENTIAL MEDICAL - AU"
+    },
+    {
+      "compiledPage": 132,
+      "title": "Clinical record extract",
+      "type": "medical_report",
+      "printedSource": 3,
+      "headerPreview": "NORTHGATE UNIVERSITY HOSPITALT202600417 | NG/4417/26 | Clinical record extract | R v Malik Hassan and Jordan Price | source page 3 of 8CONFIDENTIAL MEDICAL - AU"
+    },
+    {
+      "compiledPage": 133,
+      "title": "Clinical record extract",
+      "type": "medical_report",
+      "printedSource": 4,
+      "headerPreview": "NORTHGATE UNIVERSITY HOSPITALT202600417 | NG/4417/26 | Clinical record extract | R v Malik Hassan and Jordan Price | source page 4 of 8CONFIDENTIAL MEDICAL - AU"
+    },
+    {
+      "compiledPage": 134,
+      "title": "Clinical record extract",
+      "type": "medical_report",
+      "printedSource": 5,
+      "headerPreview": "NORTHGATE UNIVERSITY HOSPITALT202600417 | NG/4417/26 | Clinical record extract | R v Malik Hassan and Jordan Price | source page 5 of 8CONFIDENTIAL MEDICAL - AU"
+    },
+    {
+      "compiledPage": 135,
+      "title": "Forensic medical report",
+      "type": "medical_report",
+      "printedSource": 6,
+      "headerPreview": "NORTHGATE FORENSIC CLINICAL SERVICET202600417 | NG/4417/26 | Forensic medical report | R v Malik Hassan and Jordan Price | source page 6 of 8CONFIDENTIAL MEDICA"
+    },
+    {
+      "compiledPage": 136,
+      "title": "Forensic medical report",
+      "type": "medical_report",
+      "printedSource": 7,
+      "headerPreview": "NORTHGATE FORENSIC CLINICAL SERVICET202600417 | NG/4417/26 | Forensic medical report | R v Malik Hassan and Jordan Price | source page 7 of 8CONFIDENTIAL MEDICA"
+    },
+    {
+      "compiledPage": 137,
+      "title": "Forensic medical report",
+      "type": "medical_report",
+      "printedSource": 8,
+      "headerPreview": "NORTHGATE FORENSIC CLINICAL SERVICET202600417 | NG/4417/26 | Forensic medical report | R v Malik Hassan and Jordan Price | source page 8 of 8CONFIDENTIAL MEDICA"
+    },
+    {
+      "compiledPage": 138,
+      "title": "Mobile device extraction and attribution report",
+      "type": "telecoms_report",
+      "printedSource": 1,
+      "headerPreview": "NORTHGATE DIGITAL FORENSICS UNITT202600417 | NG/4417/26 | Mobile device extraction and attribution report | R v Malik Hassan and Jordan Price | source page 1 of"
+    },
+    {
+      "compiledPage": 139,
+      "title": "Mobile device extraction and attribution report",
+      "type": "telecoms_report",
+      "printedSource": 2,
+      "headerPreview": "NORTHGATE DIGITAL FORENSICS UNITT202600417 | NG/4417/26 | Mobile device extraction and attribution report | R v Malik Hassan and Jordan Price | source page 2 of"
+    },
+    {
+      "compiledPage": 140,
+      "title": "Mobile device extraction and attribution report",
+      "type": "telecoms_report",
+      "printedSource": 3,
+      "headerPreview": "NORTHGATE DIGITAL FORENSICS UNITT202600417 | NG/4417/26 | Mobile device extraction and attribution report | R v Malik Hassan and Jordan Price | source page 3 of"
+    },
+    {
+      "compiledPage": 141,
+      "title": "Mobile device extraction and attribution report",
+      "type": "telecoms_report",
+      "printedSource": 4,
+      "headerPreview": "NORTHGATE DIGITAL FORENSICS UNITT202600417 | NG/4417/26 | Mobile device extraction and attribution report | R v Malik Hassan and Jordan Price | source page 4 of"
+    },
+    {
+      "compiledPage": 142,
+      "title": "Mobile device extraction and attribution report",
+      "type": "telecoms_report",
+      "printedSource": 5,
+      "headerPreview": "NORTHGATE DIGITAL FORENSICS UNITT202600417 | NG/4417/26 | Mobile device extraction and attribution report | R v Malik Hassan and Jordan Price | source page 5 of"
+    },
+    {
+      "compiledPage": 143,
+      "title": "Mobile device extraction and attribution report",
+      "type": "telecoms_report",
+      "printedSource": 6,
+      "headerPreview": "NORTHGATE DIGITAL FORENSICS UNITT202600417 | NG/4417/26 | Mobile device extraction and attribution report | R v Malik Hassan and Jordan Price | source page 6 of"
+    },
+    {
+      "compiledPage": 144,
+      "title": "Mobile device extraction and attribution report",
+      "type": "telecoms_report",
+      "printedSource": 7,
+      "headerPreview": "NORTHGATE DIGITAL FORENSICS UNITT202600417 | NG/4417/26 | Mobile device extraction and attribution report | R v Malik Hassan and Jordan Price | source page 7 of"
+    },
+    {
+      "compiledPage": 145,
+      "title": "Secure case correspondence",
+      "type": "correspondence",
+      "printedSource": 1,
+      "headerPreview": "CPS NORTHGATE / WARD SOLICITORST202600417 | NG/4417/26 | Secure case correspondence | R v Malik Hassan and Jordan Price | source page 1 of 4OFFICIAL - LEGAL COR"
+    },
+    {
+      "compiledPage": 146,
+      "title": "Secure case correspondence",
+      "type": "correspondence",
+      "printedSource": 2,
+      "headerPreview": "CPS NORTHGATE / WARD SOLICITORST202600417 | NG/4417/26 | Secure case correspondence | R v Malik Hassan and Jordan Price | source page 2 of 4OFFICIAL - LEGAL COR"
+    },
+    {
+      "compiledPage": 147,
+      "title": "Secure case correspondence",
+      "type": "correspondence",
+      "printedSource": 3,
+      "headerPreview": "CPS NORTHGATE / WARD SOLICITORST202600417 | NG/4417/26 | Secure case correspondence | R v Malik Hassan and Jordan Price | source page 3 of 4OFFICIAL - LEGAL COR"
+    },
+    {
+      "compiledPage": 148,
+      "title": "Secure case correspondence",
+      "type": "correspondence",
+      "printedSource": 4,
+      "headerPreview": "CPS NORTHGATE / WARD SOLICITORST202600417 | NG/4417/26 | Secure case correspondence | R v Malik Hassan and Jordan Price | source page 4 of 4OFFICIAL - LEGAL COR"
+    },
+    {
+      "compiledPage": 149,
+      "title": "CRIMINAL CASE MANAGEMENT NOTICE",
+      "type": "hearing_notice",
+      "printedSource": 1,
+      "headerPreview": "HM Courts & Tribunals ServiceNORTHGATE CROWN COURT | CRIMINAL CASE MANAGEMENT NOTICE | Notice of Plea and Trial Preparation Hearing | FieldCourt record"
+    },
+    {
+      "compiledPage": 150,
+      "title": "Directions accompanying the PTPH notice",
+      "type": "hearing_notice",
+      "printedSource": 2,
+      "headerPreview": "HM Courts & Tribunals ServiceNORTHGATE CROWN COURT | CRIMINAL CASE MANAGEMENT NOTICE | Directions accompanying the PTPH notice | DirectionResponsible partyDate "
+    }
+  ],
+  "parentOnlyPageCount": 0,
+  "parentOnlyCompiledPages": [],
+  "segments": [
+    {
+      "segmentIndex": 0,
+      "startCompiledPage": 1,
+      "endCompiledPage": 1,
+      "sourceDocumentTitle": "DIGITAL CASE SYSTEM - PROSECUTION CASE PAPERS",
+      "sourceDocumentType": "bundle_index",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 1,
+      "startCompiledPage": 2,
+      "endCompiledPage": 6,
+      "sourceDocumentTitle": "Bundle index and document control",
+      "sourceDocumentType": "bundle_index",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 2,
+      "startCompiledPage": 7,
+      "endCompiledPage": 13,
+      "sourceDocumentTitle": "MG5 - Offence report / case summary",
+      "sourceDocumentType": "offence_report",
+      "basis": "form_identifier",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 3,
+      "startCompiledPage": 14,
+      "endCompiledPage": 19,
+      "sourceDocumentTitle": "MG5 - Offence report / case summary",
+      "sourceDocumentType": "offence_report",
+      "basis": "pagination_restart",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 4,
+      "startCompiledPage": 20,
+      "endCompiledPage": 22,
+      "sourceDocumentTitle": "FIRST INDICTMENT - SUPERSEDED",
+      "sourceDocumentType": "indictment",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 5,
+      "startCompiledPage": 23,
+      "endCompiledPage": 25,
+      "sourceDocumentTitle": "PROPOSED AMENDED INDICTMENT",
+      "sourceDocumentType": "indictment",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 6,
+      "startCompiledPage": 26,
+      "endCompiledPage": 37,
+      "sourceDocumentTitle": "MG6 - Disclosure and service record",
+      "sourceDocumentType": "disclosure_record",
+      "basis": "form_identifier",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 7,
+      "startCompiledPage": 38,
+      "endCompiledPage": 55,
+      "sourceDocumentTitle": "MG6C - Schedule of relevant non-sensitive unused material",
+      "sourceDocumentType": "disclosure_schedule",
+      "basis": "form_identifier",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 8,
+      "startCompiledPage": 56,
+      "endCompiledPage": 62,
+      "sourceDocumentTitle": "Daniel Okeke - draft account",
+      "sourceDocumentType": "statement",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 9,
+      "startCompiledPage": 63,
+      "endCompiledPage": 69,
+      "sourceDocumentTitle": "Daniel Okeke - signed statement",
+      "sourceDocumentType": "statement",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 10,
+      "startCompiledPage": 70,
+      "endCompiledPage": 74,
+      "sourceDocumentTitle": "Priya Shah - signed statement",
+      "sourceDocumentType": "statement",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 11,
+      "startCompiledPage": 75,
+      "endCompiledPage": 79,
+      "sourceDocumentTitle": "Callum Briggs - signed statement",
+      "sourceDocumentType": "statement",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 12,
+      "startCompiledPage": 80,
+      "endCompiledPage": 91,
+      "sourceDocumentTitle": "Officer statement / exhibit continuity",
+      "sourceDocumentType": "exhibit_list",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 13,
+      "startCompiledPage": 92,
+      "endCompiledPage": 100,
+      "sourceDocumentTitle": "PACE audio interview record - Malik Hassan",
+      "sourceDocumentType": "interview_record",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 14,
+      "startCompiledPage": 101,
+      "endCompiledPage": 109,
+      "sourceDocumentTitle": "PACE audio interview record - Price",
+      "sourceDocumentType": "interview_record",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 15,
+      "startCompiledPage": 110,
+      "endCompiledPage": 119,
+      "sourceDocumentTitle": "Custody record extract",
+      "sourceDocumentType": "custody_record",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 16,
+      "startCompiledPage": 120,
+      "endCompiledPage": 129,
+      "sourceDocumentTitle": "NORTHGATE CONSTABULARY - DIGITAL MEDIA UNITT202600417 | NG/4417/26",
+      "sourceDocumentType": "digital_media",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 17,
+      "startCompiledPage": 130,
+      "endCompiledPage": 137,
+      "sourceDocumentTitle": "Clinical record extract",
+      "sourceDocumentType": "medical_report",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 18,
+      "startCompiledPage": 138,
+      "endCompiledPage": 144,
+      "sourceDocumentTitle": "Mobile device extraction and attribution report",
+      "sourceDocumentType": "telecoms_report",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 19,
+      "startCompiledPage": 145,
+      "endCompiledPage": 148,
+      "sourceDocumentTitle": "Secure case correspondence",
+      "sourceDocumentType": "correspondence",
+      "basis": "printed_header",
+      "identitySupported": true
+    },
+    {
+      "segmentIndex": 20,
+      "startCompiledPage": 149,
+      "endCompiledPage": 150,
+      "sourceDocumentTitle": "CRIMINAL CASE MANAGEMENT NOTICE",
+      "sourceDocumentType": "hearing_notice",
+      "basis": "printed_header",
+      "identitySupported": true
+    }
+  ]
+}

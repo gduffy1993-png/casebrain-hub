@@ -1,0 +1,57 @@
+{
+  "batchIndex": 2,
+  "humanReviewDisposition": null,
+  "items": [
+    {
+      "textHash": "56645240a4d783b8af73659a118cef7288f9c39da96e3baf6cea859def0af954",
+      "templateHash": "941eabeb3b74c3ff89cb058d09a19d4d2a371388fd00b0dc960c6d5a7a66f7cc",
+      "text": "Malicious communications, contrary to section 1 of the Malicious Communications Act 1988",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-19",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-19-allegation-56645240a4d7"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "dbee1d659c24bfb2f4a8c3a0b46e622b2e869106846b01155dad1896e782b36b",
+      "templateHash": "dbee1d659c24bfb2f4a8c3a0b46e622b2e869106846b01155dad1896e782b36b",
+      "text": "audit trail",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-20",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-dbee1d659c24"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "dfb97e241a3377902962e96c2d3c9d9cf38aa777fe73c4e29b875e88f335a70e",
+      "templateHash": "a1d1b383d027bd5f9af6a0602dbaf758aa57137801b754aa04a1c338bc02c97a",
+      "text": "Master CCTV footage",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-20",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-20-disclosure_chase-dfb97e241a33"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    }
+  ]
+}

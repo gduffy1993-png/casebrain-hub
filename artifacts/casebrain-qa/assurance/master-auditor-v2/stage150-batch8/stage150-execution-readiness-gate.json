@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "stage150-execution-readiness-gate@1.7.0",
+  "baselineCommit": "e60790458f6c1030300c52c029e2318a28139252",
+  "programmePassSupported": false,
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "freezeAllowed": false,
+  "reasons": [
+    "98 controls remain partially_implemented",
+    "55 controls remain SNI",
+    "Batch-8 is adapter foundation only — no detector promotions",
+    "Stage-150 sample selection not performed",
+    "currentlyRunnableOnStage150 remains false"
+  ],
+  "prerequisites": {
+    "registryComplete": true,
+    "detectorImplementationComplete": false,
+    "inputReadinessComplete": false,
+    "denominatorReadinessComplete": false,
+    "adapterReadinessComplete": false,
+    "receiptValidationComplete": true,
+    "contractReadinessComplete": true,
+    "relationshipComplete": false,
+    "protectedAssetsPreserved": true
+  }
+}

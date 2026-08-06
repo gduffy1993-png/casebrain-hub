@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "stage150-execution-readiness-gate@1.12.0",
+  "baselineCommit": "9cdd8fd66773872cb94a21c0a202ee63c40f6a83",
+  "programmePassSupported": false,
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "freezeAllowed": false,
+  "stage150CalibrationRunCompleted": true,
+  "populationPacketReadinessMet": true,
+  "reasons": [
+    "stage150CalibrationRunCompleted=true — frozen 150-packet census calibration measurement only",
+    "stage150ExecutionAllowed remains FALSE (full programme execution not authorised)",
+    "No control promotions",
+    "No CaseBrain repair",
+    "No corpus or programme PASS"
+  ],
+  "prerequisites": {
+    "registryComplete": true,
+    "detectorImplementationComplete": false,
+    "inputReadinessComplete": true,
+    "denominatorReadinessComplete": true,
+    "adapterReadinessComplete": false,
+    "receiptValidationComplete": true,
+    "contractReadinessComplete": true,
+    "relationshipComplete": false,
+    "protectedAssetsPreserved": true,
+    "structuredRematerialisationComplete": true,
+    "calibrationMeasurementComplete": true
+  }
+}

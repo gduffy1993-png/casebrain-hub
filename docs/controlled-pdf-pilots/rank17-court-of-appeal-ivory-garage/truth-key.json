@@ -1,0 +1,33 @@
+{
+  "schema_version":"1.0","status":"design truth only; no conviction, admissibility or appeal decision operative",
+  "hierarchy":["sealed Court of Appeal judgment/order governs appellate rulings and outcomes actually recorded","certified Crown Court orders, summing-up, verdict and transcript govern the historical trial record","latest signed/served expert report governs X1's individual position where not superseded","signed source statements and native records prove only their maker/content/provenance","advice, grounds, applications and party skeletons remain attributed; truth key cannot decide safety"],
+  "state_separations":[
+    "proposed charge | trial count | verdict | conviction order | sentence",
+    "trial evidence | trial admission | judicial ruling | jury verdict | appellate characterization",
+    "counsel advice | client instruction | draft ground | signed ground | filed/served ground | judicial decision",
+    "deadline source | trigger | calculation | late reason | extension application | extension ruling",
+    "permission application | trial-judge certificate | single-judge decision | renewal | full-court permission",
+    "new material | fresh evidence claim | due-diligence explanation | party submission | admissibility ruling | permitted use",
+    "witness account | credibility submission | judicial assessment",
+    "expert raw data | technical fact | individual opinion | addendum | service | admissibility | appellate use",
+    "digital signature present | valid/invalid/expired/altered/unverifiable | filing state | document truth",
+    "appeal allowed/dismissed by count | conviction quashed | acquittal | substitute verdict | retrial order | sentence consequence",
+    "privilege claim | waiver scope | filed derivative | inadvertent disclosure | quarantine/clawback | court ruling"
+  ],
+  "conflict_omission_contradiction_traps":[
+    {"id":"T17-01","trap":"appeal chronology paraphrases PC2 as a conviction while verdict sheet records no guilty verdict","safe_result":"preserve count-level historical source"},
+    {"id":"T17-02","trap":"one transcript day is missing and a solicitor note summarizes it","safe_result":"do not reconstruct transcript from note"},
+    {"id":"T17-03","trap":"summing-up pagination differs between certified and working copies","safe_result":"retain version and certified locator"},
+    {"id":"T17-04","trap":"privileged advice suggests a ground omitted from filed grounds","safe_result":"zero leakage and no inferred live ground"},
+    {"id":"T17-05","trap":"notice metadata date and filing receipt date differ","safe_result":"deadline uses authoritative trigger/filing proof only after review"},
+    {"id":"T17-06","trap":"W2's account changes on who held workshop keys","safe_result":"show versions; no credibility conclusion"},
+    {"id":"T17-07","trap":"X1 addendum narrows the clock-offset range","safe_result":"latest position controls uncovered point; earlier change visible"},
+    {"id":"T17-08","trap":"native vehicle extract has an expired signature but stable hash","safe_result":"signature status, integrity inference, filing and truth remain separate"},
+    {"id":"T17-09","trap":"respondent calls evidence available at trial; defence due-diligence chronology disputes that","safe_result":"retain competing submissions; no freshness finding"},
+    {"id":"T17-10","trap":"single judge refuses one ground but renewal form scope is ambiguous","safe_result":"do not expand renewed grounds"},
+    {"id":"T17-11","trap":"draft judgment header says allowed before signed judgment is available","safe_result":"draft is non-operative"},
+    {"id":"T17-12","trap":"quashing one count is incorrectly composed as whole-case acquittal","safe_result":"preserve exact count and consequential order"}
+  ],
+  "required_findings":["all charge/conviction events are design states","trial record locators and gaps remain exact","privileged advice never crosses unauthorised audiences/exits","filed grounds and renewal scope are versioned","deadline and extension states are sourced","freshness/admissibility/materiality remain undecided absent ruling","expert limitations and opinion changes survive","digital-signature state is not document truth","judgment/order controls count outcome","acquittal/quashing/substitution/retrial/dismissal remain distinct"],
+  "forbidden_findings":["A1 committed either offence","trial conviction is safe or unsafe","missing transcript content can be inferred","advice is a filed ground or broadly waived","late evidence is fresh/admissible/credible/material merely because obtained","expert clock issue proves innocence","signature expiry invalidates content automatically","permission is granted/refused without source","draft judgment is operative","quashed count equals acquittal or whole appeal outcome unless order says so"]
+}

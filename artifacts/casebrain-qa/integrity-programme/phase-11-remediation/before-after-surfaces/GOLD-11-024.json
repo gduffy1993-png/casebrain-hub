@@ -1,0 +1,14 @@
+{
+  "goldId": "GOLD-11-024",
+  "changes": [
+    {
+      "surface": "review_required_banner",
+      "before": {
+        "gateStatus": "review_required",
+        "canCopy": false,
+        "textPreview": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point"
+      },
+      "after": null
+    }
+  ]
+}

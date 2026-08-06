@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "stage300-execution-readiness-gate@1.0.0",
+  "baselineCommit": "b2f7cbe3817b6fbeffc53805bc50566cf25c80b8",
+  "programmePassSupported": false,
+  "stage150ClosureStatus": "CALIBRATION_COMPLETE__NO_CONFIRMED_CASEBRAIN_DEFECTS_IN_GENUINE_EXERCISED_SCOPE",
+  "stage150CalibrationComplete": true,
+  "stage150ExecutionAllowed": false,
+  "stage300CorpusGenerationAllowed": false,
+  "stage300PopulationAcceptanceAllowed": false,
+  "stage300BlindFreezeAllowed": false,
+  "stage300CalibrationExecutionAllowed": false,
+  "stage300RemediationRerunAllowed": false,
+  "prerequisites": {
+    "stage300CorpusGeneration": {
+      "gate": false,
+      "requires": [
+        "essential_control_adapters_implemented_or_honestly_scoped",
+        "new_150_coverage_spec_approved",
+        "denominator_lineage_policy_locked",
+        "no_foreign_corpus_mixing_attestation",
+        "Brain1_Guardian_blobs_unchanged_at_generation_start"
+      ],
+      "note": "Stage-150 closure is necessary context, not sufficient authorisation."
+    },
+    "stage300PopulationAcceptance": {
+      "gate": false,
+      "requires": [
+        "300_unique_case_identities_verified",
+        "frozen_150_lineage_hash_preserved",
+        "added_150_hash_locked",
+        "exit_denominator_honesty_for_six_genuine_exits",
+        "authenticated_browser_not_exercised_unless_authorised"
+      ]
+    },
+    "stage300BlindFreeze": {
+      "gate": false,
+      "requires": [
+        "population_accepted",
+        "ordered_membership_hash_computed_before_detectors",
+        "truth_not_opened_before_candidate_freeze"
+      ]
+    },
+    "stage300CalibrationExecution": {
+      "gate": false,
+      "requires": [
+        "blind_freeze_complete",
+        "essential_controls_runnable_on_genuine_outputs_or_explicit_not_exercised",
+        "stage300CalibrationExecutionAllowed explicit flip by review — never auto from Stage-150"
+      ]
+    },
+    "stage300RemediationRerun": {
+      "gate": false,
+      "requires": [
+        "confirmed_roots_triaged",
+        "ownership_proved_before_app_or_harness_repair",
+        "versioned_outputs_without_overwriting_freeze"
+      ]
+    }
+  },
+  "reasonsAllFalse": [
+    "Stage-150 calibration complete ≠ Stage-300 corpus generation authorised",
+    "Essential adapters and new-150 packets do not yet exist",
+    "No Stage-300 freeze or run in this work unit",
+    "No corpus or programme PASS"
+  ]
+}

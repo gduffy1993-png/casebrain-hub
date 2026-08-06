@@ -1,0 +1,1248 @@
+{
+  "schemaVersion": "stage300-batch-b-43-control-unlock-path@1.0.0",
+  "authorityRegister": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-execution-readiness-plan/stage300-essential-control-register.json",
+  "authorityRegisterSchema": "stage300-essential-control-register@1.0.0",
+  "controlCount": 43,
+  "programmeObjective": "CONTROL_COVERAGE",
+  "essentialUnlocksAfterBatchB": 0,
+  "rows": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "plainEnglishPurpose": "Detect redactions in source binaries without inventing text",
+      "familyCode": "SRC",
+      "theme": "heavy_pdf_ocr_binary",
+      "currentStatus": "specified_not_implemented",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Original PDF/binary bytes + page-unit OCR extraction receipts (pageIdentityKnown, redaction masks, attachment inventory, password/corrupt flags) per source document",
+      "exactProducerOwner": "Stage-300 OCR/binary source packet builders (not live CaseBrain in this unit)",
+      "missingInputLane": "source_corpus",
+      "productionVsHarnessGapClass": "source_packets_do_not_contain",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with genuine binary+OCR receipts; SRC detector contracts green; independence proof vs production extraction",
+      "nextImplementationBatch": "Batch-C-OCR-SRC (P0)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "PDF/OCR extraction pipeline (live: document ingest)",
+        "independentSourceOrTruth": "Source binary hashes + independent OCR/page-unit recompute receipts",
+        "sharedTypesSchemasUtilities": [
+          "page schema types",
+          "hash utilities"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "plainEnglishPurpose": "Detect pagination breaks/discontinuities in page units",
+      "familyCode": "SRC",
+      "theme": "heavy_pdf_ocr_binary",
+      "currentStatus": "specified_not_implemented",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Original PDF/binary bytes + page-unit OCR extraction receipts (pageIdentityKnown, redaction masks, attachment inventory, password/corrupt flags) per source document",
+      "exactProducerOwner": "Stage-300 OCR/binary source packet builders (not live CaseBrain in this unit)",
+      "missingInputLane": "source_corpus",
+      "productionVsHarnessGapClass": "source_packets_do_not_contain",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with genuine binary+OCR receipts; SRC detector contracts green; independence proof vs production extraction",
+      "nextImplementationBatch": "Batch-C-OCR-SRC (P0)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "PDF/OCR extraction pipeline (live: document ingest)",
+        "independentSourceOrTruth": "Source binary hashes + independent OCR/page-unit recompute receipts",
+        "sharedTypesSchemasUtilities": [
+          "page schema types",
+          "hash utilities"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "plainEnglishPurpose": "Detect attachment references without binary presence",
+      "familyCode": "SRC",
+      "theme": "heavy_pdf_ocr_binary",
+      "currentStatus": "specified_not_implemented",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Original PDF/binary bytes + page-unit OCR extraction receipts (pageIdentityKnown, redaction masks, attachment inventory, password/corrupt flags) per source document",
+      "exactProducerOwner": "Stage-300 OCR/binary source packet builders (not live CaseBrain in this unit)",
+      "missingInputLane": "source_corpus",
+      "productionVsHarnessGapClass": "source_packets_do_not_contain",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with genuine binary+OCR receipts; SRC detector contracts green; independence proof vs production extraction",
+      "nextImplementationBatch": "Batch-C-OCR-SRC (P0)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "PDF/OCR extraction pipeline (live: document ingest)",
+        "independentSourceOrTruth": "Source binary hashes + independent OCR/page-unit recompute receipts",
+        "sharedTypesSchemasUtilities": [
+          "page schema types",
+          "hash utilities"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "plainEnglishPurpose": "Detect password/corrupt PDF extraction failure honestly",
+      "familyCode": "SRC",
+      "theme": "heavy_pdf_ocr_binary",
+      "currentStatus": "partially_implemented_pending_calibration",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Original PDF/binary bytes + page-unit OCR extraction receipts (pageIdentityKnown, redaction masks, attachment inventory, password/corrupt flags) per source document",
+      "exactProducerOwner": "Stage-300 OCR/binary source packet builders (not live CaseBrain in this unit)",
+      "missingInputLane": "source_corpus",
+      "productionVsHarnessGapClass": "source_packets_do_not_contain",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with genuine binary+OCR receipts; SRC detector contracts green; independence proof vs production extraction",
+      "nextImplementationBatch": "Batch-C-OCR-SRC (P0)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "PDF/OCR extraction pipeline (live: document ingest)",
+        "independentSourceOrTruth": "Source binary hashes + independent OCR/page-unit recompute receipts",
+        "sharedTypesSchemasUtilities": [
+          "page schema types",
+          "hash utilities"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "plainEnglishPurpose": "Bind extracted text to source-binary/OCR provenance",
+      "familyCode": "SRC",
+      "theme": "heavy_pdf_ocr_binary",
+      "currentStatus": "specified_not_implemented",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Original PDF/binary bytes + page-unit OCR extraction receipts (pageIdentityKnown, redaction masks, attachment inventory, password/corrupt flags) per source document",
+      "exactProducerOwner": "Stage-300 OCR/binary source packet builders (not live CaseBrain in this unit)",
+      "missingInputLane": "source_corpus",
+      "productionVsHarnessGapClass": "source_packets_do_not_contain",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with genuine binary+OCR receipts; SRC detector contracts green; independence proof vs production extraction",
+      "nextImplementationBatch": "Batch-C-OCR-SRC (P0)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "PDF/OCR extraction pipeline (live: document ingest)",
+        "independentSourceOrTruth": "Source binary hashes + independent OCR/page-unit recompute receipts",
+        "sharedTypesSchemasUtilities": [
+          "page schema types",
+          "hash utilities"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "plainEnglishPurpose": "Charge instrument category-set coverage vs authority taxonomy",
+      "familyCode": "LSL",
+      "theme": "structured_charge_instruments",
+      "currentStatus": "substantive_evaluator_implemented_pending_review",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Structured legalStateTaxonomy / category-set authority fields on chargeInstruments[] (not prose-only)",
+      "exactProducerOwner": "Batch-10/Stage-300 materialisation of chargeInstruments.legalStateRole + authority taxonomy bag",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_prose_only_not_structured",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 Cohort packet with taxonomy bag; LSL-05 evaluator eligible>0; blind calibration after freeze",
+      "nextImplementationBatch": "Batch-C-SPECIALTY-LSL-CHR-PRC (P0)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "charge instrument / legal-state builders",
+        "independentSourceOrTruth": "Pinned authority taxonomy registry + instrument exact wording from source pages",
+        "sharedTypesSchemasUtilities": [
+          "chargeInstruments schema"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "plainEnglishPurpose": "Age at offence/hearing from DOB + event timestamps",
+      "familyCode": "CHR",
+      "theme": "chronology_competing_timestamps",
+      "currentStatus": "substantive_evaluator_implemented_pending_review",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Explicit structured dobAgeCalcLedger (DOB, offence/hearing timestamps, timezone, calcInputs) on packets — not inferred from court prose",
+      "exactProducerOwner": "Stage-300 specialty-bag materialisation from source MG/custody/listing fields",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with dobAgeCalcLedger (DOB, offence/hearing timestamps, timezone, calcInputs); named evaluator eligible>0; blind calibration",
+      "nextImplementationBatch": "Batch-C-SPECIALTY-LSL-CHR-PRC (P0)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "chronology / procedural-state builders",
+        "independentSourceOrTruth": "Source DOB/listing/custody documents with page-bound dates (truth key blinded until freeze)",
+        "sharedTypesSchemasUtilities": [
+          "chronologyEvents schema",
+          "timezone normalisation"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": true,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "plainEnglishPurpose": "Transparent age/date calculation inputs and method",
+      "familyCode": "CHR",
+      "theme": "chronology_competing_timestamps",
+      "currentStatus": "substantive_evaluator_implemented_pending_review",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Explicit structured dobAgeCalcLedger (DOB, offence/hearing timestamps, timezone, calcInputs) on packets — not inferred from court prose",
+      "exactProducerOwner": "Stage-300 specialty-bag materialisation from source MG/custody/listing fields",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with dobAgeCalcLedger (DOB, offence/hearing timestamps, timezone, calcInputs); named evaluator eligible>0; blind calibration",
+      "nextImplementationBatch": "Batch-C-SPECIALTY-LSL-CHR-PRC (P0)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "chronology / procedural-state builders",
+        "independentSourceOrTruth": "Source DOB/listing/custody documents with page-bound dates (truth key blinded until freeze)",
+        "sharedTypesSchemasUtilities": [
+          "chronologyEvents schema",
+          "timezone normalisation"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "plainEnglishPurpose": "Youth court / youth-state honesty",
+      "familyCode": "PRC",
+      "theme": "chronology_competing_timestamps",
+      "currentStatus": "substantive_evaluator_implemented_pending_review",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Explicit structured proceduralPartyState (youthState / fitnessParticipation / disclosurePiiState) on packets — not inferred from court prose",
+      "exactProducerOwner": "Stage-300 specialty-bag materialisation from source MG/custody/listing fields",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with proceduralPartyState (youthState / fitnessParticipation / disclosurePiiState); named evaluator eligible>0; blind calibration",
+      "nextImplementationBatch": "Batch-C-SPECIALTY-LSL-CHR-PRC (P0)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "chronology / procedural-state builders",
+        "independentSourceOrTruth": "Source DOB/listing/custody documents with page-bound dates (truth key blinded until freeze)",
+        "sharedTypesSchemasUtilities": [
+          "chronologyEvents schema",
+          "timezone normalisation"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "plainEnglishPurpose": "Fitness to plead / participation state honesty",
+      "familyCode": "PRC",
+      "theme": "chronology_competing_timestamps",
+      "currentStatus": "substantive_evaluator_implemented_pending_review",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Explicit structured proceduralPartyState (youthState / fitnessParticipation / disclosurePiiState) on packets — not inferred from court prose",
+      "exactProducerOwner": "Stage-300 specialty-bag materialisation from source MG/custody/listing fields",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with proceduralPartyState (youthState / fitnessParticipation / disclosurePiiState); named evaluator eligible>0; blind calibration",
+      "nextImplementationBatch": "Batch-C-SPECIALTY-LSL-CHR-PRC (P0)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "chronology / procedural-state builders",
+        "independentSourceOrTruth": "Source DOB/listing/custody documents with page-bound dates (truth key blinded until freeze)",
+        "sharedTypesSchemasUtilities": [
+          "chronologyEvents schema",
+          "timezone normalisation"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "plainEnglishPurpose": "Disclosure PII state honesty",
+      "familyCode": "PRC",
+      "theme": "chronology_competing_timestamps",
+      "currentStatus": "substantive_evaluator_implemented_pending_review",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Explicit structured proceduralPartyState (youthState / fitnessParticipation / disclosurePiiState) on packets — not inferred from court prose",
+      "exactProducerOwner": "Stage-300 specialty-bag materialisation from source MG/custody/listing fields",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with proceduralPartyState (youthState / fitnessParticipation / disclosurePiiState); named evaluator eligible>0; blind calibration",
+      "nextImplementationBatch": "Batch-C-SPECIALTY-LSL-CHR-PRC (P0)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "chronology / procedural-state builders",
+        "independentSourceOrTruth": "Source DOB/listing/custody documents with page-bound dates (truth key blinded until freeze)",
+        "sharedTypesSchemasUtilities": [
+          "chronologyEvents schema",
+          "timezone normalisation"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "plainEnglishPurpose": "Client-plain audience wording vs other surfaces",
+      "familyCode": "AUD",
+      "theme": "cross_exit_cross_audience",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "exactProducerOwner": "Live multi-audience exit producers + Stage-300 audience pack capture",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with ≥2 distinct audience surfaces; AUD/XPP detector contracts; independence vs production wording generators",
+      "nextImplementationBatch": "Batch-D-AUDIENCE-AUD-XPP (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "audience wording / perspective generators",
+        "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+        "sharedTypesSchemasUtilities": [
+          "exitPayloadReceipts schema"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": true,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "plainEnglishPurpose": "Court-precise audience wording",
+      "familyCode": "AUD",
+      "theme": "cross_exit_cross_audience",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "exactProducerOwner": "Live multi-audience exit producers + Stage-300 audience pack capture",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with ≥2 distinct audience surfaces; AUD/XPP detector contracts; independence vs production wording generators",
+      "nextImplementationBatch": "Batch-D-AUDIENCE-AUD-XPP (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "audience wording / perspective generators",
+        "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+        "sharedTypesSchemasUtilities": [
+          "exitPayloadReceipts schema"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": true,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "plainEnglishPurpose": "CPS-specific audience wording",
+      "familyCode": "AUD",
+      "theme": "cross_exit_cross_audience",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "exactProducerOwner": "Live multi-audience exit producers + Stage-300 audience pack capture",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with ≥2 distinct audience surfaces; AUD/XPP detector contracts; independence vs production wording generators",
+      "nextImplementationBatch": "Batch-D-AUDIENCE-AUD-XPP (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "audience wording / perspective generators",
+        "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+        "sharedTypesSchemasUtilities": [
+          "exitPayloadReceipts schema"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": true,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "plainEnglishPurpose": "Supervisor-risk audience wording",
+      "familyCode": "AUD",
+      "theme": "cross_exit_cross_audience",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "exactProducerOwner": "Live multi-audience exit producers + Stage-300 audience pack capture",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with ≥2 distinct audience surfaces; AUD/XPP detector contracts; independence vs production wording generators",
+      "nextImplementationBatch": "Batch-D-AUDIENCE-AUD-XPP (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "audience wording / perspective generators",
+        "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+        "sharedTypesSchemasUtilities": [
+          "exitPayloadReceipts schema"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": true,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "plainEnglishPurpose": "Defence solicitor perspective integrity",
+      "familyCode": "XPP",
+      "theme": "cross_exit_cross_audience",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "exactProducerOwner": "Live multi-audience exit producers + Stage-300 audience pack capture",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with ≥2 distinct audience surfaces; AUD/XPP detector contracts; independence vs production wording generators",
+      "nextImplementationBatch": "Batch-D-AUDIENCE-AUD-XPP (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "audience wording / perspective generators",
+        "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+        "sharedTypesSchemasUtilities": [
+          "exitPayloadReceipts schema"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": true,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "plainEnglishPurpose": "Prosecution-challenge perspective integrity",
+      "familyCode": "XPP",
+      "theme": "cross_exit_cross_audience",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "exactProducerOwner": "Live multi-audience exit producers + Stage-300 audience pack capture",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with ≥2 distinct audience surfaces; AUD/XPP detector contracts; independence vs production wording generators",
+      "nextImplementationBatch": "Batch-D-AUDIENCE-AUD-XPP (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "audience wording / perspective generators",
+        "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+        "sharedTypesSchemasUtilities": [
+          "exitPayloadReceipts schema"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": true,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "plainEnglishPurpose": "Judicial neutrality perspective integrity",
+      "familyCode": "XPP",
+      "theme": "cross_exit_cross_audience",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "exactProducerOwner": "Live multi-audience exit producers + Stage-300 audience pack capture",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with ≥2 distinct audience surfaces; AUD/XPP detector contracts; independence vs production wording generators",
+      "nextImplementationBatch": "Batch-D-AUDIENCE-AUD-XPP (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "audience wording / perspective generators",
+        "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+        "sharedTypesSchemasUtilities": [
+          "exitPayloadReceipts schema"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": true,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "plainEnglishPurpose": "Client comprehension perspective integrity",
+      "familyCode": "XPP",
+      "theme": "cross_exit_cross_audience",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "exactProducerOwner": "Live multi-audience exit producers + Stage-300 audience pack capture",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with ≥2 distinct audience surfaces; AUD/XPP detector contracts; independence vs production wording generators",
+      "nextImplementationBatch": "Batch-D-AUDIENCE-AUD-XPP (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "audience wording / perspective generators",
+        "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+        "sharedTypesSchemasUtilities": [
+          "exitPayloadReceipts schema"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": true,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "plainEnglishPurpose": "Supervisor-risk perspective integrity",
+      "familyCode": "XPP",
+      "theme": "cross_exit_cross_audience",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "exactProducerOwner": "Live multi-audience exit producers + Stage-300 audience pack capture",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 packet with ≥2 distinct audience surfaces; AUD/XPP detector contracts; independence vs production wording generators",
+      "nextImplementationBatch": "Batch-D-AUDIENCE-AUD-XPP (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "audience wording / perspective generators",
+        "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+        "sharedTypesSchemasUtilities": [
+          "exitPayloadReceipts schema"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": true,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "plainEnglishPurpose": "Source case hash reproducibility",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "exactProducerOwner": "Assurance run recorder / VDR receipt emitter (harness) with production commit pins",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 frozen run pair with pinned hashes/versions; VDR contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-VDR-RECEIPTS (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "run artefact emitters",
+        "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "plainEnglishPurpose": "Frozen membership order integrity",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "exactProducerOwner": "Assurance run recorder / VDR receipt emitter (harness) with production commit pins",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 frozen run pair with pinned hashes/versions; VDR contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-VDR-RECEIPTS (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "run artefact emitters",
+        "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "plainEnglishPurpose": "CaseBrain commit/build pin integrity",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "exactProducerOwner": "Assurance run recorder / VDR receipt emitter (harness) with production commit pins",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 frozen run pair with pinned hashes/versions; VDR contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-VDR-RECEIPTS (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "run artefact emitters",
+        "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "plainEnglishPurpose": "Schema/registry/detector version pins",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "exactProducerOwner": "Assurance run recorder / VDR receipt emitter (harness) with production commit pins",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 frozen run pair with pinned hashes/versions; VDR contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-VDR-RECEIPTS (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "run artefact emitters",
+        "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "plainEnglishPurpose": "Model/prompt version pin",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "exactProducerOwner": "Assurance run recorder / VDR receipt emitter (harness) with production commit pins",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 frozen run pair with pinned hashes/versions; VDR contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-VDR-RECEIPTS (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "run artefact emitters",
+        "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "plainEnglishPurpose": "Exact output/finding ID reproducibility",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "exactProducerOwner": "Assurance run recorder / VDR receipt emitter (harness) with production commit pins",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 frozen run pair with pinned hashes/versions; VDR contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-VDR-RECEIPTS (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "run artefact emitters",
+        "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "plainEnglishPurpose": "Timestamp/disposition reproducibility",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "exactProducerOwner": "Assurance run recorder / VDR receipt emitter (harness) with production commit pins",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 frozen run pair with pinned hashes/versions; VDR contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-VDR-RECEIPTS (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "run artefact emitters",
+        "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "plainEnglishPurpose": "Before/after version mapping",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "exactProducerOwner": "Assurance run recorder / VDR receipt emitter (harness) with production commit pins",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 frozen run pair with pinned hashes/versions; VDR contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-VDR-RECEIPTS (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "run artefact emitters",
+        "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "plainEnglishPurpose": "Added/removed/retained version delta",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "exactProducerOwner": "Assurance run recorder / VDR receipt emitter (harness) with production commit pins",
+      "missingInputLane": "capture_materialisation_harness",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 frozen run pair with pinned hashes/versions; VDR contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-VDR-RECEIPTS (P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "run artefact emitters",
+        "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "plainEnglishPurpose": "Source-fact→conclusion sentence receipts",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "plainEnglishPurpose": "Source-change affected sentence marking",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "plainEnglishPurpose": "Stale draft marking",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "plainEnglishPurpose": "Stale drafts blocked across exits",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "plainEnglishPurpose": "No silent rewrite/delete of locked text",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "plainEnglishPurpose": "Before/after change reason receipts",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "plainEnglishPurpose": "Solicitor approval before external send",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P0",
+      "severity": "P0",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "plainEnglishPurpose": "Rejected/superseded revision history",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "plainEnglishPurpose": "Audience redraft preserves truth",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "plainEnglishPurpose": "Unaffected sentences byte-identical",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "plainEnglishPurpose": "Uncertain provenance must be qualified",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "plainEnglishPurpose": "Cross-exit propagation complete",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "plainEnglishPurpose": "Rollback on superseded source",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "plainEnglishPurpose": "Actor/time/source/approval audit trail",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "currentStatus": "adapter_foundation_only",
+      "priority": "P1",
+      "severity": "P1",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "exactProducerOwner": "Evidence-locked drafting production path + version-pair capture harness",
+      "missingInputLane": "production_casebrain",
+      "productionVsHarnessGapClass": "production_does_not_emit",
+      "minimumEligibleDenominator": 1,
+      "requiredAcceptanceEvidence": "≥1 real before/after draft pair with sentence-level receipts; ELD contracts; independence proof",
+      "nextImplementationBatch": "Batch-E-ELD-VERSION-PAIRS (P0/P1)",
+      "stage300CasesCanSupplyInput": true,
+      "liveProductWorkEventuallyRequired": true,
+      "auditorIndependence": {
+        "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+        "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+        "sharedTypesSchemasUtilities": [
+          "hash utilities",
+          "schema version constants"
+        ],
+        "expectedAndActualShareSubstantiveAlgorithm": false,
+        "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+        "note": "Must prove auditor does not call the same substantive production function for expected values"
+      }
+    }
+  ],
+  "note": "Exact unlock paths — no vague richer-input wording. Next batches must follow P0/P1 first."
+}

@@ -1,0 +1,73 @@
+{
+  "baselineCommit": "d92e28c25a1dcc239f3c0d434174cc45851fd908",
+  "headCommit": "d92e28c25a1dcc239f3c0d434174cc45851fd908",
+  "rows": [
+    {
+      "path": "lib/criminal/strategy-fight-engine.ts",
+      "baselineBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+      "headBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+      "blobUnchanged": true
+    },
+    {
+      "path": "lib/criminal/strategy-fight-engine-generators.ts",
+      "baselineBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+      "headBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+      "blobUnchanged": true
+    },
+    {
+      "path": "lib/criminal/get-aggressive-defense.ts",
+      "baselineBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+      "headBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+      "blobUnchanged": true
+    },
+    {
+      "path": "lib/criminal/strategy-battleboard.ts",
+      "baselineBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+      "headBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+      "blobUnchanged": true
+    },
+    {
+      "path": "lib/criminal/strategy-routes.ts",
+      "baselineBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+      "headBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+      "blobUnchanged": true
+    },
+    {
+      "path": "lib/criminal/bundle-truth-ledger.ts",
+      "baselineBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+      "headBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+      "blobUnchanged": true
+    },
+    {
+      "path": "lib/criminal/bundle-material-normalizer.ts",
+      "baselineBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+      "headBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+      "blobUnchanged": true
+    },
+    {
+      "path": "lib/criminal/source-truth-guardian/fingerprint.ts",
+      "baselineBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+      "headBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+      "blobUnchanged": true
+    },
+    {
+      "path": "lib/criminal/source-truth-guardian/guardian.ts",
+      "baselineBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+      "headBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+      "blobUnchanged": true
+    },
+    {
+      "path": "lib/criminal/source-truth-guardian/index.ts",
+      "baselineBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+      "headBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+      "blobUnchanged": true
+    },
+    {
+      "path": "lib/criminal/source-truth-guardian/types.ts",
+      "baselineBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+      "headBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+      "blobUnchanged": true
+    }
+  ],
+  "allUnchanged": true
+}

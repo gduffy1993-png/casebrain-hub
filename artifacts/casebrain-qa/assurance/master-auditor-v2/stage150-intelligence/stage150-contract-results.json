@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "stage150-contract-results@1.1.0",
+  "command": "npx tsx --test scripts/maa-v2-stage150-intelligence-contracts.test.ts",
+  "passed": 27,
+  "failed": 0,
+  "suites": 6,
+  "coverage": [
+    "positive",
+    "multiple_realistic_negatives",
+    "unavailable_input_receipt",
+    "wrong_control_ownership",
+    "honest_limitation",
+    "exhaustive_ledger_binding"
+  ],
+  "handlerCount": 25,
+  "note": "Remediated Stage-150 intelligence contracts after Codex semantic/eligibility review."
+}

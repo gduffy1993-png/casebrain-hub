@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "determinism-manifest@1.0.0",
+  "timezone": "UTC",
+  "locale": "en-GB",
+  "asOf": null,
+  "unicodeNormalization": "NFKC_comparison_field_only",
+  "hashAlgorithm": "sha256",
+  "registryVersion": "2.2.0",
+  "candidateSchema": "maa-v2-candidate-finding@1.0.0",
+  "networkAccess": false,
+  "modelAssistedDefault": false,
+  "sorting": "freeze_membership_order"
+}

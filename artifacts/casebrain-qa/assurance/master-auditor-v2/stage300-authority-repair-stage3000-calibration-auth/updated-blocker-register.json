@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "stage300-authority-repair-blocker-register@1.0.0",
+  "generatedAt": "2026-08-02T00:47:55.217Z",
+  "baselineCommit": "bda75a83dcc061d6ed7bbdb21f976015d1b16535",
+  "scaleGateModel": "Calibration authority (selection + evidence gathering) is separated from completion/PASS authority.",
+  "blockers": [
+    {
+      "id": "CAL-PENDING-ESSENTIAL-43",
+      "title": "43 essential controls not closed as genuinely evaluated",
+      "blocksCompletion": true,
+      "blocksCalibrationEvidenceCollection": false,
+      "authorityDisposition": "blocks_stage3000_completion_not_calibration",
+      "emitAs": "not_exercised_or_unresolved_never_PASS"
+    },
+    {
+      "id": "CAL-PENDING-SPECIALTY-6",
+      "title": "Six harness-only specialty controls (no CaseBrain specialty emitters)",
+      "blocksCompletion": true,
+      "blocksCalibrationEvidenceCollection": false,
+      "authorityDisposition": "blocks_stage3000_completion_not_calibration",
+      "emitAs": "not_exercised_or_unresolved_never_PASS",
+      "controlIds": [
+        "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+        "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+        "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+        "MAA2-PRC-03-YOUTH-STATE",
+        "MAA2-PRC-04-FITNESS-PARTICIPATION",
+        "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+      ]
+    },
+    {
+      "id": "CAL-PENDING-LEGAL-2",
+      "title": "Two qualified legal-review items remain pending",
+      "count": 2,
+      "blocksCompletion": true,
+      "blocksCalibrationEvidenceCollection": false,
+      "blocksPromotion": true,
+      "authorityDisposition": "human_or_external_review_required",
+      "emitAs": "unresolved_pending_human_review"
+    },
+    {
+      "id": "CAL-PENDING-OWNERSHIP-20",
+      "title": "Twenty unresolved source-ownership items remain pending",
+      "count": 20,
+      "blocksCompletion": true,
+      "blocksCalibrationEvidenceCollection": false,
+      "blocksPromotion": true,
+      "authorityDisposition": "human_or_external_review_required",
+      "emitAs": "unresolved_pending_ownership_triage"
+    },
+    {
+      "id": "CAL-DEFER-BROWSER",
+      "title": "Authenticated browser lane not exercised",
+      "blocksCompletion": true,
+      "blocksCalibrationEvidenceCollection": false,
+      "authorityDisposition": "safe_to_defer_to_heavy_or_browser_lane",
+      "emitAs": "not_exercised"
+    }
+  ]
+}

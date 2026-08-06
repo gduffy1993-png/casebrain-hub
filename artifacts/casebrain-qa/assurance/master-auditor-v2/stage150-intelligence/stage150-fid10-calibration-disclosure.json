@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "stage150-fid10-calibration-disclosure@1.0.0",
+  "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+  "findingCode": "FID_QUOTATION_WITHOUT_SOURCE",
+  "status": "CALIBRATION_BLOCKER",
+  "generatedFor": "MAA V2 Stage-150 intelligence remediation accept (partial detector layer)",
+  "baselineCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+  "disclosure": {
+    "unresolvedCandidateOccurrences": 915,
+    "casesWithUnresolvedCandidates": 474,
+    "populationUniqueValid": 499,
+    "candidateClass": "unresolved",
+    "confirmedApplicationDefects": false,
+    "plainEnglish": "FID-10 quotation fidelity produced 915 unresolved provenance candidate occurrences across 474/499 ESA unique-valid cases. These are unresolved provenance candidates, not confirmed application defects. This volume remains a calibration blocker before Stage-150 execution."
+  },
+  "rules": {
+    "emptyHitsDoNotImplyPass": true,
+    "unresolvedIsNotDefect": true,
+    "stage150ExecutionAllowed": false,
+    "stage150SampleSelectionAllowed": false,
+    "programmePassSupported": false
+  },
+  "nextSafeAction": "Do not freeze or run Stage 150 until FID-10 calibration (and related denominator/adapter prerequisites) are resolved or explicitly dispositioned."
+}

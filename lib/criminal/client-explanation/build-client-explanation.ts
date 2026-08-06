@@ -12,6 +12,7 @@ import type {
   ClientExplanationOutcome,
   ClientExplanationResult,
 } from "./client-explanation-types";
+import { assessStructuredField } from "@/lib/criminal/structured-solicitor-output";
 
 function dedupe(lines: string[], cap = 8): string[] {
   const seen = new Set<string>();
@@ -19,10 +20,12 @@ function dedupe(lines: string[], cap = 8): string[] {
   for (const line of lines) {
     const s = sanitizeClientExplanationLine(line);
     if (!s) continue;
-    const key = s.toLowerCase().slice(0, 72);
+    const assessed = assessStructuredField(s, "rendered");
+    if (!assessed.ok || !assessed.text) continue;
+    const key = assessed.text.toLowerCase().slice(0, 72);
     if (seen.has(key)) continue;
     seen.add(key);
-    out.push(s);
+    out.push(assessed.text);
     if (out.length >= cap) break;
   }
   return out;
@@ -31,6 +34,7 @@ function dedupe(lines: string[], cap = 8): string[] {
 function assembleFullText(
   sections: Omit<ClientExplanationResult, "available" | "fullText">,
 ): string {
+  // Structured section render — never pipe-join bullets; one bullet per line.
   const lines: string[] = [
     "Client explanation — draft for solicitor review",
     "",

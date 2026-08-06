@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "batch6-fp-unresolved-rates@1.1.0",
+  "denominator": "triaged_candidates_per_control_pass_B",
+  "honesty": {
+    "zeroCandidateRatesAreNull": true,
+    "zeroCandidateWording": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+    "doNotDescribeZeroOverZeroAsZeroRateOrCorpusRecall": true,
+    "humanFpFnRecallUnavailableWhenDenominatorZero": true
+  },
+  "byControl": {
+    "MAA2-EVS-02-STATE-ENUM": {
+      "total": 0,
+      "byBucket": {},
+      "fpRate": null,
+      "unresolvedRate": null,
+      "confirmedRate": null,
+      "humanFpFnRecall": "unavailable",
+      "rateHonestyNote": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+      "occurrenceDenominator": 0,
+      "caseDenominatorNote": "case denominator = 499 calibration population (separate from candidates)",
+      "stringDenominatorNote": "string/template denominators not conflated with candidate rates"
+    },
+    "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED": {
+      "total": 0,
+      "byBucket": {},
+      "fpRate": null,
+      "unresolvedRate": null,
+      "confirmedRate": null,
+      "humanFpFnRecall": "unavailable",
+      "rateHonestyNote": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+      "occurrenceDenominator": 0,
+      "caseDenominatorNote": "case denominator = 499 calibration population (separate from candidates)",
+      "stringDenominatorNote": "string/template denominators not conflated with candidate rates"
+    }
+  },
+  "overall": {
+    "confirmed_app_defect": 0,
+    "output_intrinsic_confirmed_app_defect": 0,
+    "detector_false_positive": 0,
+    "unresolved_source": 0,
+    "truth_key_defect": 0,
+    "duplicate_occurrence": 0,
+    "safe_qualified_output": 0
+  }
+}

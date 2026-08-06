@@ -1,0 +1,21 @@
+{
+  "detector_false_positive": 1023,
+  "heading_label_formatting": 0,
+  "provenance_in_linked_field": 0,
+  "qualified_unknown_provenance": 1,
+  "sampleUniqueStrings": [
+    "Do not state \"CCTV confirms\" — CCTV is not fully served on papers",
+    "Do not state \"CCTV proves\" — CCTV is not fully served on papers",
+    "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers",
+    "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served",
+    "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
+    "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
+    "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers",
+    "Do not state \"interview confirms\" — Interview material is not fully served",
+    "Do not state \"BWV confirms\" — Body-worn video is not fully served on papers",
+    "Do not state \"final medical report\" — Medical material is absent, draft, or outstanding",
+    "Do not state \"medical report proves\" — Medical material is absent, draft, or outstanding",
+    "Do not state \"medical is consistent\" — Medical material is absent, draft, or outstanding",
+    "Do not state \"Complainant injury account is consistent across MG11 and medical material\" — Medical or witness material is not fully served on papers"
+  ]
+}

@@ -1,0 +1,1001 @@
+{
+  "schemaVersion": "stage150-batch3-control-reclassifications@1.0.0",
+  "baselineCommit": "d92e28c25a1dcc239f3c0d434174cc45851fd908",
+  "counts": {
+    "genuine_structured_detector": 3,
+    "genuine_string_quality_detector": 13,
+    "phrase_probe_only": 35,
+    "unavailable_missing_adapter": 0
+  },
+  "controls": [
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "classification": "genuine_structured_detector",
+      "capabilityScope": "evidenceStates/fiveAnswers inventory completeness collapse cues",
+      "exercisedInvariant": "Structured inventory rows present with completeness vs missing state fields",
+      "unexercisedInvariant": "No structured inventory completeness/missing state fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates",
+        "inventory_completeness_state_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "/evidenceStates",
+        "/fiveAnswersEvidenceRows",
+        "inventory_completeness_state_fields"
+      ],
+      "note": "Structured inventory probe; full BND-01 still needs complete inventory adapter."
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue for replacement/supersession without link language",
+      "exercisedInvariant": "Document relationship graph with prior/replacement instrument ids",
+      "unexercisedInvariant": "Only free-text replacement wording without instrument graph",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "document_relationship_version_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "document_relationship_version_fields"
+      ],
+      "note": "Phrase probe only — named control needs instrument relationship graph."
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue mentioning ≥2 version N tokens without precedence words",
+      "exercisedInvariant": "≥2 identified document versions plus ordering/operative state",
+      "unexercisedInvariant": "Version words in prose without version identity + ordering fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "two_identified_document_versions_with_ordering"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "/documentVersions",
+        "two_identified_document_versions_with_ordering"
+      ],
+      "note": "Literal 'version 1 and version 2' wording is not named-control exercise."
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue attachment claimed present and missing",
+      "exercisedInvariant": "Explicit attachment reference plus inventory state",
+      "unexercisedInvariant": "Attachment words without inventory attachment records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attachment_reference_plus_inventory_state"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "attachment_reference_plus_inventory_state"
+      ],
+      "note": "Phrase probe; named control needs attachment inventory state."
+    },
+    {
+      "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue for duplicate exhibit label language",
+      "exercisedInvariant": "Same normalised exhibit label on ≥2 distinct document identities",
+      "unexercisedInvariant": "Collision phrase without same-label/multi-document identity records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "same_exhibit_label_across_two_document_ids"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "same_exhibit_label_across_two_document_ids"
+      ],
+      "note": "Requires same exhibit label across two document IDs — two different labels alone are insufficient."
+    },
+    {
+      "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue co-defendant-only treated as shared",
+      "exercisedInvariant": "Party-scoped evidence ownership fields",
+      "unexercisedInvariant": "Ownership words without party allocation records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attribution_graph_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "attribution_graph_fields"
+      ],
+      "note": "Phrase probe; named control needs party-scoped ownership graph."
+    },
+    {
+      "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue inventing same-document relationship",
+      "exercisedInvariant": "Source-backed document relationship edges",
+      "unexercisedInvariant": "Inferred relationship prose without relationship edges",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "document_relationship_version_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "document_relationship_version_fields"
+      ],
+      "note": "Phrase probe only."
+    },
+    {
+      "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue unclear defendant allocation",
+      "exercisedInvariant": "Defendant roster plus count/document allocation",
+      "unexercisedInvariant": "Allocation words without defendant roster + count map",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "defendant_roster_plus_count_allocation"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "defendant_roster_plus_count_allocation"
+      ],
+      "note": "Named control requires roster + allocation fields."
+    },
+    {
+      "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue silent particular drift",
+      "exercisedInvariant": "Particular fields with source-linked prior/current values",
+      "unexercisedInvariant": "Drift words without particular change records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_particulars_change_records"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "/chargeInstrument/particulars",
+        "/chargeInstrument/amendmentHistory",
+        "charge_particulars_change_records"
+      ],
+      "note": "Phrase probe; named control needs particulars change records — instrumentId alone insufficient."
+    },
+    {
+      "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue unresolved exhibit/document reference",
+      "exercisedInvariant": "Resolvable exhibit/document identity binding",
+      "unexercisedInvariant": "Vague reference prose without identity binding",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "resolvable_exhibit_document_bindings"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "resolvable_exhibit_document_bindings"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue allegation→proven-fact collapse (no source comparison)",
+      "exercisedInvariant": "Source/context comparison proving allegation strengthened vs source",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "note": "Reclassified phrase_probe_only — wording alone cannot establish full named invariant."
+    },
+    {
+      "controlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue hypothesis presented as advice (no source comparison)",
+      "exercisedInvariant": "Source/context comparison proving hypothesis elevated to advice",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "note": "Reclassified phrase_probe_only — wording alone cannot establish full named invariant."
+    },
+    {
+      "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue collapsing statement into charge particulars",
+      "exercisedInvariant": "Distinct statement vs charge-instrument identities",
+      "unexercisedInvariant": "Collapse words without instrument/statement ids",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_statement_and_particulars_identities"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "/chargeInstrument/particulars",
+        "/statementIdentity",
+        "charge_statement_and_particulars_identities"
+      ],
+      "note": "Needs statement + particulars identities — instrumentId alone insufficient."
+    },
+    {
+      "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue offence without statutory provision tokens",
+      "exercisedInvariant": "Charge instrument with statutory provision field",
+      "unexercisedInvariant": "Offence words / instrumentId without statutoryProvision field",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_statutory_provision_field"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "/chargeInstrument/statutoryProvision",
+        "charge_statutory_provision_field"
+      ],
+      "note": "Statutory provision field required — instrumentId alone does not exercise this control."
+    },
+    {
+      "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue discrepancy resolved without stated state",
+      "exercisedInvariant": "Discrepancy records with explicit state",
+      "unexercisedInvariant": "Discrepancy words / instrumentId without discrepancy state records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_discrepancy_state_records"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "charge_discrepancy_state_records"
+      ],
+      "note": "Discrepancy state records required — instrumentId alone insufficient."
+    },
+    {
+      "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue registry/meta as operative charge (no source comparison)",
+      "exercisedInvariant": "Source/context comparison plus operative instrument fields",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "note": "Reclassified phrase_probe_only — wording alone cannot establish full named invariant."
+    },
+    {
+      "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue charge-source issue without action",
+      "exercisedInvariant": "Charge source issue + required action fields",
+      "unexercisedInvariant": "Source-issue words / instrumentId without source+action fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_source_and_required_action_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "/chargeInstrument/sourceIssue",
+        "/chargeInstrument/requiredAction",
+        "charge_source_and_required_action_fields"
+      ],
+      "note": "Source and required-action fields required — instrumentId alone insufficient."
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Generic verify/replace charge instruction wording",
+      "exercisedInvariant": "Included wording ledger",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "String-level generic-instruction detector."
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "classification": "genuine_structured_detector",
+      "capabilityScope": "evidenceStates unknown/unclear without taxonomy reason",
+      "exercisedInvariant": "Evidence state rows with reason taxonomy fields",
+      "unexercisedInvariant": "No evidenceStates reason taxonomy fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates",
+        "evidence_state_reason_taxonomy_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "evidence_state_reason_taxonomy_fields"
+      ],
+      "note": "Structured EVS probe; full taxonomy adapter still pending for complete exercise."
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue unclear document ownership",
+      "exercisedInvariant": "Document ownership attribution fields",
+      "unexercisedInvariant": "Ownership words without attribution fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attribution_graph_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "attribution_graph_fields"
+      ],
+      "note": "Phrase probe; named control needs attribution graph."
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue statement ownership collapse",
+      "exercisedInvariant": "Statement speaker ownership records",
+      "unexercisedInvariant": "Collapse words without speaker ownership records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attribution_graph_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "attribution_graph_fields"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue group→individual attribution collapse",
+      "exercisedInvariant": "Group vs individual attribution graph",
+      "unexercisedInvariant": "Attribution words without group/individual graph",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attribution_graph_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "attribution_graph_fields"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue inference presented as proven (no source comparison)",
+      "exercisedInvariant": "Source/context comparison proving inference elevated to proven",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "note": "Reclassified phrase_probe_only — wording alone cannot establish full named invariant."
+    },
+    {
+      "controlId": "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue deadline without date",
+      "exercisedInvariant": "Underlying event/date plus applicable deadline state",
+      "unexercisedInvariant": "Deadline words without event/date + deadline state",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "event_date_plus_deadline_state"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "event_date_plus_deadline_state"
+      ],
+      "note": "Named control needs deadline state records."
+    },
+    {
+      "controlId": "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue duplicate/omitted chronology event",
+      "exercisedInvariant": "Chronology event identity records",
+      "unexercisedInvariant": "Event words without chronology event records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "event_date_plus_deadline_state"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "event_date_plus_deadline_state"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-PRC-01-STAGE-TAGGING",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue untagged procedural stage",
+      "exercisedInvariant": "Procedural stage tags on events",
+      "unexercisedInvariant": "Stage words without stage-tag fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "event_date_plus_deadline_state"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "event_date_plus_deadline_state"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue wrong procedural stage",
+      "exercisedInvariant": "Recorded vs actual stage fields",
+      "unexercisedInvariant": "Wrong-stage words without stage comparison fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "event_date_plus_deadline_state"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "event_date_plus_deadline_state"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "classification": "genuine_structured_detector",
+      "capabilityScope": "Chase rows validated against five-part finding schema",
+      "exercisedInvariant": "Non-empty chase rows with what/why/fromWhom/byWhen/ifNot fields",
+      "unexercisedInvariant": "Chase row or empty copySuggestion without five-part schema",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording",
+        "nonempty:/warningsAndGaps/chaseItems"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "chase_five_part_finding_schema"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "chase_five_part_finding_schema"
+      ],
+      "note": "Named exercise requires actual five-part schema — empty copySuggestion alone is insufficient."
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Chase/request wording without provenance cue",
+      "exercisedInvariant": "Chase rows linked to evidence via provenance fields",
+      "unexercisedInvariant": "Chase words without chase-to-evidence provenance links",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "chase_to_evidence_provenance_links"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "chase_to_evidence_provenance_links"
+      ],
+      "note": "Named control needs chase↔evidence provenance links."
+    },
+    {
+      "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue evidential chase collapsed to procedural",
+      "exercisedInvariant": "Chase rows with explicit evidential/procedural chaseType",
+      "unexercisedInvariant": "evidenceRef alone without chaseType field",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "chase_evidential_procedural_type_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "chase_evidential_procedural_type_fields"
+      ],
+      "note": "evidenceRef without chaseType remains named not_exercised."
+    },
+    {
+      "controlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Template placeholders in chase/solicitor wording",
+      "exercisedInvariant": "Included wording ledger",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "String-level template artefact detector."
+    },
+    {
+      "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue stale chase after service change",
+      "exercisedInvariant": "Prior/current service state plus update history on chase/evidence",
+      "unexercisedInvariant": "Service-change words without prior/current state + history",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "chase_service_state_with_update_history"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "chase_service_state_with_update_history"
+      ],
+      "note": "Requires prior/current service state plus update history."
+    },
+    {
+      "controlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue excluded material omitted from chase",
+      "exercisedInvariant": "Excluded/quarantined request rows plus disclosed counts",
+      "unexercisedInvariant": "Excluded words without excluded rows + disclosed counts",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "excluded_quarantined_rows_and_disclosed_counts"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "excluded_quarantined_rows_and_disclosed_counts"
+      ],
+      "note": "Requires excluded/quarantined rows and disclosed counts."
+    },
+    {
+      "controlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Unprofessional/hostile CPS chase language in wording",
+      "exercisedInvariant": "Included wording ledger",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "String-level professional-language detector."
+    },
+    {
+      "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Broken/duplicate-token sentences on every-word ledger",
+      "exercisedInvariant": "Included solicitor-visible wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Truncated disclaimer endings on every-word ledger",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Template join artefacts {{ [[ <% in wording",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Spacing/punctuation corruption patterns",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Pipe-list fragments leaked into prose",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-08-CAPITALISATION",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Hostile shouting caps in solicitor-visible text",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Corrupted protected legal acronyms (mG11/cCtv/…)",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Do-not-state warning without action cue",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Excess stacked disclaimers obscuring substance",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue solicitor surface incomplete (no inventory comparison)",
+      "exercisedInvariant": "Expected solicitor-surface inventory vs observed surface inventory",
+      "unexercisedInvariant": "Completeness words without expected+observed surface inventories",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "solicitor_expected_and_observed_surface_inventory"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "solicitor_expected_and_observed_surface_inventory"
+      ],
+      "note": "Reclassified phrase_probe_only — requires expected and observed surface inventories."
+    },
+    {
+      "controlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue detached attribution limitation",
+      "exercisedInvariant": "Comparable exit receipts with attribution-limit attachment",
+      "unexercisedInvariant": "Limit words without comparable exit receipts",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "comparable_exit_receipts"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "comparable_exit_receipts"
+      ],
+      "note": "Cross-exit control — ESA packets lack comparable exit receipts."
+    },
+    {
+      "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Inferred date wording without qualification tokens",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "String-level qualification detector."
+    },
+    {
+      "controlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue priority buried/footer-only",
+      "exercisedInvariant": "Surface position/order metadata for priority items",
+      "unexercisedInvariant": "Burial words without position/order metadata",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "surface_position_order_metadata"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "surface_position_order_metadata"
+      ],
+      "note": "Named control needs position/order metadata — not phrase alone."
+    },
+    {
+      "controlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue priority checklist missing",
+      "exercisedInvariant": "Priority checklist structure present or explicitly absent-as-finding",
+      "unexercisedInvariant": "Checklist words without checklist structure",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "surface_position_order_metadata"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "surface_position_order_metadata"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue unclassified contradiction",
+      "exercisedInvariant": "Contradiction records with explicit classification fields",
+      "unexercisedInvariant": "Contradiction words without classification fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "contradiction_records_with_classification"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "contradiction_records_with_classification"
+      ],
+      "note": "CTX-01 classification data does not exercise CTX-02 ranking."
+    },
+    {
+      "controlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue low-rank elevated over material issue",
+      "exercisedInvariant": "≥2 contradiction records with comparable materiality/rank",
+      "unexercisedInvariant": "Classification-only or single contradiction without comparable ranks",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "two_contradiction_records_with_comparable_rank"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "two_contradiction_records_with_comparable_rank"
+      ],
+      "note": "Requires ≥2 ranked contradiction records — CTX-01 classification alone insufficient."
+    },
+    {
+      "controlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue defence conclusion as neutral summary (no source comparison)",
+      "exercisedInvariant": "Source/context comparison proving conclusion presented as neutral",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "note": "Reclassified phrase_probe_only — wording alone cannot establish full named invariant."
+    }
+  ],
+  "rule": "phrase_probe_only may evaluate a narrow wording probe; namedControlExerciseStatus stays not_exercised until exact structured prerequisites exist. Never conflate probe evaluation with full named-control exercise."
+}

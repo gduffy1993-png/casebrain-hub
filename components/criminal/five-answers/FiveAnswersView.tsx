@@ -32,7 +32,6 @@ import {
   polishPresentationLine,
 } from "@/lib/criminal/demo-presentation-polish";
 import {
-  countEvidenceStatesForDisplay,
   dedupeEvidenceRowsByLabel,
   dedupePresentationLines,
   filterFamilyProofCardsForBundle,
@@ -46,6 +45,7 @@ import {
   polishChasePreviewLabel,
   solicitorLinesNearlyEqual,
 } from "@/lib/criminal/solicitor-display-dedupe";
+import { adaptFiveAnswersAndChaseToCanonical } from "@/lib/criminal/canonical-matter-state";
 import { useMemo } from "react";
 
 export function FiveAnswersView({ caseId }: { caseId: string }) {
@@ -59,6 +59,9 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     briefPlan,
     primaryRouteTitle,
     bundleMeta,
+    outputIntegrity,
+    canonical,
+    evidenceRowsOverride,
   } = useMatterBrief(caseId);
   const buildTabHref = usePilotMatterTabHref();
   const bundleHay = useMemo(
@@ -84,6 +87,8 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       matterConfidence,
       doNotOverstate: filteredDoNotOverstate,
       bundleText: bundleMeta?.frontMatterScan ?? undefined,
+      evidenceRowsOverride: evidenceRowsOverride?.length ? evidenceRowsOverride : undefined,
+      canonicalFindings: canonical?.findingSummaries,
     });
 
     const gapRowsPolished = ensureDigitalHarassmentGapRows(
@@ -99,7 +104,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
         built.mustNotOverstate.map((line) => polishPresentationLine(line, bundleHay)),
       ),
     };
-  }, [warRoom, chase, allegation, matterConfidence, filteredDoNotOverstate, bundleMeta?.frontMatterScan, bundleHay]);
+  }, [warRoom, chase, allegation, matterConfidence, filteredDoNotOverstate, bundleMeta?.frontMatterScan, bundleHay, evidenceRowsOverride, canonical?.findingSummaries]);
 
   const decisionBoard = useMemo(() => {
     if (!briefPlan || !warRoom || !chase) return null;
@@ -198,7 +203,15 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
   const served = servedEvidenceRows(view.evidenceState.rows);
   const gaps = gapEvidenceRows(view.evidenceState.rows);
-  const stateCounts = countEvidenceStatesForDisplay(view.evidenceState.rows);
+  const canonicalMatter = adaptFiveAnswersAndChaseToCanonical({
+    caseId,
+    allegation,
+    bundleHay,
+    provisional: matterConfidence.level !== "safe",
+    evidenceRows: view.evidenceState.rows,
+    chase,
+  });
+  const stateCounts = canonicalMatter.evidence.counts;
   const topChase = dedupePresentationLines(
     view.chase
       .slice(0, 5)
@@ -251,6 +264,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
           evidenceCounts={stateCounts}
           topChaseLabels={topChase.map((label) => humanizeEvidenceLabel(label, "missing"))}
           riskFlags={riskFlags}
+          canonicalFingerprint={canonicalMatter.fingerprint}
         />
 
         <OverviewSafeWordingCard safeToSay={safeToSay} notSafeToSay={blockedExamples} />
@@ -274,7 +288,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
         <OverviewEvidenceGapsCard gaps={gaps} />
 
-        <OverviewProofDepthDrawer>
+        <OverviewProofDepthDrawer integrity={outputIntegrity}>
           <EvidenceTruthMapPanel rows={view.evidenceState.rows} />
           <ProofReceiptPanel
             model={proofReceipts!}
@@ -286,7 +300,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       </div>
 
       <div id="overview-review" className="scroll-mt-4 space-y-3">
-        <OverviewAdvancedPanel>
+        <OverviewAdvancedPanel integrity={outputIntegrity}>
           {warRoom && chase ? (
             <ConfidenceDashboardPanel
               caseId={caseId}

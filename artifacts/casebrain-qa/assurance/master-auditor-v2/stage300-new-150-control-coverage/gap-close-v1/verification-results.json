@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "stage300-new150-gap-close-verification@1.0.0",
+  "contractsOk": true,
+  "buildOk": true,
+  "frozen150Unchanged": true,
+  "brain1GuardianUnchanged": true,
+  "changedOutputCount": 150,
+  "runtimeMs": 124607
+}

@@ -33,6 +33,7 @@ import {
   isPackAAMessyBundle,
   isPackAAProsecutionProveQuestion,
 } from "@/lib/criminal/pack-aa-messy-parsers";
+import { validateSolicitorSurface } from "@/lib/criminal/shared-solicitor-validator";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -310,6 +311,31 @@ function jsonWithRoute(
   route: string,
   status = 200
 ) {
+  if (data.ok !== false && data.reply?.trim()) {
+    const gated = validateSolicitorSurface({
+      surfaceId: "api_defence_plan_chat",
+      texts: [data.reply],
+      mode: "api",
+      data: { texts: [data.reply] },
+    });
+    if (gated.status === "integrity_blocked") {
+      // Preserve route header on integrity_blocked so consumers stay typed-safe.
+      const body = {
+        ok: false as const,
+        status: "integrity_blocked" as const,
+        surfaceId: "api_defence_plan_chat",
+        banner: "Solicitor review required — output integrity check failed.",
+        reply: null,
+        error: "integrity_blocked",
+        canCopy: false,
+        ruleIds: gated.ruleIds,
+      };
+      return NextResponse.json(body, {
+        status: 200,
+        headers: { [CASEBRAIN_ROUTE_HEADER]: `${route}|integrity_blocked` },
+      });
+    }
+  }
   return NextResponse.json(data, { status, headers: { [CASEBRAIN_ROUTE_HEADER]: route } });
 }
 

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "batch10-final-acceptance-retention@1.0.0",
+  "codeBytesApprox": 217491,
+  "generatedEvidenceBytes": 14408553,
+  "commitCandidates": [
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/**",
+    "scripts/assurance/emit-maa-v2-stage150-batch10*.ts",
+    "scripts/maa-v2-stage150-batch10*-contracts.test.ts",
+    "artifacts/.../stage150-batch10-final-acceptance/* (STOP + acceptance JSON/MD + manifests)",
+    "artifacts/.../stage150-batch10/* (prior batch10 STOP, small)",
+    "artifacts/.../stage150-batch10-deficit120/* (STOP + small reports, not sources)"
+  ],
+  "hashLockUntrackedDueToSize": [
+    "artifacts/.../stage150-batch10-deficit120-sources/**",
+    "artifacts/.../stage150-batch10-deficit120-candidates/**",
+    "artifacts/.../stage150-batch10-structured-candidates/** (Cohort A packets — hash-locked)"
+  ],
+  "regenerationCommands": [
+    "npx tsx scripts/assurance/emit-maa-v2-stage150-batch10.ts",
+    "npx tsx scripts/assurance/emit-maa-v2-stage150-batch10-deficit120.ts",
+    "npx tsx scripts/assurance/emit-maa-v2-stage150-batch10-final-acceptance.ts",
+    "npx tsx --test scripts/maa-v2-stage150-batch10-contracts.test.ts scripts/maa-v2-stage150-batch10-deficit120-contracts.test.ts scripts/maa-v2-stage150-batch10-final-acceptance-contracts.test.ts",
+    "npm run build"
+  ]
+}

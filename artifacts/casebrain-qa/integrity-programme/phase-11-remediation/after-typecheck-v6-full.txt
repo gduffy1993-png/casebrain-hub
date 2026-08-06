@@ -1,0 +1,54 @@
+lib/eval/evidence-state-audit/build-audit-snapshot.ts(140,25): error TS2339: Property 'sendabilityLabel' does not exist on type 'DisclosureChaseItem'.
+lib/eval/evidence-state-audit/build-audit-snapshot.ts(189,7): error TS2353: Object literal may only specify known properties, and 'label' does not exist in type '{ level?: string | undefined; chaseSendability?: string | undefined; summarySendability?: string | undefined; safeCourtLineStatus?: string | undefined; }'.
+lib/eval/evidence-state-audit/enrich-simulator-truth-key.ts(506,72): error TS2339: Property 'mustNotSay' does not exist on type 'SimulatorV2TruthKey'.
+lib/eval/evidence-state-audit/enrich-simulator-truth-key.ts(512,25): error TS2339: Property 'offenceWording' does not exist on type 'SimulatorV2TruthKey'.
+lib/eval/evidence-state-audit/enrich-simulator-truth-key.ts(513,18): error TS2339: Property 'profile' does not exist on type 'SimulatorV2TruthKey'.
+lib/eval/evidence-state-audit/enrich-simulator-truth-key.ts(514,23): error TS2339: Property 'bundleStatus' does not exist on type 'SimulatorV2TruthKey'.
+lib/eval/evidence-state-audit/enrich-simulator-truth-key.ts(517,30): error TS2339: Property 'expectedSendability' does not exist on type 'SimulatorV2TruthKey'.
+lib/eval/h4-simulator/manifest-v4-case-catalog.ts(106,327): error TS2353: Object literal may only specify known properties, and 'sendability' does not exist in type 'TrapBlueprint'.
+lib/eval/h4-simulator/manifest-v4-case-catalog.ts(107,3): error TS2741: Property 'today' is missing in type '{ trap: string; profile: string; titlePrefix: string; mainIssue: string; served: string[]; referred: string[]; missing: string[]; chase: string[]; mustNot: string[]; blocking: string[]; }' but required in type 'TrapBlueprint'.
+lib/eval/h4-simulator/manifest-v4-case-catalog.ts(109,404): error TS2353: Object literal may only specify known properties, and 'sendability' does not exist in type 'TrapBlueprint'.
+lib/eval/line-source-proof/audit-lines.ts(1,37): error TS2307: Cannot find module '@/lib/criminal/trust/bad-output-memory' or its corresponding type declarations.
+lib/eval/line-source-proof/audit-lines.ts(613,3): error TS2740: Type '{ id: string; outputSurface: string; outputLine: string; humanEvidenceLabel: string | null; humanOutputLine: string; lineCategory: LineCategory; evidenceItem: string | null; ... 17 more ...; gedReviewReasons: string[]; }' is missing the following properties from type 'LineSourceProofRecord': sourceDocumentName, sourceDocumentType, sourcePageNumber, extractedSnippet, and 5 more.
+lib/eval/line-source-proof/audit-lines.ts(1082,7): error TS2353: Object literal may only specify known properties, and 'usefulness' does not exist in type 'TierInput'.
+lib/eval/line-source-proof/build-case-models.ts(152,27): error TS2339: Property 'documents' does not exist on type 'BundleTruthLedger'.
+lib/eval/line-source-proof/build-case-models.ts(158,5): error TS2353: Object literal may only specify known properties, and 'mainIssue' does not exist in type 'MatterConfidenceInput'.
+lib/eval/line-source-proof/build-case-models.ts(181,27): error TS2339: Property 'documents' does not exist on type 'BundleTruthLedger'.
+lib/eval/line-source-proof/case-shape-anchors.ts(15,109): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+lib/eval/line-source-proof/case-shape-anchors.ts(20,58): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+lib/eval/line-source-proof/case-shape-anchors.ts(26,74): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string'.
+  Type 'null' is not assignable to type 'string'.
+lib/eval/line-source-proof/output-presentation-gate.ts(8,3): error TS2305: Module '"@/lib/criminal/chase-source-gate"' has no exported member 'gatePresentationLine'.
+lib/eval/line-source-proof/output-presentation-gate.ts(9,3): error TS2305: Module '"@/lib/criminal/chase-source-gate"' has no exported member 'gatePresentationLines'.
+lib/eval/line-source-proof/output-presentation-gate.ts(11,3): error TS2305: Module '"@/lib/criminal/chase-source-gate"' has no exported member 'shouldEmitOutputLine'.
+lib/eval/line-source-proof/source-match.ts(655,7): error TS2367: This comparison appears to be unintentional because the types '"client_summary" | "court_note" | "missing_material" | "evidence_claim" | "evidence_state" | "chase_request" | "confidence_status" | "strategic_review" | "contradiction_or_risk" | "export_line" | "non_evidence_ui" | undefined' and '"safety_warning"' have no overlap.
+lib/eval/line-source-proof/source-match.ts(661,14): error TS2367: This comparison appears to be unintentional because the types '"medium" | "strong" | "weak" | "index_only" | "schedule_only" | "ocr_fragile"' and '"no_anchor"' have no overlap.
+lib/eval/line-source-proof/source-match.ts(671,14): error TS2367: This comparison appears to be unintentional because the types '"medium" | "strong" | "weak" | "index_only" | "schedule_only" | "ocr_fragile"' and '"no_anchor"' have no overlap.
+lib/eval/line-source-proof/suppression-families.ts(31,3): error TS2353: Object literal may only specify known properties, and 'encro_handle' does not exist in type 'Record<ExtendedSuppressionFamily, string>'.
+lib/eval/line-source-proof/suppression-families.ts(85,61): error TS2322: Type '"encro_handle"' is not assignable to type 'ExtendedSuppressionFamily'.
+scripts/build-demo-audit-five-pdf-cases.ts(175,22): error TS2339: Property 'sendabilityLabel' does not exist on type 'FiveAnswersEvidenceRow'.
+scripts/build-demo-audit-five-pdf-cases.ts(223,89): error TS2339: Property 'pageCount' does not exist on type '{ name: string; type: SourceDocumentType; path: string; pageReferences: string[]; }'.
+scripts/build-demo-audit-five-pdf-cases.ts(225,22): error TS2367: This comparison appears to be unintentional because the types 'SourceDocumentType' and '"pdf_page"' have no overlap.
+scripts/build-demo-audit-five-pdf-cases.ts(226,30): error TS2339: Property 'pageNumber' does not exist on type '{ name: string; type: SourceDocumentType; path: string; pageReferences: string[]; }'.
+scripts/build-demo-audit-five-pdf-cases.ts(226,51): error TS2339: Property 'label' does not exist on type '{ name: string; type: SourceDocumentType; path: string; pageReferences: string[]; }'.
+scripts/build-demo-audit-thirty-pdf-cases.ts(214,22): error TS2339: Property 'sendabilityLabel' does not exist on type 'FiveAnswersEvidenceRow'.
+scripts/build-demo-audit-thirty-pdf-cases.ts(262,89): error TS2339: Property 'pageCount' does not exist on type '{ name: string; type: SourceDocumentType; path: string; pageReferences: string[]; }'.
+scripts/build-demo-audit-thirty-pdf-cases.ts(264,22): error TS2367: This comparison appears to be unintentional because the types 'SourceDocumentType' and '"pdf_page"' have no overlap.
+scripts/build-demo-audit-thirty-pdf-cases.ts(265,30): error TS2339: Property 'pageNumber' does not exist on type '{ name: string; type: SourceDocumentType; path: string; pageReferences: string[]; }'.
+scripts/build-demo-audit-thirty-pdf-cases.ts(265,51): error TS2339: Property 'label' does not exist on type '{ name: string; type: SourceDocumentType; path: string; pageReferences: string[]; }'.
+scripts/build-gold-manual-proof-set-v1.ts(404,27): error TS2339: Property 'documents' does not exist on type 'BundleTruthLedger'.
+scripts/build-gold-manual-proof-set-v1.ts(410,5): error TS2353: Object literal may only specify known properties, and 'mainIssue' does not exist in type 'MatterConfidenceInput'.
+scripts/build-gold-manual-proof-set-v1.ts(489,5): error TS2322: Type 'PresentedProofReceipt[]' is not assignable to type '{ outputLine: string; surface: string; sourceDocument: string; sourcePage: string | null; evidenceState: string; safeAction: string; }[]'.
+  Type 'PresentedProofReceipt' is not assignable to type '{ outputLine: string; surface: string; sourceDocument: string; sourcePage: string | null; evidenceState: string; safeAction: string; }'.
+    Types of property 'sourceDocument' are incompatible.
+      Type 'string | null' is not assignable to type 'string'.
+        Type 'null' is not assignable to type 'string'.
+scripts/run-messy-pdf-proof-v1.ts(286,69): error TS2367: This comparison appears to be unintentional because the types '"pdf_available_but_text_mismatch"' and '"output_unsupported"' have no overlap.
+scripts/run-messy-pdf-proof-v3-scale100.ts(347,69): error TS2367: This comparison appears to be unintentional because the types '"pdf_available_but_text_mismatch"' and '"output_unsupported"' have no overlap.
+scripts/run-messy-pdf-proof-v4-scale300.ts(375,69): error TS2367: This comparison appears to be unintentional because the types '"pdf_available_but_text_mismatch"' and '"output_unsupported"' have no overlap.
+scripts/run-messy-pdf-proof-v5-scale500.ts(413,69): error TS2367: This comparison appears to be unintentional because the types '"pdf_available_but_text_mismatch"' and '"output_unsupported"' have no overlap.
+scripts/run-messy-pdf-proof-v6-scale1000.ts(717,69): error TS2367: This comparison appears to be unintentional because the types '"pdf_available_but_text_mismatch"' and '"output_unsupported"' have no overlap.
+scripts/seed-evidence-state-audit-cases.ts(76,22): error TS2339: Property 'fakeDefendant' does not exist on type 'SimulatorV2TruthKey'.
+scripts/seed-evidence-state-audit-cases.ts(77,21): error TS2339: Property 'offenceWording' does not exist on type 'SimulatorV2TruthKey'.

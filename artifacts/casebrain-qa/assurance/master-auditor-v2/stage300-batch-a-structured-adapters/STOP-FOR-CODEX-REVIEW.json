@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "maa-v2-stage300-batch-a-six-evaluators-stop@1.0.0",
+  "title": "ACCEPT — STAGE-300 BATCH-A STRUCTURED ADAPTERS AND SIX EVALUATORS (PENDING CALIBRATION FOUNDATION)",
+  "status": "STAGE300_BATCH_A_PENDING_CALIBRATION_FOUNDATION_ACCEPTED",
+  "createdAt": "2026-07-31T20:20:28.441Z",
+  "acceptedAt": "2026-07-31T20:35:00.000Z",
+  "baselineCommit": "ee3c70c6f010b1c81535aed8bc00d1b782a29b4e",
+  "batchASchemaVersion": "maa-v2-stage300-batch-a-structured-adapter@1.0.0",
+  "batchAEvalSchema": "maa-v2-stage300-batch-a-six-evaluators@1.0.0",
+  "orderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+  "candidateFreezeSha256Stage150": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202",
+  "sixEvaluatorCandidateFreezeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "freezeHashesVerified": true,
+  "freezeHashStage50": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "engineeringJobs": {
+    "sharedAdapters": 6,
+    "substantiveEvaluators": 6,
+    "note": "Do not double-count shared adapters as completed controls."
+  },
+  "essentialControls": 43,
+  "sixControls": [
+    "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+    "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+    "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+    "MAA2-PRC-03-YOUTH-STATE",
+    "MAA2-PRC-04-FITNESS-PARTICIPATION",
+    "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+  ],
+  "sixControlStatus": "substantive_evaluator_implemented_pending_review",
+  "fullyImplementedEssentialControls": 0,
+  "promotedToImmutableImplementedRegistry": false,
+  "afterStatusTotals": {
+    "substantive_evaluator_implemented_pending_review": 6,
+    "adapter_foundation_only": 32,
+    "specified_not_implemented": 4,
+    "partially_implemented_pending_calibration": 1
+  },
+  "sixControlExercise": {
+    "eligibleDenominator": "0/120 for each of six controls",
+    "candidateCount": 0,
+    "humanRatesAvailable": false,
+    "fpFnRecallClaims": false
+  },
+  "fixtureHarness": {
+    "labelled": "contract_evidence_only",
+    "notCorpusCalibration": true
+  },
+  "partialAdaptersRemainPartial": true,
+  "commitScopeFileCount": 39,
+  "commitScopeNote": "Prior reviewed label 43 included 4 gitignored regenerable jsonl ledgers; acceptance commit excludes those per retention policy.",
+  "stage300CorpusGenerationAllowed": false,
+  "stage300PopulationAcceptanceAllowed": false,
+  "stage300BlindFreezeAllowed": false,
+  "stage300CalibrationExecutionAllowed": false,
+  "stage300RemediationRerunAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "programmePassSupported": false,
+  "stage300Generated": false,
+  "stage300Frozen": false,
+  "stage300Run": false,
+  "applicationRepaired": false,
+  "caseGeneration": false,
+  "detectorsPromoted": false,
+  "brain1GuardianBlobUnchanged": true,
+  "committed": true,
+  "pushed": true,
+  "merged": false,
+  "deployed": false,
+  "programmePass": false,
+  "verification": {
+    "focusedContractsPassed": true,
+    "tests": 76,
+    "buildPassed": true,
+    "batchATypecheckDeltaErrors": 0,
+    "brain1GuardianBlobUnchanged": true,
+    "freezeHashesVerified": true
+  },
+  "artefacts": [
+    "six-control-evaluator-registry.json",
+    "six-control-eligibility-exercise-matrix.json",
+    "calibration-disposition-ledger-summary.json",
+    "six-evaluator-calibration/candidate-freeze-receipt.json",
+    "six-evaluator-calibration/truth-open-sequencing-receipt.json",
+    "six-evaluator-calibration/fixture-harness-report.json",
+    "43-control-before-after-matrix.json",
+    "remaining-essential-blocker-register.json",
+    "regression-report.json",
+    "retention-size-report.json",
+    "changed-file-manifest.json",
+    "brain1-guardian-blob-compare.json",
+    "verification-results.json",
+    "STOP-FOR-CODEX-REVIEW.json"
+  ],
+  "blockersRemaining": [
+    "Six controls pending real-corpus specialty-field population and human review before any promotion",
+    "No Stage-300 generation/freeze/run",
+    "No merge/deploy/PASS"
+  ]
+}

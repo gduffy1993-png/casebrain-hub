@@ -1,0 +1,536 @@
+{
+  "schemaVersion": "stage300-batch-b-43-before-after@1.0.0",
+  "controlCount": 43,
+  "unlockedEssentialControlIds": [],
+  "remainingBlockedEssentialControlIds": [
+    "MAA2-SRC-07-REDACTION-DETECT",
+    "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+    "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+    "MAA2-SRC-13-PASSWORD-CORRUPT",
+    "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+    "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+    "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+    "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+    "MAA2-PRC-03-YOUTH-STATE",
+    "MAA2-PRC-04-FITNESS-PARTICIPATION",
+    "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+    "MAA2-AUD-02-CLIENT-PLAIN",
+    "MAA2-AUD-03-COURT-PRECISE",
+    "MAA2-AUD-04-CPS-SPECIFIC",
+    "MAA2-AUD-05-SUPERVISOR-RISK",
+    "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+    "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+    "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+    "MAA2-XPP-04-CLIENT-COMPREHENSION",
+    "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+    "MAA2-VDR-01-SOURCE-CASE-HASHES",
+    "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+    "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+    "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+    "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+    "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+    "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+    "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+    "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+    "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+    "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+    "MAA2-ELD-03-STALE-DRAFT-MARKING",
+    "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+    "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+    "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+    "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+    "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+    "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+    "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+    "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+    "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+    "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+    "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+  ],
+  "afterStatusTotals": {
+    "specified_not_implemented": 4,
+    "partially_implemented_pending_calibration": 1,
+    "substantive_evaluator_implemented_pending_review": 6,
+    "adapter_foundation_only": 32
+  },
+  "rows": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "beforeStatus": "specified_not_implemented",
+      "afterStatus": "specified_not_implemented",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Heavy PDF/OCR/binary adapters + original source documents (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "beforeStatus": "specified_not_implemented",
+      "afterStatus": "specified_not_implemented",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Heavy PDF/OCR/binary adapters + original source documents (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "beforeStatus": "specified_not_implemented",
+      "afterStatus": "specified_not_implemented",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Heavy PDF/OCR/binary adapters + original source documents (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "beforeStatus": "partially_implemented_pending_calibration",
+      "afterStatus": "partially_implemented_pending_calibration",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Heavy PDF/OCR/binary adapters + original source documents (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "beforeStatus": "specified_not_implemented",
+      "afterStatus": "specified_not_implemented",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Heavy PDF/OCR/binary adapters + original source documents (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "beforeStatus": "substantive_evaluator_implemented_pending_review",
+      "afterStatus": "substantive_evaluator_implemented_pending_review",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Eligible chargeInstruments[] + substantive category-set coverage evaluator + contracts + calibration.",
+        "Batch-A evaluator pending review; specialty bags still absent (eligible denominator 0)"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "beforeStatus": "substantive_evaluator_implemented_pending_review",
+      "afterStatus": "substantive_evaluator_implemented_pending_review",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Eligible chronology/procedural structured fields + control-specific evaluator (age/calc/youth/fitness/PII) + contracts + calibration.",
+        "Batch-A evaluator pending review; specialty bags still absent (eligible denominator 0)"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "beforeStatus": "substantive_evaluator_implemented_pending_review",
+      "afterStatus": "substantive_evaluator_implemented_pending_review",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Eligible chronology/procedural structured fields + control-specific evaluator (age/calc/youth/fitness/PII) + contracts + calibration.",
+        "Batch-A evaluator pending review; specialty bags still absent (eligible denominator 0)"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "beforeStatus": "substantive_evaluator_implemented_pending_review",
+      "afterStatus": "substantive_evaluator_implemented_pending_review",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Eligible chronology/procedural structured fields + control-specific evaluator (age/calc/youth/fitness/PII) + contracts + calibration.",
+        "Batch-A evaluator pending review; specialty bags still absent (eligible denominator 0)"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "beforeStatus": "substantive_evaluator_implemented_pending_review",
+      "afterStatus": "substantive_evaluator_implemented_pending_review",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Eligible chronology/procedural structured fields + control-specific evaluator (age/calc/youth/fitness/PII) + contracts + calibration.",
+        "Batch-A evaluator pending review; specialty bags still absent (eligible denominator 0)"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "beforeStatus": "substantive_evaluator_implemented_pending_review",
+      "afterStatus": "substantive_evaluator_implemented_pending_review",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Eligible chronology/procedural structured fields + control-specific evaluator (age/calc/youth/fitness/PII) + contracts + calibration.",
+        "Batch-A evaluator pending review; specialty bags still absent (eligible denominator 0)"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Multi-audience / perspective adapter packs (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Multi-audience / perspective adapter packs (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Multi-audience / perspective adapter packs (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Multi-audience / perspective adapter packs (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Multi-audience / perspective adapter packs (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Multi-audience / perspective adapter packs (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Multi-audience / perspective adapter packs (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Multi-audience / perspective adapter packs (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Multi-audience / perspective adapter packs (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "beforeStatus": "adapter_foundation_only",
+      "afterStatus": "adapter_foundation_only",
+      "batchBUnlocked": false,
+      "blockersRemaining": [
+        "Non-synthetic version-pair / ELD-VDR adapters + evaluators (Batch later).",
+        "Out of Batch-B evidence/provenance/chase/multi-exit evaluator unlock set"
+      ],
+      "realEligibleDenominator": 0
+    }
+  ],
+  "note": "Batch B completed four adapter foundations to eligible@120. Zero essential-43 controls gained genuine structured prerequisites for new substantive evaluators. Do not count adapters as detectors.",
+  "prerequisiteRecompute": {
+    "unlocked": [],
+    "remainingBlocked": 43
+  }
+}

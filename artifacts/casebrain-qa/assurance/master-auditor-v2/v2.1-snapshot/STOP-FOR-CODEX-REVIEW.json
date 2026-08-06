@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "maa-v2-execution-readiness-stop@1.0.0",
+  "title": "STOP FOR CODEX REVIEW — MAA V2 execution-readiness remediation only",
+  "createdAt": "2026-07-29T22:03:28.766Z",
+  "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+  "pr": 65,
+  "registryVersion": "2.1.0",
+  "registrySchemaVersion": "maa-control-registry@v2.1.0",
+  "effectiveDate": "2026-07-29",
+  "programmePassSupported": false,
+  "stage150Started": false,
+  "stage150SampleFrozen": false,
+  "stage150ControlsRun": false,
+  "applicationBehaviourChanged": false,
+  "committed": false,
+  "pushed": false,
+  "merged": false,
+  "deployed": false,
+  "controlCounts": {
+    "total": 347,
+    "preservedV1": 24,
+    "additiveV2": 323,
+    "currentlyRunnable": 24,
+    "stage150Declared": 147,
+    "stage150FullyExercisable": 0
+  },
+  "historicalStage20ControlCount": 24,
+  "esaUniqueValid": 499,
+  "readinessGate": {
+    "overallAllowed": false,
+    "stage150ExecutionAllowed": false,
+    "blockingReasons": [
+      "detectorImplementationComplete",
+      "inputReadinessComplete",
+      "denominatorReadinessComplete",
+      "adapterReadinessComplete",
+      "receiptValidationComplete",
+      "contractReadinessComplete"
+    ]
+  },
+  "deliverables": [
+    "v2-control-execution-status.json",
+    "stage20-historical-activation-correction.json",
+    "stage150-detector-implementation-map.json",
+    "esa-population-input-capability-audit.json",
+    "stage150-control-exerciseability.json",
+    "stage150-minimum-denominators.json",
+    "v2-control-relationship-audit.json",
+    "stage150-execution-readiness-gate.json",
+    "execution-readiness-report.md",
+    "auditor-control-registry-v2.json",
+    "control-stage-activation-matrix.json"
+  ],
+  "reviewAsks": [
+    "Confirm no registry-only control marked implemented.",
+    "Confirm Stage 20 historical count is 24 and future activation is distinct.",
+    "Confirm Stage 150 execution remains blocked.",
+    "Approve or set PENDING_APPROVAL denominator thresholds before any Stage 150 sample freeze."
+  ]
+}

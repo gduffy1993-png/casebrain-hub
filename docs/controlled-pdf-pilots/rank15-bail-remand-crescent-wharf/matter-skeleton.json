@@ -1,0 +1,22 @@
+{
+  "schema_version":"1.0","matter_id":"R15-CRESCENT-WHARF","fiction_notice":"Entirely fictional matter; no real-case facts.","status":"design-only","venue":"fictional Magistrates' Court with possible Crown Court bail route",
+  "scenario":"Leila Okoro is accused after entry to a locked marine-parts warehouse and recovery of boxed components from a van she sometimes used. She disputes entry, knowledge and exclusive vehicle use. At first appearance the prosecution alleges failure-to-surrender, further-offending and witness-contact risks. A supported address, employment pattern, treatment needs and a proposed surety are offered. Bail is granted on recorded conditions; a later work-hours variation and an alleged indirect-contact breach are separately litigated.",
+  "persons":[
+    {"id":"D1","name":"Leila Okoro","role":"adult defendant","position":"denies entry and knowledge; gives limited vehicle-use account; bail proposals require verification"},
+    {"id":"C1","name":"Marek Szeliga","role":"warehouse manager/complainant","position":"proves premises and loss; does not identify D1 entering"},
+    {"id":"W1","name":"Nadia Bell","role":"civilian witness","position":"reports a van and later social-media contact; attribution and meaning disputed"},
+    {"id":"S1","name":"Jonas Okoro","role":"proposed surety/address provider","position":"offers address and financial commitment; suitability and acceptance undecided"}
+  ],
+  "proposed_charges":[
+    {"id":"PC1","label":"commercial-premises burglary allegation","against":["D1"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","particulars_state":"blank qualified review required"},
+    {"id":"PC2","label":"handling stolen goods allegation in the alternative","against":["D1"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","particulars_state":"blank qualified review required"}
+  ],
+  "procedure_hearings_deadlines":[
+    {"event":"charge and first appearance","state":"designed chronology only; exact jurisdiction and clock inputs pending review"},
+    {"event":"first remand/opposed bail","state":"applications, evidence, submissions, reasons and order separately recorded"},
+    {"event":"later variation","state":"file/service/response/hearing/ruling/operative-condition states separate"},
+    {"event":"arrest for alleged breach","state":"officer grounds, D1 response, court opinion, renewed bail decision and any separate allegation distinct"},
+    {"event":"custody time limit","state":"source, start, exclusions, calculation, application, ruling and expiry consequence remain blank pending qualified confirmation"}
+  ],
+  "unique_challenges":["dedicated bail proof rather than incidental bail references","risk assertion versus evidence versus submission versus judicial reason","address and surety offer/verification/acceptance/perfection states","condition proposal/order/service/knowledge/variation/breach states","first remand, repeat application, variation and breach chronology","CTL and bail-order version control"]
+}

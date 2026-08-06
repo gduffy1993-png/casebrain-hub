@@ -484,7 +484,7 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
       draft: i.draftChaseWording ?? null,
     })),
     courtLine,
-    clientSummaryPreview: clientPreview ? clientPreview.slice(0, 600) : null,
+    clientSummaryPreview: clientPreview ?? null,
     doNotOverstate: presentDoNotOverstateForFamily(spec.familyLabel, doNotOverstate).slice(0, 10),
     proofReceipts,
     hardSafetyFailures: hardSafetyScan(blob),

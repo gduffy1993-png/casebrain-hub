@@ -1,0 +1,14 @@
+{
+  "goldId": "GOLD-11-028",
+  "surfaces": [
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date passed · 1 Jun 2026",
+      "gateStatus": "passed",
+      "canCopy": true,
+      "sourceEvidenceAvailable": false,
+      "sourceEvidenceNote": "Controlled synthetic probe — no client bundle on disk."
+    }
+  ]
+}

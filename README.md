@@ -1,6 +1,6 @@
 ## CaseBrain Hub
 
-CaseBrain Hub is a production-ready AI paralegal workspace for law firms. Upload disclosure packs, extract entities and timelines, generate letters from approved templates, and export an audit-ready case bundle in minutes.
+CaseBrain Hub is an AI paralegal workspace for law firms (preview / under active integrity hardening — not currently certified production-ready). Upload disclosure packs, extract entities and timelines, generate letters from approved templates, and export an audit-ready case bundle.
 
 ### Tech stack
 

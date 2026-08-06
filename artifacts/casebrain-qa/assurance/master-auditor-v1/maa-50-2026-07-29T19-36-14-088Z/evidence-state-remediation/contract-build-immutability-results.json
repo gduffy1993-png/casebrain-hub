@@ -1,0 +1,14 @@
+{
+  "schema": "stage50-remediation-verification/v1",
+  "frozenMembershipHash": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "onDiskPacketsUnchanged": true,
+  "packetsChecked": 50,
+  "failedPackets": [],
+  "rematerialisation": "in-memory only via loadEsaCasePacket → buildCasebrainAuditSnapshot",
+  "truthKeyMigration": "overlay only — original truth-key.json untouched",
+  "contracts": {
+    "stage50EvidenceStateRemediation": "30 checks passed",
+    "masterAssuranceAuditor": "run separately",
+    "esaStage50Adapter": "run separately"
+  }
+}

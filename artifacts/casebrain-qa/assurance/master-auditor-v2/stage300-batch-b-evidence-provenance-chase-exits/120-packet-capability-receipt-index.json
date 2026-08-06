@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "stage300-batch-b-120-receipt-index@1.1.0",
+  "receiptCount": 120,
+  "rawRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-b-evidence-provenance-chase-exits/raw/120-packet-capability-receipts.jsonl",
+  "rawSha256": "ea65c14abc67eac4018adc3a52ceb59d021f426d56c3ffecb21ff72e7e31004f",
+  "truthOpened": false,
+  "note": "Raw per-case receipts include dualStatus; regenerable; gitignored."
+}

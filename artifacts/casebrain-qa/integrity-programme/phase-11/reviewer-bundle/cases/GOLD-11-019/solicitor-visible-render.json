@@ -1,0 +1,69 @@
+{
+  "goldId": "GOLD-11-019",
+  "def": {
+    "goldId": "GOLD-11-019",
+    "stratum": "provenance",
+    "sourceKind": "gold_manual_pack",
+    "fixtureId": "CASE-07:demo-audit-44-bad-redaction",
+    "selectionReason": "Gold pack bad-redaction provenance risk",
+    "reviewFocus": "Provenance / redaction-safe display."
+  },
+  "surfaces": [
+    {
+      "surface": "case_header",
+      "label": "Case header (solicitor view)",
+      "solicitorVisibleText": "Client: Farah Kent\nAllegation: Stalking, contrary to section 2A of the Protection from Harassment Act 1997",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "court_line",
+      "label": "Court line (copy preview)",
+      "solicitorVisibleText": "The defence asks the court to record that redacted papers are served but the unredacted MG11, redaction schedule, and full police note remain outstanding before the defence relies on the redacted text.",
+      "gateStatus": "ok",
+      "canCopy": true
+    },
+    {
+      "surface": "client_summary",
+      "label": "Client-safe summary preview",
+      "solicitorVisibleText": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Farah Kent). This is early-stage — nothing is final until we have full disclosure and your instructions. Redacted papers are on the bundle, but the unredacted MG11, redaction schedule, and full police note remain outstanding. Do not treat redacted text as if the full unredacted material were served.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — unredacted mg11",
+      "solicitorVisibleText": "Please provide unredacted mg11 or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — redaction schedule",
+      "solicitorVisibleText": "Please provide redaction schedule or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — full police note",
+      "solicitorVisibleText": "Please provide full police note or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "truth_map",
+      "label": "Evidence truth map (Overview)",
+      "solicitorVisibleText": "• witness MG11 — not_safely_confirmed\n• custody extract — not_safely_confirmed\n• unredacted mg11 — missing\n• redaction schedule — missing\n• full police note — missing",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "do_not_overstate",
+      "label": "Do-not-overstate warnings",
+      "solicitorVisibleText": "• unsafe proof/outcome wording blocked\n• Do not rely on redacted text as if the unredacted MG11 and schedule were served.",
+      "gateStatus": "warning",
+      "canCopy": false
+    }
+  ]
+}

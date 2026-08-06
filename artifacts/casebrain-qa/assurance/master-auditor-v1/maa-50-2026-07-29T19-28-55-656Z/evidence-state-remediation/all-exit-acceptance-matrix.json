@@ -1,0 +1,29 @@
+{
+  "note": "ESA Stage-50 surfaces evidence exits when present on rematerialised output; absent exits stay not_exercised.",
+  "exits": [
+    "view",
+    "copy",
+    "export",
+    "api",
+    "pdf",
+    "composed"
+  ],
+  "sharedRulesAppliedAcrossExits": [
+    "canonicalizeEvidenceExistence",
+    "wordingIndicatesReferredOnly",
+    "classifyMaterialStatus referred-before-outstanding",
+    "inferLedgerRowExistence referred_only",
+    "bindTruthMapRowForExpectation unit identity",
+    "other_defendant_only compatible family",
+    "outstanding_alone_unresolved"
+  ],
+  "regressionGuards": {
+    "extract_vs_full": true,
+    "draft_vs_signed": true,
+    "clip_vs_master": true,
+    "recording_vs_transcript": true,
+    "other_defendant_only": true,
+    "missing_incomplete_served_referred_only": true,
+    "aggregate_meta_isolation": true
+  }
+}

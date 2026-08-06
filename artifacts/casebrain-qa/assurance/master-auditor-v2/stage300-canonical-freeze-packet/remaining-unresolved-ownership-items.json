@@ -1,0 +1,589 @@
+{
+  "count": 20,
+  "byOwnership": {
+    "audience_pack_supervisor_source": 20
+  },
+  "rows": [
+    {
+      "exactWording": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE URN: 01AB100078226 Defendant: Quinn Sutton Court: Crown Court at Canal Steps Coverage family: identification_code_d Coverage tag: specialty_fitness Format notes: Stage-300 new-150 control-coverage materialisation === SECTION: COVER_INDEX === INDEX Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | MG11 complainant statement (draft unsigned) S300-002e-iden-specia | 5-6 | Exhibit pack S300-002e-iden-specia | 7-8 | CCTV still clip S300-002e-iden-specia | 9 | Interview recording S300-002e-iden-specia | 10 | Interview transcript S300-002e-iden-specia | 11 | Court listing / custody | 12 | === SECTION: CHARGE === R v Quinn Sutton Statement of Offence: Robbery, contrary to section 8(1) of the Theft Act 1968 Particulars of Offence: Between 2026-05-11 and 2026-08-26 at Crown Court at Canal Steps, Quinn Sutton engaged in conduct  particularised under identification and Code D (matter token S300-002e-iden-specia). Instrument status: operative Instrument version: 1 Replacement linkage: none\n\n=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 01AB100078226 Officer in case: DC Reed 5046 Family theme: identification and Code D Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-002e-iden-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-002e-iden-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).\n\n=== SECTION: MG5 === Evidence on file (served) - Charge sheet - MG5 - MG6C - MG11 complainant statement (draft unsigned) S300-002e-iden-specia - Exhibit pack S300-002e-iden-specia - CCTV still clip S300-002e-iden-specia Evidence referred or outstanding - MG11 complainant statement (signed) S300-002e-iden-specia - Interview recording S300-002e-iden-specia master export where not attached - CCTV master export S300-002e-iden-specia - Subscriber/account data where digital attribution is live\n\n=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE MG6C/001 — Exhibit pack S300-002e-iden-specia — served — on bundle pages 7-8 — evidenceUnitRef=EU- S300-002e-iden-specia-EXHIBIT MG6C/002 — MG11 complainant statement (draft unsigned) S300-002e-iden-specia — served — draft only MG6C/003 — MG11 complainant statement (signed) S300-002e-iden-specia — outstanding — not on bundle MG6C/004 — Interview recording S300-002e-iden-specia — outstanding — not on bundle MG6C/005 — Interview transcript S300-002e-iden-specia — served — pages 11 MG6C/006 — Subscriber/account data — outstanding — not on bundle MG6C/007 — Later disclosure annex — outstanding — later service marked\n\n=== SECTION: MG11 === MG11 — COMPLAINANT STATEMENT (draft unsigned) I am the complainant in 01AB100078226. Between the offence window and listing I experienced the events  summarised in the charge particulars (token S300-002e-iden-specia). I have not signed a final statement. Final  signed MG11 remains outstanding on MG6C/003.\n\n=== SECTION: CUSTODY ===\n\n=== SECTION: LISTING === Next hearing: 2026-08-26 at Crown Court at Canal Steps (Europe/London). Custody / listing extract: Date of birth (custody record): 1976-03-22 Age calculation inputs: DOB=1976-03-22; offenceDate=2026-05-11; hearingDate=2026-08-26;  timezone=Europe/London. Offence date (source): 2026-05-11 Hearing date (source): 2026-08-26 Timezone: Europe/London BWV reference — MG6C/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "normalisedTemplate": "restricted — prosecution disclosure bundle urn: 01ab100078226 defendant: quinn sutton court: crown court at canal steps coverage family: identification_code_d coverage tag: specialty_fitness format notes: stage-300 new-150 control-coverage materialisation === section: cover_index === index document | pages | note charge sheet | 1 | mg5 case summary | 2-3 | mg6c disclosure schedule | 4 | mg11 complainant statement (draft unsigned) <CASE> | 5-6 | exhibit pack <CASE> | 7-8 | cctv still clip <CASE> | 9 | interview recording <CASE> | 10 | interview transcript <CASE> | 11 | court listing / custody | 12 | === section: charge === r v quinn sutton statement of offence: robbery, contrary to section 8(1) of the theft act 1968 particulars of offence: between 2026-05-11 and 2026-08-26 at crown court at canal steps, quinn sutton engaged in conduct particularised under identification and code d (matter token <CASE>). instrument status: operative instrument version: 1 replacement linkage: none === section: mg5 === mg05 — offence report urn: 01ab100078226 officer in case: dc reed 5046 family theme: identification and code d coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt). === section: mg5 === evidence on file (served) - charge sheet - mg5 - mg6c - mg11 complainant statement (draft unsigned) <CASE> - exhibit pack <CASE> - cctv still clip <CASE> evidence referred or outstanding - mg11 complainant statement (signed) <CASE> - interview recording <CASE> master export where not attached - cctv master export <CASE> - subscriber/account data where digital attribution is live === section: mg6 === mg6c — unused material schedule mg6c/001 — exhibit pack <CASE> — served — on bundle pages 7-8 — evidenceunitref=eu- <CASE> mg6c/002 — mg11 complainant statement (draft unsigned) <CASE> — served — draft only mg6c/003 — mg11 complainant statement (signed) <CASE> — outstanding — not on bundle mg6c/004 — interview recording <CASE> — outstanding — not on bundle mg6c/005 — interview transcript <CASE> — served — pages 11 mg6c/006 — subscriber/account data — outstanding — not on bundle mg6c/007 — later disclosure annex — outstanding — later service marked === section: mg11 === mg11 — complainant statement (draft unsigned) i am the complainant in 01ab100078226. between the offence window and listing i experienced the events summarised in the charge particulars (token <CASE>). i have not signed a final statement. final signed mg11 remains outstanding on mg6c/003. === section: custody === === section: listing === next hearing: 2026-08-26 at crown court at canal steps (europe/london). custody / listing extract: date of birth (custody record): 1976-03-22 age calculation inputs: dob=1976-03-22; offencedate=2026-05-11; hearingdate=2026-08-26; timezone=europe/london. offence date (source): 2026-05-11 hearing date (source): 2026-08-26 timezone: europe/london bwv reference — mg6c/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-046-identification-code-d-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/frontMatterScan"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "MG05 — OFFENCE REPORT URN: 01AB100078226 Officer in case: DC Reed 5046 Family theme: identification and Code D Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-002e-iden-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-002e-iden-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "normalisedTemplate": "mg05 — offence report urn: 01ab100078226 officer in case: dc reed 5046 family theme: identification and code d coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-046-identification-code-d-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/snippets/mg5"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE URN: 01AB100079926 Defendant: Reese Vickers Court: Crown Court at Orchard Quay Coverage family: mental_health_fitness Coverage tag: specialty_fitness Format notes: Stage-300 new-150 control-coverage materialisation === SECTION: COVER_INDEX === INDEX Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | MG11 complainant statement (draft unsigned) S300-002f-ment-specia | 5-6 | Exhibit pack S300-002f-ment-specia | 7-8 | CCTV still clip S300-002f-ment-specia | 9 | Interview recording S300-002f-ment-specia | 10 | Interview transcript S300-002f-ment-specia | 11 | Court listing / custody | 12 | === SECTION: CHARGE === R v Reese Vickers Statement of Offence: Assault occasioning actual bodily harm, contrary to section 47 of the Offences Against the Person Act 1861 Particulars of Offence: Between 2026-06-12 and 2026-09-27 at Crown Court at Orchard Quay, Reese Vickers engaged in conduct  particularised under mental health and fitness to plead (matter token S300-002f-ment-specia). Instrument status: operative Instrument version: 1 Replacement linkage: none\n\n=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 01AB100079926 Officer in case: DC Reed 5047 Family theme: mental health and fitness to plead Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-002f-ment-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-002f-ment-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).\n\n=== SECTION: MG5 === Evidence on file (served) - Charge sheet - MG5 - MG6C - MG11 complainant statement (draft unsigned) S300-002f-ment-specia - Exhibit pack S300-002f-ment-specia - CCTV still clip S300-002f-ment-specia Evidence referred or outstanding - MG11 complainant statement (signed) S300-002f-ment-specia - Interview recording S300-002f-ment-specia master export where not attached - CCTV master export S300-002f-ment-specia - Subscriber/account data where digital attribution is live\n\n=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE MG6C/001 — Exhibit pack S300-002f-ment-specia — served — on bundle pages 7-8 MG6C/002 — MG11 complainant statement (draft unsigned) S300-002f-ment-specia — served — draft only MG6C/003 — MG11 complainant statement (signed) S300-002f-ment-specia — outstanding — not on bundle MG6C/004 — Interview recording S300-002f-ment-specia — outstanding — not on bundle MG6C/005 — Interview transcript S300-002f-ment-specia — served — pages 11 MG6C/006 — Subscriber/account data — outstanding — not on bundle MG6C/007 — Later disclosure annex — outstanding — later service marked\n\n=== SECTION: MG11 === MG11 — COMPLAINANT STATEMENT (draft unsigned) I am the complainant in 01AB100079926. Between the offence window and listing I experienced the events  summarised in the charge particulars (token S300-002f-ment-specia). I have not signed a final statement. Final  signed MG11 remains outstanding on MG6C/003.\n\n=== SECTION: CUSTODY ===\n\n=== SECTION: LISTING === Next hearing: 2026-09-27 at Crown Court at Orchard Quay (Europe/London). Custody / listing extract: Date of birth (custody record): 1977-03-22 Age calculation inputs: DOB=1977-03-22; offenceDate=2026-06-12; hearingDate=2026-09-27;  timezone=Europe/London. Offence date (source): 2026-06-12 Hearing date (source): 2026-09-27 Timezone: Europe/London BWV reference — MG6C/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "normalisedTemplate": "restricted — prosecution disclosure bundle urn: 01ab100079926 defendant: reese vickers court: crown court at orchard quay coverage family: mental_health_fitness coverage tag: specialty_fitness format notes: stage-300 new-150 control-coverage materialisation === section: cover_index === index document | pages | note charge sheet | 1 | mg5 case summary | 2-3 | mg6c disclosure schedule | 4 | mg11 complainant statement (draft unsigned) <CASE> | 5-6 | exhibit pack <CASE> | 7-8 | cctv still clip <CASE> | 9 | interview recording <CASE> | 10 | interview transcript <CASE> | 11 | court listing / custody | 12 | === section: charge === r v reese vickers statement of offence: assault occasioning actual bodily harm, contrary to section 47 of the offences against the person act 1861 particulars of offence: between 2026-06-12 and 2026-09-27 at crown court at orchard quay, reese vickers engaged in conduct particularised under mental health and fitness to plead (matter token <CASE>). instrument status: operative instrument version: 1 replacement linkage: none === section: mg5 === mg05 — offence report urn: 01ab100079926 officer in case: dc reed 5047 family theme: mental health and fitness to plead coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt). === section: mg5 === evidence on file (served) - charge sheet - mg5 - mg6c - mg11 complainant statement (draft unsigned) <CASE> - exhibit pack <CASE> - cctv still clip <CASE> evidence referred or outstanding - mg11 complainant statement (signed) <CASE> - interview recording <CASE> master export where not attached - cctv master export <CASE> - subscriber/account data where digital attribution is live === section: mg6 === mg6c — unused material schedule mg6c/001 — exhibit pack <CASE> — served — on bundle pages 7-8 mg6c/002 — mg11 complainant statement (draft unsigned) <CASE> — served — draft only mg6c/003 — mg11 complainant statement (signed) <CASE> — outstanding — not on bundle mg6c/004 — interview recording <CASE> — outstanding — not on bundle mg6c/005 — interview transcript <CASE> — served — pages 11 mg6c/006 — subscriber/account data — outstanding — not on bundle mg6c/007 — later disclosure annex — outstanding — later service marked === section: mg11 === mg11 — complainant statement (draft unsigned) i am the complainant in 01ab100079926. between the offence window and listing i experienced the events summarised in the charge particulars (token <CASE>). i have not signed a final statement. final signed mg11 remains outstanding on mg6c/003. === section: custody === === section: listing === next hearing: 2026-09-27 at crown court at orchard quay (europe/london). custody / listing extract: date of birth (custody record): 1977-03-22 age calculation inputs: dob=1977-03-22; offencedate=2026-06-12; hearingdate=2026-09-27; timezone=europe/london. offence date (source): 2026-06-12 hearing date (source): 2026-09-27 timezone: europe/london bwv reference — mg6c/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-047-mental-health-fitness-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/frontMatterScan"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "MG05 — OFFENCE REPORT URN: 01AB100079926 Officer in case: DC Reed 5047 Family theme: mental health and fitness to plead Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-002f-ment-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-002f-ment-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "normalisedTemplate": "mg05 — offence report urn: 01ab100079926 officer in case: dc reed 5047 family theme: mental health and fitness to plead coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-047-mental-health-fitness-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/snippets/mg5"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE URN: 01AB100081626 Defendant: Sawyer Alden Court: Copper Lane Magistrates' Court Coverage family: disclosure_pii Coverage tag: specialty_fitness Format notes: Stage-300 new-150 control-coverage materialisation === SECTION: COVER_INDEX === INDEX Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | MG11 complainant statement (draft unsigned) S300-0030-disc-specia | 5-6 | Exhibit pack S300-0030-disc-specia | 7-8 | CCTV still clip S300-0030-disc-specia | 9 | Interview recording S300-0030-disc-specia | 10 | Interview transcript S300-0030-disc-specia | 11 | Court listing / custody | 12 | === SECTION: CHARGE === R v Sawyer Alden Statement of Offence: Theft, contrary to section 1 of the Theft Act 1968 Particulars of Offence: Between 2026-01-13 and 2026-04-20 at Copper Lane Magistrates' Court, Sawyer Alden engaged in conduct  particularised under disclosure and PII boundaries (matter token S300-0030-disc-specia). Instrument status: operative Instrument version: 1 Replacement linkage: none\n\n=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 01AB100081626 Officer in case: DC Reed 5048 Family theme: disclosure and PII boundaries Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0030-disc-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0030-disc-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt). Disclosure vs PII: schedule marks witness home address and medical identifiers as PII-withheld; open  disclosure items remain on MG6C without PII.\n\n=== SECTION: MG5 === Evidence on file (served) - Charge sheet - MG5 - MG6C - MG11 complainant statement (draft unsigned) S300-0030-disc-specia - Exhibit pack S300-0030-disc-specia - CCTV still clip S300-0030-disc-specia Evidence referred or outstanding - MG11 complainant statement (signed) S300-0030-disc-specia - Interview recording S300-0030-disc-specia master export where not attached - CCTV master export S300-0030-disc-specia - Subscriber/account data where digital attribution is live\n\n=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE MG6C/001 — Exhibit pack S300-0030-disc-specia — served — on bundle pages 7-8 — evidenceUnitRef=EU- S300-0030-disc-specia-EXHIBIT MG6C/002 — MG11 complainant statement (draft unsigned) S300-0030-disc-specia — served — draft only MG6C/003 — MG11 complainant statement (signed) S300-0030-disc-specia — outstanding — not on bundle MG6C/004 — Interview recording S300-0030-disc-specia — outstanding — not on bundle MG6C/005 — Interview transcript S300-0030-disc-specia — served — pages 11 MG6C/006 — Subscriber/account data — outstanding — not on bundle MG6C/007 — Later disclosure annex — outstanding — later service marked\n\n=== SECTION: MG11 === MG11 — COMPLAINANT STATEMENT (draft unsigned) I am the complainant in 01AB100081626. Between the offence window and listing I experienced the events  summarised in the charge particulars (token S300-0030-disc-specia). I have not signed a final statement. Final  signed MG11 remains outstanding on MG6C/003.\n\n=== SECTION: CUSTODY ===\n\n=== SECTION: LISTING === Next hearing: 2026-04-20 at Copper Lane Magistrates' Court (Europe/London). Custody / listing extract: Date of birth (custody record): 1978-03-22 Age calculation inputs: DOB=1978-03-22; offenceDate=2026-01-13; hearingDate=2026-04-20;  timezone=Europe/London. Offence date (source): 2026-01-13 Hearing date (source): 2026-04-20 Timezone: Europe/London BWV reference — MG6C/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "normalisedTemplate": "restricted — prosecution disclosure bundle urn: 01ab100081626 defendant: sawyer alden court: copper lane magistrates' court coverage family: disclosure_pii coverage tag: specialty_fitness format notes: stage-300 new-150 control-coverage materialisation === section: cover_index === index document | pages | note charge sheet | 1 | mg5 case summary | 2-3 | mg6c disclosure schedule | 4 | mg11 complainant statement (draft unsigned) <CASE> | 5-6 | exhibit pack <CASE> | 7-8 | cctv still clip <CASE> | 9 | interview recording <CASE> | 10 | interview transcript <CASE> | 11 | court listing / custody | 12 | === section: charge === r v sawyer alden statement of offence: theft, contrary to section 1 of the theft act 1968 particulars of offence: between 2026-01-13 and 2026-04-20 at copper lane magistrates' court, sawyer alden engaged in conduct particularised under disclosure and pii boundaries (matter token <CASE>). instrument status: operative instrument version: 1 replacement linkage: none === section: mg5 === mg05 — offence report urn: 01ab100081626 officer in case: dc reed 5048 family theme: disclosure and pii boundaries coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt). disclosure vs pii: schedule marks witness home address and medical identifiers as pii-withheld; open disclosure items remain on mg6c without pii. === section: mg5 === evidence on file (served) - charge sheet - mg5 - mg6c - mg11 complainant statement (draft unsigned) <CASE> - exhibit pack <CASE> - cctv still clip <CASE> evidence referred or outstanding - mg11 complainant statement (signed) <CASE> - interview recording <CASE> master export where not attached - cctv master export <CASE> - subscriber/account data where digital attribution is live === section: mg6 === mg6c — unused material schedule mg6c/001 — exhibit pack <CASE> — served — on bundle pages 7-8 — evidenceunitref=eu- <CASE> mg6c/002 — mg11 complainant statement (draft unsigned) <CASE> — served — draft only mg6c/003 — mg11 complainant statement (signed) <CASE> — outstanding — not on bundle mg6c/004 — interview recording <CASE> — outstanding — not on bundle mg6c/005 — interview transcript <CASE> — served — pages 11 mg6c/006 — subscriber/account data — outstanding — not on bundle mg6c/007 — later disclosure annex — outstanding — later service marked === section: mg11 === mg11 — complainant statement (draft unsigned) i am the complainant in 01ab100081626. between the offence window and listing i experienced the events summarised in the charge particulars (token <CASE>). i have not signed a final statement. final signed mg11 remains outstanding on mg6c/003. === section: custody === === section: listing === next hearing: 2026-04-20 at copper lane magistrates' court (europe/london). custody / listing extract: date of birth (custody record): 1978-03-22 age calculation inputs: dob=1978-03-22; offencedate=2026-01-13; hearingdate=2026-04-20; timezone=europe/london. offence date (source): 2026-01-13 hearing date (source): 2026-04-20 timezone: europe/london bwv reference — mg6c/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-048-disclosure-pii-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/frontMatterScan"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "MG05 — OFFENCE REPORT URN: 01AB100081626 Officer in case: DC Reed 5048 Family theme: disclosure and PII boundaries Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0030-disc-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0030-disc-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt). Disclosure vs PII: schedule marks witness home address and medical identifiers as PII-withheld; open  disclosure items remain on MG6C without PII.",
+      "normalisedTemplate": "mg05 — offence report urn: 01ab100081626 officer in case: dc reed 5048 family theme: disclosure and pii boundaries coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt). disclosure vs pii: schedule marks witness home address and medical identifiers as pii-withheld; open disclosure items remain on mg6c without pii.",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-048-disclosure-pii-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/snippets/mg5"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE URN: 01AB100083326 Defendant: Tatum Drayton Court: Crown Court at Ember Junction Coverage family: road_traffic_fatal Coverage tag: specialty_fitness Format notes: Stage-300 new-150 control-coverage materialisation === SECTION: COVER_INDEX === INDEX Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | MG11 complainant statement (draft unsigned) S300-0031-road-specia | 5-6 | Exhibit pack S300-0031-road-specia | 7-8 | CCTV still clip S300-0031-road-specia | 9 | Interview recording S300-0031-road-specia | 10 | Interview transcript S300-0031-road-specia | 11 | Court listing / custody | 12 | === SECTION: CHARGE === R v Tatum Drayton Statement of Offence: Causing death by dangerous driving, contrary to section 1 of the Road Traffic Act 1988 Particulars of Offence: Between 2026-02-14 and 2026-05-21 at Crown Court at Ember Junction, Tatum Drayton engaged in conduct  particularised under fatal road traffic (matter token S300-0031-road-specia). Instrument status: operative Instrument version: 1 Replacement linkage: none\n\n=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 01AB100083326 Officer in case: DC Reed 5049 Family theme: fatal road traffic Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0031-road-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0031-road-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).\n\n=== SECTION: MG5 === Evidence on file (served) - Charge sheet - MG5 - MG6C - MG11 complainant statement (draft unsigned) S300-0031-road-specia - Exhibit pack S300-0031-road-specia - CCTV still clip S300-0031-road-specia Evidence referred or outstanding - MG11 complainant statement (signed) S300-0031-road-specia - Interview recording S300-0031-road-specia master export where not attached - CCTV master export S300-0031-road-specia - Subscriber/account data where digital attribution is live\n\n=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE MG6C/001 — Exhibit pack S300-0031-road-specia — served — on bundle pages 7-8 MG6C/002 — MG11 complainant statement (draft unsigned) S300-0031-road-specia — served — draft only MG6C/003 — MG11 complainant statement (signed) S300-0031-road-specia — outstanding — not on bundle MG6C/004 — Interview recording S300-0031-road-specia — outstanding — not on bundle MG6C/005 — Interview transcript S300-0031-road-specia — served — pages 11 MG6C/006 — Subscriber/account data — outstanding — not on bundle MG6C/007 — Later disclosure annex — outstanding — later service marked\n\n=== SECTION: MG11 === MG11 — COMPLAINANT STATEMENT (draft unsigned) I am the complainant in 01AB100083326. Between the offence window and listing I experienced the events  summarised in the charge particulars (token S300-0031-road-specia). I have not signed a final statement. Final  signed MG11 remains outstanding on MG6C/003.\n\n=== SECTION: CUSTODY ===\n\n=== SECTION: LISTING === Next hearing: 2026-05-21 at Crown Court at Ember Junction (Europe/London). Custody / listing extract: Date of birth (custody record): 1979-03-22 Age calculation inputs: DOB=1979-03-22; offenceDate=2026-02-14; hearingDate=2026-05-21;  timezone=Europe/London. Offence date (source): 2026-02-14 Hearing date (source): 2026-05-21 Timezone: Europe/London BWV reference — MG6C/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "normalisedTemplate": "restricted — prosecution disclosure bundle urn: 01ab100083326 defendant: tatum drayton court: crown court at ember junction coverage family: road_traffic_fatal coverage tag: specialty_fitness format notes: stage-300 new-150 control-coverage materialisation === section: cover_index === index document | pages | note charge sheet | 1 | mg5 case summary | 2-3 | mg6c disclosure schedule | 4 | mg11 complainant statement (draft unsigned) <CASE> | 5-6 | exhibit pack <CASE> | 7-8 | cctv still clip <CASE> | 9 | interview recording <CASE> | 10 | interview transcript <CASE> | 11 | court listing / custody | 12 | === section: charge === r v tatum drayton statement of offence: causing death by dangerous driving, contrary to section 1 of the road traffic act 1988 particulars of offence: between 2026-02-14 and 2026-05-21 at crown court at ember junction, tatum drayton engaged in conduct particularised under fatal road traffic (matter token <CASE>). instrument status: operative instrument version: 1 replacement linkage: none === section: mg5 === mg05 — offence report urn: 01ab100083326 officer in case: dc reed 5049 family theme: fatal road traffic coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt). === section: mg5 === evidence on file (served) - charge sheet - mg5 - mg6c - mg11 complainant statement (draft unsigned) <CASE> - exhibit pack <CASE> - cctv still clip <CASE> evidence referred or outstanding - mg11 complainant statement (signed) <CASE> - interview recording <CASE> master export where not attached - cctv master export <CASE> - subscriber/account data where digital attribution is live === section: mg6 === mg6c — unused material schedule mg6c/001 — exhibit pack <CASE> — served — on bundle pages 7-8 mg6c/002 — mg11 complainant statement (draft unsigned) <CASE> — served — draft only mg6c/003 — mg11 complainant statement (signed) <CASE> — outstanding — not on bundle mg6c/004 — interview recording <CASE> — outstanding — not on bundle mg6c/005 — interview transcript <CASE> — served — pages 11 mg6c/006 — subscriber/account data — outstanding — not on bundle mg6c/007 — later disclosure annex — outstanding — later service marked === section: mg11 === mg11 — complainant statement (draft unsigned) i am the complainant in 01ab100083326. between the offence window and listing i experienced the events summarised in the charge particulars (token <CASE>). i have not signed a final statement. final signed mg11 remains outstanding on mg6c/003. === section: custody === === section: listing === next hearing: 2026-05-21 at crown court at ember junction (europe/london). custody / listing extract: date of birth (custody record): 1979-03-22 age calculation inputs: dob=1979-03-22; offencedate=2026-02-14; hearingdate=2026-05-21; timezone=europe/london. offence date (source): 2026-02-14 hearing date (source): 2026-05-21 timezone: europe/london bwv reference — mg6c/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-049-road-traffic-fatal-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/frontMatterScan"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "MG05 — OFFENCE REPORT URN: 01AB100083326 Officer in case: DC Reed 5049 Family theme: fatal road traffic Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0031-road-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0031-road-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "normalisedTemplate": "mg05 — offence report urn: 01ab100083326 officer in case: dc reed 5049 family theme: fatal road traffic coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-049-road-traffic-fatal-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/snippets/mg5"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE URN: 01AB100085026 Defendant: Valentine Ashcroft Court: Market House Magistrates' Court Coverage family: magistrates_procedure Coverage tag: specialty_fitness Format notes: Stage-300 new-150 control-coverage materialisation === SECTION: COVER_INDEX === INDEX Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | MG11 complainant statement (draft unsigned) S300-0032-magi-specia | 5-6 | Exhibit pack S300-0032-magi-specia | 7-8 | CCTV still clip S300-0032-magi-specia | 9 | Interview recording S300-0032-magi-specia | 10 | Interview transcript S300-0032-magi-specia | 11 | Court listing / custody | 12 | === SECTION: CHARGE === R v Valentine Ashcroft Statement of Offence: Assault by beating, contrary to section 39 of the Criminal Justice Act 1988 Particulars of Offence: Between 2026-03-15 and 2026-06-22 at Market House Magistrates' Court, Valentine Ashcroft engaged in  conduct particularised under magistrates' trial procedure (matter token S300-0032-magi-specia). Instrument status: operative Instrument version: 1 Replacement linkage: none\n\n=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 01AB100085026 Officer in case: DC Reed 5050 Family theme: magistrates' trial procedure Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0032-magi-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0032-magi-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).\n\n=== SECTION: MG5 === Evidence on file (served) - Charge sheet - MG5 - MG6C - MG11 complainant statement (draft unsigned) S300-0032-magi-specia - Exhibit pack S300-0032-magi-specia - CCTV still clip S300-0032-magi-specia Evidence referred or outstanding - MG11 complainant statement (signed) S300-0032-magi-specia - Interview recording S300-0032-magi-specia master export where not attached - CCTV master export S300-0032-magi-specia - Subscriber/account data where digital attribution is live\n\n=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE MG6C/001 — Exhibit pack S300-0032-magi-specia — served — on bundle pages 7-8 —  evidenceUnitRef=EU-S300-0032-magi-specia-EXHIBIT MG6C/002 — MG11 complainant statement (draft unsigned) S300-0032-magi-specia — served — draft only MG6C/003 — MG11 complainant statement (signed) S300-0032-magi-specia — outstanding — not on bundle MG6C/004 — Interview recording S300-0032-magi-specia — outstanding — not on bundle MG6C/005 — Interview transcript S300-0032-magi-specia — served — pages 11 MG6C/006 — Subscriber/account data — outstanding — not on bundle MG6C/007 — Later disclosure annex — outstanding — later service marked\n\n=== SECTION: MG11 === MG11 — COMPLAINANT STATEMENT (draft unsigned) I am the complainant in 01AB100085026. Between the offence window and listing I experienced the events  summarised in the charge particulars (token S300-0032-magi-specia). I have not signed a final statement. Final  signed MG11 remains outstanding on MG6C/003.\n\n=== SECTION: CUSTODY ===\n\n=== SECTION: LISTING === Next hearing: 2026-06-22 at Market House Magistrates' Court (Europe/London). Custody / listing extract: Date of birth (custody record): 1980-03-22 Age calculation inputs: DOB=1980-03-22; offenceDate=2026-03-15; hearingDate=2026-06-22;  timezone=Europe/London. Offence date (source): 2026-03-15 Hearing date (source): 2026-06-22 Timezone: Europe/London BWV reference — MG6C/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "normalisedTemplate": "restricted — prosecution disclosure bundle urn: 01ab100085026 defendant: valentine ashcroft court: market house magistrates' court coverage family: magistrates_procedure coverage tag: specialty_fitness format notes: stage-300 new-150 control-coverage materialisation === section: cover_index === index document | pages | note charge sheet | 1 | mg5 case summary | 2-3 | mg6c disclosure schedule | 4 | mg11 complainant statement (draft unsigned) <CASE> | 5-6 | exhibit pack <CASE> | 7-8 | cctv still clip <CASE> | 9 | interview recording <CASE> | 10 | interview transcript <CASE> | 11 | court listing / custody | 12 | === section: charge === r v valentine ashcroft statement of offence: assault by beating, contrary to section 39 of the criminal justice act 1988 particulars of offence: between 2026-03-15 and 2026-06-22 at market house magistrates' court, valentine ashcroft engaged in conduct particularised under magistrates' trial procedure (matter token <CASE>). instrument status: operative instrument version: 1 replacement linkage: none === section: mg5 === mg05 — offence report urn: 01ab100085026 officer in case: dc reed 5050 family theme: magistrates' trial procedure coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt). === section: mg5 === evidence on file (served) - charge sheet - mg5 - mg6c - mg11 complainant statement (draft unsigned) <CASE> - exhibit pack <CASE> - cctv still clip <CASE> evidence referred or outstanding - mg11 complainant statement (signed) <CASE> - interview recording <CASE> master export where not attached - cctv master export <CASE> - subscriber/account data where digital attribution is live === section: mg6 === mg6c — unused material schedule mg6c/001 — exhibit pack <CASE> — served — on bundle pages 7-8 — evidenceunitref=eu-<CASE> mg6c/002 — mg11 complainant statement (draft unsigned) <CASE> — served — draft only mg6c/003 — mg11 complainant statement (signed) <CASE> — outstanding — not on bundle mg6c/004 — interview recording <CASE> — outstanding — not on bundle mg6c/005 — interview transcript <CASE> — served — pages 11 mg6c/006 — subscriber/account data — outstanding — not on bundle mg6c/007 — later disclosure annex — outstanding — later service marked === section: mg11 === mg11 — complainant statement (draft unsigned) i am the complainant in 01ab100085026. between the offence window and listing i experienced the events summarised in the charge particulars (token <CASE>). i have not signed a final statement. final signed mg11 remains outstanding on mg6c/003. === section: custody === === section: listing === next hearing: 2026-06-22 at market house magistrates' court (europe/london). custody / listing extract: date of birth (custody record): 1980-03-22 age calculation inputs: dob=1980-03-22; offencedate=2026-03-15; hearingdate=2026-06-22; timezone=europe/london. offence date (source): 2026-03-15 hearing date (source): 2026-06-22 timezone: europe/london bwv reference — mg6c/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-050-magistrates-procedure-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/frontMatterScan"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "MG05 — OFFENCE REPORT URN: 01AB100085026 Officer in case: DC Reed 5050 Family theme: magistrates' trial procedure Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0032-magi-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0032-magi-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "normalisedTemplate": "mg05 — offence report urn: 01ab100085026 officer in case: dc reed 5050 family theme: magistrates' trial procedure coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-050-magistrates-procedure-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/snippets/mg5"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE URN: 01AB100086726 Defendant: Winter Dunne Court: Crescent Wharf Magistrates' Court Coverage family: bail_remand Coverage tag: specialty_fitness Format notes: Stage-300 new-150 control-coverage materialisation === SECTION: COVER_INDEX === INDEX Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | MG11 complainant statement (draft unsigned) S300-0033-bail-specia | 5-6 | Exhibit pack S300-0033-bail-specia | 7-8 | CCTV still clip S300-0033-bail-specia | 9 | Interview recording S300-0033-bail-specia | 10 | Interview transcript S300-0033-bail-specia | 11 | Court listing / custody | 12 | === SECTION: CHARGE === R v Winter Dunne Statement of Offence: Burglary, contrary to section 9(1)(b) of the Theft Act 1968 Particulars of Offence: Between 2026-04-16 and 2026-07-23 at Crescent Wharf Magistrates' Court, Winter Dunne engaged in conduct  particularised under bail and remand (matter token S300-0033-bail-specia). Instrument status: operative Instrument version: 1 Replacement linkage: none\n\n=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 01AB100086726 Officer in case: DC Reed 5051 Family theme: bail and remand Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0033-bail-specia, draft MG11, and listing. Outstanding material  is scheduled on MG6C. Matter token S300-0033-bail-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).\n\n=== SECTION: MG5 === Evidence on file (served) - Charge sheet - MG5 - MG6C - MG11 complainant statement (draft unsigned) S300-0033-bail-specia - Exhibit pack S300-0033-bail-specia - CCTV still clip S300-0033-bail-specia Evidence referred or outstanding - MG11 complainant statement (signed) S300-0033-bail-specia - Interview recording S300-0033-bail-specia master export where not attached - CCTV master export S300-0033-bail-specia - Subscriber/account data where digital attribution is live\n\n=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE MG6C/001 — Exhibit pack S300-0033-bail-specia — served — on bundle pages 7-8 MG6C/002 — MG11 complainant statement (draft unsigned) S300-0033-bail-specia — served — draft only MG6C/003 — MG11 complainant statement (signed) S300-0033-bail-specia — outstanding — not on bundle MG6C/004 — Interview recording S300-0033-bail-specia — outstanding — not on bundle MG6C/005 — Interview transcript S300-0033-bail-specia — served — pages 11 MG6C/006 — Subscriber/account data — outstanding — not on bundle MG6C/007 — Later disclosure annex — outstanding — later service marked\n\n=== SECTION: MG11 === MG11 — COMPLAINANT STATEMENT (draft unsigned) I am the complainant in 01AB100086726. Between the offence window and listing I experienced the events  summarised in the charge particulars (token S300-0033-bail-specia). I have not signed a final statement. Final  signed MG11 remains outstanding on MG6C/003.\n\n=== SECTION: CUSTODY ===\n\n=== SECTION: LISTING === Next hearing: 2026-07-23 at Crescent Wharf Magistrates' Court (Europe/London). Custody / listing extract: Date of birth (custody record): 1981-03-22 Age calculation inputs: DOB=1981-03-22; offenceDate=2026-04-16; hearingDate=2026-07-23;  timezone=Europe/London. Offence date (source): 2026-04-16 Hearing date (source): 2026-07-23 Timezone: Europe/London BWV reference — MG6C/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "normalisedTemplate": "restricted — prosecution disclosure bundle urn: 01ab100086726 defendant: winter dunne court: crescent wharf magistrates' court coverage family: bail_remand coverage tag: specialty_fitness format notes: stage-300 new-150 control-coverage materialisation === section: cover_index === index document | pages | note charge sheet | 1 | mg5 case summary | 2-3 | mg6c disclosure schedule | 4 | mg11 complainant statement (draft unsigned) <CASE> | 5-6 | exhibit pack <CASE> | 7-8 | cctv still clip <CASE> | 9 | interview recording <CASE> | 10 | interview transcript <CASE> | 11 | court listing / custody | 12 | === section: charge === r v winter dunne statement of offence: burglary, contrary to section 9(1)(b) of the theft act 1968 particulars of offence: between 2026-04-16 and 2026-07-23 at crescent wharf magistrates' court, winter dunne engaged in conduct particularised under bail and remand (matter token <CASE>). instrument status: operative instrument version: 1 replacement linkage: none === section: mg5 === mg05 — offence report urn: 01ab100086726 officer in case: dc reed 5051 family theme: bail and remand coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt). === section: mg5 === evidence on file (served) - charge sheet - mg5 - mg6c - mg11 complainant statement (draft unsigned) <CASE> - exhibit pack <CASE> - cctv still clip <CASE> evidence referred or outstanding - mg11 complainant statement (signed) <CASE> - interview recording <CASE> master export where not attached - cctv master export <CASE> - subscriber/account data where digital attribution is live === section: mg6 === mg6c — unused material schedule mg6c/001 — exhibit pack <CASE> — served — on bundle pages 7-8 mg6c/002 — mg11 complainant statement (draft unsigned) <CASE> — served — draft only mg6c/003 — mg11 complainant statement (signed) <CASE> — outstanding — not on bundle mg6c/004 — interview recording <CASE> — outstanding — not on bundle mg6c/005 — interview transcript <CASE> — served — pages 11 mg6c/006 — subscriber/account data — outstanding — not on bundle mg6c/007 — later disclosure annex — outstanding — later service marked === section: mg11 === mg11 — complainant statement (draft unsigned) i am the complainant in 01ab100086726. between the offence window and listing i experienced the events summarised in the charge particulars (token <CASE>). i have not signed a final statement. final signed mg11 remains outstanding on mg6c/003. === section: custody === === section: listing === next hearing: 2026-07-23 at crescent wharf magistrates' court (europe/london). custody / listing extract: date of birth (custody record): 1981-03-22 age calculation inputs: dob=1981-03-22; offencedate=2026-04-16; hearingdate=2026-07-23; timezone=europe/london. offence date (source): 2026-04-16 hearing date (source): 2026-07-23 timezone: europe/london bwv reference — mg6c/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-051-bail-remand-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/frontMatterScan"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "MG05 — OFFENCE REPORT URN: 01AB100086726 Officer in case: DC Reed 5051 Family theme: bail and remand Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0033-bail-specia, draft MG11, and listing. Outstanding material  is scheduled on MG6C. Matter token S300-0033-bail-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "normalisedTemplate": "mg05 — offence report urn: 01ab100086726 officer in case: dc reed 5051 family theme: bail and remand coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-051-bail-remand-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/snippets/mg5"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE URN: 01AB100088426 Defendant: Xander Gresham Court: Crown Court at Hawthorn House Coverage family: sentencing_newton Coverage tag: specialty_fitness Format notes: Stage-300 new-150 control-coverage materialisation === SECTION: COVER_INDEX === INDEX Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | MG11 complainant statement (draft unsigned) S300-0034-sent-specia | 5-6 | Exhibit pack S300-0034-sent-specia | 7-8 | CCTV still clip S300-0034-sent-specia | 9 | Interview recording S300-0034-sent-specia | 10 | Interview transcript S300-0034-sent-specia | 11 | Court listing / custody | 12 | === SECTION: CHARGE === R v Xander Gresham Statement of Offence: Possession with intent to supply a controlled drug of Class B, contrary to section 5(3) of the Misuse of Drugs  Act 1971 Particulars of Offence: Between 2026-05-17 and 2026-08-24 at Crown Court at Hawthorn House, Xander Gresham engaged in  conduct particularised under sentencing and Newton hearing (matter token S300-0034-sent-specia). Instrument status: operative Instrument version: 1 Replacement linkage: none\n\n=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 01AB100088426 Officer in case: DC Reed 5052 Family theme: sentencing and Newton hearing Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0034-sent-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0034-sent-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).\n\n=== SECTION: MG5 === Evidence on file (served) - Charge sheet - MG5 - MG6C - MG11 complainant statement (draft unsigned) S300-0034-sent-specia - Exhibit pack S300-0034-sent-specia - CCTV still clip S300-0034-sent-specia Evidence referred or outstanding - MG11 complainant statement (signed) S300-0034-sent-specia - Interview recording S300-0034-sent-specia master export where not attached - CCTV master export S300-0034-sent-specia - Subscriber/account data where digital attribution is live\n\n=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE MG6C/001 — Exhibit pack S300-0034-sent-specia — served — on bundle pages 7-8 — evidenceUnitRef=EU- S300-0034-sent-specia-EXHIBIT MG6C/002 — MG11 complainant statement (draft unsigned) S300-0034-sent-specia — served — draft only MG6C/003 — MG11 complainant statement (signed) S300-0034-sent-specia — outstanding — not on bundle MG6C/004 — Interview recording S300-0034-sent-specia — outstanding — not on bundle MG6C/005 — Interview transcript S300-0034-sent-specia — served — pages 11 MG6C/006 — Subscriber/account data — outstanding — not on bundle MG6C/007 — Later disclosure annex — outstanding — later service marked\n\n=== SECTION: MG11 === MG11 — COMPLAINANT STATEMENT (draft unsigned) I am the complainant in 01AB100088426. Between the offence window and listing I experienced the events  summarised in the charge particulars (token S300-0034-sent-specia). I have not signed a final statement. Final  signed MG11 remains outstanding on MG6C/003.\n\n=== SECTION: CUSTODY ===\n\n=== SECTION: LISTING === Next hearing: 2026-08-24 at Crown Court at Hawthorn House (Europe/London). Custody / listing extract: Date of birth (custody record): 1982-03-22 Age calculation inputs: DOB=1982-03-22; offenceDate=2026-05-17; hearingDate=2026-08-24;  timezone=Europe/London. Offence date (source): 2026-05-17 Hearing date (source): 2026-08-24 Timezone: Europe/London BWV reference — MG6C/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "normalisedTemplate": "restricted — prosecution disclosure bundle urn: 01ab100088426 defendant: xander gresham court: crown court at hawthorn house coverage family: sentencing_newton coverage tag: specialty_fitness format notes: stage-300 new-150 control-coverage materialisation === section: cover_index === index document | pages | note charge sheet | 1 | mg5 case summary | 2-3 | mg6c disclosure schedule | 4 | mg11 complainant statement (draft unsigned) <CASE> | 5-6 | exhibit pack <CASE> | 7-8 | cctv still clip <CASE> | 9 | interview recording <CASE> | 10 | interview transcript <CASE> | 11 | court listing / custody | 12 | === section: charge === r v xander gresham statement of offence: possession with intent to supply a controlled drug of class b, contrary to section 5(3) of the misuse of drugs act 1971 particulars of offence: between 2026-05-17 and 2026-08-24 at crown court at hawthorn house, xander gresham engaged in conduct particularised under sentencing and newton hearing (matter token <CASE>). instrument status: operative instrument version: 1 replacement linkage: none === section: mg5 === mg05 — offence report urn: 01ab100088426 officer in case: dc reed 5052 family theme: sentencing and newton hearing coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt). === section: mg5 === evidence on file (served) - charge sheet - mg5 - mg6c - mg11 complainant statement (draft unsigned) <CASE> - exhibit pack <CASE> - cctv still clip <CASE> evidence referred or outstanding - mg11 complainant statement (signed) <CASE> - interview recording <CASE> master export where not attached - cctv master export <CASE> - subscriber/account data where digital attribution is live === section: mg6 === mg6c — unused material schedule mg6c/001 — exhibit pack <CASE> — served — on bundle pages 7-8 — evidenceunitref=eu- <CASE> mg6c/002 — mg11 complainant statement (draft unsigned) <CASE> — served — draft only mg6c/003 — mg11 complainant statement (signed) <CASE> — outstanding — not on bundle mg6c/004 — interview recording <CASE> — outstanding — not on bundle mg6c/005 — interview transcript <CASE> — served — pages 11 mg6c/006 — subscriber/account data — outstanding — not on bundle mg6c/007 — later disclosure annex — outstanding — later service marked === section: mg11 === mg11 — complainant statement (draft unsigned) i am the complainant in 01ab100088426. between the offence window and listing i experienced the events summarised in the charge particulars (token <CASE>). i have not signed a final statement. final signed mg11 remains outstanding on mg6c/003. === section: custody === === section: listing === next hearing: 2026-08-24 at crown court at hawthorn house (europe/london). custody / listing extract: date of birth (custody record): 1982-03-22 age calculation inputs: dob=1982-03-22; offencedate=2026-05-17; hearingdate=2026-08-24; timezone=europe/london. offence date (source): 2026-05-17 hearing date (source): 2026-08-24 timezone: europe/london bwv reference — mg6c/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-052-sentencing-newton-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/frontMatterScan"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "MG05 — OFFENCE REPORT URN: 01AB100088426 Officer in case: DC Reed 5052 Family theme: sentencing and Newton hearing Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0034-sent-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0034-sent-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "normalisedTemplate": "mg05 — offence report urn: 01ab100088426 officer in case: dc reed 5052 family theme: sentencing and newton hearing coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-052-sentencing-newton-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/snippets/mg5"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE URN: 01AB100090126 Defendant: Yael Jowett Court: Court of Appeal (Criminal Division) Coverage family: appeals Coverage tag: specialty_fitness Format notes: Stage-300 new-150 control-coverage materialisation === SECTION: COVER_INDEX === INDEX Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | MG11 complainant statement (draft unsigned) S300-0035-appe-specia | 5-6 | Exhibit pack S300-0035-appe-specia | 7-8 | CCTV still clip S300-0035-appe-specia | 9 | Interview recording S300-0035-appe-specia | 10 | Interview transcript S300-0035-appe-specia | 11 | Court listing / custody | 12 | === SECTION: CHARGE === R v Yael Jowett Statement of Offence: Conviction appeal against sentence and conviction Particulars of Offence: Between 2026-06-18 and 2026-09-25 at Court of Appeal (Criminal Division), Yael Jowett engaged in conduct  particularised under appeals (matter token S300-0035-appe-specia). Instrument status: operative Instrument version: 1 Replacement linkage: none\n\n=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 01AB100090126 Officer in case: DC Reed 5053 Family theme: appeals Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0035-appe-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0035-appe-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).\n\n=== SECTION: MG5 === Evidence on file (served) - Charge sheet - MG5 - MG6C - MG11 complainant statement (draft unsigned) S300-0035-appe-specia - Exhibit pack S300-0035-appe-specia - CCTV still clip S300-0035-appe-specia Evidence referred or outstanding - MG11 complainant statement (signed) S300-0035-appe-specia - Interview recording S300-0035-appe-specia master export where not attached - CCTV master export S300-0035-appe-specia - Subscriber/account data where digital attribution is live\n\n=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE MG6C/001 — Exhibit pack S300-0035-appe-specia — served — on bundle pages 7-8 MG6C/002 — MG11 complainant statement (draft unsigned) S300-0035-appe-specia — served — draft only MG6C/003 — MG11 complainant statement (signed) S300-0035-appe-specia — outstanding — not on bundle MG6C/004 — Interview recording S300-0035-appe-specia — outstanding — not on bundle MG6C/005 — Interview transcript S300-0035-appe-specia — served — pages 11 MG6C/006 — Subscriber/account data — outstanding — not on bundle MG6C/007 — Later disclosure annex — outstanding — later service marked\n\n=== SECTION: MG11 === MG11 — COMPLAINANT STATEMENT (draft unsigned) I am the complainant in 01AB100090126. Between the offence window and listing I experienced the events  summarised in the charge particulars (token S300-0035-appe-specia). I have not signed a final statement. Final  signed MG11 remains outstanding on MG6C/003.\n\n=== SECTION: CUSTODY ===\n\n=== SECTION: LISTING === Next hearing: 2026-09-25 at Court of Appeal (Criminal Division) (Europe/London). Custody / listing extract: Date of birth (custody record): 1983-03-22 Age calculation inputs: DOB=1983-03-22; offenceDate=2026-06-18; hearingDate=2026-09-25;  timezone=Europe/London. Offence date (source): 2026-06-18 Hearing date (source): 2026-09-25 Timezone: Europe/London BWV reference — MG6C/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "normalisedTemplate": "restricted — prosecution disclosure bundle urn: 01ab100090126 defendant: yael jowett court: court of appeal (criminal division) coverage family: appeals coverage tag: specialty_fitness format notes: stage-300 new-150 control-coverage materialisation === section: cover_index === index document | pages | note charge sheet | 1 | mg5 case summary | 2-3 | mg6c disclosure schedule | 4 | mg11 complainant statement (draft unsigned) <CASE> | 5-6 | exhibit pack <CASE> | 7-8 | cctv still clip <CASE> | 9 | interview recording <CASE> | 10 | interview transcript <CASE> | 11 | court listing / custody | 12 | === section: charge === r v yael jowett statement of offence: conviction appeal against sentence and conviction particulars of offence: between 2026-06-18 and 2026-09-25 at court of appeal (criminal division), yael jowett engaged in conduct particularised under appeals (matter token <CASE>). instrument status: operative instrument version: 1 replacement linkage: none === section: mg5 === mg05 — offence report urn: 01ab100090126 officer in case: dc reed 5053 family theme: appeals coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt). === section: mg5 === evidence on file (served) - charge sheet - mg5 - mg6c - mg11 complainant statement (draft unsigned) <CASE> - exhibit pack <CASE> - cctv still clip <CASE> evidence referred or outstanding - mg11 complainant statement (signed) <CASE> - interview recording <CASE> master export where not attached - cctv master export <CASE> - subscriber/account data where digital attribution is live === section: mg6 === mg6c — unused material schedule mg6c/001 — exhibit pack <CASE> — served — on bundle pages 7-8 mg6c/002 — mg11 complainant statement (draft unsigned) <CASE> — served — draft only mg6c/003 — mg11 complainant statement (signed) <CASE> — outstanding — not on bundle mg6c/004 — interview recording <CASE> — outstanding — not on bundle mg6c/005 — interview transcript <CASE> — served — pages 11 mg6c/006 — subscriber/account data — outstanding — not on bundle mg6c/007 — later disclosure annex — outstanding — later service marked === section: mg11 === mg11 — complainant statement (draft unsigned) i am the complainant in 01ab100090126. between the offence window and listing i experienced the events summarised in the charge particulars (token <CASE>). i have not signed a final statement. final signed mg11 remains outstanding on mg6c/003. === section: custody === === section: listing === next hearing: 2026-09-25 at court of appeal (criminal division) (europe/london). custody / listing extract: date of birth (custody record): 1983-03-22 age calculation inputs: dob=1983-03-22; offencedate=2026-06-18; hearingdate=2026-09-25; timezone=europe/london. offence date (source): 2026-06-18 hearing date (source): 2026-09-25 timezone: europe/london bwv reference — mg6c/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-053-appeals-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/frontMatterScan"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "MG05 — OFFENCE REPORT URN: 01AB100090126 Officer in case: DC Reed 5053 Family theme: appeals Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0035-appe-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0035-appe-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "normalisedTemplate": "mg05 — offence report urn: 01ab100090126 officer in case: dc reed 5053 family theme: appeals coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-053-appeals-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/snippets/mg5"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE URN: 01AB100091826 Defendant: Zion Merton Co-defendants: Arden Ashcroft; Blair Sutton (attribution must not conflate). Court: Crown Court at Harbour Yard Coverage family: multi_defendant_attribution Coverage tag: specialty_fitness Format notes: Stage-300 new-150 control-coverage materialisation === SECTION: COVER_INDEX === INDEX Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | MG11 complainant statement (draft unsigned) S300-0036-mult-specia | 5-6 | Exhibit pack S300-0036-mult-specia | 7-8 | CCTV still clip S300-0036-mult-specia | 9 | Interview recording S300-0036-mult-specia | 10 | Interview transcript S300-0036-mult-specia | 11 | Court listing / custody | 12 | === SECTION: CHARGE === R v Zion Merton Statement of Offence: Conspiracy to rob, contrary to section 1 of the Criminal Law Act 1977 Particulars of Offence: Between 2026-01-10 and 2026-04-26 at Crown Court at Harbour Yard, Zion Merton engaged in conduct  particularised under multi-defendant attribution (matter token S300-0036-mult-specia). Instrument status: operative Instrument version: 1 Replacement linkage: none\n\n=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 01AB100091826 Officer in case: DC Reed 5054 Family theme: multi-defendant attribution Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0036-mult-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0036-mult-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).\n\n=== SECTION: MG5 === Evidence on file (served) - Charge sheet - MG5 - MG6C - MG11 complainant statement (draft unsigned) S300-0036-mult-specia - Exhibit pack S300-0036-mult-specia - CCTV still clip S300-0036-mult-specia Evidence referred or outstanding - MG11 complainant statement (signed) S300-0036-mult-specia - Interview recording S300-0036-mult-specia master export where not attached - CCTV master export S300-0036-mult-specia - Subscriber/account data where digital attribution is live\n\n=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE MG6C/001 — Exhibit pack S300-0036-mult-specia — served — on bundle pages 7-8 — evidenceUnitRef=EU- S300-0036-mult-specia-EXHIBIT MG6C/002 — MG11 complainant statement (draft unsigned) S300-0036-mult-specia — served — draft only MG6C/003 — MG11 complainant statement (signed) S300-0036-mult-specia — outstanding — not on bundle MG6C/004 — Interview recording S300-0036-mult-specia — outstanding — not on bundle MG6C/005 — Interview transcript S300-0036-mult-specia — served — pages 11 MG6C/006 — Subscriber/account data — outstanding — not on bundle MG6C/007 — Later disclosure annex — outstanding — later service marked\n\n=== SECTION: MG11 === MG11 — COMPLAINANT STATEMENT (draft unsigned) I am the complainant in 01AB100091826. Between the offence window and listing I experienced the events  summarised in the charge particulars (token S300-0036-mult-specia). I have not signed a final statement. Final  signed MG11 remains outstanding on MG6C/003.\n\n=== SECTION: CUSTODY ===\n\n=== SECTION: LISTING === Next hearing: 2026-04-26 at Crown Court at Harbour Yard (Europe/London). Custody / listing extract: Date of birth (custody record): 1984-03-22 Age calculation inputs: DOB=1984-03-22; offenceDate=2026-01-10; hearingDate=2026-04-26;  timezone=Europe/London. Offence date (source): 2026-01-10 Hearing date (source): 2026-04-26 Timezone: Europe/London BWV reference — MG6C/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "normalisedTemplate": "restricted — prosecution disclosure bundle urn: 01ab100091826 defendant: zion merton co-defendants: arden ashcroft; blair sutton (attribution must not conflate). court: crown court at harbour yard coverage family: multi_defendant_attribution coverage tag: specialty_fitness format notes: stage-300 new-150 control-coverage materialisation === section: cover_index === index document | pages | note charge sheet | 1 | mg5 case summary | 2-3 | mg6c disclosure schedule | 4 | mg11 complainant statement (draft unsigned) <CASE> | 5-6 | exhibit pack <CASE> | 7-8 | cctv still clip <CASE> | 9 | interview recording <CASE> | 10 | interview transcript <CASE> | 11 | court listing / custody | 12 | === section: charge === r v zion merton statement of offence: conspiracy to rob, contrary to section 1 of the criminal law act 1977 particulars of offence: between 2026-01-10 and 2026-04-26 at crown court at harbour yard, zion merton engaged in conduct particularised under multi-defendant attribution (matter token <CASE>). instrument status: operative instrument version: 1 replacement linkage: none === section: mg5 === mg05 — offence report urn: 01ab100091826 officer in case: dc reed 5054 family theme: multi-defendant attribution coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt). === section: mg5 === evidence on file (served) - charge sheet - mg5 - mg6c - mg11 complainant statement (draft unsigned) <CASE> - exhibit pack <CASE> - cctv still clip <CASE> evidence referred or outstanding - mg11 complainant statement (signed) <CASE> - interview recording <CASE> master export where not attached - cctv master export <CASE> - subscriber/account data where digital attribution is live === section: mg6 === mg6c — unused material schedule mg6c/001 — exhibit pack <CASE> — served — on bundle pages 7-8 — evidenceunitref=eu- <CASE> mg6c/002 — mg11 complainant statement (draft unsigned) <CASE> — served — draft only mg6c/003 — mg11 complainant statement (signed) <CASE> — outstanding — not on bundle mg6c/004 — interview recording <CASE> — outstanding — not on bundle mg6c/005 — interview transcript <CASE> — served — pages 11 mg6c/006 — subscriber/account data — outstanding — not on bundle mg6c/007 — later disclosure annex — outstanding — later service marked === section: mg11 === mg11 — complainant statement (draft unsigned) i am the complainant in 01ab100091826. between the offence window and listing i experienced the events summarised in the charge particulars (token <CASE>). i have not signed a final statement. final signed mg11 remains outstanding on mg6c/003. === section: custody === === section: listing === next hearing: 2026-04-26 at crown court at harbour yard (europe/london). custody / listing extract: date of birth (custody record): 1984-03-22 age calculation inputs: dob=1984-03-22; offencedate=2026-01-10; hearingdate=2026-04-26; timezone=europe/london. offence date (source): 2026-01-10 hearing date (source): 2026-04-26 timezone: europe/london bwv reference — mg6c/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-054-multi-defendant-attribution-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/frontMatterScan"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "MG05 — OFFENCE REPORT URN: 01AB100091826 Officer in case: DC Reed 5054 Family theme: multi-defendant attribution Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0036-mult-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0036-mult-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "normalisedTemplate": "mg05 — offence report urn: 01ab100091826 officer in case: dc reed 5054 family theme: multi-defendant attribution coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-054-multi-defendant-attribution-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/snippets/mg5"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "RESTRICTED — PROSECUTION DISCLOSURE BUNDLE URN: 01AB100093526 Defendant: Arden Pritchard Court: Crown Court at Northbridge Coverage family: homicide_causation Coverage tag: specialty_fitness Format notes: Stage-300 new-150 control-coverage materialisation === SECTION: COVER_INDEX === INDEX Document | Pages | Note Charge sheet | 1 | MG5 case summary | 2-3 | MG6C disclosure schedule | 4 | MG11 complainant statement (draft unsigned) S300-0037-homi-specia | 5-6 | Exhibit pack S300-0037-homi-specia | 7-8 | CCTV still clip S300-0037-homi-specia | 9 | Interview recording S300-0037-homi-specia | 10 | Interview transcript S300-0037-homi-specia | 11 | Court listing / custody | 12 | === SECTION: CHARGE === R v Arden Pritchard Statement of Offence: Murder, contrary to common law Particulars of Offence: Between 2026-02-11 and 2026-05-27 at Crown Court at Northbridge, Arden Pritchard engaged in conduct  particularised under homicide and causation (matter token S300-0037-homi-specia). Instrument status: operative Instrument version: 1 Replacement linkage: none\n\n=== SECTION: MG5 === MG05 — OFFENCE REPORT URN: 01AB100093526 Officer in case: DC Reed 5055 Family theme: homicide and causation Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0037-homi-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0037-homi-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).\n\n=== SECTION: MG5 === Evidence on file (served) - Charge sheet - MG5 - MG6C - MG11 complainant statement (draft unsigned) S300-0037-homi-specia - Exhibit pack S300-0037-homi-specia - CCTV still clip S300-0037-homi-specia Evidence referred or outstanding - MG11 complainant statement (signed) S300-0037-homi-specia - Interview recording S300-0037-homi-specia master export where not attached - CCTV master export S300-0037-homi-specia - Subscriber/account data where digital attribution is live\n\n=== SECTION: MG6 === MG6C — UNUSED MATERIAL SCHEDULE MG6C/001 — Exhibit pack S300-0037-homi-specia — served — on bundle pages 7-8 MG6C/002 — MG11 complainant statement (draft unsigned) S300-0037-homi-specia — served — draft only MG6C/003 — MG11 complainant statement (signed) S300-0037-homi-specia — outstanding — not on bundle MG6C/004 — Interview recording S300-0037-homi-specia — outstanding — not on bundle MG6C/005 — Interview transcript S300-0037-homi-specia — served — pages 11 MG6C/006 — Subscriber/account data — outstanding — not on bundle MG6C/007 — Later disclosure annex — outstanding — later service marked\n\n=== SECTION: MG11 === MG11 — COMPLAINANT STATEMENT (draft unsigned) I am the complainant in 01AB100093526. Between the offence window and listing I experienced the events  summarised in the charge particulars (token S300-0037-homi-specia). I have not signed a final statement. Final  signed MG11 remains outstanding on MG6C/003.\n\n=== SECTION: CUSTODY ===\n\n=== SECTION: LISTING === Next hearing: 2026-05-27 at Crown Court at Northbridge (Europe/London). Custody / listing extract: Date of birth (custody record): 1985-03-22 Age calculation inputs: DOB=1985-03-22; offenceDate=2026-02-11; hearingDate=2026-05-27;  timezone=Europe/London. Offence date (source): 2026-02-11 Hearing date (source): 2026-05-27 Timezone: Europe/London BWV reference — MG6C/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "normalisedTemplate": "restricted — prosecution disclosure bundle urn: 01ab100093526 defendant: arden pritchard court: crown court at northbridge coverage family: homicide_causation coverage tag: specialty_fitness format notes: stage-300 new-150 control-coverage materialisation === section: cover_index === index document | pages | note charge sheet | 1 | mg5 case summary | 2-3 | mg6c disclosure schedule | 4 | mg11 complainant statement (draft unsigned) <CASE> | 5-6 | exhibit pack <CASE> | 7-8 | cctv still clip <CASE> | 9 | interview recording <CASE> | 10 | interview transcript <CASE> | 11 | court listing / custody | 12 | === section: charge === r v arden pritchard statement of offence: murder, contrary to common law particulars of offence: between 2026-02-11 and 2026-05-27 at crown court at northbridge, arden pritchard engaged in conduct particularised under homicide and causation (matter token <CASE>). instrument status: operative instrument version: 1 replacement linkage: none === section: mg5 === mg05 — offence report urn: 01ab100093526 officer in case: dc reed 5055 family theme: homicide and causation coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt). === section: mg5 === evidence on file (served) - charge sheet - mg5 - mg6c - mg11 complainant statement (draft unsigned) <CASE> - exhibit pack <CASE> - cctv still clip <CASE> evidence referred or outstanding - mg11 complainant statement (signed) <CASE> - interview recording <CASE> master export where not attached - cctv master export <CASE> - subscriber/account data where digital attribution is live === section: mg6 === mg6c — unused material schedule mg6c/001 — exhibit pack <CASE> — served — on bundle pages 7-8 mg6c/002 — mg11 complainant statement (draft unsigned) <CASE> — served — draft only mg6c/003 — mg11 complainant statement (signed) <CASE> — outstanding — not on bundle mg6c/004 — interview recording <CASE> — outstanding — not on bundle mg6c/005 — interview transcript <CASE> — served — pages 11 mg6c/006 — subscriber/account data — outstanding — not on bundle mg6c/007 — later disclosure annex — outstanding — later service marked === section: mg11 === mg11 — complainant statement (draft unsigned) i am the complainant in 01ab100093526. between the offence window and listing i experienced the events summarised in the charge particulars (token <CASE>). i have not signed a final statement. final signed mg11 remains outstanding on mg6c/003. === section: custody === === section: listing === next hearing: 2026-05-27 at crown court at northbridge (europe/london). custody / listing extract: date of birth (custody record): 1985-03-22 age calculation inputs: dob=1985-03-22; offencedate=2026-02-11; hearingdate=2026-05-27; timezone=europe/london. offence date (source): 2026-02-11 hearing date (source): 2026-05-27 timezone: europe/london bwv reference — mg6c/010 body-worn video referred on schedule; full export not attached to this bundle.",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-055-homicide-causation-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/frontMatterScan"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "MG05 — OFFENCE REPORT URN: 01AB100093526 Officer in case: DC Reed 5055 Family theme: homicide and causation Coverage tag: specialty_fitness Headline Summary Prosecution relies on served Exhibit pack S300-0037-homi-specia, draft MG11, and listing. Outstanding  material is scheduled on MG6C. Matter token S300-0037-homi-specia. Fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report  outstanding). Fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "normalisedTemplate": "mg05 — offence report urn: 01ab100093526 officer in case: dc reed 5055 family theme: homicide and causation coverage tag: specialty_fitness headline summary prosecution relies on served exhibit pack <CASE>, draft mg11, and listing. outstanding material is scheduled on mg6c. matter token <CASE>. fitness allegation: defence raises fitness to plead / effective participation concern (psychiatric report outstanding). fitness decision: court has recorded a fitness decision boundary on the listing note (decision \"` guilt).",
+      "occurrenceCount": 1,
+      "caseExamples": [
+        "s300-n150-055-homicide-causation-specialty-fitness"
+      ],
+      "surfaces": [
+        "audience_pack_supervisor"
+      ],
+      "occurrencePaths": [
+        "/packs/3/payloadText/signals/payload/snippets/mg5"
+      ],
+      "audiences": [
+        "supervisor"
+      ],
+      "exits": [],
+      "findingCodes": [
+        "WRD_FRAGMENT_TRUNCATED"
+      ],
+      "detectorReasons": [
+        "Text on audience_pack_supervisor looks like a truncated fragment — it has an unclosed quotation mark."
+      ],
+      "proposedTechnicalDisposition": "unresolved",
+      "proposedImprovedWording": null,
+      "sharedRoot": "audience_pack_supervisor_source",
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    }
+  ],
+  "note": "Unresolved source/harness/ownership items — NOT described as requiring qualified legal review. Classify ownership before deciding whether legal review is required. Proposed triage — reviewerDecision blank."
+}

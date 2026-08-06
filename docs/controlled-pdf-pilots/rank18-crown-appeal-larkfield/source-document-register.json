@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":210,"approved_band":"120-300","rule":"Authentic record/rehearing need controls; use references and necessary extracts, never duplicated bundles or padding."},
+  "planned_documents":[
+    {"id":"S01","structure":"controlled appeal overview, non-operative charge, Magistrates/appeal chronology, evidence and order map","pages":"10-14","purpose":"neutral route, live-state and deadline orientation"},
+    {"id":"S02","structure":"Magistrates' charge, plea, case-management, admissions, witness/exhibit index and hearing record","pages":"22-32","purpose":"complete historical summary-trial framework"},
+    {"id":"S03","structure":"officer/health statements, custody record, audio/transcript, device printouts/logs/calibration and continuity","pages":"26-38","purpose":"specimen process, machine and contemporaneous health evidence"},
+    {"id":"S04","structure":"Magistrates' reasons, conviction record, sentence remarks, disqualification/costs and perfected orders","pages":"14-22","purpose":"historical decision and operative-order baseline"},
+    {"id":"S05","structure":"appeal notice/grounds, deadline worksheet, late explanation, extension and stay/suspension applications","pages":"14-22","purpose":"appeal initiation and interim-effect lifecycle"},
+    {"id":"S06","structure":"prosecution respondent notice, record response, chronology, service and rehearing position","pages":"14-22","purpose":"respondent and record-transfer states"},
+    {"id":"S07","structure":"Crown Court directions, witness availability, expert instructions/report/addendum and counsel/expert extracts","pages":"18-28","purpose":"rehearing preparation and specialist boundaries"},
+    {"id":"S08","structure":"Crown Court rehearing transcript/extracts, exhibits, admissions and party submissions","pages":"28-42","purpose":"fresh evidential rehearing record"},
+    {"id":"S09","structure":"appeal decision/reasons, consequential conviction/sentence/disqualification/costs orders, service and further-deadline record","pages":"16-24","purpose":"authoritative appellate outcome and implementation"}
+  ]
+}

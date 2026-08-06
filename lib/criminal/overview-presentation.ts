@@ -4,6 +4,7 @@ import {
   dedupeSolicitorLines,
   sanitizeSolicitorVisibleText,
 } from "@/lib/criminal/solicitor-display-dedupe";
+import { buildCanonicalMatterStateV1 } from "@/lib/criminal/canonical-matter-state/build";
 
 export { sanitizeSolicitorVisibleText } from "@/lib/criminal/solicitor-display-dedupe";
 
@@ -25,7 +26,7 @@ export function dedupeEvidenceRowsByLabel(rows: FiveAnswersEvidenceRow[]): FiveA
   const seen = new Set<string>();
   const out: FiveAnswersEvidenceRow[] = [];
   for (const row of rows) {
-    const key = row.label.trim().toLowerCase();
+    const key = (row?.label ?? "").trim().toLowerCase();
     if (!key || seen.has(key)) continue;
     seen.add(key);
     out.push(row);
@@ -103,27 +104,26 @@ export function servedEvidenceRows(rows: FiveAnswersEvidenceRow[]): FiveAnswersE
   return rows.filter((r) => r.existence === "served");
 }
 
+/**
+ * @deprecated Independent recount — prefer CanonicalMatterStateV1.evidence.counts.
+ * Thin adapter kept for tests; collapses incomplete into missing (legacy shape).
+ */
 export function countEvidenceStates(rows: FiveAnswersEvidenceRow[]): {
   served: number;
   referred: number;
   missing: number;
 } {
-  let served = 0;
-  let referred = 0;
-  let missing = 0;
-  for (const row of rows) {
-    if (row.existence === "served") served += 1;
-    else if (row.existence === "referred_only") referred += 1;
-    else if (row.existence === "missing" || row.existence === "unknown" || row.existence === "not_safely_confirmed") {
-      missing += 1;
-    }
-  }
-  return { served, referred, missing };
+  const full = countEvidenceStatesForDisplay(rows);
+  return {
+    served: full.served,
+    referred: full.referred,
+    missing: full.missing + full.incomplete + full.notSafelyConfirmed,
+  };
 }
 
 /**
- * Evidence-state counts aligned with gap-table badges (`displayExistenceLabel`).
- * Do not collapse incomplete / not-safely-confirmed into “missing”.
+ * Evidence-state counts — delegated to CanonicalMatterStateV1 (no independent algorithm).
+ * @deprecated Prefer consuming CanonicalMatterStateV1 directly; this adapter remains for call-site compat.
  */
 export function countEvidenceStatesForDisplay(rows: FiveAnswersEvidenceRow[]): {
   served: number;
@@ -132,33 +132,11 @@ export function countEvidenceStatesForDisplay(rows: FiveAnswersEvidenceRow[]): {
   incomplete: number;
   notSafelyConfirmed: number;
 } {
-  let served = 0;
-  let referred = 0;
-  let missing = 0;
-  let incomplete = 0;
-  let notSafelyConfirmed = 0;
-  for (const row of rows) {
-    switch (row.existence) {
-      case "served":
-        served += 1;
-        break;
-      case "referred_only":
-        referred += 1;
-        break;
-      case "missing":
-        missing += 1;
-        break;
-      case "not_safely_confirmed":
-        incomplete += 1;
-        break;
-      case "unknown":
-        notSafelyConfirmed += 1;
-        break;
-      default:
-        break;
-    }
-  }
-  return { served, referred, missing, incomplete, notSafelyConfirmed };
+  const canonical = buildCanonicalMatterStateV1({
+    evidenceRows: rows,
+    chaseItems: [],
+  });
+  return { ...canonical.evidence.counts };
 }
 
 /** Short solicitor-facing status — prefer one provisional badge; do not surface "Needs review" stack. */

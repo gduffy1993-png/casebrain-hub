@@ -1,0 +1,110 @@
+{
+  "goldId": "GOLD-11-034",
+  "reviewEligibility": "substantive",
+  "isNewInV4": true,
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "v4FreezeHash": "d887114aac265e00e9a8d66c98c82fa087a85388e60f1fc930a6996b5d6ab883",
+  "changes": [
+    {
+      "surface": "source_context",
+      "before": null,
+      "after": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textPreview": "Controlled evidence reference: CASE-03:demo-audit-27-custody-pace-missing\nControlled source context (safely redacted for review)\nClient label: Sam Okonkwo\nAlleg"
+      }
+    },
+    {
+      "surface": "offence_family",
+      "before": null,
+      "after": {
+        "gateStatus": "resolved",
+        "canCopy": true,
+        "textPreview": "Offence family resolved for this matter."
+      }
+    },
+    {
+      "surface": "case_header",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "Client: Sam Okonkwo\nAllegation: Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018"
+      }
+    },
+    {
+      "surface": "court_line",
+      "before": null,
+      "after": {
+        "gateStatus": "qualified_solicitor_review_queue",
+        "canCopy": false,
+        "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+      }
+    },
+    {
+      "surface": "client_summary",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Sam Okonkwo). This is early-stage — nothing is final until we have full di"
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "truth_map",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "• Body-worn video (BWV) — Referred only\n• Officer statement — Served\n• Custody record extract — Served\n• Full custody record — Missing\n• Interview audio — Missi"
+      }
+    },
+    {
+      "surface": "do_not_overstate",
+      "before": null,
+      "after": {
+        "gateStatus": "warning",
+        "canCopy": false,
+        "textPreview": "• full video proves\n• Assumed position may conflict with interview or served evidence."
+      }
+    }
+  ]
+}

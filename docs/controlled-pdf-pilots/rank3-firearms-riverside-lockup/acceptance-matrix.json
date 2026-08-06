@@ -1,0 +1,7 @@
+{
+  "schema_version":"1.0",
+  "audiences":{"solicitor":"full served evidence, conflicts, applications and provenance; privileged own-client material only","client":"plain-language own-case explanation without co-defendant privilege or unsafe certainty","court":"admissible/authorised material and neutral procedural states","CPS":"served prosecution material and lawful disclosure; no defence privilege","internal_review":"truth-key comparison and leakage audit under access control"},
+  "exits":["view","copy","export","API","composed prose"],
+  "exit_contracts":["same charge status across exits","citations survive copy/export/API","no audience widening","no co-defendant misattribution","blocked and repaired remain distinct","omission/containment does not count as substantive repair"],
+  "source_scoring":{"mandatory_finding_recall":"score every required finding against supporting source(s)","unsupported_statement_precision":"penalise every unsupported or over-broad proposition","provenance_correctness":"verify source, page/locator, speaker, date and state","defendant_matter_isolation":"score relevance and attribution per defendant/count","audience_leakage":"zero tolerance for privilege or unauthorised content"}
+}

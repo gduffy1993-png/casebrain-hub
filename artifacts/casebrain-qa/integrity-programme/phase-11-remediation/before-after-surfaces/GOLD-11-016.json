@@ -1,0 +1,35 @@
+{
+  "goldId": "GOLD-11-016",
+  "changes": [
+    {
+      "surface": "court_line",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "c01419514bab",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nUnderlying court line was gated (blocked ≠ repaired):\nThe defence asks the court t"
+      },
+      "after": {
+        "gateStatus": "qualified_solicitor_review_queue",
+        "canCopy": false,
+        "textHash": "4ceb0ee8feaa",
+        "textPreview": "Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export."
+      }
+    },
+    {
+      "surface": "truth_map",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "17375282fdd9",
+        "textPreview": "• Encro message extracts LC/MSG/01 — served\n• Platform / source extraction — referred_only\n• Handle attribution report — missing\n• Subscriber / account data — m"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "0af0015ba6a3",
+        "textPreview": "• Encro message extracts LC/MSG/01 — served\n• Platform / source extraction — referred_only\n• Handle attribution report — missing\n• Subscriber / account data — m"
+      }
+    }
+  ]
+}

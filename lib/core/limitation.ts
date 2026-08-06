@@ -14,6 +14,7 @@ import {
   getLimitationSummary, 
   normalizePracticeArea 
 } from "../packs";
+import { formatIsoDateOnly } from "@/lib/criminal/solicitor-time-clock";
 
 export interface LimitationInput {
   incidentDate?: string; // ISO
@@ -187,11 +188,11 @@ export function calculateLimitation(input: LimitationInput): LimitationResult {
   
   if (isExpired) {
     explanationParts.push(
-      `Possible limitation period may have expired (calculated date: ${limitationDate.toLocaleDateString("en-GB")}).`,
+      `Possible limitation period may have expired (calculated date: ${formatIsoDateOnly(limitationDate)}).`,
     );
   } else {
     explanationParts.push(
-      `Possible limitation deadline around ${limitationDate.toLocaleDateString("en-GB")} (${daysRemaining} days remaining).`,
+      `Possible limitation deadline around ${formatIsoDateOnly(limitationDate)} (${daysRemaining} days remaining).`,
     );
   }
 
@@ -201,9 +202,14 @@ export function calculateLimitation(input: LimitationInput): LimitationResult {
     );
   }
 
-  if (dateOfKnowledgeApplies && input.dateOfKnowledge && input.dateOfKnowledge !== input.incidentDate) {
+  // Mention DoK whenever it was the calculation base (even if pack flag is false, e.g. housing).
+  if (input.dateOfKnowledge && input.incidentDate && input.dateOfKnowledge !== input.incidentDate) {
     explanationParts.push(
       "date of knowledge differs from incident date – limitation period calculated from date of knowledge.",
+    );
+  } else if (dateOfKnowledgeApplies && input.dateOfKnowledge && !input.incidentDate) {
+    explanationParts.push(
+      "Limitation period calculated from date of knowledge.",
     );
   }
 

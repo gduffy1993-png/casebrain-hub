@@ -1,0 +1,233 @@
+{
+  "generatedAt": "2026-07-20T23:46:20.516Z",
+  "clusters": [
+    {
+      "ruleId": "sentence.raw_extraction_marker",
+      "count": 2351,
+      "fixtureIds": [
+        "cb-found-2001-ellis",
+        "cb-found-2001-ellis",
+        "cb-found-2001-ellis",
+        "cb-found-2002-smith",
+        "cb-found-2002-smith",
+        "cb-found-2003-nguyen",
+        "cb-found-2003-nguyen",
+        "cb-found-2003-nguyen",
+        "cb-found-2004-clarke",
+        "cb-found-2004-clarke",
+        "cb-found-2005-okafor",
+        "cb-found-2005-okafor",
+        "cb-found-2005-okafor",
+        "cb-found-2005-okafor",
+        "cb-found-2006-carter",
+        "cb-found-2006-carter",
+        "cb-found-2006-carter",
+        "cb-found-2007-morrison",
+        "cb-found-2007-morrison",
+        "cb-fresh-001-taylor-brookes",
+        "cb-fresh-001-taylor-brookes",
+        "cb-fresh-001-taylor-brookes",
+        "cb-fresh-001-taylor-brookes",
+        "cb-fresh-002-jordan-hale",
+        "cb-fresh-002-jordan-hale"
+      ],
+      "surfaces": [
+        "casebrain_output.strings",
+        "truth_key.labels"
+      ]
+    },
+    {
+      "ruleId": "sentence.truncated_fragment",
+      "count": 411,
+      "fixtureIds": [
+        "cb-found-2001-ellis",
+        "cb-found-2002-smith",
+        "cb-found-2003-nguyen",
+        "cb-found-2004-clarke",
+        "cb-found-2005-okafor",
+        "cb-found-2006-carter",
+        "cb-found-2007-morrison",
+        "cb-fresh-001-taylor-brookes",
+        "cb-fresh-002-jordan-hale",
+        "crown-court-patterson",
+        "sim-001",
+        "sim-002",
+        "sim-003",
+        "sim-004",
+        "sim-005",
+        "sim-006",
+        "sim-007",
+        "sim-008",
+        "sim-009",
+        "sim-010",
+        "sim-011",
+        "sim-012",
+        "sim-013",
+        "sim-014",
+        "sim-015"
+      ],
+      "surfaces": [
+        "casebrain_output.strings"
+      ]
+    },
+    {
+      "ruleId": "family.wrong_term.drugs_supply_PWITS",
+      "count": 94,
+      "fixtureIds": [
+        "cb-found-2001-ellis",
+        "cb-found-2002-smith",
+        "cb-found-2003-nguyen",
+        "cb-found-2004-clarke",
+        "cb-found-2006-carter",
+        "cb-found-2007-morrison",
+        "cb-fresh-001-taylor-brookes",
+        "cb-fresh-001-taylor-brookes",
+        "cb-fresh-002-jordan-hale",
+        "cb-fresh-002-jordan-hale",
+        "crown-court-patterson",
+        "fictional-theft-ashleigh-merritt",
+        "gbh-pike-jordan-pike",
+        "generic-provisional-sam-okonkwo",
+        "motoring-thin-ella-shaw",
+        "pilot-3-leon-marsh",
+        "pilot-3-marcus-vale",
+        "s18-charge-reduction-jordan-clarke",
+        "sc-00001",
+        "sc-00003",
+        "sc-00007",
+        "sc-00009",
+        "sc-0000a",
+        "sc-0000b",
+        "sc-0000c"
+      ],
+      "surfaces": [
+        "truth_key.labels",
+        "casebrain_output.strings"
+      ]
+    },
+    {
+      "ruleId": "sentence.contradictory_clause",
+      "count": 42,
+      "fixtureIds": [
+        "cb-fresh-001-taylor-brookes",
+        "sc-00001",
+        "sc-00007",
+        "sc-0000d",
+        "sc-00013",
+        "sc-00019",
+        "sc-0001f",
+        "sc-00031",
+        "sc-00037",
+        "sc-0003d",
+        "sc-00043",
+        "sc-00049",
+        "sc-0004f",
+        "sc-00055",
+        "sc-0005b",
+        "sc-00067",
+        "sc-0006d",
+        "sc-00073",
+        "sim-018",
+        "sim-023",
+        "sim-064",
+        "sim-069",
+        "sim-070",
+        "sim-071",
+        "sim-106"
+      ],
+      "surfaces": [
+        "casebrain_output.strings"
+      ]
+    },
+    {
+      "ruleId": "family.wrong_term.drugs_possession",
+      "count": 35,
+      "fixtureIds": [
+        "cb-found-2005-okafor",
+        "sim-008",
+        "sim-008",
+        "sim-009",
+        "sim-009",
+        "sim-022",
+        "sim-022",
+        "sim-060",
+        "sim-066",
+        "sim-080",
+        "sim-085",
+        "sim-088",
+        "sim-104",
+        "sim-104",
+        "sim-118",
+        "sim-120",
+        "sim-134",
+        "sim-136",
+        "sim-136",
+        "sim-136",
+        "sim-136",
+        "sim-142",
+        "sim-142",
+        "sim-183",
+        "sim-184"
+      ],
+      "surfaces": [
+        "casebrain_output.strings"
+      ]
+    },
+    {
+      "ruleId": "family.wrong_term.pwits",
+      "count": 28,
+      "fixtureIds": [
+        "cb-found-2003-nguyen",
+        "cb-found-2004-clarke",
+        "cb-fresh-001-taylor-brookes",
+        "cb-fresh-001-taylor-brookes",
+        "crown-court-patterson",
+        "gbh-pike-jordan-pike",
+        "motoring-thin-ella-shaw",
+        "s18-charge-reduction-jordan-clarke",
+        "sc-0000a",
+        "sc-0000c",
+        "sc-00016",
+        "sc-00018",
+        "sc-00022",
+        "sc-00024",
+        "sc-0002e",
+        "sc-00030",
+        "sc-0003a",
+        "sc-0003c",
+        "sc-00046",
+        "sc-00048",
+        "sc-00052",
+        "sc-00054",
+        "sc-0005e",
+        "sc-00060",
+        "sc-0006a"
+      ],
+      "surfaces": [
+        "truth_key.labels"
+      ]
+    },
+    {
+      "ruleId": "sentence.unresolved_placeholder",
+      "count": 2,
+      "fixtureIds": [
+        "sim-029",
+        "sim-137"
+      ],
+      "surfaces": [
+        "casebrain_output.strings",
+        "truth_key.labels"
+      ]
+    },
+    {
+      "ruleId": "family.wrong_term.intent_to_supply",
+      "count": 1,
+      "fixtureIds": [
+        "sim-236"
+      ],
+      "surfaces": [
+        "truth_key.labels"
+      ]
+    }
+  ]
+}

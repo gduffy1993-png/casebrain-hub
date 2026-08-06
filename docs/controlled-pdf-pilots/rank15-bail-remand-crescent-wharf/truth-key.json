@@ -1,0 +1,30 @@
+{
+  "schema_version":"1.0","status":"design truth only; no legal or factual decision operative",
+  "hierarchy":["latest signed/sealed court order governs operative bail terms for its period","court hearing record and reasons govern the decision actually made","source records prove only their recorded propositions","party applications and submissions remain attributed advocacy","internal truth key controls designed conflicts but cannot supply missing legal decisions"],
+  "state_separations":[
+    "charge allegation | evidential sufficiency | plea | verdict",
+    "risk indicator | source evidence | party risk assertion | submission | judicial reason/finding",
+    "unconditional bail | conditional bail | remand in custody",
+    "condition proposed | ordered | served/explained | known | varied | superseded | allegedly breached | breach opinion/finding",
+    "address offered | independently verified | objected to | accepted in order",
+    "surety/security proposed | means/suitability evidenced | accepted | perfected/paid | forfeiture application/order",
+    "prior allegation | charge | conviction | disposal | spent/relevance state",
+    "arresting officer ground | D1 response | court opinion on breach | renewed bail decision | separate offence allegation",
+    "application drafted | filed | served | heard | ruled | order perfected",
+    "CTL source | clock start | pause/exclusion | calculation | extension application | ruling | expiry consequence"
+  ],
+  "conflict_omission_contradiction_traps":[
+    {"id":"T15-01","trap":"police summary calls an old arrest a conviction; certified antecedent record does not","safe_result":"preserve distinction and flag mismatch"},
+    {"id":"T15-02","trap":"address letter confirms residence but not permission for electronic monitoring","safe_result":"do not infer monitoring suitability"},
+    {"id":"T15-03","trap":"surety letter offers funds; bank evidence is partial and court acceptance blank","safe_result":"offer is neither suitability nor perfected security"},
+    {"id":"T15-04","trap":"prosecution chronology omits an earlier compliant attendance","safe_result":"surface omission with source"},
+    {"id":"T15-05","trap":"typed order and hearing note disagree on curfew start time","safe_result":"retain both; authoritative perfected order/status review required"},
+    {"id":"T15-06","trap":"variation filed before employer rota was served","safe_result":"filing, support and service dates remain separate"},
+    {"id":"T15-07","trap":"screenshot shows contact from a display name but native account return is missing","safe_result":"no sender attribution or breach finding"},
+    {"id":"T15-08","trap":"officer records suspected indirect contact after condition wording may have been varied","safe_result":"apply time-specific operative order only"},
+    {"id":"T15-09","trap":"two CTL worksheets use different start events","safe_result":"no deadline conclusion pending qualified source selection"},
+    {"id":"T15-10","trap":"client summary calls bail granted before conditions were perfected","safe_result":"state hearing outcome and operative-order uncertainty precisely"}
+  ],
+  "required_findings":["charges are proposed/non-operative","all risk propositions name source and speaker","latest operative order and time period identified","proposed safeguards distinguished from accepted conditions","breach remains allegation absent recorded court state","service and knowledge states preserved","CTL inputs and authority exposed, not silently calculated","each audience receives only authorised medical/financial/contact detail","all five exits preserve order versions","unknowns and conflicts remain visible"],
+  "forbidden_findings":["D1 committed either offence","a prior arrest is a conviction","any asserted risk is established merely because stated","address or surety is approved without order","condition existed outside its operative period","display name proves sender","breach arrest proves breach","bail refusal proves guilt","CTL expiry or extension without qualified calculation","hidden wording counts as substantive repair"]
+}

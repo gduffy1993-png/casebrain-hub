@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "stage300-batch-a-six-regression-report@1.0.0",
+  "stage150ImplementedRegistryUntouched": true,
+  "stage150FreezeHashesUnchanged": true,
+  "orderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+  "candidateFreezeSha256Stage150": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202",
+  "partialAdaptersNotUpgradedFromScaffolding": {
+    "evidence_unit_identity_with_aliases": {
+      "eligible": 0,
+      "partial": 120,
+      "unavailable": 0,
+      "rollupBasis": "best_across_channels"
+    },
+    "source_vs_compiled_page_binding": {
+      "eligible": 0,
+      "partial": 120,
+      "unavailable": 0,
+      "rollupBasis": "best_across_channels"
+    },
+    "chase_item_to_evidence_unit_edges": {
+      "eligible": 0,
+      "partial": 120,
+      "unavailable": 0,
+      "rollupBasis": "best_across_channels"
+    },
+    "view_copy_export_api_pdf_composed_prose_capture": {
+      "eligible": 0,
+      "partial": 120,
+      "unavailable": 0,
+      "rollupBasis": "best_across_channels"
+    },
+    "note": "Remain partial unless complete required fields genuinely arise — not upgraded."
+  },
+  "sixControlsPromoted": false,
+  "brain1GuardianExpectedUnchanged": true
+}

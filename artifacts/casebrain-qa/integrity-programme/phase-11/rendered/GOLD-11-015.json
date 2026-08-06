@@ -1,0 +1,76 @@
+{
+  "goldId": "GOLD-11-015",
+  "def": {
+    "goldId": "GOLD-11-015",
+    "stratum": "offence_family",
+    "sourceKind": "gold_manual_pack",
+    "fixtureId": "CASE-01:demo-audit-01-phone-harassment",
+    "selectionReason": "Gold pack harassment family with attribution gaps",
+    "reviewFocus": "Family-correct wording; no overstated attribution."
+  },
+  "surfaces": [
+    {
+      "surface": "case_header",
+      "label": "Case header (solicitor view)",
+      "solicitorVisibleText": "Client: Riley Moss\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "court_line",
+      "label": "Court line (copy preview)",
+      "solicitorVisibleText": "The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding.",
+      "gateStatus": "ok",
+      "canCopy": true
+    },
+    {
+      "surface": "client_summary",
+      "label": "Client-safe summary preview",
+      "solicitorVisibleText": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full disclosure and your instructions. Screenshots of messages are on the papers, but the full phone download, subscriber/account data, and final signed statement are still outstanding. We cannot yet confirm who sent each message from the served material alone.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Full phone download",
+      "solicitorVisibleText": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Subscriber / account data",
+      "solicitorVisibleText": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Full message export",
+      "solicitorVisibleText": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Final signed MG11",
+      "solicitorVisibleText": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "truth_map",
+      "label": "Evidence truth map (Overview)",
+      "solicitorVisibleText": "• Screenshot / message pack — served\n• Phone extraction summary — served\n• Device metadata export — referred_only\n• Complainant MG11 (draft) — served\n• Attribution / subscriber material — not_safely_confirmed\n• Full phone download — missing\n• Subscriber / account data — missing\n• Full message export — missing",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "do_not_overstate",
+      "label": "Do-not-overstate warnings",
+      "solicitorVisibleText": "• defendant sent the messages\n• Riley Moss sent\n• attribution is proved\n• Do not state the defendant sent messages unless attribution is served and safe.\n• Do not treat draft/unsigned MG11 as a final served statement.",
+      "gateStatus": "warning",
+      "canCopy": false
+    }
+  ]
+}

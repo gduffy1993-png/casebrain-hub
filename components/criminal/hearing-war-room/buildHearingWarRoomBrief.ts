@@ -28,6 +28,7 @@ import {
   isBlockedBattleboardTemplateLine,
 } from "@/lib/criminal/bundle-truth-ledger";
 import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
+import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
 import {
   type BundleContradiction,
 } from "@/lib/criminal/extract-bundle-contradictions";
@@ -102,6 +103,14 @@ export type BuildHearingWarRoomBriefInput = {
   briefPlan?: CriminalBriefPlan | null;
   /** Non-admin pilot demo: softer instruction copy (no “record position” CTA). */
   pilotDemoReadOnly?: boolean;
+  /** Live canonical findings — merged into collapse risks / do-not-overstate / evidence anchors. */
+  canonicalFindings?: Array<{
+    title: string;
+    summary: string;
+    unresolved: boolean;
+    provenanceLine: string;
+    severity?: string;
+  }>;
 };
 
 function sanitizeLine(text: string): string | null {
@@ -246,7 +255,8 @@ function resolveSafePosition(battleboard: BattleboardOutput | null): string {
   if (fromRoute && !FORBIDDEN_RE.test(fromRoute)) return fromRoute;
   const summary = battleboard?.solicitor_safe_summary?.trim();
   if (summary && !FORBIDDEN_RE.test(summary)) {
-    return summary.slice(0, 600);
+    const finalized = finalizeSolicitorVisibleProse(summary);
+    if (finalized.ok) return finalized.text;
   }
   return "Timing/sequence remains conditional on served CCTV/CAD/999 material. The defence asks the court to record outstanding source material and set a timetable — position remains provisional pending instructions.";
 }
@@ -479,23 +489,29 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
           ...collapse.map((r) => cleanDoNotBullet(r) ?? "").filter(Boolean),
           ...defaultDoNotOverstate(profile),
         ];
+  const findingLines = (input.canonicalFindings ?? [])
+    .filter((f) => f.unresolved || f.severity === "critical")
+    .map((f) => `${f.title}: ${f.summary}`);
+
   const doNotOverstate = uniqueLines(
-    doNotRaw.map((l) => (isCriminalPilotMode() ? softenPilotRiskWording(l) : l)),
-    5,
+    [
+      ...doNotRaw.map((l) => (isCriminalPilotMode() ? softenPilotRiskWording(l) : l)),
+      ...findingLines,
+    ],
+    8,
   );
 
-  const collapseRisks =
-    profile !== "generic"
-      ? uniqueLines(
-          filterWorkflowPilotLines(collapseRaw, workflowContext, { max: 5, useFallbacks: false }).map(
-            (l) => softenPilotRiskWording(l),
-          ),
-          5,
-        )
-      : uniqueLines(
-          collapseRaw.map((l) => (isCriminalPilotMode() ? softenPilotRiskWording(l) : l)),
-          8,
-        );
+  const collapseRisks = uniqueLines(
+    [
+      ...(profile !== "generic"
+        ? filterWorkflowPilotLines(collapseRaw, workflowContext, { max: 5, useFallbacks: false }).map((l) =>
+            softenPilotRiskWording(l),
+          )
+        : collapseRaw.map((l) => (isCriminalPilotMode() ? softenPilotRiskWording(l) : l))),
+      ...findingLines,
+    ],
+    8,
+  );
 
   const askCourtToRecord = dedupePilotCourtRecordLines(
     profile !== "generic" && profileAsks?.length
@@ -569,6 +585,9 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
     [
       ...(route?.evidence_anchors ?? []),
       ...(bb?.routes ?? []).flatMap((r) => r.evidence_anchors ?? []).slice(0, 6),
+      ...(input.canonicalFindings ?? [])
+        .map((f) => f.provenanceLine)
+        .filter((l) => Boolean(l?.trim())),
     ],
     12,
   );

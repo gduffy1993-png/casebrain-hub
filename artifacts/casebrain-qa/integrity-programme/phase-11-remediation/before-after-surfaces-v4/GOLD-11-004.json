@@ -1,0 +1,86 @@
+{
+  "goldId": "GOLD-11-004",
+  "reviewEligibility": "substantive",
+  "isNewInV4": false,
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "v4FreezeHash": "d887114aac265e00e9a8d66c98c82fa087a85388e60f1fc930a6996b5d6ab883",
+  "changes": [
+    {
+      "surface": "source_context",
+      "before": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "a10867067229",
+        "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Daniel Clarke — foundation First appearance\nHearing: Hearing date no"
+      },
+      "after": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "aa21227125b8",
+        "textPreview": "Controlled evidence reference: cb-found-2004-clarke\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Daniel Clarke — "
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "765516bc8918",
+        "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "0f2cffadad78",
+        "textPreview": "Human review or material gaps flagged on current papers."
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "1b75d45c10fb",
+        "textPreview": "Item: Disclosure / chase wording (2)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "fb6d5ebfa9f6",
+        "textPreview": "MG6 / unused schedule clarification"
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "8dd5de918907",
+        "textPreview": "Item: Disclosure / chase wording (3)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "6ba6cdbb6e7a",
+        "textPreview": "CPS / disclosure officer"
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "215d818a1962",
+        "textPreview": "Item: Solicitor wording candidate (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "0ce761aaa7d4",
+        "textPreview": "Exhibit mapping / provenance"
+      }
+    }
+  ]
+}

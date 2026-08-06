@@ -1,0 +1,3958 @@
+{
+  "schemaVersion": "stage150-implementation-capability-matrix@1.0.0",
+  "note": "partially_implemented is blocking and never counts as fully exercised or Stage-150 executable.",
+  "totals": {
+    "stage150ControlCount": 161,
+    "partially_implemented": 106,
+    "specified_not_implemented": 55,
+    "implemented": 0,
+    "other": 0
+  },
+  "rows": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "familyCode": "SRC",
+      "intelligenceFamilyId": "provenance_reliability",
+      "engineId": "source_provenance",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "familyCode": "SRC",
+      "intelligenceFamilyId": "provenance_reliability",
+      "engineId": "source_provenance",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "familyCode": "SRC",
+      "intelligenceFamilyId": "provenance_reliability",
+      "engineId": "source_provenance",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "synthetic_or_collapsed_page",
+        "findingCodes": [
+          "SRC_SYNTHETIC_OR_COLLAPSED_PAGE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "nonempty:/evidenceStates"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#src_page_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#src_page_negatives",
+        "runtimePath": "evaluateProvenanceReliability→synthetic_or_collapsed_page"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "evidence_state_rows"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "familyCode": "SRC",
+      "intelligenceFamilyId": "provenance_reliability",
+      "engineId": "source_provenance",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "familyCode": "SRC",
+      "intelligenceFamilyId": "provenance_reliability",
+      "engineId": "source_provenance",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "password_corrupt_fake_extraction",
+        "findingCodes": [
+          "SRC_PASSWORD_CORRUPT_FAKE_EXTRACTION"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#src_password_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#src_password_negatives",
+        "runtimePath": "evaluateProvenanceReliability→password_corrupt_fake_extraction"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "familyCode": "SRC",
+      "intelligenceFamilyId": "provenance_reliability",
+      "engineId": "source_provenance",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "source_doc_inventory_collapse",
+        "findingCodes": [
+          "BND_INVENTORY_COLLAPSE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording",
+          "nonempty:/evidenceStates"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#source_doc_inventory_collapse_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#source_doc_inventory_collapse_negatives",
+        "runtimePath": "evaluateAllBatch3→source_doc_inventory_collapse"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "evidence_state_rows"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "instrument_status_collapse",
+        "findingCodes": [
+          "BND_INSTRUMENT_STATUS_COLLAPSE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-02-INSTRUMENT-STATUS_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-02-INSTRUMENT-STATUS_negatives",
+        "runtimePath": "evaluateBatch2Evidence→instrument_status_collapse"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "replacement_unlinked",
+        "findingCodes": [
+          "BND_REPLACEMENT_UNLINKED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#replacement_unlinked_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#replacement_unlinked_negatives",
+        "runtimePath": "evaluateAllBatch3→replacement_unlinked"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "version_precedence_collapse",
+        "findingCodes": [
+          "BND_VERSION_PRECEDENCE_COLLAPSE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#version_precedence_collapse_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#version_precedence_collapse_negatives",
+        "runtimePath": "evaluateAllBatch3→version_precedence_collapse"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "missing_attachment_claim",
+        "findingCodes": [
+          "BND_MISSING_ATTACHMENT_CLAIM"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#missing_attachment_claim_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#missing_attachment_claim_negatives",
+        "runtimePath": "evaluateAllBatch3→missing_attachment_claim"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "exhibit_label_collision",
+        "findingCodes": [
+          "BND_EXHIBIT_LABEL_COLLISION"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#exhibit_label_collision_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#exhibit_label_collision_negatives",
+        "runtimePath": "evaluateAllBatch3→exhibit_label_collision"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "alias_unsafe_collapse",
+        "findingCodes": [
+          "BND_ALIAS_UNSAFE_COLLAPSE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-07-ALIAS-SAFE-COLLAPSE_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-07-ALIAS-SAFE-COLLAPSE_negatives",
+        "runtimePath": "evaluateBatch2Evidence→alias_unsafe_collapse"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "extract_as_full",
+        "findingCodes": [
+          "BND_EXTRACT_AS_FULL"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-08-EXTRACT-VS-FULL_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-08-EXTRACT-VS-FULL_negatives",
+        "runtimePath": "evaluateBatch2Evidence→extract_as_full"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "still_as_master_collapse",
+        "findingCodes": [
+          "BND_STILL_MASTER_COLLAPSE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#bnd_still_master_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#bnd_still_master_negatives",
+        "runtimePath": "evaluateEvidenceIdentityState→still_as_master_collapse"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "recording_transcript_collapse",
+        "findingCodes": [
+          "BND_RECORDING_TRANSCRIPT_COLLAPSE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#bnd_recording_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#bnd_recording_negatives",
+        "runtimePath": "evaluateEvidenceIdentityState→recording_transcript_collapse"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "draft_as_signed",
+        "findingCodes": [
+          "BND_DRAFT_AS_SIGNED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#bnd_draft_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#bnd_draft_negatives",
+        "runtimePath": "evaluateEvidenceIdentityState→draft_as_signed"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "complete_vs_partial",
+        "findingCodes": [
+          "BND_COMPLETE_VS_PARTIAL"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE_negatives",
+        "runtimePath": "evaluateBatch2Evidence→complete_vs_partial"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "codefendant_only_as_shared",
+        "findingCodes": [
+          "BND_CODEFENDANT_ONLY_AS_SHARED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#codefendant_only_as_shared_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#codefendant_only_as_shared_negatives",
+        "runtimePath": "evaluateAllBatch3→codefendant_only_as_shared"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "quarantine_served_conflict",
+        "findingCodes": [
+          "BND_QUARANTINE_SERVED_CONFLICT"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "nonempty:/evidenceStates"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-14-QUARANTINED-CONFLICTING_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-14-QUARANTINED-CONFLICTING_negatives",
+        "runtimePath": "evaluateBatch2Evidence→quarantine_served_conflict"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "evidence_state_rows"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "excluded_row_totals",
+        "findingCodes": [
+          "BND_EXCLUDED_ROW_TOTALS"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording",
+          "nonempty:/evidenceStates"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-15-EXCLUDED-ROW-TOTALS_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-15-EXCLUDED-ROW-TOTALS_negatives",
+        "runtimePath": "evaluateBatch2Evidence→excluded_row_totals"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "evidence_state_rows"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "familyCode": "BND",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "document_relationship",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "invented_relationship",
+        "findingCodes": [
+          "BND_INVENTED_RELATIONSHIP"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#invented_relationship_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#invented_relationship_negatives",
+        "runtimePath": "evaluateAllBatch3→invented_relationship"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "familyCode": "FID",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "name_defendant_alloc",
+        "findingCodes": [
+          "FID_NAME_DEFENDANT_ALLOC_UNCLEAR"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#name_defendant_alloc_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#name_defendant_alloc_negatives",
+        "runtimePath": "evaluateAllBatch3→name_defendant_alloc"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-FID-02-COUNT-NUMBERS",
+      "familyCode": "FID",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "count_number_collision",
+        "findingCodes": [
+          "FID_COUNT_NUMBER_COLLISION"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-02-COUNT-NUMBERS_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-02-COUNT-NUMBERS_negatives",
+        "runtimePath": "evaluateBatch2Charge→count_number_collision"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "familyCode": "FID",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "particulars_incomplete",
+        "findingCodes": [
+          "FID_PARTICULARS_INCOMPLETE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-03-CHARGE-WORDING-PARTICULARS_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-03-CHARGE-WORDING-PARTICULARS_negatives",
+        "runtimePath": "evaluateBatch2Charge→particulars_incomplete"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "familyCode": "FID",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "particular_value_drift",
+        "findingCodes": [
+          "FID_PARTICULAR_VALUE_DRIFT"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#particular_value_drift_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#particular_value_drift_negatives",
+        "runtimePath": "evaluateAllBatch3→particular_value_drift"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "familyCode": "FID",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "exhibit_ref_broken",
+        "findingCodes": [
+          "FID_EXHIBIT_REF_BROKEN"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#exhibit_ref_broken_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#exhibit_ref_broken_negatives",
+        "runtimePath": "evaluateAllBatch3→exhibit_ref_broken"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "familyCode": "FID",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "negation_stripped",
+        "findingCodes": [
+          "FID_NEGATION_STRIPPED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-06-PRESERVE-NEGATIVES_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-06-PRESERVE-NEGATIVES_negatives",
+        "runtimePath": "evaluateBatch2Charge→negation_stripped"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "familyCode": "FID",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "qualifier_stripped",
+        "findingCodes": [
+          "FID_QUALIFIER_STRIPPED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-07-PRESERVE-QUALIFIERS_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-07-PRESERVE-QUALIFIERS_negatives",
+        "runtimePath": "evaluateBatch2Charge→qualifier_stripped"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "familyCode": "FID",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "strengthen_allege_to_fact",
+        "findingCodes": [
+          "FID_STRENGTHEN_ALLEGE_TO_FACT"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#strengthen_allege_to_fact_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#strengthen_allege_to_fact_negatives",
+        "runtimePath": "evaluateAllBatch3→strengthen_allege_to_fact"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "familyCode": "FID",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "silent_rewrite",
+        "findingCodes": [
+          "FID_SILENT_CORRECTION"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#fid_silent_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#fid_silent_negatives",
+        "runtimePath": "evaluateChargeIntegrity→silent_rewrite"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "familyCode": "FID",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "source_provenance",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "quotation_without_source",
+        "findingCodes": [
+          "FID_QUOTATION_WITHOUT_SOURCE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#fid_quote_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#fid_quote_negatives",
+        "runtimePath": "evaluateProvenanceReliability→quotation_without_source"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "familyCode": "FID",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "source_provenance",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "familyCode": "LSL",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "statement_misclassified",
+        "findingCodes": [
+          "LSL_STATEMENT_MISCLASSIFIED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-LSL-01-STATEMENT-CLASSIFICATION_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-LSL-01-STATEMENT-CLASSIFICATION_negatives",
+        "runtimePath": "evaluateBatch2Charge→statement_misclassified"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+      "familyCode": "LSL",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "allege_to_fact",
+        "findingCodes": [
+          "LSL_ALLEGE_TO_FACT"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#lsl_allege_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#lsl_allege_negatives",
+        "runtimePath": "evaluateChargeIntegrity→allege_to_fact"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "familyCode": "LSL",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "submission_to_finding",
+        "findingCodes": [
+          "LSL_SUBMISSION_TO_FINDING"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#lsl_submission_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#lsl_submission_negatives",
+        "runtimePath": "evaluateChargeIntegrity→submission_to_finding"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "familyCode": "LSL",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "hypothesis_as_advice",
+        "findingCodes": [
+          "LSL_HYPOTHESIS_AS_ADVICE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#hypothesis_as_advice_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#hypothesis_as_advice_negatives",
+        "runtimePath": "evaluateAllBatch3→hypothesis_as_advice"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "familyCode": "LSL",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "familyCode": "CHG",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "recorded_source_invisible",
+        "findingCodes": [
+          "CHG_RECORDED_SOURCE_INVISIBLE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-01-RECORDED-SOURCE-VISIBLE_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-01-RECORDED-SOURCE-VISIBLE_negatives",
+        "runtimePath": "evaluateBatch2Charge→recorded_source_invisible"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "familyCode": "CHG",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "count_defendant_unclear",
+        "findingCodes": [
+          "CHG_COUNT_DEFENDANT_UNCLEAR"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chg_alloc_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chg_alloc_negatives",
+        "runtimePath": "evaluateChargeIntegrity→count_defendant_unclear"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "familyCode": "CHG",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "statement_vs_particulars",
+        "findingCodes": [
+          "CHG_STATEMENT_PARTICULARS_COLLAPSE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#statement_vs_particulars_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#statement_vs_particulars_negatives",
+        "runtimePath": "evaluateAllBatch3→statement_vs_particulars"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "familyCode": "CHG",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "charge_truncated",
+        "findingCodes": [
+          "CHG_CHARGE_TRUNCATED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-04-COMPLETE-NOT-TRUNCATED_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-04-COMPLETE-NOT-TRUNCATED_negatives",
+        "runtimePath": "evaluateBatch2Charge→charge_truncated"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "familyCode": "CHG",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "draft_as_operative",
+        "findingCodes": [
+          "CHG_DRAFT_AS_OPERATIVE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-05-OPERATIVE-INSTRUMENT_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-05-OPERATIVE-INSTRUMENT_negatives",
+        "runtimePath": "evaluateBatch2Charge→draft_as_operative"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "familyCode": "CHG",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "amendment_without_history",
+        "findingCodes": [
+          "CHG_AMENDMENT_WITHOUT_HISTORY"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-06-AMENDMENT-HISTORY_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-06-AMENDMENT-HISTORY_negatives",
+        "runtimePath": "evaluateBatch2Charge→amendment_without_history"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "familyCode": "CHG",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "statutory_provision_missing",
+        "findingCodes": [
+          "CHG_STATUTORY_PROVISION_MISSING"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#statutory_provision_missing_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#statutory_provision_missing_negatives",
+        "runtimePath": "evaluateAllBatch3→statutory_provision_missing"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "familyCode": "CHG",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "discrepancy_unstated",
+        "findingCodes": [
+          "CHG_DISCREPANCY_UNSTATED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#discrepancy_unstated_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#discrepancy_unstated_negatives",
+        "runtimePath": "evaluateAllBatch3→discrepancy_unstated"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "familyCode": "CHG",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "charge_warning_inseparable",
+        "findingCodes": [
+          "CHG_WARNING_INSEPARABLE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "/courtNote/text",
+          "array:/warningsAndGaps/doNotOverstate"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-10-WARNING-INSEPARABLE_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-10-WARNING-INSEPARABLE_negatives",
+        "runtimePath": "evaluateBatch2Charge→charge_warning_inseparable"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "chase_and_warnings",
+        "cross_exit_packet_surfaces"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "familyCode": "CHG",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "registry_as_operative",
+        "findingCodes": [
+          "CHG_REGISTRY_AS_OPERATIVE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#registry_as_operative_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#registry_as_operative_negatives",
+        "runtimePath": "evaluateAllBatch3→registry_as_operative"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "familyCode": "CHG",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "source_without_action",
+        "findingCodes": [
+          "CHG_SOURCE_WITHOUT_ACTION"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#source_without_action_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#source_without_action_negatives",
+        "runtimePath": "evaluateAllBatch3→source_without_action"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "familyCode": "CHG",
+      "intelligenceFamilyId": "charge_integrity",
+      "engineId": "charge_legal_state",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "generic_verify_replace",
+        "findingCodes": [
+          "CHG_GENERIC_VERIFY_REPLACE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#generic_verify_replace_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#generic_verify_replace_negatives",
+        "runtimePath": "evaluateAllBatch3→generic_verify_replace"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "familyCode": "EVS",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "evidence_attribution",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "dimension_collapse",
+        "findingCodes": [
+          "EVS_DIMENSION_COLLAPSE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "nonempty:/fiveAnswersEvidenceRows"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-EVS-01-DIMENSION-SEPARATION_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-EVS-01-DIMENSION-SEPARATION_negatives",
+        "runtimePath": "evaluateBatch2Evidence→dimension_collapse"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "five_answers_truth_map"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-EVS-02-STATE-ENUM",
+      "familyCode": "EVS",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "evidence_attribution",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "unknown_evidence_state",
+        "findingCodes": [
+          "EVS_UNKNOWN_STATE_TOKEN"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "nonempty:/evidenceStates"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#evs_state_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#evs_state_negatives",
+        "runtimePath": "evaluateEvidenceIdentityState→unknown_evidence_state"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "evidence_state_rows"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "familyCode": "EVS",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "evidence_attribution",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "unreliable_without_reason",
+        "findingCodes": [
+          "EVS_UNRELIABLE_WITHOUT_REASON"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "nonempty:/fiveAnswersEvidenceRows"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#evs_reliability_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#evs_reliability_negatives",
+        "runtimePath": "evaluateEvidenceIdentityState→unreliable_without_reason"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "five_answers_truth_map"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "familyCode": "EVS",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "evidence_attribution",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "reason_taxonomy_missing",
+        "findingCodes": [
+          "EVS_REASON_TAXONOMY_MISSING"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording",
+          "nonempty:/evidenceStates"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#reason_taxonomy_missing_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#reason_taxonomy_missing_negatives",
+        "runtimePath": "evaluateAllBatch3→reason_taxonomy_missing"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "evidence_state_rows"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "familyCode": "ATR",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "evidence_attribution",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "codefendant_leak_risk",
+        "findingCodes": [
+          "ATR_CODEFENDANT_LEAK_RISK"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "nonempty:/evidenceStates"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#atr_sep_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#atr_sep_negatives",
+        "runtimePath": "evaluateEvidenceIdentityState→codefendant_leak_risk"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "evidence_state_rows"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "familyCode": "ATR",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "evidence_attribution",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "document_ownership_unclear",
+        "findingCodes": [
+          "ATR_DOCUMENT_OWNERSHIP_UNCLEAR"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#document_ownership_unclear_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#document_ownership_unclear_negatives",
+        "runtimePath": "evaluateAllBatch3→document_ownership_unclear"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "familyCode": "ATR",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "evidence_attribution",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "statement_ownership_collapse",
+        "findingCodes": [
+          "ATR_STATEMENT_OWNERSHIP_COLLAPSE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#statement_ownership_collapse_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#statement_ownership_collapse_negatives",
+        "runtimePath": "evaluateAllBatch3→statement_ownership_collapse"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "familyCode": "ATR",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "evidence_attribution",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+      "familyCode": "ATR",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "evidence_attribution",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "familyCode": "ATR",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "evidence_attribution",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "group_as_individual",
+        "findingCodes": [
+          "ATR_GROUP_AS_INDIVIDUAL"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#group_as_individual_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#group_as_individual_negatives",
+        "runtimePath": "evaluateAllBatch3→group_as_individual"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "familyCode": "ATR",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "evidence_attribution",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "inference_as_proven",
+        "findingCodes": [
+          "ATR_INFERENCE_AS_PROVEN"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#inference_as_proven_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#inference_as_proven_negatives",
+        "runtimePath": "evaluateAllBatch3→inference_as_proven"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "familyCode": "ATR",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "evidence_attribution",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "defendant_bleed",
+        "findingCodes": [
+          "ATR_DEFENDANT_BLEED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "nonempty:/evidenceStates"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-ATR-08-NO-DEFENDANT-BLEED_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-ATR-08-NO-DEFENDANT-BLEED_negatives",
+        "runtimePath": "evaluateBatch2Evidence→defendant_bleed"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "evidence_state_rows"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "familyCode": "ATR",
+      "intelligenceFamilyId": "evidence_identity_state",
+      "engineId": "evidence_attribution",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "limitation_not_source_linked",
+        "findingCodes": [
+          "ATR_LIMITATION_NOT_SOURCE_LINKED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "nonempty:/fiveAnswersEvidenceRows"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS_negatives",
+        "runtimePath": "evaluateBatch2Evidence→limitation_not_source_linked"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "five_answers_truth_map"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "familyCode": "CHR",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "date_without_tz",
+        "findingCodes": [
+          "CHR_DATE_WITHOUT_TZ"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-01-EXACT-DATES-TZ_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-01-EXACT-DATES-TZ_negatives",
+        "runtimePath": "evaluateBatch2Chronology→date_without_tz"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "familyCode": "CHR",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "timezone_conflict_cue",
+        "findingCodes": [
+          "CHR_TIMEZONE_CONFLICT_CUE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "unresolved",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chr_tz_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chr_tz_negatives",
+        "runtimePath": "evaluateChronologyProcedure→timezone_conflict_cue"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "familyCode": "CHR",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "impossible_order_cue",
+        "findingCodes": [
+          "CHR_IMPOSSIBLE_ORDER_CUE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "unresolved",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chr_order_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chr_order_negatives",
+        "runtimePath": "evaluateChronologyProcedure→impossible_order_cue"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "familyCode": "CHR",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "custody_interview_clock",
+        "findingCodes": [
+          "CHR_CUSTODY_INTERVIEW_CLOCK"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING_negatives",
+        "runtimePath": "evaluateBatch2Chronology→custody_interview_clock"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "familyCode": "CHR",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "hearing_notice_lifecycle",
+        "findingCodes": [
+          "CHR_HEARING_NOTICE_CONFLICT"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE_negatives",
+        "runtimePath": "evaluateBatch2Chronology→hearing_notice_lifecycle"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "familyCode": "CHR",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "familyCode": "CHR",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "deadline_unstated",
+        "findingCodes": [
+          "CHR_DEADLINE_UNSTATED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#deadline_unstated_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#deadline_unstated_negatives",
+        "runtimePath": "evaluateAllBatch3→deadline_unstated"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "familyCode": "CHR",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "evidence_totals_conflict",
+        "findingCodes": [
+          "CHR_EVIDENCE_TOTALS_CONFLICT"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS_negatives",
+        "runtimePath": "evaluateBatch2Chronology→evidence_totals_conflict"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "familyCode": "CHR",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "duplicate_omitted_event",
+        "findingCodes": [
+          "CHR_DUPLICATE_OR_OMITTED_EVENT"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#duplicate_omitted_event_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#duplicate_omitted_event_negatives",
+        "runtimePath": "evaluateAllBatch3→duplicate_omitted_event"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "familyCode": "CHR",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "familyCode": "LEG",
+      "intelligenceFamilyId": null,
+      "engineId": "charge_legal_state",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Authority/currency registry not pinned locally — not_exercised until pinned authority data exists.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-LEG-02-JURISDICTION",
+      "familyCode": "LEG",
+      "intelligenceFamilyId": null,
+      "engineId": "charge_legal_state",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Authority/currency registry not pinned locally — not_exercised until pinned authority data exists.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-LEG-03-EFFECTIVE-DATE",
+      "familyCode": "LEG",
+      "intelligenceFamilyId": null,
+      "engineId": "charge_legal_state",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Authority/currency registry not pinned locally — not_exercised until pinned authority data exists.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-LEG-05-RETRIEVAL-DATE",
+      "familyCode": "LEG",
+      "intelligenceFamilyId": null,
+      "engineId": "charge_legal_state",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Authority/currency registry not pinned locally — not_exercised until pinned authority data exists.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "familyCode": "LEG",
+      "intelligenceFamilyId": null,
+      "engineId": "charge_legal_state",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Authority/currency registry not pinned locally — not_exercised until pinned authority data exists.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "familyCode": "LEG",
+      "intelligenceFamilyId": null,
+      "engineId": "charge_legal_state",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Authority/currency registry not pinned locally — not_exercised until pinned authority data exists.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-LEG-08-CURRENCY-WARNING",
+      "familyCode": "LEG",
+      "intelligenceFamilyId": null,
+      "engineId": "charge_legal_state",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Authority/currency registry not pinned locally — not_exercised until pinned authority data exists.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "familyCode": "LEG",
+      "intelligenceFamilyId": null,
+      "engineId": "charge_legal_state",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Authority/currency registry not pinned locally — not_exercised until pinned authority data exists.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-PRC-01-STAGE-TAGGING",
+      "familyCode": "PRC",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "stage_untagged",
+        "findingCodes": [
+          "PRC_STAGE_UNTAGGED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#stage_untagged_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#stage_untagged_negatives",
+        "runtimePath": "evaluateAllBatch3→stage_untagged"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "familyCode": "PRC",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "wrong_stage",
+        "findingCodes": [
+          "PRC_WRONG_STAGE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#wrong_stage_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#wrong_stage_negatives",
+        "runtimePath": "evaluateAllBatch3→wrong_stage"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "familyCode": "PRC",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "familyCode": "PRC",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "familyCode": "PRC",
+      "intelligenceFamilyId": "chronology_procedure",
+      "engineId": "chronology_procedure",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "familyCode": "CHS",
+      "intelligenceFamilyId": null,
+      "engineId": "chase_actionability",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "five_part_incomplete",
+        "findingCodes": [
+          "CHS_FIVE_PART_INCOMPLETE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording",
+          "nonempty:/warningsAndGaps/chaseItems"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#five_part_incomplete_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#five_part_incomplete_negatives",
+        "runtimePath": "evaluateAllBatch3→five_part_incomplete"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "chase_and_warnings"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "familyCode": "CHS",
+      "intelligenceFamilyId": null,
+      "engineId": "chase_actionability",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "empty_chase_draft",
+        "findingCodes": [
+          "CHS_EMPTY_DRAFT"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "nonempty:/warningsAndGaps/chaseItems"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chs_empty_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chs_empty_negatives",
+        "runtimePath": "evaluateProfessionalWording→empty_chase_draft"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "chase_and_warnings"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "familyCode": "CHS",
+      "intelligenceFamilyId": null,
+      "engineId": "chase_actionability",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "chase_provenance_unlinked",
+        "findingCodes": [
+          "CHS_PROVENANCE_UNLINKED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#chase_provenance_unlinked_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#chase_provenance_unlinked_negatives",
+        "runtimePath": "evaluateAllBatch3→chase_provenance_unlinked"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "familyCode": "CHS",
+      "intelligenceFamilyId": null,
+      "engineId": "chase_actionability",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "evidential_procedural_collapse",
+        "findingCodes": [
+          "CHS_EVIDENTIAL_PROCEDURAL_COLLAPSE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#evidential_procedural_collapse_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#evidential_procedural_collapse_negatives",
+        "runtimePath": "evaluateAllBatch3→evidential_procedural_collapse"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "familyCode": "CHS",
+      "intelligenceFamilyId": null,
+      "engineId": "chase_actionability",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "chase_template_only",
+        "findingCodes": [
+          "CHS_TEMPLATE_ONLY"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#chase_template_only_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#chase_template_only_negatives",
+        "runtimePath": "evaluateAllBatch3→chase_template_only"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "familyCode": "CHS",
+      "intelligenceFamilyId": null,
+      "engineId": "chase_actionability",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "chase_already_served",
+        "findingCodes": [
+          "CHS_ALREADY_SERVED_DUP"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "nonempty:/warningsAndGaps/chaseItems",
+          "nonempty:/evidenceStates"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP_negatives",
+        "runtimePath": "evaluateBatch2WordingChase→chase_already_served"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "evidence_state_rows",
+        "chase_and_warnings"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "familyCode": "CHS",
+      "intelligenceFamilyId": null,
+      "engineId": "chase_actionability",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "chase_stale_after_service",
+        "findingCodes": [
+          "CHS_STALE_AFTER_SERVICE_CHANGE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#chase_stale_after_service_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#chase_stale_after_service_negatives",
+        "runtimePath": "evaluateAllBatch3→chase_stale_after_service"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "familyCode": "CHS",
+      "intelligenceFamilyId": null,
+      "engineId": "chase_actionability",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "excluded_not_disclosed",
+        "findingCodes": [
+          "CHS_EXCLUDED_NOT_DISCLOSED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#excluded_not_disclosed_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#excluded_not_disclosed_negatives",
+        "runtimePath": "evaluateAllBatch3→excluded_not_disclosed"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "familyCode": "CHS",
+      "intelligenceFamilyId": null,
+      "engineId": "chase_actionability",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "unprofessional_cps_language",
+        "findingCodes": [
+          "CHS_UNPROFESSIONAL_CPS_LANGUAGE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#unprofessional_cps_language_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#unprofessional_cps_language_negatives",
+        "runtimePath": "evaluateAllBatch3→unprofessional_cps_language"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "broken_sentence",
+        "findingCodes": [
+          "WRD_BROKEN_SENTENCE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#broken_sentence_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#broken_sentence_negatives",
+        "runtimePath": "evaluateAllBatch3→broken_sentence"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-02-NO-MID-TRUNCATION",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "mid_truncation",
+        "findingCodes": [
+          "WRD_MID_TRUNCATION"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_trunc_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_trunc_negatives",
+        "runtimePath": "evaluateProfessionalWording→mid_truncation"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "disclaimer_incomplete",
+        "findingCodes": [
+          "WRD_DISCLAIMER_INCOMPLETE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#disclaimer_incomplete_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#disclaimer_incomplete_negatives",
+        "runtimePath": "evaluateAllBatch3→disclaimer_incomplete"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "duplicate_phrase",
+        "findingCodes": [
+          "WRD_DUPLICATE_PHRASE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-WRD-04-NO-DUPLICATE-PHRASES_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-WRD-04-NO-DUPLICATE-PHRASES_negatives",
+        "runtimePath": "evaluateBatch2WordingChase→duplicate_phrase"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "template_join_artifact",
+        "findingCodes": [
+          "WRD_TEMPLATE_JOIN_ARTIFACT"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#template_join_artifact_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#template_join_artifact_negatives",
+        "runtimePath": "evaluateAllBatch3→template_join_artifact"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "space_punct_corrupt",
+        "findingCodes": [
+          "WRD_SPACE_PUNCT_CORRUPT"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#space_punct_corrupt_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#space_punct_corrupt_negatives",
+        "runtimePath": "evaluateAllBatch3→space_punct_corrupt"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "pipe_list_fragment",
+        "findingCodes": [
+          "WRD_PIPE_LIST_FRAGMENT"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#pipe_list_fragment_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#pipe_list_fragment_negatives",
+        "runtimePath": "evaluateAllBatch3→pipe_list_fragment"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-08-CAPITALISATION",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "hostile_caps",
+        "findingCodes": [
+          "WRD_HOSTILE_CAPS"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#hostile_caps_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#hostile_caps_negatives",
+        "runtimePath": "evaluateAllBatch3→hostile_caps"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "protected_acronym_corrupt",
+        "findingCodes": [
+          "WRD_PROTECTED_ACRONYM_CORRUPT"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#protected_acronym_corrupt_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#protected_acronym_corrupt_negatives",
+        "runtimePath": "evaluateAllBatch3→protected_acronym_corrupt"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-10-NO-PLACEHOLDERS",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "placeholder_or_dev_leak",
+        "findingCodes": [
+          "WRD_PLACEHOLDER_OR_DEV"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_ph_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_ph_negatives",
+        "runtimePath": "evaluateProfessionalWording→placeholder_or_dev_leak"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-11-NO-GENERIC-FILLER",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "generic_unavailable",
+        "findingCodes": [
+          "WRD_GENERIC_UNAVAILABLE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_generic_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_generic_negatives",
+        "runtimePath": "evaluateProfessionalWording→generic_unavailable"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "hostile_sensational",
+        "findingCodes": [
+          "WRD_HOSTILE_SENSATIONAL"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-WRD-12-NO-HOSTILE-SENSATIONAL_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-WRD-12-NO-HOSTILE-SENSATIONAL_negatives",
+        "runtimePath": "evaluateBatch2WordingChase→hostile_sensational"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "warning_without_action",
+        "findingCodes": [
+          "WRD_WARNING_WITHOUT_ACTION"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#warning_without_action_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#warning_without_action_negatives",
+        "runtimePath": "evaluateAllBatch3→warning_without_action"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "excess_disclaimers",
+        "findingCodes": [
+          "WRD_EXCESS_DISCLAIMERS"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#excess_disclaimers_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#excess_disclaimers_negatives",
+        "runtimePath": "evaluateAllBatch3→excess_disclaimers"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "familyCode": "WRD",
+      "intelligenceFamilyId": "professional_wording",
+      "engineId": "professional_wording",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "absolute_proof_ban",
+        "findingCodes": [
+          "WRD_ABSOLUTE_PROOF"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_abs_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_abs_negatives",
+        "runtimePath": "evaluateProfessionalWording→absolute_proof_ban"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "familyCode": "AUD",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "audience_context",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "solicitor_incomplete",
+        "findingCodes": [
+          "AUD_SOLICITOR_SURFACE_INCOMPLETE"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#solicitor_incomplete_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#solicitor_incomplete_negatives",
+        "runtimePath": "evaluateAllBatch3→solicitor_incomplete"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "familyCode": "AUD",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "audience_context",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "familyCode": "AUD",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "audience_context",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "familyCode": "AUD",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "audience_context",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "familyCode": "AUD",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "audience_context",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "familyCode": "AUD",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "audience_context",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "internal_audit_leak",
+        "findingCodes": [
+          "AUD_INTERNAL_AUDIT_LEAK"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK_negatives",
+        "runtimePath": "evaluateBatch2WordingChase→internal_audit_leak"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "familyCode": "AUD",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "audience_context",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "familyCode": "XEX",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "cross_output_completeness",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "charge_warning_detached",
+        "findingCodes": [
+          "XEX_CHARGE_WARNING_DETACHED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "/courtNote/text",
+          "array:/warningsAndGaps/doNotOverstate"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#xex_warn_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#xex_warn_negatives",
+        "runtimePath": "evaluateCrossOutput→charge_warning_detached"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "chase_and_warnings",
+        "cross_exit_packet_surfaces"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "familyCode": "XEX",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "cross_output_completeness",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "evidence_partial_warning_missing",
+        "findingCodes": [
+          "XEX_EVIDENCE_PARTIAL_WARNING_MISSING"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "/courtNote/text",
+          "array:/warningsAndGaps/doNotOverstate"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING_negatives",
+        "runtimePath": "evaluateBatch2CrossOutput→evidence_partial_warning_missing"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "chase_and_warnings",
+        "cross_exit_packet_surfaces"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "familyCode": "XEX",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "cross_output_completeness",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "attribution_limit_detached",
+        "findingCodes": [
+          "XEX_ATTRIBUTION_LIMIT_DETACHED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#attribution_limit_detached_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#attribution_limit_detached_negatives",
+        "runtimePath": "evaluateAllBatch3→attribution_limit_detached"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "familyCode": "XEX",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "cross_output_completeness",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "familyCode": "XEX",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "cross_output_completeness",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "inferred_date_unqualified",
+        "findingCodes": [
+          "XEX_INFERRED_DATE_UNQUALIFIED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#inferred_date_unqualified_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#inferred_date_unqualified_negatives",
+        "runtimePath": "evaluateAllBatch3→inferred_date_unqualified"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "familyCode": "XEX",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "cross_output_completeness",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "quarantine_vs_total",
+        "findingCodes": [
+          "XEX_QUARANTINE_VS_TOTAL"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "/courtNote/text",
+          "nonempty:/evidenceStates"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL_negatives",
+        "runtimePath": "evaluateBatch2CrossOutput→quarantine_vs_total"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "evidence_state_rows",
+        "cross_exit_packet_surfaces"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "familyCode": "XEX",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "cross_output_completeness",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "exit_sendability_conflict",
+        "findingCodes": [
+          "XEX_SENDABILITY_CONFLICT"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "/courtNote/sendabilityLabel",
+          "/exportVersion/reviewFooter"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#xex_send_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#xex_send_negatives",
+        "runtimePath": "evaluateCrossOutput→exit_sendability_conflict"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "cross_exit_packet_surfaces"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "familyCode": "XEX",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "cross_output_completeness",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "unavailable_exit_claimed",
+        "findingCodes": [
+          "XEX_UNAVAILABLE_EXIT_CLAIMED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED_negatives",
+        "runtimePath": "evaluateBatch2CrossOutput→unavailable_exit_claimed"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "familyCode": "PRI",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "cross_output_completeness",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "missing_truth_map",
+        "findingCodes": [
+          "XEX_MISSING_TRUTH_MAP"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "/courtNote/text",
+          "array_allow_empty:/fiveAnswersEvidenceRows"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#pri_omit_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#pri_omit_negatives",
+        "runtimePath": "evaluateCrossOutput→missing_truth_map"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "five_answers_truth_map",
+        "cross_exit_packet_surfaces"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "familyCode": "PRI",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "cross_output_completeness",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "priority_buried",
+        "findingCodes": [
+          "PRI_PRIORITY_BURIED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#priority_buried_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#priority_buried_negatives",
+        "runtimePath": "evaluateAllBatch3→priority_buried"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "familyCode": "PRI",
+      "intelligenceFamilyId": "cross_output_consistency",
+      "engineId": "cross_output_completeness",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "priority_checklist_missing",
+        "findingCodes": [
+          "PRI_CHECKLIST_MISSING"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#priority_checklist_missing_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#priority_checklist_missing_negatives",
+        "runtimePath": "evaluateAllBatch3→priority_checklist_missing"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "familyCode": "CTX",
+      "intelligenceFamilyId": "alternative_perspective",
+      "engineId": "contradiction_perspective",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "contradiction_unclassified",
+        "findingCodes": [
+          "CTX_CONTRADICTION_UNCLASSIFIED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#contradiction_unclassified_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#contradiction_unclassified_negatives",
+        "runtimePath": "evaluateAllBatch3→contradiction_unclassified"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "familyCode": "CTX",
+      "intelligenceFamilyId": "alternative_perspective",
+      "engineId": "contradiction_perspective",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "low_over_high",
+        "findingCodes": [
+          "CTX_LOW_OVER_HIGH"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#low_over_high_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#low_over_high_negatives",
+        "runtimePath": "evaluateAllBatch3→low_over_high"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "familyCode": "DEF",
+      "intelligenceFamilyId": "alternative_perspective",
+      "engineId": "contradiction_perspective",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "defence_opportunity_buried",
+        "findingCodes": [
+          "DEF_OPPORTUNITY_BURIED"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "/courtNote/text",
+          "nonempty:/fiveAnswersEvidenceRows"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#def_opp_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#def_opp_negatives",
+        "runtimePath": "evaluatePerspectives→defence_opportunity_buried"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "five_answers_truth_map",
+        "cross_exit_packet_surfaces"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "familyCode": "DEF",
+      "intelligenceFamilyId": "alternative_perspective",
+      "engineId": "contradiction_perspective",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "conclusion_as_presentation",
+        "findingCodes": [
+          "DEF_CONCLUSION_AS_PRESENTATION"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#conclusion_as_presentation_positive",
+        "negativeContract": "scripts/maa-v2-stage150-batch3-contracts.test.ts#conclusion_as_presentation_negatives",
+        "runtimePath": "evaluateAllBatch3→conclusion_as_presentation"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "familyCode": "XPP",
+      "intelligenceFamilyId": "alternative_perspective",
+      "engineId": "contradiction_perspective",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "familyCode": "XPP",
+      "intelligenceFamilyId": "alternative_perspective",
+      "engineId": "contradiction_perspective",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "familyCode": "XPP",
+      "intelligenceFamilyId": "alternative_perspective",
+      "engineId": "contradiction_perspective",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "familyCode": "XPP",
+      "intelligenceFamilyId": "alternative_perspective",
+      "engineId": "contradiction_perspective",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "familyCode": "XPP",
+      "intelligenceFamilyId": "alternative_perspective",
+      "engineId": "contradiction_perspective",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "No control-specific Stage-150 packet-local handler yet, or required inputs absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "familyCode": "XPP",
+      "intelligenceFamilyId": "alternative_perspective",
+      "engineId": "contradiction_perspective",
+      "implementationStatus": "partially_implemented",
+      "statusReason": "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      "packetLocalHandler": {
+        "handlerId": "synthetic_consensus",
+        "findingCodes": [
+          "XPP_SYNTHETIC_CONSENSUS"
+        ],
+        "requiredInputs": [
+          "casebrain-output.json",
+          "nonempty:/fiveAnswersEvidenceRows",
+          "included_solicitor_visible_wording"
+        ],
+        "unavailableVerdict": "not_exercised",
+        "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#xpp_tension_positive",
+        "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#xpp_tension_negatives",
+        "runtimePath": "evaluatePerspectives→synthetic_consensus"
+      },
+      "adapterIds": [
+        "solicitor_visible_wording",
+        "five_answers_truth_map"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": true
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "familyCode": "VDR",
+      "intelligenceFamilyId": null,
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Version drift/reproducibility requires version pairs — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "familyCode": "VDR",
+      "intelligenceFamilyId": null,
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Version drift/reproducibility requires version pairs — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "familyCode": "VDR",
+      "intelligenceFamilyId": null,
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Version drift/reproducibility requires version pairs — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "familyCode": "VDR",
+      "intelligenceFamilyId": null,
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Version drift/reproducibility requires version pairs — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "familyCode": "VDR",
+      "intelligenceFamilyId": null,
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Version drift/reproducibility requires version pairs — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "familyCode": "VDR",
+      "intelligenceFamilyId": null,
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Version drift/reproducibility requires version pairs — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "familyCode": "VDR",
+      "intelligenceFamilyId": null,
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Version drift/reproducibility requires version pairs — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "familyCode": "VDR",
+      "intelligenceFamilyId": null,
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Version drift/reproducibility requires version pairs — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "familyCode": "VDR",
+      "intelligenceFamilyId": null,
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "Version drift/reproducibility requires version pairs — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "familyCode": "ELD",
+      "intelligenceFamilyId": "evidence_locked_drafting",
+      "engineId": "version_reproducibility",
+      "implementationStatus": "specified_not_implemented",
+      "statusReason": "ELD requires version pairs / source-to-sentence graphs / approval receipts / full exit matrix — absent on ESA.",
+      "packetLocalHandler": null,
+      "adapterIds": [
+        "eld_version_graph",
+        "authority_currency_pin",
+        "source_binary_security"
+      ],
+      "currentlyRunnableOnStage150": false,
+      "countsAsFullyExercised": false,
+      "blockingIfPartial": false
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "stage300-missing-adapter-implementation-order@1.0.0",
+  "order": [
+    {
+      "priority": 1,
+      "theme": "structured_charge_instruments",
+      "adapters": [
+        "structured_charge_instrument_graph",
+        "operative_vs_amended_instrument_history",
+        "count_defendant_allocation_binding"
+      ],
+      "rationale": "Charge wording fidelity and amendment history must bind to genuine instruments."
+    },
+    {
+      "priority": 2,
+      "theme": "chronology_competing_timestamps",
+      "adapters": [
+        "timezone_aware_chronology_events",
+        "competing_timestamp_groups",
+        "later_disclosure_event_stream"
+      ],
+      "rationale": "Competing timestamps and later disclosure are Stage-150 coverage gaps."
+    },
+    {
+      "priority": 3,
+      "theme": "evidence_unit_identity_attribution",
+      "adapters": [
+        "evidence_unit_identity_with_aliases",
+        "co_defendant_attribution_segregation",
+        "extract_full_clip_master_draft_signed_recording_transcript_axes"
+      ],
+      "rationale": "Identity/attribution axes must survive view→bag serialisation and exit surfaces."
+    },
+    {
+      "priority": 4,
+      "theme": "provenance_page_identity",
+      "adapters": [
+        "source_vs_compiled_page_binding",
+        "page_identity_known_flag_propagation",
+        "heavy_pdf_ocr_page_units"
+      ],
+      "rationale": "Page identity and OCR page units unlock SRC/FID provenance controls."
+    },
+    {
+      "priority": 5,
+      "theme": "chase_relationships",
+      "adapters": [
+        "chase_item_to_evidence_unit_edges",
+        "five_part_chase_draft_fields"
+      ],
+      "rationale": "Genuine chase drafts must not rely on Cohort-A projection bags."
+    },
+    {
+      "priority": 6,
+      "theme": "evidence_locked_drafting_version",
+      "adapters": [
+        "non_synthetic_version_pair_receipts",
+        "eld_source_change_affected_sentence_binding",
+        "stale_draft_cross_exit_leak_detector"
+      ],
+      "rationale": "ELD/VDR cannot stay synthetic-only before Stage 300."
+    },
+    {
+      "priority": 7,
+      "theme": "genuine_non_browser_exits",
+      "adapters": [
+        "view_copy_export_api_pdf_composed_prose_capture",
+        "cross_exit_consistency_enforcement_receipts"
+      ],
+      "rationale": "All six genuine production exits must be present on the new 150."
+    },
+    {
+      "priority": 8,
+      "theme": "cross_exit_cross_audience",
+      "adapters": [
+        "cross_audience_surface_set",
+        "contradiction_perspective_packs"
+      ],
+      "rationale": "AUD/XPP depth after core exits and charge/evidence adapters exist."
+    },
+    {
+      "priority": 9,
+      "theme": "heavy_pdf_ocr_binary",
+      "adapters": [
+        "original_binary_retention",
+        "ocr_degraded_page_corpus",
+        "attachment_binary_refs"
+      ],
+      "rationale": "Heavy/OCR lane required for corpus coverage; still not a programme PASS substitute."
+    }
+  ],
+  "deferredSeparate": [
+    "authenticated_browser_capture_session",
+    "human_gold_review_protocol",
+    "legal_authority_pinned_registry_detectors",
+    "external_certification_harness",
+    "penetration_prompt_injection_harness"
+  ]
+}

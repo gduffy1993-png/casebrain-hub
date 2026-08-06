@@ -1,0 +1,300 @@
+{
+  "schemaVersion": "1.1.0",
+  "runId": "maa-20-2026-07-29T18-08-29-011Z",
+  "createdAt": "2026-07-29T18:08:29.048Z",
+  "stage": "20",
+  "corpusRoot": "artifacts/casebrain-qa/gold-manual-proof-set-v1",
+  "planVersion": "corpus-plan-v1",
+  "adapterId": "gold-manual-proof-set-v1",
+  "requiredUniqueCases": 20,
+  "membership": [
+    {
+      "caseId": "CASE-01",
+      "sourceCaseId": "demo-audit-01-phone-harassment",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-01"
+    },
+    {
+      "caseId": "CASE-02",
+      "sourceCaseId": "demo-audit-03-bwv-custody",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-02"
+    },
+    {
+      "caseId": "CASE-03",
+      "sourceCaseId": "demo-audit-27-custody-pace-missing",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-03"
+    },
+    {
+      "caseId": "CASE-04",
+      "sourceCaseId": "demo-audit-02-cctv-stills",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-04"
+    },
+    {
+      "caseId": "CASE-05",
+      "sourceCaseId": "demo-audit-05-encro-attribution",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-05"
+    },
+    {
+      "caseId": "CASE-06",
+      "sourceCaseId": "demo-audit-04-co-def-interview",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-06"
+    },
+    {
+      "caseId": "CASE-07",
+      "sourceCaseId": "demo-audit-44-bad-redaction",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-07"
+    },
+    {
+      "caseId": "CASE-08",
+      "sourceCaseId": "demo-audit-69-charge-mg5-hearing",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-08"
+    },
+    {
+      "caseId": "CASE-09",
+      "sourceCaseId": "demo-audit-32-restraining-order-breach",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-09"
+    },
+    {
+      "caseId": "CASE-10",
+      "sourceCaseId": "demo-audit-41-translated-messages",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-10"
+    },
+    {
+      "caseId": "CASE-11",
+      "sourceCaseId": "demo-audit-22-youth-interview",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-11"
+    },
+    {
+      "caseId": "CASE-12",
+      "sourceCaseId": "demo-audit-21-historic-sexual-abe",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-12"
+    },
+    {
+      "caseId": "CASE-13",
+      "sourceCaseId": "demo-audit-50-lab-continuity-conflict",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-13"
+    },
+    {
+      "caseId": "CASE-14",
+      "sourceCaseId": "demo-audit-16-fraud-bank-statements",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-14"
+    },
+    {
+      "caseId": "CASE-15",
+      "sourceCaseId": "demo-audit-18-motoring-sjp-thin",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-15"
+    },
+    {
+      "caseId": "CASE-16",
+      "sourceCaseId": "demo-audit-49-anpr-trap",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-16"
+    },
+    {
+      "caseId": "CASE-17",
+      "sourceCaseId": "demo-audit-61-medical-triage-partial",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-17"
+    },
+    {
+      "caseId": "CASE-18",
+      "sourceCaseId": "demo-audit-46-prison-calls",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-18"
+    },
+    {
+      "caseId": "CASE-19",
+      "sourceCaseId": "demo-audit-47-social-media-handles",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-19"
+    },
+    {
+      "caseId": "CASE-20",
+      "sourceCaseId": "demo-audit-30-layout-hearing-date",
+      "adapterId": "gold-manual-proof-set-v1",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-20"
+    }
+  ],
+  "entries": [
+    {
+      "caseId": "CASE-01",
+      "sourceCaseId": "demo-audit-01-phone-harassment",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-01",
+      "actualHash": "3a3d7764497112d443ca68e6c1c1eb6a8aaf45f9af082613dcdb1c891d342061",
+      "expectedHash": "e3fa498ff01beafd138fc1004eba731f38c08ab5e865ab4449c851a87ae92e28",
+      "bundleHash": "6043dc3b63d2b250a2186181536e90e195cfcd8e0bf4202bbc010c072b67ea10"
+    },
+    {
+      "caseId": "CASE-02",
+      "sourceCaseId": "demo-audit-03-bwv-custody",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-02",
+      "actualHash": "9a453fe2daebf0335335662cd134eb66c1d6e3dd98a52a43adfc8e6103468c5c",
+      "expectedHash": "be11f4780d540cd20ce43483c03f1d56adbf7d85806c88ac18f2c501d840b25f",
+      "bundleHash": "f07d8db966c41dac0b4f556a309c2c146304c864c6b04e696e3a2b3faa03ad5f"
+    },
+    {
+      "caseId": "CASE-03",
+      "sourceCaseId": "demo-audit-27-custody-pace-missing",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-03",
+      "actualHash": "3a7d4c5a83f75fc76e14aee9a3ff81bdaaed811b33b2e8e59e82f1cf03c3ad06",
+      "expectedHash": "f43876c83d08bf290c0aa913300b0618fb1d9077f5cc7400b6a706fa6b363116",
+      "bundleHash": "8a8cada486d9f2dc0471772e3615a8d65b1c694e7b9e864b40364b18b0b64f53"
+    },
+    {
+      "caseId": "CASE-04",
+      "sourceCaseId": "demo-audit-02-cctv-stills",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-04",
+      "actualHash": "0b90ed59ef213378014c65ce2f7e93ed521a7c2f410fcc7b9c89b58fdb10ca53",
+      "expectedHash": "a408bfef40ea822aad9a71d434d7bb54900b8498645a7376228076b50d1099df",
+      "bundleHash": "810d8c3840a9d90cdc15615c409efc649588e78d256103f055d82e57d87b97e5"
+    },
+    {
+      "caseId": "CASE-05",
+      "sourceCaseId": "demo-audit-05-encro-attribution",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-05",
+      "actualHash": "ef421e2cbe0591f925f3b71802f0cd2198f7bb55f595fab2eab582805312899b",
+      "expectedHash": "2fa9fc086105415b827ee9f7329f1bd9cb6ae0ea571809bb882e668836e99ff9",
+      "bundleHash": "dcf4f827c18ea9a0ec46f7030ff9a43d92c5ae4e07cc81e66ceda2af6055f21c"
+    },
+    {
+      "caseId": "CASE-06",
+      "sourceCaseId": "demo-audit-04-co-def-interview",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-06",
+      "actualHash": "b49c861ce16b10bdd5c9e82065633109739e7f630ae604bafdae769aba360fb1",
+      "expectedHash": "11333a3c9cf744b8431ffc0213f133952e38b1f6cc3967405beb584f106d5c4b",
+      "bundleHash": "2d204cbc507b44aaaa65eb994c975850e35a7295e93985d4a5f6f286badb5792"
+    },
+    {
+      "caseId": "CASE-07",
+      "sourceCaseId": "demo-audit-44-bad-redaction",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-07",
+      "actualHash": "8681c3e8e530ef8343ed6be6ec4677ef2951fe1a826086fcff7b4c78bea1cc8c",
+      "expectedHash": "f04e8bff58874ccf71630e6d581a2b8183708f4e67d2039a7b31d75880f01e1e",
+      "bundleHash": null
+    },
+    {
+      "caseId": "CASE-08",
+      "sourceCaseId": "demo-audit-69-charge-mg5-hearing",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-08",
+      "actualHash": "91b5b5c91c2b462a8c2ed2e6f877319b9e5d56e063f871b0d60afffe18ecddf5",
+      "expectedHash": "17f280709033c5e6435c4b16a74bd3bf1bd0d839308ae937b1d7a0a12cb982f5",
+      "bundleHash": null
+    },
+    {
+      "caseId": "CASE-09",
+      "sourceCaseId": "demo-audit-32-restraining-order-breach",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-09",
+      "actualHash": "2b13fa7308fe0d6ef40291fc35e2c7574fc1226619aa4f6b93cfda61ce0f271e",
+      "expectedHash": "bb832d0430b3e048fefb576ab579dc197e7a8912ddcf43f727c88a8c597b94b8",
+      "bundleHash": null
+    },
+    {
+      "caseId": "CASE-10",
+      "sourceCaseId": "demo-audit-41-translated-messages",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-10",
+      "actualHash": "3e3f432c20f15b8d7cbb1f20e79e1b85007af6c175e1605b7f102a93b6279f4c",
+      "expectedHash": "bc098ce3244d75a4d0a286b2f3ec5826ddeed33970f1d3fdd8773ddf7b7b43b9",
+      "bundleHash": null
+    },
+    {
+      "caseId": "CASE-11",
+      "sourceCaseId": "demo-audit-22-youth-interview",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-11",
+      "actualHash": "1e1f9ac8b7fc42f734436e540b7a72d86a847a545f10209d965fae2844c8d430",
+      "expectedHash": "b85c4df89ddefbfe9bcbe1d93007d7eaab98eea951ad147ab8b95b7eacdeb241",
+      "bundleHash": "ebdad2764fa226b6effd0b2ab754a92366813f36454f96a5328ccd3b33586d48"
+    },
+    {
+      "caseId": "CASE-12",
+      "sourceCaseId": "demo-audit-21-historic-sexual-abe",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-12",
+      "actualHash": "c84060933cc122b68604b27eb25b2e8c06feaf3cc93a9390a80fdf82dcd1704a",
+      "expectedHash": "e43ad98366983ae53c9e08e4acdee969c98b4859d5fade0e4a4653cf94277562",
+      "bundleHash": "3ea34efd3fbeb2a846d48ae4ccca5baa58d4aff9a903abcba1ca73e8bc5d6f37"
+    },
+    {
+      "caseId": "CASE-13",
+      "sourceCaseId": "demo-audit-50-lab-continuity-conflict",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-13",
+      "actualHash": "794c3e275b611abd3ba2cf6ba26ca580825db677961e26442ce3a83205f0ce4e",
+      "expectedHash": "db341cadb85713b0006a30c759ee9492dd207cfd4f8f324b343149cc13b457d1",
+      "bundleHash": null
+    },
+    {
+      "caseId": "CASE-14",
+      "sourceCaseId": "demo-audit-16-fraud-bank-statements",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-14",
+      "actualHash": "4055b08f0c262768f4117d09030138461291acac6f85f235b6c1ddf69c0d4ef2",
+      "expectedHash": "858ab0d13423fcdc6bc812ffeb0bf14dc6910fbfda30233310bab64114c6dd5b",
+      "bundleHash": "7b4e65d5bbf367183bae3583408e7cc2a9c4803044efad4c6831ecbc5666c885"
+    },
+    {
+      "caseId": "CASE-15",
+      "sourceCaseId": "demo-audit-18-motoring-sjp-thin",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-15",
+      "actualHash": "b05f51ddf605e09281057916acf39b3edc067061d8e07bae517731352b70508c",
+      "expectedHash": "31759161c89886d943a45bed30671898e8d2dd76054bb3a80abeef56ba951309",
+      "bundleHash": "610eaacb2f97c7259bc439efb70721cad51b96174d13e88ad0bd4a3422fed20e"
+    },
+    {
+      "caseId": "CASE-16",
+      "sourceCaseId": "demo-audit-49-anpr-trap",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-16",
+      "actualHash": "f5e4c62a88666d5a0b2edbefe643a996c1e2e2f8400d25adfa5919ab37823499",
+      "expectedHash": "5e8a8a087dae4ca2b109c768f2c65fc5721cbda390e056efec3612a7015af505",
+      "bundleHash": null
+    },
+    {
+      "caseId": "CASE-17",
+      "sourceCaseId": "demo-audit-61-medical-triage-partial",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-17",
+      "actualHash": "81ec692dbb97c62a54735ec4e615f0276a109c016d243399ffecc20de4c08f82",
+      "expectedHash": "c91b855e0e387e0e2b34793ef2060c69774bee7e0e37ca11f22c7014dfe1ae5d",
+      "bundleHash": null
+    },
+    {
+      "caseId": "CASE-18",
+      "sourceCaseId": "demo-audit-46-prison-calls",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-18",
+      "actualHash": "819629d7f6418a92d877edc5ec1501d2a0bbc99503f370724db936873c1527b0",
+      "expectedHash": "0e30b0964d940386f7c22fe13e13f6c61987bcc6bce1017fcea6c4561a061b7d",
+      "bundleHash": null
+    },
+    {
+      "caseId": "CASE-19",
+      "sourceCaseId": "demo-audit-47-social-media-handles",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-19",
+      "actualHash": "3b7642c1679f51e692898685c5f19e91130c54cec847d7ee41d65d48ce431f4f",
+      "expectedHash": "a87dcd1c3e15c0b002ce9465ba12f1d80e27a20c42f3f0724de69a5862fc38ae",
+      "bundleHash": null
+    },
+    {
+      "caseId": "CASE-20",
+      "sourceCaseId": "demo-audit-30-layout-hearing-date",
+      "packetPath": "artifacts/casebrain-qa/gold-manual-proof-set-v1/cases/CASE-20",
+      "actualHash": "ae3bb3bdd30f38fd40c1e6f9fca78fc3096df80f60ca4e92fa1677edfd68ed32",
+      "expectedHash": "4294f25129b3183124d0c974838e3392a01eaf640765161345949368093d0e16",
+      "bundleHash": "6346f0d1eb9fd28606063137168abc57039dc004f11eeb4d6995ab4a02203add"
+    }
+  ],
+  "corpusHash": "4885f68e9fa6d35addbcdde9f28264304f03dc14211c4aab287e74a39773ab90",
+  "denominators": {
+    "uniqueCases": 20,
+    "duplicateCaseIdsDropped": 0,
+    "surfaces": 462
+  }
+}

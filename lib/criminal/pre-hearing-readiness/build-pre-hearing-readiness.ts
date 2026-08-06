@@ -1,5 +1,6 @@
 import type { ClientStressResult } from "@/lib/criminal/client-stress-test/client-stress-types";
 import type { ReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/reasoning-v2-types";
+import { utcDayDiff } from "@/lib/criminal/solicitor-time-clock";
 import { sanitizeReadinessLine } from "./readiness-sanitize";
 import type {
   PreHearingReadinessInput,
@@ -90,12 +91,10 @@ function countCoreMissing(reasoning: ReasoningV2ViewModel): number {
   ).length;
 }
 
-function hearingWithinDays(iso: string | null | undefined, days: number): boolean {
+function hearingWithinDays(iso: string | null | undefined, days: number, asOf: Date = new Date()): boolean {
   if (!iso) return false;
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return false;
-  const diff = d.getTime() - Date.now();
-  return diff >= 0 && diff <= days * 86_400_000;
+  const diff = utcDayDiff(asOf, iso.trim().slice(0, 10));
+  return diff !== null && diff >= 0 && diff <= days;
 }
 
 type ScoreBreakdown = {

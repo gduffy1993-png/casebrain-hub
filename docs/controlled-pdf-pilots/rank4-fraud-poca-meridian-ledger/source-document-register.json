@@ -1,0 +1,15 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":420,"approved_band":"250-500","rule":"authentic need controls length; total may be lower"},
+  "planned_documents":[
+    {"id":"S01","structure":"case summary, proposed charges, representation schedule, chronology","pages":"25-40","purpose":"map alleged acts without asserting guilt"},
+    {"id":"S02","structure":"witness statements and company records","pages":"45-65","purpose":"workflow, authority, supplier and loss evidence"},
+    {"id":"S03","structure":"native XLSX workbooks, CSV exports and rendered schedules","pages":"65-90 rendered equivalent","purpose":"formula, metadata, hidden-content and transaction testing"},
+    {"id":"S04","structure":"ZIP manifest, EML/MSG threads and attachments","pages":"55-75 rendered equivalent","purpose":"container, threading, authorship and attachment provenance"},
+    {"id":"S05","structure":"bank/company records and accountant report with appendices","pages":"70-95","purpose":"trace flows while separating inference, loss and proceeds concepts"},
+    {"id":"S06","structure":"search, seizure and device examination records","pages":"30-45","purpose":"custody, attribution and extraction limits"},
+    {"id":"S07","structure":"interviews, defence statements, admissions/agreed facts","pages":"35-50","purpose":"maker-specific positions and agreed scope"},
+    {"id":"S08","structure":"disclosure schedules, DMD, privilege log and applications","pages":"35-50","purpose":"unused/native/privilege/service states"},
+    {"id":"S09","structure":"restraint, third-party, plea, sentencing and confiscation procedural records","pages":"40-60","purpose":"orders, submissions, evidence and decisions remain distinct"}
+  ],
+  "native_format_contract":["retain original bytes and hash","record extraction/render tool and version","preserve formulas and cached values","preserve hidden rows/sheets and metadata","CSV encoding/delimiter/locale recorded","ZIP member manifest and traversal-safe names","EML/MSG headers, timezone and attachment lineage retained"]
+}

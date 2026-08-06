@@ -1,0 +1,151 @@
+{
+  "schemaVersion": "stage300-authority-repair-changed-file-manifest@2.0.0",
+  "generatedAt": "2026-08-02T14:08:32.196Z",
+  "currentCommittedHeadCommit": "bda75a83dcc061d6ed7bbdb21f976015d1b16535",
+  "acceptanceScope": "exact_authority_repair_only",
+  "excludesUnrelatedWorkingTreeNoise": true,
+  "selfHashStatus": "excluded_from_files_array_self_referential",
+  "payloadFileCount": 28,
+  "files": [
+    {
+      "path": "components/criminal/StrategyBattleboard.tsx",
+      "sha256": "b4ead0a9173ce23f4c1cdfeacdddbf632249403096ebe3ef1241d609431b3ee7",
+      "byteLength": 19255
+    },
+    {
+      "path": "components/criminal/control-room/assistantBattleboardFallback.ts",
+      "sha256": "17b824c3cbec13c5628125a0458ce49806539577f6149db3f1de950494a9ef4f",
+      "byteLength": 25910
+    },
+    {
+      "path": "lib/criminal/export-case-qa-pack.ts",
+      "sha256": "1c286f3d9a8a70138c5c11e4a4bd4ba1e8a04abd80e7f8018278005c7c41b921",
+      "byteLength": 17757
+    },
+    {
+      "path": "lib/criminal/solicitor-visible-sanitization.ts",
+      "sha256": "d1dee4ad38449044fe50c45fe3fc3e3a13ffdc312be845f2838e8b89f083017b",
+      "byteLength": 19488
+    },
+    {
+      "path": "lib/criminal/strategy-battleboard.ts",
+      "sha256": "28feaef817a56cf1bb47e772e177f4312505748ca9126f4dcecc1d6408cbe7b7",
+      "byteLength": 97892
+    },
+    {
+      "path": "scripts/assurance/_emit-stage300-authority-repair.ts",
+      "sha256": "37de8e3df3aa847fa65e2aa9d69a021fc08748eaf3752752cadafb8ef3382b54",
+      "byteLength": 25208
+    },
+    {
+      "path": "scripts/maa-v2-brain1-solicitor-assumed-position-contracts.test.ts",
+      "sha256": "69dcdb674f3170274d6e0cbe40ae198a124e430b6b3f8d6da22a4a925baff838",
+      "byteLength": 6770
+    },
+    {
+      "path": "types/plist/index.d.ts",
+      "sha256": "9e86d8f9fa5f8b67a1176d88377497a16c569379b9252e1fc0adda40c37771a8",
+      "byteLength": 248
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2/frozen-membership-v2.json",
+      "sha256": "11f350bc9ee73125b3cd512d3acf6ab745aa2ee56cac8dc0f24de1456757a7f7",
+      "byteLength": 239944
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2/candidate-freeze-receipt.json",
+      "sha256": "c4cf4366063b1dbf9b9afb82b2940d6f405dc57925a7ba04ab126ad67ad2aea5",
+      "byteLength": 320
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2/membership-freeze-receipt.json",
+      "sha256": "8c147304738ca819028140bf7d8da39fb2df84e49aeccf1abaf0b25a342efb2b",
+      "byteLength": 1297
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/frozen-membership-v2.json",
+      "sha256": "11f350bc9ee73125b3cd512d3acf6ab745aa2ee56cac8dc0f24de1456757a7f7",
+      "byteLength": 239944
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/candidate-freeze-receipt.json",
+      "sha256": "c4cf4366063b1dbf9b9afb82b2940d6f405dc57925a7ba04ab126ad67ad2aea5",
+      "byteLength": 320
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/membership-freeze-receipt.json",
+      "sha256": "8c147304738ca819028140bf7d8da39fb2df84e49aeccf1abaf0b25a342efb2b",
+      "byteLength": 1297
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/300-270-30-reconciliation.json",
+      "sha256": "bf1d061f124e91a5cc3f35e4f1123333432b19b8ad4cbff0dfe60841383188e4",
+      "byteLength": 1389
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/excluded-regenerable-population-material.json",
+      "sha256": "07a946db3b12247f9dd05aba86d4ddd4b8cd4ef3bd7d6f5f9dc05dcac59ac26a",
+      "byteLength": 3277
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/remaining-review-honesty-split.json",
+      "sha256": "d812ff1da2d47791c44416bf90277a9d6323fa8a9f0976b3f152a303d5d0b1a2",
+      "byteLength": 258
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/remaining-qualified-legal-review-items.json",
+      "sha256": "4ebac11731e47a1df5d408ccfbc204638c7a769c52cfd565c14cd8c5093086b5",
+      "byteLength": 4092
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/remaining-unresolved-ownership-items.json",
+      "sha256": "32ac973e9a0c65f900a284bbbd386ce5e184c9b204405d131291eb1804e7870c",
+      "byteLength": 100002
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/uniqueness-and-pins-validation-v2.json",
+      "sha256": "2d1a68e7c2ed8ac868f6e0f7c4e37c6f013b089a4fea24e638e6a487148d1112",
+      "byteLength": 9897
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/DECISION-CARD.md",
+      "sha256": "4cc8ecba98a303b51ae30f765df69e774d049c89c1f4326f65f00bfb876e45be",
+      "byteLength": 2396
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/brain1-guardian-blob-compare.json",
+      "sha256": "592fc0afe42cb77677d82abb3de30b9566adeb97e57a8ba6fbc243004ad524b8",
+      "byteLength": 8211
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/updated-blocker-register.json",
+      "sha256": "2f2051bd1270d546027c0b04ba637aa3cd602e8169de076cc208f6b7a6413616",
+      "byteLength": 2360
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/updated-deferred-lane-register.json",
+      "sha256": "1540ee7408496cc4d66588040abfea70216cda678d619599b909b6234b9eb292",
+      "byteLength": 890
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/stage3000-calibration-readiness-gate.json",
+      "sha256": "cebe865a134e08ae3b669551553670b04b7bad7cacef2056f73b602eeb35c5b2",
+      "byteLength": 2002
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/stage3000-selection-policy-proposed.json",
+      "sha256": "638083278da08efb9942077581f76f785bdfc54f68a6c73a34df12f9f9b98bc4",
+      "byteLength": 3824
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "f112a14f2439f94b47604300d779e9ef59b92b1d917555f843828efeb1fe9343",
+      "byteLength": 4229
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/npm-build-receipt.txt",
+      "sha256": "205ec0a66ccbbaf3f81aa6b36269d6acbc4c3fec938cc396ae1143d89cc94cec",
+      "byteLength": 285
+    }
+  ]
+}

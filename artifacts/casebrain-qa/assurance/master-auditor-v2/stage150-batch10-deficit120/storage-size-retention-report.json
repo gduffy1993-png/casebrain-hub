@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "batch10-deficit120-storage@1.0.0",
+  "sourceRoot": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-sources",
+  "candidateRoot": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates",
+  "artefactRoot": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120",
+  "sourceBytes": 9453332,
+  "retention": {
+    "doNotOverwrite": [
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates",
+      "artifacts/evidence-state-audit-local/cases/**",
+      "docs/controlled-pdf-pilots/**",
+      "artifacts/casebrain-qa/malik-price-generation-v2-untouched-run/**"
+    ],
+    "truthKeysBlinded": true
+  }
+}

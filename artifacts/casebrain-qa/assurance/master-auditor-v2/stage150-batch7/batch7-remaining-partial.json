@@ -1,0 +1,398 @@
+{
+  "schemaVersion": "batch7-remaining-partial@1.0.0",
+  "count": 98,
+  "rows": [
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "reason": "Returned from Batch-6 over-promotion — must not re-promote on same narrow probe."
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "reason": "Returned from Batch-6 over-promotion — must not re-promote on same narrow probe."
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "reason": "Cases with zero other_defendant_only units are not_exercised, not partially_exercised. Generic MG labels are not reliable evidence-unit identity. Current logic checks only courtNote + doNotOverstate, not all applicable surfaces. Full defendant separation requires explicit subjectDefendantId/personId and evidenceUnitId/sourceEvidenceId relationships, plus cross-surface receipts."
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "reason": "Returned from Batch-6 over-promotion — must not re-promote on same narrow probe."
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "reason": "FID-10 excluded — no new source-binding capability."
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "reason": "Returned from Batch-6 over-promotion — must not re-promote on same narrow probe."
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "reason": "Returned from Batch-6 over-promotion — must not re-promote on same narrow probe."
+    },
+    {
+      "controlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "reason": "Returned from Batch-6 over-promotion — must not re-promote on same narrow probe."
+    },
+    {
+      "controlId": "MAA2-WRD-11-NO-GENERIC-FILLER",
+      "reason": "String-quality family valid but out of Batch-7 structured priority (identity/attribution/exits)."
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-FID-02-COUNT-NUMBERS",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "reason": "String-quality family valid but out of Batch-7 structured priority (identity/attribution/exits)."
+    },
+    {
+      "controlId": "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "reason": "String-quality family valid but out of Batch-7 structured priority (identity/attribution/exits)."
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "reason": "Required structured fields absent on ESA — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-PRC-01-STAGE-TAGGING",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "reason": "String-quality family valid but out of Batch-7 structured priority (identity/attribution/exits)."
+    },
+    {
+      "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "reason": "String-quality family valid but out of Batch-7 structured priority (identity/attribution/exits)."
+    },
+    {
+      "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "reason": "String-quality family valid but out of Batch-7 structured priority (identity/attribution/exits)."
+    },
+    {
+      "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "reason": "String-quality family valid but out of Batch-7 structured priority (identity/attribution/exits)."
+    },
+    {
+      "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "reason": "String-quality family valid but out of Batch-7 structured priority (identity/attribution/exits)."
+    },
+    {
+      "controlId": "MAA2-WRD-08-CAPITALISATION",
+      "reason": "String-quality family valid but out of Batch-7 structured priority (identity/attribution/exits)."
+    },
+    {
+      "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "reason": "String-quality family valid but out of Batch-7 structured priority (identity/attribution/exits)."
+    },
+    {
+      "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "reason": "String-quality family valid but out of Batch-7 structured priority (identity/attribution/exits)."
+    },
+    {
+      "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "reason": "String-quality family valid but out of Batch-7 structured priority (identity/attribution/exits)."
+    },
+    {
+      "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "reason": "Control name promises more than current detector/ESA fields support — keep partially_implemented."
+    },
+    {
+      "controlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    },
+    {
+      "controlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "reason": "phrase_probe_only — must not be promoted as named structured control."
+    }
+  ]
+}

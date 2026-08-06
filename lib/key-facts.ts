@@ -20,6 +20,8 @@ import { normalizePracticeArea, type PracticeArea } from "./types/casebrain";
 import { getOrBuildLayeredSummary } from "@/lib/layered-summary/engine";
 import { createDbLayeredSummaryCache } from "@/lib/layered-summary/cache-db";
 import { resolvePracticeAreaFromSignals } from "@/lib/strategic/practice-area-filters";
+import { gatePaceAffirmativeStatus } from "@/lib/criminal/pace-affirmative-gate";
+import { buildFindingProvenance } from "@/lib/criminal/finding-provenance";
 
 /**
  * Build a key facts summary for a case
@@ -402,13 +404,22 @@ export async function buildKeyFactsSummary(
           evidenceBullets.push("Interview stance: No comment");
         }
         
-        // PACE compliance
+        // PACE compliance — never emit affirmative OK when gate blocks (clock conflict / incomplete provenance).
         if (extractedMeta?.pace) {
           const pace = extractedMeta.pace;
-          if (pace.status === "ok") {
+          const gate = gatePaceAffirmativeStatus({
+            custodyRecord: pace.custodyRecord,
+            interviewRecording: pace.interviewRecording,
+            legalAdviceLog: pace.legalAdviceLog,
+            breachesDetected: pace.breachesDetected,
+            provenance: buildFindingProvenance({ evidenceState: pace.status }),
+          });
+          if (gate.allowAffirmativeOk && pace.status === "ok") {
             evidenceBullets.push("PACE compliance: OK");
           } else if (pace.breachesDetected && pace.breachesDetected.length > 0) {
             evidenceBullets.push(`PACE issues: ${pace.breachesDetected.join(", ")}`);
+          } else if (!gate.allowAffirmativeOk) {
+            evidenceBullets.push(gate.statusMessage);
           }
         }
         
@@ -460,13 +471,30 @@ export async function buildKeyFactsSummary(
 
       // V2: Structured key facts only (no narrative). Narrative stays in Summary / bundleSummarySections.
       const keyFactsV2 = await import("@/lib/criminal/key-facts-v2");
-      const structuredKeyFacts =
+      let structuredKeyFacts =
         extractedMeta != null
           ? keyFactsV2.buildCriminalStructuredKeyFacts(
               extractedMeta,
               documents && documents.length > 0 ? (documents[0] as any).name ?? "Combined Bundle" : "Combined Bundle",
             )
           : null;
+      try {
+        const { buildAuthenticatedMatterCanonicalFromDocuments } = await import(
+          "@/lib/criminal/authenticated-matter-canonical"
+        );
+        const { pipeline } = buildAuthenticatedMatterCanonicalFromDocuments(
+          (documents ?? []) as any[],
+          { caseId },
+        );
+        if (structuredKeyFacts && pipeline.findings.length > 0) {
+          structuredKeyFacts = keyFactsV2.appendCanonicalFindingsToKeyFacts(
+            structuredKeyFacts,
+            pipeline.findings,
+          );
+        }
+      } catch (canonErr) {
+        console.warn("[buildKeyFactsSummary] canonical append skipped:", canonErr);
+      }
       const solicitorBuckets =
         extractedMeta != null
           ? keyFactsV2.buildCriminalSolicitorBuckets(extractedMeta, bundleSummarySections)

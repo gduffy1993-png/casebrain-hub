@@ -1,0 +1,127 @@
+{
+  "programme": "criminal-defence-integrity-corpus",
+  "phase": 9,
+  "generatedAt": "2026-07-21T20:13:16.749Z",
+  "canonicalSchemaVersion": "1.1.0",
+  "denominators": {
+    "N_approved_scale3000": 3000,
+    "N_materialised_truth_keys": 530,
+    "N_union_unique": 3530,
+    "materialisedWithFullOutputModel": 500,
+    "scaleFullSolicitorModelOnDisk": 0,
+    "scaleEvidenceMode": "MESSY v9 acceptance + controlled-3000 hard-safety + per-identity family containment probes (bundles not fully materialised under messy-pdf-proof-v9-scale3000/cases)"
+  },
+  "run": {
+    "resumed": false,
+    "limit": null,
+    "completed": 3530,
+    "planned": 3530,
+    "startedAt": "2026-07-21T20:12:07.765Z",
+    "updatedAt": "2026-07-21T20:13:16.737Z"
+  },
+  "results": {
+    "casesScanned": 3530,
+    "casesPassedAllAsserts": 3530,
+    "casesWithAssertFailures": 0,
+    "assertFailureOccurrences": 0,
+    "materialisedScanned": 530,
+    "scaleScanned": 3000,
+    "scaleAcceptancePass": 3000,
+    "scaleAcceptanceFail": 0,
+    "messyHardFailures": {
+      "false_served": 0,
+      "referred_only_treated_as_served": 0,
+      "missing_treated_as_available": 0,
+      "incomplete_treated_as_complete": 0,
+      "wrong_defendant_bleed": 0,
+      "wrong_family_bleed": 0,
+      "court_wording_in_cps_chase": 0,
+      "cps_chase_wording_in_court_note": 0,
+      "unsupported_allegation_stated_as_fact": 0,
+      "attribution_overclaim": 0,
+      "final_advice_win_loss_wording": 0,
+      "unsafe_client_summary": 0,
+      "source_page_mismatch": 0,
+      "output_with_no_source_anchor": 0
+    }
+  },
+  "contracts": [
+    {
+      "name": "dual_lane_denominators",
+      "pass": true,
+      "detail": "scale=3000;materialised=530;union=3530"
+    },
+    {
+      "name": "central_surfaces_unchanged_count",
+      "pass": true,
+      "detail": "central=31"
+    },
+    {
+      "name": "canonical_schema_1_1_0",
+      "pass": true,
+      "detail": "1.1.0"
+    },
+    {
+      "name": "phase6_ledger_untouched",
+      "pass": true,
+      "detail": "status=LEDGER_BALANCED;72=true;28=true;42=42;55=55"
+    },
+    {
+      "name": "controlled_3000_hard_safety_zero",
+      "pass": true,
+      "detail": "hardSafety=0"
+    },
+    {
+      "name": "corpus_run_complete_or_resumable",
+      "pass": true,
+      "detail": "completed=3530;planned=3530;resume=false"
+    },
+    {
+      "name": "fp_fn_corpus_pack_produced",
+      "pass": true,
+      "detail": "samples=32;fpCandidates=74;fnAssertFails=0;limit=null"
+    },
+    {
+      "name": "no_case_specific_exception_hooks",
+      "pass": true,
+      "detail": "runner has no fixture-id allowlist exceptions"
+    }
+  ],
+  "contractPass": true,
+  "corpusAssertPass": true,
+  "failureClusters": [],
+  "ledgerImpact": {
+    "phase6Status": "LEDGER_BALANCED",
+    "prior72_28_unit": "copyable_exportable_rule_firing_occurrence",
+    "current42_55_unit": "per_string_copyable_hit",
+    "doNotMix": true,
+    "impact": "none — Phase 9 does not re-count or mutate Phase-6 stock ledgers",
+    "preserved": {
+      "prior72RawBalanced": true,
+      "prior28TruncBalanced": true,
+      "current42Raw": 42,
+      "current55Trunc": 55
+    }
+  },
+  "humanFpFnCorpus": {
+    "dispositionFromPhase4": "DEFERRED_TO_PHASE_9_11",
+    "phase9Status": "CORPUS_RATES_AND_STRATIFIED_PACK_RECORDED",
+    "phase11StillRequired": "rendered coverage + 30–50 gold human word-for-word review for final sign-off",
+    "rates": {
+      "materialisedCases": 530,
+      "uncertainFamilyCasesApprox": 303,
+      "containmentBlockCases": 74,
+      "crossFamilyLeakAssertFailures": 0,
+      "note": "FP = possible over-block; FN = assert failures where unsupported concepts remained copyable. Rates are corpus evidence for human review — not auto-PASS."
+    },
+    "stratifiedReviewSampleCount": 32
+  },
+  "remainingRisks": [
+    "Scale lane lacks on-disk full solicitor tab/export models for all 3000 identities — probes + messy acceptance used; generation harness still needed for full wording re-scan",
+    "Assert failure clusters (if any) require shared-code fixes then corpus re-run before corpus PASS",
+    "Human FP–FN final sign-off still requires Phase 11 rendered/gold review",
+    "30 materialised cases lack casebrain-output.json (truth-key only)"
+  ],
+  "acknowledgedStatus": "CORPUS_CONTAINMENT_PASS",
+  "disclaimer": "Phase 9 CORPUS_CONTAINMENT_PASS — gate-enforced containment only. Blocked ≠ repaired. Scale full models not on disk for all 3000. Phase 11 gold/rendered FP–FN outstanding. Not a final corpus or programme PASS. Do not merge / deploy."
+}

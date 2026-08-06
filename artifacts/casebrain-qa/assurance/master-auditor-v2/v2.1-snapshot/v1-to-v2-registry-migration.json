@@ -1,0 +1,2420 @@
+{
+  "schemaVersion": "maa-v1-to-v2-registry-migration@v2.0.0",
+  "registryVersion": "2.1.0",
+  "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+  "preservedControlCount": 24,
+  "preservedControls": [
+    {
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-INGEST-COVERAGE",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-DOC-LIFECYCLE",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-PARTIES-ATTRIBUTION",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-PARTIES-ATTRIBUTION",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-CHARGE-MODEL",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-EVIDENCE-STATE",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-EVIDENCE-STATE",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-CHRONOLOGY-HEARING",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-CHRONOLOGY-HEARING",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-PROVENANCE",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-PROVENANCE",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-RELIABILITY",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-RELIABILITY",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-COMPLETENESS",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-COMPLETENESS",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-DEFENCE-LENS",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-DEFENCE-LENS",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-PROSECUTION-LENS",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-PROSECUTION-LENS",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-JUDICIAL-LENS",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-LEGAL-CURRENTNESS",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-LEGAL-CURRENTNESS",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-AUDIENCE-WORDING",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-AUDIENCE-WORDING",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-ACTION-QUALITY",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-ACTION-QUALITY",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-CROSS-EXIT",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-CROSS-EXIT",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-CROSS-SURFACE",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-CROSS-SURFACE",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-CHASE-QUALITY",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-CHASE-QUALITY",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-HALLUCINATION",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-HALLUCINATION",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-SECURITY-PRIVACY",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-RESILIENCE",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-RESILIENCE",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-OUTPUT-DESIGN",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-HUMAN-SUPERVISION",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-HUMAN-SUPERVISION",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    },
+    {
+      "v1ControlId": "MAA-BIAS-FAIRNESS",
+      "disposition": "retained",
+      "v2EnvelopeControlId": "MAA-BIAS-FAIRNESS",
+      "controlVersion": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged"
+    }
+  ],
+  "additiveControlCount": 323,
+  "refinements": [
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-01-OCR-CONFIDENCE",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-01-OCR-CONFIDENCE",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-02-BLANK-UNREADABLE",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-02-BLANK-UNREADABLE",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-03-ROTATED-SKEW-LOWRES",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-03-ROTATED-SKEW-LOWRES",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-04-HANDWRITING-ANNOTATIONS",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-04-HANDWRITING-ANNOTATIONS",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-05-TABLES-MULTICOLUMN",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-05-TABLES-MULTICOLUMN",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-06-STAMPS-SIGNATURES-MARGINS",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-06-STAMPS-SIGNATURES-MARGINS",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-07-REDACTION-DETECT",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-08-PAGE-DUPLICATION",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-08-PAGE-DUPLICATION",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "v1ControlId": "MAA-PROVENANCE",
+      "v2ControlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "relationship": "refines",
+      "note": "Page identity discipline",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-11-LOGICAL-DOC-SEGMENTATION",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-SRC-11-LOGICAL-DOC-SEGMENTATION",
+      "relationship": "refines",
+      "note": "Compiled-bundle segmentation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-13-PASSWORD-CORRUPT",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-14-MIXED-TYPES-MEDIA",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-14-MIXED-TYPES-MEDIA",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-15-LANGUAGE-TRANSLATION",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-15-LANGUAGE-TRANSLATION",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-16-ENGINE-DISAGREEMENT",
+      "v1ControlId": "MAA-INGEST-COVERAGE",
+      "v2ControlId": "MAA2-SRC-16-ENGINE-DISAGREEMENT",
+      "relationship": "refines",
+      "note": "Expands V1 ingestion lane",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "v1ControlId": "MAA-HALLUCINATION",
+      "v2ControlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "relationship": "refines",
+      "note": "Source-bound extraction",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-02-INSTRUMENT-STATUS",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-03-REPLACEMENT-LINKS",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-04-VERSION-PRECEDENCE",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-05-MISSING-ATTACHMENTS",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-08-EXTRACT-VS-FULL",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "v1ControlId": "MAA-EVIDENCE-STATE",
+      "v2ControlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "relationship": "refines",
+      "note": "Media form separation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-11-DRAFT-VS-SIGNED",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-13-CODEFENDANT-ONLY",
+      "v1ControlId": "MAA-PARTIES-ATTRIBUTION",
+      "v2ControlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "relationship": "refines",
+      "note": "Co-defendant only material",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "v1ControlId": "MAA-DOC-LIFECYCLE",
+      "v2ControlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "relationship": "refines",
+      "note": "Expands document lifecycle",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "v1ControlId": "MAA-PROVENANCE",
+      "v2ControlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "relationship": "extends",
+      "note": "Exact claim fidelity",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-FID-02-COUNT-NUMBERS",
+      "v1ControlId": "MAA-PROVENANCE",
+      "v2ControlId": "MAA2-FID-02-COUNT-NUMBERS",
+      "relationship": "extends",
+      "note": "Exact claim fidelity",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "relationship": "refines",
+      "note": "Exact particulars",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "v1ControlId": "MAA-PROVENANCE",
+      "v2ControlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "relationship": "extends",
+      "note": "Exact claim fidelity",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "v1ControlId": "MAA-PROVENANCE",
+      "v2ControlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "relationship": "extends",
+      "note": "Exact claim fidelity",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-FID-06-PRESERVE-NEGATIVES",
+      "v1ControlId": "MAA-PROVENANCE",
+      "v2ControlId": "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "relationship": "extends",
+      "note": "Exact claim fidelity",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "v1ControlId": "MAA-PROVENANCE",
+      "v2ControlId": "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "relationship": "extends",
+      "note": "Exact claim fidelity",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "v1ControlId": "MAA-PROVENANCE",
+      "v2ControlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "relationship": "extends",
+      "note": "Exact claim fidelity",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-FID-09-NO-SILENT-CORRECTION",
+      "v1ControlId": "MAA-PROVENANCE",
+      "v2ControlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "relationship": "extends",
+      "note": "Exact claim fidelity",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-FID-10-QUOTATION-FIDELITY",
+      "v1ControlId": "MAA-PROVENANCE",
+      "v2ControlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "relationship": "extends",
+      "note": "Exact claim fidelity",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "v1ControlId": "MAA-PROVENANCE",
+      "v2ControlId": "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "relationship": "extends",
+      "note": "Exact claim fidelity",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "v1ControlId": "MAA-HALLUCINATION",
+      "v2ControlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "relationship": "sibling",
+      "note": "Category discipline vs overstatement",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+      "v1ControlId": "MAA-HALLUCINATION",
+      "v2ControlId": "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+      "relationship": "sibling",
+      "note": "Category discipline vs overstatement",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "v1ControlId": "MAA-HALLUCINATION",
+      "v2ControlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "relationship": "sibling",
+      "note": "Category discipline vs overstatement",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "v1ControlId": "MAA-HALLUCINATION",
+      "v2ControlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "relationship": "sibling",
+      "note": "Category discipline vs overstatement",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "v1ControlId": "MAA-HALLUCINATION",
+      "v2ControlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "relationship": "sibling",
+      "note": "Category discipline vs overstatement",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "relationship": "refines",
+      "note": "Charge & provision expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "relationship": "refines",
+      "note": "Charge & provision expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "relationship": "refines",
+      "note": "Charge & provision expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "relationship": "refines",
+      "note": "Charge & provision expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "relationship": "refines",
+      "note": "Charge & provision expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHG-06-AMENDMENT-HISTORY",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "relationship": "refines",
+      "note": "Charge & provision expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHG-07-STATUTORY-PROVISION",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "relationship": "refines",
+      "note": "Charge & provision expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHG-08-JURISDICTION-EFFECTIVE-DATE",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-CHG-08-JURISDICTION-EFFECTIVE-DATE",
+      "relationship": "refines",
+      "note": "Charge & provision expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "relationship": "refines",
+      "note": "Charge & provision expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHG-10-WARNING-INSEPARABLE",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "relationship": "refines",
+      "note": "Charge & provision expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "relationship": "refines",
+      "note": "Charge & provision expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "relationship": "refines",
+      "note": "Charge & provision expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "v1ControlId": "MAA-CHARGE-MODEL",
+      "v2ControlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "relationship": "refines",
+      "note": "Charge & provision expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-EVS-01-DIMENSION-SEPARATION",
+      "v1ControlId": "MAA-EVIDENCE-STATE",
+      "v2ControlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "relationship": "refines",
+      "note": "Dimensioned evidence-state expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-EVS-02-STATE-ENUM",
+      "v1ControlId": "MAA-EVIDENCE-STATE",
+      "v2ControlId": "MAA2-EVS-02-STATE-ENUM",
+      "relationship": "refines",
+      "note": "Dimensioned evidence-state expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "v1ControlId": "MAA-RELIABILITY",
+      "v2ControlId": "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "relationship": "refines",
+      "note": "Reason-required reliability",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-EVS-04-REASON-TAXONOMY",
+      "v1ControlId": "MAA-EVIDENCE-STATE",
+      "v2ControlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "relationship": "refines",
+      "note": "Dimensioned evidence-state expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "v1ControlId": "MAA-PARTIES-ATTRIBUTION",
+      "v2ControlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "relationship": "refines",
+      "note": "Attribution expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "v1ControlId": "MAA-PARTIES-ATTRIBUTION",
+      "v2ControlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "relationship": "refines",
+      "note": "Attribution expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "v1ControlId": "MAA-PARTIES-ATTRIBUTION",
+      "v2ControlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "relationship": "refines",
+      "note": "Attribution expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "v1ControlId": "MAA-PARTIES-ATTRIBUTION",
+      "v2ControlId": "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "relationship": "refines",
+      "note": "Attribution expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+      "v1ControlId": "MAA-PARTIES-ATTRIBUTION",
+      "v2ControlId": "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+      "relationship": "refines",
+      "note": "Attribution expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "v1ControlId": "MAA-PARTIES-ATTRIBUTION",
+      "v2ControlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "relationship": "refines",
+      "note": "Attribution expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "v1ControlId": "MAA-PARTIES-ATTRIBUTION",
+      "v2ControlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "relationship": "refines",
+      "note": "Attribution expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "v1ControlId": "MAA-PARTIES-ATTRIBUTION",
+      "v2ControlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "relationship": "refines",
+      "note": "Attribution expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "v1ControlId": "MAA-PARTIES-ATTRIBUTION",
+      "v2ControlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "relationship": "refines",
+      "note": "Attribution expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHR-01-EXACT-DATES-TZ",
+      "v1ControlId": "MAA-CHRONOLOGY-HEARING",
+      "v2ControlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "relationship": "refines",
+      "note": "Chronology expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "v1ControlId": "MAA-CHRONOLOGY-HEARING",
+      "v2ControlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "relationship": "refines",
+      "note": "Chronology expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "v1ControlId": "MAA-CHRONOLOGY-HEARING",
+      "v2ControlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "relationship": "refines",
+      "note": "Chronology expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "v1ControlId": "MAA-CHRONOLOGY-HEARING",
+      "v2ControlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "relationship": "refines",
+      "note": "Chronology expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "v1ControlId": "MAA-CHRONOLOGY-HEARING",
+      "v2ControlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "relationship": "refines",
+      "note": "Chronology expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "v1ControlId": "MAA-CHRONOLOGY-HEARING",
+      "v2ControlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "relationship": "refines",
+      "note": "Chronology expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHR-07-LIMITATION-PERIODS",
+      "v1ControlId": "MAA-CHRONOLOGY-HEARING",
+      "v2ControlId": "MAA2-CHR-07-LIMITATION-PERIODS",
+      "relationship": "refines",
+      "note": "Chronology expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "v1ControlId": "MAA-CHRONOLOGY-HEARING",
+      "v2ControlId": "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "relationship": "refines",
+      "note": "Chronology expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "v1ControlId": "MAA-CHRONOLOGY-HEARING",
+      "v2ControlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "relationship": "refines",
+      "note": "Chronology expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHR-10-FINANCIAL-CALCULATIONS",
+      "v1ControlId": "MAA-CHRONOLOGY-HEARING",
+      "v2ControlId": "MAA2-CHR-10-FINANCIAL-CALCULATIONS",
+      "relationship": "refines",
+      "note": "Chronology expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "v1ControlId": "MAA-CHRONOLOGY-HEARING",
+      "v2ControlId": "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "relationship": "refines",
+      "note": "Chronology expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "v1ControlId": "MAA-CHRONOLOGY-HEARING",
+      "v2ControlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "relationship": "refines",
+      "note": "Chronology expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "v1ControlId": "MAA-LEGAL-CURRENTNESS",
+      "v2ControlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "relationship": "refines",
+      "note": "Authority currency expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LEG-02-JURISDICTION",
+      "v1ControlId": "MAA-LEGAL-CURRENTNESS",
+      "v2ControlId": "MAA2-LEG-02-JURISDICTION",
+      "relationship": "refines",
+      "note": "Authority currency expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LEG-03-EFFECTIVE-DATE",
+      "v1ControlId": "MAA-LEGAL-CURRENTNESS",
+      "v2ControlId": "MAA2-LEG-03-EFFECTIVE-DATE",
+      "relationship": "refines",
+      "note": "Authority currency expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LEG-04-AMENDMENT-REPEAL-STATUS",
+      "v1ControlId": "MAA-LEGAL-CURRENTNESS",
+      "v2ControlId": "MAA2-LEG-04-AMENDMENT-REPEAL-STATUS",
+      "relationship": "refines",
+      "note": "Authority currency expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LEG-05-RETRIEVAL-DATE",
+      "v1ControlId": "MAA-LEGAL-CURRENTNESS",
+      "v2ControlId": "MAA2-LEG-05-RETRIEVAL-DATE",
+      "relationship": "refines",
+      "note": "Authority currency expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "v1ControlId": "MAA-LEGAL-CURRENTNESS",
+      "v2ControlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "relationship": "refines",
+      "note": "Authority currency expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "v1ControlId": "MAA-LEGAL-CURRENTNESS",
+      "v2ControlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "relationship": "refines",
+      "note": "Authority currency expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LEG-08-CURRENCY-WARNING",
+      "v1ControlId": "MAA-LEGAL-CURRENTNESS",
+      "v2ControlId": "MAA2-LEG-08-CURRENCY-WARNING",
+      "relationship": "refines",
+      "note": "Authority currency expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LEG-09-NO-OUTDATED-AS-CURRENT",
+      "v1ControlId": "MAA-LEGAL-CURRENTNESS",
+      "v2ControlId": "MAA2-LEG-09-NO-OUTDATED-AS-CURRENT",
+      "relationship": "refines",
+      "note": "Authority currency expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "v1ControlId": "MAA-LEGAL-CURRENTNESS",
+      "v2ControlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "relationship": "refines",
+      "note": "Authority currency expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRC-01-STAGE-TAGGING",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-PRC-01-STAGE-TAGGING",
+      "relationship": "extends",
+      "note": "Stage-aware recommendations",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "relationship": "extends",
+      "note": "Stage-aware recommendations",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRC-03-YOUTH-STATE",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-PRC-03-YOUTH-STATE",
+      "relationship": "extends",
+      "note": "Stage-aware recommendations",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "relationship": "extends",
+      "note": "Stage-aware recommendations",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRC-05-NRM-STATE",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-PRC-05-NRM-STATE",
+      "relationship": "extends",
+      "note": "Stage-aware recommendations",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRC-06-SPECIAL-MEASURES",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-PRC-06-SPECIAL-MEASURES",
+      "relationship": "extends",
+      "note": "Stage-aware recommendations",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "relationship": "extends",
+      "note": "Stage-aware recommendations",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRC-08-INTERPRETER-STATE",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-PRC-08-INTERPRETER-STATE",
+      "relationship": "extends",
+      "note": "Stage-aware recommendations",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHS-01-FIVE-PART-FINDING",
+      "v1ControlId": "MAA-ACTION-QUALITY",
+      "v2ControlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "relationship": "sibling",
+      "note": "Actionability overlap declared",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "v1ControlId": "MAA-CHASE-QUALITY",
+      "v2ControlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "relationship": "refines",
+      "note": "Chase expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHS-03-PROVENANCE-LINK",
+      "v1ControlId": "MAA-CHASE-QUALITY",
+      "v2ControlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "relationship": "refines",
+      "note": "Chase expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "v1ControlId": "MAA-CHASE-QUALITY",
+      "v2ControlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "relationship": "refines",
+      "note": "Chase expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "v1ControlId": "MAA-CHASE-QUALITY",
+      "v2ControlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "relationship": "refines",
+      "note": "Chase expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "v1ControlId": "MAA-CHASE-QUALITY",
+      "v2ControlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "relationship": "refines",
+      "note": "Chase expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "v1ControlId": "MAA-CHASE-QUALITY",
+      "v2ControlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "relationship": "refines",
+      "note": "Chase expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "v1ControlId": "MAA-CHASE-QUALITY",
+      "v2ControlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "relationship": "refines",
+      "note": "Chase expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "v1ControlId": "MAA-CHASE-QUALITY",
+      "v2ControlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "relationship": "refines",
+      "note": "Chase expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "relationship": "extends",
+      "note": "Wording quality beyond truncation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-02-NO-MID-TRUNCATION",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-WRD-02-NO-MID-TRUNCATION",
+      "relationship": "extends",
+      "note": "Wording quality beyond truncation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "relationship": "extends",
+      "note": "Wording quality beyond truncation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "relationship": "extends",
+      "note": "Wording quality beyond truncation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-05-TEMPLATE-JOINS",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "relationship": "extends",
+      "note": "Wording quality beyond truncation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-06-SPACES-PUNCTUATION",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "relationship": "extends",
+      "note": "Wording quality beyond truncation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "relationship": "extends",
+      "note": "Wording quality beyond truncation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-08-CAPITALISATION",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-WRD-08-CAPITALISATION",
+      "relationship": "extends",
+      "note": "Wording quality beyond truncation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "relationship": "extends",
+      "note": "Wording quality beyond truncation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-10-NO-PLACEHOLDERS",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-WRD-10-NO-PLACEHOLDERS",
+      "relationship": "sibling",
+      "note": "Leakage overlap declared",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-11-NO-GENERIC-FILLER",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-WRD-11-NO-GENERIC-FILLER",
+      "relationship": "extends",
+      "note": "Wording quality beyond truncation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "relationship": "extends",
+      "note": "Wording quality beyond truncation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "relationship": "extends",
+      "note": "Wording quality beyond truncation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "relationship": "extends",
+      "note": "Wording quality beyond truncation",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "v1ControlId": "MAA-HALLUCINATION",
+      "v2ControlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "relationship": "refines",
+      "note": "Absolute-proof wording",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "v1ControlId": "MAA-AUDIENCE-WORDING",
+      "v2ControlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "relationship": "refines",
+      "note": "Audience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-AUD-02-CLIENT-PLAIN",
+      "v1ControlId": "MAA-AUDIENCE-WORDING",
+      "v2ControlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "relationship": "refines",
+      "note": "Audience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-AUD-03-COURT-PRECISE",
+      "v1ControlId": "MAA-AUDIENCE-WORDING",
+      "v2ControlId": "MAA2-AUD-03-COURT-PRECISE",
+      "relationship": "refines",
+      "note": "Audience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-AUD-04-CPS-SPECIFIC",
+      "v1ControlId": "MAA-AUDIENCE-WORDING",
+      "v2ControlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "relationship": "refines",
+      "note": "Audience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-AUD-05-SUPERVISOR-RISK",
+      "v1ControlId": "MAA-AUDIENCE-WORDING",
+      "v2ControlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "relationship": "refines",
+      "note": "Audience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-AUD-06-EXPERT-BOUNDED",
+      "v1ControlId": "MAA-AUDIENCE-WORDING",
+      "v2ControlId": "MAA2-AUD-06-EXPERT-BOUNDED",
+      "relationship": "refines",
+      "note": "Audience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "v1ControlId": "MAA-AUDIENCE-WORDING",
+      "v2ControlId": "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "relationship": "refines",
+      "note": "Audience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "v1ControlId": "MAA-AUDIENCE-WORDING",
+      "v2ControlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "relationship": "refines",
+      "note": "Audience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "v1ControlId": "MAA-CROSS-EXIT",
+      "v2ControlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "relationship": "refines",
+      "note": "Warning attachment expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "v1ControlId": "MAA-CROSS-EXIT",
+      "v2ControlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "relationship": "refines",
+      "note": "Warning attachment expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "v1ControlId": "MAA-CROSS-EXIT",
+      "v2ControlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "relationship": "refines",
+      "note": "Warning attachment expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "v1ControlId": "MAA-CROSS-EXIT",
+      "v2ControlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "relationship": "refines",
+      "note": "Warning attachment expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "v1ControlId": "MAA-CROSS-EXIT",
+      "v2ControlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "relationship": "refines",
+      "note": "Warning attachment expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "v1ControlId": "MAA-CROSS-EXIT",
+      "v2ControlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "relationship": "refines",
+      "note": "Warning attachment expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "v1ControlId": "MAA-CROSS-EXIT",
+      "v2ControlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "relationship": "refines",
+      "note": "Warning attachment expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "v1ControlId": "MAA-CROSS-EXIT",
+      "v2ControlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "relationship": "refines",
+      "note": "Warning attachment expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "relationship": "extends",
+      "note": "Priority & load",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "relationship": "sibling",
+      "note": "Completeness overlap declared",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "relationship": "extends",
+      "note": "Priority & load",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "relationship": "sibling",
+      "note": "Completeness overlap declared",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "relationship": "extends",
+      "note": "Priority & load",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "relationship": "sibling",
+      "note": "Completeness overlap declared",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRI-04-PROGRESSIVE-DISCLOSURE",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-PRI-04-PROGRESSIVE-DISCLOSURE",
+      "relationship": "extends",
+      "note": "Priority & load",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRI-04-PROGRESSIVE-DISCLOSURE",
+      "v1ControlId": "MAA-COMPLETENESS",
+      "v2ControlId": "MAA2-PRI-04-PROGRESSIVE-DISCLOSURE",
+      "relationship": "sibling",
+      "note": "Completeness overlap declared",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "v1ControlId": "MAA-CROSS-SURFACE",
+      "v2ControlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "relationship": "extends",
+      "note": "Ranked contradictions",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "v1ControlId": "MAA-CROSS-SURFACE",
+      "v2ControlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "relationship": "extends",
+      "note": "Ranked contradictions",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "v1ControlId": "MAA-DEFENCE-LENS",
+      "v2ControlId": "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "relationship": "refines",
+      "note": "Opportunity coverage without conclusions",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "v1ControlId": "MAA-DEFENCE-LENS",
+      "v2ControlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "relationship": "refines",
+      "note": "Opportunity coverage without conclusions",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "v1ControlId": "MAA-DEFENCE-LENS",
+      "v2ControlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "relationship": "extends",
+      "note": "Panel includes defence",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "v1ControlId": "MAA-PROSECUTION-LENS",
+      "v2ControlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "relationship": "extends",
+      "note": "Panel includes prosecution",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "relationship": "extends",
+      "note": "Panel includes judicial",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "v1ControlId": "MAA-DEFENCE-LENS",
+      "v2ControlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "relationship": "extends",
+      "note": "Panel includes defence",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "v1ControlId": "MAA-PROSECUTION-LENS",
+      "v2ControlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "relationship": "extends",
+      "note": "Panel includes prosecution",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "relationship": "extends",
+      "note": "Panel includes judicial",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "v1ControlId": "MAA-DEFENCE-LENS",
+      "v2ControlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "relationship": "extends",
+      "note": "Panel includes defence",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "v1ControlId": "MAA-PROSECUTION-LENS",
+      "v2ControlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "relationship": "extends",
+      "note": "Panel includes prosecution",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "relationship": "extends",
+      "note": "Panel includes judicial",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "v1ControlId": "MAA-DEFENCE-LENS",
+      "v2ControlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "relationship": "extends",
+      "note": "Panel includes defence",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "v1ControlId": "MAA-PROSECUTION-LENS",
+      "v2ControlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "relationship": "extends",
+      "note": "Panel includes prosecution",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "relationship": "extends",
+      "note": "Panel includes judicial",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "v1ControlId": "MAA-DEFENCE-LENS",
+      "v2ControlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "relationship": "extends",
+      "note": "Panel includes defence",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "v1ControlId": "MAA-PROSECUTION-LENS",
+      "v2ControlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "relationship": "extends",
+      "note": "Panel includes prosecution",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "relationship": "extends",
+      "note": "Panel includes judicial",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "v1ControlId": "MAA-DEFENCE-LENS",
+      "v2ControlId": "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "relationship": "extends",
+      "note": "Panel includes defence",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "v1ControlId": "MAA-PROSECUTION-LENS",
+      "v2ControlId": "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "relationship": "extends",
+      "note": "Panel includes prosecution",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "v1ControlId": "MAA-JUDICIAL-LENS",
+      "v2ControlId": "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "relationship": "extends",
+      "note": "Panel includes judicial",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BIA-01-NO-PRESUMPTION-OF-GUILT",
+      "v1ControlId": "MAA-BIAS-FAIRNESS",
+      "v2ControlId": "MAA2-BIA-01-NO-PRESUMPTION-OF-GUILT",
+      "relationship": "refines",
+      "note": "Bias & language expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BIA-02-SILENCE-NOT-GUILT",
+      "v1ControlId": "MAA-BIAS-FAIRNESS",
+      "v2ControlId": "MAA2-BIA-02-SILENCE-NOT-GUILT",
+      "relationship": "refines",
+      "note": "Bias & language expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BIA-03-NO-PROTECTED-CHARACTERISTIC-SHORTCUT",
+      "v1ControlId": "MAA-BIAS-FAIRNESS",
+      "v2ControlId": "MAA2-BIA-03-NO-PROTECTED-CHARACTERISTIC-SHORTCUT",
+      "relationship": "refines",
+      "note": "Bias & language expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BIA-04-NO-STATE-CULPABILITY-CONFLATION",
+      "v1ControlId": "MAA-BIAS-FAIRNESS",
+      "v2ControlId": "MAA2-BIA-04-NO-STATE-CULPABILITY-CONFLATION",
+      "relationship": "refines",
+      "note": "Bias & language expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BIA-05-NO-LOADED-LANGUAGE",
+      "v1ControlId": "MAA-BIAS-FAIRNESS",
+      "v2ControlId": "MAA2-BIA-05-NO-LOADED-LANGUAGE",
+      "relationship": "refines",
+      "note": "Bias & language expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BIA-06-NO-FIRST-ACCOUNT-PRIVILEGE",
+      "v1ControlId": "MAA-BIAS-FAIRNESS",
+      "v2ControlId": "MAA2-BIA-06-NO-FIRST-ACCOUNT-PRIVILEGE",
+      "relationship": "refines",
+      "note": "Bias & language expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BIA-07-ORIGINAL-VS-TRANSLATION",
+      "v1ControlId": "MAA-BIAS-FAIRNESS",
+      "v2ControlId": "MAA2-BIA-07-ORIGINAL-VS-TRANSLATION",
+      "relationship": "refines",
+      "note": "Bias & language expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BIA-08-CERTIFIED-VS-INFORMAL",
+      "v1ControlId": "MAA-BIAS-FAIRNESS",
+      "v2ControlId": "MAA2-BIA-08-CERTIFIED-VS-INFORMAL",
+      "relationship": "refines",
+      "note": "Bias & language expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BIA-09-INTERPRETER-IDENTITY-CONTINUITY",
+      "v1ControlId": "MAA-BIAS-FAIRNESS",
+      "v2ControlId": "MAA2-BIA-09-INTERPRETER-IDENTITY-CONTINUITY",
+      "relationship": "refines",
+      "note": "Bias & language expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BIA-10-WELSH-LANGUAGE",
+      "v1ControlId": "MAA-BIAS-FAIRNESS",
+      "v2ControlId": "MAA2-BIA-10-WELSH-LANGUAGE",
+      "relationship": "refines",
+      "note": "Bias & language expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-BIA-11-UNTRANSLATED-NOT-FACT",
+      "v1ControlId": "MAA-BIAS-FAIRNESS",
+      "v2ControlId": "MAA2-BIA-11-UNTRANSLATED-NOT-FACT",
+      "relationship": "refines",
+      "note": "Bias & language expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRV-01-LPP-DETECTION",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-PRV-01-LPP-DETECTION",
+      "relationship": "extends",
+      "note": "Privilege & privacy expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRV-02-LITIGATION-PRIVILEGE",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-PRV-02-LITIGATION-PRIVILEGE",
+      "relationship": "extends",
+      "note": "Privilege & privacy expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRV-03-UNUSED-SENSITIVE",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-PRV-03-UNUSED-SENSITIVE",
+      "relationship": "extends",
+      "note": "Privilege & privacy expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRV-04-PII-MINIMUM",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-PRV-04-PII-MINIMUM",
+      "relationship": "extends",
+      "note": "Privilege & privacy expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRV-05-MEDICAL-COUNSELLING",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-PRV-05-MEDICAL-COUNSELLING",
+      "relationship": "extends",
+      "note": "Privilege & privacy expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRV-06-YOUTH-INFO",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-PRV-06-YOUTH-INFO",
+      "relationship": "extends",
+      "note": "Privilege & privacy expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRV-07-PROTECTED-IDENTITIES",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-PRV-07-PROTECTED-IDENTITIES",
+      "relationship": "extends",
+      "note": "Privilege & privacy expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRV-08-AUDIENCE-LEAKAGE",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-PRV-08-AUDIENCE-LEAKAGE",
+      "relationship": "extends",
+      "note": "Privilege & privacy expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRV-09-CROSS-ORG-ACCESS",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-PRV-09-CROSS-ORG-ACCESS",
+      "relationship": "extends",
+      "note": "Privilege & privacy expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRV-10-EXPORT-DOWNLOAD-PERMS",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-PRV-10-EXPORT-DOWNLOAD-PERMS",
+      "relationship": "extends",
+      "note": "Privilege & privacy expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRV-11-RETENTION-DELETION",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-PRV-11-RETENTION-DELETION",
+      "relationship": "extends",
+      "note": "Privilege & privacy expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-PRV-12-AUDIT-ACCESS",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-PRV-12-AUDIT-ACCESS",
+      "relationship": "extends",
+      "note": "Privilege & privacy expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-01-PROMPT-INJECTION-DOCS",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-01-PROMPT-INJECTION-DOCS",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-02-MALICIOUS-PDF",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-02-MALICIOUS-PDF",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-03-FILETYPE-SPOOFING",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-03-FILETYPE-SPOOFING",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-04-ZIP-BOMB-OVERSIZE",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-04-ZIP-BOMB-OVERSIZE",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-05-PATH-ID-LEAKAGE",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-05-PATH-ID-LEAKAGE",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-06-SECRET-TOKEN-LEAKAGE",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-06-SECRET-TOKEN-LEAKAGE",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-07-API-AUTHORISATION",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-07-API-AUTHORISATION",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-08-TENANT-ISOLATION",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-08-TENANT-ISOLATION",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-09-ROLE-ESCALATION",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-09-ROLE-ESCALATION",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-10-IDOR",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-10-IDOR",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-11-CROSS-ORG-SEARCH-DOWNLOAD",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-11-CROSS-ORG-SEARCH-DOWNLOAD",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-12-SESSION-HANDLING",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-12-SESSION-HANDLING",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-13-RATE-LIMITS",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-13-RATE-LIMITS",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-14-UNSAFE-GENERATED-LINKS",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-14-UNSAFE-GENERATED-LINKS",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-15-DEPENDENCY-VULN-STATE",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-15-DEPENDENCY-VULN-STATE",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-16-ENCRYPTION-EVIDENCE",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-16-ENCRYPTION-EVIDENCE",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-SEC-17-LOGGING-NO-SENSITIVE",
+      "v1ControlId": "MAA-SECURITY-PRIVACY",
+      "v2ControlId": "MAA2-SEC-17-LOGGING-NO-SENSITIVE",
+      "relationship": "extends",
+      "note": "Adversarial/security expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-01-AI-QUOTA-FAILURE",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-01-AI-QUOTA-FAILURE",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-02-DETERMINISTIC-FALLBACK",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-02-DETERMINISTIC-FALLBACK",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-03-INTERRUPTED-ANALYSIS",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-03-INTERRUPTED-ANALYSIS",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-04-RESTART-RESUME",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-04-RESTART-RESUME",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-05-DUPLICATE-UPLOADS",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-05-DUPLICATE-UPLOADS",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-06-IDEMPOTENCY-RETRY",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-06-IDEMPOTENCY-RETRY",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-07-STALE-PARTIAL-RESULTS",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-07-STALE-PARTIAL-RESULTS",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-08-CORRUPT-CACHE",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-08-CORRUPT-CACHE",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-09-BACKUP-RESTORE",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-09-BACKUP-RESTORE",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-10-DISASTER-RECOVERY",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-10-DISASTER-RECOVERY",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-11-SERVICE-DEGRADATION",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-11-SERVICE-DEGRADATION",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-12-QUEUE-FAILURE",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-12-QUEUE-FAILURE",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-13-EVIDENCE-PRESERVATION",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-13-EVIDENCE-PRESERVATION",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-OPS-14-REPRODUCIBILITY-AFTER-RECOVERY",
+      "v1ControlId": "MAA-RESILIENCE",
+      "v2ControlId": "MAA2-OPS-14-REPRODUCIBILITY-AFTER-RECOVERY",
+      "relationship": "refines",
+      "note": "Resilience expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DSN-01-COCKPIT-60S",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-DSN-01-COCKPIT-60S",
+      "relationship": "refines",
+      "note": "Design expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DSN-02-CLEAR-HIERARCHY",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-DSN-02-CLEAR-HIERARCHY",
+      "relationship": "refines",
+      "note": "Design expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DSN-03-MEANINGFUL-CARDS",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-DSN-03-MEANINGFUL-CARDS",
+      "relationship": "refines",
+      "note": "Design expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DSN-04-NO-GIANT-WALL",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-DSN-04-NO-GIANT-WALL",
+      "relationship": "refines",
+      "note": "Design expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DSN-05-WARNINGS-AT-RELIANCE",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-DSN-05-WARNINGS-AT-RELIANCE",
+      "relationship": "refines",
+      "note": "Design expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DSN-06-STABLE-NAV",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-DSN-06-STABLE-NAV",
+      "relationship": "refines",
+      "note": "Design expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DSN-07-DISCOVERABLE-UPLOAD",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-DSN-07-DISCOVERABLE-UPLOAD",
+      "relationship": "refines",
+      "note": "Design expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DSN-08-READABLE-TABLES",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-DSN-08-READABLE-TABLES",
+      "relationship": "refines",
+      "note": "Design expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DSN-09-RESPONSIVE-LAYOUT",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-DSN-09-RESPONSIVE-LAYOUT",
+      "relationship": "refines",
+      "note": "Design expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DSN-10-LOADING-ERROR-RECOVERY-UI",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-DSN-10-LOADING-ERROR-RECOVERY-UI",
+      "relationship": "refines",
+      "note": "Design expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DSN-11-PROFESSIONAL-PRESENTATION",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-DSN-11-PROFESSIONAL-PRESENTATION",
+      "relationship": "refines",
+      "note": "Design expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-DSN-12-NO-INFO-REMOVED-FOR-LOOKS",
+      "v1ControlId": "MAA-OUTPUT-DESIGN",
+      "v2ControlId": "MAA2-DSN-12-NO-INFO-REMOVED-FOR-LOOKS",
+      "relationship": "refines",
+      "note": "Design expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-HUM-01-BLINDED-SUBSTANTIVE",
+      "v1ControlId": "MAA-HUMAN-SUPERVISION",
+      "v2ControlId": "MAA2-HUM-01-BLINDED-SUBSTANTIVE",
+      "relationship": "refines",
+      "note": "Human gold expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-HUM-02-PROFESSIONAL-USEFULNESS",
+      "v1ControlId": "MAA-HUMAN-SUPERVISION",
+      "v2ControlId": "MAA2-HUM-02-PROFESSIONAL-USEFULNESS",
+      "relationship": "refines",
+      "note": "Human gold expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-HUM-03-OVERBLOCKING",
+      "v1ControlId": "MAA-HUMAN-SUPERVISION",
+      "v2ControlId": "MAA2-HUM-03-OVERBLOCKING",
+      "relationship": "refines",
+      "note": "Human gold expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-HUM-04-MISSED-UNSAFE",
+      "v1ControlId": "MAA-HUMAN-SUPERVISION",
+      "v2ControlId": "MAA2-HUM-04-MISSED-UNSAFE",
+      "relationship": "refines",
+      "note": "Human gold expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-HUM-05-SAFETY-CRITICAL-FN",
+      "v1ControlId": "MAA-HUMAN-SUPERVISION",
+      "v2ControlId": "MAA2-HUM-05-SAFETY-CRITICAL-FN",
+      "relationship": "refines",
+      "note": "Human gold expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-HUM-06-DISAGREEMENT-ADJUDICATION",
+      "v1ControlId": "MAA-HUMAN-SUPERVISION",
+      "v2ControlId": "MAA2-HUM-06-DISAGREEMENT-ADJUDICATION",
+      "relationship": "refines",
+      "note": "Human gold expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-HUM-07-REVIEWER-META",
+      "v1ControlId": "MAA-HUMAN-SUPERVISION",
+      "v2ControlId": "MAA2-HUM-07-REVIEWER-META",
+      "relationship": "refines",
+      "note": "Human gold expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    },
+    {
+      "migrationId": "V2-MIG-MAA2-HUM-08-EXCLUSIONS-DENOMS",
+      "v1ControlId": "MAA-HUMAN-SUPERVISION",
+      "v2ControlId": "MAA2-HUM-08-EXCLUSIONS-DENOMS",
+      "relationship": "refines",
+      "note": "Human gold expansion",
+      "v1VersionUnchanged": "1.0.0",
+      "historicalFindingsInterpretation": "unchanged — continue to resolve via v1ControlId@1.0.0"
+    }
+  ]
+}

@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "stage150-packet-local-handlers@1.1.0",
+  "batch1Count": 25,
+  "batch2Count": 30,
+  "handlerCount": 55,
+  "handlers": [
+    {
+      "controlId": "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+      "engineId": "charge_legal_state",
+      "handlerId": "allege_to_fact",
+      "findingCodes": [
+        "LSL_ALLEGE_TO_FACT"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#lsl_allege_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#lsl_allege_negatives",
+      "runtimePath": "evaluateChargeIntegrity→allege_to_fact",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Allegation→fact collapse only; reported allegation wording is negative."
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "engineId": "charge_legal_state",
+      "handlerId": "submission_to_finding",
+      "findingCodes": [
+        "LSL_SUBMISSION_TO_FINDING"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#lsl_submission_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#lsl_submission_negatives",
+      "runtimePath": "evaluateChargeIntegrity→submission_to_finding",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Submission collapsed into finding; historical court findings alone are negative."
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "engineId": "charge_legal_state",
+      "handlerId": "count_defendant_unclear",
+      "findingCodes": [
+        "CHG_COUNT_DEFENDANT_UNCLEAR"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chg_alloc_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chg_alloc_negatives",
+      "runtimePath": "evaluateChargeIntegrity→count_defendant_unclear",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Count/defendant allocation ambiguity."
+    },
+    {
+      "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "engineId": "charge_legal_state",
+      "handlerId": "silent_rewrite",
+      "findingCodes": [
+        "FID_SILENT_CORRECTION"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#fid_silent_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#fid_silent_negatives",
+      "runtimePath": "evaluateChargeIntegrity→silent_rewrite",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Silent rewrite admission."
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "engineId": "document_relationship",
+      "handlerId": "still_as_master_collapse",
+      "findingCodes": [
+        "BND_STILL_MASTER_COLLAPSE"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#bnd_still_master_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#bnd_still_master_negatives",
+      "runtimePath": "evaluateEvidenceIdentityState→still_as_master_collapse",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "evidence_identity_state",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Still/clip ≠ master owner."
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "engineId": "document_relationship",
+      "handlerId": "recording_transcript_collapse",
+      "findingCodes": [
+        "BND_RECORDING_TRANSCRIPT_COLLAPSE"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#bnd_recording_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#bnd_recording_negatives",
+      "runtimePath": "evaluateEvidenceIdentityState→recording_transcript_collapse",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "evidence_identity_state",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Recording ≠ transcript owner."
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "engineId": "document_relationship",
+      "handlerId": "draft_as_signed",
+      "findingCodes": [
+        "BND_DRAFT_AS_SIGNED"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#bnd_draft_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#bnd_draft_negatives",
+      "runtimePath": "evaluateEvidenceIdentityState→draft_as_signed",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "evidence_identity_state",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Draft ≠ signed owner."
+    },
+    {
+      "controlId": "MAA2-EVS-02-STATE-ENUM",
+      "engineId": "evidence_attribution",
+      "handlerId": "unknown_evidence_state",
+      "findingCodes": [
+        "EVS_UNKNOWN_STATE_TOKEN"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#evs_state_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#evs_state_negatives",
+      "runtimePath": "evaluateEvidenceIdentityState→unknown_evidence_state",
+      "inputEligibility": "non-empty /evidenceStates",
+      "intelligenceFamily": "evidence_identity_state",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Unknown inferredSourceState tokens."
+    },
+    {
+      "controlId": "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "engineId": "evidence_attribution",
+      "handlerId": "unreliable_without_reason",
+      "findingCodes": [
+        "EVS_UNRELIABLE_WITHOUT_REASON"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#evs_reliability_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#evs_reliability_negatives",
+      "runtimePath": "evaluateEvidenceIdentityState→unreliable_without_reason",
+      "inputEligibility": "non-empty /fiveAnswersEvidenceRows",
+      "intelligenceFamily": "provenance_reliability",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Unreliable without reason note."
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "engineId": "evidence_attribution",
+      "handlerId": "codefendant_leak_risk",
+      "findingCodes": [
+        "ATR_CODEFENDANT_LEAK_RISK"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#atr_sep_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#atr_sep_negatives",
+      "runtimePath": "evaluateEvidenceIdentityState→codefendant_leak_risk",
+      "inputEligibility": "non-empty /evidenceStates",
+      "intelligenceFamily": "evidence_identity_state",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Co-defendant attribution leak risk."
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "engineId": "source_provenance",
+      "handlerId": "synthetic_or_collapsed_page",
+      "findingCodes": [
+        "SRC_SYNTHETIC_OR_COLLAPSED_PAGE"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#src_page_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#src_page_negatives",
+      "runtimePath": "evaluateProvenanceReliability→synthetic_or_collapsed_page",
+      "inputEligibility": "non-empty /evidenceStates",
+      "intelligenceFamily": "provenance_reliability",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Synthetic/collapsed page only; honest unknown-page is limitation not defect."
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "engineId": "source_provenance",
+      "handlerId": "quotation_without_source",
+      "findingCodes": [
+        "FID_QUOTATION_WITHOUT_SOURCE"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#fid_quote_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#fid_quote_negatives",
+      "runtimePath": "evaluateProvenanceReliability→quotation_without_source",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "provenance_reliability",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Quoted material without provenance; quotes with separate provenance are negative."
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "engineId": "source_provenance",
+      "handlerId": "password_corrupt_fake_extraction",
+      "findingCodes": [
+        "SRC_PASSWORD_CORRUPT_FAKE_EXTRACTION"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#src_password_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#src_password_negatives",
+      "runtimePath": "evaluateProvenanceReliability→password_corrupt_fake_extraction",
+      "inputEligibility": "included wording for fake-extraction cues; binary openability still absent → not_exercised for binary-only path",
+      "intelligenceFamily": "document_security_resilience",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Password/corrupt fake extraction only. Prompt-injection belongs to MAA2-SEC-01 (stage-300) — not attached here."
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "engineId": "chronology_procedure",
+      "handlerId": "impossible_order_cue",
+      "findingCodes": [
+        "CHR_IMPOSSIBLE_ORDER_CUE"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chr_order_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chr_order_negatives",
+      "runtimePath": "evaluateChronologyProcedure→impossible_order_cue",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "chronology_procedure",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "unresolved",
+      "ownershipNote": "Impossible order wording cues; structured clocks absent."
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "engineId": "chronology_procedure",
+      "handlerId": "timezone_conflict_cue",
+      "findingCodes": [
+        "CHR_TIMEZONE_CONFLICT_CUE"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chr_tz_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chr_tz_negatives",
+      "runtimePath": "evaluateChronologyProcedure→timezone_conflict_cue",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "chronology_procedure",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "unresolved",
+      "ownershipNote": "Unresolved competing TZ tokens; reconciled GMT/BST comparisons are negative."
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "engineId": "cross_output_completeness",
+      "handlerId": "charge_warning_detached",
+      "findingCodes": [
+        "XEX_CHARGE_WARNING_DETACHED"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#xex_warn_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#xex_warn_negatives",
+      "runtimePath": "evaluateCrossOutput→charge_warning_detached",
+      "inputEligibility": "/courtNote/text + array /warningsAndGaps/doNotOverstate",
+      "intelligenceFamily": "cross_output_consistency",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array:/warningsAndGaps/doNotOverstate"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Disputed charge ↔ charge-warning inseparability — not generic CCTV/BWV warnings."
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "engineId": "cross_output_completeness",
+      "handlerId": "exit_sendability_conflict",
+      "findingCodes": [
+        "XEX_SENDABILITY_CONFLICT"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#xex_send_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#xex_send_negatives",
+      "runtimePath": "evaluateCrossOutput→exit_sendability_conflict",
+      "inputEligibility": "sendabilityLabel + reviewFooter",
+      "intelligenceFamily": "cross_output_consistency",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/sendabilityLabel",
+        "/exportVersion/reviewFooter"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "View/copy sendability conflict."
+    },
+    {
+      "controlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "engineId": "cross_output_completeness",
+      "handlerId": "missing_truth_map",
+      "findingCodes": [
+        "XEX_MISSING_TRUTH_MAP"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#pri_omit_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#pri_omit_negatives",
+      "runtimePath": "evaluateCrossOutput→missing_truth_map",
+      "inputEligibility": "court wording present; empty fiveAnswers is the finding",
+      "intelligenceFamily": "cross_output_consistency",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array_allow_empty:/fiveAnswersEvidenceRows"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "absenceIsFinding": true,
+      "ownershipNote": "Empty/absent fiveAnswers while court present — absenceIsFinding=true."
+    },
+    {
+      "controlId": "MAA2-WRD-10-NO-PLACEHOLDERS",
+      "engineId": "professional_wording",
+      "handlerId": "placeholder_or_dev_leak",
+      "findingCodes": [
+        "WRD_PLACEHOLDER_OR_DEV"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_ph_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_ph_negatives",
+      "runtimePath": "evaluateProfessionalWording→placeholder_or_dev_leak",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "professional_wording",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Placeholder/dev leak."
+    },
+    {
+      "controlId": "MAA2-WRD-02-NO-MID-TRUNCATION",
+      "engineId": "professional_wording",
+      "handlerId": "mid_truncation",
+      "findingCodes": [
+        "WRD_MID_TRUNCATION"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_trunc_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_trunc_negatives",
+      "runtimePath": "evaluateProfessionalWording→mid_truncation",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "professional_wording",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Mid-word truncation."
+    },
+    {
+      "controlId": "MAA2-WRD-11-NO-GENERIC-FILLER",
+      "engineId": "professional_wording",
+      "handlerId": "generic_unavailable",
+      "findingCodes": [
+        "WRD_GENERIC_UNAVAILABLE"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_generic_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_generic_negatives",
+      "runtimePath": "evaluateProfessionalWording→generic_unavailable",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "professional_wording",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Generic unavailable filler; honest qualified wording is negative."
+    },
+    {
+      "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "engineId": "professional_wording",
+      "handlerId": "absolute_proof_ban",
+      "findingCodes": [
+        "WRD_ABSOLUTE_PROOF"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_abs_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_abs_negatives",
+      "runtimePath": "evaluateProfessionalWording→absolute_proof_ban",
+      "inputEligibility": "included solicitor-visible wording ledger",
+      "intelligenceFamily": "professional_wording",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Absolute-proof ban."
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "engineId": "chase_actionability",
+      "handlerId": "empty_chase_draft",
+      "findingCodes": [
+        "CHS_EMPTY_DRAFT"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chs_empty_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#chs_empty_negatives",
+      "runtimePath": "evaluateProfessionalWording→empty_chase_draft",
+      "inputEligibility": "array /warningsAndGaps/chaseItems (empty array → not_exercised)",
+      "intelligenceFamily": "professional_wording",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Empty chase draft when chase items exist."
+    },
+    {
+      "controlId": "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "engineId": "contradiction_perspective",
+      "handlerId": "synthetic_consensus",
+      "findingCodes": [
+        "XPP_SYNTHETIC_CONSENSUS"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#xpp_tension_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#xpp_tension_negatives",
+      "runtimePath": "evaluatePerspectives→synthetic_consensus",
+      "inputEligibility": "non-empty fiveAnswers + included wording",
+      "intelligenceFamily": "alternative_perspective",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Synthetic consensus only — ordinary mixed served/missing is negative."
+    },
+    {
+      "controlId": "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "engineId": "contradiction_perspective",
+      "handlerId": "defence_opportunity_buried",
+      "findingCodes": [
+        "DEF_OPPORTUNITY_BURIED"
+      ],
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#def_opp_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#def_opp_negatives",
+      "runtimePath": "evaluatePerspectives→defence_opportunity_buried",
+      "inputEligibility": "/courtNote/text + non-empty fiveAnswers",
+      "intelligenceFamily": "alternative_perspective",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "unavailableVerdict": "not_exercised",
+      "ownershipNote": "Defence opportunity buried under strong court wording + missing rows."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-01-RECORDED-SOURCE-VISIBLE_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-01-RECORDED-SOURCE-VISIBLE_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "engineId": "charge_legal_state",
+      "handlerId": "recorded_source_invisible",
+      "findingCodes": [
+        "CHG_RECORDED_SOURCE_INVISIBLE"
+      ],
+      "runtimePath": "evaluateBatch2Charge→recorded_source_invisible",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Recorded charge source visibility."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-04-COMPLETE-NOT-TRUNCATED_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-04-COMPLETE-NOT-TRUNCATED_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "engineId": "charge_legal_state",
+      "handlerId": "charge_truncated",
+      "findingCodes": [
+        "CHG_CHARGE_TRUNCATED"
+      ],
+      "runtimePath": "evaluateBatch2Charge→charge_truncated",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Charge truncation."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-05-OPERATIVE-INSTRUMENT_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-05-OPERATIVE-INSTRUMENT_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "engineId": "charge_legal_state",
+      "handlerId": "draft_as_operative",
+      "findingCodes": [
+        "CHG_DRAFT_AS_OPERATIVE"
+      ],
+      "runtimePath": "evaluateBatch2Charge→draft_as_operative",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Operative instrument status."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-06-AMENDMENT-HISTORY_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-06-AMENDMENT-HISTORY_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "engineId": "charge_legal_state",
+      "handlerId": "amendment_without_history",
+      "findingCodes": [
+        "CHG_AMENDMENT_WITHOUT_HISTORY"
+      ],
+      "runtimePath": "evaluateBatch2Charge→amendment_without_history",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Amendment history cues."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-10-WARNING-INSEPARABLE_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHG-10-WARNING-INSEPARABLE_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "engineId": "charge_legal_state",
+      "handlerId": "charge_warning_inseparable",
+      "findingCodes": [
+        "CHG_WARNING_INSEPARABLE"
+      ],
+      "runtimePath": "evaluateBatch2Charge→charge_warning_inseparable",
+      "inputEligibility": "/courtNote/text + doNotOverstate array",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array:/warningsAndGaps/doNotOverstate"
+      ],
+      "ownershipNote": "Sibling to XEX-01; charge-warning inseparability owner for CHG family."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-02-COUNT-NUMBERS_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-02-COUNT-NUMBERS_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-FID-02-COUNT-NUMBERS",
+      "engineId": "charge_legal_state",
+      "handlerId": "count_number_collision",
+      "findingCodes": [
+        "FID_COUNT_NUMBER_COLLISION"
+      ],
+      "runtimePath": "evaluateBatch2Charge→count_number_collision",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Count-number fidelity."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-03-CHARGE-WORDING-PARTICULARS_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-03-CHARGE-WORDING-PARTICULARS_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "engineId": "charge_legal_state",
+      "handlerId": "particulars_incomplete",
+      "findingCodes": [
+        "FID_PARTICULARS_INCOMPLETE"
+      ],
+      "runtimePath": "evaluateBatch2Charge→particulars_incomplete",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Charge particulars."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-06-PRESERVE-NEGATIVES_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-06-PRESERVE-NEGATIVES_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "engineId": "charge_legal_state",
+      "handlerId": "negation_stripped",
+      "findingCodes": [
+        "FID_NEGATION_STRIPPED"
+      ],
+      "runtimePath": "evaluateBatch2Charge→negation_stripped",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Preserve negatives."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-07-PRESERVE-QUALIFIERS_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-FID-07-PRESERVE-QUALIFIERS_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "engineId": "charge_legal_state",
+      "handlerId": "qualifier_stripped",
+      "findingCodes": [
+        "FID_QUALIFIER_STRIPPED"
+      ],
+      "runtimePath": "evaluateBatch2Charge→qualifier_stripped",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Preserve qualifiers; sibling to LSL-02."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-LSL-01-STATEMENT-CLASSIFICATION_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-LSL-01-STATEMENT-CLASSIFICATION_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "engineId": "charge_legal_state",
+      "handlerId": "statement_misclassified",
+      "findingCodes": [
+        "LSL_STATEMENT_MISCLASSIFIED"
+      ],
+      "runtimePath": "evaluateBatch2Charge→statement_misclassified",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "charge_integrity",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Statement classification."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-02-INSTRUMENT-STATUS_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-02-INSTRUMENT-STATUS_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "engineId": "document_relationship",
+      "handlerId": "instrument_status_collapse",
+      "findingCodes": [
+        "BND_INSTRUMENT_STATUS_COLLAPSE"
+      ],
+      "runtimePath": "evaluateBatch2Evidence→instrument_status_collapse",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "evidence_identity_state",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Instrument status."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-07-ALIAS-SAFE-COLLAPSE_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-07-ALIAS-SAFE-COLLAPSE_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "engineId": "document_relationship",
+      "handlerId": "alias_unsafe_collapse",
+      "findingCodes": [
+        "BND_ALIAS_UNSAFE_COLLAPSE"
+      ],
+      "runtimePath": "evaluateBatch2Evidence→alias_unsafe_collapse",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "evidence_identity_state",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Consumes BND-09 still/master; alias-specific owner."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-08-EXTRACT-VS-FULL_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-08-EXTRACT-VS-FULL_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "engineId": "document_relationship",
+      "handlerId": "extract_as_full",
+      "findingCodes": [
+        "BND_EXTRACT_AS_FULL"
+      ],
+      "runtimePath": "evaluateBatch2Evidence→extract_as_full",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "evidence_identity_state",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Extract vs full."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "engineId": "document_relationship",
+      "handlerId": "complete_vs_partial",
+      "findingCodes": [
+        "BND_COMPLETE_VS_PARTIAL"
+      ],
+      "runtimePath": "evaluateBatch2Evidence→complete_vs_partial",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "evidence_identity_state",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Complete vs partial disclosure."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-14-QUARANTINED-CONFLICTING_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-14-QUARANTINED-CONFLICTING_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "engineId": "document_relationship",
+      "handlerId": "quarantine_served_conflict",
+      "findingCodes": [
+        "BND_QUARANTINE_SERVED_CONFLICT"
+      ],
+      "runtimePath": "evaluateBatch2Evidence→quarantine_served_conflict",
+      "inputEligibility": "non-empty /evidenceStates",
+      "intelligenceFamily": "evidence_identity_state",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "ownershipNote": "Quarantine vs served conflict."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-15-EXCLUDED-ROW-TOTALS_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-BND-15-EXCLUDED-ROW-TOTALS_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "engineId": "document_relationship",
+      "handlerId": "excluded_row_totals",
+      "findingCodes": [
+        "BND_EXCLUDED_ROW_TOTALS"
+      ],
+      "runtimePath": "evaluateBatch2Evidence→excluded_row_totals",
+      "inputEligibility": "wording + evidenceStates",
+      "intelligenceFamily": "evidence_identity_state",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording",
+        "nonempty:/evidenceStates"
+      ],
+      "ownershipNote": "Excluded row totals."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-EVS-01-DIMENSION-SEPARATION_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-EVS-01-DIMENSION-SEPARATION_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "engineId": "evidence_attribution",
+      "handlerId": "dimension_collapse",
+      "findingCodes": [
+        "EVS_DIMENSION_COLLAPSE"
+      ],
+      "runtimePath": "evaluateBatch2Evidence→dimension_collapse",
+      "inputEligibility": "non-empty fiveAnswers",
+      "intelligenceFamily": "evidence_identity_state",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "ownershipNote": "Existence vs reliability dimensions."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-ATR-08-NO-DEFENDANT-BLEED_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-ATR-08-NO-DEFENDANT-BLEED_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "engineId": "evidence_attribution",
+      "handlerId": "defendant_bleed",
+      "findingCodes": [
+        "ATR_DEFENDANT_BLEED"
+      ],
+      "runtimePath": "evaluateBatch2Evidence→defendant_bleed",
+      "inputEligibility": "non-empty evidenceStates",
+      "intelligenceFamily": "evidence_identity_state",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "ownershipNote": "Sibling to ATR-01."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "engineId": "evidence_attribution",
+      "handlerId": "limitation_not_source_linked",
+      "findingCodes": [
+        "ATR_LIMITATION_NOT_SOURCE_LINKED"
+      ],
+      "runtimePath": "evaluateBatch2Evidence→limitation_not_source_linked",
+      "inputEligibility": "non-empty fiveAnswers",
+      "intelligenceFamily": "provenance_reliability",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "ownershipNote": "Refines EVS-03 reliability owner."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-01-EXACT-DATES-TZ_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-01-EXACT-DATES-TZ_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "engineId": "chronology_procedure",
+      "handlerId": "date_without_tz",
+      "findingCodes": [
+        "CHR_DATE_WITHOUT_TZ"
+      ],
+      "runtimePath": "evaluateBatch2Chronology→date_without_tz",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "chronology_procedure",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Exact dates/TZ."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "engineId": "chronology_procedure",
+      "handlerId": "custody_interview_clock",
+      "findingCodes": [
+        "CHR_CUSTODY_INTERVIEW_CLOCK"
+      ],
+      "runtimePath": "evaluateBatch2Chronology→custody_interview_clock",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "chronology_procedure",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Custody/interview clocks."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "engineId": "chronology_procedure",
+      "handlerId": "hearing_notice_lifecycle",
+      "findingCodes": [
+        "CHR_HEARING_NOTICE_CONFLICT"
+      ],
+      "runtimePath": "evaluateBatch2Chronology→hearing_notice_lifecycle",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "chronology_procedure",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Hearing-notice lifecycle."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "engineId": "chronology_procedure",
+      "handlerId": "evidence_totals_conflict",
+      "findingCodes": [
+        "CHR_EVIDENCE_TOTALS_CONFLICT"
+      ],
+      "runtimePath": "evaluateBatch2Chronology→evidence_totals_conflict",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "chronology_procedure",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Evidence totals."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "engineId": "cross_output_completeness",
+      "handlerId": "evidence_partial_warning_missing",
+      "findingCodes": [
+        "XEX_EVIDENCE_PARTIAL_WARNING_MISSING"
+      ],
+      "runtimePath": "evaluateBatch2CrossOutput→evidence_partial_warning_missing",
+      "inputEligibility": "court + doNotOverstate",
+      "intelligenceFamily": "cross_output_consistency",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array:/warningsAndGaps/doNotOverstate"
+      ],
+      "ownershipNote": "Consumes XEX-01 charge-warning ownership for non-charge partial warnings."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "engineId": "cross_output_completeness",
+      "handlerId": "quarantine_vs_total",
+      "findingCodes": [
+        "XEX_QUARANTINE_VS_TOTAL"
+      ],
+      "runtimePath": "evaluateBatch2CrossOutput→quarantine_vs_total",
+      "inputEligibility": "court + evidenceStates",
+      "intelligenceFamily": "cross_output_consistency",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "nonempty:/evidenceStates"
+      ],
+      "ownershipNote": "Quarantine vs total."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "engineId": "cross_output_completeness",
+      "handlerId": "unavailable_exit_claimed",
+      "findingCodes": [
+        "XEX_UNAVAILABLE_EXIT_CLAIMED"
+      ],
+      "runtimePath": "evaluateBatch2CrossOutput→unavailable_exit_claimed",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "cross_output_consistency",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Unavailable exits must stay not_exercised."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-WRD-04-NO-DUPLICATE-PHRASES_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-WRD-04-NO-DUPLICATE-PHRASES_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "engineId": "professional_wording",
+      "handlerId": "duplicate_phrase",
+      "findingCodes": [
+        "WRD_DUPLICATE_PHRASE"
+      ],
+      "runtimePath": "evaluateBatch2WordingChase→duplicate_phrase",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "professional_wording",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Duplicate phrases."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-WRD-12-NO-HOSTILE-SENSATIONAL_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-WRD-12-NO-HOSTILE-SENSATIONAL_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "engineId": "professional_wording",
+      "handlerId": "hostile_sensational",
+      "findingCodes": [
+        "WRD_HOSTILE_SENSATIONAL"
+      ],
+      "runtimePath": "evaluateBatch2WordingChase→hostile_sensational",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "professional_wording",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Hostile/sensational tone — not SEC-01 prompt injection."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "engineId": "audience_context",
+      "handlerId": "internal_audit_leak",
+      "findingCodes": [
+        "AUD_INTERNAL_AUDIT_LEAK"
+      ],
+      "runtimePath": "evaluateBatch2WordingChase→internal_audit_leak",
+      "inputEligibility": "included solicitor-visible wording",
+      "intelligenceFamily": "professional_wording",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "ownershipNote": "Internal/audit leak."
+    },
+    {
+      "receiptValidator": "maa-v2-candidate-finding@1.0.0",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP_negatives",
+      "unavailableVerdict": "not_exercised",
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "engineId": "chase_actionability",
+      "handlerId": "chase_already_served",
+      "findingCodes": [
+        "CHS_ALREADY_SERVED_DUP"
+      ],
+      "runtimePath": "evaluateBatch2WordingChase→chase_already_served",
+      "inputEligibility": "nonempty chaseItems + evidenceStates",
+      "intelligenceFamily": "professional_wording",
+      "requiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "nonempty:/evidenceStates"
+      ],
+      "ownershipNote": "Sibling to CHS-02 empty draft."
+    }
+  ],
+  "allPartialHandlerCount": 55
+}

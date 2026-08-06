@@ -1,0 +1,202 @@
+{
+  "schemaVersion": "maa-v2-batch8-changed-file-manifest@1.1.0",
+  "baselineCommit": "e60790458f6c1030300c52c029e2318a28139252",
+  "headCommit": "e60790458f6c1030300c52c029e2318a28139252",
+  "rule": "Literal relative paths only — SHA-256 + byteLength + classification. No wildcards.",
+  "intendedScopePathCount": 25,
+  "intendedScopePaths": [
+    "lib/eval/master-assurance-auditor/v2/stage150/batch8/adapters.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch8/index.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch8/schemas.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch8/unlock-map.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch8/validators.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/index.ts",
+    "scripts/assurance/emit-maa-v2-stage150-batch8.ts",
+    "scripts/maa-v2-stage150-batch8-contracts.test.ts",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/STOP-FOR-CODEX-REVIEW.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-499-adapter-receipt-index.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-adapter-capability-summary.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-blockers-live-browser-heavy.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-capability-matrix.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-no-invention-receipt.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-schemas.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-unlock-map.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/brain1-guardian-blob-compare.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/changed-file-manifest.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/packet-shape-inventory.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/stage150-execution-readiness-gate.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/stage150-implementation-capability-matrix.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/stage150-implementation-totals.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/typescript-baseline.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/typescript-delta.json"
+  ],
+  "entryCount": 25,
+  "entries": [
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch8/adapters.ts",
+      "sha256": "033e056c897a03b4e02cb12fbb10ae40ca05dc2c2603f72938c8cbe704d16567",
+      "byteLength": 35759,
+      "classification": "source_lib_batch8"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch8/index.ts",
+      "sha256": "59ea5d2d0b9ff49c0cea07f27dd4fbe03fbe62f49f16183eab72f9d83657a47a",
+      "byteLength": 182,
+      "classification": "source_lib_batch8"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch8/schemas.ts",
+      "sha256": "57778ba36e146a21f7ccaece8dbf1f5447f3eadacfc6c9f3501a2cb7b5f45a40",
+      "byteLength": 5454,
+      "classification": "source_lib_batch8"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch8/unlock-map.ts",
+      "sha256": "588622a5675c0666b113fe668ac61360c6f86cfe0215e3e96bf82fd42da07ac7",
+      "byteLength": 4249,
+      "classification": "source_lib_batch8"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch8/validators.ts",
+      "sha256": "c1c631649dfdf6855365154618ab98e5667bcc24ee3c2761bd3a8c056f3b3a9e",
+      "byteLength": 5905,
+      "classification": "source_lib_batch8"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/index.ts",
+      "sha256": "0b65012df0f85c566fbf26b0f4692c57acdc94951d70a81f853781bf02017244",
+      "byteLength": 1488,
+      "classification": "source_lib_export"
+    },
+    {
+      "relativePath": "scripts/assurance/emit-maa-v2-stage150-batch8.ts",
+      "sha256": "9854b32d4875a8534d45a1b3879e724030662b15043f1912b134a0f60edc61e8",
+      "byteLength": 27165,
+      "classification": "emit_script"
+    },
+    {
+      "relativePath": "scripts/maa-v2-stage150-batch8-contracts.test.ts",
+      "sha256": "7385419bbd8a89ce958b7d489019ed76d88d07c182ee77569edffafdd712ea55",
+      "byteLength": 20994,
+      "classification": "contract_test"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+      "sha256": "4b8c12db59f3b92702ff7627fba693e5009b357c7f18e2cafcc4ff634d78ebdc",
+      "byteLength": 903,
+      "classification": "checkpoint_gate"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "be0004fb75f9e484767c3fe23073c3a8d5d74380eda1a1dee5ca4c10861560ca",
+      "byteLength": 7237,
+      "classification": "checkpoint_stop"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-499-adapter-receipt-index.json",
+      "sha256": "ea05b3096cb2ea3e05f00fe1fc81d537e12b17bd8300dbd05e4785992086a8b8",
+      "byteLength": 352,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-adapter-capability-summary.json",
+      "sha256": "a3cc9ed35108da6de5f895ac60f6be90401fcfeb509f135031a683b955511086",
+      "byteLength": 2767,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-blockers-live-browser-heavy.json",
+      "sha256": "4ff6c8142ea5b4934c87d22671a67cfe0f431f7fa0b4aac715e5a891637eaec1",
+      "byteLength": 1466,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-capability-matrix.json",
+      "sha256": "38b57ec74f95f65875d28a94212a79e73f1dfe88e0f502b8bfd3e90a6262176a",
+      "byteLength": 215318,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-no-invention-receipt.json",
+      "sha256": "874cf19dff325577742d10165c893857862110fc7155b4318763fb2e1fdb4417",
+      "byteLength": 761,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-schemas.json",
+      "sha256": "77f17f14a341d60b42ed74f734cb3c58119c064ef3201a69430b57e1ea401c85",
+      "byteLength": 851,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-unlock-map.json",
+      "sha256": "34732a484326476413231a751075a2345ee4ec1542fd467189bedd5e315b402b",
+      "byteLength": 4134,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/brain1-guardian-blob-compare.json",
+      "sha256": "8248afabe198dc56c42c533f2e7355187b3e42dd8cbc7f7c2f13dffad27fa2cb",
+      "byteLength": 2867,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/packet-shape-inventory.json",
+      "sha256": "60a89f6599f021cc20205f1464f2d45545a3a6b31ad24e8f456649dec4a8d3ed",
+      "byteLength": 10861,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/stage150-execution-readiness-gate.json",
+      "sha256": "4b8c12db59f3b92702ff7627fba693e5009b357c7f18e2cafcc4ff634d78ebdc",
+      "byteLength": 903,
+      "classification": "checkpoint_gate"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/stage150-implementation-capability-matrix.json",
+      "sha256": "fe25728520838fff3fa45abc6a91462bd723df3beb3e9193c96fc5187ab96b6c",
+      "byteLength": 172551,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/stage150-implementation-totals.json",
+      "sha256": "a0b3f9bf32c1d80fe6ee0c53752fecc7720137bc1b4bab0383dd60b308c5664d",
+      "byteLength": 660,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/typescript-baseline.json",
+      "sha256": "e7fcc8520cd4410eb400378ccf6476f920ec17508deedf16d080065ff3d912a6",
+      "byteLength": 4284,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/typescript-delta.json",
+      "sha256": "1ed43bc62254a8c9f3c9251c067c4632a3aac9d5a16e2c759916817f25f8e0fa",
+      "byteLength": 148,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/changed-file-manifest.json",
+      "sha256": "aebdf6d8ecdb54d1b45ffc13b9ffaf8c257eb99cda9df31eaf65812bfa32489a",
+      "byteLength": 9952,
+      "classification": "checkpoint_manifest"
+    }
+  ],
+  "thisManifest": {
+    "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/changed-file-manifest.json",
+    "sha256": "aebdf6d8ecdb54d1b45ffc13b9ffaf8c257eb99cda9df31eaf65812bfa32489a",
+    "byteLength": 9952,
+    "classification": "checkpoint_manifest",
+    "hashesDocumentWithThisManifestNull": true
+  },
+  "gitignoredRegenerable": {
+    "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/raw-receipts/batch8-499-adapter-receipts.jsonl",
+    "retainedByIndex": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch8/batch8-499-adapter-receipt-index.json",
+    "rawReceiptsSha256": "08196a468a8fefc2d533b3eb3220bb6b1326e9aac7aa92f1712bf71c83f4f909",
+    "rawReceiptsByteLength": 2054115,
+    "policy": "gitignore_regenerate"
+  },
+  "digestSha256": "dd341d1db51323d4094010de1ba633d72faef7dd07f5d09e3a3de5c278526185"
+}

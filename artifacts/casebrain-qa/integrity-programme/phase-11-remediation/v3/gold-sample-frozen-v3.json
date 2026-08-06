@@ -1,0 +1,192 @@
+{
+  "version": "phase11-gold-sample-v3",
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "actualSize": 33,
+  "samples": [
+    {
+      "goldId": "GOLD-11-001",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2001-ellis"
+    },
+    {
+      "goldId": "GOLD-11-002",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2002-smith"
+    },
+    {
+      "goldId": "GOLD-11-003",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2003-nguyen"
+    },
+    {
+      "goldId": "GOLD-11-004",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2004-clarke"
+    },
+    {
+      "goldId": "GOLD-11-005",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2005-okafor"
+    },
+    {
+      "goldId": "GOLD-11-006",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2003-nguyen"
+    },
+    {
+      "goldId": "GOLD-11-007",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-fresh-001-taylor-brookes"
+    },
+    {
+      "goldId": "GOLD-11-008",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-fresh-002-jordan-hale"
+    },
+    {
+      "goldId": "GOLD-11-009",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "pilot-3-marcus-vale"
+    },
+    {
+      "goldId": "GOLD-11-010",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "proof-pack-01"
+    },
+    {
+      "goldId": "GOLD-11-011",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-found-2003-nguyen"
+    },
+    {
+      "goldId": "GOLD-11-012",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "cb-fresh-002-jordan-hale"
+    },
+    {
+      "goldId": "GOLD-11-013",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "demo-audit-03-bwv-custody"
+    },
+    {
+      "goldId": "GOLD-11-014",
+      "sourceKind": "phase9_pack_seed",
+      "fixtureId": "demo-audit-10-bwv-public-order"
+    },
+    {
+      "goldId": "GOLD-11-015",
+      "sourceKind": "gold_manual_pack",
+      "fixtureId": "CASE-01:demo-audit-01-phone-harassment"
+    },
+    {
+      "goldId": "GOLD-11-016",
+      "sourceKind": "gold_manual_pack",
+      "fixtureId": "CASE-05:demo-audit-05-encro-attribution"
+    },
+    {
+      "goldId": "GOLD-11-017",
+      "sourceKind": "gold_manual_pack",
+      "fixtureId": "CASE-08:demo-audit-69-charge-mg5-hearing"
+    },
+    {
+      "goldId": "GOLD-11-018",
+      "sourceKind": "gold_manual_pack",
+      "fixtureId": "CASE-04:demo-audit-02-cctv-stills"
+    },
+    {
+      "goldId": "GOLD-11-019",
+      "sourceKind": "gold_manual_pack",
+      "fixtureId": "CASE-07:demo-audit-44-bad-redaction"
+    },
+    {
+      "goldId": "GOLD-11-020",
+      "sourceKind": "gold_manual_pack",
+      "fixtureId": "CASE-02:demo-audit-03-bwv-custody"
+    },
+    {
+      "goldId": "GOLD-11-021",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-TRUNC-01"
+    },
+    {
+      "goldId": "GOLD-11-022",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-TRUNC-TITLE-01"
+    },
+    {
+      "goldId": "GOLD-11-023",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-OMIT-01"
+    },
+    {
+      "goldId": "GOLD-11-024",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-RR-01"
+    },
+    {
+      "goldId": "GOLD-11-025",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-RR-PLACEHOLDER-01"
+    },
+    {
+      "goldId": "GOLD-11-026",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-HEAR-UNKNOWN"
+    },
+    {
+      "goldId": "GOLD-11-027",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-HEAR-SAME-DAY"
+    },
+    {
+      "goldId": "GOLD-11-028",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-HEAR-PASSED"
+    },
+    {
+      "goldId": "GOLD-11-029",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-API-BLOCK-01"
+    },
+    {
+      "goldId": "GOLD-11-030",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-EXPORT-FAMILY-01"
+    },
+    {
+      "goldId": "GOLD-11-031",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-COPY-SAFE-01"
+    },
+    {
+      "goldId": "GOLD-11-032",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-FAM-LEAK-01"
+    },
+    {
+      "goldId": "GOLD-11-033",
+      "sourceKind": "synthetic_controlled",
+      "fixtureId": "SYN-PROV-TITLE-01"
+    }
+  ],
+  "duplicationDisclosure": {
+    "v1Ids": 33,
+    "uniqueFixtures": 30,
+    "duplicateFixtures": [
+      {
+        "fixtureId": "cb-found-2003-nguyen",
+        "occurrences": 3
+      },
+      {
+        "fixtureId": "cb-fresh-002-jordan-hale",
+        "occurrences": 2
+      }
+    ],
+    "uniqueRenderBodiesNote": "v1 independent review reported 28 unique render bodies after body-only comparison; this remediation keeps the same 33 goldIds for before/after comparison.",
+    "v3MembershipPolicy": "SAME 33 goldIds / fixtures regenerated for comparison. Exact fixture repeats across strata are JUSTIFIED (multi-angle review of the same papers: accepted vs blocked vs uncertain). Membership not silently changed. v1 and v2 artefacts preserved read-only."
+  },
+  "frozenAt": "2026-07-21T23:11:59.796Z",
+  "freezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "frozen": true
+}

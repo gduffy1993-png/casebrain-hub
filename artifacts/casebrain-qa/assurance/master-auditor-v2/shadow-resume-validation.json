@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "shadow-resume-validation@2.0.0",
+  "resumeSupported": true,
+  "resumeProvenByTest": true,
+  "method": "Genuine interrupt after 10 cases: persisted checkpoint + phase1 ledgers to disk, cleared runner state, reloaded checkpoint, executed remaining 40, combined combined ledger/candidates byte-for-byte with clean uninterrupted run.",
+  "interruptedAfter": 10,
+  "resumedCount": 40,
+  "checkpointPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/v2-shadow-stage50-run/v2-shadow-stage50-2026-07-29T23-52-36-465Z/resume-proof/checkpoint.json",
+  "cleanLedgerHash": "011434f65f84d789eaa5882c85c31d10c7bcc3ce819003334ac653006b61f6ac",
+  "resumedLedgerHash": "011434f65f84d789eaa5882c85c31d10c7bcc3ce819003334ac653006b61f6ac",
+  "ledgerByteIdentical": true,
+  "cleanCandidatesHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "resumedCandidatesHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "candidatesByteIdentical": true,
+  "duplicateFindingsAfterResume": false,
+  "allCasesCompletedExactlyOnce": true,
+  "incompleteMustNotPass": true
+}

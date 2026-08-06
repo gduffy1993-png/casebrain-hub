@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "stage150-calibration-review-batch@1.0.0",
+  "batchIndex": 1,
+  "uniqueStringCount": 6,
+  "humanDispositionsBlank": true,
+  "items": [
+    {
+      "textHash": "a049b597923b496dc7a17083fd1848fd23d9fb2ddd711f55608a17fd83d29e33",
+      "templateHash": "81c30e42c1ec98fbba29206b2d18b7594099e5386e724b8ceb157939d0181794",
+      "text": "Subscriber/account data",
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "rootCauseFamily": "MAA2-CHS",
+      "severity": "candidate_defect",
+      "audience": "structural",
+      "exit": null,
+      "caseFamily": "esa_demo_audit",
+      "candidateClass": "candidate_defect",
+      "occurrences": [
+        {
+          "caseId": "demo-audit-01-phone-harassment",
+          "cohort": "A",
+          "surface": "/warningsAndGaps/chaseItems/0",
+          "candidateId": "V2CAND-88abd1f298a7d3ffc31611aa"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "85a93228b00560deca41e343be0622fd21094df7a0cdf7c3b50c8f5da0471333",
+      "templateHash": "5492ec1052cd06adcfacdd2d538b575bb393283422921ca1505bd5e298beaea8",
+      "text": "Full phone download / source export",
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "rootCauseFamily": "MAA2-CHS",
+      "severity": "candidate_defect",
+      "audience": "structural",
+      "exit": null,
+      "caseFamily": "esa_demo_audit",
+      "candidateClass": "candidate_defect",
+      "occurrences": [
+        {
+          "caseId": "demo-audit-01-phone-harassment",
+          "cohort": "A",
+          "surface": "/warningsAndGaps/chaseItems/1",
+          "candidateId": "V2CAND-207984ac53d34cd2adde0b1d"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "04443f52d822b33096338a10d55e037fba78efbba02ade34c2aac77f413061d8",
+      "templateHash": "fb5a8b9475991eda4836d241b7f10648105378ca666a61798e38b7c3b858e686",
+      "text": "Call logs",
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "rootCauseFamily": "MAA2-CHS",
+      "severity": "candidate_defect",
+      "audience": "structural",
+      "exit": null,
+      "caseFamily": "esa_demo_audit",
+      "candidateClass": "candidate_defect",
+      "occurrences": [
+        {
+          "caseId": "demo-audit-01-phone-harassment",
+          "cohort": "A",
+          "surface": "/warningsAndGaps/chaseItems/2",
+          "candidateId": "V2CAND-685cf4fdc924a9ac4d1adb55"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "e0ddb522ae5337e0fba6de227bfb5f9d76c31bab29cc8dc02c80d9a0a44f21b7",
+      "templateHash": "2d1c29552a8aafbccb1ce458e94702fa46874c4f24667979feacd222b3cb5f75",
+      "text": "Final signed complainant MG11",
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "rootCauseFamily": "MAA2-CHS",
+      "severity": "candidate_defect",
+      "audience": "structural",
+      "exit": null,
+      "caseFamily": "esa_demo_audit",
+      "candidateClass": "candidate_defect",
+      "occurrences": [
+        {
+          "caseId": "demo-audit-01-phone-harassment",
+          "cohort": "A",
+          "surface": "/warningsAndGaps/chaseItems/3",
+          "candidateId": "V2CAND-e1890ca30cd31ea1512d2f5d"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a69ddfcbddba651acd01617b6429fb7a001c0c1cc821aa709ea4a9bf4c65d7ff",
+      "templateHash": "77c4a2ee8c08741d26f26f2a3f0ca040c85aa9acace114d05b2bb6794238adb1",
+      "text": "Interview audio",
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "rootCauseFamily": "MAA2-CHS",
+      "severity": "candidate_defect",
+      "audience": "structural",
+      "exit": null,
+      "caseFamily": "esa_demo_audit",
+      "candidateClass": "candidate_defect",
+      "occurrences": [
+        {
+          "caseId": "demo-audit-03-bwv-custody",
+          "cohort": "A",
+          "surface": "/warningsAndGaps/chaseItems/0",
+          "candidateId": "V2CAND-698023bed0223ac1bd6425ce"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "rootCauseFamily": "MAA2-CHS",
+      "severity": "candidate_defect",
+      "audience": "structural",
+      "exit": "copy",
+      "caseFamily": "esa_demo_audit",
+      "candidateClass": "candidate_defect",
+      "occurrences": [
+        {
+          "caseId": "demo-audit-01-phone-harassment",
+          "cohort": "A",
+          "surface": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "candidateId": "V2CAND-53665a3dd59e983ec7339571"
+        },
+        {
+          "caseId": "demo-audit-01-phone-harassment",
+          "cohort": "A",
+          "surface": "/warningsAndGaps/chaseItems/1/copySuggestion",
+          "candidateId": "V2CAND-c3564eb4af8372497e25827a"
+        },
+        {
+          "caseId": "demo-audit-01-phone-harassment",
+          "cohort": "A",
+          "surface": "/warningsAndGaps/chaseItems/2/copySuggestion",
+          "candidateId": "V2CAND-8fbccc5b149548634fe13050"
+        },
+        {
+          "caseId": "demo-audit-01-phone-harassment",
+          "cohort": "A",
+          "surface": "/warningsAndGaps/chaseItems/3/copySuggestion",
+          "candidateId": "V2CAND-e5188b6fe56940fc37f7698e"
+        },
+        {
+          "caseId": "s150-d120-001-homicide-causation-clean",
+          "cohort": "B",
+          "surface": "/fiveAnswersEvidenceRows",
+          "candidateId": "V2CAND-0f712a9691af65f0265f9043"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    }
+  ]
+}

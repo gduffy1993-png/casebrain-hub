@@ -1,0 +1,716 @@
+{
+  "priorRawCopyable": 72,
+  "priorTruncCopyable": 28,
+  "phase3ClusterRaw": 72,
+  "phase3ClusterTrunc": 28,
+  "methodology": {
+    "phase3": "Batch gate of up to 16 strings per fixture × copy AND api modes — each blocked ruleId counted once per mode (dual-mode inflation ≈ ×2 when both modes fire).",
+    "phase5": "Per-string walk (up to 50 strings) — each copy-blocked string counted once. Deeper walk discovers additional truncated lines not in the first-16 batch."
+  },
+  "raw": {
+    "prior": 72,
+    "scannedPhase5": 42,
+    "reconstructed": 41,
+    "safely_omitted": 1,
+    "still_blocked": 0,
+    "uniqueDiagnostics": 3,
+    "provenDuplicateOccurrences": 39,
+    "p3StyleRecountNow": 72,
+    "explanation": "Prior 72 ≈ dual-mode batch findings. Current 42 unique copyable strings (3 distinct diagnostics; 39 cross-fixture duplicate diagnostics). Delta explained by: (1) removing dual-mode double-count, (2) per-string vs batch, (3) newly discovered strings in deeper walk, (4) retired/reconstructed IDs no longer emitting raw markers in migrated composers."
+  },
+  "truncated": {
+    "prior": 28,
+    "scannedPhase5": 55,
+    "reconstructed": 0,
+    "safely_omitted": 55,
+    "still_blocked": 0,
+    "uniqueDiagnostics": 1,
+    "provenDuplicateOccurrences": 54,
+    "p3StyleRecountNow": 28,
+    "newlyDiscoveredEstimate": 41,
+    "explanation": "Prior 28 dual-mode batch. Current 55 includes newly discovered truncated lines from deeper string walk (estimate +41). All truncated dispositions are safely_omitted (never invent completions) with review-required display when substantive."
+  },
+  "everyPriorEndsAs": "reconstructed | safely_omitted | still_blocked | proven_duplicate — Phase-3 lacked per-occurrence IDs; Phase-5 hit list is the authoritative occurrence ledger. Dual-mode Phase-3 aggregates map to Phase-5 via methodology above; no prior ID left unaccounted as 'hidden'.",
+  "entriesSample": [
+    {
+      "id": "cb-fresh-001-taylor-brookes:len=30;hash=4c54c565ecbb",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "cb-fresh-002-jordan-hale:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sc-00032:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sc-0003e:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sc-00044:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sc-00056:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sc-00062:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sc-00068:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sc-0006e:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-001:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-002:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-003:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-005:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-007:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-010:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-011:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-013:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-014:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-015:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-017:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-020:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-021:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-024:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-027:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-028:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-030:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-038:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-048:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-049:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-069:len=52;hash=220bf0b5851c",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-108:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-109:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-110:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-112:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-115:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-121:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-122:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-123:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-124:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-129:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-138:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-139:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-158:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-162:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-165:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-174:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-174:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-178:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-179:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-184:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-197:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-198:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-200:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-214:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-215:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-219:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-226:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-226:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-238:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-241:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-248:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-250:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-252:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-262:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-266:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-278:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-278:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-286:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-293:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-297:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-300:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-302:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-304:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-318:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-319:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-320:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-321:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-329:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-330:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-330:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-335:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-345:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-352:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-353:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-354:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-356:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-359:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-363:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-370:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-371:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-372:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-373:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-375:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-382:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-382:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    },
+    {
+      "id": "sim-390:len=21;hash=4dc9a04370a2",
+      "ruleId": "sentence.truncated_fragment",
+      "priorRef": "phase5_scan",
+      "disposition": "safely_omitted",
+      "note": "Safely omitted with review-required if substantive"
+    },
+    {
+      "id": "sim-392:len=28;hash=e6e25826b9ab",
+      "ruleId": "sentence.raw_extraction_marker",
+      "priorRef": "phase5_scan",
+      "disposition": "reconstructed",
+      "note": "Reconstructed from structured fields"
+    }
+  ],
+  "entryCount": 97
+}

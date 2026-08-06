@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-025",
+  "changes": [
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "7143223c522f",
+        "textPreview": "Please chase {{MISSING_ITEM}} before the hearing."
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "fa6639659e0c",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed."
+      }
+    }
+  ]
+}

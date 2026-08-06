@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "stage300-batch-b-dual-status-summary@1.0.0",
+  "scanned": 120,
+  "byFocusAdapter": [
+    {
+      "adapterId": "evidence_unit_identity_with_aliases",
+      "dual": {
+        "schemaValidEligible": 120,
+        "schemaValidPartial": 0,
+        "schemaValidUnavailable": 0,
+        "namedPrerequisiteEligible": 120,
+        "namedPrerequisitePartial": 0,
+        "namedPrerequisiteUnavailable": 0
+      },
+      "exclusionLedgerEntries": 840,
+      "note": "schemaValidRepresentation ≠ namedControlPrerequisiteComplete"
+    },
+    {
+      "adapterId": "source_vs_compiled_page_binding",
+      "dual": {
+        "schemaValidEligible": 120,
+        "schemaValidPartial": 0,
+        "schemaValidUnavailable": 0,
+        "namedPrerequisiteEligible": 120,
+        "namedPrerequisitePartial": 0,
+        "namedPrerequisiteUnavailable": 0
+      },
+      "provenancePageClassTotals": {
+        "exact_source_page": 840,
+        "compiled_page_only": 0,
+        "document_only": 0,
+        "honest_unknown_page": 0,
+        "invalid_defaulted": 0
+      },
+      "exclusionLedgerEntries": 0,
+      "note": "honest_unknown_page is schema-valid; exact-page prerequisite requires pageIdentityKnown+pages."
+    },
+    {
+      "adapterId": "chase_item_to_evidence_unit_edges",
+      "dual": {
+        "schemaValidEligible": 120,
+        "schemaValidPartial": 0,
+        "schemaValidUnavailable": 0,
+        "namedPrerequisiteEligible": 0,
+        "namedPrerequisitePartial": 120,
+        "namedPrerequisiteUnavailable": 0
+      },
+      "chaseRelationshipTotals": {
+        "linked": 480,
+        "unresolved": 257,
+        "unavailable": 0,
+        "ambiguous": 0
+      },
+      "exclusionLedgerEntries": 0,
+      "note": "Unresolved without evidenceUnitId is schema-valid only; never named-control linked-edge complete."
+    },
+    {
+      "adapterId": "view_copy_export_api_pdf_composed_prose_capture",
+      "dual": {
+        "schemaValidEligible": 120,
+        "schemaValidPartial": 0,
+        "schemaValidUnavailable": 0,
+        "namedPrerequisiteEligible": 120,
+        "namedPrerequisitePartial": 0,
+        "namedPrerequisiteUnavailable": 0
+      },
+      "exclusionLedgerEntries": 0,
+      "note": "schemaValidRepresentation ≠ namedControlPrerequisiteComplete"
+    }
+  ],
+  "honestyRule": "Never treat schema-valid unresolved/unknown data as complete named-control evidence."
+}

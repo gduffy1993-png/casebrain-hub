@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "stage150-execution-readiness-gate@1.9.0",
+  "baselineCommit": "78d16bb1a2606f7187f69fc8474e97629bce69ca",
+  "programmePassSupported": false,
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "freezeAllowed": false,
+  "reasons": [
+    "98 controls remain partially_implemented",
+    "55 controls remain SNI",
+    "Fewer than 150 unique source-backed structured packets (have 30; deficit 120)",
+    "Batch-10 rematerialisation does not select or freeze Stage-150",
+    "currentlyRunnableOnStage150 remains false",
+    "Real exit payload bytes largely absent across corpora"
+  ],
+  "prerequisites": {
+    "registryComplete": true,
+    "detectorImplementationComplete": false,
+    "inputReadinessComplete": false,
+    "denominatorReadinessComplete": false,
+    "adapterReadinessComplete": false,
+    "receiptValidationComplete": true,
+    "contractReadinessComplete": true,
+    "relationshipComplete": false,
+    "protectedAssetsPreserved": true,
+    "structuredRematerialisationComplete": false
+  }
+}

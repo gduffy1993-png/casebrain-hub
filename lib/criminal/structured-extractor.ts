@@ -14,6 +14,13 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 
+import {
+  allocateDefendantsFromChargeText,
+  inferChargeDocumentRole,
+  parseCountNumber,
+  sanitizeChargeLocation,
+} from "@/lib/criminal/structured-charge-state";
+
 export type CriminalChargeExtract = {
   count: number;
   offence: string;
@@ -25,6 +32,13 @@ export type CriminalChargeExtract = {
   status?: string | null;
   confidence: number; // 0-1 deterministic heuristic
   source: string;
+  /** Defendants allocated to this count (empty = not resolvable from papers). */
+  defendants?: string[];
+  /** Operative vs superseded charge document (never merged). */
+  documentRole?: "operative" | "amended" | "superseded" | "unknown";
+  sourceDocumentType?: string | null;
+  sourcePage?: string | null;
+  compiledPage?: string | null;
 };
 
 export type CriminalHearingExtract = {
@@ -223,10 +237,34 @@ export function validateCourtName(value: string | null | undefined): string | nu
   return trimmed;
 }
 
+/** Defendant names declared anywhere in the papers (used to allocate counts). */
+function collectKnownDefendants(text: string): string[] {
+  const names = new Set<string>();
+  const patterns = [
+    /\bdefendants?\b\s*[:\-]\s*([^\n]{3,160})/gi,
+    /\baccused\b\s*[:\-]\s*([^\n]{3,160})/gi,
+    /\bD\d\s*[:\-]\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)/g,
+  ];
+  for (const re of patterns) {
+    for (const m of text.matchAll(re)) {
+      const raw = (m[1] ?? "").trim();
+      for (const part of raw.split(/\s*(?:,|;|\band\b|&)\s*/i)) {
+        const cleaned = part.replace(/\([^)]*\)/g, "").replace(/\s+/g, " ").trim();
+        if (/^[A-Z][A-Za-z'\-]+(?:\s+[A-Z][A-Za-z'\-]+)+$/.test(cleaned) && cleaned.length <= 60) {
+          names.add(cleaned);
+        }
+      }
+    }
+  }
+  return [...names].slice(0, 12);
+}
+
 function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeExtract[]; plea: CriminalChargeExtract["plea"] } {
   const { text, documentName } = input;
   const t = text ?? "";
   const charges: CriminalChargeExtract[] = [];
+  const knownDefendants = collectKnownDefendants(t);
+  const documentRole = inferChargeDocumentRole(`${documentName ?? ""} ${t.slice(0, 4000)}`);
 
   const plea = normalisePlea(
     pickFirstLineValue(t, /\bplea\b\s*[:\-]?\s*(not guilty|guilty|no plea|not_guilty|no_plea)\b/i) ??
@@ -249,7 +287,7 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
     const statuteNorm = statute ? statute.replace(/\s+/g, " ").trim() : section ? section : null;
 
     charges.push({
-      count: 1,
+      count: charges.length + 1,
       offence: raw.replace(/\s+/g, " ").trim(),
       statute: statuteNorm,
       plea,
@@ -259,13 +297,16 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
       status: null,
       confidence: 0.65,
       source: documentName,
+      defendants: allocateDefendantsFromChargeText(raw, knownDefendants),
+      documentRole,
     });
   }
 
   // "Count X" / "Statement of offence" patterns common on charge sheets
-  const countLine = /(?:^|\n)\s*(?:count\s*\d+|statement of offence)\s*[:\-]?\s*([^\n]{3,200})/gi;
+  const countLine = /(?:^|\n)\s*(count\s*\d+|statement of offence)\s*[:\-]?\s*([^\n]{3,200})/gi;
   for (const m of t.matchAll(countLine)) {
-    const raw = (m[1] ?? "").trim();
+    const countLabel = (m[1] ?? "").trim();
+    const raw = (m[2] ?? "").trim();
     if (!raw) continue;
     // Avoid swallowing generic headings
     if (/^(date|time|place|defendant|court)\b/i.test(raw)) continue;
@@ -279,7 +320,7 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
     const statuteNorm = act ? act.replace(/\s+/g, " ").trim() : section ? section.replace(/\s+/g, " ").trim() : null;
 
     charges.push({
-      count: 1,
+      count: parseCountNumber(countLabel, charges.length),
       offence: raw.replace(/\s+/g, " ").trim(),
       statute: statuteNorm,
       plea,
@@ -289,6 +330,8 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
       status: null,
       confidence: 0.6,
       source: documentName,
+      defendants: allocateDefendantsFromChargeText(raw, knownDefendants),
+      documentRole,
     });
   }
 
@@ -333,9 +376,10 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
   const statusVal =
     pickFirstLineValue(t, /\bstatus\b\s*[:\-]?\s*([^;\n]{3,40})/i) ??
     (t.match(/\bstatus\b\s*[:\-]?\s*([^;\n]{3,40})/i)?.[1]?.trim() ?? null);
-  if (locationVal || statusVal) {
+  const safeLocation = sanitizeChargeLocation(locationVal);
+  if (safeLocation || statusVal) {
     for (const c of charges) {
-      if (locationVal && !c.location) c.location = locationVal.trim();
+      if (safeLocation && !c.location) c.location = safeLocation;
       if (statusVal && !c.status) c.status = statusVal.trim();
     }
   }
@@ -354,24 +398,26 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
             ? "Assault occasioning actual bodily harm (ABH)"
             : `Offence ${sec}`;
     charges.push({
-      count: 1,
+      count: charges.length + 1,
       offence: label,
       statute: `${sec} OAPA 1861`,
       plea,
       dateOfOffence: null,
       chargeDate: null,
-      location: locationVal ?? null,
+      location: safeLocation ?? null,
       status: statusVal ?? null,
       confidence: 0.55,
       source: documentName,
+      defendants: allocateDefendantsFromChargeText(label, knownDefendants),
+      documentRole,
     });
   }
 
-  // De-dupe by offence+statute
+  // De-dupe by offence+statute+count+documentRole — operative and superseded stay distinct.
   const seen = new Set<string>();
   const deduped: CriminalChargeExtract[] = [];
   for (const c of charges) {
-    const k = `${safeLower(c.offence)}|${safeLower(c.statute ?? "")}`;
+    const k = `${safeLower(c.offence)}|${safeLower(c.statute ?? "")}|${c.count}|${c.documentRole ?? "unknown"}`;
     if (seen.has(k)) continue;
     seen.add(k);
     deduped.push(c);
@@ -496,10 +542,15 @@ function extractPACEFromText(input: ExtractInput): CriminalPACEExtract {
   if (interviewMissing) breaches.push("Interview recording missing / not served");
   if (legalAdviceMissing) breaches.push("Legal advice log missing / unclear");
 
+  // Never mark "ok" when any critical field is unclear/missing — affirmative OK is gated downstream too.
   const status: CriminalPACEExtract["status"] =
-    breaches.length > 0 ? "issues_detected" :
-    custodyRecord === "unclear" && interviewRecording === "unclear" && legalAdviceLog === "unclear" ? "unable_to_assess" :
-    "ok";
+    breaches.length > 0
+      ? "issues_detected"
+      : custodyRecord === "present" &&
+          interviewRecording === "present" &&
+          legalAdviceLog === "present"
+        ? "unable_to_assess" // Presence alone is not "no breach"; clock/provenance must pass the shared gate.
+        : "unable_to_assess";
 
   const breachSeverity: CriminalPACEExtract["breachSeverity"] =
     breaches.length >= 3 ? "CRITICAL" : breaches.length === 2 ? "HIGH" : breaches.length === 1 ? "MEDIUM" : null;

@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "corpusAssertPass": true,
+  "completed": 3530,
+  "assertFailures": 0,
+  "clusters": 0,
+  "fpFnSamples": 32,
+  "ledgerImpact": "none",
+  "out": "C:\\Users\\gduff\\casebrain-hub\\artifacts\\casebrain-qa\\integrity-programme\\phase-9"
+}

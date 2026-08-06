@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "stage300-batch-a-six-calibration-disposition-summary@1.0.0",
+  "candidateFreezeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "dispositionLedgerSha256": "2feee4b30ed9c7950abb3871394e8ab6ac9a045d13fd97052f62d0bf20471874",
+  "truthOpenSequencingSha256": "d5574eba7cc43486f524947424e3c25b3e5dc70741c64cf087f4d467872d15db",
+  "candidateCount": 0,
+  "exerciseRowCount": 720,
+  "truthContentsOpened": true,
+  "openedAfterCandidateFreeze": true,
+  "humanRatesAvailable": false,
+  "zeroCandidateMetricsForbidden": true,
+  "fpFnRecallClaims": false,
+  "dispositionTotals": {
+    "unavailable_missing_real_input": 720
+  }
+}

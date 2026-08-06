@@ -1,0 +1,35 @@
+{
+  "goldId": "GOLD-11-019",
+  "changes": [
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "2edbd8557246",
+        "textPreview": "Please provide unredacted mg11 or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "b03ff4df4b4b",
+        "textPreview": "Please provide unredacted MG11 or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "truth_map",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "5660502a7a75",
+        "textPreview": "• witness MG11 — not_safely_confirmed\n• custody extract — not_safely_confirmed\n• unredacted mg11 — missing\n• redaction schedule — missing\n• full police note — m"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "5761023ac35d",
+        "textPreview": "• Witness MG11 — not_safely_confirmed\n• Custody extract — not_safely_confirmed\n• Unredacted MG11 — missing\n• Redaction schedule — missing\n• Full police note — m"
+      }
+    }
+  ]
+}

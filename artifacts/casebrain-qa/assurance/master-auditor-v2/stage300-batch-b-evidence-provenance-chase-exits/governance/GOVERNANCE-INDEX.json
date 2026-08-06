@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "stage300-batch-b-governance-index@1.0.0",
+  "decisionCardRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-b-evidence-provenance-chase-exits/BATCH-B-DECISION-CARD.md",
+  "artefacts": [
+    {
+      "name": "43-control-unlock-path.json",
+      "sha256": "5757dc8a7f13e85da0bff335a3432aa35693b133aa74d6edd706f05c793045c7"
+    },
+    {
+      "name": "production-vs-harness-gap-register.json",
+      "sha256": "43097048a8e9a8c0a8b6f138deab61ff1389b199c573411b241fa508c29ed2e0"
+    },
+    {
+      "name": "calibration-economy-rule.json",
+      "sha256": "761f10e5bb5ca7b565b57c7819af8ce89a4e5f7d489be97830695af66199aba3"
+    },
+    {
+      "name": "auditor-independence-tautology-register.json",
+      "sha256": "52c48e7367a072da3ed7846a29f7f900eea547393c2795b9c0c0539b07c72521"
+    },
+    {
+      "name": "control-priority-severity-register.json",
+      "sha256": "6fa23fa7b4175fb54c29db8511afcd2c1f967c4ef054d7b7d87b7fb0ecaaef22"
+    },
+    {
+      "name": "foundation-stop-rule.json",
+      "sha256": "ea1f67f33a1b002ba3d904fb83d1af207a1afdb39f1c8eb92828ad02fe4084f1"
+    },
+    {
+      "name": "version-and-drift-control.json",
+      "sha256": "8a3fc762ee1ec817fa32f5ab103cac1551b1c32dea2a9bbde60654a6c77fef46"
+    },
+    {
+      "name": "pre-agreed-acceptance-semantics-template.json",
+      "sha256": "e3f45d7a479d6e418d2630b62ac00ccce97bd3dc5256dfb93d7b7a993dff01d5"
+    }
+  ]
+}

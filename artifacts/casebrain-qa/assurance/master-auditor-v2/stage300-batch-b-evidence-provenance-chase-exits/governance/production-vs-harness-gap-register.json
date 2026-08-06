@@ -1,0 +1,394 @@
+{
+  "schemaVersion": "stage300-batch-b-production-vs-harness-gap@1.0.0",
+  "liveAppModifiedThisUnit": false,
+  "rows": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "gapClass": "source_packets_do_not_contain",
+      "missingInputLane": "source_corpus",
+      "exactMissingInput": "Original PDF/binary bytes + page-unit OCR extraction receipts (pageIdentityKnown, redaction masks, attachment inventory, password/corrupt flags) per source document",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "gapClass": "source_packets_do_not_contain",
+      "missingInputLane": "source_corpus",
+      "exactMissingInput": "Original PDF/binary bytes + page-unit OCR extraction receipts (pageIdentityKnown, redaction masks, attachment inventory, password/corrupt flags) per source document",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "gapClass": "source_packets_do_not_contain",
+      "missingInputLane": "source_corpus",
+      "exactMissingInput": "Original PDF/binary bytes + page-unit OCR extraction receipts (pageIdentityKnown, redaction masks, attachment inventory, password/corrupt flags) per source document",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "gapClass": "source_packets_do_not_contain",
+      "missingInputLane": "source_corpus",
+      "exactMissingInput": "Original PDF/binary bytes + page-unit OCR extraction receipts (pageIdentityKnown, redaction masks, attachment inventory, password/corrupt flags) per source document",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "gapClass": "source_packets_do_not_contain",
+      "missingInputLane": "source_corpus",
+      "exactMissingInput": "Original PDF/binary bytes + page-unit OCR extraction receipts (pageIdentityKnown, redaction masks, attachment inventory, password/corrupt flags) per source document",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "gapClass": "production_prose_only_not_structured",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Structured legalStateTaxonomy / category-set authority fields on chargeInstruments[] (not prose-only)",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Explicit structured dobAgeCalcLedger (DOB, offence/hearing timestamps, timezone, calcInputs) on packets — not inferred from court prose",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Explicit structured dobAgeCalcLedger (DOB, offence/hearing timestamps, timezone, calcInputs) on packets — not inferred from court prose",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Explicit structured proceduralPartyState (youthState / fitnessParticipation / disclosurePiiState) on packets — not inferred from court prose",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Explicit structured proceduralPartyState (youthState / fitnessParticipation / disclosurePiiState) on packets — not inferred from court prose",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Explicit structured proceduralPartyState (youthState / fitnessParticipation / disclosurePiiState) on packets — not inferred from court prose",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Independent per-audience surface packs (client/court/CPS/supervisor/defence/prosecution/judicial) with comparable payloads — not a single composed_prose blob",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "capture_materialisation_harness",
+      "exactMissingInput": "Non-synthetic versioned run receipts (source hashes, membership order, commit/build, schema/detector/model pins, finding IDs, dispositions)",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "gapClass": "production_does_not_emit",
+      "missingInputLane": "production_casebrain",
+      "exactMissingInput": "Non-synthetic evidence-locked draft version pairs with sentence receipts, actor/time/approval audit, and cross-exit propagation artefacts",
+      "productBacklogItemRequired": true,
+      "harnessOnlyRepairSufficient": false,
+      "riskNote": "Assurance may outpace live builders unless product backlog absorbs this input"
+    }
+  ],
+  "firstClassProductRisk": true
+}
