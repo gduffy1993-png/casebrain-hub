@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "locked-acceptance-contract-restore-receipt@1.0.0",
+  "at": "2026-08-05T05:40:00.000Z",
+  "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/LOCKED-ACCEPTANCE-CONTRACT.json",
+  "beforeDirtyWorkingTreeBlob": "3527a31b7e103d8c5ea3d72ed3640a688d6a8ea1",
+  "headBlob": "38e1226a5ae35f06423eeacacf4d05f43bc9962b",
+  "afterRestoreBlob": "38e1226a5ae35f06423eeacacf4d05f43bc9962b",
+  "matchesHead": true,
+  "action": "git checkout HEAD -- LOCKED-ACCEPTANCE-CONTRACT.json",
+  "neverOverwriteAgain": true,
+  "additiveChildContract": "CHILD-ACCEPTANCE-CONTRACT.json"
+}

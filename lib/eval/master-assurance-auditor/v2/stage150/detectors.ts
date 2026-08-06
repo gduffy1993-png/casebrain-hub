@@ -308,10 +308,30 @@ export function evaluateEvidenceIdentityState(ctx: Stage150EvalContext): Stage15
     "disputed",
     "provisional",
     "needs_review",
+    "not_safely_confirmed",
+    "unknown",
+    // other_defendant_only is attribution/scope — NOT a valid existence/source-state token
   ]);
+  const lifecycleLeak = new Set([
+    "draft",
+    "signed",
+    "operative",
+    "superseded",
+    "amended",
+    "draft_superseded",
+  ]);
+  const accessLeak = new Set(["privileged", "restricted"]);
+  const attributionLeak = new Set(["other_defendant_only"]);
   states.forEach((row, i) => {
     const state = str(row.inferredSourceState).toLowerCase();
     if (state && !known.has(state) && state !== "null") {
+      const classHint = lifecycleLeak.has(state)
+        ? "lifecycle_token_in_existence"
+        : accessLeak.has(state)
+          ? "access_token_in_existence"
+          : attributionLeak.has(state)
+            ? "attribution_token_in_existence"
+            : "unknown_token";
       hits.push(
         hit({
           engineId: "evidence_attribution",
@@ -321,8 +341,25 @@ export function evaluateEvidenceIdentityState(ctx: Stage150EvalContext): Stage15
           occurrenceRef: `/evidenceStates/${i}/inferredSourceState`,
           exactWording: state,
           candidateClass: "candidate_defect",
-          plainEnglish: `Unrecognised evidence state token: ${state}`,
+          plainEnglish: `Unrecognised evidence state token (${classHint}): ${state}`,
           evidenceRefs: [`/evidenceStates/${i}/inferredSourceState`, `/evidenceStates/${i}/label`],
+        }),
+      );
+    }
+    // Explicit dimension ownership: lifecycle/access/attribution must not occupy existence fields.
+    const existence = str(row.existence ?? row.existenceLabel).toLowerCase();
+    if (lifecycleLeak.has(existence) || accessLeak.has(existence) || attributionLeak.has(existence)) {
+      hits.push(
+        hit({
+          engineId: "evidence_attribution",
+          handlerId: "dimension_collapse",
+          controlId: "MAA2-EVS-01-DIMENSION-SEPARATION",
+          findingCode: "EVS_DIMENSION_COLLAPSE",
+          occurrenceRef: `/evidenceStates/${i}/existence`,
+          exactWording: existence,
+          candidateClass: "candidate_defect",
+          plainEnglish: `Cross-dimension token in existence field: ${existence}`,
+          evidenceRefs: [`/evidenceStates/${i}/existence`],
         }),
       );
     }
@@ -334,9 +371,25 @@ export function evaluateEvidenceIdentityState(ctx: Stage150EvalContext): Stage15
     const note = str(row.note);
     const rowLabel = str(row.label);
 
-    // ATR-01 structured: other_defendant_only rows must not leak into this-defendant court affirmation
-    // and must retain an attached co-defendant do-not-import guard.
-    if (existence === "other_defendant_only") {
+    // ATR-01: other_defendant_only is attribution/scope — never an existence token.
+    const attributionScope = str(row.attributionScope).toLowerCase();
+    if (existence === "other_defendant_only" || attributionScope === "other_defendant_only") {
+      if (existence === "other_defendant_only") {
+        hits.push(
+          hit({
+            engineId: "evidence_attribution",
+            handlerId: "dimension_collapse",
+            controlId: "MAA2-EVS-01-DIMENSION-SEPARATION",
+            findingCode: "EVS_DIMENSION_COLLAPSE",
+            occurrenceRef: `/fiveAnswersEvidenceRows/${i}/existence`,
+            exactWording: existence,
+            candidateClass: "candidate_defect",
+            plainEnglish:
+              "other_defendant_only placed in existence — belongs to attribution/defendant scope.",
+            evidenceRefs: [`/fiveAnswersEvidenceRows/${i}/existence`],
+          }),
+        );
+      }
       const gaps = (ctx.output.warningsAndGaps ?? {}) as Record<string, unknown>;
       const dno = (Array.isArray(gaps.doNotOverstate) ? gaps.doNotOverstate : []) as unknown[];
       const hasCodefGuard = dno.some(
@@ -361,13 +414,13 @@ export function evaluateEvidenceIdentityState(ctx: Stage150EvalContext): Stage15
             handlerId: "codefendant_leak_risk",
             controlId: "MAA2-ATR-01-DEFENDANT-SEPARATION",
             findingCode: "ATR_CODEFENDANT_LEAK_RISK",
-            occurrenceRef: `/fiveAnswersEvidenceRows/${i}/existence`,
+            occurrenceRef: `/fiveAnswersEvidenceRows/${i}/attributionScope`,
             exactWording: `${rowLabel}: other_defendant_only (no co-defendant do-not-import guard)`,
             candidateClass: "candidate_defect",
             plainEnglish:
               "Co-defendant-only evidence row lacks an attached do-not-import co-defendant warning.",
             evidenceRefs: [
-              `/fiveAnswersEvidenceRows/${i}/existence`,
+              `/fiveAnswersEvidenceRows/${i}/attributionScope`,
               `/fiveAnswersEvidenceRows/${i}/label`,
               "/warningsAndGaps/doNotOverstate",
             ],
@@ -387,7 +440,7 @@ export function evaluateEvidenceIdentityState(ctx: Stage150EvalContext): Stage15
             plainEnglish:
               "Court wording imports co-defendant-only material as this-defendant served/affirmative content.",
             evidenceRefs: [
-              `/fiveAnswersEvidenceRows/${i}/existence`,
+              `/fiveAnswersEvidenceRows/${i}/attributionScope`,
               `/fiveAnswersEvidenceRows/${i}/label`,
               "/courtNote/text",
             ],

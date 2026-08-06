@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "stage3000-v2.1.1-race-tainted-historical@1.0.0",
+  "classification": "REALISTIC_CHILD_V2_1_1__RACE_TAINTED_NON_AUTHORITATIVE_HISTORICAL",
+  "path": "realistic-child-v2.1.1",
+  "preservedByteForByte": true,
+  "doNotRewriteOrDelete": true,
+  "fileCount": 15315,
+  "treeSha256": "f316a290a718c7506052a59a8255671d5f43a0d3d6c7652aeb72c6bbd662e9ea"
+}

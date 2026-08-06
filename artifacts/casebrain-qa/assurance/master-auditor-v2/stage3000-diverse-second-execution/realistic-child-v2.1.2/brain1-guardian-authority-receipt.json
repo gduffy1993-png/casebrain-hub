@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-brain1-guardian-authority@1.0.0",
+  "head": "0326cc44a724c01aeab162eed8b8806dd8a44345",
+  "authoritativeHead": "0326cc44a724c01aeab162eed8b8806dd8a44345",
+  "headMatches": true,
+  "lockedContractWorkingBlob": "38e1226a5ae35f06423eeacacf4d05f43bc9962b",
+  "lockedContractHeadBlob": "38e1226a5ae35f06423eeacacf4d05f43bc9962b",
+  "bundleMaterialNormalizerWorkingTreeDirty": false
+}

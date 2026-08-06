@@ -1,0 +1,39 @@
+{
+  "startedAt": "2026-08-05T21:59:55.139Z",
+  "runId": "v212-authoritative-0326cc44",
+  "pid": 15812,
+  "head": "0326cc44a724c01aeab162eed8b8806dd8a44345",
+  "writerCount": 1,
+  "orchestratorCount": 1,
+  "blindInputRoot": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2-blind-input",
+  "truthPhysicallyPresentInBlindInput": false,
+  "parentMembershipSha256": "683d0201e561aa94f8d81fb0241e2db40813afd85cf134a67020c04c9e6e3550",
+  "v1ChildMembershipSha256": "75c86ddf28be102111ea4cfa73f4b3b76ef1f41db48c54f61be574d68ac35e39",
+  "v21ChildMembershipSha256": "cb87a807978fdd71615b32cb8a8522930701df4ccea8e624ace0f5163f302d00",
+  "v2ParentLineage": {
+    "parentMembershipSha256": "683d0201e561aa94f8d81fb0241e2db40813afd85cf134a67020c04c9e6e3550",
+    "v1ChildMembershipSha256": "75c86ddf28be102111ea4cfa73f4b3b76ef1f41db48c54f61be574d68ac35e39",
+    "v21ChildMembershipSha256": "cb87a807978fdd71615b32cb8a8522930701df4ccea8e624ace0f5163f302d00",
+    "v2PreservedAs": "realistic-child-v2-pre-shared-root-remediation",
+    "rematerialisation": "v2.1-shared-root-remediation"
+  },
+  "preflight": {
+    "absentProvenance": true,
+    "v2Binding": true,
+    "evidenceStateDimensions": true,
+    "documentRelationships": true
+  },
+  "v1Classification": "REALISTIC_DOCUMENT_PACKS_CREATED__AUDIT_ACCOUNTING_AND_BINDING_INCOMPLETE",
+  "freeGiB": 3.43,
+  "checkpoints": [
+    20,
+    50,
+    150,
+    300,
+    1000,
+    3000
+  ],
+  "productionAuthority": "buildLiveProductionSurfacesFromDocumentUnits",
+  "candidateSemantics": "genuine_detector_hits_only",
+  "truthSealedUntilFreeze": true
+}

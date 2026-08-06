@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-preflight-verification@1.0.0",
+  "head": "0326cc44a724c01aeab162eed8b8806dd8a44345",
+  "focusedContracts": {
+    "evidenceStateDimensions": "PASS",
+    "documentRelationships": "PASS",
+    "bndMixedReplacement": "PASS",
+    "wrd04Adversarial": "PASS",
+    "provenance": "PASS",
+    "v2Binding": "PASS",
+    "runAuthority": "PASS",
+    "freezeSequence": "PASS",
+    "determinism20x2": "PASS"
+  },
+  "changedPathTypeScript": {
+    "command": "tsc -p tsconfig.v212.json",
+    "status": "PASS"
+  },
+  "genuineNpmRunBuild": {
+    "command": "npm run build",
+    "status": "PASS",
+    "nextVersion": "14.2.15",
+    "dependencyRoot": "C:/Users/gduff/casebrain-hub/node_modules",
+    "note": "The worktree node_modules junction was temporarily pointed at the canonical dependency root and restored after build. An earlier mixed-worktree dependency attempt compiled but failed prerender due duplicate React/Next resolution; it is not represented as a code pass."
+  },
+  "authorityComparisons": {
+    "lockedAcceptanceContractEqualsHead": true,
+    "bundleMaterialNormalizerEqualsHead": true,
+    "brain1GuardianHeadMatches": true
+  },
+  "stopUncommitted": true
+}

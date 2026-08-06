@@ -37,9 +37,16 @@ const WORDING_RULES: WordingRule[] = [
     engineId: "document_relationship",
     candidateClass: "candidate_defect",
     plainEnglish: "Replacement/supersession mentioned without link to prior instrument.",
-    match: (t) =>
-      /\b(replaced|superseded|replacement)\b/i.test(t) &&
-      !/\b(replaces|supersedes|linked\s+to|see\s+(prior|previous)|formerly)\b/i.test(t),
+    match: (t) => {
+      // Title/admin markers like "Draft indictment (superseded)" alone are not defects when
+      // structured replacement links exist — those are checked in evaluateBatch3Wording.
+      const mentionsReplace = /\b(replaced|superseded|replacement)\b/i.test(t);
+      const hasLinkCue =
+        /\b(replaces|supersedes|linked\s+to|see\s+(prior|previous|operative)|formerly|superseded\s+by|replaced\s+by)\b/i.test(
+          t,
+        );
+      return mentionsReplace && !hasLinkCue;
+    },
   },
   {
     controlId: "MAA2-BND-04-VERSION-PRECEDENCE",
@@ -578,9 +585,137 @@ const WORDING_RULES: WordingRule[] = [
 
 export function evaluateBatch3Wording(ctx: Stage150EvalContext): Stage150Hit[] {
   const hits: Stage150Hit[] = [];
+  const instruments = arr(ctx.output.chargeInstruments);
+  const relationships = arr(ctx.output.documentRelationships);
+
+  /** Per-instrument / per-document replacement edges — never case-global. */
+  const linkedInstrumentIds = new Set<string>();
+  const linkedDocumentIds = new Set<string>();
+  const edgeByInstrument = new Map<string, { priorId: string; operativeId: string; basis: string }>();
+
+  for (const i of instruments) {
+    const id = str(i.instrumentId);
+    const replaces = str(i.replacesInstrumentId);
+    const supersededBy = str(i.supersededByInstrumentId);
+    if (id && replaces) {
+      linkedInstrumentIds.add(id);
+      linkedInstrumentIds.add(replaces);
+      edgeByInstrument.set(id, { priorId: replaces, operativeId: id, basis: "replacesInstrumentId" });
+      if (str(i.sourceDocument)) linkedDocumentIds.add(str(i.sourceDocument));
+      const prior = instruments.find((x) => str(x.instrumentId) === replaces);
+      if (prior && str(prior.sourceDocument)) linkedDocumentIds.add(str(prior.sourceDocument));
+    }
+    if (id && supersededBy) {
+      linkedInstrumentIds.add(id);
+      linkedInstrumentIds.add(supersededBy);
+      edgeByInstrument.set(id, { priorId: id, operativeId: supersededBy, basis: "supersededByInstrumentId" });
+      if (str(i.sourceDocument)) linkedDocumentIds.add(str(i.sourceDocument));
+    }
+  }
+  for (const r of relationships) {
+    if (!/replac|supersed/i.test(str(r.relationshipType))) continue;
+    const from = str(r.fromDocumentId);
+    const to = str(r.toDocumentId);
+    const fromInst = str(r.fromInstrumentId);
+    const toInst = str(r.toInstrumentId);
+    // Unrelated / incomplete edges do not satisfy any instrument.
+    if (!from || !to) continue;
+    if (fromInst) linkedInstrumentIds.add(fromInst);
+    if (toInst) linkedInstrumentIds.add(toInst);
+    linkedDocumentIds.add(from);
+    linkedDocumentIds.add(to);
+  }
+
+  const ambiguousVersionGraph = (() => {
+    const operative = instruments.filter((i) => str(i.status) === "operative");
+    if (operative.length < 2) return false;
+    return operative.every((i) => !str(i.replacesInstrumentId) && !str(i.supersededByInstrumentId));
+  })();
+
+  function occurrenceBoundToLinkedInstrument(ref: string, text: string): {
+    linked: boolean;
+    unresolved: boolean;
+    instrumentId: string | null;
+    documentId: string | null;
+  } {
+    // Bind wording occurrence to exact instrument/document via ref path or embedded ids.
+    const instIdx = /\/chargeInstruments\/(\d+)/i.exec(ref);
+    if (instIdx) {
+      const inst = instruments[Number(instIdx[1])];
+      if (!inst) return { linked: false, unresolved: true, instrumentId: null, documentId: null };
+      const id = str(inst.instrumentId);
+      const docId = str(inst.sourceDocument);
+      const linked = Boolean(id && linkedInstrumentIds.has(id));
+      return { linked, unresolved: ambiguousVersionGraph && !linked, instrumentId: id || null, documentId: docId || null };
+    }
+    const docFromRef =
+      /\/(?:evidenceStates|documents)\/[^/]*?(?:docId[=:]|sourceDocument[=:]|source[=:])?([A-Za-z0-9_-]+)/i.exec(
+        ref,
+      )?.[1] || null;
+    for (const inst of instruments) {
+      const id = str(inst.instrumentId);
+      const docId = str(inst.sourceDocument);
+      const titleHint = str(inst.instrumentType);
+      if (
+        (docId && (ref.includes(docId) || text.includes(docId))) ||
+        (id && (ref.includes(id) || text.includes(id))) ||
+        (docFromRef && docFromRef === docId)
+      ) {
+        const linked = Boolean(id && linkedInstrumentIds.has(id));
+        // Relationship on an unrelated document must not satisfy this instrument.
+        if (!linked && linkedDocumentIds.size > 0 && docId && !linkedDocumentIds.has(docId)) {
+          return { linked: false, unresolved: false, instrumentId: id || null, documentId: docId || null };
+        }
+        return {
+          linked,
+          unresolved: ambiguousVersionGraph && !linked,
+          instrumentId: id || null,
+          documentId: docId || null,
+        };
+      }
+      if (titleHint && /indictment|charge/i.test(text) && /supersed|replac/i.test(text) && docId) {
+        // Title-level superseded marker — bind to matching instrument by kind.
+        if (/indictment/i.test(titleHint) && /indictment/i.test(text)) {
+          const linked = Boolean(id && linkedInstrumentIds.has(id));
+          return { linked, unresolved: ambiguousVersionGraph && !linked, instrumentId: id || null, documentId: docId };
+        }
+      }
+    }
+    // No bindable instrument — if case-global link exists it must NOT suppress; treat as unlinked.
+    if (ambiguousVersionGraph) {
+      return { linked: false, unresolved: true, instrumentId: null, documentId: docFromRef };
+    }
+    return { linked: false, unresolved: false, instrumentId: null, documentId: docFromRef };
+  }
+
   for (const w of includedWordingLeaves(ctx.leaves)) {
     for (const rule of WORDING_RULES) {
       if (!rule.match(w.text, w.ref)) continue;
+      if (rule.findingCode === "BND_REPLACEMENT_UNLINKED") {
+        const bound = occurrenceBoundToLinkedInstrument(w.ref, w.text);
+        if (bound.unresolved) {
+          hits.push(
+            hit({
+              engineId: rule.engineId,
+              handlerId: rule.handlerId,
+              controlId: rule.controlId,
+              findingCode: rule.findingCode,
+              occurrenceRef: w.ref,
+              exactWording: w.text,
+              candidateClass: "unresolved",
+              plainEnglish:
+                "Ambiguous replacement/supersession graph — unresolved; never pass from array order or case-global link.",
+              evidenceRefs: [w.ref],
+            }),
+          );
+          continue;
+        }
+        if (bound.linked) {
+          // This exact instrument/document has a replacement edge — suppress only for this occurrence.
+          continue;
+        }
+        // Unlinked occurrence still hits even when another instrument in the case is linked.
+      }
       hits.push(
         hit({
           engineId: rule.engineId,

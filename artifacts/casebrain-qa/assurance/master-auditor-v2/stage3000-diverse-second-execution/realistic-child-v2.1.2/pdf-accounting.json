@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-pdf-accounting@1.0.0",
+  "registerRows": 24,
+  "uniqueCaseIds": 24,
+  "uniquePdfHashes": 24,
+  "duplicateCaseRows": 0,
+  "genuineOutputPdfBytes": 0,
+  "sourcePdfCopies": 24,
+  "browser": "not_exercised"
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-pre-truth-freeze@1.0.0",
+  "runId": "v212-authoritative-0326cc44",
+  "head": "0326cc44a724c01aeab162eed8b8806dd8a44345",
+  "semanticMembershipSha256": "46e823af53ab0e479263c0378d29e7cd6ab463c23ecbc832be388bbd3c2925fa",
+  "exactMembershipFileSha256": "0ef862e2eacf117407024300351edfc368019b93c16053e3156f21f1c05761f2",
+  "candidateLedgerSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "candidateMetadataSha256": "aa3678e3b01f55b4db9ee86cd139b42f1a3f8c62d627d821566b078d62406925",
+  "candidateCount": 0,
+  "ledgerByteLength": 0,
+  "ledgerLineCount": 0,
+  "frozenAt": "2026-08-06T06:20:18.653Z",
+  "truthPathExistedBeforeReceipt": false,
+  "blindInputTruthPathExisted": false,
+  "immutableSequencePosition": 6
+}

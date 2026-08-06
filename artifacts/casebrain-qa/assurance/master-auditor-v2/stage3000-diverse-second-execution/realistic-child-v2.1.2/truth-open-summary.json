@@ -1,0 +1,10 @@
+{
+  "membershipSha256": "46e823af53ab0e479263c0378d29e7cd6ab463c23ecbc832be388bbd3c2925fa",
+  "candidateLedgerSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "candidateMetadataSha256": "aa3678e3b01f55b4db9ee86cd139b42f1a3f8c62d627d821566b078d62406925",
+  "truthOpened": 3000,
+  "orderHonoured": true,
+  "verifiedLedgerHashBeforeTruthOpen": true,
+  "candidateLedgerSha256AfterTruthOpen": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "candidateLedgerHashUnchanged": true
+}

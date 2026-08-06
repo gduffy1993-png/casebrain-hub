@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-candidate-freeze@1.0.0",
+  "membershipSha256": "46e823af53ab0e479263c0378d29e7cd6ab463c23ecbc832be388bbd3c2925fa",
+  "parentMembershipSha256": "683d0201e561aa94f8d81fb0241e2db40813afd85cf134a67020c04c9e6e3550",
+  "v1ChildMembershipSha256": "75c86ddf28be102111ea4cfa73f4b3b76ef1f41db48c54f61be574d68ac35e39",
+  "v2ChildMembershipSha256": "0abf76ad04825456ba663671f525905e0e18bf7927f532103862c9a43571c079",
+  "v21ChildMembershipSha256": "cb87a807978fdd71615b32cb8a8522930701df4ccea8e624ace0f5163f302d00",
+  "truthOpened": false,
+  "candidateCount": 0,
+  "candidateLedger": "candidate-findings.jsonl",
+  "candidateLedgerSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "ledgerByteLength": 0,
+  "ledgerLineCount": 0,
+  "note": "candidateLedgerSha256 hashes candidate-findings.jsonl bytes. candidateMetadataSha256 hashes this meta file. Never conflate them.",
+  "frozenAt": "2026-08-06T06:20:18.653Z"
+}

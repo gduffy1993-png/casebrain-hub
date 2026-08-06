@@ -1,19 +1,20 @@
 /**
- * Versioned evidence-dimension domain registry for EVS-01.
+ * Versioned evidence-dimension domain registry for EVS-01 (v2.0.0).
  *
- * Derived from accepted canonical five-answers schema + observed ESA packet tokens.
- * Does not invent tokens. Existence and reliability domains are disjoint by construction.
+ * Orthogonal domains — tokens must not silently satisfy foreign dimensions:
+ * - existence/service
+ * - lifecycle/version
+ * - access/confidentiality
+ * - attribution/defendant scope
+ * - reliability
  *
- * Sources:
- * - lib/criminal/five-answers/types.ts (EvidenceExistence, EvidenceReliability)
- * - lib/criminal/evidence-state-reconcile.ts (other_defendant_only existence extension)
- * - Observed unique-valid ESA fiveAnswersEvidenceRows tokens (499 packets)
+ * `other_defendant_only` belongs to attribution/scope, NOT existence.
+ * Lifecycle tokens (draft/signed/operative/superseded/amended) never satisfy existence.
+ * Access tokens (privileged/restricted) never satisfy existence.
  */
+export const EVIDENCE_DIMENSION_DOMAIN_REGISTRY_VERSION = "2.0.0" as const;
 
-export const EVIDENCE_DIMENSION_DOMAIN_REGISTRY_VERSION = "1.0.0" as const;
-
-/** Canonical EvidenceExistence from five-answers/types.ts */
-export const CANONICAL_EXISTENCE_TOKENS = [
+export const EXISTENCE_SERVICE_TOKENS = [
   "served",
   "referred_only",
   "missing",
@@ -22,15 +23,28 @@ export const CANONICAL_EXISTENCE_TOKENS = [
   "not_safely_confirmed",
 ] as const;
 
-/**
- * Observed/reconcile extension retained on ESA fiveAnswers rows.
- * canonicalizeEvidenceExistence may emit other_defendant_only; packets confirm it.
- * Not in EvidenceExistence type union — recorded here as an explicit extension.
- */
-export const OBSERVED_EXISTENCE_EXTENSIONS = ["other_defendant_only"] as const;
+export const LIFECYCLE_VERSION_TOKENS = [
+  "draft",
+  "signed",
+  "superseded",
+  "operative",
+  "amended",
+  "draft_superseded",
+] as const;
 
-/** Canonical EvidenceReliability from five-answers/types.ts */
-export const CANONICAL_RELIABILITY_TOKENS = [
+export const ACCESS_CONFIDENTIALITY_TOKENS = [
+  "privileged",
+  "restricted",
+  "ordinary_disclosure",
+] as const;
+
+export const ATTRIBUTION_DEFENDANT_SCOPE_TOKENS = [
+  "other_defendant_only",
+  "defendant_0",
+  "multi_defendant",
+] as const;
+
+export const RELIABILITY_TOKENS = [
   "strong",
   "weak",
   "contested",
@@ -39,35 +53,44 @@ export const CANONICAL_RELIABILITY_TOKENS = [
   "needs_review",
 ] as const;
 
-/** Observed reliability tokens on ESA fiveAnswers (subset of canonical). */
+/** @deprecated Use EXISTENCE_SERVICE_TOKENS — kept for import compatibility. */
+export const CANONICAL_EXISTENCE_TOKENS = EXISTENCE_SERVICE_TOKENS;
+/** @deprecated — other_defendant_only moved to attribution domain in v2.0.0 */
+export const OBSERVED_EXISTENCE_EXTENSIONS = [] as const;
+/** @deprecated */
+export const CANONICAL_RELIABILITY_TOKENS = RELIABILITY_TOKENS;
+/** @deprecated */
 export const OBSERVED_RELIABILITY_TOKENS = ["needs_review", "weak"] as const;
+/** @deprecated */
+export const OBSERVED_EXISTENCE_TOKENS = EXISTENCE_SERVICE_TOKENS;
 
-/** Observed existence tokens on ESA fiveAnswers. */
-export const OBSERVED_EXISTENCE_TOKENS = [
-  "unknown",
-  "incomplete",
-  "missing",
-  "referred_only",
-  "served",
-  "other_defendant_only",
-] as const;
+export type ExistenceDomainToken = (typeof EXISTENCE_SERVICE_TOKENS)[number];
+export type ReliabilityDomainToken = (typeof RELIABILITY_TOKENS)[number];
+export type LifecycleDomainToken = (typeof LIFECYCLE_VERSION_TOKENS)[number];
+export type AccessDomainToken = (typeof ACCESS_CONFIDENTIALITY_TOKENS)[number];
+export type AttributionDomainToken = (typeof ATTRIBUTION_DEFENDANT_SCOPE_TOKENS)[number];
 
-export type ExistenceDomainToken =
-  | (typeof CANONICAL_EXISTENCE_TOKENS)[number]
-  | (typeof OBSERVED_EXISTENCE_EXTENSIONS)[number];
-
-export type ReliabilityDomainToken = (typeof CANONICAL_RELIABILITY_TOKENS)[number];
-
-export const EXISTENCE_DOMAIN: ReadonlySet<string> = new Set<string>([
-  ...CANONICAL_EXISTENCE_TOKENS,
-  ...OBSERVED_EXISTENCE_EXTENSIONS,
+export const EXISTENCE_DOMAIN: ReadonlySet<string> = new Set<string>([...EXISTENCE_SERVICE_TOKENS]);
+export const LIFECYCLE_DOMAIN: ReadonlySet<string> = new Set<string>([...LIFECYCLE_VERSION_TOKENS]);
+export const ACCESS_DOMAIN: ReadonlySet<string> = new Set<string>([...ACCESS_CONFIDENTIALITY_TOKENS]);
+export const ATTRIBUTION_DOMAIN: ReadonlySet<string> = new Set<string>([
+  ...ATTRIBUTION_DEFENDANT_SCOPE_TOKENS,
 ]);
+export const RELIABILITY_DOMAIN: ReadonlySet<string> = new Set<string>([...RELIABILITY_TOKENS]);
 
-export const RELIABILITY_DOMAIN: ReadonlySet<string> = new Set<string>([...CANONICAL_RELIABILITY_TOKENS]);
-
-/** Tokens that appear in both domains — must be empty for unambiguous promotion. */
 export function domainIntersection(): string[] {
-  return [...EXISTENCE_DOMAIN].filter((t) => RELIABILITY_DOMAIN.has(t)).sort();
+  const all = [
+    EXISTENCE_DOMAIN,
+    LIFECYCLE_DOMAIN,
+    ACCESS_DOMAIN,
+    ATTRIBUTION_DOMAIN,
+    RELIABILITY_DOMAIN,
+  ];
+  const seen = new Map<string, number>();
+  for (const dom of all) {
+    for (const t of dom) seen.set(t, (seen.get(t) || 0) + 1);
+  }
+  return [...seen.entries()].filter(([, n]) => n > 1).map(([t]) => t).sort();
 }
 
 export function domainsAreDisjoint(): boolean {
@@ -77,13 +100,24 @@ export function domainsAreDisjoint(): boolean {
 export function isExistenceToken(token: string): boolean {
   return EXISTENCE_DOMAIN.has(token.toLowerCase());
 }
-
 export function isReliabilityToken(token: string): boolean {
   return RELIABILITY_DOMAIN.has(token.toLowerCase());
+}
+export function isLifecycleToken(token: string): boolean {
+  return LIFECYCLE_DOMAIN.has(token.toLowerCase());
+}
+export function isAccessToken(token: string): boolean {
+  return ACCESS_DOMAIN.has(token.toLowerCase());
+}
+export function isAttributionToken(token: string): boolean {
+  return ATTRIBUTION_DOMAIN.has(token.toLowerCase());
 }
 
 export type DimensionTokenClass =
   | "existence"
+  | "lifecycle"
+  | "access"
+  | "attribution"
   | "reliability"
   | "out_of_domain"
   | "empty";
@@ -91,73 +125,59 @@ export type DimensionTokenClass =
 export function classifyDimensionToken(token: string): DimensionTokenClass {
   const t = token.trim().toLowerCase();
   if (!t) return "empty";
-  if (isExistenceToken(t) && isReliabilityToken(t)) {
-    // Should never happen when domainsAreDisjoint(); treat as ambiguous out_of_domain.
-    return "out_of_domain";
-  }
-  if (isExistenceToken(t)) return "existence";
-  if (isReliabilityToken(t)) return "reliability";
+  const hits: DimensionTokenClass[] = [];
+  if (isExistenceToken(t)) hits.push("existence");
+  if (isLifecycleToken(t)) hits.push("lifecycle");
+  if (isAccessToken(t)) hits.push("access");
+  if (isAttributionToken(t)) hits.push("attribution");
+  if (isReliabilityToken(t)) hits.push("reliability");
+  if (hits.length === 1) return hits[0]!;
+  if (hits.length > 1) return "out_of_domain";
   return "out_of_domain";
+}
+
+/**
+ * True when a token from a foreign domain is placed in an existence field.
+ * Lifecycle/access/attribution tokens must not satisfy existence silently.
+ */
+export function existenceFieldRejectsForeignToken(token: string): boolean {
+  const c = classifyDimensionToken(token);
+  return c === "lifecycle" || c === "access" || c === "attribution" || c === "reliability";
 }
 
 export type EvidenceDimensionDomainRegistryDoc = {
   schemaVersion: typeof EVIDENCE_DIMENSION_DOMAIN_REGISTRY_VERSION;
   title: string;
   sources: string[];
-  existenceDomain: {
-    canonical: readonly string[];
-    observedExtensions: readonly string[];
-    observedOnEsa: readonly string[];
-    permitted: string[];
-  };
-  reliabilityDomain: {
-    canonical: readonly string[];
-    observedOnEsa: readonly string[];
-    permitted: string[];
-  };
+  domains: Record<string, string[]>;
   intersection: string[];
   domainsDisjoint: boolean;
-  promotionEligible: boolean;
-  ambiguityNote: string | null;
   hardRules: readonly string[];
 };
 
 export function buildEvidenceDimensionDomainRegistryDoc(): EvidenceDimensionDomainRegistryDoc {
-  const intersection = domainIntersection();
-  const disjoint = intersection.length === 0;
   return {
     schemaVersion: EVIDENCE_DIMENSION_DOMAIN_REGISTRY_VERSION,
-    title: "Evidence dimension domain registry (existence vs reliability)",
+    title: "Evidence dimension domain registry (five orthogonal domains)",
     sources: [
-      "lib/criminal/five-answers/types.ts#EvidenceExistence",
-      "lib/criminal/five-answers/types.ts#EvidenceReliability",
-      "lib/criminal/five-answers/evidence-trace.ts#FIVE_ANSWERS_HARD_RULES",
-      "lib/criminal/evidence-state-reconcile.ts#canonicalizeEvidenceExistence",
-      "ESA unique-valid fiveAnswersEvidenceRows token inventory (499)",
+      "lib/criminal/five-answers/types.ts",
+      "V2.1.1 review blocker E — dimension ownership",
     ],
-    existenceDomain: {
-      canonical: CANONICAL_EXISTENCE_TOKENS,
-      observedExtensions: OBSERVED_EXISTENCE_EXTENSIONS,
-      observedOnEsa: OBSERVED_EXISTENCE_TOKENS,
-      permitted: [...EXISTENCE_DOMAIN].sort(),
+    domains: {
+      existence_service: [...EXISTENCE_SERVICE_TOKENS],
+      lifecycle_version: [...LIFECYCLE_VERSION_TOKENS],
+      access_confidentiality: [...ACCESS_CONFIDENTIALITY_TOKENS],
+      attribution_defendant_scope: [...ATTRIBUTION_DEFENDANT_SCOPE_TOKENS],
+      reliability: [...RELIABILITY_TOKENS],
     },
-    reliabilityDomain: {
-      canonical: CANONICAL_RELIABILITY_TOKENS,
-      observedOnEsa: OBSERVED_RELIABILITY_TOKENS,
-      permitted: [...RELIABILITY_DOMAIN].sort(),
-    },
-    intersection,
-    domainsDisjoint: disjoint,
-    promotionEligible: disjoint,
-    ambiguityNote: disjoint
-      ? null
-      : `Ambiguous cross-domain tokens: ${intersection.join(", ")} — EVS-01 must remain partially_implemented.`,
+    intersection: domainIntersection(),
+    domainsDisjoint: domainsAreDisjoint(),
     hardRules: [
-      "Served does not mean reliable.",
-      "Missing does not mean irrelevant.",
-      "Referred only does not mean usable.",
-      "Inference must be labelled as inference.",
-      "No line is sendable just because a source exists.",
+      "other_defendant_only belongs to attribution/scope — never existence.",
+      "draft/signed/operative/superseded/amended belong only to lifecycle.",
+      "privileged/restricted belong only to access.",
+      "Existence remains served/referred_only/missing/incomplete/unknown/not_safely_confirmed.",
+      "Cross-dimension tokens must be rejected or explicitly migrated — never silently allowlisted into existence.",
     ],
   };
 }

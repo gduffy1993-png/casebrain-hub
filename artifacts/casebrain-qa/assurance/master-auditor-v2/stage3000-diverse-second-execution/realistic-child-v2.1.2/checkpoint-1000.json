@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "diverse-second-realistic-child-v2.1.2-checkpoint@1.0.0",
+  "at": "2026-08-06T00:44:14.537Z",
+  "processed": 1000,
+  "freeGiB": 2.89,
+  "uniqueExactStrings": 4365,
+  "genuineCandidateCount": 0,
+  "controlsEvaluatedOnAtLeastOneCase": 17,
+  "pdfSubset": 8,
+  "chargesZero": 0,
+  "unsplitLim": 170,
+  "exactDenominators": {
+    "ok": true,
+    "failReasons": [],
+    "outputRows": 1000,
+    "sourceRows": 1000,
+    "candidateRows": 0,
+    "controlRows": 17000,
+    "uniqueControlPairs": 17000,
+    "duplicateControlPairs": 0,
+    "conflictingControlPairs": 0,
+    "uniqueControlIds": 17,
+    "pdfRegisterRows": 8,
+    "uniquePdfCases": 8
+  },
+  "candidateAccountingSeparateFromExerciseReceipts": true,
+  "deterministicResume": {
+    "runId": "v212-authoritative-0326cc44",
+    "doneCaseCount": 1000,
+    "outputHashLedgerAuthoritative": true
+  },
+  "failReasons": [],
+  "verdict": "PASS_CONTINUE"
+}

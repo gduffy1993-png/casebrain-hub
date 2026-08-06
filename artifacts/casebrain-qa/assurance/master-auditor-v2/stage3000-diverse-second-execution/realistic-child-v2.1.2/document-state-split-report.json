@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-document-state-split@1.0.0",
+  "frozenSourcePackSignedTitleDraftRows": 80,
+  "rematerialisedCaseBrainOutputSignedTitleDraftRows": 0,
+  "ordinaryVisibleExitContradictions": 0,
+  "protectedAuditOnlyRows": 3000,
+  "exactReplacementLinks": 400
+}

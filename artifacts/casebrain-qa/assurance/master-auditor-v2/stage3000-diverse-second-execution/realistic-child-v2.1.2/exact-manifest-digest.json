@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-exact-manifest-digest@1.0.0",
+  "manifestPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/exact-manifest.json",
+  "manifestSha256": "9388cb8a74362f0be2737ce7f358b93be53e1e1e55da7a043fccce3fcf99d9b1",
+  "manifestByteLength": 13366,
+  "validation": {
+    "missing": 0,
+    "extra": 0,
+    "mismatches": 0
+  },
+  "evidenceModifiedAfterDigest": false
+}

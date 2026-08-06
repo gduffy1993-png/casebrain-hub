@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-single-process-preflight@1.0.0",
+  "runId": "v212-authoritative-0326cc44",
+  "pid": 15812,
+  "head": "0326cc44a724c01aeab162eed8b8806dd8a44345",
+  "membership": "0abf76ad04825456ba663671f525905e0e18bf7927f532103862c9a43571c079",
+  "checkedAt": "2026-08-05T21:59:53.910Z",
+  "matchingOtherProcesses": [],
+  "liveLockBeforeAcquire": null,
+  "lockAfterAcquire": {
+    "schemaVersion": "stage3000-v2.1.2-run-authority@1.0.0",
+    "pid": 15812,
+    "runId": "v212-authoritative-0326cc44",
+    "head": "0326cc44a724c01aeab162eed8b8806dd8a44345",
+    "membership": "0abf76ad04825456ba663671f525905e0e18bf7927f532103862c9a43571c079",
+    "startedAt": "2026-08-05T21:59:53.905Z",
+    "childRoot": "realistic-child-v2.1.2"
+  },
+  "oneOrchestrator": true,
+  "oneWriter": true
+}

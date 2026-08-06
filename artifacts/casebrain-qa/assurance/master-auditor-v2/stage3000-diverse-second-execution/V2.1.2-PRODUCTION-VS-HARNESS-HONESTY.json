@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "v2.1.2-production-vs-harness-honesty@1.0.0",
+  "inheritedFrom": "V2.1.1-PRODUCTION-VS-HARNESS-HONESTY.json",
+  "rules": [
+    "Evidence-state bag normalization is corpus materialiser/harness behavior.",
+    "EVS/WRD/BND changes are audit detector behavior.",
+    "Freeze, lock, denominator, and manifest corrections are report/harness authority behavior.",
+    "No harness-only change is promoted to a live CaseBrain product repair."
+  ],
+  "openProductGap": {
+    "id": "PG-EVS-LIVE-PAYLOAD",
+    "status": "open",
+    "summary": "Authenticated live CaseBrain matter payload builders remain outside this corpus-only proof."
+  }
+}

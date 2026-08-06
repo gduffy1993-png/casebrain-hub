@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-control-receipt-accounting@1.0.0",
+  "totalRows": 51000,
+  "uniqueCaseControlPairs": 51000,
+  "duplicatePairs": 0,
+  "conflictingPairs": 0,
+  "uniqueControlIds": 17,
+  "uniqueControlIdList": [
+    "MAA2-ATR-01-DEFENDANT-SEPARATION",
+    "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+    "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+    "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+    "MAA2-EVS-01-DIMENSION-SEPARATION",
+    "MAA2-EVS-02-STATE-ENUM",
+    "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+    "MAA2-WRD-01-GRAMMAR-SENTENCES",
+    "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+    "MAA2-WRD-05-TEMPLATE-JOINS",
+    "MAA2-WRD-06-SPACES-PUNCTUATION",
+    "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+    "MAA2-WRD-08-CAPITALISATION",
+    "MAA2-WRD-09-PROTECTED-ACRONYMS",
+    "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+    "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+    "MAA2-XEX-05-INFERRED-DATE-QUALIFIED"
+  ],
+  "registryDenominator": 361,
+  "claimedControlsEvaluated": 17
+}

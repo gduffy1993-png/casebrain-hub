@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-canonical-freeze@1.0.0",
+  "runId": "v212-authoritative-0326cc44",
+  "semanticMembershipSha256": "46e823af53ab0e479263c0378d29e7cd6ab463c23ecbc832be388bbd3c2925fa",
+  "exactMembershipFileSha256": "0ef862e2eacf117407024300351edfc368019b93c16053e3156f21f1c05761f2",
+  "candidateLedgerSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "candidateMetadataSha256": "aa3678e3b01f55b4db9ee86cd139b42f1a3f8c62d627d821566b078d62406925",
+  "candidateCount": 0,
+  "ledgerByteLength": 0,
+  "ledgerLineCount": 0,
+  "pdfUniqueCaseDenominator": 24,
+  "uniqueStringCount": 11064,
+  "controlReceiptAccounting": {
+    "schemaVersion": "stage3000-v2.1.2-control-receipt-accounting@1.0.0",
+    "totalRows": 51000,
+    "uniqueCaseControlPairs": 51000,
+    "duplicatePairs": 0,
+    "conflictingPairs": 0,
+    "uniqueControlIds": 17,
+    "uniqueControlIdList": [
+      "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "MAA2-EVS-02-STATE-ENUM",
+      "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "MAA2-WRD-05-TEMPLATE-JOINS",
+      "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "MAA2-WRD-08-CAPITALISATION",
+      "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "MAA2-XEX-05-INFERRED-DATE-QUALIFIED"
+    ],
+    "registryDenominator": 361,
+    "claimedControlsEvaluated": 17
+  },
+  "checkpoint3000Sha256": "3dd81ad8abb4a82a32702d2ee44c4074b9c7692dd99b4e0be4433b40cee2f717",
+  "checkpoint3000Processed": 3000,
+  "stopAndDecisionMustRepeat": {
+    "semanticMembershipSha256": "46e823af53ab0e479263c0378d29e7cd6ab463c23ecbc832be388bbd3c2925fa",
+    "candidateLedgerSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidateMetadataSha256": "aa3678e3b01f55b4db9ee86cd139b42f1a3f8c62d627d821566b078d62406925",
+    "pdfUniqueCaseDenominator": 24,
+    "uniqueStringCount": 11064,
+    "controlRows": 51000,
+    "uniqueControlIds": 17
+  }
+}

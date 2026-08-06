@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "CHILD-ACCEPTANCE-CONTRACT-diverse-second-v2.1.2@1.0.0",
+  "lockedParentContract": "LOCKED-ACCEPTANCE-CONTRACT.json",
+  "lockedParentContractMustRemainByteIdenticalToHead": true,
+  "childRoot": "realistic-child-v2.1.2",
+  "blindInputRoot": "realistic-child-v2.1.2-blind-input",
+  "sourcePackRoot": "realistic-child-v2-pre-shared-root-remediation",
+  "sourceCaseCount": 3000,
+  "truthPhysicallyPresentInBlindInput": false,
+  "oneOrchestrator": true,
+  "oneWriter": true,
+  "notAcceptedAs": [
+    "corpus_PASS",
+    "stage3000_completion",
+    "programme_PASS",
+    "solicitor_approval",
+    "global_zero_defects"
+  ]
+}

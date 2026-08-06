@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-determinism-contract@1.0.0",
+  "ok": true,
+  "runACaseCount": 20,
+  "runBCaseCount": 20,
+  "exclusionVersion": "v2.1.2-runtime-metadata-exclusions@1.0.0",
+  "excludedKeys": [
+    "createdAt",
+    "frozenAt",
+    "generatedAt",
+    "openedAt",
+    "pid",
+    "runId",
+    "startedAt",
+    "updatedAt"
+  ],
+  "sourceBackedIdentical": true,
+  "solicitorVisibleIdentical": true,
+  "detectorResultsIdentical": true,
+  "semanticOutputsIdentical": true,
+  "mismatches": []
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-classification@1.0.0",
+  "classification": "REALISTIC_CHILD_V2_1_2__CLEAN_SINGLE_WRITER_REAUDIT_UNCOMMITTED",
+  "authoritativeForV212Audit": true,
+  "preservedHistorical": {
+    "v211": "REALISTIC_CHILD_V2_1_1__RACE_TAINTED_NON_AUTHORITATIVE_HISTORICAL"
+  },
+  "notAcceptedAs": [
+    "corpus_PASS",
+    "stage3000_completion",
+    "programme_PASS",
+    "solicitor_approval",
+    "global_zero_defects"
+  ]
+}

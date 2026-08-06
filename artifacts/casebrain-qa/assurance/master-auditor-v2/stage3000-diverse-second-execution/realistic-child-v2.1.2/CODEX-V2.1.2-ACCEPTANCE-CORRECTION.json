@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-codex-acceptance-correction@1.0.0",
+  "classification": "REALISTIC_CHILD_V2_1_2__CLEAN_SINGLE_WRITER_EXECUTION_ACCEPTED_SUBJECT_TO_ADDITIVE_REPORTING_CORRECTION",
+  "mutatesExistingV212Evidence": false,
+  "cleanSingleWriterExecutionEvidenceAccepted": true,
+  "fullProductOrProgrammePassAccepted": false,
+  "controlExercise": {
+    "exercisedControls": 17,
+    "registryDenominator": 361,
+    "exercisedOverRegistry": "17/361",
+    "allNamedControlReceiptsPartiallyExercised": true,
+    "namedControlReceiptRows": 51000,
+    "fullyExercisedControls": 0,
+    "openControlsRemaining": 344,
+    "uniqueControlIds": [
+      "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "MAA2-EVS-02-STATE-ENUM",
+      "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "MAA2-WRD-05-TEMPLATE-JOINS",
+      "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "MAA2-WRD-08-CAPITALISATION",
+      "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "MAA2-XEX-05-INFERRED-DATE-QUALIFIED"
+    ]
+  },
+  "candidateZeroScope": "Zero genuine candidates applies only to the 17 exercised detector controls. It is not a global zero-defect claim across the full 361-control registry.",
+  "wordingQualityOccurrences": {
+    "count": 1709736,
+    "status": "unreviewed",
+    "classifiedAsConfirmedDefects": false
+  },
+  "notExercisedOccurrences": 1032000,
+  "pdf": {
+    "registerRows": 24,
+    "uniqueSourcePdfCopies": 24,
+    "sourceCopiesOnly": true,
+    "genuineOutputPdfBytes": 0,
+    "genuineOutputPdf": "not_exercised",
+    "browser": "not_exercised"
+  },
+  "openProductGap": {
+    "id": "PG-EVS-LIVE-PAYLOAD",
+    "status": "open",
+    "source": "V2.1.2-PRODUCTION-VS-HARNESS-HONESTY.json",
+    "summary": "Authenticated live CaseBrain matter payload builders remain outside this corpus-only proof."
+  },
+  "membershipHonesty": {
+    "caseCount": 3000,
+    "uniqueSourcePackHashes": 2583,
+    "uniqueOutputHashes": 3000,
+    "conflicts": 0,
+    "postFreezeDeduplication": false,
+    "semanticMembershipSha256": "46e823af53ab0e479263c0378d29e7cd6ab463c23ecbc832be388bbd3c2925fa",
+    "exactMembershipFileSha256": "0ef862e2eacf117407024300351edfc368019b93c16053e3156f21f1c05761f2"
+  },
+  "notAcceptedAs": [
+    "corpus_PASS",
+    "stage3000_completion",
+    "programme_PASS",
+    "solicitor_approval",
+    "global_zero_defects",
+    "merge",
+    "deploy"
+  ],
+  "recordedAt": "2026-08-06T20:05:00.000Z"
+}

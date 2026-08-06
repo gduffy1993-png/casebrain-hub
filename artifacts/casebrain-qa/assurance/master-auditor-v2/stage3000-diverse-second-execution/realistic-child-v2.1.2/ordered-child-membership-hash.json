@@ -1,0 +1,14 @@
+{
+  "semanticMembershipSha256": "46e823af53ab0e479263c0378d29e7cd6ab463c23ecbc832be388bbd3c2925fa",
+  "exactMembershipFileSha256": "0ef862e2eacf117407024300351edfc368019b93c16053e3156f21f1c05761f2",
+  "parentMembershipSha256": "683d0201e561aa94f8d81fb0241e2db40813afd85cf134a67020c04c9e6e3550",
+  "v1ChildMembershipSha256": "75c86ddf28be102111ea4cfa73f4b3b76ef1f41db48c54f61be574d68ac35e39",
+  "v2ChildMembershipSha256": "0abf76ad04825456ba663671f525905e0e18bf7927f532103862c9a43571c079",
+  "v21ChildMembershipSha256": "cb87a807978fdd71615b32cb8a8522930701df4ccea8e624ace0f5163f302d00",
+  "acceptedCount": 3000,
+  "uniqueCaseIds": 3000,
+  "uniqueSourceHashes": 2583,
+  "uniqueOutputHashes": 3000,
+  "conflicts": 0,
+  "postFreezeDeduplication": false
+}
