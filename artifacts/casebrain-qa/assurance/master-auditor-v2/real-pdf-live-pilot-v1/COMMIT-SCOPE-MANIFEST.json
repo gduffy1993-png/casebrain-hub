@@ -1,0 +1,533 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-v1-commit-scope-manifest@1.0.0",
+  "generatedAt": "2026-08-06T23:53:35.455Z",
+  "baselineHead": "2c09d58f57840dd1fca0a9e7e329268460d0964b",
+  "branch": "programme/real-pdf-live-pilot-v1",
+  "includedFileCount": 80,
+  "includedFiles": [
+    {
+      "path": ".gitignore",
+      "bytes": 5270,
+      "sha256": "d3e178f62c48d43a876e4a0fbbc90615ec0bdcc4dad10af4ef842af711f1ae8a",
+      "classification": "ignore_rules"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/Brain1-Guardian-comparison.json",
+      "bytes": 1245,
+      "sha256": "249d6ff028ba4755b887a6a627edbc9f30e09461b9a5fe6f686deef9331323f2",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/DECISION-CARD.md",
+      "bytes": 3529,
+      "sha256": "b7aa0502ec74d1ed743f764d451e8a7aa465b89703712b2e6e2e440f467341a9",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/HISTORICAL-PRESERVE-RECEIPT.json",
+      "bytes": 471,
+      "sha256": "096eb59443f9a355a6cd1bffea7a0d42c9c373b428b46521a634a5e70e19b9d4",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/LOCKED-ACCEPTANCE-CONTRACT.json",
+      "bytes": 1290,
+      "sha256": "9877ed6e53cb1c84839e8748a01723b85139b3416e205bab6403deeb8d78582a",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/STOP-FOR-CODEX-REVIEW.json",
+      "bytes": 2660,
+      "sha256": "773a14390c2f6064374eacef079b50820342569d92ec8aa224b47f26521c4b07",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/all-exit-matrix.json",
+      "bytes": 6340,
+      "sha256": "f6303292ae811a2c5961eb933a0619f09530543062c9af274e72edf506ca8bb9",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/browser-workflow-report.json",
+      "bytes": 1192,
+      "sha256": "2d74faa0a512747288a4cd9341da66ebb0d5cd85c7040cf09219161dc4fec7d5",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/charge-readiness-cross-exit-matrix.json",
+      "bytes": 28683,
+      "sha256": "303763a8c3282e18ef60994967fd8a92d51b1fc05d250326afec40fcec1cabbb",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/checkpoint-20.json",
+      "bytes": 5523,
+      "sha256": "f4dcb08ac1132cbd5fecc3a3b33b30e59e554c17a8c4047f8dc64d55f98a8a1e",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/checkpoint-5.json",
+      "bytes": 1587,
+      "sha256": "676b9884378c7e2b83e7700430c5002bf1024d31c9fee3afe29dfc68c788c456",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/deterministic-sample-rerun.json",
+      "bytes": 923,
+      "sha256": "a8c7ed92fb74db0ebcd7e58bf3885783c142adf2292570e46a243c8242220e84",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/exact-changed-file-manifest.json",
+      "bytes": 9833,
+      "sha256": "7e7e3e10533b6ae7f8b3145b9ae7f8d6a8c066ee3d5e84edcb3f3dfe710816f4",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/five-case-preflight-report.json",
+      "bytes": 1770,
+      "sha256": "c3a1735d85ba0e164004109c789980dcab785dcc2649671594957bb6291dd36b",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/live-payload-capability-matrix.json",
+      "bytes": 3117,
+      "sha256": "42abea88f0d85f4c35f0b88c91dc4426e5d68eca8adc66369bc9f37a8fec4c97",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/membership-freeze-receipt.json",
+      "bytes": 357,
+      "sha256": "ee4c5a3cc9170dc28e7ebfb4409007da2c134a1fb9a33d5292e727900c6e1e45",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/ordered-membership-20.json",
+      "bytes": 13393,
+      "sha256": "47ca4f1566bd0e4178220579933c908e652da5ec64f114c46af8b17c148da0d8",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/output-pdf-register.json",
+      "bytes": 10820,
+      "sha256": "2efe2dae20b7ce2d1b52b94041660e2a077d54b6169bdc09d3e3d4710c244e1b",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/output-pdf-visual-report.md",
+      "bytes": 2043,
+      "sha256": "43b0f8a9da4533a4ecb086e3871ca5791a38729eab32f8e2f8a4f4be4454dc81",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/per-control-exercise-summary.json",
+      "bytes": 11943,
+      "sha256": "f89759db86fe5bf1ad25d59ea6b0e39af965b01158c7318396715a142d8cd14b",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/priority-control-map-361.json",
+      "bytes": 181918,
+      "sha256": "9f0f14b1577455648be0de029e0e1c778d468331347275f072278dd286b45bb9",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/shared-remediation-register.json",
+      "bytes": 1135,
+      "sha256": "3c844ea77b0c3ae87702463cc30622217419aa4f53a18b33e1ae6531b6c53009",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/source-hash-before-after.json",
+      "bytes": 7786,
+      "sha256": "59c2bcc255332777c478a1d195803500ef802c409e52420d5eeb054a4e328a9d",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/source-hash-before.json",
+      "bytes": 5950,
+      "sha256": "d3009029d1e74ff68b9922b3ac379dcf9ab2ff9b74befa19ccdfa6846e940f6b",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/twenty-case-final-report.json",
+      "bytes": 5713,
+      "sha256": "d170ad249b96cceee0cc340f88f1a03aa7295598e81ae16eb2648e6d80840c6b",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/unresolved-and-not-exercised-register.json",
+      "bytes": 1089,
+      "sha256": "17ba757b0681b1e50fa4faf69eeff92726b84eb60f7145052539ca964e883c70",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/verification-results.json",
+      "bytes": 1729,
+      "sha256": "fc4df13cdb8be3b37e1e2ccb2d27c5928f384061e5d3cf8116f13c91b31c10d6",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/wording-denominator-summary.json",
+      "bytes": 695,
+      "sha256": "417917c3b84a34426c96b207f1693ea8857f51949311d85651fb2838d2321d57",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/wording-root-cause-register.json",
+      "bytes": 17437,
+      "sha256": "ffba2bfcd2d08874ad008c4118345ad01dfa5b1bda48f9b5b3d89fbcb45c5d60",
+      "classification": "historical_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/Brain1-Guardian-comparison.json",
+      "bytes": 1245,
+      "sha256": "6022692abda739297f62624dcc78542f6df0afb2c59fa7d2a9c964346a19763b",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/COMMIT-SCOPE-DIGEST.json",
+      "bytes": 804,
+      "sha256": "4184ec8f7c344a491c052448941c80085894bcae156ac4baedc0a27e76ec264c",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/COMMIT-SCOPE-MANIFEST.json",
+      "bytes": 25281,
+      "sha256": "edc2849adc60e61e5f4627fcf00010dfc128d7be2adadc81e5be437b4dd91107",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/DECISION-CARD.md",
+      "bytes": 3622,
+      "sha256": "89da5a1ad865fdb083d535f68e51b06693f89514115bd7bfe84c81e627617472",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/FINAL-CODEX-ACCEPTANCE-CHECK.json",
+      "bytes": 3014,
+      "sha256": "312ccb54fb251c827072fde9695dd94424f0da6f1a3a34ca49fd7d8e8785543a",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/LOCKED-ACCEPTANCE-CONTRACT.json",
+      "bytes": 1290,
+      "sha256": "28f1c5de13b14eefa518b93d1d443c3b2af247239c2aedc7fcaee817d017e7e1",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/STOP-FOR-CODEX-REVIEW.json",
+      "bytes": 4755,
+      "sha256": "6550ca041db21bfb5f0f9c0fc6b968485c7106900a83b68e05b979a94bd31484",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/all-exit-matrix.json",
+      "bytes": 6340,
+      "sha256": "716ef1eab1e661354b8b57879f1b9c30f8421c57962c978d89de2243debef7d5",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/browser-workflow-report.json",
+      "bytes": 1192,
+      "sha256": "2d74faa0a512747288a4cd9341da66ebb0d5cd85c7040cf09219161dc4fec7d5",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/charge-readiness-cross-exit-matrix.json",
+      "bytes": 28683,
+      "sha256": "dabf92aa10aec21f02fc0be7e325ad8cca91cedf4a51e47f48309e6825708eca",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/checkpoint-20.json",
+      "bytes": 5523,
+      "sha256": "1da30be294e7f13c9f318803f23f11475ce9c698a9c57684b37d13755115bfac",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/checkpoint-5.json",
+      "bytes": 1587,
+      "sha256": "21badb85d1834379b474e1fce551d9f61a99cbf0b7b43e110e3067fdcea721ae",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/control-exercise-audit-24.json",
+      "bytes": 74945,
+      "sha256": "28d156c6cb6c03c4650d97d024a81b847b8fd297724aa15af9c814c857de7b7f",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/control-exercise-audit-24.md",
+      "bytes": 20258,
+      "sha256": "bdd2a77f47b1beb2de8ee329106856f8b1d5b97728beaade02de530d76146230",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/deterministic-sample-rerun.json",
+      "bytes": 923,
+      "sha256": "de757699d54aeaae2961dd71d9f75ee47fca4e13a7d7639e7c000096383fc384",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/exact-changed-file-manifest.json",
+      "bytes": 1053,
+      "sha256": "11a9d10f4fc10b08e7121abe156df0088f92773b123c2b0d895130e2f691907c",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/five-case-preflight-report.json",
+      "bytes": 1770,
+      "sha256": "9e2abcef65cb66a45ea0a7f89f5d2f82a0bc23b4a8179f6037e3a4cf3e9f48b5",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/live-payload-capability-matrix.json",
+      "bytes": 3117,
+      "sha256": "85b4880a625b4fbebe0cda9e55946a823511794570db48cb9941d112fbdd971f",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/membership-freeze-receipt.json",
+      "bytes": 357,
+      "sha256": "ee4c5a3cc9170dc28e7ebfb4409007da2c134a1fb9a33d5292e727900c6e1e45",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/ordered-membership-20.json",
+      "bytes": 13393,
+      "sha256": "47ca4f1566bd0e4178220579933c908e652da5ec64f114c46af8b17c148da0d8",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/output-pdf-raster-acceptance.json",
+      "bytes": 6008,
+      "sha256": "63ecfa7ed6e2219a17b3661eb30ff17ad8c466b44e375d1b44acd06f9d59041c",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/output-pdf-raster-results.json",
+      "bytes": 23502,
+      "sha256": "955781bc60d08b0f881578a49b741a584cd15c9fe9592e7858be29425e562489",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/output-pdf-register.json",
+      "bytes": 10820,
+      "sha256": "6c32e3096291814ff7ecfad756e7036dc037f155d1d0e3ff835f51399b9d0b19",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/output-pdf-visual-report.md",
+      "bytes": 669,
+      "sha256": "08fea01464e03d64fe6a565fd5a38ab4a9691d2a12138d70cdb3ea44670f7175",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+      "bytes": 12658,
+      "sha256": "8ba3fcfdeebb6c91252c20d6300589d0bee4af6f4faf750ffb268a992b2fb5cd",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/priority-control-map-361.json",
+      "bytes": 181918,
+      "sha256": "9f0f14b1577455648be0de029e0e1c778d468331347275f072278dd286b45bb9",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/shared-remediation-register.json",
+      "bytes": 3099,
+      "sha256": "85cc145f524a3f44b9e1fe6a799e3a03d60d1d9fca9741619c91bd1b531b9ab4",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/source-hash-before-after.json",
+      "bytes": 7786,
+      "sha256": "f23f47fe6358d6cd5ad220c7e7050189652f9bc03c58eaa1cb74a8702e19f8a7",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/source-hash-before.json",
+      "bytes": 5950,
+      "sha256": "d3009029d1e74ff68b9922b3ac379dcf9ab2ff9b74befa19ccdfa6846e940f6b",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/tsc-noemit-raw.txt",
+      "bytes": 12027,
+      "sha256": "bd325872c126be5b2cff1556db8b28a3b49950cbd0a9b7fa43890ef2dc6860a6",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/twenty-case-final-report.json",
+      "bytes": 6093,
+      "sha256": "6af40c3647ddcf9fe54dd884a42b768c409b5e802f0f4200db31089265a40880",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/unresolved-and-not-exercised-register.json",
+      "bytes": 1154,
+      "sha256": "d0c7f66f78ce36a9c85ae53e64987e920011230eee059448776b13595667d279",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/verification-results.json",
+      "bytes": 3273,
+      "sha256": "a5001a6aaac8bbbff2384a32c96879908c548c8a6ed6fa655b095a3e13d31be8",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/wording-acceptance-denominators.json",
+      "bytes": 2154,
+      "sha256": "2276852c73565fec901a74923c5b366d35a6786667310dc526a999aa80d72dba",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/wording-acceptance-report.md",
+      "bytes": 569,
+      "sha256": "5431a54b6bf5858954b64b34557ceb881cc02849bdd8cdc947f228f600345971",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/wording-denominator-summary.json",
+      "bytes": 685,
+      "sha256": "9947d85213e2ab19eff2f912415e28f4b97b3b9e91f3e383a01a543c592bbdb9",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/wording-root-cause-register.json",
+      "bytes": 141,
+      "sha256": "d610a4acf205772f54f79ac96a29ae0cbc6d52477e921b96952ad7ae187fa5f4",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/wording-triage-disposition.json",
+      "bytes": 1724,
+      "sha256": "bd8020c1a7fe47cd37adf12e9b4a9045fb6b97fd31ea5bc186c07722c754aa94",
+      "classification": "pilot_compact_artefact"
+    },
+    {
+      "path": "lib/criminal/canonical-live-surface-adapter.ts",
+      "bytes": 25491,
+      "sha256": "fb0b1bbbdab399a7d73c03af189d18d1e3c4eee583e00ee98b62f326c1413af3",
+      "classification": "product_fix"
+    },
+    {
+      "path": "lib/criminal/charge-allegation-completeness.ts",
+      "bytes": 18897,
+      "sha256": "00818e00d21204ea331b8f98782a27430b1d7c91c98863390eee91d445922d52",
+      "classification": "product_fix"
+    },
+    {
+      "path": "lib/criminal/finding-provenance.ts",
+      "bytes": 10406,
+      "sha256": "354cdc7369e7a9da0b99656e360b4a89973161abb49aa819219ba12062a636b7",
+      "classification": "product_fix"
+    },
+    {
+      "path": "lib/criminal/solicitor-visible-sanitization.ts",
+      "bytes": 22098,
+      "sha256": "1c53529452e2ff3ab7b4af7224aaf7d00421c06f374cddabdaa88e5bb9f32d25",
+      "classification": "product_fix"
+    },
+    {
+      "path": "scripts/assurance/real-pdf-live-pilot/build-acceptance-audit.ts",
+      "bytes": 23514,
+      "sha256": "1bdf32d48e2e5f38359174c7a34dd6ece5d40f047a7a5683a77c64778fdb5069",
+      "classification": "pilot_script"
+    },
+    {
+      "path": "scripts/assurance/real-pdf-live-pilot/build-commit-scope-manifest.ts",
+      "bytes": 6302,
+      "sha256": "47c0f4d76afa1a19b2aa15d4787095d420e451bffe2558d19799e9dc48f297dc",
+      "classification": "pilot_script"
+    },
+    {
+      "path": "scripts/assurance/real-pdf-live-pilot/freeze-membership.ts",
+      "bytes": 7310,
+      "sha256": "384d53842ea9a63c7cff399e9d76a8add1a5ad23ea826e18f130116819c9c282",
+      "classification": "pilot_script"
+    },
+    {
+      "path": "scripts/assurance/real-pdf-live-pilot/output-pdf-raster-checks.ts",
+      "bytes": 17510,
+      "sha256": "c353087b7519c31680b4f7207da8e65472d1c4715f06d43f07ba325114706287",
+      "classification": "pilot_script"
+    },
+    {
+      "path": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts",
+      "bytes": 25821,
+      "sha256": "dd846a5007213517ba8c9d5cb324d48dbf462d09118a61752c5569cddc2ad22e",
+      "classification": "pilot_script"
+    },
+    {
+      "path": "scripts/assurance/real-pdf-live-pilot/pilot-20-definition.ts",
+      "bytes": 10852,
+      "sha256": "ec0a7dc75a1ef446c8579234b05df696cb056b253aa8835b96dc00c1c7f0a5d5",
+      "classification": "pilot_script"
+    },
+    {
+      "path": "scripts/assurance/real-pdf-live-pilot/priority-control-map.ts",
+      "bytes": 5575,
+      "sha256": "d4e6a31ae45234a1952f03e8b1ab3727d2d0c081ea0a32153c4e1af76c2f7f1a",
+      "classification": "pilot_script"
+    },
+    {
+      "path": "scripts/assurance/real-pdf-live-pilot/run-real-pdf-live-pilot.ts",
+      "bytes": 50335,
+      "sha256": "6d1c35fcf95b5d8281b39d600088e6a7382678a74b3f8f3d6303f232089b9b10",
+      "classification": "pilot_script"
+    },
+    {
+      "path": "scripts/assurance/real-pdf-live-pilot/wording-triage.ts",
+      "bytes": 13782,
+      "sha256": "674506b692ee225254240be51b8824bab22af5492e9885c5fafb4f20ecf611aa",
+      "classification": "pilot_script"
+    }
+  ],
+  "excludedByPolicy": [
+    "artifacts/.../real-pdf-live-pilot-v1/bulk/** (gitignored regenerable receipts/pdfs/renders)",
+    "source PDFs under Downloads (path+hash freeze only)",
+    ".env.local / secrets",
+    "any Stage-3000 execution worktree dirty files (not present in this worktree)"
+  ],
+  "dirtyTreeOutsideScope": [],
+  "dependencyProof": {
+    "method": "git status --porcelain scoped to worktree + static import scan of included TS for excluded markers; no other dirty paths present",
+    "dirtyPathsTotal": 8,
+    "dirtyOutsideScopeCount": 0,
+    "importsReferencingExcludedMarkers": [],
+    "conclusion": "PASS_SCOPE_ISOLATION: no included file depends on excluded dirty work; dirty tree is exactly the intended commit scope (plus gitignored bulk)."
+  },
+  "tscProof": {
+    "command": "npx tsc -p tsconfig.json --noEmit",
+    "totalErrors": 56,
+    "baselineErrors": 56,
+    "delta": 0,
+    "changedPathErrors": 0,
+    "changedPathsChecked": [
+      "lib/criminal/canonical-live-surface-adapter.ts",
+      "lib/criminal/charge-allegation-completeness.ts",
+      "lib/criminal/finding-provenance.ts",
+      "lib/criminal/solicitor-visible-sanitization.ts",
+      "scripts/assurance/real-pdf-live-pilot/"
+    ],
+    "rawLogPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/tsc-noemit-raw.txt"
+  },
+  "honestControlCounts": {
+    "claimedInvoked": 24,
+    "honestFullyExercised": 11,
+    "honestPartiallyExercised": 8,
+    "honestNotExercised": 5,
+    "phraseProxyOrNegativeScan": 6
+  },
+  "nonClaims": [
+    "no authenticated browser exercise",
+    "no merge",
+    "no deploy",
+    "no corpus PASS",
+    "no programme PASS",
+    "no solicitor approval"
+  ]
+}

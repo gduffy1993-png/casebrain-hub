@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-all-exit-matrix@1.0.0",
+  "generatedAt": "2026-08-06T23:22:19.621Z",
+  "evidenceClassesNeverCollapsed": true,
+  "matrix": [
+    {
+      "exit": "view",
+      "evidenceClass": "authenticated_http_browser",
+      "status": "NOT_EXERCISED",
+      "note": "Clerk-gated sign-in requires interactive credentials (QA_EMAIL/QA_PASSWORD). Neither is set in .env.local, and no service-role or test-mode entitlement-bypass endpoint exists in app/api to mint a session non-interactively. Creating 20 authenticated matters via the real HTTP/browser path was therefore not attempted in this run."
+    },
+    {
+      "exit": "view",
+      "evidenceClass": "local_production_builder",
+      "status": "EXERCISED",
+      "note": "Produced directly by buildLiveProductionSurfacesFromDocumentUnits for all 20 cases."
+    },
+    {
+      "exit": "view",
+      "evidenceClass": "harness_projection",
+      "status": "NOT_EXERCISED",
+      "note": "Not used for this pilot — see capability matrix honesty note."
+    },
+    {
+      "exit": "copy",
+      "evidenceClass": "authenticated_http_browser",
+      "status": "NOT_EXERCISED",
+      "note": "Clerk-gated sign-in requires interactive credentials (QA_EMAIL/QA_PASSWORD). Neither is set in .env.local, and no service-role or test-mode entitlement-bypass endpoint exists in app/api to mint a session non-interactively. Creating 20 authenticated matters via the real HTTP/browser path was therefore not attempted in this run."
+    },
+    {
+      "exit": "copy",
+      "evidenceClass": "local_production_builder",
+      "status": "EXERCISED",
+      "note": "Produced directly by buildLiveProductionSurfacesFromDocumentUnits for all 20 cases."
+    },
+    {
+      "exit": "copy",
+      "evidenceClass": "harness_projection",
+      "status": "NOT_EXERCISED",
+      "note": "Not used for this pilot — see capability matrix honesty note."
+    },
+    {
+      "exit": "export",
+      "evidenceClass": "authenticated_http_browser",
+      "status": "NOT_EXERCISED",
+      "note": "Clerk-gated sign-in requires interactive credentials (QA_EMAIL/QA_PASSWORD). Neither is set in .env.local, and no service-role or test-mode entitlement-bypass endpoint exists in app/api to mint a session non-interactively. Creating 20 authenticated matters via the real HTTP/browser path was therefore not attempted in this run."
+    },
+    {
+      "exit": "export",
+      "evidenceClass": "local_production_builder",
+      "status": "EXERCISED",
+      "note": "Produced directly by buildLiveProductionSurfacesFromDocumentUnits for all 20 cases."
+    },
+    {
+      "exit": "export",
+      "evidenceClass": "harness_projection",
+      "status": "NOT_EXERCISED",
+      "note": "Not used for this pilot — see capability matrix honesty note."
+    },
+    {
+      "exit": "api",
+      "evidenceClass": "authenticated_http_browser",
+      "status": "NOT_EXERCISED",
+      "note": "Clerk-gated sign-in requires interactive credentials (QA_EMAIL/QA_PASSWORD). Neither is set in .env.local, and no service-role or test-mode entitlement-bypass endpoint exists in app/api to mint a session non-interactively. Creating 20 authenticated matters via the real HTTP/browser path was therefore not attempted in this run."
+    },
+    {
+      "exit": "api",
+      "evidenceClass": "local_production_builder",
+      "status": "EXERCISED",
+      "note": "Produced directly by buildLiveProductionSurfacesFromDocumentUnits for all 20 cases."
+    },
+    {
+      "exit": "api",
+      "evidenceClass": "harness_projection",
+      "status": "NOT_EXERCISED",
+      "note": "Not used for this pilot — see capability matrix honesty note."
+    },
+    {
+      "exit": "pdf",
+      "evidenceClass": "authenticated_http_browser",
+      "status": "NOT_EXERCISED",
+      "note": "Clerk-gated sign-in requires interactive credentials (QA_EMAIL/QA_PASSWORD). Neither is set in .env.local, and no service-role or test-mode entitlement-bypass endpoint exists in app/api to mint a session non-interactively. Creating 20 authenticated matters via the real HTTP/browser path was therefore not attempted in this run."
+    },
+    {
+      "exit": "pdf",
+      "evidenceClass": "local_production_builder",
+      "status": "EXERCISED",
+      "note": "Produced directly by buildLiveProductionSurfacesFromDocumentUnits for all 20 cases."
+    },
+    {
+      "exit": "pdf",
+      "evidenceClass": "harness_projection",
+      "status": "NOT_EXERCISED",
+      "note": "Not used for this pilot — see capability matrix honesty note."
+    },
+    {
+      "exit": "composed_prose",
+      "evidenceClass": "authenticated_http_browser",
+      "status": "NOT_EXERCISED",
+      "note": "Clerk-gated sign-in requires interactive credentials (QA_EMAIL/QA_PASSWORD). Neither is set in .env.local, and no service-role or test-mode entitlement-bypass endpoint exists in app/api to mint a session non-interactively. Creating 20 authenticated matters via the real HTTP/browser path was therefore not attempted in this run."
+    },
+    {
+      "exit": "composed_prose",
+      "evidenceClass": "local_production_builder",
+      "status": "EXERCISED",
+      "note": "Produced directly by buildLiveProductionSurfacesFromDocumentUnits for all 20 cases."
+    },
+    {
+      "exit": "composed_prose",
+      "evidenceClass": "harness_projection",
+      "status": "NOT_EXERCISED",
+      "note": "Not used for this pilot — see capability matrix honesty note."
+    },
+    {
+      "exit": "browser_render",
+      "evidenceClass": "authenticated_http_browser",
+      "status": "NOT_EXERCISED",
+      "note": "Clerk-gated sign-in requires interactive credentials (QA_EMAIL/QA_PASSWORD). Neither is set in .env.local, and no service-role or test-mode entitlement-bypass endpoint exists in app/api to mint a session non-interactively. Creating 20 authenticated matters via the real HTTP/browser path was therefore not attempted in this run."
+    },
+    {
+      "exit": "browser_render",
+      "evidenceClass": "local_production_builder",
+      "status": "NOT_EXERCISED",
+      "note": "No raster/browser render performed for any evidence class in this run."
+    },
+    {
+      "exit": "browser_render",
+      "evidenceClass": "harness_projection",
+      "status": "NOT_EXERCISED",
+      "note": "Not used for this pilot — see capability matrix honesty note."
+    }
+  ]
+}

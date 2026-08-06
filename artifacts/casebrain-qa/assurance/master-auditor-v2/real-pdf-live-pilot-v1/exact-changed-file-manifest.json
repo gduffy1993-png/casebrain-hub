@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-exact-changed-file-manifest@1.0.0",
+  "generatedAt": "2026-08-06T23:24:55.097Z",
+  "gitStatusOk": true,
+  "gitStatusError": null,
+  "fileCount": 8,
+  "files": [
+    {
+      "statusCode": "M",
+      "path": "gitignore"
+    },
+    {
+      "statusCode": "M",
+      "path": "lib/criminal/canonical-live-surface-adapter.ts"
+    },
+    {
+      "statusCode": "M",
+      "path": "lib/criminal/charge-allegation-completeness.ts"
+    },
+    {
+      "statusCode": "M",
+      "path": "lib/criminal/finding-provenance.ts"
+    },
+    {
+      "statusCode": "M",
+      "path": "lib/criminal/solicitor-visible-sanitization.ts"
+    },
+    {
+      "statusCode": "??",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/"
+    },
+    {
+      "statusCode": "??",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/"
+    },
+    {
+      "statusCode": "??",
+      "path": "scripts/assurance/real-pdf-live-pilot/"
+    }
+  ]
+}

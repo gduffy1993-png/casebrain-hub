@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-deterministic-sample-rerun@1.0.0",
+  "generatedAt": "2026-08-06T22:36:33.973Z",
+  "ids": [
+    "RP-09",
+    "RP-05"
+  ],
+  "results": [
+    {
+      "id": "RP-09",
+      "firstRunAvailable": true,
+      "semanticMatch": false,
+      "note": "Semantic outputs DIFFER excluding timestamp fields — see full objects for diff.",
+      "firstHash": "0e26438dc4462c6a608bebbb3b9d513d4108b4ff91540877df3e10e38a20904f",
+      "secondHash": "992452a7beaed90a24b3ad78d6c2784cb679aa6a5e8e126c2915659555ce36cf"
+    },
+    {
+      "id": "RP-05",
+      "firstRunAvailable": true,
+      "semanticMatch": false,
+      "note": "Semantic outputs DIFFER excluding timestamp fields — see full objects for diff.",
+      "firstHash": "6768767399866de2df4cb0be170d5d5b230bfdcb7cab039209a5200e31200c2a",
+      "secondHash": "43b88d23a97afbf6db2b842ba84e91260d3fd981e3b50e2078856e15d10bb669"
+    }
+  ]
+}

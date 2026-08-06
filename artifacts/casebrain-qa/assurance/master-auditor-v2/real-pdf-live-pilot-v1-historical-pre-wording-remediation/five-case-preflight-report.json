@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-five-case-preflight-report@1.0.0",
+  "generatedAt": "2026-08-06T22:35:31.286Z",
+  "ids": [
+    "RP-08",
+    "RP-09",
+    "RP-03",
+    "RP-11",
+    "RP-07"
+  ],
+  "gate": "no corrupt source, no crash, incomplete stays incomplete, output PDF genuine, hashes revalidated",
+  "gatePass": true,
+  "rerunAttempted": false,
+  "sharedFixNote": null,
+  "rp07Skipped": false,
+  "rows": [
+    {
+      "id": "RP-08",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-09",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-03",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-11",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-07",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    }
+  ]
+}

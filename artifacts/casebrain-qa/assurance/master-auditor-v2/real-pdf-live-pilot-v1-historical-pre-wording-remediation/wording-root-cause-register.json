@@ -1,0 +1,523 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-wording-root-cause-register@1.0.0",
+  "generatedAt": "2026-08-06T22:36:32.398Z",
+  "entries": [
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::not treat filename alone as source proof",
+      "occurrenceCount": 98,
+      "caseIds": [
+        "RP-01",
+        "RP-02",
+        "RP-03",
+        "RP-04",
+        "RP-05",
+        "RP-06",
+        "RP-07",
+        "RP-08",
+        "RP-09",
+        "RP-10",
+        "RP-11",
+        "RP-12",
+        "RP-13",
+        "RP-14",
+        "RP-15",
+        "RP-16",
+        "RP-17",
+        "RP-18",
+        "RP-19",
+        "RP-20"
+      ],
+      "exampleExactStrings": [
+        "not treat filename alone as source proof"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::so cite the document rather than a page",
+      "occurrenceCount": 60,
+      "caseIds": [
+        "RP-01",
+        "RP-02",
+        "RP-04",
+        "RP-06",
+        "RP-07",
+        "RP-08",
+        "RP-10",
+        "RP-13",
+        "RP-14",
+        "RP-15",
+        "RP-16",
+        "RP-17",
+        "RP-18",
+        "RP-19",
+        "RP-20"
+      ],
+      "exampleExactStrings": [
+        " so cite the document rather than a page"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "snake_case_enum_leak",
+      "normalisedTemplate": "snake_case_enum_leak::not_safely_confirmed",
+      "occurrenceCount": 36,
+      "caseIds": [
+        "RP-02",
+        "RP-03",
+        "RP-04",
+        "RP-07",
+        "RP-09",
+        "RP-11",
+        "RP-16",
+        "RP-17",
+        "RP-18"
+      ],
+      "exampleExactStrings": [
+        "not_safely_confirmed"
+      ],
+      "suspectedRootCause": "An internal enum/state token was interpolated into solicitor-visible text without going through solicitorReadableLabel() or an equivalent humaniser.",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "snake_case_enum_leak",
+      "normalisedTemplate": "snake_case_enum_leak::case_document",
+      "occurrenceCount": 31,
+      "caseIds": [
+        "RP-01",
+        "RP-05",
+        "RP-06",
+        "RP-07",
+        "RP-08",
+        "RP-09",
+        "RP-12",
+        "RP-15",
+        "RP-17",
+        "RP-18"
+      ],
+      "exampleExactStrings": [
+        "case_document"
+      ],
+      "suspectedRootCause": "An internal enum/state token was interpolated into solicitor-visible text without going through solicitorReadableLabel() or an equivalent humaniser.",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "snake_case_enum_leak",
+      "normalisedTemplate": "snake_case_enum_leak::charge_sheet",
+      "occurrenceCount": 27,
+      "caseIds": [
+        "RP-02",
+        "RP-03",
+        "RP-13",
+        "RP-14",
+        "RP-15",
+        "RP-16",
+        "RP-20"
+      ],
+      "exampleExactStrings": [
+        "charge_sheet"
+      ],
+      "suspectedRootCause": "An internal enum/state token was interpolated into solicitor-visible text without going through solicitorReadableLabel() or an equivalent humaniser.",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::source proof. not for court or cps use.]",
+      "occurrenceCount": 20,
+      "caseIds": [
+        "RP-01",
+        "RP-02",
+        "RP-03",
+        "RP-04",
+        "RP-05",
+        "RP-06",
+        "RP-07",
+        "RP-08",
+        "RP-09",
+        "RP-10",
+        "RP-11",
+        "RP-12",
+        "RP-13",
+        "RP-14",
+        "RP-15",
+        "RP-16",
+        "RP-17",
+        "RP-18",
+        "RP-19",
+        "RP-20"
+      ],
+      "exampleExactStrings": [
+        "source proof. Not for court or CPS use.]"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::# priority chase items — custody pace",
+      "occurrenceCount": 11,
+      "caseIds": [
+        "RP-01",
+        "RP-03",
+        "RP-04",
+        "RP-07",
+        "RP-10",
+        "RP-13",
+        "RP-15",
+        "RP-16",
+        "RP-17",
+        "RP-19",
+        "RP-20"
+      ],
+      "exampleExactStrings": [
+        "4 priority chase items — custody pace",
+        "3 priority chase items — custody pace",
+        "7 priority chase items — custody pace"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::preserved; do not rely on a single page",
+      "occurrenceCount": 10,
+      "caseIds": [
+        "RP-02",
+        "RP-14"
+      ],
+      "exampleExactStrings": [
+        " preserved; do not rely on a single page"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::missing: custody record",
+      "occurrenceCount": 9,
+      "caseIds": [
+        "RP-01",
+        "RP-02",
+        "RP-03",
+        "RP-04",
+        "RP-07",
+        "RP-10",
+        "RP-14",
+        "RP-17",
+        "RP-20"
+      ],
+      "exampleExactStrings": [
+        "Missing: Custody record"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "snake_case_enum_leak",
+      "normalisedTemplate": "snake_case_enum_leak::custody_record",
+      "occurrenceCount": 7,
+      "caseIds": [
+        "RP-04",
+        "RP-11",
+        "RP-19"
+      ],
+      "exampleExactStrings": [
+        "custody_record"
+      ],
+      "suspectedRootCause": "An internal enum/state token was interpolated into solicitor-visible text without going through solicitorReadableLabel() or an equivalent humaniser.",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::missing: bwv (full)",
+      "occurrenceCount": 6,
+      "caseIds": [
+        "RP-01",
+        "RP-02",
+        "RP-03",
+        "RP-04",
+        "RP-07",
+        "RP-11"
+      ],
+      "exampleExactStrings": [
+        "Missing: BWV (full)"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::medical / expert source report",
+      "occurrenceCount": 6,
+      "caseIds": [
+        "RP-01",
+        "RP-03",
+        "RP-05",
+        "RP-07",
+        "RP-16",
+        "RP-20"
+      ],
+      "exampleExactStrings": [
+        "Medical / expert source report"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "snake_case_enum_leak",
+      "normalisedTemplate": "snake_case_enum_leak::hearing_notice",
+      "occurrenceCount": 6,
+      "caseIds": [
+        "RP-03",
+        "RP-13",
+        "RP-15"
+      ],
+      "exampleExactStrings": [
+        "hearing_notice"
+      ],
+      "suspectedRootCause": "An internal enum/state token was interpolated into solicitor-visible text without going through solicitorReadableLabel() or an equivalent humaniser.",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "acronym_casing",
+      "normalisedTemplate": "acronym_casing::mg#",
+      "occurrenceCount": 5,
+      "caseIds": [
+        "RP-01",
+        "RP-06",
+        "RP-09",
+        "RP-14",
+        "RP-17"
+      ],
+      "exampleExactStrings": [
+        "mG6",
+        "mG5"
+      ],
+      "suspectedRootCause": "A known legal acronym (BWV/CCTV/MG5/MG6) was rendered in non-standard casing, likely from unnormalised source text or a lowercase template literal.",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::missing: # audio + cad log",
+      "occurrenceCount": 5,
+      "caseIds": [
+        "RP-01",
+        "RP-02",
+        "RP-03",
+        "RP-07",
+        "RP-11"
+      ],
+      "exampleExactStrings": [
+        "Missing: 999 audio + CAD log"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::body-worn video (bwv)",
+      "occurrenceCount": 4,
+      "caseIds": [
+        "RP-04",
+        "RP-11",
+        "RP-13",
+        "RP-18"
+      ],
+      "exampleExactStrings": [
+        "Body-worn video (BWV)"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "acronym_casing",
+      "normalisedTemplate": "acronym_casing::bwv",
+      "occurrenceCount": 4,
+      "caseIds": [
+        "RP-02",
+        "RP-11",
+        "RP-18"
+      ],
+      "exampleExactStrings": [
+        "bwv",
+        "bWV"
+      ],
+      "suspectedRootCause": "A known legal acronym (BWV/CCTV/MG5/MG6) was rendered in non-standard casing, likely from unnormalised source text or a lowercase template literal.",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "snake_case_enum_leak",
+      "normalisedTemplate": "snake_case_enum_leak::custody_interview",
+      "occurrenceCount": 3,
+      "caseIds": [
+        "RP-18"
+      ],
+      "exampleExactStrings": [
+        "custody_interview"
+      ],
+      "suspectedRootCause": "An internal enum/state token was interpolated into solicitor-visible text without going through solicitorReadableLabel() or an equivalent humaniser.",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "snake_case_enum_leak",
+      "normalisedTemplate": "snake_case_enum_leak::telecoms_report",
+      "occurrenceCount": 2,
+      "caseIds": [
+        "RP-17"
+      ],
+      "exampleExactStrings": [
+        "telecoms_report"
+      ],
+      "suspectedRootCause": "An internal enum/state token was interpolated into solicitor-visible text without going through solicitorReadableLabel() or an equivalent humaniser.",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::defendant: imani tobin",
+      "occurrenceCount": 1,
+      "caseIds": [
+        "RP-03"
+      ],
+      "exampleExactStrings": [
+        "Defendant: Imani Tobin"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::defendant: riley north",
+      "occurrenceCount": 1,
+      "caseIds": [
+        "RP-11"
+      ],
+      "exampleExactStrings": [
+        "Defendant: Riley North"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::defendant: priya vale",
+      "occurrenceCount": 1,
+      "caseIds": [
+        "RP-07"
+      ],
+      "exampleExactStrings": [
+        "Defendant: Priya Vale"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::defendant: leon hale",
+      "occurrenceCount": 1,
+      "caseIds": [
+        "RP-01"
+      ],
+      "exampleExactStrings": [
+        "Defendant: Leon Hale"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::defendant: vale bell",
+      "occurrenceCount": 1,
+      "caseIds": [
+        "RP-05"
+      ],
+      "exampleExactStrings": [
+        "Defendant: Vale Bell"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::defendant: alden vale",
+      "occurrenceCount": 1,
+      "caseIds": [
+        "RP-06"
+      ],
+      "exampleExactStrings": [
+        "Defendant: Alden Vale"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::defendant: isaac patel",
+      "occurrenceCount": 1,
+      "caseIds": [
+        "RP-14"
+      ],
+      "exampleExactStrings": [
+        "Defendant: Isaac Patel"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::defendant: layla davies",
+      "occurrenceCount": 1,
+      "caseIds": [
+        "RP-15"
+      ],
+      "exampleExactStrings": [
+        "Defendant: Layla Davies"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    },
+    {
+      "kind": "truncation",
+      "normalisedTemplate": "truncation::plea: not guilty",
+      "occurrenceCount": 1,
+      "caseIds": [
+        "RP-20"
+      ],
+      "exampleExactStrings": [
+        "Plea: not guilty"
+      ],
+      "suspectedRootCause": "Text was cut at a fixed character/line limit without checking for a mid-word boundary (see isMidWordSolicitorTruncation).",
+      "remediationOwnership": "CaseBrain product engineering (surface/copy layer owners)",
+      "status": "unresolved"
+    }
+  ]
+}

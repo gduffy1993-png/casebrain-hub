@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-capability-matrix@1.0.0",
+  "generatedAt": "2026-08-06T22:34:52.189Z",
+  "evidenceClasses": [
+    "authenticated_http_browser",
+    "local_production_builder",
+    "harness_projection"
+  ],
+  "capabilities": [
+    {
+      "capability": "read_source_pdf_bytes",
+      "evidenceClass": "local_production_builder",
+      "status": "EXERCISED",
+      "note": "fs.readFileSync against the verified absolute path; read-only."
+    },
+    {
+      "capability": "extract_text_and_page_units",
+      "evidenceClass": "local_production_builder",
+      "status": "EXERCISED",
+      "note": "lib/upload/extract-text-from-file.ts#extractTextAndMetaFromFileBuffer (pdf-parse under the hood)."
+    },
+    {
+      "capability": "build_live_production_surfaces",
+      "evidenceClass": "local_production_builder",
+      "status": "EXERCISED",
+      "note": "lib/criminal/canonical-live-surface-adapter.ts#buildLiveProductionSurfacesFromDocumentUnits — same builder the app calls."
+    },
+    {
+      "capability": "generate_output_strategy_pdf",
+      "evidenceClass": "local_production_builder",
+      "status": "EXERCISED",
+      "note": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf."
+    },
+    {
+      "capability": "create_authenticated_matter_via_app",
+      "evidenceClass": "authenticated_http_browser",
+      "status": "NOT_EXERCISED",
+      "note": "Clerk-gated sign-in requires interactive credentials (QA_EMAIL/QA_PASSWORD). Neither is set in .env.local, and no service-role or test-mode entitlement-bypass endpoint exists in app/api to mint a session non-interactively. Creating 20 authenticated matters via the real HTTP/browser path was therefore not attempted in this run."
+    },
+    {
+      "capability": "full_page_raster_render_for_clipping_check",
+      "evidenceClass": "local_production_builder",
+      "status": "NOT_EXERCISED",
+      "note": "pdf.js + canvas raster pipeline is not wired into this pilot script; only structural (non-visual) checks were performed."
+    },
+    {
+      "capability": "corpus_scale_wording_projection",
+      "evidenceClass": "harness_projection",
+      "status": "NOT_EXERCISED",
+      "note": "Deliberately not used: this pilot triages only the strings its own 20 cases produced and does not project or extrapolate onto the ~1.7M historical occurrence corpus."
+    }
+  ],
+  "authenticatedHttpBrowserBlocker": "Clerk-gated sign-in requires interactive credentials (QA_EMAIL/QA_PASSWORD). Neither is set in .env.local, and no service-role or test-mode entitlement-bypass endpoint exists in app/api to mint a session non-interactively. Creating 20 authenticated matters via the real HTTP/browser path was therefore not attempted in this run.",
+  "authenticatedHttpBrowserChecks": [
+    "NEXT_PUBLIC_SUPABASE_URL present: false",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY present: false",
+    "QA_EMAIL present: false",
+    "QA_PASSWORD present: false",
+    "No entitlement-bypass / test-session-mint route found under app/api.",
+    "Dev server was not started for this run (no browser/API-driven upload was attempted)."
+  ]
+}

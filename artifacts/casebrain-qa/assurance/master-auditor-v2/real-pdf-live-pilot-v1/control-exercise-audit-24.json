@@ -1,0 +1,1572 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-control-exercise-audit-24@1.1.0",
+  "generatedAt": "2026-08-06T23:49:58.599Z",
+  "honestyPreamble": "The prior claim \"24 controls exercised\" means 24 V1 registry controls were INVOKED via runAllControls against the live-surface adapter. This audit reclassifies each control by actual finding outcomes and detector substance. Phrase-proxy / negative-scan lanes are not treated as full substantive exercise. Auth HTTP and browser workflows remain NOT_EXERCISED.",
+  "counts": {
+    "claimedInvoked": 24,
+    "claimedExercisedInPriorSummary": 24,
+    "honestFullyExercised": 11,
+    "honestPartiallyExercised": 8,
+    "honestNotExercised": 5,
+    "phraseProxyOrNegativeScan": 6,
+    "invokedButNotExercised": 5,
+    "substantiveDetector": 13
+  },
+  "specialAttentionReclassification": [
+    {
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "laneId": "LANE-13-LEGAL-CURRENTNESS",
+      "label": "Legal propositions traceable to registry",
+      "claimedStatusInSummary": "partially_exercised",
+      "honestExerciseStatus": "partially_exercised",
+      "exerciseClass": "phrase_proxy_or_negative_scan",
+      "phraseProxyReclassificationNote": "Phrase/proxy: regex for Act/OAPA/PACE/Theft Act/PFHA on allegation only; no controlled offence registry trace. Mostly not_exercised; unresolved when citation-like text present. Not a full legal-currentness exercise.",
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-LEGAL-CURRENTNESS",
+        "reusedModules": [
+          "lib/criminal/offence-label-registry.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "allegation string for Act/OAPA/PACE/Theft Act/PFHA regex only",
+        "NO offence-label registry cross-check in this detector path",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 1,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 19
+      },
+      "behaviouralContractRefs": [
+        "scripts/master-assurance-auditor-contracts.test.ts#legal",
+        "lib/criminal/offence-label-registry.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 0,
+        "defectCount": 0,
+        "unresolvedCount": 1,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 19,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "not_exercised",
+        "sampleCode": null,
+        "sampleSurface": "allegation",
+        "exactWordingPreview": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or ",
+        "plainEnglish": "No statute/citation signal to validate against registry.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Citations/propositions traceable to controlled registry; stale/uncertain/unsupported → solicitor verification.",
+      "severity": "HIGH"
+    },
+    {
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "laneId": "LANE-20-SECURITY-PRIVACY",
+      "label": "Security and privacy leakage",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "partially_exercised",
+      "exerciseClass": "phrase_proxy_or_negative_scan",
+      "phraseProxyReclassificationNote": "Phrase/proxy negative scan: INTERNAL_LEAK_RE / FIXTURE_PATH_RE over surface text; absence yields pass. Does not exercise auth, ACL, PII redaction pipeline, or storage controls.",
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-SECURITY-PRIVACY",
+        "reusedModules": [
+          "lib/criminal/solicitor-visible-sanitization.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "surface texts for INTERNAL_LEAK_RE / FIXTURE_PATH_RE negative scan only",
+        "NO auth/ACL/PII-pipeline exercise",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/scale3000-run-v9-acceptance-contracts.test.ts",
+        "lib/criminal/solicitor-visible-sanitization.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 20,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "packet",
+        "exactWordingPreview": "",
+        "plainEnglish": "No internal fixture/path leak patterns detected.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "No internal fixture IDs, filesystem paths, developer/audit text, prompt injection residue or cross-tenant material on solicitor surfaces.",
+      "severity": "CRITICAL"
+    },
+    {
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "laneId": "LANE-23-HUMAN-SUPERVISION",
+      "label": "Human supervision and governance",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "partially_exercised",
+      "exerciseClass": "phrase_proxy_or_negative_scan",
+      "phraseProxyReclassificationNote": "Phrase/proxy negative scan: detects fabricated sign-off language only; absence yields pass. Does not exercise an actual human reviewer workflow; human fields remain blank.",
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-HUMAN-SUPERVISION",
+        "reusedModules": [],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "concatenated surface text for fabricated sign-off phrase scan only",
+        "NO actual human reviewer workflow",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/master-assurance-auditor-contracts.test.ts#governance"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 20,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "packet",
+        "exactWordingPreview": "",
+        "plainEnglish": "No fabricated human sign-off language detected; auditor human fields remain blank.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Distinguish automated prediction from human judgment; never fabricate sign-off; blank human-review fields remain blank.",
+      "severity": "CRITICAL"
+    },
+    {
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "laneId": "LANE-24-BIAS-FAIRNESS",
+      "label": "Bias and fairness flags",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "partially_exercised",
+      "exerciseClass": "phrase_proxy_or_negative_scan",
+      "phraseProxyReclassificationNote": "Phrase/proxy negative scan: PREJUDICE_RE over concatenated text; absence yields low-confidence pass. Explicitly does not prove fairness.",
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-BIAS-FAIRNESS",
+        "reusedModules": [],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "concatenated surface text for PREJUDICE_RE negative scan only",
+        "does not prove fairness",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/master-assurance-auditor-contracts.test.ts#bias"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 20,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "packet",
+        "exactWordingPreview": "",
+        "plainEnglish": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Flag protected-characteristic inference and prejudicial language without claiming automated scanning proves fairness.",
+      "severity": "MEDIUM"
+    }
+  ],
+  "controls": [
+    {
+      "controlId": "MAA-INGEST-COVERAGE",
+      "laneId": "LANE-01-INGESTION",
+      "label": "Ingestion coverage and extraction quality",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "fully_exercised",
+      "exerciseClass": "substantive_detector",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-INGEST-COVERAGE",
+        "reusedModules": [
+          "lib/upload/pdf-page-units.ts",
+          "lib/criminal/compiled-bundle-segmentation.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "SavedCaseMaterialisation.inputBundlePath (or adapter equivalent)",
+        "projectForControlAdapter from live surfaces"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/master-assurance-auditor-contracts.test.ts#ingestion",
+        "lib/upload/pdf-page-units.ts",
+        "lib/criminal/compiled-bundle-segmentation.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 20,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "input_bundle",
+        "exactWordingPreview": "C:\\Users\\gduff\\Downloads\\CB-MURDER-TEST-0001_criminal_defence_bundle.pdf",
+        "plainEnglish": "Input bundle path is recorded on the expected packet.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Every saved packet/page/surface is accounted for; missing actual/expected pairs and empty surfaces are defects; unread or unavailable source is not-exercised, not pass.",
+      "severity": "HIGH"
+    },
+    {
+      "controlId": "MAA-DOC-LIFECYCLE",
+      "laneId": "LANE-02-DOCUMENT-IDENTITY",
+      "label": "Document identity and lifecycle without unsafe collapse",
+      "claimedStatusInSummary": "partially_exercised",
+      "honestExerciseStatus": "partially_exercised",
+      "exerciseClass": "substantive_detector",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-DOC-LIFECYCLE",
+        "reusedModules": [
+          "lib/criminal/document-relationship-model.ts",
+          "lib/eval/assurance/controls.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "truthMapRows with draft vs signed/final language signals",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 1,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 19
+      },
+      "behaviouralContractRefs": [
+        "scripts/foundation-hardening-contracts.test.ts",
+        "lib/criminal/document-relationship-model.ts",
+        "lib/eval/assurance/controls.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 1,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 19,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "truth_map",
+        "exactWordingPreview": "Bundle health notePartial | mixed solicitor/CPS-style disclosure pack | Bundle health notePartial served bundle. | Some items are | Full source material | case ",
+        "plainEnglish": "Draft and signed/final statement units remain distinct on the truth map.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Operative/amended/superseded/draft/signed/attachment/exhibit/alias relationships must not silently collapse distinct units.",
+      "severity": "CRITICAL"
+    },
+    {
+      "controlId": "MAA-PARTIES-ATTRIBUTION",
+      "laneId": "LANE-03-PARTIES-ATTRIBUTION",
+      "label": "Parties and attribution separation",
+      "claimedStatusInSummary": "not_exercised",
+      "honestExerciseStatus": "not_exercised",
+      "exerciseClass": "invoked_but_not_exercised",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-PARTIES-ATTRIBUTION",
+        "reusedModules": [
+          "lib/criminal/attribution-model.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "multi-party / attribution rows on packet (often absent on single-defendant strategy adapter)",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 0,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 20
+      },
+      "behaviouralContractRefs": [
+        "scripts/malik-shared-root-remediation-round2-contracts.test.ts",
+        "lib/criminal/attribution-model.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 0,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 20,
+        "observedCodes": [],
+        "notExercisedReason": "only not_exercised findings"
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "not_exercised",
+        "sampleCode": null,
+        "sampleSurface": "packet",
+        "exactWordingPreview": "Client",
+        "plainEnglish": "No attribution warning or overclaim detected in saved surfaces.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Defendant/witness/officer/device/account/authorship remain distinct; zero cross-person evidence bleed; no broadcast defendant scope.",
+      "severity": "CRITICAL"
+    },
+    {
+      "controlId": "MAA-CHARGE-MODEL",
+      "laneId": "LANE-04-CHARGE-MODEL",
+      "label": "Charge model exact wording and precedence",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "fully_exercised",
+      "exerciseClass": "substantive_detector",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-CHARGE-MODEL",
+        "reusedModules": [
+          "lib/criminal/solicitor-charge-model.ts",
+          "lib/criminal/structured-charge-state.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "allegation and/or charges[] on adapter packet",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/scale3000-run-v9-acceptance-contracts.test.ts",
+        "lib/criminal/solicitor-charge-model.ts",
+        "lib/criminal/structured-charge-state.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 20,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "allegation",
+        "exactWordingPreview": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or ",
+        "plainEnglish": "Recorded allegation/charge wording is visible on the packet.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Exact recorded wording visible; count/defendant/source allocation; no silent rewriting or invented citation.",
+      "severity": "CRITICAL"
+    },
+    {
+      "controlId": "MAA-EVIDENCE-STATE",
+      "laneId": "LANE-05-EVIDENCE-STATE",
+      "label": "Evidence-state distinct units",
+      "claimedStatusInSummary": "not_exercised",
+      "honestExerciseStatus": "not_exercised",
+      "exerciseClass": "invoked_but_not_exercised",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-EVIDENCE-STATE",
+        "reusedModules": [
+          "lib/criminal/evidence-state-reconcile.ts",
+          "lib/criminal/evidence-state-canonical.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "evidence-state distinct units on truth map / evidence rows",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 0,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 20
+      },
+      "behaviouralContractRefs": [
+        "scripts/malik-shared-root-remediation-contracts.test.ts",
+        "lib/criminal/evidence-state-reconcile.ts",
+        "lib/criminal/evidence-state-canonical.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 0,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 20,
+        "observedCodes": [],
+        "notExercisedReason": "only not_exercised findings"
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "not_exercised",
+        "sampleCode": null,
+        "sampleSurface": "expected",
+        "exactWordingPreview": "",
+        "plainEnglish": "No expected.json truth states available for this packet.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Served/referred/requested/missing/incomplete/quarantined/unknown preserved; master≠still≠clip; recording≠transcript; draft≠signed.",
+      "severity": "CRITICAL"
+    },
+    {
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "laneId": "LANE-06-CHRONOLOGY-HEARING",
+      "label": "Chronology and hearing logic",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "fully_exercised",
+      "exerciseClass": "substantive_detector",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-CHRONOLOGY-HEARING",
+        "reusedModules": [
+          "lib/criminal/timestamp-chronology.ts",
+          "lib/criminal/hearing-notice-lifecycle.ts",
+          "lib/criminal/pace-affirmative-gate.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "hearing/chronology surfaces or court line text",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/phase8-hearing-time.test.ts",
+        "lib/criminal/timestamp-chronology.ts",
+        "lib/criminal/hearing-notice-lifecycle.ts",
+        "lib/criminal/pace-affirmative-gate.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 16,
+        "defectCount": 4,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "defect",
+        "sampleCode": null,
+        "sampleSurface": "composed",
+        "exactWordingPreview": "PACE OK",
+        "plainEnglish": "Output contains an affirmative PACE OK / no-breach claim.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Source timestamps, conflicts, latest operative notice; no false affirmative PACE position.",
+      "severity": "CRITICAL"
+    },
+    {
+      "controlId": "MAA-PROVENANCE",
+      "laneId": "LANE-07-PROVENANCE",
+      "label": "Exact provenance and unknown-page discipline",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "fully_exercised",
+      "exerciseClass": "substantive_detector",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-PROVENANCE",
+        "reusedModules": [
+          "lib/criminal/finding-provenance.ts",
+          "lib/eval/assurance/controls.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "provenance lines / surface text with source linkage signals",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/foundation-hardening-contracts.test.ts",
+        "lib/criminal/finding-provenance.ts",
+        "lib/eval/assurance/controls.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 20,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "packet",
+        "exactWordingPreview": "",
+        "plainEnglish": "No synthetic page references detected on saved surfaces.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Substantive statements link to source/page when available; unknown page stays unknown; source≠compiled; no synthetic p.1/p.null.",
+      "severity": "CRITICAL"
+    },
+    {
+      "controlId": "MAA-RELIABILITY",
+      "laneId": "LANE-08-RELIABILITY",
+      "label": "Reliability and limitations",
+      "claimedStatusInSummary": "partially_exercised",
+      "honestExerciseStatus": "partially_exercised",
+      "exerciseClass": "substantive_detector",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-RELIABILITY",
+        "reusedModules": [
+          "lib/criminal/solicitor-visible-quality.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "reliability/limitation language on truth map or surfaces",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 10,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 10
+      },
+      "behaviouralContractRefs": [
+        "scripts/master-assurance-auditor-contracts.test.ts#reliability",
+        "lib/criminal/solicitor-visible-quality.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 23,
+        "passCount": 13,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 10,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "truth_map",
+        "exactWordingPreview": "MG6 DISCLOSURE SCHEDULE · needs_review",
+        "plainEnglish": "Reliability limitation is visible for \"MG6 DISCLOSURE SCHEDULE\" (needs_review).",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Explain why evidence is unreliable — missing source, incomplete transcript, conflicting timestamps, uncertain authorship, absent attachment.",
+      "severity": "HIGH"
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "laneId": "LANE-09-COMPLETENESS",
+      "label": "Completeness and truncation",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "fully_exercised",
+      "exerciseClass": "substantive_detector",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-COMPLETENESS",
+        "reusedModules": [
+          "lib/criminal/solicitor-visible-boundary.ts",
+          "lib/criminal/solicitor-visible-boundary-profiles.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "charge completeness / missing-item signals on surfaces",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/phase11-remediation.test.ts",
+        "lib/criminal/solicitor-visible-boundary.ts",
+        "lib/criminal/solicitor-visible-boundary-profiles.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 96,
+        "passCount": 76,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 20,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "RP-01-s1",
+        "exactWordingPreview": "[CaseBrain — court line copy. Evidence state: needs review. Source: CB-MURDER-TEST-0001_criminal_defence_bundle.pdf. Provenance: state: needs review · limitatio",
+        "plainEnglish": "FN-INCOMPLETE-DISCLAIMER: complete disclaimer present.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "No mid-word/mid-sentence cuts on copyable surfaces; incomplete disclaimers; no unqualified partial totals. Surface-aware boundary profiles suppress known FPs.",
+      "severity": "HIGH"
+    },
+    {
+      "controlId": "MAA-DEFENCE-LENS",
+      "laneId": "LANE-10-DEFENCE-LENS",
+      "label": "Defence lens without invented facts",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "fully_exercised",
+      "exerciseClass": "substantive_detector",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-DEFENCE-LENS",
+        "reusedModules": [
+          "lib/criminal/canonical-live-surface-adapter.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "defence-oriented surface text (war room / key facts)",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/master-assurance-auditor-contracts.test.ts#defence",
+        "lib/criminal/canonical-live-surface-adapter.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 20,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "do_not_overstate",
+        "exactWordingPreview": "Do not import drugs continuity unless the papers support it. | Do not import ABE unless the papers support it. | Assumed position may conflict with interview or",
+        "plainEnglish": "Defence do-not-overstate guards are present.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Defence issues, alternative explanations and safe next actions without inventing facts or deciding legal questions.",
+      "severity": "MEDIUM"
+    },
+    {
+      "controlId": "MAA-PROSECUTION-LENS",
+      "laneId": "LANE-11-PROSECUTION-LENS",
+      "label": "Prosecution lens kept separate",
+      "claimedStatusInSummary": "not_exercised",
+      "honestExerciseStatus": "not_exercised",
+      "exerciseClass": "invoked_but_not_exercised",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-PROSECUTION-LENS",
+        "reusedModules": [
+          "lib/criminal/canonical-live-surface-adapter.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "prosecution-oriented surface text (often limited on defence adapter)",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 0,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 20
+      },
+      "behaviouralContractRefs": [
+        "scripts/master-assurance-auditor-contracts.test.ts#prosecution",
+        "lib/criminal/canonical-live-surface-adapter.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 0,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 20,
+        "observedCodes": [],
+        "notExercisedReason": "only not_exercised findings"
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "not_exercised",
+        "sampleCode": null,
+        "sampleSurface": "court_line",
+        "exactWordingPreview": "",
+        "plainEnglish": "No court line on saved packet.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Strongest prosecution case and missing proof requirements kept separate from defence analysis.",
+      "severity": "MEDIUM"
+    },
+    {
+      "controlId": "MAA-JUDICIAL-LENS",
+      "laneId": "LANE-12-JUDICIAL-LENS",
+      "label": "Judicial/procedural lens",
+      "claimedStatusInSummary": "not_exercised",
+      "honestExerciseStatus": "not_exercised",
+      "exerciseClass": "invoked_but_not_exercised",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-JUDICIAL-LENS",
+        "reusedModules": [
+          "lib/criminal/solicitor-hearing-status.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "court_line / hearing readiness signal",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 0,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 20
+      },
+      "behaviouralContractRefs": [
+        "scripts/phase8-hearing-time.test.ts",
+        "lib/criminal/solicitor-hearing-status.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 0,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 20,
+        "observedCodes": [],
+        "notExercisedReason": "only not_exercised findings"
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "not_exercised",
+        "sampleCode": null,
+        "sampleSurface": "court_line",
+        "exactWordingPreview": "",
+        "plainEnglish": "Limited judicial/procedural signal in saved court line.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Neutral issues, hearing readiness, admissibility/weight/state separation; matters for judicial or solicitor determination stay unresolved.",
+      "severity": "MEDIUM"
+    },
+    {
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "laneId": "LANE-13-LEGAL-CURRENTNESS",
+      "label": "Legal propositions traceable to registry",
+      "claimedStatusInSummary": "partially_exercised",
+      "honestExerciseStatus": "partially_exercised",
+      "exerciseClass": "phrase_proxy_or_negative_scan",
+      "phraseProxyReclassificationNote": "Phrase/proxy: regex for Act/OAPA/PACE/Theft Act/PFHA on allegation only; no controlled offence registry trace. Mostly not_exercised; unresolved when citation-like text present. Not a full legal-currentness exercise.",
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-LEGAL-CURRENTNESS",
+        "reusedModules": [
+          "lib/criminal/offence-label-registry.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "allegation string for Act/OAPA/PACE/Theft Act/PFHA regex only",
+        "NO offence-label registry cross-check in this detector path",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 1,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 19
+      },
+      "behaviouralContractRefs": [
+        "scripts/master-assurance-auditor-contracts.test.ts#legal",
+        "lib/criminal/offence-label-registry.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 0,
+        "defectCount": 0,
+        "unresolvedCount": 1,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 19,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "not_exercised",
+        "sampleCode": null,
+        "sampleSurface": "allegation",
+        "exactWordingPreview": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or ",
+        "plainEnglish": "No statute/citation signal to validate against registry.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Citations/propositions traceable to controlled registry; stale/uncertain/unsupported → solicitor verification.",
+      "severity": "HIGH"
+    },
+    {
+      "controlId": "MAA-AUDIENCE-WORDING",
+      "laneId": "LANE-14-AUDIENCE-WORDING",
+      "label": "Audience-separated wording",
+      "claimedStatusInSummary": "not_exercised",
+      "honestExerciseStatus": "not_exercised",
+      "exerciseClass": "invoked_but_not_exercised",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-AUDIENCE-WORDING",
+        "reusedModules": [
+          "lib/criminal/solicitor-visible-sanitization.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "client_summary surface text with audience disclaimer patterns",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 0,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 20
+      },
+      "behaviouralContractRefs": [
+        "scripts/scale3000-run-v9-acceptance-contracts.test.ts",
+        "lib/criminal/solicitor-visible-sanitization.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 0,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 20,
+        "observedCodes": [],
+        "notExercisedReason": "only not_exercised findings"
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "not_exercised",
+        "sampleCode": null,
+        "sampleSurface": "client_summary",
+        "exactWordingPreview": "",
+        "plainEnglish": "No client summary surface.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Solicitor, client, court, CPS and internal-review language stay separated; no internal audit phrases on solicitor exits.",
+      "severity": "HIGH"
+    },
+    {
+      "controlId": "MAA-ACTION-QUALITY",
+      "laneId": "LANE-15-ACTION-QUALITY",
+      "label": "Solicitor action quality",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "fully_exercised",
+      "exerciseClass": "substantive_detector",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-ACTION-QUALITY",
+        "reusedModules": [
+          "lib/criminal/five-answers/build-five-answers-view.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "action/next-step signals on packet surfaces",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/foundational-shared-contracts.test.ts",
+        "lib/criminal/five-answers/build-five-answers-view.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 19,
+        "defectCount": 1,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "packet",
+        "exactWordingPreview": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or ",
+        "plainEnglish": "Solicitor can see charge, evidence inventory, and next chase/guards from the packet.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Solicitor can answer charge, evidence present, missing/incomplete/quarantined, safe to say, and what happens next.",
+      "severity": "HIGH"
+    },
+    {
+      "controlId": "MAA-CROSS-EXIT",
+      "laneId": "LANE-16-CROSS-EXIT",
+      "label": "Cross-exit consistency enforcement",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "fully_exercised",
+      "exerciseClass": "substantive_detector",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-CROSS-EXIT",
+        "reusedModules": [
+          "lib/criminal/cross-exit-contradiction-scanner.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "multi-exit surface projections from live adapter",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/malik-shared-root-remediation-round2-contracts.test.ts",
+        "lib/criminal/cross-exit-contradiction-scanner.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 21,
+        "passCount": 14,
+        "defectCount": 7,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "defect",
+        "sampleCode": null,
+        "sampleSurface": "export",
+        "exactWordingPreview": "ctions\":[{\"id\":\"cps_chase\",\"title\":\"CPS chase draft\",\"textForClipboard\":\"CPS DISCLOSURE CHASE DRAFT\\n(not",
+        "plainEnglish": "Material already on file under a supported alias is being requested again",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "View/copy/export/api/pdf/composed prose must not contradict; warnings attached to disputed content; no safer UI with unsafe copy.",
+      "severity": "CRITICAL"
+    },
+    {
+      "controlId": "MAA-CROSS-SURFACE",
+      "laneId": "LANE-17-CROSS-SURFACE",
+      "label": "Cross-surface consistency",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "fully_exercised",
+      "exerciseClass": "substantive_detector",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-CROSS-SURFACE",
+        "reusedModules": [
+          "lib/criminal/canonical-live-surface-adapter.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "multi-surface live packet (charges/war room/key facts/chase)",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/canonical-live-integration-contracts.test.ts",
+        "lib/criminal/canonical-live-surface-adapter.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 201,
+        "passCount": 24,
+        "defectCount": 0,
+        "unresolvedCount": 177,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "unresolved",
+        "sampleCode": null,
+        "sampleSurface": "disclosure_chase",
+        "exactWordingPreview": "Bundle health notePartial served bundle. · missing · reviewed_ok",
+        "plainEnglish": "Truth map marks \"Bundle health notePartial served bundle.\" missing/incomplete but no matching chase draft found under canonical identity.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Charges, Control Room, War Room, Key Facts, Five Answers, truth map, Disclosure Chase, client summary and strategy must not contradict.",
+      "severity": "CRITICAL"
+    },
+    {
+      "controlId": "MAA-CHASE-QUALITY",
+      "laneId": "LANE-18-CHASE-QUALITY",
+      "label": "Chase quality",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "fully_exercised",
+      "exerciseClass": "substantive_detector",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-CHASE-QUALITY",
+        "reusedModules": [
+          "lib/criminal/evidence-state-reconcile.ts",
+          "lib/criminal/cross-exit-contradiction-scanner.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "cpsChase / disclosure chase items",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/malik-shared-root-remediation-contracts.test.ts",
+        "lib/criminal/evidence-state-reconcile.ts",
+        "lib/criminal/cross-exit-contradiction-scanner.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 94,
+        "passCount": 94,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "disclosure_chase",
+        "exactWordingPreview": "Please provide interview recording / transcript or confirm in writing why it is not available.",
+        "plainEnglish": "Chase draft names a concrete item.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Supported provenance-linked requests only; procedural vs evidence vs quarantined; no broad family-template invention; no chase of served aliases.",
+      "severity": "HIGH"
+    },
+    {
+      "controlId": "MAA-HALLUCINATION",
+      "laneId": "LANE-19-HALLUCINATION",
+      "label": "Hallucination and overstatement",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "fully_exercised",
+      "exerciseClass": "substantive_detector",
+      "phraseProxyReclassificationNote": null,
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-HALLUCINATION",
+        "reusedModules": [
+          "lib/criminal/absolute-proof-wording.ts",
+          "lib/criminal/pace-affirmative-gate.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "surface text for absolute-proof phrase scan",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/malik-shared-root-remediation-round2-contracts.test.ts",
+        "lib/criminal/absolute-proof-wording.ts",
+        "lib/criminal/pace-affirmative-gate.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 20,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "packet",
+        "exactWordingPreview": "",
+        "plainEnglish": "No absolute-proof wording on non-warning surfaces.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Invented facts, absolute-proof wording, unsupported served/complete/PACE compliant/no breach claims.",
+      "severity": "CRITICAL"
+    },
+    {
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "laneId": "LANE-20-SECURITY-PRIVACY",
+      "label": "Security and privacy leakage",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "partially_exercised",
+      "exerciseClass": "phrase_proxy_or_negative_scan",
+      "phraseProxyReclassificationNote": "Phrase/proxy negative scan: INTERNAL_LEAK_RE / FIXTURE_PATH_RE over surface text; absence yields pass. Does not exercise auth, ACL, PII redaction pipeline, or storage controls.",
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-SECURITY-PRIVACY",
+        "reusedModules": [
+          "lib/criminal/solicitor-visible-sanitization.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "surface texts for INTERNAL_LEAK_RE / FIXTURE_PATH_RE negative scan only",
+        "NO auth/ACL/PII-pipeline exercise",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/scale3000-run-v9-acceptance-contracts.test.ts",
+        "lib/criminal/solicitor-visible-sanitization.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 20,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "packet",
+        "exactWordingPreview": "",
+        "plainEnglish": "No internal fixture/path leak patterns detected.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "No internal fixture IDs, filesystem paths, developer/audit text, prompt injection residue or cross-tenant material on solicitor surfaces.",
+      "severity": "CRITICAL"
+    },
+    {
+      "controlId": "MAA-RESILIENCE",
+      "laneId": "LANE-21-RESILIENCE",
+      "label": "Resilience and determinism",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "partially_exercised",
+      "exerciseClass": "phrase_proxy_or_negative_scan",
+      "phraseProxyReclassificationNote": "Thin proxy: emits pass when case packet loaded under stable caseId. Deterministic ID stability across reruns is not proven per finding in this pilot.",
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-RESILIENCE",
+        "reusedModules": [
+          "lib/criminal/build-from-document-units.ts"
+        ],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "stable caseId on loaded packet (thin proxy)",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/canonical-finding-model-contracts.test.ts",
+        "lib/criminal/build-from-document-units.ts"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 20,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "packet",
+        "exactWordingPreview": "real-pdf-live-pilot-v1-RP-01",
+        "plainEnglish": "Case packet loaded under stable caseId for reproducible audit.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "AI unavailable/429 fallback, malformed files, partial OCR, deterministic finding IDs and reproducible results across reruns.",
+      "severity": "HIGH"
+    },
+    {
+      "controlId": "MAA-OUTPUT-DESIGN",
+      "laneId": "LANE-22-OUTPUT-DESIGN",
+      "label": "Output design (separate from factual defects)",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "partially_exercised",
+      "exerciseClass": "phrase_proxy_or_negative_scan",
+      "phraseProxyReclassificationNote": "Design-signal lane: pass based on presence/absence of chase/urgent signals. Marked designFinding; not a factual defect exercise.",
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-OUTPUT-DESIGN",
+        "reusedModules": [],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "truthMapRows / cpsChase presence for urgent-signal design pass",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/master-assurance-auditor-contracts.test.ts#design"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 20,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "packet",
+        "exactWordingPreview": "surfaces=67; chase=5",
+        "plainEnglish": "Outstanding/chase signals exist so a solicitor can find urgent next steps in the packet.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Hierarchy, density, warning visibility, progressive disclosure and urgent-answer findability. Recorded as designFinding=true.",
+      "severity": "LOW"
+    },
+    {
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "laneId": "LANE-23-HUMAN-SUPERVISION",
+      "label": "Human supervision and governance",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "partially_exercised",
+      "exerciseClass": "phrase_proxy_or_negative_scan",
+      "phraseProxyReclassificationNote": "Phrase/proxy negative scan: detects fabricated sign-off language only; absence yields pass. Does not exercise an actual human reviewer workflow; human fields remain blank.",
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-HUMAN-SUPERVISION",
+        "reusedModules": [],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "concatenated surface text for fabricated sign-off phrase scan only",
+        "NO actual human reviewer workflow",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/master-assurance-auditor-contracts.test.ts#governance"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 20,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "packet",
+        "exactWordingPreview": "",
+        "plainEnglish": "No fabricated human sign-off language detected; auditor human fields remain blank.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Distinguish automated prediction from human judgment; never fabricate sign-off; blank human-review fields remain blank.",
+      "severity": "CRITICAL"
+    },
+    {
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "laneId": "LANE-24-BIAS-FAIRNESS",
+      "label": "Bias and fairness flags",
+      "claimedStatusInSummary": "fully_exercised",
+      "honestExerciseStatus": "partially_exercised",
+      "exerciseClass": "phrase_proxy_or_negative_scan",
+      "phraseProxyReclassificationNote": "Phrase/proxy negative scan: PREJUDICE_RE over concatenated text; absence yields low-confidence pass. Explicitly does not prove fairness.",
+      "substantiveHandler": {
+        "entrypoint": "lib/eval/master-assurance-auditor/controls/run-all-controls.ts#MAA-BIAS-FAIRNESS",
+        "reusedModules": [],
+        "adapter": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts#projectForControlAdapter"
+      },
+      "exactPrerequisites": [
+        "concatenated surface text for PREJUDICE_RE negative scan only",
+        "does not prove fairness",
+        "projectForControlAdapter"
+      ],
+      "applicableCaseUnitDenominator": {
+        "casesApplicable": 20,
+        "unit": "pilot_matter_RP_xx",
+        "denominatorNote": "20 frozen real-PDF matters projected into SavedCaseMaterialisation via projectForControlAdapter",
+        "casesFullyExercised": 20,
+        "casesPartiallyExercised": 0,
+        "casesNotExercised": 0
+      },
+      "behaviouralContractRefs": [
+        "scripts/master-assurance-auditor-contracts.test.ts#bias"
+      ],
+      "findingResultSummary": {
+        "findingsEmitted": 20,
+        "passCount": 20,
+        "defectCount": 0,
+        "unresolvedCount": 0,
+        "containmentCount": 0,
+        "notExercisedFindingCount": 0,
+        "observedCodes": [],
+        "notExercisedReason": null
+      },
+      "evidenceRefs": {
+        "perControlSummary": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json",
+        "sampleReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "sampleCaseId": "RP-01",
+        "sampleVerdict": "pass",
+        "sampleCode": null,
+        "sampleSurface": "packet",
+        "exactWordingPreview": "",
+        "plainEnglish": "No crude prejudicial pattern hit. This does not prove fairness — only absence of this detector's patterns.",
+        "note": "Receipts live under gitignored bulk/receipts/ (regenerable). Compact summary artefacts are committed."
+      },
+      "registryIntent": "Flag protected-characteristic inference and prejudicial language without claiming automated scanning proves fairness.",
+      "severity": "MEDIUM"
+    }
+  ]
+}

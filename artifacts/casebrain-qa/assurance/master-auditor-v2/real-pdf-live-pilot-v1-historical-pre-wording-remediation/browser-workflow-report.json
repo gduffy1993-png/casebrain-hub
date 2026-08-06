@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-browser-workflow-report@1.0.0",
+  "generatedAt": "2026-08-06T22:40:00.000Z",
+  "status": "NOT_EXERCISED",
+  "evidenceClass": "authenticated_http_browser",
+  "exercised": false,
+  "blocker": {
+    "id": "AUTHENTICATED_BROWSER_CREDENTIALS_UNAVAILABLE",
+    "summary": "No QA_EMAIL/QA_PASSWORD (or equivalent authenticated test credentials) were available in this worktree, and entitlement/capacity bypass is forbidden.",
+    "consequence": "Case creation/upload, cockpit, War Room, papers, disclosure chase, Five Answers, Key Facts, copy, export, generated PDF, and settings were not exercised through an authenticated browser session."
+  },
+  "surfacesNotExercised": [
+    "case_creation_upload",
+    "extraction_analysis_completion",
+    "cockpit",
+    "war_room",
+    "papers_source_access",
+    "disclosure_chase",
+    "five_answers",
+    "key_facts",
+    "copy",
+    "export",
+    "generated_pdf",
+    "settings_readiness",
+    "error_loading_empty_states"
+  ],
+  "screenshotsCaptured": 0,
+  "interactionReceipts": 0,
+  "honesty": "A local production-builder run is not proof of an authenticated browser workflow."
+}

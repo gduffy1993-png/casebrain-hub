@@ -1,0 +1,690 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-output-pdf-raster-results@1.0.0",
+  "generatedAt": "2026-08-06T23:24:53.114Z",
+  "launchStatus": "EXERCISED",
+  "launchBlocker": null,
+  "pdfjsVersion": "3.11.174",
+  "pdfjsSource": "CDN (unpkg), loaded inside the rendered Chromium page — not a locally installed package.",
+  "results": [
+    {
+      "caseId": "RP-01",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-01.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3288,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-01/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.051322018089140574,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1413,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-02",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-02.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3175,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-02/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.048890863130941015,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1357,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-03",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-03.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3082,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-03/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.04158675862851651,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1108,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-04",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-04.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 2951,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-04/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.038512792822507066,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1028,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": false,
+      "incompleteChargeWarningPresentInText": "not_applicable"
+    },
+    {
+      "caseId": "RP-05",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-05.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 2937,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-05/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.03560108134084136,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 899,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-06",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-06.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3061,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-06/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.0402124733676816,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1056,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-07",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-07.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3182,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-07/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.04783044689096776,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1289,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-08",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-08.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3046,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-08/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.03996864856333992,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1051,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-09",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-09.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3074,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-09/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.04173660005373012,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1109,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-10",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-10.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3011,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-10/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.03865376789119917,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1065,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": false,
+      "incompleteChargeWarningPresentInText": "not_applicable"
+    },
+    {
+      "caseId": "RP-11",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-11.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 2967,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-11/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.034599183053910104,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 899,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": false,
+      "incompleteChargeWarningPresentInText": "not_applicable"
+    },
+    {
+      "caseId": "RP-12",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-12.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 2944,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-12/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.035641866580840335,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 900,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-13",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-13.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3043,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-13/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.039817033866822005,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1049,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-14",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-14.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3174,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-14/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.048830571906594705,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1356,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-15",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-15.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3054,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-15/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.039863138920733884,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1051,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-16",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-16.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3099,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-16/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.04684539468142738,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1263,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-17",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-17.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3320,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-17/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.052213086919552884,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1442,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-18",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-18.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3044,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-18/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.04179777791372858,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1097,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-19",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-19.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3036,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-19/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.03971152422421597,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1049,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-20",
+      "outputPdfRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-20.pdf",
+      "status": "EXERCISED",
+      "blocker": null,
+      "pdfHeaderOk": true,
+      "byteLength": 3060,
+      "pageCount": 1,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pngRelativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/page-renders/RP-20/page-001.png",
+          "widthPx": 893,
+          "heightPx": 1263,
+          "nonWhitePixelFraction": 0.04005376558594647,
+          "blankOrNearAllWhite": false,
+          "nonWhiteBoundingBox": {
+            "x0": 74,
+            "y0": 74,
+            "x1": 817,
+            "y1": 1224
+          },
+          "tinyContentBoundingBoxSuspected": false,
+          "textLength": 1057,
+          "tofuCharCount": 0,
+          "brokenFontSuspected": false
+        }
+      ],
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeExpected": true,
+      "incompleteChargeWarningPresentInText": true
+    }
+  ]
+}

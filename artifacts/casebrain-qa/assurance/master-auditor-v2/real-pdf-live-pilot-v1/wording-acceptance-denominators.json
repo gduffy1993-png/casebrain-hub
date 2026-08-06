@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-wording-acceptance-denominators@1.0.0",
+  "generatedAt": "2026-08-06T23:49:58.605Z",
+  "scopeNote": "Separate denominators for historical pre-remediation pilot outputs vs post-remediation rematerialisation. Not the 1.7M corpus.",
+  "historicalPreRemediation": {
+    "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation",
+    "occurrences": 359,
+    "exactStrings": 35,
+    "normalisedTemplates": 28,
+    "casesWithIssues": 20,
+    "byKind": {
+      "absolute_proof_claim": 0,
+      "snake_case_enum_leak": 112,
+      "internal_id_leak": 0,
+      "broken_do_not_or_regarding": 0,
+      "acronym_casing": 9,
+      "truncation": 238
+    },
+    "triageOfHistoricalHits": {
+      "truncation": {
+        "claimedOccurrences": 238,
+        "disposition": "detector_false_positive_majority",
+        "note": "Complete endings (proof/page/record/pace/report/full) flagged by over-broad mid-word heuristic."
+      },
+      "snake_case_enum_leak": {
+        "claimedOccurrences": 112,
+        "disposition": "genuine_product_defect_fixed",
+        "note": "Provenance/document-type/evidence-state enums leaked; fixed in shared layers."
+      },
+      "acronym_casing": {
+        "claimedOccurrences": 9,
+        "disposition": "genuine_product_defect_fixed",
+        "note": "mG5/mG6-class casing; fixed via preserveProtectedAcronyms sanitization pass."
+      }
+    }
+  },
+  "postRemediation": {
+    "occurrences": 0,
+    "exactStrings": 0,
+    "normalisedTemplates": 0,
+    "casesWithIssues": 0,
+    "byKind": {
+      "absolute_proof_claim": 0,
+      "snake_case_enum_leak": 0,
+      "internal_id_leak": 0,
+      "broken_do_not_or_regarding": 0,
+      "acronym_casing": 0,
+      "truncation": 0
+    },
+    "genuineProductDefectGate": {
+      "gatedKinds": [
+        "truncation",
+        "snake_case_enum_leak",
+        "acronym_casing"
+      ],
+      "genuineProductDefectCounts": {
+        "truncation": 0,
+        "snake_case_enum_leak": 0,
+        "acronym_casing": 0
+      },
+      "genuineProductDefectTotal": 0,
+      "gatePasses": true
+    }
+  }
+}

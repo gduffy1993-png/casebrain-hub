@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-membership-freeze-receipt@1.0.0",
+  "frozenAt": "2026-08-06T22:20:18.362Z",
+  "totalEntries": 20,
+  "sha256MismatchCount": 0,
+  "pageCountMismatchCount": 0,
+  "extractionErrorCount": 0,
+  "mismatches": [],
+  "membershipSha256": "5849004206b9e35246e1248908ac9b68d97fa64e9ece608a532435f4c14cd383",
+  "frozen": true
+}

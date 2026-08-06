@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-wording-denominator-summary@1.0.0",
+  "scopeNote": "Pilot-output triage only, over the solicitor-visible strings produced by this 20-case pilot run. This is NOT a review of the ~1.7M historical occurrence corpus and must not be cited as one.",
+  "totalStringsScanned": 1727,
+  "totalCasesScanned": 20,
+  "totalSurfacesScanned": 43,
+  "occurrences": 0,
+  "exactStrings": 0,
+  "normalisedTemplates": 0,
+  "casesWithIssues": 0,
+  "surfacesWithIssues": 0,
+  "byKind": {
+    "absolute_proof_claim": 0,
+    "snake_case_enum_leak": 0,
+    "internal_id_leak": 0,
+    "broken_do_not_or_regarding": 0,
+    "acronym_casing": 0,
+    "truncation": 0
+  }
+}

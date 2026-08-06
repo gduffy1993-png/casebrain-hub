@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-source-hash-before-after@1.0.0",
+  "generatedAt": "2026-08-06T23:24:54.666Z",
+  "allUnchanged": true,
+  "rows": [
+    {
+      "id": "RP-01",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\CB-MURDER-TEST-0001_criminal_defence_bundle.pdf",
+      "sha256Before": "d30e3f83d5866f31282fe9b4d9e6716489922c3d879598a81d27c920fc5f451b",
+      "sha256After": "d30e3f83d5866f31282fe9b4d9e6716489922c3d879598a81d27c920fc5f451b",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-02",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-1601-1700-v5-chaos\\pdfs\\CB-TB-1681_Grant.pdf",
+      "sha256Before": "cccf70b339ec74c4ff839c7d982b3306570cf6abfa843abf5f6dcae95bc650a0",
+      "sha256After": "cccf70b339ec74c4ff839c7d982b3306570cf6abfa843abf5f6dcae95bc650a0",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-03",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-1601-2200-v5-factory-run\\pdfs\\CB-TB-1925_Tobin.pdf",
+      "sha256Before": "555a899704fa7c7f77d39dd39f724af3fc187eff5452e1c54bbbed959251d457",
+      "sha256After": "555a899704fa7c7f77d39dd39f724af3fc187eff5452e1c54bbbed959251d457",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-04",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-001-050-v3\\pdfs\\CB-TB-039_Vale.pdf",
+      "sha256Before": "060c72f60892540944d75ef146121c003f0f10d506297126c51b09bf253f5c14",
+      "sha256After": "060c72f60892540944d75ef146121c003f0f10d506297126c51b09bf253f5c14",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-05",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Monster_and_Charge_Coverage_2026\\casebrain_monster_charge\\Charge_Coverage_Smoke_Pack\\pdfs\\CB-CHARGE-2026-0039.pdf",
+      "sha256Before": "1ef4c384db0f0f36273e3416c3d1e1db30b9ed1f7460bd21169830c60f8b6a6c",
+      "sha256After": "1ef4c384db0f0f36273e3416c3d1e1db30b9ed1f7460bd21169830c60f8b6a6c",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-06",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Packs_V_W_X_2026\\CaseBrain_Packs_V_W_X_2026\\Pack_V_CB_LEVERAGE_2026\\pdfs\\CB-LEVERAGE-2026-0001.pdf",
+      "sha256Before": "5bcd36e1ef8c3611e43e76cef64bbef75056bc76a812d2857977e8e6cfcd42d9",
+      "sha256After": "5bcd36e1ef8c3611e43e76cef64bbef75056bc76a812d2857977e8e6cfcd42d9",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-07",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Pack_Z_40x500_large_criminal_bundle_stress_pack\\CaseBrain_Pack_Z_40x500\\pdfs z\\CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+      "sha256Before": "94541fb543b06ca93f7cfc4964d527c900574e7c279e49225ec62af8d4e93871",
+      "sha256After": "94541fb543b06ca93f7cfc4964d527c900574e7c279e49225ec62af8d4e93871",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-08",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Pack_U_CB_OCR_2026_AUDITED_UPGRADED\\CaseBrain_Pack_U_CB_OCR_2026_AUDITED_UPGRADED\\pdfs\\CB-OCR-2026-0013.pdf",
+      "sha256Before": "d4ed1db9a7268273d7c33cad61b5a296068ce7f2c5d60955815700e659933b37",
+      "sha256After": "d4ed1db9a7268273d7c33cad61b5a296068ce7f2c5d60955815700e659933b37",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-09",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Eval_Regression_Packs_C_D\\CaseBrain_Eval_Regression_Packs_C_D\\Pack_C_Hallucination_Trap\\PDFs\\CB-TRAP-2026-0030.pdf",
+      "sha256Before": "cbc1d8d5da2238bb4124df1af92745ae1823be2b491273906e1d03e2f703e7be",
+      "sha256After": "cbc1d8d5da2238bb4124df1af92745ae1823be2b491273906e1d03e2f703e7be",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-10",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Blind_Bundle_Factory_v2_30_bundles (1)\\pdfs\\CB-TB-014_James_Patterson.pdf",
+      "sha256Before": "c172b0138636b21984c81193f9975383be2525e6b5eddf325023423aae7600ec",
+      "sha256After": "c172b0138636b21984c81193f9975383be2525e6b5eddf325023423aae7600ec",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-11",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\test casess\\gauntlet-08-kitchen-sink.pdf",
+      "sha256Before": "650f87da03a510f75c0eb201b94c194fb76a1482d588442d939d8b5b872ff7ea",
+      "sha256After": "650f87da03a510f75c0eb201b94c194fb76a1482d588442d939d8b5b872ff7ea",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-12",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Monster_and_Charge_Coverage_2026\\casebrain_monster_charge\\Monster_Bundle_Load_Pack\\pdfs\\CB-MONSTER-2026-0001.pdf",
+      "sha256Before": "0b966f3d6296a8359519de929cd2dd558a4b6bdd47b17f6924d0c11b27f4c69f",
+      "sha256After": "0b966f3d6296a8359519de929cd2dd558a4b6bdd47b17f6924d0c11b27f4c69f",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-13",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-301-400-v4\\pdfs\\CB-TB-343_Dunn.pdf",
+      "sha256Before": "be29ed51ee8c478a7d3af98ae1d4ecdc79e9561d00113b7ced5de3b9daeb8388",
+      "sha256After": "be29ed51ee8c478a7d3af98ae1d4ecdc79e9561d00113b7ced5de3b9daeb8388",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-14",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-501-600-v5\\pdfs\\CB-TB-546_Patel.pdf",
+      "sha256Before": "bc5d732fa9306133c0c7d7fe2ea85a8e7d65a5d1b30a823ac491495839e0a6ef",
+      "sha256After": "bc5d732fa9306133c0c7d7fe2ea85a8e7d65a5d1b30a823ac491495839e0a6ef",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-15",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-401-500-v5\\pdfs\\CB-TB-439_Davies.pdf",
+      "sha256Before": "adb988b033c4130a577b8a07b3090b5145515d8ff67f6eb7184222c2eb8d0dcd",
+      "sha256After": "adb988b033c4130a577b8a07b3090b5145515d8ff67f6eb7184222c2eb8d0dcd",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-16",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-1501-1600-v5-factory-run\\pdfs\\CB-TB-1573_Ahmed.pdf",
+      "sha256Before": "b7b5f5756a0d6f5bb7877ec996f5e39ead4825bc4f7d2ae891a3ededba8883a6",
+      "sha256After": "b7b5f5756a0d6f5bb7877ec996f5e39ead4825bc4f7d2ae891a3ededba8883a6",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-17",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\CB-FRESH-001_Taylor_Brookes_Digital_Attribution.pdf",
+      "sha256Before": "c5808d92030c0eb2005b40da003e8be027b09daae1f5844e1aea4b1fede24cd6",
+      "sha256After": "c5808d92030c0eb2005b40da003e8be027b09daae1f5844e1aea4b1fede24cd6",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-18",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\108.pdf",
+      "sha256Before": "4436b9884a71e433dfb73625429625a70501f77565d4b3fdc1a99cd076a31ef6",
+      "sha256After": "4436b9884a71e433dfb73625429625a70501f77565d4b3fdc1a99cd076a31ef6",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-19",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\police station.pdf",
+      "sha256Before": "169d3636cf2229bf1c7aedccf48074f682a29e2b64ff705e4c75ad08722c473b",
+      "sha256After": "169d3636cf2229bf1c7aedccf48074f682a29e2b64ff705e4c75ad08722c473b",
+      "unchanged": true,
+      "error": null
+    },
+    {
+      "id": "RP-20",
+      "absolutePath": "C:\\Users\\gduff\\Downloads\\Untitled document (14).pdf",
+      "sha256Before": "d33ffbce9e3e461792fa219091544af96d45dbd233ddde14fd1ed535e6d6a199",
+      "sha256After": "d33ffbce9e3e461792fa219091544af96d45dbd233ddde14fd1ed535e6d6a199",
+      "unchanged": true,
+      "error": null
+    }
+  ]
+}

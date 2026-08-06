@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-output-pdf-raster-acceptance@1.0.0",
+  "generatedAt": "2026-08-06T23:49:58.604Z",
+  "outputPdfCount": 20,
+  "totalPagesRendered": 20,
+  "pagesActuallyInspected": 20,
+  "inspectionMethod": {
+    "automatedGeometryChecks": true,
+    "automatedGeometryChecksDetail": "blank/near-all-white pixel fraction; non-white bounding-box tiny-content heuristic; tofu/replacement-char density from extracted text layer; %PDF header; pageCount>0",
+    "humanVisualReviewCompleted": false,
+    "humanVisualReviewNote": "Human/legal visual review fields remain blank. Automated raster inspection only."
+  },
+  "failures": {
+    "clippingOrTinyContentBoundingBox": 0,
+    "blankOrNearAllWhitePages": 0,
+    "brokenFontOrTofuSuspected": 0,
+    "overflowFailuresRecorded": 0,
+    "overflowNote": "No dedicated overflow detector beyond tiny-content bbox heuristic; no overflow failures flagged."
+  },
+  "launchStatus": "EXERCISED",
+  "perPdf": [
+    {
+      "caseId": "RP-01",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-02",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-03",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-04",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": "not_applicable"
+    },
+    {
+      "caseId": "RP-05",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-06",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-07",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-08",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-09",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-10",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": "not_applicable"
+    },
+    {
+      "caseId": "RP-11",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": "not_applicable"
+    },
+    {
+      "caseId": "RP-12",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-13",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-14",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-15",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-16",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-17",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-18",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-19",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    },
+    {
+      "caseId": "RP-20",
+      "status": "EXERCISED",
+      "pageCount": 1,
+      "anyBlankPage": false,
+      "anyTinyContentBoundingBox": false,
+      "anyBrokenFontSuspected": false,
+      "incompleteChargeWarningPresentInText": true
+    }
+  ]
+}

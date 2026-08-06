@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-unresolved-and-not-exercised-register@1.0.0",
+  "generatedAt": "2026-08-06T23:24:54.886Z",
+  "entries": [
+    {
+      "area": "authenticated_http_browser matter creation",
+      "status": "NOT_EXERCISED",
+      "reason": "Clerk-gated sign-in requires interactive credentials (QA_EMAIL/QA_PASSWORD). Neither is set in .env.local, and no service-role or test-mode entitlement-bypass endpoint exists in app/api to mint a session non-interactively. Creating 20 authenticated matters via the real HTTP/browser path was therefore not attempted in this run."
+    },
+    {
+      "area": "full raster page-render / clipping check",
+      "status": "EXERCISED",
+      "reason": "Exercised via Puppeteer (bundled Chromium) + pdf.js loaded from a CDN inside the rendered page — see output-pdf-raster-results.json."
+    },
+    {
+      "area": "337 of 361 registry controls (specified_not_implemented / browser_required / external_assurance_required / human_required)",
+      "status": "NOT_EXERCISED",
+      "reason": "Registry itself records these as not currentlyRunnable; see priority-control-map-361.json."
+    }
+  ]
+}

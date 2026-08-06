@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-v1-commit-scope-digest@1.0.0",
+  "generatedAt": "2026-08-06T23:53:35.459Z",
+  "manifestPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/COMMIT-SCOPE-MANIFEST.json",
+  "manifestSha256": "dd7f4ffc9653c49219d123c3ce170d369555ecd8c2a340405c73aa6444712501",
+  "includedFileCount": 80,
+  "dependencyProofConclusion": "PASS_SCOPE_ISOLATION: no included file depends on excluded dirty work; dirty tree is exactly the intended commit scope (plus gitignored bulk).",
+  "tsc": {
+    "totalErrors": 56,
+    "delta": 0,
+    "changedPathErrors": 0
+  },
+  "honestControlCounts": {
+    "claimedInvoked": 24,
+    "honestFullyExercised": 11,
+    "honestPartiallyExercised": 8,
+    "honestNotExercised": 5,
+    "phraseProxyOrNegativeScan": 6
+  }
+}

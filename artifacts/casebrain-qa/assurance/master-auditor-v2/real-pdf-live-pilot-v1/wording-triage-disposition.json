@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-wording-triage-disposition@1.0.0",
+  "generatedAt": "2026-08-06T23:24:10.156Z",
+  "scopeNote": "Pilot-output triage only, over the solicitor-visible strings produced by this 20-case pilot run. Dispositions classify each detected hit; the zero-confirmed-defect gate counts genuine_product_defect only for truncation, snake_case_enum_leak and acronym_casing.",
+  "totalOccurrences": 0,
+  "countsByKindAndDisposition": {
+    "absolute_proof_claim": {
+      "genuine_product_defect": 0,
+      "source_wording": 0,
+      "duplicate": 0,
+      "detector_false_positive": 0
+    },
+    "snake_case_enum_leak": {
+      "genuine_product_defect": 0,
+      "source_wording": 0,
+      "duplicate": 0,
+      "detector_false_positive": 0
+    },
+    "internal_id_leak": {
+      "genuine_product_defect": 0,
+      "source_wording": 0,
+      "duplicate": 0,
+      "detector_false_positive": 0
+    },
+    "broken_do_not_or_regarding": {
+      "genuine_product_defect": 0,
+      "source_wording": 0,
+      "duplicate": 0,
+      "detector_false_positive": 0
+    },
+    "acronym_casing": {
+      "genuine_product_defect": 0,
+      "source_wording": 0,
+      "duplicate": 0,
+      "detector_false_positive": 0
+    },
+    "truncation": {
+      "genuine_product_defect": 0,
+      "source_wording": 0,
+      "duplicate": 0,
+      "detector_false_positive": 0
+    }
+  },
+  "genuineProductDefectGate": {
+    "gatedKinds": [
+      "truncation",
+      "snake_case_enum_leak",
+      "acronym_casing"
+    ],
+    "genuineProductDefectCounts": {
+      "truncation": 0,
+      "snake_case_enum_leak": 0,
+      "acronym_casing": 0
+    },
+    "genuineProductDefectTotal": 0,
+    "gatePasses": true
+  },
+  "issues": []
+}

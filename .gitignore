@@ -73,3 +73,14 @@ supabase/.temp/
 
 .vercel
 .env*.local
+
+# Real-PDF live pilot bulk/regenerable
+artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/
+artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/**/page-renders/
+artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/**/output-pdfs/
+artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/**/raw-occurrence*
+artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/**/browser-captures/
+
+
+artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical*/**/bulk/
+

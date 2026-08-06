@@ -1,3 +1,5 @@
+import { humanizeInternalToken } from "@/lib/criminal/solicitor-visible-sanitization";
+
 /**
  * Mandatory provenance for important findings and chase items.
  * Whole-PDF filename-only provenance is insufficient.
@@ -195,14 +197,14 @@ export function formatFindingProvenanceLine(p: FindingProvenance): string {
   if (p.sourceDocumentTitle) {
     parts.push(
       p.sourceDocumentType
-        ? `${p.sourceDocumentTitle} (${p.sourceDocumentType})`
+        ? `${p.sourceDocumentTitle} (${humanizeInternalToken(p.sourceDocumentType)})`
         : p.sourceDocumentTitle,
     );
   }
   const page = pageProvenanceForSurface(p);
   if (!page.pageIdentityKnown) parts.push(UNKNOWN_PAGE_IDENTITY_PHRASE);
   else if (page.pageLabel) parts.push(page.pageLabel);
-  if (p.evidenceState) parts.push(`state: ${p.evidenceState.replace(/_/g, " ")}`);
+  if (p.evidenceState) parts.push(`state: ${humanizeInternalToken(p.evidenceState)}`);
   if (p.defendant) parts.push(`defendant: ${p.defendant}`);
   if (p.countNumber != null) parts.push(`count ${p.countNumber}`);
   if (p.unresolvedConflictOrLimitation) parts.push(`limitation: ${p.unresolvedConflictOrLimitation}`);

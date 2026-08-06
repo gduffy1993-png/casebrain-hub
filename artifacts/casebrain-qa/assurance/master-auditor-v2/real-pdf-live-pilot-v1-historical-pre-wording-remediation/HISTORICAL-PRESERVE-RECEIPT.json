@@ -1,0 +1,7 @@
+{
+  "membershipSha256": "5849004206b9e35246e1248908ac9b68d97fa64e9ece608a532435f4c14cd383",
+  "from": "real-pdf-live-pilot-v1",
+  "to": "real-pdf-live-pilot-v1-historical-pre-wording-remediation",
+  "preservedAt": "2026-08-06T22:52:35.0520823Z",
+  "note": "Historical freeze of pilot v1 artefacts before wording/PDF-raster remediation. Bulk outputs remain under real-pdf-live-pilot-v1/bulk from prior run; new rematerialisation will overwrite active tree only."
+}

@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-verification-results@1.0.0",
+  "generatedAt": "2026-08-06T23:24:54.887Z",
+  "updatedAt": "2026-08-07T00:20:00.000Z",
+  "note": "Automated/mechanical verification for the wording + PDF-raster remediation pass, plus final Codex acceptance reconciliation. Human/legal review fields intentionally left blank — never auto-filled.",
+  "membershipSha256": "5849004206b9e35246e1248908ac9b68d97fa64e9ece608a532435f4c14cd383",
+  "sha256BeforeAfterMatch": true,
+  "membershipFrozenAndVerified": true,
+  "wordingGenuineProductDefectGatePasses": true,
+  "wordingGenuineProductDefectCounts": {
+    "truncation": 0,
+    "snake_case_enum_leak": 0,
+    "acronym_casing": 0
+  },
+  "mechanicalChecks": [
+    {
+      "check": "node --test --import tsx scripts/malik-shared-root-remediation-contracts.test.ts",
+      "result": "pass",
+      "detail": "47 checks passed, 0 failed."
+    },
+    {
+      "check": "node --test --import tsx scripts/solicitor-visible-boundary.test.ts scripts/solicitor-visible-evidence-view.test.ts",
+      "result": "pass",
+      "detail": "2/2 test files passed (solicitor-visible boundary + evidence-view contracts)."
+    },
+    {
+      "check": "npx tsc -p tsconfig.json --noEmit",
+      "result": "baseline_noise_only",
+      "detail": "Exit code 1, 56 pre-existing baseline errors, Δ0 vs baseline, zero errors on changed paths (lib/criminal/{canonical-live-surface-adapter,charge-allegation-completeness,finding-provenance,solicitor-visible-sanitization}.ts and scripts/assurance/real-pdf-live-pilot/*). Reconfirmed during final Codex acceptance check."
+    },
+    {
+      "check": "final Codex acceptance control/raster/wording/scope reconciliation",
+      "result": "reconciled",
+      "detail": "See FINAL-CODEX-ACCEPTANCE-CHECK.json; honest control exercise 11 fully / 8 partially / 5 not_exercised; phrase-proxy lanes reclassified; commit-scope isolation PASS."
+    },
+    {
+      "check": "node node_modules/next/dist/bin/next build",
+      "result": "pass",
+      "detail": "Exit code 0. .env.local was copied from ../casebrain-hub/.env.local for the duration of the build only, then deleted immediately afterward (confirmed removed)."
+    },
+    {
+      "check": "source-hash-before-after.json revalidation",
+      "result": "pass",
+      "detail": "allUnchanged=true across all 20 rows — every source PDF byte-identical before and after this run."
+    },
+    {
+      "check": "membership-freeze-receipt.json revalidation",
+      "result": "pass",
+      "detail": "frozen=true, membershipSha256=5849004206b9e35246e1248908ac9b68d97fa64e9ece608a532435f4c14cd383 — matches the frozen 20-PDF membership specified for this remediation."
+    },
+    {
+      "check": "Brain1-Guardian-comparison.json (read-only vs stage3000 baseline)",
+      "result": "pass",
+      "detail": "headBlobMatchesBaseline=true, workingBlobMatchesBaseline=true — parent stage3000 LOCKED-ACCEPTANCE-CONTRACT.json untouched by this pilot."
+    }
+  ],
+  "humanReviewDisposition": null,
+  "humanReviewer": null,
+  "qualifiedLegalReviewCompleted": false,
+  "pendingVerificationSteps": [
+    "Human read-through of a sample of generated output PDFs.",
+    "Codex review per STOP-FOR-CODEX-REVIEW.json before any further scale-up."
+  ]
+}

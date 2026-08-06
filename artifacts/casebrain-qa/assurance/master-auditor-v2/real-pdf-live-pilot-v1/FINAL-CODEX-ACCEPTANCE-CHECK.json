@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-v1-final-codex-acceptance-check@1.0.0",
+  "generatedAt": "2026-08-07T00:15:00.000Z",
+  "worktree": "C:\\Users\\gduff\\casebrain-hub-wt-real-pdf-live-pilot",
+  "branch": "programme/real-pdf-live-pilot-v1",
+  "baselineHead": "2c09d58f57840dd1fca0a9e7e329268460d0964b",
+  "membershipSha256": "5849004206b9e35246e1248908ac9b68d97fa64e9ece608a532435f4c14cd383",
+  "reconciled": true,
+  "commitAuthorizedByAcceptanceCheck": true,
+  "checks": {
+    "controlAudit24": {
+      "status": "reconciled",
+      "artefacts": [
+        "control-exercise-audit-24.json",
+        "control-exercise-audit-24.md"
+      ],
+      "claimedInvoked": 24,
+      "honestFullyExercised": 11,
+      "honestPartiallyExercised": 8,
+      "honestNotExercised": 5,
+      "phraseProxyOrNegativeScan": 6,
+      "specialAttention": {
+        "MAA-LEGAL-CURRENTNESS": "partially_exercised / phrase_proxy (mostly not_exercised; unresolved when citation-like text)",
+        "MAA-SECURITY-PRIVACY": "partially_exercised / phrase_proxy negative scan (not auth/ACL/PII)",
+        "MAA-HUMAN-SUPERVISION": "partially_exercised / phrase_proxy negative scan (no human workflow)",
+        "MAA-BIAS-FAIRNESS": "partially_exercised / phrase_proxy negative scan (does not prove fairness)"
+      }
+    },
+    "rasterReport": {
+      "status": "reconciled",
+      "outputPdfCount": 20,
+      "totalPagesRendered": 20,
+      "pagesActuallyInspected": 20,
+      "automatedGeometryChecks": true,
+      "humanVisualReviewCompleted": false,
+      "clippingOrTinyContentBoundingBox": 0,
+      "blankOrNearAllWhitePages": 0,
+      "brokenFontOrTofuSuspected": 0,
+      "overflowFailuresRecorded": 0
+    },
+    "wordingReport": {
+      "status": "reconciled",
+      "historical": {
+        "occurrences": 359,
+        "exactStrings": 35,
+        "normalisedTemplates": 28,
+        "casesWithIssues": 20,
+        "genuineProductDefects": ["snake_case_enum_leak", "acronym_casing"],
+        "detectorFalsePositiveMajority": ["truncation"]
+      },
+      "postRemediation": {
+        "occurrences": 0,
+        "exactStrings": 0,
+        "normalisedTemplates": 0,
+        "casesWithIssues": 0
+      }
+    },
+    "tsc": {
+      "status": "reconciled",
+      "totalErrors": 56,
+      "baselineErrors": 56,
+      "delta": 0,
+      "changedPathErrors": 0
+    },
+    "commitScope": {
+      "status": "reconciled",
+      "manifest": "COMMIT-SCOPE-MANIFEST.json",
+      "digest": "COMMIT-SCOPE-DIGEST.json",
+      "dependencyProof": "PASS_SCOPE_ISOLATION: no included file depends on excluded dirty work; dirty tree is exactly the intended commit scope (plus gitignored bulk)."
+    }
+  },
+  "nonClaims": [
+    "no authenticated HTTP/browser exercise",
+    "no merge",
+    "no deploy",
+    "no corpus PASS",
+    "no Stage-3000 completion",
+    "no programme PASS",
+    "no solicitor approval",
+    "no global zero-defect claim"
+  ],
+  "stopAfter": "push"
+}

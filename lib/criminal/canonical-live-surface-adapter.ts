@@ -10,6 +10,7 @@ import {
 } from "@/lib/criminal/build-from-document-units";
 import {
   formatChargeWithInseparableWarning,
+  INCOMPLETE_CHARGE_WARNING,
   resolveChargeCompleteness,
   type ChargeCompletenessResult,
 } from "@/lib/criminal/charge-allegation-completeness";
@@ -44,6 +45,7 @@ import {
   type CrossExitScanResult,
   type EnforcementAction,
 } from "@/lib/criminal/cross-exit-contradiction-scanner";
+import { sanitizeSolicitorProse } from "@/lib/criminal/solicitor-visible-sanitization";
 
 export type LiveProductionSurfaces = {
   pipeline: LiveCanonicalPipelineResult;
@@ -156,19 +158,26 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
 ): LiveProductionSurfaces {
   const pipeline = buildCanonicalPipelineFromDocumentUnits(documents);
   const caseId = opts?.caseId ?? "live-integration-case";
+  const recordedFromPipeline =
+    pipeline.charges[0]?.particulars?.trim() ||
+    pipeline.charges[0]?.offence?.trim() ||
+    null;
   const chargeCompleteness = resolveChargeCompleteness({
-    recordedChargeText: opts?.recordedChargeText ?? opts?.allegation ?? null,
-    canonicalOffenceLine: opts?.canonicalOffenceLine ?? null,
+    recordedChargeText:
+      opts?.recordedChargeText ?? opts?.allegation ?? recordedFromPipeline,
+    canonicalOffenceLine: opts?.canonicalOffenceLine ?? pipeline.charges[0]?.offence ?? null,
     courtNoteText: opts?.courtNoteText ?? null,
   });
   const allegation = chargeCompleteness.displayedChargeText;
   const allegationWithStatus = formatChargeWithInseparableWarning(chargeCompleteness);
+  /** Incomplete charges must carry warning+action on every solicitor-facing exit. */
+  const allegationForExits = allegationWithStatus || allegation;
   const caseTitle = opts?.caseTitle ?? "Live integration matter";
   const clientLabel = opts?.clientLabel ?? "Client";
 
   const matterState = buildCanonicalMatterStateV1({
     caseId,
-    allegation,
+    allegation: allegationForExits,
     evidenceRows: evidenceRowsForFiveAnswers(pipeline),
     chaseItems: pipeline.chaseLabels.map((label) => ({ label, baseStatus: "Outstanding" })),
     documents,
@@ -178,7 +187,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     caseId,
     caseTitle,
     clientLabel,
-    allegation,
+    allegation: allegationForExits,
     stage: "Case management",
     hearingStatus: "Listed",
     bundleHealth: "Review papers",
@@ -195,7 +204,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     caseId,
     caseTitle,
     clientLabel,
-    allegation,
+    allegation: allegationForExits,
     stage: "Case management",
     hearingStatus: "Listed",
     hearingDateIso: null,
@@ -236,17 +245,34 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     buildCriminalStructuredKeyFacts(meta, "live-document-units"),
     pipeline.findings,
   );
+  if (
+    chargeCompleteness.completenessStatus !== "complete" &&
+    (chargeCompleteness.warning || chargeCompleteness.requiredAction)
+  ) {
+    const readinessText = allegationForExits.trim();
+    const alreadyPresent = keyFacts.charge.some((f) =>
+      (f.text ?? "").toLowerCase().includes("recorded charge wording appears incomplete"),
+    );
+    if (readinessText && !alreadyPresent) {
+      keyFacts.charge.unshift({
+        text: readinessText,
+        category: "charge",
+        source: "live-charge-completeness",
+        confidence: "medium",
+      });
+    }
+  }
 
   const exportPack = buildExportPack({
     caseId,
-    allegation,
+    allegation: allegationForExits,
     warRoom,
     chase: disclosureChase,
     briefPlan: null,
     matterConfidence: null,
     doNotOverstate: warRoom.doNotOverstate,
     primaryRouteTitle: "Live integration",
-    urnCandidateTexts: [pipeline.bundleText, allegation],
+    urnCandidateTexts: [pipeline.bundleText, allegationForExits],
   });
 
   const docRows = documents.map((d, idx) => ({
@@ -455,37 +481,168 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     })),
   ];
 
+  const chargesForExits =
+    chargeCompleteness.completenessStatus === "complete"
+      ? pipeline.charges
+      : (() => {
+          const annotated = pipeline.charges.map((c) => ({
+            ...c,
+            status:
+              c.status === "pending" || !c.status
+                ? "incomplete_on_papers"
+                : `${c.status}; incomplete_on_papers`,
+            confirmationLabel: "unconfirmed" as const,
+            offence: `${c.offence} — ${chargeCompleteness.warning ?? INCOMPLETE_CHARGE_WARNING}`,
+          }));
+          if (annotated.length > 0) return annotated;
+          // No structured charge row extracted — still surface incompleteness on the charges exit.
+          return [
+            {
+              count: 1,
+              offence: allegationForExits || (chargeCompleteness.warning ?? INCOMPLETE_CHARGE_WARNING),
+              statute: null,
+              particulars: chargeCompleteness.sourceChargeText || null,
+              location: null,
+              status: "incomplete_on_papers",
+              defendants: [],
+              documentRole: "unknown" as const,
+              sourceDocumentTitle: null,
+              sourceDocumentType: null,
+              sourcePage: null,
+              compiledPage: null,
+              pageIdentityKnown: false,
+              confidence: null,
+              extracted: false,
+              confirmationLabel: "unconfirmed" as const,
+            },
+          ];
+        })();
+
+  // ---------------------------------------------------------------------
+  // Final solicitor-visible sanitization pass. Every string that leaves this
+  // builder on a solicitor-facing exit (copy/pdf/api/composed_prose/war room/
+  // chase/key facts/charges) is run through sanitizeSolicitorProse, which
+  // humanizes remaining snake_case/enum tokens and restores protected acronym
+  // casing (BWV/CCTV/MG5/MG6/MG6C/…). Structural/internal fields (ids, raw
+  // document-role enums used for downstream control-detector logic) are left
+  // untouched — only known solicitor-prose text fields are rewritten here.
+  // ---------------------------------------------------------------------
+  const st = (s: string | null | undefined): string | null =>
+    s == null ? null : sanitizeSolicitorProse(s);
+  const stArr = (arr: string[]): string[] => arr.map((s) => sanitizeSolicitorProse(s));
+
+  const sanitizedSerialized = serialized.map((f) => ({
+    ...f,
+    summary: sanitizeSolicitorProse(f.summary),
+    provenanceLine: sanitizeSolicitorProse(f.provenanceLine),
+  }));
+
+  const sanitizedCopyLinesFinal = enforcedCopyLines.map((line) => ({
+    ...line,
+    text: sanitizeSolicitorProse(line.text),
+    provenanceLine: sanitizeSolicitorProse(line.provenanceLine),
+  }));
+
+  const sanitizedComposedProse = {
+    ...enforcedComposedProse,
+    courtLine: st(enforcedComposedProse.courtLine),
+    cpsChase: st(enforcedComposedProse.cpsChase),
+    clientDisclaimer: sanitizeSolicitorProse(enforcedComposedProse.clientDisclaimer),
+    limitations: stArr(enforcedComposedProse.limitations),
+    allegation: enforcedComposedProse.allegation
+      ? sanitizeSolicitorProse(enforcedComposedProse.allegation)
+      : enforcedComposedProse.allegation,
+  };
+
+  const sanitizedWarRoom = {
+    ...warRoom,
+    allegation: sanitizeSolicitorProse(warRoom.allegation),
+    safePositionToday: sanitizeSolicitorProse(warRoom.safePositionToday),
+    sayThis: stArr(warRoom.sayThis),
+    doNotOverstate: stArr(warRoom.doNotOverstate),
+    askCourtToRecord: stArr(warRoom.askCourtToRecord),
+    instructionsNeeded: stArr(warRoom.instructionsNeeded),
+    nextHearingMoves: stArr(warRoom.nextHearingMoves),
+    draftWording: {
+      ...warRoom.draftWording,
+      disclosureTimetable: sanitizeSolicitorProse(warRoom.draftWording.disclosureTimetable),
+      adjournment: sanitizeSolicitorProse(warRoom.draftWording.adjournment),
+      clientExplanation: sanitizeSolicitorProse(warRoom.draftWording.clientExplanation),
+    },
+  };
+
+  const sanitizedDisclosureChase = {
+    ...enforcedDisclosureChase,
+    items: enforcedDisclosureChase.items.map((item) => ({
+      ...item,
+      label: sanitizeSolicitorProse(item.label),
+      whyItMatters: sanitizeSolicitorProse(item.whyItMatters),
+      draftChaseWording: sanitizeSolicitorProse(item.draftChaseWording),
+      courtLine: sanitizeSolicitorProse(item.courtLine),
+    })),
+    disclosureSummary: sanitizeSolicitorProse(enforcedDisclosureChase.disclosureSummary),
+    safeCourtLine: sanitizeSolicitorProse(enforcedDisclosureChase.safeCourtLine),
+  };
+
+  const sanitizedKeyFacts = Object.fromEntries(
+    Object.entries(keyFacts).map(([cat, facts]) => [
+      cat,
+      (facts as Array<{ text: string; [k: string]: unknown }>).map((f) => ({
+        ...f,
+        text: sanitizeSolicitorProse(f.text),
+      })),
+    ]),
+  ) as typeof keyFacts;
+
+  const sanitizedCharges = chargesForExits.map((c) => ({
+    ...c,
+    offence: sanitizeSolicitorProse(c.offence),
+  }));
+
+  const sanitizedMatterState = {
+    ...matterState,
+    matter: {
+      ...matterState.matter,
+      allegation: st(matterState.matter.allegation),
+      chargeWording: st(matterState.matter.chargeWording),
+    },
+  };
+
+  const sanitizedPdfProvenanceLines = stArr(pipeline.findings.map((f) => f.provenanceLine));
+  const sanitizedPdfLimitations = stArr(composedLimitations);
+  const sanitizedAllegationForExits = sanitizeSolicitorProse(allegationForExits);
+
   return {
     pipeline,
-    matterState,
-    charges: pipeline.charges,
+    matterState: sanitizedMatterState,
+    charges: sanitizedCharges,
     chargeCompleteness,
-    keyFacts,
+    keyFacts: sanitizedKeyFacts,
     truthMap,
-    disclosureChase: enforcedDisclosureChase,
-    warRoom,
+    disclosureChase: sanitizedDisclosureChase,
+    warRoom: sanitizedWarRoom,
     exportPack,
     controlRoom: {
       signals: controlSignals,
-      findings: serialized,
+      findings: sanitizedSerialized,
     },
-    copyLines: enforcedCopyLines,
-    composedProse: enforcedComposedProse,
+    copyLines: sanitizedCopyLinesFinal,
+    composedProse: sanitizedComposedProse,
     pdf: {
-      provenanceLines: pipeline.findings.map((f) => f.provenanceLine),
-      limitations: composedLimitations,
-      allegation: allegationWithStatus || allegation,
+      provenanceLines: sanitizedPdfProvenanceLines,
+      limitations: sanitizedPdfLimitations,
+      allegation: sanitizedAllegationForExits,
       chargeCompleteness,
     },
     api: {
-      findings: serialized,
+      findings: sanitizedSerialized,
       documentRoles: pipeline.graph.nodes.map((n) => ({
         id: n.id,
         title: n.title,
         role: n.role,
       })),
-      charges: pipeline.charges,
-      allegation: allegationWithStatus || allegation,
+      charges: sanitizedCharges,
+      allegation: sanitizedAllegationForExits,
       chargeCompleteness,
       evidenceState: pipeline.evidenceState,
       attribution: pipeline.attribution,

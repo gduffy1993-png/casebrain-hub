@@ -1,0 +1,390 @@
+[
+  {
+    "id": "RP-01",
+    "fileName": "CB-MURDER-TEST-0001_criminal_defence_bundle.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\CB-MURDER-TEST-0001_criminal_defence_bundle.pdf",
+    "expectedSha256": "d30e3f83d5866f31282fe9b4d9e6716489922c3d879598a81d27c920fc5f451b",
+    "actualSha256": "d30e3f83d5866f31282fe9b4d9e6716489922c3d879598a81d27c920fc5f451b",
+    "sha256Matches": true,
+    "byteLength": 265665,
+    "expectedPageCount": 137,
+    "actualPageCount": 137,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_xl_gt100",
+      "homicide",
+      "full_evidence_mix",
+      "amendment"
+    ]
+  },
+  {
+    "id": "RP-02",
+    "fileName": "CB-TB-1681_Grant.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-1601-1700-v5-chaos\\pdfs\\CB-TB-1681_Grant.pdf",
+    "expectedSha256": "cccf70b339ec74c4ff839c7d982b3306570cf6abfa843abf5f6dcae95bc650a0",
+    "actualSha256": "cccf70b339ec74c4ff839c7d982b3306570cf6abfa843abf5f6dcae95bc650a0",
+    "sha256Matches": true,
+    "byteLength": 11788,
+    "expectedPageCount": 8,
+    "actualPageCount": 8,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_s_le15",
+      "chaos_layout",
+      "drugs",
+      "missing_material"
+    ]
+  },
+  {
+    "id": "RP-03",
+    "fileName": "CB-TB-1925_Tobin.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-1601-2200-v5-factory-run\\pdfs\\CB-TB-1925_Tobin.pdf",
+    "expectedSha256": "555a899704fa7c7f77d39dd39f724af3fc187eff5452e1c54bbbed959251d457",
+    "actualSha256": "555a899704fa7c7f77d39dd39f724af3fc187eff5452e1c54bbbed959251d457",
+    "sha256Matches": true,
+    "byteLength": 26353,
+    "expectedPageCount": 22,
+    "actualPageCount": 22,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_m_le30",
+      "violence",
+      "interview",
+      "medical",
+      "hearing"
+    ]
+  },
+  {
+    "id": "RP-04",
+    "fileName": "CB-TB-039_Vale.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-001-050-v3\\pdfs\\CB-TB-039_Vale.pdf",
+    "expectedSha256": "060c72f60892540944d75ef146121c003f0f10d506297126c51b09bf253f5c14",
+    "actualSha256": "060c72f60892540944d75ef146121c003f0f10d506297126c51b09bf253f5c14",
+    "sha256Matches": true,
+    "byteLength": 19583,
+    "expectedPageCount": 13,
+    "actualPageCount": 13,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_s_le15",
+      "theft_robbery",
+      "version_3_layout"
+    ]
+  },
+  {
+    "id": "RP-05",
+    "fileName": "CB-CHARGE-2026-0039.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Monster_and_Charge_Coverage_2026\\casebrain_monster_charge\\Charge_Coverage_Smoke_Pack\\pdfs\\CB-CHARGE-2026-0039.pdf",
+    "expectedSha256": "1ef4c384db0f0f36273e3416c3d1e1db30b9ed1f7460bd21169830c60f8b6a6c",
+    "actualSha256": "1ef4c384db0f0f36273e3416c3d1e1db30b9ed1f7460bd21169830c60f8b6a6c",
+    "sha256Matches": true,
+    "byteLength": 6960,
+    "expectedPageCount": 5,
+    "actualPageCount": 5,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_xs_le5",
+      "road_traffic",
+      "charge_coverage_smoke_layout"
+    ]
+  },
+  {
+    "id": "RP-06",
+    "fileName": "CB-LEVERAGE-2026-0001.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Packs_V_W_X_2026\\CaseBrain_Packs_V_W_X_2026\\Pack_V_CB_LEVERAGE_2026\\pdfs\\CB-LEVERAGE-2026-0001.pdf",
+    "expectedSha256": "5bcd36e1ef8c3611e43e76cef64bbef75056bc76a812d2857977e8e6cfcd42d9",
+    "actualSha256": "5bcd36e1ef8c3611e43e76cef64bbef75056bc76a812d2857977e8e6cfcd42d9",
+    "sha256Matches": true,
+    "byteLength": 7289,
+    "expectedPageCount": 5,
+    "actualPageCount": 5,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_xs_le5",
+      "leverage_pack",
+      "amendment_missing_disclosure"
+    ]
+  },
+  {
+    "id": "RP-07",
+    "fileName": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Pack_Z_40x500_large_criminal_bundle_stress_pack\\CaseBrain_Pack_Z_40x500\\pdfs z\\CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+    "expectedSha256": "94541fb543b06ca93f7cfc4964d527c900574e7c279e49225ec62af8d4e93871",
+    "actualSha256": "94541fb543b06ca93f7cfc4964d527c900574e7c279e49225ec62af8d4e93871",
+    "sha256Matches": true,
+    "byteLength": 897448,
+    "expectedPageCount": 500,
+    "actualPageCount": 500,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_xl_gt100",
+      "heavy_bundle",
+      "abh",
+      "pagination"
+    ]
+  },
+  {
+    "id": "RP-08",
+    "fileName": "CB-OCR-2026-0013.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Pack_U_CB_OCR_2026_AUDITED_UPGRADED\\CaseBrain_Pack_U_CB_OCR_2026_AUDITED_UPGRADED\\pdfs\\CB-OCR-2026-0013.pdf",
+    "expectedSha256": "d4ed1db9a7268273d7c33cad61b5a296068ce7f2c5d60955815700e659933b37",
+    "actualSha256": "d4ed1db9a7268273d7c33cad61b5a296068ce7f2c5d60955815700e659933b37",
+    "sha256Matches": true,
+    "byteLength": 105944,
+    "expectedPageCount": 5,
+    "actualPageCount": 5,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_xs_le5",
+      "ocr_degradation",
+      "phone_medical"
+    ]
+  },
+  {
+    "id": "RP-09",
+    "fileName": "CB-TRAP-2026-0030.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Eval_Regression_Packs_C_D\\CaseBrain_Eval_Regression_Packs_C_D\\Pack_C_Hallucination_Trap\\PDFs\\CB-TRAP-2026-0030.pdf",
+    "expectedSha256": "cbc1d8d5da2238bb4124df1af92745ae1823be2b491273906e1d03e2f703e7be",
+    "actualSha256": "cbc1d8d5da2238bb4124df1af92745ae1823be2b491273906e1d03e2f703e7be",
+    "sha256Matches": true,
+    "byteLength": 5713,
+    "expectedPageCount": 3,
+    "actualPageCount": 3,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_xs_le5",
+      "hallucination_trap",
+      "incomplete_material"
+    ]
+  },
+  {
+    "id": "RP-10",
+    "fileName": "CB-TB-014_James_Patterson.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Blind_Bundle_Factory_v2_30_bundles (1)\\pdfs\\CB-TB-014_James_Patterson.pdf",
+    "expectedSha256": "c172b0138636b21984c81193f9975383be2525e6b5eddf325023423aae7600ec",
+    "actualSha256": "c172b0138636b21984c81193f9975383be2525e6b5eddf325023423aae7600ec",
+    "sha256Matches": true,
+    "byteLength": 14503,
+    "expectedPageCount": 8,
+    "actualPageCount": 8,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_s_le15",
+      "blind_bundle_layout",
+      "weapons",
+      "hearing"
+    ]
+  },
+  {
+    "id": "RP-11",
+    "fileName": "gauntlet-08-kitchen-sink.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\test casess\\gauntlet-08-kitchen-sink.pdf",
+    "expectedSha256": "650f87da03a510f75c0eb201b94c194fb76a1482d588442d939d8b5b872ff7ea",
+    "actualSha256": "650f87da03a510f75c0eb201b94c194fb76a1482d588442d939d8b5b872ff7ea",
+    "sha256Matches": true,
+    "byteLength": 78793,
+    "expectedPageCount": 86,
+    "actualPageCount": 86,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_l_le100",
+      "multi_defendant",
+      "kitchen_sink_complexity"
+    ]
+  },
+  {
+    "id": "RP-12",
+    "fileName": "CB-MONSTER-2026-0001.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\CaseBrain_Monster_and_Charge_Coverage_2026\\casebrain_monster_charge\\Monster_Bundle_Load_Pack\\pdfs\\CB-MONSTER-2026-0001.pdf",
+    "expectedSha256": "0b966f3d6296a8359519de929cd2dd558a4b6bdd47b17f6924d0c11b27f4c69f",
+    "actualSha256": "0b966f3d6296a8359519de929cd2dd558a4b6bdd47b17f6924d0c11b27f4c69f",
+    "sha256Matches": true,
+    "byteLength": 400768,
+    "expectedPageCount": 300,
+    "actualPageCount": 300,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_xl_gt100",
+      "monster_load",
+      "robbery",
+      "long_pagination"
+    ]
+  },
+  {
+    "id": "RP-13",
+    "fileName": "CB-TB-343_Dunn.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-301-400-v4\\pdfs\\CB-TB-343_Dunn.pdf",
+    "expectedSha256": "be29ed51ee8c478a7d3af98ae1d4ecdc79e9561d00113b7ced5de3b9daeb8388",
+    "actualSha256": "be29ed51ee8c478a7d3af98ae1d4ecdc79e9561d00113b7ced5de3b9daeb8388",
+    "sha256Matches": true,
+    "byteLength": 21355,
+    "expectedPageCount": 15,
+    "actualPageCount": 15,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_s_le15",
+      "burglary",
+      "multi_defendant",
+      "digital_evidence"
+    ]
+  },
+  {
+    "id": "RP-14",
+    "fileName": "CB-TB-546_Patel.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-501-600-v5\\pdfs\\CB-TB-546_Patel.pdf",
+    "expectedSha256": "bc5d732fa9306133c0c7d7fe2ea85a8e7d65a5d1b30a823ac491495839e0a6ef",
+    "actualSha256": "bc5d732fa9306133c0c7d7fe2ea85a8e7d65a5d1b30a823ac491495839e0a6ef",
+    "sha256Matches": true,
+    "byteLength": 26557,
+    "expectedPageCount": 27,
+    "actualPageCount": 27,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_m_le30",
+      "public_order",
+      "amended_version"
+    ]
+  },
+  {
+    "id": "RP-15",
+    "fileName": "CB-TB-439_Davies.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-401-500-v5\\pdfs\\CB-TB-439_Davies.pdf",
+    "expectedSha256": "adb988b033c4130a577b8a07b3090b5145515d8ff67f6eb7184222c2eb8d0dcd",
+    "actualSha256": "adb988b033c4130a577b8a07b3090b5145515d8ff67f6eb7184222c2eb8d0dcd",
+    "sha256Matches": true,
+    "byteLength": 20205,
+    "expectedPageCount": 19,
+    "actualPageCount": 19,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_m_le30",
+      "proceeds",
+      "defence_statement",
+      "co_defendant"
+    ]
+  },
+  {
+    "id": "RP-16",
+    "fileName": "CB-TB-1573_Ahmed.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\cb-tb-1501-1600-v5-factory-run\\pdfs\\CB-TB-1573_Ahmed.pdf",
+    "expectedSha256": "b7b5f5756a0d6f5bb7877ec996f5e39ead4825bc4f7d2ae891a3ededba8883a6",
+    "actualSha256": "b7b5f5756a0d6f5bb7877ec996f5e39ead4825bc4f7d2ae891a3ededba8883a6",
+    "sha256Matches": true,
+    "byteLength": 21555,
+    "expectedPageCount": 21,
+    "actualPageCount": 21,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_m_le30",
+      "firearms",
+      "expert",
+      "medical",
+      "hearing"
+    ]
+  },
+  {
+    "id": "RP-17",
+    "fileName": "CB-FRESH-001_Taylor_Brookes_Digital_Attribution.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\CB-FRESH-001_Taylor_Brookes_Digital_Attribution.pdf",
+    "expectedSha256": "c5808d92030c0eb2005b40da003e8be027b09daae1f5844e1aea4b1fede24cd6",
+    "actualSha256": "c5808d92030c0eb2005b40da003e8be027b09daae1f5844e1aea4b1fede24cd6",
+    "sha256Matches": true,
+    "byteLength": 20676,
+    "expectedPageCount": 10,
+    "actualPageCount": 10,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_s_le15",
+      "communications",
+      "device_attribution"
+    ]
+  },
+  {
+    "id": "RP-18",
+    "fileName": "108.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\108.pdf",
+    "expectedSha256": "4436b9884a71e433dfb73625429625a70501f77565d4b3fdc1a99cd076a31ef6",
+    "actualSha256": "4436b9884a71e433dfb73625429625a70501f77565d4b3fdc1a99cd076a31ef6",
+    "sha256Matches": true,
+    "byteLength": 88050,
+    "expectedPageCount": 9,
+    "actualPageCount": 9,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_s_le15",
+      "standalone_cctv_heavy_homicide_material"
+    ]
+  },
+  {
+    "id": "RP-19",
+    "fileName": "police station.pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\police station.pdf",
+    "expectedSha256": "169d3636cf2229bf1c7aedccf48074f682a29e2b64ff705e4c75ad08722c473b",
+    "actualSha256": "169d3636cf2229bf1c7aedccf48074f682a29e2b64ff705e4c75ad08722c473b",
+    "sha256Matches": true,
+    "byteLength": 58553,
+    "expectedPageCount": 2,
+    "actualPageCount": 2,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_xs_le5",
+      "short_standalone_police_forensic_input"
+    ]
+  },
+  {
+    "id": "RP-20",
+    "fileName": "Untitled document (14).pdf",
+    "absolutePath": "C:\\Users\\gduff\\Downloads\\Untitled document (14).pdf",
+    "expectedSha256": "d33ffbce9e3e461792fa219091544af96d45dbd233ddde14fd1ed535e6d6a199",
+    "actualSha256": "d33ffbce9e3e461792fa219091544af96d45dbd233ddde14fd1ed535e6d6a199",
+    "sha256Matches": true,
+    "byteLength": 186525,
+    "expectedPageCount": 11,
+    "actualPageCount": 11,
+    "pageCountMatches": true,
+    "extractionStatus": "ok",
+    "extractionError": null,
+    "strata": [
+      "size_s_le15",
+      "explicit_fictional_consolidated_test_bundle"
+    ]
+  }
+]

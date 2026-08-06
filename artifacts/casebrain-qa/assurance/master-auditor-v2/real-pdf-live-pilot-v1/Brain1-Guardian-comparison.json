@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-brain1-guardian-comparison@1.0.0",
+  "generatedAt": "2026-08-06T23:24:54.883Z",
+  "note": "Read-only comparison. Stage-3000 synthetic evidence was not modified by this programme.",
+  "baselineReceiptPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/brain1-guardian-authority-receipt.json",
+  "baselineReadError": null,
+  "baseline": {
+    "schemaVersion": "stage3000-v2.1.2-brain1-guardian-authority@1.0.0",
+    "head": "0326cc44a724c01aeab162eed8b8806dd8a44345",
+    "authoritativeHead": "0326cc44a724c01aeab162eed8b8806dd8a44345",
+    "headMatches": true,
+    "lockedContractWorkingBlob": "38e1226a5ae35f06423eeacacf4d05f43bc9962b",
+    "lockedContractHeadBlob": "38e1226a5ae35f06423eeacacf4d05f43bc9962b",
+    "bundleMaterialNormalizerWorkingTreeDirty": false
+  },
+  "working": {
+    "headCommit": "2c09d58f57840dd1fca0a9e7e329268460d0964b",
+    "contractGitError": null,
+    "lockedContractBlobNow": "38e1226a5ae35f06423eeacacf4d05f43bc9962b",
+    "lockedContractBlobGitError": null,
+    "lockedContractWorkingTreeClean": true
+  },
+  "comparison": {
+    "headBlobMatchesBaseline": true,
+    "workingBlobMatchesBaseline": true
+  }
+}

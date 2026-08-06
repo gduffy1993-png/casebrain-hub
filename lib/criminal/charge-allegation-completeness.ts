@@ -57,41 +57,59 @@ export type ChargeCompletenessResult = {
 };
 
 /**
+ * Known truncated word-stems observed from real product renderer/character-limit cuts.
+ * Deliberately an explicit allowlist of *incomplete* stems (not a broad heuristic) —
+ * expand this list only when a genuine new mid-word cut is confirmed against real output.
+ */
+const TRUNCATED_STEM_RE =
+  /^(pap|curren|outstandin|disclos|confirme|materia|evidenc|servic|safeguar|attribut|provisio|outstand|recor|statu|documen|hearin|custod|allegat|prosecut|defenc|instructi|deadlin|chronolog|reliabl|integrit|verif)$/i;
+
+/**
+ * Complete, commonly-occurring solicitor-prose words that must NEVER be treated as
+ * mid-word truncation, even when short — this list exists because a prior broad
+ * "short trailing word" heuristic produced many false positives on ordinary complete
+ * sentences (e.g. "...source proof", "...rather than a page", "Missing: Custody record").
+ */
+const COMPLETE_TRAILING_WORD_RE =
+  /^(law|act|code|file|note|court|order|bail|plea|trial|jury|count|offence|offense|charge|charges|papers|paper|schedule|bundle|master|export|footage|statement|statements|interview|interviews|transcript|transcripts|defendant|defendants|complainant|complainants|prosecution|defence|defense|outstanding|available|required|confirmed|extracted|missing|served|referred|hearing|hearings|position|review|common|proof|page|pages|record|records|pace|report|reports|full|use|used|item|items|notice|notices|sheet|sheets|video|videos|audio|log|logs|summary|summaries|material|materials|guilty|innocent|custody|clip|clips|cad|copy|copies|source|sources|expert|medical|body|worn|status|action|warning|solicitor|solicitors|client|clients|matter|matters|case|cases|form|forms|list|lists|date|dates|time|times|name|names|role|roles|type|types|link|links|the|and|or|for|with|from|that|which|this|into|onto|upon|over|under|after|before|about|between)$/i;
+
+/** Short structured "Label: Value" fields (names, pleas) — never mid-sentence-wrapped prose. */
+const LABEL_VALUE_FIELD_RE =
+  /^(?:defendant|complainant|witness|victim|officer|solicitor|client|plea|status|urn|dob)\s*:\s*\S/i;
+
+/**
  * True when text ends mid-word (renderer truncation), e.g. "...current pap".
- * Prefers detecting incomplete final tokens rather than legitimate short words.
+ * Conservative by design: only flags a known truncated stem, or a proper structural
+ * signal of an incomplete token. Complete solicitor sentences — including ones ending
+ * in short common words or proper names — are never flagged.
  */
 export function isMidWordSolicitorTruncation(text: string | null | undefined): boolean {
   const t = (text ?? "").replace(/\s+/g, " ").trim();
   if (!t || t.length < 12) return false;
   if (/[.!?]"?'?\s*$/.test(t)) return false;
-  if (/\b(?:cps|mg11|mg6c?|ptph|bwv|cctv|dna|anpr|vrm|pfha|pwits|ltd|plc|uk|id)\.?\s*$/i.test(t)) {
+  if (/\b(?:cps|mg\d+[a-z]?|ptph|bwv|cctv|dna|anpr|vrm|pfha|pwits|ltd|plc|uk|id)\)?\.?,?\s*$/i.test(t)) {
     return false;
   }
+  // Structured short label:value fields (e.g. "Defendant: Leon Hale", "Plea: not guilty")
+  // are never mid-sentence-wrapped prose — do not run the truncation heuristic on them.
+  if (LABEL_VALUE_FIELD_RE.test(t)) return false;
+
   const last = (t.split(/\s+/).pop() ?? "").replace(/[^A-Za-z]/g, "");
   if (last.length < 3 || last.length > 12) return false;
-  if (
-    /^(pap|curren|outstandin|disclos|confirme|materia|evidenc|servic|safeguar|attribut|provisio|outstand)$/i.test(
-      last,
-    )
-  ) {
-    return true;
-  }
-  // Complete short legal/common words — never treat as mid-word cuts.
-  if (
-    /^(law|act|code|file|note|court|order|bail|plea|trial|jury|count|offence|offense|charge|papers|schedule|bundle|master|export|footage|statement|interview|transcript|defendant|complainant|prosecution|defence|defense|outstanding|available|required|confirmed|extracted|missing|served|referred|hearing|position|review|common|the|and|or|for|with|from|that|which|this|into|onto|upon|over|under|after|before|about|between)$/i.test(
-      last,
-    )
-  ) {
-    return false;
-  }
-  // Ends on a truncated alphabetic token that is not a complete common word ending.
-  return (
-    /^[A-Za-z]+$/.test(last) &&
-    last.length <= 6 &&
-    !/(?:ing|ed|ly|tion|sion|ment|ance|ence|ous|able|ible|ive|als?|ers?|ors?|ary|ory|ics?|ate|ures?|ants?|ents?|ness|ful|less|ships?|ity|ties|screenshots?)$/i.test(
-      last,
-    )
-  );
+
+  if (TRUNCATED_STEM_RE.test(last)) return true;
+  if (COMPLETE_TRAILING_WORD_RE.test(last)) return false;
+
+  // A capitalised trailing token (e.g. a surname) preceded by another capitalised
+  // token reads as a proper name, not a mid-word cut.
+  const rawLast = t.split(/\s+/).pop() ?? "";
+  const rawPrev = t.split(/\s+/).slice(-2, -1)[0] ?? "";
+  if (/^[A-Z][a-z]+[).,]?$/.test(rawLast) && /^[A-Z][a-z]+/.test(rawPrev)) return false;
+
+  // Otherwise, do not flag: an unrecognised short trailing word is far more likely to
+  // be legitimate solicitor prose than an undetected truncation stem. Genuine new cuts
+  // should be added to TRUNCATED_STEM_RE once confirmed against real output.
+  return false;
 }
 
 /**

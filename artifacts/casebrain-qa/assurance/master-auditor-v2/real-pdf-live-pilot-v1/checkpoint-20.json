@@ -1,0 +1,227 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-checkpoint@1.0.0",
+  "checkpoint": 20,
+  "generatedAt": "2026-08-06T23:24:10.103Z",
+  "rows": [
+    {
+      "id": "RP-01",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-02",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-03",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-04",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-05",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-06",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-07",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-08",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-09",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-10",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-11",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-12",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-13",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-14",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-15",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-16",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-17",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-18",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-19",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    },
+    {
+      "id": "RP-20",
+      "crashed": false,
+      "crashMessage": null,
+      "hashMatches": true,
+      "pageCountMatches": true,
+      "extractionOk": true,
+      "surfacesBuilt": true,
+      "outputGenerated": true,
+      "chargeStaysIncomplete": true
+    }
+  ]
+}

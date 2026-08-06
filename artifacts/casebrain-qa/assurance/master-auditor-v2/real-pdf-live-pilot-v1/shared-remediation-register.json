@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-shared-remediation-register@1.0.0",
+  "generatedAt": "2026-08-06T23:55:00.000Z",
+  "historicalBaselinePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation",
+  "historicalHitTriage": {
+    "truncation_238": {
+      "disposition": "detector_false_positive_majority",
+      "note": "Prior isMidWordSolicitorTruncation flagged complete solicitor phrases ending in short whole words (proof/page/record/pace/report/full). Not mid-word product cuts. Detector rewritten to stem/allowlist model."
+    },
+    "snake_case_enum_leak_112": {
+      "disposition": "genuine_product_defect_fixed",
+      "roots": [
+        "formatFindingProvenanceLine interpolating raw sourceDocumentType/evidenceState",
+        "solicitor-visible exits missing sanitizeSolicitorProse / humanizeInternalToken pass"
+      ],
+      "examples": [
+        "not_safely_confirmed",
+        "case_document",
+        "charge_sheet",
+        "custody_record",
+        "hearing_notice"
+      ]
+    },
+    "acronym_casing_9": {
+      "disposition": "genuine_product_defect_fixed",
+      "root": "preserveProtectedAcronyms not applied consistently on all solicitor-visible product strings; mG5/mG6 forms corrected via sanitization pass"
+    }
+  },
+  "entries": [
+    {
+      "id": "SR-CHARGE-INCOMPLETE-CROSS-EXIT",
+      "severity": "high",
+      "status": "fixed_in_worktree_uncommitted",
+      "owningSharedLayer": "lib/criminal/canonical-live-surface-adapter.ts",
+      "fixtureSpecific": false,
+      "finding": "Incomplete charge markers dropped on some exits.",
+      "fix": "Propagate inseparable warning/action across War Room, Key Facts, Export, Charges, API, PDF, composed prose."
+    },
+    {
+      "id": "SR-TRUNCATION-DETECTOR-FP",
+      "severity": "medium",
+      "status": "fixed_in_worktree_uncommitted",
+      "owningSharedLayer": "lib/criminal/charge-allegation-completeness.ts",
+      "fixtureSpecific": false,
+      "finding": "Over-broad mid-word truncation heuristic produced 238 false positives on complete endings.",
+      "fix": "Rewrite isMidWordSolicitorTruncation to explicit truncated-stem list + complete-word allowlist."
+    },
+    {
+      "id": "SR-SNAKE-CASE-PROVENANCE-LEAK",
+      "severity": "high",
+      "status": "fixed_in_worktree_uncommitted",
+      "owningSharedLayer": "lib/criminal/finding-provenance.ts + lib/criminal/solicitor-visible-sanitization.ts + lib/criminal/canonical-live-surface-adapter.ts",
+      "fixtureSpecific": false,
+      "finding": "Raw snake_case document-type and evidence-state tokens leaked into solicitor-visible provenance and exits.",
+      "fix": "Humanize tokens at provenance format; sanitizeSolicitorProse + preserveProtectedAcronyms on all solicitor-visible live-surface exits."
+    }
+  ],
+  "wordingRootCauseRegisterRef": "wording-root-cause-register.json",
+  "wordingTriageDispositionRef": "wording-triage-disposition.json",
+  "postRemediationGenuineProductDefectCounts": {
+    "truncation": 0,
+    "snake_case_enum_leak": 0,
+    "acronym_casing": 0
+  }
+}

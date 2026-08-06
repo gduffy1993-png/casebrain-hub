@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-shared-remediation-register@1.0.0",
+  "generatedAt": "2026-08-06T22:45:00.000Z",
+  "entries": [
+    {
+      "id": "SR-CHARGE-INCOMPLETE-CROSS-EXIT",
+      "severity": "high",
+      "finding": "Incomplete charge readiness markers were visible on some exits (copy/pdf/api/composed_prose) but silently absent from charges/keyFacts/warRoom/export for multiple pilot matters.",
+      "owningSharedLayer": "lib/criminal/canonical-live-surface-adapter.ts",
+      "fixtureSpecific": false,
+      "fix": "Propagate formatChargeWithInseparableWarning / chargeCompleteness onto War Room, Key Facts, Export and Charges exits; when no structured charge row exists, emit an explicit incomplete_on_papers charge row so the charges exit cannot go silent.",
+      "verification": "Five-case preflight re-run gatePass=true; twenty-case anyIncompleteMarkerDropped=false",
+      "status": "fixed_in_worktree_uncommitted"
+    }
+  ],
+  "wordingRootCauseRegisterRef": "wording-root-cause-register.json",
+  "openWordingRootsNotFixedThisRun": [
+    "truncation",
+    "snake_case_enum_leak",
+    "acronym_casing"
+  ]
+}

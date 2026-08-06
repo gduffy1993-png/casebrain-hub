@@ -90,6 +90,51 @@ export function isFixtureIdLike(text: string | null | undefined): boolean {
   return false;
 }
 
+/** Known document-role/type snake_case tokens that leak into solicitor prose. */
+const KNOWN_SNAKE_CASE_LABELS: Record<string, string> = {
+  case_document: "case document",
+  charge_sheet: "charge sheet",
+  hearing_notice: "hearing notice",
+  custody_record: "custody record",
+  custody_interview: "custody interview",
+  telecoms_report: "telecoms report",
+  disclosure_schedule: "disclosure schedule",
+  court_order: "court order",
+  bail_conditions: "bail conditions",
+  interview_transcript: "interview transcript",
+  medical_report: "medical report",
+  expert_report: "expert report",
+  witness_statement: "witness statement",
+  custody_log: "custody log",
+  incident_log: "incident log",
+};
+
+/**
+ * Humanize a single internal snake_case token for solicitor display.
+ * Known evidence-state / document-role tokens map to their canonical label;
+ * anything else falls back to a generic underscore→space conversion.
+ */
+export function humanizeInternalToken(raw: string): string {
+  const key = raw.trim().toLowerCase();
+  if (KNOWN_SNAKE_CASE_LABELS[key]) return KNOWN_SNAKE_CASE_LABELS[key];
+  if (EVIDENCE_STATE_LABELS[key]) return EVIDENCE_STATE_LABELS[key].toLowerCase();
+  return key.split(/_+/).filter(Boolean).join(" ");
+}
+
+/**
+ * Replace any remaining bare snake_case token in solicitor-visible prose with a
+ * humanized space-separated form. Deliberately conservative: only matches lowercase
+ * multi-segment identifiers (two+ underscore-separated words), and refuses to match
+ * where it would corrupt an email local-part/domain, a URL, a file path, or a URN-like
+ * mixed alnum token (those never contain lowercase-only underscore segments anyway).
+ */
+export function humanizeRemainingSnakeCaseTokens(text: string): string {
+  return text.replace(
+    /(^|[^\w@./-])([a-z][a-z0-9]*(?:_[a-z0-9]+)+)(?![\w@./-])/g,
+    (_m, pre: string, token: string) => `${pre}${humanizeInternalToken(token)}`,
+  );
+}
+
 /** Humanize underscore-delimited implementation enums for solicitor display. */
 export function humanizeEvidenceState(raw: string | null | undefined): string {
   const t = (raw ?? "").trim();
@@ -188,6 +233,7 @@ export const NEUTRAL_SOLICITOR_BLOCKED_BANNER =
 /** Correct known solicitor-facing prose defects at display time. */
 export function sanitizeSolicitorProse(text: string): string {
   return preserveProtectedAcronyms(
+    humanizeRemainingSnakeCaseTokens(
     stripInternalCorpusIdentifiers(
       expandAssumedPositionConflictForSolicitor(text)
       .replace(
@@ -263,6 +309,7 @@ export function sanitizeSolicitorProse(text: string): string {
       // Collapse accidental doubled spaces (preserve newlines)
       .replace(/[^\S\n]{2,}/g, " ")
       .replace(/ +([)\].,;:])/g, "$1"),
+    ),
     ),
   );
 }

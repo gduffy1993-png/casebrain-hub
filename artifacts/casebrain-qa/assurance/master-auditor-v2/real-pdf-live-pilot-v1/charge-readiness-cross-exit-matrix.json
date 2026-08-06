@@ -1,0 +1,979 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-charge-readiness-cross-exit-matrix@1.0.0",
+  "generatedAt": "2026-08-06T23:24:10.163Z",
+  "exitsChecked": [
+    "charges",
+    "keyFacts",
+    "warRoom",
+    "fiveAnswers",
+    "copy",
+    "export",
+    "api",
+    "pdf",
+    "composedProse"
+  ],
+  "invariant": "An incomplete recorded charge must never read as complete on any exit.",
+  "anyIncompleteMarkerDroppedOnAnExit": false,
+  "rows": [
+    {
+      "id": "RP-01",
+      "chargeReadiness": {
+        "caseId": "RP-01",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-02",
+      "chargeReadiness": {
+        "caseId": "RP-02",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-03",
+      "chargeReadiness": {
+        "caseId": "RP-03",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-04",
+      "chargeReadiness": {
+        "caseId": "RP-04",
+        "completenessStatus": "complete",
+        "warning": null,
+        "requiredAction": null,
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-05",
+      "chargeReadiness": {
+        "caseId": "RP-05",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-06",
+      "chargeReadiness": {
+        "caseId": "RP-06",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-07",
+      "chargeReadiness": {
+        "caseId": "RP-07",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-08",
+      "chargeReadiness": {
+        "caseId": "RP-08",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-09",
+      "chargeReadiness": {
+        "caseId": "RP-09",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-10",
+      "chargeReadiness": {
+        "caseId": "RP-10",
+        "completenessStatus": "complete",
+        "warning": null,
+        "requiredAction": null,
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-11",
+      "chargeReadiness": {
+        "caseId": "RP-11",
+        "completenessStatus": "complete",
+        "warning": null,
+        "requiredAction": null,
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": "not_applicable"
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-12",
+      "chargeReadiness": {
+        "caseId": "RP-12",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-13",
+      "chargeReadiness": {
+        "caseId": "RP-13",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-14",
+      "chargeReadiness": {
+        "caseId": "RP-14",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-15",
+      "chargeReadiness": {
+        "caseId": "RP-15",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-16",
+      "chargeReadiness": {
+        "caseId": "RP-16",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-17",
+      "chargeReadiness": {
+        "caseId": "RP-17",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-18",
+      "chargeReadiness": {
+        "caseId": "RP-18",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-19",
+      "chargeReadiness": {
+        "caseId": "RP-19",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    },
+    {
+      "id": "RP-20",
+      "chargeReadiness": {
+        "caseId": "RP-20",
+        "completenessStatus": "unresolved",
+        "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+        "requiredAction": "Action: Check the operative charge sheet or amendment record.",
+        "perExit": {
+          "charges": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "keyFacts": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "warRoom": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "fiveAnswers": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "copy": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "export": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "api": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "pdf": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          },
+          "composedProse": {
+            "checked": true,
+            "incompleteMarkerPresent": true
+          }
+        },
+        "incompleteStaysIncomplete": true
+      }
+    }
+  ]
+}

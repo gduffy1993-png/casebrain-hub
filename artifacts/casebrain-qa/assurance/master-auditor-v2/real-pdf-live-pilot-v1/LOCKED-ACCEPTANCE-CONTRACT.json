@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-v1-LOCKED-ACCEPTANCE-CONTRACT@1.0.0",
+  "frozenAt": "2026-08-06T23:24:54.884Z",
+  "scope": "This pilot only (20 real PDFs, 5+15 execution). Does not extend or overwrite the parent stage3000 programme contract.",
+  "parentProgrammeContract": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/LOCKED-ACCEPTANCE-CONTRACT.json (untouched)",
+  "claimsForbidden": [
+    "corpus_PASS",
+    "programme_PASS",
+    "solicitor_PASS",
+    "every_pdf_type_covered",
+    "qualified_solicitor_approval",
+    "legal_authority_approval",
+    "review_of_1.7M_historical_occurrences"
+  ],
+  "frozenMembershipSha256": "5849004206b9e35246e1248908ac9b68d97fa64e9ece608a532435f4c14cd383",
+  "matterTreatment": "Each of the 20 pilot PDFs is treated as a separate matter unless a source-side lineage manifest proves otherwise (none was found).",
+  "evidenceClasses": [
+    "authenticated_http_browser",
+    "local_production_builder",
+    "harness_projection"
+  ],
+  "honestyRules": [
+    "Missing/unavailable evidence is recorded as NOT_EXERCISED or unresolved, never PASS.",
+    "Evidence classes are reported separately and never collapsed into one another.",
+    "Human/legal review fields are left blank, never auto-filled."
+  ]
+}

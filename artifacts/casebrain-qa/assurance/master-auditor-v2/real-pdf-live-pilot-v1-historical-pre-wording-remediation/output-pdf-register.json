@@ -1,0 +1,268 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-output-pdf-register@1.0.0",
+  "generatedAt": "2026-08-06T22:36:32.729Z",
+  "note": "Every entry here is a GENERATED output artefact. Source PDFs are never counted as output.",
+  "totalGenerated": 20,
+  "entries": [
+    {
+      "id": "RP-08",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-08.pdf",
+      "sha256": "4269346d0392de5e5e0bcea7138e3b1b89f7d89f0b0bb0ea9dab4181c584e4e9",
+      "byteLength": 3064,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:34:55.691Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-08",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-09",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-09.pdf",
+      "sha256": "0e26438dc4462c6a608bebbb3b9d513d4108b4ff91540877df3e10e38a20904f",
+      "byteLength": 3092,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:35:00.255Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-09",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-03",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-03.pdf",
+      "sha256": "c5a82c57d51b27731688aa1246e56e792d3b07a895ed677b1fc0d02351f6ca84",
+      "byteLength": 3099,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:35:07.226Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-03",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-11",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-11.pdf",
+      "sha256": "f787894d053f0ac4df89f5347741db8c1fe69cda72c75ee3a5d99ca6df873deb",
+      "byteLength": 2967,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:35:14.805Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-11",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-07",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-07.pdf",
+      "sha256": "a82e7a3775f040c1039c8beb969720dd3b628ccc96b7884879599682742607a6",
+      "byteLength": 3201,
+      "pageCount": null,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:35:31.136Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-07",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-01",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-01.pdf",
+      "sha256": "1d13d9739c27c859a65bdc2056ef53aedc8101aeb23293655eba9c890d5bdece",
+      "byteLength": 3307,
+      "pageCount": null,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:35:36.614Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-01",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-02",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-02.pdf",
+      "sha256": "f2870b6ad017fb0c3ef068acce5fb30488efbbd1cb6b1c08090e9a9d07a52bf0",
+      "byteLength": 3191,
+      "pageCount": null,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:35:39.254Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-02",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-04",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-04.pdf",
+      "sha256": "b6586dbb3280b1219f45184c679818868eeeca82dce699df7769654827f39b81",
+      "byteLength": 2951,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:35:43.712Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-04",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-05",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-05.pdf",
+      "sha256": "6768767399866de2df4cb0be170d5d5b230bfdcb7cab039209a5200e31200c2a",
+      "byteLength": 2955,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:35:47.875Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-05",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-06",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-06.pdf",
+      "sha256": "029dd71f5355ec0e651ec5c36eb90d5c928775d2aee83add4a074a710f7e5235",
+      "byteLength": 3077,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:35:52.581Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-06",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-10",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-10.pdf",
+      "sha256": "892424caaf1dafffb588be8fef126a41d2484d63b76e15bb8e20241ec742f442",
+      "byteLength": 3011,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:35:56.944Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-10",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-12",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-12.pdf",
+      "sha256": "c24607bb599c3cf64a8b6f8dd005a1cf6988bf76704f04ebeff4f1e1a3ed97dc",
+      "byteLength": 2963,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:36:01.777Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-12",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-13",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-13.pdf",
+      "sha256": "fcc0917889a4f3c90613aeb3dcc0c8d487120887e6e350fc3450169c27029560",
+      "byteLength": 3060,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:36:04.571Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-13",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-14",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-14.pdf",
+      "sha256": "4017cf46a023645fc41972713265a3cc4802c2aa2db1c50e5798324c65b18f9d",
+      "byteLength": 3191,
+      "pageCount": null,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:36:07.409Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-14",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-15",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-15.pdf",
+      "sha256": "fe3c46f1378e92133293b1e577def58dd9b24eb2cfe564e62f6b91e8f1ab7ecb",
+      "byteLength": 3071,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:36:10.800Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-15",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-16",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-16.pdf",
+      "sha256": "2339e42ff0ab663fecc741db348690f6159086662cf182e0d3e3b2f17bdda5c2",
+      "byteLength": 3118,
+      "pageCount": null,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:36:15.155Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-16",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-17",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-17.pdf",
+      "sha256": "1b13f3b70e9e28b383743b21aa3fdaa91bd57d35aeba5c59fe0e572a30314ce8",
+      "byteLength": 3338,
+      "pageCount": null,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:36:19.863Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-17",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-18",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-18.pdf",
+      "sha256": "385030ac7a4d17cb799442bcb1285a55c2a631dd0f3ef222e693ff46d5972a73",
+      "byteLength": 3063,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:36:24.254Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-18",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-19",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-19.pdf",
+      "sha256": "221db67c6b992a19921c6e14b8e37c42a1d688f481c8aa9f74b7d99c0dab75c0",
+      "byteLength": 3054,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:36:28.858Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-19",
+        "isSourcePdf": false
+      }
+    },
+    {
+      "id": "RP-20",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/output-pdfs/RP-20.pdf",
+      "sha256": "4fe047d9aba1298adcfe016bfe263bedd0390d57b1552082a61379cb63362ca5",
+      "byteLength": 3077,
+      "pageCount": 1,
+      "generationReceipt": {
+        "generatedAt": "2026-08-06T22:36:32.222Z",
+        "generator": "lib/pdf/criminal-strategy-pdf.ts#generateCriminalStrategyPdf",
+        "sourceCaseId": "RP-20",
+        "isSourcePdf": false
+      }
+    }
+  ]
+}

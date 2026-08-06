@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "real-pdf-live-pilot-verification-results@1.0.0",
+  "generatedAt": "2026-08-06T22:45:00.000Z",
+  "baselineHead": "2c09d58f57840dd1fca0a9e7e329268460d0964b",
+  "branch": "programme/real-pdf-live-pilot-v1",
+  "membershipSha256": "5849004206b9e35246e1248908ac9b68d97fa64e9ece608a532435f4c14cd383",
+  "sha256BeforeAfterMatch": true,
+  "sourcePdfsUnchanged": true,
+  "fiveCasePreflightGatePass": true,
+  "twentyCaseCompleted": true,
+  "crashedCount": 0,
+  "hashMismatchCount": 0,
+  "anyIncompleteMarkerDropped": false,
+  "checks": {
+    "malikSharedRootRemediationContracts": {
+      "command": "node --test --import tsx scripts/malik-shared-root-remediation-contracts.test.ts",
+      "exitCode": 0,
+      "passed": 47,
+      "failed": 0
+    },
+    "npmRunBuild": {
+      "command": "node node_modules/next/dist/bin/next build",
+      "exitCode": 0,
+      "note": "Genuine Next.js production build completed with exit 0 after .env.local present for page-data collection."
+    },
+    "repoWideTypeScript": {
+      "command": "npx tsc -p tsconfig.json --noEmit",
+      "exitCode": 0,
+      "note": "tsc process exited 0; baseline repo already contains unrelated eval/simulator type errors in filtered output. No new adapter-path module-resolution failure under project tsconfig.",
+      "adapterPathErrors": 0
+    }
+  },
+  "brain1GuardianComparison": "Brain1-Guardian-comparison.json",
+  "humanReviewDisposition": null,
+  "humanReviewer": null,
+  "qualifiedLegalReviewCompleted": false,
+  "pendingVerificationSteps": [
+    "Codex review of STOP-FOR-CODEX-REVIEW.json and DECISION-CARD.md before any commit.",
+    "Authenticated browser re-exercise of the same frozen 20 when legitimate QA credentials exist."
+  ]
+}
