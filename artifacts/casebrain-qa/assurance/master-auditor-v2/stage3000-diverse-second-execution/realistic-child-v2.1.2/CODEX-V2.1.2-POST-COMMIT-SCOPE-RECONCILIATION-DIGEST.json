@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "stage3000-v2.1.2-codex-post-commit-scope-reconciliation-digest@1.0.0",
+  "reconciliationPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/CODEX-V2.1.2-POST-COMMIT-SCOPE-RECONCILIATION.json",
+  "reconciliationSha256": "91a7971e15777eee54a30217894f6aafcada2ab9c727ae5bd26834db5fe03938",
+  "reconciliationByteLength": 10130,
+  "markdownPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/CODEX-V2.1.2-POST-COMMIT-SCOPE-RECONCILIATION.md",
+  "markdownSha256": "cd2a166f2b730598c03b4b7dcd48bd30247bb3ca74e9f7445f91923e2a6968da",
+  "markdownByteLength": 8755,
+  "selfExcludedFromReconciliation": true,
+  "evidenceModifiedAfterDigest": false,
+  "note": "Digest hashes CODEX-V2.1.2-POST-COMMIT-SCOPE-RECONCILIATION.json bytes after write. Does not alter d0fdda995 or the original additive manifest."
+}
