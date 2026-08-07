@@ -54,9 +54,9 @@ export async function GET(request: NextRequest) {
         getAll() {
           return request.cookies.getAll();
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: Array<{ name: string; value: string; options?: Record<string, unknown> }>) {
           cookiesToSet.forEach(({ name, value, options }) => {
-            redirectResponse.cookies.set(name, value, options);
+            redirectResponse.cookies.set(name, value, options as any);
           });
         },
       },
