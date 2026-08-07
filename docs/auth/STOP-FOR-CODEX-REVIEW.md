@@ -1,27 +1,19 @@
-# STOP FOR CODEX REVIEW — Auth recovery blocker (PR #66)
+# STOP FOR CODEX REVIEW — Auth recovery session fix (PR #66)
 
-**Do not merge. No production deploy. Authenticated pilot still blocked until reset email is confirmed in a real inbox.**
+**Email delivery: PASS. Recovery-session completion: previously FAIL — fix pushed; do not claim fixed until a fresh real email link reaches the password form and a real password change succeeds.**
 
-## Provider verified
-- CaseBrain email/password sign-in is **Supabase Auth** (`signInWithPassword`).
-- Clerk is an optional layout/middleware remnant only — not used for recovery.
+**Do not merge. No production deploy.**
 
-## Shipped in this commit
-- `/sign-in` → **Forgot password?**
-- `/forgot-password` (neutral acknowledgement; no account enumeration)
-- `/api/auth/forgot-password` (rate-limited; real `resetPasswordForEmail`)
-- `/auth/callback` (PKCE code exchange → recovery session)
-- `/reset-password` (new + confirm; expiry/invalid states; success → `/sign-in?reset=success`)
-- Settings → **Change password**
-- Contracts: `scripts/auth-password-recovery-contracts.test.ts`
-- Callback URL notes: `docs/auth/SUPABASE-PASSWORD-RECOVERY.md`
+## Root causes addressed
+1. Server-side `resetPasswordForEmail` broke PKCE (code verifier not in the browser).
+2. `/auth/callback` did not attach Supabase auth cookies to the redirect response.
+3. Ephemeral Vercel deployment hosts invalidated older reset links — prefer stable branch alias.
 
-## Explicit non-claims
-- No email delivery claim until a real message is received.
-- No merge / production deploy.
-- No authenticated pilot PASS.
+## Stable callback URL to allow-list in Supabase
+`https://casebrain-git-programme-real-pdf-live-pilot-v1-gduffy1993-pngs-projects.vercel.app/auth/callback`
 
-## Single user action required
-1. Ensure the current Vercel preview host’s `/auth/callback` is in Supabase Redirect URLs.
-2. On the new preview, open `/forgot-password`, enter the CaseBrain account email, submit.
-3. Check inbox/spam for the Supabase reset email — only then continue the authenticated pilot.
+## User verification required before FIXED claim
+1. Add the stable callback URL above to Supabase Redirect URLs (if not already).
+2. Open the stable preview `/forgot-password`, request a **fresh** email.
+3. Click the email link → must show New password + Confirm + Save.
+4. Save a new password → `/sign-in?reset=success` → sign in works.

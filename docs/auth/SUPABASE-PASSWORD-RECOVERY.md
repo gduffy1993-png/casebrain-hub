@@ -3,49 +3,42 @@
 CaseBrain email/password sign-in is **Supabase Auth** (`signInWithPassword` on `/sign-in`).
 Clerk is an optional remnant in layout/middleware and is **not** the recovery provider.
 
-## App routes added
+## Critical implementation notes (session completion)
+
+1. **`resetPasswordForEmail` must run in the browser** so the PKCE code verifier is stored in the same browser that later opens the email link.
+2. **`/auth/callback` must write Supabase auth cookies onto the redirect `NextResponse`** (not only `cookies()` from `next/headers`), then redirect to `/reset-password`.
+3. Middleware **must not** redirect `/auth/callback` or `/reset-password` to sign-in. Gating stays in `(protected)/layout.tsx` only.
+4. Prefer a **stable branch alias** for `redirectTo` so redeploys do not invalidate outstanding emails.
+
+## App routes
 
 | Route | Purpose |
 |-------|---------|
-| `/forgot-password` | Email entry + neutral acknowledgement |
-| `/auth/callback` | Exchanges Supabase `?code=` for a recovery session |
-| `/reset-password` | New password + confirm; then redirect to `/sign-in?reset=success` |
-| `/api/auth/forgot-password` | Rate-limited `resetPasswordForEmail` |
-| `/api/auth/update-password` | Recovery reset or authenticated change-password |
+| `/forgot-password` | Email entry; browser sends reset email after rate-limit check |
+| `/api/auth/forgot-password` | Rate-limit + returns stable `redirectTo` (does **not** call provider) |
+| `/auth/callback` | PKCE `code` exchange or `token_hash` verify; sets cookies; redirects |
+| `/reset-password` | New + confirm password; `updateUser({ password })`; sign-out → sign-in |
 | Settings → Change password | Authenticated password change |
 
 ## Redirect URL allow-list (Supabase Dashboard → Authentication → URL configuration)
 
-Add these **Redirect URLs** (no secrets required in the app commit):
+Add these **Redirect URLs** (no secrets in git):
 
 1. Local: `http://localhost:3000/auth/callback`
-2. Production: `https://<your-production-host>/auth/callback`
-3. Vercel previews: either
-   - exact preview host after each deploy, or
-   - a wildcard pattern if your Supabase plan supports it (e.g. `https://*-gduffy1993-pngs-projects.vercel.app/auth/callback`)
+2. Stable PR branch alias (recommended for PR #66):
+   `https://casebrain-git-programme-real-pdf-live-pilot-v1-gduffy1993-pngs-projects.vercel.app/auth/callback`
+3. Production: `https://<your-production-host>/auth/callback`
 
-Also set **Site URL** in Supabase to the production host (not a secret).
-
-## App env (public only)
+Optional env:
 
 ```bash
-# Preferred public origin for recovery emails (preview or production)
-NEXT_PUBLIC_SITE_URL=https://your-deployment-host
+NEXT_PUBLIC_AUTH_RECOVERY_ORIGIN=https://casebrain-git-programme-real-pdf-live-pilot-v1-gduffy1993-pngs-projects.vercel.app
 ```
 
-When `NEXT_PUBLIC_SITE_URL` is unset, the API falls back to `https://$VERCEL_URL` on Vercel, then the request origin.
+## Operator checklist
 
-Do **not** commit service-role keys, SMTP passwords, or dashboard tokens.
-
-## Rate limiting / enumeration
-
-- Forgot-password is limited per IP and per email (in-memory LRU; per-instance on serverless).
-- Client always receives the same neutral acknowledgement text when the email shape is valid.
-- Invalid email returns `400` with a validation message only (not “account not found”).
-
-## Operator checklist before authenticated pilot
-
-1. Confirm Supabase Redirect URLs include the current Vercel preview callback.
-2. Open preview `/forgot-password`, submit the account email.
-3. Confirm a real reset email arrives (do not claim delivery until inbox shows it).
-4. Complete reset → sign-in → Settings → Change password smoke check.
+1. Confirm the **stable branch alias** `/auth/callback` is in Supabase Redirect URLs.
+2. Request a **fresh** reset email from that same origin/browser.
+3. Open the email link → must land on the new-password form (not an immediate invalid/missing-session state).
+4. Set a new password → land on `/sign-in?reset=success` and sign in.
+5. Do not claim fixed until steps 3–4 succeed with a real message.

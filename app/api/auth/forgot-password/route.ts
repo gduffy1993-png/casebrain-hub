@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
 import { assertRateLimit } from "@/lib/rate-limit";
 import {
   buildPasswordRecoveryRedirectTo,
   forgotPasswordAckMessage,
   isValidEmail,
   normalizeEmail,
-  resolvePublicAppOrigin,
   userFacingRecoveryError,
 } from "@/lib/auth/password-recovery";
+import {
+  buildStableVercelBranchAlias,
+  resolveRecoveryOrigin,
+} from "@/lib/auth/recovery-callback";
 
 export const runtime = "nodejs";
 
@@ -19,9 +21,9 @@ function clientIp(request: Request): string {
 }
 
 /**
- * Always returns the same neutral acknowledgement (no account enumeration).
- * Issues a real Supabase `resetPasswordForEmail` when the email shape is valid
- * and rate limits allow — provider errors are swallowed from the client body.
+ * Rate-limit + compute redirectTo for browser-side `resetPasswordForEmail`.
+ * PKCE code verifier MUST be created in the browser — do not call
+ * resetPasswordForEmail on the server (that broke recovery-session completion).
  */
 export async function POST(request: Request) {
   let body: { email?: unknown } = {};
@@ -70,33 +72,32 @@ export async function POST(request: Request) {
     );
   }
 
-  const origin = resolvePublicAppOrigin({
+  const branchAlias = buildStableVercelBranchAlias({
+    projectName: process.env.VERCEL_PROJECT_NAME || "casebrain",
+    branch:
+      process.env.VERCEL_GIT_COMMIT_REF ||
+      process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
+      "programme/real-pdf-live-pilot-v1",
+    teamSlug:
+      process.env.NEXT_PUBLIC_VERCEL_TEAM_SLUG || "gduffy1993-pngs-projects",
+  });
+
+  const origin = resolveRecoveryOrigin({
+    authRecoveryOrigin: process.env.NEXT_PUBLIC_AUTH_RECOVERY_ORIGIN,
     siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
     vercelUrl: process.env.VERCEL_URL,
+    vercelGitCommitRef: process.env.VERCEL_GIT_COMMIT_REF,
+    vercelEnv: process.env.VERCEL_ENV,
     requestOrigin: new URL(request.url).origin,
+    branchAliasHost: branchAlias,
   });
-  const redirectTo = buildPasswordRecoveryRedirectTo(origin);
-
-  try {
-    const supabase = await createClient();
-    // Fire-and-forget semantics for the client: never reveal whether the user exists.
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo,
-    });
-    if (error) {
-      // Log server-side only; client still gets neutral ack (except rate limits already handled).
-      console.error("[auth] resetPasswordForEmail failed:", {
-        code: error.code,
-        status: error.status,
-      });
-    }
-  } catch {
-    // Provider/network failure — still return neutral ack to avoid enumeration.
-  }
 
   return NextResponse.json({
     ok: true,
-    code: "accepted",
+    code: "ready",
     message: forgotPasswordAckMessage("unknown"),
+    redirectTo: buildPasswordRecoveryRedirectTo(origin),
+    // Client must call browser supabase.auth.resetPasswordForEmail next.
+    clientMustSendResetEmail: true,
   });
 }

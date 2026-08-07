@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { createClient } from "@/lib/supabase/browser";
 import { NEUTRAL_RECOVERY_ACK } from "@/lib/auth/password-recovery";
 
 export default function ForgotPasswordPage() {
@@ -16,6 +17,7 @@ export default function ForgotPasswordPage() {
     setError(null);
     setIsLoading(true);
     try {
+      // 1) Server rate-limit + stable redirectTo (no provider call — preserves browser PKCE).
       const res = await fetch("/api/auth/forgot-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -25,12 +27,42 @@ export default function ForgotPasswordPage() {
         ok?: boolean;
         error?: string;
         message?: string;
+        redirectTo?: string;
       };
       if (!res.ok) {
         setError(data.error ?? "We could not complete that request just now.");
         setIsLoading(false);
         return;
       }
+
+      const suggested = data.redirectTo;
+      const sameOriginSuggested =
+        typeof suggested === "string" &&
+        (() => {
+          try {
+            return new URL(suggested).origin === window.location.origin;
+          } catch {
+            return false;
+          }
+        })();
+      // Always keep redirect on the origin the user is actually using so PKCE cookies match.
+      const redirectTo = sameOriginSuggested
+        ? suggested!
+        : `${window.location.origin}/auth/callback?next=${encodeURIComponent("/reset-password")}`;
+
+      // 2) Browser-side reset email so the PKCE code verifier is stored in this browser.
+      const supabase = createClient();
+      const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo,
+      });
+      if (resetError) {
+        // Still show neutral ack to avoid account enumeration / provider leakage.
+        console.error("[auth] browser resetPasswordForEmail failed", {
+          status: resetError.status,
+          code: resetError.code,
+        });
+      }
+
       setDone(true);
       setIsLoading(false);
     } catch {
@@ -62,8 +94,8 @@ export default function ForgotPasswordPage() {
                 {NEUTRAL_RECOVERY_ACK}
               </div>
               <p className="text-xs text-muted-foreground">
-                Delivery depends on your mail provider. This screen does not confirm that a message
-                was received.
+                Open the link from the same browser you used here when possible. Delivery is confirmed
+                only when the message appears in your inbox.
               </p>
               <Link href="/sign-in" className="text-sm text-primary hover:underline">
                 Back to sign in
