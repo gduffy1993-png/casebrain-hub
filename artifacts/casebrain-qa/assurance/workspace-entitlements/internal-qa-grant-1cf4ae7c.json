@@ -1,0 +1,48 @@
+{
+  "ok": true,
+  "projectRef": "wytevvxremoasrhqngwl",
+  "userIdTrunc": "c8300c48…a3db",
+  "workspaceIdTrunc": "1cf4ae7c…1761",
+  "membershipRole": "OWNER",
+  "previousEntitlement": {
+    "source": "default_trial",
+    "casesLimit": 2,
+    "documentsLimit": 10,
+    "analysesLimit": 20,
+    "exportsLimit": 3,
+    "bypassActive": false,
+    "casesUsed": 0,
+    "docsUsed": 0,
+    "upload_count": 0,
+    "analysis_count": 0,
+    "export_count": 0
+  },
+  "newEntitlement": {
+    "workspaceId": "1cf4ae7c-2c73-40ff-b1c1-957615cd1761",
+    "kind": "internal_qa",
+    "casesLimit": 25,
+    "documentsLimit": 100,
+    "analysesLimit": 100,
+    "exportsLimit": 40,
+    "bypassActive": false,
+    "startsAt": "2026-08-09T20:41:12.928Z",
+    "expiresAt": "2026-08-23T20:41:12.928Z",
+    "grantedBy": "operator:real-pdf-live-pilot-v1",
+    "reason": "Real-PDF authenticated 5→20 QA pilot",
+    "workspaceIdTrunc": "1cf4ae7c…1761"
+  },
+  "expiry": "2026-08-23T20:41:12.928Z",
+  "audit": {
+    "appEventId": "649b8e7e-260e-4571-b8ee-0a919bff1d0b",
+    "created_at": "2026-08-09T20:41:12.857175+00:00",
+    "event_type": "WORKSPACE_ENTITLEMENT_GRANTED"
+  },
+  "dbEntitlementApplied": false,
+  "usageCountersUnchanged": {
+    "casesUsed": 0,
+    "docsUsed": 0,
+    "upload_count": 0,
+    "analysis_count": 0,
+    "export_count": 0
+  }
+}

@@ -1,5 +1,11 @@
-import { env } from "@/lib/env";
 import { isOwnerUser } from "./owner";
+import { PAYWALL_LIMITS } from "./config";
+import { WORKSPACE_ENTITLEMENT_GRANTS } from "./workspace-entitlement-grants";
+import {
+  DEFAULT_TRIAL_CASES_LIMIT,
+  DEFAULT_TRIAL_DOCUMENTS_LIMIT,
+  resolveEffectiveCapacityLimits,
+} from "./workspace-entitlement";
 
 export type TrialStatus = {
   isBlocked: boolean;
@@ -22,10 +28,21 @@ type GetTrialStatusParams = {
 const TRIAL_DAYS = 14;
 
 /** Max cases allowed during trial (abuse prevention) */
-const TRIAL_MAX_CASES = 2;
+const TRIAL_MAX_CASES = DEFAULT_TRIAL_CASES_LIMIT;
 
 /** Max documents allowed during trial (abuse prevention) */
-const TRIAL_MAX_DOCS = 10;
+const TRIAL_MAX_DOCS = DEFAULT_TRIAL_DOCUMENTS_LIMIT;
+
+function capacityForOrg(orgId: string) {
+  return resolveEffectiveCapacityLimits({
+    workspaceId: orgId,
+    entitlements: WORKSPACE_ENTITLEMENT_GRANTS,
+    defaultCasesLimit: TRIAL_MAX_CASES,
+    defaultDocumentsLimit: TRIAL_MAX_DOCS,
+    defaultAnalysesLimit: PAYWALL_LIMITS.free.maxAnalysis,
+    defaultExportsLimit: PAYWALL_LIMITS.free.maxExports,
+  });
+}
 
 /**
  * Get trial status for an organization
@@ -148,6 +165,10 @@ export async function getTrialStatus({
       }
     }
 
+    const capacity = capacityForOrg(orgId);
+    const casesLimit = capacity.casesLimit;
+    const docsLimit = capacity.documentsLimit;
+
     // If no trial start, trial hasn't started - treat as active and not blocked
     if (!trialStart) {
       // Still try to get counts for display, but don't block on errors
@@ -171,17 +192,21 @@ export async function getTrialStatus({
 
       return {
         isBlocked: false,
-        trialEndsAt: null,
+        trialEndsAt: capacity.expiresAt,
         docsUsed,
-        docsLimit: TRIAL_MAX_DOCS,
+        docsLimit,
         casesUsed,
-        casesLimit: TRIAL_MAX_CASES,
+        casesLimit,
       };
     }
 
-    // Compute trial end (2 weeks from start)
+    // Compute trial end (2 weeks from start), or entitlement expiry when active
     const trialEndsAt = new Date(trialStart);
     trialEndsAt.setDate(trialEndsAt.getDate() + TRIAL_DAYS);
+    const effectiveEndsAt =
+      capacity.source === "workspace_entitlement" && capacity.expiresAt
+        ? new Date(capacity.expiresAt)
+        : trialEndsAt;
 
     // Get current counts (with error handling)
     try {
@@ -206,53 +231,56 @@ export async function getTrialStatus({
 
     // Apply limits
     const now = new Date();
-    const isExpired = now > trialEndsAt;
+    const isExpired =
+      capacity.source === "workspace_entitlement"
+        ? false // active entitlement already filtered by expiry in resolver
+        : now > effectiveEndsAt;
 
     if (isExpired) {
       return {
         isBlocked: true,
         reason: "TRIAL_EXPIRED",
-        trialEndsAt: trialEndsAt.toISOString(),
+        trialEndsAt: effectiveEndsAt.toISOString(),
         docsUsed,
-        docsLimit: TRIAL_MAX_DOCS,
+        docsLimit,
         casesUsed,
-        casesLimit: TRIAL_MAX_CASES,
+        casesLimit,
       };
     }
 
     // Check limits: block NEW case creation when at limit (abuse prevention)
-    if (casesUsed >= TRIAL_MAX_CASES) {
+    if (casesUsed >= casesLimit) {
       return {
         isBlocked: true,
         reason: "CASE_LIMIT",
-        trialEndsAt: trialEndsAt.toISOString(),
+        trialEndsAt: effectiveEndsAt.toISOString(),
         docsUsed,
-        docsLimit: TRIAL_MAX_DOCS,
+        docsLimit,
         casesUsed,
-        casesLimit: TRIAL_MAX_CASES,
+        casesLimit,
       };
     }
 
-    if (docsUsed >= TRIAL_MAX_DOCS) {
+    if (docsUsed >= docsLimit) {
       return {
         isBlocked: true,
         reason: "DOC_LIMIT",
-        trialEndsAt: trialEndsAt.toISOString(),
+        trialEndsAt: effectiveEndsAt.toISOString(),
         docsUsed,
-        docsLimit: TRIAL_MAX_DOCS,
+        docsLimit,
         casesUsed,
-        casesLimit: TRIAL_MAX_CASES,
+        casesLimit,
       };
     }
 
     // Not blocked
     return {
       isBlocked: false,
-      trialEndsAt: trialEndsAt.toISOString(),
+      trialEndsAt: effectiveEndsAt.toISOString(),
       docsUsed,
-      docsLimit: TRIAL_MAX_DOCS,
+      docsLimit,
       casesUsed,
-      casesLimit: TRIAL_MAX_CASES,
+      casesLimit,
     };
   } catch (error) {
     // CRITICAL: Never throw - always return a safe status

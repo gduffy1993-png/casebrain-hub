@@ -8,6 +8,8 @@ import "server-only";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { PAYWALL_LIMITS, type PlanName, type FeatureKind, getFeatureLimit, isUnlimited } from "./config";
 import { shouldBypassPaywall } from "./bypass";
+import { WORKSPACE_ENTITLEMENT_GRANTS } from "./workspace-entitlement-grants";
+import { resolveEffectiveCapacityLimits } from "./workspace-entitlement";
 
 export interface UsageStatus {
   plan: PlanName | "OWNER";
@@ -30,6 +32,15 @@ export interface UsageCheckResult {
   reason?: "UPGRADE_REQUIRED" | "UNKNOWN_PLAN";
   currentCount?: number;
   limit?: number;
+}
+
+function workspaceCapacityOverrides(orgId: string) {
+  return resolveEffectiveCapacityLimits({
+    workspaceId: orgId,
+    entitlements: WORKSPACE_ENTITLEMENT_GRANTS,
+    defaultAnalysesLimit: PAYWALL_LIMITS.free.maxAnalysis,
+    defaultExportsLimit: PAYWALL_LIMITS.free.maxExports,
+  });
 }
 
 /**
@@ -81,9 +92,16 @@ export async function getUserUsage(
   const analysisCount = org.analysis_count ?? 0;
   const exportCount = org.export_count ?? 0;
 
+  const capacity = workspaceCapacityOverrides(orgId);
   const uploadLimit = getFeatureLimit(plan, "upload");
-  const analysisLimit = getFeatureLimit(plan, "analysis");
-  const exportLimit = getFeatureLimit(plan, "export");
+  const analysisLimit =
+    capacity.source === "workspace_entitlement"
+      ? capacity.analysesLimit
+      : getFeatureLimit(plan, "analysis");
+  const exportLimit =
+    capacity.source === "workspace_entitlement"
+      ? capacity.exportsLimit
+      : getFeatureLimit(plan, "export");
 
   return {
     plan,
@@ -91,11 +109,16 @@ export async function getUserUsage(
     analysisCount,
     exportCount,
     canUpload: isUnlimited(plan, "upload") || uploadCount < uploadLimit,
-    canAnalyse: isUnlimited(plan, "analysis") || analysisCount < analysisLimit,
-    canExport: isUnlimited(plan, "export") || exportCount < exportLimit,
+    canAnalyse:
+      (plan === "pro" && isUnlimited(plan, "analysis")) ||
+      analysisCount < analysisLimit,
+    canExport:
+      (plan === "pro" && isUnlimited(plan, "export")) ||
+      exportCount < exportLimit,
     uploadLimit,
     analysisLimit,
     exportLimit,
+    bypassActive: false,
   };
 }
 
@@ -159,7 +182,12 @@ export async function ensureCanUseFeature(params: {
   // ============================================
   // STEP 2: CHECK LIMIT (before incrementing)
   // ============================================
-  const limit = getFeatureLimit(plan, feature);
+  const capacity = workspaceCapacityOverrides(orgId);
+  let limit = getFeatureLimit(plan, feature);
+  if (capacity.source === "workspace_entitlement") {
+    if (feature === "analysis") limit = capacity.analysesLimit;
+    if (feature === "export") limit = capacity.exportsLimit;
+  }
   let currentCount = 0;
 
   switch (feature) {
