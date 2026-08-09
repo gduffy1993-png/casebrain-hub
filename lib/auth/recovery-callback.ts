@@ -157,14 +157,47 @@ export function extractImplicitSessionFromHash(hash: string): {
 }
 
 /**
+ * Stable PR #66 preview alias (casebrain-hub project). Prefer this over ephemeral
+ * deployment hosts and never fall back to production www.casebrain.co.uk.
+ */
+export const PR66_STABLE_RECOVERY_ORIGIN =
+  "https://casebrain-hub-git-programme-rea-33bd05-gduffy1993-pngs-projects.vercel.app";
+
+export const PR66_STABLE_RECOVERY_CALLBACK = `${PR66_STABLE_RECOVERY_ORIGIN}/auth/callback`;
+
+const FORBIDDEN_RECOVERY_HOSTS = new Set([
+  "www.casebrain.co.uk",
+  "casebrain.co.uk",
+]);
+
+export function normalizeOrigin(value: string): string {
+  const trimmed = value.trim().replace(/\/$/, "");
+  return trimmed.startsWith("http") ? trimmed : `https://${trimmed}`;
+}
+
+/** Production marketing/app hosts must not receive recovery `?code=` landings. */
+export function isForbiddenRecoveryOrigin(originOrUrl: string | null | undefined): boolean {
+  if (!originOrUrl?.trim()) return false;
+  try {
+    const host = new URL(normalizeOrigin(originOrUrl)).hostname.toLowerCase();
+    return FORBIDDEN_RECOVERY_HOSTS.has(host);
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Prefer a stable recovery origin so reset emails survive ephemeral Vercel deployment URLs.
  * Order:
  *   AUTH_RECOVERY_ORIGIN →
  *   (preview) branch alias →
- *   SITE_URL →
+ *   SITE_URL (rejected if production www) →
  *   branch alias →
  *   vercel deployment →
- *   request origin
+ *   request origin (rejected if production www) →
+ *   PR66 stable alias
+ *
+ * Never returns www.casebrain.co.uk / casebrain.co.uk.
  */
 export function resolveRecoveryOrigin(opts: {
   authRecoveryOrigin?: string | null;
@@ -175,30 +208,125 @@ export function resolveRecoveryOrigin(opts: {
   vercelProjectProductionUrl?: string | null;
   requestOrigin?: string | null;
   branchAliasHost?: string | null;
+  fallbackStableOrigin?: string | null;
 }): string {
-  const normalize = (value: string) => {
-    const trimmed = value.trim().replace(/\/$/, "");
-    return trimmed.startsWith("http") ? trimmed : `https://${trimmed}`;
+  const stable = normalizeOrigin(
+    opts.fallbackStableOrigin?.trim() ||
+      opts.authRecoveryOrigin?.trim() ||
+      PR66_STABLE_RECOVERY_ORIGIN,
+  );
+
+  const pick = (value: string | null | undefined): string | null => {
+    if (!value?.trim()) return null;
+    const origin = normalizeOrigin(value);
+    if (isForbiddenRecoveryOrigin(origin)) return null;
+    return origin;
   };
 
-  const explicit = opts.authRecoveryOrigin?.trim();
-  if (explicit) return normalize(explicit);
+  const explicit = pick(opts.authRecoveryOrigin);
+  if (explicit) return explicit;
 
-  const branchAlias = opts.branchAliasHost?.trim();
+  const branchAlias = pick(opts.branchAliasHost);
   const isPreview = (opts.vercelEnv || "").toLowerCase() === "preview";
-  if (isPreview && branchAlias) return normalize(branchAlias);
+  if (isPreview && branchAlias) return branchAlias;
 
-  const site = opts.siteUrl?.trim();
-  if (site) return normalize(site);
+  const site = pick(opts.siteUrl);
+  if (site) return site;
 
-  if (branchAlias) return normalize(branchAlias);
+  if (branchAlias) return branchAlias;
 
   const vercel = opts.vercelUrl?.trim().replace(/^https?:\/\//, "").replace(/\/$/, "");
-  if (vercel) return `https://${vercel}`;
+  if (vercel) {
+    const fromVercel = pick(`https://${vercel}`);
+    if (fromVercel) return fromVercel;
+  }
 
-  const req = opts.requestOrigin?.trim().replace(/\/$/, "");
+  const req = pick(opts.requestOrigin);
   if (req) return req;
-  return "http://localhost:3000";
+
+  return stable;
+}
+
+/**
+ * Browser-side redirectTo selection for resetPasswordForEmail.
+ * Rejects production www fallbacks; keeps PKCE on the stable PR #66 origin.
+ */
+export function selectBrowserRecoveryRedirectTo(opts: {
+  apiRedirectTo?: string | null;
+  windowOrigin: string;
+  stableRecoveryOrigin?: string | null;
+}): {
+  redirectTo: string;
+  /** When set, the page should navigate here before sending the email (PKCE). */
+  mustUseOrigin: string | null;
+  rejectedProductionFallback: boolean;
+} {
+  const stable = normalizeOrigin(
+    opts.stableRecoveryOrigin?.trim() || PR66_STABLE_RECOVERY_ORIGIN,
+  );
+  const stableRedirect = `${stable}/auth/callback?next=${encodeURIComponent("/reset-password")}`;
+  const windowOrigin = normalizeOrigin(opts.windowOrigin);
+
+  if (isForbiddenRecoveryOrigin(windowOrigin)) {
+    return {
+      redirectTo: stableRedirect,
+      mustUseOrigin: stable,
+      rejectedProductionFallback: true,
+    };
+  }
+
+  if (opts.apiRedirectTo?.trim()) {
+    try {
+      const apiUrl = new URL(opts.apiRedirectTo);
+      if (!isForbiddenRecoveryOrigin(apiUrl.origin)) {
+        // Prefer API suggestion when it matches the page origin (PKCE cookie host).
+        if (apiUrl.origin === windowOrigin) {
+          return {
+            redirectTo: opts.apiRedirectTo,
+            mustUseOrigin: null,
+            rejectedProductionFallback: false,
+          };
+        }
+        // Force stable preview callback when API points at the known PR alias.
+        if (apiUrl.origin === stable && windowOrigin === stable) {
+          return {
+            redirectTo: opts.apiRedirectTo,
+            mustUseOrigin: null,
+            rejectedProductionFallback: false,
+          };
+        }
+      }
+    } catch {
+      /* ignore malformed */
+    }
+  }
+
+  // Already on an allowed preview/local origin: keep PKCE on this host.
+  if (windowOrigin === stable) {
+    return {
+      redirectTo: stableRedirect,
+      mustUseOrigin: null,
+      rejectedProductionFallback: false,
+    };
+  }
+
+  // Ephemeral preview host: keep same-origin for PKCE, but never production.
+  return {
+    redirectTo: `${windowOrigin}/auth/callback?next=${encodeURIComponent("/reset-password")}`,
+    mustUseOrigin: null,
+    rejectedProductionFallback: false,
+  };
+}
+
+/** Pure helper: apply auth cookies onto a redirect response cookie jar. */
+export function attachAuthCookiesToRedirect(
+  cookiesToSet: Array<{ name: string; value: string; options?: Record<string, unknown> }>,
+  setCookie: (name: string, value: string, options?: Record<string, unknown>) => void,
+): number {
+  for (const { name, value, options } of cookiesToSet) {
+    setCookie(name, value, options);
+  }
+  return cookiesToSet.length;
 }
 
 export function buildStableVercelBranchAlias(opts: {

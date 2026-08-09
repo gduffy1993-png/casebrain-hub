@@ -13,12 +13,17 @@ import {
   classifyAuthRecoveryError,
 } from "@/lib/auth/password-recovery";
 import {
+  PR66_STABLE_RECOVERY_CALLBACK,
+  PR66_STABLE_RECOVERY_ORIGIN,
+  attachAuthCookiesToRedirect,
   buildStableVercelBranchAlias,
   finalizeRecoveryExchange,
   isAuthRecoveryPublicPath,
+  isForbiddenRecoveryOrigin,
   parseRecoveryHashParams,
   planRecoveryCallback,
   resolveRecoveryOrigin,
+  selectBrowserRecoveryRedirectTo,
   extractImplicitSessionFromHash,
 } from "@/lib/auth/recovery-callback";
 import {
@@ -180,13 +185,13 @@ describe("callback cannot be reused", () => {
 describe("stable recovery redirect origin", () => {
   it("prefers AUTH_RECOVERY_ORIGIN / branch alias over ephemeral VERCEL_URL", () => {
     const alias = buildStableVercelBranchAlias({
-      projectName: "casebrain",
+      projectName: "casebrain-hub",
       branch: "programme/real-pdf-live-pilot-v1",
       teamSlug: "gduffy1993-pngs-projects",
     });
     assert.equal(
       alias,
-      "https://casebrain-git-programme-real-pdf-live-pilot-v1-gduffy1993-pngs-projects.vercel.app",
+      "https://casebrain-hub-git-programme-real-pdf-live-pilot-v1-gduffy1993-pngs-projects.vercel.app",
     );
     const origin = resolveRecoveryOrigin({
       authRecoveryOrigin: null,
@@ -201,5 +206,98 @@ describe("stable recovery redirect origin", () => {
       buildPasswordRecoveryRedirectTo(origin),
       `${alias}/auth/callback?next=%2Freset-password`,
     );
+  });
+
+  it("uses the exact PR #66 stable callback when AUTH_RECOVERY_ORIGIN is set", () => {
+    const origin = resolveRecoveryOrigin({
+      authRecoveryOrigin: PR66_STABLE_RECOVERY_ORIGIN,
+      siteUrl: "https://www.casebrain.co.uk",
+      vercelUrl: "casebrain-ephemeral-999-gduffy1993-pngs-projects.vercel.app",
+      vercelEnv: "preview",
+      requestOrigin: "https://www.casebrain.co.uk",
+    });
+    assert.equal(origin, PR66_STABLE_RECOVERY_ORIGIN);
+    assert.equal(
+      buildPasswordRecoveryRedirectTo(origin),
+      `${PR66_STABLE_RECOVERY_ORIGIN}/auth/callback?next=%2Freset-password`,
+    );
+    assert.equal(
+      buildPasswordRecoveryRedirectTo(origin).startsWith(PR66_STABLE_RECOVERY_CALLBACK),
+      true,
+    );
+  });
+});
+
+describe("production www fallback rejection", () => {
+  it("never resolves recovery origin to www.casebrain.co.uk", () => {
+    assert.equal(isForbiddenRecoveryOrigin("https://www.casebrain.co.uk"), true);
+    assert.equal(isForbiddenRecoveryOrigin("https://casebrain.co.uk"), true);
+    assert.equal(isForbiddenRecoveryOrigin(PR66_STABLE_RECOVERY_ORIGIN), false);
+
+    const origin = resolveRecoveryOrigin({
+      authRecoveryOrigin: null,
+      siteUrl: "https://www.casebrain.co.uk",
+      vercelUrl: null,
+      vercelEnv: "production",
+      requestOrigin: "https://www.casebrain.co.uk",
+      branchAliasHost: null,
+      fallbackStableOrigin: PR66_STABLE_RECOVERY_ORIGIN,
+    });
+    assert.equal(origin, PR66_STABLE_RECOVERY_ORIGIN);
+    assert.equal(isForbiddenRecoveryOrigin(origin), false);
+  });
+
+  it("browser selector rejects production host and forces stable preview origin", () => {
+    const selected = selectBrowserRecoveryRedirectTo({
+      apiRedirectTo: "https://www.casebrain.co.uk/auth/callback?next=%2Freset-password",
+      windowOrigin: "https://www.casebrain.co.uk",
+      stableRecoveryOrigin: PR66_STABLE_RECOVERY_ORIGIN,
+    });
+    assert.equal(selected.rejectedProductionFallback, true);
+    assert.equal(selected.mustUseOrigin, PR66_STABLE_RECOVERY_ORIGIN);
+    assert.equal(
+      selected.redirectTo,
+      `${PR66_STABLE_RECOVERY_ORIGIN}/auth/callback?next=%2Freset-password`,
+    );
+    assert.equal(selected.redirectTo.includes("casebrain.co.uk/?code"), false);
+    assert.equal(isForbiddenRecoveryOrigin(selected.redirectTo), false);
+  });
+});
+
+describe("expired code maps to reset-password error", () => {
+  it("callback plan with provider error=access_denied/expired lands on reset error, not /", () => {
+    const plan = planRecoveryCallback({
+      origin: PR66_STABLE_RECOVERY_ORIGIN,
+      code: null,
+      tokenHash: null,
+      otpType: null,
+      nextRaw: "/reset-password",
+      errorParam: "access_denied",
+      errorDescription: "Email link is invalid or has expired",
+    });
+    assert.equal(plan.ok, false);
+    assert.equal(plan.redirectPath.startsWith("/reset-password"), true);
+    assert.equal(plan.redirectPath.includes("error="), true);
+    assert.notEqual(plan.redirectPath, "/");
+  });
+});
+
+describe("cookie preservation on redirect response", () => {
+  it("attaches auth cookies via attachAuthCookiesToRedirect (redirect jar, not detached)", () => {
+    const jar: Array<{ name: string; value: string }> = [];
+    const count = attachAuthCookiesToRedirect(
+      [
+        { name: "sb-access-token", value: "opaque-access", options: { path: "/" } },
+        { name: "sb-refresh-token", value: "opaque-refresh", options: { path: "/" } },
+      ],
+      (name, value) => {
+        jar.push({ name, value });
+      },
+    );
+    assert.equal(count, 2);
+    assert.equal(jar.length, 2);
+    assert.equal(jar[0]?.name, "sb-access-token");
+    assert.equal(jar[1]?.name, "sb-refresh-token");
+    // Never assert or log real recovery codes — only cookie names/opaque placeholders.
   });
 });

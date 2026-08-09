@@ -8,7 +8,9 @@ import {
   userFacingRecoveryError,
 } from "@/lib/auth/password-recovery";
 import {
+  PR66_STABLE_RECOVERY_ORIGIN,
   buildStableVercelBranchAlias,
+  isForbiddenRecoveryOrigin,
   resolveRecoveryOrigin,
 } from "@/lib/auth/recovery-callback";
 
@@ -73,7 +75,8 @@ export async function POST(request: Request) {
   }
 
   const branchAlias = buildStableVercelBranchAlias({
-    projectName: process.env.VERCEL_PROJECT_NAME || "casebrain",
+    // Vercel project for PR #66 is casebrain-hub (not the older casebrain slug).
+    projectName: process.env.VERCEL_PROJECT_NAME || "casebrain-hub",
     branch:
       process.env.VERCEL_GIT_COMMIT_REF ||
       process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
@@ -82,21 +85,34 @@ export async function POST(request: Request) {
       process.env.NEXT_PUBLIC_VERCEL_TEAM_SLUG || "gduffy1993-pngs-projects",
   });
 
-  const origin = resolveRecoveryOrigin({
-    authRecoveryOrigin: process.env.NEXT_PUBLIC_AUTH_RECOVERY_ORIGIN,
+  // Prefer explicit env, then the known truncated PR #66 alias (authoritative for this pilot).
+  const authRecoveryOrigin =
+    process.env.NEXT_PUBLIC_AUTH_RECOVERY_ORIGIN?.trim() ||
+    PR66_STABLE_RECOVERY_ORIGIN;
+
+  let origin = resolveRecoveryOrigin({
+    authRecoveryOrigin,
     siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
     vercelUrl: process.env.VERCEL_URL,
     vercelGitCommitRef: process.env.VERCEL_GIT_COMMIT_REF,
     vercelEnv: process.env.VERCEL_ENV,
     requestOrigin: new URL(request.url).origin,
     branchAliasHost: branchAlias,
+    fallbackStableOrigin: PR66_STABLE_RECOVERY_ORIGIN,
   });
+
+  if (isForbiddenRecoveryOrigin(origin)) {
+    origin = PR66_STABLE_RECOVERY_ORIGIN;
+  }
+
+  const redirectTo = buildPasswordRecoveryRedirectTo(origin);
 
   return NextResponse.json({
     ok: true,
     code: "ready",
     message: forgotPasswordAckMessage("unknown"),
-    redirectTo: buildPasswordRecoveryRedirectTo(origin),
+    redirectTo,
+    recoveryOrigin: origin,
     // Client must call browser supabase.auth.resetPasswordForEmail next.
     clientMustSendResetEmail: true,
   });

@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import {
+  attachAuthCookiesToRedirect,
   finalizeRecoveryExchange,
   planRecoveryCallback,
 } from "@/lib/auth/recovery-callback";
@@ -55,7 +56,8 @@ export async function GET(request: NextRequest) {
           return request.cookies.getAll();
         },
         setAll(cookiesToSet: Array<{ name: string; value: string; options?: Record<string, unknown> }>) {
-          cookiesToSet.forEach(({ name, value, options }) => {
+          // Attach session cookies to THIS redirect response (not a detached cookies() jar).
+          attachAuthCookiesToRedirect(cookiesToSet, (name, value, options) => {
             redirectResponse.cookies.set(name, value, options as any);
           });
         },
