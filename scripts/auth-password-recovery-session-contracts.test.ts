@@ -262,6 +262,31 @@ describe("production www fallback rejection", () => {
     assert.equal(selected.redirectTo.includes("casebrain.co.uk/?code"), false);
     assert.equal(isForbiddenRecoveryOrigin(selected.redirectTo), false);
   });
+
+  it("ephemeral preview host must bounce to stable origin before sending email", () => {
+    const selected = selectBrowserRecoveryRedirectTo({
+      apiRedirectTo:
+        "https://casebrain-ephemeral-abc-gduffy1993-pngs-projects.vercel.app/auth/callback?next=%2Freset-password",
+      windowOrigin: "https://casebrain-ephemeral-abc-gduffy1993-pngs-projects.vercel.app",
+      stableRecoveryOrigin: PR66_STABLE_RECOVERY_ORIGIN,
+    });
+    assert.equal(selected.mustUseOrigin, PR66_STABLE_RECOVERY_ORIGIN);
+    assert.equal(
+      selected.redirectTo,
+      `${PR66_STABLE_RECOVERY_CALLBACK}?next=%2Freset-password`,
+    );
+  });
+
+  it("strips CRLF from AUTH_RECOVERY_ORIGIN env values", () => {
+    const origin = resolveRecoveryOrigin({
+      authRecoveryOrigin: `${PR66_STABLE_RECOVERY_ORIGIN}\r\n`,
+      siteUrl: "https://www.casebrain.co.uk",
+      vercelEnv: "preview",
+      requestOrigin: "https://www.casebrain.co.uk",
+      fallbackStableOrigin: PR66_STABLE_RECOVERY_ORIGIN,
+    });
+    assert.equal(origin, PR66_STABLE_RECOVERY_ORIGIN);
+  });
 });
 
 describe("expired code maps to reset-password error", () => {

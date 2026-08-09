@@ -86,8 +86,9 @@ export async function POST(request: Request) {
   });
 
   // Prefer explicit env, then the known truncated PR #66 alias (authoritative for this pilot).
+  // Strip CRLF — Windows `vercel env add` can embed \r\n and break Supabase allow-list match.
   const authRecoveryOrigin =
-    process.env.NEXT_PUBLIC_AUTH_RECOVERY_ORIGIN?.trim() ||
+    process.env.NEXT_PUBLIC_AUTH_RECOVERY_ORIGIN?.replace(/[\r\n]+/g, "").trim() ||
     PR66_STABLE_RECOVERY_ORIGIN;
 
   let origin = resolveRecoveryOrigin({

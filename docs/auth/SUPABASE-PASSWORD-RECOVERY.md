@@ -34,11 +34,14 @@ Add these **Redirect URLs** (no secrets in git):
 
 Also set **Site URL** carefully. If a `redirectTo` is not allow-listed, Supabase falls back to Site URL and the email lands on `https://www.casebrain.co.uk/?code=...` — that is the failure mode this PR rejects.
 
-Env for previews:
+Env for previews (no trailing newline/CRLF — that breaks allow-list matching):
 
 ```bash
 NEXT_PUBLIC_AUTH_RECOVERY_ORIGIN=https://casebrain-hub-git-programme-rea-33bd05-gduffy1993-pngs-projects.vercel.app
 ```
+
+If `redirectTo` is missing from Supabase **Redirect URLs**, Auth falls back to **Site URL**
+(`https://www.casebrain.co.uk/?code=...`). Keep the exact PR #66 callback allow-listed.
 
 ## Operator checklist (legacy account, PR #66)
 

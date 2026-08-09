@@ -218,7 +218,8 @@ export function resolveRecoveryOrigin(opts: {
 
   const pick = (value: string | null | undefined): string | null => {
     if (!value?.trim()) return null;
-    const origin = normalizeOrigin(value);
+    // Strip accidental whitespace/CRLF from env pulldowns (breaks allow-list match).
+    const origin = normalizeOrigin(value.replace(/[\r\n]+/g, "").trim());
     if (isForbiddenRecoveryOrigin(origin)) return null;
     return origin;
   };
@@ -275,44 +276,39 @@ export function selectBrowserRecoveryRedirectTo(opts: {
     };
   }
 
+  // Recovery emails must always use the stable PR #66 callback. Ephemeral
+  // deployment hosts are not reliably allow-listed in Supabase and fall back to
+  // Site URL (www.casebrain.co.uk/?code=...). PKCE requires starting forgot-password
+  // on the same stable origin that receives the email link.
+  if (windowOrigin !== stable) {
+    return {
+      redirectTo: stableRedirect,
+      mustUseOrigin: stable,
+      rejectedProductionFallback: isForbiddenRecoveryOrigin(windowOrigin),
+    };
+  }
+
   if (opts.apiRedirectTo?.trim()) {
     try {
-      const apiUrl = new URL(opts.apiRedirectTo);
-      if (!isForbiddenRecoveryOrigin(apiUrl.origin)) {
-        // Prefer API suggestion when it matches the page origin (PKCE cookie host).
-        if (apiUrl.origin === windowOrigin) {
-          return {
-            redirectTo: opts.apiRedirectTo,
-            mustUseOrigin: null,
-            rejectedProductionFallback: false,
-          };
-        }
-        // Force stable preview callback when API points at the known PR alias.
-        if (apiUrl.origin === stable && windowOrigin === stable) {
-          return {
-            redirectTo: opts.apiRedirectTo,
-            mustUseOrigin: null,
-            rejectedProductionFallback: false,
-          };
-        }
+      const apiUrl = new URL(opts.apiRedirectTo.trim());
+      if (
+        !isForbiddenRecoveryOrigin(apiUrl.origin) &&
+        apiUrl.origin === stable &&
+        apiUrl.pathname.startsWith("/auth/callback")
+      ) {
+        return {
+          redirectTo: opts.apiRedirectTo.trim(),
+          mustUseOrigin: null,
+          rejectedProductionFallback: false,
+        };
       }
     } catch {
       /* ignore malformed */
     }
   }
 
-  // Already on an allowed preview/local origin: keep PKCE on this host.
-  if (windowOrigin === stable) {
-    return {
-      redirectTo: stableRedirect,
-      mustUseOrigin: null,
-      rejectedProductionFallback: false,
-    };
-  }
-
-  // Ephemeral preview host: keep same-origin for PKCE, but never production.
   return {
-    redirectTo: `${windowOrigin}/auth/callback?next=${encodeURIComponent("/reset-password")}`,
+    redirectTo: stableRedirect,
     mustUseOrigin: null,
     rejectedProductionFallback: false,
   };
