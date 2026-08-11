@@ -204,7 +204,7 @@ describe("stable recovery redirect origin", () => {
     assert.equal(origin, alias);
     assert.equal(
       buildPasswordRecoveryRedirectTo(origin),
-      `${alias}/auth/callback?next=%2Freset-password`,
+      `${alias}/auth/callback`,
     );
   });
 
@@ -219,7 +219,7 @@ describe("stable recovery redirect origin", () => {
     assert.equal(origin, PR66_STABLE_RECOVERY_ORIGIN);
     assert.equal(
       buildPasswordRecoveryRedirectTo(origin),
-      `${PR66_STABLE_RECOVERY_ORIGIN}/auth/callback?next=%2Freset-password`,
+      PR66_STABLE_RECOVERY_CALLBACK,
     );
     assert.equal(
       buildPasswordRecoveryRedirectTo(origin).startsWith(PR66_STABLE_RECOVERY_CALLBACK),
@@ -255,10 +255,8 @@ describe("production www fallback rejection", () => {
     });
     assert.equal(selected.rejectedProductionFallback, true);
     assert.equal(selected.mustUseOrigin, PR66_STABLE_RECOVERY_ORIGIN);
-    assert.equal(
-      selected.redirectTo,
-      `${PR66_STABLE_RECOVERY_ORIGIN}/auth/callback?next=%2Freset-password`,
-    );
+    assert.equal(selected.redirectTo, PR66_STABLE_RECOVERY_CALLBACK);
+    assert.equal(selected.redirectTo.includes("?"), false);
     assert.equal(selected.redirectTo.includes("casebrain.co.uk/?code"), false);
     assert.equal(isForbiddenRecoveryOrigin(selected.redirectTo), false);
   });
@@ -271,10 +269,18 @@ describe("production www fallback rejection", () => {
       stableRecoveryOrigin: PR66_STABLE_RECOVERY_ORIGIN,
     });
     assert.equal(selected.mustUseOrigin, PR66_STABLE_RECOVERY_ORIGIN);
-    assert.equal(
-      selected.redirectTo,
-      `${PR66_STABLE_RECOVERY_CALLBACK}?next=%2Freset-password`,
-    );
+    assert.equal(selected.redirectTo, PR66_STABLE_RECOVERY_CALLBACK);
+  });
+
+  it("strips query from api redirectTo so Supabase allow-list accepts it", () => {
+    const selected = selectBrowserRecoveryRedirectTo({
+      apiRedirectTo: `${PR66_STABLE_RECOVERY_CALLBACK}?next=%2Freset-password`,
+      windowOrigin: PR66_STABLE_RECOVERY_ORIGIN,
+      stableRecoveryOrigin: PR66_STABLE_RECOVERY_ORIGIN,
+    });
+    assert.equal(selected.mustUseOrigin, null);
+    assert.equal(selected.redirectTo, PR66_STABLE_RECOVERY_CALLBACK);
+    assert.equal(selected.redirectTo.includes("?"), false);
   });
 
   it("strips CRLF from AUTH_RECOVERY_ORIGIN env values", () => {

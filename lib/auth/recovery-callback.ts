@@ -265,7 +265,9 @@ export function selectBrowserRecoveryRedirectTo(opts: {
   const stable = normalizeOrigin(
     opts.stableRecoveryOrigin?.trim() || PR66_STABLE_RECOVERY_ORIGIN,
   );
-  const stableRedirect = `${stable}/auth/callback?next=${encodeURIComponent("/reset-password")}`;
+  // Path-only: Supabase rejects redirect_to with query strings unless that exact
+  // string is allow-listed, then falls back to Site URL (homepage).
+  const stableRedirect = `${stable}/auth/callback`;
   const windowOrigin = normalizeOrigin(opts.windowOrigin);
 
   if (isForbiddenRecoveryOrigin(windowOrigin)) {
@@ -296,8 +298,9 @@ export function selectBrowserRecoveryRedirectTo(opts: {
         apiUrl.origin === stable &&
         apiUrl.pathname.startsWith("/auth/callback")
       ) {
+        // Strip query — allow-list stores path-only `/auth/callback`.
         return {
-          redirectTo: opts.apiRedirectTo.trim(),
+          redirectTo: `${apiUrl.origin}${apiUrl.pathname.replace(/\/$/, "") || "/auth/callback"}`,
           mustUseOrigin: null,
           rejectedProductionFallback: false,
         };

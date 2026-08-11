@@ -94,9 +94,15 @@ export function resolvePublicAppOrigin(opts: {
   return "http://localhost:3000";
 }
 
+/**
+ * Supabase Redirect URL allow-list match is exact on the full redirect_to string.
+ * Query params (e.g. `?next=/reset-password`) cause Auth to reject the URL and
+ * fall back to Site URL (www.casebrain.co.uk) — landing recovery on the homepage.
+ * The `/auth/callback` route defaults `next` to `/reset-password` when absent.
+ */
 export function buildPasswordRecoveryRedirectTo(origin: string): string {
   const base = origin.replace(/\/$/, "");
-  return `${base}/auth/callback?next=${encodeURIComponent("/reset-password")}`;
+  return `${base}/auth/callback`;
 }
 
 export function classifyAuthRecoveryError(input: {

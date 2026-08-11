@@ -34,6 +34,16 @@ Add these **Redirect URLs** (no secrets in git):
 
 Also set **Site URL** carefully. If a `redirectTo` is not allow-listed, Supabase falls back to Site URL and the email lands on `https://www.casebrain.co.uk/?code=...` — that is the failure mode this PR rejects.
 
+**Do not put query strings in `redirectTo`.** Supabase matches Redirect URLs against the full
+`redirect_to` value. `…/auth/callback?next=%2Freset-password` is **rejected** when only
+`…/auth/callback` is allow-listed, and Auth silently substitutes Site URL. The app therefore
+sends path-only `/auth/callback`; the callback defaults `next` to `/reset-password`.
+
+### Email template (Dashboard → Authentication → Email Templates → Reset password)
+
+Use Supabase’s full confirmation URL — typically `{{ .ConfirmationURL }}`.
+Do **not** build the link from `{{ .SiteURL }}` alone or discard `{{ .RedirectTo }}`.
+
 Env for previews (no trailing newline/CRLF — that breaks allow-list matching):
 
 ```bash
@@ -49,7 +59,7 @@ If `redirectTo` is missing from Supabase **Redirect URLs**, Auth falls back to *
 2. Open **only** the preview forgot-password page (not www).
 3. Request a **fresh** reset email for the legacy account.
 4. Email link must open:
-   `…/auth/callback?code=…&next=%2Freset-password` on the preview host
+   `…/auth/callback?code=…` on the preview host (path-only `redirect_to`)
    then `/reset-password` with a live recovery session.
 5. Set a new password → `/sign-in?reset=success`.
 6. Do **not** claim fixed until steps 4–5 succeed with a real inbox message.

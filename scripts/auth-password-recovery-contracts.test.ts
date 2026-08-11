@@ -30,7 +30,7 @@ describe("auth password recovery — positive", () => {
     assert.equal(origin, "https://casebrain-hub-git-preview.vercel.app");
     assert.equal(
       buildPasswordRecoveryRedirectTo(origin),
-      "https://casebrain-hub-git-preview.vercel.app/auth/callback?next=%2Freset-password",
+      "https://casebrain-hub-git-preview.vercel.app/auth/callback",
     );
     const passwords = validateNewPassword("securePass1", "securePass1");
     assert.equal(passwords.ok, true);
@@ -97,5 +97,7 @@ describe("auth password recovery — provider-error", () => {
     assert.equal(sanitizeAuthNextPath("https://evil.example"), "/reset-password");
     assert.equal(sanitizeAuthNextPath("//evil.example"), "/reset-password");
     assert.equal(sanitizeAuthNextPath("/settings"), "/settings");
+    assert.equal(sanitizeAuthNextPath(null), "/reset-password");
+    assert.equal(sanitizeAuthNextPath(undefined), "/reset-password");
   });
 });
