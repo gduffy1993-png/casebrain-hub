@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "legacy-1120-post-acceptance-verification@1.0.0",
+  "generatedAt": "2026-08-12T04:37:01.804Z",
+  "acceptedDeterministicReplayCommit": "f16f8c928a27a3465f31d9c070079a8594d739e2",
+  "frozenMembershipSha256": "9ef61d41818bea6d1c1080239a5300b79181db36a763697a8fc02898e3a1b813",
+  "deterministicRealPdfCases": 1120,
+  "deterministicSourceHashMatches": 1120,
+  "deterministicPostRemediationWordingFindings": 0,
+  "deterministicPostRemediationSemanticDefects": 0,
+  "authenticatedPreview": {
+    "authenticated": true,
+    "cases": 10,
+    "documents": 10,
+    "endpointChecks": 50,
+    "endpoint2xx": 50,
+    "endpointNon2xx": 0,
+    "sourceMutationAttempted": false
+  },
+  "ai": {
+    "ok": false,
+    "httpStatus": 429,
+    "errorCode": "credit_balance_exhausted",
+    "fundedReplayAllowed": false,
+    "isolatedPersistenceAllowed": false
+  },
+  "browserUi": "not_exercised_runtime_unavailable",
+  "postAcceptanceContracts": "7/7 pass",
+  "scriptSyntaxChecks": "pass",
+  "vercel": "SUCCESS"
+}

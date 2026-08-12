@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "casebrain-browser-runtime-blocker@1.0.0",
+  "recordedAt": "2026-08-12T04:37:01.803Z",
+  "authenticatedHttpExercised": true,
+  "authenticatedHttpCases": 10,
+  "browserUiExercised": false,
+  "browserUiVerdict": "not_exercised_runtime_unavailable",
+  "runtimeFailure": "Browser and Windows-control runtimes share a Node REPL kernel that failed before setup: failed to write kernel assets; path not found (os error 3).",
+  "applicationFailure": false,
+  "retryAllowedLater": true,
+  "passClaimed": false
+}

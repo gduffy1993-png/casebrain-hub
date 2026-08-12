@@ -1,0 +1,571 @@
+{
+  "schemaVersion": "casebrain-authenticated-preview-smoke@1.0.0",
+  "generatedAt": "2026-08-12T04:32:03.316Z",
+  "baseUrl": "https://casebrain-hub-git-programme-leg-3537cd-gduffy1993-pngs-projects.vercel.app",
+  "authenticated": true,
+  "authenticatedUserSha256": "b4a08c6f243d3286dc94599fc71eff76f341fb4b094b53f39796d21e75e25160",
+  "sessionSecretsPersisted": false,
+  "sourceMutationAttempted": false,
+  "qaWorkspaceOnly": true,
+  "trial": {
+    "isBlocked": false,
+    "reason": null,
+    "docsUsed": 10,
+    "docsLimit": 100,
+    "casesUsed": 10,
+    "casesLimit": 25,
+    "plan": "free",
+    "daysLeft": 12,
+    "endpoint": {
+      "path": "/api/trial-status",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "redirectedToSignIn": false,
+      "bodyBytes": 149,
+      "bodySha256": "e32016ffddb6f9c999e8036fc5fab795ee0d371a4588cd7521770683fd164de0"
+    }
+  },
+  "caseList": {
+    "count": 10,
+    "endpoint": {
+      "path": "/api/cases",
+      "status": 200,
+      "ok": true,
+      "contentType": "application/json",
+      "redirectedToSignIn": false,
+      "bodyBytes": 4270,
+      "bodySha256": "04f20cafd3f6aa900875c4c6fde9450f9752c5fe8e81dec626da7700d6453fc9"
+    }
+  },
+  "caseReceipts": [
+    {
+      "caseIdSha256": "0e8cbee2a14da2b3962a15059b1792a1176b1f41b83a8b2dd8cea348008e5b0b",
+      "caseListRowSha256": "fbfbb39e299fc4f48f27da3a9246254d95e1ef35539c5ff75f05f5cc0abbc1a3",
+      "documentCount": 1,
+      "endpoints": [
+        {
+          "path": "/cases/0038f06b-cf6f-446e-9d8c-5848fa542ec9?tab=overview&controlRoom=1",
+          "status": 200,
+          "ok": true,
+          "contentType": "text/html",
+          "redirectedToSignIn": false,
+          "bodyBytes": 15596,
+          "bodySha256": "22b7a4e89ffcef54a6862f0947ca5baa68b09a2281111367c77107180014454f"
+        },
+        {
+          "path": "/api/cases/0038f06b-cf6f-446e-9d8c-5848fa542ec9",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 108,
+          "bodySha256": "3eeabcb15369bbac670e7b93b9942e7aee025e57863849f91be98f16271edc08"
+        },
+        {
+          "path": "/api/cases/0038f06b-cf6f-446e-9d8c-5848fa542ec9/documents",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 257,
+          "bodySha256": "9aa9720447911db307b908b18655f50d58c48365d9afdd8fdf01f8ceb0ddb495"
+        },
+        {
+          "path": "/api/cases/0038f06b-cf6f-446e-9d8c-5848fa542ec9/analysis/version/latest",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 210,
+          "bodySha256": "33778576e44b5a296912b48c9223fb27595ce6ae58ae33b0b0f4b10d3e86559e"
+        },
+        {
+          "path": "/api/cases/0038f06b-cf6f-446e-9d8c-5848fa542ec9/bundle/overview",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 275,
+          "bodySha256": "3e54b946dc5035dd5e9289e6ffec1b21377340f28fb3b51c40a68665c0522be8"
+        }
+      ]
+    },
+    {
+      "caseIdSha256": "08e6db1c898570e43a29968c758b28e4f2b9e2f2a38053ce799eb937517931f8",
+      "caseListRowSha256": "9b3dfa76e03e343513c35e53d44d9a4cfeace0210f1a17246deace47b43e153b",
+      "documentCount": 1,
+      "endpoints": [
+        {
+          "path": "/cases/a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01?tab=overview&controlRoom=1",
+          "status": 200,
+          "ok": true,
+          "contentType": "text/html",
+          "redirectedToSignIn": false,
+          "bodyBytes": 15606,
+          "bodySha256": "33f0b7990945423e6a63dfd21cf96abbecedd20f704dbd844a0fdf2630021756"
+        },
+        {
+          "path": "/api/cases/a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 109,
+          "bodySha256": "429b65265d6f996aa2e261e6cb300356b3a02fd668e825056e7759b4e2be0bed"
+        },
+        {
+          "path": "/api/cases/a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01/documents",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 265,
+          "bodySha256": "961f10cd09d76600e4122490c2edc5cc4dc80531eaed6d20150c174557899506"
+        },
+        {
+          "path": "/api/cases/a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01/analysis/version/latest",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 210,
+          "bodySha256": "33778576e44b5a296912b48c9223fb27595ce6ae58ae33b0b0f4b10d3e86559e"
+        },
+        {
+          "path": "/api/cases/a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01/bundle/overview",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 287,
+          "bodySha256": "4264401d8c35f20ee2717cc87610f875e23756b92e82837eeed068a9db67c0bb"
+        }
+      ]
+    },
+    {
+      "caseIdSha256": "3b8654f9286b03b0371b1d439eaf5adbdb8dcee435603da815bcfe50d69d96a9",
+      "caseListRowSha256": "42c8d0c6fb5cb7246a3a7cf7ba1e134a2d1bb6bb6c4aa6d02645967d75b6ba8c",
+      "documentCount": 1,
+      "endpoints": [
+        {
+          "path": "/cases/918d817e-2173-495f-b456-783705049c5c?tab=overview&controlRoom=1",
+          "status": 200,
+          "ok": true,
+          "contentType": "text/html",
+          "redirectedToSignIn": false,
+          "bodyBytes": 15607,
+          "bodySha256": "b7bd5311ebb315e87f23a8edee8f183d19ec3db291c8d7699d036ed38bce18f6"
+        },
+        {
+          "path": "/api/cases/918d817e-2173-495f-b456-783705049c5c",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 108,
+          "bodySha256": "2050fe416d0515a5445652c81f892ab908260d054a7667973e609bb1a5e53b55"
+        },
+        {
+          "path": "/api/cases/918d817e-2173-495f-b456-783705049c5c/documents",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 263,
+          "bodySha256": "1fdff5ff5fddd0e7501996667ed35080603b6c56741bd9d4ca91941f87c40e81"
+        },
+        {
+          "path": "/api/cases/918d817e-2173-495f-b456-783705049c5c/analysis/version/latest",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 210,
+          "bodySha256": "33778576e44b5a296912b48c9223fb27595ce6ae58ae33b0b0f4b10d3e86559e"
+        },
+        {
+          "path": "/api/cases/918d817e-2173-495f-b456-783705049c5c/bundle/overview",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 286,
+          "bodySha256": "d5b4ab29637ab81e1e28d60ee83da1c3cabe604d7d1a5232bbe259ee03f13461"
+        }
+      ]
+    },
+    {
+      "caseIdSha256": "0062b82cd46644f826f154cfc7551d2ec2f8dbca3eb773145aa7bdc47ce6958e",
+      "caseListRowSha256": "a049b0c2e14dbe8759c3f1efefe96f21e2b52b1493bd429de6f7bb89fcc06bf0",
+      "documentCount": 1,
+      "endpoints": [
+        {
+          "path": "/cases/4d1ed890-98fd-4027-9074-9db9aa3868db?tab=overview&controlRoom=1",
+          "status": 200,
+          "ok": true,
+          "contentType": "text/html",
+          "redirectedToSignIn": false,
+          "bodyBytes": 15618,
+          "bodySha256": "9f4303454d6d2147ffddca7f50aa2b75492fb6ffbe59d5b54f489b81f7bd8c6b"
+        },
+        {
+          "path": "/api/cases/4d1ed890-98fd-4027-9074-9db9aa3868db",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 108,
+          "bodySha256": "8cc5ce9f32f311a503e6b755cf4ae8e58c2dfb64361ac19d312aef406653736f"
+        },
+        {
+          "path": "/api/cases/4d1ed890-98fd-4027-9074-9db9aa3868db/documents",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 274,
+          "bodySha256": "697884fad3983696bd0c9443f9bc2fe6c1ee812460438a8000d41c3a7dc7aa87"
+        },
+        {
+          "path": "/api/cases/4d1ed890-98fd-4027-9074-9db9aa3868db/analysis/version/latest",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 210,
+          "bodySha256": "33778576e44b5a296912b48c9223fb27595ce6ae58ae33b0b0f4b10d3e86559e"
+        },
+        {
+          "path": "/api/cases/4d1ed890-98fd-4027-9074-9db9aa3868db/bundle/overview",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 297,
+          "bodySha256": "cf92ddc66eabf02177727205220d2749bfd94370c97286021be2a357da50d013"
+        }
+      ]
+    },
+    {
+      "caseIdSha256": "63213f341395792cd2839ffbd05f1c876379d9d7d3c482475c2d8c2454733dd2",
+      "caseListRowSha256": "32f9d0c227f6df7837aecc28945a7010c11808425312a2e0c3cf1452bfb14075",
+      "documentCount": 1,
+      "endpoints": [
+        {
+          "path": "/cases/09617e55-136c-4459-8fc7-f4257ed8ac20?tab=overview&controlRoom=1",
+          "status": 200,
+          "ok": true,
+          "contentType": "text/html",
+          "redirectedToSignIn": false,
+          "bodyBytes": 15609,
+          "bodySha256": "17a44f72060f33e03d35563d0c6a65c97d4df9e9b4b55b900b52f80194ce5cf0"
+        },
+        {
+          "path": "/api/cases/09617e55-136c-4459-8fc7-f4257ed8ac20",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 108,
+          "bodySha256": "4c49407206ed75c9bcd57ca51e3821a05309e45aac62e49d073c106ef1647e16"
+        },
+        {
+          "path": "/api/cases/09617e55-136c-4459-8fc7-f4257ed8ac20/documents",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 268,
+          "bodySha256": "d9cc4d082f9d781c0b511fc7d6cce91c2f4c83b496bef4fdeee116c1806bb478"
+        },
+        {
+          "path": "/api/cases/09617e55-136c-4459-8fc7-f4257ed8ac20/analysis/version/latest",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 210,
+          "bodySha256": "33778576e44b5a296912b48c9223fb27595ce6ae58ae33b0b0f4b10d3e86559e"
+        },
+        {
+          "path": "/api/cases/09617e55-136c-4459-8fc7-f4257ed8ac20/bundle/overview",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 288,
+          "bodySha256": "f78f50682578d83b9cbe5898f2bb55efbf77613cc69d84dcb1858415edf112cf"
+        }
+      ]
+    },
+    {
+      "caseIdSha256": "6b232c81073a05a52a5b868b394979a6dfd92061b0e4eb318a1b7bc7520fba8f",
+      "caseListRowSha256": "ee98c9f41d7ddcfa60a51135e8d1ec88635ad68067859a2105d621f39bd9f368",
+      "documentCount": 1,
+      "endpoints": [
+        {
+          "path": "/cases/14823d9e-1f0f-4cfc-af01-e6595d1cdfc4?tab=overview&controlRoom=1",
+          "status": 200,
+          "ok": true,
+          "contentType": "text/html",
+          "redirectedToSignIn": false,
+          "bodyBytes": 15635,
+          "bodySha256": "091f7b82314a16ab8f34b2dd03db242ed753a7028d4da398030e888496e4de9b"
+        },
+        {
+          "path": "/api/cases/14823d9e-1f0f-4cfc-af01-e6595d1cdfc4",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 108,
+          "bodySha256": "76065b8ef0f70effee9a68c36a09f2943bca32f69531da97025d0a172aa706fd"
+        },
+        {
+          "path": "/api/cases/14823d9e-1f0f-4cfc-af01-e6595d1cdfc4/documents",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 298,
+          "bodySha256": "46468f654ff9f96434897754b897556a0deeea04ec6cf7fe4f4773c61293e8a1"
+        },
+        {
+          "path": "/api/cases/14823d9e-1f0f-4cfc-af01-e6595d1cdfc4/analysis/version/latest",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 210,
+          "bodySha256": "33778576e44b5a296912b48c9223fb27595ce6ae58ae33b0b0f4b10d3e86559e"
+        },
+        {
+          "path": "/api/cases/14823d9e-1f0f-4cfc-af01-e6595d1cdfc4/bundle/overview",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 316,
+          "bodySha256": "2a9ab849dd6c4e3d6180fc89b544b1028cbc7ad3e66d343c9218bf5e4b02476a"
+        }
+      ]
+    },
+    {
+      "caseIdSha256": "c40b2d9d36f96ec5eedf4ece792ecfb632a3d294ab6a78ffd22bed7752abec95",
+      "caseListRowSha256": "ff1f2c6ec4b9bcb4099cb9a7512d7daf86ef734796433e7a8fdef2fc2cafdf28",
+      "documentCount": 1,
+      "endpoints": [
+        {
+          "path": "/cases/99090c69-5d78-41e3-946d-119b4bc335ba?tab=overview&controlRoom=1",
+          "status": 200,
+          "ok": true,
+          "contentType": "text/html",
+          "redirectedToSignIn": false,
+          "bodyBytes": 15613,
+          "bodySha256": "3d083e986893575790752d00cc6785b945b48c829ac9aeb3e1e808b387145c8d"
+        },
+        {
+          "path": "/api/cases/99090c69-5d78-41e3-946d-119b4bc335ba",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 108,
+          "bodySha256": "f85ab6777ec4893ea2c12f511f9cf6d8f955256d64fee663d240eebadec16914"
+        },
+        {
+          "path": "/api/cases/99090c69-5d78-41e3-946d-119b4bc335ba/documents",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 276,
+          "bodySha256": "8b136e789a5f292216c2b5ae24048e54f51cb6b08f5f501095ab1b7b0200b553"
+        },
+        {
+          "path": "/api/cases/99090c69-5d78-41e3-946d-119b4bc335ba/analysis/version/latest",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 210,
+          "bodySha256": "33778576e44b5a296912b48c9223fb27595ce6ae58ae33b0b0f4b10d3e86559e"
+        },
+        {
+          "path": "/api/cases/99090c69-5d78-41e3-946d-119b4bc335ba/bundle/overview",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 294,
+          "bodySha256": "cbcbbb09167c5f63739d47d3f89c443e24ad86b7482c685be98c4e69d9b590b6"
+        }
+      ]
+    },
+    {
+      "caseIdSha256": "ec7f090cd8ac7faa7d44999177b8169eeb0fc91201dc5fda6267270c9e4f256b",
+      "caseListRowSha256": "aaf05419beb76570379633f4955272f007b6b9eb69afe9045d953e778a5516fe",
+      "documentCount": 1,
+      "endpoints": [
+        {
+          "path": "/cases/b0231c3b-eb05-41e0-99fa-77ad7dbb7d39?tab=overview&controlRoom=1",
+          "status": 200,
+          "ok": true,
+          "contentType": "text/html",
+          "redirectedToSignIn": false,
+          "bodyBytes": 15614,
+          "bodySha256": "7acecf94e82d6803be3e04639563739d01015b1352ffb4cd6fd9335804c01e87"
+        },
+        {
+          "path": "/api/cases/b0231c3b-eb05-41e0-99fa-77ad7dbb7d39",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 108,
+          "bodySha256": "624324981327124c9810610548160cba7c717abc9f9551618438c6d6b4336d77"
+        },
+        {
+          "path": "/api/cases/b0231c3b-eb05-41e0-99fa-77ad7dbb7d39/documents",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 270,
+          "bodySha256": "9d02d1d8a2bce2652381f11e590ebbc8ce60d1610d1794473275efd96327d6e2"
+        },
+        {
+          "path": "/api/cases/b0231c3b-eb05-41e0-99fa-77ad7dbb7d39/analysis/version/latest",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 210,
+          "bodySha256": "33778576e44b5a296912b48c9223fb27595ce6ae58ae33b0b0f4b10d3e86559e"
+        },
+        {
+          "path": "/api/cases/b0231c3b-eb05-41e0-99fa-77ad7dbb7d39/bundle/overview",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 292,
+          "bodySha256": "c7ec5c7420c5772a65c93c277743b8b353d4d471c0ddf134a95c3f2a698dc1ec"
+        }
+      ]
+    },
+    {
+      "caseIdSha256": "f7a4f2230dca59c62d1c3a1604f0281e03712e4e6aa9debbdf57c9be0ab26f08",
+      "caseListRowSha256": "40930aabe6a98c297ded8e79b94e5adca36d225f7a42dc79631c73e942a919ce",
+      "documentCount": 1,
+      "endpoints": [
+        {
+          "path": "/cases/1c9afb96-1309-479c-b459-6d9665019663?tab=overview&controlRoom=1",
+          "status": 200,
+          "ok": true,
+          "contentType": "text/html",
+          "redirectedToSignIn": false,
+          "bodyBytes": 15640,
+          "bodySha256": "54e6bc11d8f9312185c4381cf8cc26794bfaa39f3a266a07cb43d7945b9bf693"
+        },
+        {
+          "path": "/api/cases/1c9afb96-1309-479c-b459-6d9665019663",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 108,
+          "bodySha256": "01e600fa4845b309b124fe99227040f192db97b420b952d0378d9b7892d3a9d8"
+        },
+        {
+          "path": "/api/cases/1c9afb96-1309-479c-b459-6d9665019663/documents",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 296,
+          "bodySha256": "997a9cd880542d323213464bafe92300f82dbd1bf49b9f5b68b1d390c557a793"
+        },
+        {
+          "path": "/api/cases/1c9afb96-1309-479c-b459-6d9665019663/analysis/version/latest",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 210,
+          "bodySha256": "33778576e44b5a296912b48c9223fb27595ce6ae58ae33b0b0f4b10d3e86559e"
+        },
+        {
+          "path": "/api/cases/1c9afb96-1309-479c-b459-6d9665019663/bundle/overview",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 319,
+          "bodySha256": "61df179a3dd40bf6ca827926722c193c67037dd9f1d0bfd2ae933211887c612b"
+        }
+      ]
+    },
+    {
+      "caseIdSha256": "0376182af021f1a7409ce925d2f5b27b4f377e8732fda4de6ec1991ec5c04a77",
+      "caseListRowSha256": "c9713d9e6dceda0e5dbb4c1bd24ac2cddc17c9b39789fd4d790c2bee9e9d8f09",
+      "documentCount": 1,
+      "endpoints": [
+        {
+          "path": "/cases/2d857428-3f20-439c-b842-6f16d0207843?tab=overview&controlRoom=1",
+          "status": 200,
+          "ok": true,
+          "contentType": "text/html",
+          "redirectedToSignIn": false,
+          "bodyBytes": 15612,
+          "bodySha256": "e6bebf75b5eee53be089d4288f507b8c066076c9a9a48275a6dccbaf21c5e477"
+        },
+        {
+          "path": "/api/cases/2d857428-3f20-439c-b842-6f16d0207843",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 108,
+          "bodySha256": "09c253a367c36bed9713f5a64b6da50e373a7ae81232b7bf24458fa36f57aa5c"
+        },
+        {
+          "path": "/api/cases/2d857428-3f20-439c-b842-6f16d0207843/documents",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 268,
+          "bodySha256": "5aca145fc7efda61328f6468149aa52f7fb0cc98be95b6474f60d260b6612648"
+        },
+        {
+          "path": "/api/cases/2d857428-3f20-439c-b842-6f16d0207843/analysis/version/latest",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 210,
+          "bodySha256": "33778576e44b5a296912b48c9223fb27595ce6ae58ae33b0b0f4b10d3e86559e"
+        },
+        {
+          "path": "/api/cases/2d857428-3f20-439c-b842-6f16d0207843/bundle/overview",
+          "status": 200,
+          "ok": true,
+          "contentType": "application/json",
+          "redirectedToSignIn": false,
+          "bodyBytes": 291,
+          "bodySha256": "d87250de482f38216cfdc844ddc49adcfe0d12628730e6223b7daa82d820fe0a"
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "casesChecked": 10,
+    "totalDocumentsObserved": 10,
+    "endpointChecks": 50,
+    "endpoint2xx": 50,
+    "endpointRedirectedToSignIn": 0,
+    "endpointNon2xx": 0
+  }
+}

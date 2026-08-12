@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "legacy-1120-post-acceptance-decision@1.0.0",
+  "generatedAt": "2026-08-12T04:37:01.806Z",
+  "classification": "DETERMINISTIC_REAL_PDF_REPLAY_ACCEPTED__AUTHENTICATED_HTTP_PASS__AI_PERSISTENCE_BROWSER_BLOCKED",
+  "deterministicRealPdfBuilderGatePass": true,
+  "authenticatedHttpGatePass": true,
+  "authenticatedBrowserGatePass": false,
+  "fundedAiExtractionGatePass": false,
+  "isolatedShadowPersistenceGatePass": false,
+  "fullProductionReplayGatePass": false,
+  "solicitorApproval": false,
+  "programmePassSupported": false,
+  "priorEvidenceOverwritten": false,
+  "nextRequiredActions": [
+    "restore funded AI quota, then run a controlled frozen subset through isolated AI persistence",
+    "repair the external browser automation runtime and inspect authenticated UI routes",
+    "complete qualified solicitor review before any solicitor-grade or programme PASS claim"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "casebrain-pr-preview-authority@1.0.0",
+  "generatedAt": "2026-08-12T04:37:01.800Z",
+  "appPreviewCommit": "f16f8c928a27a3465f31d9c070079a8594d739e2",
+  "parent": "03da04ba0e42b351e53997c890990478b52f967c",
+  "prNumber": 67,
+  "prUrl": "https://github.com/gduffy1993-png/casebrain-hub/pull/67",
+  "prState": "OPEN",
+  "prHeadMatches": true,
+  "baseRefName": "programme/real-pdf-live-pilot-v1",
+  "headRefName": "programme/legacy-1120-shadow-replay",
+  "mergeable": "MERGEABLE",
+  "vercel": {
+    "state": "SUCCESS",
+    "targetUrl": "https://vercel.com/gduffy1993-pngs-projects/casebrain-hub/Ci77BKoFjnFiLteBUozMhBuVnVYY",
+    "startedAt": "2026-08-12T04:26:37Z"
+  },
+  "mergeAttempted": false,
+  "productionDeployAttempted": false
+}

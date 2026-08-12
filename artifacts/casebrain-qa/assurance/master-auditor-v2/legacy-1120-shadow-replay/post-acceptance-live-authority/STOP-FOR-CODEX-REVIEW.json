@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "legacy-1120-post-acceptance-stop@1.0.0",
+  "generatedAt": "2026-08-12T04:37:01.808Z",
+  "classification": "DETERMINISTIC_REAL_PDF_REPLAY_ACCEPTED__AUTHENTICATED_HTTP_PASS__AI_PERSISTENCE_BROWSER_BLOCKED",
+  "acceptedDeterministicReplayCommit": "f16f8c928a27a3465f31d9c070079a8594d739e2",
+  "pr": {
+    "number": 67,
+    "url": "https://github.com/gduffy1993-png/casebrain-hub/pull/67",
+    "state": "OPEN"
+  },
+  "preview": {
+    "vercelState": "SUCCESS"
+  },
+  "authenticatedHttpGatePass": true,
+  "authenticatedBrowserGatePass": false,
+  "fundedAiExtractionGatePass": false,
+  "isolatedShadowPersistenceGatePass": false,
+  "programmePassSupported": false,
+  "checkpointBeforeAdditiveEvidenceCommit": true,
+  "priorEvidenceOverwritten": false
+}

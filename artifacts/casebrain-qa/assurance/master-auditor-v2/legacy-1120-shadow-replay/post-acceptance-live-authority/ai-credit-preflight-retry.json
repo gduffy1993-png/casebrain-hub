@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "casebrain-ai-credit-preflight@1.0.0",
+  "attemptedAt": "2026-08-12T04:33:12.377Z",
+  "ok": false,
+  "httpStatus": 429,
+  "requestedModel": "gpt-4o-mini",
+  "modelReturned": null,
+  "errorCode": "credit_balance_exhausted",
+  "errorCategory": "insufficient_quota",
+  "secretRecorded": false,
+  "responseContentRecorded": false,
+  "fundedReplayAllowed": false,
+  "isolatedPersistenceAllowed": false
+}

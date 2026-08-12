@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "legacy-1120-post-acceptance-exact-manifest@1.0.0",
+  "generatedAt": "2026-08-12T04:37:01.957Z",
+  "selfHashStatus": "excluded_from_files_array_self_referential",
+  "fullyReconciled": true,
+  "fileCount": 12,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/post-acceptance-live-authority/ai-credit-preflight-retry.json",
+      "sha256": "fb58da13326b47f284c7ad9b4c507d26cf8c1173fc7b3d2b9732f16ec9969800",
+      "byteLength": 420,
+      "classification": "evidence",
+      "intendedCommit": true
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/post-acceptance-live-authority/authenticated-preview-smoke.json",
+      "sha256": "44480c42ce70bb3369f292a2e94b30df7ca6b8aff50fc92374892091222034c0",
+      "byteLength": 21637,
+      "classification": "evidence",
+      "intendedCommit": true
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/post-acceptance-live-authority/BROWSER-RUNTIME-BLOCKER.json",
+      "sha256": "955d529d3e11e6c63bff1e22ed10a245ccf64d8ad3053d151ad5c0228b6ee5ef",
+      "byteLength": 524,
+      "classification": "evidence",
+      "intendedCommit": true
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/post-acceptance-live-authority/DECISION-CARD.json",
+      "sha256": "6c17f08e102791fd05bd0ba51d316edb3a3276c1a9ff8aa3717325187d3c1066",
+      "byteLength": 900,
+      "classification": "evidence",
+      "intendedCommit": true
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/post-acceptance-live-authority/DECISION-CARD.md",
+      "sha256": "61000429b49ca2f3bef626b4e5792494cacc168abd111a19f8bd9e24b349881b",
+      "byteLength": 909,
+      "classification": "evidence",
+      "intendedCommit": true
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/post-acceptance-live-authority/PR-PREVIEW-AUTHORITY.json",
+      "sha256": "d88a986a57719103b8d7c4eaaa05047e0f3f317b7ab128c025ab095108c3fcfe",
+      "byteLength": 755,
+      "classification": "evidence",
+      "intendedCommit": true
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/post-acceptance-live-authority/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "1f4a0ea3a6e860674e0fec2ab3cf295faa0c3ba467869854cfd0002f2911de42",
+      "byteLength": 768,
+      "classification": "evidence",
+      "intendedCommit": true
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/post-acceptance-live-authority/VERIFICATION-RESULTS.json",
+      "sha256": "105cae31033b2f17ca92038ada9df3e97b7361ab1d8745f5712855b30e7e5d0e",
+      "byteLength": 1010,
+      "classification": "evidence",
+      "intendedCommit": true
+    },
+    {
+      "path": "scripts/assurance/legacy-1120-shadow-replay/emit-post-acceptance-live-authority.mjs",
+      "sha256": "3957e047785b7df07296682ec67b98d0a00786e836cf7eb5461b5c08f3b9014c",
+      "byteLength": 8552,
+      "classification": "reproduction",
+      "intendedCommit": true
+    },
+    {
+      "path": "scripts/assurance/legacy-1120-shadow-replay/post-acceptance-live-authority-contracts.test.mjs",
+      "sha256": "1b29898237f3072ed27e7ac2baf0547a41246fe4be77284a2f5beeb846a5df0b",
+      "byteLength": 2769,
+      "classification": "contract",
+      "intendedCommit": true
+    },
+    {
+      "path": "scripts/assurance/legacy-1120-shadow-replay/retry-ai-credit-preflight.mjs",
+      "sha256": "945d5c938dcf434bbdc90c8208e913038af205616a0ca07ab9c5b3df8a66c5ec",
+      "byteLength": 2394,
+      "classification": "source",
+      "intendedCommit": true
+    },
+    {
+      "path": "scripts/assurance/legacy-1120-shadow-replay/run-authenticated-preview-smoke.mjs",
+      "sha256": "a06f8cd94d682bb363d7a51907eafa95ef5e1dc73662ea1fc47e660a688a4aba",
+      "byteLength": 6120,
+      "classification": "source",
+      "intendedCommit": true
+    }
+  ]
+}
