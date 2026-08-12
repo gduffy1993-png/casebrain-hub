@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "legacy-1120-deterministic-checkpoint-decision@1.0.0",
+  "generatedAt": "2026-08-12T02:55:28.242Z",
+  "parentOrderedMembershipSha256": "9ef61d41818bea6d1c1080239a5300b79181db36a763697a8fc02898e3a1b813",
+  "deterministicGate": {
+    "sourceHashesMatch": true,
+    "extractionSucceeded": true,
+    "surfacesBuilt": true,
+    "outputPdfsGenerated": true,
+    "incompleteChargeSignalsPreserved": true,
+    "visibleWordingFindingCount": 31,
+    "semanticDefectCount": 4,
+    "casesWithCanonicalCharge": 839
+  },
+  "deterministicGatePass": false,
+  "fullProductionReplayGatePass": false,
+  "fullProductionBlockers": [
+    {
+      "blocker": "OPENAI_EXTRACTION_CREDITS",
+      "evidence": {
+        "attemptedAt": "2026-08-12T02:29:19.043Z",
+        "ok": false,
+        "httpStatus": 429,
+        "requestedModel": "gpt-4o-mini",
+        "modelReturned": null,
+        "errorCode": "credit_balance_exhausted",
+        "errorCategory": "insufficient_quota",
+        "secretRecorded": false
+      }
+    },
+    {
+      "blocker": "ISOLATED_SHADOW_PERSISTENCE_NOT_STARTED",
+      "reason": "Fail closed until AI extraction preflight succeeds."
+    },
+    {
+      "blocker": "AUTHENTICATED_BROWSER_NOT_EXERCISED",
+      "reason": "Requires deployed shadow workspace after the production preflight passes."
+    }
+  ],
+  "claims": {
+    "sourcePdfBytesExercised": true,
+    "deterministicProductionBuildersExercised": true,
+    "generatedCasebrainOutputPdfsExercised": true,
+    "fundedAiExtractionExercised": false,
+    "authenticatedApplicationExercised": false,
+    "solicitorApproval": false,
+    "programmePass": false
+  },
+  "status": "STOP_BLOCKED_BEFORE_SHADOW_PERSISTENCE"
+}

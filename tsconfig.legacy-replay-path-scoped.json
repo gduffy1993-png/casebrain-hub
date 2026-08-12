@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "skipLibCheck": true,
+    "incremental": false
+  },
+  "include": [
+    "next-env.d.ts",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.3/pdf-parse-shim.d.ts",
+    "lib/criminal/build-from-document-units.ts",
+    "lib/criminal/canonical-live-surface-adapter.ts",
+    "lib/criminal/solicitor-visible-matter-reference.ts",
+    "lib/criminal/solicitor-visible-sanitization.ts",
+    "lib/criminal/structured-charge-state.ts",
+    "lib/criminal/structured-extractor.ts",
+    "lib/pdf/criminal-strategy-pdf.ts",
+    "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts",
+    "scripts/assurance/legacy-1120-shadow-replay/freeze-legacy-membership.mjs",
+    "scripts/assurance/legacy-1120-shadow-replay/run-five-case-gate.ts",
+    "scripts/assurance/legacy-1120-shadow-replay/shared-root-contracts.test.ts"
+  ],
+  "exclude": ["node_modules"]
+}

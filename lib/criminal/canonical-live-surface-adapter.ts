@@ -34,7 +34,10 @@ import {
   appendCanonicalFindingsToKeyFacts,
 } from "@/lib/criminal/key-facts-v2";
 import type { KeyFactsV2Hierarchy } from "@/lib/types/casebrain";
-import { extractCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
+import {
+  extractCriminalCaseMeta,
+  type CriminalCaseMeta,
+} from "@/lib/criminal/structured-extractor";
 import { clientSafeSummaryDisclaimerWithProvenance } from "@/lib/criminal/client-safe-summary-compose";
 import { buildControlRoomComputedSupervisorSignals } from "@/lib/criminal/supervisor-queue/build-control-room-computed-signals";
 import { buildCanonicalMatterStateV1 } from "@/lib/criminal/canonical-matter-state/build";
@@ -49,6 +52,8 @@ import { sanitizeSolicitorProse } from "@/lib/criminal/solicitor-visible-sanitiz
 
 export type LiveProductionSurfaces = {
   pipeline: LiveCanonicalPipelineResult;
+  /** Deterministic source-derived case/header facts used by real exits. */
+  caseMeta: CriminalCaseMeta;
   matterState: CanonicalMatterStateV1;
   charges: StructuredChargeView[];
   /** Structured charge completeness attached to every exit. */
@@ -157,6 +162,11 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
   },
 ): LiveProductionSurfaces {
   const pipeline = buildCanonicalPipelineFromDocumentUnits(documents);
+  const meta = extractCriminalCaseMeta({
+    text: pipeline.bundleText,
+    documentName: documents.map((d) => d.title).join("; "),
+    now: new Date(),
+  });
   const caseId = opts?.caseId ?? "live-integration-case";
   const recordedFromPipeline =
     pipeline.charges[0]?.particulars?.trim() ||
@@ -173,7 +183,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
   /** Incomplete charges must carry warning+action on every solicitor-facing exit. */
   const allegationForExits = allegationWithStatus || allegation;
   const caseTitle = opts?.caseTitle ?? "Live integration matter";
-  const clientLabel = opts?.clientLabel ?? "Client";
+  const clientLabel = opts?.clientLabel ?? meta.defendantName ?? "Client";
 
   const matterState = buildCanonicalMatterStateV1({
     caseId,
@@ -236,11 +246,6 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     canonicalFindings: pipeline.findings,
   });
 
-  const meta = extractCriminalCaseMeta({
-    text: pipeline.bundleText,
-    documentName: documents.map((d) => d.title).join("; "),
-    now: new Date(),
-  });
   const keyFacts = appendCanonicalFindingsToKeyFacts(
     buildCriminalStructuredKeyFacts(meta, "live-document-units"),
     pipeline.findings,
@@ -614,6 +619,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
 
   return {
     pipeline,
+    caseMeta: meta,
     matterState: sanitizedMatterState,
     charges: sanitizedCharges,
     chargeCompleteness,

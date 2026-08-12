@@ -25,6 +25,10 @@ import {
   type CriminalStrategyChargeRow,
 } from "@/lib/pdf/criminal-strategy-pdf";
 import { isMidWordSolicitorTruncation } from "@/lib/criminal/charge-allegation-completeness";
+import {
+  professionalizeSolicitorPressurePoint,
+  sanitizeSolicitorProse,
+} from "@/lib/criminal/solicitor-visible-sanitization";
 import type {
   MaterialisedSurface,
   MasterExitMode,
@@ -294,6 +298,9 @@ export type OutputPdfResult = {
   pageCount: number | null;
   error: string | null;
   generatedAt: string | null;
+  /** Text independently extracted from the generated CaseBrain PDF, never the source PDF. */
+  extractedText: string | null;
+  extractedTextSha256: string | null;
 };
 
 export type VisualChecks = {
@@ -309,18 +316,51 @@ function bulkOutputDir(root: string): string {
   return path.join(root, ARTEFACT_ROOT, "bulk", "output-pdfs");
 }
 
+function printablePageNumber(value: string | number | null | undefined): string | null {
+  if (value == null) return null;
+  const clean = String(value).trim().replace(/^p\.?\s*/i, "");
+  return clean || null;
+}
+
+function professionalChargeForPdf(charge: LiveProductionSurfaces["charges"][number]): {
+  offence: string;
+  particulars: string | null;
+} {
+  const offence = charge.offence.trim();
+  if (!charge.particulars && /\bdishonestly handled stolen goods\b/i.test(offence)) {
+    return { offence: "Handling stolen goods", particulars: offence };
+  }
+  return { offence, particulars: charge.particulars ?? null };
+}
+
 /** Build charge rows for the strategy PDF straight from the real canonical charges. */
 function chargeRowsFromSurfaces(surfaces: LiveProductionSurfaces): CriminalStrategyChargeRow[] {
-  return surfaces.charges.map((c) => ({
+  return surfaces.charges.map((c) => {
+    const professionalCharge = professionalChargeForPdf(c);
+    return ({
     count: c.count,
-    offence: c.offence,
+    offence: professionalCharge.offence,
+    particulars: professionalCharge.particulars,
     defendants: c.defendants,
     documentRole: c.documentRole,
     status: c.status,
+    // Pilot source filenames contain evaluation IDs. The exact title remains in audit
+    // metadata; ordinary solicitor copy gets a stable document label plus real page.
     sourceLabel: c.sourceDocumentTitle
-      ? `${c.sourceDocumentTitle}${c.sourcePage ? ` p.${c.sourcePage}` : ""}`
+      ? (() => {
+          const sourcePage = printablePageNumber(c.sourcePage);
+          const compiledPage = printablePageNumber(c.compiledPage);
+          return `Source bundle${
+            sourcePage
+              ? ` · source p.${sourcePage}`
+              : compiledPage
+                ? ` · compiled p.${compiledPage}`
+                : ""
+          }`;
+        })()
       : null,
-  }));
+  });
+  });
 }
 
 export async function generateOutputPdfForCase(
@@ -330,13 +370,62 @@ export async function generateOutputPdfForCase(
 ): Promise<{ result: OutputPdfResult; register: Record<string, unknown> | null }> {
   const generatedAt = new Date().toISOString();
   try {
+    const futureHearing = surfaces.caseMeta.hearings
+      .filter((hearing) => hearing.status === "UPCOMING")
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())[0] ?? null;
+    const recordedHearing = futureHearing ?? [...surfaces.caseMeta.hearings]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0] ?? null;
+    const hearingIsPast = Boolean(recordedHearing && recordedHearing.status === "PAST");
+    const defendant = surfaces.caseMeta.defendantName?.trim() || null;
+    const chargeRows = chargeRowsFromSurfaces(surfaces);
+    const leadingOffence = chargeRows[0]?.offence?.trim() || null;
+    const conciseMatterTitle = defendant
+      ? `${defendant} — ${leadingOffence && leadingOffence.length <= 90 ? leadingOffence : "Criminal matter"}`
+      : leadingOffence && leadingOffence.length <= 90
+        ? leadingOffence
+        : "Criminal matter";
+    const pressurePoints = surfaces.warRoom.collapseRisks
+      .map(professionalizeSolicitorPressurePoint)
+      .filter((point): point is NonNullable<typeof point> => point !== null)
+      .filter((point, index, rows) =>
+        rows.findIndex((candidate) =>
+          `${candidate.label}\n${candidate.reason}`.toLowerCase() ===
+          `${point.label}\n${point.reason}`.toLowerCase()) === index,
+      )
+      .slice(0, 6);
+    const provenanceLimitations = surfaces.pdf.limitations
+      .map((line) => sanitizeSolicitorProse(line).trim().replace(/[.;]+$/, ""))
+      .filter(Boolean)
+      .filter((line, index, rows) =>
+        rows.findIndex((candidate) => candidate.toLowerCase() === line.toLowerCase()) === index,
+      )
+      .map((line) => `${line}.`);
     const buffer = await generateCriminalStrategyPdf({
       caseId: `real-pdf-live-pilot-v1-${entry.id}`,
-      title: `${entry.id} — ${entry.fileName}`,
+      title: sanitizeSolicitorProse(conciseMatterTitle),
       generatedAt,
-      offenceLabel: surfaces.pdf.allegation ?? surfaces.chargeCompleteness.displayedChargeText,
-      charges: chargeRowsFromSurfaces(surfaces),
-      provenanceLimitations: surfaces.pdf.limitations,
+      offenceLabel:
+        chargeRows[0]?.offence ??
+        surfaces.pdf.allegation ??
+        surfaces.chargeCompleteness.displayedChargeText,
+      nextHearingType: recordedHearing?.type,
+      nextHearingDate: recordedHearing?.date,
+      hearingDisplayLabel: hearingIsPast ? "Recorded hearing" : "Next hearing",
+      hearingLifecycleNote: hearingIsPast
+        ? "The latest hearing date found in the papers has passed; verify the current listing before relying on it."
+        : surfaces.pipeline.hearingLifecycle.conflictDescription,
+      charges: chargeRows,
+      primaryStrategy: sanitizeSolicitorProse(surfaces.warRoom.safePositionToday),
+      pressurePoints,
+      hrsChecklist: surfaces.warRoom.nextHearingMoves.slice(0, 8).map(sanitizeSolicitorProse),
+      hrsHearingLabel: recordedHearing
+        ? `${recordedHearing.type} — ${recordedHearing.court ?? "court not safely confirmed"}`
+        : "No current hearing safely confirmed from the supplied papers",
+      solicitorInstructions: surfaces.warRoom.instructionsNeeded
+        .slice(0, 6)
+        .map(sanitizeSolicitorProse)
+        .join("\n"),
+      provenanceLimitations,
     });
     const dir = bulkOutputDir(repoRoot);
     fs.mkdirSync(dir, { recursive: true });
@@ -350,10 +439,12 @@ export async function generateOutputPdfForCase(
     // Independently re-parse the just-written output PDF (never the source PDF) for
     // its own page count — this is the "genuine output" pageCount, not the source's.
     let outPageCount: number | null = null;
+    let extractedText: string | null = null;
     try {
       const pdfParse = (await import("pdf-parse")).default;
       const parsed = await pdfParse(buffer, { max: 0 });
       outPageCount = typeof parsed.numpages === "number" ? parsed.numpages : null;
+      extractedText = typeof parsed.text === "string" ? parsed.text : null;
     } catch {
       outPageCount = null;
     }
@@ -366,6 +457,8 @@ export async function generateOutputPdfForCase(
       pageCount: outPageCount,
       error: null,
       generatedAt,
+      extractedText,
+      extractedTextSha256: extractedText ? sha256Buffer(Buffer.from(extractedText, "utf8")) : null,
     };
     const register = {
       id: entry.id,
@@ -392,6 +485,8 @@ export async function generateOutputPdfForCase(
         pageCount: null,
         error: error instanceof Error ? error.message : String(error),
         generatedAt,
+        extractedText: null,
+        extractedTextSha256: null,
       },
       register: null,
     };
@@ -511,6 +606,8 @@ export async function materialiseCase(repoRoot: string, entry: PilotEntry): Prom
       pageCount: null,
       error: surfacesError ? `Surfaces unavailable: ${surfacesError}` : "Not attempted",
       generatedAt: null,
+      extractedText: null,
+      extractedTextSha256: null,
     };
     let register: Record<string, unknown> | null = null;
     let outputBuffer: Buffer | null = null;
@@ -597,6 +694,8 @@ export async function materialiseCase(repoRoot: string, entry: PilotEntry): Prom
         pageCount: null,
         error: "Not attempted — case crashed before output generation",
         generatedAt: null,
+        extractedText: null,
+        extractedTextSha256: null,
       },
       visualChecks: {
         pageCountPositive: null,

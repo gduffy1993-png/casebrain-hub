@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "legacy-1120-before-after@1.0.0",
+  "generatedAt": "2026-08-12T03:55:42.052Z",
+  "frozenPopulation": {
+    "cases": 1120,
+    "documents": 1120,
+    "bytes": 86781071,
+    "uniqueSourceHashes": 1098,
+    "exactDuplicateDocuments": 22,
+    "orderedMembershipSha256": "9ef61d41818bea6d1c1080239a5300b79181db36a763697a8fc02898e3a1b813",
+    "privateManifestSha256": "83e0cb08709b00cb3379f3d9036f1b5360523a76ee73a86988433405da91e8c8"
+  },
+  "lineage": {
+    "sameFrozenMembership": true,
+    "mismatches": 0
+  },
+  "before": {
+    "cases": 1120,
+    "sourceHashesMatch": 1120,
+    "extractionSucceeded": 1120,
+    "productionSurfacesBuilt": 1120,
+    "generatedOutputPdfs": 1120,
+    "generatedOutputPdfsReparsed": 1120,
+    "incompleteChargeSignalsPreserved": 1120,
+    "casesWithCanonicalCharge": 839,
+    "wordingOccurrences": 31,
+    "wordingByCode": {
+      "INTERNAL_SYSTEM_LANGUAGE": 2,
+      "RAW_ENUM_OR_SNAKE_CASE": 29
+    },
+    "semanticOccurrences": 4,
+    "semanticByCode": {
+      "OBJECTIVE_CHARGE_TRUNCATION": 4
+    },
+    "casesWithAnyFinding": 7,
+    "deterministicGatePass": false
+  },
+  "after": {
+    "cases": 1120,
+    "sourceHashesMatch": 1120,
+    "extractionSucceeded": 1120,
+    "productionSurfacesBuilt": 1120,
+    "generatedOutputPdfs": 1120,
+    "generatedOutputPdfsReparsed": 1120,
+    "incompleteChargeSignalsPreserved": 1120,
+    "casesWithCanonicalCharge": 839,
+    "wordingOccurrences": 0,
+    "wordingByCode": {},
+    "semanticOccurrences": 0,
+    "semanticByCode": {},
+    "casesWithAnyFinding": 0,
+    "deterministicGatePass": true
+  },
+  "delta": {
+    "visibleWordingOccurrences": "31 -> 0",
+    "semanticDefects": "4 -> 0",
+    "affectedCases": "7 -> 0"
+  },
+  "preRemediationAffectedCases": [
+    {
+      "sourceCaseId": "a5e9767e-3f28-41c0-972d-c60a46c31a84",
+      "sourceFileName": "CB-GOLD-2026-0011.pdf",
+      "wordingCodes": [],
+      "semanticCodes": [
+        "OBJECTIVE_CHARGE_TRUNCATION"
+      ]
+    },
+    {
+      "sourceCaseId": "c7f9ffca-308e-4f01-aabd-395bdeab04ae",
+      "sourceFileName": "CB-TRAP-2026-0008.pdf",
+      "wordingCodes": [],
+      "semanticCodes": [
+        "OBJECTIVE_CHARGE_TRUNCATION"
+      ]
+    },
+    {
+      "sourceCaseId": "806f4879-64de-437d-ab0c-d9cce9c0c18c",
+      "sourceFileName": "CB-TB-08_Aaron_Ross.pdf",
+      "wordingCodes": [],
+      "semanticCodes": [
+        "OBJECTIVE_CHARGE_TRUNCATION"
+      ]
+    },
+    {
+      "sourceCaseId": "fb5e0788-3e9b-4e78-aa53-3a212764561a",
+      "sourceFileName": "CB-TB-22_Sam_Okonkwo.pdf",
+      "wordingCodes": [
+        "INTERNAL_SYSTEM_LANGUAGE"
+      ],
+      "semanticCodes": []
+    },
+    {
+      "sourceCaseId": "6962c51a-cdcb-4e40-aac9-5a27fea2f93a",
+      "sourceFileName": "CB-PILOT-2026-0001_R-v-Marcus-Vale_Fraud-Financial-Crime.pdf",
+      "wordingCodes": [],
+      "semanticCodes": [
+        "OBJECTIVE_CHARGE_TRUNCATION"
+      ]
+    },
+    {
+      "sourceCaseId": "50c746ec-df18-4644-af63-72d41b367f3f",
+      "sourceFileName": "CB-AA-MESSY-0009_Robbery_co-accused_messy_bundle.pdf",
+      "wordingCodes": [
+        "RAW_ENUM_OR_SNAKE_CASE"
+      ],
+      "semanticCodes": []
+    },
+    {
+      "sourceCaseId": "51326914-d6de-493e-8c15-e79583a08ae7",
+      "sourceFileName": "CB-AA-MESSY-0011_Burglary_non-dwelling_messy_bundle.pdf",
+      "wordingCodes": [
+        "RAW_ENUM_OR_SNAKE_CASE"
+      ],
+      "semanticCodes": []
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "legacy-1120-shared-root-remediation@1.0.0",
+  "generatedAt": "2026-08-12T03:55:42.052Z",
+  "rules": {
+    "caseIdPatches": 0,
+    "fixturePatches": 0,
+    "sourcePdfsMutated": false,
+    "sourceAccountMutated": false
+  },
+  "families": [
+    {
+      "family": "evaluation_filename_boundary",
+      "before": 29,
+      "after": 0,
+      "fix": "All CaseBrain evaluation PDF filenames are replaced with Source bundle on ordinary solicitor-visible exits; exact names remain in audit data."
+    },
+    {
+      "family": "document_lifecycle_diagnostic",
+      "before": 2,
+      "after": 0,
+      "fix": "Operative, amended, superseded and unknown document roles are translated into professional instructions."
+    },
+    {
+      "family": "wrapped_charge_statements",
+      "beforeSemanticDefects": 3,
+      "afterSemanticDefects": 0,
+      "fix": "Wrapped harassment, Class A supply and combined affray/emergency-worker charge lines are reconstructed and assigned source-grounded labels."
+    },
+    {
+      "family": "duplicate_or_non_charge_rows",
+      "beforeSemanticDefects": 1,
+      "afterSemanticDefects": 0,
+      "fix": "Version headings and drafting notes cannot become offences; duplicate wrapped/concise forms retain the stronger source-backed rendering."
+    },
+    {
+      "family": "charge_location_boundary",
+      "beforeObservedByReview": 2,
+      "afterObservedByReview": 0,
+      "fix": "Locations ending on punctuation or unfinished articles are suppressed."
+    },
+    {
+      "family": "unclear_statutory_route",
+      "beforeObservedByReview": 1,
+      "afterObservedByReview": 0,
+      "fix": "Competing POCA routes display an explicit unresolved statutory-route label instead of a fragment."
+    }
+  ]
+}

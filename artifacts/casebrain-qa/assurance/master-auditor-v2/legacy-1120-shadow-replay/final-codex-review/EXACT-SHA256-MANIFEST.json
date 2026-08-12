@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "legacy-1120-final-exact-manifest@1.0.0",
+  "generatedAt": "2026-08-12T03:55:42.052Z",
+  "files": [
+    {
+      "path": "lib/criminal/build-from-document-units.ts",
+      "sha256": "bff7f5c38792b04c0ee3226fabf92f1152cc7973cfc6637512dfb8e16f49625c",
+      "byteLength": 67240,
+      "classification": "shared_production_code"
+    },
+    {
+      "path": "lib/criminal/canonical-live-surface-adapter.ts",
+      "sha256": "4d8f33c9e9ea55bd2f0d93246d43e703a22000d5ef9956fc9287ba713c869cf8",
+      "byteLength": 25650,
+      "classification": "shared_production_code"
+    },
+    {
+      "path": "lib/criminal/solicitor-visible-matter-reference.ts",
+      "sha256": "c229272e2bd0f5b407eb1493815827a32c535ac13339c00cde1581c0ff5d5a5c",
+      "byteLength": 8844,
+      "classification": "shared_production_code"
+    },
+    {
+      "path": "lib/criminal/solicitor-visible-sanitization.ts",
+      "sha256": "65a94b6bf27a234c3c53203719fa2fa854b5512768001a7153bd03590ab98826",
+      "byteLength": 27308,
+      "classification": "shared_production_code"
+    },
+    {
+      "path": "lib/criminal/structured-charge-state.ts",
+      "sha256": "ce900089a9f5416bf642c0b957616a6aa4a882406530b6a3b774a3fb057c9476",
+      "byteLength": 11802,
+      "classification": "shared_production_code"
+    },
+    {
+      "path": "lib/criminal/structured-extractor.ts",
+      "sha256": "ebd1160691efb3b2f9d2f7ecd82a45098ee1826e285abaaa1135fa61e6363860",
+      "byteLength": 39810,
+      "classification": "shared_production_code"
+    },
+    {
+      "path": "lib/pdf/criminal-strategy-pdf.ts",
+      "sha256": "a6d01c4c0ee070f7552eb2adf7cb0c68bdec4dff5b4733c07af481f597b83731",
+      "byteLength": 17873,
+      "classification": "shared_production_code"
+    },
+    {
+      "path": "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts",
+      "sha256": "c6994275e10c9a0a9be1a379911e823b5bf372038d46d50181a715813c700469",
+      "byteLength": 30387,
+      "classification": "assurance_reproduction"
+    },
+    {
+      "path": "scripts/assurance/legacy-1120-shadow-replay/freeze-legacy-membership.mjs",
+      "sha256": "db3a9e3958933c4c5f3da00bcfcb46e84067cc3831580e0eaece2be0d564d374",
+      "byteLength": 8877,
+      "classification": "assurance_reproduction"
+    },
+    {
+      "path": "scripts/assurance/legacy-1120-shadow-replay/run-five-case-gate.ts",
+      "sha256": "71f9d135827e6060e58844689f48deb3e5b1f9fe5339e858009090a7806e285d",
+      "byteLength": 27427,
+      "classification": "assurance_reproduction"
+    },
+    {
+      "path": "scripts/assurance/legacy-1120-shadow-replay/shared-root-contracts.test.ts",
+      "sha256": "541365371fdc1996de6f01b6f52b1eae80620872f34647f7fae1c31019849161",
+      "byteLength": 21555,
+      "classification": "assurance_reproduction"
+    },
+    {
+      "path": "scripts/assurance/legacy-1120-shadow-replay/emit-final-review-pack.mjs",
+      "sha256": "79ff88865b8ad6d23bf1b8c6ccb57de4f33acb0867e979ddf69d7a0ed38a5715",
+      "byteLength": 13184,
+      "classification": "assurance_reproduction"
+    },
+    {
+      "path": "tsconfig.legacy-replay-path-scoped.json",
+      "sha256": "804fb402f1dea17fd7f47e2e1f026af5577a0a705cb514a7c0e1b42037012158",
+      "byteLength": 959,
+      "classification": "assurance_reproduction"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/FROZEN-MEMBERSHIP-SUMMARY.json",
+      "sha256": "ba60d2b9a81aca76c7b6792fcebdf4fbe80e521a102a21271a38a11a8c1f241a",
+      "byteLength": 800,
+      "classification": "compact_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/full-1120-production-builders-v1/DECISION-CARD.json",
+      "sha256": "21192269b7ad7d2dd34338249512a1b206ce2d9a5a907014e7a4a17a5a1251f3",
+      "byteLength": 1692,
+      "classification": "compact_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/full-1120-production-builders-v2-post-shared-remediation/DECISION-CARD.json",
+      "sha256": "73a361fce5315fd8a9ef3f0b6bba347fb52f6bcaec5c0a5634931deca15fbb4d",
+      "byteLength": 1690,
+      "classification": "compact_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/final-codex-review/FULL-1120-BEFORE-AFTER.json",
+      "sha256": "0dfd4e138cc4f3ec81f1ec654d6a99aa7bcfc053d8959d7040606f6052373b1f",
+      "byteLength": 3400,
+      "classification": "compact_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/final-codex-review/ROOT-CAUSE-REMEDIATION-REGISTER.json",
+      "sha256": "0aad6eb75e54a71df91fa16ae6f4ca3a44347abf017ba41404234f43e7093fed",
+      "byteLength": 1750,
+      "classification": "compact_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/final-codex-review/VERIFICATION-RESULTS.json",
+      "sha256": "ce15c0cdff7c0323437ef7eb0439486314e503bb32ca8bcbb08c0ef6589afb12",
+      "byteLength": 941,
+      "classification": "compact_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/final-codex-review/DECISION-CARD.json",
+      "sha256": "9bc2c1de6271899f9ed7f013942906ffc76e929c949315235596da7294ab335f",
+      "byteLength": 790,
+      "classification": "compact_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/final-codex-review/DECISION-CARD.md",
+      "sha256": "7d191dc95dc921891f192661cb2ada42a1929f036617f882179acb865400ecec",
+      "byteLength": 1023,
+      "classification": "compact_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/legacy-1120-shadow-replay/final-codex-review/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "0d7dd7e968aaa8b57d6b3539c7c52550c3edcbdcb55469572b7e95c599279575",
+      "byteLength": 882,
+      "classification": "compact_evidence"
+    }
+  ],
+  "fileCount": 22,
+  "excluded": [
+    {
+      "path": "artifacts/**/local-private-frozen-membership.json",
+      "reason": "private local membership authority; hash pinned in summary"
+    },
+    {
+      "path": "artifacts/**/1120-CASE-RESULTS.json",
+      "reason": "large regenerable occurrence evidence; hashes recorded below"
+    },
+    {
+      "path": "artifacts/**/CASE-RESULTS.checkpoint.jsonl",
+      "reason": "large regenerable checkpoint evidence"
+    },
+    {
+      "path": "tmp/**",
+      "reason": "generated PDF/raster scratch"
+    }
+  ],
+  "excludedEvidenceHashes": {
+    "beforeResultsSha256": "f41675e01b80b2b027bcb1b119ab1f1e23f61f23bab8489523b0eecea2b7843a",
+    "afterResultsSha256": "39ffefaa2ccb7bbb2c2e7684dd51637ae55c24e3f00231eb7768cf0001691439",
+    "privateManifestSha256": "83e0cb08709b00cb3379f3d9036f1b5360523a76ee73a86988433405da91e8c8"
+  },
+  "selfHashStatus": "excluded_from_files_array_self_referential"
+}

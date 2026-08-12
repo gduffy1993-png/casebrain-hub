@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "legacy-1120-frozen-membership-summary@1.0.0",
+  "generatedAt": "2026-08-12T01:31:33.406Z",
+  "accountEmail": "gduffy1993@gmail.com",
+  "caseCount": 1120,
+  "uniqueCaseIds": 1120,
+  "documentCount": 1120,
+  "retrievedObjectCount": 1120,
+  "unavailableObjectCount": 0,
+  "pdfMagicOkCount": 1120,
+  "totalRetrievedBytes": 86781071,
+  "uniqueObjectHashes": 1098,
+  "exactDuplicateObjectCount": 22,
+  "orderedMembershipSha256": "9ef61d41818bea6d1c1080239a5300b79181db36a763697a8fc02898e3a1b813",
+  "privateManifestSha256": "83e0cb08709b00cb3379f3d9036f1b5360523a76ee73a86988433405da91e8c8",
+  "unavailable": [],
+  "claims": {
+    "originalStorageObjectsRetrievedAndHashed": true,
+    "pdfMagicVerified": true,
+    "applicationReplayExecuted": false,
+    "programmePass": false
+  }
+}

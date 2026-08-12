@@ -34,7 +34,10 @@ export function sanitizeChargeLocation(raw: string | null | undefined): string |
   if (!raw?.trim()) return null;
   const t = raw.replace(/\s+/g, " ").trim();
   if (t.length < 3 || t.length > 160) return null;
+  if (/^[,;:]/.test(t)) return null;
+  if (/[,;:]$/.test(t) || /\b(?:the|a|an)$/.test(t)) return null;
   if (CORRUPT_LOCATION_RE.test(t)) return null;
+  if (/\b(?:not every element|served papers|bundle text|charge wording|allegation chronology)\b/i.test(t)) return null;
   // Mid-word cuts / glued OCR junk
   if (/\b[a-z]{1,2}[A-Z][a-z]/.test(t) && t.split(/\s+/).length < 3) return null;
   if (!/[A-Za-z]{3,}/.test(t)) return null;

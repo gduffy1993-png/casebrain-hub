@@ -20,6 +20,7 @@ import {
   parseCountNumber,
   sanitizeChargeLocation,
 } from "@/lib/criminal/structured-charge-state";
+import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 
 export type CriminalChargeExtract = {
   count: number;
@@ -95,6 +96,53 @@ type ExtractInput = {
 
 function safeLower(s: string): string {
   return (s ?? "").toLowerCase();
+}
+
+/**
+ * PDF text layers commonly concatenate compact form labels with their values.
+ * Repair only a small, fixed set of legal-form labels and only where there is
+ * no intervening whitespace. This is an extraction aid; it never changes the
+ * source text or creates a value that was not already present.
+ */
+function normalizeJoinedPdfLabels(text: string): string {
+  return (text ?? "")
+    .replace(/Accused\s*\/\s*DOB(?=[A-Z])/gi, "Accused: ")
+    .replace(/Defendant(?=[A-Z])/g, "Defendant: ")
+    .replace(/Accused(?=[A-Z])/g, "Accused: ")
+    .replace(/Date of birth(?=\d)/gi, "\nDate of birth: ")
+    .replace(/DOB(?=\d)/g, "\nDOB: ")
+    .replace(/Hearing date and time(?=[A-Z0-9])/gi, "\nHearing date and time: ")
+    .replace(/Next hearing(?=[A-Z0-9])/gi, "\nNext hearing: ")
+    .replace(/Hearing(?=[A-Z0-9])/g, "\nHearing: ")
+    .replace(/Court(?=[A-Z])/g, "\nCourt: ")
+    .replace(/Charge(?=[A-Z])/g, "Charge: ")
+    .replace(/Offence(?=[A-Z])/g, "Offence: ");
+}
+
+function hasStrongChargeHeadingCue(text: string): boolean {
+  const t = normalizeJoinedPdfLabels(text);
+  const heading =
+    /(?:^|\n)\s*(?:#{1,4}\s*)?(?:charge(?:\s+(?:sheet(?:\s+extract)?|wording))?|offence|statement of offence|count\s+\d+)\s*(?:[:\-]\s*|\r?\n\s*)/im.test(t);
+  const legalContent =
+    /\b(?:contrary to|particulars(?: of offence)?|section\s+\d+|s\.?\s*\d+|common law|is charged with|is alleged to have)\b/i.test(t);
+  return heading && legalContent;
+}
+
+function cleanCourtCandidate(value: string | null | undefined): string | null {
+  if (!value) return null;
+  const normalized = normalizeJoinedPdfLabels(value)
+    .replace(/\s+/g, " ")
+    .trim();
+  const candidates = Array.from(
+    normalized.matchAll(
+      /(?:Crown Court at [A-Z][A-Za-z'&.\-]*(?:\s+[A-Z][A-Za-z'&.\-]*){0,5}|[A-Z][A-Za-z'&.\-]*(?:\s+[A-Z][A-Za-z'&.\-]*){0,5}\s+(?:Crown Court|Magistrates'? Court|Magistrates Court|County Court))/g,
+    ),
+    (match) => match[0].trim(),
+  );
+  if (candidates.length > 0) return candidates[candidates.length - 1] ?? null;
+  return normalized
+    .replace(/^(?:hearing\s+(?:listed\s+)?at|appeared\s+before|at|court\s*:\s*)\s*/i, "")
+    .trim();
 }
 
 function toIsoDateOnly(d: Date): string {
@@ -186,7 +234,7 @@ function normalisePlea(raw: string | null): CriminalChargeExtract["plea"] {
 
 function normaliseHearingType(raw: string): CriminalHearingExtract["type"] {
   const t = safeLower(raw);
-  if (t.includes("ptr") || t.includes("plea") || t.includes("plea and trial")) return "Plea Hearing";
+  if (t.includes("ptr") || t.includes("ptph") || t.includes("plea") || t.includes("plea and trial")) return "Plea Hearing";
   if (t.includes("first") || t.includes("first appearance")) return "First Hearing";
   if (t.includes("sentenc")) return "Sentencing";
   if (t.includes("appeal")) return "Appeal";
@@ -199,7 +247,10 @@ function normaliseHearingType(raw: string): CriminalHearingExtract["type"] {
 export function validateCourtName(value: string | null | undefined): string | null {
   if (!value || typeof value !== "string") return null;
 
-  const trimmed = value.trim();
+  const original = value.trim();
+  if (!original || original.startsWith("#")) return null;
+  if (/\bBUNDLE\b/i.test(original)) return null;
+  const trimmed = cleanCourtCandidate(value)?.trim() ?? "";
   if (trimmed.length === 0) return null;
 
   // Reject if starts with '#' (markdown heading)
@@ -239,6 +290,7 @@ export function validateCourtName(value: string | null | undefined): string | nu
 
 /** Defendant names declared anywhere in the papers (used to allocate counts). */
 function collectKnownDefendants(text: string): string[] {
+  const normalized = normalizeJoinedPdfLabels(text);
   const names = new Set<string>();
   const patterns = [
     /\bdefendants?\b\s*[:\-]\s*([^\n]{3,160})/gi,
@@ -246,7 +298,7 @@ function collectKnownDefendants(text: string): string[] {
     /\bD\d\s*[:\-]\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)/g,
   ];
   for (const re of patterns) {
-    for (const m of text.matchAll(re)) {
+    for (const m of normalized.matchAll(re)) {
       const raw = (m[1] ?? "").trim();
       for (const part of raw.split(/\s*(?:,|;|\band\b|&)\s*/i)) {
         const cleaned = part.replace(/\([^)]*\)/g, "").replace(/\s+/g, " ").trim();
@@ -259,9 +311,18 @@ function collectKnownDefendants(text: string): string[] {
   return [...names].slice(0, 12);
 }
 
+/** A custody or bail state is not a charge lifecycle status. */
+function sanitizeChargeStatus(value: string | null | undefined): string | null {
+  const normalized = (value ?? "").replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim().toLowerCase();
+  if (!normalized) return null;
+  if (/\b(?:bail|bailed|remand|remanded|custody|released|investigation)\b/i.test(normalized)) return null;
+  const supported = normalized.match(/\b(charged|pending|withdrawn|dismissed|stayed|convicted|acquitted)\b/i)?.[1];
+  return supported ? supported.toLowerCase() : null;
+}
+
 function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeExtract[]; plea: CriminalChargeExtract["plea"] } {
   const { text, documentName } = input;
-  const t = text ?? "";
+  const t = normalizeJoinedPdfLabels(text ?? "");
   const charges: CriminalChargeExtract[] = [];
   const knownDefendants = collectKnownDefendants(t);
   const documentRole = inferChargeDocumentRole(`${documentName ?? ""} ${t.slice(0, 4000)}`);
@@ -272,10 +333,14 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
   );
 
   // Offence lines
-  const offenceLine = /(?:^|\n)\s*(?:offence|offences?|charge|charged with)\s*[:\-]\s*([^\n]{3,180})/gi;
+  const offenceLine =
+    /(?:^|\n)\s*(?:offence|offences?|charge(?:\s+(?:wording|sheet(?:\s+extract)?))?)\s*(?:[:\-]\s*|\r?\n\s*)([^\n]{3,180})/gi;
   for (const m of t.matchAll(offenceLine)) {
-    const raw = (m[1] ?? "").trim();
+    let raw = (m[1] ?? "").trim();
     if (!raw) continue;
+    if (/^(?:particulars|defendant|accused|court|date|time|status|charge|offence)\b/i.test(raw)) continue;
+    const chargedWith = raw.match(/\bis charged with\s+(.+?)(?:,?\s+in that\b|$)/i)?.[1]?.trim();
+    if (chargedWith) raw = chargedWith;
     const statute =
       raw.match(/\bs\.?\s*\d{1,3}[A-Za-z]*\b[^\n]{0,30}\b(?:OAPA|Offences Against the Person Act|Theft Act|CJA|Criminal Justice Act|Public Order Act)\b[^\n]{0,20}\b\d{4}\b/i)?.[0] ??
       raw.match(/\bOAPA\s*1861\b/i)?.[0] ??
@@ -300,6 +365,38 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
       defendants: allocateDefendantsFromChargeText(raw, knownDefendants),
       documentRole,
     });
+  }
+
+  // Combined bundles often contain a source-backed charge page even when the
+  // outer filename is generic. The mature bundle-header extractor understands
+  // those compact layouts. Use it only behind a strong charge-heading cue and
+  // keep the result provisional/unknown-role unless the papers say otherwise.
+  if (charges.length === 0 && hasStrongChargeHeadingCue(t)) {
+    const bundleMeta = extractBundleCaseMetadata(t);
+    let offence = (bundleMeta.offenceDisplay ?? bundleMeta.offenceWording ?? "")
+      .replace(/\s+/g, " ")
+      .trim();
+    const chargedWith = offence.match(/\bis charged with\s+(.+?)(?:,?\s+in that\b|$)/i)?.[1]?.trim();
+    if (chargedWith) offence = chargedWith;
+    if (offence && !/^(?:charge|offence|particulars|unknown)$/i.test(offence)) {
+      const statute =
+        offence.match(/\b(?:section|s\.?)\s*\d{1,3}[A-Za-z]*\b[^.;\n]{0,80}/i)?.[0]?.trim() ??
+        (/(?:common law)/i.test(offence) ? "common law" : null);
+      charges.push({
+        count: 1,
+        offence,
+        statute,
+        plea,
+        dateOfOffence: null,
+        chargeDate: null,
+        location: null,
+        status: null,
+        confidence: 0.55,
+        source: documentName,
+        defendants: allocateDefendantsFromChargeText(offence, knownDefendants),
+        documentRole,
+      });
+    }
   }
 
   // "Count X" / "Statement of offence" patterns common on charge sheets
@@ -376,11 +473,12 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
   const statusVal =
     pickFirstLineValue(t, /\bstatus\b\s*[:\-]?\s*([^;\n]{3,40})/i) ??
     (t.match(/\bstatus\b\s*[:\-]?\s*([^;\n]{3,40})/i)?.[1]?.trim() ?? null);
+  const safeChargeStatus = sanitizeChargeStatus(statusVal);
   const safeLocation = sanitizeChargeLocation(locationVal);
-  if (safeLocation || statusVal) {
+  if (safeLocation || safeChargeStatus) {
     for (const c of charges) {
       if (safeLocation && !c.location) c.location = safeLocation;
-      if (statusVal && !c.status) c.status = statusVal.trim();
+      if (safeChargeStatus && !c.status) c.status = safeChargeStatus;
     }
   }
 
@@ -405,7 +503,7 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
       dateOfOffence: null,
       chargeDate: null,
       location: safeLocation ?? null,
-      status: statusVal ?? null,
+      status: safeChargeStatus,
       confidence: 0.55,
       source: documentName,
       defendants: allocateDefendantsFromChargeText(label, knownDefendants),
@@ -428,14 +526,16 @@ function extractChargesFromText(input: ExtractInput): { charges: CriminalChargeE
 
 function extractHearingsFromText(input: ExtractInput): CriminalHearingExtract[] {
   const { text, documentName, now = new Date() } = input;
-  const t = text ?? "";
+  const t = normalizeJoinedPdfLabels(text ?? "");
   const dates = findDates(t);
   if (dates.length === 0) return [];
 
   const hearings: CriminalHearingExtract[] = [];
   const lines = t.split(/\r?\n/).slice(0, 3000);
 
+  const bundleMeta = extractBundleCaseMetadata(t);
   const courtHint =
+    bundleMeta.court ??
     pickFirstLineValue(t, /(.*?(?:Crown Court|Magistrates'? Court|Magistrates Court)[^\n]{0,80})/i) ??
     null;
 
@@ -476,17 +576,56 @@ function extractHearingsFromText(input: ExtractInput): CriminalHearingExtract[] 
     });
   }
 
-  // De-dupe by type+date+court
-  const seen = new Set<string>();
-  const out: CriminalHearingExtract[] = [];
-  for (const h of hearings) {
-    const k = `${h.type}|${h.date}|${safeLower(h.court ?? "")}`;
-    if (seen.has(k)) continue;
-    seen.add(k);
-    out.push(h);
+  if (hearings.length === 0 && bundleMeta.nextHearingIso) {
+    const dt = new Date(bundleMeta.nextHearingIso);
+    if (!Number.isNaN(dt.getTime())) {
+      hearings.push({
+        court: validateCourtName(bundleMeta.court),
+        date: dt.toISOString(),
+        type: normaliseHearingType(bundleMeta.nextHearingRaw ?? "case management"),
+        outcome: null,
+        status: dt.getTime() >= now.getTime() ? "UPCOMING" : "PAST",
+        source: documentName,
+      });
+    }
   }
 
-  return out.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()).slice(0, 20);
+  // The same listing is commonly repeated in a cover, chronology and MG5.
+  // Collapse same-date/same-court descriptions while retaining the most
+  // specific hearing type and the clearest outcome.
+  const typePriority: Record<CriminalHearingExtract["type"], number> = {
+    "Plea Hearing": 7,
+    Trial: 6,
+    Sentencing: 5,
+    Appeal: 4,
+    "Bail Review": 3,
+    "First Hearing": 2,
+    "Case Management": 1,
+  };
+  const grouped = new Map<string, CriminalHearingExtract>();
+  for (const h of hearings) {
+    const normalizedCourt = validateCourtName(h.court);
+    const normalized = { ...h, court: normalizedCourt };
+    const k = normalizedCourt
+      ? `${h.date}|${safeLower(normalizedCourt)}`
+      : `${h.date}|${h.type}|unknown-court`;
+    const existing = grouped.get(k);
+    if (!existing) {
+      grouped.set(k, normalized);
+      continue;
+    }
+    grouped.set(k, {
+      ...(typePriority[normalized.type] > typePriority[existing.type] ? normalized : existing),
+      outcome:
+        (normalized.outcome?.length ?? 0) > (existing.outcome?.length ?? 0)
+          ? normalized.outcome
+          : existing.outcome,
+    });
+  }
+
+  return [...grouped.values()]
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    .slice(0, 20);
 }
 
 function extractBailFromText(input: ExtractInput): CriminalBailExtract {
@@ -620,9 +759,12 @@ function extractDisclosureFromText(input: ExtractInput): CriminalDisclosureExtra
 export function extractCriminalCaseMeta(input: ExtractInput): CriminalCaseMeta {
   const now = input.now ?? new Date();
   const text = input.text ?? "";
+  const normalizedText = normalizeJoinedPdfLabels(text);
+  const bundleMeta = extractBundleCaseMetadata(normalizedText);
 
   const defendantName =
-    pickFirstLineValue(text, /\bdefendant\b\s*[:\-]\s*([A-Za-z][A-Za-z\s'\-]{2,80})/i) ??
+    pickFirstLineValue(normalizedText, /\bdefendant\b\s*[:\-]\s*([A-Za-z][A-Za-z\s'\-]{2,80})/i) ??
+    bundleMeta.defendantName ??
     null;
 
   const { charges, plea } = extractChargesFromText(input);

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "legacy-1120-final-decision@1.0.0",
+  "generatedAt": "2026-08-12T03:55:42.052Z",
+  "classification": "DETERMINISTIC_REAL_PDF_REPLAY_COMPLETE__FULL_AI_AUTHENTICATED_REPLAY_BLOCKED",
+  "frozenMembershipSha256": "9ef61d41818bea6d1c1080239a5300b79181db36a763697a8fc02898e3a1b813",
+  "deterministicRealPdfBuilderGatePass": true,
+  "fundedAiExtractionGatePass": false,
+  "isolatedShadowPersistenceGatePass": false,
+  "authenticatedHttpBrowserGatePass": false,
+  "fullProductionReplayGatePass": false,
+  "solicitorApproval": false,
+  "programmePassSupported": false,
+  "nextRequiredAction": "Restore funded AI extraction, then replay a controlled frozen subset through isolated persistence and authenticated HTTP/browser before any full-production or programme PASS claim.",
+  "uncommitted": true,
+  "commit": null,
+  "push": null,
+  "merge": null,
+  "deploy": null
+}

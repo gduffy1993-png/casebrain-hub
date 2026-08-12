@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "legacy-1120-final-verification@1.0.0",
+  "generatedAt": "2026-08-12T03:55:42.052Z",
+  "contracts": {
+    "command": "npx tsx scripts/assurance/legacy-1120-shadow-replay/shared-root-contracts.test.ts",
+    "passed": 28,
+    "failed": 0
+  },
+  "pathScopedTypeScript": {
+    "command": "npx tsc -p tsconfig.legacy-replay-path-scoped.json --pretty false",
+    "exitCode": 0
+  },
+  "nextBuild": {
+    "command": "npm run build",
+    "envSource": "local environment loaded without recording secrets",
+    "exitCode": 0,
+    "compiledSuccessfully": true,
+    "warningsPresent": true
+  },
+  "fullCensus": {
+    "cases": 1120,
+    "sourceHashesMatch": 1120,
+    "productionSurfacesBuilt": 1120,
+    "outputPdfsGenerated": 1120,
+    "outputPdfsReparsed": 1120,
+    "visibleWordingFindings": 0,
+    "semanticDefects": 0
+  },
+  "diskRecovery": {
+    "onlyRegenerableCachesRemoved": true,
+    "sourceOrEvidenceRemoved": false
+  }
+}

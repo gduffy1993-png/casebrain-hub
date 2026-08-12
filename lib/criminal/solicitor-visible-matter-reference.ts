@@ -10,7 +10,11 @@ import { isFixtureIdLike } from "@/lib/criminal/solicitor-visible-sanitization";
 
 /** Fixture / corpus / run identifiers that must not appear in solicitor-visible prose. */
 export const INTERNAL_CORPUS_ID_TOKEN_RE =
-  /\b(?:s150-[a-z0-9_-]+|s300-[a-z0-9_-]+|S300-[a-z0-9_-]+|UQ-[a-z0-9_-]+|demo-audit-\d+|cb-(?:fresh|found)-\d+|contract-fixture-[a-z0-9_-]+|GOLD-11|SYN-[A-Z0-9-]+)\b/gi;
+  /\b(?:s150-[a-z0-9_-]+|s300-[a-z0-9_-]+|S300-[a-z0-9_-]+|UQ-[a-z0-9_-]+|demo-audit-\d+|cb-(?:fresh|found)-\d+|cb-(?:(?:murder-test|test|tb|40x40|thin|gold)[a-z0-9_-]*)|contract-fixture-[a-z0-9_-]+|GOLD-11|SYN-[A-Z0-9-]+)\b/gi;
+
+/** Evaluation filenames may identify a QA corpus even when the internal case ID is absent. */
+export const INTERNAL_EVALUATION_FILENAME_RE =
+  /\bCB-[A-Z0-9][A-Z0-9 _().,&'’+\-]{2,180}\.pdf\b/gi;
 
 export const HARNESS_CORPUS_LANGUAGE_RE =
   /\b(?:Stage-300|stage-300|stage300|Format notes:|control-coverage materialisation|Coverage (?:family|tag):|matter token|specialty_[a-z0-9_]+|ocr_binary_heavy|new-150)\b/i;
@@ -133,6 +137,8 @@ export function scrubHarnessCorpusLanguage(text: string): string {
 export function stripInternalCorpusIdentifiers(text: string): string {
   return scrubHarnessCorpusLanguage(
     text
+      // Preserve the fact that a source exists without exposing its QA filename.
+      .replace(INTERNAL_EVALUATION_FILENAME_RE, "Source bundle")
       .replace(INTERNAL_CORPUS_ID_TOKEN_RE, "")
       .replace(/\(\s*\)/g, "")
       .replace(/\s{2,}/g, " ")

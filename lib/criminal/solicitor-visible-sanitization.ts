@@ -297,6 +297,55 @@ export function sanitizeSolicitorProse(text: string): string {
       .replace(/\bnot_started\b/g, "Not started")
       .replace(/\binference_only\b/g, "Inference only")
       .replace(/\bother_defendant_only\b/g, "Other defendant only")
+      .replace(/\bSource truth and safe provisional positioning\b/gi, "Source material and the safe provisional position")
+      // Internal reasoning labels must never be copied into a solicitor PDF.
+      .replace(
+        /\b(?:Document lifecycle role:\s*)?Document role (operative|amended|superseded|unknown) for\s*["“][^"”]+["”]\.?/gi,
+        (_m, role: string) => {
+          switch (String(role).toLowerCase()) {
+            case "operative":
+              return "A current charge document appears to have been identified. Confirm that it is the operative version before relying on it.";
+            case "amended":
+              return "An amended charge document appears in the papers. Confirm that it replaced the earlier wording before relying on it.";
+            case "superseded":
+              return "An earlier charge document is marked as superseded. Do not rely on it without confirming the current operative wording.";
+            default:
+              return "The charge-document version is not safely confirmed. Check the operative wording before relying on it.";
+          }
+        },
+      )
+      .replace(
+        /\bRecording service versus transcript completeness:\s*Recording state\s+([a-z_ ]+);\s*transcript state\s+([a-z_ ]+)\.?/gi,
+        (_m, recording: string, transcript: string) =>
+          `Interview materials require review: the recording is ${professionalCourtStatusFragment(String(recording))} and the transcript is ${professionalCourtStatusFragment(String(transcript))}. Confirm both against the served papers.`,
+      )
+      .replace(
+        /\bCustody\s*\/\s*interview clock:\s*Competing timestamps for the same event\s*\([^)]*\):\s*([0-2]?\d:\d{2}(?:\s+vs\s+[0-2]?\d:\d{2})+)\.?(?:\s*Affirmative PACE OK\s*\/\s*no-breach is forbidden\.?)?/gi,
+        (_m, times: string) =>
+          `Timing requires review: the papers record competing timestamps (${String(times).replace(/\s+vs\s+/gi, ", ")}). Reconcile the source records before relying on the sequence.`,
+      )
+      .replace(
+        /\bCompeting timestamps for the same event\s*\([^)]*\):\s*([0-2]?\d:\d{2}(?:\s+vs\s+[0-2]?\d:\d{2})+)\.?/gi,
+        (_m, times: string) =>
+          `Timing requires review: the papers record competing timestamps (${String(times).replace(/\s+vs\s+/gi, ", ")}). Reconcile the source records before relying on the sequence.`,
+      )
+      .replace(/\s*Affirmative PACE OK\s*\/\s*no-breach is forbidden\.?/gi, "")
+      .replace(
+        /\bContradictory evidence state:\s*Same item is recorded as served and missing\s*[—–-]\s*the papers contradict each other;?\s*confirm before relying on either state\.?/gi,
+        "The papers record the same item as both served and missing. Confirm its status before relying on it.",
+      )
+      .replace(
+        /\bSame item is recorded as served and missing\s*[—–-]\s*the papers contradict each other;?\s*confirm before relying on either state\.?/gi,
+        "The papers record the same item as both served and missing. Confirm its status before relying on it.",
+      )
+      .replace(
+        /\bExact document title, page, evidence state, and defendant\/count provenance not fully available\s*[—–-]\s*do not treat filename alone as source proof\.?/gi,
+        "The exact page and defendant/count link are not fully available. Confirm the source document before relying on this point.",
+      )
+      .replace(
+        /(Supporting document is identified but the exact page is unavailable\s*[—–-]\s*supplied as unsplit whole-document text, so cite the document rather than a page);\s*No supporting page could be identified for this finding\.?/gi,
+        "$1.",
+      )
       .replace(/\bPapers mark this material as referred[_\s-]?only\b/gi, "The papers refer to this material, but it has not been confirmed as served")
       .replace(/\bPapers mark this material as ([a-z0-9_]+)\b/gi, (_m, status: string) =>
         professionalMaterialStatusProse(String(status)).replace(/\.$/, ""),
@@ -312,6 +361,46 @@ export function sanitizeSolicitorProse(text: string): string {
     ),
     ),
   );
+}
+
+export type ProfessionalSolicitorPressurePoint = {
+  label: string;
+  priority: "High" | "Medium" | "Low";
+  reason: string;
+};
+
+/**
+ * Presentation boundary for strategy-export pressure points. Brain reasoning may carry
+ * lifecycle names, raw enums and diagnostic clauses; a solicitor-facing PDF must not.
+ * This function translates shared reasoning families, never case IDs or fixtures.
+ */
+export function professionalizeSolicitorPressurePoint(
+  raw: string | null | undefined,
+): ProfessionalSolicitorPressurePoint | null {
+  const source = (raw ?? "").trim();
+  if (!source) return null;
+
+  let label = "Evidence point to verify";
+  if (/Document lifecycle role|Document role (?:operative|amended|superseded|unknown)/i.test(source)) {
+    label = "Charge-document version";
+  } else if (/Recording service versus transcript completeness/i.test(source)) {
+    label = "Interview materials";
+  } else if (/Custody\s*\/\s*interview clock|Competing timestamps/i.test(source)) {
+    label = "Timing discrepancy";
+  } else if (/Contradictory evidence state|served and missing/i.test(source)) {
+    label = "Conflicting evidence status";
+  } else if (/disclosure|missing|outstanding|not served/i.test(source)) {
+    label = "Disclosure gap";
+  } else if (/identification|attribution|participation/i.test(source)) {
+    label = "Identification or attribution";
+  }
+
+  const reason = sanitizeSolicitorProse(source)
+    .replace(/\s{2,}/g, " ")
+    .trim();
+  if (!reason) return null;
+
+  return { label, priority: "High", reason };
 }
 
 export function inferBlockedItemLabel(text: string, index: number): string {

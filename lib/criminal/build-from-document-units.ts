@@ -56,6 +56,7 @@ import type { SharedEvidenceState } from "@/lib/criminal/evidence-state-reconcil
 import { extractCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
 import {
   buildStructuredChargeView,
+  inferChargeDocumentRole,
   type StructuredChargeView,
 } from "@/lib/criminal/structured-charge-state";
 
@@ -807,6 +808,147 @@ function isChargeInstrument(node: DocumentRelationshipNode): boolean {
   return /\b(indictment|charge\s*sheet|charge\s*instrument|information)\b/.test(hay);
 }
 
+function normalizeChargePageText(text: string): string {
+  return (text ?? "")
+    .replace(/Defendant(?=[A-Z])/g, "Defendant: ")
+    .replace(/DOB(?=\d)/g, "\nDOB: ")
+    .replace(/Charge(?=[A-Z])/g, "Charge: ")
+    .replace(/Offence(?=[A-Z])/g, "Offence: ")
+    .replace(/Particulars(?=[A-Z])/g, "Particulars: ");
+}
+
+/**
+ * Find a genuine charge-bearing page inside a combined bundle. A narrative
+ * mention such as "the defendant was charged with..." is deliberately not
+ * enough: the page needs a charge/count/statement heading plus legal wording.
+ */
+function isEmbeddedChargeInstrumentPage(text: string): boolean {
+  const t = normalizeChargePageText(text);
+  const heading =
+    /(?:^|\n)\s*(?:#{1,4}\s*)?(?:charge(?:\s+(?:sheet(?:\s+extract)?|wording))?|offence|statement of offence|count\s+\d+)\s*(?:[:\-]\s*|\r?\n\s*)/im.test(t);
+  const legalContent =
+    /\b(?:contrary to|particulars(?: of offence)?|section\s+\d+|s\.?\s*\d+|common law|is charged with|is alleged to have)\b/i.test(t);
+  return heading && legalContent;
+}
+
+function extractInstrumentParticulars(text: string): string | null {
+  const t = normalizeChargePageText(text);
+  const match = t.match(
+    /(?:^|\n)\s*(?:particulars(?:\s+of\s+offence)?|bundle wording of allegation)\s*(?:[:\-]\s*|\r?\n\s*)([\s\S]{8,700})/im,
+  );
+  let value = match?.[1]?.replace(/\s+/g, " ").trim() ?? "";
+  if (value) {
+    value = value.match(/^.*?[.!?](?:\s|$)/)?.[0]?.trim() ?? value;
+  }
+  if (!value) {
+    const joined = t.replace(/\s+/g, " ").trim();
+    const inThat = joined.match(/\bis charged with\s+.+?\s*,?\s+in that\s*,?\s*(.{12,500})/i)?.[1]?.trim() ?? "";
+    value = inThat.match(/^.*?[.!?](?:\s|$)/)?.[0]?.trim() ?? inThat;
+  }
+  if (!value || /^(?:charge|offence|defendant|court|date|status)\b/i.test(value)) return null;
+  return value;
+}
+
+/** Recover charge/allegation sentences split by a PDF's visual line wrapping. */
+function extractInstrumentChargeStatements(text: string): string[] {
+  const t = normalizeChargePageText(text).replace(/\r/g, "");
+  const candidates: string[] = [];
+  const patterns = [
+    /\b(?:CHARGE\s+SHEET(?:\s+EXTRACT)?|CHARGE\s+WORDING)\s*((?:On\b|Between\b|[A-Z][A-Za-z'\-]+(?:\s+[A-Z][A-Za-z'\-]+)+\s+is charged with\b)[\s\S]{12,700}?\.)(?=\s*(?:MG5|MG6|ADDITIONAL\s+COUNT|EVENT\s+ORDER|INSTRUCTIONS|Fictional|$))/gim,
+    /\bCount\s+\d+\s*:\s*([\s\S]{12,500}?\.)(?=\s*(?:Fictional|Count\s+\d+|MG5|MG6|PACK-SPECIFIC|PROSECUTION|DEFENCE|NEXT|SAFETY|$))/gim,
+    /(?:^|\n)\s*Offence\s*(?:[:\-]\s*|\r?\n\s*)([\s\S]{12,500}?)(?=\s*(?:Particulars(?:\s+of\s+offence)?|Bail\s*\/\s*custody|Status|$))/gim,
+  ];
+  for (const pattern of patterns) {
+    for (const match of t.matchAll(pattern)) {
+      const value = (match[1] ?? "").replace(/\s+/g, " ").trim();
+      if (value && !candidates.some((row) => row.toLowerCase() === value.toLowerCase())) {
+        candidates.push(value);
+      }
+    }
+  }
+  return candidates;
+}
+
+/** Conservative display label derived only from words in the charge statement. */
+function offenceLabelFromChargeStatement(statement: string): string | null {
+  const t = statement.replace(/\s+/g, " ").trim();
+  if (/\baffray\b.+\bassault by beating of an emergency worker\b/i.test(t)) {
+    return "Affray; assault by beating of an emergency worker";
+  }
+  if (/\bfraud by false representation\b|\bdishonestly made a false representation\b/i.test(t)) {
+    return "Fraud by false representation";
+  }
+  if (/\bdishonestly handled stolen goods\b/i.test(t)) return "Handling stolen goods";
+  if (/\bdishonestly appropriated retail goods\b/i.test(t)) return "Theft from a shop";
+  if (/\bpossessed a controlled (?:Class A drug|drug of Class A)\b.+\bintent to supply\b/i.test(t)) {
+    return "Possession with intent to supply a Class A controlled drug";
+  }
+  if (/\bpursued a course of conduct amounting to\s+harassment\b/i.test(t)) return "Harassment";
+  if (/\bassaulted\b.+\bby beating\b/i.test(t)) return "Assault by beating";
+  if (/\bthreatening or abusive words or behaviour\b/i.test(t)) {
+    return /\bs\.?\s*4A\b/i.test(t)
+      ? "Public order offence, s.4A"
+      : "Threatening or abusive words or behaviour";
+  }
+  if (/\bstolen\b.+\bused force\b/i.test(t)) return "Robbery";
+  return null;
+}
+
+function professionalIncompleteChargeLabel(offence: string, sourceText: string): string {
+  const normalized = offence.replace(/\s+/g, " ").trim();
+  const routeUnclear = /\b(?:charge wording unclear|inconsistent (?:charge )?wording|exact statutory route)\b/i.test(sourceText);
+  const competingSections = /\bsection\s+\d+[A-Za-z]?\s+or\s+section\s+\d+[A-Za-z]?\b/i.test(normalized);
+  if (!routeUnclear || !competingSections) return normalized;
+  const act = normalized.match(/\b([A-Z][A-Za-z ]+ Act\s+\d{4})\b/)?.[1]?.replace(/\s+/g, " ").trim();
+  return `${act || "Statutory"} allegation — exact statutory route unclear`;
+}
+
+function isNonChargeWorkingLabel(offence: string): boolean {
+  const t = offence.replace(/\s+/g, " ").trim();
+  return /^(?:old|earlier|new|current|amended|superseded)\s+version\.?$/i.test(t) ||
+    /^[/\-–—\s]*(?:alternative|lesser|related allegation)\b/i.test(t);
+}
+
+function normalizedOffenceFamily(offence: string): string {
+  return offence
+    .replace(/\bParticulars\s*:[\s\S]*$/i, "")
+    .replace(/[,;.]?\s*(?:contrary to|section\s+\d+|s\.?\s*\d+)\b[\s\S]*$/i, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function chargeDisplayQuality(charge: StructuredChargeView): number {
+  const offence = charge.offence.trim();
+  const incomplete = /(?:\.\.\.|…|\b(?:at|of|to|with|and|in|contrary to))\s*$/i.test(offence) ||
+    /\bParticulars\s*:/i.test(offence);
+  return (incomplete ? -20 : 0) +
+    (charge.statute ? 4 : 0) +
+    (charge.particulars ? 2 : 0) +
+    (charge.pageIdentityKnown ? 1 : 0) +
+    (charge.defendants.length ? 1 : 0);
+}
+
+function embeddedChargePageDocuments(documents: UploadedDocumentUnit[]): UploadedDocumentUnit[] {
+  const out: UploadedDocumentUnit[] = [];
+  for (const doc of documents) {
+    for (const page of resolvePageUnits(doc)) {
+      if (!isEmbeddedChargeInstrumentPage(page.text)) continue;
+      const explicitInstrument = /\b(?:charge\s*sheet|indictment)\b/i.test(page.text);
+      out.push({
+        ...doc,
+        id: `${doc.id}::embedded-charge::${page.pageNumber ?? page.compiledPage ?? out.length + 1}`,
+        // Keep the original title for human-facing provenance.
+        title: doc.title,
+        documentType: explicitInstrument ? "charge_sheet" : "embedded_charge_page",
+        pages: [page],
+        fullText: null,
+      });
+    }
+  }
+  return out;
+}
+
 function extractChargesFromInstrument(
   doc: UploadedDocumentUnit,
   role: StructuredChargeView["documentRole"],
@@ -852,17 +994,38 @@ function extractChargesFromInstrument(
     ];
   }
 
+  const particulars = extractInstrumentParticulars(text);
+  const chargeStatements = extractInstrumentChargeStatements(text);
+  const chargedNames = Array.from(
+    text.matchAll(/\b([A-Z][A-Za-z'\-]+(?:[ \t]+[A-Z][A-Za-z'\-]+)+)[ \t]+is charged with\b/g),
+    (match) => match[1]!.trim(),
+  );
+  // A direct "Name is charged with" sentence is stronger than a generic
+  // Defendant label elsewhere on the page (for example "Defendant remanded...").
+  const samePageDefendant = chargedNames.length > 0
+    ? Array.from(new Set(chargedNames))
+    : meta.defendantName
+      ? [meta.defendantName]
+      : [];
+  const explicitInstrument = /\b(?:charge\s*sheet|indictment)\b/i.test(text);
+
   return meta.charges.map((c, idx) => {
     const anchors = anchorsOrDocumentOnly(doc, c.offence.slice(0, Math.min(40, c.offence.length)));
-    const a = primaryAnchor(anchors);
+    const a = primaryAnchor(anchors) ?? (resolvePageUnits(doc).length === 1 ? documentStartAnchor(doc) : null);
+    const wrappedStatement = chargeStatements[idx] ?? (chargeStatements.length === 1 ? chargeStatements[0] : null);
+    const statementOffence = wrappedStatement ? offenceLabelFromChargeStatement(wrappedStatement) : null;
+    const extractedOffenceLooksLikeStatement = /\bis alleged to have\b|^On\s+\d/i.test(c.offence);
     return buildStructuredChargeView({
       count: c.count,
-      offence: c.offence,
+      offence: professionalIncompleteChargeLabel(statementOffence &&
+        (extractedOffenceLooksLikeStatement || /(?:\bwith|\bto|\band|\bor)\s*$/i.test(c.offence))
+        ? statementOffence
+        : c.offence, text),
       statute: c.statute,
-      particulars: null,
+      particulars: particulars ?? (wrappedStatement && statementOffence ? wrappedStatement : null),
       location: c.location,
-      status: c.status || "pending",
-      defendants: c.defendants ?? [],
+      status: c.status || (explicitInstrument ? "charged" : "pending"),
+      defendants: c.defendants?.length ? c.defendants : samePageDefendant,
       documentRole: role,
       sourceDocumentTitle: doc.title,
       sourceDocumentType: doc.documentType ?? c.sourceDocumentType ?? inferDocType(doc.title, text),
@@ -1324,6 +1487,97 @@ export function buildCanonicalPipelineFromDocumentUnits(
       );
     }
   }
+
+  // A combined bundle is usually uploaded as one generic PDF, so the outer
+  // relationship node is not named "charge sheet" even when an exact charge
+  // page exists inside it. Inspect only strong, page-bound instrument layouts.
+  // Narrative allegations without a charge heading remain excluded.
+  if (instruments.length === 0) {
+    for (const embedded of embeddedChargePageDocuments(ordered)) {
+      const role = inferChargeDocumentRole(`${embedded.documentType ?? ""} ${documentText(embedded)}`);
+      charges.push(...extractChargesFromInstrument(embedded, role));
+    }
+  }
+
+  // Version headings and drafting notes describe the instrument, not an offence.
+  // Preserve them in source/audit material, but never promote them into a charge row.
+  const substantiveCharges = charges.filter((charge) => !isNonChargeWorkingLabel(charge.offence));
+  charges.splice(0, charges.length, ...substantiveCharges);
+
+  // Repeated bundle wrappers can reproduce the same charge wording. Keep the
+  // strongest source-bound row, without collapsing operative and superseded
+  // instruments into one legal state.
+  const dedupedCharges = new Map<string, StructuredChargeView>();
+  for (const charge of charges) {
+    const key = [
+      charge.offence.toLowerCase().replace(/\W+/g, " ").trim(),
+      (charge.statute ?? "").toLowerCase().replace(/\W+/g, " ").trim(),
+      charge.count,
+      charge.documentRole,
+    ].join("|");
+    const existing = dedupedCharges.get(key);
+    const score = (charge.particulars ? 2 : 0) + (charge.defendants.length ? 1 : 0) + (charge.pageIdentityKnown ? 1 : 0);
+    const existingScore = existing
+      ? (existing.particulars ? 2 : 0) + (existing.defendants.length ? 1 : 0) + (existing.pageIdentityKnown ? 1 : 0)
+      : -1;
+    if (!existing || score > existingScore) dedupedCharges.set(key, charge);
+  }
+  charges.splice(0, charges.length, ...dedupedCharges.values());
+
+  // Some charge sheets expose both a wrapped/truncated label and a concise label for
+  // the same count, page and particulars. Keep the stronger source-backed rendering.
+  const occurrenceCharges = new Map<string, StructuredChargeView>();
+  for (const charge of charges) {
+    const family = normalizedOffenceFamily(charge.offence);
+    const particularsKey = (charge.particulars ?? "").toLowerCase().replace(/\W+/g, " ").trim();
+    const key = [
+      charge.count,
+      charge.documentRole,
+      (charge.sourceDocumentTitle ?? "").toLowerCase().trim(),
+      charge.sourcePage ?? "",
+      charge.compiledPage ?? "",
+      particularsKey,
+      family,
+    ].join("|");
+    const existing = occurrenceCharges.get(key);
+    if (!existing || chargeDisplayQuality(charge) > chargeDisplayQuality(existing)) {
+      occurrenceCharges.set(key, charge);
+    }
+  }
+  charges.splice(0, charges.length, ...occurrenceCharges.values());
+
+  // A generic cover/header can repeat the same count as a page-bound operative
+  // instrument. Keep the operative/amended row and suppress only an equivalent
+  // unknown-role duplicate from the same uploaded document. Superseded and
+  // amended instruments remain separate legal states.
+  const normalizedChargeIdentity = (charge: StructuredChargeView): string => [
+    charge.offence.toLowerCase().replace(/\W+/g, " ").trim(),
+    charge.count ?? "",
+    (charge.sourceDocumentTitle ?? "").toLowerCase().trim(),
+  ].join("|");
+  const authoritativeChargeIdentities = new Set(
+    charges
+      .filter((charge) => charge.documentRole === "operative" || charge.documentRole === "amended")
+      .map(normalizedChargeIdentity),
+  );
+  const withoutUnknownCoverDuplicates = charges.filter((charge) =>
+    charge.documentRole !== "unknown" ||
+    !authoritativeChargeIdentities.has(normalizedChargeIdentity(charge)),
+  );
+  charges.splice(0, charges.length, ...withoutUnknownCoverDuplicates);
+  const rolePriority: Record<StructuredChargeView["documentRole"], number> = {
+    operative: 4,
+    amended: 3,
+    unknown: 2,
+    superseded: 1,
+  };
+  charges.sort((a, b) => {
+    const roleDelta = rolePriority[b.documentRole] - rolePriority[a.documentRole];
+    if (roleDelta !== 0) return roleDelta;
+    const detailDelta = Number(Boolean(b.particulars)) - Number(Boolean(a.particulars));
+    if (detailDelta !== 0) return detailDelta;
+    return (b.confidence ?? 0) - (a.confidence ?? 0);
+  });
 
   // Defendant allocation per count, from the charge instruments themselves. A count
   // with no named defendant stays explicitly unallocated rather than inheriting one.

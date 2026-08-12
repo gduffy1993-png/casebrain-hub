@@ -7,6 +7,7 @@ import path from "node:path";
 import fs from "node:fs";
 import { createRequire } from "node:module";
 import PDFDocument from "pdfkit";
+import { sanitizeSolicitorProse } from "@/lib/criminal/solicitor-visible-sanitization";
 
 const requireFromCwd = createRequire(path.join(process.cwd(), "package.json"));
 
@@ -85,8 +86,9 @@ export function solicitorReadableLabel(raw: string): string {
   };
   const key = raw.trim().toLowerCase().replace(/\s+/g, "_");
   if (map[key]) return map[key];
-  // Only rewrite machine tokens (underscore/hyphen identifiers). Human phrases pass through.
-  if (!/[_-]/.test(raw)) return raw;
+  // Only rewrite a complete machine token. A normal sentence may legitimately
+  // contain a hyphen ("source-linked", "open-ended") and must retain sentence case.
+  if (!/^[a-z0-9]+(?:[_-][a-z0-9]+)+$/i.test(raw.trim())) return raw;
   return raw
     .replace(/[_-]+/g, " ")
     .replace(/\b\w/g, (c) => c.toUpperCase())
@@ -95,9 +97,34 @@ export function solicitorReadableLabel(raw: string): string {
     .replace(/\bMg(\d+)/gi, "MG$1");
 }
 
+/** Final shared boundary: every prose value entering a solicitor PDF is professionalised. */
+function solicitorPdfProse(raw: string): string {
+  return sanitizeSolicitorProse(raw);
+}
+
+function solicitorChargeRole(raw: string | null | undefined): string | null {
+  switch ((raw ?? "").trim().toLowerCase()) {
+    case "operative": return "Operative charge document";
+    case "amended": return "Amended charge document";
+    case "superseded": return "Superseded charge document";
+    case "unknown": return "Document version not safely confirmed";
+    default: return raw?.trim() || null;
+  }
+}
+
+function solicitorChargeStatus(raw: string | null | undefined): string | null {
+  switch ((raw ?? "").trim().toLowerCase()) {
+    case "charged": return "Charged";
+    case "pending": return "Charge status requires confirmation";
+    case "incomplete_on_papers": return "Incomplete on the supplied papers";
+    default: return raw?.trim() ? solicitorReadableLabel(raw) : null;
+  }
+}
+
 export type CriminalStrategyChargeRow = {
   count: number | null;
   offence: string;
+  particulars?: string | null;
   defendants?: string[];
   documentRole?: string | null;
   status?: string | null;
@@ -111,6 +138,8 @@ export type CriminalStrategyExportData = {
   offenceLabel?: string;
   nextHearingType?: string;
   nextHearingDate?: string;
+  /** Distinguish a future listing from a past date merely recorded in the papers. */
+  hearingDisplayLabel?: "Next hearing" | "Recorded hearing";
   /** Canonical hearing lifecycle note (e.g. earlier notice preserved / date conflict). */
   hearingLifecycleNote?: string | null;
   /** Charges taken from canonical state so the PDF never shows an empty charge block. */
@@ -265,21 +294,21 @@ export function generateCriminalStrategyPdf(data: CriminalStrategyExportData): P
         .fillColor(MUTED)
         .fontSize(10)
         .font("Helvetica")
-        .text(pdfSafeText(data.title || "Criminal case"), { align: "center" })
+        .text(pdfSafeText(solicitorPdfProse(data.title || "Criminal case")), { align: "center" })
         .text(`Generated: ${formatDate(data.generatedAt)}`, { align: "center" });
       doc.moveDown(1);
       drawDivider(doc);
 
       doc.moveDown(0.5);
       sectionHeader(doc, "Strategy at a glance");
-      infoRow(doc, "Primary approach", solicitorReadableLabel(data.primaryStrategy ?? "—"));
-      infoRow(doc, "Offence", data.offenceLabel ?? "—");
-      infoRow(doc, "Next hearing", data.nextHearingType && data.nextHearingDate
+      infoRow(doc, "Primary approach", solicitorPdfProse(solicitorReadableLabel(data.primaryStrategy ?? "—")));
+      infoRow(doc, "Offence", solicitorPdfProse(data.offenceLabel ?? "—"));
+      infoRow(doc, data.hearingDisplayLabel ?? "Next hearing", data.nextHearingType && data.nextHearingDate
         ? `${solicitorReadableLabel(data.nextHearingType)} – ${formatDate(data.nextHearingDate)}`
         : data.nextHearingType ? solicitorReadableLabel(data.nextHearingType) : "—");
       if (data.confidence) infoRow(doc, "Confidence", data.confidence);
       if (data.hearingLifecycleNote?.trim()) {
-        bodyLine(doc, data.hearingLifecycleNote.trim(), { color: MUTED, size: 8 });
+        bodyLine(doc, solicitorPdfProse(data.hearingLifecycleNote.trim()), { color: MUTED, size: 8 });
       }
       doc.moveDown(0.5);
       drawDivider(doc);
@@ -292,16 +321,30 @@ export function generateCriminalStrategyPdf(data: CriminalStrategyExportData): P
           const defendants = charge.defendants?.length
             ? charge.defendants.join(", ")
             : "defendant not allocated on this instrument";
-          const role = charge.documentRole ? ` [${charge.documentRole}]` : "";
-          const status = charge.status ? `; status: ${charge.status}` : "";
-          bodyLine(doc, `\u2022 ${countLabel}${role} - ${charge.offence}`, { indent: 15 });
-          bodyLine(doc, `Defendant: ${defendants}${status}`, {
+          const role = solicitorChargeRole(charge.documentRole);
+          const status = solicitorChargeStatus(charge.status);
+          bodyLine(doc, solicitorPdfProse(`\u2022 ${countLabel} - ${charge.offence}`), { indent: 15 });
+          if (charge.particulars?.trim()) {
+            bodyLine(doc, solicitorPdfProse(`Allegation: ${charge.particulars.trim()}`), {
+              indent: 25,
+              color: TEXT,
+              size: 8,
+            });
+          }
+          bodyLine(doc, solicitorPdfProse(`Defendant: ${defendants}`), {
             indent: 25,
             color: MUTED,
             size: 8,
           });
+          if (role || status) {
+            bodyLine(doc, solicitorPdfProse([role, status].filter(Boolean).join(" · ")), {
+              indent: 25,
+              color: MUTED,
+              size: 8,
+            });
+          }
           if (charge.sourceLabel) {
-            bodyLine(doc, `Source: ${charge.sourceLabel}`, { indent: 25, color: MUTED, size: 8 });
+            bodyLine(doc, solicitorPdfProse(`Source: ${charge.sourceLabel}`), { indent: 25, color: MUTED, size: 8 });
           }
         }
         doc.moveDown(0.5);
@@ -311,7 +354,7 @@ export function generateCriminalStrategyPdf(data: CriminalStrategyExportData): P
       if (data.solicitorInstructions && data.solicitorInstructions.trim()) {
         doc.moveDown(0.5);
         sectionHeader(doc, "Solicitor instructions / overrides");
-        bodyLine(doc, data.solicitorInstructions.trim(), { color: TEXT });
+        bodyLine(doc, solicitorPdfProse(data.solicitorInstructions.trim()), { color: TEXT });
         doc.moveDown(0.5);
         drawDivider(doc);
       }
@@ -319,7 +362,7 @@ export function generateCriminalStrategyPdf(data: CriminalStrategyExportData): P
       if (data.defenceNarrative && data.defenceNarrative.trim()) {
         doc.moveDown(0.5);
         sectionHeader(doc, "Defence narrative");
-        bodyLine(doc, data.defenceNarrative.trim(), { color: TEXT });
+        bodyLine(doc, solicitorPdfProse(data.defenceNarrative.trim()), { color: TEXT });
         doc.moveDown(0.5);
         drawDivider(doc);
       }
@@ -365,7 +408,7 @@ export function generateCriminalStrategyPdf(data: CriminalStrategyExportData): P
         for (const p of data.pressurePoints.slice(0, 12)) {
           const pri = p.priority ? ` [${p.priority}]` : "";
           bodyLine(doc, `\u2022 ${solicitorReadableLabel(p.label)}${pri}`, { indent: 15, color: TEXT });
-          if (p.reason) bodyLine(doc, p.reason, { indent: 25, color: MUTED, size: 8 });
+          if (p.reason) bodyLine(doc, solicitorPdfProse(p.reason), { indent: 25, color: MUTED, size: 8 });
         }
         doc.moveDown(0.5);
         drawDivider(doc);
@@ -379,7 +422,7 @@ export function generateCriminalStrategyPdf(data: CriminalStrategyExportData): P
           doc.moveDown(0.3);
         }
         for (const item of data.hrsChecklist) {
-          bodyLine(doc, `[ ] ${solicitorReadableLabel(item)}`, { indent: 15, color: TEXT });
+          bodyLine(doc, solicitorPdfProse(`[ ] ${solicitorReadableLabel(item)}`), { indent: 15, color: TEXT });
         }
         doc.moveDown(0.5);
         drawDivider(doc);
@@ -404,7 +447,7 @@ export function generateCriminalStrategyPdf(data: CriminalStrategyExportData): P
         doc.moveDown(0.5);
         sectionHeader(doc, "Provenance limitations");
         for (const limitation of data.provenanceLimitations.slice(0, 20)) {
-          bodyLine(doc, `\u2022 ${limitation}`, { indent: 15, color: TEXT });
+          bodyLine(doc, solicitorPdfProse(`\u2022 ${limitation}`), { indent: 15, color: TEXT });
         }
         doc.moveDown(0.5);
         drawDivider(doc);
