@@ -177,8 +177,15 @@ function resolveAllegation(
   }
 
   const shortTitle = header?.shortTitle?.trim();
-  if (shortTitle && /contrary to section|oapa|abh|assault occasioning/i.test(shortTitle)) {
-    return { label: shortTitle, source: "extracted_cover_fallback" };
+  if (shortTitle && /contrary to section|oapa|abh|assault occasioning|unlawful wounding|murder/i.test(shortTitle)) {
+    if (isGluedHearingCourtOffenceLabel(shortTitle)) {
+      const repaired = repairGluedOffenceLabel(shortTitle);
+      if (repaired && !isGluedHearingCourtOffenceLabel(repaired) && !isUnknownOffenceLabel(repaired)) {
+        return { label: repaired, source: "extracted_cover_fallback" };
+      }
+    } else if (!isUnknownOffenceLabel(shortTitle) && shortTitle.length <= 160) {
+      return { label: shortTitle, source: "extracted_cover_fallback" };
+    }
   }
 
   if ((bundle?.offenceWording || bundle?.offenceDisplay) && (snapshot?.evidence.documents?.length ?? 0) > 0) {
@@ -384,10 +391,14 @@ export function sanitizeHeaderAllegation(raw: string): string {
     .trim();
   if (isGluedHearingCourtOffenceLabel(t)) {
     const repaired = repairGluedOffenceLabel(t);
-    if (repaired) t = repaired;
+    if (repaired && !isGluedHearingCourtOffenceLabel(repaired)) t = repaired;
     else return NOT_EXTRACTED_OFFENCE;
   }
   if (!t) return NOT_EXTRACTED_OFFENCE;
+  // Still a narrative mash after repair — refuse rather than show field soup
+  if (isGluedHearingCourtOffenceLabel(t) || (t.length > 180 && /\bpleaded\b|\bHHJ\b|\bCrown Court\b/i.test(t))) {
+    return NOT_EXTRACTED_OFFENCE;
+  }
   const l = t.toLowerCase();
   if (
     l.startsWith("unknown") ||

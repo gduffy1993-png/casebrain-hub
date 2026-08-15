@@ -51,6 +51,19 @@ assert.doesNotMatch(repaired ?? "", /Northshire Crown Court|2026 at 12:00/i);
 assert.equal(sanitizeHeaderClient("Owen Flint."), "Owen Flint");
 assert.match(sanitizeHeaderAllegation(GAUNTLET_GLUE_OFFENCE), /section\s*20\s+unlawful\s+wounding/i);
 
+const NARRATIVE_SOUP_OFFENCE =
+  "contrary to section 47 of the Offences Against the Person Act 1861. He had pleaded guilty before HHJ Smith at Northshire Crown Court on 12 January 2026.";
+assert.ok(isGluedHearingCourtOffenceLabel(NARRATIVE_SOUP_OFFENCE));
+assert.match(
+  sanitizeHeaderAllegation(NARRATIVE_SOUP_OFFENCE),
+  /assault occasioning actual bodily harm|s\.?\s*47/i,
+);
+assert.doesNotMatch(sanitizeHeaderAllegation(NARRATIVE_SOUP_OFFENCE), /pleaded guilty|HHJ Smith/i);
+
+const ORPHAN_STATUTORY_TAIL = "contrary to section 1(1) of the Offences Against the Person Act 1861.";
+assert.ok(isGluedHearingCourtOffenceLabel(ORPHAN_STATUTORY_TAIL));
+assert.match(sanitizeHeaderAllegation(ORPHAN_STATUTORY_TAIL), /not safely extracted/i);
+
 const meta = extractBundleCaseMetadata(GAUNTLET_BUNDLE);
 const header = resolveCaseHeaderMetadata({ snapshot: null, bundleText: GAUNTLET_BUNDLE });
 assert.equal(sanitizeHeaderClient(header.clientLabel), "Owen Flint");

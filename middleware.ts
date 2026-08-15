@@ -5,7 +5,7 @@ import { isEvalBypassRequest } from "@/lib/eval-auth-bypass";
 import { isAuthRecoveryPublicPath } from "@/lib/auth/recovery-callback";
 
 /**
- * Clerk: sets session / `__session` for Clerk-signed routes when Clerk keys are configured.
+ * Clerk: sets session / `__session` for Clerk-signed routes when Clerk is explicitly enabled.
  * Supabase: refreshes `sb-*` cookies so existing CaseBrain auth keeps working.
  *
  * Auth recovery routes (`/auth/callback`, `/reset-password`, `/forgot-password`) must never be
@@ -15,7 +15,11 @@ import { isAuthRecoveryPublicPath } from "@/lib/auth/recovery-callback";
  * Supabase Auth API call per request (middleware runs on almost every path). Dev-only — production
  * never treats requests as eval bypass (`lib/eval-auth-bypass`).
  */
-export default clerkMiddleware(async (_auth, request: NextRequest) => {
+const clerkEnabled =
+  process.env.NEXT_PUBLIC_ENABLE_CLERK === "true" &&
+  Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY?.trim());
+
+async function withSupabaseSession(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith("/api/debug")) {
     return NextResponse.next();
   }
@@ -59,7 +63,11 @@ export default clerkMiddleware(async (_auth, request: NextRequest) => {
   }
 
   return response;
-});
+}
+
+export default clerkEnabled
+  ? clerkMiddleware(async (_auth, request: NextRequest) => withSupabaseSession(request))
+  : async (request: NextRequest) => withSupabaseSession(request);
 
 export const config = {
   matcher: [

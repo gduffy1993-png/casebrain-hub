@@ -45,17 +45,26 @@ export const metadata: Metadata = {
   },
 };
 
+/** Clerk is opt-in. Supabase-primary previews must not load clerk.casebrain.co.uk. */
+function isClerkEnabled(): boolean {
+  return (
+    process.env.NEXT_PUBLIC_ENABLE_CLERK === "true" &&
+    Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY?.trim())
+  );
+}
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const clerkPk = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-  const inner = clerkPk ? (
-    <ClerkProvider publishableKey={clerkPk}>{children}</ClerkProvider>
-  ) : (
-    children
-  );
+  const clerkPk = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY?.trim();
+  const inner =
+    isClerkEnabled() && clerkPk ? (
+      <ClerkProvider publishableKey={clerkPk}>{children}</ClerkProvider>
+    ) : (
+      children
+    );
 
   return (
     <html lang="en" className="dark">

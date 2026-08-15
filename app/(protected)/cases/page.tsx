@@ -248,15 +248,24 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
 
 /** Card line under the title — never show the raw “Awaiting summary” placeholder. */
 function caseSummaryDisplay(caseItem: {
+  title?: string | null;
   summary?: string | null;
   alleged_offence?: string | null;
   defendant_name?: string | null;
 }): string {
   const summary = caseItem.summary?.trim() ?? "";
-  if (summary && !/^awaiting summary\.?$/i.test(summary)) return summary;
+  if (summary && !/^awaiting summary\.?$/i.test(summary)) {
+    return summary.length > 140 ? `${summary.slice(0, 137).trim()}…` : summary;
+  }
   const offence = caseItem.alleged_offence?.trim();
-  if (offence) return offence;
-  return "Open the matter for the case summary and defence routes.";
+  if (offence && !/not safely extracted|open the matter/i.test(offence)) {
+    return offence.length > 140 ? `${offence.slice(0, 137).trim()}…` : offence;
+  }
+  const title = caseItem.title?.trim() ?? "";
+  if (title && !/^case\s*\d+$/i.test(title) && !/^awaiting/i.test(title)) {
+    return title.length > 140 ? `${title.slice(0, 137).trim()}…` : title;
+  }
+  return "Matter summary not on the list yet — open the case.";
 }
 
 function FilterToolbar({

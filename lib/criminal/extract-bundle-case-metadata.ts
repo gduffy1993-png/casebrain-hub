@@ -452,7 +452,7 @@ export function parseUkHearingDateTime(raw: string): { iso: string | null; displ
   return null;
 }
 
-/** Hearing/court line glued into offence label (messy scan bundles). */
+/** Hearing/court/narrative line glued into offence label (messy scan bundles). */
 export function isGluedHearingCourtOffenceLabel(value: string): boolean {
   const t = value.trim();
   if (!t || t.length < 12) return false;
@@ -460,6 +460,16 @@ export function isGluedHearingCourtOffenceLabel(value: string): boolean {
   if (/\bCrown Court\b/i.test(t) && /\bAllegation:\s*/i.test(t) && /\d{4}\s+at\s+/i.test(t)) return true;
   if (/\bagainst swung first\b/i.test(t)) return true;
   if (/\.\s*MG\.?\s*$/i.test(t)) return true;
+  // Orphan statutory tail / plea–court mash posing as a charge line
+  if (/^contrary to (?:section|common law|the )/i.test(t)) return true;
+  if (/\b(?:he|she) had pleaded\b|\bpleaded\s+guilty\b/i.test(t) && t.length > 80) return true;
+  if (
+    /\bpleaded\s+guilty\b/i.test(t) &&
+    /\b(?:Crown Court|Magistrates(?:'|\u2019)? Court|HHJ|His Honour|Her Honour)\b/i.test(t)
+  ) {
+    return true;
+  }
+  if (t.length > 160 && (t.match(/[.!?]/g) ?? []).length >= 2) return true;
   return false;
 }
 
@@ -486,6 +496,17 @@ export function repairGluedOffenceLabel(value: string): string | null {
   if (/\bunlawful\s+wounding\b/i.test(t) && /\b(?:section|s\.?)\s*20\b/i.test(t)) {
     const inner = t.match(/\b((?:section|s\.?)\s*20\s+unlawful\s+wounding)/i)?.[1];
     if (inner) return formatOffenceDisplayFromBundle(cleanLineValue(stripGluedOffenceJunk(inner))!);
+  }
+
+  if (
+    /\b(?:section|s\.?)\s*47\b/i.test(t) &&
+    /\b(?:actual bodily harm|ABH|assault occasioning|OAPA|Offences Against the Person)\b/i.test(t)
+  ) {
+    return formatOffenceDisplayFromBundle("Assault occasioning actual bodily harm, s.47 OAPA 1861");
+  }
+
+  if (/\bmurder\b/i.test(t) && /contrary to common law/i.test(t)) {
+    return formatOffenceDisplayFromBundle("Murder, contrary to common law");
   }
 
   const strippedOnly = stripGluedOffenceJunk(t);

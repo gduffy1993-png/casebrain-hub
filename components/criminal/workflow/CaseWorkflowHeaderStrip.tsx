@@ -131,13 +131,17 @@ export function CaseWorkflowHeaderStrip({
         if (matter?.station?.riskMedicalIssues) safeguards.push("Medical");
         setStrip({
           client: pilot
-            ? displayPilotStripClient(clientClean) || clientClean
+            ? displayPilotStripClient(clientClean) || "Client not on papers"
             : clientClean || "Client not on papers",
           charge: pilot
             ? resolvePilotChargeDisplay(chargeClean, deskChargeLine)
             : chargeClean || "Charge not on papers",
-          court: pilot ? displayPilotStripCourt(courtClean) || courtClean : courtClean || "Court not on papers",
-          hearing: pilot ? displayPilotStripHearing(hearingDisplay) || hearingDisplay : hearingDisplay || "Hearing not on papers",
+          court: pilot
+            ? displayPilotStripCourt(courtClean) || "Court not on papers"
+            : courtClean || "Court not on papers",
+          hearing: pilot
+            ? displayPilotStripHearing(hearingDisplay) || "Hearing not on papers"
+            : hearingDisplay || "Hearing not on papers",
           health: healthFromDocCount(json.data.documentCount ?? 0),
           documentCount: json.data.documentCount ?? 0,
           combinedTextLength: json.data.combinedTextLength ?? 0,
