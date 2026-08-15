@@ -628,7 +628,7 @@ export function pilotDisplayMetadataNote(note: string | undefined | null): strin
   return undefined;
 }
 
-/** Court name only — strip hearing/defendant fragments from merged header fields. */
+/** Court name only — strip hearing/defendant/judge fragments from merged header fields. */
 export function cleanPilotCourtHeaderCell(raw: string | null | undefined): string {
   let t = (raw ?? "").trim();
   if (!t) return "Court not safely extracted";
@@ -638,6 +638,10 @@ export function cleanPilotCourtHeaderCell(raw: string | null | undefined): strin
     .replace(/\.\s*Defendant:\s*[\s\S]*/i, "")
     .replace(/\s+Defendant:\s*[\s\S]*/i, "")
     .replace(/\s+at\s+\d{1,2}:\d{2}\s+for\s+PTPH\b[\s\S]*/i, "")
+    .replace(
+      /\s+(?:HHJ|His Honour|Her Honour|LORD JUSTICE|LADY JUSTICE|MR JUSTICE|MRS JUSTICE|THE RECORDER)\b[\s\S]*$/i,
+      "",
+    )
     .trim();
   return t || "Court not safely extracted";
 }

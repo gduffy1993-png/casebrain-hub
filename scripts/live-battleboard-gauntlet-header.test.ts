@@ -64,6 +64,51 @@ const ORPHAN_STATUTORY_TAIL = "contrary to section 1(1) of the Offences Against 
 assert.ok(isGluedHearingCourtOffenceLabel(ORPHAN_STATUTORY_TAIL));
 assert.match(sanitizeHeaderAllegation(ORPHAN_STATUTORY_TAIL), /not safely extracted/i);
 
+const OFFENSIVE_WEAPON_SOUP =
+  "contrary to section 1(1) of the Prevention of Crime Act 1953. He had pleaded guilty to that offence at an earlier hearing.";
+assert.ok(isGluedHearingCourtOffenceLabel(OFFENSIVE_WEAPON_SOUP));
+assert.match(sanitizeHeaderAllegation(OFFENSIVE_WEAPON_SOUP), /offensive weapon/i);
+assert.doesNotMatch(sanitizeHeaderAllegation(OFFENSIVE_WEAPON_SOUP), /pleaded guilty/i);
+
+const APPEAL_SNIPPET = `
+REX
+V
+MARTIN ADAMS
+ON APPEAL FROM THE CROWN COURT AT PORTSMOUTH
+HHJ Ashworth
+LORD JUSTICE WARBY
+sentenced for having an offensive weapon,
+contrary to section 1(1) of the Prevention of Crime Act 1953.
+`.trim();
+const appealMeta = extractBundleCaseMetadata(APPEAL_SNIPPET);
+assert.equal(appealMeta.defendantName, "Martin Adams");
+assert.match(appealMeta.offenceDisplay ?? "", /offensive weapon/i);
+assert.match(appealMeta.court ?? "", /Portsmouth/i);
+assert.doesNotMatch(appealMeta.court ?? "", /HHJ|LORD JUSTICE/i);
+
+const ROBBERY_SNIPPET = `
+Defendant(s): Arden Vale
+Offence: Robbery
+Exact allegation wording: On 02/06/2026 at Station Lane, Arden Vale is alleged to have stolen a phone.
+`.trim();
+const robberyMeta = extractBundleCaseMetadata(ROBBERY_SNIPPET);
+assert.equal(robberyMeta.defendantName, "Arden Vale");
+assert.match(robberyMeta.offenceDisplay ?? "", /^Robbery$/i);
+assert.equal(robberyMeta.nextHearingRaw, null);
+
+const ABH_SNIPPET = `
+- Defendant name: Emery Beck
+- Defendant DOB: 14/05/1997
+- Court/stage: Northlake Magistrates Court / police station pre-charge
+- Next hearing/review date: 24/06/2026
+- Offence type: ABH s.47
+`.trim();
+const abhMeta = extractBundleCaseMetadata(ABH_SNIPPET);
+assert.equal(abhMeta.defendantName, "Emery Beck");
+assert.match(abhMeta.offenceDisplay ?? "", /ABH,\s*s\.?\s*47/i);
+assert.match(abhMeta.nextHearingRaw ?? "", /24\/06\/2026/);
+assert.doesNotMatch(abhMeta.nextHearingRaw ?? "", /14\/05\/1997/);
+
 const meta = extractBundleCaseMetadata(GAUNTLET_BUNDLE);
 const header = resolveCaseHeaderMetadata({ snapshot: null, bundleText: GAUNTLET_BUNDLE });
 assert.equal(sanitizeHeaderClient(header.clientLabel), "Owen Flint");

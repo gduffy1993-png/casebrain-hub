@@ -231,10 +231,16 @@ function sanitizePersonName(value: string): string | null {
   }
   if (/^appears\s+in\b/i.test(t)) return null;
   if (/not\s+safely\s+extracted/i.test(t)) return null;
+  // Interview / section-header mash (e.g. "Client ACCOUNT No comment after")
+  if (/\b(?:account|comment|disclosure|interview|limited)\b/i.test(t)) return null;
   const words = t.split(/\s+/).filter(Boolean);
+  // Drop trailing prepositions / appeal glue ("Martin Adams On")
+  while (words.length > 1 && /^(?:on|at|in|of|to|for|and|the)$/i.test(words[words.length - 1]!)) {
+    words.pop();
+  }
   if (words.length < 1 || words.length > 4) return null;
   const labelWords =
-    /^(?:defendant|accused|client|complainant|victim|name|the|and|or|dob|doi|mr|mrs|ms|dr)$/i;
+    /^(?:defendant|accused|client|complainant|victim|name|the|and|or|dob|doi|mr|mrs|ms|dr|account|no|after)$/i;
   const verbWords =
     /^(?:contacted|communicated|alleged|denied|admitted|is|was|has|had|that|which|against|contrary|witness|victim|complainant|swung|states|alleges|reports|identified|during|struggle|bottle|injury|first)$/i;
   if (words.some((w) => labelWords.test(w) || verbWords.test(w))) return null;
@@ -245,18 +251,26 @@ function sanitizePersonName(value: string): string | null {
 
 function extractDefendantName(scan: string): string | null {
   const colonFirst =
-    extractLabeledValue(scan, ["Defendant", "Accused", "Defendant name", "Client"]) ?? null;
+    extractLabeledValue(scan, [
+      "Defendant(s)",
+      "Defendant name",
+      "Defendant",
+      "Accused",
+      "Client",
+    ]) ?? null;
   if (colonFirst) {
     const v = sanitizePersonName(colonFirst);
     if (v) return v;
   }
 
   const tablePatterns: RegExp[] = [
+    new RegExp(`\\bDefendant\\s*\\(s\\)\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "i"),
     new RegExp(`\\bDefendant\\s+name\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "i"),
     new RegExp(`\\bDefendant\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "i"),
     new RegExp(`\\bDefendant\\s+${PERSON_NAME_CAPTURE}`, "i"),
     new RegExp(`\\bAccused\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "i"),
-    new RegExp(`\\bClient\\s+${PERSON_NAME_CAPTURE}`, "i"),
+    // Avoid "CLIENT ACCOUNT" section headers — require a capitalised given name after Client
+    new RegExp(`\\bClient\\s+(?!ACCOUNT\\b)(?!ACCOUNT:)(?!position\\b)${PERSON_NAME_CAPTURE}`, "i"),
   ];
 
   for (const re of tablePatterns) {
@@ -267,9 +281,26 @@ function extractDefendantName(scan: string): string | null {
     }
   }
 
+  // Title-case "R v Name"
   const rv = scan.match(/\bR\s+v\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b/);
   if (rv?.[1]) {
     const v = sanitizePersonName(rv[1]);
+    if (v) return v;
+  }
+
+  // Appeal transcripts: "REX\nV\nMARTIN ADAMS" (allow newlines / ALL CAPS)
+  const rex = scan.match(
+    /\bREX\s+V\s+([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+){0,2})\b/i,
+  );
+  if (rex?.[1]) {
+    const v = sanitizePersonName(rex[1].replace(/\s+/g, " "));
+    if (v) return v;
+  }
+  const rexNl = scan.match(
+    /\bREX[\s\n]+V[\s\n]+([A-Z][A-Za-z]+(?:[\s\n]+[A-Z][A-Za-z]+){0,2})(?=[\s\n]+(?:_{2,}|ON\b|Computer|Before|CASE\b))/i,
+  );
+  if (rexNl?.[1]) {
+    const v = sanitizePersonName(rexNl[1].replace(/[\s\n]+/g, " "));
     if (v) return v;
   }
 
@@ -509,6 +540,16 @@ export function repairGluedOffenceLabel(value: string): string | null {
     return formatOffenceDisplayFromBundle("Murder, contrary to common law");
   }
 
+  // Orphan statutory tail that still names Prevention of Crime Act — recover offensive weapon
+  if (
+    /^contrary to section\s*1\s*\(\s*1\s*\)/i.test(t) &&
+    /Prevention of Crime Act 1953/i.test(t)
+  ) {
+    return formatOffenceDisplayFromBundle(
+      "Having an offensive weapon, contrary to s.1(1) Prevention of Crime Act 1953",
+    );
+  }
+
   const strippedOnly = stripGluedOffenceJunk(t);
   if (strippedOnly && strippedOnly.length >= 8 && !isGluedHearingCourtOffenceLabel(strippedOnly)) {
     return formatOffenceDisplayFromBundle(strippedOnly);
@@ -533,13 +574,25 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
     return "Murder, contrary to common law";
   }
 
+  if (
+    /\b(?:having\s+an\s+)?offensive\s+weapon\b/i.test(t) &&
+    /prevention of crime act\s*1953|section\s*1\s*\(\s*1\s*\)/i.test(t)
+  ) {
+    return "Having an offensive weapon, contrary to s.1(1) Prevention of Crime Act 1953";
+  }
+
   const hasS47 = /\bsection\s*47\b|\bs\.?\s*47\b/i.test(t);
   const hasAbh = /\bactual bodily harm\b|\bABH\b/i.test(t);
   if (hasS47 && hasAbh) {
     if (/assault occasioning actual bodily harm/i.test(t)) {
-      return "Assault occasioning actual bodily harm, s.47 OAPA 1861";
+      return /OAPA|Offences Against the Person/i.test(t)
+        ? "Assault occasioning actual bodily harm, s.47 OAPA 1861"
+        : "Assault occasioning actual bodily harm, s.47";
     }
-    return "ABH, s.47 OAPA 1861";
+    return /OAPA|Offences Against the Person/i.test(t) ? "ABH, s.47 OAPA 1861" : "ABH, s.47";
+  }
+  if (/^ABH(?:\s*,?\s*s\.?\s*47)?$/i.test(t) || /^ABH\s+s\.?\s*47\b/i.test(t)) {
+    return /OAPA|Offences Against the Person/i.test(t) ? "ABH, s.47 OAPA 1861" : "ABH, s.47";
   }
 
   const hasS20 = /\bsection\s*20\b|\bs\.?\s*20\b/i.test(t);
@@ -575,6 +628,9 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
   }
   if (/\brobbery\b/i.test(t) && /theft act 1968/i.test(t)) {
     return "Robbery, contrary to s.8 Theft Act 1968";
+  }
+  if (/^robbery\b/i.test(t) || /\boffence\s*:\s*robbery\b/i.test(t)) {
+    return "Robbery";
   }
   if (
     /\btheft\b/i.test(t) &&
@@ -1086,6 +1142,32 @@ function normalizeChargeOffence(raw: string): string | null {
 function extractOffenceWording(scan: string, fullText: string): { wording: string | null; source: MetadataFieldSource } {
   const normalizedFull = normalizeMetadataScanText(fullText);
 
+  // High-confidence short labelled offences (monster / OCR packs)
+  const labelledShort =
+    scan.match(/^\s*Offence\s*:\s*(Robbery)\s*$/im) ??
+    scan.match(/^\s*Offence\s*type\s*:\s*(ABH(?:\s*s\.?\s*47)?)\s*$/im) ??
+    normalizedFull.match(/^\s*Offence\s*:\s*(Robbery)\s*$/im) ??
+    normalizedFull.match(/^\s*Offence\s*type\s*:\s*(ABH(?:\s*s\.?\s*47)?)\s*$/im);
+  if (labelledShort?.[1]) {
+    return {
+      wording: formatOffenceDisplayFromBundle(labelledShort[1]),
+      source: "extracted_cover_fallback",
+    };
+  }
+
+  const offensiveWeapon = scan.match(
+    /\b((?:having\s+an\s+)?offensive\s+weapon[\s\S]{0,80}?contrary to section\s*1\s*\(\s*1\s*\)[\s\S]{0,60}?Prevention of Crime Act 1953)/i,
+  );
+  if (offensiveWeapon?.[1]) {
+    const flat = cleanLineValue(offensiveWeapon[1].replace(/\s+/g, " "));
+    if (flat) {
+      return {
+        wording: formatOffenceDisplayFromBundle(flat),
+        source: "extracted_charge_fallback",
+      };
+    }
+  }
+
   const compound =
     extractCompoundOffenceSummary(scan) ?? extractCompoundOffenceSummary(normalizedFull);
   if (compound && !isNarrativeAllegationValue(compound)) {
@@ -1272,8 +1354,8 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
   }
 
   let offenceWording =
-    extractLabeledValue(scan, ["Offence", "Offense", "Statement of offence"]) ??
-    extractInlineLabeled(scan, ["Offence", "Offense", "Statement of offence"]) ??
+    extractLabeledValue(scan, ["Offence type", "Offence", "Offense", "Statement of offence"]) ??
+    extractInlineLabeled(scan, ["Offence type", "Offence", "Offense", "Statement of offence"]) ??
     null;
 
   if (offenceWording && !isSpuriousChargeLabelValue(offenceWording) && offenceWording.length < 200) {
@@ -1370,6 +1452,22 @@ function isJunkHearingValue(raw: string | null | undefined): boolean {
   return false;
 }
 
+/** True when a slash-date sits in a DOB / birth context rather than a listing. */
+function isDobContextDate(scan: string, dateLiteral: string): boolean {
+  const idx = scan.toLowerCase().indexOf(dateLiteral.toLowerCase());
+  if (idx < 0) return false;
+  const window = scan.slice(Math.max(0, idx - 40), idx + dateLiteral.length + 10);
+  return /\b(?:DOB|date of birth|born)\b/i.test(window);
+}
+
+/** True when date is the incident/allegation date ("On 02/06/2026 at …") not a listing. */
+function isAllegationIncidentDate(scan: string, dateLiteral: string): boolean {
+  const idx = scan.toLowerCase().indexOf(dateLiteral.toLowerCase());
+  if (idx < 0) return false;
+  const before = scan.slice(Math.max(0, idx - 48), idx);
+  return /\b(?:on|at about)\s+$/i.test(before) || /\bExact allegation wording:[^\n]{0,80}$/i.test(before);
+}
+
 function extractCourt(scan: string): string | null {
   const scrubGluedCourt = (value: string): string =>
     value
@@ -1377,6 +1475,11 @@ function extractCourt(scan: string): string | null {
       .replace(/^Hearing/i, "")
       .replace(/Hearing\s*\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)[a-z]*\s+\d{4}.*$/i, "")
       .replace(/\s+\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)[a-z]*\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?\s*$/i, "")
+      // Strip judge / listing mash glued after venue (appeal transcripts)
+      .replace(
+        /\s+(?:HHJ|His Honour|Her Honour|LORD JUSTICE|LADY JUSTICE|MR JUSTICE|MRS JUSTICE|THE RECORDER)\b[\s\S]*$/i,
+        "",
+      )
       .replace(/\b(?:Next|Case|Stage|Bundle|Matter)\b.*$/i, "")
       .replace(/\bMatter ref\b.*$/i, "")
       .replace(/\bProsecution Authority\b.*$/i, "")
@@ -1405,7 +1508,9 @@ function extractCourt(scan: string): string | null {
     if (v && isPlausibleCourtValue(v)) return scrubGluedCourt(v);
   }
 
-  const crownAt = scan.match(/Crown Court at [A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)*/i);
+  const crownAt = scan.match(
+    /Crown Court at [A-Z][A-Za-z]+(?:\s+(?!HHJ\b|His\b|Her\b|LORD\b|LADY\b|MR\b|MRS\b|THE\b)[A-Z][A-Za-z]+)*/i,
+  );
   if (crownAt?.[0]) {
     const v = cleanLineValue(crownAt[0]);
     if (v && isPlausibleCourtValue(v)) return scrubGluedCourt(v);
@@ -1522,6 +1627,8 @@ function extractNextHearing(scan: string): {
   const tryHearing = (candidate: string | null | undefined): void => {
     const v = cleanExtractedHearingRaw(candidate ? cleanLineValue(candidate) : null);
     if (!v || isJunkHearingValue(v)) return;
+    if (isDobContextDate(scan, v) || isDobContextDate(hearingScan, v)) return;
+    if (isAllegationIncidentDate(scan, v) || isAllegationIncidentDate(hearingScan, v)) return;
     const vHasDate = hasUkHearingDatePattern(v);
     const vHasTime = /\d{1,2}:\d{2}/.test(v);
     if (nextHearingRaw) {
@@ -1626,6 +1733,8 @@ function extractNextHearing(scan: string): {
   if (!nextHearingRaw) {
     tryHearing(
       extractLabeledValue(hearingScan, [
+        "Next hearing/review date",
+        "Next hearing / review date",
         "Next hearing",
         "Next Hearing",
         "First Hearing",
@@ -1637,12 +1746,23 @@ function extractNextHearing(scan: string): {
         "Date of hearing",
       ]) ??
         extractInlineLabeled(hearingScan, [
+          "Next hearing/review date",
           "Next hearing",
           "Next Hearing",
           "Hearing date and time",
           "Hearing date",
         ]),
     );
+  }
+
+  // Prefer explicit review-date line even when glued without colon spacing
+  if (!nextHearingRaw) {
+    const reviewDate = hearingScan.match(
+      /\bNext hearing\/review date\s*:\s*(\d{1,2}\/\d{1,2}\/\d{2,4})\b/i,
+    );
+    if (reviewDate?.[1] && !isDobContextDate(hearingScan, reviewDate[1])) {
+      tryHearing(reviewDate[1]);
+    }
   }
 
   if (!nextHearingRaw) {
