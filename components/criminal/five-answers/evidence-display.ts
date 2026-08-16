@@ -2,9 +2,42 @@ import type { EvidenceExistence } from "@/lib/criminal/five-answers/types";
 import { displayExistenceLabel } from "@/lib/criminal/five-answers/display-labels";
 import { sanitizeSolicitorVisibleText } from "@/lib/criminal/overview-presentation";
 
+const KNOWN_EVIDENCE_FAMILY_RE =
+  /mg6|unused schedule|schedule clarification|screenshot|message pack|whatsapp|sms|subscriber|attribution|\bsim\b|bwv|body\s*worn|bodycam|body-worn|custody|pace|detention|interview|recording|phone|mobile|download|digital|extraction|cctv|stills|camera|footage|master export/i;
+
+/**
+ * OCR / pack-table mash that must not appear as solicitor-facing evidence labels.
+ * Presentation only — does not change classification.
+ */
+export function isUnusableEvidenceDisplayLabel(label: string): boolean {
+  const t = (label ?? "").replace(/\s+/g, " ").trim();
+  if (!t || t.length < 4) return true;
+  if (/\bcontinuation\s*\d+/i.test(t) || /continuation\d+/i.test(t)) return true;
+  if (/IssueCurrent|StatusCurrent|BundleStatus|FieldEntry|Issue\s*Current/i.test(t)) return true;
+  if (/[a-z]\d{1,3}[A-Z]|[a-z]{3,}\d{2,}[A-Za-z]/i.test(t)) return true;
+  if (/\b(?:page|note|list|tab|item)\s*\d{1,3}[A-Za-z]/i.test(t)) return true;
+  if (/\bThe bundle is\b/i.test(t) && /continuation|disclosure note|IssueCurrent/i.test(t)) return true;
+  // Truncated mid-clause fragments (e.g. "disclosure position before it is treated as")
+  if (
+    /\b(?:before|after|when|while|until|unless)\s+(?:it|they|this|that|he|she)\s+is\s+\w+\s+as\b/i.test(t) ||
+    /\b(?:treated|regarded|taken)\s+as\s*$/i.test(t) ||
+    /\b(?:position|note|status)\s+before\s+it\s+is\b/i.test(t) ||
+    /\bposition\s+is\s+reserved\b/i.test(t)
+  ) {
+    return true;
+  }
+  if (/\b(?:as|the|a|an|of|to|for|and|or|with|without|before|after|when)\s*$/i.test(t)) return true;
+  const digits = (t.match(/\d/g) || []).length;
+  if (digits >= 4 && t.length < 90 && !KNOWN_EVIDENCE_FAMILY_RE.test(t)) return true;
+  return false;
+}
+
 /** UI-only human labels for evidence rows — does not change classification. */
 export function humanizeEvidenceLabel(label: string, existence: EvidenceExistence): string {
-  const hay = `${label}`.toLowerCase();
+  const raw = (label ?? "").trim();
+  if (!raw) return "";
+  const hay = raw.toLowerCase();
+  const soup = isUnusableEvidenceDisplayLabel(raw);
 
   if (/mg6|unused schedule|schedule clarification/i.test(hay)) {
     if (existence === "missing" || existence === "referred_only") {
@@ -61,14 +94,18 @@ export function humanizeEvidenceLabel(label: string, existence: EvidenceExistenc
     if (existence === "served") return "CCTV served";
   }
 
-  const stripped = label
+  // Known family keywords did not map — refuse OCR mash rather than showing glued pack text.
+  if (soup) return "";
+
+  const stripped = raw
     .replace(/\s*[—–-]\s*MG6[^\s]*/gi, "")
     .replace(/^MG6C?\/[A-Z0-9]+\s*[—–-]?\s*/i, "")
     .replace(/\bunused schedule clarification\b/gi, "unused material outstanding")
     .replace(/\bmg6\s*\/\s*unused schedule clarification\b/gi, "MG6 unused material outstanding")
     .trim();
 
-  return stripped.length > 8 ? stripped : label;
+  const out = stripped.length > 8 ? stripped : raw;
+  return isUnusableEvidenceDisplayLabel(out) ? "" : out;
 }
 
 export function sanitizeProofLine(line: string): string {
@@ -107,6 +144,7 @@ export function buildGotRightPreviewItems(rows: { label: string; existence: Evid
     }
 
     const label = humanizeEvidenceLabel(row.label, row.existence);
+    if (!label) continue;
     const key = label.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
     if (!key || seen.has(key)) continue;
     seen.add(key);

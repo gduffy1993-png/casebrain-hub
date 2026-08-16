@@ -61,6 +61,7 @@ export function EvidenceTruthMapPanel({ rows }: { rows: FiveAnswersEvidenceRow[]
                 {mapRows.map((row, i) => {
                   const otherDef = isOtherDefendantRow(row);
                   const displayLabel = humanizeEvidenceLabel(row.label, row.existence);
+                  if (!displayLabel) return null;
                   return (
                     <tr
                       key={`${row.label}-${i}`}

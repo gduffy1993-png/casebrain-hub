@@ -236,14 +236,16 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
   const mainIssueText = polishPresentationLine(view.caseSaying.mainIssue, bundleHay);
   const mainIssueDistinct = !courtLineText || !solicitorLinesNearlyEqual(mainIssueText, courtLineText);
 
+  const servedDisplayLabels = dedupePresentationLines(
+    served
+      .map((r) => humanizeEvidenceLabel(r.label, r.existence))
+      .filter(Boolean),
+  ).slice(0, 2);
   const safeToSay = dedupePresentationLines(
     [
       mainIssueDistinct ? mainIssueText : "",
-      served.length
-        ? `${served
-            .slice(0, 2)
-            .map((r) => humanizeEvidenceLabel(r.label, r.existence))
-            .join("; ")} on papers (check before reliance).`
+      servedDisplayLabels.length
+        ? `${servedDisplayLabels.join("; ")} on papers (check before reliance).`
         : "Limited papers — keep the position provisional.",
     ].filter(Boolean),
   );
@@ -262,7 +264,9 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
         <OverviewSnapshotBoxes
           evidenceCounts={stateCounts}
-          topChaseLabels={topChase.map((label) => humanizeEvidenceLabel(label, "missing"))}
+          topChaseLabels={dedupePresentationLines(
+            topChase.map((label) => humanizeEvidenceLabel(label, "missing")).filter(Boolean),
+          )}
           riskFlags={riskFlags}
           canonicalFingerprint={canonicalMatter.fingerprint}
         />

@@ -109,6 +109,10 @@ export function polishChasePreviewLabel(line: string): string | null {
   const t = sanitizeSolicitorVisibleText(line.trim());
   if (!t) return null;
   if (isGenericAdditionalSourceLabel(t)) return null;
+  // Refuse OCR/pack-table mash (continuation17, IssueCurrent, glued page markers).
+  if (/\bcontinuation\s*\d+/i.test(t) || /continuation\d+/i.test(t)) return null;
+  if (/IssueCurrent|StatusCurrent|BundleStatus/i.test(t)) return null;
+  if (/[a-z]\d{1,3}[A-Z]|[a-z]{3,}\d{2,}[A-Za-z]/i.test(t)) return null;
   return t;
 }
 
