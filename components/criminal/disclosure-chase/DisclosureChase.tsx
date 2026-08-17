@@ -77,6 +77,7 @@ import {
   displayChaseItemText,
   polishPresentationLine,
 } from "@/lib/criminal/demo-presentation-polish";
+import { humanizeRemainingSnakeCaseTokens } from "@/lib/criminal/solicitor-visible-sanitization";
 import { createClient } from "@/lib/supabase/browser";
 
 const LOCAL_STORAGE_PREFIX = "casebrain:disclosure-chase:";
@@ -141,7 +142,7 @@ function statusBadgeVariant(
 
 function displayChaseWhy(text: string | null | undefined, item: DisclosureChaseItem): string {
   const display = displayChaseItemText(text, item) || text || "";
-  return display
+  const cleaned = display
     .replace(
       /^Further papers appear to be outstanding\. Confirm their relevance before fixing the hearing position\.?/i,
       "Check this source before fixing the hearing position.",
@@ -153,6 +154,7 @@ function displayChaseWhy(text: string | null | undefined, item: DisclosureChaseI
     .replace(/\s*[—–-]\s*solicitor review\.?$/i, "")
     .replace(/\s+/g, " ")
     .trim();
+  return humanizeRemainingSnakeCaseTokens(cleaned);
 }
 
 function deriveBundleHealth(
