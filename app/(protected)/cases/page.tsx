@@ -93,9 +93,10 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
     }
   >();
   const chargeOffencesByCase = new Map<string, string[]>();
+  const documentNamesByCase = new Map<string, string[]>();
 
   if (caseIds.length > 0) {
-    const [{ data: criminalRows }, { data: chargeRows }] = await Promise.all([
+    const [{ data: criminalRows }, { data: chargeRows }, { data: documentRows }] = await Promise.all([
       supabase
         .from("criminal_cases")
         .select(
@@ -104,6 +105,12 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
         .eq("org_id", orgId)
         .in("id", caseIds),
       supabase.from("criminal_charges").select("case_id, offence").eq("org_id", orgId).in("case_id", caseIds),
+      supabase
+        .from("documents")
+        .select("case_id, name, created_at")
+        .eq("org_id", orgId)
+        .in("case_id", caseIds)
+        .order("created_at", { ascending: false }),
     ]);
 
     for (const row of criminalRows ?? []) {
@@ -124,6 +131,16 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
       list.push(offence);
       chargeOffencesByCase.set(row.case_id, list);
     }
+
+    for (const row of documentRows ?? []) {
+      const name = row.name?.trim();
+      if (!name) continue;
+      const list = documentNamesByCase.get(row.case_id) ?? [];
+      if (!list.some((existing) => existing.toLowerCase() === name.toLowerCase())) {
+        list.push(name);
+      }
+      documentNamesByCase.set(row.case_id, list);
+    }
   }
 
   const mappedCases = casesRaw.map((c) => {
@@ -137,6 +154,8 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
           alleged_offence: criminal?.alleged_offence ?? null,
           offence_override: criminal?.offence_override ?? null,
           charge_offences: chargeOffencesByCase.get(c.id) ?? null,
+          document_names: documentNamesByCase.get(c.id) ?? null,
+          document_count: documentNamesByCase.get(c.id)?.length ?? 0,
         };
       });
 
@@ -173,7 +192,7 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
           <BulkArchiveCasesButton
             caseIds={cases.map((c) => c.id)}
             visibleCount={cases.length}
-            hidden={pilotMode && isPilotDemoUser(userId)}
+            hidden={pilotMode && !showInternalTools}
           />
           {process.env.NEXT_PUBLIC_ENABLE_LABS === "true" && (
           <div className="flex gap-2">
@@ -206,7 +225,7 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
                     <Link href={resolveCaseEntryHref(caseItem.id, caseItem.practice_area)} className="flex-1">
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1">
-                          <p className="text-sm font-semibold text-accent">{caseItem.title}</p>
+                          <p className="text-sm font-semibold text-accent">{caseTitleDisplay(caseItem)}</p>
                           <p className="mt-2 line-clamp-3 text-sm text-accent/60">
                             {caseSummaryDisplay(caseItem)}
                           </p>
@@ -251,21 +270,64 @@ function caseSummaryDisplay(caseItem: {
   title?: string | null;
   summary?: string | null;
   alleged_offence?: string | null;
+  offence_override?: string | null;
   defendant_name?: string | null;
+  court_name?: string | null;
+  charge_offences?: string[] | null;
+  document_names?: string[] | null;
+  document_count?: number | null;
 }): string {
   const summary = caseItem.summary?.trim() ?? "";
   if (summary && !/^awaiting summary\.?$/i.test(summary)) {
     return summary.length > 140 ? `${summary.slice(0, 137).trim()}…` : summary;
   }
-  const offence = caseItem.alleged_offence?.trim();
+  const offence =
+    caseItem.offence_override?.trim() ||
+    caseItem.charge_offences?.find((charge) => charge.trim())?.trim() ||
+    caseItem.alleged_offence?.trim();
   if (offence && !/not safely extracted|open the matter/i.test(offence)) {
     return offence.length > 140 ? `${offence.slice(0, 137).trim()}…` : offence;
+  }
+  const documentName = caseItem.document_names?.find((name) => name.trim())?.trim();
+  if (documentName) {
+    const count = caseItem.document_count ?? caseItem.document_names?.length ?? 1;
+    const prefix = count > 1 ? `${count} documents on file` : "1 document on file";
+    const cleanName = documentName.replace(/\.[a-z0-9]{2,5}$/i, "").replace(/[_-]+/g, " ").trim();
+    return `${prefix}: ${cleanName}`.slice(0, 140);
   }
   const title = caseItem.title?.trim() ?? "";
   if (title && !/^case\s*\d+$/i.test(title) && !/^awaiting/i.test(title)) {
     return title.length > 140 ? `${title.slice(0, 137).trim()}…` : title;
   }
-  return "Matter summary not on the list yet — open the case.";
+  return "Open to review charge, hearing, papers and disclosure position.";
+}
+
+function caseTitleDisplay(caseItem: {
+  title?: string | null;
+  defendant_name?: string | null;
+  alleged_offence?: string | null;
+  offence_override?: string | null;
+  charge_offences?: string[] | null;
+  document_names?: string[] | null;
+}): string {
+  const title = caseItem.title?.trim() ?? "";
+  if (title && !/^case\s*\d+$/i.test(title) && !/^awaiting/i.test(title)) {
+    return title;
+  }
+  const defendant = caseItem.defendant_name?.trim();
+  if (defendant && !/not on papers|review/i.test(defendant)) return defendant;
+  const offence =
+    caseItem.offence_override?.trim() ||
+    caseItem.charge_offences?.find((charge) => charge.trim())?.trim() ||
+    caseItem.alleged_offence?.trim();
+  if (offence && !/not safely extracted|open the matter/i.test(offence)) {
+    return offence.length > 78 ? `${offence.slice(0, 75).trim()}…` : offence;
+  }
+  const documentName = caseItem.document_names?.find((name) => name.trim())?.trim();
+  if (documentName) {
+    return documentName.replace(/\.[a-z0-9]{2,5}$/i, "").replace(/[_-]+/g, " ").trim().slice(0, 78);
+  }
+  return "Criminal matter";
 }
 
 function FilterToolbar({
