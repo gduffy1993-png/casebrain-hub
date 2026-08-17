@@ -28,6 +28,7 @@ import {
   solicitorLinesNearlyEqual,
 } from "@/lib/criminal/solicitor-display-dedupe";
 import { displayPilotStripCharge, displayPilotStripClient } from "./workflowPilotDisplay";
+import { solicitorReadyGateCopy } from "./pilotReviewCopy";
 
 export type PilotSummaryViewProps = {
   caseId: string;
@@ -275,7 +276,7 @@ export function PilotSummaryView({
             <p className={workflowSectionTitle}>Full summary workspace</p>
             <p className="text-xs text-slate-400 mt-1">
               {outputIntegrity && !outputIntegrity.deepDetailAvailable
-                ? "Full workspace unavailable until integrity checks pass."
+                ? solicitorReadyGateCopy(outputIntegrity.banner)
                 : "Agreed summary editor, solicitor buckets, and rating — expand when you need the full tools."}
             </p>
           </div>

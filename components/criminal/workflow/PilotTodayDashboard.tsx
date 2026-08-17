@@ -72,6 +72,53 @@ function BulletList({
   );
 }
 
+function cleanCourtRecordSubject(line: string): string {
+  return line
+    .replace(/^Ask the court to record that\s+/i, "")
+    .replace(/\s+appears outstanding(?: on the current papers)?/gi, " appears outstanding")
+    .replace(/\s+remains outstanding/gi, " remains outstanding")
+    .replace(/\s+and should be disclosed on a timetable\.?$/i, "")
+    .replace(/\.$/, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function CourtRecordGroup({
+  items,
+  emptyLabel,
+}: {
+  items: string[];
+  emptyLabel?: string;
+}) {
+  if (!items.length) {
+    return <p className="text-xs text-slate-500">{emptyLabel ?? "Nothing on file for this section yet."}</p>;
+  }
+  if (items.length === 1) {
+    return <BulletList items={items} emptyLabel={emptyLabel} />;
+  }
+
+  const subjects = items.map(cleanCourtRecordSubject).filter(Boolean).slice(0, 4);
+  const remaining = Math.max(0, items.length - subjects.length);
+  return (
+    <div className="space-y-1.5">
+      <p className="text-xs text-slate-300">
+        Ask the court to set a disclosure timetable for:
+      </p>
+      <ul className="list-disc pl-4 space-y-1 text-xs text-slate-300">
+        {subjects.map((item, i) => (
+          <li key={i} className="line-clamp-2">
+            {item}
+          </li>
+        ))}
+        {remaining > 0 ? <li>+ {remaining} further item{remaining === 1 ? "" : "s"}</li> : null}
+      </ul>
+      <p className="text-[11px] text-slate-500">
+        Keep the hearing position provisional until those papers are served.
+      </p>
+    </div>
+  );
+}
+
 /** Layout-only view model — values must come from existing CaseBrain brief/header data. */
 export type PilotTodayDashboardView = {
   caseSummary: {
@@ -165,7 +212,7 @@ export function PilotTodayDashboard({
           accentClass="border-emerald-700/50"
         >
           <TrustSectionChrome title="Court lines" sourceState="needs_review" />
-          <BulletList
+          <CourtRecordGroup
             items={askCourtItems}
             emptyLabel="No ask-court lines on the current brief."
           />

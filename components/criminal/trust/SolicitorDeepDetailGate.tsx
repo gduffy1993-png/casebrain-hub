@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { ShieldAlert } from "lucide-react";
 import type { SolicitorIntegrityResult } from "@/lib/criminal/solicitor-output-integrity";
 import { SOLICITOR_DEEP_UNAVAILABLE_MESSAGE } from "@/lib/criminal/solicitor-output-integrity";
+import { solicitorReadyGateCopy } from "@/components/criminal/workflow/pilotReviewCopy";
 
 /**
  * Gate for expandable / deep solicitor surfaces.
@@ -30,7 +31,7 @@ export function SolicitorDeepDetailGate({
           <p className="text-[11px] font-semibold uppercase tracking-wider">{label} unavailable</p>
         </div>
         <p className="text-xs text-slate-400 leading-relaxed">
-          {integrity.banner ?? SOLICITOR_DEEP_UNAVAILABLE_MESSAGE}
+          {solicitorReadyGateCopy(integrity.banner ?? SOLICITOR_DEEP_UNAVAILABLE_MESSAGE)}
         </p>
       </div>
     );

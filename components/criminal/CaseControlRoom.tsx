@@ -49,6 +49,7 @@ import {
 } from "@/lib/criminal/solicitor-hearing-display";
 import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 import { pilotPapersDeepScope, workflowPilotCard, workflowSectionTitle } from "./workflow/workflowUi";
+import { pilotSafetyFooterCopy, solicitorReadyGateCopy } from "./workflow/pilotReviewCopy";
 import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
@@ -1195,7 +1196,7 @@ export function CaseControlRoom({
                   </p>
                   <p className="text-xs text-slate-400 mt-1">
                     {papersDeepBlocked
-                      ? "Deep papers tools unavailable until integrity checks pass."
+                      ? solicitorReadyGateCopy(papersOutputIntegrity.banner)
                       : thickPilotBundle
                         ? "Proof map, readiness, exports, and supervisor tools — scroll inside this section."
                         : "Proof map, readiness checks, and additional control-room panels."}
@@ -1222,7 +1223,7 @@ export function CaseControlRoom({
               ) : null}
             </div>
             <p className="text-[10px] text-center text-slate-500 pb-1">
-              Evidence-linked · conditional · provisional where stated · solicitor review required
+              {pilotSafetyFooterCopy("pilot")}
             </p>
           </div>
         )}
@@ -1401,7 +1402,7 @@ export function CaseControlRoom({
         )}
 
         <p className="text-[10px] text-center text-slate-500 pb-1 mt-4">
-          Evidence-linked · conditional · provisional where stated · solicitor review required · no predictions
+          Source-linked · conditional where papers are incomplete · no predictions
         </p>
       </div>
 

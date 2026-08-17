@@ -139,6 +139,21 @@ function statusBadgeVariant(
   }
 }
 
+function displayChaseWhy(text: string | null | undefined, item: DisclosureChaseItem): string {
+  const display = displayChaseItemText(text, item) || text || "";
+  return display
+    .replace(
+      /^Further papers appear to be outstanding\. Confirm their relevance before fixing the hearing position\.?$/i,
+      "Check this source before fixing the hearing position.",
+    )
+    .replace(
+      /^Further papers appear to be outstanding\.?$/i,
+      "Check this source before fixing the hearing position.",
+    )
+    .replace(/\s*[—–-]\s*solicitor review\.?$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
 
 function deriveBundleHealth(
   snapshot: CaseSnapshot | null,
@@ -231,7 +246,7 @@ function ChaseItemCard({
   const valueClass = pilotEmbed ? "text-slate-200 font-medium" : "text-slate-800 font-medium";
 
   const displayLabel = displayChaseCardLabel(item);
-  const displayWhy = displayChaseItemText(item.whyItMatters, item);
+  const displayWhy = displayChaseWhy(item.whyItMatters, item);
   const displayDraft = displayChaseItemText(item.draftChaseWording, item);
   const displayCourt = displayChaseItemText(item.courtLine, item);
 
@@ -373,7 +388,7 @@ function DetailPanel({
   const bodyClass = pilotEmbed ? "text-sm text-slate-300" : "text-sm text-slate-800";
   const labelClass = pilotEmbed ? "text-slate-500" : "text-slate-500";
   const displayLabel = displayChaseCardLabel(item);
-  const displayWhy = displayChaseItemText(item.whyItMatters, item);
+  const displayWhy = displayChaseWhy(item.whyItMatters, item);
   const displaySource = displayChaseItemText(item.source, item);
   const displayRoute = displayChaseItemText(item.linkedRoute, item);
   const displayAnchor = displayChaseItemText(item.evidenceAnchor, item);
@@ -1060,8 +1075,8 @@ export function DisclosureChase({
 
             <p className="text-[10px] text-center text-slate-500">
               {pilotChaseActionsHidden
-                ? "Provisional · appears outstanding on file · solicitor review"
-                : "Provisional · appears outstanding on file · solicitor review · Mark chased/received stored locally only"}
+                ? "Provisional chase list · check source before sending"
+                : "Provisional chase list · check source before sending · chased/received status stored locally"}
             </p>
 
             {pilotEmbed ? (

@@ -33,6 +33,7 @@ import {
   shouldUsePilotCourtTodayAnchor,
   summarizePilotCaseFilter,
 } from "@/lib/pilot-mode";
+import { pilotSafetyFooterCopy } from "@/components/criminal/workflow/pilotReviewCopy";
 
 const SCHEDULE_BUCKETS: Exclude<HearingBucket, "no_hearing">[] = [
   "today",
@@ -565,8 +566,8 @@ export function CourtTodayClient() {
 
       <p className="text-[10px] text-center text-slate-400 pb-4">
         {pilotMode
-          ? "Evidence-linked display · conditional · solicitor review required · not legal advice"
-          : "Provisional display from existing case data · solicitor review required · not legal advice"}
+          ? pilotSafetyFooterCopy("pilot")
+          : pilotSafetyFooterCopy("saved")}
       </p>
     </div>
   );
