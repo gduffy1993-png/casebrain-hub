@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Loader2, Scale } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { workflowCard, workflowPilotShell } from "@/components/criminal/workflow/workflowUi";
@@ -10,7 +11,7 @@ import { DemoPresentationLandingRedirect } from "./DemoPresentationLandingRedire
 import { CourtTodayReviewSection } from "./CourtTodayReviewSection";
 import { CourtTodayPilotSplit } from "./CourtTodayPilotSplit";
 import { CourtTodayDiarySection } from "./CourtTodayDiarySection";
-import { resolveCourtCaseId } from "./courtCaseBrief";
+import { buildCourtCaseBrief, resolveCourtCaseId } from "./courtCaseBrief";
 import {
   buildCourtTodayBuckets,
   buildAllCasesDeskBriefs,
@@ -135,6 +136,7 @@ function StatPill({
 }
 
 export function CourtTodayClient() {
+  const searchParams = useSearchParams();
   const [rows, setRows] = useState<CourtCasesApiRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [showInternalDevTools, setShowInternalDevTools] = useState(false);
@@ -156,6 +158,7 @@ export function CourtTodayClient() {
     () => (shouldUsePilotCourtTodayAnchor(pilotUserId) ? courtTodayNow : undefined),
     [pilotUserId, courtTodayNow, showInternalDevTools],
   );
+  const requestedCaseId = searchParams.get("case")?.trim() || null;
 
   useEffect(() => {
     let cancelled = false;
@@ -239,17 +242,38 @@ export function CourtTodayClient() {
     [displayBuckets.today, displayBuckets.tomorrow],
   );
 
-  const allCaseDeskBriefs = useMemo(
-    () => buildAllCasesDeskBriefs(displayBuckets, todaySectionBriefs),
-    [displayBuckets, todaySectionBriefs],
-  );
+  const allCaseDeskBriefs = useMemo(() => {
+    const briefs = buildAllCasesDeskBriefs(displayBuckets, todaySectionBriefs);
+    if (!requestedCaseId || briefs.some((brief) => brief.caseId === requestedCaseId)) {
+      return briefs;
+    }
+    const requestedRow = rows.find((row) => resolveCourtCaseId(row) === requestedCaseId);
+    const fallbackRow: CourtCasesApiRow =
+      requestedRow ?? {
+        id: requestedCaseId,
+        title: "Selected matter",
+        offence_label: null,
+        next_hearing_date: null,
+        next_hearing_type: null,
+        strategy_recorded: false,
+        strategy_preview: null,
+        disclosure_outstanding: null,
+      };
+    return [
+      buildCourtCaseBrief(fallbackRow, enrichmentByCase.get(requestedCaseId) ?? {}, {
+        bucketNow: courtTodayBucketNow,
+      }),
+      ...briefs,
+    ];
+  }, [displayBuckets, todaySectionBriefs, requestedCaseId, rows, enrichmentByCase, courtTodayBucketNow]);
 
   const pilotDeskEligible = useMemo(
     () =>
+      Boolean(requestedCaseId) ||
       displayBuckets.today.length > 0 ||
       displayBuckets.tomorrow.length > 0 ||
       allCaseDeskBriefs.length > 0,
-    [displayBuckets.today.length, displayBuckets.tomorrow.length, allCaseDeskBriefs.length],
+    [requestedCaseId, displayBuckets.today.length, displayBuckets.tomorrow.length, allCaseDeskBriefs.length],
   );
 
   /** Background: enrich no-date matters without scanning the full historical caseload. */
@@ -345,7 +369,7 @@ export function CourtTodayClient() {
     () => scheduledMatters.reduce((sum, brief) => sum + brief.chaseItems.length, 0),
     [scheduledMatters],
   );
-  const pilotEmpty = pilotMode && !loading && rows.length === 0;
+  const pilotEmpty = pilotMode && !loading && rows.length === 0 && !requestedCaseId;
   const scheduledEmpty =
     !loading && stats.today === 0 && stats.tomorrow === 0 && stats.thisWeek === 0;
   /** Demo accounts only: no hearings scheduled — hide review counts and diary shells. */
@@ -439,7 +463,7 @@ export function CourtTodayClient() {
           <Loader2 className="h-5 w-5 animate-spin" />
           Loading matters…
         </Card>
-      ) : rows.length === 0 ? (
+      ) : rows.length === 0 && !(pilotMode && requestedCaseId) ? (
         <Card className="p-8 text-center border-slate-200 bg-white shadow-sm">
           <p className="text-base font-medium text-slate-800">No criminal matters on record yet.</p>
           <p className="text-sm text-slate-600 mt-2 max-w-md mx-auto">
