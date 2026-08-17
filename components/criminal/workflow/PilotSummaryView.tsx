@@ -53,15 +53,22 @@ function MatterBriefSectionBlock({
   bundleHay?: string;
 }) {
   const polishSummaryLine = (line: string): string =>
-    polishPresentationLine(line, bundleHay)
+    /^Ask the court to record that\b/i.test(line.trim())
+      ? `Court timetable: ${cleanCourtRecordSubject(line)}.`
+      : polishPresentationLine(line, bundleHay)
       .replace(
         /^(.+? leverage):\s*Further papers appear to be outstanding\. Confirm their relevance before fixing the hearing position\.?$/i,
         "$1: check the relevant source material before fixing the hearing position.",
       )
       .replace(
+        /^(.+?)\s*[—–-]\s*Further papers appear to be outstanding\. Confirm their relevance before fixing the hearing position\.?$/i,
+        "$1 — check source before fixing the hearing position.",
+      )
+      .replace(
         /^Further papers appear to be outstanding\. Confirm their relevance before fixing the hearing position\.?$/i,
         "Check the relevant source material before fixing the hearing position.",
-      );
+      )
+      .replace(/\brobbery id\b/gi, "robbery ID");
   const displayBullets = polishChaseBullets
     ? dedupeSolicitorLines(
         filterBundleFamilyWarnings(bullets ?? [], bundleHay)
