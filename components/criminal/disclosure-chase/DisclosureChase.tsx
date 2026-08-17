@@ -154,7 +154,7 @@ function displayChaseWhy(text: string | null | undefined, item: DisclosureChaseI
     .replace(/\s*[—–-]\s*solicitor review\.?$/i, "")
     .replace(/\s+/g, " ")
     .trim();
-  return humanizeRemainingSnakeCaseTokens(cleaned);
+  return humanizeRemainingSnakeCaseTokens(cleaned).replace(/\bnot_safely_confirmed\b/gi, "not safely confirmed");
 }
 
 function deriveBundleHealth(
@@ -265,7 +265,11 @@ function ChaseItemCard({
     assertFindingProvenanceOrLimitation({
       evidenceState: itemSourceState,
     });
-  const provenanceLine = humanizeRemainingSnakeCaseTokens(formatFindingProvenanceLine(itemProvenance));
+  const provenanceLine = humanizeRemainingSnakeCaseTokens(formatFindingProvenanceLine(itemProvenance))
+    .replace(/\bnot_safely_confirmed\b/gi, "not safely confirmed")
+    .replace(/\breferred_only\b/gi, "referred only")
+    .replace(/\bother_defendant_only\b/gi, "other defendant only")
+    .replace(/\binferred_only\b/gi, "inferred only");
   const cpsCopy = buildCopySafeResult({
     text: displayDraft || item.draftChaseWording,
     kind: "cps_chase",

@@ -195,6 +195,14 @@ export function pageProvenanceForSurface(p: FindingProvenance): {
   };
 }
 
+function humanizeVisibleProvenanceText(text: string): string {
+  return humanizeRemainingSnakeCaseTokens(text)
+    .replace(/\bnot_safely_confirmed\b/gi, "not safely confirmed")
+    .replace(/\breferred_only\b/gi, "referred only")
+    .replace(/\bother_defendant_only\b/gi, "other defendant only")
+    .replace(/\binferred_only\b/gi, "inferred only");
+}
+
 export function formatFindingProvenanceLine(p: FindingProvenance): string {
   const parts: string[] = [];
   if (p.sourceDocumentTitle) {
@@ -211,7 +219,7 @@ export function formatFindingProvenanceLine(p: FindingProvenance): string {
   if (p.defendant) parts.push(`defendant: ${p.defendant}`);
   if (p.countNumber != null) parts.push(`count ${p.countNumber}`);
   if (p.unresolvedConflictOrLimitation) {
-    parts.push(`limitation: ${humanizeRemainingSnakeCaseTokens(p.unresolvedConflictOrLimitation)}`);
+    parts.push(`limitation: ${humanizeVisibleProvenanceText(p.unresolvedConflictOrLimitation)}`);
   }
   return parts.join(" · ") || "Provenance incomplete — solicitor review required";
 }
