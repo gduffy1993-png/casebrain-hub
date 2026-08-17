@@ -282,6 +282,7 @@ function isWeakMatterTitle(raw: string | null | undefined): boolean {
   if (/^\d{1,4}$/.test(t)) return true;
   if (/^police station$/i.test(t)) return true;
   if (/^case bundle document$/i.test(t)) return true;
+  if (/^(?:statement|particulars)\s+of\s+offence$/i.test(t)) return true;
   if (/^cb\s+(?:tb|trap|monster)\b/i.test(t)) return true;
   if (/^offence\s+/i.test(t)) return true;
   if (/\bdate$/i.test(t) && t.split(/\s+/).length <= 3) return true;
@@ -292,7 +293,7 @@ function isUsefulDocumentDisplayName(raw: string | null | undefined): boolean {
   const clean = cleanDocumentDisplayName(raw);
   if (!clean) return false;
   if (/^\d{1,4}$/.test(clean)) return false;
-  if (/^(?:police station|case bundle document|bundle|document|pdf)$/i.test(clean)) return false;
+  if (/^(?:police station|case bundle document|bundle|document|pdf|statement of offence|particulars of offence)$/i.test(clean)) return false;
   return true;
 }
 
@@ -309,14 +310,14 @@ function caseSummaryDisplay(caseItem: {
   document_count?: number | null;
 }): string {
   const summary = caseItem.summary?.trim() ?? "";
-  if (summary && !/^awaiting summary\.?$/i.test(summary)) {
+  if (summary && !/^awaiting summary\.?$/i.test(summary) && !isWeakMatterTitle(summary)) {
     return summary.length > 140 ? `${summary.slice(0, 137).trim()}…` : summary;
   }
   const offence =
     caseItem.offence_override?.trim() ||
     caseItem.charge_offences?.find((charge) => charge.trim())?.trim() ||
     caseItem.alleged_offence?.trim();
-  if (offence && !/not safely extracted|open the matter/i.test(offence)) {
+  if (offence && !/not safely extracted|open the matter/i.test(offence) && !isWeakMatterTitle(offence)) {
     return offence.length > 140 ? `${offence.slice(0, 137).trim()}…` : offence;
   }
   const documentName = caseItem.document_names?.find((name) => name.trim())?.trim();
@@ -351,7 +352,7 @@ function caseTitleDisplay(caseItem: {
     caseItem.offence_override?.trim() ||
     caseItem.charge_offences?.find((charge) => charge.trim())?.trim() ||
     caseItem.alleged_offence?.trim();
-  if (offence && !/not safely extracted|open the matter/i.test(offence)) {
+  if (offence && !/not safely extracted|open the matter/i.test(offence) && !isWeakMatterTitle(offence)) {
     return offence.length > 78 ? `${offence.slice(0, 75).trim()}…` : offence;
   }
   const documentName = caseItem.document_names?.find((name) => name.trim())?.trim();
