@@ -249,8 +249,8 @@ function ChaseItemCard({
 
   const displayLabel = displayChaseCardLabel(item);
   const displayWhy = displayChaseWhy(item.whyItMatters, item);
-  const displayDraft = displayChaseItemText(item.draftChaseWording, item);
-  const displayCourt = displayChaseItemText(item.courtLine, item);
+  const displayDraft = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.draftChaseWording, item));
+  const displayCourt = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.courtLine, item));
 
   const itemSourceState = inferChaseItemSourceState({
     label: item.label,
@@ -265,7 +265,7 @@ function ChaseItemCard({
     assertFindingProvenanceOrLimitation({
       evidenceState: itemSourceState,
     });
-  const provenanceLine = formatFindingProvenanceLine(itemProvenance);
+  const provenanceLine = humanizeRemainingSnakeCaseTokens(formatFindingProvenanceLine(itemProvenance));
   const cpsCopy = buildCopySafeResult({
     text: displayDraft || item.draftChaseWording,
     kind: "cps_chase",
