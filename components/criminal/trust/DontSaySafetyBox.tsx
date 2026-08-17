@@ -12,6 +12,11 @@ function displaySafetyWarning(raw: string): string {
     .replace(/^Unsafe to say\s*[—–-]\s*/i, "")
     .replace(/^Do not state\s+"([^"]+)"\s*[—–-]\s*/i, '"$1" is not established on the papers. ')
     .replace(/^Do not state\s+/i, "Avoid stating ")
+    .replace(/^Do not say\s+"([^"]+)"\s*[—–-]\s*/i, '"$1" is not established on the papers. ')
+    .replace(/^Do not say\s+(.+?)\s+unless\s+(.+?)\.?$/i, (_m, claim: string, condition: string) => {
+      return `Avoid stating ${claim.trim()} unless ${condition.trim()}.`;
+    })
+    .replace(/^Do not say\s+/i, "Avoid stating ")
     .replace(/^Do not import\s+(.+?)\s+unless the papers support it\.?$/i, (_m, subject: string) => {
       return `No support on the papers for ${subject.trim()}. Avoid relying on it until confirmed.`;
     })

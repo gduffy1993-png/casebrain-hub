@@ -73,7 +73,7 @@ const FAMILY_DISPLAY: Record<ChaseGateFamily, string> = {
   mg6_unused: "MG6/unused material",
   phone: "phone/device material",
   forensic: "forensic material",
-  bank_financial: "bank/financial material",
+  bank_financial: "banking and financial records",
 };
 
 const PROVISIONAL_NO_FAMILIES =

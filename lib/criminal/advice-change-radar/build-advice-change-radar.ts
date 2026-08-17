@@ -228,7 +228,7 @@ function itemsFromComparison(compare: EvidenceChangeCompareResult): AdviceRadarI
         "Today tab; Five Answers court note (answer 5).",
         "the safe hearing line changed",
         "Prior Today or Overview court note until solicitor reviews new wording.",
-        "Open Today tab and review the source-backed court line before hearing.",
+        "Review the current court position and source-backed hearing note before the hearing.",
       ),
     );
   }

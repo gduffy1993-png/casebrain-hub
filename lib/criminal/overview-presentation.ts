@@ -163,13 +163,13 @@ export function overviewBlockedExamples(lines: string[], max = 2): string[] {
 }
 
 /**
- * Risk Flags pointer — keep Not Safe to Say as the detailed block; avoid repeating those lines.
+ * Risk Flags pointer — point to the guardrail block without repeating the warnings.
  */
 export function overviewRiskFlagPointers(notSafeLines: string[]): string[] {
   if (!notSafeLines.length) return [];
   const hay = notSafeLines.join(" ").toLowerCase();
   if (/attribution|mg11|witness statement|message/i.test(hay)) {
-    return ["Attribution and MG11 status need review — see Not safe to say."];
+    return ["Attribution and MG11 status need review — check the wording guardrails."];
   }
-  return ["Wording risks need review — see Not safe to say."];
+  return ["Some points are not established yet — check the wording guardrails."];
 }
