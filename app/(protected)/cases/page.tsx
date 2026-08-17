@@ -277,8 +277,26 @@ function cleanDocumentDisplayName(raw: string | null | undefined): string {
 function cleanMatterTitle(raw: string | null | undefined): string {
   return cleanDocumentDisplayName(raw)
     .replace(/\b(?:digital attribution|kitchen sink)$/i, "")
+    .replace(/^(?:statement|particulars)\s+of\s+offence\s*:\s*/i, "")
+    .replace(/^offence\s+(?=[A-Z])/i, "")
+    .replace(/,?\s*contrary\s+to\s*$/i, "")
     .replace(/\s{2,}/g, " ")
     .trim();
+}
+
+function cleanCaseCardOffenceText(raw: string | null | undefined): string {
+  let t = cleanDocumentDisplayName(raw)
+    .replace(/^(?:statement|particulars)\s+of\s+offence\s*:\s*/i, "")
+    .replace(/^offence\s+(?=[A-Z])/i, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+  if (/\bcontrary\s+to\s*$/i.test(t)) {
+    t = t.replace(/,?\s*contrary\s+to\s*$/i, "").trim();
+  }
+  if (/\bcontrary to (?:section|s\.?)\s*[\d()A-Za-z./-]+\s+of the\s*$/i.test(t)) {
+    t = t.replace(/,?\s*contrary to .*$/i, "").trim();
+  }
+  return t;
 }
 
 function isWeakMatterTitle(raw: string | null | undefined): boolean {
@@ -319,15 +337,17 @@ function caseSummaryDisplay(caseItem: {
   document_count?: number | null;
 }): string {
   const summary = caseItem.summary?.trim() ?? "";
-  if (summary && !/^awaiting summary\.?$/i.test(summary) && !isWeakMatterTitle(summary)) {
-    return summary.length > 140 ? `${summary.slice(0, 137).trim()}…` : summary;
+  const cleanSummary = cleanCaseCardOffenceText(summary);
+  if (cleanSummary && !/^awaiting summary\.?$/i.test(cleanSummary) && !isWeakMatterTitle(cleanSummary)) {
+    return cleanSummary.length > 140 ? `${cleanSummary.slice(0, 137).trim()}…` : cleanSummary;
   }
   const offence =
     caseItem.offence_override?.trim() ||
     caseItem.charge_offences?.find((charge) => charge.trim())?.trim() ||
     caseItem.alleged_offence?.trim();
-  if (offence && !/not safely extracted|open the matter/i.test(offence) && !isWeakMatterTitle(offence)) {
-    return offence.length > 140 ? `${offence.slice(0, 137).trim()}…` : offence;
+  const cleanOffence = cleanCaseCardOffenceText(offence);
+  if (cleanOffence && !/not safely extracted|open the matter/i.test(cleanOffence) && !isWeakMatterTitle(cleanOffence)) {
+    return cleanOffence.length > 140 ? `${cleanOffence.slice(0, 137).trim()}…` : cleanOffence;
   }
   const documentName = caseItem.document_names?.find((name) => name.trim())?.trim();
   if (isUsefulDocumentDisplayName(documentName)) {
@@ -362,8 +382,9 @@ function caseTitleDisplay(caseItem: {
     caseItem.offence_override?.trim() ||
     caseItem.charge_offences?.find((charge) => charge.trim())?.trim() ||
     caseItem.alleged_offence?.trim();
-  if (offence && !/not safely extracted|open the matter/i.test(offence) && !isWeakMatterTitle(offence)) {
-    return offence.length > 78 ? `${offence.slice(0, 75).trim()}…` : offence;
+  const cleanOffence = cleanCaseCardOffenceText(offence);
+  if (cleanOffence && !/not safely extracted|open the matter/i.test(cleanOffence) && !isWeakMatterTitle(cleanOffence)) {
+    return cleanOffence.length > 78 ? `${cleanOffence.slice(0, 75).trim()}…` : cleanOffence;
   }
   const documentName = caseItem.document_names?.find((name) => name.trim())?.trim();
   if (isUsefulDocumentDisplayName(documentName)) {

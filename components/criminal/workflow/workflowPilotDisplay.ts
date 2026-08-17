@@ -56,7 +56,13 @@ export function displayPilotStripClient(raw: string | null | undefined): string 
 }
 
 export function displayPilotStripCharge(raw: string | null | undefined): string {
-  const t = raw?.trim() ?? "";
+  const t = (raw ?? "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/^(?:statement|particulars)\s+of\s+offence\s*:\s*/i, "")
+    .replace(/^offence\s+(?=[A-Z])/i, "")
+    .replace(/,?\s*contrary\s+to\s*$/i, "")
+    .trim();
   if (!t || INTERNAL_CHARGE_RES.test(t)) return "";
   return t;
 }

@@ -8,6 +8,7 @@ import { overviewServedEvidenceLine } from "../components/criminal/five-answers/
 import {
   PILOT_CHARGE_NOT_IDENTIFIED_LABEL,
   PILOT_COURT_NOT_IDENTIFIED_LABEL,
+  displayPilotStripCharge,
   resolvePilotChargeDisplay,
 } from "../components/criminal/workflow/workflowPilotDisplay";
 
@@ -16,6 +17,14 @@ assert.equal(
   PILOT_CHARGE_NOT_IDENTIFIED_LABEL,
 );
 assert.equal(PILOT_COURT_NOT_IDENTIFIED_LABEL, "Court not safely identified from uploaded papers");
+assert.equal(
+  displayPilotStripCharge("Offence Possession of a controlled drug of Class A with intent to supply"),
+  "Possession of a controlled drug of Class A with intent to supply",
+);
+assert.equal(
+  displayPilotStripCharge("Statement of offence: Wounding with intent to cause grievous bodily harm, contrary to"),
+  "Wounding with intent to cause grievous bodily harm",
+);
 
 assert.equal(
   humanizeEvidenceLabel("MG6 disclosure schedule on file", "served"),
