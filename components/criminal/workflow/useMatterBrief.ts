@@ -9,6 +9,7 @@ import {
   sanitizeHeaderClient,
 } from "@/lib/criminal/resolve-case-header-metadata";
 import {
+  cleanPilotCourtHeaderCell,
   cleanPilotHeaderClient,
   pilotCaseBrainPositionStatus,
   pilotPositionDisplayLabel,
@@ -465,7 +466,9 @@ export function useMatterBrief(caseId: string) {
       chase,
       allegation,
       clientLabel,
-      courtLabel: headerMeta.court?.trim() || null,
+      courtLabel: isCriminalPilotMode()
+        ? cleanPilotCourtHeaderCell(headerMeta.court)
+        : headerMeta.court?.trim() || null,
       hearingLabel,
       hearingStatusResolved: hearingResolved,
       matterStateVm,

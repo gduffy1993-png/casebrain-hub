@@ -196,11 +196,26 @@ export function pageProvenanceForSurface(p: FindingProvenance): {
 }
 
 function humanizeVisibleProvenanceText(text: string): string {
-  return humanizeRemainingSnakeCaseTokens(text)
+  return humanizeRemainingSnakeCaseTokens(cleanCompactEvidenceAnchorText(text))
     .replace(/\bnot_safely_confirmed\b/gi, "not safely confirmed")
     .replace(/\breferred_only\b/gi, "referred only")
     .replace(/\bother_defendant_only\b/gi, "other defendant only")
     .replace(/\binferred_only\b/gi, "inferred only");
+}
+
+function cleanCompactEvidenceAnchorText(text: string): string {
+  return text
+    // Examples from OCR/PDF extraction: "MG6/05full CCTV masteroutstandingrequested".
+    .replace(/\b(MG\d+[A-Z]?(?:\([A-Z]\))?(?:\/\d+)?)(?=[a-z])/gi, "$1 — ")
+    .replace(/(\d)(?=[A-Za-z])/g, "$1 ")
+    .replace(/\b(outstanding)(?=requested|missing|served|attached)\b/gi, "$1; ")
+    .replace(/\b(requested)(?=not\s+attached|not\s+served|missing)\b/gi, "$1; ")
+    .replace(/([a-z)])(?=(?:outstanding|requested|missing|incomplete|served|attached)\b)/gi, "$1 ")
+    .replace(/\bnot\s+attached\b/gi, "not attached")
+    .replace(/\bnot\s+served\b/gi, "not served")
+    .replace(/\s*;\s*;\s*/g, "; ")
+    .replace(/\s{2,}/g, " ")
+    .trim();
 }
 
 export function formatFindingProvenanceLine(p: FindingProvenance): string {

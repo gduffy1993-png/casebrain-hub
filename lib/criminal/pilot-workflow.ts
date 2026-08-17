@@ -632,17 +632,31 @@ export function pilotDisplayMetadataNote(note: string | undefined | null): strin
 export function cleanPilotCourtHeaderCell(raw: string | null | undefined): string {
   let t = (raw ?? "").trim();
   if (!t) return "Court not safely extracted";
+
+  const labelledCourt = t.match(
+    /\bCourt\s*:?\s*([A-Z][A-Za-z'’\s-]+?(?:Crown\s+Court|Magistrates'? Court|Magistrates\s+Court|Youth\s+Court|Court))\b/i,
+  );
+  if (labelledCourt?.[1]) {
+    t = labelledCourt[1].trim();
+  }
+
   t = t
     .replace(/\.\s*Next hearing\b[\s\S]*/i, "")
     .replace(/\s+Next hearing:\s*[\s\S]*/i, "")
     .replace(/\.\s*Defendant:\s*[\s\S]*/i, "")
     .replace(/\s+Defendant:\s*[\s\S]*/i, "")
+    .replace(/^.*?\bPolice\s+station\b[\s\S]*?\bCourt\s+/i, "")
+    .replace(/^days?\s+/i, "")
     .replace(/\s+at\s+\d{1,2}:\d{2}\s+for\s+PTPH\b[\s\S]*/i, "")
     .replace(
       /\s+(?:HHJ|His Honour|Her Honour|LORD JUSTICE|LADY JUSTICE|MR JUSTICE|MRS JUSTICE|THE RECORDER)\b[\s\S]*$/i,
       "",
     )
+    .replace(/\bCrown\s+Court\s+Crown\b/gi, "Crown Court")
+    .replace(/\bCourt\s+Crown\b/gi, "Court")
+    .replace(/\s{2,}/g, " ")
     .trim();
+  if (/^(?:days?|police station)\b/i.test(t)) return "Court not safely extracted";
   return t || "Court not safely extracted";
 }
 

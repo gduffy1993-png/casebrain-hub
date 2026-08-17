@@ -265,6 +265,37 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
   );
 }
 
+function cleanDocumentDisplayName(raw: string | null | undefined): string {
+  return (raw ?? "")
+    .replace(/\.[a-z0-9]{2,5}$/i, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\bCB\s+(?:TB|TRAP|MONSTER)\s+\d+\b/gi, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+function isWeakMatterTitle(raw: string | null | undefined): boolean {
+  const t = (raw ?? "").trim();
+  if (!t) return true;
+  if (/^case\s*\d+$/i.test(t)) return true;
+  if (/^awaiting/i.test(t)) return true;
+  if (/^\d{1,4}$/.test(t)) return true;
+  if (/^police station$/i.test(t)) return true;
+  if (/^case bundle document$/i.test(t)) return true;
+  if (/^cb\s+(?:tb|trap|monster)\b/i.test(t)) return true;
+  if (/^offence\s+/i.test(t)) return true;
+  if (/\bdate$/i.test(t) && t.split(/\s+/).length <= 3) return true;
+  return false;
+}
+
+function isUsefulDocumentDisplayName(raw: string | null | undefined): boolean {
+  const clean = cleanDocumentDisplayName(raw);
+  if (!clean) return false;
+  if (/^\d{1,4}$/.test(clean)) return false;
+  if (/^(?:police station|case bundle document|bundle|document|pdf)$/i.test(clean)) return false;
+  return true;
+}
+
 /** Card line under the title — never show the raw “Awaiting summary” placeholder. */
 function caseSummaryDisplay(caseItem: {
   title?: string | null;
@@ -289,14 +320,14 @@ function caseSummaryDisplay(caseItem: {
     return offence.length > 140 ? `${offence.slice(0, 137).trim()}…` : offence;
   }
   const documentName = caseItem.document_names?.find((name) => name.trim())?.trim();
-  if (documentName) {
+  if (isUsefulDocumentDisplayName(documentName)) {
     const count = caseItem.document_count ?? caseItem.document_names?.length ?? 1;
     const prefix = count > 1 ? `${count} documents on file` : "1 document on file";
-    const cleanName = documentName.replace(/\.[a-z0-9]{2,5}$/i, "").replace(/[_-]+/g, " ").trim();
+    const cleanName = cleanDocumentDisplayName(documentName);
     return `${prefix}: ${cleanName}`.slice(0, 140);
   }
   const title = caseItem.title?.trim() ?? "";
-  if (title && !/^case\s*\d+$/i.test(title) && !/^awaiting/i.test(title)) {
+  if (!isWeakMatterTitle(title)) {
     return title.length > 140 ? `${title.slice(0, 137).trim()}…` : title;
   }
   return "Open to review charge, hearing, papers and disclosure position.";
@@ -311,7 +342,7 @@ function caseTitleDisplay(caseItem: {
   document_names?: string[] | null;
 }): string {
   const title = caseItem.title?.trim() ?? "";
-  if (title && !/^case\s*\d+$/i.test(title) && !/^awaiting/i.test(title)) {
+  if (!isWeakMatterTitle(title)) {
     return title;
   }
   const defendant = caseItem.defendant_name?.trim();
@@ -324,8 +355,8 @@ function caseTitleDisplay(caseItem: {
     return offence.length > 78 ? `${offence.slice(0, 75).trim()}…` : offence;
   }
   const documentName = caseItem.document_names?.find((name) => name.trim())?.trim();
-  if (documentName) {
-    return documentName.replace(/\.[a-z0-9]{2,5}$/i, "").replace(/[_-]+/g, " ").trim().slice(0, 78);
+  if (isUsefulDocumentDisplayName(documentName)) {
+    return cleanDocumentDisplayName(documentName).slice(0, 78);
   }
   return "Criminal matter";
 }

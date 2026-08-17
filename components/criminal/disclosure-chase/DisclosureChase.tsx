@@ -397,10 +397,10 @@ function DetailPanel({
   const displayWhy = displayChaseWhy(item.whyItMatters, item);
   const displaySource = displayChaseItemText(item.source, item);
   const displayRoute = displayChaseItemText(item.linkedRoute, item);
-  const displayAnchor = displayChaseItemText(item.evidenceAnchor, item);
-  const displayDraft = displayChaseItemText(item.draftChaseWording, item);
-  const displayCourt = displayChaseItemText(item.courtLine, item);
-  const displaySafeCourtLine = displayChaseItemText(brief.safeCourtLine, item);
+  const displayAnchor = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.evidenceAnchor, item));
+  const displayDraft = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.draftChaseWording, item));
+  const displayCourt = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.courtLine, item));
+  const displaySafeCourtLine = humanizeRemainingSnakeCaseTokens(displayChaseItemText(brief.safeCourtLine, item));
   return (
     <aside className={`${shell} sticky top-4`}>
       <header
