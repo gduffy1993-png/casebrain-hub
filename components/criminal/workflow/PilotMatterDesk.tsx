@@ -30,7 +30,7 @@ export type PilotMatterDeskProps = {
   deskChargeLine?: string | null;
 };
 
-function withSnapshotTimeout(promise: Promise<CaseSnapshot>, timeoutMs = 15000): Promise<CaseSnapshot | null> {
+function withSnapshotTimeout(promise: Promise<CaseSnapshot>, timeoutMs = 7000): Promise<CaseSnapshot | null> {
   return Promise.race([
     promise,
     new Promise<null>((resolve) => {

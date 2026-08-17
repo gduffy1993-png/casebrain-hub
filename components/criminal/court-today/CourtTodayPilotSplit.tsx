@@ -17,6 +17,14 @@ import {
 import { CourtTodayReadinessBadge } from "./CourtTodayReadinessBadge";
 import type { CourtCaseBrief } from "./types";
 
+function solicitorReviewLabel(value: string): string {
+  return value
+    .replace(/\bClient(?: name)? not safely extracted\b/gi, "Client details need review")
+    .replace(/\bOffence wording not safely extracted\b/gi, "Charge wording needs review")
+    .replace(/\bwording not safely extracted\b/gi, "Charge wording needs review")
+    .replace(/\bCourt not safely extracted\b/gi, "Court details need review");
+}
+
 function MatterListItem({
   brief,
   selected,
@@ -43,9 +51,11 @@ function MatterListItem({
               {brief.hearingTimeLabel}
             </p>
           ) : null}
-          <p className="text-sm font-semibold text-slate-100 truncate">{brief.clientLabel}</p>
-          <p className="text-xs text-slate-400 line-clamp-2 mt-0.5">{brief.allegation}</p>
-          <p className={`text-[11px] ${workflowMuted} mt-1 line-clamp-1`}>{brief.courtLabel}</p>
+          <p className="truncate text-sm font-semibold text-slate-100">{solicitorReviewLabel(brief.clientLabel)}</p>
+          <p className="mt-0.5 line-clamp-2 text-xs text-slate-400">{solicitorReviewLabel(brief.allegation)}</p>
+          <p className={`mt-1 line-clamp-1 text-[11px] ${workflowMuted}`}>
+            {solicitorReviewLabel(brief.courtLabel)}
+          </p>
         </div>
         <ChevronRight className={`h-4 w-4 shrink-0 ${selected ? "text-blue-400" : "text-slate-600"}`} />
       </div>

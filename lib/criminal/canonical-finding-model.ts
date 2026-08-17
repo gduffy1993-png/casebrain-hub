@@ -145,11 +145,11 @@ export function findingForDocumentRole(input: {
 }): CanonicalFinding {
   const earlier = input.earlier;
   const summary = earlier
-    ? `${input.operative.role} document "${input.operative.title ?? input.operative.id}" is current; earlier "${earlier.title ?? earlier.id}" (${earlier.role}) preserved alongside.`
-    : `Document role ${input.operative.role} for "${input.operative.title ?? input.operative.id}".`;
+    ? `Current document on file: "${input.operative.title ?? input.operative.id}". Earlier version also retained: "${earlier.title ?? earlier.id}". Check which version the court/prosecution is relying on.`
+    : `Current document on file: "${input.operative.title ?? input.operative.id}". Check status before relying on it.`;
   return baseFinding(
     "document_role",
-    "Document lifecycle role",
+    "Document version status",
     summary,
     {
       sourceDocumentTitle: input.operative.title,

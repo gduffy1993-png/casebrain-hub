@@ -122,6 +122,10 @@ export function polishPresentationLine(line: string, bundleHay = ""): string {
   if (!t) return t;
 
   const digitalContext = isDigitalDisclosureHay(bundleHay || t);
+  const financialContext =
+    /fraud|proceeds\s+of\s+crime|criminal\s+property|money\s+launder|poca\b|section\s+32[789]\b|bank\s+(?:account|transfer|statement)|financial\s+investigation/i.test(
+      bundleHay,
+    );
   if (digitalContext) {
     t = t.replace(
       /attribution\s*\/\s*second[-\s]?male\s*\/\s*source-material pressure/gi,
@@ -150,6 +154,12 @@ export function polishPresentationLine(line: string, bundleHay = ""): string {
       /\bunused schedule clarification\b/gi,
       "digital disclosure schedule item",
     );
+  }
+
+  if (!financialContext) {
+    t = t
+      .replace(/,\s*bank\/financial\s+material\b/gi, "")
+      .replace(/\s+and\s+bank\/financial\s+material\b/gi, "");
   }
 
   t = t

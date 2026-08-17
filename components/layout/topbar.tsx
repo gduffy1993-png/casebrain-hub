@@ -60,13 +60,13 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
 
   return (
     <header
-      className={`sticky top-0 z-20 flex h-16 items-center justify-between border-b px-6 ${
+      className={`sticky top-0 z-20 flex min-h-16 items-center justify-between gap-2 border-b px-3 py-2 sm:px-6 ${
         pilotMode
           ? "border-slate-800 bg-slate-950/95 backdrop-blur-sm text-slate-100"
           : "border-slate-200 bg-white"
       }`}
     >
-      <div className="flex flex-col min-w-0 pr-4">
+      <div className="flex min-w-0 flex-1 flex-col pr-2">
         <span
           className={`text-[11px] uppercase tracking-wide truncate ${
             pilotMode ? "text-slate-500" : "text-slate-500"
@@ -79,7 +79,7 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
         </span>
       </div>
 
-      <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+      <div className="flex min-w-0 max-w-[70vw] shrink-0 items-center justify-end gap-1 overflow-x-auto sm:max-w-[78vw] sm:gap-2 lg:gap-3">
         <GlobalSolicitorRoleSelector />
         <Button
           variant={pilotMode ? "ghost" : "secondary"}
@@ -108,10 +108,11 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
           <Button
             variant="primary"
             size="sm"
-            className="gap-2"
+            className="gap-1.5 px-2 sm:gap-2 sm:px-3"
             onClick={onQuickUpload ?? (() => router.push("/upload"))}
+            aria-label="New Upload"
           >
-            <Plus className="h-4 w-4" /> New Upload
+            <Plus className="h-4 w-4" /> <span className="hidden sm:inline">New Upload</span>
           </Button>
         )}
         <div className="flex items-center gap-1">
@@ -139,9 +140,15 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
             variant="ghost"
             size="sm"
             onClick={handleSignOut}
-            className={pilotMode ? "text-slate-300 hover:text-slate-100" : "text-slate-700 hover:text-slate-900"}
+            className={
+              pilotMode
+                ? "px-2 text-slate-300 hover:text-slate-100 sm:px-3"
+                : "px-2 text-slate-700 hover:text-slate-900 sm:px-3"
+            }
+            aria-label="Sign Out"
           >
-            Sign Out
+            <span className="hidden sm:inline">Sign Out</span>
+            <span className="sm:hidden">Out</span>
           </Button>
         </div>
       </div>
