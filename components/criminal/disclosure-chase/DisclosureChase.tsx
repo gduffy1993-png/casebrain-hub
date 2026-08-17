@@ -27,7 +27,7 @@ import {
   type DisclosureChaseItem,
 } from "./buildDisclosureChaseBrief";
 import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowShell";
-import { SourceStateBadge } from "@/components/criminal/trust/SourceStateBadge";
+import { SourceStateBadge, sourceStateBadgeLabel } from "@/components/criminal/trust/SourceStateBadge";
 import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
 import { buildCopySafeResult, inferChaseItemSourceState } from "@/lib/criminal/trust/copy-safe";
 import {
@@ -241,6 +241,8 @@ function ChaseItemCard({
     baseStatus: item.baseStatus,
     evidenceAnchor: item.evidenceAnchor,
   });
+  const sourceBadgeRepeatsStatus =
+    sourceStateBadgeLabel(itemSourceState).toLowerCase() === status.toLowerCase();
   const itemProvenance =
     item.provenance ??
     assertFindingProvenanceOrLimitation({
@@ -290,7 +292,7 @@ function ChaseItemCard({
         <Badge variant={statusBadgeVariant(status)} size="sm">
           {status}
         </Badge>
-        <SourceStateBadge state={itemSourceState} />
+        {!sourceBadgeRepeatsStatus ? <SourceStateBadge state={itemSourceState} /> : null}
       </div>
       <dl className="px-4 py-2 grid grid-cols-2 gap-x-3 gap-y-1 text-xs">
         <div>

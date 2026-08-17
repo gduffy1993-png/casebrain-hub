@@ -356,7 +356,7 @@ export function CourtTodayClient() {
 
   return (
     <div
-      className={`${pilotDashboardShell ? `${workflowPilotShell} space-y-5` : "space-y-5"} max-w-[1600px]`}
+      className={`${pilotDashboardShell ? `${workflowPilotShell} space-y-5` : "space-y-5"} w-full max-w-[1600px] overflow-x-hidden`}
       data-testid="court-today"
     >
       <DemoPresentationLandingRedirect />

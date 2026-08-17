@@ -287,11 +287,27 @@ function cleanPilotClientLabel(raw: string): string {
   const t = raw.trim();
   if (!t) return t;
   const cleaned = t
+    .replace(/\b(?:Date|Offence|Charge|Court|Hearing)\b[\s\S]*$/i, "")
     .replace(/\b(?:Primary allegation|Primary)\b.*$/i, "")
     .replace(/\b(?:sheet\s*\/\s*indictment|charge sheet|indictment)\b.*$/i, "")
+    .replace(/\b(?:presence issue|fictional|testing|demo)\b[\s\S]*$/i, "")
     .trim();
   const personLike = cleaned.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2})\b/);
-  return (personLike?.[1] ?? cleaned).trim();
+  const out = (personLike?.[1] ?? cleaned).trim();
+  return out || "Client not safely extracted";
+}
+
+function cleanPilotAllegationLabel(raw: string): string {
+  let t = raw.trim();
+  if (!t) return t;
+  t = collapseHeaderCellDuplicates(t)
+    .replace(/^Primary\s+charge:\s*/i, "Primary charge: ")
+    .replace(/^Offence\s+/i, "")
+    .replace(/\s+Current\s+hearing\b[\s\S]*$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (/\b(?:fictional|testing|demo|synthetic)\b/i.test(t)) return "Offence wording not safely extracted";
+  return t;
 }
 
 function resolvePilotAllegationFallback(caseTitle: string): string | null {
@@ -319,9 +335,13 @@ function cleanPilotCourtLabel(raw: string): string {
     .replace(/\.\s*Defendant:\s*[\s\S]*/i, "")
     .replace(/\s+Defendant:\s*[\s\S]*/i, "")
     .replace(/\s+at\s+\d{1,2}:\d{2}\s+for\s+PTPH\b[\s\S]*/i, "")
+    .replace(/\s+Current\s+hearing\b[\s\S]*/i, "")
+    .replace(/\bCrown\s+Court\s+Crown\b/i, "Crown Court")
+    .replace(/\bCourt\s+Crown\b/i, "Court")
     .trim();
 
-  return t;
+  if (/\b(?:fictional|testing|demo|synthetic)\b/i.test(t)) return "";
+  return collapseHeaderCellDuplicates(t);
 }
 
 /** Hide extraction-failure shells from Court Today — not real listed matters. */
@@ -353,10 +373,13 @@ export function buildCourtCaseBrief(
   const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
   const allegationBase = sanitizeHeaderAllegation(headerMeta.allegation);
   const clientLabel = pilotMode ? cleanPilotClientLabel(clientLabelBase) : clientLabelBase;
-  const allegation =
-    pilotMode && PILOT_BAD_ALLEGATION_RE.test(allegationBase)
-      ? resolvePilotAllegationFallback(row.title) ?? allegationBase
-      : allegationBase;
+  const allegation = pilotMode
+    ? cleanPilotAllegationLabel(
+        PILOT_BAD_ALLEGATION_RE.test(allegationBase)
+          ? resolvePilotAllegationFallback(row.title) ?? allegationBase
+          : allegationBase,
+      )
+    : allegationBase;
   const stageRaw =
     headerMeta.stage && !/^stage not recorded$/i.test(headerMeta.stage)
       ? headerMeta.stage

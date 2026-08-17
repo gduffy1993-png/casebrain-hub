@@ -91,6 +91,14 @@ function isDigitalDisclosureHay(bundleHay: string, allegation = ""): boolean {
 export function sanitizeDemoBundleBanner(text: string): string {
   return text
     .replace(
+      /FICTIONAL\s+EVALUATION\s+PDF\s*[—–-]\s*NOT\s+REAL\s+POLICE\s+MATERIAL/gi,
+      "Controlled fictional source pack — not drafting",
+    )
+    .replace(
+      /CB-[A-Z0-9-]+\s*\|\s*fictional\s+[^|\n\r]*?(?:page\s+\d+)?/gi,
+      "Controlled fictional source page",
+    )
+    .replace(
       /RESTRICTED\s*[—–-]\s*FICTIONAL\s+ADVERSARIAL\s+QA\s+BUNDLE/gi,
       "RESTRICTED — Controlled fictional demo bundle",
     )
@@ -145,6 +153,14 @@ export function polishPresentationLine(line: string, bundleHay = ""): string {
   }
 
   t = t
+    .replace(
+      /\bappears outstanding on the current (?:papers?|file)\.?\s+remains outstanding and should be disclosed on a timetable\.?/gi,
+      "appears outstanding and should be disclosed on a timetable.",
+    )
+    .replace(
+      /\bappears outstanding on the current (?:papers?|file)\.?\s+remains outstanding\b/gi,
+      "appears outstanding",
+    )
     .replace(
       /(\bremains outstanding\b(?:\s+and should be disclosed on a timetable)?)(?:\s*\1)+/gi,
       "$1",

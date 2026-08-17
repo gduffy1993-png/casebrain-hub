@@ -171,7 +171,7 @@ export function CourtTodayPilotSplit({
 
   return (
     <div
-      className="flex flex-col md:flex-row md:items-stretch gap-0 rounded-xl border border-slate-700/70 bg-slate-950/50 min-h-[min(calc(100vh-10rem),920px)] overflow-hidden"
+      className="flex w-full max-w-full flex-col-reverse md:flex-row md:items-stretch gap-0 rounded-xl border border-slate-700/70 bg-slate-950/50 min-h-[min(calc(100vh-10rem),920px)] overflow-hidden"
       data-testid="court-today-pilot-split"
     >
       <aside className="md:w-[min(300px,32%)] md:min-w-[248px] md:max-w-[320px] shrink-0 md:border-r border-slate-700/70 flex flex-col min-h-0 max-h-[42vh] md:max-h-none">

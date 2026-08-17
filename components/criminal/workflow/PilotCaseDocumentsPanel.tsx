@@ -103,7 +103,10 @@ export function PilotCaseDocumentsPanel({
             data-testid="bundle-source-excerpt"
           >
             <p className={`text-[10px] font-semibold uppercase tracking-wider ${pilotDark ? "text-slate-500" : "text-slate-500"}`}>
-              Extracted bundle text (preview)
+              Raw source extract — not drafting
+            </p>
+            <p className={`mt-1 text-[11px] ${pilotDark ? "text-slate-500" : "text-slate-500"}`}>
+              For checking the uploaded source only. Do not copy this as client, court, or CPS wording.
             </p>
             <pre
               className={`mt-2 max-h-72 overflow-auto whitespace-pre-wrap text-[11px] leading-relaxed ${

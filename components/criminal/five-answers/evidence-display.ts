@@ -17,12 +17,14 @@ export function isUnusableEvidenceDisplayLabel(label: string): boolean {
   if (/[a-z]\d{1,3}[A-Z]|[a-z]{3,}\d{2,}[A-Za-z]/i.test(t)) return true;
   if (/\b(?:page|note|list|tab|item)\s*\d{1,3}[A-Za-z]/i.test(t)) return true;
   if (/\bThe bundle is\b/i.test(t) && /continuation|disclosure note|IssueCurrent/i.test(t)) return true;
+  if (/^do\s+not\s+(?:treat|say|state|rely)\b/i.test(t)) return true;
   // Truncated mid-clause fragments (e.g. "disclosure position before it is treated as")
   if (
     /\b(?:before|after|when|while|until|unless)\s+(?:it|they|this|that|he|she)\s+is\s+\w+\s+as\b/i.test(t) ||
     /\b(?:treated|regarded|taken)\s+as\s*$/i.test(t) ||
     /\b(?:position|note|status)\s+before\s+it\s+is\b/i.test(t) ||
-    /\bposition\s+is\s+reserved\b/i.test(t)
+    /\bposition\s+is\s+reserved\b/i.test(t) ||
+    /\b(?:is|are|was|were|be|being|been|remains?|remain|appears?|appear|treated|regarded)\s*$/i.test(t)
   ) {
     return true;
   }
