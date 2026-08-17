@@ -73,6 +73,15 @@ export function sanitizePilotCourtRecordLine(line: string): string | null {
 
   if (COURT_RECORD_RE.test(t) && !/\bremains outstanding\b/i.test(t)) {
     const core = t.replace(COURT_RECORD_RE, "").trim();
+    if (/\bappears outstanding\b/i.test(core)) {
+      const cleanCore = core
+        .replace(/\.\s*and should be disclosed/gi, " and should be disclosed")
+        .replace(/\.$/, "");
+      const needsTimetable = !/\bshould be disclosed on a timetable\b/i.test(cleanCore);
+      return formatDisplayLabelCasing(
+        `Ask the court to record that ${cleanCore}${needsTimetable ? " and should be disclosed on a timetable" : ""}.`,
+      );
+    }
     // Already a clean provisional-position ask — do not append "remains outstanding…".
     if (/defence position remains provisional pending service/i.test(core)) {
       return formatDisplayLabelCasing(
