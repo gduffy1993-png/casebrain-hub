@@ -33,7 +33,7 @@ export function CaseSnapshotPanel({
 
   const defendant = clientLabel?.trim() || "Defendant not on papers";
   const offence = allegation?.trim() || "Offence not on papers";
-  const court = courtLine?.trim() || "Court not on papers";
+  const court = courtLine?.trim() || "Court not safely identified from uploaded papers";
   const hearing = hearingLine?.trim() || "Hearing date not on papers";
 
   return (

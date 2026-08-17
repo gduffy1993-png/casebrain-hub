@@ -5,6 +5,19 @@ import { sanitizeSolicitorVisibleText } from "@/lib/criminal/overview-presentati
 const KNOWN_EVIDENCE_FAMILY_RE =
   /mg6|unused schedule|schedule clarification|screenshot|message pack|whatsapp|sms|subscriber|attribution|\bsim\b|bwv|body\s*worn|bodycam|body-worn|custody|pace|detention|interview|recording|phone|mobile|download|digital|extraction|cctv|stills|camera|footage|master export/i;
 
+function isMissingLike(existence: EvidenceExistence): boolean {
+  return existence === "missing" || existence === "referred_only";
+}
+
+function isCheckBeforeReliance(existence: EvidenceExistence, hay: string): boolean {
+  return (
+    existence === "served" ||
+    existence === "incomplete" ||
+    existence === "not_safely_confirmed" ||
+    /\b(?:served|on file|on papers|recorded as given)\b/i.test(hay)
+  );
+}
+
 /**
  * OCR / pack-table mash that must not appear as solicitor-facing evidence labels.
  * Presentation only — does not change classification.
@@ -29,6 +42,9 @@ export function isUnusableEvidenceDisplayLabel(label: string): boolean {
     return true;
   }
   if (/\b(?:as|the|a|an|of|to|for|and|or|with|without|before|after|when)\s*$/i.test(t)) return true;
+  if (/^(?:against|compared with|compared to|before|after|pending)\b/i.test(t)) return true;
+  if (/[.;:]\s*[—–-]\s*check\b/i.test(t)) return true;
+  if (/\b[A-Za-z]+(?:Summary|Recorded|Current|Status|State)[A-Za-z]*\b/.test(t)) return true;
   const digits = (t.match(/\d/g) || []).length;
   if (digits >= 4 && t.length < 90 && !KNOWN_EVIDENCE_FAMILY_RE.test(t)) return true;
   return false;
@@ -42,37 +58,43 @@ export function humanizeEvidenceLabel(label: string, existence: EvidenceExistenc
   const soup = isUnusableEvidenceDisplayLabel(raw);
 
   if (/mg6|unused schedule|schedule clarification/i.test(hay)) {
-    if (existence === "missing" || existence === "referred_only") {
+    if (isMissingLike(existence)) {
       return "MG6 unused material — outstanding disclosure";
     }
-    return "MG6 disclosure schedule on file";
+    return "MG6 disclosure schedule appears on file";
   }
 
   if (/screenshot|message pack|whatsapp|sms/i.test(hay)) {
     if (existence === "served") return "Screenshot / message pack served";
-    if (existence === "missing" || existence === "referred_only") {
+    if (isMissingLike(existence)) {
       return "Screenshot / message pack outstanding";
     }
+    if (isCheckBeforeReliance(existence, hay)) return "Screenshot / message pack needs checking";
   }
 
-  if (/subscriber|attribution|sim\b/i.test(hay) && (existence === "missing" || existence === "referred_only")) {
-    return "Subscriber / attribution data outstanding";
+  if (/subscriber|attribution|sim\b/i.test(hay)) {
+    if (isMissingLike(existence)) return "Subscriber / attribution data outstanding";
+    if (isCheckBeforeReliance(existence, hay)) return "Subscriber / attribution data needs checking";
   }
 
   if (/bwv|body\s*worn|bodycam|body-worn/i.test(hay)) {
     if (existence === "referred_only") return "BWV referred to, not served";
     if (existence === "missing") return "BWV outstanding";
-    if (existence === "served") return "BWV served";
+    if (isCheckBeforeReliance(existence, hay)) return "BWV served";
+    return "BWV needs checking";
   }
 
-  if (/custody|pace|detention/i.test(hay)) {
+  if (/custody|pace|detention|rights and entitlements/i.test(hay)) {
     if (/extract|partial|mg11|schedule/i.test(hay) || existence === "referred_only") {
       return "Custody record extract only";
     }
+    if (isMissingLike(existence)) return "Custody / PACE record outstanding";
+    if (isCheckBeforeReliance(existence, hay)) return "Custody / PACE record on file";
   }
 
-  if (/interview|recording/i.test(hay) && (existence === "missing" || existence === "referred_only")) {
-    return "Interview recording outstanding";
+  if (/interview|recording/i.test(hay)) {
+    if (isMissingLike(existence)) return "Interview recording outstanding";
+    if (isCheckBeforeReliance(existence, hay)) return "Interview material on file";
   }
 
   if (/phone|mobile|download|digital|extraction/i.test(hay)) {
@@ -82,18 +104,20 @@ export function humanizeEvidenceLabel(label: string, existence: EvidenceExistenc
       }
     }
     if (existence === "served") return "Phone extraction summary on file";
-    if (existence === "missing" || existence === "referred_only") {
+    if (isMissingLike(existence)) {
       return "Full phone download outstanding";
     }
+    if (isCheckBeforeReliance(existence, hay)) return "Phone / digital material needs checking";
   }
 
   if (/cctv|stills|camera|footage|master export/i.test(hay)) {
-    if (/stills/i.test(hay) && (existence === "missing" || existence === "referred_only")) {
+    if (/stills/i.test(hay) && isMissingLike(existence)) {
       return "CCTV stills without master export log";
     }
     if (existence === "referred_only") return "CCTV referred to, not served";
     if (existence === "missing") return "CCTV outstanding";
     if (existence === "served") return "CCTV served";
+    if (isCheckBeforeReliance(existence, hay)) return "CCTV material needs checking";
   }
 
   // Known family keywords did not map — refuse OCR mash rather than showing glued pack text.

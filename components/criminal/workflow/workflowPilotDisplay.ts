@@ -11,6 +11,12 @@ const INTERNAL_CLIENT_RES =
 const INTERNAL_CHARGE_RES =
   /unless document|not safely extracted|offence wording not|add charge sheet|unknown offence|allegation not recorded/i;
 
+export const PILOT_CHARGE_NOT_IDENTIFIED_LABEL =
+  "Charge not safely identified from uploaded papers";
+
+export const PILOT_COURT_NOT_IDENTIFIED_LABEL =
+  "Court not safely identified from uploaded papers";
+
 export function isInternalPilotChargeLine(raw: string | null | undefined): boolean {
   const t = raw?.trim() ?? "";
   return !t || INTERNAL_CHARGE_RES.test(t);
@@ -28,7 +34,7 @@ export function resolvePilotChargeDisplay(
     if (guarded) return guarded;
     if (!INTERNAL_CHARGE_RES.test(t)) return t;
   }
-  return "Charge not on papers";
+  return PILOT_CHARGE_NOT_IDENTIFIED_LABEL;
 }
 
 export function displayPilotSnapshotPosition(positionStatus: string, readiness: string): string {

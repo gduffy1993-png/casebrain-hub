@@ -48,6 +48,18 @@ import {
 import { adaptFiveAnswersAndChaseToCanonical } from "@/lib/criminal/canonical-matter-state";
 import { useMemo } from "react";
 
+export function overviewServedEvidenceLine(label: string): string {
+  const clean = label.replace(/\s+/g, " ").trim().replace(/\.+$/g, "");
+  if (!clean) return "";
+  if (/\b(?:outstanding|not served|needs checking|referred to)\b/i.test(clean)) {
+    return `${clean} — do not rely on it without checking the source.`;
+  }
+  if (/\bon file\b/i.test(clean) || /\bserved\b/i.test(clean)) {
+    return `${clean} — check before relying on it.`;
+  }
+  return `${clean} appears on the papers — check before relying on it.`;
+}
+
 export function FiveAnswersView({ caseId }: { caseId: string }) {
   const {
     loading,
@@ -244,9 +256,9 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
   const safeToSay = dedupePresentationLines(
     [
       mainIssueDistinct ? mainIssueText : "",
-      servedDisplayLabels.length
-        ? `${servedDisplayLabels.join("; ")} on papers (check before reliance).`
-        : "Limited papers — keep the position provisional.",
+      ...(servedDisplayLabels.length
+        ? servedDisplayLabels.map(overviewServedEvidenceLine)
+        : ["Limited papers — keep the position provisional."]),
     ].filter(Boolean),
   );
 

@@ -185,7 +185,7 @@ export function buildHearingMode(input: BuildHearingModeInput): HearingModeModel
 
   return {
     caseInOneMinute: {
-      chargeLabel: sanitise(allegation.trim() || "Charge not on papers"),
+      chargeLabel: sanitise(allegation.trim() || "Charge not safely identified from uploaded papers"),
       offenceFamily: PROFILE_LABELS[briefPlan.profile],
       prosecutionTheory,
       mainIssue: sanitise(five.caseSaying.mainIssue),

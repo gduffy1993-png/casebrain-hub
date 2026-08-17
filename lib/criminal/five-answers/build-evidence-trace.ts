@@ -110,7 +110,7 @@ export function buildEvidenceTrace(input: BuildEvidenceTraceInput): EvidenceTrac
   rows.push({
     id: traceId("allegation", 0),
     section: "allegation",
-    claim: allegation.trim() || "Charge not on papers",
+    claim: allegation.trim() || "Charge not safely identified from uploaded papers",
     existence: allegation.trim() ? "served" : "unknown",
     reliability: allegationReliability(allegation),
     sourceAnchor: sanitizeSolicitorVisibleAnchor(chase.primaryItems[0]?.evidenceAnchor),

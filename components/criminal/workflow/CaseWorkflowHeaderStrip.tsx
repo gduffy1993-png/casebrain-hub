@@ -13,6 +13,7 @@ import { workflowCard, workflowPilotSixtyStrip } from "./workflowUi";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { cleanPilotHeaderClient, cleanPilotCourtHeaderCell, cleanPilotHearingHeaderCell } from "@/lib/criminal/pilot-workflow";
 import {
+  PILOT_COURT_NOT_IDENTIFIED_LABEL,
   displayPilotStripClient,
   displayPilotStripCourt,
   displayPilotStripHearing,
@@ -137,7 +138,7 @@ export function CaseWorkflowHeaderStrip({
             ? resolvePilotChargeDisplay(chargeClean, deskChargeLine)
             : chargeClean || "Charge not on papers",
           court: pilot
-            ? displayPilotStripCourt(courtClean) || "Court not on papers"
+            ? displayPilotStripCourt(courtClean) || PILOT_COURT_NOT_IDENTIFIED_LABEL
             : courtClean || "Court not on papers",
           hearing: pilot
             ? displayPilotStripHearing(hearingDisplay) || "Hearing not on papers"
