@@ -270,6 +270,8 @@ function cleanDocumentDisplayName(raw: string | null | undefined): string {
     .replace(/\.[a-z0-9]{2,5}$/i, "")
     .replace(/[_-]+/g, " ")
     .replace(/\bCB\s+(?:TB|TRAP|MONSTER|OCR|LEVERAGE|FRESH|CHARGE)\s+(?:\d{4}\s+)?\d+\b/gi, "")
+    .replace(/\bgauntlet\s*\d+\s*kitchen\s*sink\b/gi, "")
+    .replace(/\b(?:digital attribution|kitchen sink)$/i, "")
     .replace(/\s{2,}/g, " ")
     .trim();
 }
@@ -345,7 +347,7 @@ function caseSummaryDisplay(caseItem: {
   document_names?: string[] | null;
   document_count?: number | null;
 }): string {
-  const titleKey = normaliseCaseCardText(cleanMatterTitle(caseItem.title));
+  const titleKey = normaliseCaseCardText(caseTitleDisplay(caseItem));
   const summary = caseItem.summary?.trim() ?? "";
   const cleanSummary = cleanCaseCardOffenceText(summary);
   if (
