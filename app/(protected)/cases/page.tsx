@@ -269,14 +269,23 @@ function cleanDocumentDisplayName(raw: string | null | undefined): string {
   return (raw ?? "")
     .replace(/\.[a-z0-9]{2,5}$/i, "")
     .replace(/[_-]+/g, " ")
-    .replace(/\bCB\s+(?:TB|TRAP|MONSTER)\s+\d+\b/gi, "")
+    .replace(/\bCB\s+(?:TB|TRAP|MONSTER|OCR|LEVERAGE|FRESH|CHARGE)\s+(?:\d{4}\s+)?\d+\b/gi, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+function cleanMatterTitle(raw: string | null | undefined): string {
+  return cleanDocumentDisplayName(raw)
+    .replace(/\b(?:digital attribution|kitchen sink)$/i, "")
     .replace(/\s{2,}/g, " ")
     .trim();
 }
 
 function isWeakMatterTitle(raw: string | null | undefined): boolean {
-  const t = (raw ?? "").trim();
+  const original = (raw ?? "").trim();
+  const t = cleanMatterTitle(original);
   if (!t) return true;
+  if (/^cb\s+\w+/i.test(original) && t === original) return true;
   if (/^case\s*\d+$/i.test(t)) return true;
   if (/^awaiting/i.test(t)) return true;
   if (/^\d{1,4}$/.test(t)) return true;
@@ -329,7 +338,8 @@ function caseSummaryDisplay(caseItem: {
   }
   const title = caseItem.title?.trim() ?? "";
   if (!isWeakMatterTitle(title)) {
-    return title.length > 140 ? `${title.slice(0, 137).trim()}…` : title;
+    const cleanTitle = cleanMatterTitle(title);
+    return cleanTitle.length > 140 ? `${cleanTitle.slice(0, 137).trim()}…` : cleanTitle;
   }
   return "Open to review charge, hearing, papers and disclosure position.";
 }
@@ -342,7 +352,7 @@ function caseTitleDisplay(caseItem: {
   charge_offences?: string[] | null;
   document_names?: string[] | null;
 }): string {
-  const title = caseItem.title?.trim() ?? "";
+  const title = cleanMatterTitle(caseItem.title);
   if (!isWeakMatterTitle(title)) {
     return title;
   }
