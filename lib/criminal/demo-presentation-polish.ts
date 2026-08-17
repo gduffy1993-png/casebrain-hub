@@ -154,6 +154,14 @@ export function polishPresentationLine(line: string, bundleHay = ""): string {
 
   t = t
     .replace(
+      /\b(Identification,\s*participation\s+and\s+attribution\s+remain\s+conditional\s+on\s+served\s+CCTV,\s*interview\s+material),\s*bank\/financial\s+material\b/gi,
+      "$1",
+    )
+    .replace(
+      /\bserved\s+CCTV,\s*interview\s+material\b/gi,
+      "served CCTV and interview material",
+    )
+    .replace(
       /\bappears outstanding on the current (?:papers?|file)\.?\s+remains outstanding and should be disclosed on a timetable\.?/gi,
       "appears outstanding and should be disclosed on a timetable.",
     )

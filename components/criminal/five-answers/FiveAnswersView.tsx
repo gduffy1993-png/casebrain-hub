@@ -275,7 +275,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
         {hearingMode ? (
           <OverviewCourtPrepCard
-            courtLine={hearingMode.safeCourtLine.text}
+            courtLine={courtLineText || hearingMode.safeCourtLine.text}
             courtFooter={hearingMode.safeCourtLine.footer}
             sendabilityLabel={hearingMode.safeCourtLine.sendabilityLabel}
             topChaseLabels={topChase}
