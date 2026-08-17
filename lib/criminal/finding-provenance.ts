@@ -1,4 +1,7 @@
-import { humanizeInternalToken } from "@/lib/criminal/solicitor-visible-sanitization";
+import {
+  humanizeInternalToken,
+  humanizeRemainingSnakeCaseTokens,
+} from "@/lib/criminal/solicitor-visible-sanitization";
 
 /**
  * Mandatory provenance for important findings and chase items.
@@ -207,7 +210,9 @@ export function formatFindingProvenanceLine(p: FindingProvenance): string {
   if (p.evidenceState) parts.push(`state: ${humanizeInternalToken(p.evidenceState)}`);
   if (p.defendant) parts.push(`defendant: ${p.defendant}`);
   if (p.countNumber != null) parts.push(`count ${p.countNumber}`);
-  if (p.unresolvedConflictOrLimitation) parts.push(`limitation: ${p.unresolvedConflictOrLimitation}`);
+  if (p.unresolvedConflictOrLimitation) {
+    parts.push(`limitation: ${humanizeRemainingSnakeCaseTokens(p.unresolvedConflictOrLimitation)}`);
+  }
   return parts.join(" · ") || "Provenance incomplete — solicitor review required";
 }
 

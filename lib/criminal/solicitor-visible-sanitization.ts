@@ -260,15 +260,15 @@ export function sanitizeSolicitorProse(text: string): string {
       // Defective further-papers template → natural prose (no second "still chase" fragment)
       .replace(
         /\bFurther papers on the file appears?\b(?:\s+outstanding)?(?:\s+on\s+(?:the\s+)?(?:current\s+)?file)?(?:\s*[—–-]\s*solicitor to confirm relevance before fixing(?: the)? hearing position\.?)?(?:\s*[—–-]\s*still chase if disclosure-relevant\.?)?/gi,
-        "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position.",
+        "Check this source before fixing the hearing position.",
       )
       .replace(
         /\bFurther papers appear(?:s)? outstanding on the (?:current )?file(?:\s*[—–-]\s*solicitor to confirm relevance before fixing(?: the)? hearing position\.?)?(?:\s*[—–-]\s*still chase if disclosure-relevant\.?)?/gi,
-        "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position.",
+        "Check this source before fixing the hearing position.",
       )
       .replace(
         /(\bFurther papers appear to be outstanding\. Confirm their relevance before fixing the hearing position\.)(?:\s*[—–-]\s*still chase if disclosure-relevant\.?)/gi,
-        "$1",
+        "Check this source before fixing the hearing position.",
       )
       // BWV / footage pipe or em-dash fragments → natural prose
       .replace(

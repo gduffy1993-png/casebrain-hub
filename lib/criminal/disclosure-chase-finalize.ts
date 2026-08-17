@@ -189,7 +189,7 @@ function cleanDraftWording(label: string, mergedFrom: string[] = []): string {
 
 function sanitizeWhyItMatters(text: string, mergedCount: number): string {
   if (mergedCount > 2 || text.length > 160 || /forensic report|metadata timeline|additional bwv/i.test(text)) {
-    return "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position.";
+    return "Check this source before fixing the hearing position.";
   }
   return text;
 }

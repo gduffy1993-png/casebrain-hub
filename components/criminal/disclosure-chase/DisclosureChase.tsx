@@ -143,7 +143,7 @@ function displayChaseWhy(text: string | null | undefined, item: DisclosureChaseI
   const display = displayChaseItemText(text, item) || text || "";
   return display
     .replace(
-      /^Further papers appear to be outstanding\. Confirm their relevance before fixing the hearing position\.?$/i,
+      /^Further papers appear to be outstanding\. Confirm their relevance before fixing the hearing position\.?/i,
       "Check this source before fixing the hearing position.",
     )
     .replace(
