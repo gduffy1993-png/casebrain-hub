@@ -782,6 +782,39 @@ function extractChargeSheetAllegation(scan: string, fullText: string): string | 
   return null;
 }
 
+/**
+ * Some live police-station / upload bundles carry the charge as a plain
+ * allegation sentence rather than as a statutory "Statement of offence" line.
+ * Keep this deliberately narrow: recover only recognised offence labels from
+ * source-backed allegation wording, and leave the surrounding facts for the
+ * solicitor-facing narrative/chase panes.
+ */
+function extractPlainAllegationOffence(scan: string, fullText: string): string | null {
+  for (const src of [scan, fullText]) {
+    const normalized = normalizeMetadataScanText(src);
+
+    if (/\bis\s+alleged\s+to\s+have\s+assaulted\b/i.test(normalized)) {
+      if (/\bby\s+beating\b/i.test(normalized)) return "Assault by beating";
+      if (/\b(actual\s+bodily\s+harm|ABH)\b/i.test(normalized)) {
+        return "Assault occasioning actual bodily harm, s.47 OAPA 1861";
+      }
+      if (/\bgrievous\s+bodily\s+harm|\bGBH\b/i.test(normalized)) {
+        return "Unlawful wounding / GBH, s.20 OAPA 1861";
+      }
+    }
+
+    if (
+      /\bis\s+alleged\s+to\s+have\s+stolen\b/i.test(normalized) &&
+      /\b(?:immediately\s+before|at\s+the\s+time\s+of\s+doing\s+so)\b[\s\S]{0,180}\bused\s+force\b/i.test(
+        normalized,
+      )
+    ) {
+      return "Robbery";
+    }
+  }
+  return null;
+}
+
 /** Stop charge/allegation capture before defence position, custody, MG6, etc. */
 function trimChargeAllegationBoundary(raw: string): string {
   let t = raw.replace(/\s+/g, " ").trim();
@@ -1320,6 +1353,14 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
   if (chargeSheetAllegation) {
     return {
       wording: formatOffenceDisplayFromBundle(chargeSheetAllegation),
+      source: "extracted_charge_fallback",
+    };
+  }
+
+  const plainAllegationOffence = extractPlainAllegationOffence(scan, fullText);
+  if (plainAllegationOffence) {
+    return {
+      wording: formatOffenceDisplayFromBundle(plainAllegationOffence),
       source: "extracted_charge_fallback",
     };
   }

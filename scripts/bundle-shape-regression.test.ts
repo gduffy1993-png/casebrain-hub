@@ -297,6 +297,14 @@ Stage Plea
 `.trim();
 assert.match(extractBundleCaseMetadata(v5SlashHearingGlue).nextHearingRaw ?? "", /02\/08\/2026 14:00/i);
 
+const plainAssaultByBeating = `
+CHARGE SHEET EXTRACT
+On 01/05/2026 at River Walk, Leo Greene is alleged to have assaulted Sonia Vale by beating, namely by pushing and striking them.
+MG5 summary
+The prosecution summary remains subject to served CCTV and witness evidence.
+`.trim();
+assert.equal(extractBundleCaseMetadata(plainAssaultByBeating).offenceDisplay, "Assault by beating");
+
 assert.match(parseUkHearingDateTime("11/08/2026 10:30")?.display ?? "", /11 Aug 2026 at 10:30/i);
 
 console.log("bundle-shape-regression.test.ts: ok");
