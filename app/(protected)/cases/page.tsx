@@ -284,10 +284,16 @@ function cleanMatterTitle(raw: string | null | undefined): string {
     .trim();
 }
 
+function normaliseCaseCardText(raw: string | null | undefined): string {
+  return (raw ?? "").replace(/[^a-z0-9]+/gi, " ").trim().toLowerCase();
+}
+
 function cleanCaseCardOffenceText(raw: string | null | undefined): string {
   let t = cleanDocumentDisplayName(raw)
+    .replace(/^[A-Z][A-Za-z' -]{1,80}\s+is\s+charged\s+with\s+/i, "")
     .replace(/^(?:statement|particulars)\s+of\s+offence\s*:\s*/i, "")
     .replace(/^offence\s+(?=[A-Z])/i, "")
+    .replace(/\s*,?\s+in\s+that\b.*$/i, "")
     .replace(/\s{2,}/g, " ")
     .trim();
   if (/\bcontrary\s+to\s*$/i.test(t)) {
@@ -295,6 +301,9 @@ function cleanCaseCardOffenceText(raw: string | null | undefined): string {
   }
   if (/\bcontrary to (?:section|s\.?)\s*[\d()A-Za-z./-]+\s+of the\s*$/i.test(t)) {
     t = t.replace(/,?\s*contrary to .*$/i, "").trim();
+  }
+  if (/^[a-z]/.test(t)) {
+    t = t.charAt(0).toUpperCase() + t.slice(1);
   }
   return t;
 }
@@ -336,9 +345,15 @@ function caseSummaryDisplay(caseItem: {
   document_names?: string[] | null;
   document_count?: number | null;
 }): string {
+  const titleKey = normaliseCaseCardText(cleanMatterTitle(caseItem.title));
   const summary = caseItem.summary?.trim() ?? "";
   const cleanSummary = cleanCaseCardOffenceText(summary);
-  if (cleanSummary && !/^awaiting summary\.?$/i.test(cleanSummary) && !isWeakMatterTitle(cleanSummary)) {
+  if (
+    cleanSummary &&
+    normaliseCaseCardText(cleanSummary) !== titleKey &&
+    !/^awaiting summary\.?$/i.test(cleanSummary) &&
+    !isWeakMatterTitle(cleanSummary)
+  ) {
     return cleanSummary.length > 140 ? `${cleanSummary.slice(0, 137).trim()}…` : cleanSummary;
   }
   const offence =
@@ -346,7 +361,12 @@ function caseSummaryDisplay(caseItem: {
     caseItem.charge_offences?.find((charge) => charge.trim())?.trim() ||
     caseItem.alleged_offence?.trim();
   const cleanOffence = cleanCaseCardOffenceText(offence);
-  if (cleanOffence && !/not safely extracted|open the matter/i.test(cleanOffence) && !isWeakMatterTitle(cleanOffence)) {
+  if (
+    cleanOffence &&
+    normaliseCaseCardText(cleanOffence) !== titleKey &&
+    !/not safely extracted|open the matter/i.test(cleanOffence) &&
+    !isWeakMatterTitle(cleanOffence)
+  ) {
     return cleanOffence.length > 140 ? `${cleanOffence.slice(0, 137).trim()}…` : cleanOffence;
   }
   const documentName = caseItem.document_names?.find((name) => name.trim())?.trim();
