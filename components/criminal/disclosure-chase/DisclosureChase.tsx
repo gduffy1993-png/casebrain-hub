@@ -522,6 +522,7 @@ export function DisclosureChase({
   const [surfaceError, setSurfaceError] = useState<string | null>(null);
   const [localStatus, setLocalStatus] = useState<LocalChaseMap>({});
   const [showAdditional, setShowAdditional] = useState(false);
+  const [showLimitedLoadingFallback, setShowLimitedLoadingFallback] = useState(false);
 
   const [pilotFreshChase, setPilotFreshChase] = useState(false);
   const [pilotUploadDisabled, setPilotUploadDisabled] = useState(false);
@@ -884,6 +885,13 @@ export function DisclosureChase({
   const pilotEmbed = embedInShell;
   const loadingCardClass = pilotEmbed ? workflowPilotCard : workflowCard;
 
+  useEffect(() => {
+    setShowLimitedLoadingFallback(false);
+    if (!embedBlockingLoading) return;
+    const timer = window.setTimeout(() => setShowLimitedLoadingFallback(true), 6000);
+    return () => window.clearTimeout(timer);
+  }, [caseId, embedBlockingLoading]);
+
   const chaseBody = (
     <>
         {!pilotEmbed ? (
@@ -942,10 +950,22 @@ export function DisclosureChase({
           </p>
         )}
 
-        {embedBlockingLoading ? (
+        {embedBlockingLoading && !showLimitedLoadingFallback ? (
           <div className={`${loadingCardClass} p-8 flex items-center justify-center gap-2 ${pilotEmbed ? "text-slate-400" : "text-slate-600"}`}>
             <Loader2 className="h-5 w-5 animate-spin text-violet-700" />
             Loading disclosure chase tracker…
+          </div>
+        ) : embedBlockingLoading && showLimitedLoadingFallback ? (
+          <div className={`${loadingCardClass} p-6 text-sm ${pilotEmbed ? "text-slate-500" : "text-slate-700"}`}>
+            <p className="font-semibold text-slate-900">Disclosure chase not ready yet.</p>
+            <p className="mt-2 leading-relaxed">
+              CaseBrain is still checking the uploaded papers. Do not treat the chase list as complete until
+              this tab loads, or a solicitor has checked the Papers and File tabs.
+            </p>
+            <p className="mt-2 text-xs text-slate-500">
+              Next step: confirm served material and record any disclosure request manually if the tracker
+              remains unavailable.
+            </p>
           </div>
         ) : surfaceError && brief.items.length === 0 ? (
           <div

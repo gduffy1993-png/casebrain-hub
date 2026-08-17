@@ -1,5 +1,6 @@
 #!/usr/bin/env npx tsx
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import {
   humanizeEvidenceLabel,
   isUnusableEvidenceDisplayLabel,
@@ -46,5 +47,13 @@ assert.equal(
   "BWV served",
 );
 assert.ok(isUnusableEvidenceDisplayLabel("Rights and entitlementsRecorded as given InterviewSummary"));
+
+const overviewSource = fs.readFileSync("components/criminal/five-answers/FiveAnswersView.tsx", "utf8");
+assert.match(overviewSource, /Overview not ready yet\./);
+assert.match(overviewSource, /Do not treat this matter as reviewed until the\s+overview loads/);
+
+const chaseSource = fs.readFileSync("components/criminal/disclosure-chase/DisclosureChase.tsx", "utf8");
+assert.match(chaseSource, /Disclosure chase not ready yet\./);
+assert.match(chaseSource, /Do not treat the chase list as complete until/);
 
 console.log("live-ui-wording-regression.test.ts: PASS");

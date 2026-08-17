@@ -46,7 +46,7 @@ import {
   solicitorLinesNearlyEqual,
 } from "@/lib/criminal/solicitor-display-dedupe";
 import { adaptFiveAnswersAndChaseToCanonical } from "@/lib/criminal/canonical-matter-state";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export function overviewServedEvidenceLine(label: string): string {
   const clean = label.replace(/\s+/g, " ").trim().replace(/\.+$/g, "");
@@ -61,6 +61,7 @@ export function overviewServedEvidenceLine(label: string): string {
 }
 
 export function FiveAnswersView({ caseId }: { caseId: string }) {
+  const [showLimitedLoadingFallback, setShowLimitedLoadingFallback] = useState(false);
   const {
     loading,
     matterConfidence,
@@ -76,6 +77,13 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     evidenceRowsOverride,
   } = useMatterBrief(caseId);
   const buildTabHref = usePilotMatterTabHref();
+
+  useEffect(() => {
+    setShowLimitedLoadingFallback(false);
+    if (!loading) return;
+    const timer = window.setTimeout(() => setShowLimitedLoadingFallback(true), 6000);
+    return () => window.clearTimeout(timer);
+  }, [caseId, loading]);
   const bundleHay = useMemo(
     () =>
       [
@@ -196,11 +204,27 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     };
   }, [view, chase, bundleHay, allegation]);
 
-  if (loading && !view) {
+  if (loading && !view && !showLimitedLoadingFallback) {
     return (
       <div className={`${workflowPilotCard} p-8 flex items-center justify-center gap-2 text-slate-400`}>
         <Loader2 className="h-5 w-5 animate-spin text-blue-400" />
         <span className="text-sm">Loading case overview…</span>
+      </div>
+    );
+  }
+
+  if (loading && !view && showLimitedLoadingFallback) {
+    return (
+      <div className={`${workflowPilotCard} p-6 text-sm text-slate-500 space-y-3`}>
+        <p className="font-semibold text-slate-900">Overview not ready yet.</p>
+        <p>
+          CaseBrain is still checking the uploaded papers. Do not treat this matter as reviewed until the
+          overview loads or a solicitor checks the Papers and File tabs.
+        </p>
+        <p className="text-xs text-slate-400">
+          Next step: reopen this tab after processing, or use the source papers to record the hearing
+          position manually.
+        </p>
       </div>
     );
   }
