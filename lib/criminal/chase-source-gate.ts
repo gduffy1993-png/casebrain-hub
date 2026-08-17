@@ -34,7 +34,7 @@ const MENTION_RES: Record<ChaseGateFamily, RegExp> = {
   phone: /\bphone\b|\bmobile\b|handset|device\s+download|device\s*\/\s*login|login\s+audit|ip\s*\/\s*access|\bsim\b|\bimei\b|subscriber|phone\s+attribution|phone\s+extraction/i,
   forensic: /forensic|\bdna\b|fingerprint|\bswab\b/i,
   bank_financial:
-    /\bbank\b|banking|account\s+control|transaction|statement|poca|source.of.funds|mailbox|email\s+(?:export|source)|bookkeeper|accountant/i,
+    /\bbank(?:ing)?\b|account\s+control|account\s+ownership|transaction(?:s)?|bank\s+statements?|account\s+statements?|financial\s+records?|financial\s+statements?|poca|source.of.funds|mailbox|email\s+(?:export|source)|bookkeeper|accountant/i,
 };
 
 const NEGATION_RES: Record<ChaseGateFamily, RegExp> = {

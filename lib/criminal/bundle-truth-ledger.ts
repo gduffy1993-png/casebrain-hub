@@ -339,6 +339,9 @@ export function formatDisplayLabelCasing(line: string): string {
     .replace(/\bcctv full window\b/gi, "CCTV full window")
     .replace(/\bcctv continuity\b/gi, "CCTV Continuity")
     .replace(/\bcctv\b/g, "CCTV")
+    .replace(/\biD\b/g, "ID")
+    .replace(/\bappears outstanding on the current (?:file|papers?)\.?\s+remains outstanding\b/gi, "appears outstanding")
+    .replace(/\bappears outstanding\.?\s+remains outstanding\b/gi, "appears outstanding")
     .replace(/\binterview\s+[Rr]ecording\b/g, "Interview recording")
     .replace(/\s+/g, " ")
     .trim();

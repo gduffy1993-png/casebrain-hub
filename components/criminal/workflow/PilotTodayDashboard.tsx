@@ -210,7 +210,7 @@ export function PilotTodayDashboard({
         </CockpitCard>
 
         <CockpitCard
-          title="Don't say"
+          title="Guardrails"
           icon={<AlertTriangle className="h-3.5 w-3.5 text-rose-400" />}
           accentClass="border-rose-700/50"
         >

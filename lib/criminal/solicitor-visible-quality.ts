@@ -19,6 +19,7 @@ export const PROTECTED_SOLICITOR_ACRONYMS = [
   "DVLA",
   "CAD",
   "999",
+  "ID",
   "DNA",
   "AFIS",
   "PIN",
@@ -63,6 +64,7 @@ const ACRONYM_LOWER_RES: Array<{ re: RegExp; label: string }> = [
   { re: /\bdvla\b/, label: "DVLA" },
   { re: /\bcad\b/, label: "CAD" },
   { re: /\bcAD\b/, label: "CAD" },
+  { re: /\bid\b/, label: "ID" },
   { re: /\bdna\b/, label: "DNA" },
   { re: /\bafis\b/, label: "AFIS" },
   { re: /\bpin\b/, label: "PIN" },
@@ -70,7 +72,7 @@ const ACRONYM_LOWER_RES: Array<{ re: RegExp; label: string }> = [
 ];
 
 const PROTECTED_START_RE =
-  /^(MG\d+[A-Z]?|BWV|ABE|PACE|SFR|ANPR|CPS|CCTV|DVLA|CAD|999|Body-worn video)\b/;
+  /^(MG\d+[A-Z]?|BWV|ABE|PACE|SFR|ANPR|CPS|CCTV|DVLA|CAD|999|ID|Body-worn video)\b/;
 
 /** Restore canonical casing for protected solicitor acronyms and phrases. */
 export function preserveProtectedAcronyms(text: string): string {
@@ -85,13 +87,15 @@ export function preserveProtectedAcronyms(text: string): string {
     .replace(/\bcps\b/gi, "CPS")
     .replace(/\bcctv\b/gi, "CCTV")
     .replace(/\bdvla\b/gi, "DVLA")
-    .replace(/\bcad\b/gi, "CAD");
+    .replace(/\bcad\b/gi, "CAD")
+    .replace(/\bid\b/gi, "ID");
   out = out
     .replace(/\bdna\b/gi, "DNA")
     .replace(/\bafis\b/gi, "AFIS")
     .replace(/\bpin\b/gi, "PIN")
     .replace(/\byjs\b/gi, "YJS")
     .replace(/\bkn\s*\/\s*0*1\b/gi, "KN/01")
+    .replace(/\bid\b/gi, "ID")
     .replace(/\bcctv\b/gi, "CCTV");
   for (const { re, canon } of PROTECTED_SOLICITOR_PHRASES) {
     out = out.replace(re, canon);
