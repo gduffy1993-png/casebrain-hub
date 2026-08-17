@@ -30,6 +30,15 @@ export type PilotMatterDeskProps = {
   deskChargeLine?: string | null;
 };
 
+function withSnapshotTimeout(promise: Promise<CaseSnapshot>, timeoutMs = 15000): Promise<CaseSnapshot | null> {
+  return Promise.race([
+    promise,
+    new Promise<null>((resolve) => {
+      window.setTimeout(() => resolve(null), timeoutMs);
+    }),
+  ]);
+}
+
 /** Pic 5 right pane — full pilot tab workspace on Court Today. Brains unchanged. */
 export function PilotMatterDesk({ caseId, deskSafeCourtLine, deskChargeLine }: PilotMatterDeskProps) {
   const router = useRouter();
@@ -69,7 +78,7 @@ export function PilotMatterDesk({ caseId, deskSafeCourtLine, deskChargeLine }: P
   useEffect(() => {
     let cancelled = false;
     setSnapshotLoading(true);
-    buildCaseSnapshot(caseId)
+    withSnapshotTimeout(buildCaseSnapshot(caseId))
       .then((s) => {
         if (!cancelled) setSnapshot(s);
       })
@@ -224,7 +233,13 @@ export function PilotMatterDesk({ caseId, deskSafeCourtLine, deskChargeLine }: P
   }, [caseId, router]);
 
   const tabBody = (() => {
-    if (snapshotLoading && !snapshot) {
+    const shouldBlockForSnapshot =
+      activeTab === "today" ||
+      activeTab === "hearing-war-room" ||
+      activeTab === "papers" ||
+      activeTab === "control-room";
+
+    if (shouldBlockForSnapshot && snapshotLoading && !snapshot) {
       return (
         <div className={`${workflowPilotCard} p-8 flex items-center justify-center gap-2 text-slate-400`}>
           <Loader2 className="h-5 w-5 animate-spin text-blue-400" />
