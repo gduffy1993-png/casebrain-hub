@@ -353,6 +353,27 @@ function cleanPilotCourtLabel(raw: string): string {
   return collapseHeaderCellDuplicates(t);
 }
 
+function cleanPilotSafeCourtLine(line: string, allegation: string): string {
+  let t = collapseHeaderCellDuplicates(line.trim());
+  if (!t) return t;
+
+  const financialCharge = /\b(?:fraud|poca|proceeds|criminal\s+property|money\s+launder|bank|financial)\b/i.test(
+    allegation,
+  );
+  const identificationCase = /\b(?:cctv|interview|identification|participation|attribution)\b/i.test(t);
+  if (!financialCharge && identificationCase) {
+    t = t
+      .replace(/,\s*bank\/financial material\b/gi, "")
+      .replace(/\s+and\s+bank\/financial material\b/gi, "")
+      .replace(/\bbank\/financial material\b/gi, "served source material")
+      .replace(/\bserved CCTV,\s*interview material\b/gi, "served CCTV and interview material")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+  }
+
+  return t;
+}
+
 /** Hide extraction-failure shells from Court Today — not real listed matters. */
 export function isCourtTodayExtractionJunk(brief: CourtCaseBrief): boolean {
   if (!isCriminalPilotMode()) return false;
@@ -427,10 +448,13 @@ export function buildCourtCaseBrief(
         ? "Chase outstanding disclosure / source material — conditional on file"
         : "Review Control Room routes and confirm safe hearing line");
 
-  const safeCourtLine =
+  const safeCourtLineRaw =
     battleboard?.primary_route?.hearing_line?.trim() ||
     battleboard?.solicitor_safe_summary?.trim() ||
     "No safe hearing line generated yet — open Control Room; wording remains provisional and source-linked.";
+  const safeCourtLine = pilotMode
+    ? cleanPilotSafeCourtLine(safeCourtLineRaw, allegation)
+    : safeCourtLineRaw;
 
   const positionStatus = row.strategy_recorded
     ? row.strategy_preview?.trim() || "Position recorded"
