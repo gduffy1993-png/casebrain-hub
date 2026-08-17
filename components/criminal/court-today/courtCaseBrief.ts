@@ -301,7 +301,7 @@ function cleanPilotAllegationLabel(raw: string): string {
   let t = raw.trim();
   if (!t) return t;
   t = collapseHeaderCellDuplicates(t)
-    .replace(/^Primary\s+charge:\s*/i, "Primary charge: ")
+    .replace(/^Primary\s+charge:\s*/i, "")
     .replace(/^Offence\s+/i, "")
     .replace(/\s+Current\s+hearing\b[\s\S]*$/i, "")
     .replace(/\s+/g, " ")
@@ -327,6 +327,13 @@ function cleanPilotCourtLabel(raw: string): string {
   let t = raw.trim();
   if (!t) return t;
 
+  const courtAfterPoliceStation = t.match(
+    /\bPolice\s+station\b[\s\S]*?\bCourt\s+([A-Z][A-Za-z'’\s-]+(?:Crown\s+Court|Magistrates'? Court|Court))\b/i,
+  );
+  if (courtAfterPoliceStation?.[1]) {
+    t = courtAfterPoliceStation[1].trim();
+  }
+
   // Some sources accidentally concatenate multiple labeled fields into `court`.
   // Keep only the court name portion.
   t = t
@@ -338,8 +345,10 @@ function cleanPilotCourtLabel(raw: string): string {
     .replace(/\s+Current\s+hearing\b[\s\S]*/i, "")
     .replace(/\bCrown\s+Court\s+Crown\b/i, "Crown Court")
     .replace(/\bCourt\s+Crown\b/i, "Court")
+    .replace(/\bPORTSMOUTH\b/g, "Portsmouth")
     .trim();
 
+  if (/^(?:days?|police station)\b/i.test(t)) return "";
   if (/\b(?:fictional|testing|demo|synthetic)\b/i.test(t)) return "";
   return collapseHeaderCellDuplicates(t);
 }
