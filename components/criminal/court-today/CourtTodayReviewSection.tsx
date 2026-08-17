@@ -111,8 +111,8 @@ export function CourtTodayReviewSection({
           {!pilotMode && (
             <Card className="border-amber-500/25 bg-amber-500/5 px-4 py-3 mb-4">
               <p className="text-sm text-foreground leading-relaxed">
-                Hearing dates were not safely extracted. Review bundle or listing papers before placing
-                these matters in the diary.
+                Hearing dates have not been confirmed from the saved papers. Review the bundle or
+                listing notice before placing these matters in the diary.
               </p>
               <p className="text-xs text-muted-foreground mt-1">
                 Dates are not guessed. Use the actions below to open a sample or search by client, title,
@@ -123,8 +123,8 @@ export function CourtTodayReviewSection({
 
           {pilotMode && (
             <p className="text-xs text-slate-500 mb-3 max-w-2xl">
-              Hearing dates were not extracted from saved bundle data. Open a matter to confirm listing
-              details — dates are not guessed.
+              Hearing dates have not been confirmed from the saved bundle data. Open a matter to
+              check the listing details — dates are not guessed.
             </p>
           )}
 

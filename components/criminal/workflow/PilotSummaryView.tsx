@@ -167,7 +167,7 @@ export function PilotSummaryView({
             </div>
             <h2 className="text-base font-semibold text-slate-100 mt-1">{heading}</h2>
             <p className="text-xs text-slate-500 mt-2">
-              Client-safe explanation — provisional; solicitor review before sending.
+              Plain-English client update. Review before sending.
             </p>
           </div>
           <Button
@@ -249,7 +249,7 @@ export function PilotSummaryView({
               href={todayHref}
               className="inline-flex items-center gap-1 text-xs font-medium text-slate-400 hover:text-slate-200"
             >
-              Open Today tab
+              Review court position
               <ExternalLink className="h-3 w-3" />
             </Link>
           </div>

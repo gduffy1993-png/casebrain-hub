@@ -14,10 +14,10 @@ export function OverviewSafeWordingCard({
 
   return (
     <section className={`${workflowPilotCard} px-3 py-3 sm:px-4 space-y-2.5`} data-testid="overview-safe-wording-card">
-      <h2 className={workflowSectionTitle}>Safe wording</h2>
+      <h2 className={workflowSectionTitle}>Wording guardrails</h2>
       <div className="grid gap-2 sm:grid-cols-2">
         <div className="rounded-md border border-emerald-900/35 bg-emerald-950/15 px-3 py-2 space-y-1.5">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-300/90">Safe to say</p>
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-300/90">Grounded wording</p>
           {safeToSay.length ? (
             <ul className="space-y-1 text-xs text-slate-300 list-disc pl-4">
               {safeToSay.slice(0, 3).map((line, i) => (
@@ -27,15 +27,15 @@ export function OverviewSafeWordingCard({
               ))}
             </ul>
           ) : (
-            <p className="text-xs text-slate-400">Keep wording provisional and source-linked.</p>
+            <p className="text-xs text-slate-400">Use restrained, source-backed wording until the papers are complete.</p>
           )}
         </div>
         <div className="rounded-md border border-amber-900/40 bg-amber-950/15 px-3 py-2 space-y-1.5">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-300/90">Not safe to say</p>
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-300/90">Not established</p>
           {blocked.length ? (
             <DontSaySafetyBox items={blocked} compact />
           ) : (
-            <p className="text-xs text-slate-400">No blocked examples on this preview.</p>
+            <p className="text-xs text-slate-400">No blocked wording on this preview.</p>
           )}
         </div>
       </div>

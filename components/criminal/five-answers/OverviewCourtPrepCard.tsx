@@ -43,7 +43,7 @@ export function OverviewCourtPrepCard({
         data-testid="hearing-mode-court-line"
       >
         <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
-          Court line — {SOURCE_BACKED_COURT_NOTE_LABEL}
+          Court position — {SOURCE_BACKED_COURT_NOTE_LABEL}
         </p>
         {sendabilityLabel ? <p className="text-[11px] text-slate-500">{sendabilityLabel}</p> : null}
         <p className="text-sm text-slate-200 leading-relaxed">{courtBody}</p>
@@ -51,7 +51,7 @@ export function OverviewCourtPrepCard({
 
       {!hideChasePreview && topChaseLabels.length ? (
         <div className="space-y-1.5" data-testid="hearing-mode-top-chase">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Top chase points</p>
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Priority disclosure checks</p>
           <ol className="list-decimal pl-4 space-y-1 text-sm text-slate-300">
             {topChaseLabels.slice(0, 3).map((label, i) => (
               <li key={i}>{polishPresentationLine(label)}</li>
@@ -62,10 +62,10 @@ export function OverviewCourtPrepCard({
 
       <div className="flex flex-wrap gap-3 text-[11px]">
         <Link href={courtHref} className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300">
-          Open Court tab <ExternalLink className="h-3 w-3" />
+          Review court position <ExternalLink className="h-3 w-3" />
         </Link>
         <Link href={chaseHref} className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300">
-          CPS chase drafts <ExternalLink className="h-3 w-3" />
+          Prepare CPS chase <ExternalLink className="h-3 w-3" />
         </Link>
       </div>
     </section>

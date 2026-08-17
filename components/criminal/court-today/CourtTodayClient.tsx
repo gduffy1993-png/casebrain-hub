@@ -377,6 +377,8 @@ export function CourtTodayClient() {
 
   const pilotDashboardShell =
     pilotMode && pilotDeskEligible;
+  const allCaseListFallbackOnly =
+    Boolean(requestedCaseId) && rows.length === 0 && allCaseDeskBriefs.length === 1;
 
   return (
     <div
@@ -506,6 +508,7 @@ export function CourtTodayClient() {
           todayItems={displayBuckets.today}
           tomorrowItems={displayBuckets.tomorrow}
           allCaseItems={allCaseDeskBriefs}
+          allCaseListFallbackOnly={allCaseListFallbackOnly}
           stats={{
             today: stats.today,
             red: stats.red,

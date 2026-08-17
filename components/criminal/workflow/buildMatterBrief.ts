@@ -265,7 +265,7 @@ export function buildMatterBrief(input: {
     },
     {
       id: "client",
-      title: "Client-safe explanation",
+      title: "Client update",
       paragraph: clientParagraph,
     },
   ];

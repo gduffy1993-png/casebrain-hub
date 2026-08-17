@@ -290,7 +290,12 @@ export function filterCourtTodayCasesForPilotUser<
   if (!isCriminalPilotMode()) return cases.filter((c) => !isEvalOrStressTestCase(c));
   if (shouldShowInternalDevTools(userId)) return cases.filter((c) => !isEvalOrStressTestCase(c));
   if (isPilotDemoUser(userId)) return filterCasesForNonAdminPilot(cases);
-  return filterPilotVisibleCases(cases);
+  const visible = filterPilotVisibleCases(cases);
+  // Real non-demo pilot workspaces can contain operator-selected QA or stress PDFs.
+  // Do not make the Court Today desk look empty when the user's own uploaded
+  // matters all have evaluation-style titles. Locked demo users still use the
+  // stricter clutter filter above.
+  return visible.length > 0 ? visible : cases;
 }
 
 export function getPostLoginPath(options?: { email?: string | null }): string {

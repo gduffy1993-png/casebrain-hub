@@ -3,6 +3,26 @@
 import { ShieldAlert } from "lucide-react";
 import { SourceStateBadge } from "./SourceStateBadge";
 
+function displaySafetyWarning(raw: string): string {
+  let t = raw.trim();
+  if (!t) return t;
+
+  t = t
+    .replace(/^Not safe to say\s*[—–-]\s*/i, "")
+    .replace(/^Unsafe to say\s*[—–-]\s*/i, "")
+    .replace(/^Do not state\s+"([^"]+)"\s*[—–-]\s*/i, '"$1" is not established on the papers. ')
+    .replace(/^Do not state\s+/i, "Avoid stating ")
+    .replace(/^Do not import\s+(.+?)\s+unless the papers support it\.?$/i, (_m, subject: string) => {
+      return `No support on the papers for ${subject.trim()}. Avoid relying on it until confirmed.`;
+    })
+    .replace(/\bnot safely confirmed\b/gi, "not confirmed on the papers")
+    .replace(/\bsolicitor review required\b/gi, "check before relying")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+
+  return t.replace(/^[a-z]/, (c) => c.toUpperCase());
+}
+
 /** Safety warnings — explicitly not case facts (H3 chunk 2). */
 export function DontSaySafetyBox({
   items,
@@ -25,16 +45,16 @@ export function DontSaySafetyBox({
       <div className="flex flex-wrap items-center gap-2 mb-1.5">
         <ShieldAlert className="h-3.5 w-3.5 text-rose-400 shrink-0" />
         <p className="text-[10px] font-semibold uppercase tracking-wider text-rose-300/90">
-          Do not say / unsafe to say
+          Not established on current papers
         </p>
         <SourceStateBadge state="needs_review" />
-        <span className="text-[10px] text-rose-400/80 italic">Safety warnings — not alleged facts</span>
+        <span className="text-[10px] text-rose-400/80 italic">Use neutral wording until confirmed</span>
       </div>
       {items.length ? (
         <ul className="list-disc pl-4 space-y-1 text-xs text-rose-100/90">
           {items.map((item, i) => (
             <li key={i} className="leading-relaxed line-clamp-4">
-              {item}
+              {displaySafetyWarning(item)}
             </li>
           ))}
         </ul>

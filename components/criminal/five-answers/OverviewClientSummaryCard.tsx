@@ -28,14 +28,14 @@ export function OverviewClientSummaryCard({
           href={summaryHref}
           className="inline-flex items-center gap-1 text-[11px] text-blue-400 hover:text-blue-300 shrink-0"
         >
-          Open Client Summary <ExternalLink className="h-3 w-3" />
+          Review client update <ExternalLink className="h-3 w-3" />
         </Link>
       </div>
       <div data-testid="export-pack-section-client_summary">
         <p className="text-sm text-slate-300 leading-relaxed">
           {hasSummary
-            ? "Client-safe explanation on the Client Summary tab — provisional; solicitor review before sending."
-            : "Client-safe summary will appear once papers are processed."}
+            ? "Plain-English client update ready for solicitor review before sending."
+            : "Client update will appear once the papers are processed."}
         </p>
       </div>
     </section>

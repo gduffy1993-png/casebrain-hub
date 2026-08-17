@@ -112,11 +112,13 @@ export function CourtTodayPilotSplit({
   todayItems,
   tomorrowItems,
   allCaseItems,
+  allCaseListFallbackOnly = false,
   stats,
 }: {
   todayItems: CourtCaseBrief[];
   tomorrowItems: CourtCaseBrief[];
   allCaseItems: CourtCaseBrief[];
+  allCaseListFallbackOnly?: boolean;
   stats: {
     today: number;
     red: number;
@@ -210,7 +212,7 @@ export function CourtTodayPilotSplit({
             <>
               <div className="pt-4 pb-1 mt-2 border-t border-slate-700/60">
                 <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 px-1">
-                  All cases
+                  {allCaseListFallbackOnly ? "Selected matter" : "All cases"}
                 </p>
               </div>
               <div className="space-y-2 mt-1" data-testid="court-today-all-cases">
