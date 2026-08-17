@@ -52,17 +52,25 @@ function MatterBriefSectionBlock({
   polishChaseBullets?: boolean;
   bundleHay?: string;
 }) {
+  const polishSummaryLine = (line: string): string =>
+    polishPresentationLine(line, bundleHay)
+      .replace(
+        /^(.+? leverage):\s*Further papers appear to be outstanding\. Confirm their relevance before fixing the hearing position\.?$/i,
+        "$1: check the relevant source material before fixing the hearing position.",
+      )
+      .replace(
+        /^Further papers appear to be outstanding\. Confirm their relevance before fixing the hearing position\.?$/i,
+        "Check the relevant source material before fixing the hearing position.",
+      );
   const displayBullets = polishChaseBullets
     ? dedupeSolicitorLines(
         filterBundleFamilyWarnings(bullets ?? [], bundleHay)
-          .map((b) => polishPresentationLine(displayChaseBulletLine(b), bundleHay))
+          .map((b) => polishSummaryLine(displayChaseBulletLine(b)))
           .map((b) => polishChasePreviewLabel(b) ?? "")
           .filter(Boolean),
       )
     : dedupeSolicitorLines(
-        filterBundleFamilyWarnings(bullets ?? [], bundleHay).map((b) =>
-          polishPresentationLine(b, bundleHay),
-        ),
+        filterBundleFamilyWarnings(bullets ?? [], bundleHay).map(polishSummaryLine),
       );
   const displayParagraph = paragraph ? polishPresentationBlock(paragraph, bundleHay) : "";
   return (
@@ -81,6 +89,58 @@ function MatterBriefSectionBlock({
         </ul>
       ) : null}
     </section>
+  );
+}
+
+function cleanCourtRecordSubject(line: string): string {
+  return line
+    .replace(/^Ask the court to record that\s+/i, "")
+    .replace(/\s+appears outstanding(?: on the current papers)?/gi, " appears outstanding")
+    .replace(/\s+remains outstanding/gi, " remains outstanding")
+    .replace(/\s+and should be disclosed on a timetable\.?$/i, "")
+    .replace(/\.$/, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function formatCourtDayNote(note: string): { text?: string; lead?: string; items?: string[]; tail?: string } {
+  const lines = note
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const askLines = lines.filter((line) => /^Ask the court to record that\b/i.test(line));
+  if (askLines.length < 2) {
+    return { text: polishPresentationLine(note, "") };
+  }
+  const subjects = askLines.map(cleanCourtRecordSubject).filter(Boolean).slice(0, 4);
+  const tail = lines
+    .filter((line) => !/^Ask the court to record that\b/i.test(line))
+    .map((line) => polishPresentationLine(line, ""))
+    .join(" ");
+  return {
+    lead: "PTPH note: ask the court to set a disclosure timetable for:",
+    items: subjects,
+    tail,
+  };
+}
+
+function CourtDayNoteBlock({ note }: { note: string }) {
+  const display = formatCourtDayNote(note);
+  if (display.text) {
+    return <p className="text-xs text-slate-500">{display.text}</p>;
+  }
+  return (
+    <div className="space-y-1 text-xs text-slate-500">
+      <p>{display.lead}</p>
+      {display.items?.length ? (
+        <ul className="list-disc pl-4 space-y-0.5">
+          {display.items.map((item, i) => (
+            <li key={i}>{item}</li>
+          ))}
+        </ul>
+      ) : null}
+      {display.tail ? <p>{display.tail}</p> : null}
+    </div>
   );
 }
 
@@ -244,8 +304,8 @@ export function PilotSummaryView({
             </div>
           ) : null}
 
-          <div className={`${workflowPilotCard} px-4 py-3 flex flex-wrap items-center justify-between gap-2`}>
-            <p className="text-xs text-slate-500">{matterBrief.courtDayNote}</p>
+          <div className={`${workflowPilotCard} px-4 py-3 flex flex-wrap items-start justify-between gap-2`}>
+            <CourtDayNoteBlock note={matterBrief.courtDayNote} />
             <Link
               href={todayHref}
               className="inline-flex items-center gap-1 text-xs font-medium text-slate-400 hover:text-slate-200"
