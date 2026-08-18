@@ -63,7 +63,7 @@ function MatterListItem({
         <CourtTodayReadinessBadge readiness={brief.readiness} pilotMode />
         {brief.chaseItems.length > 0 ? (
           <Badge variant="warning" size="sm">
-            {brief.chaseItems.length} missing
+            {brief.chaseItems.length} chase
           </Badge>
         ) : null}
         {brief.positionStatus.toLowerCase().includes("not recorded") ? (
@@ -82,6 +82,7 @@ function DeskKpiRow({
   stats: {
     today: number;
     red: number;
+    chaseLabel?: string;
     missingItems: number;
     ready: number;
   };
@@ -97,7 +98,7 @@ function DeskKpiRow({
         <p className="text-lg font-semibold text-rose-400 tabular-nums mt-0.5">{stats.red}</p>
       </div>
       <div className={`${workflowPilotKpiTile} py-2 px-3 min-w-0`}>
-        <p className={workflowSectionTitle}>Active chase items</p>
+        <p className={workflowSectionTitle}>{stats.chaseLabel ?? "Active chase items"}</p>
         <p className="text-lg font-semibold text-amber-400 tabular-nums mt-0.5">{stats.missingItems}</p>
       </div>
       <div className={`${workflowPilotKpiTile} py-2 px-3 min-w-0`}>
@@ -122,6 +123,7 @@ export function CourtTodayPilotSplit({
   stats: {
     today: number;
     red: number;
+    chaseLabel?: string;
     missingItems: number;
     ready: number;
   };

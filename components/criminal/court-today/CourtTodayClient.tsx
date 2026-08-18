@@ -377,6 +377,16 @@ export function CourtTodayClient() {
     () => pilotVisibleBriefsForCounters.reduce((sum, brief) => sum + brief.chaseItems.length, 0),
     [pilotVisibleBriefsForCounters],
   );
+  const pilotChaseReviewMatterCount = useMemo(
+    () =>
+      pilotVisibleBriefsForCounters.filter(
+        (brief) => brief.chaseItems.length > 0 || brief.readiness !== "green",
+      ).length,
+    [pilotVisibleBriefsForCounters],
+  );
+  const pilotChaseKpi = pilotMissingEvidenceItems > 0
+    ? { label: "Active chase items", value: pilotMissingEvidenceItems }
+    : { label: "Chase review matters", value: pilotChaseReviewMatterCount };
   const pilotAtRiskCount = useMemo(
     () => pilotVisibleBriefsForCounters.filter((brief) => brief.readiness === "red").length,
     [pilotVisibleBriefsForCounters],
@@ -451,8 +461,8 @@ export function CourtTodayClient() {
           <StatPill label="Hearings today" value={stats.today} />
           <StatPill label="Matters at risk" value={stats.red} tone="danger" />
           <StatPill
-            label={pilotNonAdmin ? "Active chase items" : "Missing evidence"}
-            value={pilotNonAdmin ? pilotMissingEvidenceItems : stats.amber}
+            label={pilotNonAdmin ? pilotChaseKpi.label : "Missing evidence"}
+            value={pilotNonAdmin ? pilotChaseKpi.value : stats.amber}
             tone="warning"
           />
           <StatPill label="Ready for court" value={stats.ready} tone="success" />
@@ -528,7 +538,8 @@ export function CourtTodayClient() {
           stats={{
             today: stats.today,
             red: pilotAtRiskCount,
-            missingItems: pilotMissingEvidenceItems,
+            chaseLabel: pilotChaseKpi.label,
+            missingItems: pilotChaseKpi.value,
             ready: pilotReadyCount,
           }}
         />
