@@ -142,8 +142,14 @@ const forbiddenSolicitorVisibleCopy = [
   /Not established on current papers/i,
   /Client account stress-test/i,
   /Date review/i,
+  /Missing evidence items/i,
+  /Missing items/i,
+  /Full phone download outstanding/i,
   /Open to review charge, hearing, papers and disclosure position/i,
   /Criminal matter — review required/i,
+  /Confirm this item against the source before relying on it/i,
+  /co-defendant\/unknown male/i,
+  /remains outstanding\.\s*remains outstanding/i,
 ];
 
 for (const file of solicitorVisibleSources) {

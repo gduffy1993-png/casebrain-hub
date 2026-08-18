@@ -366,9 +366,24 @@ export function CourtTodayClient() {
   const pilotMode = isCriminalPilotMode();
   const pilotDemo = pilotMode && isPilotDemoUser(pilotUserId);
   const pilotNonAdmin = pilotMode && !showInternalDevTools;
+  const pilotVisibleBriefsForCounters = useMemo(() => {
+    const byId = new Map<string, CourtCaseBrief>();
+    for (const brief of [...scheduledMatters, ...allCaseDeskBriefs]) {
+      byId.set(brief.caseId, brief);
+    }
+    return [...byId.values()];
+  }, [scheduledMatters, allCaseDeskBriefs]);
   const pilotMissingEvidenceItems = useMemo(
-    () => scheduledMatters.reduce((sum, brief) => sum + brief.chaseItems.length, 0),
-    [scheduledMatters],
+    () => pilotVisibleBriefsForCounters.reduce((sum, brief) => sum + brief.chaseItems.length, 0),
+    [pilotVisibleBriefsForCounters],
+  );
+  const pilotAtRiskCount = useMemo(
+    () => pilotVisibleBriefsForCounters.filter((brief) => brief.readiness === "red").length,
+    [pilotVisibleBriefsForCounters],
+  );
+  const pilotReadyCount = useMemo(
+    () => pilotVisibleBriefsForCounters.filter((brief) => brief.readiness === "green").length,
+    [pilotVisibleBriefsForCounters],
   );
   const pilotEmpty = pilotMode && !loading && rows.length === 0 && !requestedCaseId;
   const scheduledEmpty =
@@ -436,7 +451,7 @@ export function CourtTodayClient() {
           <StatPill label="Hearings today" value={stats.today} />
           <StatPill label="Matters at risk" value={stats.red} tone="danger" />
           <StatPill
-            label={pilotNonAdmin ? "Missing evidence items" : "Missing evidence"}
+            label={pilotNonAdmin ? "Active chase items" : "Missing evidence"}
             value={pilotNonAdmin ? pilotMissingEvidenceItems : stats.amber}
             tone="warning"
           />
@@ -512,9 +527,9 @@ export function CourtTodayClient() {
           allCaseListFallbackOnly={allCaseListFallbackOnly}
           stats={{
             today: stats.today,
-            red: stats.red,
+            red: pilotAtRiskCount,
             missingItems: pilotMissingEvidenceItems,
-            ready: stats.ready,
+            ready: pilotReadyCount,
           }}
         />
       ) : (

@@ -97,7 +97,7 @@ function DeskKpiRow({
         <p className="text-lg font-semibold text-rose-400 tabular-nums mt-0.5">{stats.red}</p>
       </div>
       <div className={`${workflowPilotKpiTile} py-2 px-3 min-w-0`}>
-        <p className={workflowSectionTitle}>Missing items</p>
+        <p className={workflowSectionTitle}>Active chase items</p>
         <p className="text-lg font-semibold text-amber-400 tabular-nums mt-0.5">{stats.missingItems}</p>
       </div>
       <div className={`${workflowPilotKpiTile} py-2 px-3 min-w-0`}>

@@ -74,7 +74,7 @@ function resolveNextAction(
   const detail =
     matterConfidence?.nextBestAction?.trim() ||
     (kind === "chase_cps"
-      ? "Open Chase tab and confirm top missing items before hearing."
+      ? "Open Chase tab and confirm priority chase items before hearing."
       : kind === "blocked_until_served"
         ? "Do not rely on court line until source gaps are closed or reviewed."
         : "Review the court note from papers and Today tab before court.");

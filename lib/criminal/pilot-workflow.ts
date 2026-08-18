@@ -130,21 +130,19 @@ const PROFILE_PACKS: Record<StandardWorkflowProfile, ProfilePack> = {
       "ID procedure material",
       "999 / CAD timing material",
       "Complainant first account",
-      "Co-defendant / unknown male attribution",
       "Clothing / description material",
       "Final signed complainant statement",
     ],
     nextActions: [
       "Chase full CCTV master/export log and continuity.",
       "Chase ID procedure material and complainant first account.",
-      "Take instructions on presence, clothing, co-defendant/unknown male and served CCTV/ID material.",
+      "Take instructions on presence, clothing and served CCTV/ID material.",
     ],
     courtRecordAsks: [
       "Ask the court to record that full CCTV master/export log appears outstanding on the current papers.",
       "Ask the court to record that ID procedure material appears outstanding.",
       "Ask the court to record that 999/CAD timing material appears outstanding.",
       "Ask the court to record that complainant first account material appears outstanding.",
-      "Ask the court to record that co-defendant/unknown male attribution remains live pending served material.",
     ],
     suppressGeneric: /\b(medical|pathology|hospital|autopsy|custody record|custody cctv)\b/i,
     rankUp: [
@@ -736,7 +734,54 @@ export function pilotPositionDisplayLabel(
 export function pilotCourtChaseLabels(context: WorkflowProfileContext): string[] {
   const labels = workflowDisclosureChaseLabels(context);
   if (!labels?.length) return [];
-  return labels.slice(0, WORKFLOW_DISCLOSURE_VISIBLE_CAP);
+  return dedupeWorkflowVisibleLines(
+    labels
+      .map((label) => normalizePilotChaseItemForVisibleFallback(label, context))
+      .filter((label): label is string => Boolean(label)),
+  ).slice(0, WORKFLOW_DISCLOSURE_VISIBLE_CAP);
+}
+
+function normalizePilotChaseItemForVisibleFallback(
+  label: string,
+  context: WorkflowProfileContext,
+): string | null {
+  const profile = resolveWorkflowProfile(context);
+  let t = label.trim();
+  if (!t) return null;
+
+  t = normalizeWorkflowPilotLabel(t)
+    .replace(/\bremains outstanding\.?\s+remains outstanding\b/gi, "remains outstanding")
+    .replace(/\bappears outstanding\.?\s+appears outstanding\b/gi, "appears outstanding")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  // Other-person attribution is high-risk if invented by a profile fallback.
+  // Keep it only when a real source-derived line reaches the UI; do not create
+  // a generic chase item merely because the case family is robbery/ID.
+  if (
+    profile === "robbery_identification" &&
+    /\b(?:co-defendant|unknown male|second male|other defendant)\b/i.test(t)
+  ) {
+    return null;
+  }
+
+  if (/\binterview recording\b/i.test(t) && /\boutstanding\b/i.test(t)) {
+    return "Interview recording/transcript service status unclear";
+  }
+
+  return t;
+}
+
+function dedupeWorkflowVisibleLines(lines: string[]): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (const line of lines) {
+    const key = line.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(line);
+  }
+  return out;
 }
 
 /** Malformed battleboard anchor snippets (joined index text, summary-only stubs). */
@@ -1495,7 +1540,7 @@ export function workflowDisclosureWhyItMatters(label: string, profile: WorkflowP
       return "Complainant first account may bear on identification and participation — appears outstanding.";
     }
     if (/\bco-defendant|unknown male\b/.test(l)) {
-      return "Co-defendant/unknown male attribution may remain live — appears outstanding until served.";
+      return "Other-person attribution should only be treated as live where a served source identifies it.";
     }
     if (/\bcomplainant statement|signed complainant\b/.test(l)) {
       return "Final signed complainant statement may bear on identification — appears outstanding until served.";

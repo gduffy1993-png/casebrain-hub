@@ -105,7 +105,7 @@ export function humanizeEvidenceLabel(label: string, existence: EvidenceExistenc
     }
     if (existence === "served") return "Phone extraction summary on file";
     if (isMissingLike(existence)) {
-      return "Full phone download outstanding";
+      return "Phone download / source export referred to, not served on file";
     }
     if (isCheckBeforeReliance(existence, hay)) return "Phone / digital material needs checking";
   }

@@ -27,6 +27,7 @@ const {
   stripInternalEvalMarkers,
   isInternalEvalMarkerOnlyLine,
   workflowPrimaryRouteTitle,
+  workflowDisclosureWhyItMatters,
   pilotCourtChaseLabels,
   isMalformedPilotEvidenceAnchor,
   sanitizePilotEvidenceAnchors,
@@ -324,6 +325,24 @@ assert.equal(kianChase.length, 8);
 const leonChase = workflowDisclosureChaseLabels({ caseTitle: "R v Leon Marsh" })!;
 assert.ok(leonChase.some((l) => /complainant statement/i.test(l)));
 assert.ok(!leonChase.some((l) => /phone \/ witness/i.test(l)));
+assert.ok(
+  !leonChase.some((l) => /co-defendant|unknown male/i.test(l)),
+  "Leon fallback chase list must not invent other-person attribution",
+);
+
+const leonCourtChase = pilotCourtChaseLabels({ caseTitle: "R v Leon Marsh" });
+assert.ok(
+  !leonCourtChase.some((l) => /co-defendant|unknown male/i.test(l)),
+  "Court Today chase labels must not promote unsupported other-person attribution",
+);
+assert.ok(
+  !leonCourtChase.some((l) => /interview recording outstanding/i.test(l)),
+  "Court Today uses canonical service-state wording for interview material",
+);
+assert.equal(
+  workflowDisclosureWhyItMatters("Co-defendant / unknown male attribution", "robbery_identification"),
+  "Other-person attribution should only be treated as live where a served source identifies it.",
+);
 
 const leonCtx = { caseTitle: "R v Leon Marsh" };
 
