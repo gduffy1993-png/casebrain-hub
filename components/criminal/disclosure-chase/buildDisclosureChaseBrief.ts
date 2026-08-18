@@ -202,7 +202,7 @@ function chaseItemProvenance(input: {
     defendant: input.defendant ?? null,
     countNumber: input.countNumber ?? null,
     unresolvedConflictOrLimitation: input.evidenceAnchor
-      ? `Evidence anchor noted (${input.evidenceAnchor}); exact document title/type and compiled/source page still required`
+      ? "Source reference present; exact document title/type and page still need checking."
       : undefined,
   });
 }

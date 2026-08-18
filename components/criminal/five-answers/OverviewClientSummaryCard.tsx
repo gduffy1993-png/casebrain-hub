@@ -34,7 +34,7 @@ export function OverviewClientSummaryCard({
       <div data-testid="export-pack-section-client_summary">
         <p className="text-sm text-slate-300 leading-relaxed">
           {hasSummary
-            ? "Plain-English client update ready for solicitor review before sending."
+            ? "Client update drafted from the current papers. Review before sending."
             : "Client update will appear once the papers are processed."}
         </p>
       </div>

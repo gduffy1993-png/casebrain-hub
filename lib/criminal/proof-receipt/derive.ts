@@ -83,7 +83,7 @@ export const SAFE_ACTION_CLASSES: Record<ProofSafeAction, string> = {
 
 /** Guard copy — must not imply autonomous guidance or case outcome. */
 export const PROOF_RECEIPT_GUARD =
-  "Review aid only. Source-linked proof and evidence state — solicitor judgment required before reliance. Confirm against source material.";
+  "Review aid only. Evidence state is based on uploaded papers — solicitor judgment required before reliance. Confirm against source material.";
 
 /** h5-overview-smoke `proof_receipt_forbidden_wording` — whole panel innerText must avoid these. */
 export const PROOF_RECEIPT_SMOKE_FORBIDDEN =

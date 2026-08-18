@@ -703,7 +703,7 @@ export function pilotBundlePositionNote(context: WorkflowProfileContext): string
     case "pwits_phone_attribution":
       return "Bundle note (provisional): position conditional pending digital/BWV material.";
     case "robbery_identification":
-      return "Bundle note (provisional): not guilty in principle, subject to confirmation after full CCTV/ID material.";
+      return "Bundle note (provisional): instructions and position need confirmation after full CCTV/ID material.";
     default:
       return null;
   }
@@ -712,7 +712,7 @@ export function pilotBundlePositionNote(context: WorkflowProfileContext): string
 /** CaseBrain position tile when nothing recorded in the app. */
 export function pilotCaseBrainPositionStatus(hasRecordedPosition: boolean): string {
   if (hasRecordedPosition) return "";
-  return "CaseBrain position: not recorded";
+  return "Defence position not confirmed yet";
 }
 
 /** Position status / bundle defence line for Control Room tiles (pilot display only). */

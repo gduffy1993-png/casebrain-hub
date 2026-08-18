@@ -190,7 +190,7 @@ function buildExplanation(
     parts.push(`${breakdown.coreMissing} core disclosure item(s) (CCTV/CAD/interview/lab/medical class) outstanding or partial on served papers.`);
   }
   if (breakdown.genericProvisional) {
-    parts.push("Generic/provisional lens — no confident hearing line without solicitor review.");
+    parts.push("Provisional view — papers incomplete; do not finalise a hearing line without solicitor review.");
   }
   if (breakdown.hearingSoon) {
     parts.push("Hearing date is within two weeks — prioritise chase and instructions.");

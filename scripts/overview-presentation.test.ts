@@ -80,13 +80,13 @@ assert.deepEqual(countEvidenceStatesForDisplay(countRows), {
   notSafelyConfirmed: 0,
 });
 assert.equal(overviewBlockedExamples(["Do not say X", "Do not say X", "Do not say Y"], 2).length, 2);
-assert.equal(overviewStatusLabel("provisional").label, "Provisional — source-linked");
-assert.equal(overviewStatusLabel("needs_review").label, "Provisional — source-linked");
+assert.equal(overviewStatusLabel("provisional").label, "Provisional — check papers");
+assert.equal(overviewStatusLabel("needs_review").label, "Provisional — check papers");
 assert.deepEqual(
   overviewRiskFlagPointers([
     "Do not state the defendant sent messages unless attribution is served and safe.",
   ]),
-  ["Attribution and MG11 status need review — see Not safe to say."],
+  ["Attribution and MG11 status need review — check the wording guardrails."],
 );
 
 console.log("overview-presentation.test.ts: PASS");

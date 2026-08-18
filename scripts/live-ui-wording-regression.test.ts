@@ -56,4 +56,54 @@ const chaseSource = fs.readFileSync("components/criminal/disclosure-chase/Disclo
 assert.match(chaseSource, /Disclosure chase not ready yet\./);
 assert.match(chaseSource, /Do not treat the chase list as complete until/);
 
+const solicitorVisibleSources = [
+  "components/criminal/workflow/pilotReviewCopy.ts",
+  "components/criminal/trust/TrustFeedbackPanel.tsx",
+  "components/criminal/trust/DontSaySafetyBox.tsx",
+  "components/criminal/five-answers/OverviewSafeWordingCard.tsx",
+  "components/criminal/five-answers/OverviewEvidenceGapsCard.tsx",
+  "components/criminal/five-answers/EvidenceTruthMapPanel.tsx",
+  "components/criminal/five-answers/OverviewClientSummaryCard.tsx",
+  "components/criminal/disclosure-chase/DisclosureChase.tsx",
+  "components/criminal/disclosure-chase/buildDisclosureChaseBrief.ts",
+  "components/criminal/court-today/courtCaseBrief.ts",
+  "components/criminal/CaseControlRoom.tsx",
+  "components/criminal/workflow/PilotSummaryView.tsx",
+  "components/criminal/hearing-war-room/buildHearingWarRoomBrief.ts",
+  "lib/criminal/brief-plan/build-brief-plan.ts",
+  "lib/criminal/decision-board/build-decision-board.ts",
+  "lib/criminal/disclosure-chase-finalize.ts",
+  "lib/criminal/overview-presentation.ts",
+  "lib/criminal/matter-confidence/build-matter-confidence.ts",
+  "lib/criminal/pre-hearing-readiness/build-pre-hearing-readiness.ts",
+  "lib/criminal/proof-receipt/derive.ts",
+  "lib/criminal/solicitor-visible-sanitization.ts",
+  "lib/criminal/pilot-workflow.ts",
+];
+
+const forbiddenSolicitorVisibleCopy = [
+  /Source-linked/i,
+  /Provisional\s+—\s+source-linked/i,
+  /Grounded wording/i,
+  /Generic\/provisional lens/i,
+  /Evidence anchor noted/i,
+  /Mark this output/i,
+  /product review only/i,
+  /No additional gaps shown here/i,
+  /Check this source before fixing the hearing position/i,
+  /CaseBrain position: not recorded/i,
+  /not guilty in principle/i,
+  /Collapse risks on file/i,
+  /Plain-English client update/i,
+  /Use neutral wording until confirmed/i,
+  /is not established on the papers/i,
+];
+
+for (const file of solicitorVisibleSources) {
+  const source = fs.readFileSync(file, "utf8");
+  for (const pattern of forbiddenSolicitorVisibleCopy) {
+    assert.doesNotMatch(source, pattern, `${file} must not contain ${pattern}`);
+  }
+}
+
 console.log("live-ui-wording-regression.test.ts: PASS");

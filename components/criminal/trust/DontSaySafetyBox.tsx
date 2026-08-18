@@ -10,9 +10,9 @@ function displaySafetyWarning(raw: string): string {
   t = t
     .replace(/^Not safe to say\s*[—–-]\s*/i, "")
     .replace(/^Unsafe to say\s*[—–-]\s*/i, "")
-    .replace(/^Do not state\s+"([^"]+)"\s*[—–-]\s*/i, '"$1" is not established on the papers. ')
+    .replace(/^Do not state\s+"([^"]+)"\s*[—–-]\s*/i, 'Current papers do not establish "$1". ')
     .replace(/^Do not state\s+/i, "Avoid stating ")
-    .replace(/^Do not say\s+"([^"]+)"\s*[—–-]\s*/i, '"$1" is not established on the papers. ')
+    .replace(/^Do not say\s+"([^"]+)"\s*[—–-]\s*/i, 'Current papers do not establish "$1". ')
     .replace(/^Do not say\s+(.+?)\s+unless\s+(.+?)\.?$/i, (_m, claim: string, condition: string) => {
       return `Avoid stating ${claim.trim()} unless ${condition.trim()}.`;
     })
@@ -53,7 +53,7 @@ export function DontSaySafetyBox({
           Not established on current papers
         </p>
         <SourceStateBadge state="needs_review" />
-        <span className="text-[10px] text-rose-400/80 italic">Use neutral wording until confirmed</span>
+        <span className="text-[10px] text-rose-400/80 italic">Avoid firm wording until the source is confirmed</span>
       </div>
       {items.length ? (
         <ul className="list-disc pl-4 space-y-1 text-xs text-rose-100/90">

@@ -617,7 +617,7 @@ export function CaseControlRoom({
   const riskLabel = useMemo(() => {
     if (effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED") return "Procedural — resolve disclosure";
     if (effectiveProceduralSafety?.status === "CONDITIONALLY_UNSAFE") return "Conditional — disclosure gaps";
-    if (battleboard?.global_collapse_risks?.length) return "Collapse risks on file — review routes";
+    if (battleboard?.global_collapse_risks?.length) return "Key risks on file — review before fixing a route";
     if (battleboard?.overall_status === "needs_review") return "Routes need review";
     if (battleboard?.overall_status === "thin_bundle" && !hasBattleboardMaterial) {
       return "Thin bundle — provisional strategy";
@@ -1402,7 +1402,7 @@ export function CaseControlRoom({
         )}
 
         <p className="text-[10px] text-center text-slate-500 pb-1 mt-4">
-          Source-linked · conditional where papers are incomplete · no predictions
+          Based on uploaded papers · conditional where papers are incomplete · no predictions
         </p>
       </div>
 

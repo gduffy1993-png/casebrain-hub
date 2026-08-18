@@ -572,7 +572,7 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
           "Seek timetable / review date — avoid open-ended adjournment without dates.",
         ]
       : [
-          "Record position (provisional, source-linked).",
+          "Record a provisional position based on uploaded papers.",
           "Chase outstanding disclosure / source material.",
           "Ask court to record outstanding source material on the order.",
           "Seek timetable / review date — avoid open-ended adjournment without dates.",

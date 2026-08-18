@@ -35,7 +35,9 @@ export function OverviewEvidenceGapsCard({ gaps }: { gaps: FiveAnswersEvidenceRo
           })}
         </ul>
       ) : (
-        <p className="text-sm text-slate-400">No additional gaps shown here — still check papers before reliance.</p>
+        <p className="text-sm text-slate-400">
+          No further gaps shown in this panel. Check Papers and CPS Chase before relying on the disclosure position.
+        </p>
       )}
     </section>
   );

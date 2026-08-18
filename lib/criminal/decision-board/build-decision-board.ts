@@ -198,7 +198,7 @@ export function buildDecisionBoard(input: BuildDecisionBoardInput): DecisionBoar
       issueKind: kind,
       title: DECISION_ISSUE_LABELS[kind],
       whyItMatters: sanitiseLine(matterConfidence.mainIssue),
-      sourceBasis: sanitiseLine("Matter confidence — source-linked summary"),
+      sourceBasis: sanitiseLine("Matter confidence — uploaded-papers summary"),
       missingEvidence: briefPlan.missingEvidence.slice(0, 2).map((m) => m.label),
       riskCaution: sanitiseLine("Possible issue — needs evidence before reliance."),
       nextAction: sanitiseLine(matterConfidence.nextBestAction || "Review papers and chase outstanding items."),
@@ -211,6 +211,6 @@ export function buildDecisionBoard(input: BuildDecisionBoardInput): DecisionBoar
   return {
     options: options.slice(0, 8),
     reviewNotice:
-      "Decision options are source-linked review prompts — not legal advice, outcome predictions, or sendable court lines.",
+      "Decision options are review prompts based on uploaded papers — not advice, predictions, or sendable court lines.",
   };
 }

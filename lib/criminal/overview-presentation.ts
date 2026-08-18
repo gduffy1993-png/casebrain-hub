@@ -146,14 +146,14 @@ export function overviewStatusLabel(level: string | null | undefined): {
 } {
   switch (level) {
     case "safe":
-      return { label: "Source-linked", variant: "success" };
+      return { label: "Paper-backed", variant: "success" };
     case "provisional":
     case "needs_review":
-      return { label: "Provisional — source-linked", variant: "secondary" };
+      return { label: "Provisional — check papers", variant: "secondary" };
     case "blocked":
       return { label: "Blocked — review required", variant: "danger" };
     default:
-      return { label: "Provisional — source-linked", variant: "secondary" };
+      return { label: "Provisional — check papers", variant: "secondary" };
   }
 }
 

@@ -211,7 +211,7 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
     requiredOutputItems: {
       today: [
         playbook.safeWording.today,
-        "Keep the position provisional and source-linked.",
+        "Keep the position provisional and tied to the uploaded papers.",
         ...contradictionRequired,
       ],
       summary: [playbook.safeWording.summary, ...playbook.opportunities.slice(0, 2), ...contradictionRequired],

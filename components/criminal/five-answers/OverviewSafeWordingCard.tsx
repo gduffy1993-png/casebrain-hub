@@ -17,7 +17,7 @@ export function OverviewSafeWordingCard({
       <h2 className={workflowSectionTitle}>Wording guardrails</h2>
       <div className="grid gap-2 sm:grid-cols-2">
         <div className="rounded-md border border-emerald-900/35 bg-emerald-950/15 px-3 py-2 space-y-1.5">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-300/90">Grounded wording</p>
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-300/90">Safe wording on current papers</p>
           {safeToSay.length ? (
             <ul className="space-y-1 text-xs text-slate-300 list-disc pl-4">
               {safeToSay.slice(0, 3).map((line, i) => (

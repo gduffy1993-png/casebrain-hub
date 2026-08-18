@@ -99,10 +99,10 @@ export function TrustFeedbackPanel({
           <MessageSquarePlus className={`h-4 w-4 shrink-0 ${variant === "pilot" ? "text-slate-400" : "text-slate-600"}`} />
           <div className="min-w-0">
             <p className={`text-sm font-medium ${variant === "pilot" ? "text-slate-200" : "text-slate-900"}`}>
-              Mark this output
+              Flag this section
             </p>
             <p className={`text-[11px] ${workflowMuted}`}>
-              Wrong, unclear, unsafe, or useful — for product review only; does not change live output.
+              Mark anything wrong, unclear, unsafe, or useful for later review.
             </p>
           </div>
         </div>
@@ -173,7 +173,7 @@ export function TrustFeedbackPanel({
               value={note}
               onChange={(e) => setNote(e.target.value.slice(0, TRUST_FEEDBACK_NOTE_MAX_CHARS))}
               rows={2}
-              placeholder="Brief note for product review — not case papers"
+              placeholder="Brief note — not full case papers"
               className={`mt-1 w-full rounded-md border px-2.5 py-2 text-xs placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-indigo-400 resize-y min-h-[2.5rem] ${
                 variant === "pilot"
                   ? "border-slate-600 bg-slate-900/60 text-slate-200"

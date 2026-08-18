@@ -26,7 +26,7 @@ export function solicitorReadyGateCopy(text: string | null | undefined): string 
 
   return softenPilotReviewCopy(raw)
     .replace(/\bCopy disabled\b/gi, "Copy held back")
-    .replace(/\bnot legal advice\b/gi, "source-linked review note")
+    .replace(/\bnot legal advice\b/gi, "review note based on uploaded papers")
     .replace(/\s{2,}/g, " ")
     .trim();
 }
@@ -34,6 +34,6 @@ export function solicitorReadyGateCopy(text: string | null | undefined): string 
 /** UI-only footer copy — one quiet safety reminder instead of repeated defensive disclaimers. */
 export function pilotSafetyFooterCopy(kind: "pilot" | "saved" = "pilot"): string {
   return kind === "pilot"
-    ? "Source-linked · conditional where papers are incomplete"
+    ? "Based on uploaded papers · conditional where papers are incomplete"
     : "Provisional display from saved case data";
 }

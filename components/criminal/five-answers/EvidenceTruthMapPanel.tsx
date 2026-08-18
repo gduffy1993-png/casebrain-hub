@@ -37,8 +37,8 @@ export function EvidenceTruthMapPanel({ rows }: { rows: FiveAnswersEvidenceRow[]
       <div className="space-y-2">
         <h2 className={workflowSectionTitle}>Evidence truth map</h2>
         <p className="text-[11px] text-slate-500 leading-relaxed">
-          Source-linked evidence state at a glance — colours show material status only, not case outcome.
-          Solicitor review required before reliance.
+          Evidence state from uploaded papers at a glance — colours show material status only, not case outcome.
+          Check the source before relying on any line.
         </p>
         <EvidenceStateLegend />
       </div>

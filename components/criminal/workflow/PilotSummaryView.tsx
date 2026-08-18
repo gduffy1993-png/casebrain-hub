@@ -179,7 +179,7 @@ export function PilotSummaryView({
       ? caseTitle
       : [displayPilotStripClient(clientProp ?? ""), displayPilotStripCharge(chargeProp ?? "")]
           .filter((p) => p && !/not on papers/i.test(p))
-          .join(" — ") || "Matter brief";
+          .join(" — ") || "Case summary";
 
   const clientSafeText = useMemo(() => {
     if (!matterBrief) return "";
@@ -235,7 +235,7 @@ export function PilotSummaryView({
             </div>
             <h2 className="text-base font-semibold text-slate-100 mt-1">{heading}</h2>
             <p className="text-xs text-slate-500 mt-2">
-              Plain-English client update. Review before sending.
+              Client-facing draft. Review before sending.
             </p>
           </div>
           <Button
@@ -324,7 +324,7 @@ export function PilotSummaryView({
         </>
       ) : (
         <div className={`${workflowPilotCard} px-4 py-3`}>
-          <p className="text-sm text-slate-400">Matter brief will appear once papers are processed.</p>
+          <p className="text-sm text-slate-400">Case summary will appear once papers are processed.</p>
         </div>
       )}
 
@@ -373,7 +373,7 @@ export function PilotSummaryView({
         caseId={caseId}
         tab="summary"
         defaultContext={{
-          contextLabel: "Matter brief",
+          contextLabel: "Case summary",
           sourceState: "provisional",
           sendability: matterConfidence?.summarySendability ?? "provisional_check_source",
         }}

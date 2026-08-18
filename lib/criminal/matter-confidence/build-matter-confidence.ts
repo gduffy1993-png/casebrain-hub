@@ -17,7 +17,7 @@ function labelForLevel(level: MatterConfidenceLevel): string {
     case "safe":
       return "Safe for solicitor review";
     case "provisional":
-      return "Provisional — source-linked";
+      return "Provisional — check papers";
     case "needs_review":
       return "Needs review before relying";
     case "blocked":

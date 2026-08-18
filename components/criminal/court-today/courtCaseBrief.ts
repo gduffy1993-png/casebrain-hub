@@ -451,7 +451,7 @@ export function buildCourtCaseBrief(
   const safeCourtLineRaw =
     battleboard?.primary_route?.hearing_line?.trim() ||
     battleboard?.solicitor_safe_summary?.trim() ||
-    "No safe hearing line generated yet — open Control Room; wording remains provisional and source-linked.";
+    "No safe hearing line generated yet — review the uploaded papers and record a provisional hearing position.";
   const safeCourtLine = pilotMode
     ? cleanPilotSafeCourtLine(safeCourtLineRaw, allegation)
     : safeCourtLineRaw;
