@@ -398,11 +398,10 @@ export function CourtTodayClient() {
   const pilotEmpty = pilotMode && !loading && rows.length === 0 && !requestedCaseId;
   const scheduledEmpty =
     !loading && stats.today === 0 && stats.tomorrow === 0 && stats.thisWeek === 0;
-  /** Demo accounts only: no hearings scheduled — hide review counts and diary shells. */
-  const pilotHideReviewClutter = pilotDemo && scheduledEmpty;
-
   const pilotDashboardShell =
     pilotMode && pilotDeskEligible;
+  /** Demo accounts only: no hearings and no available matter desk — hide diary shells. */
+  const pilotHideReviewClutter = pilotDemo && scheduledEmpty && !pilotDeskEligible;
   const allCaseListFallbackOnly =
     Boolean(requestedCaseId) && rows.length === 0 && allCaseDeskBriefs.length === 1;
 

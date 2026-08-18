@@ -62,6 +62,13 @@ const chaseSource = fs.readFileSync("components/criminal/disclosure-chase/Disclo
 assert.match(chaseSource, /Disclosure chase not ready yet\./);
 assert.match(chaseSource, /Do not treat the chase list as complete until/);
 
+const courtTodayClientSource = fs.readFileSync("components/criminal/court-today/CourtTodayClient.tsx", "utf8");
+assert.match(
+  courtTodayClientSource,
+  /const pilotHideReviewClutter = pilotDemo && scheduledEmpty && !pilotDeskEligible;/,
+  "Court Today pilot empty state must not override the saved-matter desk",
+);
+
 const solicitorVisibleSources = [
   "components/criminal/workflow/pilotReviewCopy.ts",
   "components/criminal/trust/TrustFeedbackPanel.tsx",
