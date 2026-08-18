@@ -50,10 +50,10 @@ export function DontSaySafetyBox({
       <div className="flex flex-wrap items-center gap-2 mb-1.5">
         <ShieldAlert className="h-3.5 w-3.5 text-rose-400 shrink-0" />
         <p className="text-[10px] font-semibold uppercase tracking-wider text-rose-300/90">
-          Not established on current papers
+          Do not treat as confirmed on current papers
         </p>
         <SourceStateBadge state="needs_review" />
-        <span className="text-[10px] text-rose-400/80 italic">Avoid firm wording until the source is confirmed</span>
+        <span className="text-[10px] text-rose-400/80 italic">Avoid firm wording until the papers confirm it</span>
       </div>
       {items.length ? (
         <ul className="list-disc pl-4 space-y-1 text-xs text-rose-100/90">

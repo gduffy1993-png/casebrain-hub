@@ -28,7 +28,7 @@ function sanitiseLine(text: string): string {
   const trimmed = text.trim();
   if (!trimmed) return "Possible issue — requires solicitor review.";
   if (UNSAFE_PHRASE_RE.test(trimmed)) {
-    return "Source-backed concern — requires solicitor review before reliance.";
+    return "Concern on papers — requires solicitor review before reliance.";
   }
   return trimmed;
 }
@@ -157,7 +157,7 @@ function optionFromCoDefBleed(lines: string[]): DecisionBoardOption | null {
     whyItMatters: sanitiseLine("Papers may reference another defendant or account — keep this client's position separate."),
     sourceBasis: sanitiseLine(hit),
     missingEvidence: ["Client-specific source material only"],
-    riskCaution: sanitiseLine("Source-backed concern — do not import another defendant's material without review."),
+    riskCaution: sanitiseLine("Concern on papers — do not import another defendant's material without review."),
     nextAction: sanitiseLine("Check MG6/unused schedules and keep chase limited to this defendant's papers."),
     sendabilityLabel: REVIEW_LABEL,
     existence: "not_safely_confirmed",

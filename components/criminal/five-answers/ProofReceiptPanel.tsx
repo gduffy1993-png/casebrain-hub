@@ -134,7 +134,7 @@ function ProofPacketSummary({
         <div className="min-w-0">
           <p className="text-[11px] font-semibold text-slate-200">Proof packet summary</p>
           <p className="text-[10px] text-slate-500 leading-relaxed">
-            Source-backed findings
+            Findings from papers
             {hideRefused && hideNeedsReview
               ? " — blocked wording and gaps are summarised above."
               : ", blocked wording, and outstanding review lines."}

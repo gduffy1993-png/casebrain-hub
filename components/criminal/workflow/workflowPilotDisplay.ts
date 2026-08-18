@@ -50,7 +50,10 @@ export function displayPilotSnapshotPosition(positionStatus: string, readiness: 
 }
 
 export function displayPilotStripClient(raw: string | null | undefined): string {
-  const t = raw?.trim() ?? "";
+  const t = (raw ?? "")
+    .trim()
+    .replace(/\s+(?:Date(?:\s+of\s+birth)?|DOB|D\.?O\.?B\.?)\s*$/i, "")
+    .trim();
   if (!t || INTERNAL_CLIENT_RES.test(t)) return "";
   return t;
 }

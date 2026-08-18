@@ -8,5 +8,5 @@ export const FIRM_SENDABILITY_LABELS: Record<SendabilityLevel, string> = {
   provisional_check_source: "Provisional — check source before sending",
 };
 
-export const SOURCE_BACKED_COURT_NOTE_LABEL = "Source-backed court note";
+export const SOURCE_BACKED_COURT_NOTE_LABEL = "Court note from papers";
 export const COPY_SUGGESTION_LABEL = "Copy suggestion";

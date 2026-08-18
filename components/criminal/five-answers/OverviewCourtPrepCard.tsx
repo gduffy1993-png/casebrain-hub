@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Clock, ExternalLink } from "lucide-react";
 import { displayCopyBody } from "@/lib/criminal/five-answers/display-labels";
-import { SOURCE_BACKED_COURT_NOTE_LABEL } from "@/lib/criminal/trust/firm-facing-labels";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import { polishPresentationLine } from "@/lib/criminal/demo-presentation-polish";
 
@@ -43,7 +42,7 @@ export function OverviewCourtPrepCard({
         data-testid="hearing-mode-court-line"
       >
         <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
-          Court position — {SOURCE_BACKED_COURT_NOTE_LABEL}
+          Court position
         </p>
         {sendabilityLabel ? <p className="text-[11px] text-slate-500">{sendabilityLabel}</p> : null}
         <p className="text-sm text-slate-200 leading-relaxed">{courtBody}</p>

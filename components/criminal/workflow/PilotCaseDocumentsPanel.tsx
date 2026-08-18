@@ -67,7 +67,7 @@ export function PilotCaseDocumentsPanel({
   return (
     <section
       className={`${shell} overflow-hidden`}
-      aria-label="Case files on record"
+      aria-label="Papers on this matter"
       data-testid="pilot-documents-panel"
     >
       <header
@@ -80,7 +80,7 @@ export function PilotCaseDocumentsPanel({
         <FileText className={`h-5 w-5 shrink-0 ${pilotDark ? "text-blue-400" : "text-blue-700"}`} />
         <div>
           <h2 className={`text-sm font-semibold ${pilotDark ? "text-slate-100" : "text-slate-900"}`}>
-            Case files on record
+            Papers on this matter
           </h2>
           <p className={`text-[11px] ${pilotDark ? "text-slate-500" : "text-slate-500"}`}>
             Source bundle for this matter.

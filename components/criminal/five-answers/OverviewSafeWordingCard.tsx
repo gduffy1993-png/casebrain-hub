@@ -27,11 +27,11 @@ export function OverviewSafeWordingCard({
               ))}
             </ul>
           ) : (
-            <p className="text-xs text-slate-400">Use restrained, source-backed wording until the papers are complete.</p>
+            <p className="text-xs text-slate-400">Keep wording restrained until the papers are complete.</p>
           )}
         </div>
         <div className="rounded-md border border-amber-900/40 bg-amber-950/15 px-3 py-2 space-y-1.5">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-300/90">Not established</p>
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-300/90">Do not overstate</p>
           {blocked.length ? (
             <DontSaySafetyBox items={blocked} compact />
           ) : (

@@ -162,7 +162,7 @@ export function buildEvidenceTrace(input: BuildEvidenceTraceInput): EvidenceTrac
   rows.push({
     id: traceId("court_note", 0),
     section: "court_note",
-    claim: courtRaw || "Source-backed court note not yet available.",
+    claim: courtRaw || "Court note from papers not yet available.",
     existence: courtRaw ? "not_safely_confirmed" : "unknown",
     reliability: courtRaw ? "needs_review" : "inference_only",
     sourceLabel: chase.safeCourtLine ? "Disclosure chase brief" : "Hearing war room",

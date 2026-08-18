@@ -37,7 +37,7 @@ function SafeLineButton({ brief }: { brief: CourtCaseBrief }) {
       </Button>
       {open && (
         <div className="absolute right-0 top-full z-20 mt-1 w-72 rounded-md border border-slate-200 bg-white p-2.5 text-xs text-slate-700 shadow-lg">
-          <p className="font-semibold text-slate-900 mb-1">Source-backed court note (solicitor review)</p>
+          <p className="font-semibold text-slate-900 mb-1">Court note from papers (solicitor review)</p>
           <p className="leading-relaxed">{brief.safeCourtLine}</p>
         </div>
       )}

@@ -60,7 +60,7 @@ export function HearingModePanel({
 
       <div className="space-y-1.5 rounded-md border border-slate-800/80 bg-slate-950/40 px-3 py-2.5" data-testid="hearing-mode-court-line">
         <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
-          Source-backed court note — {SOURCE_BACKED_COURT_NOTE_LABEL}
+          {SOURCE_BACKED_COURT_NOTE_LABEL}
         </p>
         <p className="text-[11px] text-slate-500">{model.safeCourtLine.sendabilityLabel}</p>
         <p className="text-sm text-slate-200 leading-relaxed italic">{courtBody}</p>

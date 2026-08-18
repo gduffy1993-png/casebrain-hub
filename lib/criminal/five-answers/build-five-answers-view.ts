@@ -34,7 +34,7 @@ export type BuildFiveAnswersViewInput = {
 
 function nextActionFromConfidence(confidence: MatterConfidenceResult | null): string {
   if (!confidence) return "Review papers and open Chase for outstanding material.";
-  return confidence.nextBestAction || "Review chase items and source-backed court note before court.";
+  return confidence.nextBestAction || "Review chase items and the court note from papers before court.";
 }
 
 export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnswersViewModel {
@@ -113,7 +113,7 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
 
   const courtRaw = chase.safeCourtLine?.trim() || warRoom.safePositionToday?.trim() || "";
   const courtCopy = buildCopySafeResult({
-    text: courtRaw || "Source-backed court note not yet available — review Today tab.",
+    text: courtRaw || "Court note from papers not yet available — review Today tab.",
     kind: "court_line",
     sourceState: "needs_review",
     matterLevel: matterConfidence?.level === "blocked" ? "blocked" : "needs_solicitor_review",

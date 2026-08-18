@@ -373,6 +373,8 @@ export function sanitizeHeaderClient(label: string): string {
   const t = label
     .trim()
     .replace(/\.$/, "")
+    // OCR glue: "Holly Ahmed Date" / trailing DOB field labels
+    .replace(/\s+(?:Date(?:\s+of\s+birth)?|DOB|D\.?O\.?B\.?)\s*$/i, "")
     .replace(/\bPrimary allegation\b.*$/i, "")
     .replace(/\bPrimary\b.*$/i, "")
     .replace(/\b(sheet\s*\/\s*indictment|indictment|extract)\b.*$/i, "")

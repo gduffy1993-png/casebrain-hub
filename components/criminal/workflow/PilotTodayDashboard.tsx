@@ -229,7 +229,7 @@ export function PilotTodayDashboard({
           icon={<Scale className="h-3.5 w-3.5 text-blue-400" />}
           accentClass="border-blue-700/50"
         >
-          <TrustSectionChrome title="Source-backed court line" sourceState="provisional" />
+          <TrustSectionChrome title="Court line from papers" sourceState="provisional" />
           {/* KPI already shows the safe court line — body owns say-this only. */}
           {sayThisItems.length ? (
             <BulletList items={sayThisItems} emptyLabel="No solicitor lines on the current brief." />

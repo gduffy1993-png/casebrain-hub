@@ -12,6 +12,8 @@ import {
   displayPilotStripCharge,
   resolvePilotChargeDisplay,
 } from "../components/criminal/workflow/workflowPilotDisplay";
+import { sanitizeHeaderClient } from "../lib/criminal/resolve-case-header-metadata";
+import { cleanPilotHeaderClient } from "../lib/criminal/pilot-workflow";
 
 assert.equal(
   resolvePilotChargeDisplay("Offence wording not safely extracted"),
@@ -26,6 +28,10 @@ assert.equal(
   displayPilotStripCharge("Statement of offence: Wounding with intent to cause grievous bodily harm, contrary to"),
   "Wounding with intent to cause grievous bodily harm",
 );
+
+assert.equal(sanitizeHeaderClient("Holly Ahmed Date"), "Holly Ahmed");
+assert.equal(cleanPilotHeaderClient("Holly Ahmed Date"), "Holly Ahmed");
+assert.equal(sanitizeHeaderClient("Holly Ahmed DOB"), "Holly Ahmed");
 
 assert.equal(
   humanizeEvidenceLabel("MG6 disclosure schedule on file", "served"),
@@ -64,11 +70,17 @@ const solicitorVisibleSources = [
   "components/criminal/five-answers/OverviewEvidenceGapsCard.tsx",
   "components/criminal/five-answers/EvidenceTruthMapPanel.tsx",
   "components/criminal/five-answers/OverviewClientSummaryCard.tsx",
+  "components/criminal/five-answers/OverviewCourtPrepCard.tsx",
   "components/criminal/disclosure-chase/DisclosureChase.tsx",
   "components/criminal/disclosure-chase/buildDisclosureChaseBrief.ts",
   "components/criminal/court-today/courtCaseBrief.ts",
+  "components/criminal/court-today/CourtTodayDiaryTable.tsx",
   "components/criminal/CaseControlRoom.tsx",
+  "components/criminal/CaseFilesCompactStrip.tsx",
   "components/criminal/workflow/PilotSummaryView.tsx",
+  "components/criminal/workflow/PilotTodayDashboard.tsx",
+  "components/criminal/workflow/PilotCaseDocumentsPanel.tsx",
+  "components/criminal/hearing-mode/HearingModePanel.tsx",
   "components/criminal/hearing-war-room/buildHearingWarRoomBrief.ts",
   "lib/criminal/brief-plan/build-brief-plan.ts",
   "lib/criminal/decision-board/build-decision-board.ts",
@@ -79,6 +91,9 @@ const solicitorVisibleSources = [
   "lib/criminal/proof-receipt/derive.ts",
   "lib/criminal/solicitor-visible-sanitization.ts",
   "lib/criminal/pilot-workflow.ts",
+  "lib/criminal/trust/firm-facing-labels.ts",
+  "lib/criminal/five-answers/build-five-answers-view.ts",
+  "lib/criminal/hearing-mode/build-hearing-mode.ts",
 ];
 
 const forbiddenSolicitorVisibleCopy = [
@@ -97,6 +112,9 @@ const forbiddenSolicitorVisibleCopy = [
   /Plain-English client update/i,
   /Use neutral wording until confirmed/i,
   /is not established on the papers/i,
+  /Source-backed court (?:note|line)/i,
+  /Case files on record/i,
+  /Not established on current papers/i,
 ];
 
 for (const file of solicitorVisibleSources) {

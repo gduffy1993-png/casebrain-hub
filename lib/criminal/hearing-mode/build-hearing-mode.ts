@@ -40,7 +40,7 @@ const PROFILE_LABELS: Record<CriminalBriefPlanProfile, string> = {
 function sanitise(text: string): string {
   const t = text.trim();
   if (!t) return "Provisional — requires solicitor review.";
-  if (UNSAFE_PHRASE_RE.test(t)) return "Source-backed concern — requires solicitor review before reliance.";
+  if (UNSAFE_PHRASE_RE.test(t)) return "Concern on papers — requires solicitor review before reliance.";
   return t;
 }
 
@@ -77,7 +77,7 @@ function resolveNextAction(
       ? "Open Chase tab and confirm top missing items before hearing."
       : kind === "blocked_until_served"
         ? "Do not rely on court line until source gaps are closed or reviewed."
-        : "Review source-backed court note and Today tab before court.");
+        : "Review the court note from papers and Today tab before court.");
 
   return { kind, label: labels[kind], detail: sanitise(detail) };
 }

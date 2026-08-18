@@ -600,6 +600,7 @@ export function pilotHeaderOverrides(
 
 export function cleanPilotHeaderClient(raw: string): string {
   return raw
+    .replace(/\s+(?:Date(?:\s+of\s+birth)?|DOB|D\.?O\.?B\.?)\s*$/i, "")
     .replace(/\bPrimary allegation\b.*$/i, "")
     .replace(/\bPrimary\b.*$/i, "")
     .replace(/\b(sheet\s*\/\s*indictment|indictment|extract)\b.*$/i, "")
