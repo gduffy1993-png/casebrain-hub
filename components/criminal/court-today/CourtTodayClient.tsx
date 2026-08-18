@@ -527,7 +527,7 @@ export function CourtTodayClient() {
               <p className="text-sm text-slate-600 mt-2 max-w-lg mx-auto">
                 {pilotDemo
                   ? "Open a pilot matter from Cases or upload a prepared bundle to review the court-prep workflow."
-                  : "Upload or open a matter to review the court-prep workflow. Matters without a confirmed hearing date appear under date review below."}
+                  : "Upload or open a matter to review the court-prep workflow. Matters without a confirmed hearing date appear under the hearing confirmation list below."}
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4 mt-5">
                 <Link

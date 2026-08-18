@@ -46,7 +46,7 @@ function chargesBlock(charges: CriminalLetterInputs["charges"]): string {
 
 export function buildCriminalLetterDraft(kind: CriminalLetterKind, input: CriminalLetterInputs): { subject: string; body: string } {
   const practice = normalizePracticeArea(input.practiceArea ?? undefined);
-  const caseRef = input.caseTitle ? `Re: ${input.caseTitle}` : "Re: Criminal matter";
+  const caseRef = input.caseTitle ? `Re: ${input.caseTitle}` : "Re: matter details to confirm";
   const defendantLine = input.defendantName ? `Defendant: ${input.defendantName}` : "Defendant: Not evidenced in the bundle yet";
   const hearingLine =
     input.nextHearingDate

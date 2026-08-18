@@ -504,7 +504,7 @@ export function bucketLabel(bucket: HearingBucket, opts?: { pilot?: boolean }): 
     case "this_week":
       return "This week";
     case "no_hearing":
-      return opts?.pilot ? "Matters needing date review" : NEEDS_REVIEW_LABEL;
+      return opts?.pilot ? "Matters with hearing date to confirm" : NEEDS_REVIEW_LABEL;
   }
 }
 
@@ -517,7 +517,7 @@ export function readinessLabel(readiness: CourtReadiness, opts?: { pilot?: boole
     case "red":
       return opts?.pilot ? "At risk" : "Red";
     case "review":
-      return opts?.pilot ? "Date review" : "Needs hearing review";
+      return opts?.pilot ? "Hearing date to confirm" : "Needs hearing review";
   }
 }
 

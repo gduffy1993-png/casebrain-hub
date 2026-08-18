@@ -43,9 +43,9 @@ export function containsDevRef(text: string): boolean {
 /** Safe case title for solicitor-facing headers after dev-ref scrub. */
 export function safeSolicitorCaseTitle(raw: string | null | undefined): string {
   const t = (raw ?? "").trim();
-  if (!t) return "Criminal matter — review required";
+  if (!t) return "Matter details to confirm — solicitor review required";
   const scrubbed = scrubDevRefs(t).replace(/^[—–-]+\s*/g, "").trim();
-  if (!scrubbed || containsDevRef(scrubbed)) return "Criminal matter — review required";
+  if (!scrubbed || containsDevRef(scrubbed)) return "Matter details to confirm — solicitor review required";
   return scrubbed;
 }
 

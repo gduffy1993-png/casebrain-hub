@@ -109,8 +109,15 @@ const solicitorVisibleSources = [
   "lib/criminal/supervisor-qa/build-supervisor-qa-result.ts",
   "lib/criminal/client-stress-test/build-client-stress-slice2.ts",
   "lib/criminal/client-stress-test/build-client-stress-result.ts",
+  "lib/criminal/client-stress-test/client-stress-sanitize.ts",
   "lib/criminal/charge-allegation-completeness.ts",
   "lib/criminal/solicitor-youth-venue.ts",
+  "lib/criminal/dev-ref-scrub.ts",
+  "lib/criminal/deterministic-letter-drafts.ts",
+  "components/criminal/control-room/ClientAccountStressTestPanel.tsx",
+  "components/criminal/court-today/courtCaseBrief.ts",
+  "components/criminal/court-today/CourtTodayClient.tsx",
+  "app/(protected)/cases/page.tsx",
 ];
 
 const forbiddenSolicitorVisibleCopy = [
@@ -133,6 +140,10 @@ const forbiddenSolicitorVisibleCopy = [
   /source-backed/i,
   /Case files on record/i,
   /Not established on current papers/i,
+  /Client account stress-test/i,
+  /Date review/i,
+  /Open to review charge, hearing, papers and disclosure position/i,
+  /Criminal matter — review required/i,
 ];
 
 for (const file of solicitorVisibleSources) {

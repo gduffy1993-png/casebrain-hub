@@ -383,7 +383,7 @@ function caseSummaryDisplay(caseItem: {
     const cleanTitle = cleanMatterTitle(title);
     return cleanTitle.length > 140 ? `${cleanTitle.slice(0, 137).trim()}…` : cleanTitle;
   }
-  return "Open to review charge, hearing, papers and disclosure position.";
+  return "Charge, hearing and papers need solicitor review before relying on this matter.";
 }
 
 function caseTitleDisplay(caseItem: {
@@ -412,7 +412,7 @@ function caseTitleDisplay(caseItem: {
   if (isUsefulDocumentDisplayName(documentName)) {
     return cleanDocumentDisplayName(documentName).slice(0, 78);
   }
-  return "Criminal matter";
+  return "Matter details to confirm";
 }
 
 function FilterToolbar({
