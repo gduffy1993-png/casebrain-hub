@@ -37,7 +37,7 @@ export function sanitizeClientStressLine(text: string): string {
   const lower = out.toLowerCase();
   for (const phrase of FORBIDDEN_OUTPUT_PHRASES) {
     if (lower.includes(phrase)) {
-      return "Solicitor review required — wording flagged on stress-test output.";
+      return "Solicitor review required — wording flagged on the client account consistency check.";
     }
   }
   return out;

@@ -223,7 +223,7 @@ function buildBlockers(
     blockers.push("Serious/provisional offence mapping — solicitor review before fixing route.");
   }
   if (clientStress?.solicitorReviewRequired) {
-    blockers.push("Client account stress-test flags solicitor review before aligning account to papers.");
+    blockers.push("Client account consistency check flags solicitor review before aligning account to papers.");
   }
   return dedupe(blockers, 8);
 }

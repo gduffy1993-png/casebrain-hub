@@ -165,7 +165,7 @@ export function buildSupervisorQAResult(
     severity += 1;
   }
   if (clientStress?.solicitorReviewRequired) {
-    reasons.push("Client account stress-test flags solicitor review.");
+    reasons.push("Client account consistency check flags solicitor review.");
     severity += 1;
   }
   if (missingCore.length) {

@@ -235,13 +235,13 @@ export function ClientAccountStressTestPanel({
   return (
     <section
       className={`${workflowCard} border-violet-100/80 mt-3`}
-      aria-label="Client account stress test"
+      aria-label="Client account consistency check"
       data-testid="client-account-stress-test"
     >
       <div className="border-b border-slate-100 bg-violet-50/50 px-4 py-3 flex flex-wrap items-center gap-2">
         <Scale className="h-4 w-4 text-violet-800 shrink-0" />
         <div className="min-w-0 flex-1">
-          <h2 className="text-sm font-semibold text-slate-900">Client account stress-test</h2>
+          <h2 className="text-sm font-semibold text-slate-900">Client account consistency check</h2>
           <p className={`text-[11px] ${workflowMuted}`}>
             Compare structured client account to the current papers analysis — not advice; solicitor
             review required.
