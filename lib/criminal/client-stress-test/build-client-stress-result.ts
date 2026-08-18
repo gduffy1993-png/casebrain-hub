@@ -290,7 +290,7 @@ function stressForOptions(
         ? "Do not tell the court the client was not driving without full driver-ID and CCTV master/export on file."
         : "",
       opts.includes("self_defence")
-        ? "Do not assert self-defence is established unless sequence/threat/force is source-backed."
+        ? "Do not assert self-defence is established unless sequence, threat, and force are supported by the papers."
         : "",
     ].filter(Boolean),
     5,

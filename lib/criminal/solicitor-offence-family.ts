@@ -2,7 +2,7 @@
  * Practice / offence-family isolation for solicitor-facing output.
  * Fail closed when mapping is uncertain — never inherit wrong-family templates.
  *
- * Phase 4: source-backed / conditional concepts require structured evidence IDs
+ * Phase 4: paper-supported / conditional concepts require structured evidence IDs
  * via offence-family-concept-registry. Keyword hay alone is not sufficient.
  */
 

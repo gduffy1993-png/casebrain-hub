@@ -46,7 +46,7 @@ function labelForOption(value: string): string {
 function statusLabel(status: SupervisorReviewStatus): string {
   switch (status) {
     case "none":
-      return "No obvious supervisor issue on current source-backed view";
+      return "No obvious supervisor issue on the current papers view";
     case "suggested":
       return "Supervisor review suggested";
     case "required":
@@ -157,7 +157,7 @@ export function buildSupervisorQAResult(
   }
 
   if (reasoning.humanReviewRequired) {
-    reasons.push("Reasoning V2 flags human review on source-backed view.");
+    reasons.push("Reasoning V2 flags human review on the current papers view.");
     severity += 2;
   }
   if (reasoning.warRoom.solicitorReviewRequired) {

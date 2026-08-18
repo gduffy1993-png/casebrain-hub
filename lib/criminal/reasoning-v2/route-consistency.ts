@@ -1,7 +1,7 @@
 /** Compare live Battleboard route with Reasoning V2 primary route — product-safe only. */
 
 export const REASONING_ROUTE_DIFFERS_NOTICE =
-  "Source-backed reasoning may differ from the current saved strategy view. Solicitor review required before relying on either route.";
+  "Reasoning from uploaded papers may differ from the current saved strategy view. Solicitor review required before relying on either route.";
 
 function normalizeRouteTitle(title: string): string {
   return title

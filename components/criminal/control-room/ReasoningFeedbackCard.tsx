@@ -78,7 +78,7 @@ export function ReasoningFeedbackCard({
         <div className="min-w-0">
           <h3 className="text-sm font-medium text-slate-900">Mark this reasoning</h3>
           <p className={`text-[11px] ${workflowMuted}`}>
-            Mark whether this source-backed reasoning is useful for solicitor review — not legal advice.
+            Mark whether this papers-based reasoning is useful for solicitor review — not advice.
           </p>
         </div>
       </div>

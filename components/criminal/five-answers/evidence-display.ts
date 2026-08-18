@@ -151,7 +151,7 @@ export type GotRightPreviewItem = {
   priority: number;
 };
 
-/** Positive source-backed findings for proof preview — presentation only. */
+/** Positive findings supported by papers for proof preview — presentation only. */
 export function buildGotRightPreviewItems(rows: { label: string; existence: EvidenceExistence }[]): GotRightPreviewItem[] {
   const items: GotRightPreviewItem[] = [];
   const seen = new Set<string>();

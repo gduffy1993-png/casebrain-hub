@@ -251,7 +251,7 @@ export function SupervisorQAPanel({
 
       <div className="px-4 py-3 space-y-2 min-w-0">
         <p className={`text-[11px] ${workflowMuted}`}>
-          Review prioritisation on source-backed view — not win probability or plea advice.
+          Review prioritisation on the current papers view — not win probability or plea advice.
         </p>
 
         {qa.reasonsForReview.length ? (

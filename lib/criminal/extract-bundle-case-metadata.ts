@@ -786,7 +786,7 @@ function extractChargeSheetAllegation(scan: string, fullText: string): string | 
  * Some live police-station / upload bundles carry the charge as a plain
  * allegation sentence rather than as a statutory "Statement of offence" line.
  * Keep this deliberately narrow: recover only recognised offence labels from
- * source-backed allegation wording, and leave the surrounding facts for the
+ * allegation wording supported by the papers, and leave the surrounding facts for the
  * solicitor-facing narrative/chase panes.
  */
 function extractPlainAllegationOffence(scan: string, fullText: string): string | null {

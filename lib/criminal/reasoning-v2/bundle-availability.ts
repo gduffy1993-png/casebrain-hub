@@ -47,7 +47,7 @@ export function reasoningV2UnavailableDetail(reason: ReasoningV2UnavailableReaso
     case "no_source_snippets":
       return "No MG5, MG6, or exhibit source snippets are available yet.";
     case "insufficient_source":
-      return "Served material is too thin to build source-backed reasoning on current papers.";
+      return "Served material is too thin to build reasoning from the current papers.";
     default:
       return REASONING_V2_UNAVAILABLE_MESSAGE;
   }

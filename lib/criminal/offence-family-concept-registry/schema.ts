@@ -1,6 +1,6 @@
 /**
  * Versioned offence-family concept registry (Phase 4).
- * Source-backed / conditional concepts require structured provenance + evidence IDs —
+ * Paper-supported / conditional concepts require structured provenance + evidence IDs —
  * keyword presence in free-text hay alone is insufficient.
  */
 

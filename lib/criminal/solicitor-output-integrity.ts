@@ -51,7 +51,7 @@ export type EvaluateTextIntegrityInput = {
   chargeWording?: string | null;
   /** Pre-resolved family; otherwise derived from hay. */
   offenceFamily?: OffenceFamilyResolution;
-  /** Structured evidence IDs required for source-backed mixed concepts. */
+  /** Structured evidence IDs required for paper-supported mixed concepts. */
   evidence?: import("@/lib/criminal/offence-family-concept-registry").StructuredProvenanceRef[];
 };
 

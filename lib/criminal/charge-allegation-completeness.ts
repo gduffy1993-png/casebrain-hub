@@ -154,7 +154,7 @@ export function extractChargeSubjectFromCourtLine(courtLine: string | null | und
 }
 
 /**
- * Prefer a complete shorter source-backed display over mid-word / mid-sentence truncation.
+ * Prefer a complete shorter display from the papers over mid-word / mid-sentence truncation.
  * Never invent statutory citations — only trims to a complete already-present clause.
  */
 export function preferCompleteShorterSolicitorSentence(text: string | null | undefined): string {
@@ -281,7 +281,7 @@ export function resolveChargeCompleteness(args: {
       requiredAction: null,
       provenance:
         args.provenance ??
-        "Recovered from canonical offence / charge sheet line (source-backed; not invented).",
+        "Recovered from canonical offence / charge sheet line in the papers; not invented.",
     };
   }
 
@@ -298,7 +298,7 @@ export function resolveChargeCompleteness(args: {
       requiredAction: null,
       provenance:
         args.provenance ??
-        "Recovered subject extracted from complete court-note line (source-backed; not invented).",
+        "Recovered subject extracted from complete court-note line in the papers; not invented.",
     };
   }
 
@@ -315,11 +315,11 @@ export function resolveChargeCompleteness(args: {
       requiredAction: null,
       provenance:
         args.provenance ??
-        `Recovered from ${operative.documentRole} instrument (source-backed; not invented).`,
+        `Recovered from ${operative.documentRole} instrument in the papers; not invented.`,
     };
   }
 
-  // Prefer a complete shorter source-backed sentence over displaying mid-word truncation alone.
+  // Prefer a complete shorter sentence from the papers over displaying mid-word truncation alone.
   // Mid-statute incomplete sources without recovery still keep exact recorded wording visible.
   const midWordOrCourtSlice =
     isMidWordSolicitorTruncation(recorded) ||
@@ -345,7 +345,7 @@ export function resolveChargeCompleteness(args: {
         requiredAction: null,
         provenance:
           args.provenance ??
-          "Recovered complete shorter subject from truncated court-line / renderer slice (source-backed; not invented).",
+          "Recovered complete shorter subject from truncated court-line / renderer slice in the papers; not invented.",
       };
     }
   }
@@ -393,7 +393,7 @@ export function resolveChargeCompleteness(args: {
       provenance:
         args.provenance ??
         (recoveredShorter
-          ? "Display prefers complete shorter source-backed wording; exact recorded text retained in sourceChargeText."
+          ? "Display prefers complete shorter wording from the papers; exact recorded text retained in sourceChargeText."
           : incomplete
             ? "Recorded charge text retained exactly; no safe completion available."
             : null),

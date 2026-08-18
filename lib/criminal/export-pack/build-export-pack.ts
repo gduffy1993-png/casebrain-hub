@@ -121,7 +121,7 @@ function buildCourtNoteSection(
 ): ExportPackSection {
   const raw = chase.safeCourtLine?.trim() || warRoom.safePositionToday?.trim() || "";
   const copy = buildCopySafeResult({
-    text: raw || "Source-backed court note not yet available — review Today tab.",
+    text: raw || "Court note from papers not yet available — review Today tab.",
     kind: "court_line",
     sourceState: "needs_review",
     matterLevel: matterConfidence?.level === "blocked" ? "blocked" : "needs_solicitor_review",
@@ -278,10 +278,10 @@ export type BuildExportPackInput = {
   primaryRouteTitle: string | null;
   appVersion?: string | null;
   generatedAt?: string;
-  /** Source-backed URN or other professional matter reference — never invent. */
+  /** URN or other professional matter reference from the papers — never invent. */
   matterUrn?: string | null;
   matterReference?: string | null;
-  /** Extra text scanned for a source-backed URN (bundle / charge sheet extract). */
+  /** Extra text scanned for a URN from the papers (bundle / charge sheet extract). */
   urnCandidateTexts?: string[];
 };
 

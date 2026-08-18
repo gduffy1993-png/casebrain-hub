@@ -196,7 +196,7 @@ export function compareEvidenceChanges(
   if (normKey(previous.routeLabel) !== normKey(current.routeLabel)) {
     routeImpact.push(
       sanitizeEvidenceChangeLine(
-        "New material may affect the current route — primary route label changed on source-backed reasoning.",
+        "New material may affect the current route — primary route label changed on papers-based reasoning.",
       ),
     );
     routeImpact.push(

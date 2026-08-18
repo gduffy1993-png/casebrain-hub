@@ -166,7 +166,7 @@ export function ReasoningV2Panel({
     <>
     <section
       className={workflowCard}
-      aria-label="Source-backed reasoning"
+      aria-label="Reasoning from uploaded papers"
       data-testid="reasoning-v2-panel"
     >
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 bg-slate-50/80 px-4 py-3">
@@ -174,7 +174,7 @@ export function ReasoningV2Panel({
           <GitBranch className="h-4 w-4 text-indigo-700 shrink-0" />
           <div className="min-w-0">
             <h2 className="text-sm font-semibold text-slate-900">Reasoning</h2>
-            <p className="text-[11px] text-slate-500">Why this route — source-backed · read-only</p>
+            <p className="text-[11px] text-slate-500">Why this route — from uploaded papers · review only</p>
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-2 shrink-0">
@@ -320,7 +320,7 @@ export function ReasoningV2Panel({
               </SectionBlock>
 
               <p className="text-[10px] text-center text-slate-500 pt-2 border-t border-slate-100">
-                Source-backed · conditional · provisional where stated · no predictions
+                From uploaded papers · conditional · provisional where stated · no predictions
               </p>
             </>
           )}

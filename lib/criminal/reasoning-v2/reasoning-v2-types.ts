@@ -67,4 +67,4 @@ export type ReasoningV2UnavailableReason =
   | "insufficient_source";
 
 export const REASONING_V2_UNAVAILABLE_MESSAGE =
-  "Source-backed reasoning is not available for this matter yet.";
+  "Reasoning from uploaded papers is not available for this matter yet.";

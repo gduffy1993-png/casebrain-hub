@@ -82,6 +82,12 @@ const solicitorVisibleSources = [
   "components/criminal/workflow/PilotCaseDocumentsPanel.tsx",
   "components/criminal/hearing-mode/HearingModePanel.tsx",
   "components/criminal/hearing-war-room/buildHearingWarRoomBrief.ts",
+  "components/criminal/control-room/WarRoomReasoningBridge.tsx",
+  "components/criminal/control-room/SupervisorQAPanel.tsx",
+  "components/criminal/control-room/SolicitorExportBuilderPanel.tsx",
+  "components/criminal/control-room/ReasoningV2Panel.tsx",
+  "components/criminal/control-room/ReasoningFeedbackCard.tsx",
+  "components/criminal/control-room/ClientAccountStressTestPanel.tsx",
   "lib/criminal/brief-plan/build-brief-plan.ts",
   "lib/criminal/decision-board/build-decision-board.ts",
   "lib/criminal/disclosure-chase-finalize.ts",
@@ -94,6 +100,17 @@ const solicitorVisibleSources = [
   "lib/criminal/trust/firm-facing-labels.ts",
   "lib/criminal/five-answers/build-five-answers-view.ts",
   "lib/criminal/hearing-mode/build-hearing-mode.ts",
+  "lib/criminal/export-pack/build-export-pack.ts",
+  "lib/criminal/reasoning-v2/route-consistency.ts",
+  "lib/criminal/reasoning-v2/reasoning-v2-types.ts",
+  "lib/criminal/reasoning-v2/bundle-availability.ts",
+  "lib/criminal/advice-change-radar/build-advice-change-radar.ts",
+  "lib/criminal/evidence-change-detector/compare-evidence-changes.ts",
+  "lib/criminal/supervisor-qa/build-supervisor-qa-result.ts",
+  "lib/criminal/client-stress-test/build-client-stress-slice2.ts",
+  "lib/criminal/client-stress-test/build-client-stress-result.ts",
+  "lib/criminal/charge-allegation-completeness.ts",
+  "lib/criminal/solicitor-youth-venue.ts",
 ];
 
 const forbiddenSolicitorVisibleCopy = [
@@ -113,6 +130,7 @@ const forbiddenSolicitorVisibleCopy = [
   /Use neutral wording until confirmed/i,
   /is not established on the papers/i,
   /Source-backed court (?:note|line)/i,
+  /source-backed/i,
   /Case files on record/i,
   /Not established on current papers/i,
 ];

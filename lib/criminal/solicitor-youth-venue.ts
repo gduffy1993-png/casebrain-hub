@@ -1,5 +1,5 @@
 /**
- * Youth-court / venue assertions — must be source-backed.
+ * Youth-court / venue assertions — must be supported by the papers.
  * Age 17 or YJS material alone is insufficient to assert "You are in the youth court".
  */
 
@@ -93,7 +93,7 @@ export function assessYouthVenueWording(input: {
     unsafeYouthCourtAssertion: true,
     displayProse: cleaned.replace(/\s{2,}/g, " ").trim(),
     reason:
-      "Youth-court venue assertion is not source-backed. Age 17 or YJS material alone is insufficient.",
+      "Youth-court venue assertion is not supported by the papers. Age 17 or YJS material alone is insufficient.",
     venueSourceBacked: false,
   };
 }

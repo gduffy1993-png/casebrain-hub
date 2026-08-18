@@ -243,7 +243,7 @@ export function ClientAccountStressTestPanel({
         <div className="min-w-0 flex-1">
           <h2 className="text-sm font-semibold text-slate-900">Client account stress-test</h2>
           <p className={`text-[11px] ${workflowMuted}`}>
-            Compare structured client account to source-backed reasoning — not legal advice; solicitor
+            Compare structured client account to the current papers analysis — not advice; solicitor
             review required.
           </p>
         </div>
@@ -257,8 +257,8 @@ export function ClientAccountStressTestPanel({
       <div className="px-4 py-3 space-y-3 min-w-0">
         {!reasoningV2Enabled ? (
           <p className="text-xs text-slate-600">
-            Enable Reasoning V2 (?reasoningV2=1) to compare client account against source-backed
-            reasoning.
+            Enable Reasoning V2 (?reasoningV2=1) to compare client account against the current papers
+            analysis.
           </p>
         ) : !hasReasoning ? (
           <p className="text-xs text-slate-600">{REASONING_V2_UNAVAILABLE_MESSAGE}</p>
@@ -308,7 +308,7 @@ export function ClientAccountStressTestPanel({
               disabled={!selected.length}
               onClick={onRun}
             >
-              Compare to source-backed reasoning
+              Compare to papers analysis
             </Button>
 
             {ran && stressOutcome && !stressOutcome.available ? (

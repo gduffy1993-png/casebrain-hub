@@ -21,7 +21,7 @@ import {
 } from "./schema";
 
 export type ProvenanceContext = {
-  /** Structured evidence rows — required for conditional / source-backed allowance. */
+  /** Structured evidence rows — required for conditional / paper-supported allowance. */
   evidence: StructuredProvenanceRef[];
   allegation?: string | null;
   chargeWording?: string | null;

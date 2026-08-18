@@ -32,7 +32,7 @@ export function WarRoomReasoningBridge({
       <div className="flex flex-wrap items-center gap-2 border-b border-slate-100 bg-indigo-50/50 px-4 py-3">
         <div className="min-w-0 flex-1">
           <h2 className="text-sm font-semibold text-slate-900">Hearing reasoning bridge</h2>
-          <p className="text-[11px] text-slate-500">Source-backed hearing lines · read-only</p>
+          <p className="text-[11px] text-slate-500">Hearing lines from papers · review only</p>
         </div>
         {warRoom.solicitorReviewRequired ? (
           <Badge variant="secondary" size="sm" className="bg-amber-50 text-amber-900 shrink-0">

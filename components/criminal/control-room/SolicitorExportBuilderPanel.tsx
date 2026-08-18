@@ -247,7 +247,7 @@ export function SolicitorExportBuilderPanel({
         <div className="min-w-0 flex-1">
           <h2 className="text-sm font-semibold text-slate-900">Draft solicitor outputs</h2>
           <p className={`text-[11px] ${workflowMuted}`}>
-            Generated from source-backed reasoning — draft only, not for automatic sending.
+            Generated from the current papers analysis — draft only, not for automatic sending.
           </p>
         </div>
         <Badge variant="secondary" size="sm" className="bg-amber-50 text-amber-900 shrink-0">

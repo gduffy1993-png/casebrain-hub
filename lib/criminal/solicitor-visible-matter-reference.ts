@@ -2,7 +2,7 @@
  * Solicitor-visible matter / export identity — shared boundary rules.
  *
  * Internal corpus/test case IDs (s150-*, s300-*, demo-audit, …) must never appear in
- * solicitor-facing view/copy/export/PDF/API prose. Prefer a source-backed URN; otherwise omit.
+ * solicitor-facing view/copy/export/PDF/API prose. Prefer a URN from the papers; otherwise omit.
  * Machine/audit metadata may still retain the internal caseId.
  */
 
@@ -62,7 +62,7 @@ export function isInternalCorpusOrFixtureCaseId(id: string | null | undefined): 
   return INTERNAL_CORPUS_ID_TOKEN_RE.test(t);
 }
 
-/** Extract a genuine source-backed URN from papers text. Never invents. */
+/** Extract a genuine URN from papers text. Never invents. */
 export function extractSourceBackedUrn(...texts: Array<string | null | undefined>): string | null {
   for (const text of texts) {
     const m = (text ?? "").match(URN_RE);
@@ -72,7 +72,7 @@ export function extractSourceBackedUrn(...texts: Array<string | null | undefined
 }
 
 /**
- * Visible matter reference for solicitor stamps — URN only when source-backed.
+ * Visible matter reference for solicitor stamps — URN only when found in the papers.
  * Returns null when no safe professional reference exists (caller omits the line).
  */
 export function resolveSolicitorVisibleMatterReference(args: {

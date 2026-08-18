@@ -254,7 +254,7 @@ export function buildDoNotConcedeGuards(ctx: Slice2BuildContext): DoNotConcedeGu
       guard(
         "Hearing position / evidential strength",
         "War room spine flags do-not-overstate on current papers.",
-        "Source-backed war room view from proof map.",
+        "War Room view from the proof map.",
         line.slice(0, 280),
         prov,
       ),

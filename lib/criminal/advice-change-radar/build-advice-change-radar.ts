@@ -208,7 +208,7 @@ function itemsFromComparison(compare: EvidenceChangeCompareResult): AdviceRadarI
         `contradiction-${i}`,
         line,
         "Paper conflict may affect how timelines and accounts can be described.",
-        "Today tab; source-backed court note; must-not-overstate list.",
+        "Today tab; court note from papers; must-not-overstate list.",
         "a timeline or account conflict changed on papers",
         "Any court line that treated accounts as aligned.",
         "Compare MG11/CCTV/BWV anchors and note provisional position for court.",
@@ -223,12 +223,12 @@ function itemsFromComparison(compare: EvidenceChangeCompareResult): AdviceRadarI
       seen,
       itemFromChange(
         "hearing-line",
-        "Source-backed court / Today line changed on papers",
+        "Court / Today line from papers changed",
         "Safe hearing wording on file is different from the saved baseline.",
         "Today tab; Five Answers court note (answer 5).",
         "the safe hearing line changed",
         "Prior Today or Overview court note until solicitor reviews new wording.",
-        "Review the current court position and source-backed hearing note before the hearing.",
+        "Review the current court position and hearing note from papers before the hearing.",
       ),
     );
   }
@@ -274,7 +274,7 @@ function itemsFromComparison(compare: EvidenceChangeCompareResult): AdviceRadarI
       itemFromChange(
         `route-${i}`,
         line,
-        "Primary defence route label changed on source-backed reasoning.",
+        "Primary defence route label changed on papers-based reasoning.",
         "Decision Board; Summary tab; Today route context.",
         "the primary route label changed",
         "Prior route-led court line or strategy note.",
@@ -352,7 +352,7 @@ function watchFromContradiction(label: string, summary: string, index: number): 
     whyItMatters: sanitiseLine(
       summary || "If further statements or CCTV land, timeline/account pressure may shift.",
     ),
-    affectedOutput: "Today tab; must-not-overstate; source-backed court note.",
+    affectedOutput: "Today tab; must-not-overstate; court note from papers.",
     reviewNeeded: reviewLine("a paper conflict is open on current bundle"),
     doNotRelyOnYet: "Any court line that assumes accounts align without reviewing anchors.",
     pressureDirection: "review_needed",
