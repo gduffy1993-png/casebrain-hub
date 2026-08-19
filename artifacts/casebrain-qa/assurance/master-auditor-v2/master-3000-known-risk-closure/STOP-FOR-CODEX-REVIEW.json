@@ -2,9 +2,9 @@
   "schemaVersion": "master3000-known-risk-closure-stop@1.0.0",
   "generatedAt": "2026-08-19T19:19:17.026Z",
   "status": "KNOWN_RISK_CLOSURE_COMPLETE__NO_SCALE_RUN",
-  "commit": "5d61a9acd490b2a8244b63c41ec07a26f3df0a7f",
+  "commit": "9342eb8528432729f60b05cf9b234164da71c10c",
   "commitMetadata": {
-    "certifiedCommit": "5d61a9acd490b2a8244b63c41ec07a26f3df0a7f",
+    "certifiedCommit": "9342eb8528432729f60b05cf9b234164da71c10c",
     "phase9ContentCheckpoint": "9675da3c48d02074ff09fe96d9d000fc29b578d0",
     "note": "certifiedCommit is the Known-Risk Closure content checkpoint SHA this artefact set certifies (on-branch). A follow-up stamp commit may exist solely to persist that SHA inside the artefact files. Known-risk closure after Phase 9. No 150/500/1000/3000 run."
   },
