@@ -1,11 +1,12 @@
 {
   "schemaVersion": "master3000-phase8-source-ingest-coverage-stop@1.0.0",
-  "generatedAt": "2026-08-19T17:52:12.181Z",
+  "generatedAt": "2026-08-19T17:54:16.809Z",
   "status": "SOURCE_INGEST_STATE_TRANSITION_COVERAGE_COMPLETE__NO_SCALE_RUN",
-  "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+  "commit": "5d61a9acd490b2a8244b63c41ec07a26f3df0a7f",
   "commitMetadata": {
-    "certifiedCommit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "certifiedCommit": "5d61a9acd490b2a8244b63c41ec07a26f3df0a7f",
     "phase7BaselineCommit": "c4114c06bb9b7036a681353f3326fe5b7b1aa3c1",
+    "note": "certifiedCommit is the Phase 8 content checkpoint SHA this artefact set certifies (on-branch). A follow-up stamp commit may exist solely to persist that SHA inside the artefact files.",
     "diskCleanup": {
       "removed": [
         ".next"

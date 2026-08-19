@@ -1,12 +1,12 @@
 # CaseBrain master 3,000 — Phase 8 source / ingest / state-transition coverage
 
-Generated: 2026-08-19T17:52:12.181Z
+Generated: 2026-08-19T17:54:16.809Z
 
 ## Verdict
 
 **SOURCE_INGEST_STATE_TRANSITION_COVERAGE_COMPLETE__NO_SCALE_RUN**
 
-Certified commit: `1c15fc84ec9c36b2b7f293ed8bc227ec05450533`
+Certified commit: `5d61a9acd490b2a8244b63c41ec07a26f3df0a7f`
 
 ## Coverage
 

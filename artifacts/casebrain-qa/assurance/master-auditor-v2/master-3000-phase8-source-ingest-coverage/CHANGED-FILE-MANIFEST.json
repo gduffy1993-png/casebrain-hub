@@ -1,11 +1,11 @@
 {
   "schemaVersion": "master3000-phase8-changed-file-manifest@1.0.0",
-  "generatedAt": "2026-08-19T17:52:12.181Z",
+  "generatedAt": "2026-08-19T17:54:16.809Z",
   "selfHashStatus": "excluded_from_files_array_self_referential",
   "files": [
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase8-source-ingest-coverage/361-CONTROL-COVERAGE-MAP-AFTER.json",
-      "sha256": "a9a1389501ec2cdd5b9f3c84c4e7fdca2efe0b8a222170d34d5fd181974e5fdd",
+      "sha256": "dbe8f5cf39f380c2f25e307e700fa3a8bd9733b7ec12a9eb48099778a851f4b8",
       "byteLength": 199929,
       "classification": "phase8_artifact"
     },
@@ -17,7 +17,7 @@
     },
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase8-source-ingest-coverage/DECISION-CARD.md",
-      "sha256": "20ec1e28c6a1f331f971de37aa63e6f1a30d8357dd2b9ba91f54a2ee4f4938c2",
+      "sha256": "721772d69f852e94b89e2a9b8f6ca3f2cc082c4e91e96a6224ea367dff1e1e64",
       "byteLength": 815,
       "classification": "phase8_artifact"
     },
@@ -29,7 +29,7 @@
     },
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase8-source-ingest-coverage/PHASE8-SOURCE-INGEST-AUDIT-RESULTS.json",
-      "sha256": "33f0e2141bf9c019c053165190dd71af5d1913186679eaf52e4fa1f9ced53f83",
+      "sha256": "24141e0e0783814c36641429af3d0806d3e2f99b2516696d050e6381a19039b5",
       "byteLength": 28819,
       "classification": "phase8_artifact"
     },
@@ -41,8 +41,8 @@
     },
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase8-source-ingest-coverage/STOP-FOR-CODEX-REVIEW.json",
-      "sha256": "a66d6fff26eecab4f98b4307f4ec4b170278fc557461fe2c06126ccff4b91273",
-      "byteLength": 7967,
+      "sha256": "10fc3fc02796d041d5483b105cb5eaf2d53828333f50e6ea8c747646edbed67c",
+      "byteLength": 8166,
       "classification": "phase8_artifact"
     },
     {
@@ -83,8 +83,8 @@
     },
     {
       "path": "scripts/assurance/master-3000-phase8-source-ingest-coverage.ts",
-      "sha256": "e1a521679fb4b4f489c30f5e997af80165a6144158cd5afc15ad4948320564d9",
-      "byteLength": 43325,
+      "sha256": "c98825e21788215071670707ac8e34f4cb4643d4c5339dd26fe4ea01592de0a5",
+      "byteLength": 43588,
       "classification": "contract_or_emit_script"
     },
     {

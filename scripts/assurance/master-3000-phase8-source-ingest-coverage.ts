@@ -144,7 +144,7 @@ function node(partial: Partial<DocumentRelationshipNode> & Pick<DocumentRelation
   };
 }
 
-const commit = git(["rev-parse", "HEAD"]);
+const commit = (process.env.MASTER3000_CERTIFIED_COMMIT || "").trim() || git(["rev-parse", "HEAD"]);
 const runId = `phase8-source-ingest-${GENERATED_AT.replace(/[:.]/g, "-")}`;
 
 type Exercise = {
@@ -871,6 +871,8 @@ const stop = {
   commitMetadata: {
     certifiedCommit: commit,
     phase7BaselineCommit: typeof phase7Stop.commit === "string" ? phase7Stop.commit : phase7Coverage.commit,
+    note:
+      "certifiedCommit is the Phase 8 content checkpoint SHA this artefact set certifies (on-branch). A follow-up stamp commit may exist solely to persist that SHA inside the artefact files.",
     diskCleanup: {
       removed: [".next"],
       freeMbBeforeApprox: 667,

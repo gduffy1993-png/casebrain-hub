@@ -1,7 +1,7 @@
 {
   "schemaVersion": "casebrain-master3000-361-control-coverage-map@1.0.0",
-  "generatedAt": "2026-08-19T17:52:12.181Z",
-  "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+  "generatedAt": "2026-08-19T17:54:16.809Z",
+  "commit": "5d61a9acd490b2a8244b63c41ec07a26f3df0a7f",
   "totalControls": 361,
   "rows": [
     {
