@@ -1,0 +1,26 @@
+[
+  {
+    "key": "P1|extraction_failure|interview|cps_chase|truth_expected_not_source_backed",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "interview",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "cb-fresh-002-jordan-hale"
+    ],
+    "rootCauseCluster": "truth_expected_not_source_backed"
+  },
+  {
+    "key": "P1|extraction_failure|other|cps_chase|truth_expected_not_source_backed",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "other",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-106"
+    ],
+    "rootCauseCluster": "truth_expected_not_source_backed"
+  }
+]

@@ -145,7 +145,7 @@ function humanOverflowCardLabel(mergedFrom: string[]): string {
   if (humanized.length === 2) return `${humanized[0]} / ${humanized[1]}`;
   const summary = humanized.slice(0, 4).join(", ");
   if (summary.length <= 72) return `Outstanding source material (${summary})`;
-  return "Outstanding source material on disclosure schedule";
+  return `${humanized[0]} + ${humanized.length - 1} more source items`;
 }
 
 function buildOverflowDraftWording(mergedFrom: string[]): string {

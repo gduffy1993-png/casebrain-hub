@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "master3000-phase6-p1-live-builder-validation-stop@1.0.0",
+  "generatedAt": "2026-08-19T14:57:09.032Z",
+  "status": "P1_LIVE_BUILDER_VALIDATION_COMPLETE__NO_SCALE_RUN",
+  "commit": "1d7c8055f32b49d02e84b1859958dbd57f523f89",
+  "phase5Baseline": {
+    "starterGoldCount": 40,
+    "candidateFailures": 124,
+    "failuresBySeverity": {
+      "P2": 41,
+      "P1": 83
+    },
+    "coverage": {
+      "evaluated": 9,
+      "unresolved": 0,
+      "unavailable": 0,
+      "notExercised": 352,
+      "notInRegistry": 0
+    }
+  },
+  "p1ClustersReviewed": 43,
+  "classifications": {
+    "CONFIRMED_LIVE_SHARED_DEFECT": 0,
+    "STALE_HISTORICAL_OUTPUT_ONLY": 41,
+    "AUDITOR_FALSE_POSITIVE": 0,
+    "TRUTH_AMBIGUOUS_REQUIRES_REVIEW": 2
+  },
+  "sharedProductionFixesMade": [
+    {
+      "id": "LIVE-OTHER-FAMILY-CONCRETE-LABEL",
+      "path": "lib/criminal/disclosure-chase-finalize.ts",
+      "rootCause": "Concrete expected chase items merged into the catch-all 'other' family could render as vague 'Outstanding source material on disclosure schedule' when the humanized list was too long.",
+      "fix": "Overflow label now preserves the first concrete source item and reports '+ N more source items' instead of collapsing to a fully generic label."
+    },
+    {
+      "id": "LIVE-SOURCE-BACKED-BWV-RESTORE",
+      "path": "components/criminal/disclosure-chase/buildDisclosureChaseBrief.ts",
+      "rootCause": "Broad CCTV/video family matching and later profile reconciliation could swallow source-backed BWV chase material in robbery/ID packs.",
+      "fix": "CCTV matching now excludes BWV/body-worn wording, and source-backed required chase families from the canonical ledger are restored if later reconciliation drops them."
+    }
+  ],
+  "invariantsAdded": [
+    "scripts/master3000-live-builder-validation.test.ts: concrete digital disclosure chases do not collapse into a vague source-material label",
+    "scripts/master3000-live-builder-validation.test.ts: genuinely generic source-material groups stay generic and do not invent specificity",
+    "scripts/master3000-live-builder-validation.test.ts: source-backed BWV chase items stay BWV and are not swallowed by broad CCTV/video matching"
+  ],
+  "affectedBatchRerun": {
+    "starterGoldCases": 40,
+    "liveBuilderRows": 238,
+    "liveCandidateFailures": 0,
+    "liveFailureClusters": 2
+  },
+  "coverageBeforeAfter": {
+    "before": {
+      "evaluated": 9,
+      "unresolved": 0,
+      "unavailable": 0,
+      "notExercised": 352,
+      "notInRegistry": 0
+    },
+    "after": {
+      "evaluated": 12,
+      "unresolved": 0,
+      "unavailable": 0,
+      "notExercised": 349,
+      "notInRegistry": 0
+    }
+  },
+  "newP0P1Failures": 0,
+  "validationIssues": {
+    "coverage": []
+  },
+  "full3000RunStarted": false,
+  "stress500or1000Started": false,
+  "nextStep": "Review remaining truth-ambiguous/stale historical clusters and, if accepted, run a modest representative stress set. Do not start 500/1000/3000 automatically.",
+  "nonClaims": {
+    "corpusPass": false,
+    "stage3000Completion": false,
+    "programmePass": false,
+    "solicitorApproval": false,
+    "all361ControlsExercised": false
+  }
+}

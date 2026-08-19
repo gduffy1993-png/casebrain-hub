@@ -102,6 +102,7 @@ const CHASE_FAMILIES: FamilyDef[] = [
     priority: 1,
     match: (t) =>
       /\b(cctv|video)\b/.test(t) &&
+      !/\b(bwv|body\s*worn|body-worn)\b/.test(t) &&
       /\b(continuity|provenance|chain\s+of\s+custody|integrity)\b/.test(t),
   },
   {
@@ -111,6 +112,7 @@ const CHASE_FAMILIES: FamilyDef[] = [
     priority: 2,
     match: (t) =>
       /\b(cctv|master|full\s*window|footage|video)\b/.test(t) &&
+      !/\b(bwv|body\s*worn|body-worn)\b/.test(t) &&
       !/\b(continuity|provenance|chain\s+of\s+custody)\b/.test(t),
   },
   {
@@ -1294,6 +1296,62 @@ function mergeLedgerDisclosureItems(
   return merged;
 }
 
+function sourceBackedLedgerItem(
+  m: ReturnType<typeof ledgerMaterialsNeedingChase>[number],
+  familyId: ChaseFamilyId,
+  deadline: ReturnType<typeof resolveDeadlineContext>,
+): DisclosureChaseItem {
+  const canonical = canonicalLedgerMaterial(m.displayLine, familyId);
+  const baseStatus: ChaseItemStatus =
+    m.status === "outstanding" || m.status === "absent" ? "Outstanding" : "Not safely confirmed";
+  const source = CHASE_FAMILIES.find((fam) => fam.id === familyId)?.source ?? "MG6/MG6C disclosure schedule";
+  const evidenceAnchor = canonical.anchor ?? formatDisplayLabelCasing(m.displayLine);
+
+  return {
+    id: `ledger-restored-${familyId}-${m.id}`,
+    familyId,
+    label: canonical.label,
+    whyItMatters:
+      canonical.whyItMatters ??
+      "The source ledger records this material as outstanding or not safely served; chase or confirm status before fixing the hearing position.",
+    source,
+    baseStatus,
+    urgency: deadline.urgency,
+    deadlineLabel: deadline.sharedLabel,
+    hearingDeadlineNote: deadline.hearingDeadlineNote,
+    evidenceAnchor,
+    linkedRoute: null,
+    draftChaseWording:
+      canonical.draftChaseWording ??
+      `Please provide ${canonical.label.toLowerCase()} or confirm in writing why it is not available.`,
+    courtLine: `${COURT_RECORD_PREFIX} that ${canonical.label.charAt(0).toLowerCase()}${canonical.label.slice(1)} remains ${professionalCourtStatusFragment(m.status)} on the current papers.`,
+    mergedFrom: [m.displayLine],
+    provenance: chaseItemProvenance({
+      label: canonical.label,
+      source,
+      baseStatus,
+      evidenceAnchor,
+    }),
+  };
+}
+
+function restoreSourceBackedRequiredChaseFamilies(
+  items: DisclosureChaseItem[],
+  ledger: BundleTruthLedger | null,
+  deadline: ReturnType<typeof resolveDeadlineContext>,
+): DisclosureChaseItem[] {
+  if (!ledger) return items;
+  const out = [...items];
+  const present = new Set(out.map((item) => item.familyId));
+  for (const m of ledgerMaterialsNeedingChase(ledger)) {
+    const familyId = classifyFamily(m.displayLine);
+    if (familyId === "other" || present.has(familyId)) continue;
+    out.push(sourceBackedLedgerItem(m, familyId, deadline));
+    present.add(familyId);
+  }
+  return out;
+}
+
 function canonicalLedgerMaterial(
   displayLine: string,
   familyId: ChaseFamilyId,
@@ -1489,6 +1547,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     evidenceAnchor: familySafeEvidenceAnchor(item.familyId, item.evidenceAnchor),
   }));
   items = reconcileChaseItemsAgainstServedMaterial(items, ledger);
+  items = restoreSourceBackedRequiredChaseFamilies(items, ledger, deadline);
 
   // Alias-suppress using live document-derived evidence rows (not hardcoded assumptions).
   if (input.canonicalEvidenceRows?.length) {

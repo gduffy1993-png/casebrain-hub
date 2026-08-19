@@ -1,0 +1,14 @@
+[
+  {
+    "id": "LIVE-OTHER-FAMILY-CONCRETE-LABEL",
+    "path": "lib/criminal/disclosure-chase-finalize.ts",
+    "rootCause": "Concrete expected chase items merged into the catch-all 'other' family could render as vague 'Outstanding source material on disclosure schedule' when the humanized list was too long.",
+    "fix": "Overflow label now preserves the first concrete source item and reports '+ N more source items' instead of collapsing to a fully generic label."
+  },
+  {
+    "id": "LIVE-SOURCE-BACKED-BWV-RESTORE",
+    "path": "components/criminal/disclosure-chase/buildDisclosureChaseBrief.ts",
+    "rootCause": "Broad CCTV/video family matching and later profile reconciliation could swallow source-backed BWV chase material in robbery/ID packs.",
+    "fix": "CCTV matching now excludes BWV/body-worn wording, and source-backed required chase families from the canonical ledger are restored if later reconciliation drops them."
+  }
+]
