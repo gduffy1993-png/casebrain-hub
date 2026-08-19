@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildHearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
+import {
+  workflowDisclosureChaseLabels,
+  workflowProfileFallbackRisks,
+  workflowTopNextActions,
+} from "../lib/criminal/pilot-workflow";
 import type { BattleboardOutput } from "../lib/criminal/strategy-battleboard";
 
 function battleboard(lines: Partial<BattleboardOutput["primary_route"]>): BattleboardOutput {
@@ -53,6 +58,15 @@ const custodyBundle = [
   "MG6C/011 — Custody record — extract only.",
   "Custody record extract — detention authorised. Safeguards checklist referenced; full record outstanding.",
   "MG6C/012 — MG11 officer statement — draft unsigned.",
+].join("\n");
+
+const patelAffrayBundle = [
+  "Isaac Patel",
+  "Charge: Affray",
+  "Court: Southford Magistrates' Court",
+  "Hearing: First Appearance on 25 August 2026",
+  "MG5 summary: CCTV stills are referred to. Full CCTV master footage is outstanding.",
+  "Interview summary is on file. Full interview recording/transcript is not served and remains outstanding.",
 ].join("\n");
 
 describe("source truth guardian", () => {
@@ -175,5 +189,92 @@ describe("source truth guardian", () => {
     expect(labels).not.toMatch(/BWV reference \| 7 \|/i);
     expect(labels).not.toMatch(/I activated BWV at the scene/i);
     expect(labels).not.toMatch(/referred to on the schedule but not attached/i);
+  });
+
+  it("does not attach phone/source-export provenance to CCTV chase items", () => {
+    const chase = buildDisclosureChaseBrief({
+      caseId: "CB-FRESH-003",
+      caseTitle: "Isaac",
+      clientLabel: "Isaac Patel",
+      allegation: "Affray",
+      stage: "PTPH",
+      hearingStatus: "Listed",
+      hearingDateIso: "2026-08-25T10:00:00",
+      bundleHealth: "Partial",
+      positionStatus: "Not recorded",
+      battleboard: battleboard({
+        route_type: "identity",
+        evidence_anchors: ["full phone download / source export"],
+      }),
+      proceduralOutstanding: ["CCTV full window / master footage"],
+      bundleText: [
+        "MG5 summary refers to CCTV stills and a CCTV clip.",
+        "The full CCTV window/master footage is not served.",
+      ].join("\n"),
+    });
+
+    const cctv = chase.items.find((item) => item.familyId === "cctv_master");
+    expect(cctv).toBeTruthy();
+    expect(cctv?.label).toMatch(/CCTV full window|master footage/i);
+    expect(cctv?.evidenceAnchor ?? "").not.toMatch(/phone|source export|download/i);
+  });
+
+  it("does not promote unsupported violence-profile prompts into Patel-style affray chases", () => {
+    const context = {
+      caseTitle: "Isaac Patel",
+      clientLabel: "Isaac Patel",
+      allegation: "Affray",
+      stage: "First Appearance",
+      bundleText: patelAffrayBundle,
+    };
+
+    const visible = [
+      ...(workflowDisclosureChaseLabels(context) ?? []),
+      ...(workflowTopNextActions(context) ?? []),
+      ...workflowProfileFallbackRisks(context),
+    ].join("\n");
+
+    expect(visible).not.toMatch(/\b(?:medical|injury|hospital|BWV|body[-\s]?worn|999|CAD|retraction|further statement|domestic|safeguarding|self[-\s]?defence|causation)\b/i);
+  });
+
+  it("keeps Patel-style interview transcript outstanding without calling it served", () => {
+    const chase = buildDisclosureChaseBrief({
+      caseId: "CB-FRESH-004",
+      caseTitle: "Isaac Patel",
+      clientLabel: "Isaac Patel",
+      allegation: "Affray",
+      stage: "First Appearance",
+      hearingStatus: "Listed",
+      hearingDateIso: "2026-08-25T10:00:00",
+      bundleHealth: "Partial",
+      positionStatus: "Not recorded",
+      battleboard: null,
+      proceduralOutstanding: [
+        "Full interview recording/transcript outstanding",
+        "Full CCTV master footage outstanding",
+      ],
+      bundleText: patelAffrayBundle,
+    });
+
+    const visibleText = [
+      chase.disclosureSummary,
+      ...chase.items.flatMap((item) => [
+        item.label,
+        item.whyItMatters,
+        item.evidenceAnchor ?? "",
+        item.draftChaseWording,
+        item.courtLine,
+        ...(item.mergedFrom ?? []),
+      ]),
+    ].join("\n");
+    const text = JSON.stringify(chase);
+    expect(text).toMatch(/interview recording|transcript/i);
+    expect(text).toMatch(/CCTV/i);
+    expect(text).toMatch(/\b(?:interview recording|transcript)[^.!?]{0,100}\bnot served\b/i);
+    expect(text).not.toMatch(/\b(?:interview recording|transcript)\s+(?:is\s+)?served\b/i);
+    expect(text).not.toMatch(/\bserved\s+(?:interview recording|transcript)\b/i);
+    expect(visibleText).not.toMatch(/\bmedical|injury|BWV|body[-\s]?worn|999|CAD|retraction|domestic|self[-\s]?defence|causation\b/i);
+    expect(visibleText).not.toMatch(/\bviolence assault\b/i);
+    expect(visibleText).not.toMatch(/\bPTPH\b/i);
   });
 });

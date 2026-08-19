@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Loader2, Scale } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { isValidCaseId } from "@/components/criminal/criminalCaseNavigation";
 import { workflowCard, workflowPilotShell } from "@/components/criminal/workflow/workflowUi";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import { DemoPresentationLandingRedirect } from "./DemoPresentationLandingRedirect";
@@ -349,7 +350,11 @@ export function CourtTodayClient() {
       .then(([bundles, boards]) => {
         if (cancelled) return;
         setEnrichmentByCase((prev) => mergeBundlePayloads(prev, bundles));
-        setBattleboards(boards);
+        setBattleboards((prev) => {
+          const next = new Map(prev);
+          for (const [id, board] of boards) next.set(id, board);
+          return next;
+        });
       })
       .finally(() => {
         if (!cancelled) setEnrichingLabels(false);
@@ -367,6 +372,37 @@ export function CourtTodayClient() {
     const bundles = await enrichCourtTodayBundles(unique);
     setEnrichmentByCase((prev) => mergeBundlePayloads(prev, bundles));
   }, []);
+
+  /**
+   * The opened matter is the user’s current truth surface. Do not wait for the
+   * background no-date / scheduled sweeps before enriching its sidebar card.
+   * Without this, the main desk can show the correct case while the left card
+   * still says "details need review" from the thin /api/cases row.
+   */
+  useEffect(() => {
+    if (loading || !requestedCaseId || !isValidCaseId(requestedCaseId)) return;
+
+    let cancelled = false;
+    Promise.all([enrichCourtTodayBundles([requestedCaseId]), fetchBattleboard(requestedCaseId)])
+      .then(([bundles, board]) => {
+        if (cancelled) return;
+        setEnrichmentByCase((prev) => mergeBundlePayloads(prev, bundles));
+        if (board) {
+          setBattleboards((prev) => {
+            const next = new Map(prev);
+            next.set(requestedCaseId, board);
+            return next;
+          });
+        }
+      })
+      .catch(() => {
+        // Non-fatal: the matter desk still loads from its own canonical API path.
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [loading, requestedCaseId]);
 
   useEffect(() => {
     if (loading || process.env.NODE_ENV !== "development") return;

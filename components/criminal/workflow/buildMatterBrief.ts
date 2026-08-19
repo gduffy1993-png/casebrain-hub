@@ -259,7 +259,7 @@ export function buildMatterBrief(input: {
     },
     {
       id: "ptph",
-      title: "PTPH / case management note",
+      title: "Court / case management note",
       paragraph: "Provisional — for solicitor review before court.",
       bullets: ptphBullets,
     },

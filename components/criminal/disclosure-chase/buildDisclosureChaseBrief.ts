@@ -410,6 +410,49 @@ function classifyFamily(text: string): ChaseFamilyId {
   return "other";
 }
 
+const CHASE_FAMILY_TO_GATE_FAMILIES: Partial<Record<ChaseFamilyId, ChaseGateFamily[]>> = {
+  cctv_master: ["cctv"],
+  cctv_continuity: ["cctv"],
+  cad_999: ["cad_999"],
+  bwv: ["bwv"],
+  interview: ["interview"],
+  mg6_unused: ["mg6_unused"],
+  medical_expert: ["medical"],
+};
+
+export function disclosureChaseAnchorMatchesFamily(
+  familyId: ChaseFamilyId,
+  anchor: string | null | undefined,
+): boolean {
+  const text = anchor?.trim();
+  if (!text || isAdminGuidanceLine(text)) return false;
+  if (familyId === "other") return true;
+
+  const expected = CHASE_FAMILY_TO_GATE_FAMILIES[familyId];
+  const mentioned = familiesInText(text);
+
+  if (expected?.length) {
+    return mentioned.some((family) => expected.includes(family));
+  }
+
+  if (familyId === "exhibit_provenance") {
+    return (
+      /\b(exhibit|provenance|mapping|continuity)\b/i.test(text) &&
+      !mentioned.some((family) => ["phone", "bank_financial", "medical", "interview"].includes(family))
+    );
+  }
+
+  return mentioned.length === 0;
+}
+
+function familySafeEvidenceAnchor(
+  familyId: ChaseFamilyId,
+  anchor: string | null | undefined,
+): string | null {
+  if (!anchor?.trim()) return null;
+  return disclosureChaseAnchorMatchesFamily(familyId, anchor) ? anchor : null;
+}
+
 function getFamilyDef(id: ChaseFamilyId): FamilyDef {
   if (id === "other") {
     return {
@@ -678,7 +721,8 @@ function findEvidenceAnchor(
 ): string | null {
   if (ledger) {
     const fromLedger = ledgerAnchorForChaseFamily(familyId, ledger);
-    if (fromLedger && !isAdminGuidanceLine(fromLedger)) return fromLedger;
+    const safeLedgerAnchor = familySafeEvidenceAnchor(familyId, fromLedger);
+    if (safeLedgerAnchor) return safeLedgerAnchor;
     if (LEDGER_ANCHOR_FAMILIES.has(familyId)) return null;
   }
 
@@ -688,11 +732,15 @@ function findEvidenceAnchor(
     for (const a of route.evidence_anchors ?? []) {
       if (isAdminGuidanceLine(a)) continue;
       const al = a.toLowerCase();
-      if (needles.some((n) => n.length > 4 && (al.includes(n.slice(0, 12)) || n.includes(al.slice(0, 12))))) {
+      if (
+        familySafeEvidenceAnchor(familyId, a) &&
+        needles.some((n) => n.length > 4 && (al.includes(n.slice(0, 12)) || n.includes(al.slice(0, 12))))
+      ) {
         return formatDisplayLabelCasing(a);
       }
     }
   }
+  if (LEDGER_ANCHOR_FAMILIES.has(familyId)) return null;
   const primary = battleboard.primary_route?.evidence_anchors?.[0];
   if (primary && !isAdminGuidanceLine(primary)) return formatDisplayLabelCasing(primary);
   return null;
@@ -906,6 +954,21 @@ function gateItemsAgainstSource(
   return out;
 }
 
+function familySafeMergedFrom(
+  item: DisclosureChaseItem,
+  bundleText: string | null | undefined,
+): string[] {
+  if (!item.mergedFrom?.length || !bundleText?.trim()) return item.mergedFrom ?? [];
+  const allowedFamilies = new Set(gateFamiliesForItem(item));
+  return item.mergedFrom.filter((line) => {
+    const families = familiesInText(line);
+    if (!families.length) return true;
+    return families.every(
+      (family) => allowedFamilies.has(family) && familySupport(family, bundleText) !== "absent",
+    );
+  });
+}
+
 function finalizeGatedDisclosureItem(
   item: DisclosureChaseItem,
   bundleText: string,
@@ -991,7 +1054,14 @@ function buildWorkflowProfileDisclosureItems(
           : null;
         if (fromLedger) return fromLedger;
         const raw = battleboard?.primary_route?.evidence_anchors?.[0] ?? null;
-        if (!raw || isMalformedPilotEvidenceAnchor(raw) || isAdminGuidanceLine(raw)) return null;
+        if (
+          !raw ||
+          isMalformedPilotEvidenceAnchor(raw) ||
+          isAdminGuidanceLine(raw) ||
+          !familySafeEvidenceAnchor(familyId, raw)
+        ) {
+          return null;
+        }
         return formatDisplayLabelCasing(raw);
       })(),
       linkedRoute: battleboard?.primary_route?.title ?? null,
@@ -1395,13 +1465,21 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     .map((item) => ({
       ...item,
       label: formatDisplayLabelCasing(normalizeRawLabel(item.label)),
+      mergedFrom: familySafeMergedFrom(item, input.bundleText),
       evidenceAnchor: item.evidenceAnchor
-        ? guardSolicitorLine(item.evidenceAnchor, guardCtx) ??
-          (isAdminGuidanceLine(item.evidenceAnchor) ? null : formatDisplayLabelCasing(item.evidenceAnchor))
+        ? familySafeEvidenceAnchor(
+            item.familyId,
+            guardSolicitorLine(item.evidenceAnchor, guardCtx) ??
+              (isAdminGuidanceLine(item.evidenceAnchor) ? null : formatDisplayLabelCasing(item.evidenceAnchor)),
+          )
         : item.evidenceAnchor,
     }));
   items = collapseDisclosureItemsByFamily(items);
   items = finalizeDisclosureChasePresentation(items);
+  items = items.map((item) => ({
+    ...item,
+    evidenceAnchor: familySafeEvidenceAnchor(item.familyId, item.evidenceAnchor),
+  }));
   items = reconcileChaseItemsAgainstServedMaterial(items, ledger);
 
   // Alias-suppress using live document-derived evidence rows (not hardcoded assumptions).
@@ -1465,7 +1543,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
 
   const disclosureSummary =
     primaryItems.length > 0
-      ? `${primaryItems.length} priority chase item${primaryItems.length === 1 ? "" : "s"} — ${briefPlan.profile.replace(/_/g, " ")}`
+      ? `${primaryItems.length} priority chase item${primaryItems.length === 1 ? "" : "s"} — source-material review`
       : items.length === 0
         ? "No source-material chase items safely detected"
         : items.length === 1

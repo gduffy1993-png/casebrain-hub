@@ -145,11 +145,11 @@ function displayChaseWhy(text: string | null | undefined, item: DisclosureChaseI
   const cleaned = display
     .replace(
       /^Further papers appear to be outstanding\. Confirm their relevance before fixing the hearing position\.?/i,
-      "Check the cited document or page and record whether this item is served, missing, incomplete or unclear.",
+      "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
     )
     .replace(
       /^Further papers appear to be outstanding\.?$/i,
-      "Check the cited document or page and record whether this item is served, missing, incomplete or unclear.",
+      "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
     )
     .replace(/\s*[—–-]\s*solicitor review\.?$/i, "")
     .replace(/\s+/g, " ")

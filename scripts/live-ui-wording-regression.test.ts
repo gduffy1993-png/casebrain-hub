@@ -73,6 +73,11 @@ assert.match(
   /briefs\.length === 0 && rows\.length > 0/,
   "Court Today must show a saved-matter desk fallback before falling back to the old no-hearings card",
 );
+assert.match(
+  courtTodayClientSource,
+  /enrichCourtTodayBundles\(\[requestedCaseId\]\)/,
+  "Court Today must enrich the selected matter directly so the sidebar and main desk share the same case truth",
+);
 
 const appShellSource = fs.readFileSync("components/layout/app-shell.tsx", "utf8");
 assert.match(appShellSource, /overflow-x-hidden/, "Pilot app shell must contain horizontal overflow");
@@ -179,6 +184,7 @@ const forbiddenSolicitorVisibleCopy = [
   /Open to review charge, hearing, papers and disclosure position/i,
   /Criminal matter — review required/i,
   /Confirm this item against the source before relying on it/i,
+  /Check the cited document or page and record whether this item is served, missing, incomplete or unclear/i,
   /co-defendant\/unknown male/i,
   /remains outstanding\.\s*remains outstanding/i,
   /long extract bundle stress/i,
@@ -186,6 +192,13 @@ const forbiddenSolicitorVisibleCopy = [
   /summary wrapper/i,
   /item\(s\)/i,
   /stops mid-narrative/i,
+  /\b\d+\s*doc(?:s)?\s*[·,]\s*\d+k\s*chars\b/i,
+  /\bchars text\b/i,
+  /\bviolence assault\b/i,
+  /PTPH note: ask the court/i,
+  /PTPH \/ case management note/i,
+  /MORE PAPERS DETAIL UNAVAILABLE/i,
+  /FULL SUMMARY WORKSPACE UNAVAILABLE/i,
 ];
 
 for (const file of solicitorVisibleSources) {

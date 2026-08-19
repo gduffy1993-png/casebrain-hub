@@ -375,24 +375,105 @@ export function isWorkflowDemoProfile(context: WorkflowProfileContext): boolean 
   return p !== "generic";
 }
 
+type SourceSupportRule = {
+  output: RegExp;
+  source: RegExp;
+};
+
+const PROFILE_SOURCE_SUPPORT_RULES: SourceSupportRule[] = [
+  {
+    output: /\b(?:bwv|body[-\s]?worn|incident footage)\b/i,
+    source: /\b(?:bwv|body[-\s]?worn|incident footage)\b/i,
+  },
+  {
+    output: /\b(?:999|cad|call audio|control[-\s]?room|emergency call)\b/i,
+    source: /\b(?:999|cad|call audio|control[-\s]?room|emergency call)\b/i,
+  },
+  {
+    output: /\b(?:medical|injury|hospital|a\s*&\s*e|ambulance|paramedic|fme|causation)\b/i,
+    source: /\b(?:medical|injury|hospital|a\s*&\s*e|ambulance|paramedic|fme|causation)\b/i,
+  },
+  {
+    output: /\b(?:retraction|further complainant statement|further statement|withdraw(?:al|n)?)\b/i,
+    source: /\b(?:retraction|further complainant statement|further statement|withdraw(?:al|n)?)\b/i,
+  },
+  {
+    output: /\b(?:domestic context|domestic|safeguarding|relationship context)\b/i,
+    source: /\b(?:domestic context|domestic|safeguarding|relationship context)\b/i,
+  },
+  {
+    output: /\b(?:self[-\s]?defence|self defense)\b/i,
+    source: /\b(?:self[-\s]?defence|self defense)\b/i,
+  },
+  {
+    output: /\b(?:third[-\s]?party witness|independent witness|witness statements?)\b/i,
+    source: /\b(?:third[-\s]?party witness|independent witness|witness statements?|mg11)\b/i,
+  },
+  {
+    output: /\b(?:final signed complainant statement|signed complainant statement)\b/i,
+    source: /\b(?:final signed complainant statement|signed complainant statement|unsigned complainant statement|draft complainant statement)\b/i,
+  },
+  {
+    output: /\b(?:complainant first account|complainant account|mg11)\b/i,
+    source: /\b(?:complainant first account|complainant account|complainant|mg11|witness statement)\b/i,
+  },
+  {
+    output: /\b(?:full phone extraction|phone download|source export|device download|sim|imei|subscriber)\b/i,
+    source: /\b(?:full phone extraction|phone extraction|phone download|source export|device download|sim|imei|subscriber)\b/i,
+  },
+];
+
+const ASSERTIVE_SOURCE_EXPECTATION_RE =
+  /\b(?:appears outstanding|remains outstanding|outstanding|chase|ask the court|take instructions|may bear|may affect|required|needed|please provide|record that|conditional on|served)\b/i;
+
+function sourceTextForProfileSupport(context: WorkflowProfileContext): string | null {
+  const text = context.bundleText?.trim();
+  return text ? text : null;
+}
+
+function profileLineHasSourceSupport(
+  line: string,
+  context: WorkflowProfileContext,
+  profile: WorkflowProfile,
+): boolean {
+  if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return true;
+  const sourceText = sourceTextForProfileSupport(context);
+  if (!sourceText) return true;
+
+  for (const rule of PROFILE_SOURCE_SUPPORT_RULES) {
+    if (rule.output.test(line) && !rule.source.test(sourceText)) return false;
+  }
+  return true;
+}
+
+function filterProfilePackLinesBySource<T extends string>(
+  lines: T[],
+  context: WorkflowProfileContext,
+  profile: WorkflowProfile,
+): T[] {
+  return lines.filter((line) => profileLineHasSourceSupport(line, context, profile));
+}
+
 export function workflowDisclosureChaseLabels(context: WorkflowProfileContext): string[] | null {
   const profile = resolveWorkflowProfile(context);
   if (profile === "generic") return null;
   if (profile === "generic_motoring_provisional") return [...MOTORING_DISCLOSURE_ITEMS];
   if (isProvisionalWorkflowProfile(profile)) return null;
-  return PROFILE_PACKS[profile].disclosureItems;
+  return filterProfilePackLinesBySource(PROFILE_PACKS[profile].disclosureItems, context, profile);
 }
 
 export function workflowCourtRecordAsks(context: WorkflowProfileContext): string[] | null {
   const profile = resolveWorkflowProfile(context);
   if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return null;
-  return PROFILE_PACKS[profile].courtRecordAsks.map(normalizeWorkflowPilotLabel).slice(0, 5);
+  return filterProfilePackLinesBySource(PROFILE_PACKS[profile].courtRecordAsks, context, profile)
+    .map(normalizeWorkflowPilotLabel)
+    .slice(0, 5);
 }
 
 export function workflowTopNextActions(context: WorkflowProfileContext): string[] | null {
   const profile = resolveWorkflowProfile(context);
   if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return null;
-  return PROFILE_PACKS[profile].nextActions;
+  return filterProfilePackLinesBySource(PROFILE_PACKS[profile].nextActions, context, profile);
 }
 
 /** @deprecated Use {@link workflowTopNextActions}. */
@@ -881,6 +962,12 @@ export function sanitizePilotVisibleLine(
     }
   }
   if (shouldSuppressWorkflowPilotLine(t, profile)) return null;
+  if (
+    ASSERTIVE_SOURCE_EXPECTATION_RE.test(t) &&
+    !profileLineHasSourceSupport(t, context, profile)
+  ) {
+    return null;
+  }
 
   if (/take\/record instructions before relying/i.test(t)) {
     return t.replace(/take\/record instructions/i, "confirm client instructions");
@@ -939,7 +1026,15 @@ export function sanitizePilotVisibleLine(
       "Interview denial remains to be tested against served phone extraction, search BWV and continuity material.";
   }
   s = s.replace(/\s*\/\s*against extract\b/gi, "").replace(/\bagainst extract\b/gi, "").trim();
-  return cleanupPilotVisiblePunctuation(s) || null;
+  const cleaned = cleanupPilotVisiblePunctuation(s);
+  if (
+    cleaned &&
+    ASSERTIVE_SOURCE_EXPECTATION_RE.test(cleaned) &&
+    !profileLineHasSourceSupport(cleaned, context, profile)
+  ) {
+    return null;
+  }
+  return cleaned || null;
 }
 
 /** Fix duplicated punctuation/phrasing in pilot-visible copy. */
@@ -1256,32 +1351,32 @@ export function shouldSuppressWorkflowPilotLine(line: string, profile: WorkflowP
 export function workflowProfileFallbackRisks(context: WorkflowProfileContext): string[] {
   const profile = resolveWorkflowProfile(context);
   if (profile === "fraud_account_control") {
-    return [
+    return filterProfilePackLinesBySource([
       "Served bank/export schedules may bear on account-control — appears outstanding until reviewed.",
       "Device/login/IP material may affect attribution — solicitor review required before fixing position.",
       "POCA/source-of-funds exposure remains conditional on served financial material.",
-    ];
+    ], context, profile);
   }
   if (profile === "pwits_phone_attribution") {
-    return [
+    return filterProfilePackLinesBySource([
       "Phone extraction and attribution may bear on possession/knowledge — appears outstanding until served.",
       "Search continuity for drugs/cash may affect route viability — solicitor review required.",
       "Shared-premises/co-occupier context may remain live pending served material.",
-    ];
+    ], context, profile);
   }
   if (profile === "robbery_identification") {
-    return [
+    return filterProfilePackLinesBySource([
       "CCTV master/continuity may bear on identification — appears outstanding until served.",
       "ID procedure and complainant first account may affect identification fairness — solicitor review required.",
       "999/CAD timing and co-defendant attribution may remain live pending served material.",
-    ];
+    ], context, profile);
   }
   if (profile === "violence_domestic_assault") {
-    return [
+    return filterProfilePackLinesBySource([
       "Complainant account and BWV may bear on participation/causation — appears outstanding until served.",
       "Medical/injury material may affect the route — solicitor review required before fixing position.",
       "Domestic context and any retraction may remain live pending served material.",
-    ];
+    ], context, profile);
   }
   return [];
 }

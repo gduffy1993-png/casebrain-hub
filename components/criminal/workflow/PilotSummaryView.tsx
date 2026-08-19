@@ -125,7 +125,7 @@ function formatCourtDayNote(note: string): { text?: string; lead?: string; items
     .map((line) => polishPresentationLine(line, ""))
     .join(" ");
   return {
-    lead: "PTPH note: ask the court to set a disclosure timetable for:",
+    lead: "Court note: ask the court to set a disclosure timetable for:",
     items: subjects,
     tail,
   };

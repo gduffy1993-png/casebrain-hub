@@ -473,18 +473,10 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
         coverageLabel: "Generic – add charge sheet for offence-specific strategy",
       };
 
-  // Strategy basis: concrete numbers (docs, chars) so it's not vague; tier for quality signal
+  // Strategy basis: solicitor-visible source scope. Keep raw text length out of the UI;
+  // "10k chars" is an engineering/accounting measure, not a litigation-readiness cue.
   const docN = typeof docCount === "number" ? docCount : 0;
-  const charLabel = rawCharsTotal >= 1000
-    ? `${Math.round(rawCharsTotal / 1000)}k chars`
-    : rawCharsTotal > 0
-      ? `${rawCharsTotal.toLocaleString()} chars`
-      : null;
-  const basisNumbers = docN > 0 && charLabel
-    ? `${docN} doc${docN !== 1 ? "s" : ""}, ${charLabel}`
-    : docN > 0
-      ? `${docN} doc${docN !== 1 ? "s" : ""}`
-      : null;
+  const basisNumbers = docN > 0 ? `${docN} document${docN !== 1 ? "s" : ""} on file` : null;
 
   if (offenceSource === "unknown" || offenceType === "other") {
     analysisWithBundle.strategyBasisLabel = "Add charge sheet or key evidence for offence-specific strategy";
