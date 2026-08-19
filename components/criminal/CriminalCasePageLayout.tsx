@@ -8,7 +8,7 @@ import { CaseFilesList } from "@/components/cases/CaseFilesList";
 import { CaseFilesCompactStrip } from "./CaseFilesCompactStrip";
 import { resolveControlRoomFromSearchParams } from "./criminalCaseNavigation";
 import { usePilotDocumentsTabActive } from "@/components/criminal/workflow/useCaseWorkflowActiveTab";
-import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { isCriminalPilotMode, isSolicitorDashboardUi } from "@/lib/pilot-mode";
 import type { CaseWorkflowDocument } from "@/components/criminal/workflow/caseWorkflowDocuments";
 
 function useControlRoomActive(): boolean {
@@ -33,7 +33,16 @@ export function CriminalCasePageLayout({
 }) {
   const controlRoom = useControlRoomActive();
   const pilotDocumentsTab = usePilotDocumentsTabActive();
-  const hideBottomFilesStrip = isCriminalPilotMode() && pilotDocumentsTab;
+  const deskUi = isSolicitorDashboardUi();
+  const hideBottomFilesStrip = (isCriminalPilotMode() && pilotDocumentsTab) || deskUi;
+
+  if (deskUi) {
+    return (
+      <div className="w-full min-w-0 overflow-x-hidden" data-layout="solicitor-dashboard-page">
+        {children}
+      </div>
+    );
+  }
 
   if (controlRoom) {
     return (

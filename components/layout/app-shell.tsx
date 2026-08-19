@@ -1,15 +1,31 @@
+"use client";
+
 import type { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { Sidebar } from "./sidebar";
 import { Topbar } from "./topbar";
 import { TrialStatusBanner } from "./TrialStatusBanner";
-import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { isCriminalPilotMode, isSolicitorDashboardUi } from "@/lib/pilot-mode";
 
 type AppShellProps = {
   children: ReactNode;
 };
 
 export function AppShell({ children }: AppShellProps) {
+  const pathname = usePathname();
   const pilotMode = isCriminalPilotMode();
+  const deskUi =
+    isSolicitorDashboardUi() &&
+    (pathname.startsWith("/cases/") || pathname.startsWith("/court-today"));
+
+  if (deskUi) {
+    return (
+      <div className="min-h-screen overflow-x-hidden bg-slate-100 text-slate-900" data-shell="solicitor-dashboard">
+        {children}
+      </div>
+    );
+  }
+
   return (
     <div className={`flex min-h-screen overflow-x-hidden ${pilotMode ? "bg-slate-950" : "bg-slate-100"}`}>
       <Sidebar />
@@ -27,4 +43,3 @@ export function AppShell({ children }: AppShellProps) {
     </div>
   );
 }
-

@@ -53,7 +53,7 @@ import { CaseControlRoom } from "./CaseControlRoom";
 import { usePilotDemoSession } from "@/components/criminal/workflow/usePilotDemoSession";
 import { PilotDocumentsView } from "@/components/criminal/workflow/PilotDocumentsView";
 import { CaseFileZone } from "@/components/criminal/workflow/CaseFileZone";
-import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { isCriminalPilotMode, isSolicitorDashboardUi } from "@/lib/pilot-mode";
 import { CASE_FILES_HASH } from "@/components/criminal/workflow/focusCaseDocuments";
 import {
   appendControlRoomParams,
@@ -73,6 +73,7 @@ import { CaseWorkflowShell } from "./workflow/CaseWorkflowShell";
 import { PilotPapersView } from "./workflow/PilotPapersView";
 import { PilotSummaryView } from "./workflow/PilotSummaryView";
 import { FiveAnswersView } from "./five-answers/FiveAnswersView";
+import { SolicitorDashboardShell } from "./solicitor-dashboard/SolicitorDashboardShell";
 
 /** Tab ids for criminal case page. URL ?tab= must be one of these. Order: primary then secondary. */
 const CRIMINAL_CASE_TAB_IDS = [
@@ -778,6 +779,14 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   };
 
   if ((activeTab === "documents" || activeTab === "file") && isCriminalPilotMode()) {
+    const fileBody = (
+      <CaseFileZone
+        caseId={caseId}
+        snapshot={snapshot}
+        pilotUploadDisabled={pilotUploadDisabled}
+        pilotRecordPositionHidden={pilotRecordPositionHidden}
+      />
+    );
     return (
       <div className="space-y-4">
         {!isCriminalPilotMode() ? <WorkflowSafetyLine /> : null}
@@ -790,12 +799,13 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             </p>
           </div>
         )}
-        <CaseFileZone
-          caseId={caseId}
-          snapshot={snapshot}
-          pilotUploadDisabled={pilotUploadDisabled}
-          pilotRecordPositionHidden={pilotRecordPositionHidden}
-        />
+        {isSolicitorDashboardUi() ? (
+          <SolicitorDashboardShell caseId={caseId} mode="tab">
+            {fileBody}
+          </SolicitorDashboardShell>
+        ) : (
+          fileBody
+        )}
         {controlRoomSharedModals}
         <BackToTop />
       </div>
@@ -803,6 +813,23 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   }
 
   if (isCriminalPilotMode() && activeTab === "overview") {
+    if (isSolicitorDashboardUi()) {
+      return (
+        <div className="space-y-4">
+          {matterClosed && (
+            <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-center">
+              <p className="text-xs text-foreground">
+                <strong>Matter closed</strong>
+                {matterClosed.at && ` (${new Date(matterClosed.at).toLocaleDateString("en-GB")})`}
+                {matterClosed.reason ? ` – ${matterClosed.reason}` : ""}.
+              </p>
+            </div>
+          )}
+          <SolicitorDashboardShell caseId={caseId} mode="overview" />
+          {controlRoomSharedModals}
+        </div>
+      );
+    }
     return (
       <div className="space-y-4">
         {matterClosed && (
@@ -846,15 +873,21 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           </div>
         )}
         {isCriminalPilotMode() ? (
-          <CaseWorkflowShell
-            caseId={caseId}
-            onRecordPosition={pilotRecordPositionHidden ? undefined : openRecordPosition}
-            onUploadEvidence={pilotUploadDisabled ? undefined : openUploadEvidence}
-            pilotUploadDisabled={pilotUploadDisabled}
-            pilotRecordPositionHidden={pilotRecordPositionHidden}
-          >
-            {chaseBody}
-          </CaseWorkflowShell>
+          isSolicitorDashboardUi() ? (
+            <SolicitorDashboardShell caseId={caseId} mode="tab">
+              {chaseBody}
+            </SolicitorDashboardShell>
+          ) : (
+            <CaseWorkflowShell
+              caseId={caseId}
+              onRecordPosition={pilotRecordPositionHidden ? undefined : openRecordPosition}
+              onUploadEvidence={pilotUploadDisabled ? undefined : openUploadEvidence}
+              pilotUploadDisabled={pilotUploadDisabled}
+              pilotRecordPositionHidden={pilotRecordPositionHidden}
+            >
+              {chaseBody}
+            </CaseWorkflowShell>
+          )
         ) : (
           chaseBody
         )}
@@ -865,6 +898,13 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   }
 
   if (activeTab === "hearing-war-room" || activeTab === "today") {
+    const warBody = (
+      <HearingWarRoom
+        {...hearingWarRoomSharedProps}
+        controlRoomMode={useControlRoom}
+        embedInShell={isCriminalPilotMode() && isSolicitorDashboardUi()}
+      />
+    );
     return (
       <div className="space-y-4">
         {!isCriminalPilotMode() ? <WorkflowSafetyLine /> : null}
@@ -877,7 +917,13 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             </p>
           </div>
         )}
-        <HearingWarRoom {...hearingWarRoomSharedProps} controlRoomMode={useControlRoom} />
+        {isCriminalPilotMode() && isSolicitorDashboardUi() ? (
+          <SolicitorDashboardShell caseId={caseId} mode="tab">
+            {warBody}
+          </SolicitorDashboardShell>
+        ) : (
+          warBody
+        )}
         {controlRoomSharedModals}
         <BackToTop />
       </div>
@@ -885,6 +931,20 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
   }
 
   if (isCriminalPilotMode() && activeTab === "summary") {
+    const summaryBody = (
+      <ErrorBoundary
+        fallback={
+          <Card className="p-4">
+            <p className="text-sm text-muted-foreground">Summary will appear once documents are processed.</p>
+          </Card>
+        }
+      >
+        <PilotSummaryView
+          caseId={caseId}
+          caseTitle={snapshot?.caseMeta?.title ?? "Untitled Case"}
+        />
+      </ErrorBoundary>
+    );
     return (
       <div className="space-y-4">
         {matterClosed && (
@@ -896,26 +956,21 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
             </p>
           </div>
         )}
-        <CaseWorkflowShell
-          caseId={caseId}
-          onRecordPosition={pilotRecordPositionHidden ? undefined : openRecordPosition}
-          onUploadEvidence={pilotUploadDisabled ? undefined : openUploadEvidence}
-          pilotUploadDisabled={pilotUploadDisabled}
-          pilotRecordPositionHidden={pilotRecordPositionHidden}
-        >
-          <ErrorBoundary
-            fallback={
-              <Card className="p-4">
-                <p className="text-sm text-muted-foreground">Summary will appear once documents are processed.</p>
-              </Card>
-            }
+        {isSolicitorDashboardUi() ? (
+          <SolicitorDashboardShell caseId={caseId} mode="tab">
+            {summaryBody}
+          </SolicitorDashboardShell>
+        ) : (
+          <CaseWorkflowShell
+            caseId={caseId}
+            onRecordPosition={pilotRecordPositionHidden ? undefined : openRecordPosition}
+            onUploadEvidence={pilotUploadDisabled ? undefined : openUploadEvidence}
+            pilotUploadDisabled={pilotUploadDisabled}
+            pilotRecordPositionHidden={pilotRecordPositionHidden}
           >
-            <PilotSummaryView
-              caseId={caseId}
-              caseTitle={snapshot?.caseMeta?.title ?? "Untitled Case"}
-            />
-          </ErrorBoundary>
-        </CaseWorkflowShell>
+            {summaryBody}
+          </CaseWorkflowShell>
+        )}
         {controlRoomSharedModals}
         <BackToTop />
       </div>
@@ -1044,15 +1099,21 @@ export function CriminalCaseView({ caseId }: CriminalCaseViewProps) {
           </div>
         )}
         {isCriminalPilotMode() ? (
-          <CaseWorkflowShell
-            caseId={caseId}
-            onRecordPosition={pilotRecordPositionHidden ? undefined : openRecordPosition}
-            onUploadEvidence={pilotUploadDisabled ? undefined : openUploadEvidence}
-            pilotUploadDisabled={pilotUploadDisabled}
-            pilotRecordPositionHidden={pilotRecordPositionHidden}
-          >
-            {papersBody}
-          </CaseWorkflowShell>
+          isSolicitorDashboardUi() ? (
+            <SolicitorDashboardShell caseId={caseId} mode="tab">
+              {papersBody}
+            </SolicitorDashboardShell>
+          ) : (
+            <CaseWorkflowShell
+              caseId={caseId}
+              onRecordPosition={pilotRecordPositionHidden ? undefined : openRecordPosition}
+              onUploadEvidence={pilotUploadDisabled ? undefined : openUploadEvidence}
+              pilotUploadDisabled={pilotUploadDisabled}
+              pilotRecordPositionHidden={pilotRecordPositionHidden}
+            >
+              {papersBody}
+            </CaseWorkflowShell>
+          )
         ) : (
           papersBody
         )}

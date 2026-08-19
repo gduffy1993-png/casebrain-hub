@@ -18,6 +18,17 @@ export function isCriminalPilotMode(): boolean {
   return /^(1|true|yes|on)$/i.test((process.env.NEXT_PUBLIC_CRIMINAL_PILOT_MODE ?? "").trim());
 }
 
+/**
+ * Premium solicitor-dashboard presentation shell (UI-only).
+ * Default: on when criminal pilot mode is on.
+ * Override with NEXT_PUBLIC_SOLICITOR_DASHBOARD_UI=0/false to fall back to classic pilot chrome.
+ */
+export function isSolicitorDashboardUi(): boolean {
+  const raw = (process.env.NEXT_PUBLIC_SOLICITOR_DASHBOARD_UI ?? "").trim();
+  if (raw) return /^(1|true|yes|on)$/i.test(raw);
+  return isCriminalPilotMode();
+}
+
 export function getAdminUserIds(): string[] {
   const id = process.env.NEXT_PUBLIC_ADMIN_USER_ID?.trim();
   return id ? [id] : [];
