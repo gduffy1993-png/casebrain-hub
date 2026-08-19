@@ -344,7 +344,7 @@ function SidebarContent() {
 
   return (
     <aside
-      className={`flex h-full flex-col border-r border-slate-800 bg-slate-900 text-slate-100 transition-[width] ${
+      className={`flex h-full shrink-0 flex-col overflow-x-hidden border-r border-slate-800 bg-slate-900 text-slate-100 transition-[width] ${
         matterFocus ? "w-[3.75rem]" : "w-64"
       }`}
       data-matter-focus={matterFocus ? "true" : "false"}
@@ -370,7 +370,7 @@ function SidebarContent() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 space-y-1 px-3 overflow-y-auto">
+      <nav className={`flex-1 space-y-1 overflow-y-auto overflow-x-hidden ${matterFocus ? "px-2" : "px-3"}`}>
         {visibleItems.map((item) => {
           const sectionLabel =
             item.href === "/court-today"
@@ -390,7 +390,7 @@ function SidebarContent() {
             return (
               <Fragment key={item.href}>
                 {sectionLabel && (
-                  <p className="px-3 pt-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-500 first:pt-1">
+                  <p className={`${matterFocus ? "sr-only" : "px-3 pt-3 pb-1"} text-[10px] font-semibold uppercase tracking-wider text-slate-500 first:pt-1`}>
                     {sectionLabel}
                   </p>
                 )}
@@ -400,6 +400,7 @@ function SidebarContent() {
                     onClick={() => toggleExpanded(itemKey)}
                     className={clsx(
                       "flex-1 group flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200",
+                      matterFocus && "justify-center px-2",
                       isActive
                         ? "bg-primary/10 text-primary shadow-sm"
                         : "text-accent-soft hover:text-accent hover:bg-white/5",
@@ -413,19 +414,19 @@ function SidebarContent() {
                     >
                       {item.icon}
                     </span>
-                    <span className="flex-1 text-left">{item.label}</span>
-                    {item.badge && (
+                    {!matterFocus ? <span className="flex-1 text-left">{item.label}</span> : null}
+                    {!matterFocus && item.badge && (
                       <span className="rounded-full bg-secondary/20 px-2 py-0.5 text-[10px] font-semibold text-secondary">
                         {item.badge}
                       </span>
                     )}
-                    {isExpanded ? (
+                    {!matterFocus && (isExpanded ? (
                       <ChevronDown className="h-3.5 w-3.5 text-accent-muted" />
                     ) : (
                       <ChevronRight className="h-3.5 w-3.5 text-accent-muted" />
-                    )}
+                    ))}
                   </button>
-                  {!isExpanded && (
+                  {!matterFocus && !isExpanded && (
                     <Link
                       href={item.href}
                       className={clsx(

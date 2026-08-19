@@ -51,6 +51,9 @@ import { useEffect, useMemo, useState } from "react";
 export function overviewServedEvidenceLine(label: string): string {
   const clean = label.replace(/\s+/g, " ").trim().replace(/\.+$/g, "");
   if (!clean) return "";
+  if (/\b(?:stops mid-narrative|continuation page|truncated extract|partial extract)\b/i.test(clean)) {
+    return "Source extract appears incomplete — check the full served document before relying on this point.";
+  }
   if (/\b(?:outstanding|not served|needs checking|referred to)\b/i.test(clean)) {
     return `${clean} — do not rely on it without checking the source.`;
   }

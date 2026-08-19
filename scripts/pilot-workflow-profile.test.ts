@@ -372,7 +372,7 @@ assert.equal(
     "with a second male. The CCTV footage itself is not included in full. The stills are described as poor lighting and",
     leonCtx,
   ),
-  "CCTV footage is not served in full; second-male attribution remains unresolved.",
+  "CCTV footage is not served in full; any other-person attribution must be checked against served papers.",
 );
 
 assert.ok(

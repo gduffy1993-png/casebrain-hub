@@ -220,7 +220,10 @@ function resolveBundleHealth(row: CourtCasesApiRow, battleboard: BattleboardOutp
     return "Routes need solicitor review";
   }
   const outstanding = row.disclosure_outstanding ?? 0;
-  if (outstanding > 0) return `Partial — ${outstanding} disclosure chase item(s) on file`;
+  if (outstanding > 0) {
+    const noun = outstanding === 1 ? "chase item" : "chase items";
+    return `Partial — ${outstanding} disclosure ${noun} on file`;
+  }
   if (battleboard?.primary_route) return "Material on file — routes available";
   return "Bundle status not fully assessed — open Control Room";
 }
@@ -273,7 +276,10 @@ function buildChaseItems(
   const fromBoard = collectChaseItems({ battleboard: battleboard ?? null });
   if (fromBoard.length) return fromBoard.slice(0, 6);
   const n = row.disclosure_outstanding ?? 0;
-  if (n > 0) return [`${n} disclosure chase item(s) recorded on file — verify MG6/CCTV list`];
+  if (n > 0) {
+    const noun = n === 1 ? "chase item" : "chase items";
+    return [`${n} disclosure ${noun} recorded on file — verify MG6/CCTV list`];
+  }
   return [];
 }
 

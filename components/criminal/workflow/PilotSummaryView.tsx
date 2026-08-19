@@ -68,7 +68,7 @@ function MatterBriefSectionBlock({
         /^Further papers appear to be outstanding\. Confirm their relevance before fixing the hearing position\.?$/i,
         "Check the relevant source material before fixing the hearing position.",
       )
-      .replace(/\brobbery id\b/gi, "robbery ID");
+      .replace(/\brobbery id\b/gi, "identification issues");
   const displayBullets = polishChaseBullets
     ? dedupeSolicitorLines(
         filterBundleFamilyWarnings(bullets ?? [], bundleHay)

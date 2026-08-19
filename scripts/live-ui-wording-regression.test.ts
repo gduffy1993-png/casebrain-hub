@@ -68,6 +68,30 @@ assert.match(
   /const pilotHideReviewClutter = pilotDemo && scheduledEmpty && !pilotDeskEligible;/,
   "Court Today pilot empty state must not override the saved-matter desk",
 );
+assert.match(
+  courtTodayClientSource,
+  /briefs\.length === 0 && rows\.length > 0/,
+  "Court Today must show a saved-matter desk fallback before falling back to the old no-hearings card",
+);
+
+const appShellSource = fs.readFileSync("components/layout/app-shell.tsx", "utf8");
+assert.match(appShellSource, /overflow-x-hidden/, "Pilot app shell must contain horizontal overflow");
+const topbarSource = fs.readFileSync("components/layout/topbar.tsx", "utf8");
+assert.doesNotMatch(topbarSource, /overflow-x-auto/, "Pilot topbar must not introduce horizontal scroll");
+const sidebarSource = fs.readFileSync("components/layout/sidebar.tsx", "utf8");
+assert.match(sidebarSource, /overflow-x-hidden/, "Pilot sidebar must hide horizontal overflow");
+
+const pilotWorkflowSource = fs.readFileSync("lib/criminal/pilot-workflow.ts", "utf8");
+assert.doesNotMatch(
+  pilotWorkflowSource,
+  /second-male attribution remains unresolved/i,
+  "Robbery attribution wording must not promote a second-male issue unless the papers expressly raise it",
+);
+assert.match(
+  pilotWorkflowSource,
+  /any other-person attribution expressly raised by the papers/i,
+  "Robbery attribution wording must be source-conditioned",
+);
 
 const solicitorVisibleSources = [
   "components/criminal/workflow/pilotReviewCopy.ts",
@@ -157,6 +181,11 @@ const forbiddenSolicitorVisibleCopy = [
   /Confirm this item against the source before relying on it/i,
   /co-defendant\/unknown male/i,
   /remains outstanding\.\s*remains outstanding/i,
+  /long extract bundle stress/i,
+  /medical class/i,
+  /summary wrapper/i,
+  /item\(s\)/i,
+  /stops mid-narrative/i,
 ];
 
 for (const file of solicitorVisibleSources) {
@@ -165,5 +194,12 @@ for (const file of solicitorVisibleSources) {
     assert.doesNotMatch(source, pattern, `${file} must not contain ${pattern}`);
   }
 }
+
+const pilotSummarySource = fs.readFileSync("components/criminal/workflow/PilotSummaryView.tsx", "utf8");
+assert.doesNotMatch(
+  pilotSummarySource,
+  /replace\(\/\\brobbery id\\b\/gi,\s*["'`]robbery ID["'`]\)/,
+  "Client/summary presentation must not preserve the internal robbery id taxonomy label",
+);
 
 console.log("live-ui-wording-regression.test.ts: PASS");

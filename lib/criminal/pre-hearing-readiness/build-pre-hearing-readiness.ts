@@ -187,7 +187,10 @@ function buildExplanation(
     parts.push("Core source material or review gaps mean it is not safe to rely on this matter for a final hearing position on current papers.");
   }
   if (breakdown.coreMissing >= 1) {
-    parts.push(`${breakdown.coreMissing} core disclosure item(s) (CCTV/CAD/interview/lab/medical class) outstanding or partial on served papers.`);
+    const noun = breakdown.coreMissing === 1 ? "core disclosure issue" : "core disclosure issues";
+    parts.push(
+      `${breakdown.coreMissing} ${noun} — such as CCTV, CAD, interview, laboratory, medical or continuity material where relevant — outstanding or partial on served papers.`,
+    );
   }
   if (breakdown.genericProvisional) {
     parts.push("Provisional view — papers incomplete; do not finalise a hearing line without solicitor review.");
@@ -217,7 +220,7 @@ function buildBlockers(
     blockers.push(r);
   }
   if (breakdown.thinBundle) {
-    blockers.push("Thin bundle / limited source snippets on file — comparison remains provisional.");
+    blockers.push("Limited relevant source material on file — comparison remains provisional.");
   }
   if (breakdown.genericProvisional) {
     blockers.push("Serious/provisional offence mapping — solicitor review before fixing route.");

@@ -169,7 +169,8 @@ export function buildSupervisorQAResult(
     severity += 1;
   }
   if (missingCore.length) {
-    reasons.push(`${missingCore.length} core disclosure item(s) outstanding on papers.`);
+    const noun = missingCore.length === 1 ? "core disclosure item" : "core disclosure items";
+    reasons.push(`${missingCore.length} ${noun} outstanding on papers.`);
     severity += missingCore.length >= 2 ? 2 : 1;
   }
   if (contradictions.length) {

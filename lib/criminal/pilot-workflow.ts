@@ -471,7 +471,7 @@ export function workflowSafeCourtLine(context: WorkflowProfileContext): string |
     case "pwits_phone_attribution":
       return "Possession and phone-attribution issues remain conditional on served extraction and search material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
     case "robbery_identification":
-      return "Identification and participation remain conditional on full CCTV, ID procedure material, 999/CAD timing, complainant statement, second-male attribution and interview material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
+      return "Identification and participation remain conditional on full CCTV, ID procedure material, 999/CAD timing, complainant statement, any other-person attribution expressly raised by the papers, and interview material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
     case "generic_motoring_provisional":
       return MOTORING_PROVISIONAL_COURT_LINE;
     case "generic_serious_violence_provisional":
@@ -484,10 +484,10 @@ export function workflowSafeCourtLine(context: WorkflowProfileContext): string |
 }
 
 const ROBBERY_DISCLOSURE_CASE_WIDE =
-  "Identification, participation and attribution remain conditional on full CCTV, ID procedure material, 999/CAD timing, complainant statement, second-male attribution and interview material.";
+  "Identification, participation and attribution remain conditional on full CCTV, ID procedure material, 999/CAD timing, complainant statement, any other-person attribution expressly raised by the papers, and interview material.";
 
 const ROBBERY_SOURCE_MATERIAL_PHRASE =
-  "full CCTV, ID procedure material, 999/CAD timing, complainant statement, second-male attribution and interview material";
+  "full CCTV, ID procedure material, 999/CAD timing, complainant statement, any other-person attribution expressly raised by the papers, and interview material";
 
 /** Pilot disclosure “case-wide court line” — profile-specific, no generic forensic wording. */
 export function workflowDisclosureCaseWideLine(context: WorkflowProfileContext): string | null {
@@ -836,7 +836,7 @@ function normalizeRobberyPilotVisibleLine(line: string): string {
     (/CCTV footage itself is not included in full/i.test(s) && /second male/i.test(s)) ||
     /\bstills are described as poor lighting\b/i.test(s)
   ) {
-    return "CCTV footage is not served in full; second-male attribution remains unresolved.";
+    return "CCTV footage is not served in full; any other-person attribution must be checked against served papers.";
   }
 
   return s;
@@ -869,7 +869,8 @@ export function sanitizePilotVisibleLine(
     } else if (profile === "robbery_identification") {
       const recovered = normalizeRobberyPilotVisibleLine(t);
       if (
-        recovered === "CCTV footage is not served in full; second-male attribution remains unresolved."
+        recovered ===
+        "CCTV footage is not served in full; any other-person attribution must be checked against served papers."
       ) {
         t = recovered;
       } else {

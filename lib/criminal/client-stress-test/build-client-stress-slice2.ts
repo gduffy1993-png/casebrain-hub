@@ -72,7 +72,8 @@ function missingBasis(reasoning: ReasoningV2ViewModel, patterns: RegExp[]): stri
   );
   if (hit) return `${hit.label} — outstanding or partial on served papers (${hit.sourceSection}).`;
   if (reasoning.missingMaterial.length) {
-    return `${reasoning.missingMaterial.length} disclosure item(s) outstanding on proof map — compare chase list.`;
+    const noun = reasoning.missingMaterial.length === 1 ? "disclosure item" : "disclosure items";
+    return `${reasoning.missingMaterial.length} ${noun} outstanding on proof map — compare chase list.`;
   }
   return "Core source material may be incomplete on current papers — provisional comparison only.";
 }

@@ -234,7 +234,7 @@ export function CourtTodayPilotSplit({
       </aside>
 
       <main className="flex-1 min-w-0 flex flex-col min-h-0 border-t md:border-t-0 border-slate-700/70">
-        <div className="shrink-0 px-3 py-2 border-b border-slate-700/70 overflow-x-auto">
+        <div className="shrink-0 px-3 py-2 border-b border-slate-700/70 overflow-x-hidden">
           <DeskKpiRow stats={stats} />
         </div>
         <div className="flex-1 min-h-0 overflow-y-auto p-2 md:p-3">

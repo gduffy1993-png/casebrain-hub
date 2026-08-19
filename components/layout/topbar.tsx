@@ -79,7 +79,7 @@ export function Topbar({ onQuickUpload }: TopbarProps) {
         </span>
       </div>
 
-      <div className="flex min-w-0 max-w-[70vw] shrink-0 items-center justify-end gap-1 overflow-x-auto sm:max-w-[78vw] sm:gap-2 lg:gap-3">
+      <div className="flex min-w-0 max-w-[70vw] shrink-0 items-center justify-end gap-1 overflow-hidden sm:max-w-[78vw] sm:gap-2 lg:gap-3">
         <GlobalSolicitorRoleSelector />
         <Button
           variant={pilotMode ? "ghost" : "secondary"}

@@ -245,6 +245,20 @@ export function CourtTodayClient() {
 
   const allCaseDeskBriefs = useMemo(() => {
     const briefs = buildAllCasesDeskBriefs(displayBuckets, todaySectionBriefs);
+    if (briefs.length === 0 && rows.length > 0) {
+      return rows
+        .map((row) => {
+          const id = resolveCourtCaseId(row);
+          if (!id) return null;
+          return buildCourtCaseBrief(row, enrichmentByCase.get(id) ?? {}, {
+            bucketNow: courtTodayBucketNow,
+          });
+        })
+        .filter((brief): brief is CourtCaseBrief => brief != null)
+        .sort((a, b) =>
+          a.clientLabel.localeCompare(b.clientLabel, undefined, { sensitivity: "base" }),
+        );
+    }
     if (!requestedCaseId || briefs.some((brief) => brief.caseId === requestedCaseId)) {
       return briefs;
     }
