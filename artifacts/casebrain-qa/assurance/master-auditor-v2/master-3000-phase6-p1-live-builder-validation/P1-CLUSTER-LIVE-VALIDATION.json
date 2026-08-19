@@ -134,25 +134,36 @@
         },
         "currentLiveSharedBuilderOutput": [
           {
-            "label": "Subscriber / account data + 10 more source items",
+            "label": "Phone extraction source material + 3 more source items",
+            "familyId": "mg6_unused",
+            "baseStatus": "Outstanding",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "Subscriber / account data",
+              "Phone extraction source material",
+              "Screenshot / message pack"
+            ],
+            "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
+          },
+          {
+            "label": "Phone extraction source material + 7 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": "Subscriber / account data",
+            "evidenceAnchor": "Screenshot / message pack",
             "mergedFrom": [
-              "Subscriber / account data",
-              "Additional source-material issues (6 on file)",
+              "Screenshot / message pack",
+              "Additional source-material issues (5 on file)",
               "Further papers on the file",
-              "Full message export, source device material, call logs, complainant MG11.",
-              "message exports",
               "full complainant statement",
               "call logs",
               "Charge sheet",
               "MG5 case summary",
-              "Screenshot / message pack",
               "Phone extraction source material",
-              "Complainant MG11 statement"
+              "Complainant MG11 statement",
+              "The messages came from a number I did not recognise. Screenshots are exhibited. I cannot say who operated the phone without the full download."
             ],
-            "draftChaseWording": "Please provide subscriber / account data + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -402,6 +413,7 @@
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Further papers on the file",
+              "Lab report, continuity logs, search record, phone attribution material.",
               "Drug lab continuity note — outstanding",
               "11. Drug lab continuity note (outstanding)",
               "drug continuity"
@@ -409,7 +421,7 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 10 more source items",
+            "label": "Phone extraction source material + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Full phone extraction — outstanding",
@@ -713,6 +725,7 @@
             "evidenceAnchor": "CCTV footage is being arranged/held by OIC; MG6 lists export/continuity as outstanding or not yet served.",
             "mergedFrom": [
               "CCTV Continuity / provenance",
+              "CCTV footage is being arranged/held by OIC; MG6 / unused schedule clarification",
               "CCTV Continuity / export log — outstanding",
               "Further papers on the file",
               "9. CCTV Continuity / export log (outstanding)"
@@ -727,6 +740,7 @@
             "mergedFrom": [
               "CCTV full window / master footage",
               "Further papers on the file",
+              "CCTV master/full window, ID procedure material, complainant MG11, CAD/999.",
               "Full CCTV master footage — outstanding",
               "8. Full CCTV master footage (outstanding)",
               "CCTV master",
@@ -775,7 +789,7 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (6 on file); ID procedure material — outstanding; Further papers on the file + 10 more source items",
+            "label": "10. ID procedure material (outstanding) + 8 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "*Co-defendants:** 1 additional defendant(s) on indictment",
@@ -793,7 +807,7 @@
               "5. **MG11 officer** — partial on export",
               "*Source section:** Charge sheet / MG5 / witness material"
             ],
-            "draftChaseWording": "Please provide further papers on the file or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide 10. ID procedure material (outstanding) + 8 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": []
@@ -962,11 +976,16 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "Further papers on the file"
+              "device/user attribution certificate",
+              "extraction continuity log",
+              "— co-defendant chat segregation schedule",
+              "EncroChat message extracts (partial)",
+              "Platform extraction / export",
+              "handle-to-user mapping certificate"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -974,37 +993,31 @@
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "Handle NIGHTHAWK-14 referenced — handle-to-user mapping NOT served.",
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Full extraction/source download and metadata continuity.",
-              "MG6C/EXT — extraction continuity log — outstanding — not on bundle.",
               "Handle NIGHTHAWK-14 referenced — handle-to-user mapping NOT served.",
-              "Full platform extraction and continuity certificate outstanding.",
+              "Platform extraction / export",
               "device continuity"
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 6 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Phone extraction source material",
-              "Additional source-material issues (5 on file)",
-              "full extraction/source material",
-              "Further papers on the file",
-              "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
+              "Platform extraction / export",
               "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5.",
-              "MG6C/ENC — EncroChat message extracts (partial) — served on bundle.",
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review.",
               "Encrypted comms platform — partial message extracts served."
             ],
-            "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 6 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": []
@@ -1167,13 +1180,17 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
               "MG5/MG6 clarification and source material behind the allegation.",
-              "MG6C/FUL — full extraction report — referred on MG6 — export not served.",
-              "MG6C/SEA — search terms — referred on MG6 — export not served."
+              "full extraction report",
+              "hash values",
+              "forensic methodology",
+              "search scope",
+              "device-user attribution",
+              "forensic image hash"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -1190,25 +1207,24 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (8 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Seabrook Crown Court — particulars per MG5. + 8 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (8 on file)",
+              "Additional source-material issues (3 on file); source material; full extraction report",
+              "Additional source-material issues (3 on file)",
               "source material",
-              "MG6C/FUL — full extraction report — outstanding — not on bundle.",
-              "MG6C/HAS — hash values — outstanding — not on bundle.",
-              "MG6C/FOR — forensic methodology — outstanding — not on bundle.",
-              "MG6C/SEA — search scope — outstanding — not on bundle.",
-              "MG6C/DEV — device-user attribution — outstanding — not on bundle.",
+              "full extraction report; hash values; forensic methodology",
+              "source evidence behind allegation",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Seabrook Crown Court — particulars per MG5.",
-              "Complainant MG11 statement"
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review.",
+              "Referred only: full extraction report; forensic image hash; search terms."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (8 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Seabrook Crown Court — particulars per MG5. + 8 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": []
@@ -1350,12 +1366,17 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/ACC — account login data — referred on MG6 — export not served.",
-              "MG6C/PLA — platform disclosure — referred on MG6 — export not served."
+              "account attribution",
+              "device ownership/continuity",
+              "full thread",
+              "platform records",
+              "account login data",
+              "phone download",
+              "platform disclosure"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -1363,34 +1384,31 @@
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "Outstanding: account attribution; device ownership/continuity; full thread; platform records.",
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Full extraction/source download and metadata continuity.",
-              "MG6C/DEV — device ownership/continuity — outstanding — not on bundle.",
               "account attribution; device ownership/continuity; full thread",
               "device continuity"
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 11 more source items",
+            "label": "Phone extraction source material + 8 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
               "Phone extraction source material",
-              "Additional source-material issues (6 on file)",
+              "Additional source-material issues (3 on file)",
               "full extraction/source material",
-              "MG6C/ACC — account attribution — outstanding — not on bundle.",
-              "MG6C/FUL — full thread — outstanding — not on bundle.",
-              "MG6C/PLA — platform records — outstanding — not on bundle.",
               "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
               "Served material | 5+ | MG5; message screenshot; complainant statement",
               "Between 1 January 2026 and 28 February 2026 at Amberley Magistrates Court — particulars per MG5.",
-              "Complainant MG11 statement"
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review."
             ],
             "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
           }
@@ -1581,57 +1599,57 @@
             "label": "Body-worn video (BWV)",
             "familyId": "bwv",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "BWV export",
             "mergedFrom": [
               "Body-worn video (BWV)",
-              "MG6C/BWV — BWV export — outstanding — not on bundle."
+              "BWV export",
+              "BWV export; full custody record; risk assessment"
             ],
             "draftChaseWording": "Please provide Body-worn video (BWV) or confirm in writing why it is not available."
           },
           {
-            "label": "Interview recording / transcript",
+            "label": "Full custody record / PACE material",
             "familyId": "interview",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "Interview recording",
             "mergedFrom": [
               "Full custody record / PACE material",
               "full custody and interview records",
               "Full custody record, detention log, risk assessment, and Interview recording.",
-              "MG6C/FUL — full custody record — outstanding — not on bundle.",
-              "MG6C/RIS — risk assessment — outstanding — not on bundle.",
-              "MG6C/INT — Interview recording — outstanding — not on bundle.",
               "full custody record",
               "PACE Interview recording",
-              "Interview recording / transcript"
+              "custody risk assessments"
             ],
-            "draftChaseWording": "Please provide interview recording / transcript or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide full custody record / PACE material or confirm in writing why it is not available."
           },
           {
-            "label": "MG6 / unused schedule clarification",
+            "label": "Custody / risk assessment + 5 more source items",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
-              "MG6 / unused schedule clarification"
+              "MG6 / unused schedule clarification",
+              "full custody record",
+              "Custody / risk assessment",
+              "Interview recording",
+              "use-of-force record",
+              "PACE Interview recording"
             ],
-            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide custody / risk assessment + 5 more source items or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issue (see detail) + 6 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Marketgate Magistrates Court — particulars per MG5. + 4 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issue (see detail)",
-              "MG6C/USE — use-of-force record — outstanding — not on bundle.",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Marketgate Magistrates Court — particulars per MG5.",
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issue (see detail) + 6 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Marketgate Magistrates Court — particulars per MG5. + 4 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -1750,12 +1768,14 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
               "MG5/MG6 clarification and source material behind the allegation.",
-              "MG6C/EXP — expert report — referred on MG6 — export not served."
+              "provenance report",
+              "continuity",
+              "expert report"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -1763,17 +1783,15 @@
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "provenance report",
             "mergedFrom": [
               "Exhibit mapping / provenance",
-              "MG6C/PRO — provenance report — outstanding — not on bundle.",
-              "MG6C/CON — continuity — outstanding — not on bundle.",
               "provenance report; continuity."
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (2 on file); source material; source evidence behind allegation + 8 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 6 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
@@ -1788,7 +1806,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide further papers on the file or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 6 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -1942,11 +1960,10 @@
               "Full custody record / PACE material",
               "full custody and interview records",
               "Full custody record, detention log, risk assessment, and Interview recording.",
-              "MG6C/TRA — transcript — outstanding — not on bundle.",
-              "MG6C/PAC — PACE forms — outstanding — not on bundle.",
               "recording; transcript; PACE forms.",
               "full custody record",
               "PACE Interview recording",
+              "custody risk assessments",
               "Interview recording / transcript",
               "Referred only: Interview recording."
             ],
@@ -1955,27 +1972,30 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
-              "MG6 / unused schedule clarification"
+              "MG6 / unused schedule clarification",
+              "recording",
+              "transcript",
+              "PACE forms",
+              "Interview recording"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
-            "label": "MG6C/REC — recording — outstanding — not on bundle. + 5 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 4 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "MG6C/REC — recording — outstanding — not on bundle.",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5.",
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide further papers on the file or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 4 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -2274,6 +2294,7 @@
             "evidenceAnchor": "CCTV footage is being arranged/held by OIC; MG6 lists export/continuity as outstanding or not yet served.",
             "mergedFrom": [
               "CCTV Continuity / provenance",
+              "CCTV footage is being arranged/held by OIC; MG6 / unused schedule clarification",
               "CCTV Continuity / export log — outstanding",
               "Further papers on the file",
               "9. CCTV Continuity / export log (outstanding)"
@@ -2288,6 +2309,7 @@
             "mergedFrom": [
               "CCTV full window / master footage",
               "Further papers on the file",
+              "CCTV master/full window, ID procedure material, complainant MG11, CAD/999.",
               "Full CCTV master footage — outstanding",
               "8. Full CCTV master footage (outstanding)",
               "CCTV master",
@@ -2336,7 +2358,7 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (6 on file); ID procedure material — outstanding; Further papers on the file + 10 more source items",
+            "label": "10. ID procedure material (outstanding) + 8 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "*Co-defendants:** 1 additional defendant(s) on indictment",
@@ -2354,7 +2376,7 @@
               "5. **MG11 officer** — partial on export",
               "*Source section:** Charge sheet / MG5 / witness material"
             ],
-            "draftChaseWording": "Please provide further papers on the file or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide 10. ID procedure material (outstanding) + 8 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -2492,24 +2514,35 @@
             "mergedFrom": [
               "CCTV full window / master footage",
               "Further papers on the file",
-              "MG6C/CCT — CCTV full window — outstanding — not on bundle.",
+              "CCTV master/full window, ID procedure material, complainant MG11, CAD/999.",
+              "CCTV full window",
               "CCTV master",
               "Robbery — CCTV missing",
               "ID/CCTV gap",
-              "Main issue: ID/CCTV gap"
+              "CCTV"
             ],
             "draftChaseWording": "Please provide CCTV full window / master footage or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (4 on file) + 9 more source items",
+            "label": "MG6 / unused schedule clarification",
+            "familyId": "mg6_unused",
+            "baseStatus": "Outstanding",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "ID procedure material"
+            ],
+            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+          },
+          {
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Magistrates Court — particulars per MG5. + 7 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (4 on file)",
+              "Additional source-material issues (3 on file); Provisional pending disclosure; ID procedure",
+              "Additional source-material issues (3 on file)",
               "Provisional pending disclosure",
-              "MG6C/ID — ID procedure material — outstanding — not on bundle.",
               "ID procedure",
               "complainant MG11",
               "Charge sheet",
@@ -2518,7 +2551,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (4 on file) + 9 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Magistrates Court — particulars per MG5. + 7 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -2675,9 +2708,10 @@
             "label": "CCTV full window / master footage",
             "familyId": "cctv_master",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "CCTV",
             "mergedFrom": [
               "CCTV full window / master footage",
+              "CCTV",
               "Must not say: Sasha used violence | group violence proves affray | CCTV shows Sasha"
             ],
             "draftChaseWording": "Please provide CCTV full window / master footage or confirm in writing why it is not available."
@@ -2686,11 +2720,13 @@
             "label": "Body-worn video (BWV)",
             "familyId": "bwv",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "CCTV/BWV",
             "mergedFrom": [
               "Body-worn video (BWV)",
               "full BWV and continuity material",
               "Full BWV clip, audit trail, and continuity/provenance.",
+              "CCTV/BWV",
+              "CCTV/BWV; participant timeline; scene plan",
               "full BWV",
               "BWV continuity"
             ],
@@ -2699,25 +2735,22 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/SCE — scene plan — referred on MG6 — export not served."
+              "participant timeline",
+              "scene plan",
+              "identification schedule"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (4 on file) + 9 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Redbridge Crown Court — particulars per MG5. + 5 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (4 on file)",
-              "MG6C/PAR — participant timeline — outstanding — not on bundle.",
-              "MG6C/SCE — scene plan — outstanding — not on bundle.",
-              "MG6C/IDE — identification schedule — outstanding — not on bundle.",
               "officer notes",
               "Charge sheet",
               "MG5 case summary",
@@ -2725,7 +2758,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (4 on file) + 9 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Redbridge Crown Court — particulars per MG5. + 5 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -2895,6 +2928,8 @@
             "evidenceAnchor": "Exhibit / continuity note",
             "mergedFrom": [
               "Exhibit mapping / provenance",
+              "Further papers on the file",
+              "Lab report, continuity logs, search record, phone attribution material.",
               "drug continuity",
               "Exhibit / continuity note",
               "PC Doyle — continuity to property store.",
@@ -2903,7 +2938,7 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (6 on file) + 10 more source items",
+            "label": "Lab analysis | not served | outstanding + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Wrap sealed as AO/01. Field test indicated cannabis; formal lab report outstanding.",
@@ -2913,15 +2948,15 @@
               "Category | Served (initial) | Awaiting / Retained / Note",
               "Lab analysis | not served | outstanding",
               "lab report",
+              "phone download",
               "search record",
               "MG04 Charge sheet",
               "Officer MG11 statement",
               "MG5 case summary | yes |",
               "WITNESS STATEMENT",
-              "Statement of: PC Singh",
-              "This statement (consisting of 2 pages each signed by me) is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false, or do not believe to be true."
+              "Statement of: PC Singh"
             ],
-            "draftChaseWording": "Please provide additional source-material issues (6 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide lab analysis | not served | outstanding + 9 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": []
@@ -3158,6 +3193,7 @@
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Further papers on the file",
+              "Lab report, continuity logs, search record, phone attribution material.",
               "Drug lab continuity note — outstanding",
               "11. Drug lab continuity note (outstanding)",
               "drug continuity"
@@ -3165,7 +3201,7 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 10 more source items",
+            "label": "Phone extraction source material + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Full phone extraction — outstanding",
@@ -3307,14 +3343,27 @@
         },
         "currentLiveSharedBuilderOutput": [
           {
-            "label": "Exhibit mapping / provenance",
-            "familyId": "exhibit_provenance",
+            "label": "MG6 / unused schedule clarification",
+            "familyId": "mg6_unused",
             "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "continuity",
+              "lab report",
+              "exhibit list"
+            ],
+            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+          },
+          {
+            "label": "Exhibit mapping / provenance",
+            "familyId": "exhibit_provenance",
+            "baseStatus": "Not safely confirmed",
+            "evidenceAnchor": "exhibit list",
+            "mergedFrom": [
               "Exhibit mapping / provenance",
-              "MG6C/CON — continuity — outstanding — not on bundle.",
-              "MG6C/EXH — exhibit list — outstanding — not on bundle.",
+              "Further papers on the file",
+              "Lab report, continuity logs, search record, phone attribution material.",
               "drug continuity",
               "PWITS — missing continuity",
               "Continuity/lab missing",
@@ -3323,15 +3372,14 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (5 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Magistrates Court — particulars per MG5. + 8 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (5 on file)",
+              "Additional source-material issues (4 on file); Provisional pending disclosure; lab report",
+              "Additional source-material issues (4 on file)",
               "Provisional pending disclosure",
-              "MG6C/LAB — lab report — outstanding — not on bundle.",
               "lab report",
               "phone download",
               "search record",
@@ -3341,7 +3389,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (5 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Magistrates Court — particulars per MG5. + 8 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": []
@@ -3479,25 +3527,36 @@
         },
         "currentLiveSharedBuilderOutput": [
           {
-            "label": "Subscriber / account data + 10 more source items",
+            "label": "Phone extraction source material + 3 more source items",
+            "familyId": "mg6_unused",
+            "baseStatus": "Outstanding",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "Subscriber / account data",
+              "Phone extraction source material",
+              "Screenshot / message pack"
+            ],
+            "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
+          },
+          {
+            "label": "Phone extraction source material + 7 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": "Subscriber / account data",
+            "evidenceAnchor": "Screenshot / message pack",
             "mergedFrom": [
-              "Subscriber / account data",
-              "Additional source-material issues (6 on file)",
+              "Screenshot / message pack",
+              "Additional source-material issues (5 on file)",
               "Further papers on the file",
-              "Full message export, source device material, call logs, complainant MG11.",
-              "message exports",
               "full complainant statement",
               "call logs",
               "Charge sheet",
               "MG5 case summary",
-              "Screenshot / message pack",
               "Phone extraction source material",
-              "Complainant MG11 statement"
+              "Complainant MG11 statement",
+              "The messages came from a number I did not recognise. Screenshots are exhibited. I cannot say who operated the phone without the full download."
             ],
-            "draftChaseWording": "Please provide subscriber / account data + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -3614,25 +3673,38 @@
         },
         "currentLiveSharedBuilderOutput": [
           {
-            "label": "Subscriber / account data + 10 more source items",
+            "label": "Subscriber / account data + 3 more source items",
+            "familyId": "mg6_unused",
+            "baseStatus": "Outstanding",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "Subscriber / account data",
+              "Screenshot / message pack",
+              "call logs"
+            ],
+            "draftChaseWording": "Please provide subscriber / account data or confirm in writing why it is not available."
+          },
+          {
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Magistrates Court — particulars per MG5. + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": "Subscriber / account data",
+            "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Subscriber / account data",
-              "Additional source-material issues (9 on file)",
+              "Screenshot / message pack",
+              "Additional source-material issues (6 on file)",
               "Further papers on the file",
-              "Full message export, source device material, call logs, complainant MG11.",
               "Provisional pending disclosure",
-              "MG6C/MES — message export — outstanding — not on bundle.",
-              "MG6C/CAL — call logs — outstanding — not on bundle.",
-              "message exports",
+              "full complainant statement",
+              "call logs",
               "Charge sheet",
               "MG5 case summary",
               "Harassment — screenshots only",
-              "Between 1 January 2026 and 28 February 2026 at Northgate Magistrates Court — particulars per MG5."
+              "Between 1 January 2026 and 28 February 2026 at Northgate Magistrates Court — particulars per MG5.",
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide subscriber / account data + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Magistrates Court — particulars per MG5. + 9 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -3809,13 +3881,17 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/FUL — full extraction — referred on MG6 — export not served.",
-              "MG6C/HAS — hash values — referred on MG6 — export not served.",
-              "Further papers on the file"
+              "complete conversation thread",
+              "metadata",
+              "export audit trail",
+              "exhibit continuity statement",
+              "full extraction",
+              "hash values",
+              "translation/interpretation note"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -3827,7 +3903,6 @@
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Full extraction/source download and metadata continuity.",
-              "MG6C/EXH — exhibit continuity statement — outstanding — not on bundle.",
               "complete conversation thread; metadata; export audit trail",
               "device continuity",
               "Served material | 5+ | MG5; cropped message screenshots; officer exhibit list"
@@ -3835,25 +3910,22 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 11 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Eastborough Crown Court — particulars per MG5. + 7 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Phone extraction source material",
-              "Additional source-material issues (6 on file)",
-              "full extraction/source material",
-              "MG6C/COM — complete conversation thread — outstanding — not on bundle.",
-              "MG6C/MET — metadata — outstanding — not on bundle.",
-              "MG6C/EXP — export audit trail — outstanding — not on bundle.",
-              "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Eastborough Crown Court — particulars per MG5.",
               "Screenshot-only evidence should be described as incomplete source material, not as the full communication record.",
-              "Uncertain on papers: whether screenshots are complete, edited, or selected."
+              "Uncertain on papers: whether screenshots are complete, edited, or selected.",
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review.",
+              "Uncertain: whether screenshots are complete, edited, or selected.",
+              "Further papers on the file"
             ],
-            "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Eastborough Crown Court — particulars per MG5. + 7 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -4020,12 +4092,17 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/RES — restraining order — referred on MG6 — export not served.",
-              "MG6C/PRO — proof of service — referred on MG6 — export not served."
+              "sealed order",
+              "service/knowledge proof",
+              "full contact thread",
+              "phone attribution",
+              "restraining order",
+              "proof of service",
+              "phone download"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -4042,23 +4119,22 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 11 more source items",
+            "label": "Phone extraction source material + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
               "Phone extraction source material",
-              "Additional source-material issues (8 on file)",
+              "Additional source-material issues (4 on file)",
               "full extraction/source material",
-              "MG6C/SEA — sealed order — outstanding — not on bundle.",
-              "MG6C/SER — service/knowledge proof — outstanding — not on bundle.",
-              "MG6C/FUL — full contact thread — outstanding — not on bundle.",
-              "MG6C/PHO — phone attribution — outstanding — not on bundle.",
               "sealed order; service/knowledge proof; full contact thread",
+              "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
               "Served material | 5+ | MG5; complainant statement; contact screenshot",
-              "Between 1 January 2026 and 28 February 2026 at Stoneford Magistrates Court — particulars per MG5."
+              "Between 1 January 2026 and 28 February 2026 at Stoneford Magistrates Court — particulars per MG5.",
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review."
             ],
             "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
           }
@@ -4274,10 +4350,12 @@
             "label": "CCTV full window / master footage",
             "familyId": "cctv_master",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "CCTV",
             "mergedFrom": [
               "CCTV full window / master footage",
-              "MG6C/CCT — CCTV — outstanding — not on bundle.",
+              "Further papers on the file",
+              "CCTV",
+              "MG5 case summary; MG6 / unused schedule clarification; full exhibit list",
               "Referred only: MG5; MG6C; CCTV"
             ],
             "draftChaseWording": "Please provide CCTV full window / master footage or confirm in writing why it is not available."
@@ -4289,40 +4367,34 @@
             "evidenceAnchor": "The bundle is procedurally messy: corrected charge sheet, mixed defendants, pages out of order, and missing MG5/MG6 material.",
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/MG6 — MG6 schedules — outstanding — not on bundle.",
+              "MG5 case",
+              "MG6 schedules",
+              "full exhibit list",
+              "defendant-specific allegations",
+              "order/service proof",
               "The bundle is procedurally messy: corrected charge sheet, mixed defendants, pages out of order, and missing MG5/MG6 material.",
-              "MG6C/MG5 — MG5 — referred on MG6 — export not served.",
-              "MG6C/MG6 — MG6C — referred on MG6 — export not served.",
-              "MG6C/ORD — order/service proof — referred on MG6 — export not served.",
-              "Main issue: The bundle is procedurally messy: corrected charge sheet, mixed defendants, pages out of order, and missing MG5/MG6 material."
+              "partial exhibit list"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
-            "baseStatus": "Outstanding",
+            "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Served material | 5+ | corrected charge sheet; selected MG11s; partial exhibit list",
             "mergedFrom": [
               "Exhibit mapping / provenance",
-              "MG6C/FUL — full exhibit list — outstanding — not on bundle.",
               "Served material | 5+ | corrected charge sheet; selected MG11s; partial exhibit list",
-              "MG6C/PAR — partial exhibit list — served on bundle.",
               "Served on bundle: corrected charge sheet; selected MG11s; partial exhibit list."
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (4 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Havenpool Crown Court — particulars per MG5. + 6 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (4 on file)",
-              "MG6C/MG5 — MG5 case summary — outstanding — not on bundle.",
-              "MG6C/DEF — defendant-specific allegations — outstanding — not on bundle.",
-              "MG6C/ORD — order/service proof — outstanding — not on bundle.",
               "MG11 witness statement",
               "Charge sheet",
               "MG5 case summary",
@@ -4331,7 +4403,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (4 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Havenpool Crown Court — particulars per MG5. + 6 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -4458,35 +4530,37 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
               "MG5/MG6 clarification and source material behind the allegation.",
-              "MG6C/SER — service affidavit — referred on MG6 — export not served."
+              "proof of service",
+              "breach timeline",
+              "service affidavit"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (5 on file) + 10 more source items",
+            "label": "proof of service; breach timeline.; Outstanding: proof of service + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (5 on file)",
+              "Additional source-material issues (3 on file); source material; proof of service",
+              "Additional source-material issues (3 on file)",
               "source material",
-              "MG6C/PRO — proof of service — outstanding — not on bundle.",
-              "MG6C/BRE — breach timeline — outstanding — not on bundle.",
               "proof of service; breach timeline.",
               "source evidence behind allegation",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Northgate Magistrates Court — particulars per MG5.",
               "Order service proof unclear on thin scan — breach elements not established.",
-              "Complainant MG11 statement"
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review.",
+              "proof of service; breach timeline.; Outstanding: proof of service"
             ],
-            "draftChaseWording": "Please provide additional source-material issues (5 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide further papers on the file or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -4662,6 +4736,8 @@
             "evidenceAnchor": "Exhibit / continuity note",
             "mergedFrom": [
               "Exhibit mapping / provenance",
+              "Further papers on the file",
+              "Lab report, continuity logs, search record, phone attribution material.",
               "drug continuity",
               "Exhibit / continuity note",
               "PC Doyle — continuity to property store.",
@@ -4670,7 +4746,7 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (6 on file) + 10 more source items",
+            "label": "Lab analysis | not served | outstanding + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Wrap sealed as AO/01. Field test indicated cannabis; formal lab report outstanding.",
@@ -4680,15 +4756,15 @@
               "Category | Served (initial) | Awaiting / Retained / Note",
               "Lab analysis | not served | outstanding",
               "lab report",
+              "phone download",
               "search record",
               "MG04 Charge sheet",
               "Officer MG11 statement",
               "MG5 case summary | yes |",
               "WITNESS STATEMENT",
-              "Statement of: PC Singh",
-              "This statement (consisting of 2 pages each signed by me) is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false, or do not believe to be true."
+              "Statement of: PC Singh"
             ],
-            "draftChaseWording": "Please provide additional source-material issues (6 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide lab analysis | not served | outstanding + 9 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -4932,6 +5008,7 @@
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Further papers on the file",
+              "Lab report, continuity logs, search record, phone attribution material.",
               "Drug lab continuity note — outstanding",
               "11. Drug lab continuity note (outstanding)",
               "drug continuity"
@@ -4939,7 +5016,7 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 10 more source items",
+            "label": "Phone extraction source material + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Full phone extraction — outstanding",
@@ -5134,12 +5211,17 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/EXH — exhibit metadata — referred on MG6 — export not served.",
-              "MG6C/DEV — device audit log — referred on MG6 — export not served."
+              "full phone download",
+              "search terms/scope",
+              "metadata",
+              "device ownership/continuity",
+              "phone download",
+              "exhibit metadata",
+              "device audit log"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -5147,33 +5229,33 @@
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "exhibit metadata",
             "mergedFrom": [
               "Exhibit mapping / provenance",
-              "MG6C/DEV — device ownership/continuity — outstanding — not on bundle."
+              "full phone download; search terms/scope; metadata"
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (8 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Norhaven Magistrates Court — particulars per MG5. + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": "Screenshots are served but the full phone download, search scope, and metadata are missing.",
+            "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
+              "Screenshot / message pack",
+              "Additional source-material issues (5 on file)",
               "Further papers on the file",
-              "Additional source-material issues (8 on file)",
-              "Full message export, source device material, call logs, complainant MG11.",
-              "MG6C/FUL — full phone download — outstanding — not on bundle.",
-              "MG6C/SEA — search terms/scope — outstanding — not on bundle.",
-              "MG6C/MET — metadata — outstanding — not on bundle.",
-              "message exports",
               "full complainant statement",
+              "call logs",
               "Charge sheet",
               "MG5 case summary",
               "Served material | 5+ | MG5; complainant screenshots; short officer statement",
-              "Between 1 January 2026 and 28 February 2026 at Norhaven Magistrates Court — particulars per MG5."
+              "Between 1 January 2026 and 28 February 2026 at Norhaven Magistrates Court — particulars per MG5.",
+              "Screenshots must not be treated as a full or authenticated message record.",
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (8 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Norhaven Magistrates Court — particulars per MG5. + 9 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -5368,12 +5450,17 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/EXH — exhibit metadata — referred on MG6 — export not served.",
-              "MG6C/DEV — device audit log — referred on MG6 — export not served."
+              "full phone download",
+              "search terms/scope",
+              "metadata",
+              "device ownership/continuity",
+              "phone download",
+              "exhibit metadata",
+              "device audit log"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -5381,33 +5468,33 @@
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "exhibit metadata",
             "mergedFrom": [
               "Exhibit mapping / provenance",
-              "MG6C/DEV — device ownership/continuity — outstanding — not on bundle."
+              "full phone download; search terms/scope; metadata"
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (8 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Norhaven Magistrates Court — particulars per MG5. + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": "Screenshots are served but the full phone download, search scope, and metadata are missing.",
+            "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
+              "Screenshot / message pack",
+              "Additional source-material issues (5 on file)",
               "Further papers on the file",
-              "Additional source-material issues (8 on file)",
-              "Full message export, source device material, call logs, complainant MG11.",
-              "MG6C/FUL — full phone download — outstanding — not on bundle.",
-              "MG6C/SEA — search terms/scope — outstanding — not on bundle.",
-              "MG6C/MET — metadata — outstanding — not on bundle.",
-              "message exports",
               "full complainant statement",
+              "call logs",
               "Charge sheet",
               "MG5 case summary",
               "Served material | 5+ | MG5; complainant screenshots; short officer statement",
-              "Between 1 January 2026 and 28 February 2026 at Norhaven Magistrates Court — particulars per MG5."
+              "Between 1 January 2026 and 28 February 2026 at Norhaven Magistrates Court — particulars per MG5.",
+              "Screenshots must not be treated as a full or authenticated message record.",
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (8 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Norhaven Magistrates Court — particulars per MG5. + 9 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -5564,10 +5651,9 @@
             "label": "Interview recording / transcript",
             "familyId": "interview",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "Interview recording/transcript",
             "mergedFrom": [
               "Interview recording / transcript",
-              "MG6C/INT — Interview recording/transcript — outstanding — not on bundle.",
               "full claim history; notification logs; overpayment calculation"
             ],
             "draftChaseWording": "Please provide interview recording / transcript or confirm in writing why it is not available."
@@ -5575,29 +5661,29 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
               "MG5/MG6 clarification and source material behind the allegation.",
-              "MG6C/BEN — benefit claim records — referred on MG6 — export not served.",
-              "MG6C/NOT — notification logs — referred on MG6 — export not served.",
-              "Further papers on the file"
+              "full claim history",
+              "notification logs",
+              "overpayment calculation",
+              "Interview recording/transcript",
+              "benefit claim records"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (7 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Rosedale Magistrates Court — particulars per MG5. + 6 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": "The allegation depends on agency records and notification history not fully served.",
+            "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (7 on file)",
+              "Additional source-material issues (4 on file); source material; Further papers on the file",
+              "Additional source-material issues (4 on file)",
               "source material",
-              "MG6C/FUL — full claim history — outstanding — not on bundle.",
-              "MG6C/NOT — notification logs — outstanding — not on bundle.",
-              "MG6C/OVE — overpayment calculation — outstanding — not on bundle.",
+              "Further papers on the file",
               "source evidence behind allegation",
               "Charge sheet",
               "MG5 case summary",
@@ -5605,7 +5691,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (7 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Rosedale Magistrates Court — particulars per MG5. + 6 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": []
@@ -5740,12 +5826,16 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/CAS — case chronology — referred on MG6 — export not served.",
-              "MG6C/POL — police decision log — referred on MG6 — export not served."
+              "full email export",
+              "chronology",
+              "intention evidence",
+              "exhibit continuity",
+              "case chronology",
+              "police decision log"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -5753,34 +5843,29 @@
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "exhibit continuity",
             "mergedFrom": [
               "Exhibit mapping / provenance",
-              "MG6C/EXH — exhibit continuity — outstanding — not on bundle.",
+              "Further papers on the file",
+              "Lab report, continuity logs, search record, phone attribution material.",
+              "full email export; chronology; intention evidence",
               "drug continuity"
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (6 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 4 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (6 on file)",
-              "MG6C/FUL — full email export — outstanding — not on bundle.",
-              "MG6C/CHR — chronology — outstanding — not on bundle.",
-              "MG6C/INT — intention evidence — outstanding — not on bundle.",
-              "lab report",
-              "phone download",
-              "search record",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5.",
-              "Complainant MG11 statement"
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (6 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 4 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": []
@@ -5917,25 +6002,36 @@
         },
         "currentLiveSharedBuilderOutput": [
           {
-            "label": "Subscriber / account data + 10 more source items",
+            "label": "Phone extraction source material + 3 more source items",
+            "familyId": "mg6_unused",
+            "baseStatus": "Outstanding",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "Subscriber / account data",
+              "Phone extraction source material",
+              "Screenshot / message pack"
+            ],
+            "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
+          },
+          {
+            "label": "Phone extraction source material + 7 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": "Subscriber / account data",
+            "evidenceAnchor": "Screenshot / message pack",
             "mergedFrom": [
-              "Subscriber / account data",
-              "Additional source-material issues (6 on file)",
+              "Screenshot / message pack",
+              "Additional source-material issues (5 on file)",
               "Further papers on the file",
-              "Full message export, source device material, call logs, complainant MG11.",
-              "message exports",
               "full complainant statement",
               "call logs",
               "Charge sheet",
               "MG5 case summary",
-              "Screenshot / message pack",
               "Phone extraction source material",
-              "Complainant MG11 statement"
+              "Complainant MG11 statement",
+              "The messages came from a number I did not recognise. Screenshots are exhibited. I cannot say who operated the phone without the full download."
             ],
-            "draftChaseWording": "Please provide subscriber / account data + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -6087,6 +6183,18 @@
             "draftChaseWording": "Please provide full custody record / PACE material or confirm in writing why it is not available."
           },
           {
+            "label": "MG6 / unused schedule clarification",
+            "familyId": "mg6_unused",
+            "baseStatus": "Not safely confirmed",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "Custody record — extract",
+              "MG11 officer statement —"
+            ],
+            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+          },
+          {
             "label": "Outstanding source material (Charge sheet, MG5 case summary, Officer MG11 statement)",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
@@ -6094,8 +6202,7 @@
             "mergedFrom": [
               "Charge sheet",
               "MG5 case summary",
-              "Officer MG11 statement",
-              "MG11 officer statement"
+              "Officer MG11 statement"
             ],
             "draftChaseWording": "Please provide the outstanding source material identified on the disclosure schedule, including charge sheet, MG5 case summary, officer MG11 statement or confirm in writing why it is not available."
           }
@@ -6267,34 +6374,46 @@
             "label": "Body-worn video (BWV)",
             "familyId": "bwv",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "full BWV",
             "mergedFrom": [
               "Body-worn video (BWV)",
-              "MG6C/FUL — full BWV — outstanding — not on bundle.",
+              "full BWV",
               "signed MG11; full BWV."
             ],
             "draftChaseWording": "Please provide Body-worn video (BWV) or confirm in writing why it is not available."
           },
           {
-            "label": "Complainant MG11 statement + 10 more source items",
+            "label": "MG6 / unused schedule clarification",
+            "familyId": "mg6_unused",
+            "baseStatus": "Outstanding",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "signed MG11",
+              "unsigned MG11 draft"
+            ],
+            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+          },
+          {
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": "Complainant MG11 statement",
+            "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Complainant MG11 statement",
-              "Additional source-material issues (6 on file)",
+              "Screenshot / message pack",
+              "Additional source-material issues (5 on file)",
               "Further papers on the file",
-              "Full message export, source device material, call logs, complainant MG11.",
-              "MG11 witness statement",
-              "message exports",
               "full complainant statement",
               "call logs",
               "Charge sheet",
               "MG5 case summary",
               "Served material | 5+ | unsigned MG11 draft",
-              "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5."
+              "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5.",
+              "Unsigned MG11 on rotated scan — not final served statement.",
+              "Provisional — unsigned mg11 on rotated scan layout",
+              "Complainant MG11 statement"
             ],
-            "draftChaseWording": "Please provide complainant MG11 statement + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 9 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -6585,6 +6704,7 @@
             "evidenceAnchor": "CCTV footage is being arranged/held by OIC; MG6 lists export/continuity as outstanding or not yet served.",
             "mergedFrom": [
               "CCTV Continuity / provenance",
+              "CCTV footage is being arranged/held by OIC; MG6 / unused schedule clarification",
               "CCTV Continuity / export log — outstanding",
               "Further papers on the file",
               "9. CCTV Continuity / export log (outstanding)"
@@ -6599,6 +6719,7 @@
             "mergedFrom": [
               "CCTV full window / master footage",
               "Further papers on the file",
+              "CCTV master/full window, ID procedure material, complainant MG11, CAD/999.",
               "Full CCTV master footage — outstanding",
               "8. Full CCTV master footage (outstanding)",
               "CCTV master",
@@ -6647,7 +6768,7 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (6 on file); ID procedure material — outstanding; Further papers on the file + 10 more source items",
+            "label": "10. ID procedure material (outstanding) + 8 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "*Co-defendants:** 1 additional defendant(s) on indictment",
@@ -6665,7 +6786,7 @@
               "5. **MG11 officer** — partial on export",
               "*Source section:** Charge sheet / MG5 / witness material"
             ],
-            "draftChaseWording": "Please provide further papers on the file or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide 10. ID procedure material (outstanding) + 8 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -6917,7 +7038,7 @@
             "draftChaseWording": "Please provide medical / expert source report or confirm in writing why it is not available."
           },
           {
-            "label": "MG11 witness statement + 10 more source items",
+            "label": "*Note:** Compare particulars with MG5 — dates/wording may conflict on export. + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "*Note:** Compare particulars with MG5 — dates/wording may conflict on export.",
@@ -6935,7 +7056,7 @@
               "*Source basis:** Particulars date: 14 March 2024 (charge sheet) conflicts with MG5 narrative: evening of 15 March 2024",
               "*Source A (Charge sheet particulars):** Particulars date: 14 March 2024 (charge sheet)"
             ],
-            "draftChaseWording": "Please provide MG11 witness statement or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide *Note:** Compare particulars with MG5 — dates/wording may conflict on export. + 9 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -7062,25 +7183,37 @@
         },
         "currentLiveSharedBuilderOutput": [
           {
-            "label": "Additional source-material issues (10 on file) + 10 more source items",
+            "label": "MG6 / unused schedule clarification",
+            "familyId": "mg6_unused",
+            "baseStatus": "Outstanding",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "bank schedules",
+              "device extraction"
+            ],
+            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+          },
+          {
+            "label": "bank records + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
               "Further papers on the file",
-              "Additional source-material issues (10 on file)",
+              "Additional source-material issues (8 on file)",
               "Bank records, device logs, IP/source material, loss schedule.",
               "Fraud — bank schedule absent",
               "Provisional pending disclosure",
-              "MG6C/BAN — bank schedules — outstanding — not on bundle.",
-              "MG6C/DEV — device extraction — outstanding — not on bundle.",
               "bank records",
+              "device/source logs",
+              "loss schedule",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Northgate Magistrates Court — particulars per MG5.",
               "Complainant MG11 statement"
             ],
-            "draftChaseWording": "Please provide additional source-material issues (10 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide bank records + 9 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -7229,12 +7362,17 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/ACC — account login data — referred on MG6 — export not served.",
-              "MG6C/PLA — platform disclosure — referred on MG6 — export not served."
+              "account attribution",
+              "device ownership/continuity",
+              "full thread",
+              "platform records",
+              "account login data",
+              "phone download",
+              "platform disclosure"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -7242,34 +7380,31 @@
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "Outstanding: account attribution; device ownership/continuity; full thread; platform records.",
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Full extraction/source download and metadata continuity.",
-              "MG6C/DEV — device ownership/continuity — outstanding — not on bundle.",
               "account attribution; device ownership/continuity; full thread",
               "device continuity"
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 11 more source items",
+            "label": "Phone extraction source material + 8 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
               "Phone extraction source material",
-              "Additional source-material issues (6 on file)",
+              "Additional source-material issues (3 on file)",
               "full extraction/source material",
-              "MG6C/ACC — account attribution — outstanding — not on bundle.",
-              "MG6C/FUL — full thread — outstanding — not on bundle.",
-              "MG6C/PLA — platform records — outstanding — not on bundle.",
               "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
               "Served material | 5+ | MG5; message screenshot; complainant statement",
               "Between 1 January 2026 and 28 February 2026 at Amberley Magistrates Court — particulars per MG5.",
-              "Complainant MG11 statement"
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review."
             ],
             "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
           }
@@ -7502,10 +7637,12 @@
             "label": "CCTV full window / master footage",
             "familyId": "cctv_master",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "CCTV",
             "mergedFrom": [
               "CCTV full window / master footage",
-              "MG6C/CCT — CCTV — outstanding — not on bundle.",
+              "Further papers on the file",
+              "CCTV",
+              "MG5 case summary; MG6 / unused schedule clarification; full exhibit list",
               "Referred only: MG5; MG6C; CCTV"
             ],
             "draftChaseWording": "Please provide CCTV full window / master footage or confirm in writing why it is not available."
@@ -7517,40 +7654,34 @@
             "evidenceAnchor": "The bundle is procedurally messy: corrected charge sheet, mixed defendants, pages out of order, and missing MG5/MG6 material.",
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/MG6 — MG6 schedules — outstanding — not on bundle.",
+              "MG5 case",
+              "MG6 schedules",
+              "full exhibit list",
+              "defendant-specific allegations",
+              "order/service proof",
               "The bundle is procedurally messy: corrected charge sheet, mixed defendants, pages out of order, and missing MG5/MG6 material.",
-              "MG6C/MG5 — MG5 — referred on MG6 — export not served.",
-              "MG6C/MG6 — MG6C — referred on MG6 — export not served.",
-              "MG6C/ORD — order/service proof — referred on MG6 — export not served.",
-              "Main issue: The bundle is procedurally messy: corrected charge sheet, mixed defendants, pages out of order, and missing MG5/MG6 material."
+              "partial exhibit list"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
-            "baseStatus": "Outstanding",
+            "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Served material | 5+ | corrected charge sheet; selected MG11s; partial exhibit list",
             "mergedFrom": [
               "Exhibit mapping / provenance",
-              "MG6C/FUL — full exhibit list — outstanding — not on bundle.",
               "Served material | 5+ | corrected charge sheet; selected MG11s; partial exhibit list",
-              "MG6C/PAR — partial exhibit list — served on bundle.",
               "Served on bundle: corrected charge sheet; selected MG11s; partial exhibit list."
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (4 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Havenpool Crown Court — particulars per MG5. + 6 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (4 on file)",
-              "MG6C/MG5 — MG5 case summary — outstanding — not on bundle.",
-              "MG6C/DEF — defendant-specific allegations — outstanding — not on bundle.",
-              "MG6C/ORD — order/service proof — outstanding — not on bundle.",
               "MG11 witness statement",
               "Charge sheet",
               "MG5 case summary",
@@ -7559,7 +7690,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (4 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Havenpool Crown Court — particulars per MG5. + 6 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -7717,43 +7848,50 @@
             "mergedFrom": [
               "CCTV full window / master footage",
               "Provisional — index CCTV absent — on custody extract missing papers",
-              "MG6C/CCT — CCTV export — Tobin Zell — outstanding — not on bundle.",
+              "CCTV export — Tobin Zell",
               "Exhibit CE/01 CCTV listed; media file not exported.",
+              "CCTV CE/01 — Tobin Zell",
               "Referred only: CCTV CE/01 — Tobin Zell."
             ],
             "draftChaseWording": "Please provide CCTV full window / master footage or confirm in writing why it is not available."
           },
           {
+            "label": "MG6 / unused schedule clarification",
+            "familyId": "mg6_unused",
+            "baseStatus": "Outstanding",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "continuity — Tobin Zell",
+              "vehicle ANPR download (Zell / folio 170)"
+            ],
+            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+          },
+          {
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
-            "baseStatus": "Outstanding",
+            "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Exhibit CE/01 CCTV listed; media file not exported.",
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Full extraction/source download and metadata continuity.",
-              "MG6C/CON — continuity — Tobin Zell — outstanding — not on bundle.",
               "device continuity"
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 8 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 4 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Phone extraction source material",
-              "Additional source-material issues (4 on file)",
-              "full extraction/source material",
-              "Further papers on the file",
-              "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5.",
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 4 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -7927,9 +8065,10 @@
             "label": "CCTV full window / master footage",
             "familyId": "cctv_master",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "CCTV",
             "mergedFrom": [
               "CCTV full window / master footage",
+              "CCTV",
               "Must not say: Sasha used violence | group violence proves affray | CCTV shows Sasha"
             ],
             "draftChaseWording": "Please provide CCTV full window / master footage or confirm in writing why it is not available."
@@ -7938,11 +8077,13 @@
             "label": "Body-worn video (BWV)",
             "familyId": "bwv",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "CCTV/BWV",
             "mergedFrom": [
               "Body-worn video (BWV)",
               "full BWV and continuity material",
               "Full BWV clip, audit trail, and continuity/provenance.",
+              "CCTV/BWV",
+              "CCTV/BWV; participant timeline; scene plan",
               "full BWV",
               "BWV continuity"
             ],
@@ -7951,25 +8092,22 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/SCE — scene plan — referred on MG6 — export not served."
+              "participant timeline",
+              "scene plan",
+              "identification schedule"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (4 on file) + 9 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Redbridge Crown Court — particulars per MG5. + 5 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (4 on file)",
-              "MG6C/PAR — participant timeline — outstanding — not on bundle.",
-              "MG6C/SCE — scene plan — outstanding — not on bundle.",
-              "MG6C/IDE — identification schedule — outstanding — not on bundle.",
               "officer notes",
               "Charge sheet",
               "MG5 case summary",
@@ -7977,7 +8115,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (4 on file) + 9 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Redbridge Crown Court — particulars per MG5. + 5 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -8164,7 +8302,9 @@
             "baseStatus": "Outstanding",
             "evidenceAnchor": "Referred only: fingerprint report; forensic continuity; CCTV.",
             "mergedFrom": [
-              "CCTV Continuity / provenance"
+              "CCTV Continuity / provenance",
+              "fingerprint report; continuity records; scene photographs",
+              "Referred only: fingerprint report; forensic continuity; CCTV."
             ],
             "draftChaseWording": "Please provide CCTV Continuity / provenance or confirm in writing why it is not available."
           },
@@ -8172,55 +8312,59 @@
             "label": "CCTV full window / master footage",
             "familyId": "cctv_master",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "CCTV",
             "mergedFrom": [
               "CCTV full window / master footage",
-              "MG6C/CCT — CCTV — outstanding — not on bundle."
+              "CCTV",
+              "Must not say: fingerprints prove entry | forensic evidence links Harvey | CCTV confirms burglary"
             ],
             "draftChaseWording": "Please provide CCTV full window / master footage or confirm in writing why it is not available."
           },
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG5/MG6 clarification and source material behind the allegation."
+              "MG5/MG6 clarification and source material behind the allegation.",
+              "fingerprint report",
+              "continuity records",
+              "scene photographs",
+              "forensic continuity"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
-            "baseStatus": "Outstanding",
+            "baseStatus": "Not safely confirmed",
             "evidenceAnchor": null,
             "mergedFrom": [
               "Exhibit mapping / provenance",
-              "MG6C/CON — continuity records — outstanding — not on bundle."
+              "Further papers on the file"
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (4 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Birkton Crown Court — particulars per MG5. + 8 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (4 on file)",
+              "Additional source-material issues (2 on file); source material; source evidence behind allegation",
+              "Additional source-material issues (2 on file)",
               "source material",
-              "MG6C/FIN — fingerprint report — outstanding — not on bundle.",
-              "MG6C/SCE — scene photographs — outstanding — not on bundle.",
               "source evidence behind allegation",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Birkton Crown Court — particulars per MG5.",
               "Uncertain on papers: whether any forensic evidence links Harvey to entry or only presence.",
               "Complainant MG11 statement",
-              "Witness account on file — attribution and context require review."
+              "Witness account on file — attribution and context require review.",
+              "Uncertain: whether any forensic evidence links Harvey to entry or only presence."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (4 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Birkton Crown Court — particulars per MG5. + 8 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -8353,7 +8497,7 @@
         },
         "currentLiveSharedBuilderOutput": [
           {
-            "label": "Additional source-material issues (6 on file) + 10 more source items",
+            "label": "Calibration / analyst material | not served | outstanding + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "MG04 Charge sheet | 1-2 |",
@@ -8371,7 +8515,7 @@
               "WITNESS STATEMENT",
               "Statement of: PC Brennan"
             ],
-            "draftChaseWording": "Please provide additional source-material issues (6 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide further papers on the file or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -8497,25 +8641,37 @@
         },
         "currentLiveSharedBuilderOutput": [
           {
-            "label": "Additional source-material issues (10 on file) + 10 more source items",
+            "label": "MG6 / unused schedule clarification",
+            "familyId": "mg6_unused",
+            "baseStatus": "Outstanding",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "bank schedules",
+              "device extraction"
+            ],
+            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+          },
+          {
+            "label": "bank records + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
               "Further papers on the file",
-              "Additional source-material issues (10 on file)",
+              "Additional source-material issues (8 on file)",
               "Bank records, device logs, IP/source material, loss schedule.",
               "Fraud — bank schedule absent",
               "Provisional pending disclosure",
-              "MG6C/BAN — bank schedules — outstanding — not on bundle.",
-              "MG6C/DEV — device extraction — outstanding — not on bundle.",
               "bank records",
+              "device/source logs",
+              "loss schedule",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Northgate Magistrates Court — particulars per MG5.",
               "Complainant MG11 statement"
             ],
-            "draftChaseWording": "Please provide additional source-material issues (10 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide bank records + 9 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -8658,35 +8814,37 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
               "MG5/MG6 clarification and source material behind the allegation.",
-              "MG6C/SER — service affidavit — referred on MG6 — export not served."
+              "proof of service",
+              "breach timeline",
+              "service affidavit"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (5 on file) + 10 more source items",
+            "label": "proof of service; breach timeline.; Outstanding: proof of service + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (5 on file)",
+              "Additional source-material issues (3 on file); source material; proof of service",
+              "Additional source-material issues (3 on file)",
               "source material",
-              "MG6C/PRO — proof of service — outstanding — not on bundle.",
-              "MG6C/BRE — breach timeline — outstanding — not on bundle.",
               "proof of service; breach timeline.",
               "source evidence behind allegation",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Northgate Magistrates Court — particulars per MG5.",
               "Order service proof unclear on thin scan — breach elements not established.",
-              "Complainant MG11 statement"
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review.",
+              "proof of service; breach timeline.; Outstanding: proof of service"
             ],
-            "draftChaseWording": "Please provide additional source-material issues (5 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide further papers on the file or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -8819,7 +8977,7 @@
         },
         "currentLiveSharedBuilderOutput": [
           {
-            "label": "Additional source-material issues (6 on file) + 10 more source items",
+            "label": "Calibration / analyst material | not served | outstanding + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "MG04 Charge sheet | 1-2 |",
@@ -8837,7 +8995,7 @@
               "WITNESS STATEMENT",
               "Statement of: PC Brennan"
             ],
-            "draftChaseWording": "Please provide additional source-material issues (6 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide further papers on the file or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -9016,46 +9174,50 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "Further papers on the file"
+              "line attribution material",
+              "full cellsite download",
+              "role evidence schedule",
+              "Screenshot / message pack",
+              "cellsite/travel data",
+              "cash/drug continuity"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
-            "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "baseStatus": "Not safely confirmed",
+            "evidenceAnchor": "Cellsite/travel data referred only. Cash/drug continuity missing.",
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Full extraction/source download and metadata continuity.",
               "device continuity",
-              "MG6C/CAS — cash/drug continuity — outstanding — not on bundle.",
               "Cellsite/travel data referred only. Cash/drug continuity missing."
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 11 more source items",
+            "label": "Phone extraction source material + 10 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
               "Phone extraction source material",
-              "Additional source-material issues (6 on file)",
+              "Additional source-material issues (3 on file)",
               "full extraction/source material",
-              "MG6C/LIN — line attribution material — outstanding — not on bundle.",
-              "MG6C/FUL — full cellsite download — outstanding — not on bundle.",
-              "MG6C/ROL — role evidence schedule — outstanding — not on bundle.",
               "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
               "Served material | 5+ | phone seizure notes; partial message screenshots",
               "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5.",
-              "Line attribution and role evidence unclear — vulnerability marker on file"
+              "Line attribution and role evidence unclear — vulnerability marker on file",
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review.",
+              "Phone line attribution unclear — runner vs line holder not established."
             ],
             "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
           }
@@ -9215,12 +9377,16 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/CAS — case chronology — referred on MG6 — export not served.",
-              "MG6C/POL — police decision log — referred on MG6 — export not served."
+              "full email export",
+              "chronology",
+              "intention evidence",
+              "exhibit continuity",
+              "case chronology",
+              "police decision log"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -9228,34 +9394,29 @@
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "exhibit continuity",
             "mergedFrom": [
               "Exhibit mapping / provenance",
-              "MG6C/EXH — exhibit continuity — outstanding — not on bundle.",
+              "Further papers on the file",
+              "Lab report, continuity logs, search record, phone attribution material.",
+              "full email export; chronology; intention evidence",
               "drug continuity"
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (6 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 4 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (6 on file)",
-              "MG6C/FUL — full email export — outstanding — not on bundle.",
-              "MG6C/CHR — chronology — outstanding — not on bundle.",
-              "MG6C/INT — intention evidence — outstanding — not on bundle.",
-              "lab report",
-              "phone download",
-              "search record",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5.",
-              "Complainant MG11 statement"
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (6 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 4 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -9427,11 +9588,16 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "Further papers on the file"
+              "device/user attribution certificate",
+              "extraction continuity log",
+              "— co-defendant chat segregation schedule",
+              "EncroChat message extracts (partial)",
+              "Platform extraction / export",
+              "handle-to-user mapping certificate"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -9439,37 +9605,31 @@
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "Handle NIGHTHAWK-14 referenced — handle-to-user mapping NOT served.",
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Full extraction/source download and metadata continuity.",
-              "MG6C/EXT — extraction continuity log — outstanding — not on bundle.",
               "Handle NIGHTHAWK-14 referenced — handle-to-user mapping NOT served.",
-              "Full platform extraction and continuity certificate outstanding.",
+              "Platform extraction / export",
               "device continuity"
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 6 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Phone extraction source material",
-              "Additional source-material issues (5 on file)",
-              "full extraction/source material",
-              "Further papers on the file",
-              "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
+              "Platform extraction / export",
               "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5.",
-              "MG6C/ENC — EncroChat message extracts (partial) — served on bundle.",
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review.",
               "Encrypted comms platform — partial message extracts served."
             ],
-            "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 6 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": []
@@ -9655,13 +9815,17 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/FUL — full extraction — referred on MG6 — export not served.",
-              "MG6C/HAS — hash values — referred on MG6 — export not served.",
-              "Further papers on the file"
+              "complete conversation thread",
+              "metadata",
+              "export audit trail",
+              "exhibit continuity statement",
+              "full extraction",
+              "hash values",
+              "translation/interpretation note"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -9673,7 +9837,6 @@
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Full extraction/source download and metadata continuity.",
-              "MG6C/EXH — exhibit continuity statement — outstanding — not on bundle.",
               "complete conversation thread; metadata; export audit trail",
               "device continuity",
               "Served material | 5+ | MG5; cropped message screenshots; officer exhibit list"
@@ -9681,25 +9844,22 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 11 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Eastborough Crown Court — particulars per MG5. + 7 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Phone extraction source material",
-              "Additional source-material issues (6 on file)",
-              "full extraction/source material",
-              "MG6C/COM — complete conversation thread — outstanding — not on bundle.",
-              "MG6C/MET — metadata — outstanding — not on bundle.",
-              "MG6C/EXP — export audit trail — outstanding — not on bundle.",
-              "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Eastborough Crown Court — particulars per MG5.",
               "Screenshot-only evidence should be described as incomplete source material, not as the full communication record.",
-              "Uncertain on papers: whether screenshots are complete, edited, or selected."
+              "Uncertain on papers: whether screenshots are complete, edited, or selected.",
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review.",
+              "Uncertain: whether screenshots are complete, edited, or selected.",
+              "Further papers on the file"
             ],
-            "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Eastborough Crown Court — particulars per MG5. + 7 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -9929,10 +10089,12 @@
             "label": "CCTV full window / master footage",
             "familyId": "cctv_master",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "CCTV",
             "mergedFrom": [
               "CCTV full window / master footage",
-              "MG6C/CCT — CCTV — outstanding — not on bundle.",
+              "Further papers on the file",
+              "CCTV",
+              "MG5 case summary; MG6 / unused schedule clarification; full exhibit list",
               "Referred only: MG5; MG6C; CCTV"
             ],
             "draftChaseWording": "Please provide CCTV full window / master footage or confirm in writing why it is not available."
@@ -9944,40 +10106,34 @@
             "evidenceAnchor": "The bundle is procedurally messy: corrected charge sheet, mixed defendants, pages out of order, and missing MG5/MG6 material.",
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/MG6 — MG6 schedules — outstanding — not on bundle.",
+              "MG5 case",
+              "MG6 schedules",
+              "full exhibit list",
+              "defendant-specific allegations",
+              "order/service proof",
               "The bundle is procedurally messy: corrected charge sheet, mixed defendants, pages out of order, and missing MG5/MG6 material.",
-              "MG6C/MG5 — MG5 — referred on MG6 — export not served.",
-              "MG6C/MG6 — MG6C — referred on MG6 — export not served.",
-              "MG6C/ORD — order/service proof — referred on MG6 — export not served.",
-              "Main issue: The bundle is procedurally messy: corrected charge sheet, mixed defendants, pages out of order, and missing MG5/MG6 material."
+              "partial exhibit list"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
-            "baseStatus": "Outstanding",
+            "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Served material | 5+ | corrected charge sheet; selected MG11s; partial exhibit list",
             "mergedFrom": [
               "Exhibit mapping / provenance",
-              "MG6C/FUL — full exhibit list — outstanding — not on bundle.",
               "Served material | 5+ | corrected charge sheet; selected MG11s; partial exhibit list",
-              "MG6C/PAR — partial exhibit list — served on bundle.",
               "Served on bundle: corrected charge sheet; selected MG11s; partial exhibit list."
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (4 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Havenpool Crown Court — particulars per MG5. + 6 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (4 on file)",
-              "MG6C/MG5 — MG5 case summary — outstanding — not on bundle.",
-              "MG6C/DEF — defendant-specific allegations — outstanding — not on bundle.",
-              "MG6C/ORD — order/service proof — outstanding — not on bundle.",
               "MG11 witness statement",
               "Charge sheet",
               "MG5 case summary",
@@ -9986,7 +10142,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (4 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Havenpool Crown Court — particulars per MG5. + 6 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -10189,7 +10345,9 @@
             "baseStatus": "Outstanding",
             "evidenceAnchor": "Referred only: fingerprint report; forensic continuity; CCTV.",
             "mergedFrom": [
-              "CCTV Continuity / provenance"
+              "CCTV Continuity / provenance",
+              "fingerprint report; continuity records; scene photographs",
+              "Referred only: fingerprint report; forensic continuity; CCTV."
             ],
             "draftChaseWording": "Please provide CCTV Continuity / provenance or confirm in writing why it is not available."
           },
@@ -10197,55 +10355,59 @@
             "label": "CCTV full window / master footage",
             "familyId": "cctv_master",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "CCTV",
             "mergedFrom": [
               "CCTV full window / master footage",
-              "MG6C/CCT — CCTV — outstanding — not on bundle."
+              "CCTV",
+              "Must not say: fingerprints prove entry | forensic evidence links Harvey | CCTV confirms burglary"
             ],
             "draftChaseWording": "Please provide CCTV full window / master footage or confirm in writing why it is not available."
           },
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG5/MG6 clarification and source material behind the allegation."
+              "MG5/MG6 clarification and source material behind the allegation.",
+              "fingerprint report",
+              "continuity records",
+              "scene photographs",
+              "forensic continuity"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
-            "baseStatus": "Outstanding",
+            "baseStatus": "Not safely confirmed",
             "evidenceAnchor": null,
             "mergedFrom": [
               "Exhibit mapping / provenance",
-              "MG6C/CON — continuity records — outstanding — not on bundle."
+              "Further papers on the file"
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (4 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Birkton Crown Court — particulars per MG5. + 8 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (4 on file)",
+              "Additional source-material issues (2 on file); source material; source evidence behind allegation",
+              "Additional source-material issues (2 on file)",
               "source material",
-              "MG6C/FIN — fingerprint report — outstanding — not on bundle.",
-              "MG6C/SCE — scene photographs — outstanding — not on bundle.",
               "source evidence behind allegation",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Birkton Crown Court — particulars per MG5.",
               "Uncertain on papers: whether any forensic evidence links Harvey to entry or only presence.",
               "Complainant MG11 statement",
-              "Witness account on file — attribution and context require review."
+              "Witness account on file — attribution and context require review.",
+              "Uncertain: whether any forensic evidence links Harvey to entry or only presence."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (4 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Birkton Crown Court — particulars per MG5. + 8 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -10417,11 +10579,16 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "Further papers on the file"
+              "device/user attribution certificate",
+              "extraction continuity log",
+              "— co-defendant chat segregation schedule",
+              "EncroChat message extracts (partial)",
+              "Platform extraction / export",
+              "handle-to-user mapping certificate"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -10429,37 +10596,31 @@
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "Handle NIGHTHAWK-14 referenced — handle-to-user mapping NOT served.",
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Full extraction/source download and metadata continuity.",
-              "MG6C/EXT — extraction continuity log — outstanding — not on bundle.",
               "Handle NIGHTHAWK-14 referenced — handle-to-user mapping NOT served.",
-              "Full platform extraction and continuity certificate outstanding.",
+              "Platform extraction / export",
               "device continuity"
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 6 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Phone extraction source material",
-              "Additional source-material issues (5 on file)",
-              "full extraction/source material",
-              "Further papers on the file",
-              "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
+              "Platform extraction / export",
               "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5.",
-              "MG6C/ENC — EncroChat message extracts (partial) — served on bundle.",
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review.",
               "Encrypted comms platform — partial message extracts served."
             ],
-            "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 6 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -10652,13 +10813,17 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/FUL — full extraction — referred on MG6 — export not served.",
-              "MG6C/HAS — hash values — referred on MG6 — export not served.",
-              "Further papers on the file"
+              "complete conversation thread",
+              "metadata",
+              "export audit trail",
+              "exhibit continuity statement",
+              "full extraction",
+              "hash values",
+              "translation/interpretation note"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -10670,7 +10835,6 @@
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Full extraction/source download and metadata continuity.",
-              "MG6C/EXH — exhibit continuity statement — outstanding — not on bundle.",
               "complete conversation thread; metadata; export audit trail",
               "device continuity",
               "Served material | 5+ | MG5; cropped message screenshots; officer exhibit list"
@@ -10678,25 +10842,22 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 11 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Eastborough Crown Court — particulars per MG5. + 7 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Phone extraction source material",
-              "Additional source-material issues (6 on file)",
-              "full extraction/source material",
-              "MG6C/COM — complete conversation thread — outstanding — not on bundle.",
-              "MG6C/MET — metadata — outstanding — not on bundle.",
-              "MG6C/EXP — export audit trail — outstanding — not on bundle.",
-              "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Eastborough Crown Court — particulars per MG5.",
               "Screenshot-only evidence should be described as incomplete source material, not as the full communication record.",
-              "Uncertain on papers: whether screenshots are complete, edited, or selected."
+              "Uncertain on papers: whether screenshots are complete, edited, or selected.",
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review.",
+              "Uncertain: whether screenshots are complete, edited, or selected.",
+              "Further papers on the file"
             ],
-            "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Eastborough Crown Court — particulars per MG5. + 7 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -10833,27 +10994,34 @@
             "label": "Body-worn video (BWV)",
             "familyId": "bwv",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "full BWV",
             "mergedFrom": [
               "Body-worn video (BWV)",
               "full BWV and continuity material",
               "Full BWV clip, audit trail, and continuity/provenance.",
-              "MG6C/FUL — full BWV — outstanding — not on bundle.",
-              "per-defendant conduct map; full BWV.",
               "full BWV",
+              "per-defendant conduct map; full BWV.",
               "BWV continuity"
             ],
             "draftChaseWording": "Please provide Body-worn video (BWV) or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (2 on file) + 7 more source items",
+            "label": "per-defendant conduct map / MG6 / unused schedule clarification",
+            "familyId": "mg6_unused",
+            "baseStatus": "Outstanding",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "per-defendant conduct map"
+            ],
+            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+          },
+          {
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 5 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (2 on file)",
-              "MG6C/PER — per-defendant conduct map — outstanding — not on bundle.",
               "officer notes",
               "Charge sheet",
               "MG5 case summary",
@@ -10861,7 +11029,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (2 on file) + 7 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 5 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -11019,12 +11187,16 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/CAS — case chronology — referred on MG6 — export not served.",
-              "MG6C/POL — police decision log — referred on MG6 — export not served."
+              "full email export",
+              "chronology",
+              "intention evidence",
+              "exhibit continuity",
+              "case chronology",
+              "police decision log"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -11032,34 +11204,29 @@
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "exhibit continuity",
             "mergedFrom": [
               "Exhibit mapping / provenance",
-              "MG6C/EXH — exhibit continuity — outstanding — not on bundle.",
+              "Further papers on the file",
+              "Lab report, continuity logs, search record, phone attribution material.",
+              "full email export; chronology; intention evidence",
               "drug continuity"
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (6 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 4 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (6 on file)",
-              "MG6C/FUL — full email export — outstanding — not on bundle.",
-              "MG6C/CHR — chronology — outstanding — not on bundle.",
-              "MG6C/INT — intention evidence — outstanding — not on bundle.",
-              "lab report",
-              "phone download",
-              "search record",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5.",
-              "Complainant MG11 statement"
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (6 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 4 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -11227,6 +11394,18 @@
             "draftChaseWording": "Please provide full custody record / PACE material or confirm in writing why it is not available."
           },
           {
+            "label": "MG6 / unused schedule clarification",
+            "familyId": "mg6_unused",
+            "baseStatus": "Not safely confirmed",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "Custody record — extract",
+              "MG11 officer statement —"
+            ],
+            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+          },
+          {
             "label": "Outstanding source material (Charge sheet, MG5 case summary, Officer MG11 statement)",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
@@ -11234,8 +11413,7 @@
             "mergedFrom": [
               "Charge sheet",
               "MG5 case summary",
-              "Officer MG11 statement",
-              "MG11 officer statement"
+              "Officer MG11 statement"
             ],
             "draftChaseWording": "Please provide the outstanding source material identified on the disclosure schedule, including charge sheet, MG5 case summary, officer MG11 statement or confirm in writing why it is not available."
           }
@@ -11416,46 +11594,50 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "Further papers on the file"
+              "line attribution material",
+              "full cellsite download",
+              "role evidence schedule",
+              "Screenshot / message pack",
+              "cellsite/travel data",
+              "cash/drug continuity"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
-            "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "baseStatus": "Not safely confirmed",
+            "evidenceAnchor": "Cellsite/travel data referred only. Cash/drug continuity missing.",
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Full extraction/source download and metadata continuity.",
               "device continuity",
-              "MG6C/CAS — cash/drug continuity — outstanding — not on bundle.",
               "Cellsite/travel data referred only. Cash/drug continuity missing."
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 11 more source items",
+            "label": "Phone extraction source material + 10 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
               "Phone extraction source material",
-              "Additional source-material issues (6 on file)",
+              "Additional source-material issues (3 on file)",
               "full extraction/source material",
-              "MG6C/LIN — line attribution material — outstanding — not on bundle.",
-              "MG6C/FUL — full cellsite download — outstanding — not on bundle.",
-              "MG6C/ROL — role evidence schedule — outstanding — not on bundle.",
               "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
               "Served material | 5+ | phone seizure notes; partial message screenshots",
               "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5.",
-              "Line attribution and role evidence unclear — vulnerability marker on file"
+              "Line attribution and role evidence unclear — vulnerability marker on file",
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review.",
+              "Phone line attribution unclear — runner vs line holder not established."
             ],
             "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
           }
@@ -11586,12 +11768,14 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
               "MG5/MG6 clarification and source material behind the allegation.",
-              "MG6C/EXP — expert report — referred on MG6 — export not served."
+              "provenance report",
+              "continuity",
+              "expert report"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -11599,17 +11783,15 @@
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "provenance report",
             "mergedFrom": [
               "Exhibit mapping / provenance",
-              "MG6C/PRO — provenance report — outstanding — not on bundle.",
-              "MG6C/CON — continuity — outstanding — not on bundle.",
               "provenance report; continuity."
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (2 on file); source material; source evidence behind allegation + 8 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 6 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
@@ -11624,7 +11806,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide further papers on the file or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 6 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -11783,10 +11965,9 @@
             "label": "Full custody record / PACE material",
             "familyId": "interview",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "custody/PACE record",
             "mergedFrom": [
               "Full custody record / PACE material",
-              "MG6C/CUS — custody/PACE record — outstanding — not on bundle.",
               "MGDD form; calibration/check record; custody/PACE record"
             ],
             "draftChaseWording": "Please provide full custody record / PACE material or confirm in writing why it is not available."
@@ -11794,35 +11975,39 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/MGD — MGDD procedure form — referred on MG6 — export not served.",
-              "Further papers on the file"
+              "MGDD form",
+              "calibration/check record",
+              "custody/PACE record",
+              "officer statement",
+              "MGDD procedure form",
+              "device calibration/check record",
+              "custody record"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (7 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Ashmere Magistrates Court — particulars per MG5. + 7 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
+              "Additional source-material issues (4 on file); Further papers on the file; device records",
+              "Additional source-material issues (4 on file)",
               "Further papers on the file",
-              "Additional source-material issues (7 on file)",
-              "MG6C/MGD — MGDD form — outstanding — not on bundle.",
-              "MG6C/CAL — calibration/check record — outstanding — not on bundle.",
-              "MG6C/OFF — officer statement — outstanding — not on bundle.",
               "device records",
               "calibration",
               "procedure logs",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Ashmere Magistrates Court — particulars per MG5.",
-              "Complainant MG11 statement"
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (7 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Ashmere Magistrates Court — particulars per MG5. + 7 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -11995,10 +12180,9 @@
             "label": "Interview recording / transcript",
             "familyId": "interview",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "Interview recording/transcript",
             "mergedFrom": [
               "Interview recording / transcript",
-              "MG6C/INT — Interview recording/transcript — outstanding — not on bundle.",
               "full claim history; notification logs; overpayment calculation"
             ],
             "draftChaseWording": "Please provide interview recording / transcript or confirm in writing why it is not available."
@@ -12006,29 +12190,29 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
               "MG5/MG6 clarification and source material behind the allegation.",
-              "MG6C/BEN — benefit claim records — referred on MG6 — export not served.",
-              "MG6C/NOT — notification logs — referred on MG6 — export not served.",
-              "Further papers on the file"
+              "full claim history",
+              "notification logs",
+              "overpayment calculation",
+              "Interview recording/transcript",
+              "benefit claim records"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (7 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Rosedale Magistrates Court — particulars per MG5. + 6 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": "The allegation depends on agency records and notification history not fully served.",
+            "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (7 on file)",
+              "Additional source-material issues (4 on file); source material; Further papers on the file",
+              "Additional source-material issues (4 on file)",
               "source material",
-              "MG6C/FUL — full claim history — outstanding — not on bundle.",
-              "MG6C/NOT — notification logs — outstanding — not on bundle.",
-              "MG6C/OVE — overpayment calculation — outstanding — not on bundle.",
+              "Further papers on the file",
               "source evidence behind allegation",
               "Charge sheet",
               "MG5 case summary",
@@ -12036,7 +12220,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (7 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Rosedale Magistrates Court — particulars per MG5. + 6 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -12195,10 +12379,9 @@
             "label": "Full custody record / PACE material",
             "familyId": "interview",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "custody/PACE record",
             "mergedFrom": [
               "Full custody record / PACE material",
-              "MG6C/CUS — custody/PACE record — outstanding — not on bundle.",
               "MGDD form; calibration/check record; custody/PACE record"
             ],
             "draftChaseWording": "Please provide full custody record / PACE material or confirm in writing why it is not available."
@@ -12206,35 +12389,39 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/MGD — MGDD procedure form — referred on MG6 — export not served.",
-              "Further papers on the file"
+              "MGDD form",
+              "calibration/check record",
+              "custody/PACE record",
+              "officer statement",
+              "MGDD procedure form",
+              "device calibration/check record",
+              "custody record"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (7 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Ashmere Magistrates Court — particulars per MG5. + 7 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
+              "Additional source-material issues (4 on file); Further papers on the file; device records",
+              "Additional source-material issues (4 on file)",
               "Further papers on the file",
-              "Additional source-material issues (7 on file)",
-              "MG6C/MGD — MGDD form — outstanding — not on bundle.",
-              "MG6C/CAL — calibration/check record — outstanding — not on bundle.",
-              "MG6C/OFF — officer statement — outstanding — not on bundle.",
               "device records",
               "calibration",
               "procedure logs",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Ashmere Magistrates Court — particulars per MG5.",
-              "Complainant MG11 statement"
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (7 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Ashmere Magistrates Court — particulars per MG5. + 7 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -12407,10 +12594,9 @@
             "label": "Interview recording / transcript",
             "familyId": "interview",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "Interview recording/transcript",
             "mergedFrom": [
               "Interview recording / transcript",
-              "MG6C/INT — Interview recording/transcript — outstanding — not on bundle.",
               "full claim history; notification logs; overpayment calculation"
             ],
             "draftChaseWording": "Please provide interview recording / transcript or confirm in writing why it is not available."
@@ -12418,29 +12604,29 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
               "MG5/MG6 clarification and source material behind the allegation.",
-              "MG6C/BEN — benefit claim records — referred on MG6 — export not served.",
-              "MG6C/NOT — notification logs — referred on MG6 — export not served.",
-              "Further papers on the file"
+              "full claim history",
+              "notification logs",
+              "overpayment calculation",
+              "Interview recording/transcript",
+              "benefit claim records"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (7 on file) + 10 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Rosedale Magistrates Court — particulars per MG5. + 6 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": "The allegation depends on agency records and notification history not fully served.",
+            "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (7 on file)",
+              "Additional source-material issues (4 on file); source material; Further papers on the file",
+              "Additional source-material issues (4 on file)",
               "source material",
-              "MG6C/FUL — full claim history — outstanding — not on bundle.",
-              "MG6C/NOT — notification logs — outstanding — not on bundle.",
-              "MG6C/OVE — overpayment calculation — outstanding — not on bundle.",
+              "Further papers on the file",
               "source evidence behind allegation",
               "Charge sheet",
               "MG5 case summary",
@@ -12448,7 +12634,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (7 on file) + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Rosedale Magistrates Court — particulars per MG5. + 6 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -12634,34 +12820,46 @@
             "label": "Body-worn video (BWV)",
             "familyId": "bwv",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "full BWV",
             "mergedFrom": [
               "Body-worn video (BWV)",
-              "MG6C/FUL — full BWV — outstanding — not on bundle.",
+              "full BWV",
               "signed MG11; full BWV."
             ],
             "draftChaseWording": "Please provide Body-worn video (BWV) or confirm in writing why it is not available."
           },
           {
-            "label": "Complainant MG11 statement + 10 more source items",
+            "label": "MG6 / unused schedule clarification",
+            "familyId": "mg6_unused",
+            "baseStatus": "Outstanding",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "signed MG11",
+              "unsigned MG11 draft"
+            ],
+            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+          },
+          {
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": "Complainant MG11 statement",
+            "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Complainant MG11 statement",
-              "Additional source-material issues (6 on file)",
+              "Screenshot / message pack",
+              "Additional source-material issues (5 on file)",
               "Further papers on the file",
-              "Full message export, source device material, call logs, complainant MG11.",
-              "MG11 witness statement",
-              "message exports",
               "full complainant statement",
               "call logs",
               "Charge sheet",
               "MG5 case summary",
               "Served material | 5+ | unsigned MG11 draft",
-              "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5."
+              "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5.",
+              "Unsigned MG11 on rotated scan — not final served statement.",
+              "Provisional — unsigned mg11 on rotated scan layout",
+              "Complainant MG11 statement"
             ],
-            "draftChaseWording": "Please provide complainant MG11 statement + 10 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 9 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -12826,12 +13024,17 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/RES — restraining order — referred on MG6 — export not served.",
-              "MG6C/PRO — proof of service — referred on MG6 — export not served."
+              "sealed order",
+              "service/knowledge proof",
+              "full contact thread",
+              "phone attribution",
+              "restraining order",
+              "proof of service",
+              "phone download"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
@@ -12848,23 +13051,22 @@
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 11 more source items",
+            "label": "Phone extraction source material + 9 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
               "Phone extraction source material",
-              "Additional source-material issues (8 on file)",
+              "Additional source-material issues (4 on file)",
               "full extraction/source material",
-              "MG6C/SEA — sealed order — outstanding — not on bundle.",
-              "MG6C/SER — service/knowledge proof — outstanding — not on bundle.",
-              "MG6C/FUL — full contact thread — outstanding — not on bundle.",
-              "MG6C/PHO — phone attribution — outstanding — not on bundle.",
               "sealed order; service/knowledge proof; full contact thread",
+              "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
               "Served material | 5+ | MG5; complainant statement; contact screenshot",
-              "Between 1 January 2026 and 28 February 2026 at Stoneford Magistrates Court — particulars per MG5."
+              "Between 1 January 2026 and 28 February 2026 at Stoneford Magistrates Court — particulars per MG5.",
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review."
             ],
             "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
           }
@@ -13060,57 +13262,57 @@
             "label": "Body-worn video (BWV)",
             "familyId": "bwv",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "BWV export",
             "mergedFrom": [
               "Body-worn video (BWV)",
-              "MG6C/BWV — BWV export — outstanding — not on bundle."
+              "BWV export",
+              "BWV export; full custody record; risk assessment"
             ],
             "draftChaseWording": "Please provide Body-worn video (BWV) or confirm in writing why it is not available."
           },
           {
-            "label": "Interview recording / transcript",
+            "label": "Full custody record / PACE material",
             "familyId": "interview",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "Interview recording",
             "mergedFrom": [
               "Full custody record / PACE material",
               "full custody and interview records",
               "Full custody record, detention log, risk assessment, and Interview recording.",
-              "MG6C/FUL — full custody record — outstanding — not on bundle.",
-              "MG6C/RIS — risk assessment — outstanding — not on bundle.",
-              "MG6C/INT — Interview recording — outstanding — not on bundle.",
               "full custody record",
               "PACE Interview recording",
-              "Interview recording / transcript"
+              "custody risk assessments"
             ],
-            "draftChaseWording": "Please provide interview recording / transcript or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide full custody record / PACE material or confirm in writing why it is not available."
           },
           {
-            "label": "MG6 / unused schedule clarification",
+            "label": "Custody / risk assessment + 5 more source items",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
-              "MG6 / unused schedule clarification"
+              "MG6 / unused schedule clarification",
+              "full custody record",
+              "Custody / risk assessment",
+              "Interview recording",
+              "use-of-force record",
+              "PACE Interview recording"
             ],
-            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide custody / risk assessment + 5 more source items or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issue (see detail) + 6 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Marketgate Magistrates Court — particulars per MG5. + 4 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issue (see detail)",
-              "MG6C/USE — use-of-force record — outstanding — not on bundle.",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Marketgate Magistrates Court — particulars per MG5.",
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issue (see detail) + 6 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Marketgate Magistrates Court — particulars per MG5. + 4 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -13289,46 +13491,50 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "Further papers on the file"
+              "line attribution material",
+              "full cellsite download",
+              "role evidence schedule",
+              "Screenshot / message pack",
+              "cellsite/travel data",
+              "cash/drug continuity"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
             "label": "Exhibit mapping / provenance",
             "familyId": "exhibit_provenance",
-            "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "baseStatus": "Not safely confirmed",
+            "evidenceAnchor": "Cellsite/travel data referred only. Cash/drug continuity missing.",
             "mergedFrom": [
               "Exhibit mapping / provenance",
               "Full extraction/source download and metadata continuity.",
               "device continuity",
-              "MG6C/CAS — cash/drug continuity — outstanding — not on bundle.",
               "Cellsite/travel data referred only. Cash/drug continuity missing."
             ],
             "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
           },
           {
-            "label": "Phone extraction source material + 11 more source items",
+            "label": "Phone extraction source material + 10 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
               "Phone extraction source material",
-              "Additional source-material issues (6 on file)",
+              "Additional source-material issues (3 on file)",
               "full extraction/source material",
-              "MG6C/LIN — line attribution material — outstanding — not on bundle.",
-              "MG6C/FUL — full cellsite download — outstanding — not on bundle.",
-              "MG6C/ROL — role evidence schedule — outstanding — not on bundle.",
               "metadata/source download",
               "Charge sheet",
               "MG5 case summary",
               "Served material | 5+ | phone seizure notes; partial message screenshots",
               "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5.",
-              "Line attribution and role evidence unclear — vulnerability marker on file"
+              "Line attribution and role evidence unclear — vulnerability marker on file",
+              "Complainant MG11 statement",
+              "Witness account on file — attribution and context require review.",
+              "Phone line attribution unclear — runner vs line holder not established."
             ],
             "draftChaseWording": "Please provide phone extraction source material or confirm in writing why it is not available."
           }
@@ -13496,10 +13702,9 @@
             "label": "Interview recording / transcript",
             "familyId": "interview",
             "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "Interview recording",
             "mergedFrom": [
               "Interview recording / transcript",
-              "MG6C/INT — Interview recording — outstanding — not on bundle.",
               "expert/document examiner report; provenance chain; Interview recording",
               "Referred only: document examiner report; immigration/status records; Interview recording."
             ],
@@ -13508,47 +13713,29 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
               "MG5/MG6 clarification and source material behind the allegation.",
-              "Further papers on the file"
+              "expert/document examiner report",
+              "provenance chain",
+              "Interview recording",
+              "status/context records",
+              "document examiner report",
+              "immigration/status records"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
-            "label": "Medical / expert source report",
-            "familyId": "medical_expert",
-            "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
-            "mergedFrom": [
-              "Medical / expert source report",
-              "Further papers on the file"
-            ],
-            "draftChaseWording": "Please provide medical / expert source report or confirm in writing why it is not available."
-          },
-          {
-            "label": "Exhibit mapping / provenance",
-            "familyId": "exhibit_provenance",
-            "baseStatus": "Outstanding",
-            "evidenceAnchor": null,
-            "mergedFrom": [
-              "Exhibit mapping / provenance",
-              "MG6C/PRO — provenance chain — outstanding — not on bundle."
-            ],
-            "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
-          },
-          {
-            "label": "Additional source-material issues (3 on file) + 8 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Westbank Magistrates Court — particulars per MG5. + 6 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (3 on file)",
+              "Additional source-material issues (2 on file); source material; source evidence behind allegation",
+              "Additional source-material issues (2 on file)",
               "source material",
-              "MG6C/STA — status/context records — outstanding — not on bundle.",
               "source evidence behind allegation",
               "Charge sheet",
               "MG5 case summary",
@@ -13556,7 +13743,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (3 on file) + 8 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Westbank Magistrates Court — particulars per MG5. + 6 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -13729,9 +13916,10 @@
             "label": "CCTV full window / master footage",
             "familyId": "cctv_master",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "CCTV",
             "mergedFrom": [
               "CCTV full window / master footage",
+              "CCTV",
               "Must not say: Sasha used violence | group violence proves affray | CCTV shows Sasha"
             ],
             "draftChaseWording": "Please provide CCTV full window / master footage or confirm in writing why it is not available."
@@ -13740,11 +13928,13 @@
             "label": "Body-worn video (BWV)",
             "familyId": "bwv",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "CCTV/BWV",
             "mergedFrom": [
               "Body-worn video (BWV)",
               "full BWV and continuity material",
               "Full BWV clip, audit trail, and continuity/provenance.",
+              "CCTV/BWV",
+              "CCTV/BWV; participant timeline; scene plan",
               "full BWV",
               "BWV continuity"
             ],
@@ -13753,25 +13943,22 @@
           {
             "label": "MG6 / unused schedule clarification",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
               "MG6 / unused schedule clarification",
-              "MG6C/SCE — scene plan — referred on MG6 — export not served."
+              "participant timeline",
+              "scene plan",
+              "identification schedule"
             ],
             "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (4 on file) + 9 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Redbridge Crown Court — particulars per MG5. + 5 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (4 on file)",
-              "MG6C/PAR — participant timeline — outstanding — not on bundle.",
-              "MG6C/SCE — scene plan — outstanding — not on bundle.",
-              "MG6C/IDE — identification schedule — outstanding — not on bundle.",
               "officer notes",
               "Charge sheet",
               "MG5 case summary",
@@ -13779,7 +13966,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (4 on file) + 9 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Redbridge Crown Court — particulars per MG5. + 5 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [
@@ -13973,57 +14160,57 @@
             "label": "Body-worn video (BWV)",
             "familyId": "bwv",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "BWV export",
             "mergedFrom": [
               "Body-worn video (BWV)",
-              "MG6C/BWV — BWV export — outstanding — not on bundle."
+              "BWV export",
+              "BWV export; full custody record; risk assessment"
             ],
             "draftChaseWording": "Please provide Body-worn video (BWV) or confirm in writing why it is not available."
           },
           {
-            "label": "Interview recording / transcript",
+            "label": "Full custody record / PACE material",
             "familyId": "interview",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "Interview recording",
             "mergedFrom": [
               "Full custody record / PACE material",
               "full custody and interview records",
               "Full custody record, detention log, risk assessment, and Interview recording.",
-              "MG6C/FUL — full custody record — outstanding — not on bundle.",
-              "MG6C/RIS — risk assessment — outstanding — not on bundle.",
-              "MG6C/INT — Interview recording — outstanding — not on bundle.",
               "full custody record",
               "PACE Interview recording",
-              "Interview recording / transcript"
+              "custody risk assessments"
             ],
-            "draftChaseWording": "Please provide interview recording / transcript or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide full custody record / PACE material or confirm in writing why it is not available."
           },
           {
-            "label": "MG6 / unused schedule clarification",
+            "label": "Custody / risk assessment + 5 more source items",
             "familyId": "mg6_unused",
-            "baseStatus": "Not safely confirmed",
+            "baseStatus": "Outstanding",
             "evidenceAnchor": null,
             "mergedFrom": [
-              "MG6 / unused schedule clarification"
+              "MG6 / unused schedule clarification",
+              "full custody record",
+              "Custody / risk assessment",
+              "Interview recording",
+              "use-of-force record",
+              "PACE Interview recording"
             ],
-            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide custody / risk assessment + 5 more source items or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issue (see detail) + 6 more source items",
+            "label": "Between 1 January 2026 and 28 February 2026 at Marketgate Magistrates Court — particulars per MG5. + 4 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issue (see detail)",
-              "MG6C/USE — use-of-force record — outstanding — not on bundle.",
               "Charge sheet",
               "MG5 case summary",
               "Between 1 January 2026 and 28 February 2026 at Marketgate Magistrates Court — particulars per MG5.",
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issue (see detail) + 6 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Marketgate Magistrates Court — particulars per MG5. + 4 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": []
@@ -14153,27 +14340,34 @@
             "label": "Body-worn video (BWV)",
             "familyId": "bwv",
             "baseStatus": "Not safely confirmed",
-            "evidenceAnchor": null,
+            "evidenceAnchor": "full BWV",
             "mergedFrom": [
               "Body-worn video (BWV)",
               "full BWV and continuity material",
               "Full BWV clip, audit trail, and continuity/provenance.",
-              "MG6C/FUL — full BWV — outstanding — not on bundle.",
-              "per-defendant conduct map; full BWV.",
               "full BWV",
+              "per-defendant conduct map; full BWV.",
               "BWV continuity"
             ],
             "draftChaseWording": "Please provide Body-worn video (BWV) or confirm in writing why it is not available."
           },
           {
-            "label": "Additional source-material issues (2 on file) + 7 more source items",
+            "label": "per-defendant conduct map / MG6 / unused schedule clarification",
+            "familyId": "mg6_unused",
+            "baseStatus": "Outstanding",
+            "evidenceAnchor": null,
+            "mergedFrom": [
+              "MG6 / unused schedule clarification",
+              "per-defendant conduct map"
+            ],
+            "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available."
+          },
+          {
+            "label": "Between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 5 more source items",
             "familyId": "other",
             "baseStatus": "Not safely confirmed",
             "evidenceAnchor": "Charge sheet",
             "mergedFrom": [
-              "Further papers on the file",
-              "Additional source-material issues (2 on file)",
-              "MG6C/PER — per-defendant conduct map — outstanding — not on bundle.",
               "officer notes",
               "Charge sheet",
               "MG5 case summary",
@@ -14181,7 +14375,7 @@
               "Complainant MG11 statement",
               "Witness account on file — attribution and context require review."
             ],
-            "draftChaseWording": "Please provide additional source-material issues (2 on file) + 7 more source items or confirm in writing why it is not available."
+            "draftChaseWording": "Please provide between 1 January 2026 and 28 February 2026 at Northgate Crown Court — particulars per MG5. + 5 more source items or confirm in writing why it is not available."
           }
         ],
         "expectedFound": [

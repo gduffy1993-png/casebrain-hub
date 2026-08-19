@@ -96,4 +96,62 @@ describe("master3000 live-builder validation invariants", () => {
     expect(brief.items.some((item) => item.familyId === "bwv" && /body-worn video|bwv/i.test(item.label))).toBe(true);
     expect(brief.items.some((item) => item.familyId === "cctv_master" && /body-worn|bwv/i.test(item.label))).toBe(false);
   });
+
+  it("keeps MG6C alphanumeric outstanding rows concrete instead of collapsing to generic other", () => {
+    const brief = buildDisclosureChaseBrief({
+      caseId: "fixture-mg6c-alpha",
+      caseTitle: "Digital attribution fixture",
+      clientLabel: "Digital attribution fixture",
+      allegation: "Harassment",
+      stage: "PTPH",
+      hearingStatus: "Listed",
+      hearingDateIso: "2026-01-10",
+      bundleHealth: "Partial",
+      positionStatus: "Not recorded",
+      battleboard: null,
+      bundleText: [
+        "=== SECTION: MG6 ===",
+        "MG6C/SOU — source export — outstanding — not on bundle.",
+        "MG6C/ACC — account data — outstanding — not on bundle.",
+        "MG6C/PER — per-defendant map — Daphne Jura — outstanding — not on bundle.",
+        "MG6C/MEN — mental health triage — Lennox Quay — outstanding — not on bundle.",
+      ].join("\n"),
+    });
+
+    const visible = brief.items
+      .flatMap((item) => [item.label, item.draftChaseWording, ...item.mergedFrom])
+      .join("\n");
+
+    expect(visible).toMatch(/Source export|Account data|Subscriber|Per-defendant|Mental health triage/i);
+    expect(brief.items.every((item) => !/^Additional source-material issues \(\d+ on file\)$/i.test(item.label))).toBe(
+      true,
+    );
+  });
+
+  it("opposite direction: genuinely generic MG6 chrome stays generic", () => {
+    const brief = buildDisclosureChaseBrief({
+      caseId: "fixture-mg6-generic-only",
+      caseTitle: "Generic MG6 only",
+      clientLabel: "Generic MG6 only",
+      allegation: "Unknown",
+      stage: "Unknown",
+      hearingStatus: "No reliable hearing date",
+      hearingDateIso: null,
+      bundleHealth: "Thin",
+      positionStatus: "Not recorded",
+      battleboard: null,
+      bundleText: ["=== SECTION: MG6 ===", "MG6 unused schedule requires clarification.", "Further papers on the file."].join(
+        "\n",
+      ),
+    });
+    const text = brief.items.map((item) => item.label).join("\n");
+    expect(text).toMatch(/MG6|source material|further papers/i);
+    expect(text).not.toMatch(/Source export|Per-defendant attribution map|Mental health triage/i);
+  });
+
+  it("does not treat simulator URN /SIM/ tokens as phone evidence mentions", async () => {
+    const { familySupport } = await import("../lib/criminal/chase-source-gate");
+    expect(familySupport("phone", "URN: 26/SIM/224\nVehicle ANPR download outstanding.")).toBe("absent");
+    expect(familySupport("phone", "Phone extraction source material — outstanding — not on bundle.")).toBe("mentioned");
+  });
 });

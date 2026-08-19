@@ -140,21 +140,23 @@ const CHASE_FAMILIES: FamilyDef[] = [
     priority: 5,
     match: (t) =>
       /\b(interview|transcript|custody|detention|risk\s*assessment|pace)\b/.test(t) &&
-      !/\bmg6\b/.test(t),
+      !/\bmg6c?\b/.test(t),
   },
   {
     id: "mg6_unused",
     label: "MG6 / unused / schedule clarification",
     source: "CPS / disclosure officer",
     priority: 6,
-    match: (t) => /\b(mg6|unused|disclosure\s*schedule|cpi(a)?|material\s*not\s*used)\b/.test(t),
+    match: (t) =>
+      /\bmg6c?\b/.test(t) ||
+      /\b(unused|disclosure\s*schedule|cpi(a)?|material\s*not\s*used)\b/.test(t),
   },
   {
     id: "medical_expert",
     label: "Medical / expert source report",
     source: "CPS / expert source (confirm on file)",
     priority: 7,
-    match: (t) => /\b(medical|gp|hospital|pathology|expert|autopsy|fme)\b/.test(t),
+    match: (t) => /\b(medical|mental\s+health|triage|gp|hospital|pathology|expert|autopsy|fme)\b/.test(t),
   },
   {
     id: "exhibit_provenance",
@@ -972,6 +974,12 @@ function familySafeMergedFrom(
   if (!base.length || !bundleText?.trim()) return base;
   const allowedFamilies = new Set(gateFamiliesForItem(item));
   return base.filter((line) => {
+    // MG6C schedule rows belong on the MG6 card even when the row text also mentions
+    // phone/subscriber/medical vocabulary used by other gate families.
+    if (/\bmg6c?\//i.test(line) && (item.familyId === "mg6_unused" || allowedFamilies.has("mg6_unused"))) {
+      return familySupport("mg6_unused", bundleText) !== "absent";
+    }
+    if (classifyFamily(line) === item.familyId) return true;
     const families = familiesInText(line);
     if (!families.length) return true;
     return families.every(

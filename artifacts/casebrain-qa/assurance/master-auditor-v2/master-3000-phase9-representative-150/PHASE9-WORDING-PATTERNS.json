@@ -1,0 +1,212 @@
+[
+  {
+    "label": "mg6 unused schedule clarification",
+    "count": 97,
+    "sampleCaseIds": [
+      "sc-0000b",
+      "sc-00023",
+      "sc-0002b",
+      "sc-00030",
+      "sc-0003b",
+      "sc-00046",
+      "sc-00047",
+      "sc-0006b"
+    ]
+  },
+  {
+    "label": "exhibit mapping provenance",
+    "count": 55,
+    "sampleCaseIds": [
+      "s18-charge-reduction-jordan-clarke",
+      "sc-0000b",
+      "sc-0000e",
+      "sc-0000f",
+      "sc-0001b",
+      "sc-0001f",
+      "sc-00023",
+      "sc-00025"
+    ]
+  },
+  {
+    "label": "cctv full window master footage",
+    "count": 40,
+    "sampleCaseIds": [
+      "crown-court-patterson",
+      "fictional-theft-ashleigh-merritt",
+      "s18-charge-reduction-jordan-clarke",
+      "sc-0000e",
+      "sc-0000f",
+      "sc-00015",
+      "sc-0001b",
+      "sc-00024"
+    ]
+  },
+  {
+    "label": "body worn video bwv",
+    "count": 35,
+    "sampleCaseIds": [
+      "fictional-theft-ashleigh-merritt",
+      "sc-0000e",
+      "sc-00015",
+      "sc-0002e",
+      "sc-00033",
+      "sc-0003a",
+      "sc-00046",
+      "sc-00051"
+    ]
+  },
+  {
+    "label": "cad 999 audio control room material",
+    "count": 29,
+    "sampleCaseIds": [
+      "crown-court-patterson",
+      "fictional-theft-ashleigh-merritt",
+      "sc-0000f",
+      "sc-00015",
+      "sc-0001b",
+      "sc-00023",
+      "sc-00024",
+      "sc-00025"
+    ]
+  },
+  {
+    "label": "interview recording transcript",
+    "count": 28,
+    "sampleCaseIds": [
+      "crown-court-patterson",
+      "fictional-theft-ashleigh-merritt",
+      "s18-charge-reduction-jordan-clarke",
+      "sc-0002b",
+      "sc-0003b",
+      "sc-00043",
+      "sc-00056",
+      "sc-00061"
+    ]
+  },
+  {
+    "label": "cctv continuity provenance",
+    "count": 22,
+    "sampleCaseIds": [
+      "s18-charge-reduction-jordan-clarke",
+      "sc-0000f",
+      "sc-00015",
+      "sc-0001b",
+      "sc-0002d",
+      "sc-0002e",
+      "sc-00030",
+      "sc-00033"
+    ]
+  },
+  {
+    "label": "medical expert source report",
+    "count": 21,
+    "sampleCaseIds": [
+      "s18-charge-reduction-jordan-clarke",
+      "sc-00024",
+      "sc-0002e",
+      "sc-00030",
+      "sc-0003a",
+      "sc-0003c",
+      "sc-00046",
+      "sc-00048"
+    ]
+  },
+  {
+    "label": "between 1 january 2026 and 28 february 2026 at northgate crown court particulars per mg5 6 more source items",
+    "count": 17,
+    "sampleCaseIds": [
+      "sim-095",
+      "sim-115",
+      "sim-133",
+      "sim-136",
+      "sim-166",
+      "sim-182",
+      "sim-200",
+      "sim-222"
+    ]
+  },
+  {
+    "label": "between 1 january 2026 and 28 february 2026 at northgate crown court particulars per mg5 5 more source items",
+    "count": 14,
+    "sampleCaseIds": [
+      "sim-114",
+      "sim-153",
+      "sim-158",
+      "sim-162",
+      "sim-169",
+      "sim-174",
+      "sim-187",
+      "sim-198"
+    ]
+  },
+  {
+    "label": "full custody record pace material",
+    "count": 13,
+    "sampleCaseIds": [
+      "sc-0000b",
+      "sc-0000e",
+      "sc-00023",
+      "sc-00047",
+      "sim-098",
+      "sim-162",
+      "sim-227",
+      "sim-279"
+    ]
+  },
+  {
+    "label": "between 1 january 2026 and 28 february 2026 at northgate crown court particulars per mg5 4 more source items",
+    "count": 13,
+    "sampleCaseIds": [
+      "sim-098",
+      "sim-104",
+      "sim-132",
+      "sim-152",
+      "sim-160",
+      "sim-224",
+      "sim-279",
+      "sim-285"
+    ]
+  },
+  {
+    "label": "mailbox export outstanding chase before fixing hearing position 9 more source items",
+    "count": 11,
+    "sampleCaseIds": [
+      "sc-0000d",
+      "sc-00019",
+      "sc-0001f",
+      "sc-00025",
+      "sc-0002b",
+      "sc-00031",
+      "sc-0003d",
+      "sc-00043"
+    ]
+  },
+  {
+    "label": "between 1 january 2026 and 28 february 2026 at northgate magistrates court particulars per mg5 7 more source items",
+    "count": 11,
+    "sampleCaseIds": [
+      "sim-024",
+      "sim-159",
+      "sim-176",
+      "sim-218",
+      "sim-257",
+      "sim-297",
+      "sim-316",
+      "sim-320"
+    ]
+  },
+  {
+    "label": "between 1 january 2026 and 28 february 2026 at northgate crown court particulars per mg5 8 more source items",
+    "count": 11,
+    "sampleCaseIds": [
+      "sim-183",
+      "sim-197",
+      "sim-232",
+      "sim-264",
+      "sim-290",
+      "sim-295",
+      "sim-304",
+      "sim-313"
+    ]
+  }
+]

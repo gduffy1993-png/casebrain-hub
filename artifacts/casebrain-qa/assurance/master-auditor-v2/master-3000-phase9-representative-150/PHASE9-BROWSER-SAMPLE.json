@@ -1,0 +1,274 @@
+[
+  {
+    "caseId": "crown-court-patterson",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": "2023-11-22T10:00:00.000Z",
+    "stage": null,
+    "chaseCount": 4,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "fictional-theft-ashleigh-merritt",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": "2024-05-14T09:00:00.000Z",
+    "stage": null,
+    "chaseCount": 5,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "s18-charge-reduction-jordan-clarke",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": "2024-09-04T08:30:00.000Z",
+    "stage": null,
+    "chaseCount": 7,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "sc-0000b",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": null,
+    "stage": "First hearing",
+    "chaseCount": 4,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "sc-0000d",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": null,
+    "stage": "Case management",
+    "chaseCount": 1,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "sc-0000e",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": null,
+    "stage": "Magistrates' Court committal",
+    "chaseCount": 5,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "sc-0000f",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": null,
+    "stage": "Crown Court",
+    "chaseCount": 5,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "sc-00015",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": null,
+    "stage": "Plea and trial preparation",
+    "chaseCount": 5,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "sc-00019",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": null,
+    "stage": "Crown Court",
+    "chaseCount": 2,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "sc-0001b",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": null,
+    "stage": "Plea and trial preparation",
+    "chaseCount": 5,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "sc-0001f",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": null,
+    "stage": "Case management",
+    "chaseCount": 3,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "sc-00023",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": "2024-03-14T10:00:00.000Z",
+    "stage": "First hearing",
+    "chaseCount": 5,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "sc-00024",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": null,
+    "stage": "First hearing",
+    "chaseCount": 5,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "sc-00025",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": "2024-03-14T10:00:00.000Z",
+    "stage": "Case management",
+    "chaseCount": 4,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "sc-0002b",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": null,
+    "stage": "Case management",
+    "chaseCount": 4,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  },
+  {
+    "caseId": "sc-0002d",
+    "surfacesExercised": [
+      "overview_adapter",
+      "court_adapter",
+      "chase_adapter",
+      "canonical_adapter"
+    ],
+    "identityOk": true,
+    "chargeOk": true,
+    "hearingIso": null,
+    "stage": "Plea and trial preparation",
+    "chaseCount": 4,
+    "chaseStateOk": true,
+    "provenanceVisible": true,
+    "truthRenderMismatch": false
+  }
+]

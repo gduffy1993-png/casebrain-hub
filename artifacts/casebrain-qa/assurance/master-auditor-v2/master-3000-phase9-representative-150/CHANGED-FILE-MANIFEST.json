@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "master3000-phase9-changed-file-manifest@1.0.0",
+  "generatedAt": "2026-08-19T18:37:37.879Z",
+  "files": [
+    {
+      "path": "scripts/assurance/master-3000-phase9-representative-150.ts",
+      "sha256": "c3cf39765b5d3d2f5e98666aa6514be080a9f294d865bb433b1d156d4f29aa51",
+      "byteLength": 60622
+    },
+    {
+      "path": "scripts/master3000-live-builder-validation.test.ts",
+      "sha256": "00fe1e534d5d7fd2cd5c446a24187e370e03c1d4e83d30a5111d88d59e5b0edc",
+      "byteLength": 6564
+    },
+    {
+      "path": "components/criminal/disclosure-chase/buildDisclosureChaseBrief.ts",
+      "sha256": "c7ee600dd977a98bfa675db68f6cf17024032cf83216a224c0caf970f0d48ce8",
+      "byteLength": 63208
+    },
+    {
+      "path": "lib/criminal/disclosure-chase-finalize.ts",
+      "sha256": "fe3cc5829aad8e690786c37559bce7a7ff42923dfa6722ebd0ae413098450e46",
+      "byteLength": 17011
+    },
+    {
+      "path": "lib/criminal/chase-source-gate.ts",
+      "sha256": "0022f8c1b0fb0684013734f486dbdc438ac060197d28349e160a2c10ef10d8b0",
+      "byteLength": 9712
+    },
+    {
+      "path": "lib/eval/master3000-quality/invariants.ts",
+      "sha256": "42529ee3641aed9a827f0566a1ae10ee704cdf3e2d929cfae9361a0dda02b405",
+      "byteLength": 6664
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/REPRESENTATIVE-150-MANIFEST.json",
+      "sha256": "f0cb771a49cfeca389f1c379d4f7421b7d9fca4fba94ca77cb885c6a2058703a",
+      "byteLength": 267128
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/SELECTION-DISTRIBUTIONS.json",
+      "sha256": "cba1a41b4c152ecd88ee22b7b286a1f3e20e64a17780fb40fd5c3d1b1bfb39b0",
+      "byteLength": 1836
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/PHASE9-REPRESENTATIVE-AUDIT-RESULTS.json",
+      "sha256": "73e1a20f34aea54d7bfb9899ebf3c3c9e68316ac1664c531c2d9f629e3cc62c9",
+      "byteLength": 1285959
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/PHASE9-FAILURE-CLUSTERS.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "byteLength": 3
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/PHASE9-MATTER-METRICS.json",
+      "sha256": "eb9757c28d8fbe1ffc6c51f8fdc47851e911da7ab1140f2b86add5a3bb5ca8af",
+      "byteLength": 70587
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/PHASE9-OUTLIERS.json",
+      "sha256": "cfa72d470eee161f79edf282067daa51425c51b70705e70a63601c401e3543e2",
+      "byteLength": 13142
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/PHASE9-WORDING-PATTERNS.json",
+      "sha256": "983627eb0064d56931e6074507ce3acf382585394e0febecf752387ffa97abf0",
+      "byteLength": 4339
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/PHASE9-BROWSER-SAMPLE.json",
+      "sha256": "2b2e8ac2d3ffb5b30c9277522b6c191bb22b78bc5d33c8f62b07ddc87f8cbe0f",
+      "byteLength": 6249
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/PHASE9-CLASSIFICATION-REGISTER.json",
+      "sha256": "b831d1d850e7eb0c2bd7ee4ca8c50afd51e09ec89ac885b643eea5bb518e95cd",
+      "byteLength": 831
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/SHARED-ROOT-FIX-REGISTER.json",
+      "sha256": "7ec0f9338ff10fb420815c696b74b5732fb6ffa8477b7711b6b7c60efa7331e3",
+      "byteLength": 1624
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/361-CONTROL-COVERAGE-MAP-AFTER.json",
+      "sha256": "95b481c1b8ef8c04b9767073f7f44e27ad0965e2eebf3582f28acb11e1878d6f",
+      "byteLength": 200270
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/VALIDATION-ISSUES.json",
+      "sha256": "855931bace904c319c416f394a08aa45171c26ea0f7d0b20171cd33e9a7c9592",
+      "byteLength": 74
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/DECISION-CARD.md",
+      "sha256": "9430dfdef96f5ea1caa67825ac4ea6b03139d8f94a00cb1cb5a19fb7ee14b8af",
+      "byteLength": 990
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase9-representative-150/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "6dad64483a5627174ac5d56b1180b9358a95a10aa38f8ef775fb4af0b2456e00",
+      "byteLength": 32056
+    }
+  ]
+}

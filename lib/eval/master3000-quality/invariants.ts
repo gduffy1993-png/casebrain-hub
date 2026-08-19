@@ -102,6 +102,16 @@ export const HISTORICAL_INVARIANTS: InvariantDefinition[] = [
     historicalRegression: "remains_outstanding_repeated",
   },
   {
+    id: "CB-HIST-MG6C-CONCRETE-NOT-GENERIC-COLLAPSE",
+    title: "Concrete MG6C outstanding schedule rows must remain visible as concrete chase labels, not collapse into generic additional-source wording.",
+    failureClass: "dedupe_alias_failure",
+    severity: "P1",
+    category: "chase_validity",
+    sourceTruthRequired: true,
+    oppositeDirectionRequired: true,
+    historicalRegression: "mg6c_alpha_outstanding_collapsed_to_generic_other",
+  },
+  {
     id: "CB-HIST-NO-INTERNAL-TELEMETRY-VISIBLE",
     title: "Solicitor-visible surfaces must not expose text-length telemetry or internal taxonomy.",
     failureClass: "solicitor_visible_internal_language_failure",

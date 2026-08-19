@@ -50,15 +50,27 @@ export function humanizeChaseFragmentLabel(raw: string): string {
     return "BWV/footage is not served. Only a log entry is available; the clip remains outstanding.";
   }
 
-  const mg6 = t.match(/\bMG6C?\/\d+\s*[—–-]\s*(.+?)(?:\s*[—–-]\s*.+)?\.?$/i);
-  if (mg6?.[1]) {
-    const core = mg6[1]
+  // MG6C/001 and MG6C/PLA-style schedule codes → concrete material label.
+  const mg6 = t.match(/\bMG6C?\/([A-Za-z0-9]+)\s*[—–-]\s*(.+)$/i);
+  if (mg6?.[2]) {
+    const core = mg6[2]
+      .replace(/\s*[—–-]\s*(?:referred on MG6|export not served|outstanding|not on bundle|served on bundle).*$/i, "")
       .replace(/\s+(only|summary|served|outstanding|draft unsigned).*$/i, "")
       .trim();
-    if (/phone extraction|extraction summary/i.test(core)) return "Phone extraction source material";
-    if (/screenshot|message pack/i.test(core)) return "Screenshot / message pack";
-    if (/subscriber/i.test(core)) return "Subscriber / account data";
-    return formatDisplayLabelCasing(core);
+    if (/\bphone extraction\b|\btelecom download\b/i.test(core)) return "Phone extraction source material";
+    if (/\bextraction summary\b/i.test(core) && /\b(phone|handset|mobile)\b/i.test(core)) {
+      return "Phone extraction source material";
+    }
+    if (/\bplatform extraction\b|\bplatform export\b/i.test(core)) return "Platform extraction / export";
+    if (/\banpr\b/i.test(core)) return formatDisplayLabelCasing(core.replace(/\s*[—–-].*$/, "").trim() || core);
+    if (/screenshot|message pack|message export/i.test(core)) return "Screenshot / message pack";
+    if (/subscriber\s+records/i.test(core)) return "Subscriber records";
+    if (/subscriber|account data/i.test(core)) return "Subscriber / account data";
+    if (/source export/i.test(core)) return "Source export";
+    if (/per-?defendant map/i.test(core)) return "Per-defendant attribution map";
+    if (/mental health triage|mh triage/i.test(core)) return "Mental health triage";
+    if (/risk assessment/i.test(core)) return "Custody / risk assessment";
+    if (core) return formatDisplayLabelCasing(core);
   }
 
   if (/^MG11\b/i.test(t) || /\bMG11\s*[—–-]/i.test(t)) {
@@ -67,9 +79,14 @@ export function humanizeChaseFragmentLabel(raw: string): string {
     return "MG11 witness statement";
   }
 
-  if (/screenshot\s+pack/i.test(t)) return "Screenshot / message pack";
-  if (/phone extraction|extraction summary/i.test(t)) return "Phone extraction source material";
-  if (/subscriber\s+data/i.test(t)) return "Subscriber / account data";
+  if (/screenshot\s+pack|message export/i.test(t)) return "Screenshot / message pack";
+  if (/\bplatform extraction\b|\bplatform export\b/i.test(t)) return "Platform extraction / export";
+  if (/\bphone extraction\b|\btelecom download\b/i.test(t)) return "Phone extraction source material";
+  if (/subscriber\s+records/i.test(t)) return "Subscriber records";
+  if (/subscriber\s+(data|records)|account data/i.test(t)) return "Subscriber / account data";
+  if (/\bsource export\b/i.test(t)) return "Source export";
+  if (/per-?defendant map/i.test(t)) return "Per-defendant attribution map";
+  if (/mental health triage|mh triage/i.test(t)) return "Mental health triage";
   if (/^MG6\b|mg6\s*\/\s*unused|disclosure schedule/i.test(t)) return "MG6 / unused schedule clarification";
 
   if (t.includes(";")) {
@@ -85,7 +102,12 @@ export function humanizeChaseFragmentLabel(raw: string): string {
     return "Further papers on the file";
   }
 
+  // Prefer a short concrete outstanding core over collapsing the whole line to generic chrome.
   if (t.length > 72 && /outstanding|served|draft|summary/i.test(t)) {
+    const outstandingCore = t.match(
+      /\b((?:full\s+)?(?:source export|account data|subscriber records?|per-?defendant map|mental health triage|risk assessment|phone extraction|message export|platform export)[^—–-]{0,40})/i,
+    );
+    if (outstandingCore?.[1]) return formatDisplayLabelCasing(outstandingCore[1].trim());
     return "Further papers on the file";
   }
 
@@ -135,14 +157,28 @@ function familyLabelForId(familyId: ChaseFamilyId): string {
   }
 }
 
+function concreteOverflowPriority(label: string): number {
+  const n = norm(label);
+  if (!n || n === "further papers on the file") return 0;
+  if (/^additional source-material issues?\b/.test(n)) return 0;
+  if (/\b(source export|account data|subscriber|per defendant|mental health triage|phone extraction|message export|platform export|risk assessment)\b/.test(n)) {
+    return 5;
+  }
+  if (/\b(outstanding|not on bundle|export not served)\b/.test(n)) return 3;
+  return 1;
+}
+
 function humanOverflowCardLabel(mergedFrom: string[]): string {
   const humanized = dedupeByNorm(
     mergedFrom.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
-  ).filter(
-    (h) =>
-      h !== "Further papers on the file" &&
-      !/^Further papers issues/i.test(h),
-  );
+  )
+    .filter(
+      (h) =>
+        h !== "Further papers on the file" &&
+        !/^Further papers issues/i.test(h) &&
+        !/^Additional source-material issues?\b/i.test(h),
+    )
+    .sort((a, b) => concreteOverflowPriority(b) - concreteOverflowPriority(a) || a.localeCompare(b));
 
   if (humanized.length === 0) return "Outstanding source material on disclosure schedule";
   if (humanized.length === 1) return humanized[0]!;
@@ -261,8 +297,17 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
     if (evidenceAnchor && isRawChaseFragmentLabel(evidenceAnchor)) evidenceAnchor = null;
   }
 
-  if (/^Further papers issues \(\d+ on file\)$/i.test(label)) {
+  if (/^Further papers issues \(\d+ on file\)$/i.test(label) || /^Additional source-material issues?\b/i.test(label)) {
     label = humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : safeMergedRaw);
+  }
+
+  // MG6 family cards that absorbed concrete outstanding schedule rows should not stay purely generic.
+  if (
+    item.familyId === "mg6_unused" &&
+    /^MG6\b|unused schedule clarification/i.test(label) &&
+    mergedHumanized.some((m) => concreteOverflowPriority(m) >= 3)
+  ) {
+    label = humanOverflowCardLabel(mergedHumanized);
   }
 
   const mergedForDraft = mergedHumanized.length ? mergedHumanized : safeMergedRaw;

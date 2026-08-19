@@ -1,0 +1,22 @@
+[
+  {
+    "id": "LIVE-MG6C-ALPHA-AND-CONCRETE-COLLAPSE",
+    "path": "buildDisclosureChaseBrief.ts + disclosure-chase-finalize.ts",
+    "symptom": "Concrete MG6C/ALPHA outstanding rows collapsed into generic Additional/MG6 wording; subscriber rows dropped from MG6 cards.",
+    "sourceTruth": "MG6C schedule codes (numeric and alphanumeric) name concrete outstanding materials that must remain visible.",
+    "rootCause": "\\\\bmg6\\\\b failed to match MG6C; familySafeMergedFrom dropped MG6C phone/subscriber rows; Additional-source labels were not rewritten through concrete overflow.",
+    "fix": "Match MG6C; keep MG6C rows on MG6 cards; humanize alphanumeric codes; rewrite Additional/MG6 generic labels via concrete overflow priority.",
+    "invariant": "CB-HIST-MG6C-CONCRETE-NOT-GENERIC-COLLAPSE",
+    "oppositeDirection": "Genuinely generic MG6 chrome stays generic; numeric digital fixture still surfaces Phone/Subscriber/Message concrete labels."
+  },
+  {
+    "id": "LIVE-URN-SIM-NOT-PHONE-MENTION",
+    "path": "lib/criminal/chase-source-gate.ts",
+    "symptom": "Bundles whose URN contains /SIM/ were treated as phone-mentioned, allowing unsupported Phone extraction chase cards.",
+    "sourceTruth": "Simulator URN tokens are not phone/SIM-card evidence.",
+    "rootCause": "Phone mention regex used bare \\\\bsim\\\\b, matching URN 26/SIM/NNN.",
+    "fix": "Require sim card/number/serial wording for phone mention.",
+    "invariant": "CB-HIST-UNSUPPORTED-PHONE-NOT-CHASE",
+    "oppositeDirection": "Source-backed phone extraction / subscriber cases still gate as phone-mentioned and remain chaseable."
+  }
+]

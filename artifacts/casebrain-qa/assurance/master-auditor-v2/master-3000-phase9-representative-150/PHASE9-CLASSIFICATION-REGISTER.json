@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "master3000-phase9-classification-register@1.0.0",
+  "generatedAt": "2026-08-19T18:37:37.879Z",
+  "confirmedLiveSharedDefects": [
+    "LIVE-MG6C-ALPHA-AND-CONCRETE-COLLAPSE",
+    "LIVE-URN-SIM-NOT-PHONE-MENTION"
+  ],
+  "staleHistorical": [],
+  "auditorFalsePositives": [
+    "initial unsupported_phone_chase on device-records/motoring labels (auditor over-classification)",
+    "initial outstanding_transcript_marked_served when fragment served + full outstanding coexisted",
+    "initial cctv_phone_provenance on CCTV download/continuity wording"
+  ],
+  "truthAmbiguousRequiresReview": [
+    "Jordan Hale interview chase ambiguity (unchanged from prior phases)",
+    "some truth-key specialty expects (PACE forms / medical imaging disc) without clear schedule rows"
+  ],
+  "unresolvedCandidateClusters": []
+}

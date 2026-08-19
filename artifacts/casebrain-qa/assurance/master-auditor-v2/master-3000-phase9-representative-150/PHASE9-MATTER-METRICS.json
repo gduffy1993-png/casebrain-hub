@@ -1,0 +1,2919 @@
+[
+  {
+    "caseId": "crown-court-patterson",
+    "offenceBucket": "harassment_domestic",
+    "proceduralStage": "first_appearance",
+    "bundleSizeTier": "medium",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 59,
+    "ledgerChaseNeedCount": 54,
+    "hearingIso": "2023-11-22T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "cad_999": 1,
+      "interview": 1,
+      "medical_expert": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "fictional-theft-ashleigh-merritt",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "medium",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 39,
+    "ledgerChaseNeedCount": 32,
+    "hearingIso": "2024-05-14T09:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "cad_999": 1,
+      "bwv": 1,
+      "interview": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "s18-charge-reduction-jordan-clarke",
+    "offenceBucket": "harassment_domestic",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "large",
+    "chaseCount": 7,
+    "ledgerMaterialCount": 262,
+    "ledgerChaseNeedCount": 261,
+    "hearingIso": "2024-09-04T08:30:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "interview": 1,
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0000b",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 24,
+    "ledgerChaseNeedCount": 24,
+    "hearingIso": null,
+    "stageExtracted": "First hearing",
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0000d",
+    "offenceBucket": "fraud",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 1,
+    "ledgerMaterialCount": 29,
+    "ledgerChaseNeedCount": 27,
+    "hearingIso": null,
+    "stageExtracted": "Case management",
+    "chaseFamilies": {
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0000e",
+    "offenceBucket": "drugs",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 29,
+    "ledgerChaseNeedCount": 27,
+    "hearingIso": null,
+    "stageExtracted": "Magistrates' Court committal",
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "bwv": 1,
+      "interview": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0000f",
+    "offenceBucket": "robbery",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 30,
+    "ledgerChaseNeedCount": 28,
+    "hearingIso": null,
+    "stageExtracted": "Crown Court",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00015",
+    "offenceBucket": "robbery",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 29,
+    "ledgerChaseNeedCount": 27,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "bwv": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00019",
+    "offenceBucket": "fraud",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 30,
+    "ledgerChaseNeedCount": 28,
+    "hearingIso": null,
+    "stageExtracted": "Crown Court",
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0001b",
+    "offenceBucket": "robbery",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 29,
+    "ledgerChaseNeedCount": 27,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0001f",
+    "offenceBucket": "fraud",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 27,
+    "ledgerChaseNeedCount": 25,
+    "hearingIso": null,
+    "stageExtracted": "Case management",
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00023",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 27,
+    "ledgerChaseNeedCount": 25,
+    "hearingIso": "2024-03-14T10:00:00.000Z",
+    "stageExtracted": "First hearing",
+    "chaseFamilies": {
+      "cad_999": 1,
+      "interview": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00024",
+    "offenceBucket": "driving",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 31,
+    "ledgerChaseNeedCount": 29,
+    "hearingIso": null,
+    "stageExtracted": "First hearing",
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "cad_999": 1,
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00025",
+    "offenceBucket": "fraud",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 34,
+    "ledgerChaseNeedCount": 32,
+    "hearingIso": "2024-03-14T10:00:00.000Z",
+    "stageExtracted": "Case management",
+    "chaseFamilies": {
+      "cad_999": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0002b",
+    "offenceBucket": "fraud",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 31,
+    "ledgerChaseNeedCount": 29,
+    "hearingIso": null,
+    "stageExtracted": "Case management",
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0002d",
+    "offenceBucket": "robbery",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 29,
+    "ledgerChaseNeedCount": 27,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0002e",
+    "offenceBucket": "violence",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 7,
+    "ledgerMaterialCount": 28,
+    "ledgerChaseNeedCount": 26,
+    "hearingIso": null,
+    "stageExtracted": "Case management",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "bwv": 1,
+      "medical_expert": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00030",
+    "offenceBucket": "driving",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 7,
+    "ledgerMaterialCount": 34,
+    "ledgerChaseNeedCount": 34,
+    "hearingIso": null,
+    "stageExtracted": "First hearing",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00031",
+    "offenceBucket": "fraud",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 1,
+    "ledgerMaterialCount": 26,
+    "ledgerChaseNeedCount": 24,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00033",
+    "offenceBucket": "robbery",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 6,
+    "ledgerMaterialCount": 26,
+    "ledgerChaseNeedCount": 24,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "bwv": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00039",
+    "offenceBucket": "robbery",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 27,
+    "ledgerChaseNeedCount": 25,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0003a",
+    "offenceBucket": "violence",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 7,
+    "ledgerMaterialCount": 33,
+    "ledgerChaseNeedCount": 31,
+    "hearingIso": null,
+    "stageExtracted": "Crown Court",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "bwv": 1,
+      "medical_expert": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0003b",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 31,
+    "ledgerChaseNeedCount": 29,
+    "hearingIso": null,
+    "stageExtracted": "Case management",
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "interview": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0003c",
+    "offenceBucket": "driving",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 25,
+    "ledgerChaseNeedCount": 25,
+    "hearingIso": null,
+    "stageExtracted": "First hearing",
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "cad_999": 1,
+      "medical_expert": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0003d",
+    "offenceBucket": "fraud",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 31,
+    "ledgerChaseNeedCount": 29,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00043",
+    "offenceBucket": "fraud",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 30,
+    "ledgerChaseNeedCount": 28,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "interview": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00045",
+    "offenceBucket": "robbery",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 32,
+    "ledgerChaseNeedCount": 30,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00046",
+    "offenceBucket": "violence",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 7,
+    "ledgerMaterialCount": 35,
+    "ledgerChaseNeedCount": 33,
+    "hearingIso": null,
+    "stageExtracted": "Crown Court",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "bwv": 1,
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00047",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 31,
+    "ledgerChaseNeedCount": 31,
+    "hearingIso": null,
+    "stageExtracted": "Case management",
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "interview": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00048",
+    "offenceBucket": "driving",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 28,
+    "ledgerChaseNeedCount": 26,
+    "hearingIso": null,
+    "stageExtracted": "Magistrates' Court",
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "cad_999": 1,
+      "medical_expert": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00049",
+    "offenceBucket": "fraud",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 32,
+    "ledgerChaseNeedCount": 30,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00051",
+    "offenceBucket": "robbery",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 38,
+    "ledgerChaseNeedCount": 36,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "bwv": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00054",
+    "offenceBucket": "driving",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 27,
+    "ledgerChaseNeedCount": 25,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "cad_999": 1,
+      "medical_expert": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00056",
+    "offenceBucket": "drugs",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 26,
+    "ledgerChaseNeedCount": 24,
+    "hearingIso": null,
+    "stageExtracted": "Crown Court",
+    "chaseFamilies": {
+      "bwv": 1,
+      "interview": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00057",
+    "offenceBucket": "robbery",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 27,
+    "ledgerChaseNeedCount": 25,
+    "hearingIso": null,
+    "stageExtracted": "First hearing",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0005c",
+    "offenceBucket": "drugs",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 31,
+    "ledgerChaseNeedCount": 29,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "bwv": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0005e",
+    "offenceBucket": "violence",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 27,
+    "ledgerChaseNeedCount": 25,
+    "hearingIso": null,
+    "stageExtracted": "Crown Court",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cad_999": 1,
+      "bwv": 1,
+      "medical_expert": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00061",
+    "offenceBucket": "fraud",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 31,
+    "ledgerChaseNeedCount": 29,
+    "hearingIso": "2024-03-14T10:00:00.000Z",
+    "stageExtracted": "Case management",
+    "chaseFamilies": {
+      "cad_999": 1,
+      "interview": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00063",
+    "offenceBucket": "robbery",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 34,
+    "ledgerChaseNeedCount": 32,
+    "hearingIso": "2024-03-14T10:00:00.000Z",
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00067",
+    "offenceBucket": "fraud",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 29,
+    "ledgerChaseNeedCount": 27,
+    "hearingIso": null,
+    "stageExtracted": "Crown Court",
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-00069",
+    "offenceBucket": "robbery",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 25,
+    "ledgerChaseNeedCount": 23,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0006b",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 26,
+    "ledgerChaseNeedCount": 26,
+    "hearingIso": null,
+    "stageExtracted": "Magistrates' Court",
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0006c",
+    "offenceBucket": "driving",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 29,
+    "ledgerChaseNeedCount": 27,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "cad_999": 1,
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0006e",
+    "offenceBucket": "drugs",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 26,
+    "ledgerChaseNeedCount": 24,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "bwv": 1,
+      "interview": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sc-0006f",
+    "offenceBucket": "robbery",
+    "proceduralStage": "unclear_unknown",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 34,
+    "ledgerChaseNeedCount": 32,
+    "hearingIso": null,
+    "stageExtracted": "Plea and trial preparation",
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-024",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 11,
+    "ledgerChaseNeedCount": 11,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-053",
+    "offenceBucket": "violence",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "small",
+    "chaseCount": 6,
+    "ledgerMaterialCount": 24,
+    "ledgerChaseNeedCount": 19,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-068",
+    "offenceBucket": "weapons",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "small",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 24,
+    "ledgerChaseNeedCount": 19,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "cad_999": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-095",
+    "offenceBucket": "violence",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-098",
+    "offenceBucket": "violence",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 17,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-103",
+    "offenceBucket": "sexual",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 14,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 1
+  },
+  {
+    "caseId": "sim-104",
+    "offenceBucket": "sexual",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 15,
+    "ledgerChaseNeedCount": 12,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-108",
+    "offenceBucket": "harassment_domestic",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 13,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-114",
+    "offenceBucket": "weapons",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 14,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-115",
+    "offenceBucket": "weapons",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 15,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 1
+  },
+  {
+    "caseId": "sim-132",
+    "offenceBucket": "youth",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-133",
+    "offenceBucket": "youth",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 17,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-136",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 15,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-139",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 15,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 1
+  },
+  {
+    "caseId": "sim-152",
+    "offenceBucket": "drugs",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-153",
+    "offenceBucket": "drugs",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 21,
+    "ledgerChaseNeedCount": 17,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-158",
+    "offenceBucket": "sexual",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 14,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-159",
+    "offenceBucket": "driving",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-160",
+    "offenceBucket": "fraud",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-162",
+    "offenceBucket": "public_order",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-164",
+    "offenceBucket": "youth",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-166",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 21,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-169",
+    "offenceBucket": "perverting_justice",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-174",
+    "offenceBucket": "violence",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1,
+      "bwv": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-176",
+    "offenceBucket": "harassment_domestic",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-178",
+    "offenceBucket": "sexual",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 1,
+    "ledgerMaterialCount": 16,
+    "ledgerChaseNeedCount": 12,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-182",
+    "offenceBucket": "public_order",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-183",
+    "offenceBucket": "breach_orders",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 3,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-187",
+    "offenceBucket": "digital_attribution",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "bwv": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-194",
+    "offenceBucket": "violence",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 3,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-197",
+    "offenceBucket": "harassment_domestic",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-198",
+    "offenceBucket": "sexual",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-200",
+    "offenceBucket": "fraud",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1,
+      "interview": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-201",
+    "offenceBucket": "weapons",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-202",
+    "offenceBucket": "public_order",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-203",
+    "offenceBucket": "youth",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T22:15:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 3,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-206",
+    "offenceBucket": "digital_attribution",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1,
+      "bwv": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-210",
+    "offenceBucket": "drugs",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 15,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-213",
+    "offenceBucket": "violence",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-217",
+    "offenceBucket": "sexual",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-218",
+    "offenceBucket": "driving",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-222",
+    "offenceBucket": "breach_orders",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 3,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-223",
+    "offenceBucket": "youth",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-224",
+    "offenceBucket": "custody_pace",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-227",
+    "offenceBucket": "violence",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-231",
+    "offenceBucket": "drugs",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-232",
+    "offenceBucket": "drugs",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-241",
+    "offenceBucket": "public_order",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-243",
+    "offenceBucket": "youth",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 17,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-244",
+    "offenceBucket": "custody_pace",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-245",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-248",
+    "offenceBucket": "perverting_justice",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-255",
+    "offenceBucket": "harassment_domestic",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T22:15:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 3,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-256",
+    "offenceBucket": "sexual",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 1
+  },
+  {
+    "caseId": "sim-257",
+    "offenceBucket": "driving",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 21,
+    "ledgerChaseNeedCount": 17,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-261",
+    "offenceBucket": "breach_orders",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-264",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 21,
+    "ledgerChaseNeedCount": 17,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-265",
+    "offenceBucket": "digital_attribution",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-267",
+    "offenceBucket": "perverting_justice",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-276",
+    "offenceBucket": "sexual",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-279",
+    "offenceBucket": "weapons",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-282",
+    "offenceBucket": "youth",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-284",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-285",
+    "offenceBucket": "digital_attribution",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 1
+  },
+  {
+    "caseId": "sim-286",
+    "offenceBucket": "violence",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-287",
+    "offenceBucket": "perverting_justice",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-290",
+    "offenceBucket": "drugs",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-295",
+    "offenceBucket": "harassment_domestic",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 18,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-297",
+    "offenceBucket": "driving",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-303",
+    "offenceBucket": "custody_pace",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-304",
+    "offenceBucket": "mixed_unclear",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 21,
+    "ledgerChaseNeedCount": 17,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1,
+      "interview": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-309",
+    "offenceBucket": "drugs",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 21,
+    "ledgerChaseNeedCount": 17,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-311",
+    "offenceBucket": "violence",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 17,
+    "hearingIso": "2026-01-01T02:10:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-312",
+    "offenceBucket": "robbery",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T14:22:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1,
+      "bwv": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-313",
+    "offenceBucket": "harassment_domestic",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-316",
+    "offenceBucket": "driving",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-318",
+    "offenceBucket": "weapons",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-319",
+    "offenceBucket": "public_order",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-320",
+    "offenceBucket": "breach_orders",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-324",
+    "offenceBucket": "digital_attribution",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-326",
+    "offenceBucket": "perverting_justice",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_continuity": 1,
+      "cctv_master": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-334",
+    "offenceBucket": "harassment_domestic",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-336",
+    "offenceBucket": "driving",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-339",
+    "offenceBucket": "public_order",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-341",
+    "offenceBucket": "youth",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 3,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-344",
+    "offenceBucket": "digital_attribution",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 5,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "interview": 1,
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-345",
+    "offenceBucket": "violence",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 3,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-354",
+    "offenceBucket": "harassment_domestic",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-356",
+    "offenceBucket": "driving",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1,
+      "interview": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-359",
+    "offenceBucket": "breach_orders",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T22:15:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 3,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-361",
+    "offenceBucket": "custody_pace",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 21,
+    "ledgerChaseNeedCount": 17,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 1
+  },
+  {
+    "caseId": "sim-363",
+    "offenceBucket": "digital_attribution",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 18,
+    "hearingIso": "2026-01-01T02:10:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-365",
+    "offenceBucket": "perverting_justice",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-367",
+    "offenceBucket": "drugs",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-369",
+    "offenceBucket": "drugs",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 19,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "interview": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-372",
+    "offenceBucket": "harassment_domestic",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-374",
+    "offenceBucket": "sexual",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-376",
+    "offenceBucket": "fraud",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 22,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-380",
+    "offenceBucket": "youth",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 15,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 1,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-385",
+    "offenceBucket": "perverting_justice",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 20,
+    "ledgerChaseNeedCount": 16,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "medical_expert": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 2,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-386",
+    "offenceBucket": "drugs",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-391",
+    "offenceBucket": "robbery",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 2,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 3,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-392",
+    "offenceBucket": "harassment_domestic",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 18,
+    "ledgerChaseNeedCount": 14,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "bwv": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-395",
+    "offenceBucket": "driving",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 4,
+    "ledgerMaterialCount": 21,
+    "ledgerChaseNeedCount": 17,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "cctv_master": 1,
+      "bwv": 1,
+      "mg6_unused": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 0,
+    "falsePositives": 0
+  },
+  {
+    "caseId": "sim-397",
+    "offenceBucket": "weapons",
+    "proceduralStage": "ptph",
+    "bundleSizeTier": "tiny",
+    "chaseCount": 3,
+    "ledgerMaterialCount": 17,
+    "ledgerChaseNeedCount": 13,
+    "hearingIso": "2026-01-01T10:00:00.000Z",
+    "stageExtracted": null,
+    "chaseFamilies": {
+      "mg6_unused": 1,
+      "exhibit_provenance": 1,
+      "other": 1
+    },
+    "candidateFailures": 0,
+    "humanReview": 3,
+    "falsePositives": 0
+  }
+]

@@ -1,0 +1,1199 @@
+{
+  "schemaVersion": "master3000-phase9-representative-150-stop@1.0.0",
+  "generatedAt": "2026-08-19T18:37:37.879Z",
+  "status": "REPRESENTATIVE_150_COMPLETE__SHARED_ROOTS_FIXED__NO_SCALE_RUN",
+  "commit": "5d61a9acd490b2a8244b63c41ec07a26f3df0a7f",
+  "commitMetadata": {
+    "certifiedCommit": "5d61a9acd490b2a8244b63c41ec07a26f3df0a7f",
+    "phase8ContentCheckpoint": "5d61a9acd490b2a8244b63c41ec07a26f3df0a7f",
+    "note": "certifiedCommit is the Phase 9 content checkpoint SHA this artefact set certifies (on-branch). A follow-up stamp commit may exist solely to persist that SHA inside the artefact files. Detection-first pass completed; confirmed shared roots repaired with opposite-direction regressions. No 500/1000/3000 run."
+  },
+  "sharedProductionFixesMade": [
+    {
+      "id": "LIVE-MG6C-ALPHA-AND-CONCRETE-COLLAPSE",
+      "path": "buildDisclosureChaseBrief.ts + disclosure-chase-finalize.ts",
+      "symptom": "Concrete MG6C/ALPHA outstanding rows collapsed into generic Additional/MG6 wording; subscriber rows dropped from MG6 cards.",
+      "sourceTruth": "MG6C schedule codes (numeric and alphanumeric) name concrete outstanding materials that must remain visible.",
+      "rootCause": "\\\\bmg6\\\\b failed to match MG6C; familySafeMergedFrom dropped MG6C phone/subscriber rows; Additional-source labels were not rewritten through concrete overflow.",
+      "fix": "Match MG6C; keep MG6C rows on MG6 cards; humanize alphanumeric codes; rewrite Additional/MG6 generic labels via concrete overflow priority.",
+      "invariant": "CB-HIST-MG6C-CONCRETE-NOT-GENERIC-COLLAPSE",
+      "oppositeDirection": "Genuinely generic MG6 chrome stays generic; numeric digital fixture still surfaces Phone/Subscriber/Message concrete labels."
+    },
+    {
+      "id": "LIVE-URN-SIM-NOT-PHONE-MENTION",
+      "path": "lib/criminal/chase-source-gate.ts",
+      "symptom": "Bundles whose URN contains /SIM/ were treated as phone-mentioned, allowing unsupported Phone extraction chase cards.",
+      "sourceTruth": "Simulator URN tokens are not phone/SIM-card evidence.",
+      "rootCause": "Phone mention regex used bare \\\\bsim\\\\b, matching URN 26/SIM/NNN.",
+      "fix": "Require sim card/number/serial wording for phone mention.",
+      "invariant": "CB-HIST-UNSUPPORTED-PHONE-NOT-CHASE",
+      "oppositeDirection": "Source-backed phone extraction / subscriber cases still gate as phone-mentioned and remain chaseable."
+    }
+  ],
+  "detectionBeforeFixes": {
+    "candidateAnomalies": 20,
+    "clusters": 6,
+    "note": "Initial detection before auditor tightening and shared production fixes."
+  },
+  "detectionAfterFixes": {
+    "candidateAnomalies": 0,
+    "clusters": 0
+  },
+  "selection": {
+    "selectedCount": 150,
+    "target": 150,
+    "starterGoldOverlap": 0,
+    "holdoutOverlap": 0,
+    "newRepresentativeMatters": 150
+  },
+  "auditVolume": {
+    "totalRows": 1562,
+    "pass": 1439,
+    "candidateAnomalies": 0,
+    "humanReview": 117,
+    "auditorFalsePositive": 6,
+    "clusters": 0
+  },
+  "severityDistribution": {},
+  "evidenceFamilyDistribution": {},
+  "controlDistribution": {},
+  "rootCauseClusterDistribution": {},
+  "coverageBeforeAfter": {
+    "before": {
+      "evaluated": 70,
+      "unresolved": 0,
+      "unavailable": 0,
+      "notExercised": 291,
+      "notInRegistry": 0
+    },
+    "after": {
+      "evaluated": 71,
+      "unresolved": 0,
+      "unavailable": 0,
+      "notExercised": 291,
+      "notInRegistry": 0
+    }
+  },
+  "severityCoverageBeforeAfter": {
+    "CRITICAL": {
+      "t": 116,
+      "eBefore": 38,
+      "eAfter": 38
+    },
+    "HIGH": {
+      "t": 158,
+      "eBefore": 30,
+      "eAfter": 30
+    }
+  },
+  "distributions": {
+    "chaseAvgByOffenceBucket": {
+      "harassment_domestic": {
+        "matters": 12,
+        "chaseSum": 37,
+        "avg": 3.08
+      },
+      "mixed_unclear": {
+        "matters": 14,
+        "chaseSum": 50,
+        "avg": 3.57
+      },
+      "fraud": {
+        "matters": 14,
+        "chaseSum": 36,
+        "avg": 2.57
+      },
+      "drugs": {
+        "matters": 14,
+        "chaseSum": 51,
+        "avg": 3.64
+      },
+      "robbery": {
+        "matters": 14,
+        "chaseSum": 64,
+        "avg": 4.57
+      },
+      "driving": {
+        "matters": 14,
+        "chaseSum": 57,
+        "avg": 4.07
+      },
+      "violence": {
+        "matters": 14,
+        "chaseSum": 58,
+        "avg": 4.14
+      },
+      "weapons": {
+        "matters": 7,
+        "chaseSum": 24,
+        "avg": 3.43
+      },
+      "sexual": {
+        "matters": 9,
+        "chaseSum": 24,
+        "avg": 2.67
+      },
+      "youth": {
+        "matters": 9,
+        "chaseSum": 28,
+        "avg": 3.11
+      },
+      "public_order": {
+        "matters": 6,
+        "chaseSum": 16,
+        "avg": 2.67
+      },
+      "perverting_justice": {
+        "matters": 7,
+        "chaseSum": 21,
+        "avg": 3
+      },
+      "breach_orders": {
+        "matters": 5,
+        "chaseSum": 14,
+        "avg": 2.8
+      },
+      "digital_attribution": {
+        "matters": 7,
+        "chaseSum": 25,
+        "avg": 3.57
+      },
+      "custody_pace": {
+        "matters": 4,
+        "chaseSum": 12,
+        "avg": 3
+      }
+    },
+    "hearingUnknownRate": 0.253
+  },
+  "outliers": {
+    "highestChase": [
+      {
+        "caseId": "s18-charge-reduction-jordan-clarke",
+        "offenceBucket": "harassment_domestic",
+        "proceduralStage": "ptph",
+        "bundleSizeTier": "large",
+        "chaseCount": 7,
+        "ledgerMaterialCount": 262,
+        "ledgerChaseNeedCount": 261,
+        "hearingIso": "2024-09-04T08:30:00.000Z",
+        "stageExtracted": null,
+        "chaseFamilies": {
+          "cctv_continuity": 1,
+          "cctv_master": 1,
+          "interview": 1,
+          "mg6_unused": 1,
+          "medical_expert": 1,
+          "exhibit_provenance": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-0002e",
+        "offenceBucket": "violence",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 7,
+        "ledgerMaterialCount": 28,
+        "ledgerChaseNeedCount": 26,
+        "hearingIso": null,
+        "stageExtracted": "Case management",
+        "chaseFamilies": {
+          "cctv_continuity": 1,
+          "cctv_master": 1,
+          "cad_999": 1,
+          "bwv": 1,
+          "medical_expert": 1,
+          "exhibit_provenance": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-00030",
+        "offenceBucket": "driving",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 7,
+        "ledgerMaterialCount": 34,
+        "ledgerChaseNeedCount": 34,
+        "hearingIso": null,
+        "stageExtracted": "First hearing",
+        "chaseFamilies": {
+          "cctv_continuity": 1,
+          "cctv_master": 1,
+          "cad_999": 1,
+          "mg6_unused": 1,
+          "medical_expert": 1,
+          "exhibit_provenance": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-0003a",
+        "offenceBucket": "violence",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 7,
+        "ledgerMaterialCount": 33,
+        "ledgerChaseNeedCount": 31,
+        "hearingIso": null,
+        "stageExtracted": "Crown Court",
+        "chaseFamilies": {
+          "cctv_continuity": 1,
+          "cctv_master": 1,
+          "cad_999": 1,
+          "bwv": 1,
+          "medical_expert": 1,
+          "exhibit_provenance": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-00046",
+        "offenceBucket": "violence",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 7,
+        "ledgerMaterialCount": 35,
+        "ledgerChaseNeedCount": 33,
+        "hearingIso": null,
+        "stageExtracted": "Crown Court",
+        "chaseFamilies": {
+          "cctv_continuity": 1,
+          "cctv_master": 1,
+          "cad_999": 1,
+          "bwv": 1,
+          "mg6_unused": 1,
+          "medical_expert": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-00033",
+        "offenceBucket": "robbery",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 6,
+        "ledgerMaterialCount": 26,
+        "ledgerChaseNeedCount": 24,
+        "hearingIso": null,
+        "stageExtracted": "Plea and trial preparation",
+        "chaseFamilies": {
+          "cctv_continuity": 1,
+          "cctv_master": 1,
+          "cad_999": 1,
+          "bwv": 1,
+          "exhibit_provenance": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sim-053",
+        "offenceBucket": "violence",
+        "proceduralStage": "ptph",
+        "bundleSizeTier": "small",
+        "chaseCount": 6,
+        "ledgerMaterialCount": 24,
+        "ledgerChaseNeedCount": 19,
+        "hearingIso": "2026-01-01T10:00:00.000Z",
+        "stageExtracted": null,
+        "chaseFamilies": {
+          "cctv_continuity": 1,
+          "cctv_master": 1,
+          "cad_999": 1,
+          "mg6_unused": 1,
+          "medical_expert": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "fictional-theft-ashleigh-merritt",
+        "offenceBucket": "mixed_unclear",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "medium",
+        "chaseCount": 5,
+        "ledgerMaterialCount": 39,
+        "ledgerChaseNeedCount": 32,
+        "hearingIso": "2024-05-14T09:00:00.000Z",
+        "stageExtracted": null,
+        "chaseFamilies": {
+          "cctv_master": 1,
+          "cad_999": 1,
+          "bwv": 1,
+          "interview": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-0000e",
+        "offenceBucket": "drugs",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 5,
+        "ledgerMaterialCount": 29,
+        "ledgerChaseNeedCount": 27,
+        "hearingIso": null,
+        "stageExtracted": "Magistrates' Court committal",
+        "chaseFamilies": {
+          "cctv_master": 1,
+          "bwv": 1,
+          "interview": 1,
+          "exhibit_provenance": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-0000f",
+        "offenceBucket": "robbery",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 5,
+        "ledgerMaterialCount": 30,
+        "ledgerChaseNeedCount": 28,
+        "hearingIso": null,
+        "stageExtracted": "Crown Court",
+        "chaseFamilies": {
+          "cctv_continuity": 1,
+          "cctv_master": 1,
+          "cad_999": 1,
+          "exhibit_provenance": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      }
+    ],
+    "highestCandidateFailures": [
+      {
+        "caseId": "crown-court-patterson",
+        "offenceBucket": "harassment_domestic",
+        "proceduralStage": "first_appearance",
+        "bundleSizeTier": "medium",
+        "chaseCount": 4,
+        "ledgerMaterialCount": 59,
+        "ledgerChaseNeedCount": 54,
+        "hearingIso": "2023-11-22T10:00:00.000Z",
+        "stageExtracted": null,
+        "chaseFamilies": {
+          "cctv_master": 1,
+          "cad_999": 1,
+          "interview": 1,
+          "medical_expert": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "fictional-theft-ashleigh-merritt",
+        "offenceBucket": "mixed_unclear",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "medium",
+        "chaseCount": 5,
+        "ledgerMaterialCount": 39,
+        "ledgerChaseNeedCount": 32,
+        "hearingIso": "2024-05-14T09:00:00.000Z",
+        "stageExtracted": null,
+        "chaseFamilies": {
+          "cctv_master": 1,
+          "cad_999": 1,
+          "bwv": 1,
+          "interview": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "s18-charge-reduction-jordan-clarke",
+        "offenceBucket": "harassment_domestic",
+        "proceduralStage": "ptph",
+        "bundleSizeTier": "large",
+        "chaseCount": 7,
+        "ledgerMaterialCount": 262,
+        "ledgerChaseNeedCount": 261,
+        "hearingIso": "2024-09-04T08:30:00.000Z",
+        "stageExtracted": null,
+        "chaseFamilies": {
+          "cctv_continuity": 1,
+          "cctv_master": 1,
+          "interview": 1,
+          "mg6_unused": 1,
+          "medical_expert": 1,
+          "exhibit_provenance": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-0000b",
+        "offenceBucket": "mixed_unclear",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 4,
+        "ledgerMaterialCount": 24,
+        "ledgerChaseNeedCount": 24,
+        "hearingIso": null,
+        "stageExtracted": "First hearing",
+        "chaseFamilies": {
+          "interview": 1,
+          "mg6_unused": 1,
+          "exhibit_provenance": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-0000d",
+        "offenceBucket": "fraud",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 1,
+        "ledgerMaterialCount": 29,
+        "ledgerChaseNeedCount": 27,
+        "hearingIso": null,
+        "stageExtracted": "Case management",
+        "chaseFamilies": {
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-0000e",
+        "offenceBucket": "drugs",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 5,
+        "ledgerMaterialCount": 29,
+        "ledgerChaseNeedCount": 27,
+        "hearingIso": null,
+        "stageExtracted": "Magistrates' Court committal",
+        "chaseFamilies": {
+          "cctv_master": 1,
+          "bwv": 1,
+          "interview": 1,
+          "exhibit_provenance": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-0000f",
+        "offenceBucket": "robbery",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 5,
+        "ledgerMaterialCount": 30,
+        "ledgerChaseNeedCount": 28,
+        "hearingIso": null,
+        "stageExtracted": "Crown Court",
+        "chaseFamilies": {
+          "cctv_continuity": 1,
+          "cctv_master": 1,
+          "cad_999": 1,
+          "exhibit_provenance": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-00015",
+        "offenceBucket": "robbery",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 5,
+        "ledgerMaterialCount": 29,
+        "ledgerChaseNeedCount": 27,
+        "hearingIso": null,
+        "stageExtracted": "Plea and trial preparation",
+        "chaseFamilies": {
+          "cctv_continuity": 1,
+          "cctv_master": 1,
+          "cad_999": 1,
+          "bwv": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-00019",
+        "offenceBucket": "fraud",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 2,
+        "ledgerMaterialCount": 30,
+        "ledgerChaseNeedCount": 28,
+        "hearingIso": null,
+        "stageExtracted": "Crown Court",
+        "chaseFamilies": {
+          "mg6_unused": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      },
+      {
+        "caseId": "sc-0001b",
+        "offenceBucket": "robbery",
+        "proceduralStage": "unclear_unknown",
+        "bundleSizeTier": "small",
+        "chaseCount": 5,
+        "ledgerMaterialCount": 29,
+        "ledgerChaseNeedCount": 27,
+        "hearingIso": null,
+        "stageExtracted": "Plea and trial preparation",
+        "chaseFamilies": {
+          "cctv_continuity": 1,
+          "cctv_master": 1,
+          "cad_999": 1,
+          "exhibit_provenance": 1,
+          "other": 1
+        },
+        "candidateFailures": 0,
+        "humanReview": 0,
+        "falsePositives": 0
+      }
+    ],
+    "largestBundles": [
+      {
+        "caseId": "s18-charge-reduction-jordan-clarke",
+        "sourceBytes": 76091,
+        "bundleSizeTier": "large"
+      },
+      {
+        "caseId": "crown-court-patterson",
+        "sourceBytes": 23429,
+        "bundleSizeTier": "medium"
+      },
+      {
+        "caseId": "fictional-theft-ashleigh-merritt",
+        "sourceBytes": 13648,
+        "bundleSizeTier": "medium"
+      },
+      {
+        "caseId": "sc-00051",
+        "sourceBytes": 4221,
+        "bundleSizeTier": "small"
+      },
+      {
+        "caseId": "sc-0005c",
+        "sourceBytes": 4176,
+        "bundleSizeTier": "small"
+      },
+      {
+        "caseId": "sc-00045",
+        "sourceBytes": 4109,
+        "bundleSizeTier": "small"
+      },
+      {
+        "caseId": "sc-0000d",
+        "sourceBytes": 4082,
+        "bundleSizeTier": "small"
+      },
+      {
+        "caseId": "sc-0006f",
+        "sourceBytes": 4080,
+        "bundleSizeTier": "small"
+      }
+    ],
+    "phoneChaseHeavyBuckets": [
+      {
+        "bucket": "robbery",
+        "matters": 14,
+        "chaseSum": 64,
+        "avg": 4.57
+      },
+      {
+        "bucket": "violence",
+        "matters": 14,
+        "chaseSum": 58,
+        "avg": 4.14
+      },
+      {
+        "bucket": "driving",
+        "matters": 14,
+        "chaseSum": 57,
+        "avg": 4.07
+      },
+      {
+        "bucket": "drugs",
+        "matters": 14,
+        "chaseSum": 51,
+        "avg": 3.64
+      },
+      {
+        "bucket": "mixed_unclear",
+        "matters": 14,
+        "chaseSum": 50,
+        "avg": 3.57
+      },
+      {
+        "bucket": "digital_attribution",
+        "matters": 7,
+        "chaseSum": 25,
+        "avg": 3.57
+      },
+      {
+        "bucket": "weapons",
+        "matters": 7,
+        "chaseSum": 24,
+        "avg": 3.43
+      },
+      {
+        "bucket": "youth",
+        "matters": 9,
+        "chaseSum": 28,
+        "avg": 3.11
+      }
+    ]
+  },
+  "recurringWording": [
+    {
+      "label": "mg6 unused schedule clarification",
+      "count": 97,
+      "sampleCaseIds": [
+        "sc-0000b",
+        "sc-00023",
+        "sc-0002b",
+        "sc-00030",
+        "sc-0003b",
+        "sc-00046",
+        "sc-00047",
+        "sc-0006b"
+      ]
+    },
+    {
+      "label": "exhibit mapping provenance",
+      "count": 55,
+      "sampleCaseIds": [
+        "s18-charge-reduction-jordan-clarke",
+        "sc-0000b",
+        "sc-0000e",
+        "sc-0000f",
+        "sc-0001b",
+        "sc-0001f",
+        "sc-00023",
+        "sc-00025"
+      ]
+    },
+    {
+      "label": "cctv full window master footage",
+      "count": 40,
+      "sampleCaseIds": [
+        "crown-court-patterson",
+        "fictional-theft-ashleigh-merritt",
+        "s18-charge-reduction-jordan-clarke",
+        "sc-0000e",
+        "sc-0000f",
+        "sc-00015",
+        "sc-0001b",
+        "sc-00024"
+      ]
+    },
+    {
+      "label": "body worn video bwv",
+      "count": 35,
+      "sampleCaseIds": [
+        "fictional-theft-ashleigh-merritt",
+        "sc-0000e",
+        "sc-00015",
+        "sc-0002e",
+        "sc-00033",
+        "sc-0003a",
+        "sc-00046",
+        "sc-00051"
+      ]
+    },
+    {
+      "label": "cad 999 audio control room material",
+      "count": 29,
+      "sampleCaseIds": [
+        "crown-court-patterson",
+        "fictional-theft-ashleigh-merritt",
+        "sc-0000f",
+        "sc-00015",
+        "sc-0001b",
+        "sc-00023",
+        "sc-00024",
+        "sc-00025"
+      ]
+    },
+    {
+      "label": "interview recording transcript",
+      "count": 28,
+      "sampleCaseIds": [
+        "crown-court-patterson",
+        "fictional-theft-ashleigh-merritt",
+        "s18-charge-reduction-jordan-clarke",
+        "sc-0002b",
+        "sc-0003b",
+        "sc-00043",
+        "sc-00056",
+        "sc-00061"
+      ]
+    },
+    {
+      "label": "cctv continuity provenance",
+      "count": 22,
+      "sampleCaseIds": [
+        "s18-charge-reduction-jordan-clarke",
+        "sc-0000f",
+        "sc-00015",
+        "sc-0001b",
+        "sc-0002d",
+        "sc-0002e",
+        "sc-00030",
+        "sc-00033"
+      ]
+    },
+    {
+      "label": "medical expert source report",
+      "count": 21,
+      "sampleCaseIds": [
+        "s18-charge-reduction-jordan-clarke",
+        "sc-00024",
+        "sc-0002e",
+        "sc-00030",
+        "sc-0003a",
+        "sc-0003c",
+        "sc-00046",
+        "sc-00048"
+      ]
+    },
+    {
+      "label": "between 1 january 2026 and 28 february 2026 at northgate crown court particulars per mg5 6 more source items",
+      "count": 17,
+      "sampleCaseIds": [
+        "sim-095",
+        "sim-115",
+        "sim-133",
+        "sim-136",
+        "sim-166",
+        "sim-182",
+        "sim-200",
+        "sim-222"
+      ]
+    },
+    {
+      "label": "between 1 january 2026 and 28 february 2026 at northgate crown court particulars per mg5 5 more source items",
+      "count": 14,
+      "sampleCaseIds": [
+        "sim-114",
+        "sim-153",
+        "sim-158",
+        "sim-162",
+        "sim-169",
+        "sim-174",
+        "sim-187",
+        "sim-198"
+      ]
+    },
+    {
+      "label": "full custody record pace material",
+      "count": 13,
+      "sampleCaseIds": [
+        "sc-0000b",
+        "sc-0000e",
+        "sc-00023",
+        "sc-00047",
+        "sim-098",
+        "sim-162",
+        "sim-227",
+        "sim-279"
+      ]
+    },
+    {
+      "label": "between 1 january 2026 and 28 february 2026 at northgate crown court particulars per mg5 4 more source items",
+      "count": 13,
+      "sampleCaseIds": [
+        "sim-098",
+        "sim-104",
+        "sim-132",
+        "sim-152",
+        "sim-160",
+        "sim-224",
+        "sim-279",
+        "sim-285"
+      ]
+    },
+    {
+      "label": "mailbox export outstanding chase before fixing hearing position 9 more source items",
+      "count": 11,
+      "sampleCaseIds": [
+        "sc-0000d",
+        "sc-00019",
+        "sc-0001f",
+        "sc-00025",
+        "sc-0002b",
+        "sc-00031",
+        "sc-0003d",
+        "sc-00043"
+      ]
+    },
+    {
+      "label": "between 1 january 2026 and 28 february 2026 at northgate magistrates court particulars per mg5 7 more source items",
+      "count": 11,
+      "sampleCaseIds": [
+        "sim-024",
+        "sim-159",
+        "sim-176",
+        "sim-218",
+        "sim-257",
+        "sim-297",
+        "sim-316",
+        "sim-320"
+      ]
+    },
+    {
+      "label": "between 1 january 2026 and 28 february 2026 at northgate crown court particulars per mg5 8 more source items",
+      "count": 11,
+      "sampleCaseIds": [
+        "sim-183",
+        "sim-197",
+        "sim-232",
+        "sim-264",
+        "sim-290",
+        "sim-295",
+        "sim-304",
+        "sim-313"
+      ]
+    }
+  ],
+  "browserSample": {
+    "count": 16,
+    "truthRenderMismatches": 0,
+    "fullChromiumPathExercised": false,
+    "results": [
+      {
+        "caseId": "crown-court-patterson",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": "2023-11-22T10:00:00.000Z",
+        "stage": null,
+        "chaseCount": 4,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "fictional-theft-ashleigh-merritt",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": "2024-05-14T09:00:00.000Z",
+        "stage": null,
+        "chaseCount": 5,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "s18-charge-reduction-jordan-clarke",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": "2024-09-04T08:30:00.000Z",
+        "stage": null,
+        "chaseCount": 7,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "sc-0000b",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": null,
+        "stage": "First hearing",
+        "chaseCount": 4,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "sc-0000d",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": null,
+        "stage": "Case management",
+        "chaseCount": 1,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "sc-0000e",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": null,
+        "stage": "Magistrates' Court committal",
+        "chaseCount": 5,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "sc-0000f",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": null,
+        "stage": "Crown Court",
+        "chaseCount": 5,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "sc-00015",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": null,
+        "stage": "Plea and trial preparation",
+        "chaseCount": 5,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "sc-00019",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": null,
+        "stage": "Crown Court",
+        "chaseCount": 2,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "sc-0001b",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": null,
+        "stage": "Plea and trial preparation",
+        "chaseCount": 5,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "sc-0001f",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": null,
+        "stage": "Case management",
+        "chaseCount": 3,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "sc-00023",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": "2024-03-14T10:00:00.000Z",
+        "stage": "First hearing",
+        "chaseCount": 5,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "sc-00024",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": null,
+        "stage": "First hearing",
+        "chaseCount": 5,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "sc-00025",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": "2024-03-14T10:00:00.000Z",
+        "stage": "Case management",
+        "chaseCount": 4,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "sc-0002b",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": null,
+        "stage": "Case management",
+        "chaseCount": 4,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      },
+      {
+        "caseId": "sc-0002d",
+        "surfacesExercised": [
+          "overview_adapter",
+          "court_adapter",
+          "chase_adapter",
+          "canonical_adapter"
+        ],
+        "identityOk": true,
+        "chargeOk": true,
+        "hearingIso": null,
+        "stage": "Plea and trial preparation",
+        "chaseCount": 4,
+        "chaseStateOk": true,
+        "provenanceVisible": true,
+        "truthRenderMismatch": false
+      }
+    ]
+  },
+  "nonClaims": {
+    "factualPass150": false,
+    "allMattersIndependentlyGroundTruthed": false,
+    "corpusPass": false,
+    "stage3000Completion": false,
+    "programmePass": false,
+    "stress500or1000Started": false,
+    "representative100to200Started": true,
+    "productionFixesInThisEmit": true
+  },
+  "nextStep": "Review Phase 9 report. Decide whether another ~150 representative slice or targeted coverage is next; do not auto-launch 500/1000/3000.",
+  "validationIssues": {
+    "coverage": [
+      "coverage map must contain 361 rows, got 362"
+    ]
+  }
+}

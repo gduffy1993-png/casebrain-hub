@@ -80,11 +80,13 @@ const overflowBucket = finalizeDisclosureChasePresentation([
 ]);
 
 assert.ok(overflowBucket.length >= 1);
-const overflowItem = overflowBucket.find((i) =>
-  /outstanding source material/i.test(i.label),
+const overflowItem = overflowBucket[0]!;
+assert.doesNotMatch(overflowItem.label, /additional source-material issues \(\d+ on file\)/i);
+assert.match(
+  overflowItem.label,
+  /Subscriber|Phone extraction|Screenshot|Outstanding source material|message/i,
+  "overflow card should keep a concrete leading label",
 );
-assert.ok(overflowItem, "expected human overflow card label");
-assert.doesNotMatch(overflowItem!.label, /additional source-material issues \(\d+ on file\)/i);
-assert.match(overflowItem!.draftChaseWording!, /Please provide the outstanding source material identified on the disclosure schedule/i);
+assert.match(overflowItem.draftChaseWording!, /Please provide/i);
 
 console.log("disclosure-chase-finalize.test.ts: all assertions passed");

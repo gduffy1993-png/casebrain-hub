@@ -32,7 +32,7 @@ const MENTION_RES: Record<ChaseGateFamily, RegExp> = {
   medical: /\bmedical\b|hospital|a\s*&\s*e\b|ambulance|paramedic|\bgp\s+records?\b|\bfme\b|pathology|injury\s+report/i,
   interview: /\binterview\b|\bpace\b|custody\s+record/i,
   mg6_unused: /\bmg6\b|unused\s+material|disclosure\s+schedule|schedule\s+of\s+(?:unused|non[-\s]?sensitive)/i,
-  phone: /\bphone\b|\bmobile\b|handset|device\s+download|device\s*\/\s*login|login\s+audit|ip\s*\/\s*access|\bsim\b|\bimei\b|subscriber|phone\s+attribution|phone\s+extraction/i,
+  phone: /\bphone\b|\bmobile\b|handset|device\s+download|device\s*\/\s*login|login\s+audit|ip\s*\/\s*access|\bsim\s*(?:card|number|serial)\b|\bimei\b|subscriber|phone\s+attribution|phone\s+extraction/i,
   forensic: /forensic|\bdna\b|fingerprint|\bswab\b/i,
   bank_financial:
     /\bbank(?:ing)?\b|account\s+control|account\s+ownership|transaction(?:s)?|bank\s+statements?|account\s+statements?|financial\s+records?|financial\s+statements?|poca|source.of.funds|mailbox|email\s+(?:export|source)|bookkeeper|accountant/i,
