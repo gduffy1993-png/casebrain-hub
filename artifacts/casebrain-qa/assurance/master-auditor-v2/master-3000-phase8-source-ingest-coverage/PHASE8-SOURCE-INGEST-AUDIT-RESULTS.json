@@ -1,0 +1,741 @@
+[
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "DOC-MAP",
+    "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+    "invariantId": "CB-P8-DOC-INVENTORY",
+    "failureClass": "document_identity_failure",
+    "severity": "P0",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-DOC-INVENTORY"
+    },
+    "expected": "Document map accounts for all supplied files and separates classified vs unclassified.",
+    "actual": "total=3; classified=1; unclassified=2",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "EXHIBIT-ABSENT",
+    "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+    "invariantId": "CB-P8-REF-ABSENT-ATTACHMENT",
+    "failureClass": "provenance_family_failure",
+    "severity": "P1",
+    "evidenceFamily": "exhibit",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-REF-ABSENT-ATTACHMENT"
+    },
+    "expected": "Referenced-but-absent AB/1 is flagged; present AB/2 is not.",
+    "actual": "Continuity statement|AB/1",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "EXHIBIT-ABSENT",
+    "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+    "invariantId": "CB-P8-MISSING-ATTACHMENT",
+    "failureClass": "provenance_family_failure",
+    "severity": "P1",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-MISSING-ATTACHMENT"
+    },
+    "expected": "Missing attachments called out by parent text remain absent-state.",
+    "actual": "count=2",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "EXHIBIT-COLLISION",
+    "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+    "invariantId": "CB-P8-EXHIBIT-COLLISION",
+    "failureClass": "entity_attribution_failure",
+    "severity": "P0",
+    "evidenceFamily": "exhibit",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-EXHIBIT-COLLISION"
+    },
+    "expected": "Same AB/1 label with distinct witness descriptions collides; AB/2 does not.",
+    "actual": "AB/1:2",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "EXHIBIT-ABSENT",
+    "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+    "invariantId": "CB-P8-EXHIBIT-REF-FIDELITY",
+    "failureClass": "provenance_family_failure",
+    "severity": "P1",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-EXHIBIT-REF-FIDELITY"
+    },
+    "expected": "Exhibit references preserve exact labels AB/1 and AB/2.",
+    "actual": "Continuity statement|AB/1",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:fidelity"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "PARTIAL-PAGES",
+    "controlId": "MAA2-SRC-02-BLANK-UNREADABLE",
+    "invariantId": "CB-P8-BLANK-PAGES",
+    "failureClass": "partial_processing_failure",
+    "severity": "P1",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-BLANK-PAGES"
+    },
+    "expected": "Blank/scanned pages produce text-layer limitation; clean pages do not.",
+    "actual": "without=3; cleanWithout=0",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "PARTIAL-PAGES",
+    "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+    "invariantId": "CB-P8-SOURCE-VS-COMPILED",
+    "failureClass": "partial_processing_failure",
+    "severity": "P1",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-SOURCE-VS-COMPILED"
+    },
+    "expected": "Compiled page 1 can map to printed source page 3; unknown source page stays null.",
+    "actual": "u0=1/3; u1=2/null",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "PARTIAL-PAGES",
+    "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+    "invariantId": "CB-P8-PAGE-IDENTITY-KNOWN",
+    "failureClass": "partial_processing_failure",
+    "severity": "P0",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-PAGE-IDENTITY-KNOWN"
+    },
+    "expected": "Unknown page identity is insufficient provenance with explicit limitation.",
+    "actual": "completeness=known_document_unknown_page",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "OCR",
+    "controlId": "MAA2-SRC-01-OCR-CONFIDENCE",
+    "invariantId": "CB-P8-OCR-CONFIDENCE",
+    "failureClass": "partial_processing_failure",
+    "severity": "P1",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-OCR-CONFIDENCE"
+    },
+    "expected": "Garbled extraction is low confidence; clean text remains high.",
+    "actual": "low=low; high=high",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "OCR",
+    "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+    "invariantId": "CB-P8-LOW-OCR-REVIEW",
+    "failureClass": "partial_processing_failure",
+    "severity": "P1",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-LOW-OCR-REVIEW"
+    },
+    "expected": "Low OCR confidence ledger requires review rather than confident invention.",
+    "actual": "ledger review/ocrConfidence exercised",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "REDACTED",
+    "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+    "invariantId": "CB-P8-REDACTION-NO-INVENT",
+    "failureClass": "prompt_injection_content_control_failure",
+    "severity": "P0",
+    "surface": "cps_chase",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-REDACTION-NO-INVENT"
+    },
+    "expected": "Redaction markers do not invent hidden witness content; outstanding CCTV still chaseable.",
+    "actual": "redaction fixture retained CCTV chase without inventing redacted body",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "QUOTE",
+    "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+    "invariantId": "CB-P8-QUOTE-FIDELITY",
+    "failureClass": "quote_fidelity_failure",
+    "severity": "P0",
+    "surface": "court",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-QUOTE-FIDELITY"
+    },
+    "expected": "Incomplete quotations are omitted; complete quotations stay verbatim.",
+    "actual": "incomplete=null; complete=\"I was there around midnight.\"",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:fidelity"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "QUOTE",
+    "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+    "invariantId": "CB-P8-NO-QUOTE-COMPLETION",
+    "failureClass": "quote_fidelity_failure",
+    "severity": "P1",
+    "surface": "court",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-NO-QUOTE-COMPLETION"
+    },
+    "expected": "Incomplete quotes are not silently completed.",
+    "actual": "incomplete quotation omitted",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:fidelity"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "MULTI-COUNT",
+    "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+    "invariantId": "CB-P8-COUNT-ALLOC",
+    "failureClass": "entity_attribution_failure",
+    "severity": "P0",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-COUNT-ALLOC"
+    },
+    "expected": "Count 1/2 allocate to distinct defendants; Count 3 stays unallocated.",
+    "actual": "1:Priya Shah|2:Omar Reid|3:unallocated",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:fidelity"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "MULTI-COUNT",
+    "controlId": "MAA2-FID-02-COUNT-NUMBERS",
+    "invariantId": "CB-P8-COUNT-NUMBERS",
+    "failureClass": "numerical_fidelity_failure",
+    "severity": "P0",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-COUNT-NUMBERS"
+    },
+    "expected": "Exact count numbers 1/2/3 preserved.",
+    "actual": "1,2,3",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:fidelity"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "MULTI-COUNT",
+    "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+    "invariantId": "CB-P8-DEFENDANT-NAMES",
+    "failureClass": "entity_attribution_failure",
+    "severity": "P0",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-DEFENDANT-NAMES"
+    },
+    "expected": "Defendant names Priya Shah and Omar Reid remain allocated from charge instrument.",
+    "actual": "Priya Shah|Omar Reid",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:fidelity"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "DRAFT-SIGNED",
+    "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+    "invariantId": "CB-P8-DRAFT-VS-SIGNED",
+    "failureClass": "document_identity_failure",
+    "severity": "P0",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-DRAFT-VS-SIGNED"
+    },
+    "expected": "Draft/unsigned/signed kinds remain distinct; field diffs preserve earlier and later values.",
+    "actual": "changes=2",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "TRANSITION-TX",
+    "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+    "invariantId": "CB-P8-RECORDING-TRANSCRIPT-TRANSITION",
+    "failureClass": "evidence_state_failure",
+    "severity": "P0",
+    "evidenceFamily": "interview",
+    "surface": "cps_chase",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-RECORDING-TRANSCRIPT-TRANSITION"
+    },
+    "expected": "Outstanding interview/transcript chase exists before service; CCTV remains after transcript arrives.",
+    "actual": "beforeHasInterview=true; afterHasCctv=true",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:state_transition"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "TRANSITION-TX",
+    "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+    "invariantId": "CB-P8-SERVICE-TRANSITION",
+    "failureClass": "stale_derived_state_failure",
+    "severity": "P1",
+    "surface": "cps_chase",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-SERVICE-TRANSITION"
+    },
+    "expected": "Service change updates chase inputs without inventing unrelated phone/BWV outstanding.",
+    "actual": "CCTV full window / master footage\ncctv_master\nDue soon\nPlease provide CCTV full window / master footage or confirm in writing why it is not available.\nCCTV full window / master footage\nFull CCTV master footage outstanding\nMG11 witness statement\nother\nNot safely confirmed\nPlease provide MG11 witness ",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:state_transition"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "SUPERSESSION",
+    "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+    "invariantId": "CB-P8-SUPERSESSION-SUPPORT",
+    "failureClass": "document_identity_failure",
+    "severity": "P1",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-SUPERSESSION-SUPPORT"
+    },
+    "expected": "Filename FINAL / upload-order alone is unsupported supersession; amended instrument with replacement wins.",
+    "actual": "uploadOnly=unsupported; operative=new",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "SUPERSESSION",
+    "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+    "invariantId": "CB-P8-REPLACEMENT-LINK",
+    "failureClass": "document_identity_failure",
+    "severity": "P1",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-REPLACEMENT-LINK"
+    },
+    "expected": "Explicit replacement linkage supports amended instrument precedence.",
+    "actual": "replaces=old",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "SUPERSESSION",
+    "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+    "invariantId": "CB-P8-INSTRUMENT-ROLES",
+    "failureClass": "document_identity_failure",
+    "severity": "P0",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-INSTRUMENT-ROLES"
+    },
+    "expected": "Amended vs superseded lifecycle roles remain distinguishable.",
+    "actual": "amended/superseded roles ok",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "ALIAS",
+    "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+    "invariantId": "CB-P8-ALIAS-EXPAND",
+    "failureClass": "dedupe_alias_failure",
+    "severity": "P0",
+    "surface": "cps_chase",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-ALIAS-EXPAND"
+    },
+    "expected": "Alias families expand without collapsing distinct stills vs master states.",
+    "actual": "CCTV master footage+Full CCTV master+CCTV stills",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "PARTIAL-PAGES",
+    "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+    "invariantId": "CB-P8-PARTIAL-CUSTODY",
+    "failureClass": "partial_processing_failure",
+    "severity": "P1",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-PARTIAL-CUSTODY"
+    },
+    "expected": "Partial page text-layer coverage is disclosed as limitation, not complete processing.",
+    "actual": "Page is present in the compiled bundle but carries no extractable text layer (scanned image / OCR not available) — compiled pages 2, 3, 5",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "HOSTILE-P8",
+    "controlId": "MAA2-SEC-01-PROMPT-INJECTION-DOCS",
+    "invariantId": "CB-P8-HOSTILE-NOT-CHASE-LABEL",
+    "failureClass": "prompt_injection_content_control_failure",
+    "severity": "P0",
+    "surface": "cps_chase",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-HOSTILE-NOT-CHASE-LABEL"
+    },
+    "expected": "Hostile instruction lines do not appear in chase labels; CCTV/interview remain chaseable.",
+    "actual": "CCTV full window / master footage\ncctv_master\nDue soon\nPlease provide CCTV full window / master footage or confirm in writing why it is not available.\nCCTV full window / master footage\nFull CCTV master footage outstanding\nMG6 / unused schedule clarification\nmg6_unused\nDue soon\nPlease provide MG6 / unused schedule clarification or confirm in writing why it is not available.\nMG6 / unused schedule cl",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:security"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "HOSTILE-P8",
+    "controlId": "MAA2-SEC-02-MALICIOUS-PDF",
+    "invariantId": "CB-P8-HOSTILE-FILENAME-BODY",
+    "failureClass": "prompt_injection_content_control_failure",
+    "severity": "P0",
+    "surface": "cps_chase",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-HOSTILE-FILENAME-BODY"
+    },
+    "expected": "Hostile filename/body instructions do not suppress outstanding CCTV chase.",
+    "actual": "cctv keep under hostile bundle",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:security"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "BROWSER-ADAPTER",
+    "controlId": "MAA2-BRW-08-BROWSER-LOCAL-STATE",
+    "invariantId": "CB-P8-BROWSER-ADAPTER-TRUTH",
+    "failureClass": "ui_rendering_failure",
+    "severity": "P1",
+    "surface": "browser",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-BROWSER-ADAPTER-TRUTH"
+    },
+    "expected": "Browser-facing adapters preserve charge unknown label and client sanitisation; prose gate drops unsupported families.",
+    "actual": "Identification remains conditional on served CCTV.",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:browser"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "BROWSER-ADAPTER",
+    "controlId": "MAA2-A11Y-04-CONTROL-LABELS",
+    "invariantId": "CB-P8-CHARGE-LABEL-MEANING",
+    "failureClass": "ui_rendering_failure",
+    "severity": "P1",
+    "surface": "browser",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-CHARGE-LABEL-MEANING"
+    },
+    "expected": "Unknown charge resolves to a meaningful solicitor-facing label, not a raw enum.",
+    "actual": "Charge not safely identified from uploaded papers",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:browser"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "DATE-ROLES",
+    "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+    "invariantId": "CB-P8-DATE-ROLE-NEAR-COLLISION",
+    "failureClass": "numerical_fidelity_failure",
+    "severity": "P1",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-DATE-ROLE-NEAR-COLLISION"
+    },
+    "expected": "Near-collision offence/statement/hearing dates remain distinguishable in source ledger.",
+    "actual": "date-role near-collision + offence-only opposite direction exercised",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:fidelity"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "DATE-ROLES",
+    "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+    "invariantId": "CB-P8-COMPETING-DATES",
+    "failureClass": "semantic_role_failure",
+    "severity": "P1",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-COMPETING-DATES"
+    },
+    "expected": "Competing offence/hearing dates do not silently collapse to a single role.",
+    "actual": "bundle retains distinct offence 02/06/2026 and hearing 25/08/2026 literals",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:fidelity"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "PARTIAL-PAGES",
+    "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+    "invariantId": "CB-P8-UNKNOWN-PAGE-LIMITATION",
+    "failureClass": "partial_processing_failure",
+    "severity": "P0",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-UNKNOWN-PAGE-LIMITATION"
+    },
+    "expected": "Extracted text without page identity carries explicit limitation wording.",
+    "actual": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:source_ingest"
+    ]
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase8-source-ingest-2026-08-19T17-52-12-181Z",
+    "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "caseId": "TRANSITION-TX",
+    "controlId": "MAA-COMPLETENESS",
+    "invariantId": "CB-P8-LEDGER-MATERIALS",
+    "failureClass": "partial_processing_failure",
+    "severity": "P1",
+    "surface": "canonical_state",
+    "sourceReference": {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "field": "CB-P8-LEDGER-MATERIALS"
+    },
+    "expected": "Bundle truth ledger continues to produce chaseable materials across transitions.",
+    "actual": "ledger materials present before transition",
+    "rootCauseCluster": "phase8_fixture_pass",
+    "disposition": "pass",
+    "coverageStatus": "evaluated",
+    "notes": [
+      "category:state_transition"
+    ]
+  }
+]

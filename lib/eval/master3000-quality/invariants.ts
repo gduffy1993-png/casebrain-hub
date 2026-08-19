@@ -131,6 +131,16 @@ export const HISTORICAL_INVARIANTS: InvariantDefinition[] = [
     oppositeDirectionRequired: true,
     historicalRegression: "unconfirmed_hearing_date_firm_deadline",
   },
+  {
+    id: "CB-HIST-HOSTILE-INSTRUCTION-NOT-CHASE-LABEL",
+    title: "Prompt-injection instruction lines in uploaded papers must not become solicitor-visible chase labels.",
+    failureClass: "prompt_injection_content_control_failure",
+    severity: "P0",
+    category: "security",
+    sourceTruthRequired: true,
+    oppositeDirectionRequired: true,
+    historicalRegression: "hostile_instruction_leaked_into_chase_mergedFrom",
+  },
 ];
 
 export function assertInvariantRegistry(registry: readonly InvariantDefinition[] = HISTORICAL_INVARIANTS): string[] {

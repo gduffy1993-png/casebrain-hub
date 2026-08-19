@@ -1,17 +1,17 @@
 {
   "schemaVersion": "master3000-phase6-changed-file-manifest@1.0.0",
-  "generatedAt": "2026-08-19T15:28:02.681Z",
+  "generatedAt": "2026-08-19T17:41:13.396Z",
   "selfHashStatus": "excluded_from_files_array_self_referential",
   "files": [
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase6-p1-live-builder-validation/361-CONTROL-COVERAGE-MAP-AFTER.json",
-      "sha256": "c8a6a73a158076fba5ca5dbca507abb6507b51d195dc261e64f14c798255cc33",
+      "sha256": "bf6e1335b91db4ebd2f5d52b63c0d11eb9134cbe2fd0197291f2dec7d96adcd0",
       "byteLength": 196735,
       "classification": "phase6_artifact"
     },
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase6-p1-live-builder-validation/DECISION-CARD.md",
-      "sha256": "1b13d172689893018a0ef4af3bb913765199ff54a65d7ceff8b2ee899767f4f6",
+      "sha256": "c481e26f50bc2508a4001ea05b8fc0eda92b9c882b54e6becce5adb6e14b8b2b",
       "byteLength": 1603,
       "classification": "phase6_artifact"
     },
@@ -29,13 +29,13 @@
     },
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase6-p1-live-builder-validation/PHASE6-LIVE-BUILDER-AUDIT-RESULTS.json",
-      "sha256": "9441497e9b042148150aac6891ae1541923a852dfaba771157879966465f28f0",
+      "sha256": "1b1d4f80ca7349119c55f3d1164fe57de8c1e2394ba38591279b3e1c62f560ad",
       "byteLength": 200121,
       "classification": "phase6_artifact"
     },
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase6-p1-live-builder-validation/PHASE6-OBSERVATION-CLUSTERS.json",
-      "sha256": "a9c6d95c5cac712fe2dfb0ee2b14d7014c822ad44ab9af4e3a4c4f7db97752e2",
+      "sha256": "e28ba1378d6b3e0dc5358ebb315fda98e558367479a59d6a00d227cf50efdc9b",
       "byteLength": 1298,
       "classification": "phase6_artifact"
     },
@@ -47,7 +47,7 @@
     },
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase6-p1-live-builder-validation/STOP-FOR-CODEX-REVIEW.json",
-      "sha256": "4ec369b7291c839eafeea1fab14c129470597b37c4bdf8f5e085c3962ee0ce93",
+      "sha256": "25b0544b756362fda1341ab7d5b3cdb56ced02b2e943c9ca162f52e467c2da02",
       "byteLength": 5079,
       "classification": "phase6_artifact"
     },
@@ -59,8 +59,8 @@
     },
     {
       "path": "lib/criminal/disclosure-chase-finalize.ts",
-      "sha256": "0cb83a0d56ef989f0bb8a421f8f89da15920a421399e0e8f7994bbf3c393fa45",
-      "byteLength": 13236,
+      "sha256": "0b3599c1749df472cbb6c762a4acd6d914fb557bc3d32b2ccbd22b77a6f31178",
+      "byteLength": 14088,
       "classification": "source"
     },
     {

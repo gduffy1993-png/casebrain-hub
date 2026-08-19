@@ -1,0 +1,226 @@
+{
+  "schemaVersion": "master3000-phase8-source-ingest-coverage-stop@1.0.0",
+  "generatedAt": "2026-08-19T17:52:12.181Z",
+  "status": "SOURCE_INGEST_STATE_TRANSITION_COVERAGE_COMPLETE__NO_SCALE_RUN",
+  "commit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+  "commitMetadata": {
+    "certifiedCommit": "1c15fc84ec9c36b2b7f293ed8bc227ec05450533",
+    "phase7BaselineCommit": "c4114c06bb9b7036a681353f3326fe5b7b1aa3c1",
+    "diskCleanup": {
+      "removed": [
+        ".next"
+      ],
+      "freeMbBeforeApprox": 667,
+      "freeMbAfterApprox": 2159,
+      "note": "Removed regenerable local Next.js build cache only."
+    }
+  },
+  "coverageBeforeAfter": {
+    "before": {
+      "evaluated": 42,
+      "unresolved": 0,
+      "unavailable": 0,
+      "notExercised": 319,
+      "notInRegistry": 0
+    },
+    "after": {
+      "evaluated": 70,
+      "unresolved": 0,
+      "unavailable": 0,
+      "notExercised": 291,
+      "notInRegistry": 0
+    }
+  },
+  "severityCoverageBeforeAfter": {
+    "before": {
+      "CRITICAL": {
+        "t": 116,
+        "e": 24
+      },
+      "HIGH": {
+        "t": 158,
+        "e": 17
+      }
+    },
+    "after": {
+      "CRITICAL": {
+        "t": 116,
+        "e": 38
+      },
+      "HIGH": {
+        "t": 158,
+        "e": 30
+      }
+    }
+  },
+  "newlyEvaluatedControlIds": [
+    "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+    "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+    "MAA2-BND-05-MISSING-ATTACHMENTS",
+    "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+    "MAA2-FID-05-EXHIBIT-DOC-REFS",
+    "MAA2-SRC-02-BLANK-UNREADABLE",
+    "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+    "MAA2-SRC-01-OCR-CONFIDENCE",
+    "MAA2-SRC-13-PASSWORD-CORRUPT",
+    "MAA2-SRC-07-REDACTION-DETECT",
+    "MAA2-FID-10-QUOTATION-FIDELITY",
+    "MAA2-FID-09-NO-SILENT-CORRECTION",
+    "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+    "MAA2-FID-02-COUNT-NUMBERS",
+    "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+    "MAA2-BND-11-DRAFT-VS-SIGNED",
+    "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+    "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+    "MAA2-BND-04-VERSION-PRECEDENCE",
+    "MAA2-BND-03-REPLACEMENT-LINKS",
+    "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+    "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+    "MAA2-SEC-02-MALICIOUS-PDF",
+    "MAA2-BRW-08-BROWSER-LOCAL-STATE",
+    "MAA2-A11Y-04-CONTROL-LABELS",
+    "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+    "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE"
+  ],
+  "evaluatedControlIds": [
+    "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+    "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+    "MAA2-BND-05-MISSING-ATTACHMENTS",
+    "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+    "MAA2-FID-05-EXHIBIT-DOC-REFS",
+    "MAA2-SRC-02-BLANK-UNREADABLE",
+    "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+    "MAA2-SRC-01-OCR-CONFIDENCE",
+    "MAA2-SRC-13-PASSWORD-CORRUPT",
+    "MAA2-SRC-07-REDACTION-DETECT",
+    "MAA2-FID-10-QUOTATION-FIDELITY",
+    "MAA2-FID-09-NO-SILENT-CORRECTION",
+    "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+    "MAA2-FID-02-COUNT-NUMBERS",
+    "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+    "MAA2-BND-11-DRAFT-VS-SIGNED",
+    "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+    "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+    "MAA2-BND-04-VERSION-PRECEDENCE",
+    "MAA2-BND-03-REPLACEMENT-LINKS",
+    "MAA2-BND-02-INSTRUMENT-STATUS",
+    "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+    "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+    "MAA2-SEC-01-PROMPT-INJECTION-DOCS",
+    "MAA2-SEC-02-MALICIOUS-PDF",
+    "MAA2-BRW-08-BROWSER-LOCAL-STATE",
+    "MAA2-A11Y-04-CONTROL-LABELS",
+    "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+    "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+    "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+    "MAA-COMPLETENESS"
+  ],
+  "phase8FixtureCount": 32,
+  "categoryCounts": {
+    "source_ingest": {
+      "pass": 17,
+      "fail": 0,
+      "controls": [
+        "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+        "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+        "MAA2-BND-05-MISSING-ATTACHMENTS",
+        "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+        "MAA2-SRC-02-BLANK-UNREADABLE",
+        "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+        "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+        "MAA2-SRC-01-OCR-CONFIDENCE",
+        "MAA2-SRC-13-PASSWORD-CORRUPT",
+        "MAA2-SRC-07-REDACTION-DETECT",
+        "MAA2-BND-11-DRAFT-VS-SIGNED",
+        "MAA2-BND-04-VERSION-PRECEDENCE",
+        "MAA2-BND-03-REPLACEMENT-LINKS",
+        "MAA2-BND-02-INSTRUMENT-STATUS",
+        "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+        "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+        "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE"
+      ]
+    },
+    "fidelity": {
+      "pass": 8,
+      "fail": 0,
+      "controls": [
+        "MAA2-FID-05-EXHIBIT-DOC-REFS",
+        "MAA2-FID-10-QUOTATION-FIDELITY",
+        "MAA2-FID-09-NO-SILENT-CORRECTION",
+        "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+        "MAA2-FID-02-COUNT-NUMBERS",
+        "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+        "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+        "MAA2-CHR-02-COMPETING-TIMESTAMPS"
+      ]
+    },
+    "state_transition": {
+      "pass": 3,
+      "fail": 0,
+      "controls": [
+        "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+        "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+        "MAA-COMPLETENESS"
+      ]
+    },
+    "security": {
+      "pass": 2,
+      "fail": 0,
+      "controls": [
+        "MAA2-SEC-01-PROMPT-INJECTION-DOCS",
+        "MAA2-SEC-02-MALICIOUS-PDF"
+      ]
+    },
+    "browser": {
+      "pass": 2,
+      "fail": 0,
+      "controls": [
+        "MAA2-BRW-08-BROWSER-LOCAL-STATE",
+        "MAA2-A11Y-04-CONTROL-LABELS"
+      ]
+    }
+  },
+  "candidateFailures": 0,
+  "failuresBySeverity": {},
+  "sharedProductionFixesMade": [
+    {
+      "id": "LIVE-HOSTILE-INSTRUCTION-NOT-CHASE-LABEL",
+      "path": "lib/criminal/hostile-source-content.ts + disclosure-chase-finalize.ts + buildDisclosureChaseBrief.ts",
+      "symptom": "Prompt-injection lines mentioning CCTV were merged into solicitor-visible chase labels/mergedFrom.",
+      "sourceTruth": "Hostile strings are evidence content, never instructions; outstanding CCTV remains chaseable.",
+      "rootCause": "Family matching treated any CCTV-mentioning line as chase material without filtering instruction-shaped text.",
+      "fix": "Shared prompt-injection instruction filter drops hostile lines from ledger chase intake and finalized mergedFrom/labels.",
+      "invariant": "CB-HIST-HOSTILE-INSTRUCTION-NOT-CHASE-LABEL",
+      "oppositeDirection": "Clean outstanding CCTV chase still surfaces without hostile noise."
+    },
+    {
+      "id": "LIVE-OFFENCE-DATE-NOT-HEARING",
+      "path": "lib/criminal/extract-bundle-case-metadata.ts",
+      "symptom": "Offence date (02/06/2026) populated nextHearingIso when a later listing date (25/08/2026) was present.",
+      "sourceTruth": "Offence/statement/arrest dates are not hearing dates; listing context must win.",
+      "rootCause": "isAllegationIncidentDate only recognised 'on/at about' incident phrasing, not 'Offence date:' labels, and slash 'listed for' listings were under-matched.",
+      "fix": "Reject offence/statement/arrest/interview date-role labels for hearing extraction; add listed-for slash-date matching; prefer listing-context dates.",
+      "invariant": "CB-HIST-OFFENCE-DATE-NOT-HEARING",
+      "oppositeDirection": "Offence date alone does not invent a hearing; clean listing still extracts 25/08/2026."
+    }
+  ],
+  "liveCandidateFailures": 0,
+  "liveFailureClusters": 0,
+  "validationIssues": {
+    "coverage": []
+  },
+  "full3000RunStarted": false,
+  "stress500or1000Started": false,
+  "representative100to200Started": false,
+  "nextStep": "Source→state→transition chain is stronger. Decide whether to start ~100–200 representative matters; do not auto-launch 500/1000/3000.",
+  "nonClaims": {
+    "corpusPass": false,
+    "stage3000Completion": false,
+    "programmePass": false,
+    "solicitorApproval": false,
+    "all361ControlsExercised": false,
+    "fullBrowserChromiumPathExercised": false
+  }
+}

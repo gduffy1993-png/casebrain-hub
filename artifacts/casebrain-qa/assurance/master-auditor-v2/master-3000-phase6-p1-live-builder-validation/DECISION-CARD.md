@@ -1,6 +1,6 @@
 # CaseBrain master 3,000 quality programme — Phase 6 P1 live-builder validation
 
-Generated: 2026-08-19T15:28:02.681Z
+Generated: 2026-08-19T17:41:13.396Z
 
 ## Verdict
 
@@ -8,7 +8,7 @@ Generated: 2026-08-19T15:28:02.681Z
 
 This phase reviewed the Phase 5 P1 clusters against independent truth keys, current canonical ledger state, and current live shared builder output. It did **not** run the 500/1000/3000 corpus.
 
-Certified commit: `c4114c06bb9b7036a681353f3326fe5b7b1aa3c1`
+Certified commit: `bf542536843542c1e23e8f649a2fabbc3ada0510`
 
 ## Classification
 

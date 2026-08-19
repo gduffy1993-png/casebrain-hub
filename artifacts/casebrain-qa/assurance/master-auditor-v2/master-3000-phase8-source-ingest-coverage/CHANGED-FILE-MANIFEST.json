@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "master3000-phase8-changed-file-manifest@1.0.0",
+  "generatedAt": "2026-08-19T17:52:12.181Z",
+  "selfHashStatus": "excluded_from_files_array_self_referential",
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase8-source-ingest-coverage/361-CONTROL-COVERAGE-MAP-AFTER.json",
+      "sha256": "a9a1389501ec2cdd5b9f3c84c4e7fdca2efe0b8a222170d34d5fd181974e5fdd",
+      "byteLength": 199929,
+      "classification": "phase8_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase8-source-ingest-coverage/CONTROL-PRIORITY-MATRIX.json",
+      "sha256": "ad771ff819ac9a23f050f710e575ccff7f55b94212969507ce1fdddc1946f4b4",
+      "byteLength": 3303,
+      "classification": "phase8_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase8-source-ingest-coverage/DECISION-CARD.md",
+      "sha256": "20ec1e28c6a1f331f971de37aa63e6f1a30d8357dd2b9ba91f54a2ee4f4938c2",
+      "byteLength": 815,
+      "classification": "phase8_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase8-source-ingest-coverage/PHASE8-FAILURE-CLUSTERS.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "byteLength": 3,
+      "classification": "phase8_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase8-source-ingest-coverage/PHASE8-SOURCE-INGEST-AUDIT-RESULTS.json",
+      "sha256": "33f0e2141bf9c019c053165190dd71af5d1913186679eaf52e4fa1f9ced53f83",
+      "byteLength": 28819,
+      "classification": "phase8_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase8-source-ingest-coverage/SHARED-ROOT-FIX-REGISTER.json",
+      "sha256": "8c0a021135fdec2f66025e6cd5c9c7ca7098015322ea9e5186c0f179468d2be8",
+      "byteLength": 1677,
+      "classification": "phase8_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase8-source-ingest-coverage/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "a66d6fff26eecab4f98b4307f4ec4b170278fc557461fe2c06126ccff4b91273",
+      "byteLength": 7967,
+      "classification": "phase8_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase8-source-ingest-coverage/VALIDATION-ISSUES.json",
+      "sha256": "d0fc7dbfd195c33c251e64bdb1886603a31be21247bd34314043970021f4c10a",
+      "byteLength": 21,
+      "classification": "phase8_artifact"
+    },
+    {
+      "path": "components/criminal/disclosure-chase/buildDisclosureChaseBrief.ts",
+      "sha256": "672d36cf73edfb98ba5cfce58e3bae3640ddb7539b760e5365e89175a612e367",
+      "byteLength": 62744,
+      "classification": "source"
+    },
+    {
+      "path": "lib/criminal/disclosure-chase-finalize.ts",
+      "sha256": "0b3599c1749df472cbb6c762a4acd6d914fb557bc3d32b2ccbd22b77a6f31178",
+      "byteLength": 14088,
+      "classification": "source"
+    },
+    {
+      "path": "lib/criminal/extract-bundle-case-metadata.ts",
+      "sha256": "723f73cb13c575a1bbd66ec9811c93de1062360f20c46a23f2d6e35610cfc868",
+      "byteLength": 88443,
+      "classification": "source"
+    },
+    {
+      "path": "lib/criminal/hostile-source-content.ts",
+      "sha256": "7404ac8bfad6208729e8e09daf371b375736c0ee9965d93fcf7c7cc0209ec065",
+      "byteLength": 1345,
+      "classification": "source"
+    },
+    {
+      "path": "lib/eval/master3000-quality/invariants.ts",
+      "sha256": "9cbfdaf96f001ed03c33fe47dd20242dbd8dd0afdffb1cdc8da37b25dd44292e",
+      "byteLength": 6207,
+      "classification": "source"
+    },
+    {
+      "path": "scripts/assurance/master-3000-phase8-source-ingest-coverage.ts",
+      "sha256": "e1a521679fb4b4f489c30f5e997af80165a6144158cd5afc15ad4948320564d9",
+      "byteLength": 43325,
+      "classification": "contract_or_emit_script"
+    },
+    {
+      "path": "scripts/master3000-phase8-source-ingest.test.ts",
+      "sha256": "1847e3d458fb541a79f7f7c4e446c5d7fd34e3e69726f0361329a58766ecb864",
+      "byteLength": 18306,
+      "classification": "contract_or_emit_script"
+    }
+  ]
+}

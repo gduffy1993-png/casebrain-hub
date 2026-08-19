@@ -1,0 +1,118 @@
+{
+  "categoryCounts": {
+    "source_ingest": {
+      "pass": 17,
+      "fail": 0,
+      "controls": [
+        "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+        "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+        "MAA2-BND-05-MISSING-ATTACHMENTS",
+        "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+        "MAA2-SRC-02-BLANK-UNREADABLE",
+        "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+        "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+        "MAA2-SRC-01-OCR-CONFIDENCE",
+        "MAA2-SRC-13-PASSWORD-CORRUPT",
+        "MAA2-SRC-07-REDACTION-DETECT",
+        "MAA2-BND-11-DRAFT-VS-SIGNED",
+        "MAA2-BND-04-VERSION-PRECEDENCE",
+        "MAA2-BND-03-REPLACEMENT-LINKS",
+        "MAA2-BND-02-INSTRUMENT-STATUS",
+        "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+        "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+        "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE"
+      ]
+    },
+    "fidelity": {
+      "pass": 8,
+      "fail": 0,
+      "controls": [
+        "MAA2-FID-05-EXHIBIT-DOC-REFS",
+        "MAA2-FID-10-QUOTATION-FIDELITY",
+        "MAA2-FID-09-NO-SILENT-CORRECTION",
+        "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+        "MAA2-FID-02-COUNT-NUMBERS",
+        "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+        "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+        "MAA2-CHR-02-COMPETING-TIMESTAMPS"
+      ]
+    },
+    "state_transition": {
+      "pass": 3,
+      "fail": 0,
+      "controls": [
+        "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+        "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+        "MAA-COMPLETENESS"
+      ]
+    },
+    "security": {
+      "pass": 2,
+      "fail": 0,
+      "controls": [
+        "MAA2-SEC-01-PROMPT-INJECTION-DOCS",
+        "MAA2-SEC-02-MALICIOUS-PDF"
+      ]
+    },
+    "browser": {
+      "pass": 2,
+      "fail": 0,
+      "controls": [
+        "MAA2-BRW-08-BROWSER-LOCAL-STATE",
+        "MAA2-A11Y-04-CONTROL-LABELS"
+      ]
+    }
+  },
+  "newlyEvaluated": [
+    "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+    "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+    "MAA2-BND-05-MISSING-ATTACHMENTS",
+    "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+    "MAA2-FID-05-EXHIBIT-DOC-REFS",
+    "MAA2-SRC-02-BLANK-UNREADABLE",
+    "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+    "MAA2-SRC-01-OCR-CONFIDENCE",
+    "MAA2-SRC-13-PASSWORD-CORRUPT",
+    "MAA2-SRC-07-REDACTION-DETECT",
+    "MAA2-FID-10-QUOTATION-FIDELITY",
+    "MAA2-FID-09-NO-SILENT-CORRECTION",
+    "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+    "MAA2-FID-02-COUNT-NUMBERS",
+    "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+    "MAA2-BND-11-DRAFT-VS-SIGNED",
+    "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+    "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+    "MAA2-BND-04-VERSION-PRECEDENCE",
+    "MAA2-BND-03-REPLACEMENT-LINKS",
+    "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+    "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+    "MAA2-SEC-02-MALICIOUS-PDF",
+    "MAA2-BRW-08-BROWSER-LOCAL-STATE",
+    "MAA2-A11Y-04-CONTROL-LABELS",
+    "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+    "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE"
+  ],
+  "severityCoverageBeforeAfter": {
+    "before": {
+      "CRITICAL": {
+        "t": 116,
+        "e": 24
+      },
+      "HIGH": {
+        "t": 158,
+        "e": 17
+      }
+    },
+    "after": {
+      "CRITICAL": {
+        "t": 116,
+        "e": 38
+      },
+      "HIGH": {
+        "t": 158,
+        "e": 30
+      }
+    }
+  }
+}

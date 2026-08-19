@@ -1501,12 +1501,28 @@ function isDobContextDate(scan: string, dateLiteral: string): boolean {
   return /\b(?:DOB|date of birth|born)\b/i.test(window);
 }
 
-/** True when date is the incident/allegation date ("On 02/06/2026 at …") not a listing. */
+/** True when date is the incident/allegation/offence/arrest/statement date — not a listing. */
 function isAllegationIncidentDate(scan: string, dateLiteral: string): boolean {
   const idx = scan.toLowerCase().indexOf(dateLiteral.toLowerCase());
   if (idx < 0) return false;
-  const before = scan.slice(Math.max(0, idx - 48), idx);
-  return /\b(?:on|at about)\s+$/i.test(before) || /\bExact allegation wording:[^\n]{0,80}$/i.test(before);
+  const before = scan.slice(Math.max(0, idx - 64), idx);
+  if (/\b(?:on|at about)\s+$/i.test(before) || /\bExact allegation wording:[^\n]{0,80}$/i.test(before)) {
+    return true;
+  }
+  // Explicit non-listing role labels must never populate next hearing.
+  return /\b(?:offence|offense|incident|allegation|arrest|interview|statement)\s+dates?\s*[:\-]?\s*$/i.test(
+    before,
+  ) || /\b(?:statement|arrest|interview)\s+dated\s*$/i.test(before);
+}
+
+/** True when a date sits in an explicit listing / hearing-notice context. */
+function isHearingListingContextDate(scan: string, dateLiteral: string): boolean {
+  const idx = scan.toLowerCase().indexOf(dateLiteral.toLowerCase());
+  if (idx < 0) return false;
+  const before = scan.slice(Math.max(0, idx - 80), idx);
+  return /\b(?:hearing\s+notice|notice\s+of\s+hearing|listed\s+for|listing|next\s+hearing|first\s+appearance|ptph|hearing\s+date)\b/i.test(
+    before,
+  );
 }
 
 function extractCourt(scan: string): string | null {
@@ -1672,9 +1688,13 @@ function extractNextHearing(scan: string): {
     if (isAllegationIncidentDate(scan, v) || isAllegationIncidentDate(hearingScan, v)) return;
     const vHasDate = hasUkHearingDatePattern(v);
     const vHasTime = /\d{1,2}:\d{2}/.test(v);
+    const vListing = isHearingListingContextDate(scan, v) || isHearingListingContextDate(hearingScan, v);
     if (nextHearingRaw) {
       const curHasDate = hasUkHearingDatePattern(nextHearingRaw);
       const curHasTime = /\d{1,2}:\d{2}/.test(nextHearingRaw);
+      const curListing =
+        isHearingListingContextDate(scan, nextHearingRaw) ||
+        isHearingListingContextDate(hearingScan, nextHearingRaw);
       if (curHasDate && !vHasDate) return;
       if (!curHasDate && !vHasDate) return;
       if (!curHasDate && vHasDate) {
@@ -1682,6 +1702,12 @@ function extractNextHearing(scan: string): {
         return;
       }
       if (curHasDate && vHasDate) {
+        // Prefer an explicit listing/hearing-notice context over a bare earlier date.
+        if (!curListing && vListing) {
+          nextHearingRaw = v;
+          return;
+        }
+        if (curListing && !vListing) return;
         if (!curHasTime && vHasTime) {
           nextHearingRaw = v;
           return;
@@ -1886,6 +1912,13 @@ function extractNextHearing(scan: string): {
       /\bListed\s*:\s*(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?(?:\s+[-–—]\s*[^.\n]{0,80})?)/i,
     );
     if (listed?.[1]) tryHearing(listed[1]);
+  }
+
+  if (!nextHearingRaw) {
+    const listedSlash = hearingScan.match(
+      /\b(?:listed\s+for|hearing\s+notice[^\n]{0,80}listed\s+for|first\s+appearance\s+listed\s+for)\s+(\d{1,2}\/\d{1,2}\/\d{2,4}(?:\s+\d{1,2}:\d{2})?)/i,
+    );
+    if (listedSlash?.[1]) tryHearing(listedSlash[1]);
   }
 
   if (!nextHearingRaw) {

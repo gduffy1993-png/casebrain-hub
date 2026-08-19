@@ -1,0 +1,22 @@
+[
+  {
+    "id": "LIVE-HOSTILE-INSTRUCTION-NOT-CHASE-LABEL",
+    "path": "lib/criminal/hostile-source-content.ts + disclosure-chase-finalize.ts + buildDisclosureChaseBrief.ts",
+    "symptom": "Prompt-injection lines mentioning CCTV were merged into solicitor-visible chase labels/mergedFrom.",
+    "sourceTruth": "Hostile strings are evidence content, never instructions; outstanding CCTV remains chaseable.",
+    "rootCause": "Family matching treated any CCTV-mentioning line as chase material without filtering instruction-shaped text.",
+    "fix": "Shared prompt-injection instruction filter drops hostile lines from ledger chase intake and finalized mergedFrom/labels.",
+    "invariant": "CB-HIST-HOSTILE-INSTRUCTION-NOT-CHASE-LABEL",
+    "oppositeDirection": "Clean outstanding CCTV chase still surfaces without hostile noise."
+  },
+  {
+    "id": "LIVE-OFFENCE-DATE-NOT-HEARING",
+    "path": "lib/criminal/extract-bundle-case-metadata.ts",
+    "symptom": "Offence date (02/06/2026) populated nextHearingIso when a later listing date (25/08/2026) was present.",
+    "sourceTruth": "Offence/statement/arrest dates are not hearing dates; listing context must win.",
+    "rootCause": "isAllegationIncidentDate only recognised 'on/at about' incident phrasing, not 'Offence date:' labels, and slash 'listed for' listings were under-matched.",
+    "fix": "Reject offence/statement/arrest/interview date-role labels for hearing extraction; add listed-for slash-date matching; prefer listing-context dates.",
+    "invariant": "CB-HIST-OFFENCE-DATE-NOT-HEARING",
+    "oppositeDirection": "Offence date alone does not invent a hearing; clean listing still extracts 25/08/2026."
+  }
+]

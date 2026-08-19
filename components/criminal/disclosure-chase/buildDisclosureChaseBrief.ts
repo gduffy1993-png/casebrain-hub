@@ -1,4 +1,8 @@
 import { collectChaseItems } from "@/components/criminal/control-room/chaseItems";
+import {
+  filterPromptInjectionInstructionLines,
+  isPromptInjectionInstructionLine,
+} from "@/lib/criminal/hostile-source-content";
 import type { BattleboardOutput, BattleboardRouteType } from "@/lib/criminal/strategy-battleboard";
 import {
   filterWorkflowItems,
@@ -964,9 +968,10 @@ function familySafeMergedFrom(
   item: DisclosureChaseItem,
   bundleText: string | null | undefined,
 ): string[] {
-  if (!item.mergedFrom?.length || !bundleText?.trim()) return item.mergedFrom ?? [];
+  const base = filterPromptInjectionInstructionLines(item.mergedFrom ?? []);
+  if (!base.length || !bundleText?.trim()) return base;
   const allowedFamilies = new Set(gateFamiliesForItem(item));
-  return item.mergedFrom.filter((line) => {
+  return base.filter((line) => {
     const families = familiesInText(line);
     if (!families.length) return true;
     return families.every(
@@ -1249,6 +1254,7 @@ function mergeLedgerDisclosureItems(
   const merged = [...items];
 
   for (const m of ledgerMaterialsNeedingChase(ledger)) {
+    if (isPromptInjectionInstructionLine(m.displayLine)) continue;
     const familyId = classifyFamily(m.displayLine);
     const canonical = canonicalLedgerMaterial(m.displayLine, familyId);
     const key = canonical.label.toLowerCase();
@@ -1344,6 +1350,7 @@ function restoreSourceBackedRequiredChaseFamilies(
   const out = [...items];
   const present = new Set(out.map((item) => item.familyId));
   for (const m of ledgerMaterialsNeedingChase(ledger)) {
+    if (isPromptInjectionInstructionLine(m.displayLine)) continue;
     const familyId = classifyFamily(m.displayLine);
     if (familyId === "other" || present.has(familyId)) continue;
     out.push(sourceBackedLedgerItem(m, familyId, deadline));

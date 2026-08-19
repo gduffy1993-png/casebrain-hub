@@ -1,4 +1,8 @@
 import { formatDisplayLabelCasing } from "@/lib/criminal/bundle-truth-ledger";
+import {
+  filterPromptInjectionInstructionLines,
+  isPromptInjectionInstructionLine,
+} from "@/lib/criminal/hostile-source-content";
 import { sentenceCasePreservingAcronyms } from "@/lib/criminal/solicitor-visible-quality";
 import type {
   ChaseFamilyId,
@@ -203,11 +207,26 @@ function cleanCourtLine(label: string): string {
 }
 
 function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
+  const safeMergedRaw = filterPromptInjectionInstructionLines(item.mergedFrom);
+  if (isPromptInjectionInstructionLine(item.label) && safeMergedRaw.length === 0) {
+    // Drop solicitor-visible chase cards that exist only because of hostile instruction text.
+    return {
+      ...item,
+      label: "",
+      mergedFrom: [],
+      draftChaseWording: "",
+      courtLine: "",
+      whyItMatters: "",
+    };
+  }
+
   const mergedHumanized = dedupeByNorm(
-    item.mergedFrom.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
+    safeMergedRaw.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
   ).slice(0, 8);
 
-  let label = humanizeChaseFragmentLabel(item.label);
+  let label = isPromptInjectionInstructionLine(item.label)
+    ? ""
+    : humanizeChaseFragmentLabel(item.label);
   const needsFamilyLabel =
     !label ||
     isRawChaseFragmentLabel(label) ||
@@ -231,28 +250,30 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
         ? familyLabelForId(item.familyId)
         : mergedHumanized.length === 1
           ? mergedHumanized[0]!
-          : humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : item.mergedFrom);
+          : humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : safeMergedRaw);
   }
 
   let evidenceAnchor = item.evidenceAnchor;
-  if (evidenceAnchor && isRawChaseFragmentLabel(evidenceAnchor)) {
-    evidenceAnchor = humanizeChaseFragmentLabel(evidenceAnchor);
-    if (isRawChaseFragmentLabel(evidenceAnchor)) evidenceAnchor = null;
+  if (evidenceAnchor && (isRawChaseFragmentLabel(evidenceAnchor) || isPromptInjectionInstructionLine(evidenceAnchor))) {
+    evidenceAnchor = isPromptInjectionInstructionLine(evidenceAnchor)
+      ? null
+      : humanizeChaseFragmentLabel(evidenceAnchor);
+    if (evidenceAnchor && isRawChaseFragmentLabel(evidenceAnchor)) evidenceAnchor = null;
   }
 
   if (/^Further papers issues \(\d+ on file\)$/i.test(label)) {
-    label = humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : item.mergedFrom);
+    label = humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : safeMergedRaw);
   }
 
-  const mergedForDraft = mergedHumanized.length ? mergedHumanized : item.mergedFrom;
+  const mergedForDraft = mergedHumanized.length ? mergedHumanized : safeMergedRaw;
 
   return {
     ...item,
     label,
-    mergedFrom: mergedHumanized.length ? mergedHumanized : [label],
+    mergedFrom: mergedHumanized.length ? mergedHumanized : label ? [label] : [],
     whyItMatters: sanitizeWhyItMatters(item.whyItMatters, mergedHumanized.length),
-    draftChaseWording: cleanDraftWording(label, mergedForDraft),
-    courtLine: cleanCourtLine(label),
+    draftChaseWording: label ? cleanDraftWording(label, mergedForDraft) : "",
+    courtLine: label ? cleanCourtLine(label) : "",
     evidenceAnchor,
   };
 }
@@ -334,6 +355,7 @@ export function finalizeDisclosureChasePresentation(items: DisclosureChaseItem[]
   const byKey = new Map<string, DisclosureChaseItem>();
   for (const raw of items) {
     const item = finalizeOneItem(raw);
+    if (!item.label.trim()) continue;
     const key = itemFinalizeKey(item);
     const existing = byKey.get(key);
     byKey.set(key, existing ? mergeFinalizedItems(existing, item) : item);
