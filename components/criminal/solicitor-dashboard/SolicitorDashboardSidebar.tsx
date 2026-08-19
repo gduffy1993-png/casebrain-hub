@@ -14,17 +14,22 @@ import {
 } from "lucide-react";
 import type { DashboardRecentCase } from "@/lib/criminal/solicitor-dashboard/types";
 
-const NAV = [
+const NAV: Array<{
+  href: string;
+  label: string;
+  icon: typeof Gavel;
+  muted?: boolean;
+}> = [
   { href: "/court-today", label: "Court Today", icon: Gavel },
   { href: "/cases", label: "Cases", icon: Briefcase },
   { href: "/upload", label: "Upload Papers", icon: Upload },
   { href: "/search", label: "Search", icon: Search },
-  { href: "/cases", label: "Chase Manager", icon: FileText, hint: "cases" },
+  { href: "/cases", label: "Chase Manager", icon: FileText },
   { href: "/settings", label: "Templates", icon: LayoutDashboard, muted: true },
   { href: "/court-today", label: "Calendar", icon: Calendar, muted: true },
   { href: "/supervisor-queue", label: "Reports", icon: Users, muted: true },
   { href: "/settings", label: "Settings", icon: Settings },
-] as const;
+];
 
 function readinessColor(pct: number | null): string {
   if (pct == null) return "stroke-slate-500";
