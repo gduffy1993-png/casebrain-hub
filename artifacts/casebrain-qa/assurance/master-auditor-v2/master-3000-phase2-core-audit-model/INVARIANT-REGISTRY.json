@@ -1,0 +1,132 @@
+[
+  {
+    "id": "CB-HIST-CHARGE-PRESENT-NOT-ABSENT",
+    "title": "A formal charge present in the source may not render as charge not on papers.",
+    "failureClass": "extraction_failure",
+    "severity": "P0",
+    "category": "charge",
+    "sourceTruthRequired": true,
+    "oppositeDirectionRequired": true,
+    "historicalRegression": "charge_present_but_charge_not_on_papers"
+  },
+  {
+    "id": "CB-HIST-OFFENCE-DATE-NOT-HEARING",
+    "title": "An offence date must never populate hearing date without hearing/listing context.",
+    "failureClass": "semantic_role_failure",
+    "severity": "P1",
+    "category": "date_role",
+    "sourceTruthRequired": true,
+    "oppositeDirectionRequired": true,
+    "historicalRegression": "offence_date_used_as_hearing_date"
+  },
+  {
+    "id": "CB-HIST-UNKNOWN-INTERVIEW-NOT-MISSING",
+    "title": "Unknown interview status must not become definitely missing.",
+    "failureClass": "evidence_state_failure",
+    "severity": "P1",
+    "category": "existence_vs_service",
+    "sourceTruthRequired": true,
+    "oppositeDirectionRequired": true,
+    "historicalRegression": "interview_unknown_treated_as_missing"
+  },
+  {
+    "id": "CB-HIST-OUTSTANDING-TRANSCRIPT-NOT-SERVED",
+    "title": "An explicitly outstanding transcript may not render as served.",
+    "failureClass": "evidence_state_failure",
+    "severity": "P0",
+    "category": "evidence_state",
+    "sourceTruthRequired": true,
+    "oppositeDirectionRequired": true,
+    "historicalRegression": "outstanding_transcript_became_served"
+  },
+  {
+    "id": "CB-HIST-UNSUPPORTED-PHONE-NOT-CHASE",
+    "title": "Unsupported phone extraction/download expectations must not become asserted missing items or chases.",
+    "failureClass": "unsupported_promotion_failure",
+    "severity": "P1",
+    "category": "heuristic_firewall",
+    "sourceTruthRequired": true,
+    "oppositeDirectionRequired": true,
+    "historicalRegression": "unsupported_phone_download_outstanding"
+  },
+  {
+    "id": "CB-HIST-UNSUPPORTED-OTHER-PERSON-NOT-ISSUE",
+    "title": "Unsupported co-defendant/unknown-person heuristics must not become live case issues.",
+    "failureClass": "unsupported_promotion_failure",
+    "severity": "P1",
+    "category": "entity_isolation",
+    "sourceTruthRequired": true,
+    "oppositeDirectionRequired": true,
+    "historicalRegression": "unsupported_codefendant_or_unknown_person_promoted"
+  },
+  {
+    "id": "CB-HIST-CCTV-NOT-PHONE-PROVENANCE",
+    "title": "CCTV chase/provenance may not inherit phone-download/source-export anchors.",
+    "failureClass": "provenance_family_failure",
+    "severity": "P0",
+    "category": "provenance_family",
+    "sourceTruthRequired": true,
+    "oppositeDirectionRequired": true,
+    "historicalRegression": "cctv_inherited_phone_provenance"
+  },
+  {
+    "id": "CB-HIST-FIRST-APPEARANCE-NOT-PTPH",
+    "title": "First Appearance matters must not render as current PTPH workflow.",
+    "failureClass": "workflow_stage_failure",
+    "severity": "P1",
+    "category": "stage_routing",
+    "sourceTruthRequired": true,
+    "oppositeDirectionRequired": true,
+    "historicalRegression": "first_appearance_rendered_ptph"
+  },
+  {
+    "id": "CB-HIST-UNSUPPORTED-SPECIALTY-MATERIAL-NOT-GAP",
+    "title": "Unsupported medical, BWV, 999, retraction/further-statement or similar material must not become active gaps.",
+    "failureClass": "unsupported_promotion_failure",
+    "severity": "P1",
+    "category": "heuristic_firewall",
+    "sourceTruthRequired": true,
+    "oppositeDirectionRequired": true,
+    "historicalRegression": "unsupported_specialty_material_promoted"
+  },
+  {
+    "id": "CB-HIST-NO-DUPLICATE-OUTSTANDING-WORDING",
+    "title": "Disclosure wording must not duplicate the same outstanding phrase.",
+    "failureClass": "dedupe_alias_failure",
+    "severity": "P2",
+    "category": "dedupe",
+    "sourceTruthRequired": false,
+    "oppositeDirectionRequired": true,
+    "historicalRegression": "remains_outstanding_repeated"
+  },
+  {
+    "id": "CB-HIST-NO-INTERNAL-TELEMETRY-VISIBLE",
+    "title": "Solicitor-visible surfaces must not expose text-length telemetry or internal taxonomy.",
+    "failureClass": "solicitor_visible_internal_language_failure",
+    "severity": "P1",
+    "category": "internal_language",
+    "sourceTruthRequired": false,
+    "oppositeDirectionRequired": true,
+    "historicalRegression": "internal_telemetry_or_taxonomy_visible"
+  },
+  {
+    "id": "CB-HIST-SELECTED-CASE-NOT-EMPTY-SHELL",
+    "title": "A selected matter must not be hidden behind the empty-hearings shell.",
+    "failureClass": "stale_derived_state_failure",
+    "severity": "P1",
+    "category": "cross_tab",
+    "sourceTruthRequired": false,
+    "oppositeDirectionRequired": true,
+    "historicalRegression": "selected_case_old_empty_hearings_shell"
+  },
+  {
+    "id": "CB-HIST-NO-HEARING-DATE-NO-FIRM-DEADLINE",
+    "title": "No reliable hearing date means chase deadlines must carry a provisional limitation.",
+    "failureClass": "certainty_escalation_failure",
+    "severity": "P1",
+    "category": "chase_validity",
+    "sourceTruthRequired": true,
+    "oppositeDirectionRequired": true,
+    "historicalRegression": "unconfirmed_hearing_date_firm_deadline"
+  }
+]

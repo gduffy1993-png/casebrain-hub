@@ -1,0 +1,56 @@
+[
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase2-core-model-smoke",
+    "commit": "e33685d445270b80084cce5999e57db9df0f5137",
+    "caseId": "synthetic-provenance-family-negative",
+    "controlId": "CB-HIST-CCTV-NOT-PHONE-PROVENANCE",
+    "invariantId": "CB-HIST-CCTV-NOT-PHONE-PROVENANCE",
+    "failureClass": "provenance_family_failure",
+    "severity": "P0",
+    "evidenceFamily": "cctv",
+    "surface": "cps_chase",
+    "sourceReference": {
+      "documentId": "fixture-mg6",
+      "page": 4,
+      "limitation": "phase2 model smoke only"
+    },
+    "expected": "CCTV chase may only use CCTV-family provenance.",
+    "actual": "Fixture demonstrates wrong-family provenance candidate shape.",
+    "rootCauseCluster": "wrong-family-provenance",
+    "disposition": "candidate_failure",
+    "coverageStatus": "evaluated"
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase2-core-model-smoke",
+    "commit": "e33685d445270b80084cce5999e57db9df0f5137",
+    "caseId": "synthetic-unsupported-phone-negative",
+    "controlId": "CB-HIST-UNSUPPORTED-PHONE-NOT-CHASE",
+    "invariantId": "CB-HIST-UNSUPPORTED-PHONE-NOT-CHASE",
+    "failureClass": "unsupported_promotion_failure",
+    "severity": "P1",
+    "evidenceFamily": "phone",
+    "surface": "cps_chase",
+    "expected": "No phone chase where source does not establish phone material.",
+    "actual": "Fixture demonstrates unsupported-promotion candidate shape.",
+    "rootCauseCluster": "heuristic-promoted-to-fact",
+    "disposition": "candidate_failure",
+    "coverageStatus": "evaluated"
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase2-core-model-smoke",
+    "commit": "e33685d445270b80084cce5999e57db9df0f5137",
+    "caseId": "synthetic-browser-unavailable",
+    "controlId": "BROWSER-LANE",
+    "invariantId": "BROWSER-LANE-AUTHENTICATED",
+    "failureClass": "ui_rendering_failure",
+    "severity": "P2",
+    "surface": "browser",
+    "expected": "Authenticated browser lane exercised only with legitimate session.",
+    "actual": "No authenticated browser corpus run in Phase 2.",
+    "disposition": "not_exercised",
+    "coverageStatus": "not_exercised"
+  }
+]

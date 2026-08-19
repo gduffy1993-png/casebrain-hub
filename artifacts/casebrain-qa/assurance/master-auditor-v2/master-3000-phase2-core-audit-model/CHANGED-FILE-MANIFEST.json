@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "master3000-phase2-changed-file-manifest@1.0.0",
+  "generatedAt": "2026-08-19T03:45:12.748Z",
+  "selfHashStatus": "excluded_from_files_array_self_referential",
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase2-core-audit-model/DECISION-CARD.md",
+      "sha256": "9001421830582a651d5842b144c5bb817971ed9118320ff0b504b4ec44e487da",
+      "byteLength": 1197,
+      "classification": "phase2_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase2-core-audit-model/INVARIANT-REGISTRY.json",
+      "sha256": "78f66595c8d9f935769010c933731ddf359dceb7125d3e7ad29c0030f7bf59e3",
+      "byteLength": 5212,
+      "classification": "phase2_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase2-core-audit-model/PHASE2-CORE-AUDIT-MODEL.json",
+      "sha256": "edd6f2982f7414243b7a03825dc54de48a309142e8c668efa41ee6d4ea27c24b",
+      "byteLength": 4319,
+      "classification": "phase2_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase2-core-audit-model/SAMPLE-AUDIT-RESULTS.json",
+      "sha256": "60c43a88c4ed0d673846fd71597f14e02eedaca03ed602c521eaae253661ef2d",
+      "byteLength": 2245,
+      "classification": "phase2_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase2-core-audit-model/SAMPLE-COVERAGE-DASHBOARD.json",
+      "sha256": "d30ef5fb509c2d3f458ddda23bf6046fae680a2efd3e337bb2d378feb0cae62b",
+      "byteLength": 379,
+      "classification": "phase2_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase2-core-audit-model/SAMPLE-FAILURE-CLUSTERS.json",
+      "sha256": "eb16d480b71c044ca29ce1df15a28e408315c10c788b2de5c4af0e92ebbe8586",
+      "byteLength": 757,
+      "classification": "phase2_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase2-core-audit-model/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "df1f8f77c59351297a999a96a57469a2f8bba784a19185b4ba6ae16c2c42f70e",
+      "byteLength": 1124,
+      "classification": "phase2_artifact"
+    },
+    {
+      "path": "lib/eval/master3000-quality/cluster.ts",
+      "sha256": "9683448708fcb512e31fcd15763fc8b0c15b980c4203c1f3e400f3e5aa78c347",
+      "byteLength": 1474,
+      "classification": "source"
+    },
+    {
+      "path": "lib/eval/master3000-quality/coverage.ts",
+      "sha256": "75f1b1eaa8f0870fcd5dff28c6de73eff19c3fb978e779288d1d958880a47a4d",
+      "byteLength": 1759,
+      "classification": "source"
+    },
+    {
+      "path": "lib/eval/master3000-quality/index.ts",
+      "sha256": "241b36d9d3508f23271da46fbafdc189d00d5d0a082bebb991af569d57a9c6bd",
+      "byteLength": 189,
+      "classification": "source"
+    },
+    {
+      "path": "lib/eval/master3000-quality/invariants.ts",
+      "sha256": "56e0a9ca44bced713f253dd8151b92998da714edc611ef283a59062db5e0d782",
+      "byteLength": 5773,
+      "classification": "source"
+    },
+    {
+      "path": "lib/eval/master3000-quality/result.ts",
+      "sha256": "1e5731af99f507a7a571750255df7f17af17b4ac26b3923027dca45e2ee4a72e",
+      "byteLength": 2224,
+      "classification": "source"
+    },
+    {
+      "path": "lib/eval/master3000-quality/taxonomy.ts",
+      "sha256": "6dedd8db32ff60ec7f42c99122852d8e85258b577dd08be077387864f99e088b",
+      "byteLength": 3836,
+      "classification": "source"
+    },
+    {
+      "path": "lib/eval/master3000-quality/tier.ts",
+      "sha256": "7dee625886bda5c8bd5311a9bdffa909f669acb4536188d9a09e5d090adc8f6f",
+      "byteLength": 1436,
+      "classification": "source"
+    },
+    {
+      "path": "lib/eval/master3000-quality/types.ts",
+      "sha256": "c17072b456f2753afd3f4de9118852167f8afc422762d2dbf8e33126b6c6fc14",
+      "byteLength": 2584,
+      "classification": "source"
+    },
+    {
+      "path": "scripts/assurance/master-3000-phase2-core-audit-model.ts",
+      "sha256": "47b69c66de29590fccb15573f60aeaf3bd7598a59556a13eeb26b19eab15040e",
+      "byteLength": 10451,
+      "classification": "contract_or_emit_script"
+    },
+    {
+      "path": "scripts/master3000-quality-core.test.ts",
+      "sha256": "719fed8a85115208a0ca689afe22697c0832e36b4fef83ed707c7bd04e8bd532",
+      "byteLength": 3740,
+      "classification": "contract_or_emit_script"
+    }
+  ]
+}

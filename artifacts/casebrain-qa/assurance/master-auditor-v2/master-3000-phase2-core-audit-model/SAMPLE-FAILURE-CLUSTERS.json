@@ -1,0 +1,26 @@
+[
+  {
+    "key": "P0|provenance_family_failure|cctv|cps_chase|wrong-family-provenance",
+    "count": 1,
+    "severity": "P0",
+    "failureClass": "provenance_family_failure",
+    "evidenceFamily": "cctv",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "synthetic-provenance-family-negative"
+    ],
+    "rootCauseCluster": "wrong-family-provenance"
+  },
+  {
+    "key": "P1|unsupported_promotion_failure|phone|cps_chase|heuristic-promoted-to-fact",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "unsupported_promotion_failure",
+    "evidenceFamily": "phone",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "synthetic-unsupported-phone-negative"
+    ],
+    "rootCauseCluster": "heuristic-promoted-to-fact"
+  }
+]

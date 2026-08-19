@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "master3000-phase2-core-audit-model@1.0.0",
+  "generatedAt": "2026-08-19T03:45:12.748Z",
+  "commit": "e33685d445270b80084cce5999e57db9df0f5137",
+  "phase01Dependency": {
+    "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase0-phase1/STOP-FOR-CODEX-REVIEW.json",
+    "status": "PHASE0_PHASE1_COMPLETE__ARCHITECTURE_MAPPED__READY_FOR_PHASE2_CORE_AUDIT_MODEL"
+  },
+  "modulesAdded": [
+    "lib/eval/master3000-quality/taxonomy.ts",
+    "lib/eval/master3000-quality/types.ts",
+    "lib/eval/master3000-quality/invariants.ts",
+    "lib/eval/master3000-quality/result.ts",
+    "lib/eval/master3000-quality/coverage.ts",
+    "lib/eval/master3000-quality/cluster.ts",
+    "lib/eval/master3000-quality/tier.ts",
+    "lib/eval/master3000-quality/index.ts"
+  ],
+  "contract": "scripts/master3000-quality-core.test.ts",
+  "failureTaxonomyCount": 22,
+  "severityLevels": [
+    {
+      "level": "P0",
+      "rank": 0,
+      "description": "Potentially unsafe, confidential, cross-case, or fundamental truth failure."
+    },
+    {
+      "level": "P1",
+      "rank": 1,
+      "description": "Serious legal-meaning/trust failure requiring root-cause fix or explicit quarantine."
+    },
+    {
+      "level": "P2",
+      "rank": 2,
+      "description": "Workflow/product clarity problem that should not derail P0/P1 truth work."
+    },
+    {
+      "level": "P3",
+      "rank": 3,
+      "description": "Cosmetic polish for later UI/design work unless it affects meaning or trust."
+    }
+  ],
+  "invariantRegistryCount": 13,
+  "invariantRegistryIssues": [],
+  "resultEnvelopeVersion": "casebrain-master3000-audit-result@1.0.0",
+  "sampleCoverageDashboard": {
+    "totalControls": 361,
+    "uniqueControlsSeen": 3,
+    "evaluatedControls": 2,
+    "notExercisedControls": 359,
+    "unavailableControls": 0,
+    "unresolvedControls": 0,
+    "projectionOnlyControls": 0,
+    "claim": "green_on_exercised_controls_only",
+    "byStatus": {
+      "evaluated": 2,
+      "not_exercised": 359,
+      "unavailable": 0,
+      "unresolved": 0,
+      "projection_only": 0
+    }
+  },
+  "sampleClusters": [
+    {
+      "key": "P0|provenance_family_failure|cctv|cps_chase|wrong-family-provenance",
+      "count": 1,
+      "severity": "P0",
+      "failureClass": "provenance_family_failure",
+      "evidenceFamily": "cctv",
+      "surface": "cps_chase",
+      "representativeCaseIds": [
+        "synthetic-provenance-family-negative"
+      ],
+      "rootCauseCluster": "wrong-family-provenance"
+    },
+    {
+      "key": "P1|unsupported_promotion_failure|phone|cps_chase|heuristic-promoted-to-fact",
+      "count": 1,
+      "severity": "P1",
+      "failureClass": "unsupported_promotion_failure",
+      "evidenceFamily": "phone",
+      "surface": "cps_chase",
+      "representativeCaseIds": [
+        "synthetic-unsupported-phone-negative"
+      ],
+      "rootCauseCluster": "heuristic-promoted-to-fact"
+    }
+  ],
+  "tierRecommendations": {
+    "css_or_visual_copy": {
+      "tier": "A",
+      "reason": "Cosmetic/UI-only change: targeted fixtures are enough.",
+      "fullCorpusAllowed": false
+    },
+    "wording_template": {
+      "tier": "B",
+      "reason": "Wording template can affect repeated surfaces: run 20-50 contrasting cases.",
+      "fullCorpusAllowed": false
+    },
+    "evidence_state_or_provenance": {
+      "tier": "D",
+      "reason": "State/provenance changes can affect many workflows: run representative stress set before full scale.",
+      "fullCorpusAllowed": false
+    },
+    "canonical_state_or_parser": {
+      "tier": "E",
+      "reason": "Canonical/parser changes justify full structural corpus run after lower tiers pass.",
+      "fullCorpusAllowed": true
+    },
+    "release_gate": {
+      "tier": "E",
+      "reason": "Release gate requires broad corpus evidence plus browser/UI representative sweep.",
+      "fullCorpusAllowed": true
+    }
+  },
+  "nextPhase": {
+    "phase": 3,
+    "name": "High-value invariants",
+    "rule": "Start with targeted fixtures and small contrasting sets; no full 3,000 until canonical/provenance infrastructure and lower tiers pass."
+  },
+  "nonClaims": {
+    "full3000Run": false,
+    "productBehaviourChanged": false,
+    "corpusPass": false,
+    "stage3000Completion": false,
+    "programmePass": false,
+    "solicitorApproval": false
+  }
+}
