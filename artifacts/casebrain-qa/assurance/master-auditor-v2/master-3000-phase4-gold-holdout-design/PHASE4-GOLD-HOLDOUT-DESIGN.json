@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "master3000-phase4-gold-holdout-design@1.0.0",
+  "generatedAt": "2026-08-19T04:10:04.922Z",
+  "commit": "64cd5f094f4b8f864641fbf9b6dcfcee8d7a0038",
+  "policy": {
+    "schemaVersion": "casebrain-master3000-gold-holdout-policy@1.0.0",
+    "goldTargetMin": 150,
+    "goldTargetMax": 250,
+    "holdoutTargetMin": 50,
+    "holdoutTargetMax": 100,
+    "axes": [
+      "offence_family",
+      "procedural_stage",
+      "bundle_size",
+      "document_mix",
+      "source_quality",
+      "evidence_family",
+      "entity_complexity",
+      "charge_count_complexity",
+      "disclosure_gap_density",
+      "workflow_surface_risk"
+    ],
+    "truthSourcesAllowed": [
+      "source_pdf_or_source_text",
+      "independent_truth_key",
+      "qualified_human_review",
+      "documented_source_limitation_or_unavailable_status"
+    ],
+    "truthSourcesForbidden": [
+      "current_casebrain_output",
+      "model_summary_without_source_reference",
+      "case_id_specific_patch",
+      "cosmetic_salt_or_name_variation_only"
+    ],
+    "selectionRules": [
+      "Gold and Holdout must be disjoint.",
+      "Holdout must not be tuned directly after failures unless promoted into a new gold version with lineage.",
+      "Every selected matter needs independent source/truth provenance or an explicit unresolved/unavailable label.",
+      "A stratum can intentionally repeat public forms/layouts, but meaningful distinctness must come from substantive axes.",
+      "No broad corpus PASS can be claimed from green exercised controls without reporting unexercised controls."
+    ],
+    "nonClaims": {
+      "selected": false,
+      "groundTruthInvented": false,
+      "casebrainOutputUsedAsTruth": false
+    }
+  },
+  "policyIssues": [],
+  "candidateCorpusSources": [
+    {
+      "id": "accepted_v2_1_2_clean_single_writer",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.2/",
+      "use": "lineage/evidence candidate source only",
+      "limitation": "17/361 controls exercised; cannot become truth without independent source/truth review"
+    },
+    {
+      "id": "real_pdf_live_pilot_v1",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/",
+      "use": "real-PDF/live-builder pilot candidates",
+      "limitation": "20 matters only; authenticated browser not exercised"
+    },
+    {
+      "id": "evidence_state_audit_local",
+      "path": "artifacts/evidence-state-audit-local/",
+      "use": "local truth-key/source/output style examples",
+      "limitation": "must verify provenance and fictional/real status before gold use"
+    },
+    {
+      "id": "solicitor_review_audit_pack",
+      "path": "artifacts/solicitor-review-audit-pack/",
+      "use": "human-review templates and scoring guide",
+      "limitation": "templates only; not populated gold truth"
+    }
+  ],
+  "proposedWorkflow": [
+    "Build candidate inventory from existing corpus manifests and real-PDF pilot only.",
+    "Exclude cases where source/truth is absent unless they are deliberately labelled unavailable/unresolved.",
+    "Stratify by all axes; sample Gold 150-250 and Holdout 50-100 disjoint sets.",
+    "Do not populate truth labels from current CaseBrain output.",
+    "Record reviewer fields blank until qualified/human review is actually done.",
+    "Run Phase 3 invariants on Gold first, then keep Holdout sealed until major shared fixes are ready."
+  ],
+  "nonClaims": {
+    "goldSelected": false,
+    "holdoutSelected": false,
+    "truthCompleted": false,
+    "full3000Run": false,
+    "corpusPass": false,
+    "programmePass": false
+  }
+}

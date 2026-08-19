@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "casebrain-master3000-gold-holdout-policy@1.0.0",
+  "goldTargetMin": 150,
+  "goldTargetMax": 250,
+  "holdoutTargetMin": 50,
+  "holdoutTargetMax": 100,
+  "axes": [
+    "offence_family",
+    "procedural_stage",
+    "bundle_size",
+    "document_mix",
+    "source_quality",
+    "evidence_family",
+    "entity_complexity",
+    "charge_count_complexity",
+    "disclosure_gap_density",
+    "workflow_surface_risk"
+  ],
+  "truthSourcesAllowed": [
+    "source_pdf_or_source_text",
+    "independent_truth_key",
+    "qualified_human_review",
+    "documented_source_limitation_or_unavailable_status"
+  ],
+  "truthSourcesForbidden": [
+    "current_casebrain_output",
+    "model_summary_without_source_reference",
+    "case_id_specific_patch",
+    "cosmetic_salt_or_name_variation_only"
+  ],
+  "selectionRules": [
+    "Gold and Holdout must be disjoint.",
+    "Holdout must not be tuned directly after failures unless promoted into a new gold version with lineage.",
+    "Every selected matter needs independent source/truth provenance or an explicit unresolved/unavailable label.",
+    "A stratum can intentionally repeat public forms/layouts, but meaningful distinctness must come from substantive axes.",
+    "No broad corpus PASS can be claimed from green exercised controls without reporting unexercised controls."
+  ],
+  "nonClaims": {
+    "selected": false,
+    "groundTruthInvented": false,
+    "casebrainOutputUsedAsTruth": false
+  }
+}

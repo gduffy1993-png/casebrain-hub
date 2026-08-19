@@ -1,0 +1,26 @@
+[
+  {
+    "id": "accepted_v2_1_2_clean_single_writer",
+    "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.2/",
+    "use": "lineage/evidence candidate source only",
+    "limitation": "17/361 controls exercised; cannot become truth without independent source/truth review"
+  },
+  {
+    "id": "real_pdf_live_pilot_v1",
+    "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/",
+    "use": "real-PDF/live-builder pilot candidates",
+    "limitation": "20 matters only; authenticated browser not exercised"
+  },
+  {
+    "id": "evidence_state_audit_local",
+    "path": "artifacts/evidence-state-audit-local/",
+    "use": "local truth-key/source/output style examples",
+    "limitation": "must verify provenance and fictional/real status before gold use"
+  },
+  {
+    "id": "solicitor_review_audit_pack",
+    "path": "artifacts/solicitor-review-audit-pack/",
+    "use": "human-review templates and scoring guide",
+    "limitation": "templates only; not populated gold truth"
+  }
+]

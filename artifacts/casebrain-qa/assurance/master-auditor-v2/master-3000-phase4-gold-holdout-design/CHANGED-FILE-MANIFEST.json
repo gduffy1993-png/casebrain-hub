@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "master3000-phase4-changed-file-manifest@1.0.0",
+  "generatedAt": "2026-08-19T04:10:04.922Z",
+  "selfHashStatus": "excluded_from_files_array_self_referential",
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase4-gold-holdout-design/CANDIDATE-CORPUS-SOURCE-REGISTER.json",
+      "sha256": "47e246232afe2166d9c283bae843a0a6336e5b94e775d031d130c7e33012bd61",
+      "byteLength": 1047,
+      "classification": "phase4_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase4-gold-holdout-design/DECISION-CARD.md",
+      "sha256": "f71c0646106dc458f90435cfbdb2fdb12a902d24d80e1bfacd76137b29983a1d",
+      "byteLength": 933,
+      "classification": "phase4_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase4-gold-holdout-design/GOLD-HOLDOUT-POLICY.json",
+      "sha256": "da09ed022bd39e0fc1f53108f33e6be3cac8bd5352dc183c600d53a433cc252d",
+      "byteLength": 1452,
+      "classification": "phase4_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase4-gold-holdout-design/PHASE4-GOLD-HOLDOUT-DESIGN.json",
+      "sha256": "6124de8c7025b2616c631e1c264f25e85a491640c3f1ef214defe9ed13f6ef38",
+      "byteLength": 3621,
+      "classification": "phase4_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase4-gold-holdout-design/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "16269d89a9229fa5f4d966986d8407414521557ea30d05581b4782d0a91e4dcf",
+      "byteLength": 582,
+      "classification": "phase4_artifact"
+    },
+    {
+      "path": "lib/eval/master3000-quality/gold-holdout.ts",
+      "sha256": "8f89dd4a7e45f9bcd1cf89e915552164f763e29733f371649412611ddc079d66",
+      "byteLength": 3227,
+      "classification": "source"
+    },
+    {
+      "path": "lib/eval/master3000-quality/index.ts",
+      "sha256": "f2bac1306c8a9a9b9f54272ee727c31f517015c2a38fc65b267000be593d916f",
+      "byteLength": 220,
+      "classification": "source"
+    },
+    {
+      "path": "scripts/assurance/master-3000-phase4-gold-holdout-design.ts",
+      "sha256": "fbf201ed03a02be745799317e4437c93b238637cd9e0c4821c557f1e38b80351",
+      "byteLength": 6789,
+      "classification": "contract_or_emit_script"
+    },
+    {
+      "path": "scripts/master3000-gold-holdout-design.test.ts",
+      "sha256": "c1b6814df169710952212ff2e3e82d456e27f08bb98a6a0acca1d13a90e0d685",
+      "byteLength": 1739,
+      "classification": "contract_or_emit_script"
+    }
+  ]
+}
