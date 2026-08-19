@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "master3000-phase0-phase1-manifest@1.0.0",
+  "generatedAt": "2026-08-19T03:39:32.226Z",
+  "selfHashStatus": "excluded_from_files_array_self_referential",
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase0-phase1/FAILURE-TAXONOMY-AND-SEVERITY.json",
+      "sha256": "a511c7bfed4a840804cb7154f0fbf37fe19df9aff6caa7ab1d31f4e1b700838b",
+      "byteLength": 6839,
+      "classification": "phase0_phase1_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase0-phase1/PHASE0-1-IMPLEMENTATION-MAP.md",
+      "sha256": "b39df2e8cfba51007f4696fadb0adc8166985d3cf7fbb847b58f1dde34348048",
+      "byteLength": 11563,
+      "classification": "phase0_phase1_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase0-phase1/PHASE0-BASELINE.json",
+      "sha256": "786e2e7524f5ba12c7d2283b4d43fab1ba0cc80862b59f8bcf7ce14ed8429506",
+      "byteLength": 1078,
+      "classification": "phase0_phase1_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase0-phase1/PHASE1-AUDITOR-ARCHITECTURE-MAP.json",
+      "sha256": "1ff3c01a47d45c028d277b944a3a4a0126a68b94d646d56f78e7e90d74dfa236",
+      "byteLength": 54863,
+      "classification": "phase0_phase1_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase0-phase1/PHASE1-GAP-REGISTER.json",
+      "sha256": "b17399c36b99c2d472d9891b975ee6dae47d2cb35420199c7da26dd9c3a252a4",
+      "byteLength": 2112,
+      "classification": "phase0_phase1_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase0-phase1/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "e08a1470279d073dff88981dac9b351a4d0d78993c6a081b6aa4c6caf4cc65dc",
+      "byteLength": 2186,
+      "classification": "phase0_phase1_artifact"
+    },
+    {
+      "path": "scripts/assurance/master-3000-phase0-1-map.ts",
+      "sha256": "0dc1213af5dbc40d558d3f98bdcc423c995460c1e0a3f1ed30cb4b7e52944704",
+      "byteLength": 22722,
+      "classification": "source"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "master3000-phase0-phase1-stop@1.0.0",
+  "generatedAt": "2026-08-19T03:39:32.226Z",
+  "status": "PHASE0_PHASE1_COMPLETE__ARCHITECTURE_MAPPED__READY_FOR_PHASE2_CORE_AUDIT_MODEL",
+  "workPerformed": [
+    "Recorded current baseline and PR context.",
+    "Mapped existing auditor/test/corpus/product-state infrastructure.",
+    "Classified reuse decisions and gaps.",
+    "Recorded failure taxonomy, severity model and historical regression map.",
+    "Defined Phase 2 entry criteria for reusable audit model."
+  ],
+  "baseline": {
+    "schemaVersion": "casebrain-master3000-phase0-baseline@1.0.0",
+    "generatedAt": "2026-08-19T03:39:32.226Z",
+    "branch": "programme/real-pdf-live-pilot-v1",
+    "head": "c93f155f5c4c46d8375208bce93e45eb84e0ec13",
+    "headShort": "c93f155f5",
+    "headSubject": "fix(ui): preserve provisional chase deadline limits",
+    "upstream": "origin/programme/real-pdf-live-pilot-v1",
+    "upstreamHead": "c93f155f5c4c46d8375208bce93e45eb84e0ec13",
+    "trackedDirtyCount": 0,
+    "untrackedCount": 2,
+    "promptBaselineExpected": "c93f155f5c4c46d8375208bce93e45eb84e0ec13",
+    "promptBaselineMatches": true,
+    "pr": {
+      "number": 66,
+      "branch": "programme/real-pdf-live-pilot-v1",
+      "latestKnownHeadAtPhaseStart": "c93f155f5c4c46d8375208bce93e45eb84e0ec13"
+    },
+    "currentCoverageLimits": {
+      "acceptedV212ControlsExercised": "17/361",
+      "acceptedV212BrowserLane": "not_exercised",
+      "acceptedV212PdfLane": "24/3000 source_pdf_copy",
+      "freshFull3000RunAtPhaseStart": false,
+      "meaning": "Existing green checks are real but limited; they are not corpus/stage/programme PASS."
+    }
+  },
+  "trackedDirtyCountAtEmit": 0,
+  "untrackedScratchPreserved": 2,
+  "full3000RunStarted": false,
+  "productBehaviourChanged": false,
+  "nextStep": "Phase 2: implement shared audit result model + invariant registry + 361-control coverage tracker, using a small sample only.",
+  "nonClaims": {
+    "full3000Run": false,
+    "corpusPass": false,
+    "stage3000Completion": false,
+    "programmePass": false,
+    "solicitorApproval": false,
+    "browserLaneExercised": false,
+    "globalZeroDefects": false
+  }
+}

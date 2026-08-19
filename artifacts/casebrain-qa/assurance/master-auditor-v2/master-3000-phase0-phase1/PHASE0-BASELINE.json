@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "casebrain-master3000-phase0-baseline@1.0.0",
+  "generatedAt": "2026-08-19T03:39:32.226Z",
+  "branch": "programme/real-pdf-live-pilot-v1",
+  "head": "c93f155f5c4c46d8375208bce93e45eb84e0ec13",
+  "headShort": "c93f155f5",
+  "headSubject": "fix(ui): preserve provisional chase deadline limits",
+  "upstream": "origin/programme/real-pdf-live-pilot-v1",
+  "upstreamHead": "c93f155f5c4c46d8375208bce93e45eb84e0ec13",
+  "trackedDirtyCount": 0,
+  "untrackedCount": 2,
+  "promptBaselineExpected": "c93f155f5c4c46d8375208bce93e45eb84e0ec13",
+  "promptBaselineMatches": true,
+  "pr": {
+    "number": 66,
+    "branch": "programme/real-pdf-live-pilot-v1",
+    "latestKnownHeadAtPhaseStart": "c93f155f5c4c46d8375208bce93e45eb84e0ec13"
+  },
+  "currentCoverageLimits": {
+    "acceptedV212ControlsExercised": "17/361",
+    "acceptedV212BrowserLane": "not_exercised",
+    "acceptedV212PdfLane": "24/3000 source_pdf_copy",
+    "freshFull3000RunAtPhaseStart": false,
+    "meaning": "Existing green checks are real but limited; they are not corpus/stage/programme PASS."
+  }
+}

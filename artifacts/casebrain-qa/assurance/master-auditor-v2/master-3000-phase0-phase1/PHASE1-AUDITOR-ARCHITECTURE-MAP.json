@@ -1,0 +1,904 @@
+{
+  "schemaVersion": "casebrain-master3000-phase1-architecture-map@1.0.0",
+  "generatedAt": "2026-08-19T03:39:32.226Z",
+  "baseline": {
+    "schemaVersion": "casebrain-master3000-phase0-baseline@1.0.0",
+    "generatedAt": "2026-08-19T03:39:32.226Z",
+    "branch": "programme/real-pdf-live-pilot-v1",
+    "head": "c93f155f5c4c46d8375208bce93e45eb84e0ec13",
+    "headShort": "c93f155f5",
+    "headSubject": "fix(ui): preserve provisional chase deadline limits",
+    "upstream": "origin/programme/real-pdf-live-pilot-v1",
+    "upstreamHead": "c93f155f5c4c46d8375208bce93e45eb84e0ec13",
+    "trackedDirtyCount": 0,
+    "untrackedCount": 2,
+    "promptBaselineExpected": "c93f155f5c4c46d8375208bce93e45eb84e0ec13",
+    "promptBaselineMatches": true,
+    "pr": {
+      "number": 66,
+      "branch": "programme/real-pdf-live-pilot-v1",
+      "latestKnownHeadAtPhaseStart": "c93f155f5c4c46d8375208bce93e45eb84e0ec13"
+    },
+    "currentCoverageLimits": {
+      "acceptedV212ControlsExercised": "17/361",
+      "acceptedV212BrowserLane": "not_exercised",
+      "acceptedV212PdfLane": "24/3000 source_pdf_copy",
+      "freshFull3000RunAtPhaseStart": false,
+      "meaning": "Existing green checks are real but limited; they are not corpus/stage/programme PASS."
+    }
+  },
+  "evidenceRead": {
+    "v212Stop": "present",
+    "realPdfStop": "present",
+    "realPdfControlAudit": "present",
+    "truthSafetyStop": "present"
+  },
+  "existingSystems": [
+    {
+      "id": "maa_v2_registry_and_stage_runs",
+      "title": "MAA V2 registry, controls and staged calibration artefacts",
+      "fileCount": 1049,
+      "trackedCount": 1049,
+      "untrackedOrScratchCount": 0,
+      "representativePaths": [
+        "scripts/assurance/emit-maa-v2-every-word-foundation.ts",
+        "scripts/assurance/emit-maa-v2-execution-readiness.ts",
+        "scripts/assurance/emit-maa-v2-integrated-denominator-stop.ts",
+        "scripts/assurance/emit-maa-v2-registry.ts",
+        "scripts/assurance/emit-maa-v2-stage150-batch10-deficit120.ts",
+        "scripts/assurance/emit-maa-v2-stage150-batch10-final-acceptance.ts",
+        "scripts/assurance/emit-maa-v2-stage150-batch10.ts",
+        "scripts/assurance/emit-maa-v2-stage150-batch2.ts",
+        "scripts/assurance/emit-maa-v2-stage150-batch3-fid10-source-review.ts",
+        "scripts/assurance/emit-maa-v2-stage150-batch3.ts",
+        "scripts/assurance/emit-maa-v2-stage150-batch4.ts",
+        "scripts/assurance/emit-maa-v2-stage150-batch5.ts",
+        "scripts/assurance/emit-maa-v2-stage150-batch6.ts",
+        "scripts/assurance/emit-maa-v2-stage150-batch7.ts",
+        "scripts/assurance/emit-maa-v2-stage150-batch8.ts",
+        "scripts/assurance/emit-maa-v2-stage150-batch9.ts",
+        "scripts/assurance/emit-maa-v2-stage150-calibration-run.ts",
+        "scripts/assurance/emit-maa-v2-stage150-calibration-triage.ts",
+        "scripts/assurance/emit-maa-v2-stage150-intelligence.ts",
+        "scripts/assurance/emit-maa-v2-stage150-pri01-remediation.ts",
+        "scripts/assurance/emit-maa-v2-stage300-batch-a-six-evaluators.ts",
+        "scripts/assurance/emit-maa-v2-stage300-batch-a-structured-adapters.ts",
+        "scripts/assurance/emit-maa-v2-stage300-batch-b-evidence-provenance-chase-exits.ts",
+        "scripts/assurance/emit-maa-v2-stage300-batch-b-governance.ts",
+        "scripts/assurance/emit-maa-v2-stage300-execution-readiness-plan.ts",
+        "scripts/assurance/emit-maa-v2-stage300-new-150-control-coverage.ts",
+        "scripts/assurance/emit-maa-v2-stage300-new-150-gap-close.ts",
+        "scripts/assurance/emit-maa-v2-stage300-new-150-honesty-correction.ts",
+        "scripts/assurance/emit-maa-v2-stage300-solicitor-boundary-containment.ts",
+        "scripts/assurance/emit-maa-v2-stage3000-existing-census.ts",
+        "lib/eval/master-assurance-auditor/v2/assemble.ts",
+        "lib/eval/master-assurance-auditor/v2/control-factory.ts",
+        "lib/eval/master-assurance-auditor/v2/eld/affected-wording.ts",
+        "lib/eval/master-assurance-auditor/v2/eld/dependency-graph.ts",
+        "lib/eval/master-assurance-auditor/v2/eld/exit-expectations.ts",
+        "lib/eval/master-assurance-auditor/v2/eld/foundation-status.ts",
+        "lib/eval/master-assurance-auditor/v2/eld/index.ts",
+        "lib/eval/master-assurance-auditor/v2/eld/orphan-detection.ts",
+        "lib/eval/master-assurance-auditor/v2/eld/outcomes.ts",
+        "lib/eval/master-assurance-auditor/v2/eld/receipt-preservation.ts",
+        "lib/eval/master-assurance-auditor/v2/eld/stale-detection.ts",
+        "lib/eval/master-assurance-auditor/v2/eld/synthetic/version-pairs.ts",
+        "lib/eval/master-assurance-auditor/v2/eld/types.ts",
+        "lib/eval/master-assurance-auditor/v2/engines/shared-engines.ts",
+        "lib/eval/master-assurance-auditor/v2/enrich-execution-status.ts",
+        "lib/eval/master-assurance-auditor/v2/every-word/blinding-sequence.ts",
+        "lib/eval/master-assurance-auditor/v2/every-word/control-handler-registry.ts",
+        "lib/eval/master-assurance-auditor/v2/every-word/independent-leaf-inventory.ts",
+        "lib/eval/master-assurance-auditor/v2/every-word/packet-local-capture.ts",
+        "lib/eval/master-assurance-auditor/v2/every-word/types.ts",
+        "lib/eval/master-assurance-auditor/v2/execution-readiness.ts",
+        "lib/eval/master-assurance-auditor/v2/families-a-m.ts",
+        "lib/eval/master-assurance-auditor/v2/families-eld.ts",
+        "lib/eval/master-assurance-auditor/v2/families-n-af.ts",
+        "lib/eval/master-assurance-auditor/v2/index.ts",
+        "lib/eval/master-assurance-auditor/v2/multi-exit-adapters/capability.ts",
+        "lib/eval/master-assurance-auditor/v2/multi-exit-adapters/contracts.ts",
+        "lib/eval/master-assurance-auditor/v2/multi-exit-adapters/index.ts",
+        "lib/eval/master-assurance-auditor/v2/multi-exit-adapters/receipts.ts",
+        "lib/eval/master-assurance-auditor/v2/multi-exit-adapters/registry.ts",
+        "lib/eval/master-assurance-auditor/v2/multi-exit-adapters/schemas.ts",
+        "lib/eval/master-assurance-auditor/v2/schema.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch10/batch9-bridge.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch10/census.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch10/corpus-lanes.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/cohort-pipeline.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/constants.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/coverage-catalog.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/five-answers-serialisation.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/index.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/production-capture.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/rematerialise-five-answers-outputs.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/source-builder.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/strict-validators.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch10/final-acceptance/independent-recompute.ts"
+      ],
+      "reuseDecision": "Reuse as control authority and historical denominator evidence. Do not replace with a fresh parallel truth system.",
+      "identifiedGap": "Needs a wrapper that reports exercised/not_exercised by taxonomy and severity across future corpus tiers."
+    },
+    {
+      "id": "source_truth_and_regression_tests",
+      "title": "Source-truth guardians and live UI wording regressions",
+      "fileCount": 18,
+      "trackedCount": 18,
+      "untrackedOrScratchCount": 0,
+      "representativePaths": [
+        "scripts/bundle-truth-ledger.test.ts",
+        "scripts/chase-source-gate.test.ts",
+        "scripts/emit-truth-safety-hardening-report.ts",
+        "scripts/live-ui-wording-regression.test.ts",
+        "scripts/pilot-workflow-profile.test.ts",
+        "scripts/source-truth-guardian.test.ts",
+        "scripts/truth-safety-hardening-regression.test.ts",
+        "lib/criminal/bundle-truth-ledger.ts",
+        "lib/criminal/chase-source-gate.ts",
+        "lib/criminal/source-truth-guardian/fingerprint.ts",
+        "lib/criminal/source-truth-guardian/guardian.ts",
+        "lib/criminal/source-truth-guardian/index.ts",
+        "lib/criminal/source-truth-guardian/types.ts",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/truth-safety-hardening-v1/CHANGED-FILE-MANIFEST.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/truth-safety-hardening-v1/DECISION-CARD.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/truth-safety-hardening-v1/DECISION-CARD.md",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/truth-safety-hardening-v1/STOP-FOR-CODEX-REVIEW.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/truth-safety-hardening-v1/VERIFICATION-RESULTS.json"
+      ],
+      "reuseDecision": "Reuse for high-value invariants: unsupported promotion, family firewall, provisional deadlines, selected-case route.",
+      "identifiedGap": "Needs a shared failure-result schema and severity classification so discoveries become comparable audit rows."
+    },
+    {
+      "id": "stage3000_parallel_audit_controller",
+      "title": "Stage-3000 parallel audit/controller libraries",
+      "fileCount": 58,
+      "trackedCount": 58,
+      "untrackedOrScratchCount": 0,
+      "representativePaths": [
+        "scripts/assurance/emit-stage3000-parallel-audit-fixtures.ts",
+        "scripts/stage3000-parallel-audit-contracts.test.ts",
+        "scripts/stage3000-parallel-controller/run-controller.ts",
+        "scripts/stage3000-parallel-controller/stage3000-parallel-controller-contracts.test.ts",
+        "lib/eval/stage3000-parallel-audit/affected-rerun.ts",
+        "lib/eval/stage3000-parallel-audit/candidate-freeze.ts",
+        "lib/eval/stage3000-parallel-audit/checkpoint.ts",
+        "lib/eval/stage3000-parallel-audit/constants.ts",
+        "lib/eval/stage3000-parallel-audit/decision-card.ts",
+        "lib/eval/stage3000-parallel-audit/evidence-layout.ts",
+        "lib/eval/stage3000-parallel-audit/exercise-status.ts",
+        "lib/eval/stage3000-parallel-audit/fast-checks.ts",
+        "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-001/casebrain-output.json",
+        "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-001/packet.json",
+        "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-001/source.json",
+        "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-001/truth-key.json",
+        "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-002/casebrain-output.json",
+        "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-002/packet.json",
+        "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-002/source.json",
+        "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-002/truth-key.json",
+        "lib/eval/stage3000-parallel-audit/fixtures/synthetic/handlers/synthetic-handler-registry.json",
+        "lib/eval/stage3000-parallel-audit/fixtures/synthetic/shard-manifest.json",
+        "lib/eval/stage3000-parallel-audit/handler-gate.ts",
+        "lib/eval/stage3000-parallel-audit/hash-verify.ts",
+        "lib/eval/stage3000-parallel-audit/hashes.ts",
+        "lib/eval/stage3000-parallel-audit/index.ts",
+        "lib/eval/stage3000-parallel-audit/invoke.ts",
+        "lib/eval/stage3000-parallel-audit/jsonl-stream.ts",
+        "lib/eval/stage3000-parallel-audit/machine-receipt.ts",
+        "lib/eval/stage3000-parallel-audit/regression-gate.ts",
+        "lib/eval/stage3000-parallel-audit/root-cause-dedupe.ts",
+        "lib/eval/stage3000-parallel-audit/runner.ts",
+        "lib/eval/stage3000-parallel-audit/shard-manifest.ts",
+        "lib/eval/stage3000-parallel-audit/surface-availability.ts",
+        "lib/eval/stage3000-parallel-audit/synthetic.ts",
+        "lib/eval/stage3000-parallel-audit/truth-gate.ts",
+        "lib/eval/stage3000-parallel-audit/types.ts",
+        "lib/eval/stage3000-parallel-audit/units.ts",
+        "lib/eval/stage3000-parallel-controller/blinding.ts",
+        "lib/eval/stage3000-parallel-controller/checkpoint-store.ts",
+        "lib/eval/stage3000-parallel-controller/checkpoints.ts",
+        "lib/eval/stage3000-parallel-controller/constants.ts",
+        "lib/eval/stage3000-parallel-controller/controller.ts",
+        "lib/eval/stage3000-parallel-controller/diverse-v2144-generator-port.ts",
+        "lib/eval/stage3000-parallel-controller/generator-port.ts",
+        "lib/eval/stage3000-parallel-controller/hash.ts",
+        "lib/eval/stage3000-parallel-controller/ids.ts",
+        "lib/eval/stage3000-parallel-controller/index.ts",
+        "lib/eval/stage3000-parallel-controller/lineage.ts",
+        "lib/eval/stage3000-parallel-controller/manifests.ts",
+        "lib/eval/stage3000-parallel-controller/pass-gate.ts",
+        "lib/eval/stage3000-parallel-controller/paths.ts",
+        "lib/eval/stage3000-parallel-controller/receipts.ts",
+        "lib/eval/stage3000-parallel-controller/reconciliation.ts",
+        "lib/eval/stage3000-parallel-controller/rejection.ts",
+        "lib/eval/stage3000-parallel-controller/semantic-dupes.ts",
+        "lib/eval/stage3000-parallel-controller/shards.ts",
+        "lib/eval/stage3000-parallel-controller/types.ts"
+      ],
+      "reuseDecision": "Reuse for sharding, blinding, receipts, hashes, checkpoints, root-cause dedupe and machine-readable audit runs.",
+      "identifiedGap": "Needs connection to the current product canonical-state invariants before broad 3,000 reruns."
+    },
+    {
+      "id": "diverse_second_3000_v212",
+      "title": "Accepted V2.1.2 clean single-writer diverse-3000 evidence",
+      "fileCount": 457,
+      "trackedCount": 457,
+      "untrackedOrScratchCount": 0,
+      "representativePaths": [
+        "scripts/assurance/stage3000-diverse-second/audit-v1-semantic-diversity.ts",
+        "scripts/assurance/stage3000-diverse-second/build-v2-packs.ts",
+        "scripts/assurance/stage3000-diverse-second/build-v2.1-pilot-20.ts",
+        "scripts/assurance/stage3000-diverse-second/build-v2.1.1-remediation.ts",
+        "scripts/assurance/stage3000-diverse-second/build-v2.1.2-remediation.ts",
+        "scripts/assurance/stage3000-diverse-second/build-v2.1.3-remediation.ts",
+        "scripts/assurance/stage3000-diverse-second/build-v2.1.4-audit-semantics.ts",
+        "scripts/assurance/stage3000-diverse-second/build-v2.1.4.1-exact-provenance.ts",
+        "scripts/assurance/stage3000-diverse-second/build-v2.1.4.2-visible-fail-closed.ts",
+        "scripts/assurance/stage3000-diverse-second/build-v2.1.4.3-professional-semantic.ts",
+        "scripts/assurance/stage3000-diverse-second/build-v2.1.4.4-ordinary-exit-system-language.ts",
+        "scripts/assurance/stage3000-diverse-second/build-v212-acceptance-correction-manifest.ts",
+        "scripts/assurance/stage3000-diverse-second/correct-v2-integrity.ts",
+        "scripts/assurance/stage3000-diverse-second/diverse-second-bnd-mixed-replacement-contracts.ts",
+        "scripts/assurance/stage3000-diverse-second/diverse-second-wrd04-adversarial-contracts.ts",
+        "scripts/assurance/stage3000-diverse-second/finalize-stop-artefacts.ts",
+        "scripts/assurance/stage3000-diverse-second/finalize-v2-stop.ts",
+        "scripts/assurance/stage3000-diverse-second/freeze-authority-register.ts",
+        "scripts/assurance/stage3000-diverse-second/freeze-contract-and-catalogues.ts",
+        "scripts/assurance/stage3000-diverse-second/freeze-v2-research-register.ts",
+        "scripts/assurance/stage3000-diverse-second/generate-diverse-3000.ts",
+        "scripts/assurance/stage3000-diverse-second/inventory-existing-coverage.ts",
+        "scripts/assurance/stage3000-diverse-second/materialise-diverse-3000.ts",
+        "scripts/assurance/stage3000-diverse-second/prepare-v2.1.2-clean-input.ts",
+        "scripts/assurance/stage3000-diverse-second/preserve-v1-historical.ts",
+        "scripts/assurance/stage3000-diverse-second/reconcile-first3000-debt.ts",
+        "scripts/assurance/stage3000-diverse-second/remediate-and-rerun.ts",
+        "scripts/assurance/stage3000-diverse-second/run-diverse-second-execution.ts",
+        "scripts/assurance/stage3000-diverse-second/run-diverse-second-realistic-child-v2.1.2.ts",
+        "scripts/assurance/stage3000-diverse-second/run-maa-diverse-3000.ts",
+        "scripts/assurance/stage3000-diverse-second/v2-materialise-and-maa.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.2-determinism-contract.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.2-document-kind-layouts.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.2-focused-contracts.test.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.2-freeze-sequence-contracts.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.2-public-template-map.json",
+        "scripts/assurance/stage3000-diverse-second/v2.1.2-run-authority-contracts.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.2-run-authority.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.2-structured-maa-output.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.3-focused-contracts.test.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.4-focused-contracts.test.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.4-provenance-leaf-classifier.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.4.1-focused-contracts.test.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.4.2-focused-contracts.test.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.4.2-solicitor-visible-wording.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.4.3-focused-contracts.test.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.4.3-professional-semantic-wording.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.4.4-focused-contracts.test.ts",
+        "scripts/assurance/stage3000-diverse-second/v2.1.4.4-ordinary-exit-system-language.ts",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/CHILD-ACCEPTANCE-CONTRACT-V2.1.2.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/LOCKED-ACCEPTANCE-CONTRACT-RESTORE-RECEIPT.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/LOCKED-ACCEPTANCE-CONTRACT.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/audit-accounting.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/brain1-guardian-authority-receipt.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/candidate-freeze-hash.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/candidate-freeze-meta.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/CANONICAL-FREEZE-RECEIPT.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/charge-partition-3000.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/checkpoint-1000.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/checkpoint-150.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/checkpoint-20.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/checkpoint-300.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/checkpoint-3000.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/checkpoint-50.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/CLASSIFICATION.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/CODEX-V2.1.2-ACCEPTANCE-COMMIT-SCOPE-MANIFEST-DIGEST.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/CODEX-V2.1.2-ACCEPTANCE-COMMIT-SCOPE-MANIFEST.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/CODEX-V2.1.2-ACCEPTANCE-CORRECTION.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/CODEX-V2.1.2-ACCEPTANCE-CORRECTION.md",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/CODEX-V2.1.2-POST-COMMIT-SCOPE-RECONCILIATION-DIGEST.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/CODEX-V2.1.2-POST-COMMIT-SCOPE-RECONCILIATION.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/CODEX-V2.1.2-POST-COMMIT-SCOPE-RECONCILIATION.md",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/control-gap-register-361.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-execution/realistic-child-v2.1.2/control-receipt-accounting.json"
+      ],
+      "reuseDecision": "Reuse as accepted clean single-writer lineage and frozen evidence record.",
+      "identifiedGap": "Coverage limitation remains: 17/361 controls; browser not exercised; PDF lane not genuine output for all cases."
+    },
+    {
+      "id": "real_pdf_live_pilot",
+      "title": "Real-PDF live pilot v1 and authenticated-preview QA lane",
+      "fileCount": 117,
+      "trackedCount": 77,
+      "untrackedOrScratchCount": 40,
+      "representativePaths": [
+        "scripts/assurance/real-pdf-live-pilot/build-acceptance-audit.ts",
+        "scripts/assurance/real-pdf-live-pilot/build-commit-scope-manifest.ts",
+        "scripts/assurance/real-pdf-live-pilot/freeze-membership.ts",
+        "scripts/assurance/real-pdf-live-pilot/output-pdf-raster-checks.ts",
+        "scripts/assurance/real-pdf-live-pilot/pdf-materialise.ts",
+        "scripts/assurance/real-pdf-live-pilot/pilot-20-definition.ts",
+        "scripts/assurance/real-pdf-live-pilot/priority-control-map.ts",
+        "scripts/assurance/real-pdf-live-pilot/run-real-pdf-live-pilot.ts",
+        "scripts/assurance/real-pdf-live-pilot/wording-triage.ts",
+        "scripts/assurance/stage3000-diverse-second/build-v2.1-pilot-20.ts",
+        "lib/criminal/canonical-live-surface-adapter.ts",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/all-exit-matrix.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/Brain1-Guardian-comparison.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/browser-workflow-report.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-01.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-02.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-03.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-04.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-05.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-06.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-07.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-08.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-09.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-10.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-11.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-12.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-13.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-14.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-15.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-16.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-17.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-18.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-19.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/case-results/RP-20.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-01.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-02.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-03.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-04.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-05.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-06.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-07.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-08.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-09.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-10.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-11.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-12.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-13.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-14.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-15.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-16.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-17.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-18.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-19.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/bulk/receipts/RP-20.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/charge-readiness-cross-exit-matrix.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/checkpoint-20.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/checkpoint-5.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/COMMIT-SCOPE-DIGEST.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/COMMIT-SCOPE-MANIFEST.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/control-exercise-audit-24.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/control-exercise-audit-24.md",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/DECISION-CARD.md",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/deterministic-sample-rerun.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/exact-changed-file-manifest.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/FINAL-CODEX-ACCEPTANCE-CHECK.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/five-case-preflight-report.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/live-payload-capability-matrix.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/LOCKED-ACCEPTANCE-CONTRACT.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/membership-freeze-receipt.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/ordered-membership-20.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/output-pdf-raster-acceptance.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/output-pdf-raster-results.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/output-pdf-register.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/output-pdf-visual-report.md",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/per-control-exercise-summary.json"
+      ],
+      "reuseDecision": "Reuse for real local production-builder path, 20 real PDFs, wording/raster checks, and entitlement/auth preview lessons.",
+      "identifiedGap": "Scale is limited: 20 matters; authenticated HTTP/browser remains not_exercised unless the user opens/authorises session."
+    },
+    {
+      "id": "canonical_product_state_modules",
+      "title": "Canonical product state / criminal workflow modules",
+      "fileCount": 509,
+      "trackedCount": 509,
+      "untrackedOrScratchCount": 0,
+      "representativePaths": [
+        "scripts/assurance/stage3000-diverse-second/v2.1.4.2-solicitor-visible-wording.ts",
+        "scripts/chase-source-gate.test.ts",
+        "scripts/disclosure-chase-finalize.test.ts",
+        "scripts/solicitor-visible-boundary.test.ts",
+        "scripts/solicitor-visible-evidence-view.test.ts",
+        "lib/eval/master-assurance-auditor/v2/stage300/essential/solicitor-visible-inventory.ts",
+        "lib/criminal/absolute-proof-wording.ts",
+        "lib/criminal/advice-change-radar/build-advice-change-radar.ts",
+        "lib/criminal/advice-change-radar/build-matter-evidence-snapshot.ts",
+        "lib/criminal/advice-change-radar/index.ts",
+        "lib/criminal/advice-change-radar/types.ts",
+        "lib/criminal/aggressive-defense-engine.ts",
+        "lib/criminal/attribution-model.ts",
+        "lib/criminal/audit-log/audit-log-flag.ts",
+        "lib/criminal/audit-log/audit-log-labels.ts",
+        "lib/criminal/audit-log/audit-log-types.ts",
+        "lib/criminal/audit-log/build-audit-log-entry.ts",
+        "lib/criminal/audit-log/fetch-audit-log.ts",
+        "lib/criminal/audit-log/parse-audit-log-filters.ts",
+        "lib/criminal/audit-log/README.md",
+        "lib/criminal/audit-log/suggest-action-category.ts",
+        "lib/criminal/authenticated-matter-canonical.ts",
+        "lib/criminal/brief-plan/build-brief-plan.ts",
+        "lib/criminal/brief-plan/index.ts",
+        "lib/criminal/brief-plan/playbooks.ts",
+        "lib/criminal/brief-plan/types.ts",
+        "lib/criminal/build-case-summary-snippet.ts",
+        "lib/criminal/build-client-safe-explanation.ts",
+        "lib/criminal/build-from-document-units.ts",
+        "lib/criminal/bundle-client-safe-surfacing.ts",
+        "lib/criminal/bundle-completeness-score.ts",
+        "lib/criminal/bundle-completeness.ts",
+        "lib/criminal/bundle-contradiction-surfacing.ts",
+        "lib/criminal/bundle-document-signals.ts",
+        "lib/criminal/bundle-material-normalizer.ts",
+        "lib/criminal/bundle-multi-incident-surfacing.ts",
+        "lib/criminal/bundle-readiness.ts",
+        "lib/criminal/bundle-scope-surfacing.ts",
+        "lib/criminal/bundle-sequence-surfacing.ts",
+        "lib/criminal/bundle-strength-surfacing.ts",
+        "lib/criminal/bundle-triangulation-surfacing.ts",
+        "lib/criminal/bundle-truth-ledger.ts",
+        "lib/criminal/bundle-truth-types.ts",
+        "lib/criminal/canonical-finding-model.ts",
+        "lib/criminal/canonical-live-surface-adapter.ts",
+        "lib/criminal/canonical-matter-state/adapters.ts",
+        "lib/criminal/canonical-matter-state/build.ts",
+        "lib/criminal/canonical-matter-state/index.ts",
+        "lib/criminal/canonical-matter-state/schema.ts",
+        "lib/criminal/case-snapshot-adapter.ts",
+        "lib/criminal/case-state-snapshot.ts",
+        "lib/criminal/case-workflow-zones.ts",
+        "lib/criminal/charge-allegation-completeness.ts",
+        "lib/criminal/chase-source-gate.ts",
+        "lib/criminal/client-explanation/build-client-explanation.ts",
+        "lib/criminal/client-explanation/client-explanation-flag.ts",
+        "lib/criminal/client-explanation/client-explanation-sanitize.ts",
+        "lib/criminal/client-explanation/client-explanation-types.ts",
+        "lib/criminal/client-explanation/README.md",
+        "lib/criminal/client-safe-summary-compose.ts",
+        "lib/criminal/client-stress-test/build-client-stress-result.ts",
+        "lib/criminal/client-stress-test/build-client-stress-slice2.ts",
+        "lib/criminal/client-stress-test/client-stress-flag.ts",
+        "lib/criminal/client-stress-test/client-stress-sanitize.ts",
+        "lib/criminal/client-stress-test/client-stress-selection-storage.ts",
+        "lib/criminal/client-stress-test/client-stress-slice2-types.ts",
+        "lib/criminal/client-stress-test/client-stress-types.ts",
+        "lib/criminal/client-stress-test/README.md",
+        "lib/criminal/collect-wording-strings.ts",
+        "lib/criminal/compiled-bundle-segmentation.ts",
+        "lib/criminal/confidence-dashboard/build-confidence-dashboard.ts",
+        "lib/criminal/confidence-dashboard/confidence-dashboard-sanitize.ts",
+        "lib/criminal/confidence-dashboard/confidence-dashboard-types.ts",
+        "lib/criminal/confidence-dashboard/index.ts",
+        "lib/criminal/confidence-drift-engine.ts"
+      ],
+      "reuseDecision": "Reuse and harden as source of product truth; fixes should land here only when lineage proves product-root cause.",
+      "identifiedGap": "Needs explicit canonical-state audit model for evidence state, provenance family, stage, certainty ceiling and counters."
+    },
+    {
+      "id": "corpus_and_gold_set_material",
+      "title": "Corpus, gold-set and historical audit materials",
+      "fileCount": 54,
+      "trackedCount": 54,
+      "untrackedOrScratchCount": 0,
+      "representativePaths": [
+        "scripts/assurance/emit-maa-v2-stage300-new-150-control-coverage.ts",
+        "scripts/assurance/emit-maa-v2-stage3000-existing-census.ts",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/auditor-independence-report.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/brain1-guardian-blob-compare.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/capability-snapshot-summary.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/capability-snapshots-index.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/changed-file-manifest.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/checkpoint-150.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/checkpoint-20.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/checkpoint-5.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/cost-retention-report.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/DECISION-CARD.md",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/gap-close-v1/before-after-denominator-matrix.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/gap-close-v1/brain1-guardian-blob-compare.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/gap-close-v1/cause-classification-register.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/gap-close-v1/DECISION-CARD.md",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/gap-close-v1/honesty-checks.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/gap-close-v1/production-vs-adapter-vs-source-gaps.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/gap-close-v1/STOP-FOR-CODEX-REVIEW.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/gap-close-v1/verification-results.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/honesty-correction-v1/audience-distinctness-audit.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/honesty-correction-v1/casebrain-strip-ledger.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/honesty-correction-v1/DECISION-CARD.md",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/honesty-correction-v1/product-gap-register-specialty-emitters.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/honesty-correction-v1/STOP-FOR-CODEX-REVIEW.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/honesty-correction-v1/three-denominator-readiness-matrix.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/honesty-correction-v1/verification-results.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/LOCKED-ACCEPTANCE-CONTRACT.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/new-150-population-manifest.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/per-control-denominator-report.before-gap-close.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/per-control-denominator-report.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/production-vs-harness-gap-register.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/rejection-register.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/source-output-truth-hash-manifest.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/STOP-FOR-CODEX-REVIEW.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/uniqueness-near-duplicate-report.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/verification-results.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/freeze-receipt.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/LOCKED-ACCEPTANCE-CONTRACT.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/preservation/four-string-wording-disposition.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/preservation/root-cause-ownership-trace.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/preservation/V1-HASH-LOCK.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/preservation/V1-REVIEW-RECEIPT.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/STOP-FOR-CODEX-REVIEW.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/before-after-finding-map.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/brain1-guardian-blob-compare.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/candidate-freeze-receipt.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/DECISION-CARD.md",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/exact-changed-file-manifest.DIGEST.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/exact-changed-file-manifest.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/finding-code-delta-reconciliation.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/npm-build-receipt.txt",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/same-3000-regression-report.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/STOP-FOR-CODEX-REVIEW.json"
+      ],
+      "reuseDecision": "Reuse for stratification candidates and historical failure examples; do not treat generated CaseBrain output as ground truth.",
+      "identifiedGap": "Needs formal gold/holdout designation with independent truth provenance before claiming broad solicitor confidence."
+    },
+    {
+      "id": "browser_and_rendered_ui",
+      "title": "Browser/rendered UI and screenshot-oriented tooling",
+      "fileCount": 6,
+      "trackedCount": 6,
+      "untrackedOrScratchCount": 0,
+      "representativePaths": [
+        "scripts/assurance/real-pdf-live-pilot/output-pdf-raster-checks.ts",
+        "scripts/proof-map-screenshot.ts",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/browser-workflow-report.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/output-pdf-raster-acceptance.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1/output-pdf-raster-results.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/real-pdf-live-pilot-v1-historical-pre-wording-remediation/browser-workflow-report.json"
+      ],
+      "reuseDecision": "Reuse as provisional live/rendered evidence where sessions are available.",
+      "identifiedGap": "Browser lane is not a substitute for deterministic source-truth auditing and remains separate from corpus PASS."
+    }
+  ],
+  "failureTaxonomy": [
+    {
+      "code": "A",
+      "id": "extraction_failure",
+      "description": "source contains information but CaseBrain fails to extract it"
+    },
+    {
+      "code": "B",
+      "id": "semantic_role_failure",
+      "description": "text extracted but assigned wrong role"
+    },
+    {
+      "code": "C",
+      "id": "evidence_state_failure",
+      "description": "material found but service/completeness state wrong"
+    },
+    {
+      "code": "D",
+      "id": "provenance_family_failure",
+      "description": "claim receives evidence from wrong family"
+    },
+    {
+      "code": "E",
+      "id": "unsupported_promotion_failure",
+      "description": "heuristic/practice expectation becomes case fact"
+    },
+    {
+      "code": "F",
+      "id": "cross_panel_consistency_failure",
+      "description": "one canonical item receives contradictory states"
+    },
+    {
+      "code": "G",
+      "id": "workflow_stage_failure",
+      "description": "case routed through wrong procedural stage"
+    },
+    {
+      "code": "H",
+      "id": "entity_attribution_failure",
+      "description": "facts cross defendant/witness/count/exhibit boundaries"
+    },
+    {
+      "code": "I",
+      "id": "dedupe_alias_failure",
+      "description": "same issue duplicated or distinct issues merged"
+    },
+    {
+      "code": "J",
+      "id": "counter_denominator_failure",
+      "description": "visible counters have incompatible unexplained scopes"
+    },
+    {
+      "code": "K",
+      "id": "certainty_escalation_failure",
+      "description": "downstream copy exceeds source certainty"
+    },
+    {
+      "code": "L",
+      "id": "solicitor_visible_internal_language_failure",
+      "description": "internal/test/taxonomy wording leaks"
+    },
+    {
+      "code": "M",
+      "id": "ui_rendering_failure",
+      "description": "rendering hides/damages trust-critical information"
+    },
+    {
+      "code": "N",
+      "id": "stale_derived_state_failure",
+      "description": "one surface uses stale fallback/cache"
+    },
+    {
+      "code": "O",
+      "id": "source_conflict_failure",
+      "description": "conflicting documents silently collapsed"
+    },
+    {
+      "code": "P",
+      "id": "document_identity_failure",
+      "description": "wrapper/filename overdetermines doc type/completeness"
+    },
+    {
+      "code": "Q",
+      "id": "partial_processing_failure",
+      "description": "partial bundle presented as complete analysis"
+    },
+    {
+      "code": "R",
+      "id": "cross_case_leakage",
+      "description": "case A output contains case B data"
+    },
+    {
+      "code": "S",
+      "id": "repeatability_nondeterminism_failure",
+      "description": "unchanged case yields materially different truth"
+    },
+    {
+      "code": "T",
+      "id": "numerical_fidelity_failure",
+      "description": "date/time/page/count/quantity altered incorrectly"
+    },
+    {
+      "code": "U",
+      "id": "quote_fidelity_failure",
+      "description": "quote/paraphrase mismatch"
+    },
+    {
+      "code": "V",
+      "id": "prompt_injection_content_control_failure",
+      "description": "uploaded-paper instructions alter system behaviour"
+    }
+  ],
+  "severity": [
+    {
+      "level": "P0",
+      "description": "Potentially unsafe/confidentiality/fundamental truth failure; must block release until resolved or explicitly quarantined."
+    },
+    {
+      "level": "P1",
+      "description": "Serious trust/legal-meaning failure; requires root-cause review and invariant before broad claim."
+    },
+    {
+      "level": "P2",
+      "description": "Workflow/product clarity problem; fix/log without derailing P0/P1 truth work."
+    },
+    {
+      "level": "P3",
+      "description": "Cosmetic polish; route to visual redesign unless it damages meaning/trust."
+    }
+  ],
+  "historicalRegressionMap": [
+    {
+      "code": "A",
+      "id": "charge_present_but_charge_not_on_papers",
+      "invariantFamilies": [
+        "extraction_failure",
+        "charge_integrity"
+      ],
+      "severityBand": "P0/P1"
+    },
+    {
+      "code": "B",
+      "id": "offence_date_used_as_hearing_date",
+      "invariantFamilies": [
+        "semantic_role_failure",
+        "date_role_integrity"
+      ],
+      "severityBand": "P0/P1"
+    },
+    {
+      "code": "C",
+      "id": "interview_unknown_treated_missing",
+      "invariantFamilies": [
+        "evidence_state_failure",
+        "existence_vs_service"
+      ],
+      "severityBand": "P1"
+    },
+    {
+      "code": "D",
+      "id": "outstanding_transcript_became_served",
+      "invariantFamilies": [
+        "evidence_state_failure",
+        "service_status"
+      ],
+      "severityBand": "P0/P1"
+    },
+    {
+      "code": "E",
+      "id": "unsupported_phone_download_outstanding",
+      "invariantFamilies": [
+        "unsupported_promotion_failure",
+        "heuristic_firewall"
+      ],
+      "severityBand": "P1"
+    },
+    {
+      "code": "F",
+      "id": "unsupported_codefendant_unknown_male",
+      "invariantFamilies": [
+        "unsupported_promotion_failure",
+        "entity_isolation"
+      ],
+      "severityBand": "P1"
+    },
+    {
+      "code": "G",
+      "id": "cctv_inherited_phone_provenance",
+      "invariantFamilies": [
+        "provenance_family_failure",
+        "evidence_family_firewall"
+      ],
+      "severityBand": "P0/P1"
+    },
+    {
+      "code": "H",
+      "id": "first_appearance_rendered_ptph",
+      "invariantFamilies": [
+        "workflow_stage_failure",
+        "stage_routing"
+      ],
+      "severityBand": "P1"
+    },
+    {
+      "code": "I",
+      "id": "unsupported_medical_bwv_999_retraction",
+      "invariantFamilies": [
+        "unsupported_promotion_failure",
+        "heuristic_firewall"
+      ],
+      "severityBand": "P1"
+    },
+    {
+      "code": "J",
+      "id": "remains_outstanding_duplicate",
+      "invariantFamilies": [
+        "dedupe_alias_failure",
+        "wording_template"
+      ],
+      "severityBand": "P2"
+    },
+    {
+      "code": "K",
+      "id": "internal_telemetry_visible",
+      "invariantFamilies": [
+        "solicitor_visible_internal_language_failure"
+      ],
+      "severityBand": "P2/P1 if meaning damaged"
+    },
+    {
+      "code": "L",
+      "id": "internal_taxonomy_visible",
+      "invariantFamilies": [
+        "solicitor_visible_internal_language_failure"
+      ],
+      "severityBand": "P2/P1 if meaning damaged"
+    },
+    {
+      "code": "M",
+      "id": "old_empty_hearings_shell_selected_case",
+      "invariantFamilies": [
+        "ui_rendering_failure",
+        "stale_derived_state_failure"
+      ],
+      "severityBand": "P1"
+    },
+    {
+      "code": "N",
+      "id": "confirmed_hearing_date_implied_without_source",
+      "invariantFamilies": [
+        "deadline_integrity",
+        "certainty_escalation_failure"
+      ],
+      "severityBand": "P1"
+    }
+  ],
+  "machineReadableResultFormat": {
+    "requiredFields": [
+      "runId",
+      "commit",
+      "caseId",
+      "sourceFingerprint",
+      "testOrInvariantId",
+      "failureClass",
+      "severity",
+      "evidenceFamily",
+      "surface",
+      "sourceReference",
+      "expected",
+      "actual",
+      "rootCauseCluster",
+      "disposition",
+      "coverageStatus"
+    ],
+    "allowedCoverageStatuses": [
+      "evaluated",
+      "not_exercised",
+      "unavailable",
+      "unresolved",
+      "projection_only"
+    ],
+    "note": "This is Phase 1 design output, not yet a full corpus run."
+  },
+  "gaps": [
+    {
+      "id": "coverage_reporting_gap",
+      "severity": "P1",
+      "currentFact": "Accepted V2.1.2 evidence reports 17/361 controls exercised.",
+      "needed": "One canonical coverage registry that reports exercised/not_exercised/unavailable by taxonomy category and run tier.",
+      "phase": "Phase 2"
+    },
+    {
+      "id": "machine_result_schema_gap",
+      "severity": "P1",
+      "currentFact": "Existing reports use several compatible but separate STOP/receipt formats.",
+      "needed": "Shared audit result envelope: runId, commit, caseId, invariantId, taxonomy, severity, surface, sourceRef, expected, actual, rootCluster.",
+      "phase": "Phase 2"
+    },
+    {
+      "id": "canonical_state_comparator_gap",
+      "severity": "P1",
+      "currentFact": "Cross-tab bugs are caught by specific regressions and live sweeps, not yet by a general canonical-state comparator.",
+      "needed": "Programmatic comparator for Overview/Court/Papers/Client/CPS Chase/File against one canonical evidence-state model.",
+      "phase": "Phase 3"
+    },
+    {
+      "id": "gold_holdout_formalisation_gap",
+      "severity": "P1",
+      "currentFact": "There are many corpus/gold artefacts, but the next programme needs formal gold/holdout designation without using CaseBrain output as truth.",
+      "needed": "Stratified Gold 150-250 and Holdout 50-100 plan with independent truth provenance and unresolved labels.",
+      "phase": "Phase 4"
+    },
+    {
+      "id": "browser_pdf_lane_gap",
+      "severity": "P2/P1",
+      "currentFact": "Browser lane remains not_exercised in accepted V2.1.2; real-PDF pilot covers 20 real PDFs and local builders.",
+      "needed": "Rendered UI/browser representative subset after core invariants; PDF output proof separated from source PDF copies.",
+      "phase": "Phase 9"
+    },
+    {
+      "id": "security_tenant_lane_gap",
+      "severity": "P0 planned",
+      "currentFact": "Security/tenant checks exist in scattered app tests, not yet as a master-auditor lane.",
+      "needed": "Separate security auditor plan for auth, tenant isolation, signed URLs, case ID enumeration, route protection.",
+      "phase": "Phase 2/9 separate lane"
+    }
+  ],
+  "phase2EntryCriteria": [
+    "Do not run all 3,000 PDFs yet.",
+    "Create a shared audit result model, invariant registry and severity/taxonomy enums.",
+    "Wire existing source-truth and MAA receipts into the shared envelope.",
+    "Use a small development sample only until result model and coverage accounting are proven."
+  ],
+  "nonClaims": {
+    "full3000Run": false,
+    "corpusPass": false,
+    "stage3000Completion": false,
+    "programmePass": false,
+    "solicitorApproval": false,
+    "browserLaneExercised": false,
+    "globalZeroDefects": false
+  }
+}

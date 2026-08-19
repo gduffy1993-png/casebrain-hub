@@ -1,0 +1,44 @@
+[
+  {
+    "id": "coverage_reporting_gap",
+    "severity": "P1",
+    "currentFact": "Accepted V2.1.2 evidence reports 17/361 controls exercised.",
+    "needed": "One canonical coverage registry that reports exercised/not_exercised/unavailable by taxonomy category and run tier.",
+    "phase": "Phase 2"
+  },
+  {
+    "id": "machine_result_schema_gap",
+    "severity": "P1",
+    "currentFact": "Existing reports use several compatible but separate STOP/receipt formats.",
+    "needed": "Shared audit result envelope: runId, commit, caseId, invariantId, taxonomy, severity, surface, sourceRef, expected, actual, rootCluster.",
+    "phase": "Phase 2"
+  },
+  {
+    "id": "canonical_state_comparator_gap",
+    "severity": "P1",
+    "currentFact": "Cross-tab bugs are caught by specific regressions and live sweeps, not yet by a general canonical-state comparator.",
+    "needed": "Programmatic comparator for Overview/Court/Papers/Client/CPS Chase/File against one canonical evidence-state model.",
+    "phase": "Phase 3"
+  },
+  {
+    "id": "gold_holdout_formalisation_gap",
+    "severity": "P1",
+    "currentFact": "There are many corpus/gold artefacts, but the next programme needs formal gold/holdout designation without using CaseBrain output as truth.",
+    "needed": "Stratified Gold 150-250 and Holdout 50-100 plan with independent truth provenance and unresolved labels.",
+    "phase": "Phase 4"
+  },
+  {
+    "id": "browser_pdf_lane_gap",
+    "severity": "P2/P1",
+    "currentFact": "Browser lane remains not_exercised in accepted V2.1.2; real-PDF pilot covers 20 real PDFs and local builders.",
+    "needed": "Rendered UI/browser representative subset after core invariants; PDF output proof separated from source PDF copies.",
+    "phase": "Phase 9"
+  },
+  {
+    "id": "security_tenant_lane_gap",
+    "severity": "P0 planned",
+    "currentFact": "Security/tenant checks exist in scattered app tests, not yet as a master-auditor lane.",
+    "needed": "Separate security auditor plan for auth, tenant isolation, signed URLs, case ID enumeration, route protection.",
+    "phase": "Phase 2/9 separate lane"
+  }
+]

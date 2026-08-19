@@ -1,0 +1,258 @@
+{
+  "failureTaxonomy": [
+    {
+      "code": "A",
+      "id": "extraction_failure",
+      "description": "source contains information but CaseBrain fails to extract it"
+    },
+    {
+      "code": "B",
+      "id": "semantic_role_failure",
+      "description": "text extracted but assigned wrong role"
+    },
+    {
+      "code": "C",
+      "id": "evidence_state_failure",
+      "description": "material found but service/completeness state wrong"
+    },
+    {
+      "code": "D",
+      "id": "provenance_family_failure",
+      "description": "claim receives evidence from wrong family"
+    },
+    {
+      "code": "E",
+      "id": "unsupported_promotion_failure",
+      "description": "heuristic/practice expectation becomes case fact"
+    },
+    {
+      "code": "F",
+      "id": "cross_panel_consistency_failure",
+      "description": "one canonical item receives contradictory states"
+    },
+    {
+      "code": "G",
+      "id": "workflow_stage_failure",
+      "description": "case routed through wrong procedural stage"
+    },
+    {
+      "code": "H",
+      "id": "entity_attribution_failure",
+      "description": "facts cross defendant/witness/count/exhibit boundaries"
+    },
+    {
+      "code": "I",
+      "id": "dedupe_alias_failure",
+      "description": "same issue duplicated or distinct issues merged"
+    },
+    {
+      "code": "J",
+      "id": "counter_denominator_failure",
+      "description": "visible counters have incompatible unexplained scopes"
+    },
+    {
+      "code": "K",
+      "id": "certainty_escalation_failure",
+      "description": "downstream copy exceeds source certainty"
+    },
+    {
+      "code": "L",
+      "id": "solicitor_visible_internal_language_failure",
+      "description": "internal/test/taxonomy wording leaks"
+    },
+    {
+      "code": "M",
+      "id": "ui_rendering_failure",
+      "description": "rendering hides/damages trust-critical information"
+    },
+    {
+      "code": "N",
+      "id": "stale_derived_state_failure",
+      "description": "one surface uses stale fallback/cache"
+    },
+    {
+      "code": "O",
+      "id": "source_conflict_failure",
+      "description": "conflicting documents silently collapsed"
+    },
+    {
+      "code": "P",
+      "id": "document_identity_failure",
+      "description": "wrapper/filename overdetermines doc type/completeness"
+    },
+    {
+      "code": "Q",
+      "id": "partial_processing_failure",
+      "description": "partial bundle presented as complete analysis"
+    },
+    {
+      "code": "R",
+      "id": "cross_case_leakage",
+      "description": "case A output contains case B data"
+    },
+    {
+      "code": "S",
+      "id": "repeatability_nondeterminism_failure",
+      "description": "unchanged case yields materially different truth"
+    },
+    {
+      "code": "T",
+      "id": "numerical_fidelity_failure",
+      "description": "date/time/page/count/quantity altered incorrectly"
+    },
+    {
+      "code": "U",
+      "id": "quote_fidelity_failure",
+      "description": "quote/paraphrase mismatch"
+    },
+    {
+      "code": "V",
+      "id": "prompt_injection_content_control_failure",
+      "description": "uploaded-paper instructions alter system behaviour"
+    }
+  ],
+  "severity": [
+    {
+      "level": "P0",
+      "description": "Potentially unsafe/confidentiality/fundamental truth failure; must block release until resolved or explicitly quarantined."
+    },
+    {
+      "level": "P1",
+      "description": "Serious trust/legal-meaning failure; requires root-cause review and invariant before broad claim."
+    },
+    {
+      "level": "P2",
+      "description": "Workflow/product clarity problem; fix/log without derailing P0/P1 truth work."
+    },
+    {
+      "level": "P3",
+      "description": "Cosmetic polish; route to visual redesign unless it damages meaning/trust."
+    }
+  ],
+  "historicalRegressionMap": [
+    {
+      "code": "A",
+      "id": "charge_present_but_charge_not_on_papers",
+      "invariantFamilies": [
+        "extraction_failure",
+        "charge_integrity"
+      ],
+      "severityBand": "P0/P1"
+    },
+    {
+      "code": "B",
+      "id": "offence_date_used_as_hearing_date",
+      "invariantFamilies": [
+        "semantic_role_failure",
+        "date_role_integrity"
+      ],
+      "severityBand": "P0/P1"
+    },
+    {
+      "code": "C",
+      "id": "interview_unknown_treated_missing",
+      "invariantFamilies": [
+        "evidence_state_failure",
+        "existence_vs_service"
+      ],
+      "severityBand": "P1"
+    },
+    {
+      "code": "D",
+      "id": "outstanding_transcript_became_served",
+      "invariantFamilies": [
+        "evidence_state_failure",
+        "service_status"
+      ],
+      "severityBand": "P0/P1"
+    },
+    {
+      "code": "E",
+      "id": "unsupported_phone_download_outstanding",
+      "invariantFamilies": [
+        "unsupported_promotion_failure",
+        "heuristic_firewall"
+      ],
+      "severityBand": "P1"
+    },
+    {
+      "code": "F",
+      "id": "unsupported_codefendant_unknown_male",
+      "invariantFamilies": [
+        "unsupported_promotion_failure",
+        "entity_isolation"
+      ],
+      "severityBand": "P1"
+    },
+    {
+      "code": "G",
+      "id": "cctv_inherited_phone_provenance",
+      "invariantFamilies": [
+        "provenance_family_failure",
+        "evidence_family_firewall"
+      ],
+      "severityBand": "P0/P1"
+    },
+    {
+      "code": "H",
+      "id": "first_appearance_rendered_ptph",
+      "invariantFamilies": [
+        "workflow_stage_failure",
+        "stage_routing"
+      ],
+      "severityBand": "P1"
+    },
+    {
+      "code": "I",
+      "id": "unsupported_medical_bwv_999_retraction",
+      "invariantFamilies": [
+        "unsupported_promotion_failure",
+        "heuristic_firewall"
+      ],
+      "severityBand": "P1"
+    },
+    {
+      "code": "J",
+      "id": "remains_outstanding_duplicate",
+      "invariantFamilies": [
+        "dedupe_alias_failure",
+        "wording_template"
+      ],
+      "severityBand": "P2"
+    },
+    {
+      "code": "K",
+      "id": "internal_telemetry_visible",
+      "invariantFamilies": [
+        "solicitor_visible_internal_language_failure"
+      ],
+      "severityBand": "P2/P1 if meaning damaged"
+    },
+    {
+      "code": "L",
+      "id": "internal_taxonomy_visible",
+      "invariantFamilies": [
+        "solicitor_visible_internal_language_failure"
+      ],
+      "severityBand": "P2/P1 if meaning damaged"
+    },
+    {
+      "code": "M",
+      "id": "old_empty_hearings_shell_selected_case",
+      "invariantFamilies": [
+        "ui_rendering_failure",
+        "stale_derived_state_failure"
+      ],
+      "severityBand": "P1"
+    },
+    {
+      "code": "N",
+      "id": "confirmed_hearing_date_implied_without_source",
+      "invariantFamilies": [
+        "deadline_integrity",
+        "certainty_escalation_failure"
+      ],
+      "severityBand": "P1"
+    }
+  ]
+}
