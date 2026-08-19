@@ -7,6 +7,7 @@ import type {
   SourceTruthFingerprint,
 } from "@/lib/criminal/source-truth-guardian/types";
 import { CRIMINAL_BRIEF_PLAYBOOKS } from "./playbooks";
+import { familySupport, type ChaseGateFamily } from "@/lib/criminal/chase-source-gate";
 import type {
   BriefPlanEvidenceItem,
   BuildCriminalBriefPlanInput,
@@ -14,6 +15,34 @@ import type {
   CriminalBriefPlanProfile,
   MaterialEvidenceBucket,
 } from "./types";
+
+function playbookLineSourceBacked(label: string, bundleText: string): boolean {
+  const t = label.toLowerCase();
+  const checks: Array<{ re: RegExp; family: ChaseGateFamily }> = [
+    { re: /\binterview\b|transcript|\broti\b/, family: "interview" },
+    { re: /\bbwv\b|body[-\s]?worn/, family: "bwv" },
+    { re: /\bcctv\b|footage|master\s+footage/, family: "cctv" },
+    { re: /\b999\b|\bcad\b|control[-\s]?room/, family: "cad_999" },
+    { re: /\bmedical\b|hospital|fme|injury/, family: "medical" },
+    { re: /\bphone\b|extraction|handset|subscriber|device\s+download/, family: "phone" },
+    { re: /\bretraction\b|further\s+statement/, family: "retraction_statement" },
+    // Do not treat bare "PACE" as custody support — that re-admits interview playbook lines.
+    { re: /\bcustody\b|detention|safeguard|risk\s+assessment/, family: "custody" },
+  ];
+  const matched = checks.filter(({ re }) => re.test(t));
+  if (!matched.length) return true;
+  // If the line names interview/transcript, require interview to be source-backed
+  // even when another family (e.g. custody) is also named.
+  if (/\binterview\b|transcript|\broti\b/.test(t) && familySupport("interview", bundleText) === "absent") {
+    return false;
+  }
+  return matched.some(({ family }) => familySupport(family, bundleText) !== "absent");
+}
+
+function filterPlaybookLines(lines: string[], bundleText: string): string[] {
+  if (!bundleText.trim()) return lines;
+  return lines.filter((line) => playbookLineSourceBacked(line, bundleText));
+}
 
 function compact(text: string): string {
   return text.replace(/\s+/g, " ").trim();
@@ -174,6 +203,14 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
   });
   const playbook = CRIMINAL_BRIEF_PLAYBOOKS[profile];
   const buckets = bucketMaterials(ledger?.materials ?? []);
+  const backedMissing = filterPlaybookLines(playbook.missingMaterial, bundleText);
+  const backedChaseTemplates = filterPlaybookLines(playbook.chaseTemplates, bundleText);
+  const filteredChaseAngle = filterPlaybookLines([playbook.safeWording.chase], bundleText);
+  const backedChaseAngle =
+    filteredChaseAngle[0] ??
+    (backedMissing.length
+      ? `The defence asks the court to record that ${backedMissing.slice(0, 2).join(" and ")} remain outstanding.`
+      : "The defence asks the court to record that outstanding source material remains outstanding.");
 
   const servedEvidence = uniqueEvidence(buckets.served.map(toEvidenceItem), 24);
   const limitedEvidence = uniqueEvidence(
@@ -188,7 +225,7 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
     [
       ...buckets.missing.map(toEvidenceItem),
       ...(input.missingMaterial ?? []).map(missingLabelToEvidenceItem),
-      ...playbook.missingMaterial.map(missingLabelToEvidenceItem),
+      ...backedMissing.map(missingLabelToEvidenceItem),
     ],
     24,
   );
@@ -206,7 +243,7 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
     missingEvidence,
     todayAngle: playbook.safeWording.today,
     summaryAngle: playbook.safeWording.summary,
-    chaseAngle: playbook.safeWording.chase,
+    chaseAngle: backedChaseAngle,
     forbiddenTopics: [...new Set([...forbiddenTopicsFor(profile, fingerprint), ...playbook.doNotOverstate])],
     requiredOutputItems: {
       today: [
@@ -215,7 +252,7 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
         ...contradictionRequired,
       ],
       summary: [playbook.safeWording.summary, ...playbook.opportunities.slice(0, 2), ...contradictionRequired],
-      chase: [playbook.safeWording.chase, ...playbook.chaseTemplates.slice(0, 3)],
+      chase: [backedChaseAngle, ...backedChaseTemplates.slice(0, 3)],
     },
     playbookId: playbook.id,
     fingerprint,

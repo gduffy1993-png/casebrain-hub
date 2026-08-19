@@ -63,8 +63,7 @@
   ],
   "expectedChaseItems": [
     "Body-worn video (BWV)",
-    "Interview recording / transcript",
-    "Complainant MG11"
+    "Full custody record"
   ],
   "expectedSendability": "provisional_check_source",
   "mustNotSayGlobal": [

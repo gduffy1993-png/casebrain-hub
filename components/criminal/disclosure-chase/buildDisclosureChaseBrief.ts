@@ -922,6 +922,17 @@ function confirmNoneDisclosureItem(
 }
 
 function gateFamiliesForItem(item: DisclosureChaseItem): ChaseGateFamily[] {
+  const hay = `${item.label}\n${item.draftChaseWording}\n${item.whyItMatters}\n${(item.mergedFrom ?? []).join("\n")}`;
+  if (item.familyId === "interview") {
+    const wantsInterview = /\binterview\b|transcript|\broti\b/i.test(hay);
+    const wantsCustody = /\bcustody|detention|safeguard|\bpace\b|risk\s*assessment/i.test(hay);
+    const gates: ChaseGateFamily[] = [];
+    if (wantsInterview) gates.push("interview");
+    if (wantsCustody) gates.push("custody");
+    // Pure legacy interview family with only custody cues → custody gate only.
+    if (!gates.length) gates.push("custody");
+    return gates;
+  }
   const mapped = GATE_FAMILY_MAP[item.familyId];
   if (mapped) return [mapped];
   const probe = `${item.label} ${item.draftChaseWording} ${item.whyItMatters}`;
@@ -946,17 +957,35 @@ function gateItemsAgainstSource(
       out.push(item);
       continue;
     }
+    const supports = families.map((gateFamily) => ({
+      gateFamily,
+      support: familySupport(gateFamily, bundleText),
+    }));
+    // Custody+interview blend cards: keep when any mapped family is source-backed.
+    // Pure single-family cards still require that family.
+    const orMode = item.familyId === "interview" && families.length > 1;
     let drop = false;
     let replaced: DisclosureChaseItem | null = null;
-    for (const gateFamily of families) {
-      const support = familySupport(gateFamily, bundleText);
-      if (support === "absent") {
+    if (orMode) {
+      if (supports.every((s) => s.support === "absent")) {
         drop = true;
-        break;
+      } else if (
+        supports.some((s) => s.support === "negated") &&
+        !supports.some((s) => s.support === "mentioned")
+      ) {
+        const negated = supports.find((s) => s.support === "negated")!;
+        replaced = confirmNoneDisclosureItem(item, negated.gateFamily);
       }
-      if (support === "negated") {
-        replaced = confirmNoneDisclosureItem(item, gateFamily);
-        break;
+    } else {
+      for (const { gateFamily, support } of supports) {
+        if (support === "absent") {
+          drop = true;
+          break;
+        }
+        if (support === "negated") {
+          replaced = confirmNoneDisclosureItem(item, gateFamily);
+          break;
+        }
       }
     }
     if (drop) continue;
@@ -1386,12 +1415,38 @@ function canonicalLedgerMaterial(
     };
   }
   if (familyId === "interview" && /\bcustody|pace|detention|safeguard/i.test(displayLine)) {
+    // Source-gate interview support using the line itself is not enough — callers must
+    // pass source-backed interview text. Prefer custody-only when the only interview
+    // cues are playbook blend phrases without an explicit interview recording/transcript ask
+    // that is independently established on the same line as a custody extract fact.
+    const explicitInterviewAsk =
+      /\binterview\s+recording\b|\binterview\s+transcript\b|\bpace\s+interview\b|\broti\b/i.test(displayLine) &&
+      !/\bfull custody and interview records\b/i.test(displayLine);
+    if (explicitInterviewAsk) {
+      return {
+        label: "Full custody record / PACE material",
+        anchor: "MG6/MG6C schedule — custody record extract only",
+        whyItMatters:
+          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+        draftChaseWording:
+          "Please provide the full custody record, detention log, risk assessment, safeguards checklist and interview recording/transcript, or confirm why any item is unavailable.",
+      };
+    }
     return {
-      label: "Full custody record / PACE material",
+      label: "Full custody record",
       anchor: "MG6/MG6C schedule — custody record extract only",
-      whyItMatters: "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+      whyItMatters:
+        "Custody material is referred to in limited form — chase the full record before assessing safeguards.",
       draftChaseWording:
-        "Please provide the full custody record, detention log, risk assessment, safeguards checklist and interview recording/transcript, or confirm why any item is unavailable.",
+        "Please provide the full custody record, detention log, risk assessment and safeguards checklist, or confirm why any item is unavailable.",
+    };
+  }
+  if (familyId === "interview") {
+    return {
+      label: "Interview recording / transcript",
+      whyItMatters: "Interview recording/transcript is not safely confirmed on the papers — chase the source before relying on any interview account.",
+      draftChaseWording:
+        "Please provide the interview recording/transcript, or confirm in writing why it is not available.",
     };
   }
   return { label: formatDisplayLabelCasing(displayLine) };

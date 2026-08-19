@@ -178,17 +178,40 @@ describe("source truth guardian", () => {
       battleboard: null,
       snapshotMissing: [
         { label: "Body Worn Video (BWV)", status: "outstanding" },
-        { label: "Interview Recording", status: "outstanding" },
       ],
       bundleText: custodyBundle,
     });
 
     const labels = chase.items.map((item) => item.label).join("\n");
+    const wording = chase.items.map((item) => item.draftChaseWording).join("\n");
     expect(labels).toMatch(/Body-worn video \(BWV\)/i);
-    expect(labels).toMatch(/Full custody record \/ PACE material/i);
+    expect(labels).toMatch(/Full custody record/i);
+    expect(labels).not.toMatch(/Interview recording \/ transcript/i);
+    expect(wording).not.toMatch(/interview recording\/transcript/i);
     expect(labels).not.toMatch(/BWV reference \| 7 \|/i);
     expect(labels).not.toMatch(/I activated BWV at the scene/i);
     expect(labels).not.toMatch(/referred to on the schedule but not attached/i);
+  });
+
+  it("opposite direction: source-backed outstanding interview remains chaseable with custody", () => {
+    const chase = buildDisclosureChaseBrief({
+      caseId: "CB-FRESH-002-interview",
+      caseTitle: "Jordan",
+      clientLabel: "Jordan",
+      allegation: "Assault emergency worker",
+      stage: "PTPH",
+      hearingStatus: "Listed",
+      hearingDateIso: "2026-03-12T10:00:00",
+      bundleHealth: "Partial",
+      positionStatus: "Not recorded",
+      battleboard: null,
+      bundleText: [
+        custodyBundle,
+        "PACE interview was conducted. Interview recording/transcript remains outstanding.",
+      ].join("\n"),
+    });
+    const text = chase.items.map((item) => `${item.label}\n${item.draftChaseWording}`).join("\n");
+    expect(text).toMatch(/interview recording|transcript|Full custody record \/ PACE material/i);
   });
 
   it("does not attach phone/source-export provenance to CCTV chase items", () => {

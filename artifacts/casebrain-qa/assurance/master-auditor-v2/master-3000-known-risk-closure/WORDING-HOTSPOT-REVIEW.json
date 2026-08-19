@@ -1,0 +1,166 @@
+[
+  {
+    "hotspot": "mg6_unused",
+    "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+    "note": "MG6 unused clarification commonly appears where MG6C schedules exist; concrete MG6C rows should remain visible (Phase 9 MG6C fix). Generic clarification alone is acceptable when schedule chrome is present.",
+    "rows": [
+      {
+        "caseId": "sc-0000b",
+        "hitCount": 1,
+        "labels": [
+          "MG6 / unused schedule clarification"
+        ],
+        "sourceMentionsFamily": true
+      },
+      {
+        "caseId": "sc-00023",
+        "hitCount": 1,
+        "labels": [
+          "MG6 / unused schedule clarification"
+        ],
+        "sourceMentionsFamily": true
+      },
+      {
+        "caseId": "crown-court-patterson",
+        "hitCount": 0,
+        "labels": [],
+        "sourceMentionsFamily": false
+      }
+    ],
+    "supportedCount": 2,
+    "unsupportedCount": 0
+  },
+  {
+    "hotspot": "exhibit_mapping",
+    "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+    "note": "sc-0000e continuity/lab outstanding is source-backed; chase family label uses generic Exhibit mapping/provenance chrome. Not unsupported promotion. Optional later tightening: preserve concrete continuity labels over generic exhibit family titles.",
+    "rows": [
+      {
+        "caseId": "s18-charge-reduction-jordan-clarke",
+        "hitCount": 2,
+        "labels": [
+          "CCTV Continuity / provenance",
+          "Exhibit mapping / provenance"
+        ],
+        "sourceMentionsFamily": true
+      },
+      {
+        "caseId": "sc-0000b",
+        "hitCount": 1,
+        "labels": [
+          "Exhibit mapping / provenance"
+        ],
+        "sourceMentionsFamily": true
+      },
+      {
+        "caseId": "sc-0000e",
+        "hitCount": 1,
+        "labels": [
+          "Exhibit mapping / provenance"
+        ],
+        "sourceMentionsFamily": false
+      }
+    ],
+    "supportedCount": 2,
+    "unsupportedCount": 0
+  },
+  {
+    "hotspot": "cctv_full_window",
+    "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+    "note": "Recurrence appears source-backed on sampled matters.",
+    "rows": [
+      {
+        "caseId": "crown-court-patterson",
+        "hitCount": 1,
+        "labels": [
+          "CCTV full window / master footage"
+        ],
+        "sourceMentionsFamily": true
+      },
+      {
+        "caseId": "fictional-theft-ashleigh-merritt",
+        "hitCount": 1,
+        "labels": [
+          "CCTV full window / master footage"
+        ],
+        "sourceMentionsFamily": true
+      },
+      {
+        "caseId": "sc-0000e",
+        "hitCount": 1,
+        "labels": [
+          "CCTV full window / master footage"
+        ],
+        "sourceMentionsFamily": true
+      }
+    ],
+    "supportedCount": 3,
+    "unsupportedCount": 0
+  },
+  {
+    "hotspot": "bwv",
+    "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+    "note": "Recurrence appears source-backed on sampled matters.",
+    "rows": [
+      {
+        "caseId": "cb-fresh-002-jordan-hale",
+        "hitCount": 1,
+        "labels": [
+          "Body-worn video (BWV)"
+        ],
+        "sourceMentionsFamily": true
+      },
+      {
+        "caseId": "fictional-theft-ashleigh-merritt",
+        "hitCount": 1,
+        "labels": [
+          "Body-worn video (BWV)"
+        ],
+        "sourceMentionsFamily": true
+      },
+      {
+        "caseId": "sc-00015",
+        "hitCount": 1,
+        "labels": [
+          "Body-worn video (BWV)"
+        ],
+        "sourceMentionsFamily": true
+      }
+    ],
+    "supportedCount": 3,
+    "unsupportedCount": 0
+  },
+  {
+    "hotspot": "cad_999",
+    "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+    "note": "Recurrence appears source-backed on sampled matters.",
+    "rows": [
+      {
+        "caseId": "crown-court-patterson",
+        "hitCount": 1,
+        "labels": [
+          "CAD / 999 audio / control-room material"
+        ],
+        "sourceMentionsFamily": true
+      },
+      {
+        "caseId": "fictional-theft-ashleigh-merritt",
+        "hitCount": 1,
+        "labels": [
+          "CAD / 999 audio / control-room material"
+        ],
+        "sourceMentionsFamily": true
+      },
+      {
+        "caseId": "sc-00015",
+        "hitCount": 1,
+        "labels": [
+          "CAD / 999 audio / control-room material"
+        ],
+        "sourceMentionsFamily": true
+      }
+    ],
+    "supportedCount": 3,
+    "unsupportedCount": 0
+  }
+]

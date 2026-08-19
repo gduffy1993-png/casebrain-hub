@@ -17,6 +17,7 @@ export type ChaseGateFamily =
   | "cad_999"
   | "medical"
   | "interview"
+  | "custody"
   | "mg6_unused"
   | "phone"
   | "forensic"
@@ -30,7 +31,11 @@ const MENTION_RES: Record<ChaseGateFamily, RegExp> = {
   bwv: /\bbwv\b|body[-\s]?worn/i,
   cad_999: /\b999\b|\bcad\b|command\s+(?:and\s+)?(?:control|dispatch)|control[-\s]?room\s+log|dispatch\s+log|emergency\s+call/i,
   medical: /\bmedical\b|hospital|a\s*&\s*e\b|ambulance|paramedic|\bgp\s+records?\b|\bfme\b|pathology|injury\s+report/i,
-  interview: /\binterview\b|\bpace\b|custody\s+record/i,
+  // Custody/PACE extract alone must not count as interview mention (Jordan Hale class).
+  interview:
+    /\binterview(?:s|ing)?\b|\b(?:interview\s+)?transcript\b|\broti\b|\bvisually\s+recorded\s+interview\b|\bpace\s+interview\b/i,
+  custody:
+    /\bcustody\s+record\b|\bdetention\b|\bsafeguards?\b|\brisk\s+assessment\b|\bcustody\s+extract\b|\bpace\s+(?:clock|safeguard|code)\b/i,
   mg6_unused: /\bmg6\b|unused\s+material|disclosure\s+schedule|schedule\s+of\s+(?:unused|non[-\s]?sensitive)/i,
   phone: /\bphone\b|\bmobile\b|handset|device\s+download|device\s*\/\s*login|login\s+audit|ip\s*\/\s*access|\bsim\s*(?:card|number|serial)\b|\bimei\b|subscriber|phone\s+attribution|phone\s+extraction/i,
   forensic: /forensic|\bdna\b|fingerprint|\bswab\b/i,
@@ -46,6 +51,7 @@ const NEGATION_RES: Record<ChaseGateFamily, RegExp> = {
   cad_999: /no\s+999\s+call|no\s+cad\s+(?:log|record|entry)|999\s+call\s+not\s+(?:made|available)/i,
   medical: /no\s+medical\s+(?:evidence|records?|notes?|report|treatment)|did\s+not\s+(?:seek|require)\s+medical/i,
   interview: /no\s+interview\s+(?:was\s+)?(?:conducted|held)|declined\s+interview|interview\s+not\s+(?:conducted|recorded)/i,
+  custody: /no\s+custody\s+record|custody\s+record\s+(?:is|was)?\s*not\s+(?:available|served|prepared)/i,
   mg6_unused: /no\s+(?:mg6|unused\s+material|disclosure\s+schedule)\s+(?:exists|available|served|prepared)/i,
   phone: /no\s+(?:phone|mobile|handset|device)\s+(?:was\s+)?(?:seized|recovered|examined)/i,
   forensic: /no\s+forensic\s+(?:evidence|material|examination)|no\s+dna\s+(?:was\s+)?(?:recovered|found|obtained)/i,
@@ -75,6 +81,7 @@ const FAMILY_DISPLAY: Record<ChaseGateFamily, string> = {
   cad_999: "CAD/999 material",
   medical: "medical evidence",
   interview: "interview material",
+  custody: "custody / PACE material",
   mg6_unused: "MG6/unused material",
   phone: "phone/device material",
   forensic: "forensic material",
@@ -111,8 +118,20 @@ export function gateChaseLine(line: string, sourceText: string | null | undefine
   const fams = familiesInText(line);
   if (!fams.length) return { action: "keep" };
 
-  for (const family of fams) {
-    const support = familySupport(family, sourceText);
+  const supports = fams.map((family) => ({ family, support: familySupport(family, sourceText) }));
+  const orMode = fams.includes("interview") && fams.includes("custody");
+  if (orMode) {
+    if (supports.every((s) => s.support === "absent")) {
+      return { action: "drop", family: "interview" };
+    }
+    if (supports.some((s) => s.support === "negated") && !supports.some((s) => s.support === "mentioned")) {
+      const negated = supports.find((s) => s.support === "negated")!;
+      return { action: "replace", family: negated.family, replacement: confirmNoneLine(negated.family) };
+    }
+    return { action: "keep" };
+  }
+
+  for (const { family, support } of supports) {
     if (support === "negated") {
       return { action: "replace", family, replacement: confirmNoneLine(family) };
     }
@@ -184,10 +203,26 @@ export function gateProseAgainstSource(text: string, sourceText: string | null |
 
   const mentioned: ChaseGateFamily[] = [];
   const negated: ChaseGateFamily[] = [];
+  const absent: ChaseGateFamily[] = [];
   for (const family of fams) {
     const support = familySupport(family, sourceText);
     if (support === "mentioned") mentioned.push(family);
     else if (support === "negated") negated.push(family);
+    else absent.push(family);
+  }
+
+  let gatedText = text;
+  // Strip unsupported interview asks from custody-backed prose (do not invent interview chases).
+  if (absent.includes("interview") && mentioned.includes("custody")) {
+    gatedText = gatedText
+      .replace(/\s*and interview recording\/transcript/gi, "")
+      .replace(/\s*and interview records/gi, "")
+      .replace(/,?\s*interview recording\/transcript,?\s*/gi, "")
+      .replace(/\s*or interview fairness/gi, "")
+      .replace(/\s*\/\s*PACE material/gi, "")
+      .replace(/\bFull custody record\b/gi, "Full custody record")
+      .replace(/\s{2,}/g, " ")
+      .trim();
   }
 
   const confirmParts = negated
@@ -199,7 +234,7 @@ export function gateProseAgainstSource(text: string, sourceText: string | null |
     return PROVISIONAL_NO_FAMILIES;
   }
 
-  const conditional = text.match(/^(.*?\bconditional on)\s+(.+)$/i);
+  const conditional = gatedText.match(/^(.*?\bconditional on)\s+(.+)$/i);
   if (conditional) {
     const labels = mentioned.map((f) => familyDisplayName(f));
     const lead = conditional[1].trim();
@@ -207,6 +242,6 @@ export function gateProseAgainstSource(text: string, sourceText: string | null |
     return confirmParts.length ? `${gated} ${confirmParts.join(" ")}` : gated;
   }
 
-  if (confirmParts.length) return `${text} ${confirmParts.join(" ")}`;
-  return text;
+  if (confirmParts.length) return `${gatedText} ${confirmParts.join(" ")}`;
+  return gatedText;
 }

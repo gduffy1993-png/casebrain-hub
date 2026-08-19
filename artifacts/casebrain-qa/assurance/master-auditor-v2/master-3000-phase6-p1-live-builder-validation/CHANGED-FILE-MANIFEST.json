@@ -1,24 +1,24 @@
 {
   "schemaVersion": "master3000-phase6-changed-file-manifest@1.0.0",
-  "generatedAt": "2026-08-19T18:35:09.717Z",
+  "generatedAt": "2026-08-19T19:20:32.661Z",
   "selfHashStatus": "excluded_from_files_array_self_referential",
   "files": [
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase6-p1-live-builder-validation/361-CONTROL-COVERAGE-MAP-AFTER.json",
-      "sha256": "b938c05636e21dde6aa51550c65486d4be3cfa4f72bb0011cc413576fa1aa94b",
+      "sha256": "87d8684d9f65f040f1ecf1cf23854d9ce31c1ec0fc2ec8b6c5668ab0c4b9bb35",
       "byteLength": 196735,
       "classification": "phase6_artifact"
     },
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase6-p1-live-builder-validation/DECISION-CARD.md",
-      "sha256": "7a3a236f3498eaa676d1cf0a85629782587c83001191da3e71b9d4bc8ff56f37",
+      "sha256": "8857a3207ffb40a482b7284b6f3669bf9f86eb0e912ee01e8be75185764657eb",
       "byteLength": 1603,
       "classification": "phase6_artifact"
     },
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase6-p1-live-builder-validation/P1-CLUSTER-LIVE-VALIDATION.json",
-      "sha256": "c4c40443354990342e4211371fc913c154b0ea571867ea48ceb56fdde717e986",
-      "byteLength": 674561,
+      "sha256": "dfc4821db6089c67cc9c1f94c3baa8b511bfa19058e132c5f8f9fb91902a440f",
+      "byteLength": 673934,
       "classification": "phase6_artifact"
     },
     {
@@ -29,14 +29,14 @@
     },
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase6-p1-live-builder-validation/PHASE6-LIVE-BUILDER-AUDIT-RESULTS.json",
-      "sha256": "8b23424e1cad5169b82b2fdd39faab0d6a3185a7cd674503266451a8fc39566d",
-      "byteLength": 200121,
+      "sha256": "442f52c0ef1bbc493892578a8db2faf138fe55d87c49b573dda228c46cb2894a",
+      "byteLength": 199104,
       "classification": "phase6_artifact"
     },
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase6-p1-live-builder-validation/PHASE6-OBSERVATION-CLUSTERS.json",
-      "sha256": "f60311d91ccc365680d9a04bd0f9708a29b170a504e7fdda331a8f82e96757ef",
-      "byteLength": 1298,
+      "sha256": "d2950fad88a06c5b3980df13c72268369e6072dbfa2586ebe9a2884b6555810f",
+      "byteLength": 452,
       "classification": "phase6_artifact"
     },
     {
@@ -47,8 +47,8 @@
     },
     {
       "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase6-p1-live-builder-validation/STOP-FOR-CODEX-REVIEW.json",
-      "sha256": "e8441a956316f7cabe0d8e1a21e4eb36af3e8d3f54f9f394ae81840d8e7db98a",
-      "byteLength": 5079,
+      "sha256": "82ce0c73a49ef24abb463e3f141cdd4a9ab0d20f75346421c235a2340c2a3440",
+      "byteLength": 4505,
       "classification": "phase6_artifact"
     },
     {
@@ -71,8 +71,8 @@
     },
     {
       "path": "scripts/master3000-live-builder-validation.test.ts",
-      "sha256": "29a1b41917ce964a9a72e1061dbf82e6e156a7ef8ebf0d29257ae75c37ca99c2",
-      "byteLength": 6154,
+      "sha256": "acf0fa1180859f7e739a11490ecc2f04538c584834eb1a99d5fe6f46ed0d08c0",
+      "byteLength": 8683,
       "classification": "contract_or_emit_script"
     }
   ]

@@ -1,0 +1,317 @@
+{
+  "fullChromiumPathExercised": true,
+  "mode": "offline_html_surfaces_playwright",
+  "matterCount": 14,
+  "surfaces": [
+    "Overview",
+    "Court",
+    "Papers",
+    "Client Summary",
+    "CPS Chase",
+    "File"
+  ],
+  "results": [
+    {
+      "caseId": "cb-fresh-002-jordan-hale",
+      "tags": [
+        "bwv",
+        "outstanding_custody",
+        "ptph"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    },
+    {
+      "caseId": "fixture-fa",
+      "tags": [
+        "first_appearance",
+        "clean"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    },
+    {
+      "caseId": "fixture-multi",
+      "tags": [
+        "multi_defendant",
+        "multi_count"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    },
+    {
+      "caseId": "crown-court-patterson",
+      "tags": [
+        "corpus"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    },
+    {
+      "caseId": "fictional-theft-ashleigh-merritt",
+      "tags": [
+        "corpus"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    },
+    {
+      "caseId": "s18-charge-reduction-jordan-clarke",
+      "tags": [
+        "corpus"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    },
+    {
+      "caseId": "sc-0000b",
+      "tags": [
+        "corpus"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    },
+    {
+      "caseId": "sc-0000d",
+      "tags": [
+        "corpus"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    },
+    {
+      "caseId": "sc-0000e",
+      "tags": [
+        "corpus"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    },
+    {
+      "caseId": "sc-00015",
+      "tags": [
+        "corpus"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    },
+    {
+      "caseId": "sc-00023",
+      "tags": [
+        "corpus"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    },
+    {
+      "caseId": "sc-0002e",
+      "tags": [
+        "corpus"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    },
+    {
+      "caseId": "sc-00046",
+      "tags": [
+        "corpus"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    },
+    {
+      "caseId": "cb-fresh-001-taylor-brookes",
+      "tags": [
+        "corpus"
+      ],
+      "surfacesExercised": [
+        "overview",
+        "court",
+        "papers",
+        "client",
+        "chase",
+        "file"
+      ],
+      "identityOk": true,
+      "defendantOk": true,
+      "horizontalOverflow": false,
+      "criticalWarningVisible": true,
+      "staleStateAfterSwitch": false,
+      "truthRenderMismatch": false,
+      "emptyShell": false
+    }
+  ],
+  "truthRenderMismatches": 0,
+  "overflowCount": 0,
+  "staleSwitchCount": 0,
+  "note": "Chromium exercised builder-backed HTML packs for six workflows. Not a substitute for authenticated production app session testing."
+}

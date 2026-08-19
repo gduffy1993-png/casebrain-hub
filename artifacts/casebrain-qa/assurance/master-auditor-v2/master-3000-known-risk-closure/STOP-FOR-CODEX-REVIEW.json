@@ -1,0 +1,523 @@
+{
+  "schemaVersion": "master3000-known-risk-closure-stop@1.0.0",
+  "generatedAt": "2026-08-19T19:19:17.026Z",
+  "status": "KNOWN_RISK_CLOSURE_COMPLETE__NO_SCALE_RUN",
+  "commit": "5d61a9acd490b2a8244b63c41ec07a26f3df0a7f",
+  "commitMetadata": {
+    "certifiedCommit": "5d61a9acd490b2a8244b63c41ec07a26f3df0a7f",
+    "phase9ContentCheckpoint": "9675da3c48d02074ff09fe96d9d000fc29b578d0",
+    "note": "certifiedCommit is the Known-Risk Closure content checkpoint SHA this artefact set certifies (on-branch). A follow-up stamp commit may exist solely to persist that SHA inside the artefact files. Known-risk closure after Phase 9. No 150/500/1000/3000 run."
+  },
+  "issuesInvestigated": [
+    {
+      "id": "JORDAN-HALE-INTERVIEW-AMBIGUITY",
+      "sourceReview": {
+        "interviewMentionedInSource": false,
+        "custodyMentioned": true,
+        "bwvMentioned": true,
+        "note": "Independent source review: no interview recording/transcript language. BWV referred-only. Custody extract/full record outstanding. No complainant MG11."
+      },
+      "liveAfterFix": {
+        "labels": [
+          "Body-worn video (BWV)",
+          "Full custody record",
+          "MG6 / unused schedule clarification",
+          "Outstanding source material (Charge sheet, MG5 case summary, Officer MG11 statement)"
+        ],
+        "hasInterviewChase": false,
+        "hasCustodyChase": true,
+        "interviewInWording": false
+      },
+      "classification": "CONFIRMED_LIVE_SHARED_DEFECT",
+      "rootCause": "Interview gate matched custody/PACE extract; custody_pace playbook injected PACE interview recording; blend card wording always asked for interview transcript.",
+      "sharedFix": [
+        "lib/criminal/chase-source-gate.ts",
+        "lib/criminal/brief-plan/build-brief-plan.ts",
+        "components/criminal/disclosure-chase/buildDisclosureChaseBrief.ts"
+      ],
+      "invariant": "CB-HIST-UNSUPPORTED-INTERVIEW-NOT-CHASE",
+      "truthKeyUpdate": "expectedChaseItems no longer invent Interview recording / Complainant MG11; keep BWV + Full custody record.",
+      "residualAmbiguity": null
+    },
+    {
+      "id": "HOTSPOT-mg6_unused",
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "note": "MG6 unused clarification commonly appears where MG6C schedules exist; concrete MG6C rows should remain visible (Phase 9 MG6C fix). Generic clarification alone is acceptable when schedule chrome is present."
+    },
+    {
+      "id": "HOTSPOT-exhibit_mapping",
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "note": "sc-0000e continuity/lab outstanding is source-backed; chase family label uses generic Exhibit mapping/provenance chrome. Not unsupported promotion. Optional later tightening: preserve concrete continuity labels over generic exhibit family titles."
+    },
+    {
+      "id": "HOTSPOT-cctv_full_window",
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "note": "Recurrence appears source-backed on sampled matters."
+    },
+    {
+      "id": "HOTSPOT-bwv",
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "note": "Recurrence appears source-backed on sampled matters."
+    },
+    {
+      "id": "HOTSPOT-cad_999",
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "note": "Recurrence appears source-backed on sampled matters."
+    },
+    {
+      "id": "STAGE-FIRST-APPEARANCE",
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "containsPtphAsCurrent": false,
+      "note": "First Appearance fixture must not render as current PTPH workflow."
+    },
+    {
+      "id": "MULTI-DEFENDANT-BOUNDED",
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "note": "Bounded fixture exercise — entity attribution depth remains a coverage/debt area for richer multi-defendant PDFs.",
+      "chaseLabels": [
+        "CCTV full window / master footage",
+        "Interview recording / transcript",
+        "source evidence behind allegation / source material"
+      ]
+    },
+    {
+      "id": "LARGE-PDF-RP-01",
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "note": "No false-complete claim detected in composed live surfaces; limitations/provisional language or thin extract present."
+    },
+    {
+      "id": "LARGE-PDF-RP-11",
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "note": "No false-complete claim detected in composed live surfaces; limitations/provisional language or thin extract present."
+    },
+    {
+      "id": "LARGE-PDF-RP-07",
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "note": "No false-complete claim detected in composed live surfaces; limitations/provisional language or thin extract present."
+    }
+  ],
+  "confirmedLiveSharedDefects": [
+    {
+      "id": "LIVE-UNSUPPORTED-INTERVIEW-FROM-CUSTODY",
+      "clusterId": "UNSUPPORTED-INTERVIEW-FROM-CUSTODY-001",
+      "affected": [
+        "cb-fresh-002-jordan-hale"
+      ],
+      "invariant": "CB-HIST-UNSUPPORTED-INTERVIEW-NOT-CHASE",
+      "oppositeDirection": "Explicit outstanding interview recording/transcript remains chaseable with custody."
+    }
+  ],
+  "acceptableBehaviours": [
+    "mg6_unused",
+    "cctv_full_window",
+    "bwv",
+    "cad_999",
+    "exhibit_mapping"
+  ],
+  "auditorFalsePositives": [],
+  "unresolvedTruthAmbiguities": [],
+  "chromiumLane": {
+    "fullChromiumPathExercised": true,
+    "mode": "offline_html_surfaces_playwright",
+    "matterCount": 14,
+    "surfaces": [
+      "Overview",
+      "Court",
+      "Papers",
+      "Client Summary",
+      "CPS Chase",
+      "File"
+    ],
+    "results": [
+      {
+        "caseId": "cb-fresh-002-jordan-hale",
+        "tags": [
+          "bwv",
+          "outstanding_custody",
+          "ptph"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      },
+      {
+        "caseId": "fixture-fa",
+        "tags": [
+          "first_appearance",
+          "clean"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      },
+      {
+        "caseId": "fixture-multi",
+        "tags": [
+          "multi_defendant",
+          "multi_count"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      },
+      {
+        "caseId": "crown-court-patterson",
+        "tags": [
+          "corpus"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      },
+      {
+        "caseId": "fictional-theft-ashleigh-merritt",
+        "tags": [
+          "corpus"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      },
+      {
+        "caseId": "s18-charge-reduction-jordan-clarke",
+        "tags": [
+          "corpus"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      },
+      {
+        "caseId": "sc-0000b",
+        "tags": [
+          "corpus"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      },
+      {
+        "caseId": "sc-0000d",
+        "tags": [
+          "corpus"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      },
+      {
+        "caseId": "sc-0000e",
+        "tags": [
+          "corpus"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      },
+      {
+        "caseId": "sc-00015",
+        "tags": [
+          "corpus"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      },
+      {
+        "caseId": "sc-00023",
+        "tags": [
+          "corpus"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      },
+      {
+        "caseId": "sc-0002e",
+        "tags": [
+          "corpus"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      },
+      {
+        "caseId": "sc-00046",
+        "tags": [
+          "corpus"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      },
+      {
+        "caseId": "cb-fresh-001-taylor-brookes",
+        "tags": [
+          "corpus"
+        ],
+        "surfacesExercised": [
+          "overview",
+          "court",
+          "papers",
+          "client",
+          "chase",
+          "file"
+        ],
+        "identityOk": true,
+        "defendantOk": true,
+        "horizontalOverflow": false,
+        "criticalWarningVisible": true,
+        "staleStateAfterSwitch": false,
+        "truthRenderMismatch": false,
+        "emptyShell": false
+      }
+    ],
+    "truthRenderMismatches": 0,
+    "overflowCount": 0,
+    "staleSwitchCount": 0,
+    "note": "Chromium exercised builder-backed HTML packs for six workflows. Not a substitute for authenticated production app session testing."
+  },
+  "largeRealPdfs": [
+    {
+      "id": "RP-01",
+      "status": "PROCESSED",
+      "byteLength": 265665,
+      "pageCount": 137,
+      "extractedChars": 167149,
+      "textLayerLimitation": null,
+      "expectPagesAtLeast": 100,
+      "pageCountMeetsExpectation": true,
+      "falselyCompleteConfidentAnalysis": false,
+      "processingLimitationSignal": true,
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "note": "No false-complete claim detected in composed live surfaces; limitations/provisional language or thin extract present."
+    },
+    {
+      "id": "RP-11",
+      "status": "PROCESSED",
+      "byteLength": 78793,
+      "pageCount": 86,
+      "extractedChars": 26963,
+      "textLayerLimitation": null,
+      "expectPagesAtLeast": 20,
+      "pageCountMeetsExpectation": true,
+      "falselyCompleteConfidentAnalysis": false,
+      "processingLimitationSignal": true,
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "note": "No false-complete claim detected in composed live surfaces; limitations/provisional language or thin extract present."
+    },
+    {
+      "id": "RP-07",
+      "status": "PROCESSED",
+      "byteLength": 897448,
+      "pageCount": 500,
+      "extractedChars": 1613919,
+      "textLayerLimitation": null,
+      "expectPagesAtLeast": 200,
+      "pageCountMeetsExpectation": true,
+      "falselyCompleteConfidentAnalysis": false,
+      "processingLimitationSignal": true,
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "note": "No false-complete claim detected in composed live surfaces; limitations/provisional language or thin extract present."
+    }
+  ],
+  "coverageBeforeAfter": {
+    "before": 70,
+    "after": 71,
+    "total": 361
+  },
+  "severityCoverageBeforeAfter": {
+    "CRITICAL": {
+      "t": 116,
+      "eBefore": 38,
+      "eAfter": 38
+    },
+    "HIGH": {
+      "t": 158,
+      "eBefore": 30,
+      "eAfter": 30
+    }
+  },
+  "coverageValidation": [
+    "coverage map must contain 361 rows, got 362"
+  ],
+  "recommendation": "more_targeted_coverage_before_supervised_pilot_scale",
+  "blocksSupervisedSolicitorPilot": false,
+  "remainingRisk": [
+    "Authenticated live app Chromium session (cookie/QA login) not exercised in this pass.",
+    "Multi-defendant/count attribution depth still coverage-limited beyond fixtures.",
+    "Large PDF page-count extraction fidelity varies; continue monitoring false-complete claims.",
+    "CRITICAL/HIGH control map still far from saturated.",
+    "Phase 9 corpus remains tiny/PTPH-skewed for breadth claims."
+  ],
+  "nonClaims": [
+    "Does not claim 150/150 factual correctness.",
+    "Does not start 500/1000/3000.",
+    "Does not redesign UI."
+  ],
+  "jordanHaleResolved": true,
+  "starterGoldAfterFixes": {
+    "CONFIRMED_LIVE_SHARED_DEFECT": 0,
+    "STALE_HISTORICAL_OUTPUT_ONLY": 42,
+    "AUDITOR_FALSE_POSITIVE": 1,
+    "TRUTH_AMBIGUOUS_REQUIRES_REVIEW": 0,
+    "phase6CandidateFailures": 0
+  },
+  "pilotBlockerNote": "No currently confirmed P0 leakage/wrong-defendant/wrong-hearing defects block a tightly supervised solicitor pilot. Remaining debt: authenticated app Chromium, multi-defendant depth, CRITICAL/HIGH coverage saturation, large-PDF monitoring."
+}

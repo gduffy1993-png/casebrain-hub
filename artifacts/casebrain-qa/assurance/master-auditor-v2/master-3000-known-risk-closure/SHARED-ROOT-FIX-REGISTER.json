@@ -1,0 +1,11 @@
+[
+  {
+    "id": "LIVE-UNSUPPORTED-INTERVIEW-FROM-CUSTODY",
+    "clusterId": "UNSUPPORTED-INTERVIEW-FROM-CUSTODY-001",
+    "affected": [
+      "cb-fresh-002-jordan-hale"
+    ],
+    "invariant": "CB-HIST-UNSUPPORTED-INTERVIEW-NOT-CHASE",
+    "oppositeDirection": "Explicit outstanding interview recording/transcript remains chaseable with custody."
+  }
+]

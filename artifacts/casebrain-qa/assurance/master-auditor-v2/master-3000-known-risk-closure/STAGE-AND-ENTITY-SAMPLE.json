@@ -1,0 +1,22 @@
+{
+  "stageFindings": {
+    "firstAppearance": {
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "containsPtphAsCurrent": false,
+      "note": "First Appearance fixture must not render as current PTPH workflow."
+    },
+    "unclearStage": {
+      "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+      "note": "Unknown-stage matters remain useful; builders should stay provisional rather than invent PTPH."
+    }
+  },
+  "multiFindings": {
+    "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+    "note": "Bounded fixture exercise — entity attribution depth remains a coverage/debt area for richer multi-defendant PDFs.",
+    "chaseLabels": [
+      "CCTV full window / master footage",
+      "Interview recording / transcript",
+      "source evidence behind allegation / source material"
+    ]
+  }
+}

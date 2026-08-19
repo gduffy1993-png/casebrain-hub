@@ -154,4 +154,55 @@ describe("master3000 live-builder validation invariants", () => {
     expect(familySupport("phone", "URN: 26/SIM/224\nVehicle ANPR download outstanding.")).toBe("absent");
     expect(familySupport("phone", "Phone extraction source material — outstanding — not on bundle.")).toBe("mentioned");
   });
+
+  it("does not invent interview chases from custody extract alone", async () => {
+    const { familySupport } = await import("../lib/criminal/chase-source-gate");
+    const custodyOnly = [
+      "Custody record extract — detention authorised.",
+      "MG6C/011 — Custody record — extract only.",
+      "Full record outstanding.",
+    ].join("\n");
+    expect(familySupport("interview", custodyOnly)).toBe("absent");
+    expect(familySupport("custody", custodyOnly)).toBe("mentioned");
+
+    const brief = buildDisclosureChaseBrief({
+      caseId: "fixture-custody-no-interview",
+      caseTitle: "Custody extract only",
+      clientLabel: "Custody extract only",
+      allegation: "Assault an emergency worker",
+      stage: "PTPH",
+      hearingStatus: "Listed",
+      hearingDateIso: "2026-07-22",
+      bundleHealth: "Partial",
+      positionStatus: "Not recorded",
+      battleboard: null,
+      bundleText: custodyOnly,
+    });
+    const text = brief.items.map((item) => `${item.label}\n${item.draftChaseWording}\n${item.mergedFrom.join("\n")}`).join("\n");
+    expect(text).toMatch(/Full custody record/i);
+    expect(text).not.toMatch(/Interview recording \/ transcript/i);
+    expect(text).not.toMatch(/interview recording\/transcript/i);
+  });
+
+  it("opposite direction: explicit outstanding interview remains chaseable", () => {
+    const brief = buildDisclosureChaseBrief({
+      caseId: "fixture-interview-outstanding",
+      caseTitle: "Interview outstanding",
+      clientLabel: "Interview outstanding",
+      allegation: "Assault",
+      stage: "PTPH",
+      hearingStatus: "Listed",
+      hearingDateIso: "2026-07-22",
+      bundleHealth: "Partial",
+      positionStatus: "Not recorded",
+      battleboard: null,
+      bundleText: [
+        "Custody record extract served.",
+        "PACE interview conducted.",
+        "Interview recording/transcript — outstanding — not on bundle.",
+      ].join("\n"),
+    });
+    const text = brief.items.map((item) => `${item.label}\n${item.draftChaseWording}`).join("\n");
+    expect(text).toMatch(/interview recording|transcript|PACE material/i);
+  });
 });

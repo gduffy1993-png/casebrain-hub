@@ -1,0 +1,30 @@
+{
+  "id": "JORDAN-HALE-INTERVIEW-AMBIGUITY",
+  "sourceReview": {
+    "interviewMentionedInSource": false,
+    "custodyMentioned": true,
+    "bwvMentioned": true,
+    "note": "Independent source review: no interview recording/transcript language. BWV referred-only. Custody extract/full record outstanding. No complainant MG11."
+  },
+  "liveAfterFix": {
+    "labels": [
+      "Body-worn video (BWV)",
+      "Full custody record",
+      "MG6 / unused schedule clarification",
+      "Outstanding source material (Charge sheet, MG5 case summary, Officer MG11 statement)"
+    ],
+    "hasInterviewChase": false,
+    "hasCustodyChase": true,
+    "interviewInWording": false
+  },
+  "classification": "CONFIRMED_LIVE_SHARED_DEFECT",
+  "rootCause": "Interview gate matched custody/PACE extract; custody_pace playbook injected PACE interview recording; blend card wording always asked for interview transcript.",
+  "sharedFix": [
+    "lib/criminal/chase-source-gate.ts",
+    "lib/criminal/brief-plan/build-brief-plan.ts",
+    "components/criminal/disclosure-chase/buildDisclosureChaseBrief.ts"
+  ],
+  "invariant": "CB-HIST-UNSUPPORTED-INTERVIEW-NOT-CHASE",
+  "truthKeyUpdate": "expectedChaseItems no longer invent Interview recording / Complainant MG11; keep BWV + Full custody record.",
+  "residualAmbiguity": null
+}

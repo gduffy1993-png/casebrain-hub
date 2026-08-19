@@ -1,0 +1,44 @@
+[
+  {
+    "id": "RP-01",
+    "status": "PROCESSED",
+    "byteLength": 265665,
+    "pageCount": 137,
+    "extractedChars": 167149,
+    "textLayerLimitation": null,
+    "expectPagesAtLeast": 100,
+    "pageCountMeetsExpectation": true,
+    "falselyCompleteConfidentAnalysis": false,
+    "processingLimitationSignal": true,
+    "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+    "note": "No false-complete claim detected in composed live surfaces; limitations/provisional language or thin extract present."
+  },
+  {
+    "id": "RP-11",
+    "status": "PROCESSED",
+    "byteLength": 78793,
+    "pageCount": 86,
+    "extractedChars": 26963,
+    "textLayerLimitation": null,
+    "expectPagesAtLeast": 20,
+    "pageCountMeetsExpectation": true,
+    "falselyCompleteConfidentAnalysis": false,
+    "processingLimitationSignal": true,
+    "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+    "note": "No false-complete claim detected in composed live surfaces; limitations/provisional language or thin extract present."
+  },
+  {
+    "id": "RP-07",
+    "status": "PROCESSED",
+    "byteLength": 897448,
+    "pageCount": 500,
+    "extractedChars": 1613919,
+    "textLayerLimitation": null,
+    "expectPagesAtLeast": 200,
+    "pageCountMeetsExpectation": true,
+    "falselyCompleteConfidentAnalysis": false,
+    "processingLimitationSignal": true,
+    "classification": "EXPECTED_ACCEPTABLE_BEHAVIOUR",
+    "note": "No false-complete claim detected in composed live surfaces; limitations/provisional language or thin extract present."
+  }
+]

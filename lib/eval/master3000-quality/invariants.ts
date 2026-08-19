@@ -102,6 +102,16 @@ export const HISTORICAL_INVARIANTS: InvariantDefinition[] = [
     historicalRegression: "remains_outstanding_repeated",
   },
   {
+    id: "CB-HIST-UNSUPPORTED-INTERVIEW-NOT-CHASE",
+    title: "Unsupported interview recording/transcript expectations must not become active chases from custody/PACE extract alone.",
+    failureClass: "unsupported_promotion_failure",
+    severity: "P1",
+    category: "heuristic_firewall",
+    sourceTruthRequired: true,
+    oppositeDirectionRequired: true,
+    historicalRegression: "unsupported_interview_from_custody_extract",
+  },
+  {
     id: "CB-HIST-MG6C-CONCRETE-NOT-GENERIC-COLLAPSE",
     title: "Concrete MG6C outstanding schedule rows must remain visible as concrete chase labels, not collapse into generic additional-source wording.",
     failureClass: "dedupe_alias_failure",
