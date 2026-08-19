@@ -1,0 +1,88 @@
+[
+  {
+    "id": "CB-P3-CCTV-EXISTENCE-SERVICE-MATRIX",
+    "category": "existence_vs_service",
+    "controls": [
+      "familySupport",
+      "gateChaseLine"
+    ],
+    "scenarios": [
+      "no_reference",
+      "referred_only",
+      "explicit_outstanding",
+      "served"
+    ],
+    "oppositeDirection": "Explicit outstanding CCTV remains keep/actionable while absent CCTV is dropped."
+  },
+  {
+    "id": "CB-P3-UNSUPPORTED-PROMOTION-FIREWALL",
+    "category": "heuristic_firewall",
+    "controls": [
+      "gateChaseLine",
+      "buildDisclosureChaseBrief"
+    ],
+    "scenarios": [
+      "BWV",
+      "medical",
+      "999",
+      "retraction",
+      "phone"
+    ],
+    "oppositeDirection": "Supported CCTV/interview remains visible/actionable."
+  },
+  {
+    "id": "CB-P3-PROVENANCE-FAMILY-FIREWALL",
+    "category": "provenance_family",
+    "controls": [
+      "buildDisclosureChaseBrief"
+    ],
+    "scenarios": [
+      "CCTV with phone/source-export anchor nearby"
+    ],
+    "oppositeDirection": "CCTV-family anchor remains allowed."
+  },
+  {
+    "id": "CB-P3-STAGE-FIRST-APPEARANCE-NOT-PTPH",
+    "category": "stage_routing",
+    "controls": [
+      "buildDisclosureChaseBrief"
+    ],
+    "scenarios": [
+      "First Appearance with listed date"
+    ],
+    "oppositeDirection": "Legitimate PTPH wording is not globally banned, only prevented from First Appearance current workflow."
+  },
+  {
+    "id": "CB-P3-PROVISIONAL-DEADLINES",
+    "category": "chase_validity",
+    "controls": [
+      "buildDisclosureChaseBrief"
+    ],
+    "scenarios": [
+      "no reliable hearing date"
+    ],
+    "oppositeDirection": "A confirmed hearing date may still produce a concrete date label."
+  },
+  {
+    "id": "CB-P3-DEDUPES-ALIASES-NOT-DISTINCT-ITEMS",
+    "category": "dedupe",
+    "controls": [
+      "buildDisclosureChaseBrief"
+    ],
+    "scenarios": [
+      "CCTV master aliases plus continuity statement"
+    ],
+    "oppositeDirection": "CCTV master aliases collapse; continuity remains distinct."
+  },
+  {
+    "id": "CB-P3-CERTAINTY-CEILING-FAMILIES",
+    "category": "court_client_certainty",
+    "controls": [
+      "gateProseAgainstSource"
+    ],
+    "scenarios": [
+      "mixed supported/unsupported family prose"
+    ],
+    "oppositeDirection": "Supported families survive sanitisation."
+  }
+]

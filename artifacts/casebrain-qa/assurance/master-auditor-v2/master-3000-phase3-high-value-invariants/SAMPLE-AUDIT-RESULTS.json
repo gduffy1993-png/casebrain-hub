@@ -1,0 +1,144 @@
+[
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase3-targeted-invariants",
+    "commit": "49949d9a9a4a128c487ac2c69e716a3d29f4f5dd",
+    "caseId": "targeted-fixture-01",
+    "controlId": "CB-P3-CCTV-EXISTENCE-SERVICE-MATRIX",
+    "invariantId": "CB-P3-CCTV-EXISTENCE-SERVICE-MATRIX",
+    "failureClass": "evidence_state_failure",
+    "severity": "P1",
+    "evidenceFamily": "mixed",
+    "surface": "cps_chase",
+    "sourceReference": {
+      "documentId": "targeted-fixture",
+      "limitation": "contract fixture, not corpus truth"
+    },
+    "expected": "Explicit outstanding CCTV remains keep/actionable while absent CCTV is dropped.",
+    "actual": "Contract fixture passed; no candidate failure emitted.",
+    "rootCauseCluster": "existence_vs_service",
+    "disposition": "pass",
+    "coverageStatus": "evaluated"
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase3-targeted-invariants",
+    "commit": "49949d9a9a4a128c487ac2c69e716a3d29f4f5dd",
+    "caseId": "targeted-fixture-02",
+    "controlId": "CB-P3-UNSUPPORTED-PROMOTION-FIREWALL",
+    "invariantId": "CB-P3-UNSUPPORTED-PROMOTION-FIREWALL",
+    "failureClass": "unsupported_promotion_failure",
+    "severity": "P1",
+    "surface": "cps_chase",
+    "sourceReference": {
+      "documentId": "targeted-fixture",
+      "limitation": "contract fixture, not corpus truth"
+    },
+    "expected": "Supported CCTV/interview remains visible/actionable.",
+    "actual": "Contract fixture passed; no candidate failure emitted.",
+    "rootCauseCluster": "heuristic_firewall",
+    "disposition": "pass",
+    "coverageStatus": "evaluated"
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase3-targeted-invariants",
+    "commit": "49949d9a9a4a128c487ac2c69e716a3d29f4f5dd",
+    "caseId": "targeted-fixture-03",
+    "controlId": "CB-P3-PROVENANCE-FAMILY-FIREWALL",
+    "invariantId": "CB-P3-PROVENANCE-FAMILY-FIREWALL",
+    "failureClass": "provenance_family_failure",
+    "severity": "P0",
+    "evidenceFamily": "mixed",
+    "surface": "cps_chase",
+    "sourceReference": {
+      "documentId": "targeted-fixture",
+      "limitation": "contract fixture, not corpus truth"
+    },
+    "expected": "CCTV-family anchor remains allowed.",
+    "actual": "Contract fixture passed; no candidate failure emitted.",
+    "rootCauseCluster": "provenance_family",
+    "disposition": "pass",
+    "coverageStatus": "evaluated"
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase3-targeted-invariants",
+    "commit": "49949d9a9a4a128c487ac2c69e716a3d29f4f5dd",
+    "caseId": "targeted-fixture-04",
+    "controlId": "CB-P3-STAGE-FIRST-APPEARANCE-NOT-PTPH",
+    "invariantId": "CB-P3-STAGE-FIRST-APPEARANCE-NOT-PTPH",
+    "failureClass": "workflow_stage_failure",
+    "severity": "P1",
+    "surface": "cps_chase",
+    "sourceReference": {
+      "documentId": "targeted-fixture",
+      "limitation": "contract fixture, not corpus truth"
+    },
+    "expected": "Legitimate PTPH wording is not globally banned, only prevented from First Appearance current workflow.",
+    "actual": "Contract fixture passed; no candidate failure emitted.",
+    "rootCauseCluster": "stage_routing",
+    "disposition": "pass",
+    "coverageStatus": "evaluated"
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase3-targeted-invariants",
+    "commit": "49949d9a9a4a128c487ac2c69e716a3d29f4f5dd",
+    "caseId": "targeted-fixture-05",
+    "controlId": "CB-P3-PROVISIONAL-DEADLINES",
+    "invariantId": "CB-P3-PROVISIONAL-DEADLINES",
+    "failureClass": "certainty_escalation_failure",
+    "severity": "P1",
+    "surface": "cps_chase",
+    "sourceReference": {
+      "documentId": "targeted-fixture",
+      "limitation": "contract fixture, not corpus truth"
+    },
+    "expected": "A confirmed hearing date may still produce a concrete date label.",
+    "actual": "Contract fixture passed; no candidate failure emitted.",
+    "rootCauseCluster": "chase_validity",
+    "disposition": "pass",
+    "coverageStatus": "evaluated"
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase3-targeted-invariants",
+    "commit": "49949d9a9a4a128c487ac2c69e716a3d29f4f5dd",
+    "caseId": "targeted-fixture-06",
+    "controlId": "CB-P3-DEDUPES-ALIASES-NOT-DISTINCT-ITEMS",
+    "invariantId": "CB-P3-DEDUPES-ALIASES-NOT-DISTINCT-ITEMS",
+    "failureClass": "dedupe_alias_failure",
+    "severity": "P1",
+    "surface": "cps_chase",
+    "sourceReference": {
+      "documentId": "targeted-fixture",
+      "limitation": "contract fixture, not corpus truth"
+    },
+    "expected": "CCTV master aliases collapse; continuity remains distinct.",
+    "actual": "Contract fixture passed; no candidate failure emitted.",
+    "rootCauseCluster": "dedupe",
+    "disposition": "pass",
+    "coverageStatus": "evaluated"
+  },
+  {
+    "schemaVersion": "casebrain-master3000-audit-result@1.0.0",
+    "runId": "phase3-targeted-invariants",
+    "commit": "49949d9a9a4a128c487ac2c69e716a3d29f4f5dd",
+    "caseId": "targeted-fixture-07",
+    "controlId": "CB-P3-CERTAINTY-CEILING-FAMILIES",
+    "invariantId": "CB-P3-CERTAINTY-CEILING-FAMILIES",
+    "failureClass": "certainty_escalation_failure",
+    "severity": "P1",
+    "surface": "court",
+    "sourceReference": {
+      "documentId": "targeted-fixture",
+      "limitation": "contract fixture, not corpus truth"
+    },
+    "expected": "Supported families survive sanitisation.",
+    "actual": "Contract fixture passed; no candidate failure emitted.",
+    "rootCauseCluster": "court_client_certainty",
+    "disposition": "pass",
+    "coverageStatus": "evaluated"
+  }
+]

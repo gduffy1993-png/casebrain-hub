@@ -20,7 +20,8 @@ export type ChaseGateFamily =
   | "mg6_unused"
   | "phone"
   | "forensic"
-  | "bank_financial";
+  | "bank_financial"
+  | "retraction_statement";
 
 export type FamilySupport = "mentioned" | "negated" | "absent";
 
@@ -35,6 +36,8 @@ const MENTION_RES: Record<ChaseGateFamily, RegExp> = {
   forensic: /forensic|\bdna\b|fingerprint|\bswab\b/i,
   bank_financial:
     /\bbank(?:ing)?\b|account\s+control|account\s+ownership|transaction(?:s)?|bank\s+statements?|account\s+statements?|financial\s+records?|financial\s+statements?|poca|source.of.funds|mailbox|email\s+(?:export|source)|bookkeeper|accountant/i,
+  retraction_statement:
+    /\bretraction\b|further\s+statement|additional\s+statement|supplemental\s+statement|withdraw(?:al|n)?\s+(?:statement|complaint)|complainant\s+(?:withdrawal|retraction)/i,
 };
 
 const NEGATION_RES: Record<ChaseGateFamily, RegExp> = {
@@ -47,6 +50,8 @@ const NEGATION_RES: Record<ChaseGateFamily, RegExp> = {
   phone: /no\s+(?:phone|mobile|handset|device)\s+(?:was\s+)?(?:seized|recovered|examined)/i,
   forensic: /no\s+forensic\s+(?:evidence|material|examination)|no\s+dna\s+(?:was\s+)?(?:recovered|found|obtained)/i,
   bank_financial: /no\s+(?:bank|banking|account)\s+(?:records?|statements?|material)|no\s+financial\s+records?/i,
+  retraction_statement:
+    /no\s+(?:retraction|further\s+statement|additional\s+statement|supplemental\s+statement|withdrawal\s+statement)|complainant\s+(?:has\s+not\s+)?(?:not\s+)?withdrawn/i,
 };
 
 const CHASE_VERB_RE = /\b(chase|obtain|request|provide|serve|secure|pursue|outstanding|awaiting|not\s+(?:yet\s+)?served)\b/i;
@@ -74,6 +79,7 @@ const FAMILY_DISPLAY: Record<ChaseGateFamily, string> = {
   phone: "phone/device material",
   forensic: "forensic material",
   bank_financial: "banking and financial records",
+  retraction_statement: "retraction/further-statement material",
 };
 
 const PROVISIONAL_NO_FAMILIES =

@@ -1,0 +1,17 @@
+{
+  "totalControls": 361,
+  "uniqueControlsSeen": 7,
+  "evaluatedControls": 7,
+  "notExercisedControls": 354,
+  "unavailableControls": 0,
+  "unresolvedControls": 0,
+  "projectionOnlyControls": 0,
+  "claim": "green_on_exercised_controls_only",
+  "byStatus": {
+    "evaluated": 7,
+    "not_exercised": 354,
+    "unavailable": 0,
+    "unresolved": 0,
+    "projection_only": 0
+  }
+}

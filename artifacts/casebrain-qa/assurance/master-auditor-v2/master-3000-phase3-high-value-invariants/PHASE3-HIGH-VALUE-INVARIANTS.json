@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "master3000-phase3-high-value-invariants@1.0.0",
+  "generatedAt": "2026-08-19T04:08:04.293Z",
+  "commit": "49949d9a9a4a128c487ac2c69e716a3d29f4f5dd",
+  "contract": "scripts/master3000-high-value-invariants.test.ts",
+  "fixtureCount": 7,
+  "fixtures": [
+    {
+      "id": "CB-P3-CCTV-EXISTENCE-SERVICE-MATRIX",
+      "category": "existence_vs_service",
+      "controls": [
+        "familySupport",
+        "gateChaseLine"
+      ],
+      "scenarios": [
+        "no_reference",
+        "referred_only",
+        "explicit_outstanding",
+        "served"
+      ],
+      "oppositeDirection": "Explicit outstanding CCTV remains keep/actionable while absent CCTV is dropped."
+    },
+    {
+      "id": "CB-P3-UNSUPPORTED-PROMOTION-FIREWALL",
+      "category": "heuristic_firewall",
+      "controls": [
+        "gateChaseLine",
+        "buildDisclosureChaseBrief"
+      ],
+      "scenarios": [
+        "BWV",
+        "medical",
+        "999",
+        "retraction",
+        "phone"
+      ],
+      "oppositeDirection": "Supported CCTV/interview remains visible/actionable."
+    },
+    {
+      "id": "CB-P3-PROVENANCE-FAMILY-FIREWALL",
+      "category": "provenance_family",
+      "controls": [
+        "buildDisclosureChaseBrief"
+      ],
+      "scenarios": [
+        "CCTV with phone/source-export anchor nearby"
+      ],
+      "oppositeDirection": "CCTV-family anchor remains allowed."
+    },
+    {
+      "id": "CB-P3-STAGE-FIRST-APPEARANCE-NOT-PTPH",
+      "category": "stage_routing",
+      "controls": [
+        "buildDisclosureChaseBrief"
+      ],
+      "scenarios": [
+        "First Appearance with listed date"
+      ],
+      "oppositeDirection": "Legitimate PTPH wording is not globally banned, only prevented from First Appearance current workflow."
+    },
+    {
+      "id": "CB-P3-PROVISIONAL-DEADLINES",
+      "category": "chase_validity",
+      "controls": [
+        "buildDisclosureChaseBrief"
+      ],
+      "scenarios": [
+        "no reliable hearing date"
+      ],
+      "oppositeDirection": "A confirmed hearing date may still produce a concrete date label."
+    },
+    {
+      "id": "CB-P3-DEDUPES-ALIASES-NOT-DISTINCT-ITEMS",
+      "category": "dedupe",
+      "controls": [
+        "buildDisclosureChaseBrief"
+      ],
+      "scenarios": [
+        "CCTV master aliases plus continuity statement"
+      ],
+      "oppositeDirection": "CCTV master aliases collapse; continuity remains distinct."
+    },
+    {
+      "id": "CB-P3-CERTAINTY-CEILING-FAMILIES",
+      "category": "court_client_certainty",
+      "controls": [
+        "gateProseAgainstSource"
+      ],
+      "scenarios": [
+        "mixed supported/unsupported family prose"
+      ],
+      "oppositeDirection": "Supported families survive sanitisation."
+    }
+  ],
+  "sharedFixes": [
+    {
+      "path": "lib/criminal/chase-source-gate.ts",
+      "class": "unsupported_promotion_failure",
+      "severity": "P1",
+      "summary": "Added retraction/further-statement as an explicit material family so absent source support drops asserted chases instead of allowing generic wording through."
+    }
+  ],
+  "coverage": {
+    "totalControls": 361,
+    "uniqueControlsSeen": 7,
+    "evaluatedControls": 7,
+    "notExercisedControls": 354,
+    "unavailableControls": 0,
+    "unresolvedControls": 0,
+    "projectionOnlyControls": 0,
+    "claim": "green_on_exercised_controls_only",
+    "byStatus": {
+      "evaluated": 7,
+      "not_exercised": 354,
+      "unavailable": 0,
+      "unresolved": 0,
+      "projection_only": 0
+    }
+  },
+  "failureClusters": [],
+  "tierDecision": {
+    "tier": "B",
+    "reason": "Focused invariant needs contrasting and opposite-direction cases.",
+    "fullCorpusAllowed": false
+  },
+  "verification": {
+    "contracts": "scripts/master3000-high-value-invariants.test.ts + master3000-quality-core + source-truth-guardian + truth-safety-hardening-regression: 26/26 pass",
+    "manifest": "validated externally after emit: 10 files, 0 issues",
+    "npmBuild": "attempted twice; Next compile reached 'Compiled successfully' with known PDF createRequire warning, then no final output in type/page validation phase and was manually interrupted. Not claimed green."
+  },
+  "nonClaims": {
+    "full3000Run": false,
+    "corpusPass": false,
+    "stage3000Completion": false,
+    "programmePass": false,
+    "solicitorApproval": false,
+    "browserLaneExercised": false
+  }
+}

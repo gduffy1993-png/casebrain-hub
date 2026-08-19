@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "master3000-phase3-changed-file-manifest@1.0.0",
+  "generatedAt": "2026-08-19T04:08:04.293Z",
+  "selfHashStatus": "excluded_from_files_array_self_referential",
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase3-high-value-invariants/DECISION-CARD.md",
+      "sha256": "d707da02f5575d5c5b955650a7934d3981235603afd0c3738263322f2d812787",
+      "byteLength": 2013,
+      "classification": "phase3_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase3-high-value-invariants/PHASE3-HIGH-VALUE-INVARIANTS.json",
+      "sha256": "513bc1a1447e36446fef0c397757e96fcb3dbed7ef4f188b229f9978c2b7176b",
+      "byteLength": 4376,
+      "classification": "phase3_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase3-high-value-invariants/SAMPLE-AUDIT-RESULTS.json",
+      "sha256": "960d40a76eb12c5f3d96bd07080fb358ab58cfc9ec9b53f187ae7f1d795b0394",
+      "byteLength": 5727,
+      "classification": "phase3_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase3-high-value-invariants/SAMPLE-COVERAGE-DASHBOARD.json",
+      "sha256": "74cda0206e1bd3702d4cb38b5f4d3731637ae68c77dad5f4db54e650fcf905d6",
+      "byteLength": 379,
+      "classification": "phase3_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase3-high-value-invariants/SAMPLE-FAILURE-CLUSTERS.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "byteLength": 3,
+      "classification": "phase3_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase3-high-value-invariants/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "d11153d8e183286d12950e5f77f12c9c2e8ca4d1b5123d00e24d29073cf9df38",
+      "byteLength": 1338,
+      "classification": "phase3_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase3-high-value-invariants/TARGETED-INVARIANT-FIXTURES.json",
+      "sha256": "5c03dd155d38e7c596079ff160c5e1577b3337f9473c5bd8b48092bff07bad74",
+      "byteLength": 2303,
+      "classification": "phase3_artifact"
+    },
+    {
+      "path": "lib/criminal/chase-source-gate.ts",
+      "sha256": "246eb12c2d8eb8c01e6b29f40c6815343f89e24439d1fe22457a077407e270a3",
+      "byteLength": 9668,
+      "classification": "phase3_artifact"
+    },
+    {
+      "path": "scripts/assurance/master-3000-phase3-high-value-invariants.ts",
+      "sha256": "83c77d9bb65b3bc948504faabd887f87e6406255f8368fe0430fafc3603f5620",
+      "byteLength": 10995,
+      "classification": "contract_or_emit_script"
+    },
+    {
+      "path": "scripts/master3000-high-value-invariants.test.ts",
+      "sha256": "74421c4d05f724d3d29cf3d045af59a698df88c198080e3672d80a007ce3f6b7",
+      "byteLength": 8426,
+      "classification": "contract_or_emit_script"
+    }
+  ]
+}
