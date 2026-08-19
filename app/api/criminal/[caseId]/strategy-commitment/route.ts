@@ -9,6 +9,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { withPaywall } from "@/lib/paywall/protect-route";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { requireCaseInOrg } from "@/lib/tenant/require-case-in-org";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -95,39 +96,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       }
 
       // Get case's org_id directly from database (same pattern as aggressive-defense route)
+      const caseCheck = await requireCaseInOrg(caseId, orgId);
+      if (!caseCheck.ok) return caseCheck.response;
+      const caseRow = caseCheck.caseRow;
       const supabase = getSupabaseAdminClient();
-      const { data: caseRow, error: caseError } = await supabase
-        .from("cases")
-        .select("id, org_id")
-        .eq("id", caseId)
-        .single();
-
-      if (caseError || !caseRow) {
-        console.error("[strategy-commitment POST] Case lookup failed:", {
-          caseId,
-          error: caseError ? { message: caseError.message, code: caseError.code, details: caseError.details } : null,
-        });
-        return NextResponse.json(
-          { ok: false, error: "Case not found" },
-          { status: 404 }
-        );
-      }
-
-      // Validate case has org_id and it's a UUID
-      if (!caseRow.org_id) {
-        return NextResponse.json(
-          { ok: false, error: "Case has no org_id" },
-          { status: 500 }
-        );
-      }
-
-      const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-      if (!uuidPattern.test(caseRow.org_id)) {
-        return NextResponse.json(
-          { ok: false, error: "Invalid case org_id format" },
-          { status: 500 }
-        );
-      }
 
       // Generate title from primary strategy
       const strategyTitles: Record<string, string> = {
@@ -140,7 +112,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       // Insert payload - only include required fields
       const insertPayload = {
         case_id: caseId,
-        org_id: caseRow.org_id,
+        org_id: orgId,
         title: title,
         primary_strategy: primary_strategy,
         fallback_strategies: fallback_strategies_input,
@@ -257,22 +229,11 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     try {
       const authRes = await requireAuthContextApi();
       if (!authRes.ok) return authRes.response;
-      const { userId, orgId } = authRes.context;
+      const { orgId } = authRes.context;
 
-      // Get case's org_id directly from database
+      const caseCheck = await requireCaseInOrg(caseId, orgId);
+      if (!caseCheck.ok) return caseCheck.response;
       const supabase = getSupabaseAdminClient();
-      const { data: caseRow, error: caseError } = await supabase
-        .from("cases")
-        .select("id, org_id")
-        .eq("id", caseId)
-        .single();
-
-      if (caseError || !caseRow || !caseRow.org_id) {
-        return NextResponse.json({
-          ok: true,
-          data: null, // No commitment found
-        });
-      }
 
       // Get commitment - select most recent row by created_at DESC LIMIT 1
       const { data: commitment, error: commitmentError } = await supabase
@@ -292,7 +253,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           created_at
         `)
         .eq("case_id", caseId)
-        .eq("org_id", caseRow.org_id)
+        .eq("org_id", orgId)
         .order("created_at", { ascending: false })
         .limit(1)
         .maybeSingle();

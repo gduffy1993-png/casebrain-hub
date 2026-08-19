@@ -9,6 +9,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { withPaywall } from "@/lib/paywall/protect-route";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { requireCaseInOrg } from "@/lib/tenant/require-case-in-org";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -35,28 +36,17 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       if (!authRes.ok) return authRes.response;
       const { userId, orgId } = authRes.context;
 
+      const caseCheck = await requireCaseInOrg(caseId, orgId);
+      if (!caseCheck.ok) return caseCheck.response;
+      const caseRow = caseCheck.caseRow;
       const supabase = getSupabaseAdminClient();
-      
-      // Get case's org_id
-      const { data: caseRow, error: caseError } = await supabase
-        .from("cases")
-        .select("id, org_id")
-        .eq("id", caseId)
-        .single();
-
-      if (caseError || !caseRow || !caseRow.org_id) {
-        return NextResponse.json({
-          ok: false,
-          error: "Case not found",
-        }, { status: 404 });
-      }
 
       // Get criminal case record
       const { data: criminalCase, error: criminalError } = await supabase
         .from("criminal_cases")
         .select("irreversible_decisions")
         .eq("id", caseId)
-        .eq("org_id", caseRow.org_id)
+        .eq("org_id", orgId)
         .maybeSingle();
 
       if (criminalError) {
@@ -123,21 +113,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         }
       }
 
+      const caseCheck = await requireCaseInOrg(caseId, orgId);
+      if (!caseCheck.ok) return caseCheck.response;
+      const caseRow = caseCheck.caseRow;
       const supabase = getSupabaseAdminClient();
-      
-      // Get case's org_id
-      const { data: caseRow, error: caseError } = await supabase
-        .from("cases")
-        .select("id, org_id")
-        .eq("id", caseId)
-        .single();
-
-      if (caseError || !caseRow || !caseRow.org_id) {
-        return NextResponse.json({
-          ok: false,
-          error: "Case not found",
-        }, { status: 404 });
-      }
 
       // Add timestamps and user info to each decision
       const now = new Date().toISOString();
@@ -152,7 +131,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         .from("criminal_cases")
         .select("id")
         .eq("id", caseId)
-        .eq("org_id", caseRow.org_id)
+        .eq("org_id", orgId)
         .maybeSingle();
 
       if (existingCriminalCase) {
@@ -164,7 +143,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
             updated_at: now,
           })
           .eq("id", caseId)
-          .eq("org_id", caseRow.org_id)
+          .eq("org_id", orgId)
           .select("irreversible_decisions")
           .single();
 
@@ -189,7 +168,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
           .from("criminal_cases")
           .insert({
             id: caseId,
-            org_id: caseRow.org_id,
+            org_id: orgId,
             irreversible_decisions: decisionsWithMetadata,
           })
           .select("irreversible_decisions")

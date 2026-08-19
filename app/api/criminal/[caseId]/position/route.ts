@@ -8,6 +8,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { requireCaseInOrg } from "@/lib/tenant/require-case-in-org";
 import { logStrategySuggest } from "@/lib/criminal/strategy-suggest/logger";
 
 type RouteParams = {
@@ -57,28 +58,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    // Get case's org_id to verify ownership
+    const caseCheck = await requireCaseInOrg(caseId, orgId);
+    if (!caseCheck.ok) return caseCheck.response;
     const supabase = getSupabaseAdminClient();
-    const { data: caseRow, error: caseError } = await supabase
-      .from("cases")
-      .select("org_id")
-      .eq("id", caseId)
-      .single();
-
-    if (caseError || !caseRow) {
-      return NextResponse.json(
-        { ok: false, error: "Case not found" },
-        { status: 404 }
-      );
-    }
-
-    // Verify org_id matches (case must belong to user's org)
-    if (caseRow.org_id !== orgId) {
-      return NextResponse.json(
-        { ok: false, error: "Unauthorized: Case does not belong to your organisation" },
-        { status: 403 }
-      );
-    }
 
     const isAiSuggested = body.source === "ai_suggested";
 
@@ -174,28 +156,9 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     if (!authRes.ok) return authRes.response;
     const { orgId } = authRes.context;
 
-    // Get case's org_id to verify ownership
+    const caseCheck = await requireCaseInOrg(caseId, orgId);
+    if (!caseCheck.ok) return caseCheck.response;
     const supabase = getSupabaseAdminClient();
-    const { data: caseRow, error: caseError } = await supabase
-      .from("cases")
-      .select("org_id")
-      .eq("id", caseId)
-      .single();
-
-    if (caseError || !caseRow) {
-      return NextResponse.json(
-        { ok: false, error: "Case not found" },
-        { status: 404 }
-      );
-    }
-
-    // Verify org_id matches
-    if (caseRow.org_id !== orgId) {
-      return NextResponse.json(
-        { ok: false, error: "Unauthorized: Case does not belong to your organisation" },
-        { status: 403 }
-      );
-    }
 
     // Get latest position
     const { data: position, error: fetchError } = await supabase

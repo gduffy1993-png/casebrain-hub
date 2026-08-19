@@ -179,12 +179,13 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         mapStanceDetectedToPrimary(caseState.stance_detected) ??
         undefined;
 
-      // Get case facts for artifacts
+      // Get case facts for artifacts (scoped)
       const { data: caseData } = await supabase
         .from("cases")
         .select("title")
         .eq("id", caseId)
-        .single();
+        .eq("org_id", orgIdForQueries)
+        .maybeSingle();
 
       // Generate routes with all layers using new generators
       const routeTypes: Array<"fight_charge" | "charge_reduction" | "outcome_management"> = [

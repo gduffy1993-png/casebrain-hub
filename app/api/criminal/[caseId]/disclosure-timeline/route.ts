@@ -9,6 +9,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { withPaywall } from "@/lib/paywall/protect-route";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { requireCaseInOrg } from "@/lib/tenant/require-case-in-org";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -86,45 +87,11 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
       const authRes = await requireAuthContextApi();
       if (!authRes.ok) return authRes.response;
-      const { userId, orgId } = authRes.context;
+      const { orgId } = authRes.context;
 
+      const caseCheck = await requireCaseInOrg(caseId, orgId);
+      if (!caseCheck.ok) return caseCheck.response;
       const supabase = getSupabaseAdminClient();
-      
-      // Get case's org_id - use maybeSingle() to avoid throwing on no rows
-      const { data: caseRow, error: caseError } = await supabase
-        .from("cases")
-        .select("id, org_id")
-        .eq("id", caseId)
-        .maybeSingle();
-
-      if (caseError) {
-        console.error("[disclosure-timeline GET] Supabase error fetching case:", {
-          message: caseError.message,
-          code: caseError.code,
-          details: caseError.details,
-          hint: caseError.hint,
-          caseId,
-        });
-        return NextResponse.json({
-          ok: false,
-          error: "Failed to fetch case",
-        }, { status: 500 });
-      }
-
-      if (!caseRow || !caseRow.org_id) {
-        return NextResponse.json({
-          ok: false,
-          error: "Case not found",
-        }, { status: 404 });
-      }
-
-      // Verify org access
-      if (caseRow.org_id !== orgId) {
-        return NextResponse.json({
-          ok: false,
-          error: "Case not found",
-        }, { status: 404 });
-      }
 
       // Get all timeline entries for this case - select only existing columns
       // DB schema: id, case_id, item, action, action_date, note, created_at (org_id optional per schema)
@@ -267,36 +234,12 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       }
 
       const supabase = getSupabaseAdminClient();
-      
-      // Get case's org_id - use maybeSingle() to avoid throwing on no rows
-      const { data: caseRow, error: caseError } = await supabase
-        .from("cases")
-        .select("id, org_id")
-        .eq("id", caseId)
-        .maybeSingle();
 
-      if (caseError) {
-        console.error("[disclosure-timeline POST] Supabase error fetching case:", {
-          message: caseError.message,
-          code: caseError.code,
-          details: caseError.details,
-          hint: caseError.hint,
-          caseId,
-        });
-        return NextResponse.json({
-          ok: false,
-          error: "Failed to fetch case",
-        }, { status: 500 });
-      }
+      const caseCheck = await requireCaseInOrg(caseId, orgId);
+      if (!caseCheck.ok) return caseCheck.response;
+      const caseRow = caseCheck.caseRow;
 
-      if (!caseRow || !caseRow.org_id) {
-        return NextResponse.json({
-          ok: false,
-          error: "Case not found",
-        }, { status: 404 });
-      }
-
-      // Verify org access
+      // Verify org access (requireCaseInOrg already enforced; keep org_id for inserts)
       if (caseRow.org_id !== orgId) {
         return NextResponse.json({
           ok: false,

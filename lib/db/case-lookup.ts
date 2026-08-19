@@ -112,21 +112,8 @@ export async function findCaseByIdScoped(
     }
   }
   
-  // Try 3: NULL org_id (edge case)
-  const { data, error } = await supabase
-    .from("cases")
-    .select("*")
-    .eq("id", caseId)
-    .is("org_id", null)
-    .maybeSingle();
-  
-  if (error) {
-    console.error("[case-lookup] Error querying by NULL org_id:", error);
-  } else if (data) {
-    return data as CaseRow;
-  }
-  
-  // Not found in any scope
+  // Do NOT fall back to org_id IS NULL — that is a cross-tenant edge leak
+  // (any authenticated user could open null-org rows by guessing the id).
   return null;
 }
 
@@ -196,7 +183,11 @@ export async function findDocumentsByCaseIdScoped(
   }
   
   // Try 3: case's org_id (handles data mismatches where documents have same org_id as case)
-  if (caseOrgId) {
+  // Only when caseOrgId already matches an authenticated scope value (org UUID or legacy externalRef).
+  if (
+    caseOrgId &&
+    (caseOrgId === scope.orgId || caseOrgId === scope.externalRef)
+  ) {
     const { data, error } = await supabase
       .from("documents")
       .select("id, name, created_at, extracted_json, raw_text")
@@ -207,35 +198,14 @@ export async function findDocumentsByCaseIdScoped(
     if (error) {
       console.error("[case-lookup] Error querying documents by case org_id:", error);
     } else if (data && data.length > 0) {
-      // TEMPORARY DEBUG: Log what we got from the database
-      console.log(`[case-lookup] DEBUG: Found ${data.length} documents via case org_id for caseId=${caseId}, caseOrgId=${caseOrgId}`);
-      for (const doc of data) {
-        const rawText = doc.raw_text;
-        const rawTextLength = typeof rawText === "string" ? rawText.length : (rawText ? String(rawText).length : 0);
-        console.log(`[case-lookup] DEBUG:   - docId=${doc.id}, name=${doc.name}, raw_text length=${rawTextLength}, raw_text type=${typeof rawText}`);
-      }
-      // Dev-only log when case org_id match succeeds (indicates data mismatch was resolved)
       if (process.env.NODE_ENV !== "production") {
-        console.log(`[case-lookup] Matched documents via case org_id (mismatch resolved) for caseId=${caseId}, caseOrgId=${caseOrgId}`);
+        console.log(`[case-lookup] Matched documents via case org_id for caseId=${caseId}`);
       }
       return data as Array<{ id: string; name: string; created_at: string; extracted_json?: unknown; raw_text?: string }>;
     }
   }
   
-  // Try 4: NULL org_id (edge case)
-  const { data, error } = await supabase
-    .from("documents")
-    .select("id, name, created_at, extracted_json, raw_text")
-    .eq("case_id", caseId)
-    .is("org_id", null)
-    .order("created_at", { ascending: false });
-  
-  if (error) {
-    console.error("[case-lookup] Error querying documents by NULL org_id:", error);
-  } else if (data) {
-    return data as Array<{ id: string; name: string; created_at: string; extracted_json?: unknown; raw_text?: string }>;
-  }
-  
+  // Do NOT fall back to org_id IS NULL documents — cross-tenant edge leak.
   return [];
 }
 

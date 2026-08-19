@@ -4,12 +4,13 @@ import { NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { env } from "@/lib/env";
+import { requireDocumentInOrg } from "@/lib/tenant/require-case-in-org";
 
 /**
  * GET /api/files/[fileId]/view
- * 
+ *
  * Generates a signed URL for viewing a document in a new tab.
- * Uses server-side Supabase client with service role key for security.
+ * Foreign and missing document IDs both return identical 404 (no signed URL, no 403 oracle).
  */
 export async function GET(
   _request: Request,
@@ -17,43 +18,15 @@ export async function GET(
 ) {
   const { fileId } = await params;
   const { orgId } = await requireAuthContext();
-  const supabase = getSupabaseAdminClient();
 
   try {
-    // Fetch document record
-    const { data: document, error: docError } = await supabase
-      .from("documents")
-      .select("id, name, storage_url, case_id, org_id")
-      .eq("id", fileId)
-      .eq("org_id", orgId)
-      .maybeSingle();
+    const docCheck = await requireDocumentInOrg(fileId, orgId, {
+      select: "id, name, storage_url, case_id, org_id",
+    });
+    if (!docCheck.ok) return docCheck.response;
+    const document = docCheck.document;
 
-    if (docError) {
-      console.error("[files/view] Database error:", docError);
-      return NextResponse.json(
-        { error: "Failed to fetch document" },
-        { status: 500 }
-      );
-    }
-
-    if (!document) {
-      return NextResponse.json(
-        { error: "Document not found" },
-        { status: 404 }
-      );
-    }
-
-    // Verify document belongs to the case and org
-    if (document.org_id !== orgId) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 403 }
-      );
-    }
-
-    // Extract storage path from storage_url
-    // Format: "casebrain-documents/orgId/caseId/timestamp-filename.pdf"
-    const storageUrl = document.storage_url;
+    const storageUrl = document.storage_url as string | null | undefined;
     if (!storageUrl) {
       return NextResponse.json(
         { error: "Document has no storage URL" },
@@ -66,7 +39,7 @@ export async function GET(
       ? storageUrl.replace(`${bucket}/`, "")
       : storageUrl;
 
-    // Generate signed URL (valid for 1 hour)
+    const supabase = getSupabaseAdminClient();
     const { data: signedUrlData, error: urlError } = await supabase.storage
       .from(bucket)
       .createSignedUrl(path, 3600); // 1 hour expiry
@@ -91,4 +64,3 @@ export async function GET(
     );
   }
 }
-

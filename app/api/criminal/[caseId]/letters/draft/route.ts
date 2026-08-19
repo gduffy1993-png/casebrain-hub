@@ -59,6 +59,7 @@ export async function POST(request: Request, { params }: RouteParams) {
       .from("criminal_cases")
       .select("defendant_name, court_name, next_hearing_date, next_hearing_type, bail_status")
       .eq("id", caseId)
+      .eq("org_id", orgId)
       .maybeSingle() as any
   );
 
@@ -67,6 +68,7 @@ export async function POST(request: Request, { params }: RouteParams) {
       .from("criminal_charges")
       .select("offence, section, charge_date, status")
       .eq("case_id", caseId)
+      .eq("org_id", orgId)
       .order("charge_date", { ascending: false }) as any
   );
 

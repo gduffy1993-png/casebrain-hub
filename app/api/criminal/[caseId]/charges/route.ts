@@ -69,10 +69,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
       return makeNotFound<{ charges: any[] }>(context, caseId);
     }
 
-    // Fetch charges from DB (prefer org_id filter if it works; fall back to case_id only)
-    let charges: any[] | null = null;
-    let error: any = null;
-
+    // Fetch charges from DB — always org-scoped (no case_id-only fallback)
     const withOrg = await supabase
       .from("criminal_charges")
       .select("*")
@@ -80,16 +77,11 @@ export async function GET(_request: Request, { params }: RouteParams) {
       .eq("org_id", orgId)
       .order("charge_date", { ascending: false });
 
-    if (!withOrg.error) {
-      charges = withOrg.data ?? [];
-    } else {
-      const withoutOrg = await supabase
-        .from("criminal_charges")
-        .select("*")
-        .eq("case_id", caseId)
-        .order("charge_date", { ascending: false });
-      charges = withoutOrg.data ?? [];
-      error = withoutOrg.error ?? withOrg.error;
+    let charges: any[] | null = withOrg.error ? null : (withOrg.data ?? []);
+    const error: any = withOrg.error ?? null;
+
+    if (withOrg.error) {
+      console.error("[criminal/charges] charges lookup error:", withOrg.error);
     }
 
     // If DB table is empty, extract from uploaded document/page units via live canonical pipeline.

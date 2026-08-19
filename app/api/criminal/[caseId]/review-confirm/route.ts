@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { withPaywall } from "@/lib/paywall/protect-route";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { requireCaseInOrg } from "@/lib/tenant/require-case-in-org";
 import { stanceToPrimaryStrategy } from "@/lib/criminal/review-confirm-ui";
 import type { PrimaryStrategyType } from "@/lib/criminal/phase1-detection";
 
@@ -20,6 +21,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     try {
       const authRes = await requireAuthContextApi();
       if (!authRes.ok) return authRes.response;
+      const { orgId } = authRes.context;
 
       const body = await request.json().catch(() => ({}));
       const offenceCode = typeof body.offenceCode === "string" ? body.offenceCode.trim() : "";
@@ -47,23 +49,15 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
       const strategy_type = primary_strategy;
 
+      const caseCheck = await requireCaseInOrg(caseId, orgId);
+      if (!caseCheck.ok) return caseCheck.response;
       const supabase = getSupabaseAdminClient();
-      const { data: caseRow, error: caseError } = await supabase
-        .from("cases")
-        .select("id, org_id")
-        .eq("id", caseId)
-        .single();
-
-      if (caseError || !caseRow?.org_id) {
-        return NextResponse.json({ ok: false, error: "Case not found" }, { status: 404 });
-      }
-
-      const orgId = caseRow.org_id;
 
       const { data: existingCc } = await supabase
         .from("criminal_cases")
         .select("id")
         .eq("id", caseId)
+        .eq("org_id", orgId)
         .maybeSingle();
 
       if (!existingCc) {

@@ -17,31 +17,10 @@ import {
 import { auditInputFromEvidenceSnapshot } from "@/lib/criminal/persistence/case-review-audit/case-review-audit-integrations";
 import { writeCaseReviewAuditEvent } from "@/lib/criminal/persistence/case-review-audit/write-case-review-audit-event";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { requireCaseInOrg } from "@/lib/tenant/require-case-in-org";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
-async function verifyCaseInOrg(caseId: string, orgId: string) {
-  const supabase = getSupabaseAdminClient();
-  const { data: caseRow, error: caseError } = await supabase
-    .from("cases")
-    .select("org_id")
-    .eq("id", caseId)
-    .single();
-
-  if (caseError || !caseRow) {
-    return { ok: false as const, status: 404, error: "Case not found" };
-  }
-
-  if (caseRow.org_id !== orgId) {
-    return {
-      ok: false as const,
-      status: 403,
-      error: "Unauthorized: Case does not belong to your organisation",
-    };
-  }
-
-  return { ok: true as const };
-}
 
 export async function POST(request: NextRequest, { params }: RouteParams) {
   try {
@@ -50,10 +29,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     if (!authRes.ok) return authRes.response;
     const { userId, orgId } = authRes.context;
 
-    const caseCheck = await verifyCaseInOrg(caseId, orgId);
-    if (!caseCheck.ok) {
-      return NextResponse.json({ ok: false, error: caseCheck.error }, { status: caseCheck.status });
-    }
+    const caseCheck = await requireCaseInOrg(caseId, orgId);
+    if (!caseCheck.ok) return caseCheck.response;
 
     let body: EvidenceChangeSnapshotPostBody = {};
     try {
@@ -114,10 +91,8 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
     if (!authRes.ok) return authRes.response;
     const { orgId } = authRes.context;
 
-    const caseCheck = await verifyCaseInOrg(caseId, orgId);
-    if (!caseCheck.ok) {
-      return NextResponse.json({ ok: false, error: caseCheck.error }, { status: caseCheck.status });
-    }
+    const caseCheck = await requireCaseInOrg(caseId, orgId);
+    if (!caseCheck.ok) return caseCheck.response;
 
     const supabase = getSupabaseAdminClient();
     const { data, error: fetchError } = await supabase

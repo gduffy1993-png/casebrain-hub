@@ -8,7 +8,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { withPaywall } from "@/lib/paywall/protect-route";
-import { getSupabaseAdminClient } from "@/lib/supabase";
+import { requireCaseInOrg } from "@/lib/tenant/require-case-in-org";
 
 // Generate deterministic generic steps based on strategy
 function generateDeterministicSteps(
@@ -116,29 +116,17 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     try {
       const authRes = await requireAuthContextApi();
       if (!authRes.ok) return authRes.response;
-      const { userId } = authRes.context;
+      const { orgId } = authRes.context;
 
-      // Get case's org_id directly from database (same pattern as aggressive-defense route)
-      const supabase = getSupabaseAdminClient();
-      const { data: caseRow, error: caseError } = await supabase
-        .from("cases")
-        .select("id, org_id")
-        .eq("id", caseId)
-        .single();
-
-      if (caseError || !caseRow || !caseRow.org_id) {
-        return NextResponse.json(
-          { ok: false, error: "Case not found" },
-          { status: 404 }
-        );
-      }
+      const caseCheck = await requireCaseInOrg(caseId, orgId);
+      if (!caseCheck.ok) return caseCheck.response;
 
       // No need to check analysis gate - return deterministic steps regardless
 
-      // Single source of truth: case state snapshot
+      // Single source of truth: case state snapshot (auth org only — never foreign case.org_id)
       const { getCaseStateSnapshot } = await import("@/lib/criminal/case-state-snapshot");
       const { mapStanceDetectedToPrimary } = await import("@/lib/criminal/phase1-detection");
-      const caseState = await getCaseStateSnapshot(caseId, caseRow.org_id);
+      const caseState = await getCaseStateSnapshot(caseId, orgId);
       const primary_strategy =
         caseState.strategy_committed_primary ??
         mapStanceDetectedToPrimary(caseState.stance_detected);

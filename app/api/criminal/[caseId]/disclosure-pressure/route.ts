@@ -9,6 +9,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContextApi } from "@/lib/auth-api";
 import { withPaywall } from "@/lib/paywall/protect-route";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { requireCaseInOrg } from "@/lib/tenant/require-case-in-org";
 import { computeDisclosureState } from "@/lib/criminal/disclosure-state";
 import { enrichMissingItemsWithPressure } from "@/lib/criminal/disclosure-pressure";
 import type { PressureItem } from "@/lib/criminal/disclosure-pressure";
@@ -27,22 +28,11 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       if (!authRes.ok) return authRes.response;
       const { orgId } = authRes.context;
 
+      const caseCheck = await requireCaseInOrg(caseId, orgId);
+      if (!caseCheck.ok) return caseCheck.response;
+
       const supabase = getSupabaseAdminClient();
-
-      const { data: caseRow, error: caseError } = await supabase
-        .from("cases")
-        .select("id, org_id")
-        .eq("id", caseId)
-        .maybeSingle();
-
-      if (caseError || !caseRow || !caseRow.org_id) {
-        return NextResponse.json({ ok: false, error: "Case not found" }, { status: 404 });
-      }
-      if (caseRow.org_id !== orgId) {
-        return NextResponse.json({ ok: false, error: "Case not found" }, { status: 404 });
-      }
-
-      const orgIdFilter = caseRow.org_id;
+      const orgIdFilter = orgId;
 
       const [
         { data: docRows },

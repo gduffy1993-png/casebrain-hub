@@ -68,11 +68,12 @@ export async function GET(
 
     const supabase = getSupabaseAdminClient();
 
-    // Get case details
+    // Get case details (org-scoped)
     const { data: caseRecord } = await supabase
       .from("cases")
       .select("title, practice_area, criminal_meta")
       .eq("id", caseId)
+      .eq("org_id", context.orgScope.orgIdResolved || "")
       .maybeSingle();
 
     // Get criminal meta

@@ -56,11 +56,12 @@ export async function GET(
     // Single source of truth: case state snapshot for offence/stage (offence-specific mitigation)
     const caseState = await getCaseStateSnapshot(caseId, orgId);
 
-    // Get case details
+    // Get case details (org-scoped — never load foreign case metadata by id alone)
     const { data: caseRecord } = await supabase
       .from("cases")
       .select("title, criminal_meta")
       .eq("id", caseId)
+      .eq("org_id", orgId)
       .maybeSingle();
 
     const criminalMeta = (caseRecord?.criminal_meta as any) || null;

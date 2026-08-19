@@ -56,21 +56,25 @@ export async function GET(
     const caseState = await getCaseStateSnapshot(caseId, orgId);
 
     // Get criminal meta, documents, and charges (fallback for offence if no snapshot)
+    // All secondary reads stay org-scoped after buildCaseContext ownership gate.
     const [{ data: caseRecord }, { data: documents }, { data: chargesData }] = await Promise.all([
       supabase
         .from("cases")
         .select("criminal_meta")
         .eq("id", caseId)
+        .eq("org_id", orgId)
         .maybeSingle(),
       supabase
         .from("documents")
         .select("extracted_json")
         .eq("case_id", caseId)
+        .eq("org_id", orgId)
         .limit(10),
       supabase
         .from("criminal_charges")
         .select("offence")
         .eq("case_id", caseId)
+        .eq("org_id", orgId)
         .limit(1),
     ]);
 
