@@ -225,6 +225,7 @@ const PROFILE_SIGNAL_RULES: Array<{
   },
 ];
 
+/** Demo fixture catalogue — eval/demo adapters only; never auto-applied from a person's name. */
 const DEMO_TITLE_FALLBACK: Array<{
   profile: Exclude<WorkflowProfile, "generic">;
   titleRe: RegExp;
@@ -257,8 +258,12 @@ function contextScan(context: WorkflowProfileContext): string {
     .join(" ");
 }
 
-/** Demo matter name match anywhere in case signals — forces profile for Marcus/Kian/Leon. */
-export function resolveDemoProfileFromContext(
+/**
+ * Explicit demo/eval adapter: resolve a known fixture profile from title.
+ * Must be called deliberately by eval harnesses — production workflow resolution
+ * must NOT invoke this from a person's name alone (CB-HIST-NO-CASE-IDENTITY-TRUTH-BRANCH).
+ */
+export function resolveExplicitDemoFixtureFromContext(
   context: WorkflowProfileContext,
 ): Exclude<WorkflowProfile, "generic"> | null {
   const scan = contextScan(context);
@@ -268,12 +273,18 @@ export function resolveDemoProfileFromContext(
   return null;
 }
 
+/** @deprecated Use resolveExplicitDemoFixtureFromContext from eval adapters only. */
+export function resolveDemoProfileFromContext(
+  context: WorkflowProfileContext,
+): Exclude<WorkflowProfile, "generic"> | null {
+  return resolveExplicitDemoFixtureFromContext(context);
+}
+
 function resolveProfileFromContext(context: WorkflowProfileContext): WorkflowProfile {
+  // Only an explicit profileHint may force a non-generic profile.
   if (context.profileHint && context.profileHint !== "generic") {
     return context.profileHint;
   }
-  const demo = resolveDemoProfileFromContext(context);
-  if (demo) return demo;
   return "generic";
 }
 
@@ -286,12 +297,7 @@ function scoreProfile(context: WorkflowProfileContext): Map<WorkflowProfile, num
     ["generic", 0],
   ]);
 
-  const scan = contextScan(context);
-  for (const demo of DEMO_TITLE_FALLBACK) {
-    if (demo.titleRe.test(scan)) {
-      scores.set(demo.profile, (scores.get(demo.profile) ?? 0) + 100);
-    }
-  }
+  // No +100 name forcing — case title / defendant name must not create production truth.
 
   const weightedFields: Array<{ text: string; weight: number }> = [
     { text: context.allegation ?? "", weight: 4 },
@@ -628,19 +634,9 @@ export function workflowHeaderOverrides(
   if (!isCriminalPilotMode()) return null;
   const t = caseTitle.trim();
   const fullContext: WorkflowProfileContext = { caseTitle: t, ...context };
-  const scan = contextScan(fullContext);
 
-  for (const demo of DEMO_TITLE_FALLBACK) {
-    if (demo.titleRe.test(scan)) {
-      return {
-        title: demo.title,
-        allegation: demo.allegation,
-        displayTitle: `${demo.title} — ${demo.allegation}`,
-        profile: demo.profile,
-      };
-    }
-  }
-
+  // Name/title alone must never invent offence or profile. Only explicit profileHint
+  // (from an eval/demo adapter) or offence/bundle signals may drive the pack.
   const profile = resolveWorkflowProfile(fullContext);
   if (profile === "generic") return null;
 

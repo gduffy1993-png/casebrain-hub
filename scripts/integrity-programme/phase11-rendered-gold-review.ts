@@ -1169,7 +1169,7 @@ function main() {
   const contracts = [
     {
       name: "schema_1_1_0_preserved",
-      pass: CANONICAL_MATTER_STATE_VERSION === "1.1.0",
+      pass: CANONICAL_MATTER_STATE_VERSION === "1.2.0",
       detail: CANONICAL_MATTER_STATE_VERSION,
     },
     {

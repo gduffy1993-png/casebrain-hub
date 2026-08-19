@@ -8,7 +8,7 @@ import path from "node:path";
 import { CANONICAL_MATTER_STATE_VERSION } from "@/lib/criminal/canonical-matter-state";
 import { phase2CentralSurfaceIds } from "@/lib/criminal/solicitor-surface-gate-registry";
 
-assert.equal(CANONICAL_MATTER_STATE_VERSION, "1.1.0");
+assert.equal(CANONICAL_MATTER_STATE_VERSION, "1.2.0");
 assert.equal(phase2CentralSurfaceIds().length, 31);
 
 const ROOT = path.resolve(__dirname, "..");

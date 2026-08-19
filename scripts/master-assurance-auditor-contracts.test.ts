@@ -483,23 +483,31 @@ async function main() {
   });
 
   console.log("\n11 — STATE-DOMAIN EQUIVALENCE");
-  await check("raw not_safely_confirmed ≡ display incomplete (positive)", () => {
+  await check("raw not_safely_confirmed ≠ incomplete (positive distinction)", () => {
     const r = compareEvidenceStates({
       actualRaw: "not_safely_confirmed",
       expected: "incomplete",
     });
-    assert.equal(r.equivalent, true);
-    assert.equal(r.reason, "domain_equivalence");
+    assert.equal(r.equivalent, false);
+    assert.equal(r.reason, "mismatch");
     assert.equal(r.actualRaw, "not_safely_confirmed");
-    assert.equal(r.actualDisplay, "incomplete");
+    assert.equal(r.actualDisplay, "not_safely_confirmed");
     assert.equal(r.expectedDisplay, "incomplete");
+  });
+  await check("NSC matches NSC exactly", () => {
+    const r = compareEvidenceStates({
+      actualRaw: "not_safely_confirmed",
+      expected: "not_safely_confirmed",
+    });
+    assert.equal(r.equivalent, true);
+    assert.equal(r.reason, "exact");
   });
   await check("served vs incomplete remains a mismatch (negative)", () => {
     const r = compareEvidenceStates({ actualRaw: "served", expected: "incomplete" });
     assert.equal(r.equivalent, false);
     assert.equal(r.reason, "mismatch");
   });
-  await check("domain-equivalent pair is pass via runAllControls", () => {
+  await check("exact incomplete pair is pass via runAllControls", () => {
     const { findings } = runAllControls([
       baseCase({
         caseId: "CASE-07",
@@ -517,7 +525,7 @@ async function main() {
         truthMapRows: [
           {
             label: "witness MG11",
-            existence: "not_safely_confirmed",
+            existence: "incomplete",
             reliability: "unsafe",
           },
         ],
@@ -526,9 +534,9 @@ async function main() {
     const hit = findings.find(
       (f) =>
         f.controlId === "MAA-EVIDENCE-STATE" &&
-        f.code === "state_domain_equivalent",
+        (f.code === "state_exact" || f.verdict === "pass"),
     );
-    assert.ok(hit, "expected state_domain_equivalent pass");
+    assert.ok(hit, "expected evidence-state pass for exact incomplete");
     assert.equal(hit!.verdict, "pass");
   });
   await check("six retained candidate defects are listed and matchable", () => {

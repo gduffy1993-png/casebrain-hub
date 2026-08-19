@@ -1,0 +1,26 @@
+{
+  "policyId": "canonical-existence-map@1.2.0",
+  "from": "canonical-existence-map@1.1.0",
+  "canonicalMatterStateVersion": "1.2.0",
+  "change": "Preserve not_safely_confirmed as distinct from incomplete end-to-end (CB-HIST-NSC-NOT-INCOMPLETE).",
+  "mappingChanges": [
+    {
+      "raw": "not_safely_confirmed",
+      "was": "incomplete",
+      "now": "not_safely_confirmed"
+    }
+  ],
+  "displayLabelChanges": [
+    {
+      "existence": "not_safely_confirmed",
+      "was": "Incomplete",
+      "now": "Not safely confirmed"
+    }
+  ],
+  "mg11Status": {
+    "incomplete": "draft_or_unsigned",
+    "not_safely_confirmed": "not_safely_confirmed (new enum value)"
+  },
+  "fingerprintImpact": "Expected — matters with NSC rows will change fingerprint and Incomplete/NSC counts.",
+  "invariant": "CB-HIST-NSC-NOT-INCOMPLETE"
+}

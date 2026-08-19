@@ -1,19 +1,26 @@
 import { humanizeChaseFragmentLabel } from "@/lib/criminal/disclosure-chase-finalize";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
-import { evidenceRowFromSourceState } from "@/lib/criminal/five-answers/evidence-trace";
 import { sanitizeSolicitorVisibleText } from "@/lib/criminal/overview-presentation";
 
-/** Prod Taylor Loom demo case — presentation routing only. */
+/**
+ * Explicit demo presentation case id — env only.
+ * No hard-coded UUID may participate in production source→truth resolution.
+ * (CB-HIST-NO-CASE-IDENTITY-TRUTH-BRANCH)
+ */
 export const DEMO_PRESENTATION_CASE_ID =
-  process.env.NEXT_PUBLIC_DEMO_PRESENTATION_CASE_ID?.trim() ||
-  "4e22fb0f-8631-4cda-9aef-fea6a24f6163";
+  process.env.NEXT_PUBLIC_DEMO_PRESENTATION_CASE_ID?.trim() || "";
 
 export function buildDemoPresentationCaseHref(): string {
+  if (!DEMO_PRESENTATION_CASE_ID) return "/cases";
   return `/cases/${DEMO_PRESENTATION_CASE_ID}?tab=overview&controlRoom=1`;
 }
 
 export function isDemoPresentationCase(caseId: string | null | undefined): boolean {
-  return Boolean(caseId?.trim() && caseId.trim() === DEMO_PRESENTATION_CASE_ID);
+  return Boolean(
+    DEMO_PRESENTATION_CASE_ID &&
+      caseId?.trim() &&
+      caseId.trim() === DEMO_PRESENTATION_CASE_ID,
+  );
 }
 
 function formatDemoListingDate(day: string, month: string, year: string, time?: string | null): string {
@@ -36,8 +43,9 @@ function formatDemoListingDate(day: string, month: string, year: string, time?: 
 }
 
 /**
- * Demo display guard: if the Taylor bundle has a clear PTPH/listing date,
- * show that instead of a stale structured placeholder date.
+ * Demo display guard: when an *explicit* demo case id is configured AND the bundle
+ * itself contains a listing date, prefer that source date over a stale placeholder.
+ * Never invent a hard-coded hearing/date from case identity alone.
  */
 export function resolveDemoPresentationHearingLabel({
   caseId,
@@ -55,12 +63,7 @@ export function resolveDemoPresentationHearingLabel({
   const listing = hay.match(
     /\b(PTPH|plea\s+and\s+trial\s+preparation|listing)\s*(?:listed)?\s*[—–-]\s*(\d{1,2})\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})(?:,\s*(\d{1,2}:\d{2}))?/i,
   );
-  if (!listing) {
-    if (/1\s+Jan\s+2026|01\/01\/2026|2026-01-01/i.test(current)) {
-      return "PTPH · 15 Jul 2026 at 10:00";
-    }
-    return current;
-  }
+  if (!listing) return current;
 
   const [, kindRaw, day, month, year, time] = listing;
   const kind = /plea\s+and\s+trial/i.test(kindRaw ?? "") ? "PTPH" : (kindRaw ?? "PTPH").toUpperCase();
@@ -108,53 +111,24 @@ export function sanitizeDemoBundleBanner(text: string): string {
 
 export function displayPrimaryRouteTitle(title: string, bundleHay: string, allegation = ""): string {
   if (!title.trim()) return title;
-  if (isDigitalHarassmentBundleHay(bundleHay, allegation)) {
-    if (/second male|vehicle ownership|source-material pressure|bank\/device/i.test(title)) {
-      return "Digital attribution / phone harassment pressure";
-    }
-  }
+  void allegation;
   return polishPresentationLine(title, bundleHay);
 }
 
-/** Collapse repeated outstanding phrasing in summary / court lines. */
+/**
+ * Meaning-preserving lexical cleanup only (CB-HIST-PRESENTATION-MUST-PRESERVE-SEMANTICS).
+ * May shorten repeated outstanding wording. Must not change evidence family, invent
+ * items/states/sources/people/counts/dates, or substitute one disclosure item for another.
+ */
 export function polishPresentationLine(line: string, bundleHay = ""): string {
   let t = line.trim();
   if (!t) return t;
+  void bundleHay;
 
-  const digitalContext = isDigitalDisclosureHay(bundleHay || t);
   const financialContext =
     /fraud|proceeds\s+of\s+crime|criminal\s+property|money\s+launder|poca\b|section\s+32[789]\b|bank\s+(?:account|transfer|statement)|financial\s+investigation/i.test(
       bundleHay,
     );
-  if (digitalContext) {
-    t = t.replace(
-      /attribution\s*\/\s*second[-\s]?male\s*\/\s*source-material pressure/gi,
-      "Digital attribution / phone harassment pressure",
-    );
-    t = t.replace(
-      /attribution\s*\/\s*sender attribution\s*\/\s*source-material pressure/gi,
-      "Digital attribution / phone harassment pressure",
-    );
-    t = t.replace(/\bsecond[-\s]?male involvement\b/gi, "sender attribution");
-    t = t.replace(
-      /attribution material,\s*phone ownership,\s*vehicle ownership,\s*and role evidence/gi,
-      "full phone download, subscriber attribution data, and complainant statement status",
-    );
-    t = t.replace(/\bvehicle ownership\b/gi, "phone attribution");
-    t = t.replace(/\bsecond male\b/gi, "sender attribution");
-    t = t.replace(
-      /\bbank\/device\b|\bbank\.device\b|served bank\/device material/gi,
-      "served message export material",
-    );
-    t = t.replace(
-      /mg6\s*\/\s*unused schedule clarification/gi,
-      "full phone download / source export",
-    );
-    t = t.replace(
-      /\bunused schedule clarification\b/gi,
-      "digital disclosure schedule item",
-    );
-  }
 
   if (!financialContext) {
     t = t
@@ -234,9 +208,14 @@ function mg6GenericLabel(label: string): boolean {
 }
 
 function digitalChaseLabel(hay: string): string | null {
-  if (/phone|extraction|download|device download/i.test(hay)) return "Full phone download / source extraction";
-  if (/subscriber|account|sim|attribution/i.test(hay)) return "Subscriber / account data";
-  if (/screenshot|message|whatsapp|sms|export|device material/i.test(hay)) {
+  // Prefer concrete source wording already present — never remap MG6→phone family.
+  if (/phone|extraction|download|device download/i.test(hay) && !/mg6/i.test(hay.split("—")[0] ?? hay)) {
+    return "Full phone download / source extraction";
+  }
+  if (/subscriber|account|sim|attribution/i.test(hay) && !/^mg6\b/i.test(hay.trim())) {
+    return "Subscriber / account data";
+  }
+  if (/screenshot|message|whatsapp|sms|export|device material/i.test(hay) && !/mg6/i.test(hay.split("—")[0] ?? hay)) {
     return "Message export / source device material";
   }
   if (/mg11|complainant|witness statement/i.test(hay)) return "Complainant MG11 / source material";
@@ -248,11 +227,10 @@ function digitalChaseLabel(hay: string): string | null {
   if (/handle|attribution report/i.test(hay)) return "Handle attribution report";
   if (/platform|encro|county/i.test(hay)) return "Platform / source extraction";
   if (/call log/i.test(hay)) return "Call logs";
-  if (/harassment|digital|phone|message/i.test(hay)) return "Outstanding digital disclosure material";
   return null;
 }
 
-/** UI-only chase card title — does not change chase brain output. */
+/** UI-only chase card title — does not change chase brain output or evidence family. */
 export function displayChaseCardLabel(item: ChaseDisplayItem): string {
   const hay = digitalHay(item);
   const normalized = item.label.replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
@@ -262,25 +240,28 @@ export function displayChaseCardLabel(item: ChaseDisplayItem): string {
       .map((m) => m.trim())
       .find((m) => m && !/^additional\s+source[- ]material/i.test(m));
     if (fromMerged) {
-      const digital = digitalChaseLabel(`${fromMerged} ${hay}`);
-      if (digital) return digital;
+      // Prefer the concrete merged source label; do not invent a phone family from MG6 alone.
+      if (!mg6GenericLabel(fromMerged)) {
+        const digital = digitalChaseLabel(`${fromMerged} ${hay}`);
+        if (digital) return digital;
+      }
       return humanizeChaseFragmentLabel(fromMerged).replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
     }
-    const digital = digitalChaseLabel(hay);
-    if (digital) return digital;
     return "Other source-material item";
   }
 
+  // MG6 / unused schedule clarification keeps its schedule family — never becomes phone download.
   if (mg6GenericLabel(normalized)) {
-    const digital = digitalChaseLabel(hay);
-    if (digital) return digital;
+    return humanizeChaseFragmentLabel(normalized).replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
   }
 
   const human = humanizeChaseFragmentLabel(normalized);
   if (mg6GenericLabel(human)) {
-    const digital = digitalChaseLabel(hay);
-    if (digital) return digital;
+    return human.replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
   }
+
+  const digital = digitalChaseLabel(hay);
+  if (digital && !mg6GenericLabel(normalized)) return digital;
 
   return human.replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
 }
@@ -399,55 +380,16 @@ export function filterBundleFamilyWarnings(lines: string[], bundleHay: string): 
   return out;
 }
 
-/** Presentation-only truth-map rows for Taylor / phone-harassment demos when gaps collapse. */
+/**
+ * Presentation must not invent evidence rows (CB-HIST-PRESENTATION-CANNOT-CREATE-EVIDENCE-STATE).
+ * Returns the incoming factual set unchanged.
+ */
 export function ensureDigitalHarassmentGapRows(
   rows: FiveAnswersEvidenceRow[],
   bundleHay: string,
   allegation = "",
 ): FiveAnswersEvidenceRow[] {
-  if (!isDigitalHarassmentBundleHay(bundleHay, allegation)) return rows;
-
-  const hasGap = (re: RegExp) =>
-    rows.some((r) => re.test(`${r.label} ${r.note ?? ""}`) && r.existence !== "served");
-
-  const extras: FiveAnswersEvidenceRow[] = [];
-  if (!hasGap(/full phone download|phone download|source export|extraction download/i)) {
-    extras.push(
-      evidenceRowFromSourceState(
-        "Full phone download",
-        "missing",
-        "Chase full extraction source before fixing attribution.",
-      ),
-    );
-  }
-  if (!hasGap(/subscriber|attribution|account data|sim\b/i)) {
-    extras.push(
-      evidenceRowFromSourceState(
-        "Subscriber / attribution data",
-        "missing",
-        "Outstanding — screenshots alone do not prove who sent messages.",
-      ),
-    );
-  }
-  if (!hasGap(/mg11|complainant|witness statement/i)) {
-    extras.push(
-      evidenceRowFromSourceState(
-        "Complainant MG11",
-        "not_safely_confirmed",
-        "Draft or unsigned on file — confirm final signed statement before reliance.",
-      ),
-    );
-  }
-
-  if (!extras.length) return rows;
-
-  const seen = new Set<string>();
-  const merged: FiveAnswersEvidenceRow[] = [];
-  for (const row of [...extras, ...rows]) {
-    const key = row.label.trim().toLowerCase();
-    if (seen.has(key)) continue;
-    seen.add(key);
-    merged.push(row);
-  }
-  return merged.slice(0, 8);
+  void bundleHay;
+  void allegation;
+  return rows;
 }

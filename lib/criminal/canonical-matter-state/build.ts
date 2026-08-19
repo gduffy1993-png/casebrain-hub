@@ -30,23 +30,21 @@ import { shouldChaseRequestAgainstServedAliases } from "@/lib/criminal/canonical
 import type { SharedEvidenceState } from "@/lib/criminal/evidence-state-reconcile";
 
 /**
- * EXISTENCE_MAPPING_POLICY (CanonicalMatterState schema 1.1.0) — intentional rule.
+ * EXISTENCE_MAPPING_POLICY (CanonicalMatterState schema 1.2.0) — intentional rule.
  *
  * Raw FiveAnswersEvidenceExistence → CanonicalEvidenceExistence:
- * - served / referred_only / missing: identity
- * - incomplete: identity (if ever present on raw rows)
- * - not_safely_confirmed → incomplete
- *   Intentional: matches displayExistenceLabel() which presents raw NSC as "Incomplete"
- *   on primary solicitor surfaces; overview Incomplete bucket absorbs that raw state.
+ * - served / referred_only / missing / incomplete: identity
+ * - not_safely_confirmed → not_safely_confirmed
+ *   (preserved distinct from incomplete — CB-HIST-NSC-NOT-INCOMPLETE)
  * - unknown → not_safely_confirmed
  *   Intentional: unknown is not a canonical existence; solicitor strip uses
  *   "Not safely confirmed" for unresolved unknowns.
  * - default → not_safely_confirmed
  *
+ * Migration from 1.1.0: removed not_safely_confirmed → incomplete collapse.
  * Do not redefine these mappings without migration evidence + fingerprint impact analysis.
- * See artifacts/.../existence-mapping-policy-migration.json for locked expectations.
  */
-export const EXISTENCE_MAPPING_POLICY_ID = "canonical-existence-map@1.1.0" as const;
+export const EXISTENCE_MAPPING_POLICY_ID = "canonical-existence-map@1.2.0" as const;
 
 export function mapRawExistenceToCanonical(raw: string): CanonicalEvidenceExistence {
   switch (raw) {
@@ -59,7 +57,7 @@ export function mapRawExistenceToCanonical(raw: string): CanonicalEvidenceExiste
     case "incomplete":
       return "incomplete";
     case "not_safely_confirmed":
-      return "incomplete";
+      return "not_safely_confirmed";
     case "unknown":
       return "not_safely_confirmed";
     default:
@@ -152,11 +150,15 @@ function resolveMg11(items: CanonicalEvidenceItem[]): { status: CanonicalMg11Sta
   if (!mg11.length) return { status: "not_on_file", label: "MG11 not on file" };
   if (mg11.some((i) => i.existence === "served")) return { status: "served", label: "MG11 served" };
   if (mg11.some((i) => i.existence === "referred_only")) return { status: "referred", label: "MG11 referred only" };
-  if (mg11.some((i) => i.existence === "incomplete" || i.existence === "not_safely_confirmed")) {
+  // Incomplete = we have material but know it is partial — distinct from NSC.
+  if (mg11.some((i) => i.existence === "incomplete")) {
     return { status: "draft_or_unsigned", label: "MG11 draft / unsigned on papers" };
   }
+  if (mg11.some((i) => i.existence === "not_safely_confirmed")) {
+    return { status: "not_safely_confirmed", label: "MG11 not safely confirmed on papers" };
+  }
   if (mg11.some((i) => i.existence === "missing")) return { status: "missing", label: "MG11 missing" };
-  return { status: "draft_or_unsigned", label: "MG11 needs solicitor review" };
+  return { status: "not_safely_confirmed", label: "MG11 needs solicitor review" };
 }
 
 function resolveAttribution(

@@ -66,8 +66,20 @@ assert.ok(
 // --- Profile detection ---
 
 assert.equal(
-  resolveWorkflowProfile({ caseTitle: "R v Marcus Vale", allegation: "Offence wording not safely extracted" }),
+  resolveWorkflowProfile({
+    caseTitle: "R v Marcus Vale",
+    allegation: "Offence wording not safely extracted",
+    profileHint: "fraud_account_control",
+  }),
   "fraud_account_control",
+);
+
+assert.equal(
+  resolveWorkflowProfile({
+    caseTitle: "R v Marcus Vale",
+    allegation: "Offence wording not safely extracted",
+  }),
+  "generic",
 );
 
 assert.equal(
@@ -124,20 +136,31 @@ assert.equal(
   "generic",
 );
 
-// --- Headers ---
+// --- Headers (explicit profileHint — name alone must not invent offence) ---
 
-const marcusHeader = workflowHeaderOverrides("R v Marcus Vale");
+assert.equal(workflowHeaderOverrides("R v Marcus Vale"), null);
+
+const marcusHeader = workflowHeaderOverrides("R v Marcus Vale", {
+  profileHint: "fraud_account_control",
+  allegation: "Fraud by false representation",
+});
 assert.ok(marcusHeader);
 assert.equal(marcusHeader!.displayTitle, "R v Marcus Vale — Fraud by false representation");
 assert.ok(!marcusHeader!.displayTitle.toLowerCase().includes("offence wording not safely extracted"));
 
-const kianHeader = workflowHeaderOverrides("R v Kian Doyle");
+const kianHeader = workflowHeaderOverrides("R v Kian Doyle", {
+  profileHint: "pwits_phone_attribution",
+  allegation: "Possession with intent to supply Class A controlled drugs",
+});
 assert.equal(
   kianHeader!.displayTitle,
   "R v Kian Doyle — Possession with intent to supply Class A controlled drugs",
 );
 
-const leonHeader = workflowHeaderOverrides("R v Leon Marsh");
+const leonHeader = workflowHeaderOverrides("R v Leon Marsh", {
+  profileHint: "robbery_identification",
+  allegation: "Robbery, Theft Act 1968 s.8",
+});
 assert.equal(leonHeader!.displayTitle, "R v Leon Marsh — Robbery, Theft Act 1968 s.8");
 
 // --- Fraud chase ordering ---
@@ -162,7 +185,10 @@ assert.ok(
   "fraud profile should rank bank/device/POCA above CCTV/CAD/BWV",
 );
 
-const fraudLabels = workflowDisclosureChaseLabels({ caseTitle: "R v Marcus Vale" });
+const fraudLabels = workflowDisclosureChaseLabels({
+  caseTitle: "R v Marcus Vale",
+  profileHint: "fraud_account_control",
+});
 assert.ok(fraudLabels);
 assert.equal(fraudLabels!.length, 8);
 assert.ok(fraudLabels![0]!.toLowerCase().includes("bank"));
@@ -212,9 +238,9 @@ assert.ok(
 // --- Ask court max 5 ---
 
 for (const ctx of [
-  { caseTitle: "R v Marcus Vale" },
-  { caseTitle: "R v Kian Doyle" },
-  { caseTitle: "R v Leon Marsh" },
+  { caseTitle: "R v Marcus Vale", profileHint: "fraud_account_control" as const },
+  { caseTitle: "R v Kian Doyle", profileHint: "pwits_phone_attribution" as const },
+  { caseTitle: "R v Leon Marsh", profileHint: "robbery_identification" as const },
 ] as const) {
   const asks = workflowCourtRecordAsks(ctx)!;
   assert.ok(asks.length >= 3 && asks.length <= 5, `ask-court bullets for ${ctx.caseTitle}`);
@@ -223,17 +249,17 @@ for (const ctx of [
 
 // --- Next actions from profile ---
 
-const marcusActions = workflowTopNextActions({ caseTitle: "R v Marcus Vale" });
+const marcusActions = workflowTopNextActions({ caseTitle: "R v Marcus Vale", profileHint: "fraud_account_control" });
 assert.equal(marcusActions!.length, 3);
 assert.ok(marcusActions![0]!.toLowerCase().includes("bank"));
 
-const kianActions = workflowTopNextActions({ caseTitle: "R v Kian Doyle" });
+const kianActions = workflowTopNextActions({ caseTitle: "R v Kian Doyle", profileHint: "pwits_phone_attribution" });
 assert.ok(kianActions![0]!.toLowerCase().includes("phone"));
 
-const leonActions = workflowTopNextActions({ caseTitle: "R v Leon Marsh" });
+const leonActions = workflowTopNextActions({ caseTitle: "R v Leon Marsh", profileHint: "robbery_identification" });
 assert.ok(leonActions![0]!.toLowerCase().includes("cctv"));
 
-// --- Kian via client label when title is generic ---
+// --- Client label alone must not force profile (CB-HIST-NO-CASE-IDENTITY-TRUTH-BRANCH) ---
 
 assert.equal(
   resolveWorkflowProfile({
@@ -241,17 +267,28 @@ assert.equal(
     clientLabel: "Kian Doyle",
     allegation: "Offence wording not safely extracted",
   }),
+  "generic",
+);
+
+assert.equal(
+  resolveWorkflowProfile({
+    caseTitle: "Criminal case",
+    clientLabel: "Kian Doyle",
+    allegation: "Offence wording not safely extracted",
+    profileHint: "pwits_phone_attribution",
+  }),
   "pwits_phone_attribution",
 );
 
 const kianLabels = workflowDisclosureChaseLabels({
   caseTitle: "Criminal case",
   clientLabel: "Kian Doyle",
+  profileHint: "pwits_phone_attribution",
 })!;
 assert.ok(kianLabels[0]!.toLowerCase().includes("phone"));
 assert.ok(!kianLabels.some((l) => /\bcctv|999|cad|medical\b/i.test(l)));
 
-const kianAsks = workflowProfileAskCourtOnly({ caseTitle: "R v Kian Doyle" })!;
+const kianAsks = workflowProfileAskCourtOnly({ caseTitle: "R v Kian Doyle", profileHint: "pwits_phone_attribution" })!;
 assert.equal(kianAsks.length, 5);
 assert.ok(kianAsks.every((a) => !/\bcCTV\b/.test(a)));
 assert.ok(!kianAsks.some((a) => /\bcctv full window|999 call audio|custody cctv\b/i.test(a)));
@@ -259,7 +296,7 @@ assert.ok(!kianAsks.some((a) => /\bcctv full window|999 call audio|custody cctv\
 assert.ok(
   !filterWorkflowPilotLines(
     ["Full CCTV confirms Crown timing.", "Phone extraction may be outstanding."],
-    { caseTitle: "R v Kian Doyle" },
+    { caseTitle: "R v Kian Doyle", profileHint: "pwits_phone_attribution" },
     { max: 5, useFallbacks: false },
   ).some((l) => /confirms crown timing/i.test(l)),
   "PWITS profile suppresses Full CCTV confirms Crown timing",
@@ -286,7 +323,7 @@ assert.match(
 assert.equal(pilotDisplayMetadataNote("Metadata source: client: extracted cover fallback"), undefined);
 
 assert.equal(
-  workflowPrimaryRouteTitle({ caseTitle: "R v Marcus Vale" }),
+  workflowPrimaryRouteTitle({ caseTitle: "R v Marcus Vale", profileHint: "fraud_account_control" }),
   "Fraud / account-control / dishonesty pressure",
 );
 
@@ -300,29 +337,32 @@ const fraudNoise = [
   "Full bank export / source schedules",
 ];
 
-const fraudFiltered = filterWorkflowPilotLines(fraudNoise, { caseTitle: "R v Marcus Vale" }, { max: 5 });
+const fraudFiltered = filterWorkflowPilotLines(fraudNoise, { caseTitle: "R v Marcus Vale", profileHint: "fraud_account_control" }, { max: 5 });
 assert.ok(!fraudFiltered.some((l) => /\bcctv|999|cad|mg11\b/i.test(l)), "fraud profile filters CCTV/CAD/MG11 noise");
 assert.ok(fraudFiltered.some((l) => /\bbank\b/i.test(l)), "fraud profile keeps bank material");
 
 assert.equal(
-  workflowDraftDisclosureSnippet({ caseTitle: "R v Leon Marsh" }).split(";").length,
+  workflowDraftDisclosureSnippet({
+    caseTitle: "R v Leon Marsh",
+    profileHint: "robbery_identification",
+  }).split(";").length,
   3,
   "Leon draft snippet uses clean disclosure labels",
 );
 
-const marcusChase = workflowDisclosureChaseLabels({ caseTitle: "R v Marcus Vale" })!;
+const marcusChase = workflowDisclosureChaseLabels({ caseTitle: "R v Marcus Vale", profileHint: "fraud_account_control" })!;
 assert.ok(marcusChase.some((l) => /mailbox|email/i.test(l)), "Marcus includes mailbox/email chase");
 assert.equal(marcusChase.length, 8);
-assert.equal(pilotCourtChaseLabels({ caseTitle: "R v Marcus Vale" }).length, 8);
+assert.equal(pilotCourtChaseLabels({ caseTitle: "R v Marcus Vale", profileHint: "fraud_account_control" }).length, 8);
 
-const kianChase = workflowDisclosureChaseLabels({ caseTitle: "R v Kian Doyle" })!;
+const kianChase = workflowDisclosureChaseLabels({ caseTitle: "R v Kian Doyle", profileHint: "pwits_phone_attribution" })!;
 assert.ok(kianChase.some((l) => /^Search BWV export$/i.test(l.trim())));
 assert.ok(kianChase.some((l) => /Cash seizure/i.test(l)));
 assert.ok(!kianChase.some((l) => /^Search BWV$/i.test(l.trim())));
 assert.ok(!kianChase.some((l) => /\bDNA|fingerprint\b/i.test(l)));
 assert.equal(kianChase.length, 8);
 
-const leonChase = workflowDisclosureChaseLabels({ caseTitle: "R v Leon Marsh" })!;
+const leonChase = workflowDisclosureChaseLabels({ caseTitle: "R v Leon Marsh", profileHint: "robbery_identification" })!;
 assert.ok(leonChase.some((l) => /complainant statement/i.test(l)));
 assert.ok(!leonChase.some((l) => /phone \/ witness/i.test(l)));
 assert.ok(
@@ -330,7 +370,7 @@ assert.ok(
   "Leon fallback chase list must not invent other-person attribution",
 );
 
-const leonCourtChase = pilotCourtChaseLabels({ caseTitle: "R v Leon Marsh" });
+const leonCourtChase = pilotCourtChaseLabels({ caseTitle: "R v Leon Marsh", profileHint: "robbery_identification" });
 assert.ok(
   !leonCourtChase.some((l) => /co-defendant|unknown male/i.test(l)),
   "Court Today chase labels must not promote unsupported other-person attribution",
@@ -344,7 +384,7 @@ assert.equal(
   "Other-person attribution should only be treated as live where a served source identifies it.",
 );
 
-const leonCtx = { caseTitle: "R v Leon Marsh" };
+const leonCtx = { caseTitle: "R v Leon Marsh", profileHint: "robbery_identification" as const };
 
 assert.equal(
   sanitizePilotVisibleLine(
@@ -394,7 +434,7 @@ assert.ok(!isMalformedPilotEvidenceAnchor("MG5 account schedule served on file")
 assert.deepEqual(
   sanitizePilotEvidenceAnchors(
     ["6MG6 disclosure schedule21Search BWV and full phone extraction", "MG5 account schedule served on file"],
-    { caseTitle: "R v Kian Doyle" },
+    { caseTitle: "R v Kian Doyle", profileHint: "pwits_phone_attribution" },
   ),
   ["MG5 account schedule served on file"],
 );
@@ -402,7 +442,7 @@ assert.deepEqual(
 assert.ok(
   !filterWorkflowPilotLines(
     ["MG11 is consistent and served.", "Phone extraction may be outstanding."],
-    { caseTitle: "R v Kian Doyle" },
+    { caseTitle: "R v Kian Doyle", profileHint: "pwits_phone_attribution" },
     { max: 5, useFallbacks: false },
   ).some((l) => /mg11 is consistent/i.test(l)),
 );
@@ -410,6 +450,7 @@ assert.ok(
 assert.equal(
   sanitizePilotVisibleLine("Missing expert/source report comes back against defence.", {
     caseTitle: "R v Marcus Vale",
+    profileHint: "fraud_account_control",
   }),
   "Outstanding bank/device/source material may support the Crown if served.",
 );
@@ -417,7 +458,7 @@ assert.equal(
 assert.equal(
   sanitizePilotVisibleLine(
     "Outstanding expert/source material may return against the defence route if served.",
-    { caseTitle: "R v Marcus Vale" },
+    { caseTitle: "R v Marcus Vale", profileHint: "fraud_account_control" },
   ),
   "Outstanding bank/device/source material may support the Crown if served.",
 );
@@ -440,6 +481,7 @@ assert.equal(
 assert.equal(
   sanitizePilotVisibleLine("Interview admission narrows the defence route.", {
     caseTitle: "R v Marcus Vale",
+    profileHint: "fraud_account_control",
   }),
   "Interview denial remains to be tested against bank/device/source material.",
 );
@@ -462,21 +504,21 @@ assert.ok(isInternalEvalMarkerOnlyLine("CB-TRAP"));
 process.env.NEXT_PUBLIC_CRIMINAL_PILOT_MODE = "true";
 
 assert.equal(
-  sanitizePilotVisibleLine("Position served pending full disclosure", { caseTitle: "R v Marcus Vale" }),
+  sanitizePilotVisibleLine("Position served pending full disclosure", { caseTitle: "R v Marcus Vale", profileHint: "fraud_account_control" }),
   "Position: provisional pending disclosure.",
 );
 
 assert.equal(
-  sanitizePilotVisibleLine("Position reserved pending full disclosure", { caseTitle: "R v Marcus Vale" }),
+  sanitizePilotVisibleLine("Position reserved pending full disclosure", { caseTitle: "R v Marcus Vale", profileHint: "fraud_account_control" }),
   "Position: provisional pending disclosure.",
 );
 
 assert.equal(
-  pilotPositionDisplayLabel("Position served pending full disclosure", { caseTitle: "R v Marcus Vale" }),
+  pilotPositionDisplayLabel("Position served pending full disclosure", { caseTitle: "R v Marcus Vale", profileHint: "fraud_account_control" }),
   "Position: provisional pending disclosure.",
 );
 
-assert.ok(!sanitizePilotVisibleLine("Full CCTV confirms Crown timing", { caseTitle: "R v Kian Doyle" }));
+assert.ok(!sanitizePilotVisibleLine("Full CCTV confirms Crown timing", { caseTitle: "R v Kian Doyle", profileHint: "pwits_phone_attribution" }));
 
 assert.equal(
   pilotRouteStatusBadgeLabel("conditional — conditional on served material"),
@@ -487,15 +529,20 @@ assert.equal(pilotReadinessWithoutSavedPosition(true), "Conditional — confirm 
 assert.equal(pilotReadinessWithoutSavedPosition(false), "Conditional — record position");
 
 assert.match(
-  workflowDisclosureCaseWideLine({ caseTitle: "R v Kian Doyle" })!,
+  workflowDisclosureCaseWideLine({ caseTitle: "R v Kian Doyle", profileHint: "pwits_phone_attribution" })!,
   /phone extraction, search BWV, drug\/cash continuity and co-occupier material/,
 );
-assert.ok(!workflowDisclosureCaseWideLine({ caseTitle: "R v Kian Doyle" })!.includes("forensic material"));
+assert.ok(
+  !workflowDisclosureCaseWideLine({
+    caseTitle: "R v Kian Doyle",
+    profileHint: "pwits_phone_attribution",
+  })!.includes("forensic material"),
+);
 
 assert.equal(
   sanitizePilotVisibleLine(
     "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
-    { caseTitle: "R v Kian Doyle" },
+    { caseTitle: "R v Kian Doyle", profileHint: "pwits_phone_attribution" },
   ),
   "Defence position not safely recorded yet — position is provisional; confirm client instructions before relying on it.",
 );
@@ -503,9 +550,9 @@ assert.equal(
 assert.equal(
   sanitizePilotVisibleLine(
     "Possession, knowledge, intent to supply and phone attribution remain conditional on full phone, search, continuity and forensic material.",
-    { caseTitle: "R v Kian Doyle" },
+    { caseTitle: "R v Kian Doyle", profileHint: "pwits_phone_attribution" },
   ),
-  workflowDisclosureCaseWideLine({ caseTitle: "R v Kian Doyle" }),
+  workflowDisclosureCaseWideLine({ caseTitle: "R v Kian Doyle", profileHint: "pwits_phone_attribution" }),
 );
 
 assert.ok(
@@ -514,7 +561,7 @@ assert.ok(
       "Count 2: Possession of criminal property is noted as under review pending final count sheet.",
       "MG5 account schedule served on file",
     ],
-    { caseTitle: "R v Kian Doyle" },
+    { caseTitle: "R v Kian Doyle", profileHint: "pwits_phone_attribution" },
   ).some((a) => /Count\s*2.*criminal property/i.test(a)),
 );
 

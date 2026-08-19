@@ -980,7 +980,7 @@ function runMutants(): MutantResult[] {
 
   // Schema / surface inventory controls (not mutations of unsafe content, but Phase 10 invariants)
   {
-    const ok = CANONICAL_MATTER_STATE_VERSION === "1.1.0" && phase2CentralSurfaceIds().length === 31;
+    const ok = CANONICAL_MATTER_STATE_VERSION === "1.2.0" && phase2CentralSurfaceIds().length === 31;
     out.push(
       ok
         ? killed(
@@ -1027,7 +1027,7 @@ function main() {
   const contracts = [
     {
       name: "schema_1_1_0_preserved",
-      pass: CANONICAL_MATTER_STATE_VERSION === "1.1.0",
+      pass: CANONICAL_MATTER_STATE_VERSION === "1.2.0",
       detail: CANONICAL_MATTER_STATE_VERSION,
     },
     {

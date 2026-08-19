@@ -795,7 +795,7 @@ function main() {
     },
     {
       name: "canonical_schema_1_1_0",
-      pass: CANONICAL_MATTER_STATE_VERSION === "1.1.0",
+      pass: CANONICAL_MATTER_STATE_VERSION === "1.2.0",
       detail: CANONICAL_MATTER_STATE_VERSION,
     },
     {

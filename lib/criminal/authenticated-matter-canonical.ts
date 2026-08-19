@@ -55,7 +55,28 @@ export type AuthenticatedMatterCanonicalPayload = {
     severity?: string;
     referencedAbsent?: { referencedLabel: string } | null;
   }>;
+  /**
+   * Authoritative evidence rows for solicitor surfaces — derived from reconciled
+   * evidenceState.items (not raw per-observation rows).
+   */
   evidenceRows: DerivedEvidenceRow[];
+  /** Raw per-observation rows retained for provenance / audit only. */
+  rawEvidenceRows: DerivedEvidenceRow[];
+  /** Full reconciled evidence authority shared by all surfaces. */
+  evidenceState: {
+    items: Array<{
+      label: string;
+      state: string;
+      modality: string;
+      aliases: string[];
+      defendants: string[];
+      unresolved: boolean;
+      limitation: string | null;
+    }>;
+    contradictions: Array<{ label: string; states: string[]; description: string }>;
+    chaseRequests: Array<{ label: string; state: string; reason: string }>;
+    suppressed: Array<{ label: string; reason: string }>;
+  };
   charges: StructuredChargeView[];
   chaseLabels: string[];
   suppressedChaseLabels: string[];
@@ -205,20 +226,26 @@ export function mapCaseDocumentsToUploadedUnits(docs: CaseDocumentRow[]): Upload
   let orderCursor = 0;
 
   docs.forEach((doc, idx) => {
-    const text = bodyText(doc);
-    if (!text) return;
+    // Prefer page JSON before discarding on empty body text — extracted_json-only
+    // rows are a live persistence shape (debug: extracted_json exists but raw_text missing).
     const fromJson = pagesFromExtractedJson(doc.extracted_json);
-    const fromFf = fromJson ?? pagesFromFormFeed(text);
+    const text = bodyText(doc);
+    if (!text && !fromJson?.some((p) => p.text.trim())) return;
+
+    const fromFf = fromJson ?? (text ? pagesFromFormFeed(text) : null);
     const pages: UploadedPageUnit[] = fromFf?.length
       ? fromFf
-      : [
-          {
-            pageNumber: null,
-            compiledPage: null,
-            text,
-            pageIdentityKnown: false,
-          },
-        ];
+      : text
+        ? [
+            {
+              pageNumber: null,
+              compiledPage: null,
+              text,
+              pageIdentityKnown: false,
+            },
+          ]
+        : [];
+    if (!pages.length) return;
 
     const parentId = String(doc.id ?? `doc-${idx}`);
     const parentTitle = String(doc.name ?? doc.title ?? `Document ${idx + 1}`);
@@ -264,7 +291,7 @@ export function mapCaseDocumentsToUploadedUnits(docs: CaseDocumentRow[]): Upload
       replacesDocumentId: doc.replaces_document_id ?? null,
       uploadOrder: baseOrder * 1000 + orderCursor,
       pages,
-      fullText: text,
+      fullText: text || pages.map((p) => p.text).join("\f"),
     });
   });
   return units;
@@ -346,10 +373,48 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
   const pipeline =
     units.length > 0 ? buildCanonicalPipelineFromDocumentUnits(units) : emptyPipeline;
 
+  const reconciledEvidenceRows: DerivedEvidenceRow[] = pipeline.evidenceState.items.map((item) => {
+    const obs = item.observations[0];
+    return {
+      label: item.label,
+      existence: item.state,
+      note: item.limitation,
+      sourceDocumentTitle: obs?.sourceDocumentTitle ?? null,
+      sourceDocumentType: obs?.sourceDocumentType ?? null,
+      sourcePage: obs?.sourcePage ?? null,
+      compiledPage: obs?.compiledPage ?? null,
+      pageIdentityKnown: obs?.pageIdentityKnown ?? false,
+      defendants: item.defendants,
+    };
+  });
+
   const canonical: AuthenticatedMatterCanonicalPayload = {
     findings: pipeline.findings.map(serializeCanonicalFindingForSurface),
     findingSummaries: toFindingSummaries(pipeline.findings),
-    evidenceRows: pipeline.evidenceRows,
+    evidenceRows: reconciledEvidenceRows,
+    rawEvidenceRows: pipeline.evidenceRows,
+    evidenceState: {
+      items: pipeline.evidenceState.items.map((i) => ({
+        label: i.label,
+        state: i.state,
+        modality: i.modality,
+        aliases: i.aliases,
+        defendants: i.defendants,
+        unresolved: i.unresolved,
+        limitation: i.limitation,
+      })),
+      contradictions: pipeline.evidenceState.contradictions.map((c) => ({
+        label: c.label,
+        states: c.states,
+        description: c.description,
+      })),
+      chaseRequests: pipeline.evidenceState.chaseRequests.map((r) => ({
+        label: r.label,
+        state: r.state,
+        reason: r.reason,
+      })),
+      suppressed: pipeline.evidenceState.suppressed,
+    },
     charges: pipeline.charges,
     chaseLabels: pipeline.chaseLabels,
     suppressedChaseLabels: pipeline.suppressedChaseLabels,

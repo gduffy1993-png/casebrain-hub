@@ -76,8 +76,8 @@ assert.deepEqual(countEvidenceStatesForDisplay(countRows), {
   served: 1,
   referred: 1,
   missing: 1,
-  incomplete: 1,
-  notSafelyConfirmed: 0,
+  incomplete: 0,
+  notSafelyConfirmed: 1,
 });
 assert.equal(overviewBlockedExamples(["Do not say X", "Do not say X", "Do not say Y"], 2).length, 2);
 assert.equal(overviewStatusLabel("provisional").label, "Provisional — check papers");

@@ -17,7 +17,7 @@ import {
   utcDayDiff,
 } from "@/lib/criminal/solicitor-time-clock";
 
-assert.equal(CANONICAL_MATTER_STATE_VERSION, "1.1.0");
+assert.equal(CANONICAL_MATTER_STATE_VERSION, "1.2.0");
 assert.equal(phase2CentralSurfaceIds().length, 31);
 
 const AS_OF = new Date("2026-07-15T12:00:00Z");
@@ -86,10 +86,10 @@ assert.equal(formatIsoDateOnly(new Date("2025-12-31T00:00:00.000Z")), "2025-12-3
       asOf: AS_OF,
     },
   });
-  assert.equal(canonical.schemaVersion, "1.1.0");
+  assert.equal(canonical.schemaVersion, "1.2.0");
   assert.equal(canonical.hearing.kind, "same_day");
   assert.match(canonical.hearing.statusLabel, /Same-day/);
-  assert.ok(canonical.fingerprint.startsWith("v1.1.0:"));
+  assert.ok(canonical.fingerprint.startsWith("v1.2.0:"));
 }
 
 {

@@ -115,7 +115,7 @@ function main() {
   contracts.push({
     name: "canonical_hearing_uses_formatter",
     pass:
-      canonical.schemaVersion === "1.1.0" &&
+      canonical.schemaVersion === "1.2.0" &&
       canonical.hearing.kind === "same_day" &&
       canonical.fingerprint.startsWith("v1.1.0:"),
     detail: `schema=${canonical.schemaVersion};kind=${canonical.hearing.kind};fp=${canonical.fingerprint.slice(0, 20)}`,

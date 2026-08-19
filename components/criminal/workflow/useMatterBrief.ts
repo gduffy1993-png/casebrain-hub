@@ -44,6 +44,7 @@ import { buildSolicitorMatterStateVm } from "@/lib/criminal/solicitor-matter-sta
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { computeCounters } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import type { AuthenticatedMatterCanonicalPayload } from "@/lib/criminal/authenticated-matter-canonical";
+import type { EvidenceStateRow, SharedEvidenceState } from "@/lib/criminal/evidence-state-reconcile";
 
 function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
   if (docCount === 0) return "unknown";
@@ -309,13 +310,28 @@ export function useMatterBrief(caseId: string) {
     });
 
     const canonicalFindings = bundleSource?.canonical?.findingSummaries ?? [];
-    const canonicalEvidenceRows = (bundleSource?.canonical?.evidenceRows ?? []).map((r) => ({
+    const reconciledFromState = bundleSource?.canonical?.evidenceState?.items;
+    const evidenceSourceRows =
+      reconciledFromState && reconciledFromState.length > 0
+        ? reconciledFromState.map((r) => ({
+            label: r.label,
+            existence: r.state,
+            note: r.limitation,
+            sourceDocumentTitle: null as string | null,
+            sourcePage: null as string | null,
+          }))
+        : (bundleSource?.canonical?.evidenceRows ?? []).map((r) => ({
+            label: r.label,
+            existence: r.existence,
+            note: r.note,
+            sourceDocumentTitle: r.sourceDocumentTitle,
+            sourcePage: r.sourcePage,
+          }));
+    const canonicalEvidenceRows: EvidenceStateRow[] = evidenceSourceRows.map((r) => ({
       label: r.label,
-      state: r.existence,
+      state: r.existence as SharedEvidenceState,
     }));
-    const evidenceRowsFromCanonical: FiveAnswersEvidenceRow[] = (
-      bundleSource?.canonical?.evidenceRows ?? []
-    ).map((r) => {
+    const evidenceRowsFromCanonical: FiveAnswersEvidenceRow[] = evidenceSourceRows.map((r) => {
       const row: FiveAnswersEvidenceRow = {
         label: r.label,
         existence: r.existence as FiveAnswersEvidenceRow["existence"],

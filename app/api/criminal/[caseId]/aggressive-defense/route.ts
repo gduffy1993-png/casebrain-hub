@@ -22,27 +22,26 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     try {
       const authRes = await requireAuthContextApi();
       if (!authRes.ok) return authRes.response;
-      const { userId } = authRes.context;
+      const { userId, orgId } = authRes.context;
 
-      // IMPORTANT: org_id must come from cases table, never from user/org context
-      // This prevents "Case not found for your org scope" errors and 22P02 UUID format errors.
-      // Production and debug routes must always use the case's real org_id from Supabase admin lookup.
-      // Do NOT derive orgId from userId or use org scope fallback (solo-user_* strings).
+      // Tenant isolation: case id + caller org only. Never look up by id alone
+      // (that leaked foreign existence and allowed cross-org content load).
       const supabase = getSupabaseAdminClient();
       const { data: caseRow, error: caseError } = await supabase
         .from("cases")
         .select("id, org_id")
         .eq("id", caseId)
-        .single();
+        .eq("org_id", orgId)
+        .maybeSingle();
 
-      // Case not found - return 404 with structured error
+      // Identical not-found for nonexistent and foreign-org cases.
       if (caseError || !caseRow) {
-        const fallbackContext = await buildCaseContext(caseId, { userId });
+        const fallbackContext = await buildCaseContext(caseId, { userId, orgIdHint: orgId });
         return makeGateFail<any>(
           {
             severity: "error",
             title: "Case not found",
-            detail: "Case not found in database.",
+            detail: "Case not found for your organisation.",
           },
           fallbackContext,
           caseId,
@@ -51,7 +50,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
       // Validate case has org_id - return 500 with diagnostics
       if (!caseRow.org_id || caseRow.org_id.trim() === "") {
-        const fallbackContext = await buildCaseContext(caseId, { userId });
+        const fallbackContext = await buildCaseContext(caseId, { userId, orgIdHint: orgId });
         return NextResponse.json(
           {
             ok: false,
@@ -59,7 +58,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
             banner: {
               severity: "error",
               title: "Case has no org_id",
-              detail: "Case exists but has no org_id. This is a data integrity issue.",
+              detail: "Unable to load this matter due to a data integrity issue.",
             },
             diagnostics: {
               caseId,

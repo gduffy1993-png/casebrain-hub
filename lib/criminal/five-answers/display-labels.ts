@@ -5,7 +5,7 @@ import type { ProofSupportLevel } from "@/lib/criminal/proof-receipt/types";
 
 /** UI-only label for primary surfaces — does not change underlying existence enum. */
 export function displayExistenceLabel(existence: EvidenceExistence): string {
-  if (existence === "not_safely_confirmed") return "Incomplete";
+  if (existence === "not_safely_confirmed") return "Not safely confirmed";
   if (existence === "unknown") return "Not safely confirmed";
   return sanitizeSolicitorVisibleText(evidenceExistenceLabel(existence));
 }

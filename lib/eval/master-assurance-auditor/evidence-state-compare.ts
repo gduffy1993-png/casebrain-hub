@@ -1,9 +1,9 @@
 /**
  * Evidence-state comparison across raw vs solicitor-display domains.
  *
- * Schema policy (master-auditor 1.1.0): raw `not_safely_confirmed` maps to
- * solicitor-display `incomplete` for gold expected comparison. Those pairs are
- * equivalent — never report as state_mismatch. Always record both domain values.
+ * Schema policy (canonical-existence-map@1.2.0 / CB-HIST-NSC-NOT-INCOMPLETE):
+ * raw `not_safely_confirmed` and `incomplete` are distinct end-to-end.
+ * They must never be treated as domain-equivalent.
  */
 
 import type { SharedEvidenceState } from "@/lib/criminal/evidence-state-reconcile";
@@ -27,17 +27,18 @@ export function normaliseStateToken(value: string | null | undefined): string {
     .replace(/referred\s+only/g, "referred_only");
 }
 
-/** Solicitor-display mapping for raw shared states (schema 1.1.0 policy). */
+/** Solicitor-display mapping for raw shared states (schema 1.2.0 policy). */
 export function rawStateToDisplay(raw: string): string {
   const s = normaliseStateToken(raw);
-  if (s === "not_safely_confirmed") return "incomplete";
+  if (s === "not_safely_confirmed") return "not_safely_confirmed";
   if (s === "referred_only") return "referred_only";
   return s;
 }
 
 export function displayStateToRawCandidates(display: string): string[] {
   const s = normaliseStateToken(display);
-  if (s === "incomplete") return ["incomplete", "not_safely_confirmed"];
+  if (s === "incomplete") return ["incomplete"];
+  if (s === "not_safely_confirmed") return ["not_safely_confirmed", "unknown"];
   return [s];
 }
 
@@ -59,10 +60,6 @@ export function compareEvidenceStates(input: {
   const expectedNorm = normaliseStateToken(input.expected);
   const actualDisplay = rawStateToDisplay(actualRaw);
   const expectedDisplay = rawStateToDisplay(expectedNorm);
-  const expectedRaw =
-    expectedNorm === "incomplete" && actualRaw === "not_safely_confirmed"
-      ? "not_safely_confirmed"
-      : expectedNorm;
   const label = input.label ?? "";
 
   if (actualRaw === expectedNorm) {
@@ -73,21 +70,6 @@ export function compareEvidenceStates(input: {
       actualDisplay,
       expectedRaw: expectedNorm,
       expectedDisplay,
-    };
-  }
-
-  // Policy: raw not_safely_confirmed ↔ display/expected incomplete
-  if (
-    (actualRaw === "not_safely_confirmed" && expectedNorm === "incomplete") ||
-    (actualRaw === "incomplete" && expectedNorm === "not_safely_confirmed")
-  ) {
-    return {
-      equivalent: true,
-      reason: "domain_equivalence",
-      actualRaw,
-      actualDisplay,
-      expectedRaw,
-      expectedDisplay: "incomplete",
     };
   }
 
@@ -123,12 +105,10 @@ export function compareEvidenceStates(input: {
     };
   }
 
-  // Uncertain prose ↔ not_safely_confirmed / incomplete (do not invent referred_only)
+  // Uncertain prose ↔ not_safely_confirmed (unknown only — incomplete stays distinct)
   if (
     expectedNorm === "not_safely_confirmed" &&
-    (actualRaw === "incomplete" ||
-      actualRaw === "unknown" ||
-      actualRaw === "not_safely_confirmed")
+    (actualRaw === "unknown" || actualRaw === "not_safely_confirmed")
   ) {
     return {
       equivalent: true,

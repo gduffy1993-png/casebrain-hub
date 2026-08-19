@@ -435,7 +435,7 @@ export function runAllControls(cases: SavedCaseMaterialisation[]): {
               verdict: "pass",
               plainEnglish:
                 compared.reason === "domain_equivalence"
-                  ? `Raw state "${compared.actualRaw}" (display "${compared.actualDisplay}") is equivalent to expected "${exp.correctEvidenceState}" under schema 1.1.0 domain policy.`
+                  ? `Raw state "${compared.actualRaw}" (display "${compared.actualDisplay}") is equivalent to expected "${exp.correctEvidenceState}" under schema 1.2.0 domain policy.`
                   : compared.reason === "compatible_family"
                     ? `Evidence state "${compared.actualRaw}" is a compatible/more-precise family for expected "${exp.correctEvidenceState}" on unit "${row.label}".`
                     : `Evidence state matches expected for "${row.label}".`,

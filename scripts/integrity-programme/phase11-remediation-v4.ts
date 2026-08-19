@@ -1771,7 +1771,7 @@ Per case: goldId · eligibility · expected · actual · FP · FN · substantive
   }>(path.join(ROOT, "artifacts/casebrain-qa/integrity-programme/phase-6/occurrence-ledger-balanced.json"));
 
   const contracts = [
-    { name: "schema_1_1_0", pass: CANONICAL_MATTER_STATE_VERSION === "1.1.0", detail: CANONICAL_MATTER_STATE_VERSION },
+    { name: "schema_1_2_0", pass: CANONICAL_MATTER_STATE_VERSION === "1.2.0", detail: CANONICAL_MATTER_STATE_VERSION },
     { name: "central_31", pass: phase2CentralSurfaceIds().length === 31, detail: String(phase2CentralSurfaceIds().length) },
     {
       name: "ledger_untouched",

@@ -169,7 +169,12 @@ export async function POST(_request: Request, { params }: RouteParams) {
       disclosureState,
     });
 
-    const { data: ccRow } = await supabase.from("criminal_cases").select("id").eq("id", caseId).maybeSingle();
+    const { data: ccRow } = await supabase
+      .from("criminal_cases")
+      .select("id")
+      .eq("id", caseId)
+      .eq("org_id", orgId)
+      .maybeSingle();
     if (!ccRow) {
       await supabase.from("criminal_cases").insert({ id: caseId, org_id: orgId });
     }

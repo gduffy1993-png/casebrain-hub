@@ -3,7 +3,7 @@
  * All tabs / copy / exports must consume this (or an explicit adapter into it).
  */
 
-export const CANONICAL_MATTER_STATE_VERSION = "1.1.0" as const;
+export const CANONICAL_MATTER_STATE_VERSION = "1.2.0" as const;
 
 export type CanonicalEvidenceExistence =
   | "served"
@@ -24,7 +24,8 @@ export type CanonicalMg11Status =
   | "draft_or_unsigned"
   | "referred"
   | "missing"
-  | "not_on_file";
+  | "not_on_file"
+  | "not_safely_confirmed";
 
 export type CanonicalHearingKind =
   | "unknown"

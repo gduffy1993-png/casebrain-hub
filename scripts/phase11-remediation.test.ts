@@ -18,7 +18,7 @@ import {
 } from "@/lib/criminal/solicitor-visible-sanitization";
 import { hasIncompleteRequiredDisclaimer } from "@/lib/criminal/solicitor-visible-boundary";
 
-assert.equal(CANONICAL_MATTER_STATE_VERSION, "1.1.0");
+assert.equal(CANONICAL_MATTER_STATE_VERSION, "1.2.0");
 assert.equal(phase2CentralSurfaceIds().length, 31);
 
 const ROOT = path.resolve(__dirname, "..");
