@@ -2,15 +2,16 @@
   "schemaVersion": "master3000-phase6-p1-live-builder-validation-stop@1.1.0",
   "generatedAt": "2026-08-19T18:35:09.717Z",
   "status": "P1_LIVE_BUILDER_VALIDATION_COMPLETE__NO_SCALE_RUN",
-  "commit": "4b20606a1c85405bcf746e5fe874e3cd436335e8",
+  "commit": "9675da3c48d02074ff09fe96d9d000fc29b578d0",
   "commitMetadata": {
-    "certifiedCommit": "4b20606a1c85405bcf746e5fe874e3cd436335e8",
+    "certifiedCommit": "9675da3c48d02074ff09fe96d9d000fc29b578d0",
     "phase5BaselineCommit": "7f21ab237d72d56e34564bc78a2538b31fe97bb4",
     "knownSharedFixCommits": [
       "1d7c8055f32b49d02e84b1859958dbd57f523f89",
       "c4114c06bb9b7036a681353f3326fe5b7b1aa3c1"
     ],
-    "note": "certifiedCommit is the HEAD this Phase 6 artefact set actually ran against. phase5BaselineCommit is the stored Phase 5 artefact commit. Do not read liveFailureClusters as live product defects."
+    "note": "certifiedCommit is the HEAD this Phase 6 artefact set actually ran against. phase5BaselineCommit is the stored Phase 5 artefact commit. Do not read liveFailureClusters as live product defects. Phase 9 Starter Gold refresh stamped to Phase 9 content checkpoint.",
+    "phase9ContentCheckpoint": "9675da3c48d02074ff09fe96d9d000fc29b578d0"
   },
   "phase5Baseline": {
     "starterGoldCount": 40,

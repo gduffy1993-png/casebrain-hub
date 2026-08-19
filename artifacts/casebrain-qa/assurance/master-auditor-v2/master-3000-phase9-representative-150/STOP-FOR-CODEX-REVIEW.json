@@ -2,9 +2,9 @@
   "schemaVersion": "master3000-phase9-representative-150-stop@1.0.0",
   "generatedAt": "2026-08-19T18:37:37.879Z",
   "status": "REPRESENTATIVE_150_COMPLETE__SHARED_ROOTS_FIXED__NO_SCALE_RUN",
-  "commit": "5d61a9acd490b2a8244b63c41ec07a26f3df0a7f",
+  "commit": "9675da3c48d02074ff09fe96d9d000fc29b578d0",
   "commitMetadata": {
-    "certifiedCommit": "5d61a9acd490b2a8244b63c41ec07a26f3df0a7f",
+    "certifiedCommit": "9675da3c48d02074ff09fe96d9d000fc29b578d0",
     "phase8ContentCheckpoint": "5d61a9acd490b2a8244b63c41ec07a26f3df0a7f",
     "note": "certifiedCommit is the Phase 9 content checkpoint SHA this artefact set certifies (on-branch). A follow-up stamp commit may exist solely to persist that SHA inside the artefact files. Detection-first pass completed; confirmed shared roots repaired with opposite-direction regressions. No 500/1000/3000 run."
   },

@@ -8,7 +8,7 @@ Generated: 2026-08-19T18:35:09.717Z
 
 This phase reviewed the Phase 5 P1 clusters against independent truth keys, current canonical ledger state, and current live shared builder output. It did **not** run the 500/1000/3000 corpus.
 
-Certified commit: `4b20606a1c85405bcf746e5fe874e3cd436335e8`
+Certified commit: `9675da3c48d02074ff09fe96d9d000fc29b578d0`
 
 ## Classification
 
