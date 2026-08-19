@@ -3,6 +3,7 @@ export * from "./coverage";
 export * from "./gold-holdout";
 export * from "./invariants";
 export * from "./result";
+export * from "./starter-gold";
 export * from "./taxonomy";
 export * from "./tier";
 export * from "./types";

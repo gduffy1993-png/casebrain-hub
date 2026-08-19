@@ -1,0 +1,588 @@
+[
+  {
+    "key": "P2|solicitor_visible_internal_language_failure|visible_language|cps_chase|protected_acronym_casing",
+    "count": 38,
+    "severity": "P2",
+    "failureClass": "solicitor_visible_internal_language_failure",
+    "evidenceFamily": "visible_language",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "cb-found-2001-ellis",
+      "cb-found-2004-clarke",
+      "cb-found-2005-okafor",
+      "cb-fresh-001-taylor-brookes",
+      "cb-fresh-002-jordan-hale",
+      "pilot-3-leon-marsh",
+      "sc-00002",
+      "sc-00003",
+      "sc-0000c",
+      "sim-001"
+    ],
+    "rootCauseCluster": "protected_acronym_casing"
+  },
+  {
+    "key": "P1|extraction_failure|phone|cps_chase|missing_expected_chase",
+    "count": 11,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "phone",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "cb-fresh-001-taylor-brookes",
+      "sc-00002",
+      "sc-00003",
+      "sim-001",
+      "sim-051",
+      "sim-059",
+      "sim-070",
+      "sim-071"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|full|cps_chase|missing_expected_chase",
+    "count": 5,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "full",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-031",
+      "sim-051",
+      "sim-070",
+      "sim-071",
+      "sim-075"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|custody|cps_chase|missing_expected_chase",
+    "count": 4,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "custody",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-055",
+      "sim-126",
+      "sim-146"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|identification|cps_chase|missing_expected_chase",
+    "count": 4,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "identification",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sc-00003",
+      "sim-012",
+      "sim-054",
+      "sim-170"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|lab|cps_chase|missing_expected_chase",
+    "count": 4,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "lab",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "cb-found-2005-okafor",
+      "sc-00002",
+      "sim-008",
+      "sim-056"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|message|cps_chase|missing_expected_chase",
+    "count": 4,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "message",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "cb-fresh-001-taylor-brookes",
+      "sim-001",
+      "sim-039",
+      "sim-050"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|order|cps_chase|missing_expected_chase",
+    "count": 4,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "order",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-071",
+      "sim-075",
+      "sim-109"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|search|cps_chase|missing_expected_chase",
+    "count": 4,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "search",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "cb-found-2005-okafor",
+      "sc-00002",
+      "sim-050",
+      "sim-051"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|completeness|cps_chase|missing_expected_chase",
+    "count": 3,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "completeness",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-050",
+      "sim-063",
+      "sim-066"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|mg11|cps_chase|missing_expected_chase",
+    "count": 3,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "mg11",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "cb-fresh-001-taylor-brookes",
+      "cb-fresh-002-jordan-hale",
+      "sim-106"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P2|dedupe_alias_failure|wording|cps_chase|duplicate_outstanding_wording",
+    "count": 3,
+    "severity": "P2",
+    "failureClass": "dedupe_alias_failure",
+    "evidenceFamily": "wording",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "pilot-3-marcus-vale",
+      "sc-00002",
+      "sc-00003"
+    ],
+    "rootCauseCluster": "duplicate_outstanding_wording"
+  },
+  {
+    "key": "P1|extraction_failure|999|cps_chase|missing_expected_chase",
+    "count": 2,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "999",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sc-00003",
+      "sc-0000c"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|account|cps_chase|missing_expected_chase",
+    "count": 2,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "account",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-010",
+      "sim-070"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|mg6|cps_chase|missing_expected_chase",
+    "count": 2,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "mg6",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-075",
+      "sim-170"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|scene|cps_chase|missing_expected_chase",
+    "count": 2,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "scene",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-054",
+      "sim-056"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|analyst|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "analyst",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "cb-found-2004-clarke"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|bank|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "bank",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-010"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|breach|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "breach",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-109"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|calibration|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "calibration",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "cb-found-2004-clarke"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|cellsite|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "cellsite",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-032"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|chronology|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "chronology",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-066"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|co|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "co",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-031"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|complete|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "complete",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-039"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|defendant|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "defendant",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-075"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|fingerprint|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "fingerprint",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-056"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|handle|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "handle",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-031"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|hash|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "hash",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-039"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|individual|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "individual",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-099"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|intent|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "intent",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-066"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|interview|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "interview",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "cb-fresh-002-jordan-hale"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|line|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "line",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-032"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|medical_expert|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "medical_expert",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-126"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|mgdd|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "mgdd",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-059"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|notification|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "notification",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-063"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|officer|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "officer",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-059"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|overpayment|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "overpayment",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-063"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|previous|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "previous",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-106"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|proof|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "proof",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-071"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|risk|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "risk",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-055"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|role|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "role",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-032"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|status|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "status",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-065"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|timeline|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "timeline",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-054"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|use|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "use",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-055"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  },
+  {
+    "key": "P1|extraction_failure|witness|cps_chase|missing_expected_chase",
+    "count": 1,
+    "severity": "P1",
+    "failureClass": "extraction_failure",
+    "evidenceFamily": "witness",
+    "surface": "cps_chase",
+    "representativeCaseIds": [
+      "sim-099"
+    ],
+    "rootCauseCluster": "missing_expected_chase"
+  }
+]

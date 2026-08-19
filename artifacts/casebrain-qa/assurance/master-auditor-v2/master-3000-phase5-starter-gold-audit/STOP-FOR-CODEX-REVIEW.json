@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "master3000-phase5-starter-gold-stop@1.0.0",
+  "generatedAt": "2026-08-19T14:26:39.110Z",
+  "status": "STARTER_GOLD_AUDIT_COMPLETE__FULL_3000_NOT_STARTED",
+  "commit": "7f21ab237d72d56e34564bc78a2538b31fe97bb4",
+  "prStateAtStart": "PR #66 open; head/deploy confirmed before emit in operator log",
+  "starterGoldCount": 40,
+  "holdoutCandidateCount": 80,
+  "auditedResultRows": 623,
+  "candidateFailures": 124,
+  "confirmedFailures": 0,
+  "failuresBySeverity": {
+    "P2": 41,
+    "P1": 83
+  },
+  "candidateClusters": {
+    "total": 45,
+    "p0p1": 43
+  },
+  "p0p1SharedFixesApplied": [
+    {
+      "id": "AUDITOR-GUARDRAIL-TEXT-NOT-ASSERTION",
+      "class": "certainty_escalation_false_positive",
+      "summary": "Starter auditor now scans ordinary assertion surfaces for blocking phrases and does not treat 'Do not' / 'Must not say' guardrails as unsafe admissions."
+    },
+    {
+      "id": "AUDITOR-MG6-CLARIFICATION-NOT-SERVED-MG6-CHASE",
+      "class": "evidence_state_false_positive",
+      "summary": "Generic MG6 / unused schedule clarification is no longer treated as an active chase for a served MG6 document."
+    },
+    {
+      "id": "AUDITOR-EXPERT-REPORT-FAMILY-SYNONYMS",
+      "class": "unsupported_promotion_false_positive",
+      "summary": "Medical/expert report labels now match collision expert and document examiner source/truth wording before unsupported-promotion findings are emitted."
+    }
+  ],
+  "validationIssues": {
+    "starterGold": [],
+    "holdout": [],
+    "coverage": []
+  },
+  "full3000RunStarted": false,
+  "stress500or1000Started": false,
+  "nextStep": "Review P0/P1 stored-output candidate clusters against current live shared builders; only patch confirmed live shared roots, then rerun starter Gold before any 500/1000/3000 stress.",
+  "nonClaims": {
+    "corpusPass": false,
+    "stage3000Completion": false,
+    "programmePass": false,
+    "solicitorApproval": false,
+    "all361ControlsExercised": false
+  }
+}

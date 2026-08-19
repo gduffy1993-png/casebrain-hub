@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "master3000-phase5-changed-file-manifest@1.0.0",
+  "generatedAt": "2026-08-19T14:26:39.110Z",
+  "selfHashStatus": "excluded_from_files_array_self_referential",
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase5-starter-gold-audit/361-CONTROL-COVERAGE-MAP.json",
+      "sha256": "22e77e18ea24a4f04e296c706a39938b56055741520f760225fcad3f43d143f5",
+      "byteLength": 196702,
+      "classification": "phase5_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase5-starter-gold-audit/DECISION-CARD.md",
+      "sha256": "6b059d59528f3208684154700a8fc94ec1553ad9359feb5e5a6a1e1cd8baf935",
+      "byteLength": 1227,
+      "classification": "phase5_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase5-starter-gold-audit/FAILURE-CLUSTERS.json",
+      "sha256": "711dcde38767048542ac28ece2d7c29245677f1a544cc9afd7d82e8e624ac044",
+      "byteLength": 15967,
+      "classification": "phase5_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase5-starter-gold-audit/HOLDOUT-CANDIDATE-MANIFEST.json",
+      "sha256": "58cfd75d35f2bb9921d847656b193d3257b25bf4dd1661dbcb19ede95ef29ff0",
+      "byteLength": 111399,
+      "classification": "phase5_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase5-starter-gold-audit/REAL-PDF-CANDIDATE-REGISTER.json",
+      "sha256": "423d2187c1e185776379b112837e15eea0c2a888abb2dbb19f44ae1c62c2eb6c",
+      "byteLength": 14644,
+      "classification": "phase5_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase5-starter-gold-audit/ROOT-CAUSE-REGISTER.json",
+      "sha256": "f596dedfff7f1aa766a986df725f952ae05487386007eefd9f13b74428fd91ab",
+      "byteLength": 72580,
+      "classification": "phase5_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase5-starter-gold-audit/STARTER-GOLD-AUDIT-RESULTS.json",
+      "sha256": "beecbf9f16fd7e1b62fd724846090a5fbbe0eb0c3d602723064fe351cc042d7d",
+      "byteLength": 536640,
+      "classification": "phase5_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase5-starter-gold-audit/STARTER-GOLD-MANIFEST.json",
+      "sha256": "e7e7537f00c60014c67891307e5bc107023aeda1e8fffe2b40f0236151efed4f",
+      "byteLength": 54378,
+      "classification": "phase5_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase5-starter-gold-audit/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "d565215a09196a874862eb34373b70225d26ae1f2a5214f66cb682150ca89de8",
+      "byteLength": 1979,
+      "classification": "phase5_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase5-starter-gold-audit/VALIDATION-ISSUES.json",
+      "sha256": "49205835274228d02a00f1dd5b860efcfdb1ee4b83a60c3d5d6fa2e84aeaf8c3",
+      "byteLength": 59,
+      "classification": "phase5_artifact"
+    },
+    {
+      "path": "lib/eval/master3000-quality/index.ts",
+      "sha256": "445d7a12e99ae7cd50c4ebbee30625042c3324cb40b6c03054cf1a750af349d2",
+      "byteLength": 252,
+      "classification": "source"
+    },
+    {
+      "path": "lib/eval/master3000-quality/starter-gold.ts",
+      "sha256": "fb6c977c4a6f27288338281663b5b7a83ccf2c094935135a81c337dad29badc6",
+      "byteLength": 6855,
+      "classification": "source"
+    },
+    {
+      "path": "scripts/assurance/master-3000-phase5-starter-gold-audit.ts",
+      "sha256": "a79810129ee278a42bae363b27a93c78da29f1112fac5ddceb8052f743004914",
+      "byteLength": 35233,
+      "classification": "contract_or_emit_script"
+    },
+    {
+      "path": "scripts/master3000-starter-gold-audit.test.ts",
+      "sha256": "3873ebf5c55d98ad812536a0ce0487ca6dcd2ae0d7d6b8f89de9890590431171",
+      "byteLength": 3317,
+      "classification": "contract_or_emit_script"
+    }
+  ]
+}
