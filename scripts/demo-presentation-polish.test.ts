@@ -1,12 +1,14 @@
 #!/usr/bin/env npx tsx
 /**
  * CB-HIST-PRESENTATION-MUST-PRESERVE-SEMANTICS
+ * CB-HIST-PRESENTATION-CANNOT-SUPPRESS-SOURCE-BACKED-FAMILY
  * Run: npx tsx scripts/demo-presentation-polish.test.ts
  */
 import assert from "node:assert/strict";
 import {
   displayChaseCardLabel,
   filterBundleFamilyWarnings,
+  polishPresentationBlock,
   polishPresentationLine,
   resolveDemoPresentationHearingLabel,
 } from "../lib/criminal/demo-presentation-polish";
@@ -41,6 +43,23 @@ assert.match(
   /phone|extraction|download/i,
 );
 
+// Auxiliary why prose must not reclassify the displayed family.
+assert.match(
+  displayChaseCardLabel({
+    label: "Complainant MG11",
+    whyItMatters: "Phone attribution still unclear on the papers",
+  }),
+  /MG11|complainant/i,
+);
+assert.ok(
+  !/phone download|source extraction/i.test(
+    displayChaseCardLabel({
+      label: "Complainant MG11",
+      whyItMatters: "Phone attribution still unclear on the papers",
+    }),
+  ),
+);
+
 const filtered = filterBundleFamilyWarnings(
   [
     "Do not import BWV unless the papers support it.",
@@ -53,6 +72,23 @@ const filtered = filterBundleFamilyWarnings(
 assert.ok(!filtered.some((l) => /bwv/i.test(l)));
 assert.ok(!filtered.some((l) => /drug continuity/i.test(l)));
 assert.ok(filtered.some((l) => /attribution|messages/i.test(l)));
+
+// Mixed families: digital context must not suppress source-backed CCTV/BWV/custody.
+{
+  const mixed = polishPresentationBlock(
+    [
+      "Phone extraction summary remains relevant.",
+      "CCTV of the street is on the papers.",
+      "BWV of the arrest is on the papers.",
+      "Custody record covers the detention clock.",
+    ].join("\n"),
+    "harassment phone screenshot CCTV BWV custody record",
+  );
+  assert.match(mixed, /phone|extraction/i);
+  assert.match(mixed, /CCTV/i);
+  assert.match(mixed, /BWV/i);
+  assert.match(mixed, /custody/i);
+}
 
 // Lexical shorten OK; family rewrite NOT OK.
 const shortened = polishPresentationLine(

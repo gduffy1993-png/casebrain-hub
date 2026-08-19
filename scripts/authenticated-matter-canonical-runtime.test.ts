@@ -220,6 +220,18 @@ function buildSurfacesFromAuthenticatedApiPayload(
     matterConfidence: null,
     doNotOverstate: warRoom.doNotOverstate,
     primaryRouteTitle: "Runtime",
+    evidenceRowsOverride: apiCanonical.evidenceRows.map((r) => ({
+      label: r.label,
+      existence: r.existence as
+        | "served"
+        | "missing"
+        | "incomplete"
+        | "referred_only"
+        | "not_safely_confirmed"
+        | "unknown",
+      reliability: "needs_review" as const,
+      note: r.sourcePage ? `${r.sourceDocumentTitle} · ${r.sourcePage}` : undefined,
+    })),
   });
   const copyLines = apiCanonical.findings.map((f) => {
     const copy = buildCopySafeResult({

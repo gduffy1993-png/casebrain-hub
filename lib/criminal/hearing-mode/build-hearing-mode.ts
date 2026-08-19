@@ -93,6 +93,11 @@ export type BuildHearingModeInput = {
   documentCount?: number;
   previousSnapshot?: EvidenceChangeSnapshot | null;
   currentSnapshot?: EvidenceChangeSnapshot | null;
+  /**
+   * Canonical evidence authority (same contract as buildFiveAnswersView).
+   * Required on production solicitor paths so Hearing Mode cannot rebuild evidence from chase.
+   */
+  evidenceRowsOverride?: import("@/lib/criminal/five-answers/types").FiveAnswersEvidenceRow[];
 };
 
 export function buildHearingMode(input: BuildHearingModeInput): HearingModeModel {
@@ -114,6 +119,7 @@ export function buildHearingMode(input: BuildHearingModeInput): HearingModeModel
     chase,
     matterConfidence,
     doNotOverstate,
+    evidenceRowsOverride: input.evidenceRowsOverride,
   });
 
   const currentSnapshot =

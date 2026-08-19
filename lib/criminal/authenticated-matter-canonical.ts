@@ -72,6 +72,9 @@ export type AuthenticatedMatterCanonicalPayload = {
       defendants: string[];
       unresolved: boolean;
       limitation: string | null;
+      /** Provenance anchors projected from observations (display/join). */
+      sourceDocumentTitle?: string | null;
+      sourcePage?: string | null;
     }>;
     contradictions: Array<{ label: string; states: string[]; description: string }>;
     chaseRequests: Array<{ label: string; state: string; reason: string }>;
@@ -394,15 +397,20 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
     evidenceRows: reconciledEvidenceRows,
     rawEvidenceRows: pipeline.evidenceRows,
     evidenceState: {
-      items: pipeline.evidenceState.items.map((i) => ({
-        label: i.label,
-        state: i.state,
-        modality: i.modality,
-        aliases: i.aliases,
-        defendants: i.defendants,
-        unresolved: i.unresolved,
-        limitation: i.limitation,
-      })),
+      items: pipeline.evidenceState.items.map((i) => {
+        const obs = i.observations[0];
+        return {
+          label: i.label,
+          state: i.state,
+          modality: i.modality,
+          aliases: i.aliases,
+          defendants: i.defendants,
+          unresolved: i.unresolved,
+          limitation: i.limitation,
+          sourceDocumentTitle: obs?.sourceDocumentTitle ?? null,
+          sourcePage: obs?.sourcePage ?? null,
+        };
+      }),
       contradictions: pipeline.evidenceState.contradictions.map((c) => ({
         label: c.label,
         states: c.states,

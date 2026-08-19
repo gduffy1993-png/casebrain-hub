@@ -81,15 +81,6 @@ export function isDigitalHarassmentBundleHay(bundleHay: string, allegation = "")
   );
 }
 
-function isDigitalDisclosureHay(bundleHay: string, allegation = ""): boolean {
-  const hay = `${allegation} ${bundleHay}`.toLowerCase();
-  return (
-    isDigitalHarassmentBundleHay(bundleHay, allegation) ||
-    /phone|message|whatsapp|sms|subscriber|attribution|mg11|extraction|handset|source export|digital disclosure|device metadata/i.test(hay) ||
-    /mg6\s*\/\s*unused|unused schedule clarification/i.test(hay)
-  );
-}
-
 /** Replace adversarial QA bundle banners in file preview — keeps fictional disclaimer. */
 export function sanitizeDemoBundleBanner(text: string): string {
   return text
@@ -166,19 +157,21 @@ export function polishPresentationLine(line: string, bundleHay = ""): string {
 
 /**
  * UI-only text block cleanup for demo-facing previews/copy surfaces.
- * Keeps the underlying builders intact; removes off-family/template lines from what a solicitor sees.
+ * Keeps the underlying builders intact; removes only lines proven to be
+ * unsupported template contamination for families the bundle does not mention.
+ *
+ * CB-HIST-PRESENTATION-CANNOT-SUPPRESS-SOURCE-BACKED-FAMILY:
+ * must not drop source-backed BWV/custody/CCTV/etc. merely because another
+ * family (e.g. digital/phone) is dominant in the same matter.
  */
 export function polishPresentationBlock(text: string, bundleHay = ""): string {
   const context = `${bundleHay} ${text}`;
-  const digitalContext = isDigitalDisclosureHay(context);
-  const offFamilyForDigital: BundleFamily[] = ["bwv", "custody", "drugs", "cctv", "cad", "encro", "abe"];
   const lines = text
     .split(/\r?\n/)
     .map((line) => line.trimEnd())
     .filter((line) => {
-      if (!digitalContext) return true;
       if (lineMentionsWrongFamilyTemplate(line, context)) return false;
-      return !offFamilyForDigital.some((family) => lineMentionsFamily(line, family));
+      return true;
     });
   const filtered = filterBundleFamilyWarnings(lines, bundleHay || context)
     .map((line) => polishPresentationLine(line, context))
@@ -200,7 +193,12 @@ type ChaseDisplayItem = {
 };
 
 function digitalHay(item: ChaseDisplayItem): string {
-  return `${item.label} ${(item.mergedFrom ?? []).join(" ")} ${item.draftChaseWording ?? ""} ${item.whyItMatters ?? ""}`.toLowerCase();
+  // Label + concrete mergedFrom only — never let draft/why prose reclassify the family.
+  return `${item.label} ${(item.mergedFrom ?? []).join(" ")}`.toLowerCase();
+}
+
+function itemIdentityHay(item: ChaseDisplayItem): string {
+  return item.label.toLowerCase();
 }
 
 function mg6GenericLabel(label: string): boolean {
@@ -212,7 +210,7 @@ function digitalChaseLabel(hay: string): string | null {
   if (/phone|extraction|download|device download/i.test(hay) && !/mg6/i.test(hay.split("—")[0] ?? hay)) {
     return "Full phone download / source extraction";
   }
-  if (/subscriber|account|sim|attribution/i.test(hay) && !/^mg6\b/i.test(hay.trim())) {
+  if (/subscriber|account|sim|attribution/i.test(hay) && !/^mg6\b/i.test(hay.trim()) && !/mg11|complainant|witness/i.test(hay)) {
     return "Subscriber / account data";
   }
   if (/screenshot|message|whatsapp|sms|export|device material/i.test(hay) && !/mg6/i.test(hay.split("—")[0] ?? hay)) {
@@ -221,6 +219,7 @@ function digitalChaseLabel(hay: string): string | null {
   if (/mg11|complainant|witness statement/i.test(hay)) return "Complainant MG11 / source material";
   if (/master cctv|cctv full|full window/i.test(hay)) return "Master CCTV footage";
   if (/continuity|provenance/i.test(hay) && /cctv|stills|camera/i.test(hay)) return "CCTV continuity / provenance";
+  if (/\bcctv\b|stills|footage|camera/i.test(hay)) return "CCTV material";
   if (/bwv|body[-\s]?worn/i.test(hay)) return "Full BWV export";
   if (/custody|pace/i.test(hay)) return "Full custody record";
   if (/interview/.test(hay) && /target|defendant|co-def/i.test(hay)) return "Target defendant interview";
@@ -232,6 +231,7 @@ function digitalChaseLabel(hay: string): string | null {
 
 /** UI-only chase card title — does not change chase brain output or evidence family. */
 export function displayChaseCardLabel(item: ChaseDisplayItem): string {
+  const identity = itemIdentityHay(item);
   const hay = digitalHay(item);
   const normalized = item.label.replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
 
@@ -240,9 +240,10 @@ export function displayChaseCardLabel(item: ChaseDisplayItem): string {
       .map((m) => m.trim())
       .find((m) => m && !/^additional\s+source[- ]material/i.test(m));
     if (fromMerged) {
-      // Prefer the concrete merged source label; do not invent a phone family from MG6 alone.
+      // Prefer the concrete merged source label; do not invent a phone family from MG6 alone
+      // or from unrelated why/draft prose.
       if (!mg6GenericLabel(fromMerged)) {
-        const digital = digitalChaseLabel(`${fromMerged} ${hay}`);
+        const digital = digitalChaseLabel(fromMerged.toLowerCase());
         if (digital) return digital;
       }
       return humanizeChaseFragmentLabel(fromMerged).replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
@@ -260,7 +261,8 @@ export function displayChaseCardLabel(item: ChaseDisplayItem): string {
     return human.replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
   }
 
-  const digital = digitalChaseLabel(hay);
+  // Classify from the item label (and concrete mergedFrom) only — never from why/draft.
+  const digital = digitalChaseLabel(identity) ?? digitalChaseLabel(hay);
   if (digital && !mg6GenericLabel(normalized)) return digital;
 
   return human.replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");

@@ -1,11 +1,15 @@
 #!/usr/bin/env npx tsx
 /**
- * Canonical Authority Closure invariants:
+ * Canonical Authority Closure + Final Exit Closure invariants:
  * - CB-HIST-PRESENTATION-CANNOT-CREATE-EVIDENCE-STATE
  * - CB-HIST-PRESENTATION-MUST-PRESERVE-SEMANTICS
  * - CB-HIST-NO-CASE-IDENTITY-TRUTH-BRANCH
  * - CB-HIST-ALL-SURFACES-SHARE-RECONCILED-EVIDENCE-AUTHORITY
  * - CB-HIST-NSC-NOT-INCOMPLETE
+ * - CB-HIST-EMPTY-CANONICAL-STATE-MUST-NOT-REHYDRATE-FROM-CHASE
+ * - CB-HIST-NO-SOLICITOR-EXIT-MAY-REBUILD-EVIDENCE-FROM-CHASE
+ * - CB-HIST-CANONICAL-AUTHORITY-MUST-PRESERVE-PROVENANCE
+ * - CB-HIST-PRESENTATION-CANNOT-SUPPRESS-SOURCE-BACKED-FAMILY
  * - extracted_json-only ingest
  * - tenant existence isolation (lookup contract)
  *
@@ -14,7 +18,13 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { expandTruthMapRowsForDisplay } from "../lib/criminal/five-answers/expand-truth-map-rows";
-import { polishPresentationLine } from "../lib/criminal/demo-presentation-polish";
+import { buildFiveAnswersView } from "../lib/criminal/five-answers/build-five-answers-view";
+import { evidenceRowFromSourceState } from "../lib/criminal/five-answers/evidence-trace";
+import {
+  displayChaseCardLabel,
+  polishPresentationBlock,
+  polishPresentationLine,
+} from "../lib/criminal/demo-presentation-polish";
 import {
   resolveWorkflowProfile,
   resolveWorkflowProfileFromSignals,
@@ -26,14 +36,18 @@ import {
   buildCanonicalMatterStateV1,
 } from "../lib/criminal/canonical-matter-state";
 import { displayExistenceLabel } from "../lib/criminal/five-answers/display-labels";
-import { evidenceRowFromSourceState } from "../lib/criminal/five-answers/evidence-trace";
 import { buildLiveProductionSurfacesFromDocumentUnits } from "../lib/criminal/canonical-live-surface-adapter";
+import { buildHearingMode } from "../lib/criminal/hearing-mode/build-hearing-mode";
+import { buildExportPack } from "../lib/criminal/export-pack/build-export-pack";
+import { buildCriminalBriefPlan } from "../lib/criminal/brief-plan";
 import {
   mapCaseDocumentsToUploadedUnits,
   type CaseDocumentRow,
 } from "../lib/criminal/authenticated-matter-canonical";
 import { HISTORICAL_INVARIANTS } from "../lib/eval/master3000-quality/invariants";
 import type { DisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import type { HearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
+import type { FiveAnswersEvidenceRow } from "../lib/criminal/five-answers/types";
 
 process.env.NEXT_PUBLIC_CRIMINAL_PILOT_MODE = "true";
 
@@ -43,6 +57,11 @@ const requiredIds = [
   "CB-HIST-NO-CASE-IDENTITY-TRUTH-BRANCH",
   "CB-HIST-ALL-SURFACES-SHARE-RECONCILED-EVIDENCE-AUTHORITY",
   "CB-HIST-NSC-NOT-INCOMPLETE",
+  "CB-HIST-EMPTY-CANONICAL-STATE-MUST-NOT-REHYDRATE-FROM-CHASE",
+  "CB-HIST-NO-SOLICITOR-EXIT-MAY-REBUILD-EVIDENCE-FROM-CHASE",
+  "CB-HIST-CANONICAL-AUTHORITY-MUST-PRESERVE-PROVENANCE",
+  "CB-HIST-PRESENTATION-CANNOT-SUPPRESS-SOURCE-BACKED-FAMILY",
+  "CB-HIST-AUTHENTICATED-CANONICAL-FAILURE-MUST-NOT-FALLBACK-TO-CHASE-TRUTH",
 ];
 for (const id of requiredIds) {
   assert.ok(
@@ -51,12 +70,32 @@ for (const id of requiredIds) {
   );
 }
 
+function stubChase(primaryItems: DisclosureChaseBrief["primaryItems"]): DisclosureChaseBrief {
+  return {
+    primaryItems,
+    items: primaryItems,
+    additionalItems: [],
+    disclosureSummary: "fixture",
+    safeCourtLine: "Court note provisional",
+  } as unknown as DisclosureChaseBrief;
+}
+
+function stubWarRoom(): HearingWarRoomBrief {
+  return {
+    safePositionToday: "Provisional court position",
+    doNotOverstate: [],
+    sayThis: [],
+    instructionsNeeded: [],
+    bundleContradictions: [],
+  } as unknown as HearingWarRoomBrief;
+}
+
 // --- Presentation cannot invent evidence ---
 {
   const rows = [evidenceRowFromSourceState("Screenshot / message pack", "served")];
   const out = expandTruthMapRowsForDisplay({
     rows,
-    chase: { primaryItems: [], items: [], disclosureSummary: "harassment screenshots" } as unknown as DisclosureChaseBrief,
+    chase: stubChase([]),
     allegation: "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
     doNotOverstate: [],
   });
@@ -99,7 +138,6 @@ for (const id of requiredIds) {
     "fraud_account_control",
     "explicit demo adapter remains available for eval harnesses",
   );
-  // Opposite: offence signals still resolve without relying on the name hack.
   assert.equal(
     resolveWorkflowProfileFromSignals({
       caseTitle: "Criminal matter",
@@ -135,7 +173,64 @@ for (const id of requiredIds) {
   assert.equal(incompleteOnly.mg11.status, "draft_or_unsigned");
 }
 
-// --- Reconciled evidence authority across surfaces ---
+// --- CB-HIST-EMPTY-CANONICAL-STATE-MUST-NOT-REHYDRATE-FROM-CHASE ---
+{
+  const chase = stubChase([
+    {
+      label: "Master CCTV footage",
+      baseStatus: "Outstanding",
+      whyItMatters: "Needed for continuity",
+      draftChaseWording: "Please provide Master CCTV footage",
+      source: "MG6",
+    } as DisclosureChaseBrief["primaryItems"][number],
+  ]);
+  const warRoom = stubWarRoom();
+
+  const emptyCanonical = buildFiveAnswersView({
+    allegation: "Robbery",
+    warRoom,
+    chase,
+    matterConfidence: null,
+    doNotOverstate: [],
+    evidenceRowsOverride: [],
+  });
+  assert.equal(
+    emptyCanonical.evidenceState.rows.length,
+    0,
+    "authoritative empty array must preserve zero rows",
+  );
+
+  const legacy = buildFiveAnswersView({
+    allegation: "Robbery",
+    warRoom,
+    chase,
+    matterConfidence: null,
+    doNotOverstate: [],
+    evidenceRowsOverride: undefined,
+  });
+  assert.ok(
+    legacy.evidenceState.rows.some((r) => /master cctv/i.test(r.label)),
+    "undefined override remains the legacy chase-derived path",
+  );
+
+  // Opposite: genuinely supplied canonical outstanding evidence still renders.
+  const outstanding: FiveAnswersEvidenceRow[] = [
+    evidenceRowFromSourceState("Master CCTV footage", "missing"),
+  ];
+  const withCanonical = buildFiveAnswersView({
+    allegation: "Robbery",
+    warRoom,
+    chase,
+    matterConfidence: null,
+    doNotOverstate: [],
+    evidenceRowsOverride: outstanding,
+  });
+  assert.equal(withCanonical.evidenceState.rows.length, 1);
+  assert.equal(withCanonical.evidenceState.rows[0]!.existence, "missing");
+  assert.match(withCanonical.evidenceState.rows[0]!.label, /master cctv/i);
+}
+
+// --- Clip/master + recording/transcript exact states across exits ---
 {
   const docs = [
     {
@@ -169,20 +264,211 @@ for (const id of requiredIds) {
 
   const five = surfaces.truthMap.evidenceState.rows;
   const matter = surfaces.matterState.evidence.items;
-  const chaseLabels = surfaces.disclosureChase.items.map((i) => i.label).join(" ");
+  const chaseItems = surfaces.disclosureChase.items;
+  const chaseLabels = chaseItems.map((i) => i.label).join(" | ");
 
-  const assertDistinct = (rows: Array<{ label: string; existence?: string; state?: string }>) => {
-    const hay = rows.map((r) => `${r.label}|${r.existence ?? r.state}`).join("\n").toLowerCase();
-    // Clip served vs master outstanding must not collapse.
-    assert.ok(/clip/.test(hay) || /cctv/.test(hay), "CCTV family present");
-    // Recording vs transcript distinction where the pipeline surfaces them.
-    void chaseLabels;
+  const findState = (
+    rows: Array<{ label: string; existence?: string; state?: string }>,
+    re: RegExp,
+  ): string => {
+    const hit = rows.find((r) => re.test(r.label));
+    assert.ok(hit, `expected row matching ${re}`);
+    return String(hit!.existence ?? hit!.state);
   };
-  assertDistinct(five.map((r) => ({ label: r.label, existence: r.existence })));
-  assertDistinct(matter.map((r) => ({ label: r.label, existence: r.existence })));
 
-  // Same authority: five-answers rows come from reconciled items used for matter state.
-  assert.equal(five.length, matter.length, "Five Answers and matter state share reconciled item count");
+  // Exact clip/master values — not merely presence/counts.
+  assert.equal(findState(five, /cctv clip/i), "served", "Five Answers: clip served");
+  assert.equal(findState(five, /master cctv/i), "missing", "Five Answers: master missing");
+  assert.equal(findState(five, /interview recording/i), "served", "Five Answers: recording served");
+  assert.ok(
+    ["incomplete", "missing"].includes(findState(five, /interview transcript/i)),
+    "Five Answers: transcript outstanding",
+  );
+
+  assert.equal(findState(matter, /cctv clip/i), "served", "Matter state: clip served");
+  assert.equal(findState(matter, /master cctv/i), "missing", "Matter state: master missing");
+  assert.equal(findState(matter, /interview recording/i), "served", "Matter state: recording served");
+  assert.ok(
+    ["incomplete", "missing"].includes(findState(matter, /interview transcript/i)),
+    "Matter state: transcript outstanding",
+  );
+
+  // Same authority count.
+  assert.equal(five.length, matter.length);
+
+  // Provenance retained on reconciled projection (CB-HIST-CANONICAL-AUTHORITY-MUST-PRESERVE-PROVENANCE).
+  const clipMatter = matter.find((r) => /cctv clip/i.test(r.label))!;
+  assert.ok(clipMatter.sourceDocument || clipMatter.sourcePage || clipMatter.note, "clip has provenance");
+  assert.match(String(clipMatter.sourceDocument ?? clipMatter.note), /MG6|schedule/i);
+
+  // Hearing Mode + Export Pack must receive the same reconciled authority.
+  const briefPlan = buildCriminalBriefPlan({
+    bundleText: docs[0]!.fullText,
+    missingMaterial: surfaces.disclosureChase.items.map((i) => i.label),
+    allegation: "Robbery",
+  });
+  const override = five;
+  const hearing = buildHearingMode({
+    allegation: "Robbery",
+    briefPlan,
+    warRoom: surfaces.warRoom,
+    chase: surfaces.disclosureChase,
+    matterConfidence: null,
+    doNotOverstate: surfaces.warRoom.doNotOverstate,
+    primaryRouteTitle: "Live",
+    evidenceRowsOverride: override,
+  });
+  assert.equal(findState(hearing.evidenceSnapshot, /cctv clip/i), "served", "Hearing: clip served");
+  assert.equal(findState(hearing.evidenceSnapshot, /master cctv/i), "missing", "Hearing: master missing");
+  assert.equal(
+    findState(hearing.evidenceSnapshot, /interview recording/i),
+    "served",
+    "Hearing: recording served",
+  );
+  assert.ok(
+    ["incomplete", "missing"].includes(findState(hearing.evidenceSnapshot, /interview transcript/i)),
+    "Hearing: transcript outstanding",
+  );
+
+  const pack = buildExportPack({
+    caseId: "authority-clip-master",
+    allegation: "Robbery",
+    warRoom: surfaces.warRoom,
+    chase: surfaces.disclosureChase,
+    briefPlan,
+    matterConfidence: null,
+    doNotOverstate: surfaces.warRoom.doNotOverstate,
+    primaryRouteTitle: "Live",
+    evidenceRowsOverride: override,
+  });
+  const gaps = pack.sections.find((s) => s.id === "evidence_gaps")!.textForClipboard;
+  assert.match(gaps, /CCTV clip[\s\S]*\[Served\]/i);
+  assert.match(gaps, /Master CCTV[\s\S]*\[Missing\]/i);
+  assert.match(gaps, /Interview recording[\s\S]*\[Served\]/i);
+  assert.ok(
+    /Interview transcript[\s\S]*\[(?:Incomplete|Missing)\]/i.test(gaps),
+    "Export gaps: transcript outstanding",
+  );
+
+  const liveGaps = surfaces.exportPack.sections.find((s) => s.id === "evidence_gaps")!.textForClipboard;
+  const liveClipLine = liveGaps.split("\n").find((l) => /CCTV clip/i.test(l)) ?? "";
+  assert.match(liveClipLine, /\[Served\]/i);
+  assert.ok(!/\[Missing\]/i.test(liveClipLine), "served clip must not be Missing in export");
+  assert.match(liveGaps, /Master CCTV[\s\S]*\[Missing\]/i);
+
+  // Chase: served clip not outstanding; served recording not chased; master + transcript remain open.
+  assert.ok(
+    !chaseItems.some(
+      (i) => /\bclip\b/i.test(i.label) && /Outstanding|Overdue|Missing/i.test(i.baseStatus),
+    ),
+    "served clip must not be chased as outstanding",
+  );
+  assert.ok(
+    !chaseItems.some(
+      (i) =>
+        /interview recording/i.test(i.label) &&
+        !/transcript/i.test(i.label) &&
+        /Outstanding|Overdue|Missing|Not safely confirmed/i.test(i.baseStatus),
+    ),
+    "served recording must not be chased",
+  );
+  assert.ok(/master/i.test(chaseLabels), `master remains chaseable: ${chaseLabels}`);
+  assert.ok(/transcript/i.test(chaseLabels), `transcript remains chaseable: ${chaseLabels}`);
+
+  // Opposite: without override, Hearing Mode would rebuild from chase (legacy) — prove the bypass existed.
+  const hearingBypass = buildHearingMode({
+    allegation: "Robbery",
+    briefPlan,
+    warRoom: surfaces.warRoom,
+    chase: surfaces.disclosureChase,
+    matterConfidence: null,
+    doNotOverstate: surfaces.warRoom.doNotOverstate,
+    primaryRouteTitle: "Live",
+    // intentionally omit evidenceRowsOverride
+  });
+  const bypassHay = hearingBypass.evidenceSnapshot.map((r) => `${r.label}|${r.existence}`).join("\n");
+  assert.ok(
+    !/cctv clip.*\|served/i.test(bypassHay) || hearingBypass.evidenceSnapshot.length !== five.length,
+    "legacy Hearing Mode without override does not guarantee reconciled clip/master authority",
+  );
+}
+
+// --- CB-HIST-PRESENTATION-CANNOT-SUPPRESS-SOURCE-BACKED-FAMILY ---
+{
+  const mixedHay =
+    "Harassment phone screenshot message pack complainant MG11. Body-worn BWV of arrest. Custody record and PACE. CCTV of street. CAD log.";
+  const block = [
+    "Do not overstate phone attribution without the served export.",
+    "BWV of the arrest is on the papers — check before reliance.",
+    "Full custody record remains relevant to detention timing.",
+    "CCTV of the street shows the approach — check before reliance.",
+    "CAD / 999 timing still needs confirmation.",
+  ].join("\n");
+  const polished = polishPresentationBlock(block, mixedHay);
+  assert.match(polished, /BWV/i);
+  assert.match(polished, /custody/i);
+  assert.match(polished, /CCTV/i);
+  assert.match(polished, /phone|attribution/i);
+
+  const digitalPlusCustody = polishPresentationBlock(
+    "Phone extraction summary on file.\nCustody record pages cover detention clock.",
+    "digital disclosure phone extraction custody record detention",
+  );
+  assert.match(digitalPlusCustody, /phone|extraction/i);
+  assert.match(digitalPlusCustody, /custody/i);
+}
+
+// --- Chase-card display family anchored to item (not why prose) ---
+{
+  assert.match(
+    displayChaseCardLabel({
+      label: "Complainant MG11",
+      whyItMatters: "Phone attribution and subscriber data still unclear",
+      draftChaseWording: "Please provide phone download",
+    }),
+    /MG11|complainant|witness/i,
+  );
+  assert.ok(
+    !/phone download|source extraction/i.test(
+      displayChaseCardLabel({
+        label: "Complainant MG11",
+        whyItMatters: "Phone attribution and subscriber data still unclear",
+      }),
+    ),
+  );
+
+  assert.match(
+    displayChaseCardLabel({
+      label: "CCTV continuity / provenance",
+      whyItMatters: "Phone handset attribution mentioned in schedule notes",
+    }),
+    /CCTV/i,
+  );
+  assert.ok(
+    !/phone download/i.test(
+      displayChaseCardLabel({
+        label: "CCTV continuity / provenance",
+        whyItMatters: "Phone handset attribution mentioned in schedule notes",
+      }),
+    ),
+  );
+
+  assert.match(
+    displayChaseCardLabel({
+      label: "Phone extraction source download",
+      whyItMatters: "MG11 complainant statement still being reviewed",
+    }),
+    /phone|extraction|download/i,
+  );
+
+  assert.match(
+    displayChaseCardLabel({
+      label: "Additional source-material issues",
+      mergedFrom: ["MG6C/014 — Full BWV export"],
+      whyItMatters: "Phone notes elsewhere",
+    }),
+    /BWV|body/i,
+  );
 }
 
 // --- extracted_json-only ingest ---
@@ -200,7 +486,6 @@ for (const id of requiredIds) {
   assert.ok(units.length >= 1, "extracted_json-only document must be ingested");
   assert.match(units.map((u) => u.fullText).join("\n"), /CCTV master/);
 
-  // Opposite: no textual source in any representation → do not fabricate.
   const empty: CaseDocumentRow = {
     id: "empty-1",
     name: "Empty",
@@ -213,10 +498,32 @@ for (const id of requiredIds) {
 
 // --- Tenant existence isolation contract (no foreign existence signal) ---
 {
-  // Production case page must not distinguish foreign vs nonexistent after org-scoped miss.
   const page = fs.readFileSync("app/(protected)/cases/[caseId]/page.tsx", "utf8");
   assert.ok(!/existsElsewhere|different workspace|belongs to another account/i.test(page));
   assert.ok(!/demo\.loom\.taylor/i.test(page));
+}
+
+// --- Production callers must wire evidenceRowsOverride (static trace) ---
+{
+  const fiveUi = fs.readFileSync("components/criminal/five-answers/FiveAnswersView.tsx", "utf8");
+  assert.match(fiveUi, /buildHearingMode\([\s\S]*evidenceRowsOverride/);
+  assert.match(fiveUi, /buildExportPack\([\s\S]*evidenceRowsOverride/);
+  assert.match(fiveUi, /suppressChaseDerivedEvidence/);
+  assert.ok(
+    !/evidenceRowsOverride:\s*evidenceRowsOverride\?\.length\s*\?\s*evidenceRowsOverride\s*:\s*undefined/.test(
+      fiveUi,
+    ),
+    "FiveAnswersView must not convert authoritative [] to undefined",
+  );
+
+  const adapter = fs.readFileSync("lib/criminal/canonical-live-surface-adapter.ts", "utf8");
+  assert.match(adapter, /buildExportPack\([\s\S]*evidenceRowsOverride:\s*evidenceRowsForFiveAnswers/);
+
+  const hearingSrc = fs.readFileSync("lib/criminal/hearing-mode/build-hearing-mode.ts", "utf8");
+  assert.match(hearingSrc, /evidenceRowsOverride:\s*input\.evidenceRowsOverride/);
+
+  const exportSrc = fs.readFileSync("lib/criminal/export-pack/build-export-pack.ts", "utf8");
+  assert.match(exportSrc, /evidenceRowsOverride/);
 }
 
 console.log("canonical-authority-closure.test.ts: PASS");

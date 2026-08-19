@@ -276,6 +276,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     doNotOverstate: warRoom.doNotOverstate,
     primaryRouteTitle: "Live integration",
     urnCandidateTexts: [pipeline.bundleText, allegationForExits],
+    evidenceRowsOverride: evidenceRowsForFiveAnswers(pipeline),
   });
 
   const docRows = documents.map((d, idx) => ({

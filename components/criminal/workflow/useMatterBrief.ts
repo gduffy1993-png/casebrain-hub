@@ -45,6 +45,10 @@ import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { computeCounters } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import type { AuthenticatedMatterCanonicalPayload } from "@/lib/criminal/authenticated-matter-canonical";
 import type { EvidenceStateRow, SharedEvidenceState } from "@/lib/criminal/evidence-state-reconcile";
+import {
+  resolveAuthenticatedCanonicalEvidenceAuthority,
+  type AuthenticatedCanonicalAuthority,
+} from "@/lib/criminal/authenticated-canonical-evidence-guard";
 
 function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
   if (docCount === 0) return "unknown";
@@ -147,6 +151,9 @@ export function useMatterBrief(caseId: string) {
   useEffect(() => {
     let cancelled = false;
     setBundleLoading(true);
+    // Clear prior matter's payload so a failed/pending reload cannot keep stale
+    // canonical rows while still allowing chase-derived truth on the new matter.
+    setBundleSource(null);
     fetch(`/api/criminal/${caseId}/bundle-source`, { cache: "no-store", credentials: "include" })
       .then((r) => r.json())
       .then((res) => {
@@ -311,15 +318,37 @@ export function useMatterBrief(caseId: string) {
 
     const canonicalFindings = bundleSource?.canonical?.findingSummaries ?? [];
     const reconciledFromState = bundleSource?.canonical?.evidenceState?.items;
+    const provenanceByLabel = new Map(
+      (bundleSource?.canonical?.evidenceRows ?? []).map((r) => [
+        r.label.trim().toLowerCase(),
+        r,
+      ]),
+    );
+    // Prefer evidenceState.items as factual authority when the canonical payload exists
+    // (including authoritative empty []). Join provenance from evidenceRows — never null out
+    // known document/page anchors just to obtain state (CB-HIST-CANONICAL-AUTHORITY-MUST-PRESERVE-PROVENANCE).
     const evidenceSourceRows =
-      reconciledFromState && reconciledFromState.length > 0
-        ? reconciledFromState.map((r) => ({
-            label: r.label,
-            existence: r.state,
-            note: r.limitation,
-            sourceDocumentTitle: null as string | null,
-            sourcePage: null as string | null,
-          }))
+      reconciledFromState !== undefined && reconciledFromState !== null
+        ? reconciledFromState.map((r) => {
+            const prov =
+              provenanceByLabel.get(r.label.trim().toLowerCase()) ??
+              (bundleSource?.canonical?.evidenceRows ?? []).find((row) =>
+                row.label.trim().toLowerCase().includes(r.label.trim().toLowerCase().slice(0, 18)),
+              );
+            const sourceDocumentTitle =
+              (r as { sourceDocumentTitle?: string | null }).sourceDocumentTitle ??
+              prov?.sourceDocumentTitle ??
+              null;
+            const sourcePage =
+              (r as { sourcePage?: string | null }).sourcePage ?? prov?.sourcePage ?? null;
+            return {
+              label: r.label,
+              existence: r.state,
+              note: r.limitation,
+              sourceDocumentTitle,
+              sourcePage,
+            };
+          })
         : (bundleSource?.canonical?.evidenceRows ?? []).map((r) => ({
             label: r.label,
             existence: r.existence,
@@ -339,8 +368,18 @@ export function useMatterBrief(caseId: string) {
       };
       if (r.note) row.note = r.note;
       else if (r.sourcePage) row.note = `${r.sourceDocumentTitle ?? "source"} · ${r.sourcePage}`;
+      else if (r.sourceDocumentTitle) row.note = r.sourceDocumentTitle;
       return row;
     });
+    // undefined = no canonical payload; [] = authoritative empty; rows = reconciled authority
+    // Authenticated solicitor path: never treat missing canonical as silent chase-fallback.
+    const authCanonical = resolveAuthenticatedCanonicalEvidenceAuthority({
+      bundleLoading: false, // pilotMatter only builds after bundleLoading clears
+      canonical: bundleSource?.canonical ?? null,
+      evidenceRowsFromCanonical,
+    });
+    const evidenceRowsOverride = authCanonical.evidenceRowsOverride;
+    const canonicalAuthority: AuthenticatedCanonicalAuthority = authCanonical.authority;
 
     let positionRaw: string;
     if (hasSavedPosition && savedPositionText?.trim()) {
@@ -492,7 +531,9 @@ export function useMatterBrief(caseId: string) {
       briefPlan,
       primaryRouteTitle,
       canonical: bundleSource?.canonical ?? null,
-      evidenceRowsOverride: evidenceRowsFromCanonical,
+      evidenceRowsOverride,
+      canonicalAuthority,
+      suppressChaseDerivedEvidence: authCanonical.suppressChaseDerivedEvidence,
       bundleMeta: bundleSource
         ? {
             documentCount: Math.max(snapshot?.analysis.docCount ?? 0, bundleSource.documentCount ?? 0),
@@ -518,8 +559,17 @@ export function useMatterBrief(caseId: string) {
     savedPositionText,
   ]);
 
+  const loading = snapshotLoading || battleboardLoading || bundleLoading;
+  // While bundle-source is in flight, suppress chase-derived factual evidence even though
+  // pilotMatter is null (FiveAnswersView must not build on undefined override).
+  const pendingAuthCanonical = resolveAuthenticatedCanonicalEvidenceAuthority({
+    bundleLoading,
+    canonical: bundleSource?.canonical ?? null,
+    evidenceRowsFromCanonical: [],
+  });
+
   return {
-    loading: snapshotLoading || battleboardLoading || bundleLoading,
+    loading,
     matterBrief: pilotMatter?.matterBrief ?? null,
     matterConfidence: pilotMatter?.matterConfidence ?? null,
     doNotOverstate: pilotMatter?.doNotOverstate ?? [],
@@ -536,7 +586,14 @@ export function useMatterBrief(caseId: string) {
     primaryRouteTitle: pilotMatter?.primaryRouteTitle ?? null,
     bundleMeta: pilotMatter?.bundleMeta ?? null,
     canonical: pilotMatter?.canonical ?? null,
-    evidenceRowsOverride: pilotMatter?.evidenceRowsOverride ?? [],
+    // Preserve undefined (no canonical) vs [] (authoritative empty) — do not coerce.
+    evidenceRowsOverride: pilotMatter?.evidenceRowsOverride,
+    canonicalAuthority: loading
+      ? pendingAuthCanonical.authority
+      : (pilotMatter?.canonicalAuthority ?? pendingAuthCanonical.authority),
+    suppressChaseDerivedEvidence: loading
+      ? true
+      : (pilotMatter?.suppressChaseDerivedEvidence ?? pendingAuthCanonical.suppressChaseDerivedEvidence),
     caseTitle: snapshot?.caseMeta?.title?.trim() || "Criminal case",
   };
 }

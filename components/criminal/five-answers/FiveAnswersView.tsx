@@ -78,6 +78,8 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     outputIntegrity,
     canonical,
     evidenceRowsOverride,
+    canonicalAuthority,
+    suppressChaseDerivedEvidence,
   } = useMatterBrief(caseId);
   const buildTabHref = usePilotMatterTabHref();
 
@@ -103,6 +105,11 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
   const view = useMemo(() => {
     if (!warRoom || !chase) return null;
+    // Authenticated production: never silently rebuild factual evidence from Chase when
+    // canonical is pending/unavailable (CB-HIST-AUTHENTICATED-CANONICAL-FAILURE-MUST-NOT-FALLBACK-TO-CHASE-TRUTH).
+    if (suppressChaseDerivedEvidence || evidenceRowsOverride === undefined) {
+      return null;
+    }
     const built = buildFiveAnswersView({
       allegation: allegation ?? "",
       warRoom,
@@ -110,7 +117,8 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       matterConfidence,
       doNotOverstate: filteredDoNotOverstate,
       bundleText: bundleMeta?.frontMatterScan ?? undefined,
-      evidenceRowsOverride: evidenceRowsOverride?.length ? evidenceRowsOverride : undefined,
+      // Pass through [] / rows unchanged — never convert authoritative [] to undefined.
+      evidenceRowsOverride,
       canonicalFindings: canonical?.findingSummaries,
     });
 
@@ -127,7 +135,18 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
         built.mustNotOverstate.map((line) => polishPresentationLine(line, bundleHay)),
       ),
     };
-  }, [warRoom, chase, allegation, matterConfidence, filteredDoNotOverstate, bundleMeta?.frontMatterScan, bundleHay, evidenceRowsOverride, canonical?.findingSummaries]);
+  }, [
+    warRoom,
+    chase,
+    allegation,
+    matterConfidence,
+    filteredDoNotOverstate,
+    bundleMeta?.frontMatterScan,
+    bundleHay,
+    evidenceRowsOverride,
+    canonical?.findingSummaries,
+    suppressChaseDerivedEvidence,
+  ]);
 
   const decisionBoard = useMemo(() => {
     if (!briefPlan || !warRoom || !chase) return null;
@@ -142,6 +161,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
   const hearingMode = useMemo(() => {
     if (!briefPlan || !warRoom || !chase) return null;
+    if (suppressChaseDerivedEvidence || evidenceRowsOverride === undefined) return null;
     return buildHearingMode({
       allegation: allegation ?? "",
       briefPlan,
@@ -151,6 +171,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       doNotOverstate: filteredDoNotOverstate,
       primaryRouteTitle: primaryRouteTitle ? polishPresentationLine(primaryRouteTitle, bundleHay) : primaryRouteTitle,
       documentCount: bundleMeta?.documentCount ?? 0,
+      evidenceRowsOverride,
     });
   }, [
     briefPlan,
@@ -162,10 +183,13 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     primaryRouteTitle,
     bundleMeta?.documentCount,
     bundleHay,
+    evidenceRowsOverride,
+    suppressChaseDerivedEvidence,
   ]);
 
   const exportPack = useMemo(() => {
     if (!warRoom || !chase) return null;
+    if (suppressChaseDerivedEvidence || evidenceRowsOverride === undefined) return null;
     const appVersion =
       typeof process !== "undefined" && process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA
         ? process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA.slice(0, 12)
@@ -180,6 +204,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       doNotOverstate: filteredDoNotOverstate,
       primaryRouteTitle: primaryRouteTitle ? polishPresentationLine(primaryRouteTitle, bundleHay) : primaryRouteTitle,
       appVersion,
+      evidenceRowsOverride,
     });
   }, [
     caseId,
@@ -191,6 +216,8 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     filteredDoNotOverstate,
     primaryRouteTitle,
     bundleHay,
+    evidenceRowsOverride,
+    suppressChaseDerivedEvidence,
   ]);
 
   const proofReceipts = useMemo(() => {
@@ -227,6 +254,25 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
         <p className="text-xs text-slate-400">
           Next step: reopen this tab after processing, or use the source papers to record the hearing
           position manually.
+        </p>
+      </div>
+    );
+  }
+
+  if (!loading && suppressChaseDerivedEvidence && canonicalAuthority === "unavailable") {
+    return (
+      <div
+        className={`${workflowPilotCard} p-6 text-sm text-slate-500 space-y-3`}
+        data-testid="five-answers-canonical-unavailable"
+      >
+        <p className="font-semibold text-slate-900">Canonical evidence unavailable</p>
+        <p>
+          CaseBrain could not load the reconciled evidence state for this matter. Factual evidence
+          rows are not reconstructed from Chase while that authority is missing.
+        </p>
+        <p className="text-xs text-slate-400">
+          Retry the overview after the papers finish loading, or review Papers / File from the source
+          documents. Do not treat Chase wording as a substitute evidence state.
         </p>
       </div>
     );

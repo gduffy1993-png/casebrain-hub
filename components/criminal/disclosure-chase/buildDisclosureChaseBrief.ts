@@ -1620,14 +1620,62 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = restoreSourceBackedRequiredChaseFamilies(items, ledger, deadline);
 
   // Alias-suppress using live document-derived evidence rows (not hardcoded assumptions).
-  if (input.canonicalEvidenceRows?.length) {
-    items = items.filter((item) => {
-      const verdict = shouldChaseRequestAgainstServedAliases(
-        item.label,
-        input.canonicalEvidenceRows!,
-      );
-      return verdict.chase;
-    });
+  // Presence is `!== undefined` (empty array = no served aliases to suppress against).
+  if (input.canonicalEvidenceRows !== undefined) {
+    const rows = input.canonicalEvidenceRows;
+    items = items
+      .map((item) => {
+        // When recording is served but transcript is not, do not keep chasing the
+        // served recording under a combined "recording / transcript" label.
+        if (/recording/i.test(item.label) && /transcript/i.test(item.label)) {
+          const recordingServed = rows.some(
+            (r) =>
+              r.state === "served" &&
+              /recording/i.test(r.label) &&
+              !/transcript/i.test(r.label),
+          );
+          const transcriptOutstanding = rows.some(
+            (r) =>
+              /transcript/i.test(r.label) &&
+              r.state !== "served" &&
+              r.state !== "referred_only",
+          );
+          if (recordingServed && transcriptOutstanding) {
+            return {
+              ...item,
+              label: item.label
+                .replace(/interview\s+recording\s*\/\s*/i, "Interview ")
+                .replace(/\brecording\s*\/\s*/i, "")
+                .replace(/\s{2,}/g, " ")
+                .trim(),
+            };
+          }
+        }
+        // Clip served must not keep a combined clip/master chase wording that treats clip as open.
+        if (/\bclip/i.test(item.label) && /master/i.test(item.label)) {
+          const clipServed = rows.some(
+            (r) => r.state === "served" && /\bclip/i.test(r.label),
+          );
+          const masterOutstanding = rows.some(
+            (r) => /master/i.test(r.label) && r.state !== "served",
+          );
+          if (clipServed && masterOutstanding) {
+            return {
+              ...item,
+              label: item.label
+                .replace(/\bcctv\s+clips?\s*\/\s*/i, "")
+                .replace(/\bclips?\s*\/\s*/i, "")
+                .replace(/\s{2,}/g, " ")
+                .trim(),
+            };
+          }
+        }
+        return item;
+      })
+      .filter((item) => {
+        const verdict = shouldChaseRequestAgainstServedAliases(item.label, rows);
+        return verdict.chase;
+      });
   }
 
   // Attach provenance limitations from canonical findings onto matching chase labels.

@@ -26,7 +26,12 @@ export type BuildFiveAnswersViewInput = {
   doNotOverstate: string[];
   truthKey?: import("@/lib/eval/evidence-state-audit/types").EvidenceStateTruthKey;
   bundleText?: string;
-  /** When set (live document pipeline), prefer these rows over chase-inferred existence. */
+  /**
+   * Canonical evidence authority for the truth map.
+   * - `undefined` — no canonical authority supplied (legacy/degraded: may derive from chase)
+   * - `[]` — authoritative empty canonical state (must not rehydrate from chase)
+   * - non-empty — use exactly these reconciled rows
+   */
   evidenceRowsOverride?: import("./types").FiveAnswersEvidenceRow[];
   /** Canonical findings projected into must-not-overstate / truth-map notes. */
   canonicalFindings?: Array<{ title: string; summary: string; unresolved: boolean; provenanceLine: string }>;
@@ -49,8 +54,10 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
   const allegationWithStatus = formatChargeWithInseparableWarning(chargeCompleteness);
   const { warRoom, chase, matterConfidence, doNotOverstate } = input;
 
+  // CB-HIST-EMPTY-CANONICAL-STATE-MUST-NOT-REHYDRATE-FROM-CHASE:
+  // presence is `!== undefined`, not length. Empty array is authoritative zero rows.
   const rawEvidenceRows =
-    input.evidenceRowsOverride && input.evidenceRowsOverride.length > 0
+    input.evidenceRowsOverride !== undefined
       ? input.evidenceRowsOverride.slice(0, 12)
       : chase.primaryItems.slice(0, 8).map((item) => {
           const state = inferChaseItemSourceState({
