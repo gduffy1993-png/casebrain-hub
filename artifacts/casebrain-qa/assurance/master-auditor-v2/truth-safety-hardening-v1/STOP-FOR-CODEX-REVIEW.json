@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "truth-safety-hardening-v1-stop@1.0.0",
+  "status": "TRUTH_SAFETY_HARDENING_V1_READY_FOR_REVIEW",
+  "baselineHead": "f167c58762c8931aa29bbc3e0ebe3b576372fe55",
+  "sharedFixes": [
+    "Disclosure chase item rows now retain hearingDeadlineNote when the hearing deadline is provisional."
+  ],
+  "regressionsAdded": [
+    "unsupported phone/medical/BWV/999/retraction prompts cannot become asserted chases",
+    "conditional prose is limited to source-supported evidence families",
+    "no reliable hearing date means every chase item carries the provisional-hearing limitation",
+    "selected-case pilot route must not fall into the old empty-hearings shell",
+    "historical solicitor-visible leakage classes remain banned"
+  ],
+  "acceptedEvidenceReconciled": {
+    "v212AcceptedCases": 3000,
+    "v212CandidateLedgerLines": 0,
+    "v212ControlsExercised": "17/361",
+    "v212PdfLane": "24/3000 source_pdf_copy",
+    "v212Browser": "not_exercised"
+  },
+  "verification": "see VERIFICATION-RESULTS.json",
+  "nonClaims": {
+    "merge": false,
+    "productionDeploy": false,
+    "corpusPass": false,
+    "stage3000Completion": false,
+    "programmePass": false,
+    "solicitorApproval": false,
+    "globalZeroDefects": false
+  }
+}

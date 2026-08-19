@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "truth-safety-hardening-v1-manifest@1.1.0",
+  "generatedAt": "2026-08-19T03:16:07.393Z",
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/truth-safety-hardening-v1/DECISION-CARD.json",
+      "sha256": "ac1d6e0a8599203749ed60055be00eb5551c1b61d2a6e29b11527ff219755806",
+      "byteLength": 4469,
+      "classification": "compact_review_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/truth-safety-hardening-v1/DECISION-CARD.md",
+      "sha256": "d0ef7227691cb7233c12a4aaad4f23065e1159b2c5b4563c87d3d217aebc6f28",
+      "byteLength": 1158,
+      "classification": "compact_review_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/truth-safety-hardening-v1/VERIFICATION-RESULTS.json",
+      "sha256": "9e0e9a6a722de3caa6166d7d2ee082edb0870182335e1498948ac012e0ba5fd8",
+      "byteLength": 1005,
+      "classification": "compact_review_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/truth-safety-hardening-v1/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "1999cb76ba61d07a813f91c76af76bdb84363ca2b392fd530f630f160c91b752",
+      "byteLength": 1248,
+      "classification": "compact_review_artifact"
+    }
+  ]
+}

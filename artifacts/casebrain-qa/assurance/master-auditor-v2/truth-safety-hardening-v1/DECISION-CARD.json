@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "truth-safety-hardening-v1@1.0.0",
+  "generatedAt": "2026-08-19T03:03:13.223Z",
+  "baseline": {
+    "branch": "programme/real-pdf-live-pilot-v1",
+    "head": "f167c58762c8931aa29bbc3e0ebe3b576372fe55",
+    "trackedDirty": "M components/criminal/disclosure-chase/buildDisclosureChaseBrief.ts"
+  },
+  "scope": {
+    "noMergeDeployPassClaim": true,
+    "corpusRerunPerformed": false,
+    "purpose": "Shared-root legal safety/UI consistency hardening over accepted evidence; not a new Stage-3000 completion claim."
+  },
+  "acceptedV212Evidence": {
+    "membershipPath": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-execution\\realistic-child-v2.1.2\\ordered-child-membership.json",
+    "membershipSha256": "c93657a3f8e55773eb51e9e66d4eb3f53af954d3f142f46723357f9f9dbded0c",
+    "acceptedCount": 3000,
+    "semanticMembershipSha256": "46e823af53ab0e479263c0378d29e7cd6ab463c23ecbc832be388bbd3c2925fa",
+    "stopClassification": "stage3000-v2.1.2-stop@1.0.0",
+    "candidateLedgerBytes": 0,
+    "candidateLedgerLines": 0,
+    "genuineCandidateCountClaimed": 0,
+    "controlsEvaluatedOnAtLeastOneCase": 17,
+    "registryDenominator": 361,
+    "browser": "not_exercised"
+  },
+  "structuralReconciliation": {
+    "outputRows": 3000,
+    "uniqueOutputHashes": 3000,
+    "sourceRows": 3000,
+    "uniqueSourceHashes": 2583,
+    "sourceHashReuseIsReportedNotHidden": true,
+    "pdfRegisterRows": 24,
+    "pdfRenderedFromOutputRows": 24,
+    "pdfOrigins": {
+      "source_pdf_copy": 24
+    }
+  },
+  "controlReceiptReconciliation": {
+    "rows": 51000,
+    "uniqueCaseControlPairs": 51000,
+    "uniqueControls": 17,
+    "statusCounts": {
+      "evaluated": 51000
+    },
+    "namedControlExerciseStatusCounts": {
+      "partially_exercised": 51000
+    },
+    "totalHitCount": 0
+  },
+  "newSharedRootFixes": [
+    {
+      "root": "provisional_hearing_deadline_note_dropped_from_item_rows",
+      "classification": "evidence-safety",
+      "fix": "Disclosure chase items now carry hearingDeadlineNote when deadlineLabel is provisional.",
+      "invariant": "truth-safety-hardening-regression: no reliable hearing date => every chase item carries provisional note."
+    }
+  ],
+  "preservedInvariants": [
+    "unsupported phone/medical/BWV/999/retraction prompts cannot become Patel-style asserted chases",
+    "CCTV chase cannot inherit phone/source-export provenance",
+    "interview recording/transcript outstanding cannot be called served",
+    "First Appearance source does not render PTPH workflow wording",
+    "selected-case route must avoid old empty-hearings shell",
+    "historic solicitor-visible internal wording classes remain banned in shared source files"
+  ],
+  "liveSweepEvidence": [
+    {
+      "file": "artifacts/tmp-live-final-six-tab-verification.json",
+      "sha256": "700d7f663ee12ebe623bf668546a9158da9ff7fdae95d1ad7e5a75518f2ac137",
+      "sweptCases": 3,
+      "sweptPages": 18,
+      "discoveredUniqueCases": 20,
+      "pagesWithBadHits": 0,
+      "badHitDetails": 0,
+      "horizontalOverflowPages": 0,
+      "tinyPages": 0,
+      "unresolvedLoadingPages": 0,
+      "signInPages": 0
+    },
+    {
+      "file": "artifacts/tmp-live-final-shared-root-sweep-local.json",
+      "sha256": "48738cad4b521c1dc067829020206a59fa2ed7474149005204c9ebbcf0dccaf2",
+      "sweptCases": 10,
+      "sweptPages": 30,
+      "discoveredUniqueCases": 20,
+      "pagesWithBadHits": 0,
+      "badHitDetails": 0,
+      "horizontalOverflowPages": 0,
+      "tinyPages": 0,
+      "unresolvedLoadingPages": 0,
+      "signInPages": 0
+    },
+    {
+      "file": "artifacts/tmp-live-final-multicase-sweep-a.json",
+      "sha256": "d068e6357c7c735a4b13075911f7301ea2592f062d520fdc8150911d70a1aeab",
+      "sweptCases": 5,
+      "sweptPages": 30,
+      "discoveredUniqueCases": null,
+      "pagesWithBadHits": 0,
+      "badHitDetails": 0,
+      "horizontalOverflowPages": 0,
+      "tinyPages": 0,
+      "unresolvedLoadingPages": 0,
+      "signInPages": 0
+    }
+  ],
+  "stillOpenHonestLimitations": [
+    "This pass did not rerun the full 3,000 materialisation.",
+    "Authenticated browser remains not exercised in accepted V2.1.2 evidence.",
+    "PDF denominator in accepted V2.1.2 remains 24/3000 and byteOrigin is source_pdf_copy, not genuine app-rendered PDF.",
+    "Only 17/361 controls were exercised in accepted V2.1.2 evidence.",
+    "Cursor UI mockup/redesign is intentionally separate and not assessed by this report."
+  ]
+}

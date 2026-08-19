@@ -170,6 +170,7 @@ export type DisclosureChaseItem = {
   baseStatus: ChaseItemStatus;
   urgency: "high" | "medium" | "low";
   deadlineLabel: string;
+  hearingDeadlineNote?: string | null;
   evidenceAnchor: string | null;
   linkedRoute: string | null;
   draftChaseWording: string;
@@ -805,6 +806,7 @@ function groupAndMergeLabels(
       baseStatus,
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
+      hearingDeadlineNote: deadline.hearingDeadlineNote,
       evidenceAnchor: findEvidenceAnchor(fam.id, mergedFrom, battleboard, ledger),
       linkedRoute: findLinkedRoute(fam.id, battleboard),
       draftChaseWording: canonical.draftChaseWording ?? draftChaseWording(label, mergedFrom),
@@ -833,6 +835,7 @@ function groupAndMergeLabels(
       baseStatus: "Not safely confirmed",
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
+      hearingDeadlineNote: deadline.hearingDeadlineNote,
       evidenceAnchor,
       linkedRoute: battleboard?.primary_route?.title ?? null,
       draftChaseWording: draftChaseWording(label, mergedFrom),
@@ -860,6 +863,7 @@ function groupAndMergeLabels(
       baseStatus: deadline.baseStatus,
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
+      hearingDeadlineNote: deadline.hearingDeadlineNote,
       evidenceAnchor,
       linkedRoute: null,
       draftChaseWording: draftChaseWording(label, mergedFrom),
@@ -1048,6 +1052,7 @@ function buildWorkflowProfileDisclosureItems(
       baseStatus: deadline.baseStatus,
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
+      hearingDeadlineNote: deadline.hearingDeadlineNote,
       evidenceAnchor: (() => {
         const fromLedger = ledger
           ? findEvidenceAnchor(familyId, [normalized], battleboard, ledger)
@@ -1165,6 +1170,7 @@ function mergeDisclosureItems(
     baseStatus: mergeStatus(existing.baseStatus, incoming.baseStatus),
     urgency: mergeUrgency(existing.urgency, incoming.urgency),
     deadlineLabel: existing.deadlineLabel || incoming.deadlineLabel,
+    hearingDeadlineNote: existing.hearingDeadlineNote ?? incoming.hearingDeadlineNote ?? null,
     evidenceAnchor: existing.evidenceAnchor ?? incoming.evidenceAnchor,
     linkedRoute: existing.linkedRoute ?? incoming.linkedRoute,
     draftChaseWording:
@@ -1264,6 +1270,7 @@ function mergeLedgerDisclosureItems(
       baseStatus,
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
+      hearingDeadlineNote: deadline.hearingDeadlineNote,
       evidenceAnchor: (() => {
         const display = canonical.anchor ?? formatDisplayLabelCasing(m.displayLine);
         if (!isAdminGuidanceLine(display)) return display;
@@ -1344,6 +1351,7 @@ function mergeContradictionActionItems(
       baseStatus: deadline.baseStatus,
       urgency: deadline.urgency === "low" ? "medium" : deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
+      hearingDeadlineNote: deadline.hearingDeadlineNote,
       evidenceAnchor: action.label,
       linkedRoute: input.battleboard?.primary_route?.title ?? null,
       draftChaseWording: action.draftChaseWording,

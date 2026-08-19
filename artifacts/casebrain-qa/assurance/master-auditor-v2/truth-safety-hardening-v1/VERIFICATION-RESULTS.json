@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "truth-safety-hardening-v1-verification@1.0.0",
+  "verifiedAt": "2026-08-19T03:16:00.000Z",
+  "commands": [
+    {
+      "command": "npx vitest run scripts/source-truth-guardian.test.ts scripts/truth-safety-hardening-regression.test.ts",
+      "result": "pass",
+      "tests": "12/12"
+    },
+    {
+      "command": "npx tsx scripts/live-ui-wording-regression.test.ts",
+      "result": "pass"
+    },
+    {
+      "command": "npx tsx scripts/pilot-workflow-profile.test.ts",
+      "result": "pass"
+    },
+    {
+      "command": "npm run build",
+      "result": "pass",
+      "notes": [
+        "Next build exit 0",
+        "Known pdf/criminal-strategy-pdf createRequire warning remained non-fatal",
+        "Browserslist stale-data warning remained non-fatal"
+      ]
+    }
+  ],
+  "nonClaims": [
+    "No merge",
+    "No production deploy",
+    "No corpus PASS",
+    "No Stage-3000 completion",
+    "No programme PASS",
+    "No solicitor approval",
+    "No global zero-defect claim"
+  ]
+}
