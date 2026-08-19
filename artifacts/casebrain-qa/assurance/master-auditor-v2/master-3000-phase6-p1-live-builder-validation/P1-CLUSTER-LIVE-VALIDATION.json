@@ -11085,7 +11085,7 @@
     ],
     "rootCauseCluster": "missing_expected_chase",
     "classification": "TRUTH_AMBIGUOUS_REQUIRES_REVIEW",
-    "reason": "At least one truth-key expected item is not clearly present in source text and needs human/source review.",
+    "reason": "Truth-key expected item is not clearly present in source text, yet current live builder surfaces related chase wording; do not force a product fix without stronger independent truth.",
     "representativeReports": [
       {
         "caseId": "cb-fresh-002-jordan-hale",
@@ -12473,8 +12473,8 @@
       "sim-106"
     ],
     "rootCauseCluster": "missing_expected_chase",
-    "classification": "TRUTH_AMBIGUOUS_REQUIRES_REVIEW",
-    "reason": "At least one truth-key expected item is not clearly present in source text and needs human/source review.",
+    "classification": "AUDITOR_FALSE_POSITIVE",
+    "reason": "Truth-key expected chase is not source-backed and current live builder correctly omits it; treat as truth-key/auditor overreach rather than a live product defect.",
     "representativeReports": [
       {
         "caseId": "sim-106",

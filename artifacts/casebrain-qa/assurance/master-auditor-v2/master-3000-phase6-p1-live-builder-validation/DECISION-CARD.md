@@ -1,6 +1,6 @@
 # CaseBrain master 3,000 quality programme — Phase 6 P1 live-builder validation
 
-Generated: 2026-08-19T14:57:09.032Z
+Generated: 2026-08-19T15:28:02.681Z
 
 ## Verdict
 
@@ -8,13 +8,24 @@ Generated: 2026-08-19T14:57:09.032Z
 
 This phase reviewed the Phase 5 P1 clusters against independent truth keys, current canonical ledger state, and current live shared builder output. It did **not** run the 500/1000/3000 corpus.
 
+Certified commit: `c4114c06bb9b7036a681353f3326fe5b7b1aa3c1`
+
 ## Classification
 
 - P1 clusters reviewed: **43**
 - Confirmed live shared defects: **0**
 - Stale historical output only: **41**
-- Auditor false positives: **0**
-- Truth ambiguous/review: **2**
+- Auditor false positives: **1**
+- Truth ambiguous/review: **1**
+
+## Live vs observation semantics
+
+- Live candidate failures: **0**
+- Live defect clusters: **0** (candidate_failure + confirmed_failure only)
+- Human-review observation clusters: **1** (not live product defects)
+- Auditor/truth false-positive rows: **1**
+
+Do **not** read historical `liveFailureClusters` as meaning live product defects when those clusters were human-review / truth-ambiguity observations.
 
 ## Shared fix made
 
@@ -27,4 +38,4 @@ This phase reviewed the Phase 5 P1 clusters against independent truth keys, curr
 
 ## Stop rule
 
-The starter auditor is more mature, but this is not a corpus PASS. Next should be a modest representative stress set only after reviewing the remaining live candidate failures.
+The starter auditor is more mature, but this is not a corpus PASS. Next should expand high-risk control coverage, then consider a modest representative stress set. Do not start 500/1000/3000 automatically.

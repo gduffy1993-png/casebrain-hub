@@ -281,14 +281,23 @@ const clusterReports = p1Clusters.map((cluster) => {
     };
   });
 
-  const anyAmbiguousTruth = representativeReports.some((report) =>
-    report.expectedFound.some((expected) => !expected.sourceMentionsExpected),
-  );
   const anyStillMissing = representativeReports.some((report) =>
     report.expectedFound.some((expected) => !expected.foundInCurrentLiveBuilder && expected.sourceMentionsExpected),
   );
   const anyVague = representativeReports.some((report) =>
     report.expectedFound.some((expected) => expected.foundInCurrentLiveBuilder && expected.vagueVisibleLabel),
+  );
+  // Truth key expects chase with no source support, and live builder also omits it → truth-key / auditor overreach.
+  const anyTruthOverreachNoLive = representativeReports.some((report) =>
+    report.expectedFound.some(
+      (expected) => !expected.sourceMentionsExpected && !expected.foundInCurrentLiveBuilder,
+    ),
+  );
+  // Truth key expects chase with no clear source support, but live builder surfaces it → needs human review.
+  const anyAmbiguousTruthLivePresent = representativeReports.some((report) =>
+    report.expectedFound.some(
+      (expected) => !expected.sourceMentionsExpected && expected.foundInCurrentLiveBuilder,
+    ),
   );
 
   let classification: ClusterClassification;
@@ -301,9 +310,14 @@ const clusterReports = p1Clusters.map((cluster) => {
     reason = anyStillMissing
       ? "Current live builder still misses at least one source/truth-supported expected chase in representative cases."
       : "Current live builder carries the expected item only behind a vague visible label.";
-  } else if (anyAmbiguousTruth) {
+  } else if (anyAmbiguousTruthLivePresent) {
     classification = "TRUTH_AMBIGUOUS_REQUIRES_REVIEW";
-    reason = "At least one truth-key expected item is not clearly present in source text and needs human/source review.";
+    reason =
+      "Truth-key expected item is not clearly present in source text, yet current live builder surfaces related chase wording; do not force a product fix without stronger independent truth.";
+  } else if (anyTruthOverreachNoLive) {
+    classification = "AUDITOR_FALSE_POSITIVE";
+    reason =
+      "Truth-key expected chase is not source-backed and current live builder correctly omits it; treat as truth-key/auditor overreach rather than a live product defect.";
   } else {
     classification = "STALE_HISTORICAL_OUTPUT_ONLY";
     reason = "Representative expected items are now present in current canonical/live-builder output.";
@@ -338,7 +352,9 @@ const phase6Results: AuditResultEnvelope[] = gold.matters.flatMap((matter) => {
     const sourceSupported = sourceSupportsExpected(item, live.bundleText);
     const found = expectedFoundInLive(item, live.brief.items);
     const disposition = !sourceSupported
-      ? "human_review_required"
+      ? found
+        ? "human_review_required"
+        : "false_positive"
       : found
         ? "pass"
         : "candidate_failure";
@@ -356,12 +372,16 @@ const phase6Results: AuditResultEnvelope[] = gold.matters.flatMap((matter) => {
         sourceReference: { path: matter.truthKeyPath, field: "expectedChaseItems" },
         expected: `Current live builder should surface expected chase: ${item}`,
         actual: !sourceSupported
-          ? "Truth-key expectation is not independently source-backed in the bundle text; route to human/source review."
+          ? found
+            ? "Truth-key expectation is not independently source-backed, but live builder surfaces related wording; human/source review required."
+            : "Truth-key expectation is not independently source-backed and live builder correctly omits it (auditor/truth false positive)."
           : found
             ? "Expected chase found in current live builder output."
             : "Expected chase absent from current live builder output.",
         rootCauseCluster: !sourceSupported
-          ? "truth_expected_not_source_backed"
+          ? found
+            ? "truth_expected_not_source_backed_live_present"
+            : "truth_expected_not_source_backed_live_absent"
           : found
             ? "live_expected_chase_present"
             : "live_expected_chase_missing",
@@ -493,11 +513,33 @@ const coverageAfter: ControlCoverageMap = {
 
 const coverageIssues = validateControlCoverageMap(coverageAfter);
 const liveCandidateFailures = phase6Results.filter((result) => result.disposition === "candidate_failure");
+const liveConfirmedFailures = phase6Results.filter((result) => result.disposition === "confirmed_failure");
+const humanReviewRows = phase6Results.filter((result) => result.disposition === "human_review_required");
+const auditorFalsePositiveRows = phase6Results.filter((result) => result.disposition === "false_positive");
+const liveDefectResults = phase6Results.filter((result) =>
+  result.disposition === "candidate_failure" || result.disposition === "confirmed_failure",
+);
+const liveDefectClusters = clusterFailures(liveDefectResults);
+const humanReviewClusters = clusterFailures(humanReviewRows);
+const phase5Commit =
+  typeof phase5Stop.commit === "string"
+    ? phase5Stop.commit
+    : phase5Coverage.commit ?? null;
 const stop = {
-  schemaVersion: "master3000-phase6-p1-live-builder-validation-stop@1.0.0",
+  schemaVersion: "master3000-phase6-p1-live-builder-validation-stop@1.1.0",
   generatedAt: GENERATED_AT,
   status: "P1_LIVE_BUILDER_VALIDATION_COMPLETE__NO_SCALE_RUN",
   commit,
+  commitMetadata: {
+    certifiedCommit: commit,
+    phase5BaselineCommit: phase5Commit,
+    knownSharedFixCommits: [
+      "1d7c8055f32b49d02e84b1859958dbd57f523f89",
+      "c4114c06bb9b7036a681353f3326fe5b7b1aa3c1",
+    ],
+    note:
+      "certifiedCommit is the HEAD this Phase 6 artefact set actually ran against. phase5BaselineCommit is the stored Phase 5 artefact commit. Do not read liveFailureClusters as live product defects.",
+  },
   phase5Baseline: {
     starterGoldCount: phase5Stop.starterGoldCount,
     candidateFailures: phase5Stop.candidateFailures,
@@ -506,6 +548,29 @@ const stop = {
   },
   p1ClustersReviewed: p1Clusters.length,
   classifications: classificationCounts,
+  truthAmbiguousClusters: clusterReports
+    .filter((report) => report.classification === "TRUTH_AMBIGUOUS_REQUIRES_REVIEW")
+    .map((report) => ({
+      key: report.key,
+      caseIds: report.representativeCaseIds,
+      reason: report.reason,
+      expectedNotSourceBacked: report.representativeReports.flatMap((rep) =>
+        rep.expectedFound
+          .filter((expected) => !expected.sourceMentionsExpected)
+          .map((expected) => ({
+            caseId: rep.caseId,
+            expected: expected.expected,
+            foundInCurrentLiveBuilder: expected.foundInCurrentLiveBuilder,
+          })),
+      ),
+    })),
+  auditorFalsePositiveClusters: clusterReports
+    .filter((report) => report.classification === "AUDITOR_FALSE_POSITIVE")
+    .map((report) => ({
+      key: report.key,
+      caseIds: report.representativeCaseIds,
+      reason: report.reason,
+    })),
   sharedProductionFixesMade: [
     {
       id: "LIVE-OTHER-FAMILY-CONCRETE-LABEL",
@@ -533,7 +598,17 @@ const stop = {
     starterGoldCases: gold.matters.length,
     liveBuilderRows: phase6Results.length,
     liveCandidateFailures: liveCandidateFailures.length,
-    liveFailureClusters: phase6Clusters.length,
+    liveConfirmedFailures: liveConfirmedFailures.length,
+    /** Product defect clusters only (candidate_failure + confirmed_failure). */
+    liveFailureClusters: liveDefectClusters.length,
+    /** Informational: human_review_required rows clustered — not live product failures. */
+    humanReviewClusters: humanReviewClusters.length,
+    /** Informational: all dispositions historically passed to clusterFailures, including human review. */
+    allObservationClustersIncludingHumanReview: phase6Clusters.length,
+    auditorFalsePositiveRows: auditorFalsePositiveRows.length,
+    humanReviewRows: humanReviewRows.length,
+    semantics:
+      "liveCandidateFailures / liveFailureClusters count only live product defect dispositions. humanReviewClusters are truth-ambiguous observations. auditorFalsePositiveRows are truth-key expectations without source support that the live builder correctly omits.",
   },
   coverageBeforeAfter: {
     before: phase5Coverage.summary,
@@ -546,7 +621,7 @@ const stop = {
   full3000RunStarted: false,
   stress500or1000Started: false,
   nextStep:
-    "Review remaining truth-ambiguous/stale historical clusters and, if accepted, run a modest representative stress set. Do not start 500/1000/3000 automatically.",
+    "Expand high-risk control coverage next. Do not treat humanReviewClusters as live defects. Do not start 500/1000/3000 automatically.",
   nonClaims: {
     corpusPass: false,
     stage3000Completion: false,
@@ -566,6 +641,8 @@ Generated: ${GENERATED_AT}
 
 This phase reviewed the Phase 5 P1 clusters against independent truth keys, current canonical ledger state, and current live shared builder output. It did **not** run the 500/1000/3000 corpus.
 
+Certified commit: \`${commit}\`
+
 ## Classification
 
 - P1 clusters reviewed: **${p1Clusters.length}**
@@ -573,6 +650,15 @@ This phase reviewed the Phase 5 P1 clusters against independent truth keys, curr
 - Stale historical output only: **${classificationCounts.STALE_HISTORICAL_OUTPUT_ONLY}**
 - Auditor false positives: **${classificationCounts.AUDITOR_FALSE_POSITIVE}**
 - Truth ambiguous/review: **${classificationCounts.TRUTH_AMBIGUOUS_REQUIRES_REVIEW}**
+
+## Live vs observation semantics
+
+- Live candidate failures: **${liveCandidateFailures.length}**
+- Live defect clusters: **${liveDefectClusters.length}** (candidate_failure + confirmed_failure only)
+- Human-review observation clusters: **${humanReviewClusters.length}** (not live product defects)
+- Auditor/truth false-positive rows: **${auditorFalsePositiveRows.length}**
+
+Do **not** read historical \`liveFailureClusters\` as meaning live product defects when those clusters were human-review / truth-ambiguity observations.
 
 ## Shared fix made
 
@@ -585,13 +671,25 @@ This phase reviewed the Phase 5 P1 clusters against independent truth keys, curr
 
 ## Stop rule
 
-The starter auditor is more mature, but this is not a corpus PASS. Next should be a modest representative stress set only after reviewing the remaining live candidate failures.
+The starter auditor is more mature, but this is not a corpus PASS. Next should expand high-risk control coverage, then consider a modest representative stress set. Do not start 500/1000/3000 automatically.
 `;
 
 const written: string[] = [];
 written.push(writeJson("P1-CLUSTER-LIVE-VALIDATION.json", clusterReports));
 written.push(writeJson("PHASE6-LIVE-BUILDER-AUDIT-RESULTS.json", phase6Results));
-written.push(writeJson("PHASE6-FAILURE-CLUSTERS.json", phase6Clusters));
+written.push(writeJson("PHASE6-FAILURE-CLUSTERS.json", liveDefectClusters));
+written.push(
+  writeJson("PHASE6-OBSERVATION-CLUSTERS.json", {
+    schemaVersion: "master3000-phase6-observation-clusters@1.0.0",
+    generatedAt: GENERATED_AT,
+    commit,
+    liveDefectClusters,
+    humanReviewClusters,
+    allObservationClustersIncludingHumanReview: phase6Clusters,
+    semantics:
+      "PHASE6-FAILURE-CLUSTERS.json now contains only live product defect clusters. Human-review / truth-ambiguity clusters live here under humanReviewClusters.",
+  }),
+);
 written.push(writeJson("361-CONTROL-COVERAGE-MAP-AFTER.json", coverageAfter));
 written.push(writeJson("SHARED-ROOT-FIX-REGISTER.json", stop.sharedProductionFixesMade));
 written.push(writeJson("VALIDATION-ISSUES.json", stop.validationIssues));

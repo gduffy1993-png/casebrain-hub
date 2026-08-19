@@ -1,0 +1,171 @@
+{
+  "categoryMatrix": {
+    "cross_case_leakage": {
+      "controls": [
+        "MAA2-SEC-08-TENANT-ISOLATION"
+      ],
+      "pass": 1,
+      "fail": 0
+    },
+    "entity_attribution_failure": {
+      "controls": [
+        "MAA-PARTIES-ATTRIBUTION",
+        "MAA2-ATR-01-DEFENDANT-SEPARATION",
+        "MAA2-ATR-08-NO-DEFENDANT-BLEED"
+      ],
+      "pass": 3,
+      "fail": 0
+    },
+    "extraction_failure": {
+      "controls": [
+        "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+        "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED"
+      ],
+      "pass": 2,
+      "fail": 0
+    },
+    "semantic_role_failure": {
+      "controls": [
+        "MAA-CHRONOLOGY-HEARING",
+        "MAA2-CHR-01-EXACT-DATES-TZ"
+      ],
+      "pass": 2,
+      "fail": 0
+    },
+    "workflow_stage_failure": {
+      "controls": [
+        "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+        "MAA-DOC-LIFECYCLE",
+        "MAA2-PRC-01-STAGE-TAGGING",
+        "MAA2-PRC-02-WRONG-STAGE-DETECT",
+        "MAA2-BND-02-INSTRUMENT-STATUS"
+      ],
+      "pass": 5,
+      "fail": 0
+    },
+    "evidence_state_failure": {
+      "controls": [
+        "MAA2-EVS-01-DIMENSION-SEPARATION",
+        "MAA2-EVS-02-STATE-ENUM"
+      ],
+      "pass": 2,
+      "fail": 0
+    },
+    "provenance_family_failure": {
+      "controls": [
+        "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+        "MAA2-BND-08-EXTRACT-VS-FULL",
+        "MAA-PROVENANCE",
+        "MAA2-CHS-03-PROVENANCE-LINK"
+      ],
+      "pass": 4,
+      "fail": 0
+    },
+    "unsupported_promotion_failure": {
+      "controls": [
+        "MAA-HALLUCINATION",
+        "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST"
+      ],
+      "pass": 2,
+      "fail": 0
+    },
+    "certainty_escalation_failure": {
+      "controls": [
+        "MAA2-AUD-03-COURT-PRECISE",
+        "MAA2-AUD-02-CLIENT-PLAIN",
+        "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+        "MAA-RELIABILITY",
+        "MAA-CROSS-EXIT",
+        "MAA2-WRD-15-NO-ABSOLUTE-PROOF"
+      ],
+      "pass": 6,
+      "fail": 0
+    },
+    "prompt_injection_content_control_failure": {
+      "controls": [
+        "MAA2-SEC-01-PROMPT-INJECTION-DOCS",
+        "MAA-INGEST-COVERAGE"
+      ],
+      "pass": 2,
+      "fail": 0
+    },
+    "counter_denominator_failure": {
+      "controls": [
+        "MAA-CROSS-SURFACE"
+      ],
+      "pass": 1,
+      "fail": 0
+    },
+    "repeatability_nondeterminism_failure": {
+      "controls": [
+        "MAA-RESILIENCE"
+      ],
+      "pass": 1,
+      "fail": 0
+    },
+    "dedupe_alias_failure": {
+      "controls": [
+        "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP"
+      ],
+      "pass": 1,
+      "fail": 0
+    },
+    "numerical_fidelity_failure": {
+      "controls": [
+        "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY"
+      ],
+      "pass": 1,
+      "fail": 0
+    }
+  },
+  "severityCoverage": {
+    "P0": {
+      "exercised": 9,
+      "totalInPhase7": 9
+    },
+    "P1": {
+      "exercised": 22,
+      "totalInPhase7": 22
+    },
+    "P2": {
+      "exercised": 2,
+      "totalInPhase7": 2
+    },
+    "P3": {
+      "exercised": 0,
+      "totalInPhase7": 0
+    }
+  },
+  "newlyEvaluated": [
+    "MAA2-SEC-08-TENANT-ISOLATION",
+    "MAA-PARTIES-ATTRIBUTION",
+    "MAA2-ATR-01-DEFENDANT-SEPARATION",
+    "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+    "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+    "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+    "MAA-CHRONOLOGY-HEARING",
+    "MAA2-CHR-01-EXACT-DATES-TZ",
+    "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+    "MAA-DOC-LIFECYCLE",
+    "MAA2-PRC-01-STAGE-TAGGING",
+    "MAA2-PRC-02-WRONG-STAGE-DETECT",
+    "MAA2-EVS-01-DIMENSION-SEPARATION",
+    "MAA2-EVS-02-STATE-ENUM",
+    "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+    "MAA2-BND-08-EXTRACT-VS-FULL",
+    "MAA2-CHS-03-PROVENANCE-LINK",
+    "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+    "MAA2-AUD-03-COURT-PRECISE",
+    "MAA2-AUD-02-CLIENT-PLAIN",
+    "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+    "MAA2-SEC-01-PROMPT-INJECTION-DOCS",
+    "MAA-RESILIENCE",
+    "MAA-RELIABILITY",
+    "MAA-CROSS-EXIT",
+    "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+    "MAA2-BND-02-INSTRUMENT-STATUS",
+    "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+    "MAA-INGEST-COVERAGE"
+  ]
+}

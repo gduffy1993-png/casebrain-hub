@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "master3000-phase6-observation-clusters@1.0.0",
+  "generatedAt": "2026-08-19T15:28:02.681Z",
+  "commit": "c4114c06bb9b7036a681353f3326fe5b7b1aa3c1",
+  "liveDefectClusters": [],
+  "humanReviewClusters": [
+    {
+      "key": "P1|extraction_failure|interview|cps_chase|truth_expected_not_source_backed_live_present",
+      "count": 1,
+      "severity": "P1",
+      "failureClass": "extraction_failure",
+      "evidenceFamily": "interview",
+      "surface": "cps_chase",
+      "representativeCaseIds": [
+        "cb-fresh-002-jordan-hale"
+      ],
+      "rootCauseCluster": "truth_expected_not_source_backed_live_present"
+    }
+  ],
+  "allObservationClustersIncludingHumanReview": [
+    {
+      "key": "P1|extraction_failure|interview|cps_chase|truth_expected_not_source_backed_live_present",
+      "count": 1,
+      "severity": "P1",
+      "failureClass": "extraction_failure",
+      "evidenceFamily": "interview",
+      "surface": "cps_chase",
+      "representativeCaseIds": [
+        "cb-fresh-002-jordan-hale"
+      ],
+      "rootCauseCluster": "truth_expected_not_source_backed_live_present"
+    }
+  ],
+  "semantics": "PHASE6-FAILURE-CLUSTERS.json now contains only live product defect clusters. Human-review / truth-ambiguity clusters live here under humanReviewClusters."
+}

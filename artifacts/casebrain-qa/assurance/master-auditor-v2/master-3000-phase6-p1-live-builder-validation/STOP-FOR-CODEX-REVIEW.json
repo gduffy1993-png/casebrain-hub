@@ -1,8 +1,17 @@
 {
-  "schemaVersion": "master3000-phase6-p1-live-builder-validation-stop@1.0.0",
-  "generatedAt": "2026-08-19T14:57:09.032Z",
+  "schemaVersion": "master3000-phase6-p1-live-builder-validation-stop@1.1.0",
+  "generatedAt": "2026-08-19T15:28:02.681Z",
   "status": "P1_LIVE_BUILDER_VALIDATION_COMPLETE__NO_SCALE_RUN",
-  "commit": "1d7c8055f32b49d02e84b1859958dbd57f523f89",
+  "commit": "c4114c06bb9b7036a681353f3326fe5b7b1aa3c1",
+  "commitMetadata": {
+    "certifiedCommit": "c4114c06bb9b7036a681353f3326fe5b7b1aa3c1",
+    "phase5BaselineCommit": "7f21ab237d72d56e34564bc78a2538b31fe97bb4",
+    "knownSharedFixCommits": [
+      "1d7c8055f32b49d02e84b1859958dbd57f523f89",
+      "c4114c06bb9b7036a681353f3326fe5b7b1aa3c1"
+    ],
+    "note": "certifiedCommit is the HEAD this Phase 6 artefact set actually ran against. phase5BaselineCommit is the stored Phase 5 artefact commit. Do not read liveFailureClusters as live product defects."
+  },
   "phase5Baseline": {
     "starterGoldCount": 40,
     "candidateFailures": 124,
@@ -22,9 +31,34 @@
   "classifications": {
     "CONFIRMED_LIVE_SHARED_DEFECT": 0,
     "STALE_HISTORICAL_OUTPUT_ONLY": 41,
-    "AUDITOR_FALSE_POSITIVE": 0,
-    "TRUTH_AMBIGUOUS_REQUIRES_REVIEW": 2
+    "AUDITOR_FALSE_POSITIVE": 1,
+    "TRUTH_AMBIGUOUS_REQUIRES_REVIEW": 1
   },
+  "truthAmbiguousClusters": [
+    {
+      "key": "P1|extraction_failure|interview|cps_chase|missing_expected_chase",
+      "caseIds": [
+        "cb-fresh-002-jordan-hale"
+      ],
+      "reason": "Truth-key expected item is not clearly present in source text, yet current live builder surfaces related chase wording; do not force a product fix without stronger independent truth.",
+      "expectedNotSourceBacked": [
+        {
+          "caseId": "cb-fresh-002-jordan-hale",
+          "expected": "Interview recording / transcript",
+          "foundInCurrentLiveBuilder": true
+        }
+      ]
+    }
+  ],
+  "auditorFalsePositiveClusters": [
+    {
+      "key": "P1|extraction_failure|previous|cps_chase|missing_expected_chase",
+      "caseIds": [
+        "sim-106"
+      ],
+      "reason": "Truth-key expected chase is not source-backed and current live builder correctly omits it; treat as truth-key/auditor overreach rather than a live product defect."
+    }
+  ],
   "sharedProductionFixesMade": [
     {
       "id": "LIVE-OTHER-FAMILY-CONCRETE-LABEL",
@@ -48,7 +82,13 @@
     "starterGoldCases": 40,
     "liveBuilderRows": 238,
     "liveCandidateFailures": 0,
-    "liveFailureClusters": 2
+    "liveConfirmedFailures": 0,
+    "liveFailureClusters": 0,
+    "humanReviewClusters": 1,
+    "allObservationClustersIncludingHumanReview": 1,
+    "auditorFalsePositiveRows": 1,
+    "humanReviewRows": 1,
+    "semantics": "liveCandidateFailures / liveFailureClusters count only live product defect dispositions. humanReviewClusters are truth-ambiguous observations. auditorFalsePositiveRows are truth-key expectations without source support that the live builder correctly omits."
   },
   "coverageBeforeAfter": {
     "before": {
@@ -72,7 +112,7 @@
   },
   "full3000RunStarted": false,
   "stress500or1000Started": false,
-  "nextStep": "Review remaining truth-ambiguous/stale historical clusters and, if accepted, run a modest representative stress set. Do not start 500/1000/3000 automatically.",
+  "nextStep": "Expand high-risk control coverage next. Do not treat humanReviewClusters as live defects. Do not start 500/1000/3000 automatically.",
   "nonClaims": {
     "corpusPass": false,
     "stage3000Completion": false,

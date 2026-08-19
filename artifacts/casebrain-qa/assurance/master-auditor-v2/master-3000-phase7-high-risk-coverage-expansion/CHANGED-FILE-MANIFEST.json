@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "master3000-phase7-changed-file-manifest@1.0.0",
+  "generatedAt": "2026-08-19T15:28:30.913Z",
+  "selfHashStatus": "excluded_from_files_array_self_referential",
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase7-high-risk-coverage-expansion/361-CONTROL-COVERAGE-MAP-AFTER.json",
+      "sha256": "c10cc66a5954c3eb4dfd640ae0bcc54035ff75f33fff320ea33f57126969c15b",
+      "byteLength": 198625,
+      "classification": "phase7_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase7-high-risk-coverage-expansion/CONTROL-PRIORITY-MATRIX.json",
+      "sha256": "c28164d108d93df56307ce1bc0451843be2ce03d0f5e5f9ed5760d192219d0cc",
+      "byteLength": 4139,
+      "classification": "phase7_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase7-high-risk-coverage-expansion/DECISION-CARD.md",
+      "sha256": "ca4887d122958a48dc9955e06b61fa4fd4e6defb169f580c7750e5900afca1a5",
+      "byteLength": 648,
+      "classification": "phase7_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase7-high-risk-coverage-expansion/PHASE7-FAILURE-CLUSTERS.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "byteLength": 3,
+      "classification": "phase7_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase7-high-risk-coverage-expansion/PHASE7-HIGH-RISK-AUDIT-RESULTS.json",
+      "sha256": "1d31cf1c39c349e6b282fff359dd3d6d07ecd8f32cbf84189646e9c30e821cb2",
+      "byteLength": 31547,
+      "classification": "phase7_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase7-high-risk-coverage-expansion/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "b88898fe550119b986e984c80b71591b3ef6b271a6e933d8ddbf5c8a10c72db6",
+      "byteLength": 6807,
+      "classification": "phase7_artifact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/master-3000-phase7-high-risk-coverage-expansion/VALIDATION-ISSUES.json",
+      "sha256": "d0fc7dbfd195c33c251e64bdb1886603a31be21247bd34314043970021f4c10a",
+      "byteLength": 21,
+      "classification": "phase7_artifact"
+    },
+    {
+      "path": "scripts/assurance/master-3000-phase6-p1-live-builder-validation.ts",
+      "sha256": "c75bb330581688e75f58d9ae5b61b755a9a37937504c5f44bf5bf19afe126251",
+      "byteLength": 31718,
+      "classification": "contract_or_emit_script"
+    },
+    {
+      "path": "scripts/assurance/master-3000-phase7-high-risk-coverage-expansion.ts",
+      "sha256": "a1d25ff4a01c8d02d5134f8cf94a5e9b3602c2abb9f3c062de7056ad9c111791",
+      "byteLength": 40636,
+      "classification": "contract_or_emit_script"
+    },
+    {
+      "path": "scripts/master3000-high-risk-coverage.test.ts",
+      "sha256": "4096d84dc629e8e7263ad6509f325b0f4c1a18350bc4f66edbe59452df8ac2f4",
+      "byteLength": 13587,
+      "classification": "contract_or_emit_script"
+    }
+  ]
+}

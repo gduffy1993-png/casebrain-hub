@@ -1,6 +1,6 @@
 {
   "schemaVersion": "casebrain-master3000-361-control-coverage-map@1.0.0",
-  "generatedAt": "2026-08-19T15:28:02.681Z",
+  "generatedAt": "2026-08-19T15:28:30.913Z",
   "commit": "c4114c06bb9b7036a681353f3326fe5b7b1aa3c1",
   "totalControls": 361,
   "rows": [
@@ -11,11 +11,11 @@
       "subfamily": "LANE-01-INGESTION",
       "registryImplementationStatus": "implemented",
       "registryCurrentlyRunnable": true,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA-DOC-LIFECYCLE",
@@ -24,11 +24,11 @@
       "subfamily": "LANE-02-DOCUMENT-IDENTITY",
       "registryImplementationStatus": "implemented",
       "registryCurrentlyRunnable": true,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA-PARTIES-ATTRIBUTION",
@@ -37,11 +37,11 @@
       "subfamily": "LANE-03-PARTIES-ATTRIBUTION",
       "registryImplementationStatus": "implemented",
       "registryCurrentlyRunnable": true,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA-CHARGE-MODEL",
@@ -76,11 +76,11 @@
       "subfamily": "LANE-06-CHRONOLOGY-HEARING",
       "registryImplementationStatus": "implemented",
       "registryCurrentlyRunnable": true,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA-PROVENANCE",
@@ -93,7 +93,7 @@
       "starterGoldCasesEvaluated": 40,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Phase 6 current live-builder validation exercised this control on all 40 Starter Gold matters."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA-RELIABILITY",
@@ -102,11 +102,11 @@
       "subfamily": "LANE-08-RELIABILITY",
       "registryImplementationStatus": "implemented",
       "registryCurrentlyRunnable": true,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA-COMPLETENESS",
@@ -206,11 +206,11 @@
       "subfamily": "LANE-16-CROSS-EXIT",
       "registryImplementationStatus": "implemented",
       "registryCurrentlyRunnable": true,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA-CROSS-SURFACE",
@@ -223,7 +223,7 @@
       "starterGoldCasesEvaluated": 40,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Phase 6 current live-builder validation exercised this control on all 40 Starter Gold matters."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA-CHASE-QUALITY",
@@ -249,7 +249,7 @@
       "starterGoldCasesEvaluated": 40,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Starter Gold truth-key audit exercised this control family on stored output snapshots; live product re-run remains separate."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA-SECURITY-PRIVACY",
@@ -271,11 +271,11 @@
       "subfamily": "LANE-21-RESILIENCE",
       "registryImplementationStatus": "implemented",
       "registryCurrentlyRunnable": true,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA-OUTPUT-DESIGN",
@@ -557,11 +557,11 @@
       "subfamily": "lifecycle",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
@@ -635,11 +635,11 @@
       "subfamily": "completeness_forms",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
@@ -648,11 +648,11 @@
       "subfamily": "media_forms",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
@@ -791,11 +791,11 @@
       "subfamily": "numeric_spatial",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
@@ -960,11 +960,11 @@
       "subfamily": "visibility",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
@@ -999,11 +999,11 @@
       "subfamily": "completeness",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
@@ -1129,11 +1129,11 @@
       "subfamily": "dimensions",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-EVS-02-STATE-ENUM",
@@ -1142,11 +1142,11 @@
       "subfamily": "states",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
@@ -1181,11 +1181,11 @@
       "subfamily": "parties",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
@@ -1272,11 +1272,11 @@
       "subfamily": "bleed",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
@@ -1298,11 +1298,11 @@
       "subfamily": "timestamps",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
@@ -1350,11 +1350,11 @@
       "subfamily": "hearings",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
@@ -1584,11 +1584,11 @@
       "subfamily": "stage_model",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
@@ -1597,11 +1597,11 @@
       "subfamily": "stage_model",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-PRC-03-YOUTH-STATE",
@@ -1701,11 +1701,11 @@
       "subfamily": "chase_content",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
@@ -1714,11 +1714,11 @@
       "subfamily": "chase_content",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
@@ -1753,11 +1753,11 @@
       "subfamily": "dedupe",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
@@ -1987,11 +1987,11 @@
       "subfamily": "overstatement",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
@@ -2013,11 +2013,11 @@
       "subfamily": "client",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-AUD-03-COURT-PRECISE",
@@ -2026,11 +2026,11 @@
       "subfamily": "court",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
@@ -2689,11 +2689,11 @@
       "subfamily": "adversarial",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-SEC-02-MALICIOUS-PDF",
@@ -2780,11 +2780,11 @@
       "subfamily": "authz",
       "registryImplementationStatus": "browser_required",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-SEC-09-ROLE-ESCALATION",
@@ -4652,11 +4652,11 @@
       "subfamily": "evidence_locked_drafting",
       "registryImplementationStatus": "specified_not_implemented",
       "registryCurrentlyRunnable": false,
-      "starterGoldStatus": "not_exercised",
-      "starterGoldCasesEvaluated": 0,
+      "starterGoldStatus": "evaluated",
+      "starterGoldCasesEvaluated": 1,
       "starterGoldCandidateFailures": 0,
       "starterGoldConfirmedFailures": 0,
-      "limitation": "Not exercised by starter Gold checkpoint; retained in 361 denominator."
+      "limitation": "Phase 7 high-risk deterministic fixtures exercised this control against live shared builders/gates (not a 500/1000/3000 corpus claim)."
     },
     {
       "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
@@ -4699,10 +4699,10 @@
     }
   ],
   "summary": {
-    "evaluated": 12,
+    "evaluated": 42,
     "unresolved": 0,
     "unavailable": 0,
-    "notExercised": 349,
+    "notExercised": 319,
     "notInRegistry": 0
   },
   "nonClaims": {
