@@ -1,12 +1,15 @@
 # Actual CaseBrain output — RP-09-TRAP-0030
 
-**Live capture on frozen Preview:** **NOT CAPTURED**
+**Capture:** LIVE on Preview `55c41d895` (AFTER CCTV invent fix).  
+**caseId:** `ce5bc9f2-f570-411e-bcab-5004d80acf4c`  
+**Dumps:** `_live/after-trap-cctv-fix/` (+ prior `_live/brookes-trap-closeout/trap/`)
 
-Reason (honest):
-- Workspace trial at capture time showed **25/25 cases** on Arden session chrome — fresh uploads not used this pass.
-- No `ensureQaUser` / password reset performed (forbidden).
-- Prefer deepen PDF gold over empty packaging.
+## Headline live lines (AFTER)
 
-**Evaluation path for product judge:** `GAP_NO_LIVE_ON_PREVIEW`
+- Defendant: Leo Greene / Assault by beating
+- **No** “Interview recording outstanding” on Overview/Court/Papers/Chase (invent-recording TN)
+- **No** “CCTV outstanding” / “CCTV master outstanding” on Overview
+- **No** “CCTV full window / master footage” chase card
+- Overview gaps: Exhibit mapping / provenance + Outstanding source material on disclosure schedule
 
-When live capture is available later on same SHA `02d9125473f2413d7079b41b9e0ec596598e4682`, drop dumps beside this file and re-score `pdf-vs-output-diff.md`.
+See `pdf-vs-output-diff.md` for scoring.

@@ -1,6 +1,8 @@
 # Trap CCTV invent fix notes
 
-**Verdict target:** `TRAP_CCTV_INVENT_FIXED`  
+**Verdict:** `TRAP_CCTV_INVENT_FIXED`  
+**Commit:** `55c41d8956c044d20f4265cccc6fd8669349d2ae` — `fix(truth): do not invent CCTV master from thin-file advisory`  
+**Preview:** https://casebrain-8h2c8ennr-gduffy1993-pngs-projects.vercel.app  
 **Branch:** `fix/f167-surgical-truth-v1`
 
 ## Root cause
@@ -24,13 +26,21 @@ Interview-recording invent was already TN (modality gate). CCTV invent was the r
 
 ## Opposite direction (must keep)
 
-| Case | Expectation |
-|------|-------------|
-| Arden | CCTV stills served + master/continuity outstanding **kept** |
-| Patel | CCTV master outstanding **kept** when papers establish it |
-| Explicit export-log language | still surfaces (prior F167 gate) |
+| Case | Expectation | Live AFTER |
+|------|-------------|------------|
+| Arden | CCTV stills served + master/continuity outstanding | **KEPT** (Overview + Chase + Court WHY; no export log) |
+| Patel | CCTV master when papers establish it | prior LIVE preserved |
+| Brookes phone download | opposite KEPT | Overview smoke PASS |
+| Explicit export-log language | still surfaces | unit opposite PASS |
 
 ## Unit
 
 - `scripts/f167-surgical-truth-opposite-direction.test.ts` — section G
 - `scripts/chase-source-gate.test.ts` — invent-advisory absent + opposite keep
+
+## Live Trap AFTER (`ce5bc9f2-…`)
+
+- Overview gaps: **Exhibit mapping / provenance** + schedule — **no CCTV / master**
+- Chase: **no CCTV full window / master footage**
+- Court: **no CCTV invent**
+- Interview recording invent: still TN

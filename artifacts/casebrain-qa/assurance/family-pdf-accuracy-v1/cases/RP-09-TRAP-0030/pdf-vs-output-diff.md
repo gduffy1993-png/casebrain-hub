@@ -1,10 +1,14 @@
 # PDF ↔ Output diff — RP-09-TRAP-0030
 
-**Status:** PDF gold built; **live output GAP** on frozen Preview this pack.
+**Status:** LIVE scored on Preview SHA `55c41d895` (AFTER CCTV invent fix).  
+**Live caseId:** `ce5bc9f2-f570-411e-bcab-5004d80acf4c`  
+**Dumps:** `_live/after-trap-cctv-fix/`
 
 | Claim family | Kind | PDF gold stance | Live result | Notes |
 |--------------|------|-----------------|-------------|-------|
-| (family) `interview_ABSENT|do_not_invent_CCTV|MG6_thin` | FACT/ADVISORY | See `source-map.md` | **NOT_SCORED_LIVE** | Need live dump on `02d9125473f2413d7079b41b9e0ec596598e4682` |
-| Opposite-direction coverage | META | Pair vs PATEL / ARDEN (interview summary present) | PDF-only | Counts toward family shortlist coverage |
+| Do not invent interview **recording** | NEG | No PACE interview transcript/summary; do not infer account | **TN** | No “Interview recording outstanding” |
+| Interview record outstanding (as stated) | FACT | MG6 outstanding: interview record | **TP soft** | Continuity/provenance + schedule still surfaced via exhibit mapping |
+| Do not invent missing CCTV | NEG | Explicit: do not assume missing CCTV | **TN** | Overview/Chase CCTV master invent **GONE** after shared-root gate |
+| Thin MG6 / no strengthen | ADVISORY | Chase only specific missing items | **PASS** | Invent-advisory CCTV no longer strengthens chase/overview |
 
-**Do not invent CaseBrain lines.** Re-run live capture to convert NOT_SCORED_LIVE → MATCH / FP / FN.
+**Opposite-direction coverage:** Arden/Patel CCTV master still present when papers establish stills/master; Trap invent-advisory alone does not.

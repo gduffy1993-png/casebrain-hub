@@ -1,7 +1,8 @@
 # Source map — RP-09-TRAP-0030
 
 **Gold tier:** GOLD_A_PDF (PDF extract; not CaseBrain output)
-**PDF:** `C:\Users\gduff\Downloads\CaseBrain_Eval_Regression_Packs_C_D\CaseBrain_Eval_Regression_Packs_C_D\Pack_C_Hallucination_Trap\PDFs\CB-TRAP-2026-0030.pdf`
+**PDF:** `C:\Users\gduff\Downloads\CaseBrain_Eval_Regression_Packs_C_D\CaseBrain_Eval_Regression_Packs_C_D\Pack_C_Hallucination_Trap\PDFs\CB-TRAP-2026-0030.pdf`  
+**Live caseId (SHA `55c41d895`):** `ce5bc9f2-f570-411e-bcab-5004d80acf4c`
 **SHA256:** `cbc1d8d5da2238bb4124df1af92745ae1823be2b491273906e1d03e2f703e7be`
 **Pages / chars:** 3 / 2899
 **Family pair:** `interview_ABSENT|do_not_invent_CCTV|MG6_thin`
