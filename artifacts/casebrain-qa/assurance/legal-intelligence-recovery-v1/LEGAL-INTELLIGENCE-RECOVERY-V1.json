@@ -1,0 +1,34 @@
+{
+  "programme": "legal-intelligence-recovery-v1",
+  "generatedAt": "2026-08-20",
+  "verdict": "RESTORATION_READY_FOR_REVIEW",
+  "pilotReady": false,
+  "productionReady": false,
+  "mergeToReleaseRecommended": false,
+  "giantCorpusRun": false,
+  "topology": {
+    "recoveryWorktree": "C:\\Users\\gduff\\casebrain-hub-wt-legal-intelligence-recovery-v1",
+    "recoveryBranch": "programme/legal-intelligence-recovery-v1",
+    "baselineWorktree": "C:\\Users\\gduff\\casebrain-hub-wt-real-pdf-live-pilot",
+    "baselineBranch": "programme/real-pdf-live-pilot-v1",
+    "baselineSha": "170bfcee48c5e3777df6c3dda588102e2c9928ce",
+    "caseMovesSourceSha": "6de1c4c249cec7fcf688c05293e0b09f7c3d81b4"
+  },
+  "metrics": {
+    "componentsInventoried": 23,
+    "truthSetMatters": 12,
+    "truthSafetyPass": 12,
+    "intelligencePass": 12,
+    "bothPass": 12,
+    "regressionTestsPassed": 7,
+    "patelProofPass": true
+  },
+  "artefacts": [
+    "EXPANDED-COMPONENT-CLASSIFICATION-INVENTORY.md",
+    "CASE-MOVES-RESTORE-NOTES.md",
+    "CLEVERNESS-RECOVERY-TRUTH-SET-RESULTS.md",
+    "cleverness-recovery-truth-set-results.json",
+    "SIDE-BY-SIDE-BEHAVIOURAL-REPORT.md",
+    "FINAL-REPORT.md"
+  ]
+}

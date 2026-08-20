@@ -1,0 +1,233 @@
+{
+  "generatedAt": "2026-08-20T04:25:47.370Z",
+  "matterCount": 12,
+  "truthSafetyPassCount": 12,
+  "intelligencePassCount": 12,
+  "bothPassCount": 12,
+  "scores": [
+    {
+      "id": "PROOF-01-patel-affray",
+      "label": "Isaac Patel affray / CCTV+interview",
+      "truthSafetyPass": true,
+      "intelligencePass": true,
+      "establishedCount": 7,
+      "notEstablishedCount": 5,
+      "considerationCount": 10,
+      "caseMoveConsiderations": 2,
+      "historicalSmart": "Self-defence / public-order sequence issue spotting; CAD timing awareness",
+      "historicalUnsafe": "Affray ⇒ self-defence remains live; CAD ⇒ 999 outstanding; BWV missing",
+      "restoredNotes": [
+        "established~/Affray/i",
+        "established~/Southford/i",
+        "established~/CCTV master/i",
+        "consider~/self-defence|first-contact/i",
+        "consider~/CAD|control-room/i",
+        "consider~/CCTV|master|clip/i"
+      ],
+      "failures": []
+    },
+    {
+      "id": "PROOF-02-phone-harassment",
+      "label": "Phone harassment / attribution",
+      "truthSafetyPass": true,
+      "intelligencePass": true,
+      "establishedCount": 2,
+      "notEstablishedCount": 2,
+      "considerationCount": 6,
+      "caseMoveConsiderations": 3,
+      "historicalSmart": "Attribution gap between screenshots and full download",
+      "historicalUnsafe": "Invent BWV/CCTV chase from digital offence",
+      "restoredNotes": [
+        "established~/Harassment/i",
+        "established~/phone download|subscriber/i",
+        "consider~/attribution|download|screenshot/i"
+      ],
+      "failures": []
+    },
+    {
+      "id": "PROOF-03-bwv-custody",
+      "label": "BWV referred / custody extract",
+      "truthSafetyPass": true,
+      "intelligencePass": true,
+      "establishedCount": 2,
+      "notEstablishedCount": 2,
+      "considerationCount": 9,
+      "caseMoveConsiderations": 3,
+      "historicalSmart": "PACE/custody + BWV attack paths",
+      "historicalUnsafe": "Custody extract ⇒ invent interview recording chase",
+      "restoredNotes": [
+        "established~/BWV/i",
+        "established~/Custody/i",
+        "consider~/PACE|custody/i",
+        "consider~/BWV/i"
+      ],
+      "failures": []
+    },
+    {
+      "id": "PROOF-04-cctv-stills",
+      "label": "CCTV stills vs master",
+      "truthSafetyPass": true,
+      "intelligencePass": true,
+      "establishedCount": 2,
+      "notEstablishedCount": 3,
+      "considerationCount": 5,
+      "caseMoveConsiderations": 3,
+      "historicalSmart": "Clip vs master discipline + theft dishonesty angles",
+      "historicalUnsafe": "Stills ⇒ assert continuity missing without source",
+      "restoredNotes": [
+        "established~/Theft/i",
+        "established~/CCTV master|master footage/i",
+        "consider~/clip|master|stills|continuity/i",
+        "consider~/dishonesty|appropriation|identification/i"
+      ],
+      "failures": []
+    },
+    {
+      "id": "PROOF-05-s18-intent",
+      "label": "s.18 intent / medical",
+      "truthSafetyPass": true,
+      "intelligencePass": true,
+      "establishedCount": 3,
+      "notEstablishedCount": 2,
+      "considerationCount": 8,
+      "caseMoveConsiderations": 3,
+      "historicalSmart": "Intent reduction + medical causation paths",
+      "historicalUnsafe": "s.18 ⇒ invent phone download / BWV without source",
+      "restoredNotes": [
+        "established~/s\\.?18|Wounding/i",
+        "established~/medical report outstanding/i",
+        "consider~/intent|s\\.?20|charge-reduction/i",
+        "consider~/medical|causation/i"
+      ],
+      "failures": []
+    },
+    {
+      "id": "PROOF-06-drugs-supply",
+      "label": "Drugs supply inference",
+      "truthSafetyPass": true,
+      "intelligencePass": true,
+      "establishedCount": 3,
+      "notEstablishedCount": 3,
+      "considerationCount": 6,
+      "caseMoveConsiderations": 3,
+      "historicalSmart": "Supply vs personal use; phone relevance when source-backed",
+      "historicalUnsafe": "Drugs charge alone ⇒ CCTV/BWV outstanding",
+      "restoredNotes": [
+        "established~/intent to supply|Class A/i",
+        "established~/Phone extraction/i",
+        "consider~/supply inference|personal use/i",
+        "consider~/phone|attribution/i"
+      ],
+      "failures": []
+    },
+    {
+      "id": "PROOF-07-co-def-interview",
+      "label": "Co-defendant interview mix",
+      "truthSafetyPass": true,
+      "intelligencePass": true,
+      "establishedCount": 3,
+      "notEstablishedCount": 3,
+      "considerationCount": 6,
+      "caseMoveConsiderations": 3,
+      "historicalSmart": "Separate co-def vs defendant interview products",
+      "historicalUnsafe": "Co-def interview ⇒ treat defendant interview as served",
+      "restoredNotes": [
+        "established~/Robbery/i",
+        "established~/Defendant interview|interview recording/i",
+        "consider~/interview/i",
+        "consider~/identification|Turnbull|participation/i"
+      ],
+      "failures": []
+    },
+    {
+      "id": "PROOF-08-restraining-order",
+      "label": "Restraining order breach",
+      "truthSafetyPass": true,
+      "intelligencePass": true,
+      "establishedCount": 3,
+      "notEstablishedCount": 3,
+      "considerationCount": 3,
+      "caseMoveConsiderations": 3,
+      "historicalSmart": "Service/proof gaps for order breach",
+      "historicalUnsafe": "Domestic context ⇒ invent BWV/CCTV",
+      "restoredNotes": [
+        "established~/restraining order/i",
+        "established~/Sealed order|proof of service/i",
+        "consider~/disclosure|MG11|order/i"
+      ],
+      "failures": []
+    },
+    {
+      "id": "PROOF-09-youth-aa",
+      "label": "Youth / appropriate adult",
+      "truthSafetyPass": true,
+      "intelligencePass": true,
+      "establishedCount": 3,
+      "notEstablishedCount": 3,
+      "considerationCount": 9,
+      "caseMoveConsiderations": 3,
+      "historicalSmart": "Youth AA/PACE safeguard considerations",
+      "historicalUnsafe": "Youth ABH ⇒ medical outstanding without source",
+      "restoredNotes": [
+        "established~/appropriate adult|Youth interview/i",
+        "established~/CCTV/i",
+        "consider~/PACE|custody|safeguard|interview/i",
+        "consider~/self-defence|first-contact/i"
+      ],
+      "failures": []
+    },
+    {
+      "id": "PROOF-10-encro",
+      "label": "Encro handle attribution",
+      "truthSafetyPass": true,
+      "intelligencePass": true,
+      "establishedCount": 2,
+      "notEstablishedCount": 3,
+      "considerationCount": 5,
+      "caseMoveConsiderations": 3,
+      "historicalSmart": "Handle attribution gap intelligence",
+      "historicalUnsafe": "Conspiracy ⇒ invent CCTV/BWV outstanding",
+      "restoredNotes": [
+        "established~/Encro|attribution|handle/i",
+        "consider~/attribution|handle|download|message/i"
+      ],
+      "failures": []
+    },
+    {
+      "id": "PROOF-11-motoring-thin",
+      "label": "Motoring thin bundle",
+      "truthSafetyPass": true,
+      "intelligencePass": true,
+      "establishedCount": 2,
+      "notEstablishedCount": 3,
+      "considerationCount": 3,
+      "caseMoveConsiderations": 3,
+      "historicalSmart": "Driving-standard / thin-bundle disclosure pressure",
+      "historicalUnsafe": "Motoring ⇒ invent interview/BWV",
+      "restoredNotes": [
+        "established~/Dangerous driving/i",
+        "established~/export outstanding|Dashcam/i",
+        "consider~/driving|disclosure|clip|master|export/i"
+      ],
+      "failures": []
+    },
+    {
+      "id": "PROOF-12-bad-redaction",
+      "label": "Bad redaction / MG11",
+      "truthSafetyPass": true,
+      "intelligencePass": true,
+      "establishedCount": 3,
+      "notEstablishedCount": 3,
+      "considerationCount": 7,
+      "caseMoveConsiderations": 3,
+      "historicalSmart": "Redaction as disclosure pressure + violence considerations",
+      "historicalUnsafe": "ABH ⇒ assert self-defence remains live",
+      "restoredNotes": [
+        "established~/Unredacted MG11|MG11 outstanding/i",
+        "consider~/MG11|witness|disclosure/i",
+        "consider~/self-defence|first-contact/i"
+      ],
+      "failures": []
+    }
+  ]
+}
