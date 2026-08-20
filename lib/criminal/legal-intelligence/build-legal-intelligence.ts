@@ -8,6 +8,9 @@ import { buildCaseMovesAdvisory } from "./case-moves-advisory";
 import { buildOffenceFamilyConsiderations } from "./offence-family-considerations";
 import { buildFightEngineAdvisoryConsiderations } from "./fight-engine-advisory";
 import { buildRealLifeStrategyConsiderations } from "./real-life-strategies-advisory";
+import { buildOrderBreachConsiderations } from "./order-breach-considerations";
+import { buildMotoringConsiderations } from "./motoring-considerations";
+import { rankAndDedupeConsiderations } from "./rank-dedupe-considerations";
 import type {
   AdvisoryConsideration,
   EstablishedFact,
@@ -44,17 +47,6 @@ const FIREWALL = {
   mayBecomeCourtAssertion: false,
   mayChangeCanonicalEvidenceState: false,
 } as const;
-
-function dedupeConsiderations(items: AdvisoryConsideration[]): AdvisoryConsideration[] {
-  const seen = new Set<string>();
-  const out: AdvisoryConsideration[] = [];
-  for (const item of items) {
-    if (seen.has(item.id)) continue;
-    seen.add(item.id);
-    out.push(item);
-  }
-  return out;
-}
 
 /**
  * Extract source-backed established facts from bundle text for proof cases.
@@ -139,11 +131,17 @@ export function buildNotEstablishedClaims(input: {
         reason: `Family '${family}' is absent from source — must not be asserted as outstanding/missing fact.`,
         relatedConsiderationId,
       });
+    } else if (support === "negated") {
+      out.push({
+        id: `${input.caseId}:not:${id}`,
+        label,
+        reason: `Family '${family}' is explicitly negated in source — must not be asserted as outstanding/missing fact.`,
+        relatedConsiderationId,
+      });
     }
   };
 
   // 999 audio is NOT established merely because CAD/listing timing appears.
-  // Only mark not-established when source lacks explicit 999 audio language.
   if (!/\b999\b.{0,40}(audio|call|recording|outstanding|missing)/i.test(bundle) && !/\b999\s+audio\b/i.test(bundle)) {
     out.push({
       id: `${input.caseId}:not:999-outstanding`,
@@ -198,6 +196,7 @@ export function buildLegalIntelligence(
     ...established.map((f) => f.value),
   ];
 
+  // Only positively mentioned families — negated must not count as established.
   const establishedFamilies: string[] = [];
   for (const fam of [
     "cctv",
@@ -208,7 +207,7 @@ export function buildLegalIntelligence(
     "custody",
     "cad_999",
   ] as const) {
-    if (familySupport(fam, bundleText) !== "absent") establishedFamilies.push(fam);
+    if (familySupport(fam, bundleText) === "mentioned") establishedFamilies.push(fam);
   }
 
   const caseMoves = buildCaseMovesAdvisory({
@@ -223,18 +222,28 @@ export function buildLegalIntelligence(
     mg6Summary: input.mg6Summary,
     strategySummary: input.strategySummary,
     inconsistencies: input.inconsistencies,
+    // Pass through only when caller supplied exhibit codes; undefined ≠ blank list.
     exhibitCodes: input.exhibitCodes,
     nextActions: input.nextActions,
-    // Prefer structured fields; keep bundle preview available but low-trust inside engine
     bundleTextPreview: bundleText.slice(0, 4000),
   });
 
-  const considerations = dedupeConsiderations([
+  const considerations = rankAndDedupeConsiderations([
     ...buildOffenceFamilyConsiderations({
       allegation: input.allegation,
       offenceType: input.offenceType,
       bundleText,
       establishedEvidenceLabels: establishedLabels,
+    }),
+    ...buildOrderBreachConsiderations({
+      allegation: input.allegation,
+      offenceType: input.offenceType,
+      bundleText,
+    }),
+    ...buildMotoringConsiderations({
+      allegation: input.allegation,
+      offenceType: input.offenceType,
+      bundleText,
     }),
     ...buildFightEngineAdvisoryConsiderations({
       allegation: input.allegation,
@@ -272,7 +281,6 @@ export function considerationsForSurface(
   surface: AdvisoryConsideration["allowedSurfaces"][number] | "cps_chase",
 ): AdvisoryConsideration[] {
   if (surface === "cps_chase") {
-    // Explicit: advisory must NOT become chase items automatically
     return [];
   }
   return result.considerations.filter((c) => c.allowedSurfaces.includes(surface));

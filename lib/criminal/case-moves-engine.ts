@@ -238,6 +238,50 @@ type SignalCtx = {
   input: BuildCaseMovesInput;
 };
 
+/**
+ * Interview Case Moves activate only when interview material is indicated —
+ * summary / ref / custody interview / recording / transcript / state /
+ * co-def interview / PACE interview issue — not from offence or custody norms alone.
+ */
+function interviewMaterialIndicated(ctx: SignalCtx): boolean {
+  if (ctx.interview.trim()) return true;
+  if (
+    hasAny(ctx.served, ["interview", "rom", "rom interview", "roti", "rovi", "transcript"]) ||
+    hasAny(ctx.gaps, ["interview", "roti", "rovi", "transcript"]) ||
+    hasAny(ctx.structured, [
+      "interview served",
+      "interview not served",
+      "interview missing",
+      "no interview record",
+      "interview recording",
+      "interview transcript",
+      "interview summary",
+      "co-defendant interview",
+      "co-def interview",
+      "custody interview",
+      "pace interview",
+    ])
+  ) {
+    return true;
+  }
+
+  const preview = ctx.bundlePreview;
+  if (!preview.trim()) return false;
+  // Explicit non-indication must win over bare "interview" token.
+  if (/\binterview\s+(?:recording\s+)?not\s+mentioned\b/i.test(preview)) return false;
+  if (/\bno\s+interview\s+(?:was\s+)?(?:conducted|held|taken)\b/i.test(preview)) return false;
+
+  return (
+    /\b(?:interview\s+summary|interview\s+recording|interview\s+transcript|\broti\b|\brovi\b|co-?def(?:endant)?\s+interview|custody\s+interview|pace\s+interview)\b/i.test(
+      preview,
+    ) ||
+    (/\binterview\b/i.test(preview) &&
+      /\b(outstanding|not served|on file|served|summary|recording|transcript|modality|safeguard)\b/i.test(
+        preview,
+      ))
+  );
+}
+
 function buildCtx(input: BuildCaseMovesInput): SignalCtx {
   const structured = joinFields([
     input.mg6Summary,
@@ -430,21 +474,24 @@ export function detectSignals(input: BuildCaseMovesInput): CaseMoveSignal[] {
     });
   }
 
-  // Exhibit list blank or limited
-  if (!ctx.exhibitsProvided) {
-    pushSignal(out, seen, {
-      id: "signal:exhibit-list-blank",
-      label: "No exhibit codes supplied",
-      source: "exhibit_codes",
-      evidenceBacked: true,
-    });
-  } else if ((input.exhibitCodes ?? []).length <= 2) {
-    pushSignal(out, seen, {
-      id: "signal:exhibit-list-limited",
-      label: "Exhibit list very limited",
-      source: "exhibit_codes",
-      evidenceBacked: true,
-    });
+  // Exhibit list blank or limited — only when exhibitCodes was explicitly supplied.
+  // Undefined means "not assessed"; do not invent a generic exhibit-schedule chase.
+  if (Array.isArray(input.exhibitCodes)) {
+    if (input.exhibitCodes.length === 0) {
+      pushSignal(out, seen, {
+        id: "signal:exhibit-list-blank",
+        label: "No exhibit codes supplied",
+        source: "exhibit_codes",
+        evidenceBacked: true,
+      });
+    } else if (input.exhibitCodes.length <= 2) {
+      pushSignal(out, seen, {
+        id: "signal:exhibit-list-limited",
+        label: "Exhibit list very limited",
+        source: "exhibit_codes",
+        evidenceBacked: true,
+      });
+    }
   }
 
   // Custody record missing
@@ -460,19 +507,31 @@ export function detectSignals(input: BuildCaseMovesInput): CaseMoveSignal[] {
     });
   }
 
-  // Interview missing / not served
-  const interviewMentioned =
-    !!ctx.interview ||
-    hasAny(ctx.served, ["interview", "rom", "rom interview"]) ||
+  // Interview missing / not served — ONLY when interview material is indicated.
+  // Do not fire from criminal case / custody / offence norms alone.
+  const interviewIndicated = interviewMaterialIndicated(ctx);
+  const interviewServed =
+    hasAny(ctx.served, ["interview summary", "interview", "rom", "rom interview", "roti", "rovi"]) ||
     hasAny(ctx.structured, ["interview served"]);
-  if (
-    !interviewMentioned ||
-    hasAny(ctx.structured, ["interview not served", "interview missing", "no interview record"])
-  ) {
+  const interviewOutstanding =
+    hasAny(ctx.gaps, ["interview", "roti", "rovi", "transcript"]) ||
+    hasAny(ctx.structured, [
+      "interview not served",
+      "interview missing",
+      "no interview record",
+      "interview outstanding",
+      "interview recording outstanding",
+      "interview transcript outstanding",
+    ]);
+  if (interviewIndicated && (!interviewServed || interviewOutstanding)) {
     pushSignal(out, seen, {
       id: "signal:interview-missing",
       label: "Interview record missing or not served",
-      source: ctx.interview ? "mg6_summary" : "interview_summary",
+      source: ctx.interview
+        ? "interview_summary"
+        : interviewOutstanding
+          ? "outstanding_evidence"
+          : "bundle_text_preview",
       evidenceBacked: true,
     });
   }
@@ -606,11 +665,21 @@ export function detectSignals(input: BuildCaseMovesInput): CaseMoveSignal[] {
     });
   }
 
-  if (hasAny(defenceText, ["standard of driving disputed", "manner of driving disputed", "driving standard in issue"])) {
+  if (
+    hasAny(defenceText, [
+      "standard of driving disputed",
+      "manner of driving disputed",
+      "driving standard in issue",
+    ]) ||
+    (hasAny(ctx.charge, ["dangerous driving", "careless driving", "drink drive", "driving"]) &&
+      (hasAny(ctx.bundlePreview, ["dashcam", "nip", "s.172", "collision", "speed", "driving"]) ||
+        hasAny(ctx.gaps, ["dashcam", "export"]) ||
+        hasAny(ctx.served, ["nip", "s.172", "dashcam"])))
+  ) {
     pushSignal(out, seen, {
       id: "signal:driving-standard-disputed",
       label: "Standard of driving disputed",
-      source: "strategy_summary",
+      source: hasAny(defenceText, ["driving"]) ? "strategy_summary" : "allegation",
       evidenceBacked: true,
     });
   }
@@ -1811,7 +1880,7 @@ export function buildCaseMoves(input: BuildCaseMovesInput): CaseMovesResult {
   const signals = detectSignals(input);
 
   const moves = dedupeMoves([
-    ...buildNoSafeStrategyMove(signals, input),
+    // Case-specific packs first; generic thin-bundle pause last.
     ...buildDisclosureMoves(signals, input),
     ...buildForensicMoves(signals, input),
     ...buildPhoneEvidenceMoves(signals, input),
@@ -1820,6 +1889,7 @@ export function buildCaseMoves(input: BuildCaseMovesInput): CaseMovesResult {
     ...buildIntentDishonestyMoves(signals, input),
     ...buildSelfDefenceMoves(signals, input),
     ...buildLawfulExcuseMoves(signals, input),
+    ...buildNoSafeStrategyMove(signals, input),
   ]);
 
   const leverage = buildLeverage(signals);

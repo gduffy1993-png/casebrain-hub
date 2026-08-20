@@ -127,5 +127,35 @@ export function buildFightEngineAdvisoryConsiderations(
     });
   }
 
+  // Battleboard / brief-plan style route hypothesis — only when source engages a live route signal.
+  // Do not activate full battleboard / aggressive-defence corpus.
+  const hasRouteSignal =
+    /\bself-?defence\b|\bfirst\s+contact\b|\bno\s+case\b|\bhalf[-\s]?time\b|\bbasis\s+of\s+plea\b|\babuse\s+of\s+process\b/.test(
+      bundle,
+    );
+  if (hasRouteSignal) {
+    out.push({
+      id: "fight:route-hypothesis-labelled",
+      what: "Treat any battleboard / brief-plan style defence route as a labelled practitioner hypothesis until instructions and source anchors confirm it.",
+      why: "Historical strategy battleboard richness is re-homed as typed advisory only — never as established case theory or factual counters.",
+      canonicalTriggers: ["source:route_or_plea_signal"],
+      provenance: [
+        "strategy_fight_engine_advisory",
+        "historical:strategy_battleboard_gated",
+        "historical:brief_plan_neutered",
+      ],
+      scope: "source_specific",
+      mustConfirmBeforeFactualLanguage: [
+        "Client instructions supporting the route",
+        "Source-backed evidential anchors",
+      ],
+      supportClass: "PRACTITIONER_CONSIDERATION",
+      allowedSurfaces: [...SURFACES],
+      category: "strategy",
+      confidence: "low",
+      recoverySource: "strategy_fight_engine_advisory",
+    });
+  }
+
   return out;
 }

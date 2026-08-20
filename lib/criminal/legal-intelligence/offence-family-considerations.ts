@@ -9,6 +9,10 @@
  */
 
 import type { AdvisoryConsideration } from "./types";
+import {
+  evidenceMentionStatus,
+  familyPositivelyMentioned,
+} from "./evidence-mention";
 
 const OVERVIEW_SURFACES = [
   "overview",
@@ -108,42 +112,39 @@ export function buildOffenceFamilyConsiderations(
     );
   }
 
-  // BWV consideration where circumstances make it sensible — never "BWV missing" from offence alone
-  const bwvMentioned = /\bbwv\b|body[-\s]?worn/.test(bundle);
+  // BWV — negation-aware. "No BWV." must not trigger positive BWV considerations.
+  const bwvStatus = evidenceMentionStatus("bwv", input.bundleText ?? "");
   const bwvEstablished = established.some((e) => /\bbwv\b|body[-\s]?worn/.test(e));
-  if (bwvEstablished) {
+  if (bwvStatus === "negated") {
+    // Explicit absence: do not emit positive BWV family considerations.
+  } else if (bwvEstablished || bwvStatus === "mentioned") {
     out.push(
       baseConsideration({
-        id: "consider:bwv-established-review",
-        what: "Consider how served or outstanding BWV will be used for sequence, force, and first-contact analysis once the product is reviewed.",
-        why: "Where papers already establish BWV status, the remaining intelligence is tactical use — not inventing a missing counter.",
-        canonicalTriggers: ["source:bwv_established"],
-        provenance: ["offence_family_knowledge:bwv_tactical_use"],
+        id: bwvEstablished ? "consider:bwv-established-review" : "consider:bwv-source-mentioned",
+        what: bwvEstablished
+          ? "Consider how served or outstanding BWV will be used for sequence, force, and first-contact analysis once the product is reviewed."
+          : "Consider confirming BWV status (served / outstanding / not used) where papers refer to body-worn video.",
+        why: bwvEstablished
+          ? "Where papers already establish BWV status, the remaining intelligence is tactical use — not inventing a missing counter."
+          : "A BWV reference is source-specific and warrants status confirmation — without inventing a missing-evidence counter.",
+        canonicalTriggers: [bwvEstablished ? "source:bwv_established" : "source:bwv_mention"],
+        provenance: [
+          bwvEstablished
+            ? "offence_family_knowledge:bwv_tactical_use"
+            : "offence_family_knowledge:bwv_status_check",
+        ],
         scope: "source_specific",
         mustConfirmBeforeFactualLanguage: [
-          "Actual BWV content before asserting what footage shows",
+          bwvEstablished
+            ? "Actual BWV content before asserting what footage shows"
+            : "Schedule / MG entry stating BWV is outstanding or not served",
         ],
         category: "disclosure",
-        confidence: "high",
-      }),
-    );
-  } else if (bwvMentioned) {
-    out.push(
-      baseConsideration({
-        id: "consider:bwv-source-mentioned",
-        what: "Consider confirming BWV status (served / outstanding / not used) where papers refer to body-worn video.",
-        why: "A BWV reference is source-specific and warrants status confirmation — without inventing a missing-evidence counter.",
-        canonicalTriggers: ["source:bwv_mention"],
-        provenance: ["offence_family_knowledge:bwv_status_check"],
-        scope: "source_specific",
-        mustConfirmBeforeFactualLanguage: [
-          "Schedule / MG entry stating BWV is outstanding or not served",
-        ],
-        category: "disclosure",
-        confidence: "medium",
+        confidence: bwvEstablished ? "high" : "medium",
       }),
     );
   } else if (isViolenceOrPublicOrder || /\bcustody\b|\barrest\b|\bofficer\b/.test(bundle)) {
+    // Absent only — investigative question; never from negated "No BWV."
     out.push(
       baseConsideration({
         id: "consider:bwv-may-exist",
@@ -221,8 +222,11 @@ export function buildOffenceFamilyConsiderations(
     }
   }
 
-  // Interview strategy — only when interview is in papers
-  if (/\binterview\b/.test(bundle)) {
+  // Interview strategy — only when interview is positively mentioned (not "not mentioned" / negated)
+  if (
+    familyPositivelyMentioned("interview", input.bundleText ?? "") &&
+    !/\binterview\s+(?:recording\s+)?not\s+mentioned\b/i.test(input.bundleText ?? "")
+  ) {
     out.push(
       baseConsideration({
         id: "consider:interview-modality",
@@ -240,8 +244,8 @@ export function buildOffenceFamilyConsiderations(
     );
   }
 
-  // CCTV clip vs master
-  if (/\bcctv\b/.test(bundle)) {
+  // CCTV clip vs master — only on positive CCTV engagement; "No CCTV." must not fire.
+  if (familyPositivelyMentioned("cctv", input.bundleText ?? "")) {
     out.push(
       baseConsideration({
         id: "consider:cctv-clip-vs-master",
