@@ -121,12 +121,11 @@ const CHASE_FAMILIES: FamilyDef[] = [
   },
   {
     id: "cad_999",
-    label: "CAD / 999 audio / control-room material",
+    // Default is CAD-only; cad999DisplayLabel() widens only when source tokens justify 999/control-room.
+    label: "CAD log / timing material",
     source: "Police control room",
     priority: 3,
     match: (t) => /\b(999|cad|control\s*room|dispatch)\b/.test(t),
-    // Label specialised later via cad999DisplayLabel() so CAD-only mentions
-    // do not invent 999 audio / control-room material.
   },
   {
     id: "bwv",
@@ -434,7 +433,8 @@ export function cad999DisplayLabel(mergedFrom: string[]): string {
   if (has999) return "999 call audio";
   if (hasControlRoom) return "Control-room material";
   if (hasCad) return "CAD log / timing material";
-  return "CAD / 999 audio / control-room material";
+  // Never invent the compound triple from an empty/unknown token set.
+  return "CAD log / timing material";
 }
 
 const CHASE_FAMILY_TO_GATE_FAMILIES: Partial<Record<ChaseFamilyId, ChaseGateFamily[]>> = {

@@ -541,6 +541,16 @@ export function deriveEvidenceRowsFromDocumentUnits(
           if (/^(incomplete|partial)\s+/i.test(label)) {
             label = label.replace(/^(incomplete|partial)\s+/i, "").trim();
           }
+          // "… is not served" must not match the served look-ahead as a positive service claim.
+          if (
+            state === "served" &&
+            (/\b(?:is\s+)?not\s*$/i.test(label) ||
+              /\bnot\s+(?:served|provided|available|attached|disclosed)\b/i.test(
+                text.slice(Math.max(0, m.index - 12), m.index + m[0].length + 8),
+              ))
+          ) {
+            continue;
+          }
           label = recoverProfessionalEvidenceLabel(label);
           if (!label || label.length < 3) continue;
           if (isNoiseEvidenceLabel(label) || isFragmentEvidenceLabel(label)) continue;
@@ -604,6 +614,8 @@ export function isFragmentEvidenceLabel(label: string): boolean {
   ) {
     return true;
   }
+  // Negative-polarity residue from "… is not served" must not become a served label.
+  if (/\b(?:is\s+)?not\s*$/i.test(t)) return true;
   if (/^(not stated( on)?|final statement|summary prosecution|listing)\b/i.test(t)) return true;
   // Single generic token (e.g. recover("Evidence referred or") → "Evidence") is not a unit label.
   const tokens = t.split(/\s+/).filter(Boolean);

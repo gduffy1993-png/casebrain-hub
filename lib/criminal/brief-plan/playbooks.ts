@@ -78,17 +78,21 @@ export const CRIMINAL_BRIEF_PLAYBOOKS: Record<CriminalBriefPlanProfile, Criminal
   },
   violence_assault: {
     id: "violence_assault",
-    commonIssues: ["sequence", "self-defence", "injury", "causation", "CCTV/BWV"],
-    missingMaterial: ["medical report", "CCTV/BWV", "MG11 statements", "999/CAD"],
+    commonIssues: ["sequence", "self-defence", "injury", "causation", "CCTV", "BWV"],
+    // Split compounds so CCTV-only source cannot authorise BWV / 999 invention.
+    missingMaterial: ["medical report", "CCTV", "BWV", "MG11 statements", "CAD", "999 call audio"],
     safeWording: {
-      today: "Sequence, injury and causation remain provisional pending served witness, medical and video/source material.",
-      summary: "The case turns on sequence, causation, injury evidence and whether self-defence/first contact remains live.",
-      chase: "The defence asks the court to record outstanding medical, video and sequence material.",
+      today: "Sequence, injury and causation remain provisional pending served witness, medical and video/source material that is actually on the papers.",
+      summary:
+        "The case turns on sequence, causation and injury evidence on the served papers; whether self-defence or first contact arises is a solicitor consideration only until instructions/source support it.",
+      chase: "The defence asks the court to record outstanding medical, video and sequence material that is source-supported on the papers.",
     },
     risks: ["Medical or video material may support the Crown account once served."],
-    opportunities: ["Keep sequence, injury causation and first contact live until source material is served."],
+    opportunities: [
+      "Consider sequence, injury causation and first-contact instructions once source material is served — do not treat them as established case theory without support.",
+    ],
     doNotOverstate: ["Do not state injury is consistent with assault unless medical evidence is served."],
-    chaseTemplates: ["Medical report, MG11s, CCTV/BWV, CAD/999, officer notes."],
+    chaseTemplates: ["Medical report, MG11s, CCTV, BWV, CAD log, 999 call audio, officer notes."],
     clientSafeStyle: "Explain that sequence and injury are being checked against source material.",
   },
   sexual_abe: {

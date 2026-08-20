@@ -18,11 +18,25 @@ import type {
 
 function playbookLineSourceBacked(label: string, bundleText: string): boolean {
   const t = label.toLowerCase();
+  const b = bundleText;
+  // Narrow CAD vs 999 vs control-room — CAD timing must not authorise 999 audio lines.
+  if (/\b999\b|\bcall audio\b|\bemergency call\b/i.test(t)) {
+    if (!/\b999\b|\bcall audio\b|\bemergency call\b/i.test(b)) return false;
+  }
+  if (/\bcontrol[-\s]?room\b/i.test(t)) {
+    if (!/\bcontrol[-\s]?room\b|\bdispatch\b/i.test(b)) return false;
+  }
+  if (/\bmg11\b|witness\s+statements?\b/i.test(t)) {
+    if (!/\bmg11\b|witness\s+statement|signed\s+(?:final\s+)?(?:mg11|statement)/i.test(b)) {
+      return false;
+    }
+  }
   const checks: Array<{ re: RegExp; family: ChaseGateFamily }> = [
     { re: /\binterview\b|transcript|\broti\b/, family: "interview" },
     { re: /\bbwv\b|body[-\s]?worn/, family: "bwv" },
     { re: /\bcctv\b|footage|master\s+footage/, family: "cctv" },
-    { re: /\b999\b|\bcad\b|control[-\s]?room/, family: "cad_999" },
+    // CAD-only lines (not 999/control-room — those gated above).
+    { re: /\bcad\b/, family: "cad_999" },
     { re: /\bmedical\b|hospital|fme|injury/, family: "medical" },
     { re: /\bphone\b|extraction|handset|subscriber|device\s+download/, family: "phone" },
     { re: /\bretraction\b|further\s+statement/, family: "retraction_statement" },
@@ -30,13 +44,20 @@ function playbookLineSourceBacked(label: string, bundleText: string): boolean {
     { re: /\bcustody\b|detention|safeguard|risk\s+assessment/, family: "custody" },
   ];
   const matched = checks.filter(({ re }) => re.test(t));
-  if (!matched.length) return true;
+  if (!matched.length) {
+    // Lines already narrowed above (999/MG11/control-room) with no other family → keep if those passed.
+    if (/\b999\b|\bcall audio\b|\bemergency call\b|\bcontrol[-\s]?room\b|\bmg11\b|witness\s+statements?\b/i.test(t)) {
+      return true;
+    }
+    return true;
+  }
   // If the line names interview/transcript, require interview to be source-backed
   // even when another family (e.g. custody) is also named.
   if (/\binterview\b|transcript|\broti\b/.test(t) && familySupport("interview", bundleText) === "absent") {
     return false;
   }
-  return matched.some(({ family }) => familySupport(family, bundleText) !== "absent");
+  // Compound lines (e.g. "CCTV/BWV") must not survive on a single family match.
+  return matched.every(({ family }) => familySupport(family, bundleText) !== "absent");
 }
 
 function filterPlaybookLines(lines: string[], bundleText: string): string[] {
@@ -181,7 +202,7 @@ function mainIssueFor(profile: CriminalBriefPlanProfile, contradictionCount: num
     custody_pace: "Custody/PACE safeguards and interview fairness.",
     domestic_harassment: "Relationship context, attribution and course of conduct.",
     drugs_pwits: "Possession, knowledge, intent and continuity.",
-    violence_assault: "Sequence, injury/causation and any self-defence/first-contact issue.",
+    violence_assault: "Sequence, injury and causation on the served papers — self-defence/first contact only if instructions or source support them.",
     sexual_abe: "ABE/source review, consent issues and disclosure sensitivity.",
     driving_motoring: "Driver identity, procedure and device/source reliability.",
     fraud_account: "Account control, dishonesty, attribution and loss reconciliation.",
