@@ -12,20 +12,17 @@ import { ConfidenceDashboardPanel } from "@/components/criminal/confidence-dashb
 import { H5FeedbackFlag } from "@/components/criminal/feedback-console/H5FeedbackFlag";
 import { displayCopyBody } from "@/lib/criminal/five-answers/display-labels";
 import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
-import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
-import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
+import { workflowPilotCard } from "@/components/criminal/workflow/workflowUi";
 import { OverviewAdvancedPanel } from "./OverviewAdvancedPanel";
-import { OverviewClientSummaryCard } from "./OverviewClientSummaryCard";
-import { OverviewCourtPrepCard } from "./OverviewCourtPrepCard";
-import { OverviewEvidenceGapsCard } from "./OverviewEvidenceGapsCard";
 import { OverviewProofDepthDrawer } from "./OverviewProofDepthDrawer";
-import { OverviewSafeWordingCard } from "./OverviewSafeWordingCard";
 import { OverviewLegalIntelligenceCard } from "./OverviewLegalIntelligenceCard";
-import { OverviewSnapshotBoxes } from "./OverviewSnapshotBoxes";
+import { OverviewWorkspaceHeader } from "./OverviewWorkspaceHeader";
+import { OverviewWhatNeedsAttention } from "./OverviewWhatNeedsAttention";
+import { OverviewSelectedIssue } from "./OverviewSelectedIssue";
+import { OverviewSummaryCards } from "./OverviewSummaryCards";
 import { EvidenceTruthMapPanel } from "./EvidenceTruthMapPanel";
 import { ProofReceiptPanel } from "./ProofReceiptPanel";
 import { buildProofReceiptView } from "@/lib/criminal/proof-receipt";
-import { humanizeEvidenceLabel } from "./evidence-display";
 import {
   ensureDigitalHarassmentGapRows,
   filterBundleFamilyWarnings,
@@ -33,21 +30,11 @@ import {
   polishPresentationLine,
 } from "@/lib/criminal/demo-presentation-polish";
 import {
-  countAuthoritativeEvidenceRows,
   dedupeEvidenceRowsByLabel,
   dedupePresentationLines,
   filterFamilyProofCardsForBundle,
-  gapEvidenceRows,
-  overviewBlockedExamples,
-  overviewRiskFlagPointers,
-  servedEvidenceRows,
 } from "@/lib/criminal/overview-presentation";
-import {
-  collapseDontSayMg11WitnessLines,
-  polishChasePreviewLabel,
-  solicitorLinesNearlyEqual,
-} from "@/lib/criminal/solicitor-display-dedupe";
-import { adaptFiveAnswersAndChaseToCanonical } from "@/lib/criminal/canonical-matter-state";
+import { buildOverviewWorkspaceVm } from "@/lib/criminal/overview-workspace";
 import { useEffect, useMemo, useState } from "react";
 
 export function overviewServedEvidenceLine(label: string): string {
@@ -67,6 +54,8 @@ export function overviewServedEvidenceLine(label: string): string {
 
 export function FiveAnswersView({ caseId }: { caseId: string }) {
   const [showLimitedLoadingFallback, setShowLimitedLoadingFallback] = useState(false);
+  const [selectedIssueId, setSelectedIssueId] = useState<string | null>(null);
+  const [showAllIssues, setShowAllIssues] = useState(false);
   const {
     loading,
     matterConfidence,
@@ -74,6 +63,10 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     warRoom,
     chase,
     allegation,
+    clientLabel,
+    courtLabel,
+    hearingLabel,
+    hearingStatusResolved,
     briefPlan,
     primaryRouteTitle,
     bundleMeta,
@@ -85,7 +78,6 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     legalIntelligence,
     overviewConsiderations,
   } = useMatterBrief(caseId);
-  const buildTabHref = usePilotMatterTabHref();
 
   useEffect(() => {
     setShowLimitedLoadingFallback(false);
@@ -238,6 +230,67 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     };
   }, [view, chase, bundleHay, allegation]);
 
+  const clientSummaryText = useMemo(() => {
+    const clientSummarySection = exportPack?.sections.find((s) => s.id === "client_summary");
+    return clientSummarySection
+      ? polishPresentationBlock(displayCopyBody(clientSummarySection.textForClipboard), bundleHay)
+      : null;
+  }, [exportPack, bundleHay]);
+
+  const courtLineText = useMemo(() => {
+    if (!hearingMode) return "";
+    return polishPresentationLine(
+      displayCopyBody(hearingMode.safeCourtLine.text, hearingMode.safeCourtLine.footer ?? undefined),
+      bundleHay,
+    );
+  }, [hearingMode, bundleHay]);
+
+  const workspaceVm = useMemo(() => {
+    if (!view || !matterConfidence || !chase) return null;
+    return buildOverviewWorkspaceVm({
+      caseId,
+      clientLabel,
+      chargeLabel: allegation,
+      courtLabel,
+      hearingLabel,
+      stageLabel: hearingStatusResolved?.statusLabel ?? null,
+      matterConfidence,
+      evidenceRows: view.evidenceState.rows,
+      chaseItems: chase.primaryItems ?? [],
+      contradictions: view.contradictions,
+      legalIntelligence,
+      overviewConsiderations: overviewConsiderations ?? [],
+      safeCourtLine: courtLineText || hearingMode?.safeCourtLine.text || null,
+      safeCourtLineCanCopy: Boolean(hearingMode?.safeCourtLine.canCopy),
+      clientSummary: clientSummaryText,
+    });
+  }, [
+    view,
+    matterConfidence,
+    chase,
+    caseId,
+    clientLabel,
+    allegation,
+    courtLabel,
+    hearingLabel,
+    hearingStatusResolved?.statusLabel,
+    legalIntelligence,
+    overviewConsiderations,
+    courtLineText,
+    hearingMode,
+    clientSummaryText,
+  ]);
+
+  useEffect(() => {
+    if (!workspaceVm?.issues.length) {
+      setSelectedIssueId(null);
+      return;
+    }
+    if (!selectedIssueId || !workspaceVm.issues.some((i) => i.id === selectedIssueId)) {
+      setSelectedIssueId(workspaceVm.issues[0]!.id);
+    }
+  }, [workspaceVm, selectedIssueId]);
+
   if (loading && !view && !showLimitedLoadingFallback) {
     return (
       <div className={`${workflowPilotCard} p-8 flex items-center justify-center gap-2 text-slate-400`}>
@@ -282,7 +335,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     );
   }
 
-  if (!view || !matterConfidence || !chase) {
+  if (!view || !matterConfidence || !chase || !workspaceVm) {
     return (
       <div className={`${workflowPilotCard} p-6 text-sm text-slate-400 space-y-2`}>
         <p>Case overview will appear once documents are processed.</p>
@@ -290,104 +343,38 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     );
   }
 
-  const served = servedEvidenceRows(view.evidenceState.rows);
-  const gaps = gapEvidenceRows(view.evidenceState.rows);
-  const canonicalMatter = adaptFiveAnswersAndChaseToCanonical({
-    caseId,
-    allegation,
-    bundleHay,
-    provisional: matterConfidence.level !== "safe",
-    evidenceRows: view.evidenceState.rows,
-    chase,
-  });
-  // Overview totals must mirror full authenticated canonical rows (no alias-dedupe collapse).
-  const stateCounts = countAuthoritativeEvidenceRows(view.evidenceState.rows);
-  const topChase = dedupePresentationLines(
-    view.chase
-      .slice(0, 5)
-      .map((c) => polishChasePreviewLabel(polishPresentationLine(c.label, bundleHay)))
-      .filter((label): label is string => Boolean(label)),
-  );
-  const blockedExamples = collapseDontSayMg11WitnessLines(
-    overviewBlockedExamples(view.mustNotOverstate, 4),
-  ).slice(0, 2);
-  const riskFlags = overviewRiskFlagPointers(blockedExamples);
-  const clientSummarySection = exportPack?.sections.find((s) => s.id === "client_summary");
-  const clientSummaryText = clientSummarySection
-    ? polishPresentationBlock(displayCopyBody(clientSummarySection.textForClipboard), bundleHay)
-    : null;
-
-  const courtLineText = hearingMode
-    ? polishPresentationLine(
-        displayCopyBody(hearingMode.safeCourtLine.text, hearingMode.safeCourtLine.footer ?? undefined),
-        bundleHay,
-      )
-    : "";
-  const mainIssueText = polishPresentationLine(view.caseSaying.mainIssue, bundleHay);
-  const mainIssueDistinct = !courtLineText || !solicitorLinesNearlyEqual(mainIssueText, courtLineText);
-
-  const servedDisplayLabels = dedupePresentationLines(
-    served
-      .map((r) => humanizeEvidenceLabel(r.label, r.existence))
-      .filter(Boolean),
-  ).slice(0, 2);
-  const safeToSay = dedupePresentationLines(
-    [
-      mainIssueDistinct ? mainIssueText : "",
-      ...(servedDisplayLabels.length
-        ? servedDisplayLabels.map(overviewServedEvidenceLine)
-        : ["Limited papers — keep the position provisional."]),
-    ].filter(Boolean),
-  );
+  const selectedIndex = workspaceVm.issues.findIndex((i) => i.id === selectedIssueId);
+  const selectedIssue = selectedIndex >= 0 ? workspaceVm.issues[selectedIndex]! : null;
 
   return (
     <div className="space-y-3" data-testid="five-answers-view">
       <div id="overview-understand" className="space-y-3 scroll-mt-4">
-        {/* Shell strip owns defendant / charge / court / provisional badge — no inner repeat. */}
+        <OverviewWorkspaceHeader vm={workspaceVm} />
 
-        {mainIssueDistinct ? (
-          <section className={`${workflowPilotCard} px-3 py-2.5 sm:px-4`} data-testid="five-answers-case-saying">
-            <p className={`${workflowSectionTitle} mb-1`}>Main issue</p>
-            <p className="text-sm text-slate-200 leading-relaxed line-clamp-4">{mainIssueText}</p>
-          </section>
-        ) : null}
-
-        <OverviewSnapshotBoxes
-          evidenceCounts={stateCounts}
-          topChaseLabels={dedupePresentationLines(
-            topChase.map((label) => humanizeEvidenceLabel(label, "missing")).filter(Boolean),
-          )}
-          riskFlags={riskFlags}
-          canonicalFingerprint={canonicalMatter.fingerprint}
-        />
-
-        <OverviewSafeWordingCard safeToSay={safeToSay} notSafeToSay={blockedExamples} />
-
-        {legalIntelligence ? (
-          <OverviewLegalIntelligenceCard
-            legalIntelligence={legalIntelligence}
-            overviewConsiderations={overviewConsiderations ?? []}
+        <div className="grid gap-3 xl:grid-cols-[minmax(0,1.15fr)_minmax(300px,0.85fr)]">
+          <OverviewWhatNeedsAttention
+            issues={workspaceVm.issues}
+            selectedId={selectedIssue?.id ?? null}
+            onSelect={setSelectedIssueId}
+            showAll={showAllIssues}
+            onToggleShowAll={() => setShowAllIssues((v) => !v)}
           />
-        ) : null}
-
-        {hearingMode ? (
-          <OverviewCourtPrepCard
-            courtLine={courtLineText || hearingMode.safeCourtLine.text}
-            courtFooter={hearingMode.safeCourtLine.footer}
-            sendabilityLabel={hearingMode.safeCourtLine.sendabilityLabel}
-            topChaseLabels={topChase}
-            hideChasePreview
-            courtHref={buildTabHref(caseId, "today")}
-            chaseHref={buildTabHref(caseId, "disclosure-chase")}
+          <OverviewSelectedIssue
+            issue={selectedIssue}
+            hasPrev={selectedIndex > 0}
+            hasNext={selectedIndex >= 0 && selectedIndex < workspaceVm.issues.length - 1}
+            onPrev={() => {
+              if (selectedIndex > 0) setSelectedIssueId(workspaceVm.issues[selectedIndex - 1]!.id);
+            }}
+            onNext={() => {
+              if (selectedIndex >= 0 && selectedIndex < workspaceVm.issues.length - 1) {
+                setSelectedIssueId(workspaceVm.issues[selectedIndex + 1]!.id);
+              }
+            }}
           />
-        ) : null}
+        </div>
 
-        <OverviewClientSummaryCard
-          summaryText={clientSummaryText}
-          summaryHref={buildTabHref(caseId, "summary")}
-        />
-
-        <OverviewEvidenceGapsCard gaps={gaps} />
+        <OverviewSummaryCards vm={workspaceVm} />
 
         <OverviewProofDepthDrawer integrity={outputIntegrity}>
           <EvidenceTruthMapPanel rows={view.evidenceState.rows} />
@@ -402,6 +389,12 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
       <div id="overview-review" className="scroll-mt-4 space-y-3">
         <OverviewAdvancedPanel integrity={outputIntegrity}>
+          {legalIntelligence ? (
+            <OverviewLegalIntelligenceCard
+              legalIntelligence={legalIntelligence}
+              overviewConsiderations={overviewConsiderations ?? []}
+            />
+          ) : null}
           {warRoom && chase ? (
             <ConfidenceDashboardPanel
               caseId={caseId}
