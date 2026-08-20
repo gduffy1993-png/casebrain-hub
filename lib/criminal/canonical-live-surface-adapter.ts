@@ -46,6 +46,11 @@ import {
   type EnforcementAction,
 } from "@/lib/criminal/cross-exit-contradiction-scanner";
 import { sanitizeSolicitorProse } from "@/lib/criminal/solicitor-visible-sanitization";
+import {
+  buildLegalIntelligence,
+  considerationsForSurface,
+  type LegalIntelligenceResult,
+} from "@/lib/criminal/legal-intelligence";
 
 export type LiveProductionSurfaces = {
   pipeline: LiveCanonicalPipelineResult;
@@ -100,6 +105,13 @@ export type LiveProductionSurfaces = {
   crossExit: CrossExitScanResult;
   /** Enforcement actions that removed or rewrote unsafe legacy prose. */
   crossExitEnforcement: EnforcementAction[];
+  /**
+   * Advisory legal intelligence / case moves (PRACTITIONER_CONSIDERATION).
+   * Never mutates evidence state, readiness, or CPS chase factual rows.
+   */
+  legalIntelligence: LegalIntelligenceResult;
+  /** Considerations allowed on overview (epistemic overlay only). */
+  overviewConsiderations: LegalIntelligenceResult["considerations"];
 };
 
 /**
@@ -616,6 +628,22 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
   const sanitizedPdfLimitations = stArr(composedLimitations);
   const sanitizedAllegationForExits = sanitizeSolicitorProse(allegationForExits);
 
+  // Advisory lane — reasons about canonical/source material; never writes evidence state.
+  const legalIntelligence = buildLegalIntelligence({
+    caseId,
+    allegation: allegationForExits,
+    offenceType: allegation,
+    bundleText: pipeline.bundleText,
+    outstandingEvidence: pipeline.chaseLabels,
+    servedEvidence: pipeline.evidenceState.items
+      .filter((i) => i.state === "served")
+      .map((i) => i.label),
+    missingEvidence: pipeline.evidenceState.items
+      .filter((i) => i.state === "missing" || i.state === "outstanding")
+      .map((i) => i.label),
+  });
+  const overviewConsiderations = considerationsForSurface(legalIntelligence, "overview");
+
   return {
     pipeline,
     matterState: sanitizedMatterState,
@@ -655,6 +683,8 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     requiredLimitations: composedLimitations,
     crossExit: enforcement.scan,
     crossExitEnforcement: enforcement.actions,
+    legalIntelligence,
+    overviewConsiderations,
   };
 }
 
