@@ -27,6 +27,8 @@ type ProofMatter = {
   mustConsider?: RegExp[];
   /** Substrings that must appear in established facts. */
   mustEstablish?: RegExp[];
+  /** Considerations that must NOT appear (negation / over-trigger guards). */
+  mustNotConsider?: RegExp[];
   /** Historical smart behaviour we expect restored as advisory. */
   historicalSmart: string;
   /** Unsafe historical authority that must NOT return. */
@@ -63,6 +65,7 @@ const MATTERS: ProofMatter[] = [
     mustEstablish: [/Harassment/i, /phone download|subscriber/i],
     historicalSmart: "Attribution gap between screenshots and full download",
     historicalUnsafe: "Invent BWV/CCTV chase from digital offence",
+    mustNotConsider: [/confirm(?:ing)? BWV status|Consider distinguishing CCTV|BWV will be used/i],
   },
   {
     id: "PROOF-03-bwv-custody",
@@ -166,10 +169,11 @@ const MATTERS: ProofMatter[] = [
       "Complainant MG11 outstanding.",
     ].join("\n"),
     mustRemainAbsent: ["bwv", "cctv"],
-    mustConsider: [/disclosure|MG11|order/i],
+    mustConsider: [/order|prohibition|service|knowledge|MG11/i],
     mustEstablish: [/restraining order/i, /Sealed order|proof of service/i],
     historicalSmart: "Service/proof gaps for order breach",
     historicalUnsafe: "Domestic context ⇒ invent BWV/CCTV",
+    mustNotConsider: [/full interview record \(recording \+ ROTI/i],
   },
   {
     id: "PROOF-09-youth-aa",
@@ -218,10 +222,11 @@ const MATTERS: ProofMatter[] = [
       "Dashcam clip referred; full export outstanding.",
     ].join("\n"),
     mustRemainAbsent: ["bwv", "medical", "interview"],
-    mustConsider: [/driving|disclosure|clip|master|export/i],
+    mustConsider: [/driving|careful and competent|dashcam|export|NIP|s\.?\s*172/i],
     mustEstablish: [/Dangerous driving/i, /export outstanding|Dashcam/i],
     historicalSmart: "Driving-standard / thin-bundle disclosure pressure",
     historicalUnsafe: "Motoring ⇒ invent interview/BWV",
+    mustNotConsider: [/full interview record \(recording \+ ROTI/i],
   },
   {
     id: "PROOF-12-bad-redaction",
@@ -296,6 +301,11 @@ function scoreMatter(m: ProofMatter): MatterScore {
       failures.push(`intelligence: missing consideration ${re}`);
     } else {
       restoredNotes.push(`consider~${re}`);
+    }
+  }
+  for (const re of m.mustNotConsider ?? []) {
+    if (re.test(considerBlob)) {
+      failures.push(`intelligence: forbidden consideration ${re}`);
     }
   }
 

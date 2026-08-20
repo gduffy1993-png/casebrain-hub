@@ -1,0 +1,58 @@
+{
+  "programme": "legal-intelligence-recovery-v1",
+  "gate": "HUMAN_REVIEW_PACK",
+  "generatedAt": "2026-08-20",
+  "recoveryBranch": "programme/legal-intelligence-recovery-v1",
+  "recoverySha": "b374c514d",
+  "baselineSha": "170bfcee48c5e3777df6c3dda588102e2c9928ce",
+  "caseMovesSourceSha": "6de1c4c249cec7fcf688c05293e0b09f7c3d81b4",
+  "verdict": "RESTORATION_GOOD_BUT_INCOMPLETE",
+  "programmeEngineeringVerdict": "RESTORATION_READY_FOR_REVIEW",
+  "mergeToReleaseRecommended": false,
+  "pilotReady": false,
+  "readyForLivePdfVsUiClevernessChecks": false,
+  "readyForLivePdfVsUiTruthSafetySpotChecks": true,
+  "betterThanOldUnsafe": true,
+  "betterThanCurrentNeutered": true,
+  "betterThanBothAtSolicitorUi": false,
+  "metrics": {
+    "truthSetBothPass": "12/12",
+    "patelBoundaryPass": true,
+    "cpsChaseAdvisoryCountAlways": 0
+  },
+  "surfaceWiring": {
+    "adapterEmitsLegalIntelligence": true,
+    "overviewConsiderationsProduced": true,
+    "multiSurfaceAllowListExists": true,
+    "cpsChaseHardEmpty": true,
+    "uiComponentsConsumeLegalIntelligence": false,
+    "effectiveSolicitorVisibility": "none_until_overview_wired"
+  },
+  "lostClevernessHighlights": [
+    "UI orphan: legalIntelligence not rendered on Overview/Court/Papers/Client/File/Hearing/Export",
+    "PROOF-02 negation false positive: 'No BWV. No CCTV.' still triggers BWV/CCTV considerations",
+    "Generic case-move trio repeated across matters",
+    "Interview disclosure case-move often fires when interview unmentioned",
+    "PROOF-08 order-breach intelligence thin; pass via loose disclosure regex",
+    "PROOF-11 motoring driving-standard sharpness thin in RLS pack"
+  ],
+  "unsafeStayedRemoved": [
+    "self-defence remains live as established case theory from Affray/ABH alone",
+    "CAD timing => 999 audio outstanding fact",
+    "offence shape => BWV/medical/phone invent into chase/canonical",
+    "continuity missing from 'to be checked' alone",
+    "advisory auto-ingest into CPS chase"
+  ],
+  "artefacts": [
+    "HUMAN-REVIEW-PACK.md",
+    "HUMAN-REVIEW-PACK.json",
+    "HUMAN-REVIEW-LIVE-DUMP.json",
+    "SIDE-BY-SIDE-BEHAVIOURAL-REPORT.md",
+    "CLEVERNESS-RECOVERY-TRUTH-SET-RESULTS.md",
+    "cleverness-recovery-truth-set-results.json",
+    "FINAL-REPORT.md",
+    "CASE-MOVES-RESTORE-NOTES.md",
+    "EXPANDED-COMPONENT-CLASSIFICATION-INVENTORY.md",
+    "LEGAL-INTELLIGENCE-RECOVERY-V1.json"
+  ]
+}
