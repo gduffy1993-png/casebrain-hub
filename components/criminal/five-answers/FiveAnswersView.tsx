@@ -32,6 +32,7 @@ import {
   polishPresentationLine,
 } from "@/lib/criminal/demo-presentation-polish";
 import {
+  countAuthoritativeEvidenceRows,
   dedupeEvidenceRowsByLabel,
   dedupePresentationLines,
   filterFamilyProofCardsForBundle,
@@ -296,7 +297,8 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     evidenceRows: view.evidenceState.rows,
     chase,
   });
-  const stateCounts = canonicalMatter.evidence.counts;
+  // Overview totals must mirror full authenticated canonical rows (no alias-dedupe collapse).
+  const stateCounts = countAuthoritativeEvidenceRows(view.evidenceState.rows);
   const topChase = dedupePresentationLines(
     view.chase
       .slice(0, 5)

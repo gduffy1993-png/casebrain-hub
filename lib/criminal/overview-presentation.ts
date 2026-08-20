@@ -122,8 +122,53 @@ export function countEvidenceStates(rows: FiveAnswersEvidenceRow[]): {
 }
 
 /**
+ * Count every authoritative evidence row as-is (no alias collapse).
+ * Overview totals must match authenticated canonical evidenceState/evidenceRows —
+ * re-running buildCanonicalMatterStateV1 → dedupeEvidenceAliases under-counted large bundles.
+ */
+export function countAuthoritativeEvidenceRows(rows: FiveAnswersEvidenceRow[]): {
+  served: number;
+  referred: number;
+  missing: number;
+  incomplete: number;
+  notSafelyConfirmed: number;
+} {
+  const counts = {
+    served: 0,
+    referred: 0,
+    missing: 0,
+    incomplete: 0,
+    notSafelyConfirmed: 0,
+  };
+  for (const row of rows) {
+    switch (row.existence) {
+      case "served":
+        counts.served += 1;
+        break;
+      case "referred":
+      case "referred_only":
+        counts.referred += 1;
+        break;
+      case "missing":
+        counts.missing += 1;
+        break;
+      case "incomplete":
+        counts.incomplete += 1;
+        break;
+      case "not_safely_confirmed":
+        counts.notSafelyConfirmed += 1;
+        break;
+      default:
+        break;
+    }
+  }
+  return counts;
+}
+
+/**
  * Evidence-state counts — delegated to CanonicalMatterStateV1 (no independent algorithm).
  * @deprecated Prefer consuming CanonicalMatterStateV1 directly; this adapter remains for call-site compat.
+ * Note: alias-dedupes via buildCanonicalMatterStateV1 — do not use for Overview totals vs live canonical.
  */
 export function countEvidenceStatesForDisplay(rows: FiveAnswersEvidenceRow[]): {
   served: number;

@@ -20,6 +20,7 @@ import fs from "node:fs";
 import { expandTruthMapRowsForDisplay } from "../lib/criminal/five-answers/expand-truth-map-rows";
 import { buildFiveAnswersView } from "../lib/criminal/five-answers/build-five-answers-view";
 import { evidenceRowFromSourceState } from "../lib/criminal/five-answers/evidence-trace";
+import { countAuthoritativeEvidenceRows } from "../lib/criminal/overview-presentation";
 import {
   displayChaseCardLabel,
   polishPresentationBlock,
@@ -258,6 +259,15 @@ function stubWarRoom(): HearingWarRoomBrief {
     largeView.evidenceState.rows.filter((r) => r.existence === "missing").length,
     15,
   );
+
+  const overviewTotals = countAuthoritativeEvidenceRows(largeView.evidenceState.rows);
+  assert.deepEqual(overviewTotals, {
+    served: 25,
+    referred: 0,
+    missing: 15,
+    incomplete: 0,
+    notSafelyConfirmed: 0,
+  });
 }
 
 // --- Clip/master + recording/transcript exact states across exits ---
