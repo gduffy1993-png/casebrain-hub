@@ -1,0 +1,133 @@
+{
+  "recordedAt": "2026-08-20T03:22:21.681Z",
+  "head": "da6fc1b9ac99dc8dc154a06548762b759d8646c8",
+  "note": "Tier runner exercises claim-truth Phase1 controls on production builders; 361 map not fully re-emitted in this overnight pass.",
+  "tiers": {
+    "gold40": {
+      "tier": "gold40",
+      "head": "da6fc1b9ac99dc8dc154a06548762b759d8646c8",
+      "recordedAt": "2026-08-20T03:18:40.381Z",
+      "mattersSelected": 40,
+      "mattersCompleted": 40,
+      "processing": {
+        "success": 40,
+        "partial": 0,
+        "failed_safely": 0
+      },
+      "claimsAudited": 806,
+      "findingsTotal": 0,
+      "confirmedLiveSharedDefects": 0,
+      "confirmedBySeverity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "clusters": {},
+      "messyAccount": null,
+      "corpusManifestSha256": "e8e7aa31b49c14b980595a3c02f31e483b5e31fb7c904c1835f131005e13f25d",
+      "gateClean": true
+    },
+    "rep150": {
+      "tier": "rep150",
+      "head": "da6fc1b9ac99dc8dc154a06548762b759d8646c8",
+      "recordedAt": "2026-08-20T03:19:05.800Z",
+      "mattersSelected": 150,
+      "mattersCompleted": 150,
+      "processing": {
+        "success": 150,
+        "partial": 0,
+        "failed_safely": 0
+      },
+      "claimsAudited": 3288,
+      "findingsTotal": 0,
+      "confirmedLiveSharedDefects": 0,
+      "confirmedBySeverity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "clusters": {},
+      "messyAccount": null,
+      "corpusManifestSha256": "f1ef2dc6c7d2591f7623c2e746457c8855a0ce07dd351ec0dd7e704ff0953304",
+      "gateClean": true
+    },
+    "highrisk500": {
+      "tier": "highrisk500",
+      "head": "da6fc1b9ac99dc8dc154a06548762b759d8646c8",
+      "recordedAt": "2026-08-20T03:19:38.012Z",
+      "mattersSelected": 409,
+      "mattersCompleted": 409,
+      "processing": {
+        "success": 409,
+        "partial": 0,
+        "failed_safely": 0
+      },
+      "claimsAudited": 8292,
+      "findingsTotal": 0,
+      "confirmedLiveSharedDefects": 0,
+      "confirmedBySeverity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "clusters": {},
+      "messyAccount": null,
+      "corpusManifestSha256": "981b94bf54e12cbfdb742167f97c8b8ce05562ebf14e45aafe7325c5d35720ac",
+      "gateClean": true
+    },
+    "criminalPhysical": {
+      "tier": "criminalPhysical",
+      "head": "da6fc1b9ac99dc8dc154a06548762b759d8646c8",
+      "recordedAt": "2026-08-20T03:19:57.167Z",
+      "mattersSelected": 449,
+      "mattersCompleted": 449,
+      "processing": {
+        "success": 449,
+        "partial": 0,
+        "failed_safely": 0
+      },
+      "claimsAudited": 9098,
+      "findingsTotal": 0,
+      "confirmedLiveSharedDefects": 0,
+      "confirmedBySeverity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "clusters": {},
+      "messyAccount": null,
+      "corpusManifestSha256": "955e22681f344e2e80b5cb4d41b0f003d97d7f8cd6867b1dc174d28c3cac8f45",
+      "gateClean": true
+    },
+    "full3000": {
+      "tier": "full3000",
+      "head": "fbca0f3f9af80b5bd5adbaf64b82cb5e312106f1",
+      "recordedAt": "2026-08-20T02:10:23.328Z",
+      "mattersSelected": 449,
+      "mattersCompleted": 449,
+      "processing": {
+        "success": 449,
+        "partial": 0,
+        "failed_safely": 0
+      },
+      "claimsAudited": 9098,
+      "findingsTotal": 0,
+      "confirmedLiveSharedDefects": 0,
+      "confirmedBySeverity": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0
+      },
+      "clusters": {},
+      "messyAccount": {
+        "messyCorpusDeclared": 3000,
+        "materialisedAuditedExcludingHoldout": 449,
+        "notMaterialisedLocally": 3000,
+        "note": "Full3000 identities from messy-v9 are accounted; only ESA-materialised bundles were claim-audited against current HEAD."
+      },
+      "corpusManifestSha256": "955e22681f344e2e80b5cb4d41b0f003d97d7f8cd6867b1dc174d28c3cac8f45",
+      "gateClean": true
+    }
+  },
+  "greenBlindSpots": 0
+}

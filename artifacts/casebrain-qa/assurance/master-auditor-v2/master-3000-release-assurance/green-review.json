@@ -1,0 +1,288 @@
+{
+  "recordedAt": "2026-08-20T03:22:21.672Z",
+  "head": "da6fc1b9ac99dc8dc154a06548762b759d8646c8",
+  "sampleSize": 40,
+  "blindSpotCandidates": 0,
+  "reviews": [
+    {
+      "caseId": "sim-051",
+      "offenceFamily": "digital_evidence",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-329",
+      "offenceFamily": "drugs_pwits",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "demo-audit-07-phone-ocr-trap",
+      "offenceFamily": "harassment_digital",
+      "issues": [],
+      "chaseCount": 0,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-008",
+      "offenceFamily": "drugs",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "pilot-3-leon-marsh",
+      "offenceFamily": "robbery_identification",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sc-0005e",
+      "offenceFamily": "violence_gbh_s18",
+      "issues": [],
+      "chaseCount": 6,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-010",
+      "offenceFamily": "fraud",
+      "issues": [],
+      "chaseCount": 8,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-144",
+      "offenceFamily": "drugs_pwits",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-262",
+      "offenceFamily": "youth",
+      "issues": [],
+      "chaseCount": 0,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-023",
+      "offenceFamily": "generic",
+      "issues": [],
+      "chaseCount": 4,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-065",
+      "offenceFamily": "false_documents",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-059",
+      "offenceFamily": "driving_motoring",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-305",
+      "offenceFamily": "digital_attribution",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-326",
+      "offenceFamily": "perverting_justice",
+      "issues": [],
+      "chaseCount": 0,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "demo-audit-24-missing-pages-index",
+      "offenceFamily": "theft_retail",
+      "issues": [],
+      "chaseCount": 0,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-347",
+      "offenceFamily": "encro_encrypted_comms",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-022",
+      "offenceFamily": "mixed",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "pilot-3-kian-doyle",
+      "offenceFamily": "pwits_phone_attribution",
+      "issues": [],
+      "chaseCount": 8,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-322",
+      "offenceFamily": "custody_pace",
+      "issues": [],
+      "chaseCount": 0,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-240",
+      "offenceFamily": "weapons",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sc-0005c",
+      "offenceFamily": "pwits_phone",
+      "issues": [],
+      "chaseCount": 8,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-340",
+      "offenceFamily": "breach_order",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-054",
+      "offenceFamily": "public_order_violence",
+      "issues": [],
+      "chaseCount": 4,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-011",
+      "offenceFamily": "perverting",
+      "issues": [],
+      "chaseCount": 8,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-071",
+      "offenceFamily": "breach_orders",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-289",
+      "offenceFamily": "drugs_conspiracy",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-217",
+      "offenceFamily": "sexual",
+      "issues": [],
+      "chaseCount": 4,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-234",
+      "offenceFamily": "robbery_id",
+      "issues": [],
+      "chaseCount": 5,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-300",
+      "offenceFamily": "public_order",
+      "issues": [],
+      "chaseCount": 5,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-126",
+      "offenceFamily": "fraud_documents",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-193",
+      "offenceFamily": "drugs_supply",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "demo-audit-16-fraud-bank-statements",
+      "offenceFamily": "fraud_financial",
+      "issues": [],
+      "chaseCount": 8,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-235",
+      "offenceFamily": "domestic",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-055",
+      "offenceFamily": "bwv_police_contact",
+      "issues": [],
+      "chaseCount": 4,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "demo-audit-21-historic-sexual-abe",
+      "offenceFamily": "sexual_offences",
+      "issues": [],
+      "chaseCount": 3,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-277",
+      "offenceFamily": "motoring",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-205",
+      "offenceFamily": "mixed_unclear",
+      "issues": [],
+      "chaseCount": 3,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-050",
+      "offenceFamily": "domestic_harassment",
+      "issues": [],
+      "chaseCount": 0,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "sim-174",
+      "offenceFamily": "violence_assault",
+      "issues": [],
+      "chaseCount": 4,
+      "status": "GREEN_OK"
+    },
+    {
+      "caseId": "cb-found-2004-clarke",
+      "offenceFamily": "generic_motoring_provisional",
+      "issues": [],
+      "chaseCount": 7,
+      "status": "GREEN_OK"
+    }
+  ]
+}

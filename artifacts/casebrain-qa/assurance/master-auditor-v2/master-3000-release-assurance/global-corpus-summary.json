@@ -1,0 +1,35 @@
+{
+  "programme": "global-corpus-manifest",
+  "mode": "READ_ONLY",
+  "recordedAt": "2026-08-20T03:17:49.306Z",
+  "productHead": "da6fc1b9ac99dc8dc154a06548762b759d8646c8",
+  "legacyAccount": {
+    "email": "gduffy1993@gmail.com",
+    "userId": "63ccc8dc-842e-49b5-9aa9-dcff8f55eb10",
+    "orgId": "11f3d373-a6d0-4a58-ac72-59b5365dc367"
+  },
+  "totals": {
+    "totalLocalPdfCopies": 4548,
+    "uniqueLocalPdfs": 2408,
+    "totalCloudPdfObjects": 1120,
+    "uniqueCloudPdfs": 984,
+    "cloudHashFailures": 114,
+    "localCloudDuplicateHashes": 0,
+    "genuinelyNewCloudOnlyPdfs": 984,
+    "localOnlyPdfs": 2408,
+    "totalGloballyUniquePdfs": 3392,
+    "totalGloballyUniqueCaseBundleGroups": 1578,
+    "mergedAwayLocalDuplicateBundles": 0,
+    "bundlesSuitableForSourceBackedClaimAuditing": 1176,
+    "syntheticOrTemplateDerivedBundles": 514,
+    "inaccessibleOrMissingCloudObjects": 114
+  },
+  "notes": [
+    "Deduplication is by SHA-256 of full PDF bytes.",
+    "Case/bundle count is NOT equal to PDF count; multiple PDFs may share one backend case_id.",
+    "Local bundles overlapping cloud PDF hashes were merged into backend case bundles.",
+    "Git-recoverable entries without a unique basename→hash map are not given a content hash.",
+    "No assurance auditor was run.",
+    "No production storage/DB mutations."
+  ]
+}

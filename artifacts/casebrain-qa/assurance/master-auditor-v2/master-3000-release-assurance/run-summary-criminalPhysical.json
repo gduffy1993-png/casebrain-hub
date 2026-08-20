@@ -1,0 +1,24 @@
+{
+  "tier": "criminalPhysical",
+  "head": "da6fc1b9ac99dc8dc154a06548762b759d8646c8",
+  "recordedAt": "2026-08-20T03:19:57.167Z",
+  "mattersSelected": 449,
+  "mattersCompleted": 449,
+  "processing": {
+    "success": 449,
+    "partial": 0,
+    "failed_safely": 0
+  },
+  "claimsAudited": 9098,
+  "findingsTotal": 0,
+  "confirmedLiveSharedDefects": 0,
+  "confirmedBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "clusters": {},
+  "messyAccount": null,
+  "corpusManifestSha256": "955e22681f344e2e80b5cb4d41b0f003d97d7f8cd6867b1dc174d28c3cac8f45",
+  "gateClean": true
+}

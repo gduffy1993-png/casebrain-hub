@@ -1,0 +1,13 @@
+{
+  "programme": "criminal-corpus-esa-enrichment",
+  "recordedAt": "2026-08-20T03:18:10.899Z",
+  "priorEligible": 170,
+  "addedFromEsa": 419,
+  "skippedAmbiguousOrHousing": 0,
+  "skippedMissingArtefacts": 1,
+  "holdoutSealed": 80,
+  "totalCriminalEligibleBundles": 589,
+  "assuranceRunnableWithTruthAndBundleText": 449,
+  "finalUniqueCriminalCaseBundleCount": 589,
+  "note": "ESA text-only criminal matters added; holdout remains sealed; housing/ambiguous excluded."
+}

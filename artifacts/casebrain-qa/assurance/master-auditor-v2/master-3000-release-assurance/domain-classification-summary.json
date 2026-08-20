@@ -1,0 +1,43 @@
+{
+  "programme": "legal-domain-classification",
+  "mode": "READ_ONLY",
+  "recordedAt": "2026-08-20T03:16:18.843Z",
+  "pdfs": {
+    "total": 2700,
+    "byDomain": {
+      "UNKNOWN_REQUIRES_REVIEW": 2502,
+      "CRIMINAL_DEFENCE": 198
+    }
+  },
+  "bundles": {
+    "total": 864,
+    "byDomain": {
+      "UNKNOWN_REQUIRES_REVIEW": 691,
+      "CRIMINAL_DEFENCE": 173
+    },
+    "criminalUniqueByHashSet": 172,
+    "criminalSourceAuditEligibleUnique": 170,
+    "housingExcluded": 0,
+    "otherLegalExcluded": 0,
+    "nonLegalExcluded": 0,
+    "unknownExcluded": 691
+  },
+  "globalCorpusTotalsPreserved": {
+    "totalLocalPdfCopies": 4548,
+    "uniqueLocalPdfs": 2408,
+    "totalCloudPdfObjects": 1120,
+    "uniqueCloudPdfs": 292,
+    "cloudHashFailures": 828,
+    "localCloudDuplicateHashes": 0,
+    "genuinelyNewCloudOnlyPdfs": 292,
+    "localOnlyPdfs": 2408,
+    "totalGloballyUniquePdfs": 2700,
+    "totalGloballyUniqueCaseBundleGroups": 864,
+    "mergedAwayLocalDuplicateBundles": 0,
+    "bundlesSuitableForSourceBackedClaimAuditing": 462,
+    "syntheticOrTemplateDerivedBundles": 248,
+    "inaccessibleOrMissingCloudObjects": 828
+  },
+  "finalUniqueCriminalCaseBundleCount": 172,
+  "assuranceNotRun": true
+}

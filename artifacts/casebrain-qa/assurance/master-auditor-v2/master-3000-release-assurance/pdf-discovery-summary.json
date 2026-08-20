@@ -1,0 +1,192 @@
+{
+  "programme": "casebrain-physical-pdf-discovery",
+  "mode": "READ_ONLY",
+  "recordedAt": "2026-08-20T02:35:27.549Z",
+  "startedAt": "2026-08-20T02:32:41.996Z",
+  "productWorktree": "C:\\Users\\gduff\\casebrain-hub-wt-real-pdf-live-pilot",
+  "productHead": "da6fc1b9ac99dc8dc154a06548762b759d8646c8",
+  "locationsSearched": [
+    "C:\\Users\\gduff\\casebrain-hub",
+    "C:\\Users\\gduff\\casebrain-case-moves",
+    "C:\\Users\\gduff\\casebrain-hub-maa-adapters-wt",
+    "C:\\Users\\gduff\\casebrain-hub-maa-denominators-wt",
+    "C:\\Users\\gduff\\casebrain-hub-maa-eld-wt",
+    "C:\\Users\\gduff\\casebrain-hub-pr65-base-wt",
+    "C:\\Users\\gduff\\casebrain-hub-pr65-malik-4077a145-wt",
+    "C:\\Users\\gduff\\casebrain-hub-pr65-malik-e9c49569-wt",
+    "C:\\Users\\gduff\\casebrain-hub-pr65-malik-fresh-wt",
+    "C:\\Users\\gduff\\casebrain-hub-solicitor-pilot",
+    "C:\\Users\\gduff\\casebrain-hub-targeted-regression",
+    "C:\\Users\\gduff\\casebrain-hub-wt-legacy-replay",
+    "C:\\Users\\gduff\\casebrain-hub-wt-real-pdf-live-pilot",
+    "C:\\Users\\gduff\\casebrain-hub-wt-s300-authority",
+    "C:\\Users\\gduff\\casebrain-hub-wt-s300-cal",
+    "C:\\Users\\gduff\\casebrain-hub-wt-s300-closure",
+    "C:\\Users\\gduff\\casebrain-hub-wt-s3000-audit-runner",
+    "C:\\Users\\gduff\\casebrain-hub-wt-s3000-census",
+    "C:\\Users\\gduff\\casebrain-hub-wt-s3000-controller",
+    "C:\\Users\\gduff\\casebrain-hub-wt-s3000-coverage",
+    "C:\\Users\\gduff\\casebrain-hub-wt-s3000-diverse",
+    "C:\\Users\\gduff\\casebrain-hub-wt-s3000-execution",
+    "C:\\Users\\gduff\\casebrain-hub-wt-s3000-layout-research",
+    "C:\\Users\\gduff\\casebrain-hub-wt-solicitor-dashboard-ui",
+    "C:\\Users\\gduff\\casebrain-main-baseline",
+    "C:\\Users\\gduff\\CaseBrainBackups"
+  ],
+  "worktreesEnumerated": [
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub",
+      "branch": "programme/criminal-defence-integrity-corpus",
+      "head": "a831a631f3050e096b89633176f023bee2fd6a5f"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-case-moves",
+      "branch": "feature/case-moves-engine",
+      "head": "6de1c4c249cec7fcf688c05293e0b09f7c3d81b4"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-maa-adapters-wt",
+      "branch": "programme/maa-v2-multiexit-adapters",
+      "head": "17361223248b41d719c8de2b98c1eaf2cb4125f6"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-maa-denominators-wt",
+      "branch": "programme/maa-v2-denominator-readiness",
+      "head": "17361223248b41d719c8de2b98c1eaf2cb4125f6"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-maa-eld-wt",
+      "branch": "programme/maa-v2-evidence-locked-drafting",
+      "head": "17361223248b41d719c8de2b98c1eaf2cb4125f6"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-pr65-base-wt",
+      "branch": "(detached)",
+      "head": "cc7e6bb20945a1ae29333da86645781f6f254e89"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-pr65-malik-4077a145-wt",
+      "branch": "(detached)",
+      "head": "4077a14511ae28e563e9de6c379ce5c0378aeb71"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-pr65-malik-e9c49569-wt",
+      "branch": "(detached)",
+      "head": "e9c49569d250edcc196644a1f70ebf2791c02e55"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-pr65-malik-fresh-wt",
+      "branch": "(detached)",
+      "head": "d9dd8d3c24d9f55ff9b0a145344e79ee31808e94"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-solicitor-pilot",
+      "branch": "feature/solicitor-review-shadow-pilot-pack",
+      "head": "73fa227344eecb387d3c4c2a1156688e2031dd56"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-targeted-regression",
+      "branch": "audit/targeted-regression-encro-mixed-v1",
+      "head": "555e473fbbcd76bdc33611993d8e6ac44bc0a4e3"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-wt-legacy-replay",
+      "branch": "programme/legacy-1120-shadow-replay",
+      "head": "e52b379b014729e56712db2a445ffde490d45d4b"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-wt-real-pdf-live-pilot",
+      "branch": "programme/real-pdf-live-pilot-v1",
+      "head": "da6fc1b9ac99dc8dc154a06548762b759d8646c8"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-wt-s300-authority",
+      "branch": "(detached)",
+      "head": "ca51ecba8fd70762488c43c69a4cdda3de9b8566"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-wt-s300-cal",
+      "branch": "(detached)",
+      "head": "bda75a83dcc061d6ed7bbdb21f976015d1b16535"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-wt-s300-closure",
+      "branch": "(detached)",
+      "head": "bda75a83dcc061d6ed7bbdb21f976015d1b16535"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-wt-s3000-audit-runner",
+      "branch": "programme/s3000-parallel-audit",
+      "head": "b49687680c165622883c990fe0f73bb2fd5ed68d"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-wt-s3000-census",
+      "branch": "(detached)",
+      "head": "308b7cb633f83d7c998bc80adf87356de346b3e9"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-wt-s3000-controller",
+      "branch": "programme/s3000-parallel-controller",
+      "head": "b5596c29a74b772aac4fb0220381a22b1dbf95ec"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-wt-s3000-coverage",
+      "branch": "programme/s3000-coverage-plan",
+      "head": "0a00a756a9cef753b3e436417066b4c8be29922c"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-wt-s3000-diverse",
+      "branch": "programme/stage3000-diverse-second-3000",
+      "head": "21a49459d5b4dff36c43a342c2c1625c02fae6c7"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-wt-s3000-execution",
+      "branch": "programme/stage3000-diverse-second-3000-execution",
+      "head": "2c09d58f57840dd1fca0a9e7e329268460d0964b"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-wt-s3000-layout-research",
+      "branch": "programme/s3000-layout-reference",
+      "head": "664ce3d6e4909cc660605520e095fc5bb0b4f264"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-hub-wt-solicitor-dashboard-ui",
+      "branch": "ui/solicitor-dashboard-v1",
+      "head": "9d5f7039037b2a6b5a7573f0e753898c2c2e3c02"
+    },
+    {
+      "path": "C:\\Users\\gduff\\casebrain-main-baseline",
+      "branch": "main",
+      "head": "148a98c85c024e093348eee591a3675af32dc839"
+    }
+  ],
+  "extraNonWorktreeRoots": [
+    "C:\\Users\\gduff\\CaseBrainBackups"
+  ],
+  "inaccessible": [],
+  "totals": {
+    "pdfFilesPhysicallyLocated": 4548,
+    "uniquePdfsByContentHash": 2408,
+    "uniqueCaseOrBundleGroups": 565,
+    "duplicateCopiesExtra": 2140,
+    "gitRecoverablePdfPathRefPairs": 232,
+    "gitUniqueObjectPaths": 232,
+    "gitUniqueBlobs": 132,
+    "gitRecoverableNotPresentAsPhysicalBasename": 0
+  },
+  "corpusGuessBreakdown": {
+    "artifacts-other": 1751,
+    "esa": 830,
+    "other": 648,
+    "test-fixtures": 25,
+    "gold": 246,
+    "diverse-second": 1048
+  },
+  "notes": [
+    "Deduplication is by SHA-256 of full PDF file bytes.",
+    "Page counts are cheap heuristic (/Type /Page in first 8MB) and may be null/approximate.",
+    "Git-recoverable inventory lists blob paths on refs without checkout; content identity vs physical uses basename/size linkage unless blob extracted.",
+    "No synthetic PDF regeneration was performed.",
+    "No worktree checkout or filesystem mutation was performed."
+  ]
+}

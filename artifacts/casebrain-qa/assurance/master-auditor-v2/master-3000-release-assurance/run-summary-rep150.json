@@ -1,0 +1,24 @@
+{
+  "tier": "rep150",
+  "head": "da6fc1b9ac99dc8dc154a06548762b759d8646c8",
+  "recordedAt": "2026-08-20T03:19:05.800Z",
+  "mattersSelected": 150,
+  "mattersCompleted": 150,
+  "processing": {
+    "success": 150,
+    "partial": 0,
+    "failed_safely": 0
+  },
+  "claimsAudited": 3288,
+  "findingsTotal": 0,
+  "confirmedLiveSharedDefects": 0,
+  "confirmedBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "clusters": {},
+  "messyAccount": null,
+  "corpusManifestSha256": "f1ef2dc6c7d2591f7623c2e746457c8855a0ce07dd351ec0dd7e704ff0953304",
+  "gateClean": true
+}

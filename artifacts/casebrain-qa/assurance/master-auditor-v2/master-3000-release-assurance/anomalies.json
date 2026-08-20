@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-08-20T03:22:21.672Z",
+  "head": "da6fc1b9ac99dc8dc154a06548762b759d8646c8",
+  "claimCount": 13192,
+  "supportDist": {
+    "TRUTH_AMBIGUOUS": 6035,
+    "SAFE_DERIVATION": 7157
+  },
+  "kindDist": {
+    "court_position": 6035,
+    "evidence_state": 7155,
+    "chase_request": 2
+  },
+  "surfaceDist": {
+    "court": 3119,
+    "client": 639,
+    "overview": 639,
+    "papers": 5608,
+    "cps_chase": 3187
+  },
+  "phraseHits": {
+    "bwvOutstanding": 226,
+    "cad999Compound": 0,
+    "selfDefenceLive": 0,
+    "transcriptServed": 17,
+    "hearingDeadline": 0,
+    "genericProvenance": 0
+  },
+  "notes": [
+    "phraseHits are distribution signals, not automatic defects",
+    "Zero confirmed defects in tier runner requires green review to defend against auditor blindness"
+  ]
+}

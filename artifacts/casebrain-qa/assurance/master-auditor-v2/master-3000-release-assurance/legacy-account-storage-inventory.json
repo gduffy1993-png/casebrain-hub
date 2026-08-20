@@ -1,0 +1,71 @@
+{
+  "programme": "legacy-account-storage-inventory",
+  "mode": "READ_ONLY",
+  "recordedAt": "2026-08-20T02:40:58.138Z",
+  "mutationsPerformed": false,
+  "passwordResetAttempted": false,
+  "targetEmail": "gduffy1993@gmail.com",
+  "account": {
+    "found": true,
+    "userId": "63ccc8dc-842e-49b5-9aa9-dcff8f55eb10",
+    "email": "gduffy1993@gmail.com",
+    "created_at": "2025-12-24T22:01:59.176892Z",
+    "last_sign_in_at": "2026-06-20T03:05:32.399648Z"
+  },
+  "organisations": {
+    "primarySoloOrgId": "11f3d373-a6d0-4a58-ac72-59b5365dc367",
+    "primarySoloOrgName": "Solo Workspace",
+    "secondaryOrgId": "1aae6bb0-0324-4ab5-8904-eb44ee1fe829",
+    "organisation_members_rows_for_user": 0,
+    "note": "Membership table empty for this user; linkage is via organisations.external_ref = solo-user_<userId>."
+  },
+  "chain": {
+    "accountFound": true,
+    "cases": 1117,
+    "casesByCreator": 1120,
+    "casesSecondaryOrg": 3,
+    "documentRecords": 1117,
+    "documentsByUploader": 1120,
+    "pdfStorageObjectsInPrimaryOrgPrefix": 1102,
+    "pdfStorageObjectsInEntireBucketListed": 1401,
+    "uniquePdfsHashedSample": 49,
+    "uniqueBundlesApprox": 1117,
+    "downloadableReadOnly": true,
+    "downloadPathField": "documents.storage_url (bucket/path); storage_path column usually null"
+  },
+  "correspondenceToBelieved3000": {
+    "believedTarget": 3000,
+    "casesFound": 1117,
+    "pdfObjectsInOrg": 1102,
+    "assessment": "NOT_THE_3000_MESSY_V9_CORPUS",
+    "likelyNature": "Eval/pack uploads (NS-CPS, CB-TEST, CB-GOLD, CB-STAGE, CB-MESSY, CB-LEVERAGE, etc.) under Solo Workspace — about 1.1k cases/PDFs, not 3k unique messy-v9 identities."
+  },
+  "relatedQaAccountPlusAlias": {
+    "found": true,
+    "userId": "c8300c48-f1d9-475d-8b58-4ddd0f35a3db",
+    "email": "gduffy1993+casebrain@gmail.com",
+    "orgs": [
+      {
+        "id": "1cf4ae7c-2c73-40ff-b1c1-957615cd1761",
+        "name": "Solo Workspace",
+        "external_ref": "solo-user_c8300c48-f1d9-475d-8b58-4ddd0f35a3db"
+      }
+    ],
+    "casesByOrgSum": 20,
+    "docsByOrgSum": 20,
+    "casesByCreator": 20
+  },
+  "sampleStorageUrls": [
+    "casebrain-documents/11f3d373-a6d0-4a58-ac72-59b5365dc367/4cccab6d-aaef-41b6-a6b9-8f33ef076c58/1778642411017-NS-CPS-2026-0401.pdf",
+    "casebrain-documents/11f3d373-a6d0-4a58-ac72-59b5365dc367/00087bb9-9b67-4470-a502-02cd3709efc4/1776637803960-NS-CPS-2026-0432.pdf",
+    "casebrain-documents/11f3d373-a6d0-4a58-ac72-59b5365dc367/00125d96-919c-48ee-93b8-9e02eb36fedb/1778642500083-NS-CPS-2026-0430.pdf",
+    "casebrain-documents/11f3d373-a6d0-4a58-ac72-59b5365dc367/00147ff6-14b6-4bd4-a6c8-9bb132a2f5c7/1778799841366-CB-STAGE-2026-0032 - Theft from shop - Rafi Hale.pdf",
+    "casebrain-documents/11f3d373-a6d0-4a58-ac72-59b5365dc367/0023b4b2-1b50-4456-bcdc-af5bab3e8bb8/1778799861245-CB-STAGE-2026-0040 - Public order s.4A - Finn Hale.pdf",
+    "casebrain-documents/11f3d373-a6d0-4a58-ac72-59b5365dc367/0092ce77-f1a8-414e-8655-4cbf5c4ed8de/1778886476554-CB-LEVERAGE-2026-0022.pdf"
+  ],
+  "accessNotes": [
+    "Used existing SUPABASE_SERVICE_ROLE_KEY from product worktree .env.local",
+    "No password reset, no row updates, no deletes, no storage moves",
+    "Full content-hash census of all ~1102 org PDFs not completed (sample only in first pass); objects are downloadable for a later read-only materialisation manifest"
+  ]
+}

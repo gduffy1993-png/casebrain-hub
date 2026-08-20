@@ -133,9 +133,20 @@ function main(): void {
     }
     // Truth-key served item contradicted by chase missing same family (light)
     for (const item of tk.evidenceItems ?? []) {
-      const name = item.evidence_item ?? "";
+      const name = (item.evidence_item ?? "").trim();
       if (!name || item.correct_evidence_state !== "served") continue;
-      if (chase.some((l) => l.toLowerCase().includes(name.toLowerCase().slice(0, 12)))) {
+      const nameLc = name.toLowerCase();
+      // Require a strong phrase match — avoid short prefix collisions
+      // (e.g. "bank statement summaries" vs chase "source bank statements").
+      const chaseHitsServed = chase.some((l) => {
+        const ll = l.toLowerCase();
+        if (ll.includes(nameLc)) return true;
+        // Token overlap: all content words of length>=5 from served name must appear
+        const tokens = nameLc.split(/[^a-z0-9]+/).filter((t) => t.length >= 5);
+        if (tokens.length < 2) return false;
+        return tokens.every((t) => ll.includes(t)) && !/\b(full|source|export|outstanding|missing)\b/i.test(l);
+      });
+      if (chaseHitsServed) {
         issues.push(`CHASE_CONTRADICTS_TRUTH_SERVED:${name.slice(0, 40)}`);
       }
     }
@@ -184,7 +195,12 @@ function main(): void {
           gold40: JSON.parse(readFileSync(path.join(OUT, "run-summary-gold40.json"), "utf8")),
           rep150: JSON.parse(readFileSync(path.join(OUT, "run-summary-rep150.json"), "utf8")),
           highrisk500: JSON.parse(readFileSync(path.join(OUT, "run-summary-highrisk500.json"), "utf8")),
-          full3000: JSON.parse(readFileSync(path.join(OUT, "run-summary-full3000.json"), "utf8")),
+          criminalPhysical: existsSync(path.join(OUT, "run-summary-criminalPhysical.json"))
+            ? JSON.parse(readFileSync(path.join(OUT, "run-summary-criminalPhysical.json"), "utf8"))
+            : null,
+          full3000: existsSync(path.join(OUT, "run-summary-full3000.json"))
+            ? JSON.parse(readFileSync(path.join(OUT, "run-summary-full3000.json"), "utf8"))
+            : null,
         },
         greenBlindSpots: blindSpots,
       },

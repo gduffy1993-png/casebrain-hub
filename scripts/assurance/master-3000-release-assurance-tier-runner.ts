@@ -7,6 +7,7 @@
  *   npx tsx scripts/assurance/master-3000-release-assurance-tier-runner.ts --tier=rep150
  *   npx tsx scripts/assurance/master-3000-release-assurance-tier-runner.ts --tier=highrisk500
  *   npx tsx scripts/assurance/master-3000-release-assurance-tier-runner.ts --tier=full3000
+ *   npx tsx scripts/assurance/master-3000-release-assurance-tier-runner.ts --tier=criminalPhysical
  */
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
@@ -65,7 +66,7 @@ const MESSY_SUMMARY = path.join(
   "artifacts/casebrain-qa/messy-pdf-proof-v9-scale3000/MESSY-PDF-PROOF-SUMMARY.json",
 );
 
-type Tier = "gold40" | "rep150" | "highrisk500" | "full3000";
+type Tier = "gold40" | "rep150" | "highrisk500" | "full3000" | "criminalPhysical";
 
 type ManifestMatter = {
   caseId: string;
@@ -77,52 +78,52 @@ type ManifestMatter = {
   strata?: string[];
 };
 
-type Finding = {
-  caseId: string;
-  tier: Tier;
-  code: string;
-  severity: "P0" | "P1" | "P2";
-  classification:
-    | "CONFIRMED_LIVE_SHARED_DEFECT"
-    | "AUDITOR_FALSE_POSITIVE"
-    | "TRUTH_AMBIGUOUS_REQUIRES_REVIEW"
-    | "EXPECTED_ACCEPTABLE_BEHAVIOUR"
-    | "COVERAGE_GAP_ONLY";
-  detail: string;
-  evidence?: string[];
-};
-
-type Progress = {
-  tier: Tier;
-  head: string;
-  completedCaseIds: string[];
-  startedAt: string;
-  updatedAt: string;
-};
-
-function gitHead(): string {
-  try {
-    return execFileSync("git", ["rev-parse", "HEAD"], { cwd: ROOT, encoding: "utf8" }).trim();
-  } catch {
-    return "unknown";
-  }
-}
-
 function argTier(): Tier {
   const raw = process.argv.find((a) => a.startsWith("--tier="))?.slice("--tier=".length);
-  if (raw === "gold40" || raw === "rep150" || raw === "highrisk500" || raw === "full3000") return raw;
-  throw new Error("Usage: --tier=gold40|rep150|highrisk500|full3000");
-}
-
-function readJson<T>(p: string): T {
-  return JSON.parse(readFileSync(p, "utf8")) as T;
-}
-
-function sha(s: string): string {
-  return createHash("sha256").update(s).digest("hex");
+  if (
+    raw === "gold40" ||
+    raw === "rep150" ||
+    raw === "highrisk500" ||
+    raw === "full3000" ||
+    raw === "criminalPhysical"
+  ) {
+    return raw;
+  }
+  throw new Error("Usage: --tier=gold40|rep150|highrisk500|full3000|criminalPhysical");
 }
 
 function loadMatters(tier: Tier): ManifestMatter[] {
+  if (tier === "criminalPhysical") {
+    const p = path.join(OUT_ROOT, "criminal-corpus-assurance-matters.ndjson");
+    if (!existsSync(p)) {
+      throw new Error(
+        "Missing criminal-corpus-assurance-matters.ndjson — run classify + enrich scripts first",
+      );
+    }
+    const rows = readFileSync(p, "utf8")
+      .split(/\r?\n/)
+      .filter(Boolean)
+      .map(
+        (l) =>
+          JSON.parse(l) as {
+            bundleKey: string;
+            title?: string | null;
+            offenceFamily?: string;
+            sourcePath?: string;
+            truthKeyPath?: string;
+          },
+      );
+    return rows
+      .filter((r) => r.sourcePath && r.truthKeyPath)
+      .map((r) => ({
+        caseId: r.bundleKey.replace(/^local:/, "").replace(/^backend:/, ""),
+        title: r.title ?? undefined,
+        offenceFamily: r.offenceFamily,
+        sourcePath: r.sourcePath,
+        truthKeyPath: r.truthKeyPath,
+      }))
+      .sort((a, b) => a.caseId.localeCompare(b.caseId));
+  }
   if (tier === "gold40") {
     const m = readJson<{ matters: ManifestMatter[] }>(GOLD_MANIFEST);
     return m.matters;
@@ -225,6 +226,45 @@ function loadMatters(tier: Tier): ManifestMatter[] {
     });
   }
   return all;
+}
+
+type Finding = {
+  caseId: string;
+  tier: Tier;
+  code: string;
+  severity: "P0" | "P1" | "P2";
+  classification:
+    | "CONFIRMED_LIVE_SHARED_DEFECT"
+    | "AUDITOR_FALSE_POSITIVE"
+    | "TRUTH_AMBIGUOUS_REQUIRES_REVIEW"
+    | "EXPECTED_ACCEPTABLE_BEHAVIOUR"
+    | "COVERAGE_GAP_ONLY";
+  detail: string;
+  evidence?: string[];
+};
+
+type Progress = {
+  tier: Tier;
+  head: string;
+  completedCaseIds: string[];
+  startedAt: string;
+  updatedAt: string;
+};
+
+function gitHead(): string {
+  try {
+    return execFileSync("git", ["rev-parse", "HEAD"], { cwd: ROOT, encoding: "utf8" }).trim();
+  } catch {
+    return "unknown";
+  }
+}
+
+function readJson<T>(p: string): T {
+  return JSON.parse(readFileSync(p, "utf8")) as T;
+}
+
+function sha(s: string): string {
+  return createHash("sha256").update(s).digest("hex");
 }
 
 function rel(abs: string): string {

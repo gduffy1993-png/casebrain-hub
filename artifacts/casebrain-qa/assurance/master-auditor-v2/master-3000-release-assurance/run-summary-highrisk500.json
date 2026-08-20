@@ -1,0 +1,24 @@
+{
+  "tier": "highrisk500",
+  "head": "da6fc1b9ac99dc8dc154a06548762b759d8646c8",
+  "recordedAt": "2026-08-20T03:19:38.012Z",
+  "mattersSelected": 409,
+  "mattersCompleted": 409,
+  "processing": {
+    "success": 409,
+    "partial": 0,
+    "failed_safely": 0
+  },
+  "claimsAudited": 8292,
+  "findingsTotal": 0,
+  "confirmedLiveSharedDefects": 0,
+  "confirmedBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "clusters": {},
+  "messyAccount": null,
+  "corpusManifestSha256": "981b94bf54e12cbfdb742167f97c8b8ce05562ebf14e45aafe7325c5d35720ac",
+  "gateClean": true
+}
