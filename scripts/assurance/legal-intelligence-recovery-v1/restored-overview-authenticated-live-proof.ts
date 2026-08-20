@@ -518,11 +518,11 @@ async function main() {
       // allow brief extraction settle
       await page.waitForTimeout(PRESET_CASES[matter.id] ? 1000 : 8000);
       overview = await readSurface(page, caseId, "overview");
-      chase = await readSurface(page, caseId, "disclosure-chase");
       await page.screenshot({
         path: path.join(OUT_DIR, `${matter.id}-overview.png`),
         fullPage: true,
       }).catch(() => undefined);
+      chase = await readSurface(page, caseId, "disclosure-chase");
 
       checks.push({
         id: "shell-ready",

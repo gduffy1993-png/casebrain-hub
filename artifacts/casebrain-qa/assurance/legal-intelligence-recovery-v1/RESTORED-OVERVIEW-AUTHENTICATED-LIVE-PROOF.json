@@ -1,0 +1,517 @@
+{
+  "startedAt": "2026-08-20T15:15:03.318Z",
+  "finishedAt": "2026-08-20T15:19:28.728Z",
+  "baseUrl": "https://casebrain-l2galyg9c-gduffy1993-pngs-projects.vercel.app",
+  "email": "gduffy1993+casebrain@gmail.com",
+  "authOk": true,
+  "accessTokenPresent": true,
+  "headShaHint": null,
+  "results": [
+    {
+      "id": "LIVE-01-patel",
+      "label": "Patel affray",
+      "caseId": "ed3c9806-3227-4ee9-ad86-9784e6000084",
+      "pass": true,
+      "checks": [
+        {
+          "id": "shell-ready",
+          "pass": true,
+          "detail": "overview shell ready"
+        },
+        {
+          "id": "product-workspace",
+          "pass": true,
+          "detail": "header + What Needs Attention + selected issue"
+        },
+        {
+          "id": "li-still-present",
+          "pass": true,
+          "detail": "attention product labels present; productLabels=What Needs Attention|OUTSTANDING|INCOMPLETE|CONSIDER|Safe Court Line|Case Readiness"
+        },
+        {
+          "id": "no-default-raw-dump",
+          "pass": true,
+          "detail": "default attention list must not dump SAFE ANALYSIS column"
+        },
+        {
+          "id": "must-see:interview|recording|transcript",
+          "pass": true,
+          "detail": "matched"
+        },
+        {
+          "id": "must-see:CCTV|clip|master|export",
+          "pass": true,
+          "detail": "matched"
+        },
+        {
+          "id": "must-see:PACE|custody|self-defence|first-contact|CAD",
+          "pass": true,
+          "detail": "matched"
+        },
+        {
+          "id": "cps-chase-firewall",
+          "pass": true,
+          "detail": "chaseLiCard=false engineChaseAdv=0 chaseShell=true"
+        },
+        {
+          "id": "family-bwv",
+          "pass": true,
+          "detail": "engine=absent expect=absent"
+        },
+        {
+          "id": "family-cctv",
+          "pass": true,
+          "detail": "engine=mentioned expect=mentioned"
+        },
+        {
+          "id": "family-interview",
+          "pass": true,
+          "detail": "engine=mentioned expect=mentioned"
+        }
+      ],
+      "engine": {
+        "families": {
+          "bwv": "absent",
+          "cctv": "mentioned",
+          "interview": "mentioned"
+        },
+        "overviewWhats": [
+          "Consider separating interview summary vs full recording vs transcript service issues before any court or chase wording.",
+          "Consider distinguishing CCTV stills/clips from master footage / export log before asserting continuity or completeness.",
+          "The CAD / listing timing reference may justify checking whether related call or control-room material exists or is relevant.",
+          "Consider PACE / custody safeguard attack paths where custody or interview process material is in the papers.",
+          "Consider whether self-defence or first-contact issues arise on instructions and the evidence sequence.",
+          "Consider sequence, participation, and whether the Crown can prove the statutory fear-of-violence element from served accounts/CCTV.",
+          "Consider whether BWV exists or requires checking where arrest / officer / violence circumstances make that a sensible investigative question.",
+          "Consider whether medical or injury evidence is relevant to harm / causation once instructions and papers are reviewed."
+        ],
+        "cpsChaseAdvisoryCount": 0,
+        "establishedSample": [
+          "Affray",
+          "Southford Magistrates' Court",
+          "25 August 2026",
+          "MG5: CCTV stills are referred to. The full CCTV master footage/export log is outstanding.",
+          "Custody record pages 3-5 are outstanding.",
+          "Final signed MG11 is outstanding."
+        ],
+        "notEstablishedSample": [
+          "999 audio outstanding",
+          "medical evidence missing",
+          "BWV missing",
+          "CCTV continuity missing",
+          "self-defence as established live case position"
+        ]
+      },
+      "overviewQuote": "What Needs Attention\n\nRanked from canonical evidence and legal intelligence\n\nCCTV outstanding\n\nOUTSTANDING\n\nLIVE-01-patel.pdf\n\nIdentification\nSequence\nCompleteness\n\nCustody / PACE record outstanding\n\nOUTSTANDING\n\nLIVE-01-patel.pdf\n\nTiming\nDisclosure\n\nInterview recording outstanding\n\nOUTSTANDING\n\nLIVE-01-patel.pdf\n\nReliability\nDisclosure\n\nCAD log / timing material\n\nOUTSTANDING\n\nReview the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.\n\nTiming\n\nCCTV Continuity / provenance\n\nOUTSTANDING\n\nReview the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.\n\nIdentification\nSequence\n\nCCTV full window / master footage\n\nOUTSTANDING\n\nReview the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.\n\nIdentification\nSequence\n\nExhibit mapping / provenance\n\nOUTSTANDING\n\nReview the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.\n\nDisclosure\nView all 16 items",
+      "chaseSnippet": "CB\n\nCASE WORK\n\nSOLO WORKSPACE\ngduffy1993+casebrain@gmail.com\nI'm working as:\nCriminal Defence Solicitor\nSearch\nNew Upload\nSign Out\nTrial: 4d left · 25/25 cases · 25/100 docs\nUpgrade\n\nClient not on papers\n\nCharge not safely identified from uploaded papers\n\nSouthford Magistrates' Court\n·\nUpcoming · 25 Aug 2026\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nCourt\nPapers\nClient Summary\nCPS Chase\nFile\nRecord Position\nUpload Evidence\n\nDISCLOSURE CHASE\n\nTOTAL\n\n5\n\nOVERDUE\n\n0\n\nDUE SOON\n\n4\n\nCHASED\n\n0\n\nRECEIVED\n\n0\n\nNOT STARTED\n\n1\n\nAll\nOve",
+      "epistemicLabels": [],
+      "productLabels": [
+        "What Needs Attention",
+        "OUTSTANDING",
+        "INCOMPLETE",
+        "CONSIDER",
+        "Safe Court Line",
+        "Case Readiness"
+      ],
+      "hasWorkspace": true,
+      "urls": {
+        "overview": "https://casebrain-l2galyg9c-gduffy1993-pngs-projects.vercel.app/cases/ed3c9806-3227-4ee9-ad86-9784e6000084?tab=overview&controlRoom=1",
+        "chase": "https://casebrain-l2galyg9c-gduffy1993-pngs-projects.vercel.app/cases/ed3c9806-3227-4ee9-ad86-9784e6000084?tab=disclosure-chase&controlRoom=1"
+      }
+    },
+    {
+      "id": "LIVE-02-phone",
+      "label": "Digital/phone harassment",
+      "caseId": "91d42617-1aae-4b4e-b15b-1ded55e3dc74",
+      "pass": true,
+      "checks": [
+        {
+          "id": "shell-ready",
+          "pass": true,
+          "detail": "overview shell ready"
+        },
+        {
+          "id": "product-workspace",
+          "pass": true,
+          "detail": "header + What Needs Attention + selected issue"
+        },
+        {
+          "id": "li-still-present",
+          "pass": true,
+          "detail": "attention product labels present; productLabels=What Needs Attention|OUTSTANDING|INCOMPLETE|CONSIDER|NOT ESTABLISHED|Safe Court Line|Case Readiness"
+        },
+        {
+          "id": "no-default-raw-dump",
+          "pass": true,
+          "detail": "default attention list must not dump SAFE ANALYSIS column"
+        },
+        {
+          "id": "must-see:attribution|download|subscriber",
+          "pass": true,
+          "detail": "matched"
+        },
+        {
+          "id": "must-not-see:Consider whether BWV exists|distinguishing CCTV|BWV will be used|Confirm(?:ing)? BWV status",
+          "pass": true,
+          "detail": "absent from Overview intelligence"
+        },
+        {
+          "id": "cps-chase-firewall",
+          "pass": true,
+          "detail": "chaseLiCard=false engineChaseAdv=0 chaseShell=true"
+        },
+        {
+          "id": "family-bwv",
+          "pass": true,
+          "detail": "engine=negated expect=negated"
+        },
+        {
+          "id": "family-cctv",
+          "pass": true,
+          "detail": "engine=negated expect=negated"
+        },
+        {
+          "id": "family-interview",
+          "pass": true,
+          "detail": "engine=absent expect=absent"
+        }
+      ],
+      "engine": {
+        "families": {
+          "bwv": "negated",
+          "cctv": "negated",
+          "interview": "absent"
+        },
+        "overviewWhats": [
+          "Consider attribution: screenshots vs full download / subscriber mapping before any definitive attribution wording.",
+          "Defer final strategy. Issue a single consolidated disclosure request covering every outstanding item, with a stated deadline. Set a calendar review for the day after the deadline."
+        ],
+        "cpsChaseAdvisoryCount": 0,
+        "establishedSample": [
+          "Harassment",
+          "Full phone download / subscriber mapping outstanding."
+        ],
+        "notEstablishedSample": [
+          "999 audio outstanding",
+          "medical evidence missing",
+          "BWV missing"
+        ]
+      },
+      "overviewQuote": "What Needs Attention\n\nRanked from canonical evidence and legal intelligence\n\nSubscriber / attribution data outstanding\n\nOUTSTANDING\n\nLIVE-02-phone.pdf\n\nCompleteness\nDisclosure\n\nExhibit mapping / provenance\n\nOUTSTANDING\n\nExhibit mapping/provenance may need to be confirmed before exhibits are relied upon in court (linked to route: Identification / visual ID pressure).\n\nDisclosure\n\n999 / control-room material\n\nNOT ESTABLISHED\n\nThe current papers do not establish this material as outstanding or as a live case position. 999 audio is not established by the papers.\n\nTiming\nDisclosure\n\nBWV material\n\nNOT ESTABLISHED\n\nThe current papers do not establish this material as outstanding or as a live case position. Family 'bwv' is explicitly negated in source — must not be asserted as outstanding/missing fact.\n\nIdentification\nDisclosure\n\nMedical evidence\n\nNOT ESTABLISHED\n\nThe current papers do not establish this material as outstanding or as a live case position. Family 'medical' is absent from source — must not be asserted as outstanding/missing fact.\n\nDisclosure\n\nIssue a written disclosure request for the phone / device download re…\n\nCONSIDER\n\nthe phone / device download report is material to a fair assessment. Without it, the defence cannot finalise position and the prosecution cannot demonstrate compliance with disclosure duties.\n\nCompleteness\nDisclosure",
+      "chaseSnippet": "CB\n\nCASE WORK\n\nSOLO WORKSPACE\ngduffy1993+casebrain@gmail.com\nI'm working as:\nCriminal Defence Solicitor\nSearch\nNew Upload\nSign Out\nTrial: 4d left · 25/25 cases · 25/100 docs\nUpgrade\n\nClient not on papers\n\nHarassment\n\nCourt not safely identified from uploaded papers\n·\nHearing not on papers\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nCourt\nPapers\nClient Summary\nCPS Chase\nFile\nRecord Position\nUpload Evidence\n\nDISCLOSURE CHASE\n\nTOTAL\n\n2\n\nOVERDUE\n\n0\n\nDUE SOON\n\n0\n\nCHASED\n\n0\n\nRECEIVED\n\n0\n\nNOT STARTED\n\n2\n\nAll\nOverdue\nDue soon\nChased",
+      "epistemicLabels": [],
+      "productLabels": [
+        "What Needs Attention",
+        "OUTSTANDING",
+        "INCOMPLETE",
+        "CONSIDER",
+        "NOT ESTABLISHED",
+        "Safe Court Line",
+        "Case Readiness"
+      ],
+      "hasWorkspace": true,
+      "urls": {
+        "overview": "https://casebrain-l2galyg9c-gduffy1993-pngs-projects.vercel.app/cases/91d42617-1aae-4b4e-b15b-1ded55e3dc74?tab=overview&controlRoom=1",
+        "chase": "https://casebrain-l2galyg9c-gduffy1993-pngs-projects.vercel.app/cases/91d42617-1aae-4b4e-b15b-1ded55e3dc74?tab=disclosure-chase&controlRoom=1"
+      }
+    },
+    {
+      "id": "LIVE-03-bwv-cctv",
+      "label": "Violence BWV/CCTV",
+      "caseId": "3d52134b-6251-424a-8688-7c70fea3d379",
+      "pass": false,
+      "checks": [
+        {
+          "id": "shell-ready",
+          "pass": true,
+          "detail": "overview shell ready"
+        },
+        {
+          "id": "product-workspace",
+          "pass": false,
+          "detail": "product workspace missing"
+        },
+        {
+          "id": "li-still-present",
+          "pass": true,
+          "detail": "attention product labels present; productLabels=What Needs Attention|OUTSTANDING|INCOMPLETE|CONSIDER|NOT ESTABLISHED|Safe Court Line|Case Readiness"
+        },
+        {
+          "id": "no-default-raw-dump",
+          "pass": true,
+          "detail": "default attention list must not dump SAFE ANALYSIS column"
+        },
+        {
+          "id": "must-see:BWV",
+          "pass": true,
+          "detail": "matched"
+        },
+        {
+          "id": "must-see:PACE|custody",
+          "pass": true,
+          "detail": "matched"
+        },
+        {
+          "id": "must-not-see:interview summary vs full recording|disclosure-interview|Interview recording outstanding as consideration invent",
+          "pass": true,
+          "detail": "absent from Overview intelligence"
+        },
+        {
+          "id": "cps-chase-firewall",
+          "pass": true,
+          "detail": "chaseLiCard=false engineChaseAdv=0 chaseShell=true"
+        },
+        {
+          "id": "family-bwv",
+          "pass": true,
+          "detail": "engine=mentioned expect=mentioned"
+        },
+        {
+          "id": "family-cctv",
+          "pass": true,
+          "detail": "engine=absent expect=absent"
+        },
+        {
+          "id": "family-interview",
+          "pass": true,
+          "detail": "engine=absent expect=absent"
+        }
+      ],
+      "engine": {
+        "families": {
+          "bwv": "mentioned",
+          "cctv": "absent",
+          "interview": "absent"
+        },
+        "overviewWhats": [
+          "Consider how served or outstanding BWV will be used for sequence, force, and first-contact analysis once the product is reviewed.",
+          "Consider PACE / custody safeguard attack paths where custody or interview process material is in the papers.",
+          "Consider a structured disclosure request pack for unused / scheduled material that is source-referenced but not yet served.",
+          "Consider whether medical or injury evidence is relevant to harm / causation once instructions and papers are reviewed.",
+          "Defer final strategy. Issue a single consolidated disclosure request covering every outstanding item, with a stated deadline. Set a calendar review for the day after the deadline."
+        ],
+        "cpsChaseAdvisoryCount": 0,
+        "establishedSample": [
+          "Assault on emergency worker",
+          "BWV referred on schedule but not served — outstanding."
+        ],
+        "notEstablishedSample": [
+          "999 audio outstanding",
+          "medical evidence missing"
+        ]
+      },
+      "overviewQuote": "What Needs Attention\n\nRanked from canonical evidence and legal intelligence\n\nBWV outstanding\n\nOUTSTANDING\n\nLIVE-03-bwv-cctv.pdf\n\nIdentification\nCompleteness\nDisclosure\n\nBody-worn video (BWV)\n\nOUTSTANDING\n\nReview the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.\n\nIdentification\n\nInterview recording / transcript\n\nOUTSTANDING\n\nReview the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited. [exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding]\n\nReliability\n\n999 / control-room material\n\nNOT ESTABLISHED\n\nThe current papers do not establish this material as outstanding or as a live case position. 999 audio is not established by the papers.\n\nTiming\nDisclosure\n\nMedical evidence\n\nNOT ESTABLISHED\n\nThe current papers do not establish this material as outstanding or as a live case position. Family 'medical' is absent from source — must not be asserted as outstanding/missing fact.\n\nDisclosure\n\nInterview material on file\n\nNOT SAFELY CONFIRMED\n\nNot safely confirmed on the current papers.\n\nReliability\n\na structured disclosure request pack for unused / scheduled material…\n\nCONSIDER\n\nHistorical disclosure-pack generators are useful as solicitor planning tools; they must not auto-create CPS chase rows.\n\nCompleteness\nDisclosure\nView all 8 items",
+      "chaseSnippet": "CB\n\nCASE WORK\n\nSOLO WORKSPACE\ngduffy1993+casebrain@gmail.com\nI'm working as:\nCriminal Defence Solicitor\nSearch\nNew Upload\nSign Out\nTrial: 4d left · 25/25 cases · 25/100 docs\nUpgrade\n\nClient not on papers\n\nAssault on emergency worker\n\nCourt not safely identified from uploaded papers\n·\nHearing not on papers\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nCourt\nPapers\nClient Summary\nCPS Chase\nFile\nRecord Position\nUpload Evidence\n\nDISCLOSURE CHASE\n\nTOTAL\n\n2\n\nOVERDUE\n\n0\n\nDUE SOON\n\n0\n\nCHASED\n\n0\n\nRECEIVED\n\n0\n\nNOT STARTED\n\n2\n\nAll\nOverdu",
+      "epistemicLabels": [],
+      "productLabels": [
+        "What Needs Attention",
+        "OUTSTANDING",
+        "INCOMPLETE",
+        "CONSIDER",
+        "NOT ESTABLISHED",
+        "Safe Court Line",
+        "Case Readiness"
+      ],
+      "hasWorkspace": false,
+      "urls": {
+        "overview": "https://casebrain-l2galyg9c-gduffy1993-pngs-projects.vercel.app/cases/3d52134b-6251-424a-8688-7c70fea3d379?tab=overview&controlRoom=1",
+        "chase": "https://casebrain-l2galyg9c-gduffy1993-pngs-projects.vercel.app/cases/3d52134b-6251-424a-8688-7c70fea3d379?tab=disclosure-chase&controlRoom=1"
+      }
+    },
+    {
+      "id": "LIVE-04-order-breach",
+      "label": "Order breach thin",
+      "caseId": "b19d37cf-fef0-4fdc-b749-047f1210537f",
+      "pass": true,
+      "checks": [
+        {
+          "id": "shell-ready",
+          "pass": true,
+          "detail": "overview shell ready"
+        },
+        {
+          "id": "product-workspace",
+          "pass": true,
+          "detail": "header + What Needs Attention + selected issue"
+        },
+        {
+          "id": "li-still-present",
+          "pass": true,
+          "detail": "attention product labels present; productLabels=What Needs Attention|OUTSTANDING|INCOMPLETE|CONSIDER|NOT ESTABLISHED|Safe Court Line|Case Readiness"
+        },
+        {
+          "id": "no-default-raw-dump",
+          "pass": true,
+          "detail": "default attention list must not dump SAFE ANALYSIS column"
+        },
+        {
+          "id": "must-see:order|service|MG11|restraining",
+          "pass": true,
+          "detail": "matched"
+        },
+        {
+          "id": "cps-chase-firewall",
+          "pass": true,
+          "detail": "chaseLiCard=false engineChaseAdv=0 chaseShell=true"
+        },
+        {
+          "id": "family-bwv",
+          "pass": true,
+          "detail": "engine=absent expect=absent"
+        },
+        {
+          "id": "family-cctv",
+          "pass": true,
+          "detail": "engine=absent expect=absent"
+        },
+        {
+          "id": "family-interview",
+          "pass": true,
+          "detail": "engine=absent expect=absent"
+        }
+      ],
+      "engine": {
+        "families": {
+          "bwv": "absent",
+          "cctv": "absent",
+          "interview": "absent"
+        },
+        "overviewWhats": [
+          "Map the alleged act against the precise order prohibition(s) on the served order extract before any breach admission wording.",
+          "Consider whether service / knowledge of the order is proved (sealed order, proof of service, or admission of knowledge) before treating breach as made out.",
+          "Treat complainant MG11 / witness statement status as a disclosure and proof issue for the breach allegation — not as proof of service of the order itself.",
+          "Check timing, location, and attribution of the alleged breach event against order operative dates and any amendments / expiry.",
+          "Defer final strategy. Issue a single consolidated disclosure request covering every outstanding item, with a stated deadline. Set a calendar review for the day after the deadline."
+        ],
+        "cpsChaseAdvisoryCount": 0,
+        "establishedSample": [
+          "Breach of restraining order",
+          "Sealed order / proof of service outstanding.",
+          "Complainant MG11 outstanding."
+        ],
+        "notEstablishedSample": [
+          "999 audio outstanding",
+          "medical evidence missing",
+          "BWV missing"
+        ]
+      },
+      "overviewQuote": "What Needs Attention\n\nRanked from canonical evidence and legal intelligence\n\nComplainant MG11\n\nOUTSTANDING\n\nLIVE-04-order-breach.pdf\n\nReliability\n\nSealed order / proof of service\n\nOUTSTANDING\n\nLIVE-04-order-breach.pdf\n\nDisclosure\n\n999 / control-room material\n\nNOT ESTABLISHED\n\nThe current papers do not establish this material as outstanding or as a live case position. 999 audio is not established by the papers.\n\nTiming\nDisclosure\n\nBWV material\n\nNOT ESTABLISHED\n\nThe current papers do not establish this material as outstanding or as a live case position. Family 'bwv' is absent from source — must not be asserted as outstanding/missing fact.\n\nIdentification\nDisclosure\n\nMedical evidence\n\nNOT ESTABLISHED\n\nThe current papers do not establish this material as outstanding or as a live case position. Family 'medical' is absent from source — must not be asserted as outstanding/missing fact.\n\nDisclosure\n\nIssue a written disclosure request for the outstanding MG11 witness s…\n\nCONSIDER\n\nthe outstanding MG11 witness statement(s) is material to a fair assessment. Without it, the defence cannot finalise position and the prosecution cannot demonstrate compliance with disclosure duties.\n\nCompleteness\nReliability\nDisclosure\n\nCheck timing, location, and attribution of the alleged breach event a…\n\nCONSIDER\n\nExpired, varied, or mis-attributed events collapse breach proof without inventing missing media evidence.\n\nTiming",
+      "chaseSnippet": "CB\n\nCASE WORK\n\nSOLO WORKSPACE\ngduffy1993+casebrain@gmail.com\nI'm working as:\nCriminal Defence Solicitor\nSearch\nNew Upload\nSign Out\nTrial: 4d left · 25/25 cases · 25/100 docs\nUpgrade\n\nClient not on papers\n\nBreach of restraining order\n\nCourt not safely identified from uploaded papers\n·\nHearing not on papers\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nCourt\nPapers\nClient Summary\nCPS Chase\nFile\nRecord Position\nUpload Evidence\n\nDISCLOSURE CHASE\n\nTOTAL\n\n1\n\nOVERDUE\n\n0\n\nDUE SOON\n\n0\n\nCHASED\n\n0\n\nRECEIVED\n\n0\n\nNOT STARTED\n\n1\n\nAll\nOverdu",
+      "epistemicLabels": [],
+      "productLabels": [
+        "What Needs Attention",
+        "OUTSTANDING",
+        "INCOMPLETE",
+        "CONSIDER",
+        "NOT ESTABLISHED",
+        "Safe Court Line",
+        "Case Readiness"
+      ],
+      "hasWorkspace": true,
+      "urls": {
+        "overview": "https://casebrain-l2galyg9c-gduffy1993-pngs-projects.vercel.app/cases/b19d37cf-fef0-4fdc-b749-047f1210537f?tab=overview&controlRoom=1",
+        "chase": "https://casebrain-l2galyg9c-gduffy1993-pngs-projects.vercel.app/cases/b19d37cf-fef0-4fdc-b749-047f1210537f?tab=disclosure-chase&controlRoom=1"
+      }
+    },
+    {
+      "id": "LIVE-05-motoring",
+      "label": "Motoring / mixed thin",
+      "caseId": "3948e152-6570-473a-b167-0eb3dd950d10",
+      "pass": false,
+      "checks": [
+        {
+          "id": "shell-ready",
+          "pass": true,
+          "detail": "overview shell ready"
+        },
+        {
+          "id": "product-workspace",
+          "pass": false,
+          "detail": "product workspace missing"
+        },
+        {
+          "id": "li-still-present",
+          "pass": true,
+          "detail": "attention product labels present; productLabels=What Needs Attention|OUTSTANDING|INCOMPLETE|CONSIDER|NOT ESTABLISHED|Safe Court Line|Case Readiness"
+        },
+        {
+          "id": "no-default-raw-dump",
+          "pass": true,
+          "detail": "default attention list must not dump SAFE ANALYSIS column"
+        },
+        {
+          "id": "must-see:NIP|s\\.?172|driving|dashcam|export",
+          "pass": true,
+          "detail": "matched"
+        },
+        {
+          "id": "must-not-see:interview summary vs full recording",
+          "pass": true,
+          "detail": "absent from Overview intelligence"
+        },
+        {
+          "id": "cps-chase-firewall",
+          "pass": true,
+          "detail": "chaseLiCard=false engineChaseAdv=0 chaseShell=true"
+        },
+        {
+          "id": "family-bwv",
+          "pass": true,
+          "detail": "engine=absent expect=absent"
+        },
+        {
+          "id": "family-cctv",
+          "pass": true,
+          "detail": "engine=mentioned expect=mentioned"
+        },
+        {
+          "id": "family-interview",
+          "pass": true,
+          "detail": "engine=absent expect=absent"
+        }
+      ],
+      "engine": {
+        "families": {
+          "bwv": "absent",
+          "cctv": "mentioned",
+          "interview": "absent"
+        },
+        "overviewWhats": [
+          "Consider distinguishing CCTV stills/clips from master footage / export log before asserting continuity or completeness.",
+          "Pin the Crown to the precise driving acts said to fall far below the careful and competent driver standard — separate outcome (collision/injury) from the driving acts.",
+          "Consider driver identification / s.172 response integrity against the NIP and any nomination trail before conceding who was driving.",
+          "Consider: Identify the precise driving acts relied on; compare against the careful and competent driver test. Consider expert / collision investigator material if available.",
+          "Defer final strategy. Issue a single consolidated disclosure request covering every outstanding item, with a stated deadline. Set a calendar review for the day after the deadline."
+        ],
+        "cpsChaseAdvisoryCount": 0,
+        "establishedSample": [
+          "Dangerous driving",
+          "Dashcam clip referred; full export outstanding."
+        ],
+        "notEstablishedSample": [
+          "999 audio outstanding",
+          "medical evidence missing",
+          "BWV missing"
+        ]
+      },
+      "overviewQuote": "What Needs Attention\n\nRanked from canonical evidence and legal intelligence\n\nCCTV Continuity / provenance\n\nOUTSTANDING\n\nReview the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.\n\nIdentification\nSequence\n\nCCTV full window / master footage\n\nOUTSTANDING\n\nReview the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.\n\nIdentification\nSequence\n\n999 / control-room material\n\nNOT ESTABLISHED\n\nThe current papers do not establish this material as outstanding or as a live case position. 999 audio is not established by the papers.\n\nTiming\nDisclosure\n\nBWV material\n\nNOT ESTABLISHED\n\nThe current papers do not establish this material as outstanding or as a live case position. Family 'bwv' is absent from source — must not be asserted as outstanding/missing fact.\n\nIdentification\nDisclosure\n\nMedical evidence\n\nNOT ESTABLISHED\n\nThe current papers do not establish this material as outstanding or as a live case position. Family 'medical' is absent from source — must not be asserted as outstanding/missing fact.\n\nDisclosure\n\nDefer final strategy. Issue a single consolidated disclosure request…\n\nCONSIDER\n\nCommitting to a defence narrative the bundle cannot yet support is one of the highest-risk things a defence team can do.\n\nCompleteness\nDisclosure\n\ndriver identification / s.172 response integrity against the NIP and…\n\nCONSIDER\n\nWhere NIP / s.172 material is on the papers, identity of the driver is often a live element — not invented from the motoring label alone.\n\nIdentification\nView all 8 items",
+      "chaseSnippet": "CB\n\nCASE WORK\n\nSOLO WORKSPACE\ngduffy1993+casebrain@gmail.com\nI'm working as:\nCriminal Defence Solicitor\nSearch\nNew Upload\nSign Out\nTrial: 4d left · 25/25 cases · 25/100 docs\nUpgrade\n\nClient not on papers\n\nDangerous driving\n\nCourt not safely identified from uploaded papers\n·\nHearing not on papers\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nCourt\nPapers\nClient Summary\nCPS Chase\nFile\nRecord Position\nUpload Evidence\n\nDISCLOSURE CHASE\n\nTOTAL\n\n2\n\nOVERDUE\n\n0\n\nDUE SOON\n\n0\n\nCHASED\n\n0\n\nRECEIVED\n\n0\n\nNOT STARTED\n\n2\n\nAll\nOverdue\nDue soon",
+      "epistemicLabels": [],
+      "productLabels": [
+        "What Needs Attention",
+        "OUTSTANDING",
+        "INCOMPLETE",
+        "CONSIDER",
+        "NOT ESTABLISHED",
+        "Safe Court Line",
+        "Case Readiness"
+      ],
+      "hasWorkspace": false,
+      "urls": {
+        "overview": "https://casebrain-l2galyg9c-gduffy1993-pngs-projects.vercel.app/cases/3948e152-6570-473a-b167-0eb3dd950d10?tab=overview&controlRoom=1",
+        "chase": "https://casebrain-l2galyg9c-gduffy1993-pngs-projects.vercel.app/cases/3948e152-6570-473a-b167-0eb3dd950d10?tab=disclosure-chase&controlRoom=1"
+      }
+    }
+  ],
+  "verdict": "RESTORED_OVERVIEW_LIVE_PROOF_NEEDS_FIXES"
+}
