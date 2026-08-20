@@ -49,6 +49,11 @@ import {
   resolveAuthenticatedCanonicalEvidenceAuthority,
   type AuthenticatedCanonicalAuthority,
 } from "@/lib/criminal/authenticated-canonical-evidence-guard";
+import {
+  buildLegalIntelligence,
+  considerationsForSurface,
+  type LegalIntelligenceResult,
+} from "@/lib/criminal/legal-intelligence";
 
 function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
   if (docCount === 0) return "unknown";
@@ -513,6 +518,28 @@ export function useMatterBrief(caseId: string) {
       hearing: hearingResolved,
     });
 
+    const servedLabels = evidenceRowsFromCanonical
+      .filter((r) => r.existence === "served" || /served|on file/i.test(r.label))
+      .map((r) => r.label);
+    const outstandingLabels = [
+      ...chase.items.map((i) => i.label),
+      ...evidenceRowsFromCanonical
+        .filter((r) => r.existence === "missing" || r.existence === "referred_only" || /outstanding|not served/i.test(r.label))
+        .map((r) => r.label),
+    ];
+    const legalIntelligence: LegalIntelligenceResult = buildLegalIntelligence({
+      caseId,
+      allegation: allegation ?? undefined,
+      offenceType: allegation ?? undefined,
+      bundleText: bundleHay || bundleTextForBrief || "",
+      servedEvidence: servedLabels,
+      outstandingEvidence: outstandingLabels,
+      missingEvidence: evidenceRowsFromCanonical
+        .filter((r) => r.existence === "missing")
+        .map((r) => r.label),
+    });
+    const overviewConsiderations = considerationsForSurface(legalIntelligence, "overview");
+
     return {
       matterBrief,
       matterConfidence,
@@ -534,6 +561,8 @@ export function useMatterBrief(caseId: string) {
       evidenceRowsOverride,
       canonicalAuthority,
       suppressChaseDerivedEvidence: authCanonical.suppressChaseDerivedEvidence,
+      legalIntelligence,
+      overviewConsiderations,
       bundleMeta: bundleSource
         ? {
             documentCount: Math.max(snapshot?.analysis.docCount ?? 0, bundleSource.documentCount ?? 0),
@@ -595,5 +624,7 @@ export function useMatterBrief(caseId: string) {
       ? true
       : (pilotMatter?.suppressChaseDerivedEvidence ?? pendingAuthCanonical.suppressChaseDerivedEvidence),
     caseTitle: snapshot?.caseMeta?.title?.trim() || "Criminal case",
+    legalIntelligence: pilotMatter?.legalIntelligence ?? null,
+    overviewConsiderations: pilotMatter?.overviewConsiderations ?? [],
   };
 }

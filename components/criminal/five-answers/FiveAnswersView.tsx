@@ -20,6 +20,7 @@ import { OverviewCourtPrepCard } from "./OverviewCourtPrepCard";
 import { OverviewEvidenceGapsCard } from "./OverviewEvidenceGapsCard";
 import { OverviewProofDepthDrawer } from "./OverviewProofDepthDrawer";
 import { OverviewSafeWordingCard } from "./OverviewSafeWordingCard";
+import { OverviewLegalIntelligenceCard } from "./OverviewLegalIntelligenceCard";
 import { OverviewSnapshotBoxes } from "./OverviewSnapshotBoxes";
 import { EvidenceTruthMapPanel } from "./EvidenceTruthMapPanel";
 import { ProofReceiptPanel } from "./ProofReceiptPanel";
@@ -81,6 +82,8 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     evidenceRowsOverride,
     canonicalAuthority,
     suppressChaseDerivedEvidence,
+    legalIntelligence,
+    overviewConsiderations,
   } = useMatterBrief(caseId);
   const buildTabHref = usePilotMatterTabHref();
 
@@ -359,6 +362,13 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
         />
 
         <OverviewSafeWordingCard safeToSay={safeToSay} notSafeToSay={blockedExamples} />
+
+        {legalIntelligence ? (
+          <OverviewLegalIntelligenceCard
+            legalIntelligence={legalIntelligence}
+            overviewConsiderations={overviewConsiderations ?? []}
+          />
+        ) : null}
 
         {hearingMode ? (
           <OverviewCourtPrepCard
