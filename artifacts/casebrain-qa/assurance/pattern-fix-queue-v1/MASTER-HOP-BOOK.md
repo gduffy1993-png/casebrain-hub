@@ -14,8 +14,9 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 
 | Status | N |
 |--------|--:|
-| FIXED (prior surgical + Trap CCTV + this wave) | 12 |
-| OPEN (remaining) | 5 |
+| FIXED (prior surgical + Trap CCTV + this wave) | 17 |
+| OPEN (remaining) | 0 |
+| STOP (UI redesign) | 2 |
 | WATCH (UI / soft / volume triage) | 4 |
 
 ---
@@ -34,16 +35,15 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 
 ## OPEN — fix order (gym / PDF-true)
 
-### 1. `INTERVIEW_SUMMARY_VS_RECORDING_LUMP` · OPEN · order **1**
+### 1. `INTERVIEW_SUMMARY_VS_RECORDING_LUMP` · FIXED · order **1**
 - **Surfaces:** Chase (+ Overview gaps volume)
 - **Class:** invent + modality lump
-- **Sweep triage:** invent_interview_recording ~477; modality_summary_vs_recording ~301 (triage)
 - **Gym:** Tobin, Ahmed, Patel (lump); Trap invent already FIXED
 - **PDF verify:** Summary ≠ recording/transcript; chase as one card collapses modalities
-- **Suggested fix:** Shared chase family / humanize — keep recording vs transcript split; never promote summary→recording (residual glue on Chase card label)
-- **Opposite:** Patel/Tobin recording|transcript outstanding must still surface when PDF establishes it
+- **Fix:** `reconcileInterviewModalityItems` + modality-true family labels (`d228df56e`) — no slash-blend identity
+- **Opposite:** Patel/Tobin recording|transcript outstanding must still surface when PDF establishes it — **PASS**
 
-### 2. `CAD_EXTRACT_PRESENT_STILL_CHASED` · OPEN · order **2**
+### 2. `CAD_EXTRACT_PRESENT_STILL_CHASED` · FIXED · order **2**
 - **Surfaces:** Chase (+ Overview gaps); Papers court-line CAD language
 - **Class:** modality lump / present→chase
 - **Gym:** Grant, Tobin, Dunn
@@ -59,30 +59,28 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 - **Suggested fix:** Keep source-gate; ensure extract-only language does not invent 999 audio
 - **Opposite:** Dunn/Patel/Grant CAD pressure when PDF establishes CAD/999
 
-### 4. `PHONE_DOWNLOAD_MIDSTATE_MUTE_OR_SPLIT` · OPEN · order **3**
+### 4. `PHONE_DOWNLOAD_MIDSTATE_MUTE_OR_SPLIT` · FIXED · order **3**
 - **Surfaces:** Papers TP soft / Chase mute split
 - **Class:** mute / mid-state
 - **Gym:** Grant, Tobin (Brookes TP + Arden property TN **held**)
 - **PDF verify:** Grant “Logical download summary only”; Tobin referenced-only
-- **Suggested fix:** Mid-state wording (summary on file / full report not in section) — not Brookes invent, not Arden mute
-- **Opposite:** Brookes full download outstanding TP; Arden property-phone TN
+- **Fix:** `reconcilePhoneDownloadModalityItems` (`d228df56e`) — mid-state inject; Brookes full TP; Arden property TN
+- **Opposite:** Brookes full download outstanding TP; Arden property-phone TN — **PASS**
 
-### 5. `PAPERS_COLLAPSED_NO_DOC_INVENTORY` · OPEN · order **4** · careful
+### 5. `PAPERS_COLLAPSED_NO_DOC_INVENTORY` · STOP · order **4** · redesign
 - **Surfaces:** Papers
 - **Class:** surface mute
 - **Gym:** **8/8** (Arden, Brookes, Trap, Dunn, Ahmed, Patel, Tobin, Grant)
 - **PDF verify:** All live gym → Control Room + `MORE PAPERS DETAIL UNAVAILABLE`
-- **Suggested fix:** Shared projection / papers inventory root only — **no Overview redesign**
-- **Opposite:** N/A (surface completeness)
+- **STOP:** Shared projection is Control Room + `SolicitorDeepDetailGate` integrity block — true doc inventory needs UI redesign beyond surgical truth. Continue other hops.
 
-### 6. `CLIENT_TAB_EQUALS_COURT_CONTROL_ROOM` · OPEN · order **4b** · careful
+### 6. `CLIENT_TAB_EQUALS_COURT_CONTROL_ROOM` · STOP · order **4b** · redesign
 - **Surfaces:** Client Summary ≡ Court Control Room
 - **Class:** surface / projection
 - **Gym:** Arden, Brookes, Trap
-- **Suggested fix:** Shared client-safe projection distinct from SAFE COURT LINE — **no redesign pass**
-- **Opposite:** Client factual summary when papers establish distinct client account
+- **STOP:** Same Control Room projection root — no redesign in this wave.
 
-### 7. `HEARING_DATE_USED_AS_OPERATIONAL_DEADLINE` · OPEN · order **5**
+### 7. `HEARING_DATE_USED_AS_OPERATIONAL_DEADLINE` · FIXED · order **5**
 - **Surfaces:** Header OK as listing status; **Chase deadlineLabel** reuses same string
 - **Class:** date-role
 - **Gym:** Ahmed, Brookes, Dunn, Grant
@@ -90,15 +88,15 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 - **Suggested fix:** Separate listing status vs chase operational deadline wording
 - **Opposite:** Same-day / upcoming listing labels still accurate on header
 
-### 8. `SUBSCRIBER_MUTE_AND_INVENT_BOTH_WAYS` · OPEN · order **6**
+### 8. `SUBSCRIBER_MUTE_AND_INVENT_BOTH_WAYS` · FIXED · order **6**
 - **Surfaces:** Chase
 - **Class:** mute + invent
 - **Gym:** Mute Ahmed/Brookes; invent Trap thin file
 - **PDF verify:** Brookes “subscriber report not served” — Chase shows phone download but not subscriber; Trap invents Subscriber/account
-- **Suggested fix:** Source-gate subscriber both directions (same phone/digital family root)
-- **Opposite:** Brookes/Ahmed TP when outstanding; Trap TN when absent
+- **Fix:** `digitalChaseLabel` word boundaries (`1ff7099d5`) + `reconcileSubscriberModalityItems` (`d228df56e`)
+- **Opposite:** Brookes/Ahmed TP when outstanding; Trap TN when absent — **PASS**
 
-### 9. `STILLS_SERVED_PROMOTED_TO_CCTV_MASTER` · OPEN · order **7**
+### 9. `STILLS_SERVED_PROMOTED_TO_CCTV_MASTER` · FIXED · order **7**
 - **Surfaces:** Papers + Chase
 - **Class:** invent
 - **Gym:** Dunn (opposite-pair of Arden/Patel master TP)

@@ -1,11 +1,12 @@
 # PATTERN FIX WAVE — STATUS
 
 **Verdict:** `FIX_WAVE_STRONG_PROGRESS`  
-**Branch tip:** `bb9620fb0a4ca92c7dc199cff4f9762b6106f599`  
+**Branch tip:** `d228df56e102377e468a646f6e84068cac38b147`  
 **Freeze baseline (pre-wave product):** `55c41d8956c044d20f4265cccc6fd8669349d2ae`  
-**Preview (this wave):** https://casebrain-5q2rrex15-gduffy1993-pngs-projects.vercel.app  
+**Preview (prior wave):** https://casebrain-5q2rrex15-gduffy1993-pngs-projects.vercel.app  
+**Preview (this commit):** _pending Vercel deploy_  
 **Hop book:** `artifacts/casebrain-qa/assurance/pattern-fix-queue-v1/MASTER-HOP-BOOK.md`  
-**Updated:** 2026-08-20
+**Updated:** 2026-08-21
 
 ---
 
@@ -20,40 +21,42 @@
 | `SUBSCRIBER` invent (Trap `/sim/` in assuming) | `digitalChaseLabel` word boundaries | `1ff7099d5` | assuming ≠ Subscriber; real subscriber still surfaces |
 | Phone mid-state humanize | logical download summary wording | `b30c9bda7` | Brookes full-download path untouched in unit suite |
 | Brookes subscriber mute (charge-header block) | digital gap expand without harassment allegation | `1ff7099d5` | charge mute must not block papers-true digital gaps |
+| `INTERVIEW_SUMMARY_VS_RECORDING_LUMP` | `reconcileInterviewModalityItems` + no slash-blend family label | `d228df56e` | Tobin recording-only; Ahmed transcript; Patel both; Trap invent TN held |
+| `PHONE_DOWNLOAD_MIDSTATE_MUTE_OR_SPLIT` | `reconcilePhoneDownloadModalityItems` inject mid-state | `d228df56e` | Brookes full TP; Arden property TN |
+| `SUBSCRIBER` both-ways residue | `reconcileSubscriberModalityItems` inject + invent strip | `d228df56e` | Ahmed/Brookes TP; Trap assuming TN |
 
 Prior FIXED (held): export-log · Trap CCTV invent · Arden phone-property · Arden/Trap interview invent TN
 
 ---
 
-## Remaining OPEN
+## Remaining OPEN / STOP
 
 | Hop | Why still open |
 |-----|----------------|
-| `INTERVIEW_SUMMARY_VS_RECORDING_LUMP` | Chase card still titled recording/transcript blend; Arden/Trap invent TN held — residual gym lump on Tobin/Ahmed/Patel |
-| `PHONE_DOWNLOAD_MIDSTATE_MUTE_OR_SPLIT` | Humanize mid-state landed; Grant/Tobin live Papers↔Chase split not re-shot |
-| `PAPERS_COLLAPSED_NO_DOC_INVENTORY` | UI/projection — deferred (no Overview redesign) |
-| `CLIENT_TAB_EQUALS_COURT_CONTROL_ROOM` | Same — deferred careful projection root |
-| `SUBSCRIBER` mute live confirm | Expand path fixed; Brookes AUTH re-shot pending on new Preview |
+| `PAPERS_COLLAPSED_NO_DOC_INVENTORY` | **STOP this hop** — Papers deep detail is blocked by `evaluateMatterIntegrity` / `SolicitorDeepDetailGate` and Control Room clone; true doc inventory needs UI/projection redesign beyond surgical truth |
+| `CLIENT_TAB_EQUALS_COURT_CONTROL_ROOM` | **STOP this hop** — same shared Control Room projection; no redesign in this wave |
 | Volume triage (`mute_phone_download` etc.) | Sweep volume ≠ guilt — leave for next gym pass |
+| Live AUTH re-shot on newest Preview | Partial on `5q2rrex15` (Arden/Trap off cases list; Brookes papers timeout); re-shot after new deploy |
 
 ---
 
 ## Canary scoreboard
 
-| Canary | Expectation | Unit / code | Live on new Preview |
-|--------|-------------|-------------|---------------------|
-| Arden export-log TN | no export log; master kept | PASS (prior + suite) | **re-shot pending** (freeze Preview was green) |
-| Arden phone-property TN | no download invent | PASS | pending |
+| Canary | Expectation | Unit / code | Live on Preview |
+|--------|-------------|-------------|-----------------|
+| Arden export-log TN | no export log; master kept | PASS | partial (case not on list @5q2; prior freeze green) |
+| Arden phone-property TN | no download invent | PASS (`reconcilePhone`) | pending new Preview |
 | Arden CCTV master TP | master outstanding | PASS | pending |
-| Brookes phone-download TP | download outstanding | PASS | pending |
-| Brookes subscriber TP | subscriber outstanding | expand path fixed | pending |
-| Trap interview invent TN | no recording invent | PASS | pending |
+| Brookes phone-download TP | download outstanding | PASS | court green @5q2 (`phoneDownload=true`) |
+| Brookes subscriber TP | subscriber outstanding | PASS (inject) | court green @5q2 (`subscriber=true`) |
+| Trap interview invent TN | no recording invent | PASS | pending (case off list) |
 | Trap CCTV invent TN | no master invent | PASS | pending |
-| Trap subscriber invent TN | no Subscriber from assuming | PASS (display polish) | pending |
-| Dunn CAD extract vs audio | extract served; audio/full print chase | PASS (reconcileCad999) | pending |
-| Dunn stills ≠ master | stills not master chase | PASS (classify) | pending |
-| Grant CAD extract Present | not outstanding CAD/999 lump | PASS (reconcileCad999) | pending |
-| Hearing chase deadline | not `Hearing date passed · date` as ops deadline | code landed | pending |
+| Trap subscriber invent TN | no Subscriber from assuming | PASS | pending |
+| Tobin/Ahmed/Patel interview modality | no slash blend; modality-true | PASS | pending new Preview |
+| Grant/Tobin phone mid-state | mid-state card, not mute/full invent | PASS | pending new Preview |
+| Dunn CAD extract vs audio | extract served; audio/full print chase | PASS | pending |
+| Dunn stills ≠ master | stills not master chase | PASS | pending |
+| Hearing chase deadline | not ops deadline from listing | code landed | Brookes court still shows listing string in header (OK) |
 
 Opposite suite: `npx tsx scripts/f167-surgical-truth-opposite-direction.test.ts` → **PASS**  
 Foundational CAD modality: **PASS** · chase-source-gate: **PASS**
@@ -66,6 +69,8 @@ Foundational CAD modality: **PASS** · chase-source-gate: **PASS**
 2. `b30c9bda7` — fix: CAD Present split + stills≠master + chase deadline role  
 3. `1ff7099d5` — fix: Trap subscriber invent + Brookes digital expand  
 4. `bb9620fb0` — test: opposite contracts  
+5. `7fd917d6c` — docs: status + Preview SHA  
+6. `d228df56e` — fix: interview modality split + phone mid-state + subscriber both-ways  
 
 ---
 
@@ -79,7 +84,6 @@ Foundational CAD modality: **PASS** · chase-source-gate: **PASS**
 
 ## Next rip
 
-1. AUTH re-shot Arden / Brookes / Trap / Dunn on Preview `casebrain-5q2rrex15…`  
-2. Interview Chase card residual lump (Tobin/Ahmed/Patel)  
-3. Papers inventory / Client≠Court shared projection (careful)  
-4. Grant/Tobin phone mid-state live confirm
+1. Finish AUTH re-shot on new Preview (force known Arden/Trap IDs if list slots rotate)  
+2. Leave Papers/Client STOP unless a tiny shared projection root appears without redesign  
+3. Volume triage only after PDF spot-check confirms shared roots  
