@@ -237,8 +237,17 @@ function mg6GenericLabel(label: string): boolean {
 }
 
 function digitalChaseLabel(hay: string): string | null {
-  if (/phone|extraction|download|device download/i.test(hay)) return "Full phone download / source extraction";
-  if (/subscriber|account|sim|attribution/i.test(hay)) return "Subscriber / account data";
+  // Word boundaries matter: bare /sim/ matched inside "assuming" and invented Trap subscriber cards.
+  if (/\b(?:phone|extraction|download|device\s+download)\b/i.test(hay)) {
+    return "Full phone download / source extraction";
+  }
+  if (
+    /\b(?:subscriber(?:\s+report|\s+return|\s+data)?|account\s+data|sim\b|imei|phone\s+attribution|handset\s+attribution)\b/i.test(
+      hay,
+    )
+  ) {
+    return "Subscriber / account data";
+  }
   if (/screenshot|message|whatsapp|sms|export|device material/i.test(hay)) {
     return "Message export / source device material";
   }

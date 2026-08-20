@@ -35,13 +35,23 @@ function rowsAlreadyCoverDigitalGaps(rows: FiveAnswersEvidenceRow[]): boolean {
   return hasMissingPhone && hasMissingSubscriber && hasMg11Gap;
 }
 
-function isDigitalHarassmentShape(allegation: string, combinedHay: string): boolean {
-  return (
-    /harassment|protection from harassment/i.test(allegation) &&
-    /screenshot|phone|whatsapp|sms|message pack|message export|subscriber|attribution|mg6|mg11|extraction|digital/i.test(
-      combinedHay,
+function isDigitalHarassmentShape(allegation: string, combinedHay: string, bundleText?: string): boolean {
+  const hay = `${combinedHay} ${bundleText ?? ""}`;
+  const digital =
+    /screenshot|phone|whatsapp|sms|message pack|message export|subscriber|attribution|extraction|digital/i.test(
+      hay,
+    );
+  if (/harassment|protection from harassment/i.test(allegation) && digital) return true;
+  // Charge-header mute must not block digital gap expansion when papers establish the family.
+  if (
+    digital &&
+    /subscriber report not served|full phone download|source export outstanding|original download|phone download \/ source export/i.test(
+      hay,
     )
-  );
+  ) {
+    return true;
+  }
+  return false;
 }
 
 function dedupeRows(rows: FiveAnswersEvidenceRow[]): FiveAnswersEvidenceRow[] {
@@ -78,7 +88,7 @@ export function expandTruthMapRowsForDisplay(input: {
     ...input.doNotOverstate,
   ]);
 
-  if (!isDigitalHarassmentShape(input.allegation, combinedHay)) {
+  if (!isDigitalHarassmentShape(input.allegation, combinedHay, input.bundleText)) {
     return input.rows;
   }
 
