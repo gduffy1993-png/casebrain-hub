@@ -3,7 +3,7 @@ import { displayExistenceLabel } from "@/lib/criminal/five-answers/display-label
 import { sanitizeSolicitorVisibleText } from "@/lib/criminal/overview-presentation";
 
 const KNOWN_EVIDENCE_FAMILY_RE =
-  /mg6|unused schedule|schedule clarification|screenshot|message pack|whatsapp|sms|subscriber|attribution|\bsim\b|bwv|body\s*worn|bodycam|body-worn|custody|pace|detention|interview|recording|phone|mobile|download|digital|extraction|cctv|stills|camera|footage|master export/i;
+  /mg6|unused schedule|schedule clarification|screenshot|message pack|whatsapp|sms|subscriber|attribution|\bsim\b|bwv|body\s*worn|bodycam|body-worn|custody|pace|detention|interview|recording|phone|mobile|download|digital|extraction|cctv|stills|camera|footage|master export|\bcad\b|\b999\b|logical\s+download/i;
 
 function isMissingLike(existence: EvidenceExistence): boolean {
   return existence === "missing" || existence === "referred_only";
@@ -117,10 +117,13 @@ export function humanizeEvidenceLabel(label: string, existence: EvidenceExistenc
     if (isMissingLike(existence)) return "Interview material outstanding";
   }
 
-  if (/\b(phone\s+(?:download|extraction|attribution)|full\s+phone|source\s+export|device\s+download|subscriber|handset|mobile\s+download)\b/i.test(hay)) {
-    if (/summary only|extraction summary|summary on file/i.test(hay)) {
-      if (existence === "referred_only" || existence === "served") {
+  if (/\b(phone\s+(?:download|extraction|attribution)|full\s+phone|source\s+export|device\s+download|subscriber|handset|mobile\s+download|logical\s+download)\b/i.test(hay)) {
+    if (/summary only|extraction summary|summary on file|logical\s+download\s+summary|full\s+report\s+not\s+in/i.test(hay)) {
+      if (existence === "referred_only" || existence === "served" || existence === "incomplete") {
         return "Phone extraction summary only on file";
+      }
+      if (isMissingLike(existence)) {
+        return "Phone extraction summary only — full download report not in section";
       }
     }
     if (existence === "served") return "Phone extraction summary on file";
@@ -130,7 +133,30 @@ export function humanizeEvidenceLabel(label: string, existence: EvidenceExistenc
     if (isCheckBeforeReliance(existence, hay)) return "Phone / digital material needs checking";
   }
 
+  if (/\b(cad|999)\b/i.test(hay)) {
+    if (/extract/i.test(hay) && (existence === "served" || /present/i.test(hay))) {
+      return "CAD / 999 extract on file";
+    }
+    if (/\b999\s+audio\b/i.test(hay) && isMissingLike(existence)) {
+      return "999 audio outstanding";
+    }
+    if (/full\s+print|full\s+cad\s+log/i.test(hay) && isMissingLike(existence)) {
+      return "CAD log full print outstanding";
+    }
+    if (isMissingLike(existence)) {
+      return "CAD / 999 material outstanding";
+    }
+    if (existence === "served") return "CAD / 999 material on file";
+    if (isCheckBeforeReliance(existence, hay)) return "CAD / 999 material needs checking";
+  }
+
   if (/cctv|stills|camera|footage|master export/i.test(hay)) {
+    if (/stills/i.test(hay) && !/\b(?:master|full\s*(?:time\s+)?window|full\s+cctv)\b/i.test(hay)) {
+      if (existence === "served" || isCheckBeforeReliance(existence, hay)) {
+        return "CCTV stills served";
+      }
+      if (isMissingLike(existence)) return "CCTV stills outstanding";
+    }
     if (/stills/i.test(hay) && isMissingLike(existence)) {
       // Only claim export-log gap when that modality is in the label.
       if (/\bexport\s+log\b/i.test(hay)) return "CCTV stills without master export log";

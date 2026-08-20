@@ -125,10 +125,19 @@ const CHASE_FAMILIES: FamilyDef[] = [
     label: "CCTV full window / master footage",
     source: "Police / CCTV unit",
     priority: 2,
+    // Stills alone must not classify as master (Dunn). Require master/full-window language,
+    // or stills paired with an explicit master/full-window outstanding signal.
     match: (t) =>
       !isCctvInventAdvisoryOnly(t) &&
-      /\b(cctv|master|full\s*window|footage|video)\b/.test(t) &&
-      !/\b(continuity|provenance|chain\s+of\s+custody)\b/.test(t),
+      !/\b(continuity|provenance|chain\s+of\s+custody)\b/.test(t) &&
+      (/\b(?:cctv\s+master|full\s+cctv(?:\s+master)?|master\s+footage|full\s*(?:time\s+)?window|cctv\s+(?:footage|export))\b/.test(
+        t,
+      ) ||
+        (/\b(?:cctv\s+stills|partial\s+cctv\s+stills|stills)\b/.test(t) &&
+          /\b(?:master|full\s*(?:time\s+)?window|full\s+cctv)\b/.test(t)) ||
+        (/\bcctv\b/.test(t) &&
+          /\b(?:master|full\s*(?:time\s+)?window|footage)\b/.test(t) &&
+          !/\bstills?\b/.test(t))),
   },
   {
     id: "cad_999",
@@ -291,6 +300,64 @@ export function reconcileChaseItemsAgainstServedMaterial(
         };
       }
       return null;
+    })
+    .filter((i): i is DisclosureChaseItem => i !== null);
+}
+
+/**
+ * CAD extract Present/served must not keep the lumped "CAD / 999 audio…" card as if
+ * the extract were missing. Split remaining modalities (999 audio / CAD full print).
+ * Opposite: Dunn — extract served + 999 audio / full print outstanding stays chaseable.
+ */
+export function reconcileCad999ModalityItems(
+  items: DisclosureChaseItem[],
+  bundleText?: string | null,
+): DisclosureChaseItem[] {
+  const hay = `${bundleText ?? ""}`;
+  return items
+    .map((item) => {
+      if (item.familyId !== "cad_999") return item;
+      const blob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? "", hay].join("\n");
+
+      const extractPresent =
+        /\bcad(?:\s*\/\s*999)?(?:\s+incident\s+log)?\s+extract\b[^.\n]{0,40}\b(?:present|served|included)/i.test(
+          blob,
+        ) ||
+        /\b(?:present|served|included)\b[^.\n]{0,40}\bcad(?:\s*\/\s*999)?(?:\s+incident\s+log)?\s+extract\b/i.test(
+          blob,
+        ) ||
+        /\bcad\s*\/\s*999\s+extract\s*present/i.test(blob);
+
+      const audioOutstanding =
+        /\b999\s+audio\b[^.\n]{0,40}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
+          blob,
+        ) || /\bno\s+recording\s+attached\b/i.test(blob);
+
+      const fullPrintOutstanding =
+        /\bcad\s+log\s+full\s+print\b[^.\n]{0,40}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
+          blob,
+        );
+
+      if (!extractPresent) return item;
+
+      if (!audioOutstanding && !fullPrintOutstanding) {
+        // Grant/Tobin: extract present and no remaining CAD modality — do not chase as missing.
+        return null;
+      }
+
+      const parts: string[] = [];
+      if (audioOutstanding) parts.push("999 audio");
+      if (fullPrintOutstanding) parts.push("CAD log full print");
+      const label = `${parts.join(" / ")} outstanding`;
+      return {
+        ...item,
+        label,
+        draftChaseWording: `Please provide ${parts.join(" and ")}, or confirm in writing why it is not available.`,
+        courtLine: toCourtLine(label),
+        whyItMatters:
+          "CAD extract is on file — chase the remaining 999 audio / full CAD print modalities only.",
+        baseStatus: "Outstanding" as ChaseItemStatus,
+      };
     })
     .filter((i): i is DisclosureChaseItem => i !== null);
 }
@@ -507,17 +574,21 @@ type DeadlineContext = {
   baseStatus: ChaseItemStatus;
 };
 
+/**
+ * Chase operational deadline labels — listing status stays on the header via
+ * resolveSolicitorHearingStatus. Do not reuse "Hearing date passed · …" as if
+ * the listing date were a CPIA/disclosure ops deadline.
+ */
 function resolveDeadlineContext(days: number | null, hearingIso?: string | null, asOf: Date = new Date()): DeadlineContext {
   if (days === null) {
     return {
       days: null,
-      sharedLabel: "Before next hearing",
+      sharedLabel: "Before next listing — confirm disclosure timetable",
       hearingDeadlineNote: "Hearing date not safely extracted — chase deadlines are provisional.",
       urgency: "medium",
       baseStatus: "Not safely confirmed",
     };
   }
-  // Align labels with Phase 8 shared hearing status when ISO is available
   if (hearingIso?.trim()) {
     const status = resolveSolicitorHearingStatus({
       bundleNextHearingIso: hearingIso.trim().slice(0, 10),
@@ -526,7 +597,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
     if (status.kind === "same_day") {
       return {
         days,
-        sharedLabel: status.statusLabel,
+        sharedLabel: "Same-day listing — chase before hearing",
         hearingDeadlineNote: null,
         urgency: "high",
         baseStatus: "Due soon",
@@ -535,7 +606,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
     if (status.kind === "passed") {
       return {
         days,
-        sharedLabel: status.statusLabel,
+        sharedLabel: "Listing date passed — confirm next listing / chase outstanding disclosure",
         hearingDeadlineNote: null,
         urgency: "high",
         baseStatus: "Overdue",
@@ -544,7 +615,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
     if (status.kind === "upcoming" || status.kind === "listed") {
       return {
         days,
-        sharedLabel: status.statusLabel,
+        sharedLabel: days <= 14 ? "Chase before listed hearing" : "Before next listing",
         hearingDeadlineNote: null,
         urgency: days <= 3 ? "high" : days <= 14 ? "medium" : "low",
         baseStatus: days <= 14 ? "Due soon" : "Outstanding",
@@ -554,7 +625,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
   if (days < 0) {
     return {
       days,
-      sharedLabel: "Hearing date passed — chase urgently",
+      sharedLabel: "Listing date passed — confirm next listing / chase outstanding disclosure",
       hearingDeadlineNote: null,
       urgency: "high",
       baseStatus: "Overdue",
@@ -563,7 +634,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
   if (days === 0) {
     return {
       days,
-      sharedLabel: "Same-day hearing",
+      sharedLabel: "Same-day listing — chase before hearing",
       hearingDeadlineNote: null,
       urgency: "high",
       baseStatus: "Due soon",
@@ -572,7 +643,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
   if (days <= 3) {
     return {
       days,
-      sharedLabel: `Within ${days} day(s) of hearing`,
+      sharedLabel: `Chase within ${days} day(s) of listing`,
       hearingDeadlineNote: null,
       urgency: "high",
       baseStatus: "Due soon",
@@ -581,7 +652,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
   if (days <= 7) {
     return {
       days,
-      sharedLabel: `Within ${days} days of hearing`,
+      sharedLabel: `Chase within ${days} days of listing`,
       hearingDeadlineNote: null,
       urgency: "medium",
       baseStatus: "Due soon",
@@ -589,7 +660,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
   }
   return {
     days,
-    sharedLabel: "Before next hearing",
+    sharedLabel: "Before next listing",
     hearingDeadlineNote: null,
     urgency: "low",
     baseStatus: "Outstanding",
@@ -1497,6 +1568,9 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   items = collapseDisclosureItemsByFamily(items);
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+  items = reconcileCad999ModalityItems(items, input.bundleText);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   const guardCtx = { ledger, bundleText: input.bundleText ?? null };
