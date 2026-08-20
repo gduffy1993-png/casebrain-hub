@@ -9,6 +9,7 @@ import {
   SERIOUS_VIOLENCE_PRIMARY_ROUTE_TITLE,
   SERIOUS_VIOLENCE_PROVISIONAL_COURT_LINE,
 } from "@/lib/eval/casebrain-auditor/provisional-offence-policy";
+import { stripDoNotInventAdvisory } from "@/lib/criminal/chase-source-gate";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { isPlaceholderHearingIso } from "@/lib/criminal/solicitor-hearing-display";
 import type { BattleboardOutput, BattleboardRoute } from "@/lib/criminal/strategy-battleboard";
@@ -428,6 +429,12 @@ const PROFILE_SOURCE_SUPPORT_RULES: SourceSupportRule[] = [
     output: /\bexport\s+log\b/i,
     source: /\bexport\s+log\b/i,
   },
+  // CCTV master/continuity — invent-advisory "assuming missing CCTV" is not source support.
+  {
+    output: /\b(?:full cctv|cctv master|cctv continuity|cctv export|master footage|full\s*window)\b/i,
+    source:
+      /\b(?:cctv\s+stills|partial\s+cctv|full\s+cctv|cctv\s+master|master\s+footage|full\s*(?:time\s+)?window|cctv\s+(?:footage|export|continuity|outstanding)|video\s+footage|camera\s+footage|dashcam)\b/i,
+  },
 ];
 
 const ASSERTIVE_SOURCE_EXPECTATION_RE =
@@ -448,7 +455,12 @@ function profileLineHasSourceSupport(
   if (!sourceText) return true;
 
   for (const rule of PROFILE_SOURCE_SUPPORT_RULES) {
-    if (rule.output.test(line) && !rule.source.test(sourceText)) return false;
+    if (!rule.output.test(line)) continue;
+    // Invent-advisory "assuming missing CCTV" must not satisfy CCTV master/continuity support.
+    const hay = /\b(?:cctv|master footage|full\s*window)\b/i.test(line)
+      ? stripDoNotInventAdvisory(sourceText)
+      : sourceText;
+    if (!rule.source.test(hay)) return false;
   }
   return true;
 }

@@ -155,4 +155,54 @@ assert.ok(
   );
 }
 
+// --- G: Trap invent-advisory CCTV must not promote master; Arden stills/master must ---
+{
+  const TRAP_SNIPPET = `
+MG6 Served: MG5 case summary, MG6 disclosure note, Officer statement.
+Outstanding/not provided: interview record, continuity / provenance note if relied upon.
+No PACE interview transcript or summary is provided.
+The case should not be strengthened by assuming missing CCTV, statements, codes, or forensic evidence.
+`.trim();
+
+  assert.equal(
+    familySupport("cctv", TRAP_SNIPPET),
+    "absent",
+    "Trap invent-advisory CCTV is not an established exhibit",
+  );
+  assert.equal(familySupport("cctv", ARDEN_SNIPPET), "mentioned", "Arden stills/master establish CCTV");
+
+  const trapLabels = workflowDisclosureChaseLabels({
+    caseTitle: "Leo Greene — Assault by beating",
+    allegation: "Assault by beating",
+    routeTitle: "Violence / complainant account pressure",
+    bundleText: TRAP_SNIPPET,
+  });
+  // Violence profile may be null labels or non-CCTV; never invent CCTV master from Trap.
+  if (trapLabels) {
+    assert.ok(
+      !trapLabels.some((l) => /CCTV master|full window|CCTV continuity/i.test(l)),
+      "Trap must not invent CCTV master/continuity chase",
+    );
+  }
+
+  const ardenLabels = workflowDisclosureChaseLabels({
+    ...ARDEN_CTX,
+    bundleText: ARDEN_SNIPPET,
+  })!;
+  assert.ok(ardenLabels.some((l) => /CCTV master/i.test(l)), "Arden CCTV master chase preserved");
+
+  const trapActions = workflowTopNextActions({
+    caseTitle: "Leo Greene — Assault by beating",
+    allegation: "Assault by beating",
+    routeTitle: "Violence / complainant account pressure",
+    bundleText: TRAP_SNIPPET,
+  });
+  if (trapActions) {
+    assert.ok(
+      !trapActions.some((a) => /CCTV master|export log/i.test(a)),
+      "Trap must not invent CCTV master/export-log next actions",
+    );
+  }
+}
+
 console.log("f167-surgical-truth-opposite-direction: PASS");

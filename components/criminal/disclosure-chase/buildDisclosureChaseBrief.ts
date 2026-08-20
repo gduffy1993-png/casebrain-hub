@@ -94,6 +94,21 @@ type FamilyDef = {
   match: (text: string) => boolean;
 };
 
+/** Invent-advisory only (Trap) — not an established CCTV exhibit / outstanding master. */
+function isCctvInventAdvisoryOnly(t: string): boolean {
+  if (
+    !/\b(?:assuming\s+missing\s+cctv|do\s+not\s+(?:invent|assume)[^.!?\n]{0,80}\bcctv|should\s+not\s+be\s+strengthened\s+by\s+assuming\s+missing\s+cctv)\b/i.test(
+      t,
+    )
+  ) {
+    return false;
+  }
+  // Real stills/master/outstanding CCTV language still establishes the family.
+  return !/\b(?:cctv\s+stills|partial\s+cctv|full\s+cctv\s+master|cctv\s+master|master\s+footage|full\s*(?:time\s+)?window|cctv\s+(?:footage|export|continuity)|video\s+footage)\b/i.test(
+    t,
+  );
+}
+
 const CHASE_FAMILIES: FamilyDef[] = [
   {
     id: "cctv_continuity",
@@ -101,6 +116,7 @@ const CHASE_FAMILIES: FamilyDef[] = [
     source: "Police / CCTV unit",
     priority: 1,
     match: (t) =>
+      !isCctvInventAdvisoryOnly(t) &&
       /\b(cctv|video)\b/.test(t) &&
       /\b(continuity|provenance|chain\s+of\s+custody|integrity)\b/.test(t),
   },
@@ -110,6 +126,7 @@ const CHASE_FAMILIES: FamilyDef[] = [
     source: "Police / CCTV unit",
     priority: 2,
     match: (t) =>
+      !isCctvInventAdvisoryOnly(t) &&
       /\b(cctv|master|full\s*window|footage|video)\b/.test(t) &&
       !/\b(continuity|provenance|chain\s+of\s+custody)\b/.test(t),
   },
@@ -908,6 +925,16 @@ function confirmNoneDisclosureItem(
   item: DisclosureChaseItem,
   gateFamily: ChaseGateFamily,
 ): DisclosureChaseItem {
+  if (/file indicates none exists/i.test(item.label)) {
+    return {
+      ...item,
+      baseStatus: "Not safely confirmed",
+      whyItMatters: confirmNoneLine(gateFamily),
+      draftChaseWording: /confirm in writing that none exists/i.test(item.draftChaseWording ?? "")
+        ? item.draftChaseWording
+        : `The file indicates no ${familyDisplayName(gateFamily)} is available. Please confirm in writing that none exists and that no related logs or exports are held.`,
+    };
+  }
   const name = familyDisplayName(gateFamily);
   return {
     ...item,
@@ -1083,6 +1110,13 @@ function buildWorkflowProfileDisclosureItems(
 }
 
 function normalizeDisclosureItem(item: DisclosureChaseItem): DisclosureChaseItem {
+  // Preserve confirm-none items from chase-source-gate — do not re-canonicalise back to a chase label.
+  if (
+    /file indicates none exists/i.test(item.label) ||
+    /confirm in writing that none exists/i.test(item.draftChaseWording ?? "")
+  ) {
+    return item;
+  }
   const label = normalizeRawLabel(item.label);
   const familyId = item.familyId === "other" ? classifyFamily(label) : item.familyId;
   const canonical = canonicalDisclosureMaterial(label, familyId, item.mergedFrom);
@@ -1454,6 +1488,8 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
 
   if (ledger && ledgerMaterialsNeedingChase(ledger).length > 0) {
     items = mergeLedgerDisclosureItems(items, ledger, deadline);
+    // Ledger merge can re-introduce family items — re-apply source gate (incl. confirm-none).
+    items = gateItemsAgainstSource(items, input.bundleText);
     ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
   }
 
@@ -1485,6 +1521,8 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
         : item.evidenceAnchor,
     }));
   items = collapseDisclosureItemsByFamily(items);
+  // Final source gate after presentation merges — preserves confirm-none / drops absent families.
+  items = gateItemsAgainstSource(items, input.bundleText);
   items = finalizeDisclosureChasePresentation(items);
   items = items.map((item) => ({
     ...item,

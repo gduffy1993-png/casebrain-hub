@@ -203,6 +203,14 @@ function cleanCourtLine(label: string): string {
 }
 
 function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
+  // Confirm-none from chase-source-gate must stay confirm-none (not re-drafted as a chase).
+  if (
+    /file indicates none exists/i.test(item.label) ||
+    /confirm in writing that none exists/i.test(item.draftChaseWording ?? "")
+  ) {
+    return item;
+  }
+
   const mergedHumanized = dedupeByNorm(
     item.mergedFrom.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
   ).slice(0, 8);

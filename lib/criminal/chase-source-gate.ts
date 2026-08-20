@@ -56,9 +56,28 @@ const CHASE_VERB_RE = /\b(chase|obtain|request|provide|serve|secure|pursue|outst
 
 const GATE_FAMILIES = Object.keys(MENTION_RES) as ChaseGateFamily[];
 
+/**
+ * Trap-style invent advisories name CCTV/BWV/forensics only to forbid invention.
+ * Those hits must not establish the family for chase / overview promotion.
+ */
+const DO_NOT_INVENT_ADVISORY_RE =
+  /[^.!?\n]*(?:\b(?:do\s+not|should\s+not)\b[^.!?\n]{0,100}?\b(?:invent|assume|strengthen(?:ed)?)\b[^.!?\n]{0,100}?\b(?:cctv|bwv|footage|forensic)|(?:assuming|do\s+not\s+assume)\s+missing\s+(?:cctv|bwv|footage|forensic(?:\s+evidence)?))[^.!?\n]*[.!?\n]?/gi;
+
+const FAMILIES_AFFECTED_BY_INVENT_ADVISORY = new Set<ChaseGateFamily>(["cctv", "bwv", "forensic"]);
+
+/** Strip do-not-invent advisory clauses before testing whether a family is established. */
+export function stripDoNotInventAdvisory(text: string): string {
+  return text.replace(DO_NOT_INVENT_ADVISORY_RE, " ");
+}
+
+function mentionHaystack(family: ChaseGateFamily, sourceText: string): string {
+  if (!FAMILIES_AFFECTED_BY_INVENT_ADVISORY.has(family)) return sourceText;
+  return stripDoNotInventAdvisory(sourceText);
+}
+
 export function familySupport(family: ChaseGateFamily, sourceText: string): FamilySupport {
   if (NEGATION_RES[family].test(sourceText)) return "negated";
-  if (MENTION_RES[family].test(sourceText)) return "mentioned";
+  if (MENTION_RES[family].test(mentionHaystack(family, sourceText))) return "mentioned";
   return "absent";
 }
 
