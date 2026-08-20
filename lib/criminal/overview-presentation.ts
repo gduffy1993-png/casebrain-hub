@@ -145,7 +145,6 @@ export function countAuthoritativeEvidenceRows(rows: FiveAnswersEvidenceRow[]): 
       case "served":
         counts.served += 1;
         break;
-      case "referred":
       case "referred_only":
         counts.referred += 1;
         break;
