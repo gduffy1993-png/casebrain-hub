@@ -1,7 +1,8 @@
 # OVERVIEW PRODUCT UI REBUILD V1 — REPORT
 
 **Branch:** `programme/legal-intelligence-recovery-v1`  
-**HEAD:** `1d2a523f66d2951f471a2ca0027942d20cc8c9ad`  
+**HEAD:** `a06438123e0f05003cdaa9f2acebd126189fd0bc`  
+**Product UI tip:** `1d2a523f66d2951f471a2ca0027942d20cc8c9ad` (negation projection)  
 **Baseline:** authenticated-live-proof recovery candidate (`6c54326ec`)  
 **Release:** `programme/real-pdf-live-pilot-v1` — **untouched**  
 **Date:** 2026-08-20  
@@ -163,7 +164,8 @@ Harness JSON: `RESTORED-OVERVIEW-AUTHENTICATED-LIVE-PROOF.json`
 ## 9. Commits (recovery only)
 
 1. `1af1f9ce0` — `feat(overview): rebuild solicitor workspace presentation`  
-2. `1d2a523f6` — `fix(overview): negation-first projection for invent families`
+2. `1d2a523f6` — `fix(overview): negation-first projection for invent families`  
+3. `a06438123` — `docs(assurance): Overview product UI rebuild report and screenshot capture`
 
 ---
 
