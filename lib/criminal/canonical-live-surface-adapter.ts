@@ -639,7 +639,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
       .filter((i) => i.state === "served")
       .map((i) => i.label),
     missingEvidence: pipeline.evidenceState.items
-      .filter((i) => i.state === "missing" || i.state === "outstanding")
+      .filter((i) => i.state === "missing" || i.state === "incomplete" || i.state === "referred_only")
       .map((i) => i.label),
   });
   const overviewConsiderations = considerationsForSurface(legalIntelligence, "overview");

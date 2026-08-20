@@ -4,6 +4,7 @@
  */
 
 import { familySupport } from "@/lib/criminal/chase-source-gate";
+import { evidenceMentionStatus } from "./evidence-mention";
 import { buildCaseMovesAdvisory } from "./case-moves-advisory";
 import { buildOffenceFamilyConsiderations } from "./offence-family-considerations";
 import { buildFightEngineAdvisoryConsiderations } from "./fight-engine-advisory";
@@ -196,7 +197,7 @@ export function buildLegalIntelligence(
     ...established.map((f) => f.value),
   ];
 
-  // Only positively mentioned families — negated must not count as established.
+  // Only positively mentioned families — negated / non-indicating must not count.
   const establishedFamilies: string[] = [];
   for (const fam of [
     "cctv",
@@ -207,7 +208,7 @@ export function buildLegalIntelligence(
     "custody",
     "cad_999",
   ] as const) {
-    if (familySupport(fam, bundleText) === "mentioned") establishedFamilies.push(fam);
+    if (evidenceMentionStatus(fam, bundleText) === "mentioned") establishedFamilies.push(fam);
   }
 
   const caseMoves = buildCaseMovesAdvisory({

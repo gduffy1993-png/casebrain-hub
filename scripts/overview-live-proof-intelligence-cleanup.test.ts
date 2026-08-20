@@ -11,10 +11,11 @@ import {
   evidenceMentionStatus,
 } from "../lib/criminal/legal-intelligence";
 import { buildCaseMoves, detectSignals } from "../lib/criminal/case-moves-engine";
-import { familySupport } from "../lib/criminal/chase-source-gate";
+import { familySupport } from "@/lib/criminal/chase-source-gate";
 import { PATEL_SOURCE_BUNDLE } from "../lib/criminal/legal-intelligence/fixtures/patel-source";
 import { countAuthoritativeEvidenceRows } from "../lib/criminal/overview-presentation";
 import type { FiveAnswersEvidenceRow } from "../lib/criminal/five-answers/types";
+import { evidenceMentionStatus } from "../lib/criminal/legal-intelligence/evidence-mention";
 
 describe("negation-aware evidence mentions", () => {
   const negated = "Screenshots served.\nFull phone download outstanding.\nNo BWV. No CCTV.";
@@ -105,6 +106,20 @@ describe("interview Case Moves over-trigger", () => {
       bundleTextPreview: PATEL_SOURCE_BUNDLE.slice(0, 1500),
     });
     expect(signals.some((s) => s.id === "signal:interview-missing")).toBe(true);
+  });
+
+  it("does not treat 'Interview recording not mentioned' as positive interview engagement", () => {
+    const text =
+      "Custody extract served.\nBWV outstanding.\nInterview recording not mentioned.";
+    expect(evidenceMentionStatus("interview", text)).toBe("absent");
+    const li = buildLegalIntelligence({
+      caseId: "NO-INT-MENTION",
+      allegation: "Assault emergency worker",
+      bundleText: text,
+    });
+    const what = li.considerations.map((c) => c.what).join("\n");
+    expect(what).not.toMatch(/separating interview summary vs full recording/i);
+    expect(what).not.toMatch(/full interview record \(recording \+ ROTI/i);
   });
 });
 

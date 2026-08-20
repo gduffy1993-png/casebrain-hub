@@ -1,0 +1,319 @@
+{
+  "generatedAt": "2026-08-20T04:58:10.910Z",
+  "branch": "programme/legal-intelligence-recovery-v1",
+  "results": [
+    {
+      "id": "LIVE-01-patel",
+      "label": "Patel affray",
+      "note": "First-contact/SD, CAD, CCTV clip/master, interview modality, continuity, disclosure",
+      "families": {
+        "bwv": "absent",
+        "cctv": "mentioned",
+        "interview": "mentioned"
+      },
+      "establishedCount": 7,
+      "notEstablishedCount": 5,
+      "considerationCount": 8,
+      "overviewCount": 8,
+      "cpsChaseAdvisoryCount": 0,
+      "establishedSample": [
+        "Affray",
+        "Southford Magistrates' Court",
+        "25 August 2026",
+        "MG5: CCTV stills are referred to. The full CCTV master footage/export log is outstanding.",
+        "Custody record pages 3-5 are outstanding.",
+        "Final signed MG11 is outstanding."
+      ],
+      "notEstablishedSample": [
+        "999 audio outstanding",
+        "medical evidence missing",
+        "BWV missing",
+        "CCTV continuity missing",
+        "self-defence as established live case position"
+      ],
+      "overviewSample": [
+        {
+          "id": "consider:interview-modality",
+          "what": "Consider separating interview summary vs full recording vs transcript service issues before any court or chase wording.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "consider:cctv-clip-vs-master",
+          "what": "Consider distinguishing CCTV stills/clips from master footage / export log before asserting continuity or completeness.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "consider:cad-related-call-material",
+          "what": "The CAD / listing timing reference may justify checking whether related call or control-room material exists or is relevant.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "fight:pace-safeguards-path",
+          "what": "Consider PACE / custody safeguard attack paths where custody or interview process material is in the papers.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "consider:self-defence-may-arise",
+          "what": "Consider whether self-defence or first-contact issues arise on instructions and the evidence sequence.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "rls:public-order-sequence",
+          "what": "Consider sequence, participation, and whether the Crown can prove the statutory fear-of-violence element from served accounts/CCTV.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "consider:bwv-may-exist",
+          "what": "Consider whether BWV exists or requires checking where arrest / officer / violence circumstances make that a sensible investigative question.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "consider:medical-may-be-relevant",
+          "what": "Consider whether medical or injury evidence is relevant to harm / causation once instructions and papers are reviewed.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        }
+      ],
+      "comparisons": {
+        "OLD_SMART": "Historical clever/unsafe-as-fact (see HUMAN-REVIEW-PACK)",
+        "CURRENT_SAFE_NEUTERED": "Baseline silence / gates only — no Overview LI",
+        "RESTORED_LIVE_OVERVIEW": [
+          "Consider separating interview summary vs full recording vs transcript service issues before any court or chase wording.",
+          "Consider distinguishing CCTV stills/clips from master footage / export log before asserting continuity or completeness.",
+          "The CAD / listing timing reference may justify checking whether related call or control-room material exists or is relevant.",
+          "Consider PACE / custody safeguard attack paths where custody or interview process material is in the papers.",
+          "Consider whether self-defence or first-contact issues arise on instructions and the evidence sequence."
+        ]
+      }
+    },
+    {
+      "id": "LIVE-02-phone",
+      "label": "Digital/phone harassment",
+      "note": "Attribution; negation must not fire BWV/CCTV",
+      "families": {
+        "bwv": "negated",
+        "cctv": "negated",
+        "interview": "absent"
+      },
+      "establishedCount": 2,
+      "notEstablishedCount": 3,
+      "considerationCount": 2,
+      "overviewCount": 2,
+      "cpsChaseAdvisoryCount": 0,
+      "establishedSample": [
+        "Harassment",
+        "Full phone download / subscriber mapping outstanding."
+      ],
+      "notEstablishedSample": [
+        "999 audio outstanding",
+        "medical evidence missing",
+        "BWV missing"
+      ],
+      "overviewSample": [
+        {
+          "id": "rls:digital-attribution",
+          "what": "Consider attribution: screenshots vs full download / subscriber mapping before any definitive attribution wording.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "case-move:move:no-safe-strategy",
+          "what": "Defer final strategy. Issue a single consolidated disclosure request covering every outstanding item, with a stated deadline. Set a calendar review for the day after the deadline.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        }
+      ],
+      "comparisons": {
+        "OLD_SMART": "Historical clever/unsafe-as-fact (see HUMAN-REVIEW-PACK)",
+        "CURRENT_SAFE_NEUTERED": "Baseline silence / gates only — no Overview LI",
+        "RESTORED_LIVE_OVERVIEW": [
+          "Consider attribution: screenshots vs full download / subscriber mapping before any definitive attribution wording.",
+          "Defer final strategy. Issue a single consolidated disclosure request covering every outstanding item, with a stated deadline. Set a calendar review for the day after the deadline."
+        ]
+      }
+    },
+    {
+      "id": "LIVE-03-bwv-cctv",
+      "label": "Violence BWV/CCTV",
+      "note": "BWV tactical; no interview invent",
+      "families": {
+        "bwv": "mentioned",
+        "cctv": "absent",
+        "interview": "absent"
+      },
+      "establishedCount": 2,
+      "notEstablishedCount": 2,
+      "considerationCount": 5,
+      "overviewCount": 5,
+      "cpsChaseAdvisoryCount": 0,
+      "establishedSample": [
+        "Assault on emergency worker",
+        "BWV referred on schedule but not served — outstanding."
+      ],
+      "notEstablishedSample": [
+        "999 audio outstanding",
+        "medical evidence missing"
+      ],
+      "overviewSample": [
+        {
+          "id": "consider:bwv-established-review",
+          "what": "Consider how served or outstanding BWV will be used for sequence, force, and first-contact analysis once the product is reviewed.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "fight:pace-safeguards-path",
+          "what": "Consider PACE / custody safeguard attack paths where custody or interview process material is in the papers.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "fight:disclosure-request-pack",
+          "what": "Consider a structured disclosure request pack for unused / scheduled material that is source-referenced but not yet served.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "consider:medical-may-be-relevant",
+          "what": "Consider whether medical or injury evidence is relevant to harm / causation once instructions and papers are reviewed.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "case-move:move:no-safe-strategy",
+          "what": "Defer final strategy. Issue a single consolidated disclosure request covering every outstanding item, with a stated deadline. Set a calendar review for the day after the deadline.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        }
+      ],
+      "comparisons": {
+        "OLD_SMART": "Historical clever/unsafe-as-fact (see HUMAN-REVIEW-PACK)",
+        "CURRENT_SAFE_NEUTERED": "Baseline silence / gates only — no Overview LI",
+        "RESTORED_LIVE_OVERVIEW": [
+          "Consider how served or outstanding BWV will be used for sequence, force, and first-contact analysis once the product is reviewed.",
+          "Consider PACE / custody safeguard attack paths where custody or interview process material is in the papers.",
+          "Consider a structured disclosure request pack for unused / scheduled material that is source-referenced but not yet served.",
+          "Consider whether medical or injury evidence is relevant to harm / causation once instructions and papers are reviewed.",
+          "Defer final strategy. Issue a single consolidated disclosure request covering every outstanding item, with a stated deadline. Set a calendar review for the day after the deadline."
+        ]
+      }
+    },
+    {
+      "id": "LIVE-04-order-breach",
+      "label": "Order breach thin",
+      "note": "Order/service/MG11 intelligence",
+      "families": {
+        "bwv": "absent",
+        "cctv": "absent",
+        "interview": "absent"
+      },
+      "establishedCount": 3,
+      "notEstablishedCount": 3,
+      "considerationCount": 5,
+      "overviewCount": 5,
+      "cpsChaseAdvisoryCount": 0,
+      "establishedSample": [
+        "Breach of restraining order",
+        "Sealed order / proof of service outstanding.",
+        "Complainant MG11 outstanding."
+      ],
+      "notEstablishedSample": [
+        "999 audio outstanding",
+        "medical evidence missing",
+        "BWV missing"
+      ],
+      "overviewSample": [
+        {
+          "id": "consider:order-terms-map",
+          "what": "Map the alleged act against the precise order prohibition(s) on the served order extract before any breach admission wording.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "consider:order-service-knowledge",
+          "what": "Consider whether service / knowledge of the order is proved (sealed order, proof of service, or admission of knowledge) before treating breach as made out.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "consider:order-breach-mg11",
+          "what": "Treat complainant MG11 / witness statement status as a disclosure and proof issue for the breach allegation — not as proof of service of the order itself.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "consider:order-timing-attribution",
+          "what": "Check timing, location, and attribution of the alleged breach event against order operative dates and any amendments / expiry.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "case-move:move:no-safe-strategy",
+          "what": "Defer final strategy. Issue a single consolidated disclosure request covering every outstanding item, with a stated deadline. Set a calendar review for the day after the deadline.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        }
+      ],
+      "comparisons": {
+        "OLD_SMART": "Historical clever/unsafe-as-fact (see HUMAN-REVIEW-PACK)",
+        "CURRENT_SAFE_NEUTERED": "Baseline silence / gates only — no Overview LI",
+        "RESTORED_LIVE_OVERVIEW": [
+          "Map the alleged act against the precise order prohibition(s) on the served order extract before any breach admission wording.",
+          "Consider whether service / knowledge of the order is proved (sealed order, proof of service, or admission of knowledge) before treating breach as made out.",
+          "Treat complainant MG11 / witness statement status as a disclosure and proof issue for the breach allegation — not as proof of service of the order itself.",
+          "Check timing, location, and attribution of the alleged breach event against order operative dates and any amendments / expiry.",
+          "Defer final strategy. Issue a single consolidated disclosure request covering every outstanding item, with a stated deadline. Set a calendar review for the day after the deadline."
+        ]
+      }
+    },
+    {
+      "id": "LIVE-05-motoring",
+      "label": "Motoring / mixed thin",
+      "note": "Driving standard + dashcam export",
+      "families": {
+        "bwv": "absent",
+        "cctv": "mentioned",
+        "interview": "absent"
+      },
+      "establishedCount": 2,
+      "notEstablishedCount": 3,
+      "considerationCount": 5,
+      "overviewCount": 5,
+      "cpsChaseAdvisoryCount": 0,
+      "establishedSample": [
+        "Dangerous driving",
+        "Dashcam clip referred; full export outstanding."
+      ],
+      "notEstablishedSample": [
+        "999 audio outstanding",
+        "medical evidence missing",
+        "BWV missing"
+      ],
+      "overviewSample": [
+        {
+          "id": "consider:cctv-clip-vs-master",
+          "what": "Consider distinguishing CCTV stills/clips from master footage / export log before asserting continuity or completeness.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "consider:driving-standard",
+          "what": "Pin the Crown to the precise driving acts said to fall far below the careful and competent driver standard — separate outcome (collision/injury) from the driving acts.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "consider:driver-identification",
+          "what": "Consider driver identification / s.172 response integrity against the NIP and any nomination trail before conceding who was driving.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "case-move:move:driving-standard-attack",
+          "what": "Consider: Identify the precise driving acts relied on; compare against the careful and competent driver test. Consider expert / collision investigator material if available.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        },
+        {
+          "id": "case-move:move:no-safe-strategy",
+          "what": "Defer final strategy. Issue a single consolidated disclosure request covering every outstanding item, with a stated deadline. Set a calendar review for the day after the deadline.",
+          "supportClass": "PRACTITIONER_CONSIDERATION"
+        }
+      ],
+      "comparisons": {
+        "OLD_SMART": "Historical clever/unsafe-as-fact (see HUMAN-REVIEW-PACK)",
+        "CURRENT_SAFE_NEUTERED": "Baseline silence / gates only — no Overview LI",
+        "RESTORED_LIVE_OVERVIEW": [
+          "Consider distinguishing CCTV stills/clips from master footage / export log before asserting continuity or completeness.",
+          "Pin the Crown to the precise driving acts said to fall far below the careful and competent driver standard — separate outcome (collision/injury) from the driving acts.",
+          "Consider driver identification / s.172 response integrity against the NIP and any nomination trail before conceding who was driving.",
+          "Consider: Identify the precise driving acts relied on; compare against the careful and competent driver test. Consider expert / collision investigator material if available.",
+          "Defer final strategy. Issue a single consolidated disclosure request covering every outstanding item, with a stated deadline. Set a calendar review for the day after the deadline."
+        ]
+      }
+    }
+  ]
+}

@@ -19,11 +19,23 @@ import {
 
 export type EvidenceMentionStatus = FamilySupport;
 
+/**
+ * Strip non-indicating interview phrases before familySupport so
+ * "Interview recording not mentioned." does not count as a positive mention.
+ */
+function scrubNonIndicatingInterviewPhrases(sourceText: string): string {
+  return sourceText
+    .replace(/\binterview\s+(?:recording\s+)?not\s+mentioned\b/gi, " ")
+    .replace(/\bno\s+mention\s+of\s+(?:an?\s+)?interview\b/gi, " ");
+}
+
 export function evidenceMentionStatus(
   family: ChaseGateFamily,
   sourceText: string,
 ): EvidenceMentionStatus {
-  return familySupport(family, sourceText);
+  const text =
+    family === "interview" ? scrubNonIndicatingInterviewPhrases(sourceText) : sourceText;
+  return familySupport(family, text);
 }
 
 /** True when papers affirmatively engage the family (not absent, not negated). */
@@ -31,7 +43,7 @@ export function familyPositivelyMentioned(
   family: ChaseGateFamily,
   sourceText: string,
 ): boolean {
-  return familySupport(family, sourceText) === "mentioned";
+  return evidenceMentionStatus(family, sourceText) === "mentioned";
 }
 
 /**
@@ -42,7 +54,7 @@ export function familyHasServiceIssue(
   family: ChaseGateFamily,
   sourceText: string,
 ): boolean {
-  if (familySupport(family, sourceText) !== "mentioned") return false;
+  if (evidenceMentionStatus(family, sourceText) !== "mentioned") return false;
   const hay = sourceText;
   const label =
     family === "cctv"
@@ -53,11 +65,11 @@ export function familyHasServiceIssue(
           ? /interview|roti|rovi|transcript/i
           : null;
   if (!label) return /\b(outstanding|not served|partial|awaited)\b/i.test(hay);
-  // Look for outstanding/not-served near family language, or global outstanding lines naming the family.
   const lines = hay.split(/\r?\n/);
   return lines.some((line) => {
     if (!label.test(line)) return false;
     if (/\bno\s+(?:cctv|bwv|body[-\s]?worn|footage)\b/i.test(line)) return false;
+    if (/\binterview\s+(?:recording\s+)?not\s+mentioned\b/i.test(line)) return false;
     return /\b(outstanding|not served|partial|awaited|continuity)\b/i.test(line);
   });
 }
