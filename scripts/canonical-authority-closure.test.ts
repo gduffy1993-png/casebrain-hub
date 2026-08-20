@@ -228,6 +228,36 @@ function stubWarRoom(): HearingWarRoomBrief {
   assert.equal(withCanonical.evidenceState.rows.length, 1);
   assert.equal(withCanonical.evidenceState.rows[0]!.existence, "missing");
   assert.match(withCanonical.evidenceState.rows[0]!.label, /master cctv/i);
+
+  // Live Chromium defect: Overview counters were derived from a 12-row truncate of
+  // canonical evidence — large bundles (e.g. Priya 74 / Leon 122) under-counted.
+  const largeCanonical: FiveAnswersEvidenceRow[] = Array.from({ length: 40 }, (_, i) =>
+    evidenceRowFromSourceState(
+      i < 25 ? `Served exhibit ${i + 1}` : `Missing exhibit ${i + 1}`,
+      i < 25 ? "served" : "missing",
+    ),
+  );
+  const largeView = buildFiveAnswersView({
+    allegation: "Assault occasioning actual bodily harm, s.47 OAPA 1861",
+    warRoom,
+    chase,
+    matterConfidence: null,
+    doNotOverstate: [],
+    evidenceRowsOverride: largeCanonical,
+  });
+  assert.equal(
+    largeView.evidenceState.rows.length,
+    40,
+    "canonical evidence override must not truncate before Overview counts",
+  );
+  assert.equal(
+    largeView.evidenceState.rows.filter((r) => r.existence === "served").length,
+    25,
+  );
+  assert.equal(
+    largeView.evidenceState.rows.filter((r) => r.existence === "missing").length,
+    15,
+  );
 }
 
 // --- Clip/master + recording/transcript exact states across exits ---

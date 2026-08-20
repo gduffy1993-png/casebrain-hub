@@ -56,9 +56,11 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
 
   // CB-HIST-EMPTY-CANONICAL-STATE-MUST-NOT-REHYDRATE-FROM-CHASE:
   // presence is `!== undefined`, not length. Empty array is authoritative zero rows.
+  // Canonical override must keep ALL reconciled rows — Overview counters (served/missing/…)
+  // are derived from these rows; truncating here under-counted large live bundles.
   const rawEvidenceRows =
     input.evidenceRowsOverride !== undefined
-      ? input.evidenceRowsOverride.slice(0, 12)
+      ? input.evidenceRowsOverride
       : chase.primaryItems.slice(0, 8).map((item) => {
           const state = inferChaseItemSourceState({
             label: item.label,
