@@ -113,9 +113,17 @@ function interviewFamilyLabelLocal(hay: string): string {
   const recordingServed = /recording\s+state\s+served|recording\s+(?:is\s+)?served/i.test(hay);
   if (transcriptServed && !recordingServed) return "Interview recording";
   if (recordingServed && !transcriptServed) return "Interview transcript";
+  if (/recording\s+state\s+not\s+safely\s+confirmed/i.test(hay) && transcriptServed) {
+    return "Interview recording";
+  }
   if (/\btranscript\b/i.test(hay) && !/\brecording\b/i.test(hay)) return "Interview transcript";
   if (/\brecording\b/i.test(hay) && !/\btranscript\b/i.test(hay)) return "Interview recording";
+  // Prefer already-reconciled modality titles when present in hay as sole card title.
+  if (/^interview recording$/i.test(hay.trim())) return "Interview recording";
+  if (/^interview transcript$/i.test(hay.trim())) return "Interview transcript";
   if (/\brecording\b/i.test(hay) && /\btranscript\b/i.test(hay)) {
+    if (transcriptServed) return "Interview recording";
+    if (recordingServed) return "Interview transcript";
     return "Interview recording and transcript";
   }
   return "Interview recording";
@@ -341,13 +349,25 @@ function collapseFinalizedItemsByFamilyId(items: DisclosureChaseItem[]): Disclos
     }
     const familyLabel = familyLabelForId(
       familyId as DisclosureChaseItem["familyId"],
-      merged.mergedFrom,
+      [
+        ...merged.mergedFrom,
+        merged.label,
+        merged.provenance?.unresolvedConflictOrLimitation ?? "",
+      ].filter(Boolean),
     );
+    // Prefer an already modality-reconciled interview title when finalize would re-lump.
+    const preferredInterview =
+      familyId === "interview" &&
+      /^(Interview recording|Interview transcript|Interview recording and transcript)$/i.test(
+        merged.label,
+      )
+        ? merged.label
+        : null;
     out.push({
       ...merged,
-      label: familyLabel,
-      draftChaseWording: cleanDraftWording(familyLabel, merged.mergedFrom),
-      courtLine: cleanCourtLine(familyLabel),
+      label: preferredInterview ?? familyLabel,
+      draftChaseWording: cleanDraftWording(preferredInterview ?? familyLabel, merged.mergedFrom),
+      courtLine: cleanCourtLine(preferredInterview ?? familyLabel),
     });
   }
   return out;

@@ -243,6 +243,28 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
   );
   assert.equal(grantLike.length, 0, "Grant: CAD extract Present must not remain outstanding chase");
 
+  const grantGlued = reconcileCad999ModalityItems(
+    [
+      {
+        id: "chase-family-cad_999",
+        familyId: "cad_999",
+        label: "CAD / 999 audio / control-room material",
+        whyItMatters: "test",
+        source: "Police control room",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "test",
+        evidenceAnchor: "8CAD / 999 extractPresent",
+        linkedRoute: null,
+        draftChaseWording: "Please provide CAD / 999 audio / control-room material",
+        courtLine: "CAD outstanding",
+        mergedFrom: ["CAD / 999 audio / control-room material", "8CAD / 999 extractPresent"],
+      },
+    ],
+    "8CAD / 999 extractPresent",
+  );
+  assert.equal(grantGlued.length, 0, "Grant: glued extractPresent token must also drop CAD chase");
+
   const dunnLike = reconcileCad999ModalityItems(
     [
       {
@@ -459,6 +481,28 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
     "The case should not be strengthened by assuming missing CCTV, statements, codes, or forensic evidence.",
   );
   assert.equal(trapSub.length, 0, "Trap: do not invent subscriber from assuming");
+
+  const trapInterview = reconcileInterviewModalityItems(
+    [
+      {
+        id: "chase-family-interview",
+        familyId: "interview",
+        label: "Interview recording / transcript",
+        whyItMatters: "test",
+        source: "Custody",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "test",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording: "Please provide Interview recording / transcript",
+        courtLine: "Interview outstanding",
+        mergedFrom: ["interview record outstanding"],
+      },
+    ],
+    "No PACE interview transcript or summary is provided. Outstanding/not provided: interview record.",
+  );
+  assert.equal(trapInterview.length, 0, "Trap: do not invent interview recording from interview record alone");
 }
 
 console.log("f167-surgical-truth-opposite-direction: PASS");

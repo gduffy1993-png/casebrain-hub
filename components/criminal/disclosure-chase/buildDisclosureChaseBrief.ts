@@ -327,7 +327,9 @@ export function reconcileCad999ModalityItems(
         /\b(?:present|served|included)\b[^.\n]{0,40}\bcad(?:\s*\/\s*999)?(?:\s+incident\s+log)?\s+extract\b/i.test(
           blob,
         ) ||
-        /\bcad\s*\/\s*999\s+extract\s*present/i.test(blob);
+        /\bcad\s*\/\s*999\s+extract\s*present/i.test(blob) ||
+        /\bcad\s*\/\s*999\s+extractpresent\b/i.test(blob) ||
+        /\bextract\s*present\b/i.test(blob) && /\bcad\b|\b999\b/i.test(blob);
 
       const audioOutstanding =
         /\b999\s+audio\b[^.\n]{0,40}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
@@ -451,6 +453,20 @@ export function reconcileInterviewModalityItems(
           blob.replace(/\binterview\s+summary\b/gi, " "),
         );
       if (summaryOnly) return null;
+
+      // Thin-file invent (Trap): no PACE recording/transcript established — do not chase recording.
+      const inventOnlyInterview =
+        /\bno\s+pace\s+interview\b/i.test(blob) ||
+        /\bno\s+(?:pace\s+)?interview\s+(?:transcript|summary|recording)\b/i.test(blob) ||
+        (/\binterview\s+record\b/i.test(blob) &&
+          !/\b(?:interview\s+recording|interview\s+transcript|recording\s+outstanding|transcript\s+outstanding)\b/i.test(
+            blob,
+          ));
+      const establishedRecordingOrTranscript =
+        /\b(?:interview\s+recording|interview\s+transcript|full\s+interview\s+transcript|recording\s+state\s+not\s+safely|transcript\s+state\s+served|transcript\s+outstanding|recording\s+outstanding)\b/i.test(
+          blob,
+        );
+      if (inventOnlyInterview && !establishedRecordingOrTranscript) return null;
 
       const label = interviewChaseLabelFromSignals(blob);
       if (label === item.label && !/recording\s*\/\s*transcript/i.test(item.label)) return item;
@@ -590,12 +606,6 @@ export function reconcileSubscriberModalityItems(
   bundleText?: string | null,
 ): DisclosureChaseItem[] {
   const hay = `${bundleText ?? ""}`;
-  const inventNoise =
-    /\bassuming\b/i.test(hay) &&
-    !/\bsubscriber(?:\s+report|\s+return|\s+data)?\b[^.\n]{0,40}\b(?:outstanding|not\s+served|not\s+attached|incomplete)/i.test(
-      hay,
-    );
-
   const establishedOutstanding =
     /\b(?:phone\s+)?subscriber(?:\s+report|\s+return|\s+data)?\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|not\s+complete|incomplete)/i.test(
       hay,
@@ -609,21 +619,19 @@ export function reconcileSubscriberModalityItems(
       const blob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? ""].join("\n");
       const isSubscriber = /\bsubscriber\b|\baccount\s+data\b|\bsim\b|\bimei\b/i.test(blob);
       if (!isSubscriber) return item;
-      if (inventNoise && !establishedOutstanding) return null;
-      if (establishedOutstanding) {
-        const label = "Subscriber / account data";
-        return {
-          ...item,
-          label,
-          draftChaseWording:
-            "Please provide the subscriber / account data, or confirm in writing why it is not available.",
-          courtLine: toCourtLine(label),
-          whyItMatters:
-            "Screenshots or partial extraction alone do not prove subscriber attribution.",
-          baseStatus: "Outstanding" as ChaseItemStatus,
-        };
-      }
-      return item;
+      // Never keep a subscriber chase unless papers affirmatively establish it.
+      if (!establishedOutstanding) return null;
+      const label = "Subscriber / account data";
+      return {
+        ...item,
+        label,
+        draftChaseWording:
+          "Please provide the subscriber / account data, or confirm in writing why it is not available.",
+        courtLine: toCourtLine(label),
+        whyItMatters:
+          "Screenshots or partial extraction alone do not prove subscriber attribution.",
+        baseStatus: "Outstanding" as ChaseItemStatus,
+      };
     })
     .filter((i): i is DisclosureChaseItem => i !== null);
 
