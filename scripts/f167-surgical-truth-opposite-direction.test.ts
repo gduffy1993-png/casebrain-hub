@@ -7,15 +7,19 @@ process.env.NEXT_PUBLIC_CRIMINAL_PILOT_MODE = "true";
 import assert from "node:assert/strict";
 
 import { humanizeEvidenceLabel } from "../components/criminal/five-answers/evidence-display";
+import { reconcileCad999ModalityItems } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { familySupport } from "../lib/criminal/chase-source-gate";
-import { isDigitalHarassmentBundleHay, polishPresentationLine } from "../lib/criminal/demo-presentation-polish";
+import {
+  displayChaseCardLabel,
+  isDigitalHarassmentBundleHay,
+  polishPresentationLine,
+} from "../lib/criminal/demo-presentation-polish";
 import { generateExplanationFidelity } from "../lib/eval/casebrain-auditor/explanation-fidelity-generate";
 import {
   workflowDisclosureChaseLabels,
   workflowSafeCourtLine,
   workflowTopNextActions,
 } from "../lib/criminal/pilot-workflow";
-
 const ARDEN_CTX = {
   caseTitle: "Arden Vale — Robbery",
   allegation: "Robbery — poor identification",
@@ -203,6 +207,95 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
       "Trap must not invent CCTV master/export-log next actions",
     );
   }
+}
+
+// --- H: CAD extract Present must not chase as missing; 999 audio opposite must ---
+{
+  const grantLike = reconcileCad999ModalityItems(
+    [
+      {
+        id: "chase-family-cad_999",
+        familyId: "cad_999",
+        label: "CAD / 999 audio / control-room material",
+        whyItMatters: "test",
+        source: "Police control room",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "test",
+        evidenceAnchor: "8CAD / 999 extractPresent",
+        linkedRoute: null,
+        draftChaseWording: "Please provide CAD / 999 audio / control-room material",
+        courtLine: "CAD outstanding",
+        mergedFrom: [
+          "CAD / 999 audio / control-room material",
+          "8CAD / 999 extractPresent",
+          "CAD / 999 EXTRACT",
+        ],
+      },
+    ],
+    "8 CAD / 999 extract Present\nMG6 disclosure schedule Present",
+  );
+  assert.equal(grantLike.length, 0, "Grant: CAD extract Present must not remain outstanding chase");
+
+  const dunnLike = reconcileCad999ModalityItems(
+    [
+      {
+        id: "chase-family-cad_999",
+        familyId: "cad_999",
+        label: "CAD / 999 audio / control-room material",
+        whyItMatters: "test",
+        source: "Police control room",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "test",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording: "Please provide CAD / 999",
+        courtLine: "CAD outstanding",
+        mergedFrom: ["CAD / 999 audio / control-room material"],
+      },
+    ],
+    "S04 CAD incident log extract Served\nO02 CAD log full print Outstanding\nO05 999 audio Outstanding Listed but not attached",
+  );
+  assert.equal(dunnLike.length, 1, "Dunn: remaining CAD modalities must stay chaseable");
+  assert.match(dunnLike[0]!.label, /999 audio/i);
+  assert.match(dunnLike[0]!.label, /CAD log full print/i);
+  assert.doesNotMatch(dunnLike[0]!.label, /extract/i);
+}
+
+// --- I: stills alone ≠ CCTV master invent label ---
+{
+  assert.equal(
+    humanizeEvidenceLabel("CCTV stills", "served"),
+    "CCTV stills served",
+    "served stills alone must not invent master outstanding",
+  );
+  assert.match(
+    humanizeEvidenceLabel("CCTV stills — full CCTV master outstanding", "missing"),
+    /master outstanding/i,
+    "opposite: stills+master language keeps master outstanding",
+  );
+}
+
+// --- J: Trap /sim/-in-assuming must not invent Subscriber; real subscriber must ---
+{
+  assert.notEqual(
+    displayChaseCardLabel({
+      label: "Additional source-material issues (1 on file)",
+      mergedFrom: ["The case should not be strengthened by assuming missing CCTV"],
+      whyItMatters: "assuming missing CCTV",
+    }),
+    "Subscriber / account data",
+    "Trap: assuming must not invent Subscriber via /sim/ substring",
+  );
+  assert.match(
+    displayChaseCardLabel({
+      label: "Additional source-material issues (1 on file)",
+      mergedFrom: ["subscriber report not served"],
+    }),
+    /subscriber/i,
+    "opposite: real subscriber outstanding still surfaces",
+  );
 }
 
 console.log("f167-surgical-truth-opposite-direction: PASS");
