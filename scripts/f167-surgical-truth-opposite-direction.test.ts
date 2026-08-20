@@ -9,6 +9,7 @@ import assert from "node:assert/strict";
 import { humanizeEvidenceLabel } from "../components/criminal/five-answers/evidence-display";
 import { familySupport } from "../lib/criminal/chase-source-gate";
 import { isDigitalHarassmentBundleHay, polishPresentationLine } from "../lib/criminal/demo-presentation-polish";
+import { generateExplanationFidelity } from "../lib/eval/casebrain-auditor/explanation-fidelity-generate";
 import {
   workflowDisclosureChaseLabels,
   workflowSafeCourtLine,
@@ -134,5 +135,24 @@ assert.ok(
     "Harassment",
   ),
 );
+
+// --- F: readiness/explanation WHY must not glue export log onto CCTV master alone ---
+{
+  const sections = generateExplanationFidelity(ARDEN_SNIPPET);
+  const missing = sections.find((s) => s.key === "missing-material");
+  const issues = (missing?.blocks ?? []).map((b) => b.issue).join("\n");
+  assert.match(issues, /CCTV.*stills served.*master/i, "Arden stills-vs-master must remain visible");
+  assert.doesNotMatch(issues, /export\s+log/i, "Arden PDF has no export log — do not promote in WHY");
+
+  const withExport = generateExplanationFidelity(`${ARDEN_SNIPPET}\nCCTV export log outstanding.`);
+  const withExportIssues = (withExport.find((s) => s.key === "missing-material")?.blocks ?? [])
+    .map((b) => b.issue)
+    .join("\n");
+  assert.match(
+    withExportIssues,
+    /export\s+log/i,
+    "opposite: source-established export log must still surface in readiness WHY",
+  );
+}
 
 console.log("f167-surgical-truth-opposite-direction: PASS");
