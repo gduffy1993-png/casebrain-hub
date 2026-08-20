@@ -85,19 +85,39 @@ export function humanizeEvidenceLabel(label: string, existence: EvidenceExistenc
   }
 
   if (/custody|pace|detention|rights and entitlements/i.test(hay)) {
-    if (/extract|partial|mg11|schedule/i.test(hay) || existence === "referred_only") {
-      return "Custody record extract only";
+    // custody/interview summary is an interview modality, not a full custody-record gap.
+    if (/\bcustody\s*\/\s*interview\b/i.test(hay) || /\binterview\s+summary\b/i.test(hay)) {
+      // fall through to interview handling below
+    } else {
+      if (/extract|partial|mg11|schedule/i.test(hay) || existence === "referred_only") {
+        return "Custody record extract only";
+      }
+      if (isMissingLike(existence)) return "Custody / PACE record outstanding";
+      if (isCheckBeforeReliance(existence, hay)) return "Custody / PACE record on file";
     }
-    if (isMissingLike(existence)) return "Custody / PACE record outstanding";
-    if (isCheckBeforeReliance(existence, hay)) return "Custody / PACE record on file";
   }
 
   if (/interview|recording/i.test(hay)) {
-    if (isMissingLike(existence)) return "Interview recording outstanding";
+    // Do not promote "interview summary" / custody-interview note into "recording outstanding".
+    if (
+      /\b(interview\s+summary|custody\s*\/\s*interview|summary\s+only)\b/i.test(hay) &&
+      !/\b(recording|transcript|audio|video)\b/i.test(hay)
+    ) {
+      if (isCheckBeforeReliance(existence, hay)) return "Interview summary on file";
+      if (isMissingLike(existence)) return "Interview summary outstanding";
+    }
+    if (/\b(recording|transcript)\b/i.test(hay) && isMissingLike(existence)) {
+      return "Interview recording outstanding";
+    }
+    if (isMissingLike(existence) && /\b(recording|transcript|audio|video)\b/i.test(hay)) {
+      return "Interview recording outstanding";
+    }
     if (isCheckBeforeReliance(existence, hay)) return "Interview material on file";
+    // Generic "interview" without recording modality — do not invent recording outstanding.
+    if (isMissingLike(existence)) return "Interview material outstanding";
   }
 
-  if (/phone|mobile|download|digital|extraction/i.test(hay)) {
+  if (/\b(phone\s+(?:download|extraction|attribution)|full\s+phone|source\s+export|device\s+download|subscriber|handset|mobile\s+download)\b/i.test(hay)) {
     if (/summary only|extraction summary|summary on file/i.test(hay)) {
       if (existence === "referred_only" || existence === "served") {
         return "Phone extraction summary only on file";
@@ -112,10 +132,15 @@ export function humanizeEvidenceLabel(label: string, existence: EvidenceExistenc
 
   if (/cctv|stills|camera|footage|master export/i.test(hay)) {
     if (/stills/i.test(hay) && isMissingLike(existence)) {
-      return "CCTV stills without master export log";
+      // Only claim export-log gap when that modality is in the label.
+      if (/\bexport\s+log\b/i.test(hay)) return "CCTV stills without master export log";
+      return "CCTV stills served — master outstanding";
     }
     if (existence === "referred_only") return "CCTV referred to, not served";
-    if (existence === "missing") return "CCTV outstanding";
+    if (existence === "missing") {
+      if (/\bmaster\b/i.test(hay) || /\bfull\s+window\b/i.test(hay)) return "CCTV master outstanding";
+      return "CCTV outstanding";
+    }
     if (existence === "served") return "CCTV served";
     if (isCheckBeforeReliance(existence, hay)) return "CCTV material needs checking";
   }

@@ -132,16 +132,26 @@ const CHASE_FAMILIES: FamilyDef[] = [
     label: "Interview recording / transcript",
     source: "Custody / police interview unit",
     priority: 5,
+    // Recording/transcript is a distinct modality from "interview summary" / "custody/interview summary".
     match: (t) =>
-      /\b(interview|transcript|custody|detention|risk\s*assessment|pace)\b/.test(t) &&
-      !/\bmg6\b/.test(t),
+      /\b(interview\s+recording|interview\s+transcript|interview\s+audio|interview\s+video|recording\s*\/\s*transcript)\b/.test(
+        t,
+      ) ||
+      (/\binterview\b/.test(t) &&
+        /\b(recording|transcript|audio|video)\b/.test(t) &&
+        !/\b(interview\s+summary|custody\s*\/\s*interview\s+summary|summary\s+only)\b/.test(t)),
   },
   {
     id: "mg6_unused",
     label: "MG6 / unused / schedule clarification",
     source: "CPS / disclosure officer",
     priority: 6,
-    match: (t) => /\b(mg6|unused|disclosure\s*schedule|cpi(a)?|material\s*not\s*used)\b/.test(t),
+    // MG6 extract alone is not an unused-schedule chase — require unused/MG6C/schedule clarification signal.
+    match: (t) =>
+      /\b(mg6c|unused\s+material|unused\s+schedule|schedule\s+clarification|material\s+not\s+used|cpi(a)?)\b/.test(
+        t,
+      ) ||
+      (/\bmg6\b/.test(t) && /\b(unused|schedule\s+clarification|disclosure\s+schedule)\b/.test(t)),
   },
   {
     id: "medical_expert",
