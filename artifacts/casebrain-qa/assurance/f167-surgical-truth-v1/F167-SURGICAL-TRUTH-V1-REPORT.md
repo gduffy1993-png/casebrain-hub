@@ -32,8 +32,9 @@ F167 richness (identification route, CCTV master/continuity chase, MG6-on-file g
 
 | Field | Value |
 |-------|--------|
-| Full SHA | `02d9125473f2413d7079b41b9e0ec596598e4682` |
-| Tip subject | `test(truth): add opposite-direction surgical factual contracts` |
+| Full SHA (branch tip) | `309d4aad029b287b7903b5468e2a79aa0f8c8387` |
+| Tip subject | `docs(assurance): F167 surgical truth v1 report and Arden before/after captures` |
+| Product-fix tip (authenticated Preview) | `02d9125473f2413d7079b41b9e0ec596598e4682` |
 
 Commits on branch (from `f167c5876`):
 
@@ -41,6 +42,7 @@ Commits on branch (from `f167c5876`):
 2. `55038a3aa` — source-gate robbery CAD/999 and CCTV export-log clauses  
 3. `c400b76ba` — separate interview summary from recording/transcript chase  
 4. `02d912547` — opposite-direction surgical factual contracts  
+5. `309d4aad0` — assurance report + Arden BEFORE/AFTER captures  
 
 ---
 
