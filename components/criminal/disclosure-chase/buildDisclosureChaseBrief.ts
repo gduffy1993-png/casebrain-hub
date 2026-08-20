@@ -454,19 +454,20 @@ export function reconcileInterviewModalityItems(
         );
       if (summaryOnly) return null;
 
-      // Thin-file invent (Trap): no PACE recording/transcript established — do not chase recording.
-      const inventOnlyInterview =
-        /\bno\s+pace\s+interview\b/i.test(blob) ||
-        /\bno\s+(?:pace\s+)?interview\s+(?:transcript|summary|recording)\b/i.test(blob) ||
-        (/\binterview\s+record\b/i.test(blob) &&
-          !/\b(?:interview\s+recording|interview\s+transcript|recording\s+outstanding|transcript\s+outstanding)\b/i.test(
-            blob,
-          ));
-      const establishedRecordingOrTranscript =
-        /\b(?:interview\s+recording|interview\s+transcript|full\s+interview\s+transcript|recording\s+state\s+not\s+safely|transcript\s+state\s+served|transcript\s+outstanding|recording\s+outstanding)\b/i.test(
-          blob,
+      // Thin-file invent (Trap): no PACE recording/transcript established on papers.
+      // Evaluate source hay only — do not treat the chase card's own blend label as establishment.
+      const sourceHay = `${bundleText ?? ""}`;
+      const thinFileNoPace =
+        /\bno\s+pace\s+interview\b/i.test(sourceHay) ||
+        /\bno\s+(?:pace\s+)?interview\s+(?:transcript|summary|recording)\b/i.test(sourceHay);
+      const sourceEstablishesRecordingOrTranscript =
+        /\b(?:full\s+)?(?:interview\s+)?(?:recording|transcript)\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|needed)\b/i.test(
+          sourceHay,
+        ) ||
+        /\b(?:outstanding|not\s+served|not\s+attached|needed)\b[^.\n]{0,48}\b(?:full\s+)?(?:interview\s+)?(?:recording|transcript)\b/i.test(
+          sourceHay,
         );
-      if (inventOnlyInterview && !establishedRecordingOrTranscript) return null;
+      if (thinFileNoPace && !sourceEstablishesRecordingOrTranscript) return null;
 
       const label = interviewChaseLabelFromSignals(blob);
       if (label === item.label && !/recording\s*\/\s*transcript/i.test(item.label)) return item;
