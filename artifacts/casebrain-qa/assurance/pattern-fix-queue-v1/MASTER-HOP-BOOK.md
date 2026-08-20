@@ -14,9 +14,9 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 
 | Status | N |
 |--------|--:|
-| FIXED (prior surgical + Trap CCTV) | 5 |
-| OPEN (fix-wave priority) | 9 |
-| WATCH (UI / soft / volume triage) | 5 |
+| FIXED (prior surgical + Trap CCTV + this wave) | 12 |
+| OPEN (remaining) | 5 |
+| WATCH (UI / soft / volume triage) | 4 |
 
 ---
 
