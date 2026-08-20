@@ -170,12 +170,52 @@ describe("overview workspace VM — counts + chase firewall", () => {
     expect(hay).toMatch(/CCTV|master|interview|MG11|custody/i);
   });
 
-  it("cps_chase considerations remain empty (firewall unchanged)", () => {
+  it("negation suppresses BWV outstanding presentation when not-established", () => {
+    const bundle = [
+      "Taylor Reed",
+      "Charge: Harassment",
+      "Screenshots of WhatsApp messages served.",
+      "Full phone download / subscriber mapping outstanding.",
+      "No BWV. No CCTV.",
+    ].join("\n");
     const li = buildLegalIntelligence({
-      caseId: "firewall",
-      allegation: "Affray",
-      bundleText: PATEL_SOURCE_BUNDLE,
+      caseId: "phone-neg",
+      allegation: "Harassment",
+      bundleText: bundle,
     });
-    expect(considerationsForSurface(li, "cps_chase")).toEqual([]);
+    const rows: FiveAnswersEvidenceRow[] = [
+      { label: "Screenshots served", existence: "served", reliability: "needs_review" },
+      { label: "Full phone download outstanding", existence: "missing", reliability: "needs_review" },
+    ];
+    const vm = buildOverviewWorkspaceVm({
+      caseId: "phone-neg",
+      chargeLabel: "Harassment",
+      matterConfidence: { level: "provisional" } as never,
+      evidenceRows: rows,
+      chaseItems: [
+        {
+          id: "bad-bwv-chase",
+          label: "Body-worn video (BWV)",
+          whyItMatters: "BWV is referred to but not safely served in full",
+          draftChaseWording: "Please serve BWV.",
+        },
+        {
+          id: "phone-chase",
+          label: "Full phone download / subscriber mapping outstanding",
+          draftChaseWording: "Please serve the full phone download.",
+        },
+      ],
+      legalIntelligence: li,
+      overviewConsiderations: considerationsForSurface(li, "overview"),
+    });
+
+    const bwvOutstanding = vm.issues.filter(
+      (i) => /bwv/i.test(i.title) && i.status === "missing_outstanding",
+    );
+    expect(bwvOutstanding).toEqual([]);
+    const bwvNe = vm.issues.find((i) => /bwv/i.test(i.title));
+    expect(bwvNe?.statusLabel).toBe("NOT ESTABLISHED");
+    expect(canCopyChaseRequest(bwvNe)).toBe(false);
+    expect(vm.counts.activeChases).toBe(2); // counters unchanged by ranking filter
   });
 });

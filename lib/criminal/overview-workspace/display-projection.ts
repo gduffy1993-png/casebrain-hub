@@ -50,7 +50,7 @@ export function projectNotEstablishedTitle(label: string): string {
   if (/999|control[-\s]?room|cad/i.test(clean)) {
     title = "999 / control-room material";
   } else if (/\bbwv\b|body[-\s]?worn/i.test(clean)) {
-    title = "BWV";
+    title = "BWV material";
   } else if (/self[-\s]?defence|first[-\s]?contact/i.test(clean)) {
     title = "Self-defence / first contact";
   } else if (/medical|hospital|injury report/i.test(clean)) {

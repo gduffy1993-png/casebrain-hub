@@ -245,6 +245,38 @@ function findRelatedConsideration(
   return null;
 }
 
+function findRelatedNotEstablished(
+  issueText: string,
+  claims: NotEstablishedClaim[],
+): NotEstablishedClaim | null {
+  for (const n of claims) {
+    const hay = `${n.label} ${n.reason}`;
+    // Continuity / nuance claims must not wipe genuine outstanding material gaps.
+    if (/\bcontinuity\b/i.test(n.label)) continue;
+    if (/self-defence|live case position/i.test(n.label)) {
+      if (/self-defence|first[-\s]?contact/i.test(issueText)) return n;
+      continue;
+    }
+    // Family invent / negation: suppress outstanding presentation for these families only.
+    if (/\bbwv\b|body[-\s]?worn/i.test(n.label) && /\b(missing|absent|not established|negat)/i.test(hay)) {
+      if (/\bbwv\b|body[-\s]?worn/i.test(issueText)) return n;
+      continue;
+    }
+    if (/\bmedical\b/i.test(n.label) && /\b(missing|absent|not established)/i.test(hay)) {
+      if (/\bmedical\b|injury report/i.test(issueText)) return n;
+      continue;
+    }
+    if (/\b999\b|control[-\s]?room/i.test(n.label)) {
+      if (/\b999\b|control[-\s]?room/i.test(issueText) && !/\bcad\b.*timing/i.test(issueText)) return n;
+      continue;
+    }
+    if (tokensOverlap(issueText, hay) && /not established|must not be asserted|absent from source/i.test(hay)) {
+      return n;
+    }
+  }
+  return null;
+}
+
 /**
  * Pure presentation mapper. Ranking/filter must not change authoritative totals.
  */
@@ -268,7 +300,37 @@ export function buildOverviewWorkspaceVm(input: BuildOverviewWorkspaceVmInput): 
     issues.push(issue);
   };
 
-  // 1) Authoritative evidence gaps (factual)
+  // 0) Not-established first — negative-first, never as missing evidence.
+  // Must precede evidence/chase so negation cannot be outranked into OUTSTANDING.
+  for (const [i, claim] of notEstablished.entries()) {
+    const title = projectNotEstablishedTitle(claim.label);
+    const summary = projectNotEstablishedSummary(claim.label, claim.reason);
+    const related =
+      (claim.relatedConsiderationId
+        ? considerations.find((c) => c.id === claim.relatedConsiderationId)
+        : null) ?? findRelatedConsideration(`${claim.label} ${claim.reason}`, considerations);
+    pushIssue({
+      id: claim.id || `ne-${i}-${keySlice(title)}`,
+      title,
+      summary,
+      status: "consider",
+      statusLabel: "NOT ESTABLISHED",
+      impact: impactFor(`${claim.label} ${claim.reason}`, true),
+      whySaysThis: summary,
+      sources: ["Legal intelligence — not established from current papers"],
+      whyItMatters:
+        projectSolicitorDisplayText(related?.why) ||
+        "Avoid treating this as outstanding disclosure or as an established case position.",
+      consider: related ? projectSolicitorDisplayText(related.what) : null,
+      recommendedAction: "Keep wording provisional — do not chase or assert this as fact from current papers alone.",
+      chaseCopy: null, // firewall: not-established never enables Chase
+      courtCopy: null,
+      kind: "not_established",
+      rankScore: 88, // above generic chase noise; below confirmed source gaps
+    });
+  }
+
+  // 1) Authoritative evidence gaps (factual) — skip families already marked not-established
   for (const [i, row] of input.evidenceRows.entries()) {
     const status = existenceToStatus(row.existence);
     if (!status) continue;
@@ -276,6 +338,7 @@ export function buildOverviewWorkspaceVm(input: BuildOverviewWorkspaceVmInput): 
       humanizeEvidenceLabel(row.label, row.existence) ||
       projectSolicitorDisplayText(row.label);
     if (!title) continue;
+    if (findRelatedNotEstablished(`${title} ${row.label}`, notEstablished)) continue;
     const chase = findMatchingChase(title, chaseItems);
     const related = findRelatedConsideration(title, considerations);
     const why =
@@ -316,12 +379,13 @@ export function buildOverviewWorkspaceVm(input: BuildOverviewWorkspaceVmInput): 
     });
   }
 
-  // 2) Chase items not already covered by evidence titles
+  // 2) Chase items not already covered — skip not-established families (CPS firewall + negation)
   for (const [i, item] of chaseItems.entries()) {
     const title = projectSolicitorDisplayText(item.label);
     if (!title) continue;
     const key = normalizeKey(title);
     if (seenKeys.has(key)) continue;
+    if (findRelatedNotEstablished(`${title} ${item.label}`, notEstablished)) continue;
     const related = findRelatedConsideration(title, considerations);
     const why =
       projectSolicitorDisplayText(item.whyItMatters) ||
@@ -374,36 +438,7 @@ export function buildOverviewWorkspaceVm(input: BuildOverviewWorkspaceVmInput): 
     });
   }
 
-  // 4) Not-established — negative-first, never as missing evidence
-  for (const [i, claim] of notEstablished.entries()) {
-    const title = projectNotEstablishedTitle(claim.label);
-    const summary = projectNotEstablishedSummary(claim.label, claim.reason);
-    const related =
-      (claim.relatedConsiderationId
-        ? considerations.find((c) => c.id === claim.relatedConsiderationId)
-        : null) ?? findRelatedConsideration(`${claim.label} ${claim.reason}`, considerations);
-    pushIssue({
-      id: claim.id || `ne-${i}-${keySlice(title)}`,
-      title,
-      summary,
-      status: "consider",
-      statusLabel: "NOT ESTABLISHED",
-      impact: impactFor(`${claim.label} ${claim.reason}`, true),
-      whySaysThis: summary,
-      sources: ["Legal intelligence — not established from current papers"],
-      whyItMatters:
-        projectSolicitorDisplayText(related?.why) ||
-        "Avoid treating this as outstanding disclosure or as an established case position.",
-      consider: related ? projectSolicitorDisplayText(related.what) : null,
-      recommendedAction: "Keep wording provisional — do not chase or assert this as fact from current papers alone.",
-      chaseCopy: null, // firewall: not-established never enables Chase
-      courtCopy: null,
-      kind: "not_established",
-      rankScore: 42,
-    });
-  }
-
-  // 5) Practitioner considerations not already linked
+  // 4) Practitioner considerations not already linked
   for (const [i, c] of considerations.entries()) {
     const title = projectSolicitorDisplayText(c.what);
     if (!title) continue;
