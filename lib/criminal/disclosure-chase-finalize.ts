@@ -108,7 +108,20 @@ function dedupeByNorm(lines: string[]): string[] {
   return out;
 }
 
-function familyLabelForId(familyId: ChaseFamilyId): string {
+function interviewFamilyLabelLocal(hay: string): string {
+  const transcriptServed = /transcript\s+state\s+served|transcript\s+(?:is\s+)?served/i.test(hay);
+  const recordingServed = /recording\s+state\s+served|recording\s+(?:is\s+)?served/i.test(hay);
+  if (transcriptServed && !recordingServed) return "Interview recording";
+  if (recordingServed && !transcriptServed) return "Interview transcript";
+  if (/\btranscript\b/i.test(hay) && !/\brecording\b/i.test(hay)) return "Interview transcript";
+  if (/\brecording\b/i.test(hay) && !/\btranscript\b/i.test(hay)) return "Interview recording";
+  if (/\brecording\b/i.test(hay) && /\btranscript\b/i.test(hay)) {
+    return "Interview recording and transcript";
+  }
+  return "Interview recording";
+}
+
+function familyLabelForId(familyId: ChaseFamilyId, mergedFrom: string[] = []): string {
   switch (familyId) {
     case "cctv_continuity":
       return "CCTV continuity / provenance";
@@ -119,7 +132,7 @@ function familyLabelForId(familyId: ChaseFamilyId): string {
     case "bwv":
       return "Body-worn video (BWV)";
     case "interview":
-      return "Interview recording / transcript";
+      return interviewFamilyLabelLocal(mergedFrom.join(" "));
     case "mg6_unused":
       return "MG6 / unused / schedule clarification";
     case "medical_expert":
@@ -236,7 +249,7 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
   if (needsFamilyLabel) {
     label =
       item.familyId !== "other"
-        ? familyLabelForId(item.familyId)
+        ? familyLabelForId(item.familyId, mergedHumanized.length ? mergedHumanized : item.mergedFrom)
         : mergedHumanized.length === 1
           ? mergedHumanized[0]!
           : humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : item.mergedFrom);
@@ -326,7 +339,10 @@ function collapseFinalizedItemsByFamilyId(items: DisclosureChaseItem[]): Disclos
     for (const item of group.slice(1)) {
       merged = mergeFinalizedItems(merged, item);
     }
-    const familyLabel = familyLabelForId(familyId as DisclosureChaseItem["familyId"]);
+    const familyLabel = familyLabelForId(
+      familyId as DisclosureChaseItem["familyId"],
+      merged.mergedFrom,
+    );
     out.push({
       ...merged,
       label: familyLabel,

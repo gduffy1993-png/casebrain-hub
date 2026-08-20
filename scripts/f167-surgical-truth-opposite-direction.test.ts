@@ -7,7 +7,13 @@ process.env.NEXT_PUBLIC_CRIMINAL_PILOT_MODE = "true";
 import assert from "node:assert/strict";
 
 import { humanizeEvidenceLabel } from "../components/criminal/five-answers/evidence-display";
-import { reconcileCad999ModalityItems } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import {
+  reconcileCad999ModalityItems,
+  reconcileInterviewModalityItems,
+  interviewChaseLabelFromSignals,
+  reconcilePhoneDownloadModalityItems,
+  reconcileSubscriberModalityItems,
+} from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { familySupport } from "../lib/criminal/chase-source-gate";
 import {
   displayChaseCardLabel,
@@ -88,7 +94,7 @@ No comment after limited disclosure. Defence later records that identification a
   );
   assert.equal(
     humanizeEvidenceLabel("Interview recording / transcript", "missing"),
-    "Interview recording outstanding",
+    "Interview recording and transcript outstanding",
   );
   assert.equal(familySupport("interview", ARDEN_SNIPPET), "absent");
   assert.equal(
@@ -296,6 +302,163 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
     /subscriber/i,
     "opposite: real subscriber outstanding still surfaces",
   );
+}
+
+// --- K: interview recording vs transcript — no slash-blend identity ---
+{
+  assert.equal(
+    interviewChaseLabelFromSignals(
+      "Interview recording / transcript\nRecording state not safely confirmed; transcript state served.",
+    ),
+    "Interview recording",
+    "Tobin-like: transcript served → chase recording only",
+  );
+  assert.equal(
+    interviewChaseLabelFromSignals(
+      "Interview summary present. Full interview transcript outstanding needed.",
+    ),
+    "Interview transcript",
+    "Ahmed-like: transcript outstanding only",
+  );
+  assert.equal(
+    interviewChaseLabelFromSignals(
+      "Interview summary only. Full interview recording and transcript not served.",
+    ),
+    "Interview recording and transcript",
+    "Patel-like: both modalities outstanding without slash blend",
+  );
+
+  const tobinCard = reconcileInterviewModalityItems(
+    [
+      {
+        id: "chase-family-interview",
+        familyId: "interview",
+        label: "Interview recording / transcript",
+        whyItMatters: "test",
+        source: "Custody",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "test",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording: "Please provide Interview recording / transcript",
+        courtLine: "Interview outstanding",
+        mergedFrom: ["Interview recording / transcript"],
+        provenance: {
+          sourceDocumentTitle: null,
+          sourceDocumentType: null,
+          sourcePage: null,
+          compiledPage: null,
+          sourceFilename: null,
+          evidenceState: "missing",
+          defendant: null,
+          countNumber: null,
+          unresolvedConflictOrLimitation:
+            "Recording state not safely confirmed; transcript state served.",
+        },
+      },
+    ],
+    "Full interview transcript Outstanding\nInterview record completeness caution",
+  );
+  assert.equal(tobinCard.length, 1);
+  assert.equal(tobinCard[0]!.label, "Interview recording");
+  assert.doesNotMatch(tobinCard[0]!.label, /recording\s*\/\s*transcript/i);
+
+  assert.equal(
+    humanizeEvidenceLabel("Interview transcript", "missing"),
+    "Interview transcript outstanding",
+  );
+}
+
+// --- L: phone mid-state vs Brookes full vs Arden property ---
+{
+  const grant = reconcilePhoneDownloadModalityItems(
+    [],
+    "Logical download summary only. Full report not in section. MG6 disclosure schedule Present.",
+  );
+  assert.ok(
+    grant.some((i) => /summary only|full download report not in section/i.test(i.label)),
+    "Grant mid-state must surface",
+  );
+  assert.ok(!grant.some((i) => /^Full phone download/i.test(i.label)), "mid-state ≠ full invent");
+
+  const brookes = reconcilePhoneDownloadModalityItems(
+    [
+      {
+        id: "p1",
+        familyId: "other",
+        label: "Full phone download / source extraction",
+        whyItMatters: "test",
+        source: "Crown",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "test",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording: "Please provide full phone download",
+        courtLine: "phone outstanding",
+        mergedFrom: ["Full phone download outstanding"],
+      },
+    ],
+    "Full phone download outstanding. Source export not served. Subscriber report not served.",
+  );
+  assert.ok(
+    brookes.some((i) => /Full phone download/i.test(i.label)),
+    "opposite: Brookes full download TP",
+  );
+
+  const arden = reconcilePhoneDownloadModalityItems(
+    [
+      {
+        id: "p2",
+        familyId: "other",
+        label: "Phone download / source export",
+        whyItMatters: "test",
+        source: "Crown",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "test",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording: "Please provide phone download",
+        courtLine: "phone",
+        mergedFrom: ["stolen phone from Marlow Reed"],
+      },
+    ],
+    "Stolen phone from Marlow Reed. No phone download or source export on MG6.",
+  );
+  assert.equal(arden.length, 0, "opposite: Arden property-phone TN");
+
+  const ahmedSub = reconcileSubscriberModalityItems(
+    [],
+    "phone subscriber data outstanding not attached",
+  );
+  assert.ok(
+    ahmedSub.some((i) => /subscriber/i.test(i.label)),
+    "Ahmed: subscriber outstanding must surface",
+  );
+
+  const trapSub = reconcileSubscriberModalityItems(
+    [
+      {
+        id: "s1",
+        familyId: "other",
+        label: "Subscriber / account data",
+        whyItMatters: "assuming",
+        source: "Crown",
+        baseStatus: "Outstanding",
+        urgency: "medium",
+        deadlineLabel: "test",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording: "subscriber",
+        courtLine: "sub",
+        mergedFrom: ["assuming missing CCTV"],
+      },
+    ],
+    "The case should not be strengthened by assuming missing CCTV, statements, codes, or forensic evidence.",
+  );
+  assert.equal(trapSub.length, 0, "Trap: do not invent subscriber from assuming");
 }
 
 console.log("f167-surgical-truth-opposite-direction: PASS");

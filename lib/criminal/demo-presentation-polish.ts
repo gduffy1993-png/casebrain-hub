@@ -238,6 +238,13 @@ function mg6GenericLabel(label: string): boolean {
 
 function digitalChaseLabel(hay: string): string | null {
   // Word boundaries matter: bare /sim/ matched inside "assuming" and invented Trap subscriber cards.
+  if (
+    /\blogical\s+download\s+summary|phone\s+download\s+reference\s+referenced\s+only|extraction\s+summary\s+only|full\s+report\s+not\s+in/i.test(
+      hay,
+    )
+  ) {
+    return "Phone extraction summary only — full download report not in section";
+  }
   if (/\b(?:phone|extraction|download|device\s+download)\b/i.test(hay)) {
     return "Full phone download / source extraction";
   }
@@ -256,6 +263,15 @@ function digitalChaseLabel(hay: string): string | null {
   if (/continuity|provenance/i.test(hay) && /cctv|stills|camera/i.test(hay)) return "CCTV continuity / provenance";
   if (/bwv|body[-\s]?worn/i.test(hay)) return "Full BWV export";
   if (/custody|pace/i.test(hay)) return "Full custody record";
+  if (/interview/.test(hay) && /recording\s*\/\s*transcript|recording\s+and\s+transcript/i.test(hay)) {
+    return "Interview recording and transcript";
+  }
+  if (/interview/.test(hay) && /transcript/i.test(hay) && !/recording/i.test(hay)) {
+    return "Interview transcript";
+  }
+  if (/interview/.test(hay) && /recording|audio|video/i.test(hay)) {
+    return "Interview recording";
+  }
   if (/interview/.test(hay) && /target|defendant|co-def/i.test(hay)) return "Target defendant interview";
   if (/handle|attribution report/i.test(hay)) return "Handle attribution report";
   if (/platform|encro|county/i.test(hay)) return "Platform / source extraction";
@@ -268,6 +284,12 @@ function digitalChaseLabel(hay: string): string | null {
 export function displayChaseCardLabel(item: ChaseDisplayItem): string {
   const hay = digitalHay(item);
   const normalized = item.label.replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
+
+  if (/interview\s+recording\s*\/\s*transcript/i.test(normalized)) {
+    const digital = digitalChaseLabel(hay);
+    if (digital && /interview/i.test(digital)) return digital;
+    return "Interview recording";
+  }
 
   if (/^additional\s+source[- ]material\s+issues?\b/i.test(normalized)) {
     const fromMerged = (item.mergedFrom ?? [])

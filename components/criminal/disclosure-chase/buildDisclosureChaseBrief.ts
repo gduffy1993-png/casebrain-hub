@@ -155,12 +155,13 @@ const CHASE_FAMILIES: FamilyDef[] = [
   },
   {
     id: "interview",
-    label: "Interview recording / transcript",
+    // Prefer modality-specific titles via reconcileInterviewModalityItems — avoid slash-blend identity.
+    label: "Interview recording",
     source: "Custody / police interview unit",
     priority: 5,
     // Recording/transcript is a distinct modality from "interview summary" / "custody/interview summary".
     match: (t) =>
-      /\b(interview\s+recording|interview\s+transcript|interview\s+audio|interview\s+video|recording\s*\/\s*transcript)\b/.test(
+      /\b(interview\s+recording|interview\s+transcript|interview\s+audio|interview\s+video|recording\s*\/\s*transcript|recording\s+and\s+transcript)\b/.test(
         t,
       ) ||
       (/\binterview\b/.test(t) &&
@@ -360,6 +361,297 @@ export function reconcileCad999ModalityItems(
       };
     })
     .filter((i): i is DisclosureChaseItem => i !== null);
+}
+
+/**
+ * Pick a modality-true interview chase title from merged/provenance/bundle signals.
+ * Never keep the slash-blend "Interview recording / transcript" identity when one
+ * modality is already served or only one modality is outstanding.
+ * Opposite: Tobin/Patel recording|transcript still surfaces when PDF establishes it.
+ */
+export function interviewChaseLabelFromSignals(blob: string): string {
+  const hay = blob.toLowerCase();
+  const transcriptServed =
+    /transcript\s+state\s+served|transcript\s+(?:is\s+)?served|served\s+(?:full\s+)?(?:interview\s+)?transcript/.test(
+      hay,
+    );
+  const recordingServed =
+    /recording\s+state\s+served|recording\s+(?:is\s+)?served|served\s+(?:full\s+)?(?:interview\s+)?recording/.test(
+      hay,
+    );
+  const transcriptOutstanding =
+    /\b(?:full\s+)?(?:interview\s+)?transcript\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|needed|incomplete)/.test(
+      hay,
+    ) ||
+    /\b(?:outstanding|not\s+served|not\s+attached|needed)\b[^.\n]{0,48}\b(?:full\s+)?(?:interview\s+)?transcript\b/.test(
+      hay,
+    );
+  const recordingOutstanding =
+    /\b(?:full\s+)?(?:interview\s+)?recording\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|needed|not\s+safely\s+confirmed)/.test(
+      hay,
+    ) ||
+    /\b(?:outstanding|not\s+served|not\s+attached|needed|not\s+safely\s+confirmed)\b[^.\n]{0,48}\b(?:full\s+)?(?:interview\s+)?recording\b/.test(
+      hay,
+    ) ||
+    /recording\s+state\s+not\s+safely\s+confirmed/.test(hay);
+
+  const mentionsTranscript = /\btranscript\b/.test(hay);
+  const mentionsRecording = /\brecording\b|\binterview\s+audio\b|\binterview\s+video\b/.test(hay);
+
+  if (transcriptServed && (recordingOutstanding || mentionsRecording) && !recordingServed) {
+    return "Interview recording";
+  }
+  if (recordingServed && (transcriptOutstanding || mentionsTranscript) && !transcriptServed) {
+    return "Interview transcript";
+  }
+  if (transcriptOutstanding && !recordingOutstanding && !mentionsRecording) {
+    return "Interview transcript";
+  }
+  if (recordingOutstanding && !transcriptOutstanding && !mentionsTranscript) {
+    return "Interview recording";
+  }
+  if (
+    (recordingOutstanding || mentionsRecording) &&
+    (transcriptOutstanding || mentionsTranscript) &&
+    !transcriptServed &&
+    !recordingServed
+  ) {
+    return "Interview recording and transcript";
+  }
+  if (mentionsTranscript && !mentionsRecording) return "Interview transcript";
+  if (mentionsRecording && !mentionsTranscript) return "Interview recording";
+  return "Interview recording";
+}
+
+/**
+ * Split interview summary≠recording≠transcript on Chase cards.
+ * Drop summary-only invent; keep recording/transcript when PDF-established.
+ */
+export function reconcileInterviewModalityItems(
+  items: DisclosureChaseItem[],
+  bundleText?: string | null,
+): DisclosureChaseItem[] {
+  const hay = `${bundleText ?? ""}`;
+  return items
+    .map((item) => {
+      if (item.familyId !== "interview") return item;
+      const blob = [
+        item.label,
+        ...(item.mergedFrom ?? []),
+        item.evidenceAnchor ?? "",
+        item.whyItMatters ?? "",
+        item.provenance?.unresolvedConflictOrLimitation ?? "",
+        hay,
+      ].join("\n");
+
+      // Summary alone must never become a recording/transcript chase.
+      const summaryOnly =
+        /\b(interview\s+summary|custody\s*\/\s*interview\s+summary|summary\s+only)\b/i.test(blob) &&
+        !/\b(interview\s+recording|interview\s+transcript|recording|transcript|audio|video)\b/i.test(
+          blob.replace(/\binterview\s+summary\b/gi, " "),
+        );
+      if (summaryOnly) return null;
+
+      const label = interviewChaseLabelFromSignals(blob);
+      if (label === item.label && !/recording\s*\/\s*transcript/i.test(item.label)) return item;
+
+      return {
+        ...item,
+        label,
+        draftChaseWording: `Please provide the ${label.toLowerCase()}, or confirm in writing why it is not available.`,
+        courtLine: toCourtLine(label),
+        whyItMatters:
+          /transcript/i.test(label) && /recording/i.test(label)
+            ? "Interview summary on file is not a substitute for the recording and transcript modalities."
+            : /transcript/i.test(label)
+              ? "Interview summary or partial record on file is not a substitute for the full transcript."
+              : "Interview summary on file is not a substitute for the interview recording.",
+      };
+    })
+    .filter((i): i is DisclosureChaseItem => i !== null);
+}
+
+/**
+ * Phone mid-state (logical/summary/referenced-only) must surface without inventing a
+ * full Brookes-style download chase, and without inventing download from property-phone.
+ * Opposite: Brookes full download outstanding TP; Arden property-phone TN.
+ */
+export function reconcilePhoneDownloadModalityItems(
+  items: DisclosureChaseItem[],
+  bundleText?: string | null,
+): DisclosureChaseItem[] {
+  const hay = `${bundleText ?? ""}`;
+  const midState =
+    /\blogical\s+download\s+summary\b/i.test(hay) ||
+    /\bphone\s+download\s+reference\s+referenced\s+only\b/i.test(hay) ||
+    /\breferenced\s+only\b[^.\n]{0,40}\bphone\s+download\b/i.test(hay) ||
+    /\bextraction\s+summary\s+only\b/i.test(hay) ||
+    /\bfull\s+report\s+not\s+in\s+(?:the\s+)?section\b/i.test(hay);
+
+  const fullOutstanding =
+    /\b(?:full\s+)?phone\s+download\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|expressly)\b/i.test(
+      hay,
+    ) ||
+    /\bsource\s+export\s+outstanding\b/i.test(hay) ||
+    /\boriginal\s+download\b[^.\n]{0,40}\b(?:outstanding|not\s+served)\b/i.test(hay);
+
+  const propertyPhone = /\b(?:stolen|recovered|seized)\s+phone\b/i.test(hay);
+  // Affirmative digital-download family (not mere negation wording like "no phone download").
+  const downloadFamilyAffirmed =
+    midState ||
+    fullOutstanding ||
+    /\b(?:phone\s+download|source\s+export|phone\s+extraction|logical\s+download)\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|referred|summary|referenced\s+only)\b/i.test(
+      hay,
+    );
+
+  const out = items.map((item) => {
+    const blob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? "", hay].join("\n");
+    const isPhoneish =
+      /\b(?:phone\s+download|source\s+export|phone\s+extraction|logical\s+download|device\s+download)\b/i.test(
+        blob,
+      );
+    if (!isPhoneish) return item;
+
+    // Arden-like: property phone alone must not invent a download chase.
+    if (propertyPhone && !downloadFamilyAffirmed) {
+      return null;
+    }
+
+    if (midState && !fullOutstanding) {
+      const label = "Phone extraction summary only — full download report not in section";
+      return {
+        ...item,
+        label,
+        familyId: item.familyId === "other" ? item.familyId : item.familyId,
+        draftChaseWording:
+          "Please confirm whether a full phone download / source export exists beyond the logical/summary note on file, or confirm in writing why it is not available.",
+        courtLine: toCourtLine(label),
+        whyItMatters:
+          "A logical download summary or referenced-only note is not a full phone download report.",
+        baseStatus: "Not safely confirmed" as ChaseItemStatus,
+      };
+    }
+
+    if (fullOutstanding || /\bfull\s+phone\s+download\b/i.test(item.label)) {
+      const label = "Full phone download / source extraction";
+      return {
+        ...item,
+        label,
+        draftChaseWording:
+          "Please provide the full phone download / source export, or confirm in writing why it is not available.",
+        courtLine: toCourtLine(label),
+      };
+    }
+
+    return item;
+  });
+
+  const filtered = out.filter((i): i is DisclosureChaseItem => i !== null);
+
+  // Inject mid-state card when bundle establishes it but no phoneish chase exists yet.
+  if (midState && !fullOutstanding && !(propertyPhone && !downloadFamilyAffirmed)) {
+    const hasPhone = filtered.some((i) =>
+      /\b(?:phone\s+download|phone\s+extraction|logical\s+download|source\s+export)\b/i.test(
+        `${i.label} ${(i.mergedFrom ?? []).join(" ")}`,
+      ),
+    );
+    if (!hasPhone) {
+      const label = "Phone extraction summary only — full download report not in section";
+      filtered.push({
+        id: "chase-phone-midstate",
+        familyId: "other",
+        label,
+        whyItMatters:
+          "A logical download summary or referenced-only note is not a full phone download report.",
+        source: "Crown / disclosure officer (confirm on file)",
+        baseStatus: "Not safely confirmed",
+        urgency: "medium",
+        deadlineLabel: "Before next hearing",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording:
+          "Please confirm whether a full phone download / source export exists beyond the logical/summary note on file, or confirm in writing why it is not available.",
+        courtLine: toCourtLine(label),
+        mergedFrom: ["Phone download mid-state on papers"],
+      });
+    }
+  }
+
+  return filtered;
+}
+
+/**
+ * Subscriber both-ways: surface when PDF establishes outstanding subscriber/account data;
+ * never invent from thin-file "assuming"/SIM noise alone.
+ * Opposite: Brookes/Ahmed TP; Trap invent TN.
+ */
+export function reconcileSubscriberModalityItems(
+  items: DisclosureChaseItem[],
+  bundleText?: string | null,
+): DisclosureChaseItem[] {
+  const hay = `${bundleText ?? ""}`;
+  const inventNoise =
+    /\bassuming\b/i.test(hay) &&
+    !/\bsubscriber(?:\s+report|\s+return|\s+data)?\b[^.\n]{0,40}\b(?:outstanding|not\s+served|not\s+attached|incomplete)/i.test(
+      hay,
+    );
+
+  const establishedOutstanding =
+    /\b(?:phone\s+)?subscriber(?:\s+report|\s+return|\s+data)?\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|not\s+complete|incomplete)/i.test(
+      hay,
+    ) ||
+    /\b(?:outstanding|not\s+served|not\s+attached)\b[^.\n]{0,48}\b(?:phone\s+)?subscriber(?:\s+report|\s+return|\s+data)?\b/i.test(
+      hay,
+    );
+
+  const filtered = items
+    .map((item) => {
+      const blob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? ""].join("\n");
+      const isSubscriber = /\bsubscriber\b|\baccount\s+data\b|\bsim\b|\bimei\b/i.test(blob);
+      if (!isSubscriber) return item;
+      if (inventNoise && !establishedOutstanding) return null;
+      if (establishedOutstanding) {
+        const label = "Subscriber / account data";
+        return {
+          ...item,
+          label,
+          draftChaseWording:
+            "Please provide the subscriber / account data, or confirm in writing why it is not available.",
+          courtLine: toCourtLine(label),
+          whyItMatters:
+            "Screenshots or partial extraction alone do not prove subscriber attribution.",
+          baseStatus: "Outstanding" as ChaseItemStatus,
+        };
+      }
+      return item;
+    })
+    .filter((i): i is DisclosureChaseItem => i !== null);
+
+  if (establishedOutstanding) {
+    const hasSub = filtered.some((i) => /\bsubscriber\b|\baccount\s+data\b/i.test(i.label));
+    if (!hasSub) {
+      const label = "Subscriber / account data";
+      filtered.push({
+        id: "chase-subscriber-outstanding",
+        familyId: "other",
+        label,
+        whyItMatters:
+          "Screenshots or partial extraction alone do not prove subscriber attribution.",
+        source: "Crown / disclosure officer (confirm on file)",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "Before next hearing",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording:
+          "Please provide the subscriber / account data, or confirm in writing why it is not available.",
+        courtLine: toCourtLine(label),
+        mergedFrom: ["Subscriber / account data outstanding on papers"],
+      });
+    }
+  }
+
+  return filtered;
 }
 
 function mapMaterialStatusToSharedState(status: string): EvidenceStateRow["state"] {
@@ -1571,6 +1863,15 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   items = reconcileCad999ModalityItems(items, input.bundleText);
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+  items = reconcileInterviewModalityItems(items, input.bundleText);
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+  items = reconcilePhoneDownloadModalityItems(items, input.bundleText);
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+  items = reconcileSubscriberModalityItems(items, input.bundleText);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   const guardCtx = { ledger, bundleText: input.bundleText ?? null };

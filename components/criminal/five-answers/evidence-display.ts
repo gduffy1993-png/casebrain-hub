@@ -106,6 +106,15 @@ export function humanizeEvidenceLabel(label: string, existence: EvidenceExistenc
       if (isCheckBeforeReliance(existence, hay)) return "Interview summary on file";
       if (isMissingLike(existence)) return "Interview summary outstanding";
     }
+    if (/\btranscript\b/i.test(hay) && !/\brecording\b/i.test(hay) && isMissingLike(existence)) {
+      return "Interview transcript outstanding";
+    }
+    if (/\brecording\b/i.test(hay) && !/\btranscript\b/i.test(hay) && isMissingLike(existence)) {
+      return "Interview recording outstanding";
+    }
+    if (/recording\s*\/\s*transcript|recording\s+and\s+transcript/i.test(hay) && isMissingLike(existence)) {
+      return "Interview recording and transcript outstanding";
+    }
     if (/\b(recording|transcript)\b/i.test(hay) && isMissingLike(existence)) {
       return "Interview recording outstanding";
     }
