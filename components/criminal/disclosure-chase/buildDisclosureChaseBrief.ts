@@ -125,6 +125,8 @@ const CHASE_FAMILIES: FamilyDef[] = [
     source: "Police control room",
     priority: 3,
     match: (t) => /\b(999|cad|control\s*room|dispatch)\b/.test(t),
+    // Label specialised later via cad999DisplayLabel() so CAD-only mentions
+    // do not invent 999 audio / control-room material.
   },
   {
     id: "bwv",
@@ -419,6 +421,22 @@ function classifyFamily(text: string): ChaseFamilyId {
   return "other";
 }
 
+/** CAD timing mention must not invent 999 audio / control-room material in the display label. */
+export function cad999DisplayLabel(mergedFrom: string[]): string {
+  const hay = mergedFrom.join(" ; ");
+  const has999 = /\b999\b|\bcall audio\b|\bemergency call\b/i.test(hay);
+  const hasControlRoom = /\bcontrol[-\s]?room\b|\bdispatch\b/i.test(hay);
+  const hasCad = /\bcad\b/i.test(hay);
+  if (has999 && hasControlRoom && hasCad) return "CAD / 999 audio / control-room material";
+  if (has999 && hasControlRoom) return "999 audio / control-room material";
+  if (has999 && hasCad) return "CAD / 999 audio material";
+  if (hasControlRoom && hasCad) return "CAD / control-room material";
+  if (has999) return "999 call audio";
+  if (hasControlRoom) return "Control-room material";
+  if (hasCad) return "CAD log / timing material";
+  return "CAD / 999 audio / control-room material";
+}
+
 const CHASE_FAMILY_TO_GATE_FAMILIES: Partial<Record<ChaseFamilyId, ChaseGateFamily[]>> = {
   cctv_master: ["cctv"],
   cctv_continuity: ["cctv"],
@@ -627,6 +645,28 @@ function inferWhyItMatters(
   }
 }
 
+function inferCad999WhyItMatters(
+  mergedFrom: string[],
+  battleboard: BattleboardOutput | null,
+): string {
+  const label = cad999DisplayLabel(mergedFrom);
+  const rt = routeType(battleboard);
+  const primaryTitle = battleboard?.primary_route?.title;
+  const routeHint = primaryTitle ? ` (linked to route: ${primaryTitle})` : "";
+  if (/999/i.test(label) && /CAD/i.test(label)) {
+    return rt === "timeline"
+      ? `CAD/999 material may bear on deployment and timing on this file — appears outstanding until served${routeHint}.`
+      : `CAD/999 material appears outstanding — may assist sequence analysis if timing is in issue${routeHint}.`;
+  }
+  if (/999/i.test(label)) {
+    return `999 call audio appears outstanding — may assist sequence analysis if timing is in issue${routeHint}.`;
+  }
+  if (/control-room/i.test(label)) {
+    return `Control-room material appears outstanding — may assist deployment/timing analysis if served${routeHint}.`;
+  }
+  return `CAD log / timing material appears outstanding — a CAD timing mention alone does not establish 999 audio${routeHint}.`;
+}
+
 function toCourtLine(canonicalLabel: string): string {
   const titleGate = assertSafeEvidenceTitle(canonicalLabel);
   const core = titleGate.safeTitle?.trim() ?? "";
@@ -799,7 +839,9 @@ function groupAndMergeLabels(
     const mergedText = mergedFrom.join("; ");
     const canonical = canonicalLedgerMaterial(mergedText, fam.id);
     const echoLabel = canonical.label === formatDisplayLabelCasing(mergedText);
-    const label = echoLabel ? def.label : canonical.label;
+    const familyDefaultLabel =
+      fam.id === "cad_999" ? cad999DisplayLabel(mergedFrom) : def.label;
+    const label = echoLabel ? familyDefaultLabel : canonical.label;
     const baseStatus: ChaseItemStatus =
       fam.id === "other" || mergedFrom.some((m) => /not safely|unknown|verify/i.test(m))
         ? "Not safely confirmed"
@@ -809,7 +851,10 @@ function groupAndMergeLabels(
       id: `chase-family-${fam.id}`,
       familyId: fam.id,
       label,
-      whyItMatters: canonical.whyItMatters ?? inferWhyItMatters(fam.id, battleboard, mergedFrom),
+      whyItMatters:
+        fam.id === "cad_999"
+          ? inferCad999WhyItMatters(mergedFrom, battleboard)
+          : (canonical.whyItMatters ?? inferWhyItMatters(fam.id, battleboard, mergedFrom)),
       source: def.source,
       baseStatus,
       urgency: deadline.urgency,

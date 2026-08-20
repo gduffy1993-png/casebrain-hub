@@ -155,25 +155,32 @@ const PROFILE_PACKS: Record<StandardWorkflowProfile, ProfilePack> = {
   violence_domestic_assault: {
     primaryRouteTitle: "Violence / complainant account / injury and participation pressure",
     disclosureItems: [
-      "Complainant first account / MG11",
+      "Complainant first account",
+      "Signed final MG11 / witness statement",
       "BWV / incident footage",
       "Medical report / injury photos",
-      "999 / CAD material",
+      "CAD log / timing material",
+      "999 call audio",
+      "Control-room material",
       "Retraction or further complainant statement",
       "Third-party witness statements",
       "Domestic context / safeguarding material",
       "Final signed complainant statement",
     ],
     nextActions: [
-      "Chase complainant first account and BWV/incident footage.",
+      "Chase complainant first account.",
+      "Chase BWV/incident footage.",
+      "Chase signed final MG11 / witness statement.",
       "Chase medical/injury material and any retraction or further statement.",
       "Take instructions on self-defence, causation, domestic context and complainant account.",
     ],
     courtRecordAsks: [
-      "Ask the court to record that complainant first account / MG11 appears outstanding on the current papers.",
+      "Ask the court to record that complainant first account appears outstanding on the current papers.",
+      "Ask the court to record that signed final MG11 / witness statement appears outstanding on the current papers.",
       "Ask the court to record that BWV/incident footage appears outstanding.",
       "Ask the court to record that medical/injury material appears outstanding.",
-      "Ask the court to record that 999/CAD material appears outstanding.",
+      "Ask the court to record that CAD log / timing material appears outstanding.",
+      "Ask the court to record that 999 call audio appears outstanding.",
       "Ask the court to record that any retraction or further complainant statement appears outstanding.",
     ],
     suppressGeneric: /\b(bank|device\/login|phone extraction|intent to supply|poca|account-control)\b/i,
@@ -391,9 +398,18 @@ const PROFILE_SOURCE_SUPPORT_RULES: SourceSupportRule[] = [
     output: /\b(?:bwv|body[-\s]?worn|incident footage)\b/i,
     source: /\b(?:bwv|body[-\s]?worn|incident footage)\b/i,
   },
+  // CAD timing mention must not authorise 999-audio / control-room invention.
   {
-    output: /\b(?:999|cad|call audio|control[-\s]?room|emergency call)\b/i,
-    source: /\b(?:999|cad|call audio|control[-\s]?room|emergency call)\b/i,
+    output: /\b999\b|\bcall audio\b|\bemergency call\b/i,
+    source: /\b999\b|\bcall audio\b|\bemergency call\b/i,
+  },
+  {
+    output: /\bcontrol[-\s]?room\b/i,
+    source: /\bcontrol[-\s]?room\b|\bdispatch\b/i,
+  },
+  {
+    output: /\bcad\b/i,
+    source: /\bcad\b|\b999\b|\bcontrol[-\s]?room\b|\bdispatch\b/i,
   },
   {
     output: /\b(?:medical|injury|hospital|a\s*&\s*e|ambulance|paramedic|fme|causation)\b/i,
@@ -419,9 +435,14 @@ const PROFILE_SOURCE_SUPPORT_RULES: SourceSupportRule[] = [
     output: /\b(?:final signed complainant statement|signed complainant statement)\b/i,
     source: /\b(?:final signed complainant statement|signed complainant statement|unsigned complainant statement|draft complainant statement)\b/i,
   },
+  // Complainant role requires complainant/victim wording — MG11/witness alone is not enough.
   {
-    output: /\b(?:complainant first account|complainant account|mg11)\b/i,
-    source: /\b(?:complainant first account|complainant account|complainant|mg11|witness statement)\b/i,
+    output: /\bcomplainant\b/i,
+    source: /\b(?:complainant|victim)\b/i,
+  },
+  {
+    output: /\bmg11\b/i,
+    source: /\b(?:mg11|witness statement|signed\s+(?:final\s+)?(?:mg11|statement))\b/i,
   },
   {
     output: /\b(?:full phone extraction|phone download|source export|device download|sim|imei|subscriber)\b/i,

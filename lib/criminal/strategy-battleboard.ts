@@ -1397,24 +1397,25 @@ const ROUTE_SPECS: RouteSpec[] = [
     signals: AFFRAY_FAMILY_SIGNALS,
     defaultWhy: [
       "May assist if served material leaves participation, identification, or role in dispute on a public-order file.",
-      "Conditional on CCTV/BWV/witness source material — presence alone may not prove violence on the papers.",
+      "Conditional on served witness/CCTV (and BWV only if that family is on the papers) — presence alone may not prove violence.",
     ],
     defaultHurts: [
-      "Clear CCTV/BWV may link the client to violent conduct if proved on served material.",
+      "Clear CCTV may link the client to violent conduct if proved on served material.",
       "Witness accounts may support Crown participation wording if consistent on the file.",
     ],
     collapseRisks: [
-      "Served CCTV/BWV may support Crown participation and identification if proved.",
+      "Served CCTV may support Crown participation and identification if proved.",
       "Witness viewpoint may be sufficient on served MG11 material — conditional review required.",
       "Outstanding source material may return consistent with the Crown route if served.",
     ],
     nextMoves: [
-      "Chase CCTV master, BWV, and witness viewpoint/continuity material if outstanding.",
+      "Chase CCTV master and witness viewpoint/continuity material if outstanding.",
+      "Chase BWV / incident footage only where the papers support that family.",
       "Take instructions on participation, role, and identification dispute only if supported.",
       "Record what public-order source material remains outstanding before fixing trial theory.",
     ],
     hearingLine:
-      "Participation, identification, and role remain conditional on served CCTV/BWV/witness source material; the defence does not overstate presence as proof of violence.",
+      "Participation, identification, and role remain conditional on served source material that is actually on the papers; the defence does not invent BWV or other media families from offence shape alone.",
     safetyNote: "Conditional on served material and instructions — do not overstate public-order points at court.",
   },
   {

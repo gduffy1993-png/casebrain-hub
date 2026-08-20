@@ -752,6 +752,78 @@ function findDraftAndSignedDocs(docs: UploadedDocumentUnit[]): {
   return { draft, signed };
 }
 
+/**
+ * Infer interview-recording service state from a page.
+ * Mere mention must not become "served". Negative polarity ("not served") wins over a bare "served" token.
+ */
+export function inferInterviewRecordingStateFromText(t: string): SharedEvidenceState | null {
+  if (!/\binterview\s+recording\b/i.test(t)) return null;
+  if (
+    /\binterview\s+recording\b.{0,80}\b(?:is\s+)?not\s+(?:served|provided|available|attached)\b/i.test(t) ||
+    /\b(?:is\s+)?not\s+(?:served|provided|available|attached).{0,80}\binterview\s+recording\b/i.test(t) ||
+    /\binterview\s+recording\b.{0,80}\b(?:missing|outstanding|absent|unavailable)\b/i.test(t) ||
+    /\b(?:missing|outstanding|absent|unavailable).{0,80}\binterview\s+recording\b/i.test(t)
+  ) {
+    return "missing";
+  }
+  if (
+    /\binterview\s+recording\b.{0,40}\b(?:served|provided|on\s+file|available|attached)\b/i.test(t) ||
+    /\b(?:served|provided|on\s+file|available|attached).{0,40}\binterview\s+recording\b/i.test(t)
+  ) {
+    return "served";
+  }
+  return "not_safely_confirmed";
+}
+
+/**
+ * Infer interview-transcript service state from a page.
+ * Critical: "transcript is not served" must not match a naive `served` look-ahead.
+ */
+export function inferInterviewTranscriptStateFromText(t: string): SharedEvidenceState | null {
+  if (!/\b(?:interview\s+)?transcript\b/i.test(t)) return null;
+  const incomplete =
+    /\b(?:incomplete|partial)\s+transcript\b/i.test(t) ||
+    /\btranscript\b.{0,40}\b(?:incomplete|partial)\b/i.test(t);
+  const outstandingOrMissing =
+    /\btranscript\b.{0,80}\b(?:is\s+)?not\s+(?:served|provided|available|attached)\b/i.test(t) ||
+    /\b(?:is\s+)?not\s+(?:served|provided|available|attached).{0,80}\b(?:interview\s+)?transcript\b/i.test(t) ||
+    /\btranscript\b.{0,80}\b(?:missing|outstanding|absent|unavailable)\b/i.test(t) ||
+    /\b(?:missing|outstanding|absent|unavailable).{0,80}\b(?:interview\s+)?transcript\b/i.test(t) ||
+    /\bfull\s+(?:interview\s+)?(?:recording\s*\/\s*|recording\s+or\s+)?transcript\b.{0,80}\b(?:not\s+served|outstanding|missing)\b/i.test(
+      t,
+    );
+  if (incomplete) return "incomplete";
+  if (outstandingOrMissing) return "missing";
+  if (
+    /\btranscript\b.{0,40}\b(?:served|complete|provided|on\s+file|attached)\b/i.test(t) ||
+    /\b(?:served|complete|provided|on\s+file|attached).{0,40}\b(?:interview\s+)?transcript\b/i.test(t)
+  ) {
+    return "served";
+  }
+  return "not_safely_confirmed";
+}
+
+function mergeInterviewModalityState(
+  current: SharedEvidenceState | null,
+  next: SharedEvidenceState,
+): SharedEvidenceState {
+  if (!current) return next;
+  if (current === next) return current;
+  // Explicit served vs outstanding conflict → do not silently prefer either.
+  const pair = new Set([current, next]);
+  if (pair.has("served") && (pair.has("missing") || pair.has("incomplete"))) {
+    return "not_safely_confirmed";
+  }
+  const rank: Record<SharedEvidenceState, number> = {
+    missing: 5,
+    incomplete: 4,
+    not_safely_confirmed: 3,
+    referred_only: 2,
+    served: 1,
+  };
+  return (rank[next] ?? 0) >= (rank[current] ?? 0) ? next : current;
+}
+
 function recordingTranscriptFromPages(documents: UploadedDocumentUnit[]): {
   recordingState: SharedEvidenceState;
   transcriptState: SharedEvidenceState;
@@ -774,21 +846,14 @@ function recordingTranscriptFromPages(documents: UploadedDocumentUnit[]): {
         pageIdentityKnown: refs.pageIdentityKnown,
         snippet: t.slice(0, 120),
       };
-      if (/\binterview\s+recording\b/i.test(t)) {
-        recordingState = /\binterview\s+recording\b.{0,40}\b(missing|outstanding|not served)\b/i.test(t)
-          ? "missing"
-          : "served";
+      const rec = inferInterviewRecordingStateFromText(t);
+      if (rec) {
+        recordingState = mergeInterviewModalityState(recordingState, rec);
         anchors.push(anchor);
       }
-      if (/\b(?:interview\s+)?transcript\b/i.test(t)) {
-        if (/\btranscript\b.{0,40}\b(incomplete|partial|missing|outstanding)\b/i.test(t) ||
-          /\b(incomplete|partial)\s+transcript\b/i.test(t)) {
-          transcriptState = "incomplete";
-        } else if (/\btranscript\b.{0,40}\b(served|complete|provided)\b/i.test(t)) {
-          transcriptState = "served";
-        } else {
-          transcriptState = transcriptState ?? "not_safely_confirmed";
-        }
+      const tr = inferInterviewTranscriptStateFromText(t);
+      if (tr) {
+        transcriptState = mergeInterviewModalityState(transcriptState, tr);
         anchors.push(anchor);
       }
     }

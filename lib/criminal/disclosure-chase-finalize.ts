@@ -8,6 +8,7 @@ import type {
   ChaseFamilyId,
   DisclosureChaseItem,
 } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import { cad999DisplayLabel } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 
 const COURT_RECORD_PREFIX = "The defence asks the court to record";
 
@@ -134,14 +135,14 @@ function dedupeByNorm(lines: string[]): string[] {
   return out;
 }
 
-function familyLabelForId(familyId: ChaseFamilyId): string {
+function familyLabelForId(familyId: ChaseFamilyId, mergedFrom: string[] = []): string {
   switch (familyId) {
     case "cctv_continuity":
       return "CCTV continuity / provenance";
     case "cctv_master":
       return "CCTV full window / master footage";
     case "cad_999":
-      return "CAD / 999 audio / control-room material";
+      return cad999DisplayLabel(mergedFrom.length ? mergedFrom : ["CAD"]);
     case "bwv":
       return "Body-worn video (BWV)";
     case "interview":
@@ -283,7 +284,7 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
   if (needsFamilyLabel) {
     label =
       item.familyId !== "other"
-        ? familyLabelForId(item.familyId)
+        ? familyLabelForId(item.familyId, safeMergedRaw)
         : mergedHumanized.length === 1
           ? mergedHumanized[0]!
           : humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : safeMergedRaw);
@@ -384,7 +385,10 @@ function collapseFinalizedItemsByFamilyId(items: DisclosureChaseItem[]): Disclos
     for (const item of group.slice(1)) {
       merged = mergeFinalizedItems(merged, item);
     }
-    const familyLabel = familyLabelForId(familyId as DisclosureChaseItem["familyId"]);
+    const familyLabel = familyLabelForId(
+      familyId as DisclosureChaseItem["familyId"],
+      merged.mergedFrom ?? [],
+    );
     out.push({
       ...merged,
       label: familyLabel,
