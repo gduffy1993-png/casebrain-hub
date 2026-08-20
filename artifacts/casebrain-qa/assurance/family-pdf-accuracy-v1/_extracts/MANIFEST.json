@@ -1,0 +1,330 @@
+[
+  {
+    "case_key": "ARDEN-MONSTER-0001",
+    "ok": true,
+    "pages": 300,
+    "chars": 145271,
+    "sha": "0b966f3d6296",
+    "hit_terms": [
+      "extraction",
+      "property",
+      "CCTV",
+      "MG11",
+      "MG6",
+      "continuity",
+      "master",
+      "interview",
+      "ABE",
+      "phone",
+      "identification",
+      "stills"
+    ]
+  },
+  {
+    "case_key": "ISAAC-PATEL-TB-546",
+    "ok": true,
+    "pages": 27,
+    "chars": 10383,
+    "sha": "bc5d732fa930",
+    "hit_terms": [
+      "MG6",
+      "interview",
+      "MG11",
+      "recording",
+      "custody",
+      "transcript",
+      "\\bCAD\\b",
+      "hearing",
+      "CCTV",
+      "master",
+      "continuity"
+    ]
+  },
+  {
+    "case_key": "MONSTER-0002",
+    "ok": true,
+    "pages": 500,
+    "chars": 249495,
+    "sha": "bf3626dc86ec",
+    "hit_terms": [
+      "ABE",
+      "extraction",
+      "property",
+      "CCTV",
+      "MG6",
+      "interview",
+      "continuity",
+      "phone",
+      "MG11"
+    ]
+  },
+  {
+    "case_key": "MONSTER-0003",
+    "ok": true,
+    "pages": 750,
+    "chars": 367811,
+    "sha": "6430ea4a06eb",
+    "hit_terms": [
+      "CCTV",
+      "property",
+      "extraction",
+      "MG6",
+      "interview",
+      "ABE",
+      "MG11",
+      "continuity",
+      "phone"
+    ]
+  },
+  {
+    "case_key": "CB-CHARGE-2026-0001",
+    "ok": true,
+    "pages": 5,
+    "chars": 3648,
+    "sha": "0f43e4fab5fa",
+    "hit_terms": [
+      "MG6",
+      "interview",
+      "continuity",
+      "CCTV",
+      "master",
+      "999",
+      "phone",
+      "hearing"
+    ]
+  },
+  {
+    "case_key": "CB-CHARGE-2026-0039",
+    "ok": true,
+    "pages": 5,
+    "chars": 3758,
+    "sha": "1ef4c384db0f",
+    "hit_terms": [
+      "MG6",
+      "interview",
+      "CCTV",
+      "continuity",
+      "master",
+      "phone"
+    ]
+  },
+  {
+    "case_key": "RP-03-TOBIN",
+    "ok": true,
+    "pages": 22,
+    "chars": 10986,
+    "sha": "555a899704fa",
+    "hit_terms": [
+      "hearing",
+      "CCTV",
+      "continuity",
+      "interview",
+      "property",
+      "MG11",
+      "BWV",
+      "custody",
+      "\\bCAD\\b",
+      "phone",
+      "MG6",
+      "body[- ]?worn"
+    ]
+  },
+  {
+    "case_key": "RP-13-DUNN",
+    "ok": true,
+    "pages": 15,
+    "chars": 8489,
+    "sha": "be29ed51ee8c",
+    "hit_terms": [
+      "hearing",
+      "interview",
+      "MG6",
+      "\\bCAD\\b",
+      "custody",
+      "continuity",
+      "CCTV",
+      "stills",
+      "recording",
+      "property",
+      "BWV",
+      "999"
+    ]
+  },
+  {
+    "case_key": "RP-17-FRESH-BROOKES",
+    "ok": true,
+    "pages": 10,
+    "chars": 12054,
+    "sha": "c5808d92030c",
+    "hit_terms": [
+      "phone",
+      "interview",
+      "continuity",
+      "transcript",
+      "subscriber",
+      "download",
+      "extraction",
+      "custody",
+      "MG11",
+      "MG6",
+      "MG6C",
+      "unused"
+    ]
+  },
+  {
+    "case_key": "RP-08-OCR-0013",
+    "ok": true,
+    "pages": 5,
+    "chars": 5927,
+    "sha": "d4ed1db9a726",
+    "hit_terms": [
+      "continuity",
+      "MG6",
+      "phone",
+      "CCTV",
+      "extraction",
+      "hearing",
+      "master",
+      "interview",
+      "ABE",
+      "identification"
+    ]
+  },
+  {
+    "case_key": "RP-15-DAVIES",
+    "ok": true,
+    "pages": 19,
+    "chars": 8222,
+    "sha": "adb988b033c4",
+    "hit_terms": [
+      "MG6",
+      "hearing",
+      "extraction",
+      "MG11",
+      "continuity",
+      "download",
+      "property",
+      "custody",
+      "CCTV",
+      "unused",
+      "export\\s*log",
+      "\\bCAD\\b"
+    ]
+  },
+  {
+    "case_key": "RP-04-VALE039",
+    "ok": true,
+    "pages": 13,
+    "chars": 8311,
+    "sha": "060c72f60892",
+    "hit_terms": [
+      "interview",
+      "custody",
+      "continuity",
+      "MG6",
+      "transcript",
+      "CCTV",
+      "MG11",
+      "hearing",
+      "PTPH",
+      "\\bCAD\\b",
+      "property",
+      "identification"
+    ]
+  },
+  {
+    "case_key": "RP-10-PATTERSON",
+    "ok": true,
+    "pages": 8,
+    "chars": 5423,
+    "sha": "c172b0138636",
+    "hit_terms": [
+      "CCTV",
+      "custody",
+      "hearing",
+      "MG11",
+      "\\bCAD\\b",
+      "interview",
+      "download",
+      "MG6"
+    ]
+  },
+  {
+    "case_key": "RP-06-LEVERAGE",
+    "ok": true,
+    "pages": 5,
+    "chars": 4752,
+    "sha": "5bcd36e1ef8c",
+    "hit_terms": [
+      "CCTV",
+      "MG6",
+      "ID procedure",
+      "continuity",
+      "identification",
+      "master",
+      "interview",
+      "MG11",
+      "unused",
+      "hearing"
+    ]
+  },
+  {
+    "case_key": "RP-09-TRAP-0030",
+    "ok": true,
+    "pages": 3,
+    "chars": 2899,
+    "sha": "cbc1d8d5da22",
+    "hit_terms": [
+      "interview",
+      "MG6",
+      "hearing",
+      "CCTV",
+      "continuity",
+      "transcript",
+      "MG11",
+      "custody"
+    ]
+  },
+  {
+    "case_key": "RP-16-AHMED",
+    "ok": true,
+    "pages": 21,
+    "chars": 7049,
+    "sha": "b7b5f5756a0d",
+    "hit_terms": [
+      "CCTV",
+      "custody",
+      "interview",
+      "MG6",
+      "hearing",
+      "export\\s*log",
+      "continuity",
+      "\\bCAD\\b",
+      "999",
+      "transcript",
+      "ABE",
+      "MG6C"
+    ]
+  },
+  {
+    "case_key": "RP-02-GRANT",
+    "ok": true,
+    "pages": 8,
+    "chars": 4347,
+    "sha": "cccf70b339ec",
+    "hit_terms": [
+      "interview",
+      "MG11",
+      "hearing",
+      "transcript",
+      "BWV",
+      "custody",
+      "\\bCAD\\b",
+      "999",
+      "download",
+      "subscriber",
+      "MG6",
+      "CCTV"
+    ]
+  }
+]

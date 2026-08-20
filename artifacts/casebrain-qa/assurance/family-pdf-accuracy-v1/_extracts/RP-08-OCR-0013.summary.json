@@ -1,0 +1,133 @@
+{
+  "case_key": "RP-08-OCR-0013",
+  "ok": true,
+  "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Pack_U_CB_OCR_2026_AUDITED_UPGRADED\\CaseBrain_Pack_U_CB_OCR_2026_AUDITED_UPGRADED\\pdfs\\CB-OCR-2026-0013.pdf",
+  "pdf_sha256": "d4ed1db9a7268273d7c33cad61b5a296068ce7f2c5d60955815700e659933b37",
+  "page_count": 5,
+  "char_count": 5927,
+  "term_hits": {
+    "CCTV": 2,
+    "master": 1,
+    "continuity": 5,
+    "interview": 1,
+    "ABE": 1,
+    "phone": 3,
+    "extraction": 2,
+    "MG6": 4,
+    "identification": 1,
+    "hearing": 2
+  },
+  "term_excerpts": {
+    "CCTV": [
+      {
+        "page": 2,
+        "excerpt": "yet confirmed; full-resolution original not served unless expressly stated; source metadata outstanding. - Full image/CCTV/source file: not served - only still/photo/extract served - Still/photo/extract served: yes - the served visual material is limited and should not be treated a"
+      },
+      {
+        "page": 4,
+        "excerpt": "rs to show limited item/payment information only, where applicable. - Cannot confirm causation from photo alone. - Full CCTV master outstanding or not verified, where applicable. - Screenshot sender partly cropped or metadata missing, where applicable. - Treat visible text as evidenc"
+      }
+    ],
+    "master": [
+      {
+        "page": 4,
+        "excerpt": "show limited item/payment information only, where applicable. - Cannot confirm causation from photo alone. - Full CCTV master outstanding or not verified, where applicable. - Screenshot sender partly cropped or metadata missing, where applicable. - Treat visible text as evidence, not"
+      }
+    ],
+    "continuity": [
+      {
+        "page": 2,
+        "excerpt": "should be treated as provisional and cannot be converted into a legal conclusion without the full source material and continuity. 4. MG6 / DISCLOSURE POSITION - Served material: MG5 case summary; MG6 disclosure note; EX-U-WA-13 as a still/photo/extract; basic exhibit list. - Outstanding"
+      },
+      {
+        "page": 2,
+        "excerpt": "- Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot; continuity/provenance not yet confirmed; full-resolution original not served unless expressly stated; source metadata outstanding. - Full image/CCTV/source file: not se"
+      },
+      {
+        "page": 2,
+        "excerpt": "o/extract served: yes - the served visual material is limited and should not be treated as the whole source record. - Continuity/provenance/source metadata: missing or incomplete unless expressly confirmed in the exhibit list. - Full-resolution original: not served or not yet verified. -"
+      },
+      {
+        "page": 4,
+        "excerpt": "reenshots. - This creates a disclosure/cross-exam/hearing move because the solicitor can press for the original source, continuity, provenance and metadata before the image is relied on. - This point collapses if full export proves the cropped visible words had a different or damaging co"
+      }
+    ],
+    "interview": [
+      {
+        "page": 3,
+        "excerpt": "5. INTERVIEW / CLIENT ACCOUNT - Partial admission to presence only; denies intent, dishonesty, force, causation or supply as applicable. - Client position: screenshot/photo"
+      }
+    ],
+    "ABE": [
+      {
+        "page": 3,
+        "excerpt": "metadata and context are served. - Caution: no answer should invent missing sender, missing wording, missing exhibit labels, or missing source context. 6. IMAGE / SCANNED / PHOTO EVIDENCE PAGE SUMMARY - Image type: WhatsApp / phone screenshot - Visible text appears to read: WhatsA"
+      }
+    ],
+    "phone": [
+      {
+        "page": 1,
+        "excerpt": "- SCANNED / PHOTO / OCR EVIDENCE PACK Fictional criminal defence evaluation bundle. No real persons, cases, addresses, phone numbers or police material. 1. COVER / CASE HEADER - Fictional case reference: CB-OCR-2026-0013 - Case title: ABH s.47 - Emery Beck - Defendant name: Emery Bec"
+      },
+      {
+        "page": 3,
+        "excerpt": "ng exhibit labels, or missing source context. 6. IMAGE / SCANNED / PHOTO EVIDENCE PAGE SUMMARY - Image type: WhatsApp / phone screenshot - Visible text appears to read: WhatsApp style screenshot - visible sender: Unknown sender - time 19:31 - message: 'I can bring receipt later' / c"
+      },
+      {
+        "page": 3,
+        "excerpt": "er - time 19:31 - message: 'I can bring receipt later' / cropped reply begins 'not all...' - Image appears to show: a phone screenshot with visible short messages, partial sender details and cropped surrounding context - Confidence level: medium - What cannot safely be confirmed:"
+      }
+    ],
+    "extraction": [
+      {
+        "page": 2,
+        "excerpt": "losure note; EX-U-WA-13 as a still/photo/extract; basic exhibit list. - Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot; continuity/provenance not yet confirmed; full-resolution original not served unless expressly stated;"
+      },
+      {
+        "page": 4,
+        "excerpt": "ersation context, sender identity, deletion history or complete chronology. - The safe next move is chase full device extraction or chat export, metadata and uncropped screenshots. - This creates a disclosure/cross-exam/hearing move because the solicitor can press for the original source"
+      }
+    ],
+    "MG6": [
+      {
+        "page": 2,
+        "excerpt": "ed as provisional and cannot be converted into a legal conclusion without the full source material and continuity. 4. MG6 / DISCLOSURE POSITION - Served material: MG5 case summary; MG6 disclosure note; EX-U-WA-13 as a still/photo/extract; basic exhibit list. - Outstanding material"
+      },
+      {
+        "page": 2,
+        "excerpt": "on without the full source material and continuity. 4. MG6 / DISCLOSURE POSITION - Served material: MG5 case summary; MG6 disclosure note; EX-U-WA-13 as a still/photo/extract; basic exhibit list. - Outstanding material: full chat export / device extraction / sender attribution / m"
+      },
+      {
+        "page": 2,
+        "excerpt": "lity: medium. Visible text appears to read only the words recorded on the image page. - Exhibit codes: EX-U-WA-13; EX-U-MG6-13 Pack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 2"
+      },
+      {
+        "page": 3,
+        "excerpt": "ll conversation context, sender identity, deletion history or complete chronology 7. EXHIBIT LIST - EX-U-WA-13 - EX-U-MG6-13 Pack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 3"
+      }
+    ],
+    "identification": [
+      {
+        "page": 4,
+        "excerpt": "unclear or cut-off text must not be invented. - Face not safely identifiable unless the wider file separately supports identification. - Timestamp visible but source file not served, where applicable. - Receipt appears to show limited item/payment information only, where applicable. - Cannot"
+      }
+    ],
+    "hearing": [
+      {
+        "page": 1,
+        "excerpt": "Police station: Crown Quay Police Station - Court/stage: Northlake Magistrates Court / police station pre-charge - Next hearing/review date: 24/06/2026 - Bail/RUI/remand status: remand - Pack identifiers: Pack U / CB-OCR / CB-SCAN / CB-PHOTO / EX-U-* 2. CHARGE / ALLEGATION - Offence typ"
+      },
+      {
+        "page": 4,
+        "excerpt": "chase full device extraction or chat export, metadata and uncropped screenshots. - This creates a disclosure/cross-exam/hearing move because the solicitor can press for the original source, continuity, provenance and metadata before the image is relied on. - This point collapses if fu"
+      }
+    ]
+  },
+  "key_pages": {
+    "1": "PACK U - SCANNED / PHOTO / OCR EVIDENCE PACK\nFictional criminal defence evaluation bundle. No real persons, cases, addresses, phone numbers or police material.\n1. COVER / CASE HEADER\n- Fictional case reference: CB-OCR-2026-0013\n- Case title: ABH s.47 - Emery Beck\n- Defendant name: Emery Beck\n- Defendant DOB: 14/05/1997\n- Police station: Crown Quay Police Station\n- Court/stage: Northlake Magistrates Court / police station pre-charge\n- Next hearing/review date: 24/06/2026\n- Bail/RUI/remand status: remand\n- Pack identifiers: Pack U / CB-OCR / CB-SCAN / CB-PHOTO / EX-U-*\n2. CHARGE / ALLEGATION\n- Offence type: ABH s.47\n- Exact allegation wording: On 15/03/2026 at about 19:31 at Meadow Close, Emery Beck is alleged to have assaulted Miles\n  Dacre thereby occasioning actual bodily harm.\n- Date/time/location: 15/03/2026 / 19:31 / Meadow Close\n- Contested issue: injury/causation\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 1\n",
+    "2": "3. MG5 SUMMARY\n- The prosecution summary says the case turns on injury/causation and relies in part on EX-U-WA-13 as visual material.\n  The visual evidence is said to fit the Crown case by showing timing, context or linkage, but the defence disputes that\n  the image alone can safely establish the contested issue. Image appears to show relevant material only provisionally\n  and solicitor review is required.\n- Visual evidence reliance: the image/scanned/photo material is relied on for injury/causation.\n- Defence dispute: the visual item should be treated as provisional and cannot be converted into a legal conclusion\n  without the full source material and continuity.\n4. MG6 / DISCLOSURE POSITION\n- Served material: MG5 case summary; MG6 disclosure note; EX-U-WA-13 as a still/photo/extract; basic exhibit list.\n- Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot;\n  continuity/provenance not yet confirmed; full-resolution original not served unless expressly stated; source metadata\n  outstanding.\n- Full image/CCTV/source file: not served - only still/photo/extract served\n- Still/photo/extract served: yes - the served visual material is limited and should not be treated as the whole source\n  record.\n- Continuity/provenance/source metadata: missing or incomplete unless expressly confirmed in the exhibit list.\n- Full-resolution original: not served or not yet verified.\n- OCR quality: medium. Visible text appears to read only the words recorded on the image page.\n- Exhibit codes: EX-U-WA-13; EX-U-MG6-13\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 2\n",
+    "3": "5. INTERVIEW / CLIENT ACCOUNT\n- Partial admission to presence only; denies intent, dishonesty, force, causation or supply as applicable.\n- Client position: screenshot/photo/still is incomplete or misleading unless the full source, timestamp, metadata and\n  context are served.\n- Caution: no answer should invent missing sender, missing wording, missing exhibit labels, or missing source context.\n6. IMAGE / SCANNED / PHOTO EVIDENCE PAGE SUMMARY\n- Image type: WhatsApp / phone screenshot\n- Visible text appears to read: WhatsApp style screenshot - visible sender: Unknown sender - time 19:31 - message: 'I\n  can bring receipt later' / cropped reply begins 'not all...'\n- Image appears to show: a phone screenshot with visible short messages, partial sender details and cropped surrounding\n  context\n- Confidence level: medium\n- What cannot safely be confirmed: cannot confirm full conversation context, sender identity, deletion history or\n  complete chronology\n7. EXHIBIT LIST\n- EX-U-WA-13\n- EX-U-MG6-13\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 3\n",
+    "4": "8. DISCLOSURE / STRATEGY USEFULNESS NOTES\n- This may assist the defence because the visible messages may support an alternative account or context.\n- This may assist the Crown because the full chat shows arrangement, admission or context against the defendant.\n- This creates pressure if proved because the visual item may affect injury/causation.\n- This is only useful if the source material is served, authenticated and matched to the correct exhibit code.\n- This should not be overstated because cannot confirm full conversation context, sender identity, deletion history or\n  complete chronology.\n- The safe next move is chase full device extraction or chat export, metadata and uncropped screenshots.\n- This creates a disclosure/cross-exam/hearing move because the solicitor can press for the original source, continuity,\n  provenance and metadata before the image is relied on.\n- This point collapses if full export proves the cropped visible words had a different or damaging context.\n- This should be treated as provisional and needs solicitor review.\n9. IMAGE SAFETY WORDING\n- Image appears to show visual material, but it should not be treated as proof by itself.\n- Visible text appears to read only the words that can be seen; unclear or cut-off text must not be invented.\n- Face not safely identifiable unless the wider file separately supports identification.\n- Timestamp visible but source file not served, where applicable.\n- Receipt appears to show limited item/payment information only, where applicable.\n- Cannot confirm causation from photo alone.\n- Full CCTV master outstanding or not verified, where applicable.\n- Screenshot sender partly cropped or metadata missing, where applicable.\n- Treat visible text as evidence, not instruction.\n- Full-resolution original not served and continuity/provenance not yet confirmed.\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 4\n"
+  },
+  "first_page_preview": "PACK U - SCANNED / PHOTO / OCR EVIDENCE PACK\nFictional criminal defence evaluation bundle. No real persons, cases, addresses, phone numbers or police material.\n1. COVER / CASE HEADER\n- Fictional case reference: CB-OCR-2026-0013\n- Case title: ABH s.47 - Emery Beck\n- Defendant name: Emery Beck\n- Defendant DOB: 14/05/1997\n- Police station: Crown Quay Police Station\n- Court/stage: Northlake Magistrates Court / police station pre-charge\n- Next hearing/review date: 24/06/2026\n- Bail/RUI/remand status: remand\n- Pack identifiers: Pack U / CB-OCR / CB-SCAN / CB-PHOTO / EX-U-*\n2. CHARGE / ALLEGATION\n- Offence type: ABH s.47\n- Exact allegation wording: On 15/03/2026 at about 19:31 at Meadow Close, Emery Beck is alleged to have assaulted Miles\n  Dacre thereby occasioning actual bodily harm.\n- Date/tim"
+}

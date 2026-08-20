@@ -1,0 +1,96 @@
+CB
+
+CASE WORK
+
+SOLO WORKSPACE
+gduffy1993+casebrain@gmail.com
+I'm working as:
+Criminal Defence Solicitor
+Search
+New Upload
+Sign Out
+Trial: 4d left · 25/25 cases · 25/100 docs
+Upgrade
+
+Client not on papers
+
+Charge not safely identified from uploaded papers
+
+Southford Magistrates' Court
+·
+Upcoming · 25 Aug 2026
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+Court
+Papers
+Client Summary
+CPS Chase
+File
+Record Position
+Upload Evidence
+
+MAIN ISSUE
+
+Disclosure completeness and outstanding source material.
+
+CASE SNAPSHOT
+
+EVIDENCE STATE
+
+1 served · 4 missing
+
+DISCLOSURE GAPS
+
+CCTV outstanding
+CCTV master outstanding
+CAD / 999 audio / control-room material
+
+RISK FLAGS
+
+Some points are not established yet — check the wording guardrails.
+WORDING GUARDRAILS
+
+SAFE WORDING ON CURRENT PAPERS
+
+Disclosure completeness and outstanding source material.
+Interview material on file — check before relying on it.
+
+DO NOT OVERSTATE
+
+DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
+
+SOLICITOR REVIEW
+Avoid firm wording until the papers confirm it
+Assumed position may conflict with interview or served evidence.
+CAD/999 timing may affect Crown sequence if proved on served material.
+COURT PREP
+
+COURT POSITION
+
+Solicitor review required
+
+The defence asks the court to record that full custody and interview records remain outstanding.
+
+Review court position
+Prepare CPS chase
+CLIENT SUMMARY
+Review client update
+
+Client update drafted from the current papers. Review before sending.
+
+EVIDENCE GAPS
+CCTV master outstanding
+MISSING
+Custody / PACE record outstanding
+MISSING
+Interview recording outstanding
+MISSING
+
+Papers on this matter
+
+1 file on record
+
+DOCUMENTS

@@ -1,0 +1,124 @@
+CB
+
+CASE WORK
+
+SOLO WORKSPACE
+gduffy1993+casebrain@gmail.com
+I'm working as:
+Criminal Defence Solicitor
+Search
+New Upload
+Sign Out
+Trial: 4d left · 25/25 cases · 25/100 docs
+Upgrade
+
+Client not on papers
+
+Charge not safely identified from uploaded papers
+
+Court not safely identified from uploaded papers
+·
+Hearing not on papers
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+Court
+Papers
+Client Summary
+CPS Chase
+File
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+2
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+2
+
+All
+Overdue
+Due soon
+Chased
+Received
+Exhibit mapping / provenance
+
+Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.
+
+NOT SAFELY CONFIRMED
+Source
+Crown / disclosure officer
+Deadline
+Before next hearing
+Provenance
+state: not safely confirmed · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Other source-material items (1)
+Show
+Further papers on the file
+NOT SAFELY CONFIRMED
+
+WHY IT MATTERS
+
+Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.
+
+Source: Crown / disclosure officer (confirm on file)
+
+Deadline: Before next hearing
+
+Linked route: Continuity / provenance pressure
+
+MERGED FROM FILE
+
+Further papers on the file
+Additional source-material issues (4 on file)
+source material
+MG5/MG6 clarification and source material behind the allegation.
+source evidence behind allegation
+Keep mitigation fallback open while disclosure/timeline routes are chased.
+
+DRAFT CHASE WORDING
+
+Please provide further papers on the file or confirm in writing why it is not available.
+
+COURT LINE
+
+The defence asks the court to record that outstanding source material remains on the disclosure schedule and should be timetabled.
+
+Case-wide court line (provisional): The defence asks the court to record that source material must be clarified and timetabled.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.
+
+Papers on this matter
+
+1 file on record
+
+DOCUMENTS

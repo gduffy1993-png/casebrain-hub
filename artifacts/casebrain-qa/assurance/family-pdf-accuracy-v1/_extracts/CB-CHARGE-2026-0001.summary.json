@@ -1,0 +1,104 @@
+{
+  "case_key": "CB-CHARGE-2026-0001",
+  "ok": true,
+  "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Monster_and_Charge_Coverage_2026\\casebrain_monster_charge\\Charge_Coverage_Smoke_Pack\\pdfs\\CB-CHARGE-2026-0001.pdf",
+  "pdf_sha256": "0f43e4fab5fa0a7b250de5101ad14b6ad0310a549ddca44bbd6e179d6cb9f523",
+  "page_count": 5,
+  "char_count": 3648,
+  "term_hits": {
+    "CCTV": 1,
+    "master": 1,
+    "continuity": 2,
+    "999": 1,
+    "interview": 5,
+    "phone": 1,
+    "MG6": 6,
+    "hearing": 1
+  },
+  "term_excerpts": {
+    "CCTV": [
+      {
+        "page": 5,
+        "excerpt": "DF - GOLD ANSWER SEPARATE INTERVIEW / STRATEGY / EXHIBITS Interview/client account: Denies allegation and asks for full CCTV before giving detailed account. Strategy safety note: This may assist the defence because missing/source material leaves dishonesty and ownership/value proof p"
+      }
+    ],
+    "master": [
+      {
+        "page": 1,
+        "excerpt": "Court / sending hearing Bail/RUI/remand: RUI Purpose: smoke-test safe handling of different offence families, not prove mastery of every criminal offence."
+      }
+    ],
+    "continuity": [
+      {
+        "page": 3,
+        "excerpt": "ue proof as the main pressure point. Helpful to defence: source material for dishonesty and ownership/value proof; full continuity/provenance; any offence-specific expert or statutory material needed for solicitor review remains outstanding or incomplete. This pack tests safe generalisatio"
+      },
+      {
+        "page": 4,
+        "excerpt": "MG5-01; EX-CC-MG6-01; EX-CC-INT-01 Outstanding material: source material for dishonesty and ownership/value proof; full continuity/provenance; any offence-specific expert or statutory material needed for solicitor review CaseBrain should not invent offence elements or treat unserved source"
+      }
+    ],
+    "999": [
+      {
+        "page": 1,
+        "excerpt": "phone numbers. Case reference: CB-CHARGE-2026-0001 Case title: Theft - Morgan Blake Defendant: Morgan Blake DOB: 22/07/1999 Police station: Stonecross Police Station Court/stage: Westmere Crown Court / sending hearing Bail/RUI/remand: RUI Purpose: smoke-test safe handling of differe"
+      }
+    ],
+    "interview": [
+      {
+        "page": 3,
+        "excerpt": "ods belonging to Northgate Stores intending permanently to deprive the owner of them. Key evidence relied on: MG5, MG6, interview summary and selected exhibits: EX-CC-MG5-01; EX-CC- MG6-01; EX-CC-INT-01 Helpful to Crown: served summary identifies dishonesty and ownership/value proof as th"
+      },
+      {
+        "page": 4,
+        "excerpt": "age 4 of 5 - Theft FICTIONAL EVALUATION PDF - GOLD ANSWER SEPARATE MG6 / DISCLOSURE POSITION Served material: MG5, MG6, interview summary and selected exhibits: EX-CC-MG5-01; EX-CC-MG6-01; EX-CC-INT-01 Outstanding material: source material for dishonesty and ownership/value proof; full co"
+      },
+      {
+        "page": 5,
+        "excerpt": "CB-CHARGE-2026-0001 - Charge Coverage Smoke Pack Page 5 of 5 - Theft FICTIONAL EVALUATION PDF - GOLD ANSWER SEPARATE INTERVIEW / STRATEGY / EXHIBITS Interview/client account: Denies allegation and asks for full CCTV before giving detailed account. Strategy safety note: This may assist"
+      },
+      {
+        "page": 5,
+        "excerpt": "Coverage Smoke Pack Page 5 of 5 - Theft FICTIONAL EVALUATION PDF - GOLD ANSWER SEPARATE INTERVIEW / STRATEGY / EXHIBITS Interview/client account: Denies allegation and asks for full CCTV before giving detailed account. Strategy safety note: This may assist the defence because missing/sour"
+      }
+    ],
+    "phone": [
+      {
+        "page": 1,
+        "excerpt": "E HEADER FICTIONAL CASEBRAIN CHARGE COVERAGE SMOKE PACK. Not a real case. No real people, police material, addresses or phone numbers. Case reference: CB-CHARGE-2026-0001 Case title: Theft - Morgan Blake Defendant: Morgan Blake DOB: 22/07/1999 Police station: Stonecross Police Station"
+      }
+    ],
+    "MG6": [
+      {
+        "page": 3,
+        "excerpt": "il goods belonging to Northgate Stores intending permanently to deprive the owner of them. Key evidence relied on: MG5, MG6, interview summary and selected exhibits: EX-CC-MG5-01; EX-CC- MG6-01; EX-CC-INT-01 Helpful to Crown: served summary identifies dishonesty and ownership/value"
+      },
+      {
+        "page": 3,
+        "excerpt": "rive the owner of them. Key evidence relied on: MG5, MG6, interview summary and selected exhibits: EX-CC-MG5-01; EX-CC- MG6-01; EX-CC-INT-01 Helpful to Crown: served summary identifies dishonesty and ownership/value proof as the main pressure point. Helpful to defence: source materi"
+      },
+      {
+        "page": 4,
+        "excerpt": "CB-CHARGE-2026-0001 - Charge Coverage Smoke Pack Page 4 of 5 - Theft FICTIONAL EVALUATION PDF - GOLD ANSWER SEPARATE MG6 / DISCLOSURE POSITION Served material: MG5, MG6, interview summary and selected exhibits: EX-CC-MG5-01; EX-CC-MG6-01; EX-CC-INT-01 Outstanding material: source"
+      },
+      {
+        "page": 4,
+        "excerpt": "ack Page 4 of 5 - Theft FICTIONAL EVALUATION PDF - GOLD ANSWER SEPARATE MG6 / DISCLOSURE POSITION Served material: MG5, MG6, interview summary and selected exhibits: EX-CC-MG5-01; EX-CC-MG6-01; EX-CC-INT-01 Outstanding material: source material for dishonesty and ownership/value pro"
+      }
+    ],
+    "hearing": [
+      {
+        "page": 1,
+        "excerpt": "ant: Morgan Blake DOB: 22/07/1999 Police station: Stonecross Police Station Court/stage: Westmere Crown Court / sending hearing Bail/RUI/remand: RUI Purpose: smoke-test safe handling of different offence families, not prove mastery of every criminal offence."
+      }
+    ]
+  },
+  "key_pages": {
+    "1": "CB-CHARGE-2026-0001 - Charge Coverage Smoke Pack\nPage 1 of 5 - Theft\nFICTIONAL EVALUATION PDF - GOLD ANSWER SEPARATE\nCOVER / CASE HEADER\nFICTIONAL CASEBRAIN CHARGE COVERAGE SMOKE PACK. Not a real case. No real people, police\nmaterial, addresses or phone numbers.\nCase reference: CB-CHARGE-2026-0001\nCase title: Theft - Morgan Blake\nDefendant: Morgan Blake\nDOB: 22/07/1999\nPolice station: Stonecross Police Station\nCourt/stage: Westmere Crown Court / sending hearing\nBail/RUI/remand: RUI\nPurpose: smoke-test safe handling of different offence families, not prove mastery of every\ncriminal offence.\n",
+    "2": "CB-CHARGE-2026-0001 - Charge Coverage Smoke Pack\nPage 2 of 5 - Theft\nFICTIONAL EVALUATION PDF - GOLD ANSWER SEPARATE\nCHARGE / ALLEGATION\nOffence family: Theft\nExact charge wording: On 02/07/2026 at Crown Quay, Morgan Blake is alleged to have dishonestly\nappropriated retail goods belonging to Northgate Stores intending permanently to deprive the\nowner of them.\nProof pressure: dishonesty and ownership/value proof\nIf the charge is unusual, the safe answer is to extract exact wording, identify proof pressure\nfrom the file, and require solicitor review rather than inventing offence-specific elements.\n",
+    "3": "CB-CHARGE-2026-0001 - Charge Coverage Smoke Pack\nPage 3 of 5 - Theft\nFICTIONAL EVALUATION PDF - GOLD ANSWER SEPARATE\nMG5 SUMMARY\nCrown version: The Crown relies on the allegation as charged: On 02/07/2026 at Crown Quay,\nMorgan Blake is alleged to have dishonestly appropriated retail goods belonging to Northgate\nStores intending permanently to deprive the owner of them.\nKey evidence relied on: MG5, MG6, interview summary and selected exhibits: EX-CC-MG5-01; EX-CC-\nMG6-01; EX-CC-INT-01\nHelpful to Crown: served summary identifies dishonesty and ownership/value proof as the main\npressure point.\nHelpful to defence: source material for dishonesty and ownership/value proof; full\ncontinuity/provenance; any offence-specific expert or statutory material needed for solicitor\nreview remains outstanding or incomplete.\nThis pack tests safe generalisation across offence families, not final advice.\n",
+    "5": "CB-CHARGE-2026-0001 - Charge Coverage Smoke Pack\nPage 5 of 5 - Theft\nFICTIONAL EVALUATION PDF - GOLD ANSWER SEPARATE\nINTERVIEW / STRATEGY / EXHIBITS\nInterview/client account: Denies allegation and asks for full CCTV before giving detailed\naccount.\nStrategy safety note: This may assist the defence because missing/source material leaves\ndishonesty and ownership/value proof provisional.\nThis may assist the Crown if served material proves dishonesty and ownership/value proof and\ndefeats the interview account.\nThis should not be overstated because: Theft may require offence-specific solicitor review.\nSafe strategy move: extract exact charge wording, map proof issue to served evidence, chase\nmissing source material, then solicitor review.\nThis point collapses if: strategy point collapses if missing source material clearly proves\ndishonesty and ownership/value proof and defeats the client account.\nExhibit list: EX-CC-MG5-01; EX-CC-MG6-01; EX-CC-INT-01\n",
+    "4": "CB-CHARGE-2026-0001 - Charge Coverage Smoke Pack\nPage 4 of 5 - Theft\nFICTIONAL EVALUATION PDF - GOLD ANSWER SEPARATE\nMG6 / DISCLOSURE POSITION\nServed material: MG5, MG6, interview summary and selected exhibits: EX-CC-MG5-01; EX-CC-MG6-01;\nEX-CC-INT-01\nOutstanding material: source material for dishonesty and ownership/value proof; full\ncontinuity/provenance; any offence-specific expert or statutory material needed for solicitor\nreview\nCaseBrain should not invent offence elements or treat unserved source data as proved. Solicitor\nreview remains required for unusual or specialist charges.\n"
+  },
+  "first_page_preview": "CB-CHARGE-2026-0001 - Charge Coverage Smoke Pack\nPage 1 of 5 - Theft\nFICTIONAL EVALUATION PDF - GOLD ANSWER SEPARATE\nCOVER / CASE HEADER\nFICTIONAL CASEBRAIN CHARGE COVERAGE SMOKE PACK. Not a real case. No real people, police\nmaterial, addresses or phone numbers.\nCase reference: CB-CHARGE-2026-0001\nCase title: Theft - Morgan Blake\nDefendant: Morgan Blake\nDOB: 22/07/1999\nPolice station: Stonecross Police Station\nCourt/stage: Westmere Crown Court / sending hearing\nBail/RUI/remand: RUI\nPurpose: smoke-test safe handling of different offence families, not prove mastery of every\ncriminal offence.\n"
+}
