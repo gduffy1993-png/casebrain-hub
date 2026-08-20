@@ -78,12 +78,15 @@ export function isDigitalHarassmentBundleHay(bundleHay: string, allegation = "")
   );
 }
 
+/**
+ * True only for digital-disclosure / harassment shapes.
+ * Must NOT fire on property-of-theft "phone" (e.g. robbery of a phone) or bare MG6 wording.
+ */
 function isDigitalDisclosureHay(bundleHay: string, allegation = ""): boolean {
+  if (isDigitalHarassmentBundleHay(bundleHay, allegation)) return true;
   const hay = `${allegation} ${bundleHay}`.toLowerCase();
-  return (
-    isDigitalHarassmentBundleHay(bundleHay, allegation) ||
-    /phone|message|whatsapp|sms|subscriber|attribution|mg11|extraction|handset|source export|digital disclosure|device metadata/i.test(hay) ||
-    /mg6\s*\/\s*unused|unused schedule clarification/i.test(hay)
+  return /(?:full\s+)?phone\s+(?:extraction|download|attribution)|phone\s+download|source\s+export|device\s+download|whatsapp|\bsms\b|subscriber|handset|device\s+metadata|message\s+pack|screenshot|cellebrite|\bufed\b|digital\s+disclosure/i.test(
+    hay,
   );
 }
 

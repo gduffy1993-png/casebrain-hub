@@ -29,9 +29,12 @@ const MENTION_RES: Record<ChaseGateFamily, RegExp> = {
   bwv: /\bbwv\b|body[-\s]?worn/i,
   cad_999: /\b999\b|\bcad\b|command\s+(?:and\s+)?(?:control|dispatch)|control[-\s]?room\s+log|dispatch\s+log|emergency\s+call/i,
   medical: /\bmedical\b|hospital|a\s*&\s*e\b|ambulance|paramedic|\bgp\s+records?\b|\bfme\b|pathology|injury\s+report/i,
-  interview: /\binterview\b|\bpace\b|custody\s+record/i,
-  mg6_unused: /\bmg6\b|unused\s+material|disclosure\s+schedule|schedule\s+of\s+(?:unused|non[-\s]?sensitive)/i,
-  phone: /\bphone\b|\bmobile\b|handset|device\s+download|device\s*\/\s*login|login\s+audit|ip\s*\/\s*access|\bsim\b|\bimei\b|subscriber|phone\s+attribution|phone\s+extraction/i,
+  interview: /\binterview\s+(?:recording|transcript|audio|video)\b|\bpace\s+interview\b|interview\s+recording|interview\s+transcript/i,
+  // Unused/MG6C schedule — not a plain MG6 extract presence alone.
+  mg6_unused: /\bmg6c\b|unused\s+material|unused\s+schedule|schedule\s+of\s+(?:unused|non[-\s]?sensitive)|mg6\s*\/\s*unused|schedule\s+clarification/i,
+  // Require digital-evidence phone signals — not property-of-theft "stolen a phone".
+  phone:
+    /(?:full\s+)?phone\s+(?:extraction|download|attribution)|phone\s+download|source\s+export|device\s+download|device\s*\/\s*login|login\s+audit|ip\s*\/\s*access|\bsim\b|\bimei\b|subscriber|handset|cellebrite|\bufed\b|mobile\s+(?:extraction|download)/i,
   forensic: /forensic|\bdna\b|fingerprint|\bswab\b/i,
   bank_financial:
     /\bbank(?:ing)?\b|account\s+control|account\s+ownership|transaction(?:s)?|bank\s+statements?|account\s+statements?|financial\s+records?|financial\s+statements?|poca|source.of.funds|mailbox|email\s+(?:export|source)|bookkeeper|accountant/i,
