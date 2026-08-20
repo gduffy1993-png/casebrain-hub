@@ -118,7 +118,7 @@ Added regressions: negation ±, interview over-trigger both directions, order-br
 | `8033677c2` | fix(criminal): negation-aware LI, interview gate, order/motoring advisory |
 | `b514cd15f` | feat(overview): wire labelled legal-intelligence considerations |
 | `fbf0f3579` | test(assurance): Overview live-proof intelligence cleanup wall |
-| *(follow-up)* | adapter type fix + live dump + this report |
+| `56474f527` | docs(assurance): Overview live-proof final report and deploy notes |
 
 **Release candidate:** untouched. **Merge:** do not merge. **Pilot ready:** no.
 
