@@ -574,7 +574,7 @@ function scoreInvent(
     export_log_claim: /\bexport\s+log\b/i.test(claimBlob),
     export_log_source: /\bexport\s*log\b/i.test(bundleText),
     cctv_master_claim: /CCTV master|full CCTV master|master footage|master recording/i.test(claimBlob),
-    cctv_master_source: /CCTV master|full CCTV master|master footage|full master/i.test(bundleText),
+    cctv_master_source: /CCTV master|full CCTV master|master footage|full master|full\s*(?:time\s+)?window|full\s+cctv\s+(?:master|window)/i.test(bundleText),
     phone_download_claim: /phone download|source export referred|digital extraction|original download/i.test(claimBlob),
     phone_download_source:
       /phone download|source export|handset download|digital extraction|extraction report|phone extraction|logical download|download report/i.test(bundleText),

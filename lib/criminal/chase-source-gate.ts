@@ -88,9 +88,17 @@ export function isCctvMasterEstablished(sourceText: string): boolean {
   if (!sourceText?.trim()) return false;
   const hay = stripDoNotInventAdvisory(sourceText)
     .replace(THIN_LISTED_CCTV_BWV_RE, " ")
-    .replace(PRODUCT_CCTV_INVENT_LABEL_RE, " ");
-  return /CCTV master|full CCTV master|master footage|full master|full\s*(?:time\s+)?window|full\s+cctv(?:\s+master)?\b/i.test(
-    hay,
+    .replace(PRODUCT_CCTV_INVENT_LABEL_RE, " ")
+    // Witness/review "not the full CCTV…" is not master establishment (Court tip invent residual).
+    .replace(/not\s+the\s+full\s+cctv\b[^.\n]{0,80}/gi, " ")
+    .replace(/not\s+full\s+cctv\b[^.\n]{0,80}/gi, " ")
+    .replace(/shown\s+some\s+material\s+but\s+not\s+the\s+full\s+cctv\b[^.\n]{0,80}/gi, " ");
+  // Affirmative master / full-window naming (including "full window missing" outstanding).
+  // Do not treat bare "full CCTV or BWV sequence" after negation-strip leftovers as master.
+  return (
+    /CCTV master|full CCTV master|master footage|full master/i.test(hay) ||
+    /\bfull\s*(?:time\s+)?window\b/i.test(hay) ||
+    /\bfull\s+cctv\s+(?:master|window)\b/i.test(hay)
   );
 }
 
