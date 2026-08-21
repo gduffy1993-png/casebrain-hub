@@ -1,12 +1,40 @@
-# PATTERN FIX WAVE — STATUS
+# PATTERN FIX WAVE - STATUS
 
-**Verdict:** `FIX_WAVE_STRONG_PROGRESS`  
-**Branch tip:** `ca1e4a8326692236a50dc7205171e5867f6de3f9`  
+**Verdict:** `PHASE_A_LOCKED`  
+**Phase-A-lock SHA:** `cbf40f08f381d1e39d7326059dbe24cb71beacce`  
+**Branch tip (pre-B):** `cbf40f08f381d1e39d7326059dbe24cb71beacce`  
 **Freeze baseline (pre-wave product):** `55c41d8956c044d20f4265cccc6fd8669349d2ae`  
-**Preview (this tip):** https://casebrain-ium3sz19u-gduffy1993-pngs-projects.vercel.app  
-**Prior Preview:** https://casebrain-g9mv0ix3w-gduffy1993-pngs-projects.vercel.app  
+**Preview (A lock):** https://casebrain-jo16a5tt0-gduffy1993-pngs-projects.vercel.app  
+**Prior Preview:** https://casebrain-ium3sz19u-gduffy1993-pngs-projects.vercel.app  
 **Hop book:** `artifacts/casebrain-qa/assurance/pattern-fix-queue-v1/MASTER-HOP-BOOK.md`  
+**A lock note:** `artifacts/casebrain-qa/assurance/pattern-fix-queue-v1/PHASE-A-LOCK.md`  
 **Updated:** 2026-08-21
+
+---
+
+## Phase A — CLOSED
+
+Hard residuals closed live @ `jo16`:
+
+| Residual | Live @ jo16 |
+|----------|-------------|
+| Trap subscriber invent | **PASS** |
+| Tobin CAD extract soft-drop | **PASS** |
+| Arden export / phone TN + master TP | **PASS** |
+| Opposite suite | **PASS** |
+
+Soft watch (not A blockers): Brookes/Ahmed subscriber + Grant/Tobin phone mid-state **Chase card inject** still muted live while Papers/Overview language remains PDF-true. See `PHASE-A-LOCK.md`.
+
+---
+
+## Phase B — NEXT (Papers / Client)
+
+| Hop | Status |
+|-----|--------|
+| `PAPERS_COLLAPSED_NO_DOC_INVENTORY` | **IN PROGRESS** — dedicated Papers inventory pass |
+| `CLIENT_TAB_EQUALS_COURT_CONTROL_ROOM` | **IN PROGRESS** — distinct Client Summary (not Court CR clone) |
+
+Do not blend A residual micro-fixes into B UI work.
 
 ---
 
@@ -14,56 +42,14 @@
 
 | Hop | Shared root | Commit | Opposite |
 |-----|-------------|--------|----------|
-| CAD extract Present / stills≠master / hearing deadline | modality reconcile + classify | `b30c9bda7` + `cced4bb2d` (extractPresent glue) | PASS |
-| Subscriber invent `/sim/`-in-assuming | word boundaries | `1ff7099d5` | PASS |
+| CAD extract Present / stills≠master / hearing deadline | modality reconcile + classify | `b30c9bda7` + `cced4bb2d` + `cbf40f08f` | PASS |
+| Subscriber invent `/sim/`-in-assuming | word boundaries + display draft hygiene | `1ff7099d5` + `b68f07c1b` | PASS |
 | Interview slash-blend lump | `reconcileInterviewModalityItems` | `d228df56e` + finalize preserve | PASS |
-| Phone mid-state | `reconcilePhoneDownloadModalityItems` | `d228df56e` | Brookes TP / Arden TN PASS |
-| Subscriber both-ways inject/strip | `reconcileSubscriberModalityItems` | `d228df56e` + `cced4bb2d` | PASS unit |
+| Phone mid-state | `reconcilePhoneDownloadModalityItems` | `d228df56e` + full inject `cbf40f08f` | Brookes TP / Arden TN PASS (unit) |
+| Subscriber both-ways inject/strip | `reconcileSubscriberModalityItems` | `d228df56e` + `cced4bb2d` + `b68f07c1b` | PASS unit |
 | Trap interview invent residual | source-hay No-PACE drop | `ca1e4a832` | PASS |
-
-Prior held: export-log · Trap CCTV invent · Arden phone-property · Arden/Trap interview invent TN (re-cleared)
-
----
-
-## Remaining / STOP
-
-| Hop | Status |
-|-----|--------|
-| `PAPERS_COLLAPSED_NO_DOC_INVENTORY` | **STOP** — integrity gate + Control Room clone; needs UI redesign |
-| `CLIENT_TAB_EQUALS_COURT_CONTROL_ROOM` | **STOP** — same projection root |
-| Trap subscriber invent (live) | Residual card still on Chase @ `ium3` despite unit strip — next micro-pass |
-| Brookes/Ahmed subscriber Chase inject | Soft residual (papers/court show subscriber; Chase card mute) |
-| Grant/Tobin phone mid-state live | Unit PASS; live Chase mid-state card not yet confirmed (bundle hay) |
-| Tobin CAD extract drop | Live still shows CAD card (extract language soft) |
-| Volume triage | Leave — sweep ≠ guilt |
-
----
-
-## Canary board (Chase @ `ium3` / `ca1e4a832`)
-
-| Canary | Result |
-|--------|--------|
-| Arden export-log TN | PASS (no export log); CCTV capture flaky once (loading) — prior g9mv had master TP |
-| Arden phone TN | PASS |
-| Brookes phone full TP | **PASS** |
-| Brookes subscriber Chase | MUTE residual |
-| Trap interview invent | **PASS** (cleared vs g9mv invent) |
-| Trap CCTV invent | **PASS** |
-| Trap subscriber invent | **FAIL residual** |
-| Grant CAD extract drop | **PASS** (cadLump false @ ium3) |
-| Dunn stills≠master | **PASS** (no master card) |
-| Tobin/Ahmed interview slash blend | **PASS** (no `/` blend) |
-| Opposite suite | **PASS** |
-| Foundational + chase-source-gate | **PASS** |
-
----
-
-## Commits (rip batch)
-
-- `d228df56e` — interview + phone mid-state + subscriber both-ways  
-- `fe2e55ac6` — hop book STOP/FIXED docs  
-- `cced4bb2d` — live residuals (extractPresent, Tobin label, subscriber strip)  
-- `ca1e4a832` — Trap interview invent uses source hay  
+| Trap subscriber invent (live) | finalize overflow + display draft strip | `b68f07c1b` | **PASS live** |
+| Tobin CAD soft drop (live) | extract-on-file / glued Present | `cbf40f08f` | **PASS live** |
 
 ---
 
