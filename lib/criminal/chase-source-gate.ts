@@ -230,6 +230,29 @@ function filterModalitySpecificChaseLine(
     if (!recordingEstablished || recordingNegated) return [];
   }
 
+  // CAD family mention is broad (\b999\b) — do not keep CAD-audit / 999-audio
+  // chases from page-number or schedule "999" noise alone.
+  // Strip "No CAD … / No 999 audio …" negation clauses before affirmative tests.
+  if (/Chase CAD audit/i.test(t) || /Chase 999 audio/i.test(t)) {
+    const affirmativeHay = sourceText
+      .replace(/\bno\s+cad\b[^.\n]{0,80}/gi, " ")
+      .replace(/\bno\s+999\s+audio\b[^.\n]{0,40}/gi, " ");
+    if (/Chase CAD audit/i.test(t)) {
+      const cadEstablished =
+        /\bCAD\b|CAD\/999|command and (?:dispatch|control)|control[-\s]?room\s+log|dispatch\s+log/i.test(
+          affirmativeHay,
+        );
+      if (!cadEstablished) return [];
+    }
+    if (/Chase 999 audio/i.test(t)) {
+      const audioEstablished =
+        /999\s+audio|emergency\s+call\s+(?:recording|audio)|999\s+call\s+(?:recording|audio)/i.test(
+          affirmativeHay,
+        );
+      if (!audioEstablished) return [];
+    }
+  }
+
   return [t];
 }
 

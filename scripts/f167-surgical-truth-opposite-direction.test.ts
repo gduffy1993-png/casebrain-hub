@@ -687,6 +687,19 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
       ardenMaster.some((l) => /CCTV master/i.test(l)),
       "Arden opposite: master outstanding keeps CCTV master chase",
     );
+
+    const page999Noise = expandAndGateChaseLines(
+      ["Chase CAD audit, 999 audio, and CCTV master with continuity."],
+      "MG6 schedule page 999. Outstanding material listed. No CAD log or 999 audio on file.",
+    );
+    assert.equal(page999Noise.length, 0, "page-999 noise must not invent CAD audit or 999 audio");
+
+    const dunnCad = expandAndGateChaseLines(
+      ["Chase CAD audit and 999 audio."],
+      "CAD / 999 Extract present. 999 audio outstanding. CAD log full print outstanding.",
+    );
+    assert.ok(dunnCad.some((l) => /CAD audit/i.test(l)), "Dunn opposite: CAD language keeps CAD audit chase");
+    assert.ok(dunnCad.some((l) => /999 audio/i.test(l)), "Dunn opposite: 999 audio outstanding keeps chase");
   }
 
   const trapInterview = reconcileInterviewModalityItems(
