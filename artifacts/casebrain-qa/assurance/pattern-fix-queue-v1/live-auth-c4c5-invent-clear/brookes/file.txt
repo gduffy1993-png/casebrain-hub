@@ -1,0 +1,138 @@
+CB
+
+CASE WORK
+
+SOLO WORKSPACE
+gduffy1993+casebrain@gmail.com
+I'm working as:
+Criminal Defence Solicitor
+Search
+New Upload
+Sign Out
+Trial: 2d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Taylor Brookes
+
+Charge not safely identified from uploaded papers
+
+Northbank Crown Court
+·
+Hearing date passed · 6 Jul 2026
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+Court
+Papers
+Client Summary
+CPS Chase
+File
+Papers on this matter
+
+Source bundle for this matter. 1 file — open PDF with View.
+
+Taylor Brookes CLEAN.pdf
+
+Uploaded 20/08/2026 · 12,101 chars
+
+Text extracted (12,101 chars)
+
+View
+
+RAW SOURCE EXTRACT — NOT DRAFTING
+
+For checking the uploaded source only. Do not copy this as client, court, or CPS wording.
+
+NB-26-0721 - R v Taylor Brookes
+Page 1
+INTERNAL CASE PAPERS BUNDLE
+R v Taylor Brookes - Digital Attribution / Witness Contact
+=== SECTION: COVER SHEET ===
+Field
+Entry
+Case reference
+NB-26-0721
+Defendant
+Taylor Brookes
+Complainant / witness
+Ellie Varna
+Court
+Northbank Crown Court
+Next hearing
+PTPH - 06 July 2026 at 10:00
+Current status
+Bail with no-contact condition. Defence position: authorship of digital messages is disputed.
+Bundle warning
+Some digital material is described in schedules but not served in original format.
+This bundle contains charge material, summary, statements, exhibit references, interview summary, 
+unused material
+schedule entries, and a draft disclosure request. It should be read with attention to source mater
+ial, original device
+data, metadata, and authorship.
+Bundle index
+Tab
+Document
+Pages
+Notes
+1
+Charge and particulars
+2-3
+Particulars state contact by WhatsApp and voice note.
+2
+MG5 case summary
+4-5
+Crown relies on screenshots and witness account.
+3
+MG11 Ellie Varna
+6-7
+Includes date inconsistency.
+4
+Screenshot exhibit print
+8
+Partial screenshots only.
+5
+Officer digital summary
+9
+Phone number believed linked; subscriber report not
+served.
+6
+Interview summary
+10
+Denial; shared device raised.
+7
+Exhibit log
+11
+Digital exhibit gap.
+8
+MG6C / disclosure schedule
+12-13
+Original download and voice note outstanding.
+9
+Bail and disclosure request
+14
+No-contact bail; draft request.NB-26-0721 - R v Taylor Brookes
+Page 2
+=== SECTION: CHARGE AND PARTICULARS ===
+Count
+Allegation
+Particulars
+1
+Intimidating a witness
+Between 08 May 2026 and 10 May 2026, at Northbank, Taylor Brookes is
+alleged to have contacted Ellie Varna by WhatsApp message and voice note
+after being told she was a prosecution witness.
+2
+Malicious communications
+On or about 09 May 2026, messages were allegedly sent from number ending
+4471 containing threats and abusive language. Particulars are provisional
+pending service of original device material.
+The defendant denies sending the messages. The defence account recorded at interview is that the r
+elevant handset
+was used by more than one person and that the screenshots do not prove authorship.
+Bail position
+Bail continued with conditions: not to contact Ellie Varna directly or indirectly; not to attend R
+edwood House
+communal entrance; to notify police of any change of mobile number. Defence reserves position on a
+ttribution and…
