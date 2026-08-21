@@ -14,7 +14,7 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 
 | Status | N |
 |--------|--:|
-| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute + C1 Court invent) | 26 |
+| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute + C1 Court invent + D1 Client phone) | 28 |
 | OPEN (remaining) | 0 |
 | STOP → Phase B (Papers / Client) | 0 |
 | WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft) | 6 |
@@ -39,6 +39,8 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 | `COURT_DO_NOT_INVENT_DETECTOR_NOISE` | Court sweep invent flags | detector | Arden invent_bwv | DO_NOT “Do not import BWV/CAD…” ≠ invent claim | C0.5 — inventClaimBlob excludes DO_NOT |
 | `COURT_INTERVIEW_RECORDING_FROM_PACE_PLAYBOOK` | Court/Chase | invent | RP-03; PDF-0d761… | PACE/custody ≠ interview recording | C1 — playbook + reconcileInterview + establishment helpers |
 | `COURT_CAD_FROM_PAGE_999` | Court/Chase | invent | PDF-044f2ca43399 | Bare schedule “999” ≠ CAD | C1 — isCad999Established + match tighten |
+| `CLIENT_PHONE_GAP_FROM_DONOT_OVERSTATE` | Client export gaps / five-answers | invent | harassment + “Do not import phone…” | Brookes pack invented without PDF download family | D1 — expandTruthMapRows PDF-true + bundleText |
+| `CLIENT_SCREENSHOT_FROM_SUBSCRIBER_WHY` | Client export gaps | invent | Graves TB-050 | whyItMatters “Screenshots or…” ≠ screenshot served | D1 — establishment hay = labels+bundle only |
 
 ---
 

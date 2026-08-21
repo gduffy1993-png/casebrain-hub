@@ -15,6 +15,9 @@ import {
   reconcilePhoneDownloadModalityItems,
   reconcileSubscriberModalityItems,
 } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import { expandTruthMapRowsForDisplay } from "../lib/criminal/five-answers/expand-truth-map-rows";
+import { evidenceRowFromSourceState } from "../lib/criminal/five-answers/evidence-trace";
+import type { DisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { familySupport, expandAndGateChaseLines, gateMaterialLines, isBwvFullExportEstablished, isCctvContinuityEstablished, isCctvMasterEstablished } from "../lib/criminal/chase-source-gate";
 import { normaliseBundleMaterials } from "../lib/criminal/bundle-material-normalizer";
 import { buildBundleTruthLedger } from "../lib/criminal/bundle-truth-ledger";
@@ -1128,6 +1131,59 @@ Evidence referred or outstanding: Full BWV export; full custody record.
       /\binterview recording\b/i.test(i.label),
     ),
     "buildDisclosureChaseBrief: interview recording outstanding still surfaces",
+  );
+
+  // Client D0.5 / D1: truth-map export gaps must not invent Brookes phone pack from do-not-overstate.
+  const harassmentDoNotOnly = expandTruthMapRowsForDisplay({
+    rows: [evidenceRowFromSourceState("MG6 / unused schedule clarification", "not_safely_confirmed")],
+    chase: {
+      disclosureSummary: "Provisional.",
+      primaryItems: [
+        {
+          label: "MG6 / unused schedule clarification",
+          source: "MG6C",
+          baseStatus: "Outstanding",
+          whyItMatters: "Schedule",
+          draftChaseWording: "Clarify MG6",
+          evidenceAnchor: null,
+        },
+      ],
+      items: [],
+    } as unknown as DisclosureChaseBrief,
+    allegation: "Harassment, contrary to section 2 Protection from Harassment Act 1997",
+    doNotOverstate: ["Do not import phone extraction/metadata unless the papers support it."],
+    bundleText: "Harassment charge. Complainant MG11 Present. No screenshots or phone download on file.",
+  });
+  assert.equal(
+    harassmentDoNotOnly.filter((r) => /full phone download/i.test(r.label)).length,
+    0,
+    "harassment + do-not phone must not invent Full phone download gap row",
+  );
+
+  const brookesTruthMap = expandTruthMapRowsForDisplay({
+    rows: [evidenceRowFromSourceState("MG6 / unused schedule clarification", "not_safely_confirmed")],
+    chase: {
+      disclosureSummary: "Screenshots served; full download outstanding.",
+      primaryItems: [
+        {
+          label: "Full phone download / source extraction",
+          source: "MG6C",
+          baseStatus: "Outstanding",
+          whyItMatters: "Attribution",
+          draftChaseWording: "Provide full phone download",
+          evidenceAnchor: null,
+        },
+      ],
+      items: [],
+    } as unknown as DisclosureChaseBrief,
+    allegation: "Harassment, contrary to section 2 Protection from Harassment Act 1997",
+    doNotOverstate: ["Do not state the defendant sent messages unless attribution is served."],
+    bundleText:
+      "Harassment screenshots served. Full phone download / source export outstanding. Subscriber report not served.",
+  });
+  assert.ok(
+    brookesTruthMap.some((r) => /full phone download/i.test(r.label) && r.existence === "missing"),
+    "opposite: Brookes PDF phone-download outstanding still expands truth-map gap",
   );
 }
 

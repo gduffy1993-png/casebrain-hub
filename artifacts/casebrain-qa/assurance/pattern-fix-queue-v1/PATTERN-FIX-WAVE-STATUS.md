@@ -2,15 +2,13 @@
 
 
 
-**Verdict:** `D0_COMPLETE_FINDONLY` (Client 2600 scored; invent_phone **166** triage next) + Court C1 invent proof locked
+**Verdict:** `D1_CLIENT_PHONE_TRUTHMAP_ARMOUR` (D0.5 triage + truth-map/export phone invent armour; tip sample 23/40 cleared)
 
-**Chunk D0 Client find-only:** `CHUNK-D0-CLIENT-FINDONLY.md` · pack `client-criminal-sweep-v1/` · tip `7b900de22` · hitlist **1118** · invent sum **200**
+**Chunk D0.5/D1 Client phone:** `CHUNK-D05-D1-CLIENT-PHONE-ARMOUR.md` · tip sample `client-criminal-sweep-v1/tip-sample-d1-phone.json`
 
-**Chunk C1 Court invent proof:** `CHUNK-C1-COURT-INVENT-PROOF.md` · tip pack `court-criminal-sweep-v1/tip-resweep-7b900de22/` · invent sum **1084→114** · bwv **520→1** · interview **261→4** · cad **194→0**
+**Chunk D0 Client find-only:** `CHUNK-D0-CLIENT-FINDONLY.md` · pack `client-criminal-sweep-v1/` · tip `7b900de22` · hitlist **1118** · invent sum **200** (pre-D1)
 
-**Chunk C0.5/C1 Court invent:** `CHUNK-C05-C1-COURT-INVENT-ARMOUR.md` · tip `7b900de22`
-
-**Chunk C0 Court find-only:** `CHUNK-C0-COURT-FINDONLY.md` · pack `court-criminal-sweep-v1/` · tip `713a056b4` · hitlist **1478** (pre-armour)
+**Chunk C1 Court invent proof:** `CHUNK-C1-COURT-INVENT-PROOF.md` · tip pack `court-criminal-sweep-v1/tip-resweep-7b900de22/` · invent sum **1084→114**
 
 **PR:** https://github.com/gduffy1993-png/casebrain-hub/pull/70
 

@@ -583,9 +583,9 @@ function scoreInvent(
     export_log_source: /\bexport\s*log\b/i.test(bundleText),
     cctv_master_claim: /CCTV master|full CCTV master|master footage|master recording/i.test(claimBlob),
     cctv_master_source: /CCTV master|full CCTV master|master footage|full master/i.test(bundleText),
-    phone_download_claim: /phone download|source export referred|digital extraction|original download/i.test(claimBlob),
+    phone_download_claim: /phone download|source export referred|digital extraction|original download|phone extraction/i.test(claimBlob),
     phone_download_source:
-      /phone download|source export|handset download|digital extraction|extraction report/i.test(bundleText),
+      /phone download|source export|handset download|digital extraction|extraction report|phone extraction/i.test(bundleText),
     cad_999_claim: /\bCAD\b|999\s+audio|complete CAD/i.test(claimBlob),
     cad_999_source: /\bCAD\b|999\s+audio|CAD\/999|command and (?:dispatch|control)/i.test(bundleText),
     interview_recording_claim: /interview recording|PACE recording|audio.?visual interview/i.test(claimBlob),
@@ -801,6 +801,7 @@ function projectClient(bundleTextRaw: string, title: string): {
     doNotOverstate: war.doNotOverstate ?? [],
     primaryRouteTitle: null,
     urnCandidateTexts: [bundleText.slice(0, 4000)],
+    bundleText,
   });
   const exportClient = exportPack.sections.find((s) => s.id === "client_summary");
   const exportGaps = exportPack.sections.find((s) => s.id === "evidence_gaps");
