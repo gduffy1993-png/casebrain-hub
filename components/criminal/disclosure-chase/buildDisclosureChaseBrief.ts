@@ -318,26 +318,29 @@ export function reconcileCad999ModalityItems(
   return items
     .map((item) => {
       if (item.familyId !== "cad_999") return item;
+      // Item-local + hay: schedule "Present" language OR a served CAD/999 Extract section body.
       const blob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? "", hay].join("\n");
 
       const extractPresent =
-        /\bcad(?:\s*\/\s*999)?(?:\s+incident\s+log)?\s+extract\b[^.\n]{0,40}\b(?:present|served|included)/i.test(
+        /\b\d*cad(?:\s*\/\s*999)?(?:\s+incident\s+log)?\s+extract\b[\s\S]{0,40}\b(?:present|served|included)/i.test(
           blob,
         ) ||
-        /\b(?:present|served|included)\b[^.\n]{0,40}\bcad(?:\s*\/\s*999)?(?:\s+incident\s+log)?\s+extract\b/i.test(
+        /\b(?:present|served|included)\b[\s\S]{0,40}\b\d*cad(?:\s*\/\s*999)?(?:\s+incident\s+log)?\s+extract\b/i.test(
           blob,
         ) ||
-        /\bcad\s*\/\s*999\s+extract\s*present/i.test(blob) ||
-        /\bcad\s*\/\s*999\s+extractpresent\b/i.test(blob) ||
-        /\bextract\s*present\b/i.test(blob) && /\bcad\b|\b999\b/i.test(blob);
+        /\b\d*cad\s*\/\s*999\s+extract\s*present/i.test(blob) ||
+        /\b\d*cad\s*\/\s*999\s+extractpresent\b/i.test(blob) ||
+        // Served extract document body (Tobin): section title + timed entries — not a missing-extract chase.
+        (/\bcad\s*\/\s*999\s+extract\b/i.test(blob) &&
+          /\b(?:time\s+entry|call\s+received|unit\s*assigned|officer\s+arriv)/i.test(blob));
 
       const audioOutstanding =
-        /\b999\s+audio\b[^.\n]{0,40}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
+        /\b999\s+audio\b[\s\S]{0,40}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
           blob,
         ) || /\bno\s+recording\s+attached\b/i.test(blob);
 
       const fullPrintOutstanding =
-        /\bcad\s+log\s+full\s+print\b[^.\n]{0,40}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
+        /\bcad\s+log\s+full\s+print\b[\s\S]{0,40}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
           blob,
         );
 
@@ -522,10 +525,11 @@ export function reconcilePhoneDownloadModalityItems(
     );
 
   const out = items.map((item) => {
-    const blob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? "", hay].join("\n");
+    // Item-local only — never let full-bundle hay reclassify CAD/interview cards as phone.
+    const itemBlob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? ""].join("\n");
     const isPhoneish =
       /\b(?:phone\s+download|source\s+export|phone\s+extraction|logical\s+download|device\s+download)\b/i.test(
-        blob,
+        itemBlob,
       );
     if (!isPhoneish) return item;
 
@@ -607,18 +611,24 @@ export function reconcileSubscriberModalityItems(
   bundleText?: string | null,
 ): DisclosureChaseItem[] {
   const hay = `${bundleText ?? ""}`;
+  // Allow newline-separated schedule cells (Ahmed: "phone subscriber data\noutstanding\nnot attached").
+  // Reverse path requires subscriber report/return/data so "Not served … Subscriber" index noise (Grant) does not invent.
   const establishedOutstanding =
-    /\b(?:phone\s+)?subscriber(?:\s+report|\s+return|\s+data)?\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|not\s+complete|incomplete)/i.test(
+    /\b(?:phone\s+)?subscriber(?:\s+report|\s+return|\s+data)?\b[\s\S]{0,48}\b(?:outstanding|not\s+served|not\s+attached|not\s+complete|incomplete)/i.test(
       hay,
     ) ||
-    /\b(?:outstanding|not\s+served|not\s+attached)\b[^.\n]{0,48}\b(?:phone\s+)?subscriber(?:\s+report|\s+return|\s+data)?\b/i.test(
+    /\b(?:outstanding|not\s+served|not\s+attached)\b[\s\S]{0,48}\b(?:phone\s+)?subscriber(?:\s+report|\s+return|\s+data)\b/i.test(
       hay,
     );
 
   const filtered = items
     .map((item) => {
       const blob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? ""].join("\n");
-      const isSubscriber = /\bsubscriber\b|\baccount\s+data\b|\bsim\b|\bimei\b/i.test(blob);
+      // Do not treat bare SIM noise inside unrelated prose as subscriber identity.
+      const isSubscriber =
+        /\bsubscriber\b|\baccount\s+data\b|\bphone\s+attribution\b|\bhandset\s+attribution\b|\bsim\s*(?:\/|&)?\s*imei\b|\bimei\b/i.test(
+          blob,
+        );
       if (!isSubscriber) return item;
       // Never keep a subscriber chase unless papers affirmatively establish it.
       if (!establishedOutstanding) return null;

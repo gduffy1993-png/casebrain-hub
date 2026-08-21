@@ -20,6 +20,7 @@ import {
   isDigitalHarassmentBundleHay,
   polishPresentationLine,
 } from "../lib/criminal/demo-presentation-polish";
+import { finalizeDisclosureChasePresentation } from "../lib/criminal/disclosure-chase-finalize";
 import { generateExplanationFidelity } from "../lib/eval/casebrain-auditor/explanation-fidelity-generate";
 import {
   workflowDisclosureChaseLabels,
@@ -460,6 +461,15 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
     "Ahmed: subscriber outstanding must surface",
   );
 
+  const ahmedNewline = reconcileSubscriberModalityItems(
+    [],
+    "phone subscriber data\routstanding\rnot attached",
+  );
+  assert.ok(
+    ahmedNewline.some((i) => /subscriber/i.test(i.label)),
+    "Ahmed: newline schedule cells still establish subscriber outstanding",
+  );
+
   const trapSub = reconcileSubscriberModalityItems(
     [
       {
@@ -481,6 +491,106 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
     "The case should not be strengthened by assuming missing CCTV, statements, codes, or forensic evidence.",
   );
   assert.equal(trapSub.length, 0, "Trap: do not invent subscriber from assuming");
+
+  // Brookes: phone + subscriber must survive finalize collapse (no mute under phone).
+  {
+    const brookesPair = finalizeDisclosureChasePresentation(
+      reconcileSubscriberModalityItems(
+        reconcilePhoneDownloadModalityItems(
+          [
+            {
+              id: "p1",
+              familyId: "other",
+              label: "Full phone download / source extraction",
+              whyItMatters: "test",
+              source: "Crown",
+              baseStatus: "Outstanding",
+              urgency: "high",
+              deadlineLabel: "test",
+              evidenceAnchor: null,
+              linkedRoute: null,
+              draftChaseWording: "Please provide full phone download",
+              courtLine: "phone outstanding",
+              mergedFrom: ["Full phone download outstanding"],
+            },
+          ],
+          "Full phone download outstanding. Source export not served. Subscriber report not served.",
+        ),
+        "Full phone download outstanding. Source export not served. Subscriber report not served.",
+      ),
+    );
+    assert.ok(
+      brookesPair.some((i) => /Full phone download/i.test(i.label)),
+      "Brookes: full phone download remains after finalize",
+    );
+    assert.ok(
+      brookesPair.some((i) => /subscriber/i.test(i.label)),
+      "Brookes: subscriber inject remains distinct after finalize",
+    );
+  }
+
+  // Phone mid-state hay must not reclassify a CAD card; Tobin extract body soft-drops CAD lump.
+  {
+    const tobinHay =
+      "Phone download reference referenced only.\nCAD / 999 Extract\nTime Entry\n21:14 Call received from member of public\nUnit assigned\nOfficer arrival";
+    const kept = reconcilePhoneDownloadModalityItems(
+      [
+        {
+          id: "c1",
+          familyId: "cad_999",
+          label: "CAD / 999 audio / control-room material",
+          whyItMatters: "test",
+          source: "Crown",
+          baseStatus: "Outstanding",
+          urgency: "high",
+          deadlineLabel: "test",
+          evidenceAnchor: "CAD / 999 Extract",
+          linkedRoute: null,
+          draftChaseWording: "Please provide CAD",
+          courtLine: "CAD",
+          mergedFrom: ["CAD / 999 Extract", "999 / CAD material"],
+        },
+      ],
+      tobinHay,
+    );
+    assert.ok(
+      kept.some((i) => i.familyId === "cad_999"),
+      "Tobin: phone mid-state hay must not rewrite CAD card into phone",
+    );
+    const soft = reconcileCad999ModalityItems(kept, tobinHay);
+    assert.equal(
+      soft.filter((i) => i.familyId === "cad_999").length,
+      0,
+      "Tobin: served CAD/999 Extract body soft-drops lumped audio chase",
+    );
+  }
+
+  // Trap: overflow draft must not display-polish into Subscriber.
+  assert.notEqual(
+    displayChaseCardLabel({
+      label: "Additional source-material issues (6 on file)",
+      mergedFrom: ["assuming missing CCTV", "statements", "codes", "forensic evidence", "interview record", "continuity note"],
+      draftChaseWording:
+        "Please provide the outstanding source material identified on the disclosure schedule, including subscriber/account data, message exports, call logs, and any MG11/source material referred to but not served",
+      whyItMatters: "assuming missing CCTV",
+    }),
+    "Subscriber / account data",
+    "Trap: draft wording alone must not invent Subscriber display label",
+  );
+
+  // Grant/Tobin mid-state label survives finalize humanize.
+  {
+    const mid = finalizeDisclosureChasePresentation(
+      reconcilePhoneDownloadModalityItems(
+        [],
+        "Logical download summary only. Full report not in this section.",
+      ),
+    );
+    assert.ok(
+      mid.some((i) => /summary only|full download report not in section/i.test(i.label)),
+      "Grant: mid-state label survives finalize",
+    );
+  }
 
   const trapInterview = reconcileInterviewModalityItems(
     [

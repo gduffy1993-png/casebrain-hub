@@ -64,8 +64,19 @@ export function humanizeChaseFragmentLabel(raw: string): string {
   }
 
   if (/screenshot\s+pack/i.test(t)) return "Screenshot / message pack";
+  // Preserve phone mid-state identity (Grant/Tobin) — do not collapse to a generic extraction label.
+  if (
+    /phone\s+extraction\s+summary\s+only|full\s+download\s+report\s+not\s+in\s+(?:the\s+)?section|logical\s+download\s+summary/i.test(
+      t,
+    )
+  ) {
+    return "Phone extraction summary only — full download report not in section";
+  }
+  if (/full\s+phone\s+download|phone\s+download\s*\/\s*source\s+extraction/i.test(t)) {
+    return "Full phone download / source extraction";
+  }
   if (/phone extraction|extraction summary/i.test(t)) return "Phone extraction source material";
-  if (/subscriber\s+data/i.test(t)) return "Subscriber / account data";
+  if (/subscriber\s+data|subscriber\s*\/\s*account/i.test(t)) return "Subscriber / account data";
   if (/^MG6\b|mg6\s*\/\s*unused|disclosure schedule/i.test(t)) return "MG6 / unused schedule clarification";
 
   if (t.includes(";")) {
@@ -191,7 +202,8 @@ function buildOverflowDraftWording(mergedFrom: string[]): string {
     return `Please provide the outstanding source material identified on the disclosure schedule, including ${list}${suffix}`;
   }
 
-  return `Please provide the outstanding source material identified on the disclosure schedule, including subscriber/account data, message exports, call logs, and any MG11/source material referred to but not served${suffix}`;
+  // Never invent subscriber/phone modalities in overflow drafts — Trap thin-file invent residual.
+  return `Please provide the outstanding source material identified on the disclosure schedule, including any MG6/MG11/source items referred to but not served${suffix}`;
 }
 
 function cleanDraftWording(label: string, mergedFrom: string[] = []): string {
@@ -313,16 +325,29 @@ function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): Di
   };
 }
 
+/** Keep phone/subscriber modality cards distinct — Brookes/Ahmed must not mute under phone collapse. */
+function isDigitalModalityChaseLabel(label: string): boolean {
+  return /^(Subscriber \/ account data|Full phone download \/ source extraction|Phone extraction summary only)/i.test(
+    label.trim(),
+  );
+}
+
 function collapseOtherFamilyItems(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
   const core = items.filter((i) => i.familyId !== "other");
   const misc = items.filter((i) => i.familyId === "other");
   if (misc.length <= 1) return items;
 
-  let bucket = misc[0]!;
-  for (const item of misc.slice(1)) {
+  const keepSeparate = misc.filter((i) => isDigitalModalityChaseLabel(i.label));
+  const bucketable = misc.filter((i) => !isDigitalModalityChaseLabel(i.label));
+  if (bucketable.length <= 1) {
+    return [...core, ...keepSeparate, ...bucketable];
+  }
+
+  let bucket = bucketable[0]!;
+  for (const item of bucketable.slice(1)) {
     bucket = mergeFinalizedItems(bucket, item);
   }
-  return [...core, bucket];
+  return [...core, ...keepSeparate, bucket];
 }
 
 function collapseFinalizedItemsByFamilyId(items: DisclosureChaseItem[]): DisclosureChaseItem[] {

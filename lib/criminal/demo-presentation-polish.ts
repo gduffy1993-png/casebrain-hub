@@ -229,7 +229,9 @@ type ChaseDisplayItem = {
 };
 
 function digitalHay(item: ChaseDisplayItem): string {
-  return `${item.label} ${(item.mergedFrom ?? []).join(" ")} ${item.draftChaseWording ?? ""} ${item.whyItMatters ?? ""}`.toLowerCase();
+  // Exclude draftChaseWording — overflow drafts historically invented "subscriber/account data"
+  // and display polish then renamed Trap cards to Subscriber.
+  return `${item.label} ${(item.mergedFrom ?? []).join(" ")} ${item.whyItMatters ?? ""}`.toLowerCase();
 }
 
 function mg6GenericLabel(label: string): boolean {
@@ -249,9 +251,10 @@ function digitalChaseLabel(hay: string): string | null {
     return "Full phone download / source extraction";
   }
   if (
-    /\b(?:subscriber(?:\s+report|\s+return|\s+data)?|account\s+data|sim\b|imei|phone\s+attribution|handset\s+attribution)\b/i.test(
+    /\b(?:subscriber(?:\s+report|\s+return|\s+data)?|account\s+data|phone\s+attribution|handset\s+attribution|sim\s*(?:\/|&)?\s*imei|\bimei\b)\b/i.test(
       hay,
-    )
+    ) &&
+    !/\bassuming\b/i.test(hay)
   ) {
     return "Subscriber / account data";
   }
@@ -276,7 +279,7 @@ function digitalChaseLabel(hay: string): string | null {
   if (/handle|attribution report/i.test(hay)) return "Handle attribution report";
   if (/platform|encro|county/i.test(hay)) return "Platform / source extraction";
   if (/call log/i.test(hay)) return "Call logs";
-  if (/harassment|digital|phone|message/i.test(hay)) return "Outstanding digital disclosure material";
+  if (/harassment|digital|phone|message|attribution/i.test(hay)) return "Outstanding digital disclosure material";
   return null;
 }
 
