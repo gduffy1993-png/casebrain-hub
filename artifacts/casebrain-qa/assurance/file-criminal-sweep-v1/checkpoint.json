@@ -1,0 +1,39 @@
+{
+  "productSha": "b47ead423",
+  "preview": "https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app",
+  "finishedAt": "2026-08-21T19:48:33.233Z",
+  "totalUnique": 2600,
+  "scored": 2600,
+  "complete": true,
+  "hitlistRows": 2074,
+  "topFamilies": [
+    [
+      "date:date_role_hearing_passed_as_ops_chrome",
+      1980
+    ],
+    [
+      "mute:mute_stage_despite_pdf",
+      278
+    ],
+    [
+      "date:date_role_hearing_passed_chrome",
+      185
+    ],
+    [
+      "mute:mute_hearing_despite_pdf",
+      62
+    ],
+    [
+      "invent_court_header",
+      43
+    ],
+    [
+      "mute:mute_defendant_despite_pdf",
+      23
+    ],
+    [
+      "mute:mute_court_despite_pdf",
+      5
+    ]
+  ]
+}

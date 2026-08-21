@@ -1,0 +1,84 @@
+
+===== PAGE 1 =====
+Pack V - Strategy Leverage / Why This Helps | CB-LEVERAGE-2026-0001 | Fictional evaluation material - not real case papers
+Page 1
+Pack V - Strategy Leverage / Why This Helps
+COVER / CASE HEADER
+• Fictional case reference: CB-LEVERAGE-2026-0001
+• Case title: Theft from shop - Alden Vale
+• Defendant: Alden Vale
+• DOB: 12/02/1996
+• Police station: Northford Police Station
+• Court/stage: Northford Magistrates Court / police station pre-charge
+• Next hearing date: 08/06/2026
+• Bail/RUI/remand status: conditional bail
+• Pack identifiers: Pack V; CB-LEVERAGE; CB-WHY; EX-V-*
+CHARGE / ALLEGATION
+Exact charge wording: On 02/05/2026 at about 18:07 at Market Yard, Alden Vale is alleged dishonestly to have
+appropriated retail goods intending permanently to deprive the owner of them.
+Offence type: Theft from shop. Date/time/location: 02/05/2026 at 18:07, Market Yard.
+
+===== PAGE 2 =====
+Pack V - Strategy Leverage / Why This Helps | CB-LEVERAGE-2026-0001 | Fictional evaluation material - not real case papers
+Page 2
+MG5 SUMMARY
+Crown version: The Crown says the allegation is supported by the served MG5, interview note and exhibits. The key
+strategy question is identification leverage.
+Key evidence relied on: EX-V-MG5-01, EX-V-MG6-01, EX-V-INT-01, EX-V-CCTV-01, EX-V-MG11-01.
+Fact that looks helpful to the Crown: The same clothing type is seen near the incident window and the complainant
+says the build is similar.
+Fact that looks helpful to the defence: CCTV face is unclear and the witness description gives dark jacket and cap
+only.
+The case is not to be treated as won or lost from one evidence point. Each point must be linked to served source
+material and solicitor review.
+
+===== PAGE 3 =====
+Pack V - Strategy Leverage / Why This Helps | CB-LEVERAGE-2026-0001 | Fictional evaluation material - not real case papers
+Page 3
+MG6 / DISCLOSURE POSITION
+• Served material: EX-V-MG5-01, EX-V-MG6-01, EX-V-INT-01 and selected summary exhibits.
+• Outstanding material: full CCTV master, continuity statement, and any ID procedure notes.
+• Source material missing: original/complete source material where identified below.
+• What must be chased before final advice: serve source items, continuity/provenance, and any unused material that
+could affect the safe route.
+INTERVIEW / CLIENT ACCOUNT
+No comment after limited disclosure; solicitor note records that source material had not yet been served.
+
+===== PAGE 4 =====
+Pack V - Strategy Leverage / Why This Helps | CB-LEVERAGE-2026-0001 | Fictional evaluation material - not real case papers
+Page 4
+STRATEGY LEVERAGE NOTES
+CCTV still
+• This may assist the defence because the face is not clear and clothing alone is weak identification.
+• This may assist the Crown because it places a similarly dressed person near the scene.
+• It cannot safely prove identity without clearer source material or supporting evidence.
+• Safe strategy move: chase full CCTV master and continuity before final ID advice.
+• This point collapses if full footage clearly shows the defendant leaving or entering the scene.
+Witness description
+• This may assist the defence because the description is general and does not name a distinctive feature.
+• This may assist the Crown because it broadly matches clothing in the CCTV still.
+• It cannot safely exclude the defendant without the full statement and cross-checking the viewing conditions.
+• Safe strategy move: test lighting, distance, duration and first description.
+• This point collapses if the first account contains a distinctive matching feature.
+No ID procedure recorded
+• This may assist the defence because the file does not yet show a formal ID process.
+• This may assist the Crown only if other recognition evidence exists.
+• It cannot prove the identification is inadmissible at this stage.
+• Safe strategy move: ask whether an ID procedure was considered or performed.
+• This point collapses if a valid ID procedure note is served.
+
+===== PAGE 5 =====
+Pack V - Strategy Leverage / Why This Helps | CB-LEVERAGE-2026-0001 | Fictional evaluation material - not real case papers
+Page 5
+EXHIBIT LIST
+• EX-V-MG5-01 - bundle reference ID CB-LEVERAGE-2026-0001
+• EX-V-MG6-01 - bundle reference ID CB-LEVERAGE-2026-0001
+• EX-V-INT-01 - bundle reference ID CB-LEVERAGE-2026-0001
+• EX-V-CCTV-01 - bundle reference ID CB-LEVERAGE-2026-0001
+• EX-V-MG11-01 - bundle reference ID CB-LEVERAGE-2026-0001
+DISCLOSURE / STRATEGY SAFETY NOTE
+• This may assist because it gives a focused route to test the Crown evidence.
+• This creates pressure if proved because the missing or weak source material affects the safe advice.
+• This is useful only if the source material is served and supports the point.
+• This should be treated as provisional and needs solicitor review.
+• Do not overstate any single item as proving guilt, innocence, or the final outcome.

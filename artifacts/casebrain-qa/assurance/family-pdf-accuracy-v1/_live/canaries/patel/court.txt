@@ -1,0 +1,102 @@
+CB
+
+CASE WORK
+
+SOLO WORKSPACE
+gduffy1993+casebrain@gmail.com
+I'm working as:
+Criminal Defence Solicitor
+Search
+New Upload
+Sign Out
+Trial: 4d left · 25/25 cases · 25/100 docs
+Upgrade
+
+Client not on papers
+
+Charge not safely identified from uploaded papers
+
+Southford Magistrates' Court
+·
+Upcoming · 25 Aug 2026
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+Court
+Papers
+Client Summary
+CPS Chase
+File
+Record Position
+Upload Evidence
+Criminal case — Affray (s.3 Public Order Act 1986)
+CONTROL ROOM
+
+Client name not safely extracted
+
+Stage: post charge
+
+Defence position not safely recorded yet — position is provisional; confirm client instructions before relying on it.
+
+Based on uploaded bundle text — solicitor review required.
+
+BUNDLE HEALTH
+
+Partial (on file text) (1 doc · 527 chars text)
+
+POSITION STATUS
+
+Defence position not confirmed yet
+
+READINESS
+
+Key risks on file — review before fixing a route
+
+DISCLOSURE CHASE
+
+Source-material chase (3 items)
+
+PRIMARY DEFENCE PRESSURE ROUTE
+
+Violence / complainant account / injury and participation pressure
+
+CONDITIONAL ON SERVED MATERIAL
+
+CAD listing timing note refers to control-room timing for the incident.
+
+BIGGEST RISK / WHAT COULD HURT US
+
+Assumed position may conflict with interview or served evidence.
+CAD/999 timing may affect Crown sequence if proved on served material.
+
+NEXT 3 SOLICITOR ACTIONS
+
+Chase/record: Complainant first account / MG11
+Chase/record: 999 / CAD material
+Chase/record: Third-party witness statements
+
+SAFE COURT LINE (TODAY)
+
+Timing/sequence remains conditional on served CAD/999/CCTV material; ask the court to record what source material is still outstanding.
+
+Provisional · solicitor review · do not overstate
+
+state: not safely confirmed · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof
+
+MORE PAPERS DETAIL
+
+More detailed drafting is held back until the source position is clearer.
+
+MORE PAPERS DETAIL UNAVAILABLE
+
+More detailed drafting is held back until the source position is clearer.
+
+Based on uploaded papers · conditional where papers are incomplete
+
+Papers on this matter
+
+1 file on record
+
+DOCUMENTS

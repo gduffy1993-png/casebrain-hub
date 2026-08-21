@@ -1,0 +1,217 @@
+{
+  "case_key": "RP-13-DUNN",
+  "ok": true,
+  "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-301-400-v4\\pdfs\\CB-TB-343_Dunn.pdf",
+  "pdf_sha256": "be29ed51ee8c478a7d3af98ae1d4ecdc79e9561d00113b7ced5de3b9daeb8388",
+  "page_count": 15,
+  "char_count": 8489,
+  "term_hits": {
+    "CCTV": 2,
+    "stills": 2,
+    "continuity": 3,
+    "\\bCAD\\b": 6,
+    "999": 1,
+    "interview": 9,
+    "recording": 2,
+    "transcript": 1,
+    "property": 2,
+    "MG6": 7,
+    "identification": 1,
+    "BWV": 2,
+    "body[- ]?worn": 1,
+    "custody": 5,
+    "hearing": 12
+  },
+  "term_excerpts": {
+    "CCTV": [
+      {
+        "page": 5,
+        "excerpt": "lice, but I was not shown any formal identification procedure in the papers I have seen. 3. I have been shown reference CCTV/3. I cannot comment on material that I have not personally seen. 4. The exact words used were recorded from memory and not from an audio recording. Signed: ___"
+      },
+      {
+        "page": 8,
+        "excerpt": "s S03 exhibit list Served Included in present papers S04 CAD incident log extract Served Included in present papers S05 CCTV stills Served Included in present papers O01 full interview transcript Outstanding Listed but not attached O02 CAD log full print Outstanding Not yet served O0"
+      }
+    ],
+    "stills": [
+      {
+        "page": 8,
+        "excerpt": "MG6 DISCLOSURE SCHEDULE CB-TB-343 Page 8 Prepared papers Item Description Status Comment S01 BWV stills Served Included in present papers S02 interview summary Served Included in present papers S03 exhibit list Served Included in present papers S04 CAD incident l"
+      },
+      {
+        "page": 8,
+        "excerpt": "exhibit list Served Included in present papers S04 CAD incident log extract Served Included in present papers S05 CCTV stills Served Included in present papers O01 full interview transcript Outstanding Listed but not attached O02 CAD log full print Outstanding Not yet served O03 indep"
+      }
+    ],
+    "continuity": [
+      {
+        "page": 8,
+        "excerpt": "Listed but not attached O02 CAD log full print Outstanding Not yet served O03 independent witness statement Outstanding Continuity awaited O04 forensic continuity statement Outstanding Requested from OIC O05 999 audio Outstanding Listed but not attached Disclosure note: the status column s"
+      },
+      {
+        "page": 8,
+        "excerpt": "log full print Outstanding Not yet served O03 independent witness statement Outstanding Continuity awaited O04 forensic continuity statement Outstanding Requested from OIC O05 999 audio Outstanding Listed but not attached Disclosure note: the status column should be checked against the act"
+      },
+      {
+        "page": 9,
+        "excerpt": "Status EX/01 Still image bundle Eastmoor Police served EX/02 Officer body worn video log Eastmoor Police partial EX/03 Continuity note Eastmoor Police outstanding AB/2 Property record OIC served Email from disclosure unit dated 04/06/2026: Please note the schedule is updated. Attachments"
+      }
+    ],
+    "\\bCAD\\b": [
+      {
+        "page": 1,
+        "excerpt": "er and index 1 2 Charge sheet / case initiation 2 3 MG5 case summary 3-4 4 Witness material 5-6 5 Custody / interview / CAD material 7 6 Disclosure schedule 8 7 Exhibits and correspondence 9+ File note These papers relate to Ellis Dunn and the listed hearing at Crown Court at Manche"
+      },
+      {
+        "page": 7,
+        "excerpt": "CB-TB-343 Page 7 Prepared papers Time Entry Source 20:04 Initial call opened; caller reports incident at Albion Road CAD 20:12 Unit dispatched; description taken from first account CAD 20:31 Person detained nearby; property/exhibit note created Officer note 21:08 Custody authoris"
+      },
+      {
+        "page": 7,
+        "excerpt": "ial call opened; caller reports incident at Albion Road CAD 20:12 Unit dispatched; description taken from first account CAD 20:31 Person detained nearby; property/exhibit note created Officer note 21:08 Custody authorised; solicitor requested Custody 22:10 Interview position recorde"
+      },
+      {
+        "page": 7,
+        "excerpt": "2:10 Interview position recorded as limited / disputed Interview summary Note: Custody timing should be checked against CAD if sequence matters."
+      }
+    ],
+    "999": [
+      {
+        "page": 8,
+        "excerpt": "t witness statement Outstanding Continuity awaited O04 forensic continuity statement Outstanding Requested from OIC O05 999 audio Outstanding Listed but not attached Disclosure note: the status column should be checked against the actual papers served. Items marked outstanding are n"
+      }
+    ],
+    "interview": [
+      {
+        "page": 1,
+        "excerpt": "Pages 1 Cover and index 1 2 Charge sheet / case initiation 2 3 MG5 case summary 3-4 4 Witness material 5-6 5 Custody / interview / CAD material 7 6 Disclosure schedule 8 7 Exhibits and correspondence 9+ File note These papers relate to Ellis Dunn and the listed hearing at Crown Court at"
+      },
+      {
+        "page": 3,
+        "excerpt": "ition should be checked against the MG6 schedule. - Any hearing position should be conditional on served material only. Interview / account The defendant gave no comment to evidential questions following limited disclosure."
+      },
+      {
+        "page": 4,
+        "excerpt": "ition should be checked against the MG6 schedule. - Any hearing position should be conditional on served material only. Interview / account The defendant denied intent and said the prosecution summary does not record the full context."
+      },
+      {
+        "page": 6,
+        "excerpt": "Noah Kent. I refer to an incident at Albion Road on 29/05/2026. 2. The custody record shows a solicitor request before interview. 3. I have been shown reference BWV/02. I cannot comment on material that I have not personally seen. 4. The exact words used were recorded from memory and not"
+      }
+    ],
+    "recording": [
+      {
+        "page": 5,
+        "excerpt": "nt on material that I have not personally seen. 4. The exact words used were recorded from memory and not from an audio recording. Signed: ____________________ Date: ____________________"
+      },
+      {
+        "page": 6,
+        "excerpt": "nt on material that I have not personally seen. 4. The exact words used were recorded from memory and not from an audio recording. Signed: ____________________ Date: ____________________"
+      }
+    ],
+    "transcript": [
+      {
+        "page": 8,
+        "excerpt": "dent log extract Served Included in present papers S05 CCTV stills Served Included in present papers O01 full interview transcript Outstanding Listed but not attached O02 CAD log full print Outstanding Not yet served O03 independent witness statement Outstanding Continuity awaited O04 fore"
+      }
+    ],
+    "property": [
+      {
+        "page": 7,
+        "excerpt": "cident at Albion Road CAD 20:12 Unit dispatched; description taken from first account CAD 20:31 Person detained nearby; property/exhibit note created Officer note 21:08 Custody authorised; solicitor requested Custody 22:10 Interview position recorded as limited / disputed Interview summa"
+      },
+      {
+        "page": 9,
+        "excerpt": "served EX/02 Officer body worn video log Eastmoor Police partial EX/03 Continuity note Eastmoor Police outstanding AB/2 Property record OIC served Email from disclosure unit dated 04/06/2026: Please note the schedule is updated. Attachments referred to in the prior email should be checke"
+      }
+    ],
+    "MG6": [
+      {
+        "page": 3,
+        "excerpt": "for review - Call data is partial; one co-defendant blames another. - Disclosure position should be checked against the MG6 schedule. - Any hearing position should be conditional on served material only. Interview / account The defendant gave no comment to evidential questions follo"
+      },
+      {
+        "page": 4,
+        "excerpt": "for review - Call data is partial; one co-defendant blames another. - Disclosure position should be checked against the MG6 schedule. - Any hearing position should be conditional on served material only. Interview / account The defendant denied intent and said the prosecution summar"
+      },
+      {
+        "page": 8,
+        "excerpt": "MG6 DISCLOSURE SCHEDULE CB-TB-343 Page 8 Prepared papers Item Description Status Comment S01 BWV stills Served Included in present papers S02 interview summary"
+      },
+      {
+        "page": 11,
+        "excerpt": "DISCLOSURE UPDATE CB-TB-343 Page 11 Prepared papers The present bundle should be read with the MG6 schedule. Served material listed in the index does not necessarily resolve outstanding entries. No further document on this page changes the charge wording unl"
+      }
+    ],
+    "identification": [
+      {
+        "page": 5,
+        "excerpt": "efer to an incident at Albion Road on 29/05/2026. 2. I described the clothing to police, but I was not shown any formal identification procedure in the papers I have seen. 3. I have been shown reference CCTV/3. I cannot comment on material that I have not personally seen. 4. The exact words us"
+      }
+    ],
+    "BWV": [
+      {
+        "page": 6,
+        "excerpt": "on Road on 29/05/2026. 2. The custody record shows a solicitor request before interview. 3. I have been shown reference BWV/02. I cannot comment on material that I have not personally seen. 4. The exact words used were recorded from memory and not from an audio recording. Signed: __"
+      },
+      {
+        "page": 8,
+        "excerpt": "MG6 DISCLOSURE SCHEDULE CB-TB-343 Page 8 Prepared papers Item Description Status Comment S01 BWV stills Served Included in present papers S02 interview summary Served Included in present papers S03 exhibit list Served Included in present papers S04 CAD inc"
+      }
+    ],
+    "body[- ]?worn": [
+      {
+        "page": 9,
+        "excerpt": "B-TB-343 Page 9 Prepared papers Ref Item Holder Status EX/01 Still image bundle Eastmoor Police served EX/02 Officer body worn video log Eastmoor Police partial EX/03 Continuity note Eastmoor Police outstanding AB/2 Property record OIC served Email from disclosure unit dated 04/06/2026"
+      }
+    ],
+    "custody": [
+      {
+        "page": 1,
+        "excerpt": "b Document Pages 1 Cover and index 1 2 Charge sheet / case initiation 2 3 MG5 case summary 3-4 4 Witness material 5-6 5 Custody / interview / CAD material 7 6 Disclosure schedule 8 7 Exhibits and correspondence 9+ File note These papers relate to Ellis Dunn and the listed hearing at Cro"
+      },
+      {
+        "page": 6,
+        "excerpt": "o be false or do not believe to be true. 1. I am Noah Kent. I refer to an incident at Albion Road on 29/05/2026. 2. The custody record shows a solicitor request before interview. 3. I have been shown reference BWV/02. I cannot comment on material that I have not personally seen. 4. The"
+      },
+      {
+        "page": 7,
+        "excerpt": "description taken from first account CAD 20:31 Person detained nearby; property/exhibit note created Officer note 21:08 Custody authorised; solicitor requested Custody 22:10 Interview position recorded as limited / disputed Interview summary Note: Custody timing should be checked agains"
+      },
+      {
+        "page": 7,
+        "excerpt": "20:31 Person detained nearby; property/exhibit note created Officer note 21:08 Custody authorised; solicitor requested Custody 22:10 Interview position recorded as limited / disputed Interview summary Note: Custody timing should be checked against CAD if sequence matters."
+      }
+    ],
+    "hearing": [
+      {
+        "page": 1,
+        "excerpt": "l 7 6 Disclosure schedule 8 7 Exhibits and correspondence 9+ File note These papers relate to Ellis Dunn and the listed hearing at Crown Court at Manchester. Documents are paginated for court and defence review."
+      },
+      {
+        "page": 2,
+        "excerpt": "ce force Eastmoor Police Defendant Ellis Dunn DOB 15/08/1990 Address [redacted address] Court Crown Court at Manchester Hearing 07 July 2026 at 14:15 Stage trial preparation Charge COUNT 1 Statement of offence Conspiracy to burgle, contrary to section 1 of the Criminal Law Act 1977 Part"
+      },
+      {
+        "page": 3,
+        "excerpt": "NP/2026/000343 Defendant Ellis Dunn Offence Conspiracy burglary Stage trial preparation Court Crown Court at Manchester Hearing 07 July 2026 at 14:15 Summary of allegation The prosecution case is that Ellis Dunn was involved in an incident at Albion Road on 29/05/2026. Call data is part"
+      },
+      {
+        "page": 3,
+        "excerpt": "/2026. Call data is partial; one co-defendant blames another. The file records matters requiring review before the next hearing. Issues for review - Call data is partial; one co-defendant blames another. - Disclosure position should be checked against the MG6 schedule. - Any hearing pos"
+      }
+    ]
+  },
+  "key_pages": {
+    "1": "CB-TB-343    Page 1\nPrepared papers\nPROSECUTION PAPERS\nR v Ellis Dunn\nMatter reference: CB-TB-343     URN: NP/2026/000343\nTab\nDocument\nPages\n1\nCover and index\n1\n2\nCharge sheet / case initiation\n2\n3\nMG5 case summary\n3-4\n4\nWitness material\n5-6\n5\nCustody / interview / CAD material\n7\n6\nDisclosure schedule\n8\n7\nExhibits and correspondence\n9+\nFile note\nThese papers relate to Ellis Dunn and the listed hearing at Crown Court at Manchester. Documents are paginated for court and\ndefence review.\n",
+    "2": "CHARGE SHEET / CASE INITIATION\nCB-TB-343    Page 2\nPrepared papers\nURN\nNP/2026/000343\nPolice force\nEastmoor Police\nDefendant\nEllis Dunn\nDOB\n15/08/1990\nAddress\n[redacted address]\nCourt\nCrown Court at Manchester\nHearing\n07 July 2026 at 14:15\nStage\ntrial preparation\nCharge\nCOUNT 1\nStatement of offence\nConspiracy to burgle, contrary to section 1 of the Criminal Law Act 1977\nParticulars of offence\nOn 29/05/2026 at Albion Road, Ellis Dunn is alleged to have committed the above offence. The particulars rely on witness,\nexhibit and disclosure material listed in this bundle.\n",
+    "3": "MG5 CASE SUMMARY\nCB-TB-343    Page 3\nPrepared papers\nURN\nNP/2026/000343\nDefendant\nEllis Dunn\nOffence\nConspiracy burglary\nStage\ntrial preparation\nCourt\nCrown Court at Manchester\nHearing\n07 July 2026 at 14:15\nSummary of allegation\nThe prosecution case is that Ellis Dunn was involved in an incident at Albion Road on 29/05/2026. Call data is partial; one\nco-defendant blames another. The file records matters requiring review before the next hearing.\nIssues for review\n- Call data is partial; one co-defendant blames another.\n- Disclosure position should be checked against the MG6 schedule.\n- Any hearing position should be conditional on served material only.\nInterview / account\nThe defendant gave no comment to evidential questions following limited disclosure.\n",
+    "5": "WITNESS STATEMENT\nCB-TB-343    Page 5\nPrepared papers\nURN\nNP/2026/000343\nStatement of\nLena Ross\nAge if under 18\nOver 18\nOccupation\nComplainant\nDate\n29/05/2026\nPages\n1 of 1\nThis statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I may be liable to\nprosecution if I have wilfully stated anything which I know to be false or do not believe to be true.\n1. I am Lena Ross. I refer to an incident at Albion Road on 29/05/2026.\n2. I described the clothing to police, but I was not shown any formal identification procedure in the papers I have seen.\n3. I have been shown reference CCTV/3. I cannot comment on material that I have not personally seen.\n4. The exact words used were recorded from memory and not from an audio recording.\nSigned: ____________________\nDate: ____________________\n",
+    "8": "MG6 DISCLOSURE SCHEDULE\nCB-TB-343    Page 8\nPrepared papers\nItem\nDescription\nStatus\nComment\nS01\nBWV stills\nServed\nIncluded in present papers\nS02\ninterview summary\nServed\nIncluded in present papers\nS03\nexhibit list\nServed\nIncluded in present papers\nS04\nCAD incident log extract\nServed\nIncluded in present papers\nS05\nCCTV stills\nServed\nIncluded in present papers\nO01\nfull interview transcript\nOutstanding\nListed but not attached\nO02\nCAD log full print\nOutstanding\nNot yet served\nO03\nindependent witness statement\nOutstanding\nContinuity awaited\nO04\nforensic continuity statement\nOutstanding\nRequested from OIC\nO05\n999 audio\nOutstanding\nListed but not attached\nDisclosure note: the status column should be checked against the actual papers served. Items marked outstanding are not treated\nas served by this schedule.\n",
+    "7": "INTERVIEW SUMMARY\nCB-TB-343    Page 7\nPrepared papers\nTime\nEntry\nSource\n20:04\nInitial call opened; caller reports incident at Albion Road\nCAD\n20:12\nUnit dispatched; description taken from first account\nCAD\n20:31\nPerson detained nearby; property/exhibit note created\nOfficer note\n21:08\nCustody authorised; solicitor requested\nCustody\n22:10\nInterview position recorded as limited / disputed\nInterview summary\nNote: Custody timing should be checked against CAD if sequence matters.\n",
+    "6": "WITNESS STATEMENT\nCB-TB-343    Page 6\nPrepared papers\nURN\nNP/2026/000343\nStatement of\nNoah Kent\nAge if under 18\nOver 18\nOccupation\nDisclosure officer\nDate\n29/05/2026\nPages\n1 of 1\nThis statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I may be liable to\nprosecution if I have wilfully stated anything which I know to be false or do not believe to be true.\n1. I am Noah Kent. I refer to an incident at Albion Road on 29/05/2026.\n2. The custody record shows a solicitor request before interview.\n3. I have been shown reference BWV/02. I cannot comment on material that I have not personally seen.\n4. The exact words used were recorded from memory and not from an audio recording.\nSigned: ____________________\nDate: ____________________\n",
+    "9": "DISCLOSURE CORRESPONDENCE\nCB-TB-343    Page 9\nPrepared papers\nRef\nItem\nHolder\nStatus\nEX/01\nStill image bundle\nEastmoor Police\nserved\nEX/02\nOfficer body worn video log\nEastmoor Police\npartial\nEX/03\nContinuity note\nEastmoor Police\noutstanding\nAB/2\nProperty record\nOIC\nserved\nEmail from disclosure unit dated 04/06/2026: Please note the schedule is updated. Attachments referred to in the prior email should\nbe checked against the served bundle.\n",
+    "4": "MG5 CASE SUMMARY - CONTINUATION\nCB-TB-343    Page 4\nPrepared papers\nURN\nNP/2026/000343\nDefendant\nEllis Dunn\nOffence\nConspiracy burglary\nStage\ntrial preparation\nCourt\nCrown Court at Manchester\nHearing\n07 July 2026 at 14:15\nSummary of allegation\nThe prosecution case is that Ellis Dunn was involved in an incident at Albion Road on 29/05/2026. Call data is partial; one\nco-defendant blames another. The file records matters requiring review before the next hearing.\nIssues for review\n- Call data is partial; one co-defendant blames another.\n- Disclosure position should be checked against the MG6 schedule.\n- Any hearing position should be conditional on served material only.\nInterview / account\nThe defendant denied intent and said the prosecution summary does not record the full context.\n"
+  },
+  "first_page_preview": "CB-TB-343    Page 1\nPrepared papers\nPROSECUTION PAPERS\nR v Ellis Dunn\nMatter reference: CB-TB-343     URN: NP/2026/000343\nTab\nDocument\nPages\n1\nCover and index\n1\n2\nCharge sheet / case initiation\n2\n3\nMG5 case summary\n3-4\n4\nWitness material\n5-6\n5\nCustody / interview / CAD material\n7\n6\nDisclosure schedule\n8\n7\nExhibits and correspondence\n9+\nFile note\nThese papers relate to Ellis Dunn and the listed hearing at Crown Court at Manchester. Documents are paginated for court and\ndefence review.\n"
+}

@@ -1,0 +1,47 @@
+{
+  "productSha": "e3179fa74",
+  "preview": "https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app",
+  "finishedAt": "2026-08-21T17:43:51.588Z",
+  "totalUnique": 2600,
+  "scored": 2600,
+  "complete": true,
+  "hitlistRows": 634,
+  "topFamilies": [
+    [
+      "mute:mute_phone_download",
+      469
+    ],
+    [
+      "modality_summary_vs_recording",
+      102
+    ],
+    [
+      "mute:mute_cctv_master",
+      31
+    ],
+    [
+      "mute:mute_cad_999",
+      29
+    ],
+    [
+      "mute:mute_export_log",
+      16
+    ],
+    [
+      "modality_screenshot_vs_download",
+      5
+    ],
+    [
+      "modality_stills_collapsed_to_generic_cctv",
+      2
+    ],
+    [
+      "invent_bwv",
+      1
+    ],
+    [
+      "contra:contradict_export_log",
+      1
+    ]
+  ]
+}

@@ -123,21 +123,18 @@ function requiredLimitationsFor(pipeline: LiveCanonicalPipelineResult): string[]
 function evidenceRowsForFiveAnswers(
   pipeline: LiveCanonicalPipelineResult,
 ): FiveAnswersEvidenceRow[] {
-  // Authoritative path: reconciled evidenceState.items (not raw per-observation rows).
-  // CB-HIST-ALL-SURFACES-SHARE-RECONCILED-EVIDENCE-AUTHORITY
-  return pipeline.evidenceState.items.map((item) => {
-    const obs = item.observations[0];
+  return pipeline.evidenceRows.map((r) => {
     const row: FiveAnswersEvidenceRow = {
-      label: item.label,
-      existence: item.state as FiveAnswersEvidenceRow["existence"],
-      reliability: item.unresolved ? "needs_review" : "needs_review",
+      label: r.label,
+      existence: r.existence as FiveAnswersEvidenceRow["existence"],
+      reliability: "needs_review",
     };
-    if (item.limitation) row.note = item.limitation;
-    else if (obs && !obs.pageIdentityKnown) {
-      row.note = `${obs.sourceDocumentTitle ?? "source"} · exact page unavailable (unsplit whole-document text)`;
-    } else if (obs?.sourcePage) {
-      const compiled = obs.compiledPage ? ` (compiled ${obs.compiledPage})` : "";
-      row.note = `${obs.sourceDocumentTitle ?? "source"} · ${obs.sourcePage}${compiled}`;
+    if (r.note) row.note = r.note;
+    else if (!r.pageIdentityKnown) {
+      row.note = `${r.sourceDocumentTitle ?? "source"} · exact page unavailable (unsplit whole-document text)`;
+    } else if (r.sourcePage) {
+      const compiled = r.compiledPage ? ` (compiled ${r.compiledPage})` : "";
+      row.note = `${r.sourceDocumentTitle ?? "source"} · ${r.sourcePage}${compiled}`;
     }
     return row;
   });
@@ -276,7 +273,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     doNotOverstate: warRoom.doNotOverstate,
     primaryRouteTitle: "Live integration",
     urnCandidateTexts: [pipeline.bundleText, allegationForExits],
-    evidenceRowsOverride: evidenceRowsForFiveAnswers(pipeline),
+    bundleText: pipeline.bundleText,
   });
 
   const docRows = documents.map((d, idx) => ({

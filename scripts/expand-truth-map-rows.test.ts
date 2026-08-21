@@ -1,78 +1,113 @@
 #!/usr/bin/env npx tsx
-/**
- * CB-HIST-PRESENTATION-CANNOT-CREATE-EVIDENCE-STATE
- * Run: npx tsx scripts/expand-truth-map-rows.test.ts
- */
 import assert from "node:assert/strict";
 import { expandTruthMapRowsForDisplay } from "../lib/criminal/five-answers/expand-truth-map-rows";
-import { ensureDigitalHarassmentGapRows } from "../lib/criminal/demo-presentation-polish";
+import { buildFiveAnswersView } from "../lib/criminal/five-answers/build-five-answers-view";
 import { evidenceRowFromSourceState } from "../lib/criminal/five-answers/evidence-trace";
 import type { DisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import type { HearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 
 const allegation = "Harassment, contrary to section 2 of the Protection from Harassment Act 1997";
 
-// Harassment + screenshots only → must NOT invent phone download / subscriber / MG11 states.
-const screenshotOnly = [
-  evidenceRowFromSourceState(
-    "Screenshot / message pack",
-    "served",
-    "Served on papers — screenshots only.",
-  ),
+const collapsed = [
+  evidenceRowFromSourceState("MG6 / unused schedule clarification", "not_safely_confirmed"),
 ];
 
 const chase = {
-  disclosureSummary: "Screenshots referred on papers.",
+  disclosureSummary: "Phone extraction summary only; full download outstanding.",
   safeCourtLine: "Provisional position.",
   primaryItems: [
     {
       label: "MG6 / unused schedule clarification",
       source: "MG6C",
       baseStatus: "outstanding",
-      draftChaseWording: "Please clarify the unused schedule.",
+      draftChaseWording: "Please provide full phone extraction source and subscriber data.",
       courtLine: "",
-      whyItMatters: "Disclosure",
+      whyItMatters: "Attribution",
+      evidenceAnchor: null,
+    },
+    {
+      label: "Phone extraction source download",
+      source: "MG6C/001",
+      baseStatus: "outstanding",
+      draftChaseWording: "Please provide the full phone extraction download.",
+      courtLine: "",
+      whyItMatters: "Attribution",
       evidenceAnchor: null,
     },
   ],
-  items: [],
+  items: [{ label: "Subscriber data" }],
 } as unknown as DisclosureChaseBrief;
 
-const expanded = expandTruthMapRowsForDisplay({
-  rows: screenshotOnly,
-  chase,
-  allegation,
-  doNotOverstate: ["Do not state the defendant sent messages unless attribution is served and safe."],
-});
-
-assert.equal(expanded.length, 1, "must not invent additional evidence rows");
-assert.equal(expanded[0]!.label, "Screenshot / message pack");
-assert.equal(expanded[0]!.existence, "served");
-assert.ok(!expanded.some((r) => /full phone download/i.test(r.label)));
-assert.ok(!expanded.some((r) => /subscriber/i.test(r.label)));
-
-const gapPass = ensureDigitalHarassmentGapRows(screenshotOnly, "harassment screenshot whatsapp", allegation);
-assert.equal(gapPass.length, 1, "gap helper must not invent rows");
-
-// Opposite: explicit outstanding phone extraction / subscriber remain represented.
-const withExplicitGaps = [
-  ...screenshotOnly,
-  evidenceRowFromSourceState("Phone extraction source download", "missing"),
-  evidenceRowFromSourceState("Subscriber / attribution data", "missing"),
-  evidenceRowFromSourceState("Complainant MG11", "not_safely_confirmed"),
+const doNotOverstate = [
+  "Do not state the defendant sent messages unless attribution is served and safe.",
+  'Do not state "MG11 is consistent and served" — Witness statement is draft or unsigned on papers',
 ];
-const kept = expandTruthMapRowsForDisplay({
-  rows: withExplicitGaps,
+
+const expanded = expandTruthMapRowsForDisplay({
+  rows: collapsed,
   chase,
   allegation,
-  doNotOverstate: [],
+  doNotOverstate,
+  bundleText:
+    "Harassment screenshots served. Phone extraction summary only. Full phone download / source export outstanding. Subscriber report not served.",
 });
-assert.ok(kept.some((r) => /phone extraction/i.test(r.label) && r.existence === "missing"));
-assert.ok(kept.some((r) => /subscriber/i.test(r.label) && r.existence === "missing"));
-assert.ok(kept.some((r) => /screenshot|message pack/i.test(r.label) && r.existence === "served"));
+
+assert.ok(expanded.some((r) => r.existence === "served" && /screenshot|message pack/i.test(r.label)));
+assert.ok(expanded.some((r) => /phone extraction summary/i.test(r.label) && r.existence === "referred_only"));
+assert.ok(expanded.some((r) => /full phone download/i.test(r.label) && r.existence === "missing"));
+assert.ok(expanded.some((r) => /subscriber|attribution/i.test(r.label) && r.existence === "missing"));
+assert.ok(!expanded.some((r) => /unused schedule clarification/i.test(r.label)));
+
+// Client D0.5: do-not-overstate "phone" alone must not invent Brookes download pack.
+const inventFromDoNot = expandTruthMapRowsForDisplay({
+  rows: collapsed,
+  chase: {
+    disclosureSummary: "Provisional disclosure.",
+    safeCourtLine: "Provisional.",
+    primaryItems: [
+      {
+        label: "MG6 / unused schedule clarification",
+        source: "MG6C",
+        baseStatus: "outstanding",
+        draftChaseWording: "Please clarify MG6.",
+        courtLine: "",
+        whyItMatters: "Schedule",
+        evidenceAnchor: null,
+      },
+    ],
+    items: [],
+  } as unknown as DisclosureChaseBrief,
+  allegation,
+  doNotOverstate: [
+    "Do not import phone extraction/metadata unless the papers support it.",
+    "Do not state the defendant sent messages unless attribution is served and safe.",
+  ],
+  bundleText: "Harassment charge. MG6 schedule Present. No phone download or screenshots on file.",
+});
 assert.ok(
-  kept.some((r) => /mg11/i.test(r.label) && r.existence === "not_safely_confirmed"),
-  "MG11 unknown/NSC must not become draft/unsigned via presentation",
+  !inventFromDoNot.some((r) => /full phone download/i.test(r.label)),
+  "do-not-overstate phone must not invent Full phone download missing",
 );
-assert.ok(!kept.some((r) => /mg11/i.test(r.label) && r.existence === "incomplete"));
+
+const war = {
+  safePositionToday: "Provisional — attribution disputed.",
+  doNotOverstate,
+  bundleContradictions: [],
+} as unknown as HearingWarRoomBrief;
+
+const view = buildFiveAnswersView({
+  allegation,
+  warRoom: war,
+  chase,
+  matterConfidence: null,
+  doNotOverstate,
+  bundleText:
+    "Harassment screenshots served. Phone extraction summary only. Full phone download / source export outstanding. Subscriber report not served.",
+});
+
+const gotRight = view.evidenceState.rows.filter((r) => r.existence === "served");
+assert.ok(gotRight.some((r) => /screenshot|message pack/i.test(r.label)));
+assert.ok(view.mustNotOverstate.some((l) => /attribution|messages/i.test(l)));
+assert.ok(view.chase.some((c) => /phone|extraction|subscriber|mg6/i.test(c.label)));
 
 console.log("expand-truth-map-rows.test.ts: PASS");

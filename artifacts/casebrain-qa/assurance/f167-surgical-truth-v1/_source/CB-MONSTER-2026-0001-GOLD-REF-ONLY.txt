@@ -1,0 +1,42 @@
+Pack: Monster Bundle Load Pack
+Case reference: CB-MONSTER-2026-0001
+Filename: CB-MONSTER-2026-0001.pdf
+Page count: 300
+Purpose: load/extraction stress plus safe file reasoning. Fictional case only.
+
+Q1. Primary allegation using only charge/bundle wording.
+Expected answer: On 02/06/2026 at Station Lane, Arden Vale is alleged to have stolen a phone from Marlow Reed and immediately before doing so used force.
+
+Q2. What does MG6 say is served and outstanding?
+Expected answer: Served: MG5 extract, MG6 extract, partial CCTV stills, one MG11 extract, custody/interview summary. Outstanding/incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity statement, complete signed MG11.
+
+Q3. What evidence appears missing or incomplete right now?
+Expected answer: full bundle pages 88-94 and 201-206, full CCTV master, continuity statement, complete signed MG11.. The file is a monster load bundle with chaos issue: long-bundle-load; partial extract only; duplicate MG5 pages. Treat the review as provisional where source pages or clean copies are missing.
+
+Q4. What was said in interview?
+Expected answer: No comment after limited disclosure. Defence later records that identification and force are disputed.
+
+Q5. List every exhibit code exactly as printed and the bundle reference ID.
+Expected answer: Bundle reference CB-MONSTER-2026-0001. Exhibit codes: EX-MON-MG5-01; EX-MON-MG6-01; EX-MON-INT-01; EX-MON-CCTV-01; EX-MON-MG11-01.
+
+Q6. Are there any inconsistencies or conflicts in the evidence?
+Expected answer: Main conflict/file integrity issue: long-bundle-load; partial extract only; duplicate MG5 pages. CaseBrain should identify that key material is buried in a very long/noisy bundle and should not rely on old, duplicate, partial or unreadable material as final.
+
+Q7. What must the prosecution still prove in this case?
+Expected answer: The prosecution must prove the offence as charged: Robbery. It must also prove any disputed identification/intent/possession/entry/force/source continuity issue as applicable from the served evidence, not from unserved source material.
+
+Q8. What is the single biggest weakness in the prosecution case?
+Expected answer: Missing source pages and full CCTV create disclosure pressure; do not treat this as full-bundle review. The weakness is not an acquittal guarantee; it is a disclosure/source-material pressure point until missing material is served.
+
+Q9. What is the single biggest weakness in the defence case?
+Expected answer: point collapses if full CCTV/source pages clearly support Crown identification and force. The defence should not overstate the point before source material and solicitor review.
+
+Q10. What should be done in the next 24 hours?
+Expected answer: Chase full bundle pages 88-94 and 201-206, full CCTV master, continuity statement, complete signed MG11.; create a page/key-exhibit map for the long bundle; confirm client instructions; record the strategy as provisional; ask the solicitor to review the relevant buried pages: charge p2; MG5 p5; duplicate MG5 p37; MG6 p88; CCTV extract p201; interview p260.
+
+Pack-specific expected behaviour:
+- Main chaos problem: long-bundle-load; partial extract only; duplicate MG5 pages
+- File is a long monster/load stress bundle, not a neat complete file.
+- What cannot safely be concluded: final guilt/innocence, final strategy, or source proof from missing/partial/unreadable pages.
+- Safe strategy impact: Missing source pages and full CCTV create disclosure pressure; do not treat this as full-bundle review.
+- Collapse risk: point collapses if full CCTV/source pages clearly support Crown identification and force.

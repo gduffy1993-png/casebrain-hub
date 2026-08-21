@@ -1,0 +1,23 @@
+{
+  "CCTV": 25,
+  "master": 7,
+  "continuity": 9,
+  "export": 0,
+  "999": 0,
+  "CAD": 0,
+  "audio": 0,
+  "interview": 5,
+  "transcript": 0,
+  "recording": 0,
+  "MG6": 13,
+  "MG6C": 0,
+  "MG11": 15,
+  "unused": 0,
+  "subscriber": 0,
+  "phone download": 0,
+  "extraction": 58,
+  "identification": 2,
+  "outstanding": 18,
+  "served": 372,
+  "incomplete": 3
+}

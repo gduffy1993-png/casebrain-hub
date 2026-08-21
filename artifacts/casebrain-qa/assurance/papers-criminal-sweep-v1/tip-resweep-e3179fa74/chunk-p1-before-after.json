@@ -1,0 +1,81 @@
+{
+  "verdict": "P1_PROOF_MUTE_PHONE_DROPPED",
+  "freezeSha": "6e63bb6d2",
+  "tipSha": "e3179fa74",
+  "before": {
+    "scored": 2600,
+    "inventSum": 1,
+    "hitlist": 758,
+    "invent": {
+      "invent_bwv": 1
+    },
+    "mute": {
+      "mute_phone_download": 606,
+      "mute_cad_999": 29,
+      "mute_cctv_master": 28,
+      "mute_export_log": 14
+    },
+    "modality": {
+      "modality_summary_vs_recording": 102,
+      "modality_stills_collapsed_to_generic_cctv": 2,
+      "modality_screenshot_vs_download": 1
+    }
+  },
+  "after": {
+    "scored": 2600,
+    "inventSum": 1,
+    "hitlist": 633,
+    "invent": {
+      "invent_bwv": 1
+    },
+    "mute": {
+      "mute_phone_download": 469,
+      "mute_cctv_master": 31,
+      "mute_cad_999": 29,
+      "mute_export_log": 16
+    },
+    "modality": {
+      "modality_summary_vs_recording": 102,
+      "modality_screenshot_vs_download": 5,
+      "modality_stills_collapsed_to_generic_cctv": 2
+    }
+  },
+  "delta": {
+    "mute_phone_download": {
+      "freeze": 606,
+      "tip": 469,
+      "delta": -137
+    },
+    "mute_export_log": {
+      "freeze": 14,
+      "tip": 16,
+      "delta": 2
+    },
+    "mute_cctv_master": {
+      "freeze": 28,
+      "tip": 31,
+      "delta": 3
+    },
+    "mute_cad_999": {
+      "freeze": 29,
+      "tip": 29,
+      "delta": 0
+    },
+    "invent_bwv": {
+      "freeze": 1,
+      "tip": 1,
+      "delta": 0
+    },
+    "invent_phone_download": {
+      "freeze": 0,
+      "tip": 0,
+      "delta": 0
+    },
+    "invent_phone_download_from_property": {
+      "freeze": 0,
+      "tip": 0,
+      "delta": 0
+    }
+  },
+  "comparedAt": "2026-08-21T17:44:09.700Z"
+}

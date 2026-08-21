@@ -1,0 +1,142 @@
+{"productSha":"e3179fa74","preview":"https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app","outDir":"C:\\Users\\gduff\\casebrain-hub-wt-f167-surgical-truth-v1\\artifacts\\casebrain-qa\\assurance\\papers-criminal-sweep-v1\\tip-resweep-e3179fa74","concurrency":6,"limit":"ALL_REMAINING","indexOnly":false}
+reusing_index C:\Users\gduff\casebrain-hub-wt-f167-surgical-truth-v1\artifacts\casebrain-qa\assurance\papers-criminal-sweep-v1\tip-resweep-e3179fa74\CRIMINAL-UNIQUE-INDEX.csv
+criminal_unique 2600
+PAPERS_SWEEP_OFFLINE_ONLY=1 ÔÇö skipping backend corpus load
+progress 25/2600 hitlist=8 rate=3.05/s
+progress 50/2600 hitlist=8 rate=5.81/s
+progress 75/2600 hitlist=8 rate=8.29/s
+progress 100/2600 hitlist=11 rate=7.88/s
+progress 125/2600 hitlist=16 rate=9.23/s
+progress 150/2600 hitlist=26 rate=10.47/s
+progress 175/2600 hitlist=36 rate=11.55/s
+progress 200/2600 hitlist=45 rate=12.54/s
+progress 225/2600 hitlist=53 rate=13.38/s
+progress 250/2600 hitlist=60 rate=14.13/s
+progress 275/2600 hitlist=64 rate=13.77/s
+progress 300/2600 hitlist=68 rate=13.65/s
+progress 325/2600 hitlist=74 rate=14.05/s
+progress 350/2600 hitlist=79 rate=14.44/s
+progress 375/2600 hitlist=90 rate=14.80/s
+progress 400/2600 hitlist=98 rate=15.24/s
+progress 425/2600 hitlist=105 rate=15.59/s
+progress 450/2600 hitlist=111 rate=15.99/s
+progress 475/2600 hitlist=121 rate=16.33/s
+progress 500/2600 hitlist=129 rate=16.64/s
+progress 525/2600 hitlist=137 rate=16.80/s
+progress 550/2600 hitlist=144 rate=17.05/s
+progress 575/2600 hitlist=148 rate=17.34/s
+progress 600/2600 hitlist=155 rate=17.58/s
+progress 625/2600 hitlist=160 rate=17.80/s
+progress 650/2600 hitlist=170 rate=18.04/s
+progress 675/2600 hitlist=175 rate=17.82/s
+progress 700/2600 hitlist=178 rate=18.01/s
+progress 725/2600 hitlist=186 rate=18.24/s
+progress 750/2600 hitlist=190 rate=18.42/s
+progress 775/2600 hitlist=199 rate=18.61/s
+progress 800/2600 hitlist=202 rate=18.75/s
+progress 825/2600 hitlist=208 rate=18.88/s
+progress 850/2600 hitlist=216 rate=19.01/s
+progress 875/2600 hitlist=223 rate=19.13/s
+progress 900/2600 hitlist=235 rate=19.30/s
+progress 925/2600 hitlist=242 rate=19.46/s
+progress 950/2600 hitlist=248 rate=19.56/s
+progress 975/2600 hitlist=255 rate=19.63/s
+progress 1000/2600 hitlist=264 rate=19.67/s
+progress 1025/2600 hitlist=269 rate=19.78/s
+progress 1050/2600 hitlist=274 rate=19.87/s
+progress 1075/2600 hitlist=280 rate=19.92/s
+progress 1100/2600 hitlist=288 rate=19.98/s
+progress 1125/2600 hitlist=292 rate=20.06/s
+progress 1150/2600 hitlist=300 rate=20.19/s
+progress 1175/2600 hitlist=310 rate=20.12/s
+progress 1200/2600 hitlist=317 rate=20.07/s
+progress 1225/2600 hitlist=321 rate=20.01/s
+progress 1250/2600 hitlist=329 rate=19.94/s
+progress 1275/2600 hitlist=337 rate=19.97/s
+progress 1300/2600 hitlist=344 rate=20.01/s
+progress 1325/2600 hitlist=350 rate=20.07/s
+progress 1350/2600 hitlist=356 rate=20.13/s
+progress 1375/2600 hitlist=361 rate=20.15/s
+progress 1400/2600 hitlist=367 rate=20.18/s
+progress 1425/2600 hitlist=370 rate=20.25/s
+progress 1450/2600 hitlist=380 rate=20.28/s
+progress 1475/2600 hitlist=385 rate=20.30/s
+progress 1500/2600 hitlist=388 rate=20.32/s
+progress 1525/2600 hitlist=392 rate=20.34/s
+progress 1550/2600 hitlist=402 rate=20.40/s
+progress 1575/2600 hitlist=411 rate=20.44/s
+progress 1600/2600 hitlist=417 rate=20.50/s
+progress 1625/2600 hitlist=424 rate=20.48/s
+progress 1650/2600 hitlist=429 rate=20.52/s
+progress 1675/2600 hitlist=433 rate=20.54/s
+progress 1700/2600 hitlist=440 rate=20.58/s
+progress 1725/2600 hitlist=447 rate=20.59/s
+progress 1750/2600 hitlist=459 rate=20.60/s
+progress 1775/2600 hitlist=468 rate=20.63/s
+progress 1800/2600 hitlist=474 rate=20.64/s
+progress 1825/2600 hitlist=481 rate=20.66/s
+progress 1850/2600 hitlist=490 rate=20.70/s
+progress 1875/2600 hitlist=494 rate=20.71/s
+progress 1900/2600 hitlist=502 rate=20.68/s
+progress 1925/2600 hitlist=508 rate=20.67/s
+progress 1950/2600 hitlist=513 rate=20.68/s
+progress 1975/2600 hitlist=518 rate=20.69/s
+progress 2000/2600 hitlist=528 rate=20.53/s
+progress 2025/2600 hitlist=533 rate=20.52/s
+progress 2050/2600 hitlist=541 rate=20.54/s
+progress 2075/2600 hitlist=548 rate=20.53/s
+progress 2100/2600 hitlist=553 rate=20.55/s
+progress 2125/2600 hitlist=560 rate=20.59/s
+progress 2150/2600 hitlist=569 rate=20.57/s
+progress 2175/2600 hitlist=577 rate=20.59/s
+progress 2200/2600 hitlist=584 rate=20.59/s
+progress 2225/2600 hitlist=590 rate=20.60/s
+progress 2250/2600 hitlist=594 rate=20.59/s
+progress 2275/2600 hitlist=605 rate=20.61/s
+progress 2300/2600 hitlist=615 rate=20.60/s
+progress 2325/2600 hitlist=618 rate=20.61/s
+progress 2350/2600 hitlist=623 rate=20.60/s
+progress 2375/2600 hitlist=628 rate=20.60/s
+progress 2600/2600 hitlist=634 rate=22.18/s
+{
+  "verdict": "COMPLETE",
+  "scored": 2600,
+  "totalUnique": 2600,
+  "hitlistRows": 634,
+  "topFamilies": [
+    [
+      "mute:mute_phone_download",
+      469
+    ],
+    [
+      "modality_summary_vs_recording",
+      102
+    ],
+    [
+      "mute:mute_cctv_master",
+      31
+    ],
+    [
+      "mute:mute_cad_999",
+      29
+    ],
+    [
+      "mute:mute_export_log",
+      16
+    ],
+    [
+      "modality_screenshot_vs_download",
+      5
+    ],
+    [
+      "modality_stills_collapsed_to_generic_cctv",
+      2
+    ],
+    [
+      "invent_bwv",
+      1
+    ]
+  ],
+  "pack": "C:\\Users\\gduff\\casebrain-hub-wt-f167-surgical-truth-v1\\artifacts\\casebrain-qa\\assurance\\papers-criminal-sweep-v1\\tip-resweep-e3179fa74",
+  "hitlist": "C:\\Users\\gduff\\casebrain-hub-wt-f167-surgical-truth-v1\\artifacts\\casebrain-qa\\assurance\\papers-criminal-sweep-v1\\tip-resweep-e3179fa74\\PAPERS-FAIL-HITLIST.csv"
+}

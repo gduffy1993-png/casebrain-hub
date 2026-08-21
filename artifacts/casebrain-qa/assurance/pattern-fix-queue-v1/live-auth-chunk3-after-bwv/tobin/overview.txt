@@ -1,0 +1,100 @@
+CB
+
+CASE WORK
+
+SOLO WORKSPACE
+gduffy1993+casebrain@gmail.com
+I'm working as:
+Criminal Defence Solicitor
+Search
+New Upload
+Sign Out
+Trial: 3d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Imani Tobin
+
+Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861
+
+Northbridge Magistrates' Court
+·
+Listed · 8 Sept 2026
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+Court
+Papers
+Client Summary
+CPS Chase
+File
+Record Position
+Upload Evidence
+
+MAIN ISSUE
+
+Disclosure completeness and outstanding source material.
+
+CASE SNAPSHOT
+
+EVIDENCE STATE
+
+6 served · 2 missing · 1 incomplete
+
+DISCLOSURE GAPS
+
+Medical / expert source report
+Exhibit mapping / provenance
+Subscriber / attribution data outstanding
+
+RISK FLAGS
+
+Some points are not established yet — check the wording guardrails.
+WORDING GUARDRAILS
+
+SAFE WORDING ON CURRENT PAPERS
+
+Disclosure completeness and outstanding source material.
+Interview material on file — check before relying on it.
+BWV served — check before relying on it.
+
+DO NOT OVERSTATE
+
+DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
+
+SOLICITOR REVIEW
+Avoid firm wording until the papers confirm it
+Assumed position may conflict with interview or served evidence.
+Medical evidence may support Crown causation if proved on served papers.
+COURT PREP
+
+COURT POSITION
+
+Solicitor review required
+
+The defence asks the court to record that full custody and interview records remain outstanding.
+
+Review court position
+Prepare CPS chase
+CLIENT SUMMARY
+Review client update
+
+Client update drafted from the current papers. Review before sending.
+
+EVIDENCE GAPS
+Subscriber / attribution data outstanding
+MISSING
+PROOF / AUDIT DEPTH
+
+Proof receipts and truth map — expand when you need source depth.
+
+Advanced review
+
+Confidence dashboard · Decision options · Advice change radar · Re-run diff · Feedback
+
+Papers on this matter
+
+1 file on record
+
+DOCUMENTS

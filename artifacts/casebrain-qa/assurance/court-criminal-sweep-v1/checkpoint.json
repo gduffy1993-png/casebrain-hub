@@ -1,0 +1,67 @@
+{
+  "productSha": "e3179fa74",
+  "preview": "https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app",
+  "finishedAt": "2026-08-21T18:04:33.746Z",
+  "totalUnique": 2600,
+  "scored": 2600,
+  "complete": true,
+  "hitlistRows": 1478,
+  "topFamilies": [
+    [
+      "invent_bwv",
+      520
+    ],
+    [
+      "mute:mute_cctv_master",
+      320
+    ],
+    [
+      "mute:mute_phone_download",
+      287
+    ],
+    [
+      "invent_interview_recording",
+      261
+    ],
+    [
+      "mute:mute_cad_999",
+      217
+    ],
+    [
+      "invent_cad_999",
+      194
+    ],
+    [
+      "modality_summary_vs_recording",
+      193
+    ],
+    [
+      "invent_phone_download",
+      99
+    ],
+    [
+      "modality_screenshot_vs_download",
+      63
+    ],
+    [
+      "mute:mute_export_log",
+      54
+    ],
+    [
+      "invent_cctv_master",
+      8
+    ],
+    [
+      "date:date_role_hearing_reused_as_deadline_language",
+      6
+    ],
+    [
+      "invent_phone_download_from_property",
+      2
+    ],
+    [
+      "modality_property_phone_vs_download",
+      1
+    ]
+  ]
+}

@@ -1,13 +1,13 @@
 import { buildBundleTruthLedger } from "@/lib/criminal/bundle-truth-ledger";
 import type { BundleOffenceFamily, NormalisedMaterialRow } from "@/lib/criminal/bundle-truth-types";
 import { extractAllBundleContradictions } from "@/lib/criminal/merge-bundle-contradictions";
+import { gateMaterialLines } from "@/lib/criminal/chase-source-gate";
 import { buildSourceTruthFingerprint } from "@/lib/criminal/source-truth-guardian/fingerprint";
 import type {
   SourceTruthEvidenceCategory,
   SourceTruthFingerprint,
 } from "@/lib/criminal/source-truth-guardian/types";
 import { CRIMINAL_BRIEF_PLAYBOOKS } from "./playbooks";
-import { familySupport, type ChaseGateFamily } from "@/lib/criminal/chase-source-gate";
 import type {
   BriefPlanEvidenceItem,
   BuildCriminalBriefPlanInput,
@@ -15,55 +15,6 @@ import type {
   CriminalBriefPlanProfile,
   MaterialEvidenceBucket,
 } from "./types";
-
-function playbookLineSourceBacked(label: string, bundleText: string): boolean {
-  const t = label.toLowerCase();
-  const b = bundleText;
-  // Narrow CAD vs 999 vs control-room — CAD timing must not authorise 999 audio lines.
-  if (/\b999\b|\bcall audio\b|\bemergency call\b/i.test(t)) {
-    if (!/\b999\b|\bcall audio\b|\bemergency call\b/i.test(b)) return false;
-  }
-  if (/\bcontrol[-\s]?room\b/i.test(t)) {
-    if (!/\bcontrol[-\s]?room\b|\bdispatch\b/i.test(b)) return false;
-  }
-  if (/\bmg11\b|witness\s+statements?\b/i.test(t)) {
-    if (!/\bmg11\b|witness\s+statement|signed\s+(?:final\s+)?(?:mg11|statement)/i.test(b)) {
-      return false;
-    }
-  }
-  const checks: Array<{ re: RegExp; family: ChaseGateFamily }> = [
-    { re: /\binterview\b|transcript|\broti\b/, family: "interview" },
-    { re: /\bbwv\b|body[-\s]?worn/, family: "bwv" },
-    { re: /\bcctv\b|footage|master\s+footage/, family: "cctv" },
-    // CAD-only lines (not 999/control-room — those gated above).
-    { re: /\bcad\b/, family: "cad_999" },
-    { re: /\bmedical\b|hospital|fme|injury/, family: "medical" },
-    { re: /\bphone\b|extraction|handset|subscriber|device\s+download/, family: "phone" },
-    { re: /\bretraction\b|further\s+statement/, family: "retraction_statement" },
-    // Do not treat bare "PACE" as custody support — that re-admits interview playbook lines.
-    { re: /\bcustody\b|detention|safeguard|risk\s+assessment/, family: "custody" },
-  ];
-  const matched = checks.filter(({ re }) => re.test(t));
-  if (!matched.length) {
-    // Lines already narrowed above (999/MG11/control-room) with no other family → keep if those passed.
-    if (/\b999\b|\bcall audio\b|\bemergency call\b|\bcontrol[-\s]?room\b|\bmg11\b|witness\s+statements?\b/i.test(t)) {
-      return true;
-    }
-    return true;
-  }
-  // If the line names interview/transcript, require interview to be source-backed
-  // even when another family (e.g. custody) is also named.
-  if (/\binterview\b|transcript|\broti\b/.test(t) && familySupport("interview", bundleText) === "absent") {
-    return false;
-  }
-  // Compound lines (e.g. "CCTV/BWV") must not survive on a single family match.
-  return matched.every(({ family }) => familySupport(family, bundleText) !== "absent");
-}
-
-function filterPlaybookLines(lines: string[], bundleText: string): string[] {
-  if (!bundleText.trim()) return lines;
-  return lines.filter((line) => playbookLineSourceBacked(line, bundleText));
-}
 
 function compact(text: string): string {
   return text.replace(/\s+/g, " ").trim();
@@ -202,7 +153,7 @@ function mainIssueFor(profile: CriminalBriefPlanProfile, contradictionCount: num
     custody_pace: "Custody/PACE safeguards and interview fairness.",
     domestic_harassment: "Relationship context, attribution and course of conduct.",
     drugs_pwits: "Possession, knowledge, intent and continuity.",
-    violence_assault: "Sequence, injury and causation on the served papers — self-defence/first contact only if instructions or source support them.",
+    violence_assault: "Sequence, injury/causation and any self-defence/first-contact issue.",
     sexual_abe: "ABE/source review, consent issues and disclosure sensitivity.",
     driving_motoring: "Driver identity, procedure and device/source reliability.",
     fraud_account: "Account control, dishonesty, attribution and loss reconciliation.",
@@ -224,14 +175,9 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
   });
   const playbook = CRIMINAL_BRIEF_PLAYBOOKS[profile];
   const buckets = bucketMaterials(ledger?.materials ?? []);
-  const backedMissing = filterPlaybookLines(playbook.missingMaterial, bundleText);
-  const backedChaseTemplates = filterPlaybookLines(playbook.chaseTemplates, bundleText);
-  const filteredChaseAngle = filterPlaybookLines([playbook.safeWording.chase], bundleText);
-  const backedChaseAngle =
-    filteredChaseAngle[0] ??
-    (backedMissing.length
-      ? `The defence asks the court to record that ${backedMissing.slice(0, 2).join(" and ")} remain outstanding.`
-      : "The defence asks the court to record that outstanding source material remains outstanding.");
+  // Playbook missing-material seeds must not invent CCTV/BWV/CAD when the bundle never
+  // establishes them (Trap invent-advisory "assuming missing CCTV" is not establishment).
+  const gatedPlaybookMissing = gateMaterialLines(playbook.missingMaterial, bundleText);
 
   const servedEvidence = uniqueEvidence(buckets.served.map(toEvidenceItem), 24);
   const limitedEvidence = uniqueEvidence(
@@ -246,7 +192,7 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
     [
       ...buckets.missing.map(toEvidenceItem),
       ...(input.missingMaterial ?? []).map(missingLabelToEvidenceItem),
-      ...backedMissing.map(missingLabelToEvidenceItem),
+      ...gatedPlaybookMissing.map(missingLabelToEvidenceItem),
     ],
     24,
   );
@@ -264,7 +210,7 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
     missingEvidence,
     todayAngle: playbook.safeWording.today,
     summaryAngle: playbook.safeWording.summary,
-    chaseAngle: backedChaseAngle,
+    chaseAngle: playbook.safeWording.chase,
     forbiddenTopics: [...new Set([...forbiddenTopicsFor(profile, fingerprint), ...playbook.doNotOverstate])],
     requiredOutputItems: {
       today: [
@@ -273,7 +219,8 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
         ...contradictionRequired,
       ],
       summary: [playbook.safeWording.summary, ...playbook.opportunities.slice(0, 2), ...contradictionRequired],
-      chase: [backedChaseAngle, ...backedChaseTemplates.slice(0, 3)],
+      // Compound chase templates are family-gated later in buildDisclosureChaseBrief.
+      chase: [playbook.safeWording.chase, ...playbook.chaseTemplates.slice(0, 3)],
     },
     playbookId: playbook.id,
     fingerprint,

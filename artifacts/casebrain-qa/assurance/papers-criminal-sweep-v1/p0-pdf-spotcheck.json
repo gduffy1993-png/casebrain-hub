@@ -1,0 +1,231 @@
+{
+  "verdict": "P0_5_TRIAGE_NEEDS_HOP_REVIEW",
+  "productSha": "6e63bb6d2",
+  "sampledAt": "2026-08-21T17:22:59.653Z",
+  "counts": {
+    "invent": 1,
+    "mutePhone": 12,
+    "modality": 10
+  },
+  "tally": {
+    "invent_bwv": {
+      "REAL_INVENT_SUSPECT": 1
+    },
+    "mute_phone_download": {
+      "REAL_MUTE_CANDIDATE": 11,
+      "DETECTOR_NOISE": 1
+    },
+    "modality_summary_vs_recording": {
+      "PDF_TRUE_BOTH": 10
+    }
+  },
+  "results": [
+    {
+      "family": "invent_bwv",
+      "case_key": "PDF-287c7211fa15",
+      "unique_key": "sha:287c7211fa15c443bbd097a6165049c86a4f2001bea0ddc0630ebcd511ab7052",
+      "cls": "REAL_INVENT_SUSPECT",
+      "note": "Papers claims BWV with no BWV language on source extract",
+      "materialCount": 15,
+      "claimSample": "CHARGE | Offence Assault occasioning actual bodily harm - pub\nHEARING | 17 June 2026 at 10:15\nCHARGE SHEET / CASE INITIATION | unclear | CHARGE SHEET / CASE INITIATION\nMG5 CASE SUM"
+    },
+    {
+      "family": "mute_phone_download",
+      "case_key": "PDF-0d761f8d2e28",
+      "unique_key": "sha:0d761f8d2e28fb89af88968862d6712571f6a13ac5e1233f60a3c9a993a22866",
+      "cls": "REAL_MUTE_CANDIDATE",
+      "note": "Outstanding download on source; absent from Papers claim blob",
+      "materialCount": 564,
+      "claimSample": "CHARGE | Fraud by false representation, s.2 Fraud Act 2006\nHEARING | 22 May 2026 at 10:00\nexhibit continuity; what can safely be said at PTPH. | unclear | exhibit continuity; what "
+    },
+    {
+      "family": "mute_phone_download",
+      "case_key": "PDF-e9fbf463f6ae",
+      "unique_key": "sha:e9fbf463f6aec6f229ea0ada385df91a26ae6a5d1be009337bc995965dc4441c",
+      "cls": "REAL_MUTE_CANDIDATE",
+      "note": "Outstanding download on source; absent from Papers claim blob",
+      "materialCount": 29,
+      "claimSample": "CHARGE | Possession of a controlled drug of Class A with intent to supply, namely cocaine, contrary to section 5(3)\nHEARING | 26 June 2026 at 10:00\n4MG11 witness statement 14Statem"
+    },
+    {
+      "family": "mute_phone_download",
+      "case_key": "PDF-ffe7a7da8c00",
+      "unique_key": "sha:ffe7a7da8c00c847a5ddb4ef9752b755ac6474f46b335c43c09e69b6a9041f01",
+      "cls": "REAL_MUTE_CANDIDATE",
+      "note": "Outstanding download on source; absent from Papers claim blob",
+      "materialCount": 550,
+      "claimSample": "HEARING | 22 May 2026 at 10:00\n/ missing staff MG11 remains live; several schedules are draft/corrected/outdated. | draft | / missing staff MG11 remains live; several schedules are"
+    },
+    {
+      "family": "mute_phone_download",
+      "case_key": "RP-02",
+      "unique_key": "sha:cccf70b339ec74c4ff839c7d982b3306570cf6abfa843abf5f6dcae95bc650a0",
+      "cls": "REAL_MUTE_CANDIDATE",
+      "note": "Outstanding download on source; absent from Papers claim blob",
+      "materialCount": 21,
+      "claimSample": "CHARGE | Offence Possession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971\nHEARING | 21 June 2026 at 11:00\n4MG11 witness s"
+    },
+    {
+      "family": "mute_phone_download",
+      "case_key": "RP-03",
+      "unique_key": "sha:555a899704fa7c7f77d39dd39f724af3fc187eff5452e1c54bbbed959251d457",
+      "cls": "REAL_MUTE_CANDIDATE",
+      "note": "Outstanding download on source; absent from Papers claim blob",
+      "materialCount": 36,
+      "claimSample": "CHARGE | Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861\nHEARING | 08 September 2026 10:45\nTab 1 Charge sheet / initial details | unclear | Tab 1 Charge sheet / "
+    },
+    {
+      "family": "mute_phone_download",
+      "case_key": "RP-07",
+      "unique_key": "sha:94541fb543b06ca93f7cfc4964d527c900574e7c279e49225ec62af8d4e93871",
+      "cls": "REAL_MUTE_CANDIDATE",
+      "note": "Outstanding download on source; absent from Papers claim blob",
+      "materialCount": 567,
+      "claimSample": "CHARGE | Assault occasioning actual bodily harm, s.47 OAPA 1861\nHEARING | 22 May 2026 at 10:00\nDefence position: not guilty; causation, old injury and medical evidence disputed. | "
+    },
+    {
+      "family": "mute_phone_download",
+      "case_key": "RP-08",
+      "unique_key": "sha:d4ed1db9a7268273d7c33cad61b5a296068ce7f2c5d60955815700e659933b37",
+      "cls": "DETECTOR_NOISE",
+      "note": "Source lacks clear outstanding phone-download phrase — mute flag overfires",
+      "materialCount": 21,
+      "claimSample": "CHARGE | ABH, s.47\nHEARING | 24/06/2026\nwithout the full source material and continuity. | unclear | without the full source material and continuity.\nServed material: MG5 case summ"
+    },
+    {
+      "family": "mute_phone_download",
+      "case_key": "PDF-002f3fc9174a",
+      "unique_key": "sha:002f3fc9174aaac7d9f23ee0e8befdbb700c2867f8c5563612c645837fbea4d2",
+      "cls": "REAL_MUTE_CANDIDATE",
+      "note": "Outstanding download on source; absent from Papers claim blob",
+      "materialCount": 36,
+      "claimSample": "CHARGE | Assault by beating of an emergency worker, contrary to section 1 Assaults on Emergency Workers (Offences)\nHEARING | 08 August 2026 at 09:30\n3MG11 witness statement16 June "
+    },
+    {
+      "family": "mute_phone_download",
+      "case_key": "PDF-00e742b9946f",
+      "unique_key": "sha:00e742b9946fbc96623ed5437029a27c84e1c9c52bff668fc2ab23bea011dfd4",
+      "cls": "REAL_MUTE_CANDIDATE",
+      "note": "Outstanding download on source; absent from Papers claim blob",
+      "materialCount": 33,
+      "claimSample": "CHARGE | Dangerous driving, contrary to section 2 Road Traffic Act 1988\nHEARING | 18 June 2026 at 09:30\n3MG11 witness statement14/06/2026 | unclear | 3MG11 witness statement14/06/2"
+    },
+    {
+      "family": "mute_phone_download",
+      "case_key": "PDF-01834df5b278",
+      "unique_key": "sha:01834df5b278f59a8f570c93521a04763ab8c3e1a2ecf89defa053add2b5a2ac",
+      "cls": "REAL_MUTE_CANDIDATE",
+      "note": "Outstanding download on source; absent from Papers claim blob",
+      "materialCount": 25,
+      "claimSample": "CHARGE | Possession of a controlled drug of Class A, namely cocaine, with intent to supply, contrary to section 5(3) of the Misuse of Drugs Act\nHEARING | 22 July 2026 at 10:30\n4MG1"
+    },
+    {
+      "family": "mute_phone_download",
+      "case_key": "PDF-0171b46bbfdd",
+      "unique_key": "sha:0171b46bbfdda4924f54a67e4919fcc28b99fdb24562f0ab446bc38bbac5e13c",
+      "cls": "REAL_MUTE_CANDIDATE",
+      "note": "Outstanding download on source; absent from Papers claim blob",
+      "materialCount": 55,
+      "claimSample": "CHARGE | Conspiracy to burgle, contrary to section 1 of the Criminal Law Act 1977\nHEARING | 19 August 2026 at 09:30\n4MG11 witness statement2included | unclear | 4MG11 witness state"
+    },
+    {
+      "family": "mute_phone_download",
+      "case_key": "PDF-01976b46edf3",
+      "unique_key": "sha:01976b46edf351ccbf7d5e1b1d208d004f536e3ca30f53afd9fa1adfcc329a58",
+      "cls": "REAL_MUTE_CANDIDATE",
+      "note": "Outstanding download on source; absent from Papers claim blob",
+      "materialCount": 19,
+      "claimSample": "CHARGE | Being concerned in the supply of a controlled drug of Class A, contrary to section 4(3)(b) of the Misuse of Drugs Act 1971\nHEARING | 20 July 2026 10:00\n2. MG5 case summary"
+    },
+    {
+      "family": "modality_summary_vs_recording",
+      "case_key": "PDF-eeafa8f885e6",
+      "unique_key": "sha:eeafa8f885e6afc74d3516db5551997bdab0b3cd228114a822813424551e12aa",
+      "cls": "PDF_TRUE_BOTH",
+      "note": "Both summary and recording language on source — modality flag may be soft",
+      "materialCount": 88,
+      "claimSample": "CHARGE | Assault occasioning actual bodily harm, s.47\nHEARING | 21 May 2026 at 10:00\nsource evidence is incomplete, and the witness accounts contain internal and external contradic"
+    },
+    {
+      "family": "modality_summary_vs_recording",
+      "case_key": "ISAAC-PATEL-TB-546",
+      "unique_key": "sha:bc5d732fa9306133c0c7d7fe2ea85a8e7d65a5d1b30a823ac491495839e0a6ef",
+      "cls": "PDF_TRUE_BOTH",
+      "note": "Both summary and recording language on source — modality flag may be soft",
+      "materialCount": 40,
+      "claimSample": "CHARGE | Affray, contrary to section 3 Public Order Act 1986\nHEARING | 25 August 2026 10:30\nTab 1: Charge sheet / case details | unclear | Tab 1: Charge sheet / case details\nTab 2:"
+    },
+    {
+      "family": "modality_summary_vs_recording",
+      "case_key": "PDF-0472bb29cb19",
+      "unique_key": "sha:0472bb29cb198f676342df38b2ef4218972f182e95ca696dda75563e03a081b4",
+      "cls": "PDF_TRUE_BOTH",
+      "note": "Both summary and recording language on source — modality flag may be soft",
+      "materialCount": 39,
+      "claimSample": "CHARGE | Robbery, contrary to s.8 Theft Act 1968\nHEARING | 20 August 2026 10:30\nTab 1: Charge sheet / case details | unclear | Tab 1: Charge sheet / case details\nTab 2: MG5 case su"
+    },
+    {
+      "family": "modality_summary_vs_recording",
+      "case_key": "PDF-067883e9ff0e",
+      "unique_key": "sha:067883e9ff0e766c5be6fd12d17b53b2c7aa1d23680cbad5e8bbf0faab3f3e19",
+      "cls": "PDF_TRUE_BOTH",
+      "note": "Both summary and recording language on source — modality flag may be soft",
+      "materialCount": 34,
+      "claimSample": "CHARGE | Assault by beating of an emergency worker, contrary to section 1 Assaults on Emergency\nHEARING | 16 August 2026 at 14:00\n4MG11 statement 1p.5included | unclear | 4MG11 sta"
+    },
+    {
+      "family": "modality_summary_vs_recording",
+      "case_key": "PDF-071a198ac0c4",
+      "unique_key": "sha:071a198ac0c4761d087955a3645ccb2815ce8a5d3f22638c2c382cee4dd7d26f",
+      "cls": "PDF_TRUE_BOTH",
+      "note": "Both summary and recording language on source — modality flag may be soft",
+      "materialCount": 23,
+      "claimSample": "CHARGE | Possession of a controlled drug of Class B, contrary to section 5(2) Misuse of Drugs Act 1971\nHEARING | 19 August 2026 10:00\nTab 1: Charge sheet / case details | unclear |"
+    },
+    {
+      "family": "modality_summary_vs_recording",
+      "case_key": "PDF-06af7f8615e2",
+      "unique_key": "sha:06af7f8615e2e0ae72422e3f0ee3a4f489465f1d18548f2c49a1303872641a80",
+      "cls": "PDF_TRUE_BOTH",
+      "note": "Both summary and recording language on source — modality flag may be soft",
+      "materialCount": 32,
+      "claimSample": "CHARGE | Harassment, contrary to section 2 Protection from Harassment Act 1997\nHEARING | 23 June 2026 10:30\nTab 1: Charge sheet / case details | unclear | Tab 1: Charge sheet / cas"
+    },
+    {
+      "family": "modality_summary_vs_recording",
+      "case_key": "PDF-07b7ecbd569e",
+      "unique_key": "sha:07b7ecbd569e80e6ace1a7d8a4b4253bfa5ef1fd14681d595096e0ae0290c034",
+      "cls": "PDF_TRUE_BOTH",
+      "note": "Both summary and recording language on source — modality flag may be soft",
+      "materialCount": 31,
+      "claimSample": "CHARGE | Having an offensive weapon, contrary to s.1(1) Prevention of Crime Act 1953\nHEARING | 25 June 2026 11:15\nTab 1: Charge sheet / case details | unclear | Tab 1: Charge sheet"
+    },
+    {
+      "family": "modality_summary_vs_recording",
+      "case_key": "PDF-0e06d7b6126a",
+      "unique_key": "sha:0e06d7b6126a427d06c5a6dc6cd753ce4348ba3e56d78db61a0bd378344dd18d",
+      "cls": "PDF_TRUE_BOTH",
+      "note": "Both summary and recording language on source — modality flag may be soft",
+      "materialCount": 38,
+      "claimSample": "CHARGE | Theft, contrary to s.1 Theft Act 1968\nHEARING | 21 August 2026 09:30\nTab 1: Charge sheet / case details | unclear | Tab 1: Charge sheet / case details\nTab 2: MG5 case summ"
+    },
+    {
+      "family": "modality_summary_vs_recording",
+      "case_key": "PDF-15b6c0120b32",
+      "unique_key": "sha:15b6c0120b329396e32083f5ce1765b5b3e7fdfb8d60720566973e6f329519ee",
+      "cls": "PDF_TRUE_BOTH",
+      "note": "Both summary and recording language on source — modality flag may be soft",
+      "materialCount": 37,
+      "claimSample": "CHARGE | Possession of a controlled drug of Class B, contrary to section 5(2) Misuse of Drugs Act 1971\nHEARING | 19 June 2026 10:30\nTab 1: Charge sheet / case details | unclear | T"
+    },
+    {
+      "family": "modality_summary_vs_recording",
+      "case_key": "PDF-1ea03cd9eb3d",
+      "unique_key": "sha:1ea03cd9eb3ddbf142afee71995b78325fb4289e322bb3d6585a4b9674f6dba5",
+      "cls": "PDF_TRUE_BOTH",
+      "note": "Both summary and recording language on source — modality flag may be soft",
+      "materialCount": 38,
+      "claimSample": "CHARGE | Assault occasioning actual bodily harm, s.47 OAPA 1861\nHEARING | 18 July 2026 09:30\nTab 1: Charge sheet / case details | unclear | Tab 1: Charge sheet / case details\nTab 2"
+    }
+  ]
+}

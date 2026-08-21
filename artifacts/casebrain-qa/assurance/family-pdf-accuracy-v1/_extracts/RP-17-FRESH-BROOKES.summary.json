@@ -1,0 +1,248 @@
+{
+  "case_key": "RP-17-FRESH-BROOKES",
+  "ok": true,
+  "pdf_path": "C:\\Users\\gduff\\Downloads\\CB-FRESH-001_Taylor_Brookes_Digital_Attribution.pdf",
+  "pdf_sha256": "c5808d92030c0eb2005b40da003e8be027b09daae1f5844e1aea4b1fede24cd6",
+  "page_count": 10,
+  "char_count": 12054,
+  "term_hits": {
+    "continuity": 10,
+    "interview": 12,
+    "recording": 1,
+    "transcript": 8,
+    "phone": 17,
+    "download": 5,
+    "extraction": 4,
+    "subscriber": 8,
+    "MG6": 2,
+    "MG6C": 2,
+    "MG11": 3,
+    "unused": 2,
+    "custody": 4,
+    "hearing": 2,
+    "PTPH": 1
+  },
+  "term_excerpts": {
+    "continuity": [
+      {
+        "page": 3,
+        "excerpt": "note original audio not served and no transcript served. - Subscriber data or phone attribution report not served. - No continuity statement for how screenshots moved from witness handset to exhibit print."
+      },
+      {
+        "page": 5,
+        "excerpt": "d by email from EV on 10/05/26. Cropped by witness before sending. Original handset available if required.' No separate continuity statement is included."
+      },
+      {
+        "page": 6,
+        "excerpt": "e or similar extraction report is served. The original voice note was not downloaded during the initial report. Digital continuity notes Item Status Risk Witness handset Not seized; still with witness Original data available only if preserved. WhatsApp export Not served Screenshots alone d"
+      },
+      {
+        "page": 6,
+        "excerpt": "link remains officer belief. Voice note Described but not served No original audio, transcript, speaker comparison, or continuity."
+      }
+    ],
+    "interview": [
+      {
+        "page": 1,
+        "excerpt": "dules but not served in original format. This bundle contains charge material, summary, statements, exhibit references, interview summary, unused material schedule entries, and a draft disclosure request. It should be read with attention to source material, original device data, metadata,"
+      },
+      {
+        "page": 1,
+        "excerpt": "t 8 Partial screenshots only. 5 Officer digital summary 9 Phone number believed linked; subscriber report not served. 6 Interview summary 10 Denial; shared device raised. 7 Exhibit log 11 Digital exhibit gap. 8 MG6C / disclosure schedule 12-13 Original download and voice note outstanding."
+      },
+      {
+        "page": 2,
+        "excerpt": "pending service of original device material. The defendant denies sending the messages. The defence account recorded at interview is that the relevant handset was used by more than one person and that the screenshots do not prove authorship. Bail position Bail continued with conditions: n"
+      },
+      {
+        "page": 3,
+        "excerpt": "gistration, device attribution report, or original WhatsApp export is included in the served papers. Taylor Brookes was interviewed on 15 May 2026. He denied sending the messages, accepted that he had used a phone with a SIM ending 4471 at points, and said the phone was shared with Casey"
+      }
+    ],
+    "recording": [
+      {
+        "page": 4,
+        "excerpt": "d not reply apart from sending a question mark. I blocked the contact after taking screenshots. I did not keep a screen recording. I have not changed my phone since then. The officer took photographs of my screen using his device and asked me to email the screenshots, which I did. Stateme"
+      }
+    ],
+    "transcript": [
+      {
+        "page": 3,
+        "excerpt": "cer note from PC Rowan Vale stating number ending 4471 believed linked to defendant. - Interview summary, no full audio transcript served. Known limitations in served papers - Original WhatsApp export not served. - Voice note original audio not served and no transcript served. - Subscriber"
+      },
+      {
+        "page": 3,
+        "excerpt": "Known limitations in served papers - Original WhatsApp export not served. - Voice note original audio not served and no transcript served. - Subscriber data or phone attribution report not served. - No continuity statement for how screenshots moved from witness handset to exhibit print."
+      },
+      {
+        "page": 5,
+        "excerpt": "er who knows where you live 09/05, 22:50 Reply from witness: '?' EV/1-C voice note icon, duration 00:17 10/05, 00:03 No transcript. Original audio not in bundle. EV/1-D you know what to do in court 10/05, 00:04 Top of screen shows contact name 'T'; no number visible. Officer endorsement on"
+      },
+      {
+        "page": 6,
+        "excerpt": "criber data Not served Phone number link remains officer belief. Voice note Described but not served No original audio, transcript, speaker comparison, or continuity."
+      }
+    ],
+    "phone": [
+      {
+        "page": 1,
+        "excerpt": "rna 6-7 Includes date inconsistency. 4 Screenshot exhibit print 8 Partial screenshots only. 5 Officer digital summary 9 Phone number believed linked; subscriber report not served. 6 Interview summary 10 Denial; shared device raised. 7 Exhibit log 11 Digital exhibit gap. 8 MG6C / discl"
+      },
+      {
+        "page": 3,
+        "excerpt": "rved papers. Taylor Brookes was interviewed on 15 May 2026. He denied sending the messages, accepted that he had used a phone with a SIM ending 4471 at points, and said the phone was shared with Casey Rowe and other people at a flat. He said he had argued with Ellie Varna previously b"
+      },
+      {
+        "page": 3,
+        "excerpt": "2026. He denied sending the messages, accepted that he had used a phone with a SIM ending 4471 at points, and said the phone was shared with Casey Rowe and other people at a flat. He said he had argued with Ellie Varna previously but denied threatening her or attempting to influence"
+      },
+      {
+        "page": 3,
+        "excerpt": "ginal WhatsApp export not served. - Voice note original audio not served and no transcript served. - Subscriber data or phone attribution report not served. - No continuity statement for how screenshots moved from witness handset to exhibit print."
+      }
+    ],
+    "download": [
+      {
+        "page": 1,
+        "excerpt": "mary 10 Denial; shared device raised. 7 Exhibit log 11 Digital exhibit gap. 8 MG6C / disclosure schedule 12-13 Original download and voice note outstanding. 9 Bail and disclosure request 14 No-contact bail; draft request."
+      },
+      {
+        "page": 6,
+        "excerpt": "y used that number to contact him. This summary does not attach the custody record, subscriber return, call data, phone download, or device attribution report. The officer viewed screenshot images on the witness phone and received copies by email. The officer did not undertake a full han"
+      },
+      {
+        "page": 6,
+        "excerpt": "ation. The device was not seized. No Cellebrite or similar extraction report is served. The original voice note was not downloaded during the initial report. Digital continuity notes Item Status Risk Witness handset Not seized; still with witness Original data available only if preserved"
+      },
+      {
+        "page": 8,
+        "excerpt": "r record No Referenced in officer summary but not attached. EV/2 Original voice note audio No Described by witness; not downloaded or served. DR/1 Digital attribution report No Outstanding / not commissioned on served papers. The exhibit log jumps from EV/1 to RV/1. There is no item show"
+      }
+    ],
+    "extraction": [
+      {
+        "page": 3,
+        "excerpt": "umber on custody records and a note from an officer who had dealt with him in March 2026. No subscriber return, handset extraction, SIM registration, device attribution report, or original WhatsApp export is included in the served papers. Taylor Brookes was interviewed on 15 May 2026. He d"
+      },
+      {
+        "page": 4,
+        "excerpt": "ontact name, writing style, and previous use of number. - Statement does not confirm original WhatsApp export or device extraction."
+      },
+      {
+        "page": 6,
+        "excerpt": "by email. The officer did not undertake a full handset examination. The device was not seized. No Cellebrite or similar extraction report is served. The original voice note was not downloaded during the initial report. Digital continuity notes Item Status Risk Witness handset Not seized; s"
+      },
+      {
+        "page": 9,
+        "excerpt": "number ending 4471 Outstanding - not served Phone number link to defendant remains unproved in served papers. U4 Device extraction or digital attribution report Not commissioned / absent Relevant to authorship and shared-device defence. U5 Email from witness attaching screenshots Not serve"
+      }
+    ],
+    "subscriber": [
+      {
+        "page": 1,
+        "excerpt": "tency. 4 Screenshot exhibit print 8 Partial screenshots only. 5 Officer digital summary 9 Phone number believed linked; subscriber report not served. 6 Interview summary 10 Denial; shared device raised. 7 Exhibit log 11 Digital exhibit gap. 8 MG6C / disclosure schedule 12-13 Original downl"
+      },
+      {
+        "page": 3,
+        "excerpt": "orded as previous contact number on custody records and a note from an officer who had dealt with him in March 2026. No subscriber return, handset extraction, SIM registration, device attribution report, or original WhatsApp export is included in the served papers. Taylor Brookes was inter"
+      },
+      {
+        "page": 3,
+        "excerpt": "served papers - Original WhatsApp export not served. - Voice note original audio not served and no transcript served. - Subscriber data or phone attribution report not served. - No continuity statement for how screenshots moved from witness handset to exhibit print."
+      },
+      {
+        "page": 6,
+        "excerpt": "nd because Ellie Varna had previously used that number to contact him. This summary does not attach the custody record, subscriber return, call data, phone download, or device attribution report. The officer viewed screenshot images on the witness phone and received copies by email. The of"
+      }
+    ],
+    "MG6": [
+      {
+        "page": 1,
+        "excerpt": "scriber report not served. 6 Interview summary 10 Denial; shared device raised. 7 Exhibit log 11 Digital exhibit gap. 8 MG6C / disclosure schedule 12-13 Original download and voice note outstanding. 9 Bail and disclosure request 14 No-contact bail; draft request."
+      },
+      {
+        "page": 9,
+        "excerpt": "NB-26-0721 - R v Taylor Brookes Page 9 === SECTION: MG6C / UNUSED MATERIAL SCHEDULE === Ref Material Status Relevance / issue U1 Original WhatsApp export from Ellie Varna's handset Outstanding - not served Needed to"
+      }
+    ],
+    "MG6C": [
+      {
+        "page": 1,
+        "excerpt": "scriber report not served. 6 Interview summary 10 Denial; shared device raised. 7 Exhibit log 11 Digital exhibit gap. 8 MG6C / disclosure schedule 12-13 Original download and voice note outstanding. 9 Bail and disclosure request 14 No-contact bail; draft request."
+      },
+      {
+        "page": 9,
+        "excerpt": "NB-26-0721 - R v Taylor Brookes Page 9 === SECTION: MG6C / UNUSED MATERIAL SCHEDULE === Ref Material Status Relevance / issue U1 Original WhatsApp export from Ellie Varna's handset Outstanding - not served Needed to"
+      }
+    ],
+    "MG11": [
+      {
+        "page": 1,
+        "excerpt": "ars state contact by WhatsApp and voice note. 2 MG5 case summary 4-5 Crown relies on screenshots and witness account. 3 MG11 Ellie Varna 6-7 Includes date inconsistency. 4 Screenshot exhibit print 8 Partial screenshots only. 5 Officer digital summary 9 Phone number believed linked; s"
+      },
+      {
+        "page": 3,
+        "excerpt": "rna previously but denied threatening her or attempting to influence evidence. Prosecution evidence listed in summary - MG11 Ellie Varna, dated 10 May 2026. - Screenshot printout EV/1, four cropped WhatsApp screens. - Officer note from PC Rowan Vale stating number ending 4471 believe"
+      },
+      {
+        "page": 4,
+        "excerpt": "NB-26-0721 - R v Taylor Brookes Page 4 === SECTION: MG11 STATEMENT - ELLIE VARNA === I am Ellie Varna. I know Taylor Brookes through people in our estate. I gave a statement to police in April 2026 about an incident"
+      }
+    ],
+    "unused": [
+      {
+        "page": 1,
+        "excerpt": "d in original format. This bundle contains charge material, summary, statements, exhibit references, interview summary, unused material schedule entries, and a draft disclosure request. It should be read with attention to source material, original device data, metadata, and authorship."
+      },
+      {
+        "page": 9,
+        "excerpt": "NB-26-0721 - R v Taylor Brookes Page 9 === SECTION: MG6C / UNUSED MATERIAL SCHEDULE === Ref Material Status Relevance / issue U1 Original WhatsApp export from Ellie Varna's handset Outstanding - not served Needed to verify me"
+      }
+    ],
+    "custody": [
+      {
+        "page": 3,
+        "excerpt": "ng 4471 is believed to be linked to Taylor Brookes. The basis for that belief is recorded as previous contact number on custody records and a note from an officer who had dealt with him in March 2026. No subscriber return, handset extraction, SIM registration, device attribution report,"
+      },
+      {
+        "page": 6,
+        "excerpt": "the phone number ending 4471 is believed linked to Taylor Brookes because it appears as a historic contact number on a custody record dated March 2026 and because Ellie Varna had previously used that number to contact him. This summary does not attach the custody record, subscriber ret"
+      },
+      {
+        "page": 6,
+        "excerpt": "ted March 2026 and because Ellie Varna had previously used that number to contact him. This summary does not attach the custody record, subscriber return, call data, phone download, or device attribution report. The officer viewed screenshot images on the witness phone and received copi"
+      },
+      {
+        "page": 8,
+        "excerpt": "icer note linking number ending 4471 Yes Basis of belief stated; underlying subscriber record not served. RV/2 Historic custody contact-number record No Referenced in officer summary but not attached. EV/2 Original voice note audio No Described by witness; not downloaded or served. DR/1"
+      }
+    ],
+    "hearing": [
+      {
+        "page": 1,
+        "excerpt": "y Case reference NB-26-0721 Defendant Taylor Brookes Complainant / witness Ellie Varna Court Northbank Crown Court Next hearing PTPH - 06 July 2026 at 10:00 Current status Bail with no-contact condition. Defence position: authorship of digital messages is disputed. Bundle warning Some d"
+      },
+      {
+        "page": 10,
+        "excerpt": "oncerning cropping or editing. - Please serve the full interview audio/transcript, not only the summary. Suggested safe hearing line: the defence does not accept authorship of the alleged messages on the served papers. The issue is attribution, continuity, and original digital material."
+      }
+    ],
+    "PTPH": [
+      {
+        "page": 1,
+        "excerpt": "eference NB-26-0721 Defendant Taylor Brookes Complainant / witness Ellie Varna Court Northbank Crown Court Next hearing PTPH - 06 July 2026 at 10:00 Current status Bail with no-contact condition. Defence position: authorship of digital messages is disputed. Bundle warning Some digita"
+      }
+    ]
+  },
+  "key_pages": {
+    "1": "NB-26-0721 - R v Taylor Brookes\nPage 1\nINTERNAL CASE PAPERS BUNDLE\nR v Taylor Brookes - Digital Attribution / Witness Contact\n=== SECTION: COVER SHEET ===\nField\nEntry\nCase reference\nNB-26-0721\nDefendant\nTaylor Brookes\nComplainant / witness\nEllie Varna\nCourt\nNorthbank Crown Court\nNext hearing\nPTPH - 06 July 2026 at 10:00\nCurrent status\nBail with no-contact condition. Defence position: authorship of digital messages is disputed.\nBundle warning\nSome digital material is described in schedules but not served in original format.\nThis bundle contains charge material, summary, statements, exhibit references, interview summary, unused material\nschedule entries, and a draft disclosure request. It should be read with attention to source material, original device\ndata, metadata, and authorship.\nBundle index\nTab\nDocument\nPages\nNotes\n1\nCharge and particulars\n2-3\nParticulars state contact by WhatsApp and voice note.\n2\nMG5 case summary\n4-5\nCrown relies on screenshots and witness account.\n3\nMG11 Ellie Varna\n6-7\nIncludes date inconsistency.\n4\nScreenshot exhibit print\n8\nPartial screenshots only.\n5\nOfficer digital summary\n9\nPhone number believed linked; subscriber report not\nserved.\n6\nInterview summary\n10\nDenial; shared device raised.\n7\nExhibit log\n11\nDigital exhibit gap.\n8\nMG6C / disclosure schedule\n12-13\nOriginal download and voice note outstanding.\n9\nBail and disclosure request\n14\nNo-contact bail; draft request.\n",
+    "2": "NB-26-0721 - R v Taylor Brookes\nPage 2\n=== SECTION: CHARGE AND PARTICULARS ===\nCount\nAllegation\nParticulars\n1\nIntimidating a witness\nBetween 08 May 2026 and 10 May 2026, at Northbank, Taylor Brookes is\nalleged to have contacted Ellie Varna by WhatsApp message and voice note\nafter being told she was a prosecution witness.\n2\nMalicious communications\nOn or about 09 May 2026, messages were allegedly sent from number ending\n4471 containing threats and abusive language. Particulars are provisional\npending service of original device material.\nThe defendant denies sending the messages. The defence account recorded at interview is that the relevant handset\nwas used by more than one person and that the screenshots do not prove authorship.\nBail position\nBail continued with conditions: not to contact Ellie Varna directly or indirectly; not to attend Redwood House\ncommunal entrance; to notify police of any change of mobile number. Defence reserves position on attribution and\nscope of alleged contact.\n",
+    "3": "NB-26-0721 - R v Taylor Brookes\nPage 3\n=== SECTION: MG5 CASE SUMMARY ===\nOn 09 May 2026 Ellie Varna reported receiving WhatsApp messages from a number ending 4471. She stated that the\nsender referred to her witness statement in earlier proceedings and told her to 'stop talking'. She provided screenshot\nprintouts showing a contact named 'T'. One screenshot includes a voice note icon with duration 00:17, but the original\naudio file has not been served in this bundle.\nPolice state that the number ending 4471 is believed to be linked to Taylor Brookes. The basis for that belief is\nrecorded as previous contact number on custody records and a note from an officer who had dealt with him in March\n2026. No subscriber return, handset extraction, SIM registration, device attribution report, or original WhatsApp\nexport is included in the served papers.\nTaylor Brookes was interviewed on 15 May 2026. He denied sending the messages, accepted that he had used a\nphone with a SIM ending 4471 at points, and said the phone was shared with Casey Rowe and other people at a flat.\nHe said he had argued with Ellie Varna previously but denied threatening her or attempting to influence evidence.\nProsecution evidence listed in summary\n- MG11 Ellie Varna, dated 10 May 2026.\n- Screenshot printout EV/1, four cropped WhatsApp screens.\n- Officer note from PC Rowan Vale stating number ending 4471 believed linked to defendant.\n- Interview summary, no full audio transcript served.\nKnown limitations in served papers\n- Original WhatsApp export not served.\n- Voice note original audio not served and no transcript served.\n- Subscriber data or phone attribution report not served.\n- No continuity statement for how screenshots moved from witness handset to exhibit print.\n",
+    "5": "NB-26-0721 - R v Taylor Brookes\nPage 5\n=== SECTION: SCREENSHOT EXHIBIT PRINT - EV/1 ===\nEXHIBIT EV/1 - WhatsApp screenshot print, supplied as cropped images. The printout contains no native export file,\nno visible full contact card, and no device metadata. The contact name displayed in the screenshot is 'T'.\nImage\nVisible text\nVisible time/date\nNotes\nEV/1-A\nstop talking before this gets worse\n09/05, 22:48\nSender display name cropped. No\nphone number visible.\nEV/1-B\nremember who knows where you live\n09/05, 22:50\nReply from witness: '?'\nEV/1-C\nvoice note icon, duration 00:17\n10/05, 00:03\nNo transcript. Original audio not in\nbundle.\nEV/1-D\nyou know what to do in court\n10/05, 00:04\nTop of screen shows contact name\n'T'; no number visible.\nOfficer endorsement on back of print: 'Screenshots received by email from EV on 10/05/26. Cropped by witness\nbefore sending. Original handset available if required.' No separate continuity statement is included.\n",
+    "4": "NB-26-0721 - R v Taylor Brookes\nPage 4\n=== SECTION: MG11 STATEMENT - ELLIE VARNA ===\nI am Ellie Varna. I know Taylor Brookes through people in our estate. I gave a statement to police in April 2026 about\nan incident outside Redwood House. On 09 May 2026 I received messages on WhatsApp from a contact saved in my\nphone as T. I believed this was Taylor because of how he wrote and because I had spoken to him on that number\nbefore.\nThe messages said I should 'stop talking' and 'remember who knows where you live'. I was frightened. I took\nscreenshots and sent them to PC Rowan Vale. I also played a voice note to my sister, but I could not forward it\nproperly at the time.\nI think the first message came in at around 22:45 on Friday 09 May 2026. I later told police in a follow-up call that it\nwas Saturday night after work. I am not completely sure because I was upset and the messages were on my phone\nfrom the weekend. The screenshot shows 10 May at the top of one screen and 09 May on another screen.\nI did not reply apart from sending a question mark. I blocked the contact after taking screenshots. I did not keep a\nscreen recording. I have not changed my phone since then. The officer took photographs of my screen using his\ndevice and asked me to email the screenshots, which I did.\nStatement issues visible on face\n- Witness says Friday 09 May in one paragraph and Saturday night in another.\n- Witness belief of sender is based on saved contact name, writing style, and previous use of number.\n- Statement does not confirm original WhatsApp export or device extraction.\n",
+    "6": "NB-26-0721 - R v Taylor Brookes\nPage 6\n=== SECTION: OFFICER DIGITAL SUMMARY ===\nPC Rowan Vale records that the phone number ending 4471 is believed linked to Taylor Brookes because it appears\nas a historic contact number on a custody record dated March 2026 and because Ellie Varna had previously used\nthat number to contact him. This summary does not attach the custody record, subscriber return, call data, phone\ndownload, or device attribution report.\nThe officer viewed screenshot images on the witness phone and received copies by email. The officer did not\nundertake a full handset examination. The device was not seized. No Cellebrite or similar extraction report is served.\nThe original voice note was not downloaded during the initial report.\nDigital continuity notes\nItem\nStatus\nRisk\nWitness handset\nNot seized; still with witness\nOriginal data available only if preserved.\nWhatsApp export\nNot served\nScreenshots alone do not show full metadata.\nSubscriber data\nNot served\nPhone number link remains officer belief.\nVoice note\nDescribed but not served\nNo original audio, transcript, speaker comparison, or continuity.\n",
+    "9": "NB-26-0721 - R v Taylor Brookes\nPage 9\n=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===\nRef\nMaterial\nStatus\nRelevance / issue\nU1\nOriginal WhatsApp export from Ellie\nVarna's handset\nOutstanding - not served\nNeeded to verify message chronology,\ncontact number, metadata, and full\nconversation.\nU2\nOriginal 00:17 voice note audio\nOutstanding - not served\nNeeded to assess content, speaker,\ncontinuity, and whether alleged threat is\naccurately described.\nU3\nSubscriber / SIM registration or provider\nreturn for number ending 4471\nOutstanding - not served\nPhone number link to defendant remains\nunproved in served papers.\nU4\nDevice extraction or digital attribution\nreport\nNot commissioned / absent\nRelevant to authorship and shared-device\ndefence.\nU5\nEmail from witness attaching screenshots\nNot served\nRelevant to continuity and whether\nscreenshots were cropped before receipt.\nU6\nFull interview audio/transcript\nNot served\nSummary only served; wording of denial and\ninstructions should be checked.\nDisclosure officer note: 'Original digital material may be available from witness handset. No full phone examination\ncompleted as at 21 May 2026.'\n",
+    "10": "NB-26-0721 - R v Taylor Brookes\nPage 10\n=== SECTION: BAIL HISTORY AND DRAFT DISCLOSURE REQUEST ===\nBail condition history: no-contact condition added after charge. No alleged breach since condition imposed.\nDefendant maintains denial of authorship and says the condition is understood.\nDraft defence disclosure request\n- Please serve the native WhatsApp export or a proper forensic download showing the messages relied on, including\ntimestamps, sender details, contact card, and any deleted/adjacent messages.\n- Please serve the original 00:17 voice note audio and any transcript or continuity record for it.\n- Please serve subscriber/provider evidence and any material relied on to link number ending 4471 to Taylor Brookes\nat the relevant time.\n- Please serve the email or transfer record by which the screenshots were received from Ellie Varna and any\ncontinuity statement concerning cropping or editing.\n- Please serve the full interview audio/transcript, not only the summary.\nSuggested safe hearing line: the defence does not accept authorship of the alleged messages on the served papers.\nThe issue is attribution, continuity, and original digital material.\n"
+  },
+  "first_page_preview": "NB-26-0721 - R v Taylor Brookes\nPage 1\nINTERNAL CASE PAPERS BUNDLE\nR v Taylor Brookes - Digital Attribution / Witness Contact\n=== SECTION: COVER SHEET ===\nField\nEntry\nCase reference\nNB-26-0721\nDefendant\nTaylor Brookes\nComplainant / witness\nEllie Varna\nCourt\nNorthbank Crown Court\nNext hearing\nPTPH - 06 July 2026 at 10:00\nCurrent status\nBail with no-contact condition. Defence position: authorship of digital messages is disputed.\nBundle warning\nSome digital material is described in schedules but not served in original format.\nThis bundle contains charge material, summary, statements, exhibit references, interview summary, unused material\nschedule entries, and a draft disclosure request. It should be read with attention to source material, original device\ndata, metadata, and authorship.\nBundle"
+}

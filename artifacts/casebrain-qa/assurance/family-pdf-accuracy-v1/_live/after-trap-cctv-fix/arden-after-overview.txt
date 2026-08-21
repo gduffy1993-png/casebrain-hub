@@ -1,0 +1,92 @@
+CB
+
+CASE WORK
+
+SOLO WORKSPACE
+gduffy1993+casebrain@gmail.com
+I'm working as:
+Criminal Defence Solicitor
+Search
+New Upload
+Sign Out
+Trial: 3d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Arden Vale
+
+Robbery
+
+Court not safely identified from uploaded papers
+·
+Hearing not on papers
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+Court
+Papers
+Client Summary
+CPS Chase
+File
+Record Position
+Upload Evidence
+
+MAIN ISSUE
+
+Disclosure completeness and outstanding source material.
+
+CASE SNAPSHOT
+
+EVIDENCE STATE
+
+2 served · 2 missing · 5 incomplete
+
+DISCLOSURE GAPS
+
+CCTV outstanding
+CCTV master outstanding
+Exhibit mapping / provenance
+
+RISK FLAGS
+
+Some points are not established yet — check the wording guardrails.
+WORDING GUARDRAILS
+
+SAFE WORDING ON CURRENT PAPERS
+
+Disclosure completeness and outstanding source material.
+MG6 disclosure schedule appears on file — check before relying on it.
+
+DO NOT OVERSTATE
+
+DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
+
+SOLICITOR REVIEW
+Avoid firm wording until the papers confirm it
+No support on the papers for custody safeguards. Avoid relying on it until confirmed.
+No support on the papers for phone extraction/metadata. Avoid relying on it until confirmed.
+COURT PREP
+
+COURT POSITION
+
+Solicitor review required
+
+Identification, participation and attribution remain conditional on served CCTV.
+
+Review court position
+Prepare CPS chase
+CLIENT SUMMARY
+Review client update
+
+Client update drafted from the current papers. Review before sending.
+
+EVIDENCE GAPS
+
+No further gaps shown in this panel. Check Papers and CPS Chase before relying on the disclosure position.
+
+Papers on this matter
+
+1 file on record
+
+DOCUMENTS

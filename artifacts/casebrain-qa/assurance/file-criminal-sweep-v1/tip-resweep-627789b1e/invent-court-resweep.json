@@ -1,0 +1,312 @@
+{
+  "productSha": "627789b1e",
+  "family": "invent_court_header",
+  "before": 43,
+  "after": 0,
+  "cleared": 43,
+  "missing": 0,
+  "n": 43,
+  "rows": [
+    {
+      "case_key": "PDF-d7709f8ba67e",
+      "prior_court": "HEADER_COURT | Crown Court at Manchester Hearing",
+      "court": "Crown Court at Manchester",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-e9fbf463f6ae",
+      "prior_court": "HEADER_COURT | Crown Court at Manchester Hearing",
+      "court": "Crown Court at Manchester",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-00c4901e3455",
+      "prior_court": "HEADER_COURT | Crown Court at Minshull Street Hearing",
+      "court": "Crown Court at Minshull Street",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-0db26fb8bf9a",
+      "prior_court": "HEADER_COURT | Crown Court at Sheffield Hearing",
+      "court": "Crown Court at Sheffield",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-0f3efd3906ed",
+      "prior_court": "HEADER_COURT | Crown Court at Liverpool Hearing",
+      "court": "Crown Court at Liverpool",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-14700df3912a",
+      "prior_court": "HEADER_COURT | Crown Court at Sheffield Hearing",
+      "court": "Crown Court at Sheffield",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-1bd82cab8217",
+      "prior_court": "HEADER_COURT | Crown Court at Preston Hearing",
+      "court": "Crown Court at Preston",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-1e223a9582a4",
+      "prior_court": "HEADER_COURT | Crown Court at Sheffield Hearing",
+      "court": "Crown Court at Sheffield",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-1f901eb7cb56",
+      "prior_court": "HEADER_COURT | Crown Court at Liverpool Hearing",
+      "court": "Crown Court at Liverpool",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-226801f85a3c",
+      "prior_court": "HEADER_COURT | Crown Court at Minshull Street Hearing",
+      "court": "Crown Court at Minshull Street",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-29c8f36160c1",
+      "prior_court": "HEADER_COURT | Crown Court at Leeds Hearing",
+      "court": "Crown Court at Leeds",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-33245afe3cec",
+      "prior_court": "HEADER_COURT | Crown Court at Leeds Hearing",
+      "court": "Crown Court at Leeds",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-38b27ab169c7",
+      "prior_court": "HEADER_COURT | Crown Court at Minshull Street Hearing",
+      "court": "Crown Court at Minshull Street",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-3e21a49ead53",
+      "prior_court": "HEADER_COURT | Crown Court at Preston Hearing",
+      "court": "Crown Court at Preston",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-4af58229ff01",
+      "prior_court": "HEADER_COURT | Crown Court at Manchester Hearing",
+      "court": "Crown Court at Manchester",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-51727ce983d8",
+      "prior_court": "HEADER_COURT | Crown Court at Liverpool Hearing",
+      "court": "Crown Court at Liverpool",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-52e2676f5504",
+      "prior_court": "HEADER_COURT | Crown Court at Manchester Hearing",
+      "court": "Crown Court at Manchester",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-583869e2d16d",
+      "prior_court": "HEADER_COURT | Crown Court at Sheffield Hearing",
+      "court": "Crown Court at Sheffield",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-5b67df3c4873",
+      "prior_court": "HEADER_COURT | Crown Court at Leeds Hearing",
+      "court": "Crown Court at Leeds",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-7e97e631b5f8",
+      "prior_court": "HEADER_COURT | Crown Court at Sheffield Hearing",
+      "court": "Crown Court at Sheffield",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-806f7a54ee6d",
+      "prior_court": "HEADER_COURT | Crown Court at Leeds Hearing",
+      "court": "Crown Court at Leeds",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-815753c601ff",
+      "prior_court": "HEADER_COURT | Crown Court at Leeds Hearing",
+      "court": "Crown Court at Leeds",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-8b93da8e6a7a",
+      "prior_court": "HEADER_COURT | Crown Court at Minshull Street Hearing",
+      "court": "Crown Court at Minshull Street",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-8ccb4461601a",
+      "prior_court": "HEADER_COURT | Crown Court at Sheffield Hearing",
+      "court": "Crown Court at Sheffield",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-8ed1750b48bb",
+      "prior_court": "HEADER_COURT | Crown Court at Liverpool Hearing",
+      "court": "Crown Court at Liverpool",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-924bd13be731",
+      "prior_court": "HEADER_COURT | Crown Court at Liverpool Hearing",
+      "court": "Crown Court at Liverpool",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-9b355ac50ca3",
+      "prior_court": "HEADER_COURT | Crown Court at Bolton Hearing",
+      "court": "Crown Court at Bolton",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-9cca59fe4d54",
+      "prior_court": "HEADER_COURT | Crown Court at Liverpool Hearing",
+      "court": "Crown Court at Liverpool",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-9d929220d88e",
+      "prior_court": "HEADER_COURT | Crown Court at Leeds Hearing",
+      "court": "Crown Court at Leeds",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-a979a9427f56",
+      "prior_court": "HEADER_COURT | Crown Court at Sheffield Hearing",
+      "court": "Crown Court at Sheffield",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-a9900dcbe8d8",
+      "prior_court": "HEADER_COURT | Crown Court at Liverpool Hearing",
+      "court": "Crown Court at Liverpool",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-ac49fb2cf0c2",
+      "prior_court": "HEADER_COURT | Crown Court at Minshull Street Hearing",
+      "court": "Crown Court at Minshull Street",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-adf1f893c13b",
+      "prior_court": "HEADER_COURT | Crown Court at Manchester Hearing",
+      "court": "Crown Court at Manchester",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-b0aa866779d6",
+      "prior_court": "HEADER_COURT | Crown Court at Leeds Hearing",
+      "court": "Crown Court at Leeds",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-b42b357dfc55",
+      "prior_court": "HEADER_COURT | Crown Court at Liverpool Hearing",
+      "court": "Crown Court at Liverpool",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-d09dc65a240a",
+      "prior_court": "HEADER_COURT | Crown Court at Preston Hearing",
+      "court": "Crown Court at Preston",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-d4b4128d2983",
+      "prior_court": "HEADER_COURT | Crown Court at Sheffield Hearing",
+      "court": "Crown Court at Sheffield",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-d802b55ff8b9",
+      "prior_court": "HEADER_COURT | Crown Court at Sheffield Hearing",
+      "court": "Crown Court at Sheffield",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-e019dfab8a73",
+      "prior_court": "HEADER_COURT | Crown Court at Minshull Street Hearing",
+      "court": "Crown Court at Minshull Street",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-e4b98d29b722",
+      "prior_court": "HEADER_COURT | Crown Court at Liverpool Hearing",
+      "court": "Crown Court at Liverpool",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-e5a610c1febd",
+      "prior_court": "HEADER_COURT | Crown Court at Bolton Hearing",
+      "court": "Crown Court at Bolton",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-f3e3a0621674",
+      "prior_court": "HEADER_COURT | Crown Court at Bradford Hearing",
+      "court": "Crown Court at Bradford",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    },
+    {
+      "case_key": "PDF-fdb3697f9f86",
+      "prior_court": "HEADER_COURT | Crown Court at Manchester Hearing",
+      "court": "Crown Court at Manchester",
+      "invent_court_header": false,
+      "hasTrailingHearing": false
+    }
+  ]
+}
