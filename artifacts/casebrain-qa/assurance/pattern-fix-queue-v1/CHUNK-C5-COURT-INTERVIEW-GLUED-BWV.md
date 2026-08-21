@@ -24,3 +24,5 @@
 4. **Invent `bwv_source`/`bwv_claim`** — same non-`\b` BWV token.
 
 Protected: Dunn stills≠full · Trap invent-advisory · opposite suite (incl. C5 glued BWV + summary-only recording).
+
+**Follow-up:** tip invent rescore after C4/C5 — `CHUNK-C4C5-COURT-TIP-INVENT-RESCORE.md` · **13→0** (incl. murder `Full recording/transcript outstanding` detector form).

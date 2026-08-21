@@ -582,7 +582,7 @@ function scoreInvent(
     cad_999_source: /\bCAD\b|999\s+audio|CAD\/999|command and (?:dispatch|control)/i.test(bundleText),
     interview_recording_claim: /interview recording|PACE recording|audio.?visual interview/i.test(claimBlob),
     interview_recording_source:
-      /interview recording|PACE recording|audio.?visual|ROTI|tape|full recording outstanding|summary only\s*\/\s*full recording|interview summary[^.\n]{0,40}full recording/i.test(
+      /interview recording|PACE recording|audio.?visual|ROTI|tape|full recording(?:\/transcript)? outstanding|summary only\s*\/\s*full recording|interview summary[^.\n]{0,40}full recording/i.test(
         bundleText,
       ),
     subscriber_claim: /subscriber|account (?:records?|data)/i.test(claimBlob),
