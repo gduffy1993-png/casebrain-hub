@@ -170,6 +170,49 @@ export function lineClaimsBwvFullExport(line: string): boolean {
 }
 
 /**
+ * Affirmative phone *download / extraction / source-export* establishment.
+ * SIM/IMEI/subscriber/handset alone must not establish a Full phone download chase
+ * (Court invent_phone residual — Mercer-style attribution ≠ download).
+ */
+export function isPhoneDownloadEstablished(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = stripDoNotInventAdvisory(sourceText);
+  const established =
+    /(?:full\s+)?phone\s+download/i.test(hay) ||
+    /phone\s+extraction/i.test(hay) ||
+    /source\s+export/i.test(hay) ||
+    /logical\s+download/i.test(hay) ||
+    /handset\s+download/i.test(hay) ||
+    /device\s+download/i.test(hay) ||
+    /digital\s+extraction/i.test(hay) ||
+    /original\s+download/i.test(hay) ||
+    /download\s+report/i.test(hay) ||
+    /\bcellebrite\b|\bufed\b/i.test(hay) ||
+    /mobile\s+(?:extraction|download)/i.test(hay);
+  const negated =
+    /\bno\s+(?:full\s+)?phone\s+download\b/i.test(hay) ||
+    /\bno\s+(?:phone\s+)?extraction\b/i.test(hay) ||
+    /\bno\s+source\s+export\b/i.test(hay);
+  return established && !negated;
+}
+
+/** True when a chase/material line claims phone download / extraction modality (not bare attribution). */
+export function lineClaimsPhoneDownload(line: string): boolean {
+  return (
+    /\b(?:full\s+)?phone\s+download\b/i.test(line) ||
+    /\bphone\s+extraction\b/i.test(line) ||
+    /\bsource\s+export\b/i.test(line) ||
+    /\blogical\s+download\b/i.test(line) ||
+    /\bhandset\s+download\b/i.test(line) ||
+    /\bdevice\s+download\b/i.test(line) ||
+    /\bdigital\s+extraction\b/i.test(line) ||
+    /\boriginal\s+download\b/i.test(line) ||
+    /\bfull\s+phone\s+extraction\b/i.test(line) ||
+    /\bmetadata\s*\/\s*source\s+download\b/i.test(line)
+  );
+}
+
+/**
  * Affirmative CAD / 999-audio / control-room establishment.
  * Bare schedule "page 999" must not establish a CAD chase (Court C0.5 hop).
  */
@@ -303,6 +346,14 @@ export function gateChaseLine(line: string, sourceText: string | null | undefine
     if (!isCctvContinuityEstablished(sourceText)) {
       return { action: "drop", family: "cctv" };
     }
+  } else if (lineClaimsPhoneDownload(line)) {
+    const phoneSupport = familySupport("phone", sourceText);
+    if (phoneSupport === "negated") {
+      return { action: "replace", family: "phone", replacement: confirmNoneLine("phone") };
+    }
+    if (!isPhoneDownloadEstablished(sourceText)) {
+      return { action: "drop", family: "phone" };
+    }
   }
 
   const fams = familiesInText(line);
@@ -404,6 +455,12 @@ function filterModalitySpecificChaseLine(
     if (!isBwvFullExportEstablished(sourceText)) return [];
   }
 
+  // Drop phone download / extraction chase unless papers establish download modality
+  // (SIM/IMEI/subscriber alone must not keep a Full phone download invent line).
+  if (lineClaimsPhoneDownload(t)) {
+    if (!isPhoneDownloadEstablished(sourceText)) return [];
+  }
+
   // Drop interview *recording* chase unless recording modality is established
   // (PACE interview / transcript/summary alone must not keep a recording invent line).
   if (/\binterview recording\b/i.test(t) && !/\binterview transcript\b/i.test(t)) {
@@ -454,6 +511,14 @@ export function gateMaterialLine(line: string, sourceText: string | null | undef
     }
     if (!isCctvContinuityEstablished(sourceText)) {
       return { action: "drop", family: "cctv" };
+    }
+  } else if (lineClaimsPhoneDownload(line)) {
+    const phoneSupport = familySupport("phone", sourceText);
+    if (phoneSupport === "negated") {
+      return { action: "replace", family: "phone", replacement: confirmNoneLine("phone") };
+    }
+    if (!isPhoneDownloadEstablished(sourceText)) {
+      return { action: "drop", family: "phone" };
     }
   }
 

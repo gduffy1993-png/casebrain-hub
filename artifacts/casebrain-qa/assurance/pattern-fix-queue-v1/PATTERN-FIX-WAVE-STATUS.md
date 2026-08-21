@@ -2,7 +2,9 @@
 
 
 
-**Verdict:** `E1_PROOF_LIVE_AUTH_PASS` (File invent_court **43→0** + live AUTH Overview→File gates **PASS**)
+**Verdict:** `C2_COURT_PHONE_DOWNLOAD_GATE` (Court invent_phone residual — SIM≠download; tip sample **40/40** cleared)
+
+**Chunk C2 Court phone:** `CHUNK-C2-COURT-PHONE-GATE.md` · tip sample `court-criminal-sweep-v1/tip-sample-c2-phone.json`
 
 **Chunk E1 proof:** `CHUNK-E1-FILE-INVENT-PROOF.md` · tip pack `file-criminal-sweep-v1/tip-resweep-627789b1e/` · invent_court **43→0**
 

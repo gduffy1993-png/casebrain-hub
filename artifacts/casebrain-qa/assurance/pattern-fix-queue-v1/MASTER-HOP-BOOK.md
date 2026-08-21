@@ -44,6 +44,7 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 | `FILE_COURT_TRAILING_HEARING_GLUE` | File/header court | invent / glue | CB-TB-10 Mitchell; TB factory | `ManchesterHearing24 June` ≠ venue “Hearing” | E1 — scrubGluedCourt + crown match exclude Hearing |
 | `FILE_NEXT_HEARING_SLASH_GLUE` | File/header hearing | mute | Trap-0030 | `StatusremandNext hearing18/08/2026` | E1 — normalize + Next hearing slash |
 | `FILE_DEFENDANT_DATE_OF_BIRTH_GLUE` | File/header defendant | mute | CB-TB-012 Morley | `DefendantAlex MorleyDate of birth…` | E1 — trimPersonCapture Date of birth |
+| `COURT_PHONE_DOWNLOAD_FROM_SIM_SUBSCRIBER` | Court/Chase | invent | Mercer; drugs playbook | SIM/IMEI/subscriber ≠ Full phone download | C2 — isPhoneDownloadEstablished + playbook seed |
 
 ---
 

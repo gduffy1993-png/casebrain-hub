@@ -1,0 +1,394 @@
+{
+  "tip": "c2-court-phone-download-gate",
+  "n": 40,
+  "cleared": 40,
+  "residual_invent_full": 0,
+  "rows": [
+    {
+      "case_key": "PDF-0db7620c5a22",
+      "phoneLabels": [
+        "Full phone download / source extraction"
+      ],
+      "hasFull": true,
+      "hasMid": false,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-1732fb89dac9",
+      "phoneLabels": [
+        "Phone extraction summary only — full download report not in section"
+      ],
+      "hasFull": false,
+      "hasMid": true,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-1735dca8c95e",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-17c9a1e407ed",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-1e630b94fbd2",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-1ede7d49eddb",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-2350ee8b9d64",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-23ba2230b23c",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-27863b425fa8",
+      "phoneLabels": [
+        "Phone extraction summary only — full download report not in section"
+      ],
+      "hasFull": false,
+      "hasMid": true,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-2a5f288b8ae2",
+      "phoneLabels": [
+        "Phone extraction summary only — full download report not in section"
+      ],
+      "hasFull": false,
+      "hasMid": true,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-2c77806271f9",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-2c863ca2ff77",
+      "phoneLabels": [
+        "Phone extraction summary only — full download report not in section"
+      ],
+      "hasFull": false,
+      "hasMid": true,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-2cfd0bdf2e2b",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-2d13a977eb11",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-37ab25c753fd",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-3769685ed6df",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-394f237f6f64",
+      "phoneLabels": [
+        "Phone extraction summary only — full download report not in section"
+      ],
+      "hasFull": false,
+      "hasMid": true,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-3c422b6f6d44",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-3d099ecc1f22",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-3f45ab969973",
+      "phoneLabels": [
+        "Full phone download / source extraction"
+      ],
+      "hasFull": true,
+      "hasMid": false,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-428569c2f207",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-4297e9ddd469",
+      "phoneLabels": [
+        "Full phone download / source extraction"
+      ],
+      "hasFull": true,
+      "hasMid": false,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-459d4875c144",
+      "phoneLabels": [
+        "Phone extraction summary only — full download report not in section"
+      ],
+      "hasFull": false,
+      "hasMid": true,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-495a0bf31190",
+      "phoneLabels": [
+        "Phone extraction summary only — full download report not in section"
+      ],
+      "hasFull": false,
+      "hasMid": true,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-4b2393731d30",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-4bbe491edaae",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-4eb6ba2e97f7",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-501c5c7b27e1",
+      "phoneLabels": [
+        "Full phone download / source extraction"
+      ],
+      "hasFull": true,
+      "hasMid": false,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-55b58dbae232",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-57de46ee2639",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-59615d9a929c",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-64bb148b99fa",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-65c030333c67",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-6578a77a91dd",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-6604856d89f5",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-66efca0530c9",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-6cf2260db360",
+      "phoneLabels": [
+        "Phone extraction summary only — full download report not in section"
+      ],
+      "hasFull": false,
+      "hasMid": true,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-6c943a261883",
+      "phoneLabels": [
+        "Phone extraction summary only — full download report not in section"
+      ],
+      "hasFull": false,
+      "hasMid": true,
+      "pdfHasDownload": true,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-6e9c0afebdf5",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-6f6c1fb248be",
+      "phoneLabels": [],
+      "hasFull": false,
+      "hasMid": false,
+      "pdfHasDownload": false,
+      "invent_full_without_source": false,
+      "cleared": true
+    }
+  ]
+}

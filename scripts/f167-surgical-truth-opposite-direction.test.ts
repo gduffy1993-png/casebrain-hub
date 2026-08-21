@@ -18,7 +18,7 @@ import {
 import { expandTruthMapRowsForDisplay } from "../lib/criminal/five-answers/expand-truth-map-rows";
 import { evidenceRowFromSourceState } from "../lib/criminal/five-answers/evidence-trace";
 import type { DisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
-import { familySupport, expandAndGateChaseLines, gateMaterialLines, isBwvFullExportEstablished, isCctvContinuityEstablished, isCctvMasterEstablished } from "../lib/criminal/chase-source-gate";
+import { familySupport, expandAndGateChaseLines, gateMaterialLines, isBwvFullExportEstablished, isCctvContinuityEstablished, isCctvMasterEstablished, isPhoneDownloadEstablished } from "../lib/criminal/chase-source-gate";
 import { normaliseBundleMaterials } from "../lib/criminal/bundle-material-normalizer";
 import { buildBundleTruthLedger } from "../lib/criminal/bundle-truth-ledger";
 import {
@@ -680,6 +680,53 @@ Evidence referred or outstanding: Full BWV export; full custody record.
     "Stolen phone from Marlow Reed. No phone download or source export on MG6.",
   );
   assert.equal(arden.length, 0, "opposite: Arden property-phone TN");
+
+  // --- L1b: SIM/IMEI/subscriber alone ≠ Full phone download (Court invent_phone) ---
+  {
+    const mercerHay =
+      "SIM/IMEI subscriber records not supplied. Handset attribution unclear. No phone download or source export on MG6.";
+    assert.equal(
+      isPhoneDownloadEstablished(mercerHay),
+      false,
+      "opposite: subscriber/SIM alone must not establish phone download",
+    );
+    assert.ok(
+      !gateMaterialLines(["phone download", "full phone extraction"], mercerHay).length,
+      "opposite: playbook phone-download seeds drop without download establishment",
+    );
+    const mercerReconcile = reconcilePhoneDownloadModalityItems(
+      [
+        {
+          id: "seed",
+          familyId: "other",
+          label: "phone download",
+          whyItMatters: "test",
+          source: "Crown",
+          baseStatus: "Outstanding",
+          urgency: "medium",
+          deadlineLabel: "test",
+          evidenceAnchor: null,
+          linkedRoute: null,
+          draftChaseWording: "Provide phone download",
+          courtLine: "phone",
+          mergedFrom: ["phone download"],
+        },
+      ],
+      mercerHay,
+    );
+    assert.ok(
+      !mercerReconcile.some((i) => /phone download|phone extraction/i.test(i.label)),
+      "opposite: Mercer-shape must not keep phone-download chase from SIM alone",
+    );
+
+    const brookesHay =
+      "Full phone download outstanding. Source export not served. Subscriber report not served.";
+    assert.equal(isPhoneDownloadEstablished(brookesHay), true, "opposite: Brookes download TP establishment");
+    assert.ok(
+      gateMaterialLines(["phone download"], brookesHay).includes("phone download"),
+      "opposite: Brookes playbook phone-download seed kept when established",
+    );
+  }
 
   // --- L2: Papers inventory — Brookes phone download TP vs Arden property TN (outside MG6 head) ---
   {

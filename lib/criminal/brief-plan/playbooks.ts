@@ -66,7 +66,7 @@ export const CRIMINAL_BRIEF_PLAYBOOKS: Record<CriminalBriefPlanProfile, Criminal
   drugs_pwits: {
     id: "drugs_pwits",
     commonIssues: ["possession", "knowledge", "intent", "continuity", "phone attribution"],
-    missingMaterial: ["drug continuity", "lab report", "phone download", "search record"],
+    missingMaterial: ["drug continuity", "lab report", "phone attribution material", "search record"],
     safeWording: {
       today: "Possession, knowledge, intent and continuity remain provisional pending served drug/source material.",
       summary: "The case turns on possession, intent, continuity and any phone/search attribution evidence.",
@@ -75,6 +75,8 @@ export const CRIMINAL_BRIEF_PLAYBOOKS: Record<CriminalBriefPlanProfile, Criminal
     risks: ["Served phone/search material may strengthen possession or intent once reviewed."],
     opportunities: ["Challenge continuity, knowledge, intent and attribution gaps."],
     doNotOverstate: ["Do not rely on drug continuity unless lab/continuity material is served."],
+    // Do not bake "phone download" into missingMaterial — SIM/IMEI/subscriber alone must not
+    // invent Full phone download (Court invent_phone). Attribution chase stays PDF-gated.
     chaseTemplates: ["Lab report, continuity logs, search record, phone attribution material."],
     clientSafeStyle: "Explain that intent is not assumed from charge wording alone.",
   },
