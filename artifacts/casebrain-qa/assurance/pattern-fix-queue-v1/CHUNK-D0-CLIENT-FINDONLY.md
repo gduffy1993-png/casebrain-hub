@@ -1,39 +1,43 @@
 # CHUNK D0 — CLIENT SCALE FIND-ONLY
 
-**Verdict:** `D0_RUNNING`  
+**Verdict:** `D0_COMPLETE_FINDONLY`  
 **Branch:** `fix/f167-surgical-truth-v1`  
 **Product tip:** `7b900de22`  
 **Pack:** `artifacts/casebrain-qa/assurance/client-criminal-sweep-v1/`  
-**Runner:** `scripts/assurance/client-criminal-sweep/run-client-criminal-sweep.ts`
+**Runner:** `scripts/assurance/client-criminal-sweep/run-client-criminal-sweep.ts`  
+**Scored:** **2600 / 2600**  
+**Hitlist:** **1118**  
+**Invent-flag sum:** **200**  
+**Product fixes this chunk:** **NONE**  
+**Captured:** 2026-08-21
+
+---
 
 ## Claim surface
 
-Client-safe / Client Summary projection (not Court Control Room):
+- `buildClientSafeExplanation` · war-room `clientExplanation` · matter-brief `client`
+- Export-pack `client_summary` + `evidence_gaps` · `CHASE_BLEED` labels
+- DO_NOT excluded from invent scoring
 
-- `buildClientSafeExplanation`
-- War-room `draftWording.clientExplanation`
-- Matter-brief `client` section
-- Export-pack `client_summary` + `evidence_gaps` (chase bleed)
-- Chase labels as `CHASE_BLEED` (gym CLIENT≈Court hop)
-- Bleed detectors: court-control language / papers-inventory chrome in client core
+## Top families (volume = triage, not guilt)
 
-DO_NOT lines excluded from invent scoring (same C0.5 lesson).
+| Family | N | Note |
+|--------|--:|------|
+| `mute_cad_999` | 396 | Honest residual after Court C1 CAD gate |
+| `mute_cctv_master` | 320 | |
+| `mute_phone_download` | 279 | |
+| `invent_phone_download` | **166** | Top Client invent — PDF-spotcheck first |
+| `modality_summary_vs_recording` | 103 | Soft |
+| `invent_subscriber_thin` | 14 | |
+| `invent_cctv_master` | 8 | |
+| `invent_phone_download_from_property` | 8 | Arden-shape risk |
+| `invent_interview_recording` | 4 | Residual after C1 (Court was 4) |
+| `invent_bwv` / `invent_cad_999` | **0** | Cleared on Client claim surface |
 
-## Method
-
-```
-CLIENT_SWEEP_REUSE_INDEX=1 \
-CLIENT_SWEEP_INDEX_SRC=artifacts/casebrain-qa/assurance/court-criminal-sweep-v1/CRIMINAL-UNIQUE-INDEX.csv \
-CLIENT_SWEEP_OFFLINE_ONLY=1 \
-CLIENT_SWEEP_CONCURRENCY=4 \
-F167_PRODUCT_SHA=7b900de22 \
-npx tsx scripts/assurance/client-criminal-sweep/run-client-criminal-sweep.ts
-```
-
-Smoke (3 cases): runner OK — saw `invent_interview_recording` on Client bleed surface.
+Bleed detectors (`client_court_language_bleed` / papers-inventory chrome): **0** on projected client-core text (UI tab chrome may still differ live).
 
 ## Next
 
-1. Complete 2600 Client find-only  
-2. Triage top invent / bleed families (no mass-fix)  
-3. File (E0) after D0 complete
+1. **D0.5** PDF spot-check `invent_phone_download` (+ property TN) samples → hop book  
+2. **D1** shared-root Client armour only if hops hold  
+3. File (E0) find-only

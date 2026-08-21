@@ -2,23 +2,17 @@
 
 
 
-**Verdict:** `C1_PROOF_COURT_INVENT_CLEARED` + `D0_RUNNING` (Client find-only in flight)
+**Verdict:** `D0_COMPLETE_FINDONLY` (Client 2600 scored; invent_phone **166** triage next) + Court C1 invent proof locked
+
+**Chunk D0 Client find-only:** `CHUNK-D0-CLIENT-FINDONLY.md` · pack `client-criminal-sweep-v1/` · tip `7b900de22` · hitlist **1118** · invent sum **200**
 
 **Chunk C1 Court invent proof:** `CHUNK-C1-COURT-INVENT-PROOF.md` · tip pack `court-criminal-sweep-v1/tip-resweep-7b900de22/` · invent sum **1084→114** · bwv **520→1** · interview **261→4** · cad **194→0**
 
 **Chunk C0.5/C1 Court invent:** `CHUNK-C05-C1-COURT-INVENT-ARMOUR.md` · tip `7b900de22`
 
-**Chunk D0 Client find-only:** `CHUNK-D0-CLIENT-FINDONLY.md` · pack `client-criminal-sweep-v1/` · tip `7b900de22`
-
 **Chunk C0 Court find-only:** `CHUNK-C0-COURT-FINDONLY.md` · pack `court-criminal-sweep-v1/` · tip `713a056b4` · hitlist **1478** (pre-armour)
 
 **PR:** https://github.com/gduffy1993-png/casebrain-hub/pull/70
-
-**Chunk P1 Papers phone mute:** `CHUNK-P1-PAPERS-PHONE-MUTE.md` · proof `CHUNK-P1-PAPERS-PHONE-MUTE-PROOF.md` · tip `e3179fa74` · mute_phone **606→469**
-
-**Chunk P0 Papers find-only:** `CHUNK-P0-PAPERS-FINDONLY.md` · pack `papers-criminal-sweep-v1/` · tip `9476419c9` · hitlist **759** · invent sum **1** · spotcheck `p0-pdf-spotcheck.json`
-
-**Chunk 3 family armour:** `CHUNK-3-FAMILY-ARMOUR.md` · Preview https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app · live `live-auth-chunk3-after-bwv/` · **committed+pushed** `6e63bb6d2`
 
 **Merge:** **NOT STARTED**  
 
