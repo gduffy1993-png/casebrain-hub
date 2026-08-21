@@ -2,9 +2,13 @@
 
 
 
-**Verdict:** `P1_PROOF_MUTE_PHONE_DROPPED` (Papers mute_phone **606→469**; phone invent still 0)
+**Verdict:** `C0_COURT_FINDONLY_RUNNING` (Court/Chase twin of Overview+Papers — find-only @ 2600)
 
-**Chunk P1 Papers phone mute:** `CHUNK-P1-PAPERS-PHONE-MUTE.md` · proof `CHUNK-P1-PAPERS-PHONE-MUTE-PROOF.md` · tip `e3179fa74` · resweep `tip-resweep-e3179fa74/`
+**Chunk C0 Court find-only:** `CHUNK-C0-COURT-FINDONLY.md` · pack `court-criminal-sweep-v1/` · tip `e3179fa74`
+
+**PR:** https://github.com/gduffy1993-png/casebrain-hub/pull/70
+
+**Chunk P1 Papers phone mute:** `CHUNK-P1-PAPERS-PHONE-MUTE.md` · proof `CHUNK-P1-PAPERS-PHONE-MUTE-PROOF.md` · tip `e3179fa74` · mute_phone **606→469**
 
 **Chunk P0 Papers find-only:** `CHUNK-P0-PAPERS-FINDONLY.md` · pack `papers-criminal-sweep-v1/` · tip `9476419c9` · hitlist **759** · invent sum **1** · spotcheck `p0-pdf-spotcheck.json`
 
