@@ -380,6 +380,26 @@ CAD / 999 extract Present.
   assert.equal(isCctvMasterEstablished(ARDEN_SNIPPET), true, "Arden: full CCTV master establishes");
   assert.equal(isCctvContinuityEstablished(ARDEN_SNIPPET), true, "Arden: continuity statement establishes");
 
+  // Court C4: witness "not the full CCTV or BWV sequence" must not establish master chase.
+  const notFullCctvWitness =
+    "I have been shown some material but not the full CCTV or BWV sequence. The timing I gave was approximate.";
+  assert.equal(
+    isCctvMasterEstablished(notFullCctvWitness),
+    false,
+    "witness not-full-CCTV language is not master establishment",
+  );
+  assert.equal(
+    gateMaterialLines(["CCTV full window / master footage"], notFullCctvWitness).length,
+    0,
+    "not-full-CCTV must drop master invent chase seed",
+  );
+  // Affirmative outstanding full-window still establishes (clip described; full window missing).
+  assert.equal(
+    isCctvMasterEstablished("only short CCTV clip is described; full window missing"),
+    true,
+    "full window missing on papers still establishes outstanding master/full-window",
+  );
+
   const ardenBrief = buildDisclosureChaseBrief({
     ...ARDEN_CTX,
     caseId: "arden-master-tp",

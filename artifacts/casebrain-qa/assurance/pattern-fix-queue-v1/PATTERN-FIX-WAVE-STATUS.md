@@ -2,9 +2,11 @@
 
 
 
-**Verdict:** `C3_COURT_TIP_RESWEEP_PHONE_CLEAR` (Court invent_phone **99→0** · Client D3 residual noise cleared)
+**Verdict:** `C4_COURT_CCTV_NOT_FULL_SEQUENCE` (witness not-full-CCTV ≠ master invent)
 
-**Chunk C3 Court tip re-sweep:** `CHUNK-C3-COURT-PHONE-TIP-RESWEEP-PROOF.md` · pack `court-criminal-sweep-v1/tip-resweep-d2-e20e0b1da/` · invent_phone **99→0**
+**Chunk C4 Court CCTV:** `CHUNK-C4-COURT-CCTV-NOT-FULL.md`
+
+**Chunk C3 Court tip re-sweep:** `CHUNK-C3-COURT-PHONE-TIP-RESWEEP-PROOF.md` · invent_phone **99→0**
 
 **Chunk D3 Client negation hygiene:** `CHUNK-D3-CLIENT-PHONE-NEGATION-HYGIENE.md` · PR #76 **MERGED**
 
