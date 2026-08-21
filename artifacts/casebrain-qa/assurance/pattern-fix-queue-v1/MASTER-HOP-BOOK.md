@@ -14,7 +14,7 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 
 | Status | N |
 |--------|--:|
-| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute + C1 Court invent + D1 Client phone + E1 File chrome + C2 Court phone + D2 Client residual + D3 negation hygiene + C4 CCTV not-full) | 34 |
+| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute + C1 Court invent + D1 Client phone + E1 File chrome + C2 Court phone + D2 Client residual + D3 negation hygiene + C4 CCTV not-full + C5 interview/glued BWV) | 36 |
 | OPEN (remaining) | 0 |
 | STOP → Phase B (Papers / Client) | 0 |
 | WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft / File E0) | 8 |
@@ -48,6 +48,8 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 | `CLIENT_FULL_PHONE_FROM_MIDSTATE_CHASE_LABEL` | Client export gaps | invent | Khan / Hayes mid-state PDFs | Chase mid-state inject ≠ Full phone download gap | D2 — modality from bundleText only + glued “this section” |
 | `CLIENT_INVENT_PHONE_FROM_NEGATION_NOTE` | Client/Court invent detectors | detector | residual 7 after D2 | “not full phone download…” on Screenshot [Served] ≠ invent claim | D3 — note wording + claim-hay strip |
 | `COURT_CCTV_MASTER_FROM_NOT_FULL_SEQUENCE` | Court/Chase | invent | Clarke/Turner tip residual | “not the full CCTV or BWV sequence” ≠ master | C4 — strip negation; full CCTV requires master/window |
+| `COURT_INTERVIEW_SUMMARY_ONLY_FULL_RECORDING_DETECTOR` | Court invent detectors | detector | tip residual ×4 (fraud/murder/theft/RP-07) | SUMMARY ONLY / FULL RECORDING OUTSTANDING ≠ invent | C5 — interview_recording_source mid-state |
+| `COURT_BWV_FROM_GLUED_SCHEDULE_TOKEN` | Court/Chase + invent detectors | invent / glue | gauntlet-06 `004BWV…not servedMay` | digit-glued BWV missed by `\bBWV\b` | C5 — family + full-export + invent source |
 
 ---
 

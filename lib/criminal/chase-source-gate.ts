@@ -26,7 +26,8 @@ export type FamilySupport = "mentioned" | "negated" | "absent";
 
 const MENTION_RES: Record<ChaseGateFamily, RegExp> = {
   cctv: /\bcctv\b|video\s+footage|camera\s+footage|dashcam|master\s+footage|\bfootage\b/i,
-  bwv: /\bbwv\b|body[-\s]?worn/i,
+  // Schedule glue: MG6C/004BWV — digit/letter join kills \b before BWV.
+  bwv: /(?:^|[^A-Za-z])BWV(?![A-Za-z])|body[-\s]?worn/i,
   // Never treat bare "999" (page numbers / schedule noise) as CAD establishment.
   cad_999:
     /\bcad\b|CAD\s*\/\s*999|999\s+(?:audio|call|recording)|command\s+(?:and\s+)?(?:control|dispatch)|control[-\s]?room\s+log|dispatch\s+log|emergency\s+call/i,
@@ -159,6 +160,10 @@ export function isBwvFullExportEstablished(sourceText: string): boolean {
     /\bfull\s+(?:bwv\s+)?incident\s+window\b/i.test(hay) ||
     /\bbwv\s+clip\s+(?:outstanding|needed|not\s+served)\b/i.test(hay) ||
     /\bu\d+\s*bwv(?:\s+clip)?\s+outstanding\b/i.test(hay) ||
+    // Schedule glue: MG6C/004BWV from … not servedMay (served glued into next word)
+    /(?:^|[^A-Za-z])BWV(?![A-Za-z])[^.\n]{0,80}?(?:not\s+served|not\s+attached|referred(?:\s+only)?|outstanding)/i.test(
+      hay,
+    ) ||
     /\bbwv\b[^.\n]{0,60}(?:not\s+served|not\s+attached|referred(?:\s+only)?|outstanding)\b/i.test(hay) ||
     /\bbody[- ]?worn\b[^.\n]{0,60}(?:not\s+served|not\s+attached|referred(?:\s+only)?|outstanding|full\s+export)\b/i.test(
       hay,
