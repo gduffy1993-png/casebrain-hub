@@ -8,7 +8,7 @@ import type {
 } from "./types";
 
 const CATEGORY_PATTERNS: Array<[SourceTruthEvidenceCategory, RegExp]> = [
-  ["bwv", /\b(?:bwv|body[-\s]?worn|body\s+worn)\b/i],
+  ["bwv", /(?:^|[^A-Za-z])(?:bwv|BWV)(?![A-Za-z])|body[-\s]?worn|body\s+worn/i],
   ["custody", /\b(?:custody\s+record|detention\s+log|pace\s+clock|custody\s+sergeant|safeguards?)\b/i],
   ["cctv", /\b(?:cctv|footage|video|camera)\b/i],
   ["cad_999", /\b(?:cad|999|dispatch|control\s*room)\b/i],
