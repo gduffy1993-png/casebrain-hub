@@ -1,10 +1,11 @@
 # MASTER HOP BOOK — Pattern fix queue
 
+**Wave status:** **`INVENT_WAVE_CLOSED`** — `WAVE-CLOSE-INVENT-V1.md`  
 **Freeze product SHA:** `55c41d8956c044d20f4265cccc6fd8669349d2ae`  
 **Branch:** `fix/f167-surgical-truth-v1`  
-**Preview (freeze):** https://casebrain-8h2c8ennr-gduffy1993-pngs-projects.vercel.app  
+**Close tip:** `b2c041ec0` · Preview (AUTH) https://casebrain-5eq2vjtuv-gduffy1993-pngs-projects.vercel.app  
 **Rule:** Overview-sweep **volume = triage**, not guilt. Gym / PDF-verify drives fix order.  
-**Do not regress:** Arden export-log TN · Trap CCTV invent TN · Brookes phone-download TP · Arden phone-property TN · Arden/Patel CCTV master TP
+**Do not regress:** Arden export-log TN · Trap CCTV invent TN · Brookes phone-download TP · Arden phone-property TN · Arden/Patel CCTV master TP · Dunn BWV stills≠full
 
 Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`, `surface-findonly-v1/court-client-file`, `family-pdf-accuracy-v1` Friday canaries / FIXED hops.
 
@@ -77,16 +78,8 @@ _(Wave open list cleared into FIXED / WATCH. See Phase A–C + Chunk 1–3 artef
 
 ## Fix-wave priority (execute)
 
-1. Interview summary↔recording residual lump  
-2. CAD extract present still chased + CAD/999 invent (shared modality root)  
-3. Phone mid-state (preserve Brookes TP + Arden TN)  
-4. Papers / Client=Court **only if** shared projection root (no redesign)  
-5. Hearing date ≠ chase ops deadline  
-6. Subscriber both ways  
-7. Dunn stills→master (no Arden/Patel/Trap regress)  
-8. **Chunk 3:** Dunn BWV stills→full export (**FIXED**)  
-9. **File E1:** court/hearing/defendant chrome glue (**FIXED** — tip 21/28)
+**STOPPED — invent wave closed.** See `WAVE-CLOSE-INVENT-V1.md`.  
+Prior hops (interview / CAD / phone / Papers / hearing / subscriber / Dunn BWV / File chrome) landed FIXED.  
+Remaining WATCH rows above are backlog only — not an active invent queue.
 
-Companion: `MASTER-HOP-BOOK.csv` · status after wave: `PATTERN-FIX-WAVE-STATUS.md`  
-Chunk 3 armour: `CHUNK-3-FAMILY-ARMOUR.md`  
-File E0: `CHUNK-E0-FILE-FINDONLY.md` · E1: `CHUNK-E05-E1-FILE-CHROME-ARMOUR.md`
+Companion: `MASTER-HOP-BOOK.csv` · status: `PATTERN-FIX-WAVE-STATUS.md` · close: `WAVE-CLOSE-INVENT-V1.md`
