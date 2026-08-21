@@ -1,45 +1,42 @@
 # CHUNK C0 — COURT + CPS CHASE SCALE FIND-ONLY
 
-**Verdict:** `C0_STARTED`  
+**Verdict:** `C0_COMPLETE_FINDONLY`  
 **Branch:** `fix/f167-surgical-truth-v1`  
-**Product tip:** `e3179fa74` / docs `b2ee01f69`  
+**Product tip:** `e3179fa74`  
 **Pack:** `artifacts/casebrain-qa/assurance/court-criminal-sweep-v1/`  
 **Runner:** `scripts/assurance/court-criminal-sweep/run-court-criminal-sweep.ts`  
-**Index:** reuse Papers/Overview `CRIMINAL-UNIQUE-INDEX.csv` (2600)  
-**Product fixes this chunk:** **NONE** (find-only)  
+**Scored:** **2600 / 2600**  
+**Hitlist:** **1478**  
+**Invent-flag sum:** **1084**  
+**Product fixes this chunk:** **NONE**  
 **PR:** https://github.com/gduffy1993-png/casebrain-hub/pull/70  
+**Captured:** 2026-08-21
 
 ---
 
-## Why
+## Top families (volume = triage, not guilt)
 
-Overview + Papers invent lanes done. Next surface stack: **Court Control Room + CPS Chase court-lines** (same invent/mute/modality + date-role discipline), then Client / File.
-
-Volume = triage, not guilt.
-
-## Claim surface
-
-- `buildDisclosureChaseBrief` — primary/additional labels, courtLines, safeCourtLine, deadline notes  
-- `buildHearingWarRoomBrief` — safePositionToday, sayThis, doNotOverstate  
-
-## Roadmap after C0
-
-| Chunk | Surface |
-|-------|---------|
-| C0 | Court + Chase court-lines find-only @ 2600 |
-| C1 | Shared-root Court invent/date-role armour (if ≥2 hops) |
-| D0 | Client Summary factual find-only |
-| E0 | File / exhibits find-only |
-| Ship | Merge only when you say |
+| Family | N | Note |
+|--------|--:|------|
+| `invent_bwv` | **520** | Top Court invent — PDF-spotcheck first (detector vs real) |
+| `mute_cctv_master` | 320 | Mute on Court/Chase surface |
+| `mute_phone_download` | 287 | Residual after Papers P1 |
+| `invent_interview_recording` | **261** | Court bleed of interview invent |
+| `mute_cad_999` | 217 | |
+| `invent_cad_999` | **194** | Court CAD invent volume |
+| `modality_summary_vs_recording` | 193 | Soft / expected leftovers |
+| `invent_phone_download` | 99 | |
+| `invent_cctv_master` | 8 | Low vs Overview freeze era |
+| `date_role_hearing_reused_as_deadline_language` | 6 | Soft date-role (gym hop) |
 
 ---
 
-## Run
+## Read
 
-```bash
-COURT_SWEEP_REUSE_INDEX=1 \
-COURT_SWEEP_INDEX_SRC=artifacts/casebrain-qa/assurance/papers-criminal-sweep-v1/CRIMINAL-UNIQUE-INDEX.csv \
-COURT_SWEEP_OFFLINE_ONLY=1 \
-F167_PRODUCT_SHA=e3179fa74 \
-npx tsx scripts/assurance/court-criminal-sweep/run-court-criminal-sweep.ts --concurrency=4
-```
+Court/Chase claim surface is **noisier than Overview/Papers tip** on invent_bwv / interview / CAD. That is the bleed we came for — do **not** mass-fix. Next: C0.5 PDF spot-check top invent families → hop book ≥2 shared-root → C1 armour.
+
+## Next
+
+1. **C0.5** PDF spot-check `invent_bwv` + `invent_interview_recording` + `invent_cad_999` samples  
+2. **C1** shared-root Court invent armour with opposite tests  
+3. Then Client (D0) / File (E0)

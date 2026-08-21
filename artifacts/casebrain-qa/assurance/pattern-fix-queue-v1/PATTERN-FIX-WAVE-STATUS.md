@@ -2,9 +2,9 @@
 
 
 
-**Verdict:** `C0_COURT_FINDONLY_RUNNING` (Court/Chase twin of Overview+Papers — find-only @ 2600)
+**Verdict:** `C0_COMPLETE_FINDONLY` (Court 2600 scored; invent_bwv **520** / interview **261** / CAD invent **194** — triage next)
 
-**Chunk C0 Court find-only:** `CHUNK-C0-COURT-FINDONLY.md` · pack `court-criminal-sweep-v1/` · tip `e3179fa74`
+**Chunk C0 Court find-only:** `CHUNK-C0-COURT-FINDONLY.md` · pack `court-criminal-sweep-v1/` · tip `e3179fa74` · hitlist **1478**
 
 **PR:** https://github.com/gduffy1993-png/casebrain-hub/pull/70
 
