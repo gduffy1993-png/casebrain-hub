@@ -43,7 +43,28 @@ const MG6_HEAD_RE =
   /\b(?:mg6\s+disclosure\s+schedule|mg6\s+corrected|mg6\s+continuation|mg6\s+disclosure|mg6c|disclosure\s+schedule|unused\s+material\s+schedule)\b/i;
 
 const ITEM_RE =
-  /\b(?:cctv|bwv|999(?:\s+audio)?|cad(?:\s+log)?|scene\s+photos?|forensic|witness|medical|interview|transcript|mg11|statement|footage|recording|export\s+log|continuity|indictment|charge\s+sheet|mg5)\b/i;
+  /\b(?:cctv|bwv|999(?:\s+audio)?|cad(?:\s+log)?|scene\s+photos?|forensic|witness|medical|interview|transcript|mg11|statement|footage|recording|export\s+log|continuity|indictment|charge\s+sheet|mg5|(?:full\s+)?phone\s+download|phone\s+extraction|source\s+export|handset\s+download|device\s+download|digital\s+extraction|subscriber\s+(?:report|data|return|records?))\b/i;
+
+/** Affirmative phone-download / source-export establishment — not property seizure alone. */
+const PHONE_DOWNLOAD_ITEM_RE =
+  /\b(?:(?:full\s+)?phone\s+download|phone\s+extraction|source\s+export|handset\s+download|device\s+download|digital\s+extraction)\b/i;
+
+/** Explicit denial / property-only — do not invent a download inventory row. */
+function lineDeniesOrIsPropertyOnlyPhone(line: string): boolean {
+  const l = compact(line);
+  if (/\bno\s+(?:full\s+)?phone\s+download\b/i.test(l)) return true;
+  if (/\bno\s+source\s+export\b/i.test(l)) return true;
+  if (/\bwithout\s+(?:a\s+)?(?:(?:full\s+)?phone\s+download|source\s+export)\b/i.test(l)) return true;
+  if (/\bnot\s+(?:a\s+)?(?:phone\s+download|source\s+export)\b/i.test(l)) return true;
+  // Stolen / property phone without download/extraction/export language.
+  if (
+    /\b(?:stolen|property|seized)\s+phone\b|\bphone\s+(?:from|seized|recovered|stolen)\b/i.test(l) &&
+    !PHONE_DOWNLOAD_ITEM_RE.test(l)
+  ) {
+    return true;
+  }
+  return false;
+}
 
 const DRAFT_STATUS_RE =
   /\b(?:summary\s+only|extract\s+served\s+only|extract\s+only|partial|screenshots?\s*\/\s*summary|screenshots?\b|only\s+screenshots|later\s+note\s+suggests|draft\s+note|draft\s+only|\bdraft\b|unclear|served\s*\?\s*unclear|requires?\s+oic\s+check|sensitive\s+schedule\s+exists)\b/i;
@@ -135,6 +156,15 @@ export function lineIndicatesReferredOnly(line: string): boolean {
 export function classifyMaterialStatus(line: string): MaterialStatus | null {
   const l = compact(line);
   if (!l || l.length < 8) return null;
+  // Property phone / explicit "no phone download" must not become inventory rows —
+  // but do not kill a line that also carries other material (e.g. CCTV master).
+  if (lineDeniesOrIsPropertyOnlyPhone(l)) {
+    const hasOtherMaterial =
+      /\b(?:cctv|bwv|999(?:\s+audio)?|cad(?:\s+log)?|mg11|interview|transcript|export\s+log|continuity|medical|forensic|scene\s+photos?)\b/i.test(
+        l,
+      );
+    if (!hasOtherMaterial) return null;
+  }
   if (UNSIGNED_RE.test(l)) return "unsigned";
   // Referred/listed/scheduled-not-served before outstanding — shared F01/F02 root.
   if (lineIndicatesReferredOnly(l)) {

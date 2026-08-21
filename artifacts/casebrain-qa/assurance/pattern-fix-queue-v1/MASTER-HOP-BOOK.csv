@@ -1,0 +1,15 @@
+id,status,fix_order,surfaces,class,example_cases,pdf_verify_note,suggested_fix,opposite
+EXPORT_LOG_FROM_CCTV_MASTER_ALONE,FIXED,,Court/Papers/Client WHY,invent,Arden,no export log in PDF; master yes,explanation-fidelity detectCctvStillsVsMaster,export log when sourced
+TRAP_CCTV_MASTER_FROM_INVENT_ADVISORY,FIXED,,Overview/Chase/Court,invent,Trap-0030,do-not-assume CCTV advisory,chase-source-gate invent-advisory strip,Arden/Patel master TP
+ARDEN_PHONE_DOWNLOAD_FROM_PROPERTY,FIXED,,Overview/Chase,invent,Arden,stolen phone property only,phone family gate,Brookes download TP
+ARDEN_INTERVIEW_RECORDING_FROM_SUMMARY,FIXED,,Overview/Chase,invent/modality,Arden,summary served not recording,interview modality gate,recording when sourced
+TRAP_INTERVIEW_RECORDING_INVENT,FIXED,,All,invent,Trap-0030,no PACE recording,interview gate LIVE TN,Patel recording when sourced
+INTERVIEW_SUMMARY_VS_RECORDING_LUMP,OPEN,1,Chase+Overview,modality+invent,Tobin;Ahmed;Patel,summary≠recording/transcript card glue,split chase humanize residual,Patel/Tobin TP when outstanding
+CAD_EXTRACT_PRESENT_STILL_CHASED,OPEN,2,Chase+Overview,modality present→chase,Grant;Tobin;Dunn,Grant extractPresent merged into outstanding CAD/999 card,split extract vs audio vs full print,Dunn 999 audio + full print TP
+CAD_999_INVENT_WITHOUT_SOURCE,OPEN,2,Court/Overview,invent,volume+Arden TN,no CAD invent on robbery without source,keep source-gate; no extract→audio invent,Dunn/Patel/Grant CAD TP
+PHONE_DOWNLOAD_MIDSTATE_MUTE_OR_SPLIT,OPEN,3,Papers/Chase,mute/mid-state,Grant;Tobin,logical download summary only,mid-state wording,Brookes TP + Arden TN
+PAPERS_COLLAPSED_NO_DOC_INVENTORY,OPEN,4,Papers,surface mute,all 8 gym,Control Room + MORE PAPERS DETAIL UNAVAILABLE,shared projection only no redesign,N/A
+CLIENT_TAB_EQUALS_COURT_CONTROL_ROOM,OPEN,4,Client=Court,surface/projection,Arden;Brookes;Trap,Client snippet = SAFE COURT LINE,client-safe projection root,distinct client account when sourced
+HEARING_DATE_USED_AS_OPERATIONAL_DEADLINE,OPEN,5,Chase deadline,date-role,Ahmed;Brookes;Dunn;Grant,Chase Deadline reuses Hearing date passed,separate listing vs chase deadline,header listing labels stay true
+SUBSCRIBER_MUTE_AND_INVENT_BOTH_WAYS,OPEN,6,Chase,mute+invent,Brookes;Ahmed mute;Trap invent,Brookes subscriber not served muted; Trap invents,source-gate both ways,Brookes TP + Trap TN
+STILLS_SERVED_PROMOTED_TO_CCTV_MASTER,OPEN,7,Papers+Chase,invent,Dunn,stills served; no master on MG6 outstanding,cctv_master requires master language,Arden/Patel master TP; Trap TN

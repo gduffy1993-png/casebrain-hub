@@ -1,0 +1,207 @@
+{
+  "case_key": "RP-04-VALE039",
+  "ok": true,
+  "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-001-050-v3\\pdfs\\CB-TB-039_Vale.pdf",
+  "pdf_sha256": "060c72f60892540944d75ef146121c003f0f10d506297126c51b09bf253f5c14",
+  "page_count": 13,
+  "char_count": 8311,
+  "term_hits": {
+    "CCTV": 5,
+    "continuity": 7,
+    "\\bCAD\\b": 1,
+    "interview": 11,
+    "transcript": 6,
+    "property": 1,
+    "MG6": 7,
+    "MG11": 5,
+    "identification": 1,
+    "BWV": 1,
+    "custody": 11,
+    "hearing": 2,
+    "PTPH": 2
+  },
+  "term_excerpts": {
+    "CCTV": [
+      {
+        "page": 7,
+        "excerpt": "ted / not served on current papers O2 Youth offending team note Outstanding Requested / not served on current papers O3 CCTV full export Outstanding Requested / not served on current papers Schedule note The schedule is used to identify served and outstanding material. A summary refe"
+      },
+      {
+        "page": 8,
+        "excerpt": "ate adult present; vulnerability in custody record Chase list - Full interview transcript - Youth offending team note - CCTV full export Ref: CB-TB-039 | Case papers | Page 8 Served papers only - subject to disclosure updates"
+      },
+      {
+        "page": 9,
+        "excerpt": "age EX/02 MG5 summary Served Check continuity / source page AB/2 MG11 complainant Served Check continuity / source page CCTV/3 Full interview transcript Outstanding Check continuity / source page BWV/4 Youth offending team note Outstanding Check continuity / source page MG/5 CCTV ful"
+      },
+      {
+        "page": 9,
+        "excerpt": "standing Check continuity / source page BWV/4 Youth offending team note Outstanding Check continuity / source page MG/5 CCTV full export Outstanding Check continuity / source page Ref: CB-TB-039 | Case papers | Page 9 Served papers only - subject to disclosure updates"
+      }
+    ],
+    "continuity": [
+      {
+        "page": 3,
+        "excerpt": "at Marcus Andrew Vale used or threatened force immediately before or at the time of taking property. Identification and continuity of visual material remain important issues on the served papers. Issues for review - Charge and stage should be taken from the charge sheet or later indictment"
+      },
+      {
+        "page": 9,
+        "excerpt": "Exhibit list CB-TB-039 / Vale Exhibit Description Status Comment EX/01 Charge sheet Served Check continuity / source page EX/02 MG5 summary Served Check continuity / source page AB/2 MG11 complainant Served Check continuity / source page CCTV/3 Full interview transcr"
+      },
+      {
+        "page": 9,
+        "excerpt": "ibit Description Status Comment EX/01 Charge sheet Served Check continuity / source page EX/02 MG5 summary Served Check continuity / source page AB/2 MG11 complainant Served Check continuity / source page CCTV/3 Full interview transcript Outstanding Check continuity / source page BWV/4 You"
+      },
+      {
+        "page": 9,
+        "excerpt": "eck continuity / source page EX/02 MG5 summary Served Check continuity / source page AB/2 MG11 complainant Served Check continuity / source page CCTV/3 Full interview transcript Outstanding Check continuity / source page BWV/4 Youth offending team note Outstanding Check continuity / source"
+      }
+    ],
+    "\\bCAD\\b": [
+      {
+        "page": 1,
+        "excerpt": "atus 1 Charge sheet or indictment Included 2 MG5 case summary Included 3 MG11 witness statement(s) Included 4 Custody / CAD / interview material Included 5 MG6 disclosure schedule Included 6 Disclosure update correspondence Included 7 Exhibit list Included 8 Additional statements or"
+      }
+    ],
+    "interview": [
+      {
+        "page": 1,
+        "excerpt": "Charge sheet or indictment Included 2 MG5 case summary Included 3 MG11 witness statement(s) Included 4 Custody / CAD / interview material Included 5 MG6 disclosure schedule Included 6 Disclosure update correspondence Included 7 Exhibit list Included 8 Additional statements or schedules I"
+      },
+      {
+        "page": 3,
+        "excerpt": "e. - Specific issue: Custody record flags learning difficulty and AA present; MG5 does not mention participation issue. Interview / account Interview and participation: custody papers record safeguard details. The full interview record should be checked before relying on any summary wordi"
+      },
+      {
+        "page": 3,
+        "excerpt": "Custody record flags learning difficulty and AA present; MG5 does not mention participation issue. Interview / account Interview and participation: custody papers record safeguard details. The full interview record should be checked before relying on any summary wording. Ref: CB-TB-039 |"
+      },
+      {
+        "page": 3,
+        "excerpt": "participation issue. Interview / account Interview and participation: custody papers record safeguard details. The full interview record should be checked before relying on any summary wording. Ref: CB-TB-039 | Case papers | Page 3 Served papers only - subject to disclosure updates"
+      }
+    ],
+    "transcript": [
+      {
+        "page": 6,
+        "excerpt": "al / detention Recorded on custody extract. Some pages are redacted or not served. Interview Summary only unless a full transcript appears later in the papers. Safeguards Appropriate adult, interpreter or vulnerability notes apply only where shown on the custody page. Current gap Appropria"
+      },
+      {
+        "page": 6,
+        "excerpt": "ult present; vulnerability in custody record PACE / reliability note Do not treat a summary as a verbatim interview. If transcript, audio or safeguard forms are outstanding, the account remains conditional. Ref: CB-TB-039 | Case papers | Page 6 Served papers only - subject to disclosure up"
+      },
+      {
+        "page": 7,
+        "excerpt": "d on or available in served papers S3 MG11 complainant Served Relied on or available in served papers O1 Full interview transcript Outstanding Requested / not served on current papers O2 Youth offending team note Outstanding Requested / not served on current papers O3 CCTV full export Outs"
+      },
+      {
+        "page": 8,
+        "excerpt": "rmed separately. Specific point: Appropriate adult present; vulnerability in custody record Chase list - Full interview transcript - Youth offending team note - CCTV full export Ref: CB-TB-039 | Case papers | Page 8 Served papers only - subject to disclosure updates"
+      }
+    ],
+    "property": [
+      {
+        "page": 3,
+        "excerpt": "on The prosecution case is that Marcus Andrew Vale used or threatened force immediately before or at the time of taking property. Identification and continuity of visual material remain important issues on the served papers. Issues for review - Charge and stage should be taken from the c"
+      }
+    ],
+    "MG6": [
+      {
+        "page": 1,
+        "excerpt": "cluded 2 MG5 case summary Included 3 MG11 witness statement(s) Included 4 Custody / CAD / interview material Included 5 MG6 disclosure schedule Included 6 Disclosure update correspondence Included 7 Exhibit list Included 8 Additional statements or schedules Included Document handlin"
+      },
+      {
+        "page": 2,
+        "excerpt": "losure schedule for served and outstanding material. Service note This page should be read with the MG5 summary and the MG6 schedule. Where wording differs, later formal charge or indictment pages take priority over index descriptions. Ref: CB-TB-039 | Case papers | Page 2 Served pa"
+      },
+      {
+        "page": 3,
+        "excerpt": "ge should be taken from the charge sheet or later indictment. - Served evidence should not be treated as complete where MG6 records outstanding items. - Any contradiction between summary and statement pages should be treated as a live issue. - Specific issue: Custody record flags le"
+      },
+      {
+        "page": 4,
+        "excerpt": "ronically. Statement page served with case papers. Any missing exhibit or continuation page is recorded on the index or MG6 schedule. Ref: CB-TB-039 | Case papers | Page 4 Served papers only - subject to disclosure updates"
+      }
+    ],
+    "MG11": [
+      {
+        "page": 1,
+        "excerpt": "at 10:00 Stage First appearance Tab Document Status 1 Charge sheet or indictment Included 2 MG5 case summary Included 3 MG11 witness statement(s) Included 4 Custody / CAD / interview material Included 5 MG6 disclosure schedule Included 6 Disclosure update correspondence Included 7 Ex"
+      },
+      {
+        "page": 4,
+        "excerpt": "MG11 witness statement CB-TB-039 / Vale URN CB-TB-039/26 Statement of Morgan Ellis Role complainant Age if under 18 Over 18 unless separately stated Date 12 June 20"
+      },
+      {
+        "page": 5,
+        "excerpt": "MG11 witness statement CB-TB-039 / Vale URN CB-TB-039/26 Statement of Priya Shah Role civilian witness Age if under 18 Over 18 unless separately stated Date 12 June"
+      },
+      {
+        "page": 7,
+        "excerpt": "e sheet Served Relied on or available in served papers S2 MG5 summary Served Relied on or available in served papers S3 MG11 complainant Served Relied on or available in served papers O1 Full interview transcript Outstanding Requested / not served on current papers O2 Youth offending"
+      }
+    ],
+    "identification": [
+      {
+        "page": 3,
+        "excerpt": "secution case is that Marcus Andrew Vale used or threatened force immediately before or at the time of taking property. Identification and continuity of visual material remain important issues on the served papers. Issues for review - Charge and stage should be taken from the charge sheet or l"
+      }
+    ],
+    "BWV": [
+      {
+        "page": 9,
+        "excerpt": "inant Served Check continuity / source page CCTV/3 Full interview transcript Outstanding Check continuity / source page BWV/4 Youth offending team note Outstanding Check continuity / source page MG/5 CCTV full export Outstanding Check continuity / source page Ref: CB-TB-039 | Case p"
+      }
+    ],
+    "custody": [
+      {
+        "page": 1,
+        "excerpt": "ocument Status 1 Charge sheet or indictment Included 2 MG5 case summary Included 3 MG11 witness statement(s) Included 4 Custody / CAD / interview material Included 5 MG6 disclosure schedule Included 6 Disclosure update correspondence Included 7 Exhibit list Included 8 Additional stateme"
+      },
+      {
+        "page": 3,
+        "excerpt": "ing items. - Any contradiction between summary and statement pages should be treated as a live issue. - Specific issue: Custody record flags learning difficulty and AA present; MG5 does not mention participation issue. Interview / account Interview and participation: custody papers reco"
+      },
+      {
+        "page": 3,
+        "excerpt": "g difficulty and AA present; MG5 does not mention participation issue. Interview / account Interview and participation: custody papers record safeguard details. The full interview record should be checked before relying on any summary wording. Ref: CB-TB-039 | Case papers | Page 3 Serve"
+      },
+      {
+        "page": 4,
+        "excerpt": "and time described in the charge papers. I have been shown only the pages attached to this statement. Important detail: Custody record flags learning difficulty and AA present; MG5 does not mention participation issue. Signature Signed electronically. Statement page served with case pap"
+      }
+    ],
+    "hearing": [
+      {
+        "page": 1,
+        "excerpt": "l statements or schedules Included Document handling note These papers are served case material received for the listed hearing. Any missing material is recorded on the disclosure schedule or correspondence pages. Ref: CB-TB-039 | Case papers | Page 1 Served papers only - subject to dis"
+      },
+      {
+        "page": 2,
+        "excerpt": "Charge sheet / requisition CB-TB-039 / Vale Defendant Marcus Andrew Vale Court Northbridge Youth Court Hearing 02 July 2026 at 10:00 Offence Robbery, contrary to section 8 Theft Act 1968 Particulars / allegation It is alleged that Marcus Andrew Vale committed the offenc"
+      }
+    ],
+    "PTPH": [
+      {
+        "page": 12,
+        "excerpt": "PTPH / directions note CB-TB-039 / Vale PTPH / directions note Current listing details are recorded on the charge or court notice. If an older listing appears elsew"
+      },
+      {
+        "page": 12,
+        "excerpt": "PTPH / directions note CB-TB-039 / Vale PTPH / directions note Current listing details are recorded on the charge or court notice. If an older listing appears elsewhere, the marked current listing should"
+      }
+    ]
+  },
+  "key_pages": {
+    "1": "Case papers index\nCB-TB-039 / Vale\nR v Marcus Andrew Vale\nNorthbridge Youth Court\nMatter ref\nCB-TB-039\nDefendant\nMarcus Andrew Vale\nPrimary charge\nRobbery, contrary to section 8 Theft Act 1968\nCurrent listing\n02 July 2026 at 10:00\nStage\nFirst appearance\nTab\nDocument\nStatus\n1\nCharge sheet or indictment\nIncluded\n2\nMG5 case summary\nIncluded\n3\nMG11 witness statement(s)\nIncluded\n4\nCustody / CAD / interview material\nIncluded\n5\nMG6 disclosure schedule\nIncluded\n6\nDisclosure update correspondence\nIncluded\n7\nExhibit list\nIncluded\n8\nAdditional statements or schedules\nIncluded\nDocument handling note\nThese papers are served case material received for the listed hearing. Any missing material is recorded on the\ndisclosure schedule or correspondence pages.\nRef: CB-TB-039 | Case papers | Page 1\nServed papers only - subject to disclosure updates\n",
+    "2": "Charge sheet / requisition\nCB-TB-039 / Vale\nDefendant\nMarcus Andrew Vale\nCourt\nNorthbridge Youth Court\nHearing\n02 July 2026 at 10:00\nOffence\nRobbery, contrary to section 8 Theft Act 1968\nParticulars / allegation\nIt is alleged that Marcus Andrew Vale committed the offence described above within the court area. The prosecution\nsummary and witness statements should be read with the disclosure schedule for served and outstanding material.\nService note\nThis page should be read with the MG5 summary and the MG6 schedule. Where wording differs, later formal charge\nor indictment pages take priority over index descriptions.\nRef: CB-TB-039 | Case papers | Page 2\nServed papers only - subject to disclosure updates\n",
+    "3": "MG5 case summary\nCB-TB-039 / Vale\nSummary of allegation\nThe prosecution case is that Marcus Andrew Vale used or threatened force immediately before or at the time of taking\nproperty. Identification and continuity of visual material remain important issues on the served papers.\nIssues for review\n- Charge and stage should be taken from the charge sheet or later indictment.\n- Served evidence should not be treated as complete where MG6 records outstanding items.\n- Any contradiction between summary and statement pages should be treated as a live issue.\n- Specific issue: Custody record flags learning difficulty and AA present; MG5 does not mention participation issue.\nInterview / account\nInterview and participation: custody papers record safeguard details. The full interview record should be checked\nbefore relying on any summary wording.\nRef: CB-TB-039 | Case papers | Page 3\nServed papers only - subject to disclosure updates\n",
+    "7": "MG6 disclosure schedule\nCB-TB-039 / Vale\nRef\nItem\nStatus\nNotes\nS1\nCharge sheet\nServed\nRelied on or available in served papers\nS2\nMG5 summary\nServed\nRelied on or available in served papers\nS3\nMG11 complainant\nServed\nRelied on or available in served papers\nO1\nFull interview transcript\nOutstanding\nRequested / not served on current papers\nO2\nYouth offending team note\nOutstanding\nRequested / not served on current papers\nO3\nCCTV full export\nOutstanding\nRequested / not served on current papers\nSchedule note\nThe schedule is used to identify served and outstanding material. A summary reference in MG5 does not make the\nunderlying item served if the schedule records it as outstanding.\nRef: CB-TB-039 | Case papers | Page 7\nServed papers only - subject to disclosure updates\n",
+    "8": "Disclosure update correspondence\nCB-TB-039 / Vale\nEmail / update\nTo: Defence representatives / Court listing office\nFrom: Disclosure officer / case progression unit\nSubject: Service position and outstanding material\nCurrent position: the items marked outstanding on the schedule are not attached to the served set. Any later service\nwill be confirmed separately.\nSpecific point: Appropriate adult present; vulnerability in custody record\nChase list\n- Full interview transcript\n- Youth offending team note\n- CCTV full export\nRef: CB-TB-039 | Case papers | Page 8\nServed papers only - subject to disclosure updates\n",
+    "9": "Exhibit list\nCB-TB-039 / Vale\nExhibit\nDescription\nStatus\nComment\nEX/01\nCharge sheet\nServed\nCheck continuity / source page\nEX/02\nMG5 summary\nServed\nCheck continuity / source page\nAB/2\nMG11 complainant\nServed\nCheck continuity / source page\nCCTV/3\nFull interview transcript\nOutstanding\nCheck continuity / source page\nBWV/4\nYouth offending team note\nOutstanding\nCheck continuity / source page\nMG/5\nCCTV full export\nOutstanding\nCheck continuity / source page\nRef: CB-TB-039 | Case papers | Page 9\nServed papers only - subject to disclosure updates\n",
+    "6": "Custody / interview note\nCB-TB-039 / Vale\nArrival / detention\nRecorded on custody extract. Some pages are redacted or not served.\nInterview\nSummary only unless a full transcript appears later in the papers.\nSafeguards\nAppropriate adult, interpreter or vulnerability notes apply only where shown on the custody page.\nCurrent gap\nAppropriate adult present; vulnerability in custody record\nPACE / reliability note\nDo not treat a summary as a verbatim interview. If transcript, audio or safeguard forms are outstanding, the account\nremains conditional.\nRef: CB-TB-039 | Case papers | Page 6\nServed papers only - subject to disclosure updates\n",
+    "4": "MG11 witness statement\nCB-TB-039 / Vale\nURN\nCB-TB-039/26\nStatement of\nMorgan Ellis\nRole\ncomplainant\nAge if under 18\nOver 18 unless separately stated\nDate\n12 June 2026\nStatement\nI make this statement about the incident involving Marcus Andrew Vale. I understand it may be placed before a court.\nMy account relates to the location and time described in the charge papers. I have been shown only the pages\nattached to this statement.\nImportant detail: Custody record flags learning difficulty and AA present; MG5 does not mention participation issue.\nSignature\nSigned electronically. Statement page served with case papers. Any missing exhibit or continuation page is recorded\non the index or MG6 schedule.\nRef: CB-TB-039 | Case papers | Page 4\nServed papers only - subject to disclosure updates\n",
+    "12": "PTPH / directions note\nCB-TB-039 / Vale\nPTPH / directions note\nCurrent listing details are recorded on the charge or court notice. If an older listing appears elsewhere, the marked\ncurrent listing should be used.\nAny trial directions depend on service of the outstanding material.\nRef: CB-TB-039 | Case papers | Page 12\nServed papers only - subject to disclosure updates\n"
+  },
+  "first_page_preview": "Case papers index\nCB-TB-039 / Vale\nR v Marcus Andrew Vale\nNorthbridge Youth Court\nMatter ref\nCB-TB-039\nDefendant\nMarcus Andrew Vale\nPrimary charge\nRobbery, contrary to section 8 Theft Act 1968\nCurrent listing\n02 July 2026 at 10:00\nStage\nFirst appearance\nTab\nDocument\nStatus\n1\nCharge sheet or indictment\nIncluded\n2\nMG5 case summary\nIncluded\n3\nMG11 witness statement(s)\nIncluded\n4\nCustody / CAD / interview material\nIncluded\n5\nMG6 disclosure schedule\nIncluded\n6\nDisclosure update correspondence\nIncluded\n7\nExhibit list\nIncluded\n8\nAdditional statements or schedules\nIncluded\nDocument handling note\nThese papers are served case material received for the listed hearing. Any missing material is recorded on the\ndisclosure schedule or correspondence pages.\nRef: CB-TB-039 | Case papers | Page 1\nServed pape"
+}

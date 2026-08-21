@@ -192,6 +192,7 @@ function buildEvidenceGapsSection(
   chase: DisclosureChaseBrief,
   matterConfidence: MatterConfidenceResult | null,
   doNotOverstate: string[],
+  bundleText?: string | null,
   evidenceRowsOverride?: import("@/lib/criminal/five-answers/types").FiveAnswersEvidenceRow[],
 ): ExportPackSection {
   const five = buildFiveAnswersView({
@@ -200,6 +201,7 @@ function buildEvidenceGapsSection(
     chase,
     matterConfidence,
     doNotOverstate,
+    bundleText: bundleText ?? undefined,
     evidenceRowsOverride,
   });
 
@@ -285,10 +287,9 @@ export type BuildExportPackInput = {
   matterReference?: string | null;
   /** Extra text scanned for a URN from the papers (bundle / charge sheet extract). */
   urnCandidateTexts?: string[];
-  /**
-   * Canonical evidence authority (same contract as buildFiveAnswersView).
-   * Required on production solicitor paths so Export Pack cannot rebuild evidence from chase.
-   */
+  /** PDF/source hay for truth-map expansion — never invent phone gaps from do-not-overstate alone. */
+  bundleText?: string | null;
+  /** Canonical evidence rows when live — do not rebuild gaps from Chase alone. */
   evidenceRowsOverride?: import("@/lib/criminal/five-answers/types").FiveAnswersEvidenceRow[];
 };
 
@@ -307,6 +308,8 @@ export function buildExportPack(input: BuildExportPackInput): ExportPackModel {
     matterUrn = null,
     matterReference = null,
     urnCandidateTexts = [],
+    bundleText = null,
+    evidenceRowsOverride,
   } = input;
 
   const resolvedUrn =
@@ -338,7 +341,8 @@ export function buildExportPack(input: BuildExportPackInput): ExportPackModel {
     chase,
     matterConfidence,
     doNotOverstate,
-    input.evidenceRowsOverride,
+    bundleText ?? urnCandidateTexts.join("\n"),
+    evidenceRowsOverride,
   );
   const doNot = buildDoNotOverstateSection(doNotOverstate);
 

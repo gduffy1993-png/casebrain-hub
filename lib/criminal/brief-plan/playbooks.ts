@@ -34,7 +34,7 @@ export const CRIMINAL_BRIEF_PLAYBOOKS: Record<CriminalBriefPlanProfile, Criminal
   custody_pace: {
     id: "custody_pace",
     commonIssues: ["PACE safeguards", "custody timing", "interview fairness"],
-    missingMaterial: ["full custody record", "PACE interview recording", "custody risk assessments"],
+    missingMaterial: ["full custody record", "PACE interview material", "custody risk assessments"],
     safeWording: {
       today: "Custody/PACE safeguards cannot be finally assessed until the full custody and interview material is served.",
       summary: "The case requires caution on custody safeguards and interview fairness until source records are reviewed.",
@@ -43,7 +43,9 @@ export const CRIMINAL_BRIEF_PLAYBOOKS: Record<CriminalBriefPlanProfile, Criminal
     risks: ["Extract-only custody records may hide timing or safeguard issues."],
     opportunities: ["Preserve PACE/safeguard points until the full record is served."],
     doNotOverstate: ["Do not say safeguards were followed from an extract-only custody record."],
-    chaseTemplates: ["Full custody record, detention log, risk assessment, and interview recording."],
+    // Do not bake "interview recording" into the template — that invents recording modality from
+    // PACE/custody alone (Court C0.5/C1). Recording/transcript chase only when PDF establishes it.
+    chaseTemplates: ["Full custody record, detention log, and risk assessment."],
     clientSafeStyle: "Explain that custody fairness is being checked, not assumed.",
   },
   domestic_harassment: {
@@ -64,7 +66,7 @@ export const CRIMINAL_BRIEF_PLAYBOOKS: Record<CriminalBriefPlanProfile, Criminal
   drugs_pwits: {
     id: "drugs_pwits",
     commonIssues: ["possession", "knowledge", "intent", "continuity", "phone attribution"],
-    missingMaterial: ["drug continuity", "lab report", "phone download", "search record"],
+    missingMaterial: ["drug continuity", "lab report", "phone attribution material", "search record"],
     safeWording: {
       today: "Possession, knowledge, intent and continuity remain provisional pending served drug/source material.",
       summary: "The case turns on possession, intent, continuity and any phone/search attribution evidence.",
@@ -73,6 +75,8 @@ export const CRIMINAL_BRIEF_PLAYBOOKS: Record<CriminalBriefPlanProfile, Criminal
     risks: ["Served phone/search material may strengthen possession or intent once reviewed."],
     opportunities: ["Challenge continuity, knowledge, intent and attribution gaps."],
     doNotOverstate: ["Do not rely on drug continuity unless lab/continuity material is served."],
+    // Do not bake "phone download" into missingMaterial — SIM/IMEI/subscriber alone must not
+    // invent Full phone download (Court invent_phone). Attribution chase stays PDF-gated.
     chaseTemplates: ["Lab report, continuity logs, search record, phone attribution material."],
     clientSafeStyle: "Explain that intent is not assumed from charge wording alone.",
   },

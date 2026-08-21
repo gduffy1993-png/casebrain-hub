@@ -593,7 +593,15 @@ function extractDisclosureFromText(input: ExtractInput): CriminalDisclosureExtra
   const missingItems: string[] = [];
   if (mg6a === "not_served") missingItems.push("MG6A disclosure schedule");
   if (mg6c === "not_served") missingItems.push("MG6C unused material schedule");
-  if (/cctv/i.test(t) && /not served|missing|clip only/i.test(t)) missingItems.push("CCTV (full window + native export + continuity)");
+  // Require affirmative master/full-window language in the same outstanding clause —
+  // document-wide "CCTV" + unrelated "not served" (e.g. BWV) must not invent full window.
+  if (
+    /(?:full\s+cctv\s+master|cctv\s+master|master\s+footage|full\s*(?:time\s+)?window)[^\n]{0,80}(?:not served|missing|outstanding|incomplete)|(?:not served|missing|outstanding|incomplete)[^\n]{0,80}(?:full\s+cctv\s+master|cctv\s+master|master\s+footage|full\s*(?:time\s+)?window)/i.test(
+      input.text,
+    )
+  ) {
+    missingItems.push("CCTV (full window + native export + continuity)");
+  }
   if (/bwv|body worn/i.test(t) && /not served|missing/i.test(t)) missingItems.push("BWV (full)");
   if (/999/i.test(t) && /not served|missing/i.test(t)) missingItems.push("999 audio + CAD log");
   if (/custody record/i.test(t) && /not served|missing/i.test(t)) missingItems.push("Custody record");

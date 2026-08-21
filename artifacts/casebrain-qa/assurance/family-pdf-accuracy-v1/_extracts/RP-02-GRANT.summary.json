@@ -1,0 +1,221 @@
+{
+  "case_key": "RP-02-GRANT",
+  "ok": true,
+  "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-1601-1700-v5-chaos\\pdfs\\CB-TB-1681_Grant.pdf",
+  "pdf_sha256": "cccf70b339ec74c4ff839c7d982b3306570cf6abfa843abf5f6dcae95bc650a0",
+  "page_count": 8,
+  "char_count": 4347,
+  "term_hits": {
+    "CCTV": 1,
+    "continuity": 1,
+    "\\bCAD\\b": 2,
+    "999": 2,
+    "interview": 6,
+    "recording": 1,
+    "transcript": 3,
+    "phone": 1,
+    "download": 2,
+    "extraction": 1,
+    "subscriber": 2,
+    "MG6": 2,
+    "MG11": 5,
+    "unused": 1,
+    "BWV": 3,
+    "custody": 3,
+    "hearing": 4
+  },
+  "term_excerpts": {
+    "CCTV": [
+      {
+        "page": 3,
+        "excerpt": "esent papers do not contain a complete extraction report. Issues for review - phone attribution - Review whether listed CCTV/BWV has been served - Confirm whether all MG11 statements are final signed copies - Check interview material against any summary relied upon"
+      }
+    ],
+    "continuity": [
+      {
+        "page": 5,
+        "excerpt": "Caution Handset A Recovered near sofa Ownership not finally proved SIM/IMEI Partial subscriber return Read with officer continuity Download Logical download summary only Full report not in this section"
+      }
+    ],
+    "\\bCAD\\b": [
+      {
+        "page": 1,
+        "excerpt": "G11 officer / continuation Present 6 Digital / handset note Present 7 Custody / interview note Listed - not in papers 8 CAD / 999 extract Present 9 MG6 disclosure schedule Present 10 Disclosure email / update Present Note: documents marked as listed but not in papers are not enclose"
+      },
+      {
+        "page": 7,
+        "excerpt": "CB-TB-1681 / Page 7 Police papers - disclosure copy CAD / 999 EXTRACT Time Entry Operator note 0700 Suspect description updated See separate log 0706 Caller recontacted Further details requested 0712 Officer arrival"
+      }
+    ],
+    "999": [
+      {
+        "page": 1,
+        "excerpt": "ficer / continuation Present 6 Digital / handset note Present 7 Custody / interview note Listed - not in papers 8 CAD / 999 extract Present 9 MG6 disclosure schedule Present 10 Disclosure email / update Present Note: documents marked as listed but not in papers are not enclosed with"
+      },
+      {
+        "page": 7,
+        "excerpt": "CB-TB-1681 / Page 7 Police papers - disclosure copy CAD / 999 EXTRACT Time Entry Operator note 0700 Suspect description updated See separate log 0706 Caller recontacted Further details requested 0712 Officer arrival recor"
+      }
+    ],
+    "interview": [
+      {
+        "page": 1,
+        "excerpt": "ess statement Listed - not in papers 5 MG11 officer / continuation Present 6 Digital / handset note Present 7 Custody / interview note Listed - not in papers 8 CAD / 999 extract Present 9 MG6 disclosure schedule Present 10 Disclosure email / update Present Note: documents marked as listed"
+      },
+      {
+        "page": 3,
+        "excerpt": "- Review whether listed CCTV/BWV has been served - Confirm whether all MG11 statements are final signed copies - Check interview material against any summary relied upon"
+      },
+      {
+        "page": 6,
+        "excerpt": "CB-TB-1681 / Page 6 Police papers - disclosure copy CUSTODY / INTERVIEW NOTE Field Entry Defendant Vincent Grant Arrest time 15:15 Rights and entitlements Recorded as given Interview Summary provided; full transcript outstanding Ob"
+      },
+      {
+        "page": 6,
+        "excerpt": "USTODY / INTERVIEW NOTE Field Entry Defendant Vincent Grant Arrest time 15:15 Rights and entitlements Recorded as given Interview Summary provided; full transcript outstanding Observation note [REDACTED] - section omitted in copy provided The interview note is not a verbatim transcript un"
+      }
+    ],
+    "recording": [
+      {
+        "page": 7,
+        "excerpt": "d Further details requested 0712 Officer arrival recorded Initial call only 0712 Call received from member of public No recording attached"
+      }
+    ],
+    "transcript": [
+      {
+        "page": 6,
+        "excerpt": "ry Defendant Vincent Grant Arrest time 15:15 Rights and entitlements Recorded as given Interview Summary provided; full transcript outstanding Observation note [REDACTED] - section omitted in copy provided The interview note is not a verbatim transcript unless separately served."
+      },
+      {
+        "page": 6,
+        "excerpt": "nscript outstanding Observation note [REDACTED] - section omitted in copy provided The interview note is not a verbatim transcript unless separately served."
+      },
+      {
+        "page": 8,
+        "excerpt": "re copy MG6 / DISCLOSURE SCHEDULE Item Description Status Notes M1 Forensic submission note Served See tab M2 Interview transcript Served See tab M3 BWV booking-in clip Served Copy enclosed M4 Custody record Served See tab M5 Unused note Served Copy enclosed M6 MG11 complainant Listed not"
+      }
+    ],
+    "phone": [
+      {
+        "page": 3,
+        "excerpt": "messages and handset material, but the present papers do not contain a complete extraction report. Issues for review - phone attribution - Review whether listed CCTV/BWV has been served - Confirm whether all MG11 statements are final signed copies - Check interview material against a"
+      }
+    ],
+    "download": [
+      {
+        "page": 5,
+        "excerpt": "dset A Recovered near sofa Ownership not finally proved SIM/IMEI Partial subscriber return Read with officer continuity Download Logical download summary only Full report not in this section"
+      },
+      {
+        "page": 5,
+        "excerpt": "near sofa Ownership not finally proved SIM/IMEI Partial subscriber return Read with officer continuity Download Logical download summary only Full report not in this section"
+      }
+    ],
+    "extraction": [
+      {
+        "page": 3,
+        "excerpt": "been fully recorded. Officers refer to messages and handset material, but the present papers do not contain a complete extraction report. Issues for review - phone attribution - Review whether listed CCTV/BWV has been served - Confirm whether all MG11 statements are final signed copies -"
+      }
+    ],
+    "subscriber": [
+      {
+        "page": 5,
+        "excerpt": "ERIAL / HANDSET NOTE Device Finding Caution Handset A Recovered near sofa Ownership not finally proved SIM/IMEI Partial subscriber return Read with officer continuity Download Logical download summary only Full report not in this section"
+      },
+      {
+        "page": 8,
+        "excerpt": "py M8 Seizure log Listed not enclosed Disclosure request pending M9 BWV PC Khan Requested Not served with this copy M10 Subscriber check Requested Disclosure request pending"
+      }
+    ],
+    "MG6": [
+      {
+        "page": 1,
+        "excerpt": "resent 6 Digital / handset note Present 7 Custody / interview note Listed - not in papers 8 CAD / 999 extract Present 9 MG6 disclosure schedule Present 10 Disclosure email / update Present Note: documents marked as listed but not in papers are not enclosed with this copy."
+      },
+      {
+        "page": 8,
+        "excerpt": "CB-TB-1681 / Page 8 Police papers - disclosure copy MG6 / DISCLOSURE SCHEDULE Item Description Status Notes M1 Forensic submission note Served See tab M2 Interview transcript Served See tab M3 BWV booking-in clip Se"
+      }
+    ],
+    "MG11": [
+      {
+        "page": 1,
+        "excerpt": "ndex Tab Document Status 1 Cover and index Present 2 Charge sheet / written charge Present 3 MG5 case summary Present 4 MG11 witness statement Listed - not in papers 5 MG11 officer / continuation Present 6 Digital / handset note Present 7 Custody / interview note Listed - not in pape"
+      },
+      {
+        "page": 1,
+        "excerpt": "nt 2 Charge sheet / written charge Present 3 MG5 case summary Present 4 MG11 witness statement Listed - not in papers 5 MG11 officer / continuation Present 6 Digital / handset note Present 7 Custody / interview note Listed - not in papers 8 CAD / 999 extract Present 9 MG6 disclosure"
+      },
+      {
+        "page": 3,
+        "excerpt": "on report. Issues for review - phone attribution - Review whether listed CCTV/BWV has been served - Confirm whether all MG11 statements are final signed copies - Check interview material against any summary relied upon"
+      },
+      {
+        "page": 8,
+        "excerpt": "tab M3 BWV booking-in clip Served Copy enclosed M4 Custody record Served See tab M5 Unused note Served Copy enclosed M6 MG11 complainant Listed not enclosed Disclosure request pending M7 MG11 officer Requested Not served with this copy M8 Seizure log Listed not enclosed Disclosure re"
+      }
+    ],
+    "unused": [
+      {
+        "page": 8,
+        "excerpt": "M2 Interview transcript Served See tab M3 BWV booking-in clip Served Copy enclosed M4 Custody record Served See tab M5 Unused note Served Copy enclosed M6 MG11 complainant Listed not enclosed Disclosure request pending M7 MG11 officer Requested Not served with this copy M8 Seizure log"
+      }
+    ],
+    "BWV": [
+      {
+        "page": 3,
+        "excerpt": "papers do not contain a complete extraction report. Issues for review - phone attribution - Review whether listed CCTV/BWV has been served - Confirm whether all MG11 statements are final signed copies - Check interview material against any summary relied upon"
+      },
+      {
+        "page": 8,
+        "excerpt": "DULE Item Description Status Notes M1 Forensic submission note Served See tab M2 Interview transcript Served See tab M3 BWV booking-in clip Served Copy enclosed M4 Custody record Served See tab M5 Unused note Served Copy enclosed M6 MG11 complainant Listed not enclosed Disclosure re"
+      },
+      {
+        "page": 8,
+        "excerpt": "ng M7 MG11 officer Requested Not served with this copy M8 Seizure log Listed not enclosed Disclosure request pending M9 BWV PC Khan Requested Not served with this copy M10 Subscriber check Requested Disclosure request pending"
+      }
+    ],
+    "custody": [
+      {
+        "page": 1,
+        "excerpt": "MG11 witness statement Listed - not in papers 5 MG11 officer / continuation Present 6 Digital / handset note Present 7 Custody / interview note Listed - not in papers 8 CAD / 999 extract Present 9 MG6 disclosure schedule Present 10 Disclosure email / update Present Note: documents mark"
+      },
+      {
+        "page": 6,
+        "excerpt": "CB-TB-1681 / Page 6 Police papers - disclosure copy CUSTODY / INTERVIEW NOTE Field Entry Defendant Vincent Grant Arrest time 15:15 Rights and entitlements Recorded as given Interview Summary provided; full transcript ou"
+      },
+      {
+        "page": 8,
+        "excerpt": "ic submission note Served See tab M2 Interview transcript Served See tab M3 BWV booking-in clip Served Copy enclosed M4 Custody record Served See tab M5 Unused note Served Copy enclosed M6 MG11 complainant Listed not enclosed Disclosure request pending M7 MG11 officer Requested Not serv"
+      }
+    ],
+    "hearing": [
+      {
+        "page": 1,
+        "excerpt": "with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971 Listing Court: Northbridge Magistrates' Court Hearing: 21 June 2026 at 11:00 Stage Appeal papers Bundle index Tab Document Status 1 Cover and index Present 2 Charge sheet / written charge Present 3 MG5 case summar"
+      },
+      {
+        "page": 2,
+        "excerpt": "ice papers - disclosure copy CHARGE SHEET / WRITTEN CHARGE Defendant Vincent Grant Court Northbridge Magistrates' Court Hearing Hearing21 June 2026 at 11:00 Offence Possession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971 Partic"
+      },
+      {
+        "page": 2,
+        "excerpt": "rs - disclosure copy CHARGE SHEET / WRITTEN CHARGE Defendant Vincent Grant Court Northbridge Magistrates' Court Hearing Hearing21 June 2026 at 11:00 Offence Possession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971 Particulars On"
+      },
+      {
+        "page": 2,
+        "excerpt": "7 May 2026 at Minsterford, the defendant is alleged to have committed the offence described above. Authorised for first hearing / case progression. This page may be read with later summaries and schedules where updated material has been served."
+      }
+    ]
+  },
+  "key_pages": {
+    "1": "CB-TB-1681 / Page 1\nPolice papers - disclosure copy\nPROSECUTION PAPERS - DEFENCE COPY\nURN: NB26/1681 &nbsp;&nbsp; Case: R v Vincent Grant\nMatter details\nDefendant: Vincent Grant DOB: 02/01/1993\nOffence\nPossession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971\nListing\nCourt: Northbridge Magistrates' Court Hearing: 21 June 2026 at 11:00\nStage\nAppeal papers\nBundle index\nTab\nDocument\nStatus\n1\nCover and index\nPresent\n2\nCharge sheet / written charge\nPresent\n3\nMG5 case summary\nPresent\n4\nMG11 witness statement\nListed - not in papers\n5\nMG11 officer / continuation\nPresent\n6\nDigital / handset note\nPresent\n7\nCustody / interview note\nListed - not in papers\n8\nCAD / 999 extract\nPresent\n9\nMG6 disclosure schedule\nPresent\n10\nDisclosure email / update\nPresent\nNote: documents marked as listed but not in papers are not enclosed with this copy.\n",
+    "2": "CB-TB-1681 / Page 2\nPolice papers - disclosure copy\nCHARGE SHEET / WRITTEN CHARGE\nDefendant\nVincent Grant\nCourt\nNorthbridge Magistrates' Court\nHearing\nHearing21 June 2026 at 11:00\nOffence\nPossession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971\nParticulars\nOn 7 May 2026 at Minsterford, the defendant is alleged to have committed the offence described above.\nAuthorised for first hearing / case progression. This page may be read with later summaries and schedules where updated material has been served.\n",
+    "3": "CB-TB-1681 / Page 3\nPolice papers - disclosure copy\nMG5 - CASE SUMMARY\nURN\nNB26/792423\nDefendant\nVincent Grant\nAnticipated plea\nNot indicated\nCourt stage\nAppeal papers\nPolice allege that on 12/05/2026 at Minsterford, Vincent Grant was involved in an incident concerning Omar Iqbal. The prosecution summary relies on\nwitness account, officer attendance and material listed on the disclosure schedule. The defence position has not been fully recorded. Officers refer to\nmessages and handset material, but the present papers do not contain a complete extraction report.\nIssues for review\n- phone attribution\n- Review whether listed CCTV/BWV has been served\n- Confirm whether all MG11 statements are final signed copies\n- Check interview material against any summary relied upon\n",
+    "5": "CB-TB-1681 / Page 5\nPolice papers - disclosure copy\nDIGITAL MATERIAL / HANDSET NOTE\nDevice\nFinding\nCaution\nHandset A\nRecovered near sofa\nOwnership not finally proved\nSIM/IMEI\nPartial subscriber return\nRead with officer continuity\nDownload\nLogical download summary only\nFull report not in this section\n",
+    "7": "CB-TB-1681 / Page 7\nPolice papers - disclosure copy\nCAD / 999 EXTRACT\nTime\nEntry\nOperator note\n0700\nSuspect description updated\nSee separate log\n0706\nCaller recontacted\nFurther details requested\n0712\nOfficer arrival recorded\nInitial call only\n0712\nCall received from member of public\nNo recording attached\n",
+    "6": "CB-TB-1681 / Page 6\nPolice papers - disclosure copy\nCUSTODY / INTERVIEW NOTE\nField\nEntry\nDefendant\nVincent Grant\nArrest time\n15:15\nRights and entitlements\nRecorded as given\nInterview\nSummary provided; full transcript outstanding\nObservation note\n[REDACTED] - section omitted in copy provided\nThe interview note is not a verbatim transcript unless separately served.\n",
+    "8": "CB-TB-1681 / Page 8\nPolice papers - disclosure copy\nMG6 / DISCLOSURE SCHEDULE\nItem\nDescription\nStatus\nNotes\nM1\nForensic submission note\nServed\nSee tab\nM2\nInterview transcript\nServed\nSee tab\nM3\nBWV booking-in clip\nServed\nCopy enclosed\nM4\nCustody record\nServed\nSee tab\nM5\nUnused note\nServed\nCopy enclosed\nM6\nMG11 complainant\nListed not enclosed\nDisclosure request pending\nM7\nMG11 officer\nRequested\nNot served with this copy\nM8\nSeizure log\nListed not enclosed\nDisclosure request pending\nM9\nBWV PC Khan\nRequested\nNot served with this copy\nM10\nSubscriber check\nRequested\nDisclosure request pending\n"
+  },
+  "first_page_preview": "CB-TB-1681 / Page 1\nPolice papers - disclosure copy\nPROSECUTION PAPERS - DEFENCE COPY\nURN: NB26/1681 &nbsp;&nbsp; Case: R v Vincent Grant\nMatter details\nDefendant: Vincent Grant DOB: 02/01/1993\nOffence\nPossession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971\nListing\nCourt: Northbridge Magistrates' Court Hearing: 21 June 2026 at 11:00\nStage\nAppeal papers\nBundle index\nTab\nDocument\nStatus\n1\nCover and index\nPresent\n2\nCharge sheet / written charge\nPresent\n3\nMG5 case summary\nPresent\n4\nMG11 witness statement\nListed - not in papers\n5\nMG11 officer / continuation\nPresent\n6\nDigital / handset note\nPresent\n7\nCustody / interview note\nListed - not in papers\n8\nCAD / 999 extract\nPresent\n9\nMG6 disclosure schedule\nPresent\n10\nDisclosure email / update"
+}

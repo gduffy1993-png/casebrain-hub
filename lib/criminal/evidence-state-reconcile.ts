@@ -18,6 +18,8 @@ export type EvidenceModality =
   | "clip_or_still"
   | "bwv"
   | "cad_999"
+  | "cad_extract"
+  | "cad_audio"
   | "custody"
   | "interview"
   | "medical"
@@ -38,6 +40,9 @@ const MODALITY_PATTERNS: Array<{ modality: EvidenceModality; re: RegExp }> = [
   { modality: "master_media", re: /\b(master(?:\s+(?:cctv|footage|export|recording))?|full\s+(?:cctv|footage|video|export))\b/i },
   { modality: "transcript", re: /\btranscript\b/i },
   { modality: "bwv", re: /\b(bwv|body[-\s]?worn)\b/i },
+  // CAD extract ≠ 999 audio (Grant Present extract must not suppress Dunn audio chase).
+  { modality: "cad_extract", re: /\bcad(?:\s*\/\s*999)?(?:\s+incident\s+log)?\s+extract\b|\bcad\s+log\b(?!\s+full\s+print)/i },
+  { modality: "cad_audio", re: /\b999\s+audio\b|\b999\s+call\s+recording\b|\bcall\s+audio\b/i },
   { modality: "cad_999", re: /\b(999|cad|dispatch|control\s*room)\b/i },
   { modality: "custody", re: /\b(custody\s+record|custody\s+log|detention\s+log)\b/i },
   // A qualifier wins over the bare noun: "interview recording" belongs to the
@@ -50,6 +55,7 @@ const MODALITY_PATTERNS: Array<{ modality: EvidenceModality; re: RegExp }> = [
 /**
  * Explicitly permitted modality relationships for service (not wildcards).
  * Generic is never listed — it cannot satisfy a specific request by modality alone.
+ * CAD extract must NOT satisfy 999 audio (and vice versa).
  */
 const PERMITTED_MODALITY_RELATIONSHIPS: ReadonlyArray<readonly [EvidenceModality, EvidenceModality]> = [
   ["interview", "recording"],
@@ -251,6 +257,14 @@ export function shouldSuppressChaseAsAlreadyOnFile(
         // Clips do not prove master served (even if alias-adjacent).
         if (basis !== "exact_or_alias") continue;
         // Exact label match of a clip still does not prove master — clips never satisfy master.
+        continue;
+      }
+      // CAD extract / log does not prove 999 audio (and vice versa).
+      if (
+        (reqMod === "cad_audio" && (rowMod === "cad_extract" || rowMod === "cad_999")) ||
+        (reqMod === "cad_extract" && rowMod === "cad_audio") ||
+        (reqMod === "cad_999" && rowMod === "cad_extract" && /audio|recording/i.test(requestLabel))
+      ) {
         continue;
       }
       if (

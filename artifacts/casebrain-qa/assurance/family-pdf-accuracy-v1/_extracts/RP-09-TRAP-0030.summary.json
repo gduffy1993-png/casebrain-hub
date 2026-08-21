@@ -1,0 +1,102 @@
+{
+  "case_key": "RP-09-TRAP-0030",
+  "ok": true,
+  "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Eval_Regression_Packs_C_D\\CaseBrain_Eval_Regression_Packs_C_D\\Pack_C_Hallucination_Trap\\PDFs\\CB-TRAP-2026-0030.pdf",
+  "pdf_sha256": "cbc1d8d5da2238bb4124df1af92745ae1823be2b491273906e1d03e2f703e7be",
+  "page_count": 3,
+  "char_count": 2899,
+  "term_hits": {
+    "CCTV": 1,
+    "continuity": 1,
+    "interview": 5,
+    "transcript": 1,
+    "MG6": 4,
+    "MG11": 1,
+    "custody": 1,
+    "hearing": 2
+  },
+  "term_excerpts": {
+    "CCTV": [
+      {
+        "page": 3,
+        "excerpt": "ording, MG5 narrative, and any served material actually listed. The case should not be strengthened by assuming missing CCTV, statements, codes, or forensic evidence. DISCLOSURE GAPS - interview record INCONSISTENCIES IDENTIFIED B30/CONFLICT File tension noted on review: MG5 full adm"
+      }
+    ],
+    "continuity": [
+      {
+        "page": 2,
+        "excerpt": "case summary, MG6 disclosure note, Officer statement MG11-OIC-30 (B30/W1). Outstanding/not provided: interview record, continuity / provenance note if relied upon. Note: items described as outstanding are not served. PACE INTERVIEW NOTE B30/INT No PACE interview transcript or summary is p"
+      }
+    ],
+    "interview": [
+      {
+        "page": 2,
+        "excerpt": "30/MG6 Served: MG5 case summary, MG6 disclosure note, Officer statement MG11-OIC-30 (B30/W1). Outstanding/not provided: interview record, continuity / provenance note if relied upon. Note: items described as outstanding are not served. PACE INTERVIEW NOTE B30/INT No PACE interview transcr"
+      },
+      {
+        "page": 2,
+        "excerpt": "nterview record, continuity / provenance note if relied upon. Note: items described as outstanding are not served. PACE INTERVIEW NOTE B30/INT No PACE interview transcript or summary is provided in the supplied papers. Do not infer admission, denial, or no comment account from this absenc"
+      },
+      {
+        "page": 2,
+        "excerpt": "rovenance note if relied upon. Note: items described as outstanding are not served. PACE INTERVIEW NOTE B30/INT No PACE interview transcript or summary is provided in the supplied papers. Do not infer admission, denial, or no comment account from this absence. SCHEDULED EXHIBITS B30/EXH E"
+      },
+      {
+        "page": 3,
+        "excerpt": "he case should not be strengthened by assuming missing CCTV, statements, codes, or forensic evidence. DISCLOSURE GAPS - interview record INCONSISTENCIES IDENTIFIED B30/CONFLICT File tension noted on review: MG5 full admission claim contradicted by no interview record. Separate what is ser"
+      }
+    ],
+    "transcript": [
+      {
+        "page": 2,
+        "excerpt": "note if relied upon. Note: items described as outstanding are not served. PACE INTERVIEW NOTE B30/INT No PACE interview transcript or summary is provided in the supplied papers. Do not infer admission, denial, or no comment account from this absence. SCHEDULED EXHIBITS B30/EXH EX-PH-30 - s"
+      }
+    ],
+    "MG6": [
+      {
+        "page": 2,
+        "excerpt": "Fictional Northshire case papers - no real person, case, or address Page 2 MG6(A) SERVED AND OUTSTANDING B30/MG6 Served: MG5 case summary, MG6 disclosure note, Officer statement MG11-OIC-30 (B30/W1). Outstanding/not provided: interview re"
+      },
+      {
+        "page": 2,
+        "excerpt": "Fictional Northshire case papers - no real person, case, or address Page 2 MG6(A) SERVED AND OUTSTANDING B30/MG6 Served: MG5 case summary, MG6 disclosure note, Officer statement MG11-OIC-30 (B30/W1). Outstanding/not provided: interview record, continuity / provenance note"
+      },
+      {
+        "page": 2,
+        "excerpt": "e case papers - no real person, case, or address Page 2 MG6(A) SERVED AND OUTSTANDING B30/MG6 Served: MG5 case summary, MG6 disclosure note, Officer statement MG11-OIC-30 (B30/W1). Outstanding/not provided: interview record, continuity / provenance note if relied upon. Note: items d"
+      },
+      {
+        "page": 3,
+        "excerpt": "speculative material can be relied upon. Defence position is reserved pending disclosure of the missing items listed in MG6 or the file note. EVIDENCE RELIED UPON B30/ROUTE The prosecution route currently depends on the charge wording, MG5 narrative, and any served material actually"
+      }
+    ],
+    "MG11": [
+      {
+        "page": 2,
+        "excerpt": "r address Page 2 MG6(A) SERVED AND OUTSTANDING B30/MG6 Served: MG5 case summary, MG6 disclosure note, Officer statement MG11-OIC-30 (B30/W1). Outstanding/not provided: interview record, continuity / provenance note if relied upon. Note: items described as outstanding are not served."
+      }
+    ],
+    "custody": [
+      {
+        "page": 2,
+        "excerpt": "e. Alleged incident date is stated in the charge wording. Arrest/voluntary attendance timing is not always supported by custody material."
+      }
+    ],
+    "hearing": [
+      {
+        "page": 1,
+        "excerpt": "ge trial listed in 7 days Police station Northgate Police Station Court Northshire Magistrates Court Status remand Next hearing 18/08/2026 Bundle status Current supplied case papers Fictional Yes BUNDLE COVER Case reference CB-TRAP-NS-2026-0030. Current supplied case papers for this fic"
+      },
+      {
+        "page": 3,
+        "excerpt": ". Separate what is served from what is merely mentioned, awaited, unavailable, or absent. COURT TIMETABLE B30/NEXT Next hearing/date: 18/08/2026. Immediate task is to chase only the specific missing material and record that unsupported material is not safely in the bundle."
+      }
+    ]
+  },
+  "key_pages": {
+    "1": "Fictional Northshire case papers - no real person, case, or address\nPage 1\nCB-TRAP-2026-0030 - Assault by beating - Case papers\nReference: CB-TRAP-NS-2026-0030\nAccused\nLeo Greene DOB 07/07/1990\nStage\ntrial listed in 7 days\nPolice station\nNorthgate Police Station\nCourt\nNorthshire Magistrates Court\nStatus\nremand\nNext hearing\n18/08/2026\nBundle status\nCurrent supplied case papers\nFictional\nYes\nBUNDLE COVER\nCase reference CB-TRAP-NS-2026-0030. Current supplied case papers for this fictional matter.\nCHARGE SHEET EXTRACT\nOn 01/05/2026 at River Walk, Leo Greene is alleged to have assaulted Sonia Vale by beating, namely by pushing and\nstriking them.\nSUMMARY OF FACTS\nB30/MG5 says the officer summary records the allegation in broad terms only. The summary identifies Sonia Vale as\nthe complainant where a complainant is named.\nThe summary records only the evidence actually described in this bundle. Further material should be checked against\nthe disclosure position before it is treated as served.\nThe OIC note should not be treated as proof that unserved material exists in admissible form.\n",
+    "2": "Fictional Northshire case papers - no real person, case, or address\nPage 2\nMG6(A) SERVED AND OUTSTANDING\nB30/MG6 Served: MG5 case summary, MG6 disclosure note, Officer statement MG11-OIC-30 (B30/W1).\nOutstanding/not provided: interview record, continuity / provenance note if relied upon. Note: items described as\noutstanding are not served.\nPACE INTERVIEW NOTE\nB30/INT No PACE interview transcript or summary is provided in the supplied papers. Do not infer admission, denial, or\nno comment account from this absence.\nSCHEDULED EXHIBITS\nB30/EXH EX-PH-30 - still image; EX-NOTE-30 - OIC note. No other exhibit codes are listed.\nEVENT ORDER\nB30/TIME 18/08/2026: next procedural date. Alleged incident date is stated in the charge wording. Arrest/voluntary\nattendance timing is not always supported by custody material.\n",
+    "3": "Fictional Northshire case papers - no real person, case, or address\nPage 3\nINSTRUCTIONS / DEFENCE CASE\nB30/DEF Leo Greene does not accept that unserved or speculative material can be relied upon. Defence position is\nreserved pending disclosure of the missing items listed in MG6 or the file note.\nEVIDENCE RELIED UPON\nB30/ROUTE The prosecution route currently depends on the charge wording, MG5 narrative, and any served material\nactually listed. The case should not be strengthened by assuming missing CCTV, statements, codes, or forensic\nevidence.\nDISCLOSURE GAPS\n- interview record\nINCONSISTENCIES IDENTIFIED\nB30/CONFLICT File tension noted on review: MG5 full admission claim contradicted by no interview record. Separate\nwhat is served from what is merely mentioned, awaited, unavailable, or absent.\nCOURT TIMETABLE\nB30/NEXT Next hearing/date: 18/08/2026. Immediate task is to chase only the specific missing material and record that\nunsupported material is not safely in the bundle.\n"
+  },
+  "first_page_preview": "Fictional Northshire case papers - no real person, case, or address\nPage 1\nCB-TRAP-2026-0030 - Assault by beating - Case papers\nReference: CB-TRAP-NS-2026-0030\nAccused\nLeo Greene DOB 07/07/1990\nStage\ntrial listed in 7 days\nPolice station\nNorthgate Police Station\nCourt\nNorthshire Magistrates Court\nStatus\nremand\nNext hearing\n18/08/2026\nBundle status\nCurrent supplied case papers\nFictional\nYes\nBUNDLE COVER\nCase reference CB-TRAP-NS-2026-0030. Current supplied case papers for this fictional matter.\nCHARGE SHEET EXTRACT\nOn 01/05/2026 at River Walk, Leo Greene is alleged to have assaulted Sonia Vale by beating, namely by pushing and\nstriking them.\nSUMMARY OF FACTS\nB30/MG5 says the officer summary records the allegation in broad terms only. The summary identifies Sonia Vale as\nthe complainant wher"
+}

@@ -1,0 +1,254 @@
+{
+  "case_key": "RP-16-AHMED",
+  "ok": true,
+  "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-1501-1600-v5-factory-run\\pdfs\\CB-TB-1573_Ahmed.pdf",
+  "pdf_sha256": "b7b5f5756a0d6f5bb7877ec996f5e39ead4825bc4f7d2ae891a3ededba8883a6",
+  "page_count": 21,
+  "char_count": 7049,
+  "term_hits": {
+    "CCTV": 7,
+    "export\\s*log": 3,
+    "continuity": 3,
+    "\\bCAD\\b": 3,
+    "999": 3,
+    "interview": 5,
+    "transcript": 3,
+    "ABE": 3,
+    "phone": 2,
+    "subscriber": 1,
+    "MG6": 5,
+    "MG6C": 3,
+    "MG11": 2,
+    "custody": 6,
+    "hearing": 5
+  },
+  "term_excerpts": {
+    "CCTV": [
+      {
+        "page": 4,
+        "excerpt": "I remember seeing Holly Ahmed nearby. My first account was given shortly after the incident. I cannot now see the whole CCTV sequence and I rely on what I personally saw. The person I describe was wearing dark clothing. I gave details to Civilian Witness Tracey Moore. I did not keep"
+      },
+      {
+        "page": 12,
+        "excerpt": "tion Location in papers EX/01 Officer notebook extract included EX/02 Photograph or still image included as description CCTV/3 CCTV export log short note AB/2 Continuity label unclear CB-TB-1573 | Page 12"
+      },
+      {
+        "page": 12,
+        "excerpt": "cation in papers EX/01 Officer notebook extract included EX/02 Photograph or still image included as description CCTV/3 CCTV export log short note AB/2 Continuity label unclear CB-TB-1573 | Page 12"
+      },
+      {
+        "page": 14,
+        "excerpt": "tion Location in papers EX/01 Officer notebook extract included EX/02 Photograph or still image included as description CCTV/3 CCTV export log short note AB/2 Continuity label unclear CB-TB-1573 | Page 14"
+      }
+    ],
+    "export\\s*log": [
+      {
+        "page": 12,
+        "excerpt": "n in papers EX/01 Officer notebook extract included EX/02 Photograph or still image included as description CCTV/3 CCTV export log short note AB/2 Continuity label unclear CB-TB-1573 | Page 12"
+      },
+      {
+        "page": 14,
+        "excerpt": "n in papers EX/01 Officer notebook extract included EX/02 Photograph or still image included as description CCTV/3 CCTV export log short note AB/2 Continuity label unclear CB-TB-1573 | Page 14"
+      },
+      {
+        "page": 17,
+        "excerpt": "n in papers EX/01 Officer notebook extract included EX/02 Photograph or still image included as description CCTV/3 CCTV export log short note AB/2 Continuity label unclear CB-TB-1573 | Page 17"
+      }
+    ],
+    "continuity": [
+      {
+        "page": 12,
+        "excerpt": "otebook extract included EX/02 Photograph or still image included as description CCTV/3 CCTV export log short note AB/2 Continuity label unclear CB-TB-1573 | Page 12"
+      },
+      {
+        "page": 14,
+        "excerpt": "otebook extract included EX/02 Photograph or still image included as description CCTV/3 CCTV export log short note AB/2 Continuity label unclear CB-TB-1573 | Page 14"
+      },
+      {
+        "page": 17,
+        "excerpt": "otebook extract included EX/02 Photograph or still image included as description CCTV/3 CCTV export log short note AB/2 Continuity label unclear CB-TB-1573 | Page 17"
+      }
+    ],
+    "\\bCAD\\b": [
+      {
+        "page": 7,
+        "excerpt": "included 3 search record outstanding requested 4 reasonable excuse outstanding needed before final position 5 complete CAD/999 log outstanding not attached CB-TB-1573 | Page 7"
+      },
+      {
+        "page": 10,
+        "excerpt": "included 3 search record outstanding requested 4 reasonable excuse outstanding needed before final position 5 complete CAD/999 log outstanding not attached CB-TB-1573 | Page 10"
+      },
+      {
+        "page": 20,
+        "excerpt": "included 3 search record outstanding requested 4 reasonable excuse outstanding needed before final position 5 complete CAD/999 log outstanding not attached CB-TB-1573 | Page 20"
+      }
+    ],
+    "999": [
+      {
+        "page": 7,
+        "excerpt": "luded 3 search record outstanding requested 4 reasonable excuse outstanding needed before final position 5 complete CAD/999 log outstanding not attached CB-TB-1573 | Page 7"
+      },
+      {
+        "page": 10,
+        "excerpt": "luded 3 search record outstanding requested 4 reasonable excuse outstanding needed before final position 5 complete CAD/999 log outstanding not attached CB-TB-1573 | Page 10"
+      },
+      {
+        "page": 20,
+        "excerpt": "luded 3 search record outstanding requested 4 reasonable excuse outstanding needed before final position 5 complete CAD/999 log outstanding not attached CB-TB-1573 | Page 20"
+      }
+    ],
+    "interview": [
+      {
+        "page": 1,
+        "excerpt": "e Prosecutor ref NPS/6743/2026 Tab Document Pages 1 Charge sheet 2 2 MG5 case summary 3 3 Additional MG11 statement 4 4 Interview summary 5 5 Custody record extract 6 6 MG6 disclosure schedule 7 7 Redacted custody note 8 8 Late disclosure email 9 9 Further schedule page 10 10 Forensic or"
+      },
+      {
+        "page": 3,
+        "excerpt": "ved material MG5 summary; charge sheet; one MG11 statement Material still needed search record; reasonable excuse; full interview transcript Review point hearing notice and older MG5 carry different dates CB-TB-1573 | Page 3"
+      },
+      {
+        "page": 5,
+        "excerpt": "INTERVIEW SUMMARY The summary records that Holly Ahmed answered questions about presence at New Cross Parade. The summary is not a full transcript. It refers to a reply"
+      },
+      {
+        "page": 6,
+        "excerpt": "ECORD EXTRACT Custody no. C51909 Time Entry 13:04 Arrival and risk assessment opened 13:22 Legal advice requested 10:05 Interview proposed 10:34 Appropriate adult / interpreter entry unclear CB-TB-1573 | Page 6"
+      }
+    ],
+    "transcript": [
+      {
+        "page": 3,
+        "excerpt": "al MG5 summary; charge sheet; one MG11 statement Material still needed search record; reasonable excuse; full interview transcript Review point hearing notice and older MG5 carry different dates CB-TB-1573 | Page 3"
+      },
+      {
+        "page": 5,
+        "excerpt": "Y The summary records that Holly Ahmed answered questions about presence at New Cross Parade. The summary is not a full transcript. It refers to a reply about ownership or involvement, but the full question and answer sequence is not included. Tape / digital ref INT/1573/A Transcript Not i"
+      },
+      {
+        "page": 5,
+        "excerpt": "bout ownership or involvement, but the full question and answer sequence is not included. Tape / digital ref INT/1573/A Transcript Not in this section Solicitor present Not clearly recorded CB-TB-1573 | Page 5"
+      }
+    ],
+    "ABE": [
+      {
+        "page": 12,
+        "excerpt": "act included EX/02 Photograph or still image included as description CCTV/3 CCTV export log short note AB/2 Continuity label unclear CB-TB-1573 | Page 12"
+      },
+      {
+        "page": 14,
+        "excerpt": "act included EX/02 Photograph or still image included as description CCTV/3 CCTV export log short note AB/2 Continuity label unclear CB-TB-1573 | Page 14"
+      },
+      {
+        "page": 17,
+        "excerpt": "act included EX/02 Photograph or still image included as description CCTV/3 CCTV export log short note AB/2 Continuity label unclear CB-TB-1573 | Page 17"
+      }
+    ],
+    "phone": [
+      {
+        "page": 4,
+        "excerpt": "s wearing dark clothing. I gave details to Civilian Witness Tracey Moore. I did not keep the original note I made on my phone. This statement is true to the best of my knowledge and belief. Signed Date CB-TB-1573 | Page 4"
+      },
+      {
+        "page": 13,
+        "excerpt": "et served included 3 search record outstanding requested 4 reasonable excuse outstanding needed before final position 5 phone subscriber data outstanding not attached CB-TB-1573 | Page 13"
+      }
+    ],
+    "subscriber": [
+      {
+        "page": 13,
+        "excerpt": "ved included 3 search record outstanding requested 4 reasonable excuse outstanding needed before final position 5 phone subscriber data outstanding not attached CB-TB-1573 | Page 13"
+      }
+    ],
+    "MG6": [
+      {
+        "page": 1,
+        "excerpt": "1 Charge sheet 2 2 MG5 case summary 3 3 Additional MG11 statement 4 4 Interview summary 5 5 Custody record extract 6 6 MG6 disclosure schedule 7 7 Redacted custody note 8 8 Late disclosure email 9 9 Further schedule page 10 10 Forensic or medical note 11 11 Exhibit list continuatio"
+      },
+      {
+        "page": 7,
+        "excerpt": "MG6 DISCLOSURE SCHEDULE Item Description Status Note 1 MG5 case summary served included 2 Charge sheet served included 3 search record outstanding requested 4 reas"
+      },
+      {
+        "page": 10,
+        "excerpt": "MG6C / DISCLOSURE UPDATE Item Description Status Note 1 MG5 case summary served included 2 Charge sheet served included 3 search record outstanding requested 4 rea"
+      },
+      {
+        "page": 13,
+        "excerpt": "MG6C / DISCLOSURE UPDATE Item Description Status Note 1 MG5 case summary served included 2 Charge sheet served included 3 search record outstanding requested 4 rea"
+      }
+    ],
+    "MG6C": [
+      {
+        "page": 10,
+        "excerpt": "MG6C / DISCLOSURE UPDATE Item Description Status Note 1 MG5 case summary served included 2 Charge sheet served included 3 search record outstanding requested 4 reas"
+      },
+      {
+        "page": 13,
+        "excerpt": "MG6C / DISCLOSURE UPDATE Item Description Status Note 1 MG5 case summary served included 2 Charge sheet served included 3 search record outstanding requested 4 reas"
+      },
+      {
+        "page": 20,
+        "excerpt": "MG6C / DISCLOSURE UPDATE Item Description Status Note 1 MG5 case summary served included 2 Charge sheet served included 3 search record outstanding requested 4 reas"
+      }
+    ],
+    "MG11": [
+      {
+        "page": 1,
+        "excerpt": "ation Bladed article Prosecutor ref NPS/6743/2026 Tab Document Pages 1 Charge sheet 2 2 MG5 case summary 3 3 Additional MG11 statement 4 4 Interview summary 5 5 Custody record extract 6 6 MG6 disclosure schedule 7 7 Redacted custody note 8 8 Late disclosure email 9 9 Further schedule"
+      },
+      {
+        "page": 3,
+        "excerpt": "00; a later listing page gives 20 July 2026 at 12:30. Issue Current note Served material MG5 summary; charge sheet; one MG11 statement Material still needed search record; reasonable excuse; full interview transcript Review point hearing notice and older MG5 carry different dates CB-"
+      }
+    ],
+    "custody": [
+      {
+        "page": 1,
+        "excerpt": "743/2026 Tab Document Pages 1 Charge sheet 2 2 MG5 case summary 3 3 Additional MG11 statement 4 4 Interview summary 5 5 Custody record extract 6 6 MG6 disclosure schedule 7 7 Redacted custody note 8 8 Late disclosure email 9 9 Further schedule page 10 10 Forensic or medical note 11 11 E"
+      },
+      {
+        "page": 1,
+        "excerpt": "3 3 Additional MG11 statement 4 4 Interview summary 5 5 Custody record extract 6 6 MG6 disclosure schedule 7 7 Redacted custody note 8 8 Late disclosure email 9 9 Further schedule page 10 10 Forensic or medical note 11 11 Exhibit list continuation 12 12 Additional schedule page 13 13 Ex"
+      },
+      {
+        "page": 6,
+        "excerpt": "CUSTODY RECORD EXTRACT Custody no. C51909 Time Entry 13:04 Arrival and risk assessment opened 13:22 Legal advice requested 10:05 Interview proposed 10:34 Appropriate a"
+      },
+      {
+        "page": 6,
+        "excerpt": "CUSTODY RECORD EXTRACT Custody no. C51909 Time Entry 13:04 Arrival and risk assessment opened 13:22 Legal advice requested 10:05 Interview proposed 10:34 Appropriate adult / interpreter entr"
+      }
+    ],
+    "hearing": [
+      {
+        "page": 1,
+        "excerpt": "SECUTION PAPERS - BUNDLE INDEX URN 2026-158201 / Case 26CR31683 Defendant Holly Ahmed Court Crown Court at Preston Next hearing 20 July 2026 at 12:30 Stage Trial prep Primary allegation Bladed article Prosecutor ref NPS/6743/2026 Tab Document Pages 1 Charge sheet 2 2 MG5 case summary 3"
+      },
+      {
+        "page": 1,
+        "excerpt": "e note 15 15 Continuation sheet 16 16 Exhibit list continuation 17 17 Disclosure note 18 The bundle is provided for the hearing listed above. Page numbering follows the papers as received and may include loose continuation pages. CB-TB-1573 | Page 1"
+      },
+      {
+        "page": 2,
+        "excerpt": "bladed article in a public place, contrary to section 139 of the Criminal Justice Act 1988 Court Crown Court at Preston Hearing 20 July 2026 at 12:30 CB-TB-1573 | Page 2"
+      },
+      {
+        "page": 3,
+        "excerpt": "The defendant account is recorded as disputed or not fully available on the current papers. An earlier note mentions a hearing on 27 August 2026 at 9:00; a later listing page gives 20 July 2026 at 12:30. Issue Current note Served material MG5 summary; charge sheet; one MG11 statement M"
+      }
+    ]
+  },
+  "key_pages": {
+    "1": "PROSECUTION PAPERS - BUNDLE INDEX\nURN 2026-158201 / Case 26CR31683\nDefendant\nHolly Ahmed\nCourt\nCrown Court at Preston\nNext hearing\n20 July 2026 at 12:30\nStage\nTrial prep\nPrimary allegation\nBladed article\nProsecutor ref\nNPS/6743/2026\nTab\nDocument\nPages\n1\nCharge sheet\n2\n2\nMG5 case summary\n3\n3\nAdditional MG11 statement\n4\n4\nInterview summary\n5\n5\nCustody record extract\n6\n6\nMG6 disclosure schedule\n7\n7\nRedacted custody note\n8\n8\nLate disclosure email\n9\n9\nFurther schedule page\n10\n10\nForensic or medical note\n11\n11\nExhibit list continuation\n12\n12\nAdditional schedule page\n13\n13\nExhibit list continuation\n14\n14\nDisclosure note\n15\n15\nContinuation sheet\n16\n16\nExhibit list continuation\n17\n17\nDisclosure note\n18\nThe bundle is provided for the hearing listed above. Page numbering follows the papers as received\nand may include loose continuation pages.\nCB-TB-1573 | Page 1\n",
+    "2": "CHARGE SHEET\nCase 26CR31683\nDefendant name\nHolly Ahmed\nDate of birth\n06/02/1997\nAddress\n53 Beech Road, Riverton\nOffence\nPossession of a bladed article in a public place, contrary to section 139 of the Criminal Justice Act 1988\nCourt\nCrown Court at Preston\nHearing\n20 July 2026 at 12:30\nCB-TB-1573 | Page 2\n",
+    "3": "MG5 CASE SUMMARY\nURN 2026-158201\nThe prosecution summary alleges that Holly Ahmed was involved in an incident at New Cross\nParade. The complainant is recorded as Sophie Ward. The summary refers to search record and\nreasonable excuse, but not all material appears in this bundle. The defendant account is\nrecorded as disputed or not fully available on the current papers. An earlier note mentions a\nhearing on 27 August 2026 at 9:00; a later listing page gives 20 July 2026 at 12:30.\nIssue\nCurrent note\nServed material\nMG5 summary; charge sheet; one MG11 statement\nMaterial still needed\nsearch record; reasonable excuse; full interview transcript\nReview point\nhearing notice and older MG5 carry different dates\nCB-TB-1573 | Page 3\n",
+    "4": "WITNESS STATEMENT\nCriminal Justice Act 1967, section 9\nStatement of\nClaire Norris\nAge if under 18\nOver 18\nOccupation\nDate\n14 June 2026\nURN\n2026-158201\nI make this statement about events at New Cross Parade. I remember seeing Holly Ahmed\nnearby. My first account was given shortly after the incident. I cannot now see the whole\nCCTV sequence and I rely on what I personally saw.\nThe person I describe was wearing dark clothing. I gave details to Civilian Witness Tracey\nMoore. I did not keep the original note I made on my phone.\nThis statement is true to the best of my knowledge and belief.\nSigned\nDate\nCB-TB-1573 | Page 4\n",
+    "12": "EXHIBIT LIST\nExhibit\nDescription\nLocation in papers\nEX/01\nOfficer notebook extract\nincluded\nEX/02\nPhotograph or still image\nincluded as description\nCCTV/3\nCCTV export log\nshort note\nAB/2\nContinuity label\nunclear\nCB-TB-1573 | Page 12\n",
+    "14": "EXHIBIT LIST\nExhibit\nDescription\nLocation in papers\nEX/01\nOfficer notebook extract\nincluded\nEX/02\nPhotograph or still image\nincluded as description\nCCTV/3\nCCTV export log\nshort note\nAB/2\nContinuity label\nunclear\nCB-TB-1573 | Page 14\n",
+    "7": "MG6 DISCLOSURE SCHEDULE\nItem\nDescription\nStatus\nNote\n1\nMG5 case summary\nserved\nincluded\n2\nCharge sheet\nserved\nincluded\n3\nsearch record\noutstanding\nrequested\n4\nreasonable excuse\noutstanding\nneeded before final position\n5\ncomplete CAD/999 log\noutstanding\nnot attached\nCB-TB-1573 | Page 7\n",
+    "10": "MG6C / DISCLOSURE UPDATE\nItem\nDescription\nStatus\nNote\n1\nMG5 case summary\nserved\nincluded\n2\nCharge sheet\nserved\nincluded\n3\nsearch record\noutstanding\nrequested\n4\nreasonable excuse\noutstanding\nneeded before final position\n5\ncomplete CAD/999 log\noutstanding\nnot attached\nCB-TB-1573 | Page 10\n",
+    "5": "INTERVIEW SUMMARY\nThe summary records that Holly Ahmed answered questions about presence at New Cross Parade.\nThe summary is not a full transcript. It refers to a reply about ownership or involvement,\nbut the full question and answer sequence is not included.\nTape / digital ref\nINT/1573/A\nTranscript\nNot in this section\nSolicitor present\nNot clearly recorded\nCB-TB-1573 | Page 5\n",
+    "13": "MG6C / DISCLOSURE UPDATE\nItem\nDescription\nStatus\nNote\n1\nMG5 case summary\nserved\nincluded\n2\nCharge sheet\nserved\nincluded\n3\nsearch record\noutstanding\nrequested\n4\nreasonable excuse\noutstanding\nneeded before final position\n5\nphone subscriber data\noutstanding\nnot attached\nCB-TB-1573 | Page 13\n"
+  },
+  "first_page_preview": "PROSECUTION PAPERS - BUNDLE INDEX\nURN 2026-158201 / Case 26CR31683\nDefendant\nHolly Ahmed\nCourt\nCrown Court at Preston\nNext hearing\n20 July 2026 at 12:30\nStage\nTrial prep\nPrimary allegation\nBladed article\nProsecutor ref\nNPS/6743/2026\nTab\nDocument\nPages\n1\nCharge sheet\n2\n2\nMG5 case summary\n3\n3\nAdditional MG11 statement\n4\n4\nInterview summary\n5\n5\nCustody record extract\n6\n6\nMG6 disclosure schedule\n7\n7\nRedacted custody note\n8\n8\nLate disclosure email\n9\n9\nFurther schedule page\n10\n10\nForensic or medical note\n11\n11\nExhibit list continuation\n12\n12\nAdditional schedule page\n13\n13\nExhibit list continuation\n14\n14\nDisclosure note\n15\n15\nContinuation sheet\n16\n16\nExhibit list continuation\n17\n17\nDisclosure note\n18\nThe bundle is provided for the hearing listed above. Page numbering follows the papers as receive"
+}

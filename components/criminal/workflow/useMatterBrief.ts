@@ -305,6 +305,7 @@ export function useMatterBrief(caseId: string) {
         })),
       ],
       proceduralOutstanding: undefined,
+      bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
     });
     const briefPlan = buildCriminalBriefPlan({
       bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,

@@ -795,6 +795,10 @@ export function DisclosureChase({
             label,
             status: "Outstanding",
           })),
+          // Overview gap projector labels — keep Chase modality hay aligned with Papers/Overview.
+          ...((bundleSource?.canonical?.evidenceRows ?? [])
+            .filter((r) => r.existence !== "served")
+            .map((r) => ({ label: r.label, status: "Outstanding" })) ?? []),
         ],
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
         bundleText: bundleSource?.frontMatterScan ?? null,

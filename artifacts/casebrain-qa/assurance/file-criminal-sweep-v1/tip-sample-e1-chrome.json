@@ -1,0 +1,232 @@
+{
+  "tip": "e1-file-chrome-armour",
+  "n": 28,
+  "cleared": 21,
+  "residual": 7,
+  "rows": [
+    {
+      "case_key": "PDF-1db27817afb4",
+      "family": "mute_hearing_despite_pdf",
+      "court": "Northbridge Magistrates' Court",
+      "defendant": "Ryan Hale",
+      "hearing": "16/06/2026",
+      "cleared": true
+    },
+    {
+      "case_key": "ARDEN-MONSTER-0001",
+      "family": "mute_hearing_despite_pdf",
+      "court": null,
+      "defendant": "Arden Vale",
+      "hearing": null,
+      "cleared": false
+    },
+    {
+      "case_key": "PDF-d7709f8ba67e",
+      "family": "invent_court_header",
+      "court": "Crown Court at Manchester",
+      "defendant": "Neil Anthony Mitchell",
+      "hearing": "24 June 2026 at 11:00",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-e9fbf463f6ae",
+      "family": "invent_court_header",
+      "court": "Crown Court at Manchester",
+      "defendant": "Kian Patrick Doyle",
+      "hearing": "26 June 2026 at 10:00",
+      "cleared": true
+    },
+    {
+      "case_key": "RP-06",
+      "family": "mute_hearing_despite_pdf",
+      "court": "Northford Magistrates Court",
+      "defendant": "Alden Vale",
+      "hearing": null,
+      "cleared": false
+    },
+    {
+      "case_key": "CB-CHARGE-2026-0001",
+      "family": "mute_hearing_despite_pdf",
+      "court": "Westmere Crown Court",
+      "defendant": "Morgan Blake",
+      "hearing": null,
+      "cleared": false
+    },
+    {
+      "case_key": "RP-09",
+      "family": "mute_hearing_despite_pdf",
+      "court": "days Police station Northgate Police Station Court Northshire Magistrates Court",
+      "defendant": "Leo Greene",
+      "hearing": "18/08/2026",
+      "cleared": true
+    },
+    {
+      "case_key": "CB-CHARGE-2026-0002",
+      "family": "mute_hearing_despite_pdf",
+      "court": "Eastford Magistrates Court",
+      "defendant": "Nico Lark",
+      "hearing": null,
+      "cleared": false
+    },
+    {
+      "case_key": "CB-CHARGE-2026-0004",
+      "family": "mute_hearing_despite_pdf",
+      "court": "Hillgate Magistrates Court",
+      "defendant": "Parker Stone",
+      "hearing": null,
+      "cleared": false
+    },
+    {
+      "case_key": "CB-CHARGE-2026-0011",
+      "family": "mute_hearing_despite_pdf",
+      "court": "Stonecross Crown Court",
+      "defendant": "Avery Blake",
+      "hearing": null,
+      "cleared": false
+    },
+    {
+      "case_key": "PDF-00c4901e3455",
+      "family": "invent_court_header",
+      "court": "Crown Court at Minshull Street",
+      "defendant": "Layla Brooks",
+      "hearing": "27 August 2026 at 13:30",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-0db26fb8bf9a",
+      "family": "invent_court_header",
+      "court": "Crown Court at Sheffield",
+      "defendant": "Leon Farrell",
+      "hearing": "15 June 2026 at 10:00",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-0f3efd3906ed",
+      "family": "invent_court_header",
+      "court": "Crown Court at Liverpool",
+      "defendant": "Corey Brooks",
+      "hearing": "14 July 2026 at 10:30",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-14700df3912a",
+      "family": "invent_court_header",
+      "court": "Crown Court at Sheffield",
+      "defendant": "Kai Hardy",
+      "hearing": "01 August 2026 at 10:00",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-1976cff5174a",
+      "family": "mute_defendant_despite_pdf",
+      "court": "Crown Court at Manchester",
+      "defendant": "Alex Morley",
+      "hearing": "04/08/2026",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-1bd82cab8217",
+      "family": "invent_court_header",
+      "court": "Crown Court at Preston",
+      "defendant": "Ben Akhtar",
+      "hearing": "21 August 2026 at 13:15",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-1e223a9582a4",
+      "family": "invent_court_header",
+      "court": "Crown Court at Sheffield",
+      "defendant": "Adam Okonkwo",
+      "hearing": "20 July 2026 at 10:00",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-1f901eb7cb56",
+      "family": "invent_court_header",
+      "court": "Crown Court at Liverpool",
+      "defendant": "Amira Ahmed",
+      "hearing": "19 August 2026 at 10:30",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-226801f85a3c",
+      "family": "invent_court_header",
+      "court": "Crown Court at Minshull Street",
+      "defendant": "Adam Marlow",
+      "hearing": "22 July 2026 at 10:00",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-287c7211fa15",
+      "family": "mute_defendant_despite_pdf",
+      "court": "Northshire Crown Court Crown",
+      "defendant": "unless document says otherwise",
+      "hearing": "17 June 2026 at 10:15",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-29c8f36160c1",
+      "family": "invent_court_header",
+      "court": "Crown Court at Leeds",
+      "defendant": "Kai Doyle",
+      "hearing": "23 June 2026 at 13:00",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-33245afe3cec",
+      "family": "invent_court_header",
+      "court": "Crown Court at Leeds",
+      "defendant": "Callum Archer",
+      "hearing": "07 July 2026 at 12:30",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-3fe917d580ae",
+      "family": "mute_defendant_despite_pdf",
+      "court": "Northshire Crown Court Crown",
+      "defendant": "unless document says otherwise",
+      "hearing": "17 June 2026 at 11:00",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-4a2a9b7bcd3d",
+      "family": "mute_defendant_despite_pdf",
+      "court": "Northbridge Magistrates' Court",
+      "defendant": "Ella Shaw",
+      "hearing": "04/07/2026",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-6393bb4453b2",
+      "family": "mute_defendant_despite_pdf",
+      "court": null,
+      "defendant": null,
+      "hearing": null,
+      "cleared": false
+    },
+    {
+      "case_key": "PDF-6b4d1cac021d",
+      "family": "mute_defendant_despite_pdf",
+      "court": "Northbridge Magistrates' Court",
+      "defendant": "Zara Wright",
+      "hearing": "23/07/2026",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-6f4d8dfbaa3b",
+      "family": "mute_defendant_despite_pdf",
+      "court": "Northbridge Magistrates' Court",
+      "defendant": "Oscar Bell",
+      "hearing": "03/08/2026",
+      "cleared": true
+    },
+    {
+      "case_key": "PDF-6f4e0892558b",
+      "family": "mute_defendant_despite_pdf",
+      "court": null,
+      "defendant": "Ethan Miles",
+      "hearing": "05/07/2026",
+      "cleared": true
+    }
+  ]
+}

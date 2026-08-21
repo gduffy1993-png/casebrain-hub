@@ -307,4 +307,32 @@ assert.equal(extractBundleCaseMetadata(plainAssaultByBeating).offenceDisplay, "A
 
 assert.match(parseUkHearingDateTime("11/08/2026 10:30")?.display ?? "", /11 Aug 2026 at 10:30/i);
 
+// --- File E1: court Hearing glue / Next hearing slash glue / DefendantDate glue ---
+const e1CourtHearingGlue = `
+DefendantNeil Anthony MitchellDOB28/06/1987
+CourtCrown Court at ManchesterHearing24 June 2026 at 11:00
+StagePTPH
+`.trim();
+const e1CourtMeta = extractBundleCaseMetadata(e1CourtHearingGlue);
+assert.equal(e1CourtMeta.court, "Crown Court at Manchester");
+assert.doesNotMatch(e1CourtMeta.court ?? "", /Hearing/i);
+assert.match(e1CourtMeta.nextHearingRaw ?? "", /24 June 2026 at 11:00/i);
+
+const e1TrapNextHearingSlash = `
+AccusedLeo Greene DOB 07/07/1990Stagetrial listed in 7 days
+Police stationNorthgate Police StationCourtNorthshire Magistrates Court
+StatusremandNext hearing18/08/2026
+`.trim();
+const e1TrapMeta = extractBundleCaseMetadata(e1TrapNextHearingSlash);
+assert.match(e1TrapMeta.nextHearingRaw ?? "", /18\/08\/2026/);
+assert.match(e1TrapMeta.defendantName ?? "", /Leo Greene/i);
+
+const e1DefendantDateGlue = `
+DefendantAlex MorleyDate of birth27/11/1992
+CourtCrown Court at ManchesterHearing04/08/2026 at 10:00
+`.trim();
+const e1DefMeta = extractBundleCaseMetadata(e1DefendantDateGlue);
+assert.equal(e1DefMeta.defendantName, "Alex Morley");
+assert.equal(e1DefMeta.court, "Crown Court at Manchester");
+
 console.log("bundle-shape-regression.test.ts: ok");

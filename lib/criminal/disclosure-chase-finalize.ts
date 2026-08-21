@@ -1,14 +1,9 @@
 import { formatDisplayLabelCasing } from "@/lib/criminal/bundle-truth-ledger";
-import {
-  filterPromptInjectionInstructionLines,
-  isPromptInjectionInstructionLine,
-} from "@/lib/criminal/hostile-source-content";
 import { sentenceCasePreservingAcronyms } from "@/lib/criminal/solicitor-visible-quality";
 import type {
   ChaseFamilyId,
   DisclosureChaseItem,
 } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
-import { cad999DisplayLabel } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 
 const COURT_RECORD_PREFIX = "The defence asks the court to record";
 
@@ -51,27 +46,15 @@ export function humanizeChaseFragmentLabel(raw: string): string {
     return "BWV/footage is not served. Only a log entry is available; the clip remains outstanding.";
   }
 
-  // MG6C/001 and MG6C/PLA-style schedule codes → concrete material label.
-  const mg6 = t.match(/\bMG6C?\/([A-Za-z0-9]+)\s*[—–-]\s*(.+)$/i);
-  if (mg6?.[2]) {
-    const core = mg6[2]
-      .replace(/\s*[—–-]\s*(?:referred on MG6|export not served|outstanding|not on bundle|served on bundle).*$/i, "")
+  const mg6 = t.match(/\bMG6C?\/\d+\s*[—–-]\s*(.+?)(?:\s*[—–-]\s*.+)?\.?$/i);
+  if (mg6?.[1]) {
+    const core = mg6[1]
       .replace(/\s+(only|summary|served|outstanding|draft unsigned).*$/i, "")
       .trim();
-    if (/\bphone extraction\b|\btelecom download\b/i.test(core)) return "Phone extraction source material";
-    if (/\bextraction summary\b/i.test(core) && /\b(phone|handset|mobile)\b/i.test(core)) {
-      return "Phone extraction source material";
-    }
-    if (/\bplatform extraction\b|\bplatform export\b/i.test(core)) return "Platform extraction / export";
-    if (/\banpr\b/i.test(core)) return formatDisplayLabelCasing(core.replace(/\s*[—–-].*$/, "").trim() || core);
-    if (/screenshot|message pack|message export/i.test(core)) return "Screenshot / message pack";
-    if (/subscriber\s+records/i.test(core)) return "Subscriber records";
-    if (/subscriber|account data/i.test(core)) return "Subscriber / account data";
-    if (/source export/i.test(core)) return "Source export";
-    if (/per-?defendant map/i.test(core)) return "Per-defendant attribution map";
-    if (/mental health triage|mh triage/i.test(core)) return "Mental health triage";
-    if (/risk assessment/i.test(core)) return "Custody / risk assessment";
-    if (core) return formatDisplayLabelCasing(core);
+    if (/phone extraction|extraction summary/i.test(core)) return "Phone extraction source material";
+    if (/screenshot|message pack/i.test(core)) return "Screenshot / message pack";
+    if (/subscriber/i.test(core)) return "Subscriber / account data";
+    return formatDisplayLabelCasing(core);
   }
 
   if (/^MG11\b/i.test(t) || /\bMG11\s*[—–-]/i.test(t)) {
@@ -80,14 +63,20 @@ export function humanizeChaseFragmentLabel(raw: string): string {
     return "MG11 witness statement";
   }
 
-  if (/screenshot\s+pack|message export/i.test(t)) return "Screenshot / message pack";
-  if (/\bplatform extraction\b|\bplatform export\b/i.test(t)) return "Platform extraction / export";
-  if (/\bphone extraction\b|\btelecom download\b/i.test(t)) return "Phone extraction source material";
-  if (/subscriber\s+records/i.test(t)) return "Subscriber records";
-  if (/subscriber\s+(data|records)|account data/i.test(t)) return "Subscriber / account data";
-  if (/\bsource export\b/i.test(t)) return "Source export";
-  if (/per-?defendant map/i.test(t)) return "Per-defendant attribution map";
-  if (/mental health triage|mh triage/i.test(t)) return "Mental health triage";
+  if (/screenshot\s+pack/i.test(t)) return "Screenshot / message pack";
+  // Preserve phone mid-state identity (Grant/Tobin) — do not collapse to a generic extraction label.
+  if (
+    /phone\s+extraction\s+summary\s+only|full\s+download\s+report\s+not\s+in\s+(?:the\s+)?section|logical\s+download\s+summary/i.test(
+      t,
+    )
+  ) {
+    return "Phone extraction summary only — full download report not in section";
+  }
+  if (/full\s+phone\s+download|phone\s+download\s*\/\s*source\s+extraction/i.test(t)) {
+    return "Full phone download / source extraction";
+  }
+  if (/phone extraction|extraction summary/i.test(t)) return "Phone extraction source material";
+  if (/subscriber\s+data|subscriber\s*\/\s*account/i.test(t)) return "Subscriber / account data";
   if (/^MG6\b|mg6\s*\/\s*unused|disclosure schedule/i.test(t)) return "MG6 / unused schedule clarification";
 
   if (t.includes(";")) {
@@ -103,12 +92,7 @@ export function humanizeChaseFragmentLabel(raw: string): string {
     return "Further papers on the file";
   }
 
-  // Prefer a short concrete outstanding core over collapsing the whole line to generic chrome.
   if (t.length > 72 && /outstanding|served|draft|summary/i.test(t)) {
-    const outstandingCore = t.match(
-      /\b((?:full\s+)?(?:source export|account data|subscriber records?|per-?defendant map|mental health triage|risk assessment|phone extraction|message export|platform export)[^—–-]{0,40})/i,
-    );
-    if (outstandingCore?.[1]) return formatDisplayLabelCasing(outstandingCore[1].trim());
     return "Further papers on the file";
   }
 
@@ -135,6 +119,27 @@ function dedupeByNorm(lines: string[]): string[] {
   return out;
 }
 
+function interviewFamilyLabelLocal(hay: string): string {
+  const transcriptServed = /transcript\s+state\s+served|transcript\s+(?:is\s+)?served/i.test(hay);
+  const recordingServed = /recording\s+state\s+served|recording\s+(?:is\s+)?served/i.test(hay);
+  if (transcriptServed && !recordingServed) return "Interview recording";
+  if (recordingServed && !transcriptServed) return "Interview transcript";
+  if (/recording\s+state\s+not\s+safely\s+confirmed/i.test(hay) && transcriptServed) {
+    return "Interview recording";
+  }
+  if (/\btranscript\b/i.test(hay) && !/\brecording\b/i.test(hay)) return "Interview transcript";
+  if (/\brecording\b/i.test(hay) && !/\btranscript\b/i.test(hay)) return "Interview recording";
+  // Prefer already-reconciled modality titles when present in hay as sole card title.
+  if (/^interview recording$/i.test(hay.trim())) return "Interview recording";
+  if (/^interview transcript$/i.test(hay.trim())) return "Interview transcript";
+  if (/\brecording\b/i.test(hay) && /\btranscript\b/i.test(hay)) {
+    if (transcriptServed) return "Interview recording";
+    if (recordingServed) return "Interview transcript";
+    return "Interview recording and transcript";
+  }
+  return "Interview recording";
+}
+
 function familyLabelForId(familyId: ChaseFamilyId, mergedFrom: string[] = []): string {
   switch (familyId) {
     case "cctv_continuity":
@@ -142,11 +147,11 @@ function familyLabelForId(familyId: ChaseFamilyId, mergedFrom: string[] = []): s
     case "cctv_master":
       return "CCTV full window / master footage";
     case "cad_999":
-      return cad999DisplayLabel(mergedFrom.length ? mergedFrom : ["CAD"]);
+      return "CAD / 999 audio / control-room material";
     case "bwv":
       return "Body-worn video (BWV)";
     case "interview":
-      return "Interview recording / transcript";
+      return interviewFamilyLabelLocal(mergedFrom.join(" "));
     case "mg6_unused":
       return "MG6 / unused / schedule clarification";
     case "medical_expert":
@@ -158,35 +163,23 @@ function familyLabelForId(familyId: ChaseFamilyId, mergedFrom: string[] = []): s
   }
 }
 
-function concreteOverflowPriority(label: string): number {
-  const n = norm(label);
-  if (!n || n === "further papers on the file") return 0;
-  if (/^additional source-material issues?\b/.test(n)) return 0;
-  if (/\b(source export|account data|subscriber|per defendant|mental health triage|phone extraction|message export|platform export|risk assessment)\b/.test(n)) {
-    return 5;
-  }
-  if (/\b(outstanding|not on bundle|export not served)\b/.test(n)) return 3;
-  return 1;
-}
-
 function humanOverflowCardLabel(mergedFrom: string[]): string {
   const humanized = dedupeByNorm(
     mergedFrom.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
-  )
-    .filter(
-      (h) =>
-        h !== "Further papers on the file" &&
-        !/^Further papers issues/i.test(h) &&
-        !/^Additional source-material issues?\b/i.test(h),
-    )
-    .sort((a, b) => concreteOverflowPriority(b) - concreteOverflowPriority(a) || a.localeCompare(b));
+  ).filter(
+    (h) =>
+      h !== "Further papers on the file" &&
+      !/^Further papers issues/i.test(h) &&
+      // Digital modalities must stay distinct cards — never summarise them into overflow.
+      !isDigitalModalityChaseLabel(h),
+  );
 
   if (humanized.length === 0) return "Outstanding source material on disclosure schedule";
   if (humanized.length === 1) return humanized[0]!;
   if (humanized.length === 2) return `${humanized[0]} / ${humanized[1]}`;
   const summary = humanized.slice(0, 4).join(", ");
   if (summary.length <= 72) return `Outstanding source material (${summary})`;
-  return `${humanized[0]} + ${humanized.length - 1} more source items`;
+  return "Outstanding source material on disclosure schedule";
 }
 
 function buildOverflowDraftWording(mergedFrom: string[]): string {
@@ -211,7 +204,8 @@ function buildOverflowDraftWording(mergedFrom: string[]): string {
     return `Please provide the outstanding source material identified on the disclosure schedule, including ${list}${suffix}`;
   }
 
-  return `Please provide the outstanding source material identified on the disclosure schedule, including subscriber/account data, message exports, call logs, and any MG11/source material referred to but not served${suffix}`;
+  // Never invent subscriber/phone modalities in overflow drafts — Trap thin-file invent residual.
+  return `Please provide the outstanding source material identified on the disclosure schedule, including any MG6/MG11/source items referred to but not served${suffix}`;
 }
 
 function cleanDraftWording(label: string, mergedFrom: string[] = []): string {
@@ -244,26 +238,48 @@ function cleanCourtLine(label: string): string {
 }
 
 function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
-  const safeMergedRaw = filterPromptInjectionInstructionLines(item.mergedFrom);
-  if (isPromptInjectionInstructionLine(item.label) && safeMergedRaw.length === 0) {
-    // Drop solicitor-visible chase cards that exist only because of hostile instruction text.
-    return {
-      ...item,
-      label: "",
-      mergedFrom: [],
-      draftChaseWording: "",
-      courtLine: "",
-      whyItMatters: "",
-    };
+  // Confirm-none from chase-source-gate must stay confirm-none (not re-drafted as a chase).
+  if (
+    /file indicates none exists/i.test(item.label) ||
+    /confirm in writing that none exists/i.test(item.draftChaseWording ?? "")
+  ) {
+    return item;
   }
 
   const mergedHumanized = dedupeByNorm(
-    safeMergedRaw.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
+    item.mergedFrom.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
   ).slice(0, 8);
 
-  let label = isPromptInjectionInstructionLine(item.label)
-    ? ""
-    : humanizeChaseFragmentLabel(item.label);
+  let label = humanizeChaseFragmentLabel(item.label);
+  // Brookes/Ahmed soft-mute: never overflow-rewrite digital modality cards into
+  // "Outstanding source material…" — that buries PDF-true phone/subscriber under Other.
+  if (isDigitalModalityChaseLabel(label)) {
+    const digitalMerged = mergedHumanized.filter((m) => isDigitalModalityChaseLabel(m));
+    return {
+      ...item,
+      label,
+      mergedFrom: digitalMerged.length ? digitalMerged : [label],
+      whyItMatters: sanitizeWhyItMatters(item.whyItMatters, digitalMerged.length || 1),
+      draftChaseWording: cleanDraftWording(label, digitalMerged.length ? digitalMerged : [label]),
+      courtLine: cleanCourtLine(label),
+      evidenceAnchor: item.evidenceAnchor,
+    };
+  }
+  const digitalFromMerged = mergedHumanized.find((m) => isDigitalModalityChaseLabel(m));
+  if (digitalFromMerged && item.familyId === "other") {
+    // Prefer a digital modality identity when overflow mergedFrom still carries one.
+    label = digitalFromMerged;
+    const digitalMerged = mergedHumanized.filter((m) => isDigitalModalityChaseLabel(m));
+    return {
+      ...item,
+      label,
+      mergedFrom: digitalMerged,
+      whyItMatters: sanitizeWhyItMatters(item.whyItMatters, digitalMerged.length),
+      draftChaseWording: cleanDraftWording(label, digitalMerged),
+      courtLine: cleanCourtLine(label),
+      evidenceAnchor: item.evidenceAnchor,
+    };
+  }
   const needsFamilyLabel =
     !label ||
     isRawChaseFragmentLabel(label) ||
@@ -284,42 +300,31 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
   if (needsFamilyLabel) {
     label =
       item.familyId !== "other"
-        ? familyLabelForId(item.familyId, safeMergedRaw)
+        ? familyLabelForId(item.familyId, mergedHumanized.length ? mergedHumanized : item.mergedFrom)
         : mergedHumanized.length === 1
           ? mergedHumanized[0]!
-          : humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : safeMergedRaw);
+          : humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : item.mergedFrom);
   }
 
   let evidenceAnchor = item.evidenceAnchor;
-  if (evidenceAnchor && (isRawChaseFragmentLabel(evidenceAnchor) || isPromptInjectionInstructionLine(evidenceAnchor))) {
-    evidenceAnchor = isPromptInjectionInstructionLine(evidenceAnchor)
-      ? null
-      : humanizeChaseFragmentLabel(evidenceAnchor);
-    if (evidenceAnchor && isRawChaseFragmentLabel(evidenceAnchor)) evidenceAnchor = null;
+  if (evidenceAnchor && isRawChaseFragmentLabel(evidenceAnchor)) {
+    evidenceAnchor = humanizeChaseFragmentLabel(evidenceAnchor);
+    if (isRawChaseFragmentLabel(evidenceAnchor)) evidenceAnchor = null;
   }
 
-  if (/^Further papers issues \(\d+ on file\)$/i.test(label) || /^Additional source-material issues?\b/i.test(label)) {
-    label = humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : safeMergedRaw);
+  if (/^Further papers issues \(\d+ on file\)$/i.test(label)) {
+    label = humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : item.mergedFrom);
   }
 
-  // MG6 family cards that absorbed concrete outstanding schedule rows should not stay purely generic.
-  if (
-    item.familyId === "mg6_unused" &&
-    /^MG6\b|unused schedule clarification/i.test(label) &&
-    mergedHumanized.some((m) => concreteOverflowPriority(m) >= 3)
-  ) {
-    label = humanOverflowCardLabel(mergedHumanized);
-  }
-
-  const mergedForDraft = mergedHumanized.length ? mergedHumanized : safeMergedRaw;
+  const mergedForDraft = mergedHumanized.length ? mergedHumanized : item.mergedFrom;
 
   return {
     ...item,
     label,
-    mergedFrom: mergedHumanized.length ? mergedHumanized : label ? [label] : [],
+    mergedFrom: mergedHumanized.length ? mergedHumanized : [label],
     whyItMatters: sanitizeWhyItMatters(item.whyItMatters, mergedHumanized.length),
-    draftChaseWording: label ? cleanDraftWording(label, mergedForDraft) : "",
-    courtLine: label ? cleanCourtLine(label) : "",
+    draftChaseWording: cleanDraftWording(label, mergedForDraft),
+    courtLine: cleanCourtLine(label),
     evidenceAnchor,
   };
 }
@@ -330,8 +335,11 @@ function itemFinalizeKey(item: DisclosureChaseItem): string {
 
 function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): DisclosureChaseItem {
   const mergedFrom = dedupeByNorm([...a.mergedFrom, ...b.mergedFrom]).slice(0, 12);
-  const label =
-    a.familyId === "other" || b.familyId === "other"
+  // Prefer digital modality identity over overflow collapse when either side is digital.
+  const digitalLabel = [a.label, b.label, ...mergedFrom].find((l) => isDigitalModalityChaseLabel(l));
+  const label = digitalLabel
+    ? digitalLabel
+    : a.familyId === "other" || b.familyId === "other"
       ? humanOverflowCardLabel(mergedFrom)
       : a.label.length <= b.label.length
         ? a.label
@@ -340,27 +348,103 @@ function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): Di
   return {
     ...a,
     label,
-    mergedFrom,
+    mergedFrom: digitalLabel
+      ? mergedFrom.filter((m) => isDigitalModalityChaseLabel(m)).length
+        ? mergedFrom.filter((m) => isDigitalModalityChaseLabel(m))
+        : [digitalLabel]
+      : mergedFrom,
     whyItMatters: sanitizeWhyItMatters(a.whyItMatters ?? b.whyItMatters ?? "", mergedFrom.length),
     baseStatus: a.baseStatus === "Overdue" || b.baseStatus === "Overdue" ? "Overdue" : a.baseStatus,
     urgency: a.urgency === "high" || b.urgency === "high" ? "high" : a.urgency,
-    draftChaseWording: cleanDraftWording(label, mergedFrom),
+    draftChaseWording: cleanDraftWording(label, digitalLabel ? [digitalLabel] : mergedFrom),
     courtLine: cleanCourtLine(label),
     evidenceAnchor: a.evidenceAnchor ?? b.evidenceAnchor,
     linkedRoute: a.linkedRoute ?? b.linkedRoute,
   };
 }
 
+/** Keep phone/subscriber modality cards distinct — Brookes/Ahmed must not mute under phone collapse. */
+export function isDigitalModalityChaseLabel(label: string): boolean {
+  return /^(Subscriber \/ account data|Full phone download \/ source extraction|Phone extraction summary only)/i.test(
+    label.trim(),
+  );
+}
+
 function collapseOtherFamilyItems(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
   const core = items.filter((i) => i.familyId !== "other");
+  // Should not happen — callers only pass other-family items — keep for safety.
   const misc = items.filter((i) => i.familyId === "other");
-  if (misc.length <= 1) return items;
+  if (misc.length <= 1) {
+    // Still peel digital identities trapped inside a single overflow card's mergedFrom.
+    if (misc.length === 1) {
+      const peeled = peelDigitalModalitiesFromOtherItem(misc[0]!);
+      return [...core, ...peeled];
+    }
+    return items;
+  }
 
-  let bucket = misc[0]!;
-  for (const item of misc.slice(1)) {
+  const keepSeparate = misc.filter((i) => isDigitalModalityChaseLabel(i.label));
+  const bucketable = misc.filter((i) => !isDigitalModalityChaseLabel(i.label));
+  const peeledFromBucket: DisclosureChaseItem[] = [];
+  const cleanedBucketable: DisclosureChaseItem[] = [];
+  for (const item of bucketable) {
+    const peeled = peelDigitalModalitiesFromOtherItem(item);
+    const digital = peeled.filter((p) => isDigitalModalityChaseLabel(p.label));
+    const rest = peeled.filter((p) => !isDigitalModalityChaseLabel(p.label));
+    peeledFromBucket.push(...digital);
+    cleanedBucketable.push(...rest);
+  }
+  if (cleanedBucketable.length <= 1) {
+    return [...core, ...keepSeparate, ...peeledFromBucket, ...cleanedBucketable];
+  }
+
+  let bucket = cleanedBucketable[0]!;
+  for (const item of cleanedBucketable.slice(1)) {
     bucket = mergeFinalizedItems(bucket, item);
   }
-  return [...core, bucket];
+  return [...core, ...keepSeparate, ...peeledFromBucket, bucket];
+}
+
+/** Pull PDF-true phone/subscriber identities out of overflow Other cards. */
+function peelDigitalModalitiesFromOtherItem(item: DisclosureChaseItem): DisclosureChaseItem[] {
+  if (isDigitalModalityChaseLabel(item.label)) return [item];
+  const digitalLabels = dedupeByNorm(
+    [item.label, ...item.mergedFrom]
+      .map((m) => humanizeChaseFragmentLabel(m))
+      .filter((m) => isDigitalModalityChaseLabel(m)),
+  );
+  if (!digitalLabels.length) return [item];
+
+  const nonDigitalMerged = dedupeByNorm(
+    item.mergedFrom
+      .map((m) => humanizeChaseFragmentLabel(m))
+      .filter((m) => m && !isDigitalModalityChaseLabel(m)),
+  );
+  const out: DisclosureChaseItem[] = digitalLabels.map((label, idx) => ({
+    ...item,
+    id: `${item.id}-digital-${idx}`,
+    familyId: "other" as const,
+    label,
+    mergedFrom: [label],
+    draftChaseWording: cleanDraftWording(label, [label]),
+    courtLine: cleanCourtLine(label),
+    whyItMatters:
+      /subscriber/i.test(label)
+        ? "Screenshots or partial extraction alone do not prove subscriber attribution."
+        : /summary only/i.test(label)
+          ? "A logical download summary or referenced-only note is not a full phone download report."
+          : "Original download / source export is outstanding on the disclosure papers.",
+  }));
+  if (nonDigitalMerged.length) {
+    out.push({
+      ...item,
+      label: humanOverflowCardLabel(nonDigitalMerged),
+      mergedFrom: nonDigitalMerged,
+      draftChaseWording: cleanDraftWording(humanOverflowCardLabel(nonDigitalMerged), nonDigitalMerged),
+      courtLine: cleanCourtLine(humanOverflowCardLabel(nonDigitalMerged)),
+    });
+  }
+  return out;
 }
 
 function collapseFinalizedItemsByFamilyId(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
@@ -387,13 +471,25 @@ function collapseFinalizedItemsByFamilyId(items: DisclosureChaseItem[]): Disclos
     }
     const familyLabel = familyLabelForId(
       familyId as DisclosureChaseItem["familyId"],
-      merged.mergedFrom ?? [],
+      [
+        ...merged.mergedFrom,
+        merged.label,
+        merged.provenance?.unresolvedConflictOrLimitation ?? "",
+      ].filter(Boolean),
     );
+    // Prefer an already modality-reconciled interview title when finalize would re-lump.
+    const preferredInterview =
+      familyId === "interview" &&
+      /^(Interview recording|Interview transcript|Interview recording and transcript)$/i.test(
+        merged.label,
+      )
+        ? merged.label
+        : null;
     out.push({
       ...merged,
-      label: familyLabel,
-      draftChaseWording: cleanDraftWording(familyLabel, merged.mergedFrom),
-      courtLine: cleanCourtLine(familyLabel),
+      label: preferredInterview ?? familyLabel,
+      draftChaseWording: cleanDraftWording(preferredInterview ?? familyLabel, merged.mergedFrom),
+      courtLine: cleanCourtLine(preferredInterview ?? familyLabel),
     });
   }
   return out;
@@ -404,7 +500,6 @@ export function finalizeDisclosureChasePresentation(items: DisclosureChaseItem[]
   const byKey = new Map<string, DisclosureChaseItem>();
   for (const raw of items) {
     const item = finalizeOneItem(raw);
-    if (!item.label.trim()) continue;
     const key = itemFinalizeKey(item);
     const existing = byKey.get(key);
     byKey.set(key, existing ? mergeFinalizedItems(existing, item) : item);

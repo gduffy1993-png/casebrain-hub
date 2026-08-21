@@ -1,0 +1,331 @@
+
+===== PAGE 1 =====
+CB-TB-343    Page 1
+Prepared papers
+PROSECUTION PAPERS
+R v Ellis Dunn
+Matter reference: CB-TB-343     URN: NP/2026/000343
+Tab
+Document
+Pages
+1
+Cover and index
+1
+2
+Charge sheet / case initiation
+2
+3
+MG5 case summary
+3-4
+4
+Witness material
+5-6
+5
+Custody / interview / CAD material
+7
+6
+Disclosure schedule
+8
+7
+Exhibits and correspondence
+9+
+File note
+These papers relate to Ellis Dunn and the listed hearing at Crown Court at Manchester. Documents are paginated for court and
+defence review.
+
+===== PAGE 2 =====
+CHARGE SHEET / CASE INITIATION
+CB-TB-343    Page 2
+Prepared papers
+URN
+NP/2026/000343
+Police force
+Eastmoor Police
+Defendant
+Ellis Dunn
+DOB
+15/08/1990
+Address
+[redacted address]
+Court
+Crown Court at Manchester
+Hearing
+07 July 2026 at 14:15
+Stage
+trial preparation
+Charge
+COUNT 1
+Statement of offence
+Conspiracy to burgle, contrary to section 1 of the Criminal Law Act 1977
+Particulars of offence
+On 29/05/2026 at Albion Road, Ellis Dunn is alleged to have committed the above offence. The particulars rely on witness,
+exhibit and disclosure material listed in this bundle.
+
+===== PAGE 3 =====
+MG5 CASE SUMMARY
+CB-TB-343    Page 3
+Prepared papers
+URN
+NP/2026/000343
+Defendant
+Ellis Dunn
+Offence
+Conspiracy burglary
+Stage
+trial preparation
+Court
+Crown Court at Manchester
+Hearing
+07 July 2026 at 14:15
+Summary of allegation
+The prosecution case is that Ellis Dunn was involved in an incident at Albion Road on 29/05/2026. Call data is partial; one
+co-defendant blames another. The file records matters requiring review before the next hearing.
+Issues for review
+- Call data is partial; one co-defendant blames another.
+- Disclosure position should be checked against the MG6 schedule.
+- Any hearing position should be conditional on served material only.
+Interview / account
+The defendant gave no comment to evidential questions following limited disclosure.
+
+===== PAGE 4 =====
+MG5 CASE SUMMARY - CONTINUATION
+CB-TB-343    Page 4
+Prepared papers
+URN
+NP/2026/000343
+Defendant
+Ellis Dunn
+Offence
+Conspiracy burglary
+Stage
+trial preparation
+Court
+Crown Court at Manchester
+Hearing
+07 July 2026 at 14:15
+Summary of allegation
+The prosecution case is that Ellis Dunn was involved in an incident at Albion Road on 29/05/2026. Call data is partial; one
+co-defendant blames another. The file records matters requiring review before the next hearing.
+Issues for review
+- Call data is partial; one co-defendant blames another.
+- Disclosure position should be checked against the MG6 schedule.
+- Any hearing position should be conditional on served material only.
+Interview / account
+The defendant denied intent and said the prosecution summary does not record the full context.
+
+===== PAGE 5 =====
+WITNESS STATEMENT
+CB-TB-343    Page 5
+Prepared papers
+URN
+NP/2026/000343
+Statement of
+Lena Ross
+Age if under 18
+Over 18
+Occupation
+Complainant
+Date
+29/05/2026
+Pages
+1 of 1
+This statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I may be liable to
+prosecution if I have wilfully stated anything which I know to be false or do not believe to be true.
+1. I am Lena Ross. I refer to an incident at Albion Road on 29/05/2026.
+2. I described the clothing to police, but I was not shown any formal identification procedure in the papers I have seen.
+3. I have been shown reference CCTV/3. I cannot comment on material that I have not personally seen.
+4. The exact words used were recorded from memory and not from an audio recording.
+Signed: ____________________
+Date: ____________________
+
+===== PAGE 6 =====
+WITNESS STATEMENT
+CB-TB-343    Page 6
+Prepared papers
+URN
+NP/2026/000343
+Statement of
+Noah Kent
+Age if under 18
+Over 18
+Occupation
+Disclosure officer
+Date
+29/05/2026
+Pages
+1 of 1
+This statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I may be liable to
+prosecution if I have wilfully stated anything which I know to be false or do not believe to be true.
+1. I am Noah Kent. I refer to an incident at Albion Road on 29/05/2026.
+2. The custody record shows a solicitor request before interview.
+3. I have been shown reference BWV/02. I cannot comment on material that I have not personally seen.
+4. The exact words used were recorded from memory and not from an audio recording.
+Signed: ____________________
+Date: ____________________
+
+===== PAGE 7 =====
+INTERVIEW SUMMARY
+CB-TB-343    Page 7
+Prepared papers
+Time
+Entry
+Source
+20:04
+Initial call opened; caller reports incident at Albion Road
+CAD
+20:12
+Unit dispatched; description taken from first account
+CAD
+20:31
+Person detained nearby; property/exhibit note created
+Officer note
+21:08
+Custody authorised; solicitor requested
+Custody
+22:10
+Interview position recorded as limited / disputed
+Interview summary
+Note: Custody timing should be checked against CAD if sequence matters.
+
+===== PAGE 8 =====
+MG6 DISCLOSURE SCHEDULE
+CB-TB-343    Page 8
+Prepared papers
+Item
+Description
+Status
+Comment
+S01
+BWV stills
+Served
+Included in present papers
+S02
+interview summary
+Served
+Included in present papers
+S03
+exhibit list
+Served
+Included in present papers
+S04
+CAD incident log extract
+Served
+Included in present papers
+S05
+CCTV stills
+Served
+Included in present papers
+O01
+full interview transcript
+Outstanding
+Listed but not attached
+O02
+CAD log full print
+Outstanding
+Not yet served
+O03
+independent witness statement
+Outstanding
+Continuity awaited
+O04
+forensic continuity statement
+Outstanding
+Requested from OIC
+O05
+999 audio
+Outstanding
+Listed but not attached
+Disclosure note: the status column should be checked against the actual papers served. Items marked outstanding are not treated
+as served by this schedule.
+
+===== PAGE 9 =====
+DISCLOSURE CORRESPONDENCE
+CB-TB-343    Page 9
+Prepared papers
+Ref
+Item
+Holder
+Status
+EX/01
+Still image bundle
+Eastmoor Police
+served
+EX/02
+Officer body worn video log
+Eastmoor Police
+partial
+EX/03
+Continuity note
+Eastmoor Police
+outstanding
+AB/2
+Property record
+OIC
+served
+Email from disclosure unit dated 04/06/2026: Please note the schedule is updated. Attachments referred to in the prior email should
+be checked against the served bundle.
+
+===== PAGE 10 =====
+HEARING NOTICE
+CB-TB-343    Page 10
+Prepared papers
+Case title
+R v Ellis Dunn
+Court
+Crown Court at Manchester
+Hearing
+07 July 2026 at 14:15
+Stage
+trial preparation
+Issues noted
+Disclosure, witness availability, plea and trial preparation directions
+Directions sought: confirm service of core material, identify outstanding disclosure, and record any issue affecting readiness. Any
+position is subject to instructions and served evidence.
+
+===== PAGE 11 =====
+DISCLOSURE UPDATE
+CB-TB-343    Page 11
+Prepared papers
+The present bundle should be read with the MG6 schedule. Served material listed in the index does not necessarily resolve
+outstanding entries.
+No further document on this page changes the charge wording unless a later corrected indictment or charge sheet is expressly
+included.
+
+===== PAGE 12 =====
+DISCLOSURE UPDATE
+CB-TB-343    Page 12
+Prepared papers
+No further document on this page changes the charge wording unless a later corrected indictment or charge sheet is expressly
+included.
+The present bundle should be read with the MG6 schedule. Served material listed in the index does not necessarily resolve
+outstanding entries.
+Further review of the papers identifies that call data is partial; one co-defendant blames another.
+
+===== PAGE 13 =====
+DISCLOSURE UPDATE
+CB-TB-343    Page 13
+Prepared papers
+The defendant named on the charge sheet remains Ellis Dunn. Any alternate spelling in administrative pages should be checked
+against the charge sheet.
+The hearing currently relied on is 07 July 2026 at 14:15 at Crown Court at Manchester.
+Further review of the papers identifies that call data is partial; one co-defendant blames another.
+The present bundle should be read with the MG6 schedule. Served material listed in the index does not necessarily resolve
+outstanding entries.
+
+===== PAGE 14 =====
+SUPPLEMENTARY OFFICER NOTE
+CB-TB-343    Page 14
+Prepared papers
+The present bundle should be read with the MG6 schedule. Served material listed in the index does not necessarily resolve
+outstanding entries.
+The defendant named on the charge sheet remains Ellis Dunn. Any alternate spelling in administrative pages should be checked
+against the charge sheet.
+
+===== PAGE 15 =====
+CONTINUATION PAGE
+CB-TB-343    Page 15
+Prepared papers
+Further review of the papers identifies that call data is partial; one co-defendant blames another.
+The hearing currently relied on is 07 July 2026 at 14:15 at Crown Court at Manchester.
+The defendant named on the charge sheet remains Ellis Dunn. Any alternate spelling in administrative pages should be checked
+against the charge sheet.

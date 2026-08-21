@@ -278,6 +278,7 @@ export function buildChaseItemsForHearing(input: {
   snapshotMissing?: { label: string; status: string }[];
   proceduralOutstanding?: string[];
   battleboard?: BattleboardOutput | null;
+  bundleText?: string | null;
 }): string[] {
   return collectChaseItems(input);
 }

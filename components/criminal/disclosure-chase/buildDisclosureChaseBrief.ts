@@ -1,8 +1,4 @@
 import { collectChaseItems } from "@/components/criminal/control-room/chaseItems";
-import {
-  filterPromptInjectionInstructionLines,
-  isPromptInjectionInstructionLine,
-} from "@/lib/criminal/hostile-source-content";
 import type { BattleboardOutput, BattleboardRouteType } from "@/lib/criminal/strategy-battleboard";
 import {
   filterWorkflowItems,
@@ -48,13 +44,22 @@ import {
   familyDisplayName,
   familySupport,
   gateProseAgainstSource,
+  isBwvFullExportEstablished,
+  isCad999Established,
+  isCctvContinuityEstablished,
+  isCctvMasterEstablished,
+  isInterviewRecordingEstablished,
+  isInterviewTranscriptEstablished,
   type ChaseGateFamily,
 } from "@/lib/criminal/chase-source-gate";
 import { buildCriminalBriefPlan, type CriminalBriefPlan } from "@/lib/criminal/brief-plan";
 import { buildContradictionActions } from "@/lib/criminal/contradiction-actions";
 import { extractAllBundleContradictions } from "@/lib/criminal/merge-bundle-contradictions";
 import { guardDisclosureChaseBrief, type SourceTruthGuardianReport } from "@/lib/criminal/source-truth-guardian";
-import { finalizeDisclosureChasePresentation } from "@/lib/criminal/disclosure-chase-finalize";
+import {
+  finalizeDisclosureChasePresentation,
+  isDigitalModalityChaseLabel,
+} from "@/lib/criminal/disclosure-chase-finalize";
 import { composeStructuredSolicitorOutput } from "@/lib/criminal/structured-solicitor-output";
 import {
   assertSafeEvidenceTitle,
@@ -98,6 +103,21 @@ type FamilyDef = {
   match: (text: string) => boolean;
 };
 
+/** Invent-advisory only (Trap) — not an established CCTV exhibit / outstanding master. */
+function isCctvInventAdvisoryOnly(t: string): boolean {
+  if (
+    !/\b(?:assuming\s+missing\s+cctv|do\s+not\s+(?:invent|assume)[^.!?\n]{0,80}\bcctv|should\s+not\s+be\s+strengthened\s+by\s+assuming\s+missing\s+cctv)\b/i.test(
+      t,
+    )
+  ) {
+    return false;
+  }
+  // Real stills/master/outstanding CCTV language still establishes the family.
+  return !/\b(?:cctv\s+stills|partial\s+cctv|full\s+cctv\s+master|cctv\s+master|master\s+footage|full\s*(?:time\s+)?window|cctv\s+(?:footage|export|continuity)|video\s+footage)\b/i.test(
+    t,
+  );
+}
+
 const CHASE_FAMILIES: FamilyDef[] = [
   {
     id: "cctv_continuity",
@@ -105,8 +125,8 @@ const CHASE_FAMILIES: FamilyDef[] = [
     source: "Police / CCTV unit",
     priority: 1,
     match: (t) =>
+      !isCctvInventAdvisoryOnly(t) &&
       /\b(cctv|video)\b/.test(t) &&
-      !/\b(bwv|body\s*worn|body-worn)\b/.test(t) &&
       /\b(continuity|provenance|chain\s+of\s+custody|integrity)\b/.test(t),
   },
   {
@@ -114,50 +134,84 @@ const CHASE_FAMILIES: FamilyDef[] = [
     label: "CCTV full window / master footage",
     source: "Police / CCTV unit",
     priority: 2,
+    // Stills alone must not classify as master (Dunn). Require master/full-window language,
+    // or stills paired with an explicit master/full-window outstanding signal.
     match: (t) =>
-      /\b(cctv|master|full\s*window|footage|video)\b/.test(t) &&
-      !/\b(bwv|body\s*worn|body-worn)\b/.test(t) &&
-      !/\b(continuity|provenance|chain\s+of\s+custody)\b/.test(t),
+      !isCctvInventAdvisoryOnly(t) &&
+      !/\b(continuity|provenance|chain\s+of\s+custody)\b/.test(t) &&
+      (/\b(?:cctv\s+master|full\s+cctv(?:\s+master)?|master\s+footage|full\s*(?:time\s+)?window|cctv\s+(?:footage|export))\b/.test(
+        t,
+      ) ||
+        (/\b(?:cctv\s+stills|partial\s+cctv\s+stills|stills)\b/.test(t) &&
+          /\b(?:master|full\s*(?:time\s+)?window|full\s+cctv)\b/.test(t)) ||
+        (/\bcctv\b/.test(t) &&
+          /\b(?:master|full\s*(?:time\s+)?window|footage)\b/.test(t) &&
+          !/\bstills?\b/.test(t))),
   },
   {
     id: "cad_999",
-    // Default is CAD-only; cad999DisplayLabel() widens only when source tokens justify 999/control-room.
-    label: "CAD log / timing material",
+    label: "CAD / 999 audio / control-room material",
     source: "Police control room",
     priority: 3,
-    match: (t) => /\b(999|cad|control\s*room|dispatch)\b/.test(t),
+    // Bare "999" (page / schedule noise) must not classify as CAD (Court C0.5).
+    match: (t) =>
+      /\b(cad|control\s*room|dispatch\s+log|999\s+(?:audio|call|recording)|CAD\s*\/\s*999|emergency\s+call)\b/i.test(
+        t,
+      ),
   },
   {
     id: "bwv",
     label: "Body-worn video (BWV)",
     source: "Police / officer body-worn video",
     priority: 4,
-    match: (t) => /\b(bwv|body\s*worn|body-worn)\b/.test(t),
+    // Stills-only served lines must not classify as full-export BWV chase (Dunn).
+    // Require clip/export/footage/outstanding/not-served language, or BWV without stills-served-only.
+    match: (t) => {
+      if (!/\b(bwv|body\s*worn|body-worn)\b/.test(t)) return false;
+      if (
+        /\bbwv\s+stills?\b/.test(t) &&
+        !/\b(?:full|export|footage|clip|incident\s+window|outstanding|not\s+served|not\s+attached|referred)\b/.test(
+          t,
+        )
+      ) {
+        return false;
+      }
+      return true;
+    },
   },
   {
     id: "interview",
-    label: "Interview recording / transcript",
+    // Prefer modality-specific titles via reconcileInterviewModalityItems — avoid slash-blend identity.
+    label: "Interview recording",
     source: "Custody / police interview unit",
     priority: 5,
+    // Recording/transcript is a distinct modality from "interview summary" / "custody/interview summary".
     match: (t) =>
-      /\b(interview|transcript|custody|detention|risk\s*assessment|pace)\b/.test(t) &&
-      !/\bmg6c?\b/.test(t),
+      /\b(interview\s+recording|interview\s+transcript|interview\s+audio|interview\s+video|recording\s*\/\s*transcript|recording\s+and\s+transcript)\b/.test(
+        t,
+      ) ||
+      (/\binterview\b/.test(t) &&
+        /\b(recording|transcript|audio|video)\b/.test(t) &&
+        !/\b(interview\s+summary|custody\s*\/\s*interview\s+summary|summary\s+only)\b/.test(t)),
   },
   {
     id: "mg6_unused",
     label: "MG6 / unused / schedule clarification",
     source: "CPS / disclosure officer",
     priority: 6,
+    // MG6 extract alone is not an unused-schedule chase — require unused/MG6C/schedule clarification signal.
     match: (t) =>
-      /\bmg6c?\b/.test(t) ||
-      /\b(unused|disclosure\s*schedule|cpi(a)?|material\s*not\s*used)\b/.test(t),
+      /\b(mg6c|unused\s+material|unused\s+schedule|schedule\s+clarification|material\s+not\s+used|cpi(a)?)\b/.test(
+        t,
+      ) ||
+      (/\bmg6\b/.test(t) && /\b(unused|schedule\s+clarification|disclosure\s+schedule)\b/.test(t)),
   },
   {
     id: "medical_expert",
     label: "Medical / expert source report",
     source: "CPS / expert source (confirm on file)",
     priority: 7,
-    match: (t) => /\b(medical|mental\s+health|triage|gp|hospital|pathology|expert|autopsy|fme)\b/.test(t),
+    match: (t) => /\b(medical|gp|hospital|pathology|expert|autopsy|fme)\b/.test(t),
   },
   {
     id: "exhibit_provenance",
@@ -179,7 +233,6 @@ export type DisclosureChaseItem = {
   baseStatus: ChaseItemStatus;
   urgency: "high" | "medium" | "low";
   deadlineLabel: string;
-  hearingDeadlineNote?: string | null;
   evidenceAnchor: string | null;
   linkedRoute: string | null;
   draftChaseWording: string;
@@ -276,6 +329,496 @@ export function reconcileChaseItemsAgainstServedMaterial(
       return null;
     })
     .filter((i): i is DisclosureChaseItem => i !== null);
+}
+
+/**
+ * CAD extract Present/served must not keep the lumped "CAD / 999 audio…" card as if
+ * the extract were missing. Split remaining modalities (999 audio / CAD full print).
+ * Opposite: Dunn — extract served + 999 audio / full print outstanding stays chaseable.
+ */
+export function reconcileCad999ModalityItems(
+  items: DisclosureChaseItem[],
+  bundleText?: string | null,
+): DisclosureChaseItem[] {
+  const hay = `${bundleText ?? ""}`;
+  return items
+    .map((item) => {
+      if (item.familyId !== "cad_999") return item;
+      const itemBlob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? ""].join("\n");
+      // Item-local + hay: schedule "Present" language OR a served CAD/999 Extract section body.
+      const blob = `${itemBlob}\n${hay}`;
+
+      const extractPresent =
+        /\b\d*cad(?:\s*\/\s*999)?(?:\s+incident\s+log)?\s+extract\b[\s\S]{0,40}\b(?:present|served|included)/i.test(
+          blob,
+        ) ||
+        /\b(?:present|served|included)\b[\s\S]{0,40}\b\d*cad(?:\s*\/\s*999)?(?:\s+incident\s+log)?\s+extract\b/i.test(
+          blob,
+        ) ||
+        /\b\d*cad\s*\/\s*999\s+extract\s*present/i.test(blob) ||
+        /\b\d*cad\s*\/\s*999\s+extractpresent\b/i.test(blob) ||
+        // Served extract document body (Tobin): section title + timed entries — not a missing-extract chase.
+        (/\bcad\s*\/\s*999\s+extract\b/i.test(blob) &&
+          /\b(?:time\s+entry|call\s+received|unit\s*assigned|officer\s+arriv)/i.test(blob)) ||
+        // Chase already anchored to a CAD/999 Extract document title (Tobin live residual).
+        (/\bcad\s*\/\s*999\s+extract\b/i.test(itemBlob) &&
+          !/\b(?:outstanding|not\s+attached|not\s+served|missing)\b/i.test(itemBlob));
+
+      const audioOutstanding =
+        /\b999\s+audio\b[\s\S]{0,40}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
+          blob,
+        ) || /\bno\s+recording\s+attached\b/i.test(blob);
+
+      const fullPrintOutstanding =
+        /\bcad\s+log\s+full\s+print\b[\s\S]{0,40}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
+          blob,
+        );
+
+      if (!extractPresent) return item;
+
+      if (!audioOutstanding && !fullPrintOutstanding) {
+        // Grant/Tobin: extract present and no remaining CAD modality — do not chase as missing.
+        return null;
+      }
+
+      const parts: string[] = [];
+      if (audioOutstanding) parts.push("999 audio");
+      if (fullPrintOutstanding) parts.push("CAD log full print");
+      const label = `${parts.join(" / ")} outstanding`;
+      return {
+        ...item,
+        label,
+        draftChaseWording: `Please provide ${parts.join(" and ")}, or confirm in writing why it is not available.`,
+        courtLine: toCourtLine(label),
+        whyItMatters:
+          "CAD extract is on file — chase the remaining 999 audio / full CAD print modalities only.",
+        baseStatus: "Outstanding" as ChaseItemStatus,
+      };
+    })
+    .filter((i): i is DisclosureChaseItem => i !== null);
+}
+
+/**
+ * Pick a modality-true interview chase title from merged/provenance/bundle signals.
+ * Never keep the slash-blend "Interview recording / transcript" identity when one
+ * modality is already served or only one modality is outstanding.
+ * Opposite: Tobin/Patel recording|transcript still surfaces when PDF establishes it.
+ */
+export function interviewChaseLabelFromSignals(blob: string): string {
+  const hay = blob.toLowerCase();
+  const transcriptServed =
+    /transcript\s+state\s+served|transcript\s+(?:is\s+)?served|served\s+(?:full\s+)?(?:interview\s+)?transcript/.test(
+      hay,
+    );
+  const recordingServed =
+    /recording\s+state\s+served|recording\s+(?:is\s+)?served|served\s+(?:full\s+)?(?:interview\s+)?recording/.test(
+      hay,
+    );
+  const transcriptOutstanding =
+    /\b(?:full\s+)?(?:interview\s+)?transcript\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|needed|incomplete)/.test(
+      hay,
+    ) ||
+    /\b(?:outstanding|not\s+served|not\s+attached|needed)\b[^.\n]{0,48}\b(?:full\s+)?(?:interview\s+)?transcript\b/.test(
+      hay,
+    );
+  const recordingOutstanding =
+    /\b(?:full\s+)?(?:interview\s+)?recording\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|needed|not\s+safely\s+confirmed)/.test(
+      hay,
+    ) ||
+    /\b(?:outstanding|not\s+served|not\s+attached|needed|not\s+safely\s+confirmed)\b[^.\n]{0,48}\b(?:full\s+)?(?:interview\s+)?recording\b/.test(
+      hay,
+    ) ||
+    /recording\s+state\s+not\s+safely\s+confirmed/.test(hay);
+
+  const mentionsTranscript = /\btranscript\b/.test(hay);
+  const mentionsRecording = /\brecording\b|\binterview\s+audio\b|\binterview\s+video\b/.test(hay);
+
+  if (transcriptServed && (recordingOutstanding || mentionsRecording) && !recordingServed) {
+    return "Interview recording";
+  }
+  if (recordingServed && (transcriptOutstanding || mentionsTranscript) && !transcriptServed) {
+    return "Interview transcript";
+  }
+  if (transcriptOutstanding && !recordingOutstanding && !mentionsRecording) {
+    return "Interview transcript";
+  }
+  if (recordingOutstanding && !transcriptOutstanding && !mentionsTranscript) {
+    return "Interview recording";
+  }
+  if (
+    (recordingOutstanding || mentionsRecording) &&
+    (transcriptOutstanding || mentionsTranscript) &&
+    !transcriptServed &&
+    !recordingServed
+  ) {
+    return "Interview recording and transcript";
+  }
+  if (mentionsTranscript && !mentionsRecording) return "Interview transcript";
+  if (mentionsRecording && !mentionsTranscript) return "Interview recording";
+  return "Interview recording";
+}
+
+/**
+ * Split interview summary≠recording≠transcript on Chase cards.
+ * Drop summary-only invent; drop recording invent unless PDF establishes recording modality
+ * (PACE interview / custody alone must not become "Interview recording").
+ * Keep recording/transcript when PDF-established.
+ */
+export function reconcileInterviewModalityItems(
+  items: DisclosureChaseItem[],
+  bundleText?: string | null,
+): DisclosureChaseItem[] {
+  const hay = `${bundleText ?? ""}`;
+  return items
+    .map((item) => {
+      if (item.familyId !== "interview") return item;
+      const blob = [
+        item.label,
+        ...(item.mergedFrom ?? []),
+        item.evidenceAnchor ?? "",
+        item.whyItMatters ?? "",
+        item.provenance?.unresolvedConflictOrLimitation ?? "",
+        hay,
+      ].join("\n");
+
+      // Summary alone must never become a recording/transcript chase.
+      const summaryOnly =
+        /\b(interview\s+summary|custody\s*\/\s*interview\s+summary|summary\s+only)\b/i.test(blob) &&
+        !/\b(interview\s+recording|interview\s+transcript|recording|transcript|audio|video)\b/i.test(
+          blob.replace(/\binterview\s+summary\b/gi, " "),
+        );
+      if (summaryOnly) return null;
+
+      // Thin-file invent (Trap): no PACE recording/transcript established on papers.
+      // Evaluate source hay only — do not treat the chase card's own blend label as establishment.
+      const sourceHay = `${bundleText ?? ""}`;
+      const provenanceHay = item.provenance?.unresolvedConflictOrLimitation ?? "";
+      const modalityHay = `${sourceHay}\n${provenanceHay}`;
+      const thinFileNoPace =
+        /\bno\s+pace\s+interview\b/i.test(sourceHay) ||
+        /\bno\s+(?:pace\s+)?interview\s+(?:transcript|summary|recording)\b/i.test(sourceHay);
+      const sourceEstablishesRecordingOrTranscript =
+        isInterviewRecordingEstablished(modalityHay) || isInterviewTranscriptEstablished(modalityHay);
+      if (thinFileNoPace && !sourceEstablishesRecordingOrTranscript) return null;
+
+      const labelClaimsRecording =
+        /\binterview\s+recording\b/i.test(item.label) ||
+        /\brecording\s*\/\s*transcript\b/i.test(item.label) ||
+        (/^Interview recording$/i.test(item.label.trim()) &&
+          !/\btranscript\b/i.test(item.label));
+
+      // Court C0.5: PACE interview / custody without recording modality → never invent recording.
+      // Use source + provenance only (never the card's own "Interview recording" label).
+      if (labelClaimsRecording && !isInterviewRecordingEstablished(modalityHay)) {
+        if (isInterviewTranscriptEstablished(modalityHay)) {
+          return {
+            ...item,
+            label: "Interview transcript",
+            draftChaseWording:
+              "Please provide the interview transcript, or confirm in writing why it is not available.",
+            courtLine: toCourtLine("Interview transcript"),
+            whyItMatters:
+              "Interview summary or partial record on file is not a substitute for the full transcript.",
+          };
+        }
+        if (
+          /\b(?:pace\s+interview|custody\s+record|detention\s+log|safeguards?\s+checklist)\b/i.test(
+            sourceHay,
+          )
+        ) {
+          return {
+            ...item,
+            label: "Full custody record / PACE material",
+            draftChaseWording:
+              "Please provide the full custody record, detention log, risk assessment and safeguards checklist, or confirm why any item is unavailable.",
+            courtLine: toCourtLine("Full custody record / PACE material"),
+            whyItMatters:
+              "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          };
+        }
+        return null;
+      }
+
+      const label = interviewChaseLabelFromSignals(blob);
+      if (label === item.label && !/recording\s*\/\s*transcript/i.test(item.label)) return item;
+
+      // interviewChaseLabelFromSignals may still default to "Interview recording" —
+      // re-check establishment before keeping that invent surface.
+      if (/\binterview\s+recording\b/i.test(label) && !isInterviewRecordingEstablished(modalityHay)) {
+        if (isInterviewTranscriptEstablished(modalityHay)) {
+          return {
+            ...item,
+            label: "Interview transcript",
+            draftChaseWording:
+              "Please provide the interview transcript, or confirm in writing why it is not available.",
+            courtLine: toCourtLine("Interview transcript"),
+            whyItMatters:
+              "Interview summary or partial record on file is not a substitute for the full transcript.",
+          };
+        }
+        return null;
+      }
+
+      return {
+        ...item,
+        label,
+        draftChaseWording: `Please provide the ${label.toLowerCase()}, or confirm in writing why it is not available.`,
+        courtLine: toCourtLine(label),
+        whyItMatters:
+          /transcript/i.test(label) && /recording/i.test(label)
+            ? "Interview summary on file is not a substitute for the recording and transcript modalities."
+            : /transcript/i.test(label)
+              ? "Interview summary or partial record on file is not a substitute for the full transcript."
+              : "Interview summary on file is not a substitute for the interview recording.",
+      };
+    })
+    .filter((i): i is DisclosureChaseItem => i !== null);
+}
+
+/**
+ * Phone mid-state (logical/summary/referenced-only) must surface without inventing a
+ * full Brookes-style download chase, and without inventing download from property-phone.
+ * Opposite: Brookes full download outstanding TP; Arden property-phone TN.
+ */
+export function reconcilePhoneDownloadModalityItems(
+  items: DisclosureChaseItem[],
+  bundleText?: string | null,
+): DisclosureChaseItem[] {
+  const hay = `${bundleText ?? ""}`;
+  const midState =
+    /logical\s+download\s+summary/i.test(hay) ||
+    /\bphone\s+download\s+reference\s+referenced\s+only\b/i.test(hay) ||
+    /\breferenced\s+only\b[^.\n]{0,40}\bphone\s+download\b/i.test(hay) ||
+    /extraction\s+summary\s+only/i.test(hay) ||
+    /full\s+report\s+not\s+in\s+(?:the\s+)?section/i.test(hay) ||
+    /download\s+report\s*summary/i.test(hay);
+
+  const fullOutstanding =
+    /\b(?:full\s+)?phone\s+download\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|expressly|referred)\b/i.test(
+      hay,
+    ) ||
+    // Glued: phone extractionOutstanding / full phone extractionOutstandingnot
+    /\b(?:full\s+)?phone\s+extraction\s*(?:outstanding|not\s+served|not\s+attached|not\s+yet)/i.test(hay) ||
+    /\b(?:full\s+)?phone\s+extraction\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|not\s+yet|referred)\b/i.test(
+      hay,
+    ) ||
+    /\bphone\s+download\s*\/\s*source\s+export\b/i.test(hay) ||
+    /\bsource\s+export\b[\s\S]{0,64}\b(?:outstanding|not\s+served|not\s+attached|referred)\b/i.test(hay) ||
+    /\b(?:outstanding|not\s+served|not\s+attached|referred)\b[\s\S]{0,64}\bsource\s+export\b/i.test(hay) ||
+    /\bsource\s+export\s+outstanding\b/i.test(hay) ||
+    /\boriginal\s+download\b[^.\n]{0,40}\b(?:outstanding|not\s+served)\b/i.test(hay);
+
+  const propertyPhone = /\b(?:stolen|recovered|seized)\s+phone\b/i.test(hay);
+  // Affirmative digital-download family (not mere negation wording like "no phone download").
+  const downloadFamilyAffirmed =
+    midState ||
+    fullOutstanding ||
+    /\b(?:phone\s+download|source\s+export|phone\s+extraction|logical\s+download)\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|referred|summary|referenced\s+only)\b/i.test(
+      hay,
+    );
+
+  const out = items.map((item) => {
+    // Item-local only — never let full-bundle hay reclassify CAD/interview cards as phone.
+    const itemBlob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? ""].join("\n");
+    const isPhoneish =
+      /\b(?:phone\s+download|source\s+export|phone\s+extraction|logical\s+download|device\s+download)\b/i.test(
+        itemBlob,
+      ) ||
+      // Brookes live: harassment playbook "Message export / source device material" stands in
+      // for the PDF-true phone download gap until inject rewrites it.
+      (fullOutstanding &&
+        /\b(?:message\s+export|source\s+device\s+material|whatsapp\s+export|full\s+message\s+export)\b/i.test(
+          itemBlob,
+        ));
+    if (!isPhoneish) return item;
+
+    // Arden-like: property phone alone must not invent a download chase.
+    if (propertyPhone && !downloadFamilyAffirmed) {
+      return null;
+    }
+
+    // Playbook / MG6 "phone download" seed without download-family establishment
+    // (SIM/IMEI/subscriber alone) must not become a Full phone download card.
+    if (!downloadFamilyAffirmed && !midState && !fullOutstanding) {
+      return null;
+    }
+
+    if (midState && !fullOutstanding) {
+      const label = "Phone extraction summary only — full download report not in section";
+      return {
+        ...item,
+        label,
+        familyId: item.familyId === "other" ? item.familyId : item.familyId,
+        draftChaseWording:
+          "Please confirm whether a full phone download / source export exists beyond the logical/summary note on file, or confirm in writing why it is not available.",
+        courtLine: toCourtLine(label),
+        whyItMatters:
+          "A logical download summary or referenced-only note is not a full phone download report.",
+        baseStatus: "Not safely confirmed" as ChaseItemStatus,
+      };
+    }
+
+    if (fullOutstanding || /\bfull\s+phone\s+download\b/i.test(item.label)) {
+      const label = "Full phone download / source extraction";
+      return {
+        ...item,
+        label,
+        // Keep modality identity tight so finalize cannot overflow-merge into Other.
+        mergedFrom: [
+          label,
+          ...((item.mergedFrom ?? []).filter((m) =>
+            /\b(?:phone\s+download|source\s+export|phone\s+extraction|logical\s+download|original\s+download)\b/i.test(
+              m,
+            ),
+          )),
+        ].slice(0, 4),
+        draftChaseWording:
+          "Please provide the full phone download / source export, or confirm in writing why it is not available.",
+        courtLine: toCourtLine(label),
+      };
+    }
+
+    return item;
+  });
+
+  const filtered = out.filter((i): i is DisclosureChaseItem => i !== null);
+
+  // Inject mid-state card when bundle establishes it but no phoneish chase exists yet.
+  if (midState && !fullOutstanding && !(propertyPhone && !downloadFamilyAffirmed)) {
+    const hasPhone = filtered.some((i) =>
+      /\b(?:phone\s+download|phone\s+extraction|logical\s+download|source\s+export)\b/i.test(
+        `${i.label} ${(i.mergedFrom ?? []).join(" ")}`,
+      ),
+    );
+    if (!hasPhone) {
+      const label = "Phone extraction summary only — full download report not in section";
+      filtered.push({
+        id: "chase-phone-midstate",
+        familyId: "other",
+        label,
+        whyItMatters:
+          "A logical download summary or referenced-only note is not a full phone download report.",
+        source: "Crown / disclosure officer (confirm on file)",
+        baseStatus: "Not safely confirmed",
+        urgency: "medium",
+        deadlineLabel: "Before next hearing",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording:
+          "Please confirm whether a full phone download / source export exists beyond the logical/summary note on file, or confirm in writing why it is not available.",
+        courtLine: toCourtLine(label),
+        mergedFrom: ["Phone download mid-state on papers"],
+      });
+    }
+  }
+
+  // Brookes-style: papers expressly establish full download outstanding but no chase card yet.
+  if (fullOutstanding && !(propertyPhone && !downloadFamilyAffirmed)) {
+    const hasFull = filtered.some((i) => /Full phone download/i.test(i.label));
+    if (!hasFull) {
+      const label = "Full phone download / source extraction";
+      filtered.push({
+        id: "chase-phone-full-outstanding",
+        familyId: "other",
+        label,
+        whyItMatters:
+          "Original download / source export is outstanding on the disclosure papers.",
+        source: "Crown / disclosure officer (confirm on file)",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "Before next hearing",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording:
+          "Please provide the full phone download / source export, or confirm in writing why it is not available.",
+        courtLine: toCourtLine(label),
+        mergedFrom: ["Full phone download outstanding on papers"],
+      });
+    }
+  }
+
+  return filtered;
+}
+
+/**
+ * Subscriber both-ways: surface when PDF establishes outstanding subscriber/account data;
+ * never invent from thin-file "assuming"/SIM noise alone.
+ * Opposite: Brookes/Ahmed TP; Trap invent TN.
+ */
+export function reconcileSubscriberModalityItems(
+  items: DisclosureChaseItem[],
+  bundleText?: string | null,
+): DisclosureChaseItem[] {
+  const hay = `${bundleText ?? ""}`;
+  // Allow newline-separated schedule cells (Ahmed: "phone subscriber data\noutstanding\nnot attached").
+  // Reverse path requires subscriber report/return/data so "Not served … Subscriber" index noise (Grant) does not invent.
+  const establishedOutstanding =
+    /\b(?:phone\s+)?subscriber(?:\s+report|\s+return|\s+data)?\b[\s\S]{0,48}\b(?:outstanding|not\s+served|not\s+attached|not\s+complete|incomplete)/i.test(
+      hay,
+    ) ||
+    /\b(?:outstanding|not\s+served|not\s+attached)\b[\s\S]{0,48}\b(?:phone\s+)?subscriber(?:\s+report|\s+return|\s+data)\b/i.test(
+      hay,
+    );
+
+  const filtered = items
+    .map((item) => {
+      const blob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? ""].join("\n");
+      // Do not treat bare SIM noise inside unrelated prose as subscriber identity.
+      const isSubscriber =
+        /\bsubscriber\b|\baccount\s+data\b|\bphone\s+attribution\b|\bhandset\s+attribution\b|\bsim\s*(?:\/|&)?\s*imei\b|\bimei\b/i.test(
+          blob,
+        );
+      if (!isSubscriber) return item;
+      // Keep phone-download modality distinct — never rewrite Full phone download into Subscriber
+      // when one schedule line mentions both (Brookes: download + subscriber report not served).
+      if (
+        /full\s+phone\s+download|phone\s+extraction\s+summary\s+only|phone\s+download\s*\/\s*source\s+extraction/i.test(
+          item.label,
+        )
+      ) {
+        return item;
+      }
+      // Never keep a subscriber chase unless papers affirmatively establish it.
+      if (!establishedOutstanding) return null;
+      const label = "Subscriber / account data";
+      return {
+        ...item,
+        label,
+        draftChaseWording:
+          "Please provide the subscriber / account data, or confirm in writing why it is not available.",
+        courtLine: toCourtLine(label),
+        whyItMatters:
+          "Screenshots or partial extraction alone do not prove subscriber attribution.",
+        baseStatus: "Outstanding" as ChaseItemStatus,
+      };
+    })
+    .filter((i): i is DisclosureChaseItem => i !== null);
+
+  if (establishedOutstanding) {
+    const hasSub = filtered.some((i) => /\bsubscriber\b|\baccount\s+data\b/i.test(i.label));
+    if (!hasSub) {
+      const label = "Subscriber / account data";
+      filtered.push({
+        id: "chase-subscriber-outstanding",
+        familyId: "other",
+        label,
+        whyItMatters:
+          "Screenshots or partial extraction alone do not prove subscriber attribution.",
+        source: "Crown / disclosure officer (confirm on file)",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "Before next hearing",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording:
+          "Please provide the subscriber / account data, or confirm in writing why it is not available.",
+        courtLine: toCourtLine(label),
+        mergedFrom: ["Subscriber / account data outstanding on papers"],
+      });
+    }
+  }
+
+  return filtered;
 }
 
 function mapMaterialStatusToSharedState(status: string): EvidenceStateRow["state"] {
@@ -420,23 +963,6 @@ function classifyFamily(text: string): ChaseFamilyId {
   return "other";
 }
 
-/** CAD timing mention must not invent 999 audio / control-room material in the display label. */
-export function cad999DisplayLabel(mergedFrom: string[]): string {
-  const hay = mergedFrom.join(" ; ");
-  const has999 = /\b999\b|\bcall audio\b|\bemergency call\b/i.test(hay);
-  const hasControlRoom = /\bcontrol[-\s]?room\b|\bdispatch\b/i.test(hay);
-  const hasCad = /\bcad\b/i.test(hay);
-  if (has999 && hasControlRoom && hasCad) return "CAD / 999 audio / control-room material";
-  if (has999 && hasControlRoom) return "999 audio / control-room material";
-  if (has999 && hasCad) return "CAD / 999 audio material";
-  if (hasControlRoom && hasCad) return "CAD / control-room material";
-  if (has999) return "999 call audio";
-  if (hasControlRoom) return "Control-room material";
-  if (hasCad) return "CAD log / timing material";
-  // Never invent the compound triple from an empty/unknown token set.
-  return "CAD log / timing material";
-}
-
 const CHASE_FAMILY_TO_GATE_FAMILIES: Partial<Record<ChaseFamilyId, ChaseGateFamily[]>> = {
   cctv_master: ["cctv"],
   cctv_continuity: ["cctv"],
@@ -507,17 +1033,21 @@ type DeadlineContext = {
   baseStatus: ChaseItemStatus;
 };
 
+/**
+ * Chase operational deadline labels — listing status stays on the header via
+ * resolveSolicitorHearingStatus. Do not reuse "Hearing date passed · …" as if
+ * the listing date were a CPIA/disclosure ops deadline.
+ */
 function resolveDeadlineContext(days: number | null, hearingIso?: string | null, asOf: Date = new Date()): DeadlineContext {
   if (days === null) {
     return {
       days: null,
-      sharedLabel: "Before next hearing",
+      sharedLabel: "Before next listing — confirm disclosure timetable",
       hearingDeadlineNote: "Hearing date not safely extracted — chase deadlines are provisional.",
       urgency: "medium",
       baseStatus: "Not safely confirmed",
     };
   }
-  // Align labels with Phase 8 shared hearing status when ISO is available
   if (hearingIso?.trim()) {
     const status = resolveSolicitorHearingStatus({
       bundleNextHearingIso: hearingIso.trim().slice(0, 10),
@@ -526,7 +1056,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
     if (status.kind === "same_day") {
       return {
         days,
-        sharedLabel: status.statusLabel,
+        sharedLabel: "Same-day listing — chase before hearing",
         hearingDeadlineNote: null,
         urgency: "high",
         baseStatus: "Due soon",
@@ -535,7 +1065,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
     if (status.kind === "passed") {
       return {
         days,
-        sharedLabel: status.statusLabel,
+        sharedLabel: "Listing date passed — confirm next listing / chase outstanding disclosure",
         hearingDeadlineNote: null,
         urgency: "high",
         baseStatus: "Overdue",
@@ -544,7 +1074,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
     if (status.kind === "upcoming" || status.kind === "listed") {
       return {
         days,
-        sharedLabel: status.statusLabel,
+        sharedLabel: days <= 14 ? "Chase before listed hearing" : "Before next listing",
         hearingDeadlineNote: null,
         urgency: days <= 3 ? "high" : days <= 14 ? "medium" : "low",
         baseStatus: days <= 14 ? "Due soon" : "Outstanding",
@@ -554,7 +1084,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
   if (days < 0) {
     return {
       days,
-      sharedLabel: "Hearing date passed — chase urgently",
+      sharedLabel: "Listing date passed — confirm next listing / chase outstanding disclosure",
       hearingDeadlineNote: null,
       urgency: "high",
       baseStatus: "Overdue",
@@ -563,7 +1093,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
   if (days === 0) {
     return {
       days,
-      sharedLabel: "Same-day hearing",
+      sharedLabel: "Same-day listing — chase before hearing",
       hearingDeadlineNote: null,
       urgency: "high",
       baseStatus: "Due soon",
@@ -572,7 +1102,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
   if (days <= 3) {
     return {
       days,
-      sharedLabel: `Within ${days} day(s) of hearing`,
+      sharedLabel: `Chase within ${days} day(s) of listing`,
       hearingDeadlineNote: null,
       urgency: "high",
       baseStatus: "Due soon",
@@ -581,7 +1111,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
   if (days <= 7) {
     return {
       days,
-      sharedLabel: `Within ${days} days of hearing`,
+      sharedLabel: `Chase within ${days} days of listing`,
       hearingDeadlineNote: null,
       urgency: "medium",
       baseStatus: "Due soon",
@@ -589,7 +1119,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
   }
   return {
     days,
-    sharedLabel: "Before next hearing",
+    sharedLabel: "Before next listing",
     hearingDeadlineNote: null,
     urgency: "low",
     baseStatus: "Outstanding",
@@ -643,28 +1173,6 @@ function inferWhyItMatters(
         : "Additional source-material appears outstanding on the current file — solicitor to confirm relevance.";
     }
   }
-}
-
-function inferCad999WhyItMatters(
-  mergedFrom: string[],
-  battleboard: BattleboardOutput | null,
-): string {
-  const label = cad999DisplayLabel(mergedFrom);
-  const rt = routeType(battleboard);
-  const primaryTitle = battleboard?.primary_route?.title;
-  const routeHint = primaryTitle ? ` (linked to route: ${primaryTitle})` : "";
-  if (/999/i.test(label) && /CAD/i.test(label)) {
-    return rt === "timeline"
-      ? `CAD/999 material may bear on deployment and timing on this file — appears outstanding until served${routeHint}.`
-      : `CAD/999 material appears outstanding — may assist sequence analysis if timing is in issue${routeHint}.`;
-  }
-  if (/999/i.test(label)) {
-    return `999 call audio appears outstanding — may assist sequence analysis if timing is in issue${routeHint}.`;
-  }
-  if (/control-room/i.test(label)) {
-    return `Control-room material appears outstanding — may assist deployment/timing analysis if served${routeHint}.`;
-  }
-  return `CAD log / timing material appears outstanding — a CAD timing mention alone does not establish 999 audio${routeHint}.`;
 }
 
 function toCourtLine(canonicalLabel: string): string {
@@ -839,9 +1347,7 @@ function groupAndMergeLabels(
     const mergedText = mergedFrom.join("; ");
     const canonical = canonicalLedgerMaterial(mergedText, fam.id);
     const echoLabel = canonical.label === formatDisplayLabelCasing(mergedText);
-    const familyDefaultLabel =
-      fam.id === "cad_999" ? cad999DisplayLabel(mergedFrom) : def.label;
-    const label = echoLabel ? familyDefaultLabel : canonical.label;
+    const label = echoLabel ? def.label : canonical.label;
     const baseStatus: ChaseItemStatus =
       fam.id === "other" || mergedFrom.some((m) => /not safely|unknown|verify/i.test(m))
         ? "Not safely confirmed"
@@ -851,15 +1357,11 @@ function groupAndMergeLabels(
       id: `chase-family-${fam.id}`,
       familyId: fam.id,
       label,
-      whyItMatters:
-        fam.id === "cad_999"
-          ? inferCad999WhyItMatters(mergedFrom, battleboard)
-          : (canonical.whyItMatters ?? inferWhyItMatters(fam.id, battleboard, mergedFrom)),
+      whyItMatters: canonical.whyItMatters ?? inferWhyItMatters(fam.id, battleboard, mergedFrom),
       source: def.source,
       baseStatus,
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
-      hearingDeadlineNote: deadline.hearingDeadlineNote,
       evidenceAnchor: findEvidenceAnchor(fam.id, mergedFrom, battleboard, ledger),
       linkedRoute: findLinkedRoute(fam.id, battleboard),
       draftChaseWording: canonical.draftChaseWording ?? draftChaseWording(label, mergedFrom),
@@ -888,7 +1390,6 @@ function groupAndMergeLabels(
       baseStatus: "Not safely confirmed",
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
-      hearingDeadlineNote: deadline.hearingDeadlineNote,
       evidenceAnchor,
       linkedRoute: battleboard?.primary_route?.title ?? null,
       draftChaseWording: draftChaseWording(label, mergedFrom),
@@ -916,7 +1417,6 @@ function groupAndMergeLabels(
       baseStatus: deadline.baseStatus,
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
-      hearingDeadlineNote: deadline.hearingDeadlineNote,
       evidenceAnchor,
       linkedRoute: null,
       draftChaseWording: draftChaseWording(label, mergedFrom),
@@ -955,6 +1455,16 @@ function confirmNoneDisclosureItem(
   item: DisclosureChaseItem,
   gateFamily: ChaseGateFamily,
 ): DisclosureChaseItem {
+  if (/file indicates none exists/i.test(item.label)) {
+    return {
+      ...item,
+      baseStatus: "Not safely confirmed",
+      whyItMatters: confirmNoneLine(gateFamily),
+      draftChaseWording: /confirm in writing that none exists/i.test(item.draftChaseWording ?? "")
+        ? item.draftChaseWording
+        : `The file indicates no ${familyDisplayName(gateFamily)} is available. Please confirm in writing that none exists and that no related logs or exports are held.`,
+    };
+  }
   const name = familyDisplayName(gateFamily);
   return {
     ...item,
@@ -967,17 +1477,6 @@ function confirmNoneDisclosureItem(
 }
 
 function gateFamiliesForItem(item: DisclosureChaseItem): ChaseGateFamily[] {
-  const hay = `${item.label}\n${item.draftChaseWording}\n${item.whyItMatters}\n${(item.mergedFrom ?? []).join("\n")}`;
-  if (item.familyId === "interview") {
-    const wantsInterview = /\binterview\b|transcript|\broti\b/i.test(hay);
-    const wantsCustody = /\bcustody|detention|safeguard|\bpace\b|risk\s*assessment/i.test(hay);
-    const gates: ChaseGateFamily[] = [];
-    if (wantsInterview) gates.push("interview");
-    if (wantsCustody) gates.push("custody");
-    // Pure legacy interview family with only custody cues → custody gate only.
-    if (!gates.length) gates.push("custody");
-    return gates;
-  }
   const mapped = GATE_FAMILY_MAP[item.familyId];
   if (mapped) return [mapped];
   const probe = `${item.label} ${item.draftChaseWording} ${item.whyItMatters}`;
@@ -997,40 +1496,38 @@ function gateItemsAgainstSource(
   if (!bundleText?.trim()) return items;
   const out: DisclosureChaseItem[] = [];
   for (const item of items) {
+    // Affirmative modality gate — listed CCTV/BWV alone must not keep master/full-window/continuity.
+    if (item.familyId === "cctv_master" && !isCctvMasterEstablished(bundleText)) {
+      continue;
+    }
+    if (item.familyId === "cctv_continuity" && !isCctvContinuityEstablished(bundleText)) {
+      continue;
+    }
+    // BWV stills served alone must not keep a full-export invent chase (Dunn opposite Tobin/CASE-02).
+    if (item.familyId === "bwv" && !isBwvFullExportEstablished(bundleText)) {
+      continue;
+    }
+    // Bare page-999 / schedule noise must not keep CAD lump invent (Court C0.5).
+    if (item.familyId === "cad_999" && !isCad999Established(bundleText)) {
+      continue;
+    }
+
     const families = gateFamiliesForItem(item);
     if (!families.length) {
       out.push(item);
       continue;
     }
-    const supports = families.map((gateFamily) => ({
-      gateFamily,
-      support: familySupport(gateFamily, bundleText),
-    }));
-    // Custody+interview blend cards: keep when any mapped family is source-backed.
-    // Pure single-family cards still require that family.
-    const orMode = item.familyId === "interview" && families.length > 1;
     let drop = false;
     let replaced: DisclosureChaseItem | null = null;
-    if (orMode) {
-      if (supports.every((s) => s.support === "absent")) {
+    for (const gateFamily of families) {
+      const support = familySupport(gateFamily, bundleText);
+      if (support === "absent") {
         drop = true;
-      } else if (
-        supports.some((s) => s.support === "negated") &&
-        !supports.some((s) => s.support === "mentioned")
-      ) {
-        const negated = supports.find((s) => s.support === "negated")!;
-        replaced = confirmNoneDisclosureItem(item, negated.gateFamily);
+        break;
       }
-    } else {
-      for (const { gateFamily, support } of supports) {
-        if (support === "absent") {
-          drop = true;
-          break;
-        }
-        if (support === "negated") {
-          replaced = confirmNoneDisclosureItem(item, gateFamily);
-          break;
-        }
+      if (support === "negated") {
+        replaced = confirmNoneDisclosureItem(item, gateFamily);
+        break;
       }
     }
     if (drop) continue;
@@ -1044,16 +1541,9 @@ function familySafeMergedFrom(
   item: DisclosureChaseItem,
   bundleText: string | null | undefined,
 ): string[] {
-  const base = filterPromptInjectionInstructionLines(item.mergedFrom ?? []);
-  if (!base.length || !bundleText?.trim()) return base;
+  if (!item.mergedFrom?.length || !bundleText?.trim()) return item.mergedFrom ?? [];
   const allowedFamilies = new Set(gateFamiliesForItem(item));
-  return base.filter((line) => {
-    // MG6C schedule rows belong on the MG6 card even when the row text also mentions
-    // phone/subscriber/medical vocabulary used by other gate families.
-    if (/\bmg6c?\//i.test(line) && (item.familyId === "mg6_unused" || allowedFamilies.has("mg6_unused"))) {
-      return familySupport("mg6_unused", bundleText) !== "absent";
-    }
-    if (classifyFamily(line) === item.familyId) return true;
+  return item.mergedFrom.filter((line) => {
     const families = familiesInText(line);
     if (!families.length) return true;
     return families.every(
@@ -1097,13 +1587,28 @@ function splitPrimaryAdditional(items: DisclosureChaseItem[]): {
   additionalItems: DisclosureChaseItem[];
 } {
   const deduped = dedupeDisclosureItems(items);
-  const core = deduped.filter((i) => i.familyId !== "other");
-  const misc = deduped.filter((i) => i.familyId === "other");
-  const primaryItems = core.slice(0, DISCLOSURE_CHASE_PRIMARY_CAP);
-  const overflowCore = core.slice(DISCLOSURE_CHASE_PRIMARY_CAP);
+  // Phone/subscriber modality injects use familyId "other" but must stay on the default
+  // Chase board — burying them under collapsed "Other source-material items" soft-mutes
+  // Brookes/Ahmed/Grant live while Overview still shows the PDF-true gaps.
+  const isPrimaryEligible = (i: DisclosureChaseItem) =>
+    i.familyId !== "other" || isDigitalModalityChaseLabel(i.label);
+  const core = deduped.filter(isPrimaryEligible);
+  const misc = deduped.filter((i) => !isPrimaryEligible(i));
+  const digital = core.filter((i) => isDigitalModalityChaseLabel(i.label));
+  const nonDigitalCore = core.filter((i) => !isDigitalModalityChaseLabel(i.label));
+  const primaryItems: DisclosureChaseItem[] = [];
+  for (const item of digital) {
+    if (primaryItems.length >= DISCLOSURE_CHASE_PRIMARY_CAP) break;
+    primaryItems.push(item);
+  }
+  for (const item of nonDigitalCore) {
+    if (primaryItems.length >= DISCLOSURE_CHASE_PRIMARY_CAP) break;
+    primaryItems.push(item);
+  }
+  const primaryIds = new Set(primaryItems.map((i) => i.id));
   return {
     primaryItems,
-    additionalItems: [...overflowCore, ...misc],
+    additionalItems: [...core.filter((i) => !primaryIds.has(i.id)), ...misc],
   };
 }
 
@@ -1141,7 +1646,6 @@ function buildWorkflowProfileDisclosureItems(
       baseStatus: deadline.baseStatus,
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
-      hearingDeadlineNote: deadline.hearingDeadlineNote,
       evidenceAnchor: (() => {
         const fromLedger = ledger
           ? findEvidenceAnchor(familyId, [normalized], battleboard, ledger)
@@ -1167,7 +1671,39 @@ function buildWorkflowProfileDisclosureItems(
 }
 
 function normalizeDisclosureItem(item: DisclosureChaseItem): DisclosureChaseItem {
+  // Preserve confirm-none items from chase-source-gate — do not re-canonicalise back to a chase label.
+  if (
+    /file indicates none exists/i.test(item.label) ||
+    /confirm in writing that none exists/i.test(item.draftChaseWording ?? "")
+  ) {
+    return item;
+  }
   const label = normalizeRawLabel(item.label);
+  // Keep phone/subscriber modality cards stable — joining mergedFrom into the canonical
+  // label lets finalize overflow-rewrite them and soft-mute Brookes under Other.
+  if (isDigitalModalityChaseLabel(label)) {
+    return {
+      ...item,
+      familyId: "other",
+      label,
+      courtLine: toCourtLine(label),
+      mergedFrom: [
+        ...new Set(
+          [label, ...item.mergedFrom.map((m) => normalizeRawLabel(m))]
+            .map((m) => m.trim())
+            .filter((m) => m && (isDigitalModalityChaseLabel(m) || /phone|subscriber|source export|download/i.test(m))),
+        ),
+      ],
+      provenance:
+        item.provenance ??
+        chaseItemProvenance({
+          label,
+          source: item.source,
+          baseStatus: item.baseStatus,
+          evidenceAnchor: item.evidenceAnchor,
+        }),
+    };
+  }
   const familyId = item.familyId === "other" ? classifyFamily(label) : item.familyId;
   const canonical = canonicalDisclosureMaterial(label, familyId, item.mergedFrom);
   const draft =
@@ -1259,7 +1795,6 @@ function mergeDisclosureItems(
     baseStatus: mergeStatus(existing.baseStatus, incoming.baseStatus),
     urgency: mergeUrgency(existing.urgency, incoming.urgency),
     deadlineLabel: existing.deadlineLabel || incoming.deadlineLabel,
-    hearingDeadlineNote: existing.hearingDeadlineNote ?? incoming.hearingDeadlineNote ?? null,
     evidenceAnchor: existing.evidenceAnchor ?? incoming.evidenceAnchor,
     linkedRoute: existing.linkedRoute ?? incoming.linkedRoute,
     draftChaseWording:
@@ -1336,7 +1871,6 @@ function mergeLedgerDisclosureItems(
   const merged = [...items];
 
   for (const m of ledgerMaterialsNeedingChase(ledger)) {
-    if (isPromptInjectionInstructionLine(m.displayLine)) continue;
     const familyId = classifyFamily(m.displayLine);
     const canonical = canonicalLedgerMaterial(m.displayLine, familyId);
     const key = canonical.label.toLowerCase();
@@ -1360,7 +1894,6 @@ function mergeLedgerDisclosureItems(
       baseStatus,
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
-      hearingDeadlineNote: deadline.hearingDeadlineNote,
       evidenceAnchor: (() => {
         const display = canonical.anchor ?? formatDisplayLabelCasing(m.displayLine);
         if (!isAdminGuidanceLine(display)) return display;
@@ -1384,63 +1917,6 @@ function mergeLedgerDisclosureItems(
   return merged;
 }
 
-function sourceBackedLedgerItem(
-  m: ReturnType<typeof ledgerMaterialsNeedingChase>[number],
-  familyId: ChaseFamilyId,
-  deadline: ReturnType<typeof resolveDeadlineContext>,
-): DisclosureChaseItem {
-  const canonical = canonicalLedgerMaterial(m.displayLine, familyId);
-  const baseStatus: ChaseItemStatus =
-    m.status === "outstanding" || m.status === "absent" ? "Outstanding" : "Not safely confirmed";
-  const source = CHASE_FAMILIES.find((fam) => fam.id === familyId)?.source ?? "MG6/MG6C disclosure schedule";
-  const evidenceAnchor = canonical.anchor ?? formatDisplayLabelCasing(m.displayLine);
-
-  return {
-    id: `ledger-restored-${familyId}-${m.id}`,
-    familyId,
-    label: canonical.label,
-    whyItMatters:
-      canonical.whyItMatters ??
-      "The source ledger records this material as outstanding or not safely served; chase or confirm status before fixing the hearing position.",
-    source,
-    baseStatus,
-    urgency: deadline.urgency,
-    deadlineLabel: deadline.sharedLabel,
-    hearingDeadlineNote: deadline.hearingDeadlineNote,
-    evidenceAnchor,
-    linkedRoute: null,
-    draftChaseWording:
-      canonical.draftChaseWording ??
-      `Please provide ${canonical.label.toLowerCase()} or confirm in writing why it is not available.`,
-    courtLine: `${COURT_RECORD_PREFIX} that ${canonical.label.charAt(0).toLowerCase()}${canonical.label.slice(1)} remains ${professionalCourtStatusFragment(m.status)} on the current papers.`,
-    mergedFrom: [m.displayLine],
-    provenance: chaseItemProvenance({
-      label: canonical.label,
-      source,
-      baseStatus,
-      evidenceAnchor,
-    }),
-  };
-}
-
-function restoreSourceBackedRequiredChaseFamilies(
-  items: DisclosureChaseItem[],
-  ledger: BundleTruthLedger | null,
-  deadline: ReturnType<typeof resolveDeadlineContext>,
-): DisclosureChaseItem[] {
-  if (!ledger) return items;
-  const out = [...items];
-  const present = new Set(out.map((item) => item.familyId));
-  for (const m of ledgerMaterialsNeedingChase(ledger)) {
-    if (isPromptInjectionInstructionLine(m.displayLine)) continue;
-    const familyId = classifyFamily(m.displayLine);
-    if (familyId === "other" || present.has(familyId)) continue;
-    out.push(sourceBackedLedgerItem(m, familyId, deadline));
-    present.add(familyId);
-  }
-  return out;
-}
-
 function canonicalLedgerMaterial(
   displayLine: string,
   familyId: ChaseFamilyId,
@@ -1460,38 +1936,62 @@ function canonicalLedgerMaterial(
     };
   }
   if (familyId === "interview" && /\bcustody|pace|detention|safeguard/i.test(displayLine)) {
-    // Source-gate interview support using the line itself is not enough — callers must
-    // pass source-backed interview text. Prefer custody-only when the only interview
-    // cues are playbook blend phrases without an explicit interview recording/transcript ask
-    // that is independently established on the same line as a custody extract fact.
-    const explicitInterviewAsk =
-      /\binterview\s+recording\b|\binterview\s+transcript\b|\bpace\s+interview\b|\broti\b/i.test(displayLine) &&
-      !/\bfull custody and interview records\b/i.test(displayLine);
-    if (explicitInterviewAsk) {
+    // Only treat recording/transcript as established from this line when it is not merely a
+    // custody lump that also names interview recording as a template invent.
+    const recordingModalityLine =
+      /\binterview\s+recording\b/i.test(displayLine) &&
+      !/\bfull\s+custody\s+record\b/i.test(displayLine);
+    const transcriptModalityLine =
+      /\binterview\s+transcript\b/i.test(displayLine) &&
+      !/\bfull\s+custody\s+record\b/i.test(displayLine);
+    if (recordingModalityLine || (isInterviewRecordingEstablished(displayLine) && !/\bfull\s+custody\s+record\b/i.test(displayLine))) {
       return {
-        label: "Full custody record / PACE material",
-        anchor: "MG6/MG6C schedule — custody record extract only",
-        whyItMatters:
-          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+        label: "Interview recording",
+        whyItMatters: "Interview summary on file is not a substitute for the interview recording.",
         draftChaseWording:
-          "Please provide the full custody record, detention log, risk assessment, safeguards checklist and interview recording/transcript, or confirm why any item is unavailable.",
+          "Please provide the interview recording, or confirm in writing why it is not available.",
+      };
+    }
+    if (transcriptModalityLine || (isInterviewTranscriptEstablished(displayLine) && !/\bfull\s+custody\s+record\b/i.test(displayLine))) {
+      return {
+        label: "Interview transcript",
+        whyItMatters:
+          "Interview summary or partial record on file is not a substitute for the full transcript.",
+        draftChaseWording:
+          "Please provide the interview transcript, or confirm in writing why it is not available.",
       };
     }
     return {
-      label: "Full custody record",
+      label: "Full custody record / PACE material",
       anchor: "MG6/MG6C schedule — custody record extract only",
-      whyItMatters:
-        "Custody material is referred to in limited form — chase the full record before assessing safeguards.",
+      whyItMatters: "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
       draftChaseWording:
         "Please provide the full custody record, detention log, risk assessment and safeguards checklist, or confirm why any item is unavailable.",
     };
   }
-  if (familyId === "interview") {
+  // Papers/Chase shared root: prefer clean phone-download identity over multi-clause schedule prose
+  // that also mentions subscriber (Brookes) — subscriber stays a distinct inject card.
+  if (
+    /\b(?:(?:full\s+)?phone\s+download|phone\s+extraction|source\s+export|handset\s+download|device\s+download|digital\s+extraction)\b/i.test(
+      displayLine,
+    ) &&
+    !/\bno\s+(?:full\s+)?phone\s+download\b|\bno\s+source\s+export\b/i.test(displayLine)
+  ) {
+    if (/\blogical\s+download\s+summary|extraction\s+summary\s+only|full\s+report\s+not\s+in\s+(?:the\s+)?section/i.test(displayLine)) {
+      return {
+        label: "Phone extraction summary only — full download report not in section",
+        whyItMatters:
+          "A logical download summary or referenced-only note is not a full phone download report.",
+        draftChaseWording:
+          "Please confirm whether a full phone download / source export exists beyond the logical/summary note on file, or confirm in writing why it is not available.",
+      };
+    }
     return {
-      label: "Interview recording / transcript",
-      whyItMatters: "Interview recording/transcript is not safely confirmed on the papers — chase the source before relying on any interview account.",
+      label: "Full phone download / source extraction",
+      whyItMatters:
+        "Original download / source export is outstanding on the disclosure papers.",
       draftChaseWording:
-        "Please provide the interview recording/transcript, or confirm in writing why it is not available.",
+        "Please provide the full phone download / source export, or confirm in writing why it is not available.",
     };
   }
   return { label: formatDisplayLabelCasing(displayLine) };
@@ -1524,7 +2024,6 @@ function mergeContradictionActionItems(
       baseStatus: deadline.baseStatus,
       urgency: deadline.urgency === "low" ? "medium" : deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
-      hearingDeadlineNote: deadline.hearingDeadlineNote,
       evidenceAnchor: action.label,
       linkedRoute: input.battleboard?.primary_route?.title ?? null,
       draftChaseWording: action.draftChaseWording,
@@ -1542,10 +2041,36 @@ function mergeContradictionActionItems(
   return merged;
 }
 
+function modalityEstablishmentHay(input: BuildDisclosureChaseBriefInput): string {
+  // Live Brookes residual: Overview/evidence gaps establish phone download while
+  // frontMatterScan alone can omit the schedule cell phrasing — still inject/promote.
+  const bb = input.battleboard as {
+    chase_now?: string[];
+    urgent_next_moves?: string[];
+    solicitor_safe_summary?: string;
+    routes?: Array<{ next_moves?: string[]; title?: string }>;
+  } | null;
+  return [
+    input.bundleText ?? "",
+    input.allegation ?? "",
+    bb?.solicitor_safe_summary ?? "",
+    ...(input.snapshotMissing ?? []).map((m) => m.label),
+    ...(input.proceduralOutstanding ?? []),
+    ...(input.canonicalEvidenceRows ?? []).map((r) => `${r.label} ${r.state}`),
+    ...(input.canonicalFindings ?? []).map((f) => `${f.title} ${f.summary ?? ""}`),
+    ...(bb?.chase_now ?? []),
+    ...(bb?.urgent_next_moves ?? []),
+    ...((bb?.routes ?? []).flatMap((r) => [r.title ?? "", ...(r.next_moves ?? [])])),
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
 export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput): DisclosureChaseBrief {
   const ledger = input.bundleText?.trim()
     ? buildBundleTruthLedger({ bundleText: input.bundleText })
     : null;
+  const modalityHay = modalityEstablishmentHay(input);
   const briefPlan =
     input.briefPlan ??
     buildCriminalBriefPlan({
@@ -1573,6 +2098,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     snapshotMissing: input.snapshotMissing,
     proceduralOutstanding: input.proceduralOutstanding,
     battleboard: input.battleboard,
+    bundleText: input.bundleText,
   });
   const chaseLabels = prioritizeWorkflowItems(
     filterWorkflowItems(
@@ -1625,6 +2151,8 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
 
   if (ledger && ledgerMaterialsNeedingChase(ledger).length > 0) {
     items = mergeLedgerDisclosureItems(items, ledger, deadline);
+    // Ledger merge can re-introduce family items — re-apply source gate (incl. confirm-none).
+    items = gateItemsAgainstSource(items, input.bundleText);
     ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
   }
 
@@ -1632,6 +2160,18 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   items = collapseDisclosureItemsByFamily(items);
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+  items = reconcileCad999ModalityItems(items, input.bundleText);
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+  items = reconcileInterviewModalityItems(items, input.bundleText);
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+  items = reconcilePhoneDownloadModalityItems(items, modalityHay);
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+  items = reconcileSubscriberModalityItems(items, modalityHay);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   const guardCtx = { ledger, bundleText: input.bundleText ?? null };
@@ -1656,71 +2196,32 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
         : item.evidenceAnchor,
     }));
   items = collapseDisclosureItemsByFamily(items);
+  // Final source gate after presentation merges — preserves confirm-none / drops absent families.
+  items = gateItemsAgainstSource(items, input.bundleText);
+  items = finalizeDisclosureChasePresentation(items);
+  // Re-assert PDF-true phone/subscriber after finalize overflow — Brookes soft-mute residual:
+  // collapse/finalize was rewriting digital cards into "Outstanding source material…".
+  items = reconcilePhoneDownloadModalityItems(items, modalityHay);
+  items = reconcileSubscriberModalityItems(items, modalityHay);
+  // Re-assert interview recording≠PACE/custody after collapse/finalize (Court C1).
+  items = reconcileInterviewModalityItems(items, input.bundleText);
+  items = reconcileCad999ModalityItems(items, input.bundleText);
   items = finalizeDisclosureChasePresentation(items);
   items = items.map((item) => ({
     ...item,
     evidenceAnchor: familySafeEvidenceAnchor(item.familyId, item.evidenceAnchor),
   }));
   items = reconcileChaseItemsAgainstServedMaterial(items, ledger);
-  items = restoreSourceBackedRequiredChaseFamilies(items, ledger, deadline);
 
   // Alias-suppress using live document-derived evidence rows (not hardcoded assumptions).
-  // Presence is `!== undefined` (empty array = no served aliases to suppress against).
-  if (input.canonicalEvidenceRows !== undefined) {
-    const rows = input.canonicalEvidenceRows;
-    items = items
-      .map((item) => {
-        // When recording is served but transcript is not, do not keep chasing the
-        // served recording under a combined "recording / transcript" label.
-        if (/recording/i.test(item.label) && /transcript/i.test(item.label)) {
-          const recordingServed = rows.some(
-            (r) =>
-              r.state === "served" &&
-              /recording/i.test(r.label) &&
-              !/transcript/i.test(r.label),
-          );
-          const transcriptOutstanding = rows.some(
-            (r) =>
-              /transcript/i.test(r.label) &&
-              r.state !== "served" &&
-              r.state !== "referred_only",
-          );
-          if (recordingServed && transcriptOutstanding) {
-            return {
-              ...item,
-              label: item.label
-                .replace(/interview\s+recording\s*\/\s*/i, "Interview ")
-                .replace(/\brecording\s*\/\s*/i, "")
-                .replace(/\s{2,}/g, " ")
-                .trim(),
-            };
-          }
-        }
-        // Clip served must not keep a combined clip/master chase wording that treats clip as open.
-        if (/\bclip/i.test(item.label) && /master/i.test(item.label)) {
-          const clipServed = rows.some(
-            (r) => r.state === "served" && /\bclip/i.test(r.label),
-          );
-          const masterOutstanding = rows.some(
-            (r) => /master/i.test(r.label) && r.state !== "served",
-          );
-          if (clipServed && masterOutstanding) {
-            return {
-              ...item,
-              label: item.label
-                .replace(/\bcctv\s+clips?\s*\/\s*/i, "")
-                .replace(/\bclips?\s*\/\s*/i, "")
-                .replace(/\s{2,}/g, " ")
-                .trim(),
-            };
-          }
-        }
-        return item;
-      })
-      .filter((item) => {
-        const verdict = shouldChaseRequestAgainstServedAliases(item.label, rows);
-        return verdict.chase;
-      });
+  if (input.canonicalEvidenceRows?.length) {
+    items = items.filter((item) => {
+      const verdict = shouldChaseRequestAgainstServedAliases(
+        item.label,
+        input.canonicalEvidenceRows!,
+      );
+      return verdict.chase;
+    });
   }
 
   // Attach provenance limitations from canonical findings onto matching chase labels.

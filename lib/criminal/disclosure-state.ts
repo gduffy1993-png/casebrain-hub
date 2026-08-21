@@ -30,7 +30,7 @@ export function deriveBundleMentionedTopics(keyFacts: {
     const s = keyFacts.structuredKeyFacts;
     if (s.cctvRefs?.length) {
       add("cctv");
-      add("cctv continuity");
+      // Do not auto-promote continuity from bare CCTV refs — require affirmative continuity language below.
     }
     if (s.forensicRefs?.length) {
       add("forensic");
@@ -50,7 +50,19 @@ export function deriveBundleMentionedTopics(keyFacts: {
     ...(keyFacts.solicitorBuckets?.prosecutionCase ?? []),
     ...(keyFacts.solicitorBuckets?.defenceCase ?? []),
   ].join(" ").toLowerCase();
-  if (/cctv|footage|continuity/i.test(allText)) add("cctv");
+  if (/cctv|footage/i.test(allText)) add("cctv");
+  // Affirmative master / full-window only — thin "listed CCTV/BWV" is not enough.
+  if (
+    /cctv\s+master|full\s+cctv(?:\s+master)?|master\s+footage|full\s*(?:time\s+)?window/i.test(allText) &&
+    !/review\s+whether\s+listed\s+cctv/i.test(allText)
+  ) {
+    add("cctv full window");
+    add("cctv master");
+  }
+  // Affirmative continuity only — do not invent from bare CCTV mention.
+  if (/cctv\s+continuity|continuity\s+statement|continuity\s+log|chain\s+of\s+custody/i.test(allText)) {
+    add("cctv continuity");
+  }
   if (/bwv|body worn/i.test(allText)) add("bwv");
   if (/999|cad|dispatch/i.test(allText)) {
     add("999");
@@ -74,13 +86,21 @@ const STANDARD_DISCLOSURE_ITEMS = [
     key: "cctv_full_window",
     label: "CCTV Full Window",
     severity: "critical" as const,
-    patterns: ["cctv", "camera footage", "video footage", "cctv footage", "cctv window"],
+    // Bare "cctv" must not promote full-window invent (Grant listed CCTV/BWV).
+    // Require affirmative master / full-window topic language.
+    patterns: [
+      "cctv full window",
+      "cctv master",
+      "full window",
+      "master footage",
+      "full cctv",
+    ],
   },
   {
     key: "cctv_continuity",
     label: "CCTV Continuity",
     severity: "critical" as const,
-    patterns: ["cctv continuity", "continuity log", "cctv chain of custody"],
+    patterns: ["cctv continuity", "continuity log", "cctv chain of custody", "continuity statement"],
   },
   {
     key: "bwv",
@@ -301,7 +321,19 @@ function isItemRelevant(
 ): boolean {
   if (!bundleMentionedTopics || bundleMentionedTopics.length === 0) return true;
   const lower = bundleMentionedTopics.map((t) => t.toLowerCase());
-  return item.patterns.some((p) => lower.some((t) => t.includes(p) || p.includes(t)));
+  return item.patterns.some((p) =>
+    lower.some((t) => {
+      if (t === p || t.includes(p)) return true;
+      // Allow short synonym topics to hit patterns, but bare family tokens must not
+      // activate more-specific compounds (e.g. topic "cctv" ≠ pattern "cctv full window").
+      if (p.includes(t) && t.length >= 3) {
+        const compound = /\s/.test(p);
+        if (compound && /^(cctv|bwv|cad|999|footage|continuity)$/i.test(t)) return false;
+        return true;
+      }
+      return false;
+    }),
+  );
 }
 
 /**
