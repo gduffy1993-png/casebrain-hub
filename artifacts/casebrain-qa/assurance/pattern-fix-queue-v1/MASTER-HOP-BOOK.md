@@ -14,7 +14,7 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 
 | Status | N |
 |--------|--:|
-| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute + C1 Court invent + D1 Client phone + E1 File chrome + C2 Court phone + D2 Client residual) | 32 |
+| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute + C1 Court invent + D1 Client phone + E1 File chrome + C2 Court phone + D2 Client residual + D3 negation hygiene) | 33 |
 | OPEN (remaining) | 0 |
 | STOP → Phase B (Papers / Client) | 0 |
 | WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft / File E0) | 8 |
@@ -46,6 +46,7 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 | `FILE_DEFENDANT_DATE_OF_BIRTH_GLUE` | File/header defendant | mute | CB-TB-012 Morley | `DefendantAlex MorleyDate of birth…` | E1 — trimPersonCapture Date of birth |
 | `COURT_PHONE_DOWNLOAD_FROM_SIM_SUBSCRIBER` | Court/Chase | invent | Mercer; drugs playbook | SIM/IMEI/subscriber ≠ Full phone download | C2 — isPhoneDownloadEstablished + playbook seed |
 | `CLIENT_FULL_PHONE_FROM_MIDSTATE_CHASE_LABEL` | Client export gaps | invent | Khan / Hayes mid-state PDFs | Chase mid-state inject ≠ Full phone download gap | D2 — modality from bundleText only + glued “this section” |
+| `CLIENT_INVENT_PHONE_FROM_NEGATION_NOTE` | Client/Court invent detectors | detector | residual 7 after D2 | “not full phone download…” on Screenshot [Served] ≠ invent claim | D3 — note wording + claim-hay strip |
 
 ---
 
