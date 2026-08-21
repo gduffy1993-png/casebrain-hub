@@ -284,9 +284,17 @@ function digitalChaseLabel(hay: string): string | null {
 }
 
 /** UI-only chase card title — does not change chase brain output. */
-export function displayChaseCardLabel(item: ChaseDisplayItem): string {
-  const hay = digitalHay(item);
+export function displayChaseCardLabel(item: ChaseDisplayItem, bundleHay = ""): string {
+  const hay = `${digitalHay(item)}\n${bundleHay}`;
   const normalized = item.label.replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
+
+  // Prefer PDF-true phone download identity over harassment playbook message-export label.
+  if (
+    /\b(?:message\s+export|source\s+device\s+material|full\s+message\s+export)\b/i.test(normalized) &&
+    /\b(?:phone\s+download|source\s+export|original\s+download|full\s+phone)\b/i.test(hay)
+  ) {
+    return "Full phone download / source extraction";
+  }
 
   if (/interview\s+recording\s*\/\s*transcript/i.test(normalized)) {
     const digital = digitalChaseLabel(hay);

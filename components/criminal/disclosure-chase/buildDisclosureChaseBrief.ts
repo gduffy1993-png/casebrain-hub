@@ -516,9 +516,12 @@ export function reconcilePhoneDownloadModalityItems(
     /\bfull\s+report\s+not\s+in\s+(?:the\s+)?section\b/i.test(hay);
 
   const fullOutstanding =
-    /\b(?:full\s+)?phone\s+download\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|expressly)\b/i.test(
+    /\b(?:full\s+)?phone\s+download\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|expressly|referred)\b/i.test(
       hay,
     ) ||
+    /\bphone\s+download\s*\/\s*source\s+export\b/i.test(hay) ||
+    /\bsource\s+export\b[\s\S]{0,64}\b(?:outstanding|not\s+served|not\s+attached|referred)\b/i.test(hay) ||
+    /\b(?:outstanding|not\s+served|not\s+attached|referred)\b[\s\S]{0,64}\bsource\s+export\b/i.test(hay) ||
     /\bsource\s+export\s+outstanding\b/i.test(hay) ||
     /\boriginal\s+download\b[^.\n]{0,40}\b(?:outstanding|not\s+served)\b/i.test(hay);
 
@@ -537,7 +540,13 @@ export function reconcilePhoneDownloadModalityItems(
     const isPhoneish =
       /\b(?:phone\s+download|source\s+export|phone\s+extraction|logical\s+download|device\s+download)\b/i.test(
         itemBlob,
-      );
+      ) ||
+      // Brookes live: harassment playbook "Message export / source device material" stands in
+      // for the PDF-true phone download gap until inject rewrites it.
+      (fullOutstanding &&
+        /\b(?:message\s+export|source\s+device\s+material|whatsapp\s+export|full\s+message\s+export)\b/i.test(
+          itemBlob,
+        ));
     if (!isPhoneish) return item;
 
     // Arden-like: property phone alone must not invent a download chase.
@@ -1871,14 +1880,23 @@ function mergeContradictionActionItems(
 function modalityEstablishmentHay(input: BuildDisclosureChaseBriefInput): string {
   // Live Brookes residual: Overview/evidence gaps establish phone download while
   // frontMatterScan alone can omit the schedule cell phrasing — still inject/promote.
+  const bb = input.battleboard as {
+    chase_now?: string[];
+    urgent_next_moves?: string[];
+    solicitor_safe_summary?: string;
+    routes?: Array<{ next_moves?: string[]; title?: string }>;
+  } | null;
   return [
     input.bundleText ?? "",
     input.allegation ?? "",
+    bb?.solicitor_safe_summary ?? "",
     ...(input.snapshotMissing ?? []).map((m) => m.label),
     ...(input.proceduralOutstanding ?? []),
     ...(input.canonicalEvidenceRows ?? []).map((r) => `${r.label} ${r.state}`),
     ...(input.canonicalFindings ?? []).map((f) => `${f.title} ${f.summary ?? ""}`),
-    ...(((input.battleboard as { chase_now?: string[] } | null)?.chase_now) ?? []),
+    ...(bb?.chase_now ?? []),
+    ...(bb?.urgent_next_moves ?? []),
+    ...((bb?.routes ?? []).flatMap((r) => [r.title ?? "", ...(r.next_moves ?? [])])),
   ]
     .filter(Boolean)
     .join("\n");
