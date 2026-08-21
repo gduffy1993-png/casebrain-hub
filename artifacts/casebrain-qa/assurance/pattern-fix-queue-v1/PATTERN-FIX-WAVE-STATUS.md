@@ -2,9 +2,9 @@
 
 
 
-**Verdict:** `P1_PHONE_MUTE_ARMOURED` (Papers phone-download inventory + Chase Brookes/Arden opposite PASS)
+**Verdict:** `P1_PROOF_MUTE_PHONE_DROPPED` (Papers mute_phone **606→469**; phone invent still 0)
 
-**Chunk P1 Papers phone mute:** `CHUNK-P1-PAPERS-PHONE-MUTE.md` · opposite L2 · tip pending commit
+**Chunk P1 Papers phone mute:** `CHUNK-P1-PAPERS-PHONE-MUTE.md` · proof `CHUNK-P1-PAPERS-PHONE-MUTE-PROOF.md` · tip `e3179fa74` · resweep `tip-resweep-e3179fa74/`
 
 **Chunk P0 Papers find-only:** `CHUNK-P0-PAPERS-FINDONLY.md` · pack `papers-criminal-sweep-v1/` · tip `9476419c9` · hitlist **759** · invent sum **1** · spotcheck `p0-pdf-spotcheck.json`
 

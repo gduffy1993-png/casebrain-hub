@@ -31,3 +31,9 @@ No caseId hacks · no mute-everything · no architecture rewrite.
 ## Next
 
 Optional tip re-score Papers mute_phone family (find-only) to measure Δ. Date-role / Court lanes still later.
+
+---
+
+## Scale proof (done)
+
+See `CHUNK-P1-PAPERS-PHONE-MUTE-PROOF.md` — mute_phone **606→469 (−137)** @ `e3179fa74`; phone invent still **0**.
