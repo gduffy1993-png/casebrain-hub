@@ -2,16 +2,20 @@
 
 
 
-**Verdict:** `D2_CLIENT_TIP_RESWEEP_PROOF` (Client invent_phone **166→7** @ tip · programme D2 via PR #74)
+**Verdict:** `D3_CLIENT_PHONE_NEGATION_NOTE_HYGIENE` (residual invent_phone **7** = detector noise from Screenshot note; Court tip re-sweep in flight)
+
+**Chunk D3 Client negation hygiene:** `CHUNK-D3-CLIENT-PHONE-NEGATION-HYGIENE.md`
 
 **Chunk D2 tip re-sweep proof:** `CHUNK-D2-CLIENT-TIP-RESWEEP-PROOF.md` · pack `client-criminal-sweep-v1/tip-resweep-d2-e20e0b1da/` · invent_phone **166→7**
 
 **Chunk D2 Client phone residual:** `CHUNK-D2-CLIENT-PHONE-BUNDLE-ONLY.md` · tip sample **40/40**
 
 **PR #73 (D2 → recovery):** https://github.com/gduffy1993-png/casebrain-hub/pull/73 · **MERGED** @ `c13facdac`  
-**PR #74 (D2 → programme):** https://github.com/gduffy1993-png/casebrain-hub/pull/74 · **MERGED** @ `618c0ef29`
+**PR #74 (D2 → programme):** https://github.com/gduffy1993-png/casebrain-hub/pull/74 · **MERGED** @ `618c0ef29`  
+**PR #75 (D2 proof docs):** https://github.com/gduffy1993-png/casebrain-hub/pull/75 · **MERGED** @ `0d21ca4ae`
 
 **Chunk C2 Court phone:** `CHUNK-C2-COURT-PHONE-GATE.md` · tip sample `court-criminal-sweep-v1/tip-sample-c2-phone.json`
+
 
 
 **Chunk E1 proof:** `CHUNK-E1-FILE-INVENT-PROOF.md` · tip pack `file-criminal-sweep-v1/tip-resweep-627789b1e/` · invent_court **43→0**

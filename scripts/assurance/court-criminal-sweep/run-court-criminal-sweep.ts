@@ -572,12 +572,18 @@ function scoreInvent(
   const dateRoleFlags: string[] = [];
   const materialFlags: string[] = [];
 
+  // Strip modality negation notes — "not full phone download…" is truth prose, not invent claim.
+  const phoneClaimHay = claimBlob
+    .replace(/not\s+(?:a\s+)?full\s+phone\s+download[^.!\n]{0,100}/gi, " ")
+    .replace(/not\s+full\s+phone\s+download[^.!\n]{0,100}/gi, " ")
+    .replace(/screenshots?\s+alone\s+are\s+not\s+attribution[^.!\n]{0,80}/gi, " ");
   const evidence = {
     export_log_claim: /\bexport\s+log\b/i.test(claimBlob),
     export_log_source: /\bexport\s*log\b/i.test(bundleText),
     cctv_master_claim: /CCTV master|full CCTV master|master footage|master recording/i.test(claimBlob),
     cctv_master_source: /CCTV master|full CCTV master|master footage|full master/i.test(bundleText),
-    phone_download_claim: /phone download|source export referred|digital extraction|original download|phone extraction/i.test(claimBlob),
+    phone_download_claim:
+      /phone download|source export referred|digital extraction|original download|phone extraction/i.test(phoneClaimHay),
     phone_download_source:
       /phone download|source export|handset download|digital extraction|extraction report|phone extraction|logical download|download report/i.test(bundleText),
     cad_999_claim: /\bCAD\b|999\s+audio|complete CAD/i.test(claimBlob),

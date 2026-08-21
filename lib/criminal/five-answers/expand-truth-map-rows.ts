@@ -144,7 +144,7 @@ export function expandTruthMapRowsForDisplay(input: {
       evidenceRowFromSourceState(
         "Screenshot / message pack",
         "served",
-        "Served on papers — not full phone download or attribution proof.",
+        "Served on papers — screenshots alone are not attribution or extraction proof.",
       ),
     );
   }
