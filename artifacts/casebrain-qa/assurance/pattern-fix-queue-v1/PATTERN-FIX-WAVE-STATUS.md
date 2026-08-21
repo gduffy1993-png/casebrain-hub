@@ -1,6 +1,8 @@
 # PATTERN FIX WAVE - STATUS
 
-**Verdict:** `INVENT_WAVE_CLOSED` — see `WAVE-CLOSE-INVENT-V1.md`
+**Verdict:** `INVENT_WAVE_CLOSED` — see `WAVE-CLOSE-INVENT-V1.md` · soft nesting `S1_BROOKES_NESTING_CLEARED`
+
+**Soft S1 Brookes nesting:** `CHUNK-S1-BROOKES-NESTING-CLEARED.md` · live tip Chase has phone primary (no Other bury)
 
 **Live AUTH C4/C5:** `live-auth-c4c5-invent-clear/LIVE-AUTH-C4C5.md` · Preview https://casebrain-5eq2vjtuv-gduffy1993-pngs-projects.vercel.app · tip `9e061a1ec` · **PASS**
 
