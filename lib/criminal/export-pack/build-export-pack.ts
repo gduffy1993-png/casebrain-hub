@@ -193,6 +193,7 @@ function buildEvidenceGapsSection(
   matterConfidence: MatterConfidenceResult | null,
   doNotOverstate: string[],
   bundleText?: string | null,
+  evidenceRowsOverride?: import("@/lib/criminal/five-answers/types").FiveAnswersEvidenceRow[],
 ): ExportPackSection {
   const five = buildFiveAnswersView({
     allegation,
@@ -201,6 +202,7 @@ function buildEvidenceGapsSection(
     matterConfidence,
     doNotOverstate,
     bundleText: bundleText ?? undefined,
+    evidenceRowsOverride,
   });
 
   const lines = five.evidenceState.rows.slice(0, 8).map((row) => {
@@ -287,6 +289,8 @@ export type BuildExportPackInput = {
   urnCandidateTexts?: string[];
   /** PDF/source hay for truth-map expansion — never invent phone gaps from do-not-overstate alone. */
   bundleText?: string | null;
+  /** Canonical evidence rows when live — do not rebuild gaps from Chase alone. */
+  evidenceRowsOverride?: import("@/lib/criminal/five-answers/types").FiveAnswersEvidenceRow[];
 };
 
 export function buildExportPack(input: BuildExportPackInput): ExportPackModel {
@@ -305,6 +309,7 @@ export function buildExportPack(input: BuildExportPackInput): ExportPackModel {
     matterReference = null,
     urnCandidateTexts = [],
     bundleText = null,
+    evidenceRowsOverride,
   } = input;
 
   const resolvedUrn =
@@ -337,6 +342,7 @@ export function buildExportPack(input: BuildExportPackInput): ExportPackModel {
     matterConfidence,
     doNotOverstate,
     bundleText ?? urnCandidateTexts.join("\n"),
+    evidenceRowsOverride,
   );
   const doNot = buildDoNotOverstateSection(doNotOverstate);
 
