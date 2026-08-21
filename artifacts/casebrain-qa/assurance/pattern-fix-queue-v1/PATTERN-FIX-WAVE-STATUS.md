@@ -2,9 +2,11 @@
 
 
 
-**Verdict:** `P0_COMPLETE_FINDONLY` (Papers 2600 scored; invent quiet; P0.5 triage — mute_phone WATCH, modality soft noise, invent_bwv one-off)
+**Verdict:** `P1_PHONE_MUTE_ARMOURED` (Papers phone-download inventory + Chase Brookes/Arden opposite PASS)
 
-**Chunk P0 Papers find-only:** `CHUNK-P0-PAPERS-FINDONLY.md` · pack `papers-criminal-sweep-v1/` · tip `6e63bb6d2` · hitlist **759** · invent sum **1** · spotcheck `p0-pdf-spotcheck.json`
+**Chunk P1 Papers phone mute:** `CHUNK-P1-PAPERS-PHONE-MUTE.md` · opposite L2 · tip pending commit
+
+**Chunk P0 Papers find-only:** `CHUNK-P0-PAPERS-FINDONLY.md` · pack `papers-criminal-sweep-v1/` · tip `9476419c9` · hitlist **759** · invent sum **1** · spotcheck `p0-pdf-spotcheck.json`
 
 **Chunk 3 family armour:** `CHUNK-3-FAMILY-ARMOUR.md` · Preview https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app · live `live-auth-chunk3-after-bwv/` · **committed+pushed** `6e63bb6d2`
 

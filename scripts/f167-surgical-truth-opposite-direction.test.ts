@@ -16,6 +16,8 @@ import {
   reconcileSubscriberModalityItems,
 } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { familySupport, expandAndGateChaseLines, gateMaterialLines, isBwvFullExportEstablished, isCctvContinuityEstablished, isCctvMasterEstablished } from "../lib/criminal/chase-source-gate";
+import { normaliseBundleMaterials } from "../lib/criminal/bundle-material-normalizer";
+import { buildBundleTruthLedger } from "../lib/criminal/bundle-truth-ledger";
 import {
   displayChaseCardLabel,
   isDigitalHarassmentBundleHay,
@@ -675,6 +677,59 @@ Evidence referred or outstanding: Full BWV export; full custody record.
     "Stolen phone from Marlow Reed. No phone download or source export on MG6.",
   );
   assert.equal(arden.length, 0, "opposite: Arden property-phone TN");
+
+  // --- L2: Papers inventory — Brookes phone download TP vs Arden property TN (outside MG6 head) ---
+  {
+    const brookesLoose = normaliseBundleMaterials(
+      "Full phone download outstanding on the papers. Source export not served. Subscriber report not served.",
+    );
+    assert.ok(
+      brookesLoose.some(
+        (r) =>
+          /phone download|source export/i.test(`${r.label} ${r.detail ?? ""}`) &&
+          (r.status === "outstanding" || r.status === "referred_only"),
+      ),
+      "Papers opposite: Brookes full download surfaces outside MG6 schedule head",
+    );
+
+    const ardenProperty = normaliseBundleMaterials(
+      [
+        "Stolen phone from Marlow Reed. Property phone seized.",
+        "No phone download or source export on MG6.",
+        "CCTV master outstanding.",
+      ].join("\n"),
+    );
+    assert.ok(
+      !ardenProperty.some((r) => /phone download|source export|handset download/i.test(`${r.label} ${r.detail ?? ""}`)),
+      "Papers opposite: Arden property-phone must not invent download inventory row",
+    );
+    assert.ok(
+      ardenProperty.some((r) => /CCTV master/i.test(r.label) && r.status === "outstanding"),
+      "Papers opposite: Arden CCTV master outstanding still surfaces",
+    );
+
+    const brookesLedger = buildBundleTruthLedger({
+      bundleText:
+        "Full phone download outstanding. Source export not served. Screenshots served on bundle.",
+    });
+    const claimBlob = brookesLedger.materials
+      .map((m) => [m.label, m.status, m.detail || ""].join(" | "))
+      .join("\n");
+    assert.match(claimBlob, /phone download|source export/i, "Papers ledger claim blob carries phone download");
+
+    const ardenLedger = buildBundleTruthLedger({
+      bundleText: [
+        "Stolen phone from Marlow Reed.",
+        "No phone download or source export on MG6.",
+      ].join("\n"),
+    });
+    assert.ok(
+      !ardenLedger.materials.some((m) =>
+        /phone download|source export|handset download/i.test(`${m.label} ${m.detail ?? ""}`),
+      ),
+      "Papers ledger: Arden denial/property must not invent download materials",
+    );
+  }
 
   const ahmedSub = reconcileSubscriberModalityItems(
     [],

@@ -696,6 +696,15 @@ export function reconcileSubscriberModalityItems(
           blob,
         );
       if (!isSubscriber) return item;
+      // Keep phone-download modality distinct — never rewrite Full phone download into Subscriber
+      // when one schedule line mentions both (Brookes: download + subscriber report not served).
+      if (
+        /full\s+phone\s+download|phone\s+extraction\s+summary\s+only|phone\s+download\s*\/\s*source\s+extraction/i.test(
+          item.label,
+        )
+      ) {
+        return item;
+      }
       // Never keep a subscriber chase unless papers affirmatively establish it.
       if (!establishedOutstanding) return null;
       const label = "Subscriber / account data";
@@ -1856,6 +1865,31 @@ function canonicalLedgerMaterial(
       whyItMatters: "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
       draftChaseWording:
         "Please provide the full custody record, detention log, risk assessment, safeguards checklist and interview recording/transcript, or confirm why any item is unavailable.",
+    };
+  }
+  // Papers/Chase shared root: prefer clean phone-download identity over multi-clause schedule prose
+  // that also mentions subscriber (Brookes) — subscriber stays a distinct inject card.
+  if (
+    /\b(?:(?:full\s+)?phone\s+download|phone\s+extraction|source\s+export|handset\s+download|device\s+download|digital\s+extraction)\b/i.test(
+      displayLine,
+    ) &&
+    !/\bno\s+(?:full\s+)?phone\s+download\b|\bno\s+source\s+export\b/i.test(displayLine)
+  ) {
+    if (/\blogical\s+download\s+summary|extraction\s+summary\s+only|full\s+report\s+not\s+in\s+(?:the\s+)?section/i.test(displayLine)) {
+      return {
+        label: "Phone extraction summary only — full download report not in section",
+        whyItMatters:
+          "A logical download summary or referenced-only note is not a full phone download report.",
+        draftChaseWording:
+          "Please confirm whether a full phone download / source export exists beyond the logical/summary note on file, or confirm in writing why it is not available.",
+      };
+    }
+    return {
+      label: "Full phone download / source extraction",
+      whyItMatters:
+        "Original download / source export is outstanding on the disclosure papers.",
+      draftChaseWording:
+        "Please provide the full phone download / source export, or confirm in writing why it is not available.",
     };
   }
   return { label: formatDisplayLabelCasing(displayLine) };

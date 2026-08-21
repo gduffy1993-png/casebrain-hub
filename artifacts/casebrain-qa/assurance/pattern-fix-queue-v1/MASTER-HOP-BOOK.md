@@ -14,10 +14,10 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 
 | Status | N |
 |--------|--:|
-| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV) | 22 |
+| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute) | 23 |
 | OPEN (remaining) | 0 |
 | STOP → Phase B (Papers / Client) | 0 |
-| WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft) | 7 |
+| WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft) | 6 |
 
 **Phase A locked:** `cbf40f08f` · Preview https://casebrain-jo16a5tt0-gduffy1993-pngs-projects.vercel.app · see `PHASE-A-LOCK.md`  
 **Phase B tip:** `a13739f4b` · Preview https://casebrain-98u6ps28m-gduffy1993-pngs-projects.vercel.app · see `PHASE-B-PAPERS-CLIENT.md`  
@@ -35,6 +35,7 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 | `ARDEN_INTERVIEW_RECORDING_FROM_SUMMARY` | Overview/Chase | invent / modality | Arden | Summary served; recording not outstanding | F167 surgical `c400b76ba` |
 | `TRAP_INTERVIEW_RECORDING_INVENT` | Overview/Court/Papers/Chase | invent | Trap-0030 | No PACE recording/transcript | LIVE TN on freeze Preview |
 | `BWV_STILLS_SERVED_PROMOTED_TO_FULL_EXPORT` | Chase (+ Overview gaps) | invent / modality | Dunn TN; Tobin/CASE-02 TP | Dunn S01 BWV stills Served ≠ full export | Chunk 3 — `isBwvFullExportEstablished` + family gate · Preview `76gk8` · opposite I3 |
+| `PAPERS_PHONE_DOWNLOAD_MUTE` | Papers inventory + Chase | mute / modality | Brookes TP; Arden TN | Outstanding download outside MG6 head + download≠subscriber collapse | Chunk P1 — material ITEM_RE + denial + subscriber rewrite guard · opposite L2 |
 
 ---
 
@@ -48,7 +49,7 @@ _(Wave open list cleared into FIXED / WATCH. See Phase A–C + Chunk 1–3 artef
 
 | ID | Why watch |
 |----|-----------|
-| `mute_phone_download` volume (~695) | Triage noise until Lane B/C confirm |
+| `mute_phone_download` volume (~695 Overview) | Overview detector volume still WATCH; Papers inventory path FIXED in P1 (re-score later) |
 | `EXPORT_LOG_PRESENT_GLUED_UNDER_MASTER` | Ahmed soft opposite — unit opposite already PASS; Patel Papers glue residual |
 | `HEADER_CHARGE_MUTE_DESPITE_PDF` | Brookes/Patel — identity/extraction; not this truth wave |
 | `THIN_TRAP_INVENT_SUBSCRIBER` | Folded into subscriber both-ways (#8) |
