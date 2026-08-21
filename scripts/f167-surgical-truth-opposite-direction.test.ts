@@ -18,7 +18,7 @@ import {
 import { expandTruthMapRowsForDisplay } from "../lib/criminal/five-answers/expand-truth-map-rows";
 import { evidenceRowFromSourceState } from "../lib/criminal/five-answers/evidence-trace";
 import type { DisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
-import { familySupport, expandAndGateChaseLines, gateMaterialLines, isBwvFullExportEstablished, isCctvContinuityEstablished, isCctvMasterEstablished, isPhoneDownloadEstablished } from "../lib/criminal/chase-source-gate";
+import { familySupport, expandAndGateChaseLines, gateMaterialLines, isBwvFullExportEstablished, isCctvContinuityEstablished, isCctvMasterEstablished, isInterviewRecordingEstablished, isPhoneDownloadEstablished } from "../lib/criminal/chase-source-gate";
 import { normaliseBundleMaterials } from "../lib/criminal/bundle-material-normalizer";
 import { buildBundleTruthLedger } from "../lib/criminal/bundle-truth-ledger";
 import {
@@ -398,6 +398,25 @@ CAD / 999 extract Present.
     isCctvMasterEstablished("only short CCTV clip is described; full window missing"),
     true,
     "full window missing on papers still establishes outstanding master/full-window",
+  );
+
+  // Court C5: glued schedule "004BWV from … not served" must establish BWV family / full-export outstanding.
+  const gluedBwv =
+    "MG6C/004BWV from initial complaint not servedMay show first account and injury state.";
+  assert.equal(familySupport("bwv", gluedBwv), "mentioned", "glued MG6C/004BWV is BWV family mention");
+  assert.equal(
+    isBwvFullExportEstablished(gluedBwv),
+    true,
+    "glued BWV … not served establishes full-export outstanding modality",
+  );
+
+  // Court C5: interview summary-only / full recording outstanding is recording source (not invent).
+  const summaryOnlyRecording =
+    "INTERVIEW SUMMARY - SUMMARY ONLY / FULL RECORDING OUTSTANDING Reece Ford accepts some background.";
+  assert.equal(
+    isInterviewRecordingEstablished(summaryOnlyRecording),
+    true,
+    "summary-only / full recording outstanding establishes recording modality",
   );
 
   const ardenBrief = buildDisclosureChaseBrief({
