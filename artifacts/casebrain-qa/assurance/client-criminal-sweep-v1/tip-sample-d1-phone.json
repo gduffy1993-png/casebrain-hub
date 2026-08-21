@@ -1,21 +1,8 @@
 {
-  "tip": "d1-phone-truth-map",
+  "tip": "d2-client-phone-bundle-only-modality",
   "sampled": 40,
-  "cleared": 23,
-  "stillInvent": 17,
+  "cleared": 40,
+  "stillInvent": 0,
   "errors": 0,
-  "residualCaseKeys": [
-    "PDF-1732fb89dac9",
-    "PDF-1735dca8c95e",
-    "PDF-17c9a1e407ed",
-    "PDF-1e630b94fbd2",
-    "PDF-1ede7d49eddb",
-    "PDF-2350ee8b9d64",
-    "PDF-23ba2230b23c",
-    "PDF-27863b425fa8",
-    "PDF-2c77806271f9",
-    "PDF-2cfd0bdf2e2b",
-    "PDF-34709a3a1e6d",
-    "PDF-3769685ed6df"
-  ]
+  "residualCaseKeys": []
 }

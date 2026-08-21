@@ -590,7 +590,8 @@ export function reconcilePhoneDownloadModalityItems(
     /\bphone\s+download\s+reference\s+referenced\s+only\b/i.test(hay) ||
     /\breferenced\s+only\b[^.\n]{0,40}\bphone\s+download\b/i.test(hay) ||
     /extraction\s+summary\s+only/i.test(hay) ||
-    /full\s+report\s+not\s+in\s+(?:the\s+)?section/i.test(hay) ||
+    // Glued PDF: "summary onlyFull report not in this section"
+    /full\s+report\s+not\s+in\s+(?:the\s+|this\s+)?section/i.test(hay) ||
     /download\s+report\s*summary/i.test(hay);
 
   const fullOutstanding =

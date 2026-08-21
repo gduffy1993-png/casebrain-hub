@@ -14,7 +14,7 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 
 | Status | N |
 |--------|--:|
-| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute + C1 Court invent + D1 Client phone + E1 File chrome) | 31 |
+| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute + C1 Court invent + D1 Client phone + E1 File chrome + C2 Court phone + D2 Client residual) | 32 |
 | OPEN (remaining) | 0 |
 | STOP → Phase B (Papers / Client) | 0 |
 | WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft / File E0) | 8 |
@@ -45,6 +45,7 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 | `FILE_NEXT_HEARING_SLASH_GLUE` | File/header hearing | mute | Trap-0030 | `StatusremandNext hearing18/08/2026` | E1 — normalize + Next hearing slash |
 | `FILE_DEFENDANT_DATE_OF_BIRTH_GLUE` | File/header defendant | mute | CB-TB-012 Morley | `DefendantAlex MorleyDate of birth…` | E1 — trimPersonCapture Date of birth |
 | `COURT_PHONE_DOWNLOAD_FROM_SIM_SUBSCRIBER` | Court/Chase | invent | Mercer; drugs playbook | SIM/IMEI/subscriber ≠ Full phone download | C2 — isPhoneDownloadEstablished + playbook seed |
+| `CLIENT_FULL_PHONE_FROM_MIDSTATE_CHASE_LABEL` | Client export gaps | invent | Khan / Hayes mid-state PDFs | Chase mid-state inject ≠ Full phone download gap | D2 — modality from bundleText only + glued “this section” |
 
 ---
 
