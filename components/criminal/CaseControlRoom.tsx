@@ -577,10 +577,11 @@ export function CaseControlRoom({
         snapshotMissing: snapshot?.evidence.missingEvidence,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
         battleboard,
+        bundleText: workflowContext.bundleText ?? bundleSource?.frontMatterScan ?? null,
       });
       return prioritizeWorkflowItems(raw, workflowContext);
     },
-    [snapshot, effectiveProceduralSafety, battleboard, workflowContext],
+    [snapshot, effectiveProceduralSafety, battleboard, workflowContext, bundleSource?.frontMatterScan],
   );
 
   const chaseItems = useMemo(() => chaseItemsAll.slice(0, 6), [chaseItemsAll]);

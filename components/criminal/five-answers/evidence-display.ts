@@ -169,11 +169,18 @@ export function humanizeEvidenceLabel(label: string, existence: EvidenceExistenc
     if (/stills/i.test(hay) && isMissingLike(existence)) {
       // Only claim export-log gap when that modality is in the label.
       if (/\bexport\s+log\b/i.test(hay)) return "CCTV stills without master export log";
-      return "CCTV stills served — master outstanding";
+      // Stills + explicit master language → master outstanding; stills alone ≠ master invent.
+      if (/\b(?:master|full\s+cctv|full\s*(?:time\s+)?window)\b/i.test(hay)) {
+        return "CCTV stills served — master outstanding";
+      }
+      return "CCTV stills outstanding";
     }
     if (existence === "referred_only") return "CCTV referred to, not served";
     if (existence === "missing") {
-      if (/\bmaster\b/i.test(hay) || /\bfull\s+window\b/i.test(hay)) return "CCTV master outstanding";
+      // "full window" alone (checklist invent) must not become "CCTV master outstanding"
+      // unless master / full CCTV language is present.
+      if (/\bmaster\b/i.test(hay) || /\bfull\s+cctv\b/i.test(hay)) return "CCTV master outstanding";
+      if (/\bfull\s+(?:time\s+)?window\b/i.test(hay)) return "CCTV outstanding";
       return "CCTV outstanding";
     }
     if (existence === "served") return "CCTV served";

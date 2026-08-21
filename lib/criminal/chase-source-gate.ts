@@ -70,6 +70,61 @@ export function stripDoNotInventAdvisory(text: string): string {
   return text.replace(DO_NOT_INVENT_ADVISORY_RE, " ");
 }
 
+/**
+ * Thin schedule/review CCTV/BWV language is not master / full-window / continuity establishment.
+ * Grant-style "Review whether listed CCTV/BWV has been served" must not promote invents.
+ */
+const THIN_LISTED_CCTV_BWV_RE =
+  /review\s+whether\s+listed\s+cctv\s*\/?\s*bwv[^.!\n]*|listed\s+cctv\s*\/\s*bwv/gi;
+
+/** Product checklist labels that must not circularly establish master/full-window. */
+const PRODUCT_CCTV_INVENT_LABEL_RE =
+  /CCTV Full Window|CCTV Continuity|CCTV full window\s*\/\s*master footage|CCTV \(full window[^)]*\)/gi;
+
+/** Affirmative master / full-window establishment on the papers (not thin listed CCTV/BWV). */
+export function isCctvMasterEstablished(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = stripDoNotInventAdvisory(sourceText)
+    .replace(THIN_LISTED_CCTV_BWV_RE, " ")
+    .replace(PRODUCT_CCTV_INVENT_LABEL_RE, " ");
+  return /CCTV master|full CCTV master|master footage|full master|full\s*(?:time\s+)?window|full\s+cctv(?:\s+master)?\b/i.test(
+    hay,
+  );
+}
+
+/**
+ * Affirmative CCTV continuity establishment — bare "officer continuity" or thin listed CCTV/BWV
+ * is not enough; require continuity tied to CCTV/footage or an explicit continuity statement.
+ */
+export function isCctvContinuityEstablished(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = stripDoNotInventAdvisory(sourceText)
+    .replace(THIN_LISTED_CCTV_BWV_RE, " ")
+    .replace(PRODUCT_CCTV_INVENT_LABEL_RE, " ");
+  return (
+    /\bcctv\s+continuity\b|\bcontinuity\s+statement\b|\bcontinuity\s+log\b|\bchain\s+of\s+custody\b/i.test(
+      hay,
+    ) ||
+    (/\b(?:cctv|footage|master)\b/i.test(hay) &&
+      /\bcontinuity\b/i.test(hay) &&
+      !/\bofficer\s+continuity\b/i.test(hay))
+  );
+}
+
+/** True when a chase/material line is a CCTV master / full-window invent surface. */
+export function lineClaimsCctvMasterOrFullWindow(line: string): boolean {
+  return /CCTV master|master footage|full CCTV master|CCTV Full Window|full\s*(?:time\s+)?window|CCTV full window/i.test(
+    line,
+  );
+}
+
+/** True when a chase/material line is a CCTV continuity invent surface. */
+export function lineClaimsCctvContinuity(line: string): boolean {
+  return /CCTV Continuity|CCTV continuity|cctv[^.\n]{0,40}continuity|continuity[^.\n]{0,40}cctv/i.test(
+    line,
+  );
+}
+
 function mentionHaystack(family: ChaseGateFamily, sourceText: string): string {
   if (!FAMILIES_AFFECTED_BY_INVENT_ADVISORY.has(family)) return sourceText;
   return stripDoNotInventAdvisory(sourceText);
@@ -124,6 +179,25 @@ export type ChaseLineGateResult =
 export function gateChaseLine(line: string, sourceText: string | null | undefined): ChaseLineGateResult {
   if (!sourceText?.trim()) return { action: "keep" };
   if (!CHASE_VERB_RE.test(line)) return { action: "keep" };
+
+  if (lineClaimsCctvMasterOrFullWindow(line)) {
+    const cctvSupport = familySupport("cctv", sourceText);
+    if (cctvSupport === "negated") {
+      return { action: "replace", family: "cctv", replacement: confirmNoneLine("cctv") };
+    }
+    if (!isCctvMasterEstablished(sourceText)) {
+      return { action: "drop", family: "cctv" };
+    }
+  } else if (lineClaimsCctvContinuity(line)) {
+    const cctvSupport = familySupport("cctv", sourceText);
+    if (cctvSupport === "negated") {
+      return { action: "replace", family: "cctv", replacement: confirmNoneLine("cctv") };
+    }
+    if (!isCctvContinuityEstablished(sourceText)) {
+      return { action: "drop", family: "cctv" };
+    }
+  }
+
   const fams = familiesInText(line);
   if (!fams.length) return { action: "keep" };
 
@@ -206,14 +280,15 @@ function filterModalitySpecificChaseLine(
   const t = line.trim();
   if (!t || !sourceText?.trim()) return t ? [t] : [];
 
-  // Drop CCTV *master* chase unless papers establish master/full-window language
-  // (generic CCTV / stills must not keep a master invent line).
-  if (/CCTV master|master footage|full CCTV master/i.test(t)) {
-    const masterEstablished =
-      /CCTV master|full CCTV master|master footage|full master|full\s*(?:time\s+)?window/i.test(
-        sourceText,
-      );
-    if (!masterEstablished) return [];
+  // Drop CCTV *master* / full-window chase unless papers affirmatively establish that modality
+  // (thin "listed CCTV/BWV" / review-whether-served must not keep a master invent line).
+  if (lineClaimsCctvMasterOrFullWindow(t)) {
+    if (!isCctvMasterEstablished(sourceText)) return [];
+  }
+
+  // Drop CCTV continuity chase unless papers affirmatively establish continuity (not officer continuity alone).
+  if (lineClaimsCctvContinuity(t) && !lineClaimsCctvMasterOrFullWindow(t)) {
+    if (!isCctvContinuityEstablished(sourceText)) return [];
   }
 
   // Drop interview *recording* chase unless recording modality is established
@@ -262,6 +337,27 @@ function filterModalitySpecificChaseLine(
  */
 export function gateMaterialLine(line: string, sourceText: string | null | undefined): ChaseLineGateResult {
   if (!sourceText?.trim()) return { action: "keep" };
+
+  // Modality gate — listed CCTV/BWV alone must not keep Full Window / master / continuity labels.
+  // Negated CCTV still becomes confirm-none (not a silent drop).
+  if (lineClaimsCctvMasterOrFullWindow(line)) {
+    const cctvSupport = familySupport("cctv", sourceText);
+    if (cctvSupport === "negated") {
+      return { action: "replace", family: "cctv", replacement: confirmNoneLine("cctv") };
+    }
+    if (!isCctvMasterEstablished(sourceText)) {
+      return { action: "drop", family: "cctv" };
+    }
+  } else if (lineClaimsCctvContinuity(line)) {
+    const cctvSupport = familySupport("cctv", sourceText);
+    if (cctvSupport === "negated") {
+      return { action: "replace", family: "cctv", replacement: confirmNoneLine("cctv") };
+    }
+    if (!isCctvContinuityEstablished(sourceText)) {
+      return { action: "drop", family: "cctv" };
+    }
+  }
+
   const fams = familiesInText(line);
   if (!fams.length) return { action: "keep" };
   for (const family of fams) {

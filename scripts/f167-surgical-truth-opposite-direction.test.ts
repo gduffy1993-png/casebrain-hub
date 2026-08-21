@@ -15,7 +15,7 @@ import {
   reconcilePhoneDownloadModalityItems,
   reconcileSubscriberModalityItems,
 } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
-import { familySupport, expandAndGateChaseLines } from "../lib/criminal/chase-source-gate";
+import { familySupport, expandAndGateChaseLines, gateMaterialLines, isCctvContinuityEstablished, isCctvMasterEstablished } from "../lib/criminal/chase-source-gate";
 import {
   displayChaseCardLabel,
   isDigitalHarassmentBundleHay,
@@ -300,10 +300,113 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
     "CCTV stills served",
     "served stills alone must not invent master outstanding",
   );
+  assert.equal(
+    humanizeEvidenceLabel("CCTV Full Window", "missing"),
+    "CCTV outstanding",
+    "checklist Full Window alone must not humanize to CCTV master outstanding",
+  );
   assert.match(
     humanizeEvidenceLabel("CCTV stills — full CCTV master outstanding", "missing"),
     /master outstanding/i,
     "opposite: stills+master language keeps master outstanding",
+  );
+}
+
+// --- I2: Grant thin listed CCTV/BWV ≠ master/full-window/continuity; Arden + Trap opposites ---
+{
+  const GRANT_THIN = `
+Possession of a controlled drug of Class A with intent to supply.
+Review whether listed CCTV/BWV has been served.
+BWV booking-in clip. BWV PC Khan. Not served with this copy.
+Read with officer continuity.
+CAD / 999 extract Present.
+`.trim();
+
+  assert.equal(
+    isCctvMasterEstablished(GRANT_THIN),
+    false,
+    "Grant: listed CCTV/BWV review language is not master establishment",
+  );
+  assert.equal(
+    isCctvContinuityEstablished(GRANT_THIN),
+    false,
+    "Grant: officer continuity alone is not CCTV continuity establishment",
+  );
+
+  const grantGated = gateMaterialLines(
+    ["CCTV Full Window", "CCTV Continuity", "CCTV full window / master footage", "Body Worn Video (BWV)"],
+    GRANT_THIN,
+  );
+  assert.ok(
+    !grantGated.some((l) => /CCTV Full Window|CCTV Continuity|master footage|full window/i.test(l)),
+    "Grant: Full Window / Continuity / master invent labels dropped",
+  );
+  assert.ok(
+    grantGated.some((l) => /BWV|Body Worn/i.test(l)),
+    "Grant opposite: BWV family still gates when mentioned",
+  );
+
+  const grantBrief = buildDisclosureChaseBrief({
+    caseId: "grant-thin-cctv",
+    caseTitle: "Vincent Grant",
+    allegation: "Possession with intent to supply",
+    stage: "PTPH",
+    hearingStatus: "listed",
+    hearingDateIso: null,
+    bundleHealth: "partial",
+    positionStatus: "provisional",
+    battleboard: null,
+    snapshotMissing: [
+      { label: "CCTV Full Window", status: "MISSING" },
+      { label: "CCTV Continuity", status: "MISSING" },
+      { label: "Interview recording", status: "MISSING" },
+    ],
+    bundleText: GRANT_THIN,
+  });
+  assert.ok(
+    !grantBrief.primaryItems.some((i) => i.familyId === "cctv_master" || i.familyId === "cctv_continuity"),
+    "Grant: chase brief must not promote cctv_master / cctv_continuity from thin listed language",
+  );
+  assert.ok(
+    !grantBrief.items.some((i) => /CCTV master|full window|CCTV Continuity/i.test(i.label)),
+    "Grant: no master/full-window/continuity chase labels",
+  );
+
+  assert.equal(isCctvMasterEstablished(ARDEN_SNIPPET), true, "Arden: full CCTV master establishes");
+  assert.equal(isCctvContinuityEstablished(ARDEN_SNIPPET), true, "Arden: continuity statement establishes");
+
+  const ardenBrief = buildDisclosureChaseBrief({
+    ...ARDEN_CTX,
+    caseId: "arden-master-tp",
+    stage: "PTPH",
+    hearingStatus: "listed",
+    hearingDateIso: null,
+    bundleHealth: "partial",
+    positionStatus: "provisional",
+    battleboard: null,
+    snapshotMissing: [
+      { label: "CCTV Full Window", status: "MISSING" },
+      { label: "CCTV Continuity", status: "MISSING" },
+    ],
+    bundleText: ARDEN_SNIPPET,
+  });
+  assert.ok(
+    ardenBrief.items.some((i) => i.familyId === "cctv_master" || /CCTV master|full window/i.test(i.label)),
+    "Arden opposite: master/full-window chase preserved",
+  );
+  assert.ok(
+    ardenBrief.items.some((i) => i.familyId === "cctv_continuity" || /CCTV continuity/i.test(i.label)),
+    "Arden opposite: continuity chase preserved",
+  );
+
+  const TRAP_THIN = `
+Outstanding/not provided: interview record, continuity / provenance note if relied upon.
+The case should not be strengthened by assuming missing CCTV, statements, codes, or forensic evidence.
+`.trim();
+  assert.equal(isCctvMasterEstablished(TRAP_THIN), false, "Trap: invent-advisory is not master establishment");
+  assert.ok(
+    !gateMaterialLines(["CCTV Full Window", "CCTV full window / master footage"], TRAP_THIN).length,
+    "Trap: CCTV master/full-window invent labels dropped",
   );
 }
 

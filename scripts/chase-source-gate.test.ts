@@ -57,8 +57,16 @@ assert.equal(
 );
 assert.equal(
   gateMaterialLine("Full CCTV master footage", SRC_MENTIONS).action,
+  "drop",
+  "generic CCTV footage mention alone does not keep master label",
+);
+assert.equal(
+  gateMaterialLine(
+    "Full CCTV master footage",
+    "Partial CCTV stills served. Full CCTV master outstanding. Continuity statement outstanding.",
+  ).action,
   "keep",
-  "opposite: real CCTV mention keeps master label",
+  "opposite: affirmative full CCTV master keeps master label",
 );
 
 const SRC_BODYWORN = "Body-worn video captured the arrest.";
@@ -67,8 +75,16 @@ assert.equal(familySupport("bwv", SRC_BODYWORN), "mentioned", "body-worn synonym
 // ---------- gateChaseLine ----------
 assert.deepEqual(
   gateChaseLine("Chase CCTV master footage and export logs.", SRC_MENTIONS),
+  { action: "drop", family: "cctv" },
+  "generic CCTV mention alone drops master chase",
+);
+assert.deepEqual(
+  gateChaseLine(
+    "Chase CCTV master footage and export logs.",
+    "Partial CCTV stills. Full CCTV master outstanding.",
+  ),
   { action: "keep" },
-  "mentioned family chase keeps",
+  "affirmative master keeps master chase",
 );
 assert.equal(
   gateChaseLine("Chase BWV from attending officers.", SRC_MENTIONS).action,
@@ -102,8 +118,16 @@ assert.equal(gated.filter((l) => /confirm in writing/i.test(l)).length, 1, "conf
 
 assert.equal(
   gateMaterialLine("Full CCTV master footage", SRC_MENTIONS).action,
+  "drop",
+  "profile label without chase verb drops when master not affirmatively established",
+);
+assert.equal(
+  gateMaterialLine(
+    "Full CCTV master footage",
+    "Partial CCTV stills. Full CCTV master outstanding.",
+  ).action,
   "keep",
-  "profile label without chase verb keeps when mentioned",
+  "profile label keeps when master affirmatively established",
 );
 assert.equal(
   gateMaterialLine("Search BWV export", SRC_MENTIONS).action,

@@ -44,6 +44,8 @@ import {
   familyDisplayName,
   familySupport,
   gateProseAgainstSource,
+  isCctvContinuityEstablished,
+  isCctvMasterEstablished,
   type ChaseGateFamily,
 } from "@/lib/criminal/chase-source-gate";
 import { buildCriminalBriefPlan, type CriminalBriefPlan } from "@/lib/criminal/brief-plan";
@@ -1398,6 +1400,14 @@ function gateItemsAgainstSource(
   if (!bundleText?.trim()) return items;
   const out: DisclosureChaseItem[] = [];
   for (const item of items) {
+    // Affirmative modality gate — listed CCTV/BWV alone must not keep master/full-window/continuity.
+    if (item.familyId === "cctv_master" && !isCctvMasterEstablished(bundleText)) {
+      continue;
+    }
+    if (item.familyId === "cctv_continuity" && !isCctvContinuityEstablished(bundleText)) {
+      continue;
+    }
+
     const families = gateFamiliesForItem(item);
     if (!families.length) {
       out.push(item);
@@ -1934,6 +1944,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     snapshotMissing: input.snapshotMissing,
     proceduralOutstanding: input.proceduralOutstanding,
     battleboard: input.battleboard,
+    bundleText: input.bundleText,
   });
   const chaseLabels = prioritizeWorkflowItems(
     filterWorkflowItems(
