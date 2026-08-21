@@ -563,6 +563,33 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
       brookesBrief.primaryItems.some((i) => /subscriber/i.test(i.label)),
       "Brookes: subscriber on primary Chase board (not soft-muted under Other)",
     );
+
+    // Live residual: Overview/evidence gap labels must establish phone even if bundle scan is thin.
+    const brookesLiveGap = buildDisclosureChaseBrief({
+      caseId: "test-brookes-live-gap",
+      caseTitle: "Taylor Brookes",
+      clientLabel: "Taylor Brookes",
+      allegation: "Harassment — phone attribution disputed",
+      stage: "PTPH",
+      hearingStatus: "Listed",
+      hearingDateIso: null,
+      bundleHealth: "ok",
+      positionStatus: "provisional",
+      battleboard: null,
+      bundleText: "Interview summary on file. Exhibit mapping unclear.",
+      snapshotMissing: [
+        { label: "Phone download / source export referred to, not served on file", status: "Outstanding" },
+        { label: "Subscriber data or phone attribution report not served", status: "Outstanding" },
+      ],
+    });
+    assert.ok(
+      brookesLiveGap.primaryItems.some((i) => /Full phone download/i.test(i.label)),
+      "Brookes live gap: phone download primary from snapshotMissing establishment",
+    );
+    assert.ok(
+      brookesLiveGap.primaryItems.some((i) => /subscriber/i.test(i.label)),
+      "Brookes live gap: subscriber primary from snapshotMissing establishment",
+    );
   }
 
   // Trap opposite: thin invent-advisory hay must not promote subscriber onto primary.

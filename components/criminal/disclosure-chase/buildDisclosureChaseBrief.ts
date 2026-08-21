@@ -1868,10 +1868,27 @@ function mergeContradictionActionItems(
   return merged;
 }
 
+function modalityEstablishmentHay(input: BuildDisclosureChaseBriefInput): string {
+  // Live Brookes residual: Overview/evidence gaps establish phone download while
+  // frontMatterScan alone can omit the schedule cell phrasing — still inject/promote.
+  return [
+    input.bundleText ?? "",
+    input.allegation ?? "",
+    ...(input.snapshotMissing ?? []).map((m) => m.label),
+    ...(input.proceduralOutstanding ?? []),
+    ...(input.canonicalEvidenceRows ?? []).map((r) => `${r.label} ${r.state}`),
+    ...(input.canonicalFindings ?? []).map((f) => `${f.title} ${f.summary ?? ""}`),
+    ...(((input.battleboard as { chase_now?: string[] } | null)?.chase_now) ?? []),
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
 export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput): DisclosureChaseBrief {
   const ledger = input.bundleText?.trim()
     ? buildBundleTruthLedger({ bundleText: input.bundleText })
     : null;
+  const modalityHay = modalityEstablishmentHay(input);
   const briefPlan =
     input.briefPlan ??
     buildCriminalBriefPlan({
@@ -1968,10 +1985,10 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = reconcileInterviewModalityItems(items, input.bundleText);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
-  items = reconcilePhoneDownloadModalityItems(items, input.bundleText);
+  items = reconcilePhoneDownloadModalityItems(items, modalityHay);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
-  items = reconcileSubscriberModalityItems(items, input.bundleText);
+  items = reconcileSubscriberModalityItems(items, modalityHay);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   const guardCtx = { ledger, bundleText: input.bundleText ?? null };
@@ -2001,8 +2018,8 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = finalizeDisclosureChasePresentation(items);
   // Re-assert PDF-true phone/subscriber after finalize overflow — Brookes soft-mute residual:
   // collapse/finalize was rewriting digital cards into "Outstanding source material…".
-  items = reconcilePhoneDownloadModalityItems(items, input.bundleText);
-  items = reconcileSubscriberModalityItems(items, input.bundleText);
+  items = reconcilePhoneDownloadModalityItems(items, modalityHay);
+  items = reconcileSubscriberModalityItems(items, modalityHay);
   items = finalizeDisclosureChasePresentation(items);
   items = items.map((item) => ({
     ...item,
