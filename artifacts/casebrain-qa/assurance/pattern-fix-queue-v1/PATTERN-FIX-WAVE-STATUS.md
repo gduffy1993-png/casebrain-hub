@@ -2,7 +2,9 @@
 
 
 
-**Verdict:** `C5_COURT_INTERVIEW_DETECTOR_AND_GLUED_BWV`
+**Verdict:** `C4C5_COURT_TIP_INVENT_CLEAR` (tip invent residuals **13→0**)
+
+**Chunk C4/C5 tip invent rescore:** `CHUNK-C4C5-COURT-TIP-INVENT-RESCORE.md` · pack `tip-rescore-c4c5-invent/` · **13/13 cleared**
 
 **Chunk C5 Court tip residuals:** `CHUNK-C5-COURT-INTERVIEW-GLUED-BWV.md` · invent_interview ×4 detector + gauntlet glued BWV
 
