@@ -8,6 +8,7 @@ import assert from "node:assert/strict";
 
 import { humanizeEvidenceLabel } from "../components/criminal/five-answers/evidence-display";
 import {
+  buildDisclosureChaseBrief,
   reconcileCad999ModalityItems,
   reconcileInterviewModalityItems,
   interviewChaseLabelFromSignals,
@@ -504,6 +505,8 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
 
   // Brookes: phone + subscriber must survive finalize collapse (no mute under phone).
   {
+    const brookesHay =
+      "Full phone download outstanding. Source export not served. Subscriber report not served.";
     const brookesPair = finalizeDisclosureChasePresentation(
       reconcileSubscriberModalityItems(
         reconcilePhoneDownloadModalityItems(
@@ -524,9 +527,9 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
               mergedFrom: ["Full phone download outstanding"],
             },
           ],
-          "Full phone download outstanding. Source export not served. Subscriber report not served.",
+          brookesHay,
         ),
-        "Full phone download outstanding. Source export not served. Subscriber report not served.",
+        brookesHay,
       ),
     );
     assert.ok(
@@ -536,6 +539,52 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
     assert.ok(
       brookesPair.some((i) => /subscriber/i.test(i.label)),
       "Brookes: subscriber inject remains distinct after finalize",
+    );
+
+    // Soft-mute residual: digital modality must land on primaryItems, not collapsed "Other".
+    const brookesBrief = buildDisclosureChaseBrief({
+      caseId: "test-brookes-soft",
+      caseTitle: "Taylor Brookes",
+      clientLabel: "Taylor Brookes",
+      allegation: "Harassment — phone attribution disputed",
+      stage: "PTPH",
+      hearingStatus: "Listed",
+      hearingDateIso: null,
+      bundleHealth: "ok",
+      positionStatus: "provisional",
+      battleboard: null,
+      bundleText: brookesHay,
+    });
+    assert.ok(
+      brookesBrief.primaryItems.some((i) => /Full phone download/i.test(i.label)),
+      "Brookes: full phone download on primary Chase board (not soft-muted under Other)",
+    );
+    assert.ok(
+      brookesBrief.primaryItems.some((i) => /subscriber/i.test(i.label)),
+      "Brookes: subscriber on primary Chase board (not soft-muted under Other)",
+    );
+  }
+
+  // Trap opposite: thin invent-advisory hay must not promote subscriber onto primary.
+  {
+    const trapBrief = buildDisclosureChaseBrief({
+      caseId: "test-trap-soft",
+      caseTitle: "Trap thin file",
+      clientLabel: "Trap",
+      allegation: "Assault",
+      stage: "PTPH",
+      hearingStatus: "Listed",
+      hearingDateIso: null,
+      bundleHealth: "ok",
+      positionStatus: "provisional",
+      battleboard: null,
+      bundleText:
+        "The case should not be strengthened by assuming missing CCTV, statements, codes, or forensic evidence.",
+    });
+    assert.equal(
+      trapBrief.primaryItems.filter((i) => /subscriber/i.test(i.label)).length,
+      0,
+      "Trap: no subscriber invent on primary",
     );
   }
 

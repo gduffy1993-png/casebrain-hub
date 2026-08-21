@@ -50,7 +50,10 @@ import { buildCriminalBriefPlan, type CriminalBriefPlan } from "@/lib/criminal/b
 import { buildContradictionActions } from "@/lib/criminal/contradiction-actions";
 import { extractAllBundleContradictions } from "@/lib/criminal/merge-bundle-contradictions";
 import { guardDisclosureChaseBrief, type SourceTruthGuardianReport } from "@/lib/criminal/source-truth-guardian";
-import { finalizeDisclosureChasePresentation } from "@/lib/criminal/disclosure-chase-finalize";
+import {
+  finalizeDisclosureChasePresentation,
+  isDigitalModalityChaseLabel,
+} from "@/lib/criminal/disclosure-chase-finalize";
 import { composeStructuredSolicitorOutput } from "@/lib/criminal/structured-solicitor-output";
 import {
   assertSafeEvidenceTitle,
@@ -1452,13 +1455,28 @@ function splitPrimaryAdditional(items: DisclosureChaseItem[]): {
   additionalItems: DisclosureChaseItem[];
 } {
   const deduped = dedupeDisclosureItems(items);
-  const core = deduped.filter((i) => i.familyId !== "other");
-  const misc = deduped.filter((i) => i.familyId === "other");
-  const primaryItems = core.slice(0, DISCLOSURE_CHASE_PRIMARY_CAP);
-  const overflowCore = core.slice(DISCLOSURE_CHASE_PRIMARY_CAP);
+  // Phone/subscriber modality injects use familyId "other" but must stay on the default
+  // Chase board — burying them under collapsed "Other source-material items" soft-mutes
+  // Brookes/Ahmed/Grant live while Overview still shows the PDF-true gaps.
+  const isPrimaryEligible = (i: DisclosureChaseItem) =>
+    i.familyId !== "other" || isDigitalModalityChaseLabel(i.label);
+  const core = deduped.filter(isPrimaryEligible);
+  const misc = deduped.filter((i) => !isPrimaryEligible(i));
+  const digital = core.filter((i) => isDigitalModalityChaseLabel(i.label));
+  const nonDigitalCore = core.filter((i) => !isDigitalModalityChaseLabel(i.label));
+  const primaryItems: DisclosureChaseItem[] = [];
+  for (const item of digital) {
+    if (primaryItems.length >= DISCLOSURE_CHASE_PRIMARY_CAP) break;
+    primaryItems.push(item);
+  }
+  for (const item of nonDigitalCore) {
+    if (primaryItems.length >= DISCLOSURE_CHASE_PRIMARY_CAP) break;
+    primaryItems.push(item);
+  }
+  const primaryIds = new Set(primaryItems.map((i) => i.id));
   return {
     primaryItems,
-    additionalItems: [...overflowCore, ...misc],
+    additionalItems: [...core.filter((i) => !primaryIds.has(i.id)), ...misc],
   };
 }
 

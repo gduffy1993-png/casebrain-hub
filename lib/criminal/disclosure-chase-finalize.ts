@@ -326,7 +326,7 @@ function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): Di
 }
 
 /** Keep phone/subscriber modality cards distinct — Brookes/Ahmed must not mute under phone collapse. */
-function isDigitalModalityChaseLabel(label: string): boolean {
+export function isDigitalModalityChaseLabel(label: string): boolean {
   return /^(Subscriber \/ account data|Full phone download \/ source extraction|Phone extraction summary only)/i.test(
     label.trim(),
   );
