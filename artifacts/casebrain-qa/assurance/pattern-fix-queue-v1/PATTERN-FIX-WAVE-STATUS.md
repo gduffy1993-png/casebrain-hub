@@ -2,7 +2,9 @@
 
 
 
-**Verdict:** `C4C5_COURT_TIP_INVENT_CLEAR` (tip invent residuals **13→0**)
+**Verdict:** `C4C5_LIVE_AUTH_PASS` (Arden/Trap/Brookes/Dunn invent canaries)
+
+**Live AUTH C4/C5:** `live-auth-c4c5-invent-clear/LIVE-AUTH-C4C5.md` · Preview https://casebrain-5eq2vjtuv-gduffy1993-pngs-projects.vercel.app · tip `9e061a1ec`
 
 **Chunk C4/C5 tip invent rescore:** `CHUNK-C4C5-COURT-TIP-INVENT-RESCORE.md` · pack `tip-rescore-c4c5-invent/` · **13/13 cleared**
 
