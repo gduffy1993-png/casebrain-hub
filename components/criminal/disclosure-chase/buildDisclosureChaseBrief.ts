@@ -565,6 +565,15 @@ export function reconcilePhoneDownloadModalityItems(
       return {
         ...item,
         label,
+        // Keep modality identity tight so finalize cannot overflow-merge into Other.
+        mergedFrom: [
+          label,
+          ...((item.mergedFrom ?? []).filter((m) =>
+            /\b(?:phone\s+download|source\s+export|phone\s+extraction|logical\s+download|original\s+download)\b/i.test(
+              m,
+            ),
+          )),
+        ].slice(0, 4),
         draftChaseWording:
           "Please provide the full phone download / source export, or confirm in writing why it is not available.",
         courtLine: toCourtLine(label),
@@ -1547,6 +1556,31 @@ function normalizeDisclosureItem(item: DisclosureChaseItem): DisclosureChaseItem
     return item;
   }
   const label = normalizeRawLabel(item.label);
+  // Keep phone/subscriber modality cards stable — joining mergedFrom into the canonical
+  // label lets finalize overflow-rewrite them and soft-mute Brookes under Other.
+  if (isDigitalModalityChaseLabel(label)) {
+    return {
+      ...item,
+      familyId: "other",
+      label,
+      courtLine: toCourtLine(label),
+      mergedFrom: [
+        ...new Set(
+          [label, ...item.mergedFrom.map((m) => normalizeRawLabel(m))]
+            .map((m) => m.trim())
+            .filter((m) => m && (isDigitalModalityChaseLabel(m) || /phone|subscriber|source export|download/i.test(m))),
+        ),
+      ],
+      provenance:
+        item.provenance ??
+        chaseItemProvenance({
+          label,
+          source: item.source,
+          baseStatus: item.baseStatus,
+          evidenceAnchor: item.evidenceAnchor,
+        }),
+    };
+  }
   const familyId = item.familyId === "other" ? classifyFamily(label) : item.familyId;
   const canonical = canonicalDisclosureMaterial(label, familyId, item.mergedFrom);
   const draft =
@@ -1964,6 +1998,11 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = collapseDisclosureItemsByFamily(items);
   // Final source gate after presentation merges — preserves confirm-none / drops absent families.
   items = gateItemsAgainstSource(items, input.bundleText);
+  items = finalizeDisclosureChasePresentation(items);
+  // Re-assert PDF-true phone/subscriber after finalize overflow — Brookes soft-mute residual:
+  // collapse/finalize was rewriting digital cards into "Outstanding source material…".
+  items = reconcilePhoneDownloadModalityItems(items, input.bundleText);
+  items = reconcileSubscriberModalityItems(items, input.bundleText);
   items = finalizeDisclosureChasePresentation(items);
   items = items.map((item) => ({
     ...item,

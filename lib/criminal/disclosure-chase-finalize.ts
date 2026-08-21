@@ -169,7 +169,9 @@ function humanOverflowCardLabel(mergedFrom: string[]): string {
   ).filter(
     (h) =>
       h !== "Further papers on the file" &&
-      !/^Further papers issues/i.test(h),
+      !/^Further papers issues/i.test(h) &&
+      // Digital modalities must stay distinct cards — never summarise them into overflow.
+      !isDigitalModalityChaseLabel(h),
   );
 
   if (humanized.length === 0) return "Outstanding source material on disclosure schedule";
@@ -249,6 +251,35 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
   ).slice(0, 8);
 
   let label = humanizeChaseFragmentLabel(item.label);
+  // Brookes/Ahmed soft-mute: never overflow-rewrite digital modality cards into
+  // "Outstanding source material…" — that buries PDF-true phone/subscriber under Other.
+  if (isDigitalModalityChaseLabel(label)) {
+    const digitalMerged = mergedHumanized.filter((m) => isDigitalModalityChaseLabel(m));
+    return {
+      ...item,
+      label,
+      mergedFrom: digitalMerged.length ? digitalMerged : [label],
+      whyItMatters: sanitizeWhyItMatters(item.whyItMatters, digitalMerged.length || 1),
+      draftChaseWording: cleanDraftWording(label, digitalMerged.length ? digitalMerged : [label]),
+      courtLine: cleanCourtLine(label),
+      evidenceAnchor: item.evidenceAnchor,
+    };
+  }
+  const digitalFromMerged = mergedHumanized.find((m) => isDigitalModalityChaseLabel(m));
+  if (digitalFromMerged && item.familyId === "other") {
+    // Prefer a digital modality identity when overflow mergedFrom still carries one.
+    label = digitalFromMerged;
+    const digitalMerged = mergedHumanized.filter((m) => isDigitalModalityChaseLabel(m));
+    return {
+      ...item,
+      label,
+      mergedFrom: digitalMerged,
+      whyItMatters: sanitizeWhyItMatters(item.whyItMatters, digitalMerged.length),
+      draftChaseWording: cleanDraftWording(label, digitalMerged),
+      courtLine: cleanCourtLine(label),
+      evidenceAnchor: item.evidenceAnchor,
+    };
+  }
   const needsFamilyLabel =
     !label ||
     isRawChaseFragmentLabel(label) ||
@@ -304,8 +335,11 @@ function itemFinalizeKey(item: DisclosureChaseItem): string {
 
 function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): DisclosureChaseItem {
   const mergedFrom = dedupeByNorm([...a.mergedFrom, ...b.mergedFrom]).slice(0, 12);
-  const label =
-    a.familyId === "other" || b.familyId === "other"
+  // Prefer digital modality identity over overflow collapse when either side is digital.
+  const digitalLabel = [a.label, b.label, ...mergedFrom].find((l) => isDigitalModalityChaseLabel(l));
+  const label = digitalLabel
+    ? digitalLabel
+    : a.familyId === "other" || b.familyId === "other"
       ? humanOverflowCardLabel(mergedFrom)
       : a.label.length <= b.label.length
         ? a.label
@@ -314,11 +348,15 @@ function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): Di
   return {
     ...a,
     label,
-    mergedFrom,
+    mergedFrom: digitalLabel
+      ? mergedFrom.filter((m) => isDigitalModalityChaseLabel(m)).length
+        ? mergedFrom.filter((m) => isDigitalModalityChaseLabel(m))
+        : [digitalLabel]
+      : mergedFrom,
     whyItMatters: sanitizeWhyItMatters(a.whyItMatters ?? b.whyItMatters ?? "", mergedFrom.length),
     baseStatus: a.baseStatus === "Overdue" || b.baseStatus === "Overdue" ? "Overdue" : a.baseStatus,
     urgency: a.urgency === "high" || b.urgency === "high" ? "high" : a.urgency,
-    draftChaseWording: cleanDraftWording(label, mergedFrom),
+    draftChaseWording: cleanDraftWording(label, digitalLabel ? [digitalLabel] : mergedFrom),
     courtLine: cleanCourtLine(label),
     evidenceAnchor: a.evidenceAnchor ?? b.evidenceAnchor,
     linkedRoute: a.linkedRoute ?? b.linkedRoute,
@@ -334,20 +372,79 @@ export function isDigitalModalityChaseLabel(label: string): boolean {
 
 function collapseOtherFamilyItems(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
   const core = items.filter((i) => i.familyId !== "other");
+  // Should not happen — callers only pass other-family items — keep for safety.
   const misc = items.filter((i) => i.familyId === "other");
-  if (misc.length <= 1) return items;
+  if (misc.length <= 1) {
+    // Still peel digital identities trapped inside a single overflow card's mergedFrom.
+    if (misc.length === 1) {
+      const peeled = peelDigitalModalitiesFromOtherItem(misc[0]!);
+      return [...core, ...peeled];
+    }
+    return items;
+  }
 
   const keepSeparate = misc.filter((i) => isDigitalModalityChaseLabel(i.label));
   const bucketable = misc.filter((i) => !isDigitalModalityChaseLabel(i.label));
-  if (bucketable.length <= 1) {
-    return [...core, ...keepSeparate, ...bucketable];
+  const peeledFromBucket: DisclosureChaseItem[] = [];
+  const cleanedBucketable: DisclosureChaseItem[] = [];
+  for (const item of bucketable) {
+    const peeled = peelDigitalModalitiesFromOtherItem(item);
+    const digital = peeled.filter((p) => isDigitalModalityChaseLabel(p.label));
+    const rest = peeled.filter((p) => !isDigitalModalityChaseLabel(p.label));
+    peeledFromBucket.push(...digital);
+    cleanedBucketable.push(...rest);
+  }
+  if (cleanedBucketable.length <= 1) {
+    return [...core, ...keepSeparate, ...peeledFromBucket, ...cleanedBucketable];
   }
 
-  let bucket = bucketable[0]!;
-  for (const item of bucketable.slice(1)) {
+  let bucket = cleanedBucketable[0]!;
+  for (const item of cleanedBucketable.slice(1)) {
     bucket = mergeFinalizedItems(bucket, item);
   }
-  return [...core, ...keepSeparate, bucket];
+  return [...core, ...keepSeparate, ...peeledFromBucket, bucket];
+}
+
+/** Pull PDF-true phone/subscriber identities out of overflow Other cards. */
+function peelDigitalModalitiesFromOtherItem(item: DisclosureChaseItem): DisclosureChaseItem[] {
+  if (isDigitalModalityChaseLabel(item.label)) return [item];
+  const digitalLabels = dedupeByNorm(
+    [item.label, ...item.mergedFrom]
+      .map((m) => humanizeChaseFragmentLabel(m))
+      .filter((m) => isDigitalModalityChaseLabel(m)),
+  );
+  if (!digitalLabels.length) return [item];
+
+  const nonDigitalMerged = dedupeByNorm(
+    item.mergedFrom
+      .map((m) => humanizeChaseFragmentLabel(m))
+      .filter((m) => m && !isDigitalModalityChaseLabel(m)),
+  );
+  const out: DisclosureChaseItem[] = digitalLabels.map((label, idx) => ({
+    ...item,
+    id: `${item.id}-digital-${idx}`,
+    familyId: "other" as const,
+    label,
+    mergedFrom: [label],
+    draftChaseWording: cleanDraftWording(label, [label]),
+    courtLine: cleanCourtLine(label),
+    whyItMatters:
+      /subscriber/i.test(label)
+        ? "Screenshots or partial extraction alone do not prove subscriber attribution."
+        : /summary only/i.test(label)
+          ? "A logical download summary or referenced-only note is not a full phone download report."
+          : "Original download / source export is outstanding on the disclosure papers.",
+  }));
+  if (nonDigitalMerged.length) {
+    out.push({
+      ...item,
+      label: humanOverflowCardLabel(nonDigitalMerged),
+      mergedFrom: nonDigitalMerged,
+      draftChaseWording: cleanDraftWording(humanOverflowCardLabel(nonDigitalMerged), nonDigitalMerged),
+      courtLine: cleanCourtLine(humanOverflowCardLabel(nonDigitalMerged)),
+    });
+  }
+  return out;
 }
 
 function collapseFinalizedItemsByFamilyId(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
