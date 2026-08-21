@@ -41,7 +41,6 @@
 
 ## Next
 
-1. **E0.5** — PDF-spotcheck top `invent_court_header` + `mute_hearing_despite_pdf` / `mute_defendant_despite_pdf` (not the 1980 date-role lump)
-2. Optional E1 armour only if spotcheck confirms shared-root chrome invent/mute
-3. Live AUTH canaries (Overview→File) when surfaces settle
-4. Merge to programme **only on explicit ask**
+1. **E0.5/E1 DONE** — see `CHUNK-E05-E1-FILE-CHROME-ARMOUR.md` (tip **21/28**; invent_court **12/12**)  
+2. Live AUTH canaries (Overview→File) when surfaces settle  
+3. Merge to programme **only on explicit ask**

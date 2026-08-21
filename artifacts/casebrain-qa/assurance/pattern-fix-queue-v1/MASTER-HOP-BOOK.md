@@ -14,7 +14,7 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 
 | Status | N |
 |--------|--:|
-| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute + C1 Court invent + D1 Client phone) | 28 |
+| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute + C1 Court invent + D1 Client phone + E1 File chrome) | 31 |
 | OPEN (remaining) | 0 |
 | STOP → Phase B (Papers / Client) | 0 |
 | WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft / File E0) | 8 |
@@ -41,6 +41,9 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 | `COURT_CAD_FROM_PAGE_999` | Court/Chase | invent | PDF-044f2ca43399 | Bare schedule “999” ≠ CAD | C1 — isCad999Established + match tighten |
 | `CLIENT_PHONE_GAP_FROM_DONOT_OVERSTATE` | Client export gaps / five-answers | invent | harassment + “Do not import phone…” | Brookes pack invented without PDF download family | D1 — expandTruthMapRows PDF-true + bundleText |
 | `CLIENT_SCREENSHOT_FROM_SUBSCRIBER_WHY` | Client export gaps | invent | Graves TB-050 | whyItMatters “Screenshots or…” ≠ screenshot served | D1 — establishment hay = labels+bundle only |
+| `FILE_COURT_TRAILING_HEARING_GLUE` | File/header court | invent / glue | CB-TB-10 Mitchell; TB factory | `ManchesterHearing24 June` ≠ venue “Hearing” | E1 — scrubGluedCourt + crown match exclude Hearing |
+| `FILE_NEXT_HEARING_SLASH_GLUE` | File/header hearing | mute | Trap-0030 | `StatusremandNext hearing18/08/2026` | E1 — normalize + Next hearing slash |
+| `FILE_DEFENDANT_DATE_OF_BIRTH_GLUE` | File/header defendant | mute | CB-TB-012 Morley | `DefendantAlex MorleyDate of birth…` | E1 — trimPersonCapture Date of birth |
 
 ---
 
@@ -61,8 +64,8 @@ _(Wave open list cleared into FIXED / WATCH. See Phase A–C + Chunk 1–3 artef
 | `MG11_COMPLAINANT_LABEL_SOFT` | Chunk 3 — Trap/Arden both show Complainant MG11 card |
 | `TOBIN_BWV_CHASE_BOARD_SOFT_MUTE` | Chunk 3 — Overview BWV true; Chase board priority soft mute |
 | `HEARING_DATE_DEADLINE_UI_REUSE` | Chunk 3 + File E0 — listing “Hearing date passed” frames strip/ops chrome (~1980 File soft hits) |
-| `FILE_INVENT_COURT_HEADER_GLUE` | File E0 invent sum **43** — court cell absorbs “Hearing” (`Crown Court at X Hearing`) |
-| `FILE_MUTE_HEARING_OR_DEFENDANT` | File E0 mute_hearing **62** / mute_defendant **23** — E0.5 PDF-spotcheck before armour |
+| `FILE_INVENT_COURT_HEADER_GLUE` | File E0 invent — **FIXED** in E1 (tip 12/12); residual Trap court mash WATCH |
+| `FILE_MUTE_HEARING_OR_DEFENDANT` | File E0 — defendant glue **FIXED** E1 (7/8); hearing Trap **FIXED**; Arden/charge no-date soft residual |
 
 ---
 
@@ -76,8 +79,8 @@ _(Wave open list cleared into FIXED / WATCH. See Phase A–C + Chunk 1–3 artef
 6. Subscriber both ways  
 7. Dunn stills→master (no Arden/Patel/Trap regress)  
 8. **Chunk 3:** Dunn BWV stills→full export (**FIXED**)  
-9. **File E0.5:** invent_court_header + mute_hearing/defendant spotcheck (skip date-role lump)
+9. **File E1:** court/hearing/defendant chrome glue (**FIXED** — tip 21/28)
 
 Companion: `MASTER-HOP-BOOK.csv` · status after wave: `PATTERN-FIX-WAVE-STATUS.md`  
 Chunk 3 armour: `CHUNK-3-FAMILY-ARMOUR.md`  
-File E0: `CHUNK-E0-FILE-FINDONLY.md`
+File E0: `CHUNK-E0-FILE-FINDONLY.md` · E1: `CHUNK-E05-E1-FILE-CHROME-ARMOUR.md`

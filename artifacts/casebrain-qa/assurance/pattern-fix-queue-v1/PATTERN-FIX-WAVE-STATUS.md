@@ -2,9 +2,11 @@
 
 
 
-**Verdict:** `E0_FILE_FINDONLY` (File tab scale find-only @ 2600; invent sum **43**; no product fix)
+**Verdict:** `E1_FILE_CHROME_ARMOUR` (File E0.5 triage + court/hearing/defendant glue armour; tip sample **21/28** cleared)
 
-**Chunk E0 File find-only:** `CHUNK-E0-FILE-FINDONLY.md` · pack `file-criminal-sweep-v1/` · tip `b47ead423` · hitlist **2074** · invent sum **43**
+**Chunk E0.5/E1 File chrome:** `CHUNK-E05-E1-FILE-CHROME-ARMOUR.md` · tip sample `file-criminal-sweep-v1/tip-sample-e1-chrome.json`
+
+**Chunk E0 File find-only:** `CHUNK-E0-FILE-FINDONLY.md` · pack `file-criminal-sweep-v1/` · tip `b47ead423` · hitlist **2074** · invent sum **43** (pre-E1)
 
 **Chunk D0.5/D1 Client phone:** `CHUNK-D05-D1-CLIENT-PHONE-ARMOUR.md` · tip sample `client-criminal-sweep-v1/tip-sample-d1-phone.json`
 
