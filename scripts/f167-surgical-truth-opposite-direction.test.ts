@@ -1232,6 +1232,40 @@ Evidence referred or outstanding: Full BWV export; full custody record.
     brookesTruthMap.some((r) => /full phone download/i.test(r.label) && r.existence === "missing"),
     "opposite: Brookes PDF phone-download outstanding still expands truth-map gap",
   );
+
+  // Client D2: chase mid-state inject label must not invent Full phone download gap
+  // when the PDF only has logical/summary (no full outstanding).
+  const midStateOnlyTruthMap = expandTruthMapRowsForDisplay({
+    rows: [evidenceRowFromSourceState("MG6 / unused schedule clarification", "not_safely_confirmed")],
+    chase: {
+      disclosureSummary: "Phone extraction summary only — full download report not in section",
+      primaryItems: [
+        {
+          label: "Phone extraction summary only — full download report not in section",
+          source: "MG6C",
+          baseStatus: "Not safely confirmed",
+          whyItMatters:
+            "A logical download summary or referenced-only note is not a full phone download report.",
+          draftChaseWording: "Confirm full download beyond logical summary",
+          evidenceAnchor: null,
+        },
+      ],
+      items: [],
+    } as unknown as DisclosureChaseBrief,
+    allegation: "Being concerned in the supply of a controlled drug of Class A",
+    doNotOverstate: [],
+    bundleText:
+      "Partial subscriber return. DownloadLogical download summary onlyFull report not in this section. Messages Selected screenshots.",
+  });
+  assert.ok(
+    midStateOnlyTruthMap.some((r) => /phone extraction summary/i.test(r.label) && r.existence === "referred_only"),
+    "mid-state PDF must keep extraction-summary gap row",
+  );
+  assert.equal(
+    midStateOnlyTruthMap.filter((r) => /full phone download/i.test(r.label)).length,
+    0,
+    "chase mid-state label must not invent Full phone download [Missing]",
+  );
 }
 
 console.log("f167-surgical-truth-opposite-direction: PASS");

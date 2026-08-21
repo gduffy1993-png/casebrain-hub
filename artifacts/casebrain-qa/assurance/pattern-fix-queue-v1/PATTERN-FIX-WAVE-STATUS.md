@@ -2,7 +2,9 @@
 
 
 
-**Verdict:** `C2_COURT_PHONE_DOWNLOAD_GATE` (Court invent_phone residual — SIM≠download; tip sample **40/40** cleared)
+**Verdict:** `D2_CLIENT_PHONE_BUNDLE_ONLY_MODALITY` (Client invent_phone residual — tip sample **40/40**; chase mid-state ≠ Full download invent)
+
+**Chunk D2 Client phone residual:** `CHUNK-D2-CLIENT-PHONE-BUNDLE-ONLY.md` · tip sample `client-criminal-sweep-v1/tip-sample-d1-phone.json` (**40/40**)
 
 **Chunk C2 Court phone:** `CHUNK-C2-COURT-PHONE-GATE.md` · tip sample `court-criminal-sweep-v1/tip-sample-c2-phone.json`
 
@@ -20,9 +22,11 @@
 
 **Chunk C1 Court invent proof:** `CHUNK-C1-COURT-INVENT-PROOF.md` · tip pack `court-criminal-sweep-v1/tip-resweep-7b900de22/` · invent sum **1084→114**
 
-**PR:** https://github.com/gduffy1993-png/casebrain-hub/pull/70 · **MERGED** → `recovery/pre-assurance-good-f167c5876` @ `fc797e5b7`
+**PR:** https://github.com/gduffy1993-png/casebrain-hub/pull/70 · **MERGED** → recovery @ `fc797e5b7`  
+**PR #71 (C2 follow-up):** https://github.com/gduffy1993-png/casebrain-hub/pull/71 · **MERGED** → recovery @ `57f793f8d`  
+**PR #72 (programme merge):** https://github.com/gduffy1993-png/casebrain-hub/pull/72 · **MERGED** → programme @ `1d5861a64`
 
-**Merge to programme/release:** **NOT STARTED** (needs explicit owner ask)  
+**Programme:** surgical wave landed on `programme/real-pdf-live-pilot-v1` via #72; D2 follow-up lands recovery first then cherry-pick/PR as needed.
 
 
 **Phase-A-lock SHA:** `cbf40f08f381d1e39d7326059dbe24cb71beacce`  

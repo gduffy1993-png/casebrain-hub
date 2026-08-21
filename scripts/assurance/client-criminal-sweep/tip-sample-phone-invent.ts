@@ -35,9 +35,18 @@ function parseCsv(p: string): Map<string, { pdf_path: string; case_key: string }
 }
 
 function scoresPhoneInvent(claimBlob: string, bundleText: string): boolean {
-  const claim = /phone download|source export referred|digital extraction|original download|phone extraction/i.test(claimBlob);
-  const source = /phone download|source export|handset download|digital extraction|extraction report|phone extraction/i.test(bundleText);
-  return claim && !source;
+  // Negation / modality notes are not invent claims.
+  const claimWithoutNegation = claimBlob
+    .replace(/not\s+(?:a\s+)?full\s+phone\s+download[^.!\n]{0,80}/gi, " ")
+    .replace(/not\s+full\s+phone\s+download[^.!\n]{0,80}/gi, " ");
+  const claimReal = /phone download|source export referred|digital extraction|original download|phone extraction/i.test(
+    claimWithoutNegation,
+  );
+  const source =
+    /phone download|source export|handset download|digital extraction|extraction report|phone extraction|logical download|download report/i.test(
+      bundleText,
+    );
+  return claimReal && !source;
 }
 
 async function main() {
@@ -147,7 +156,7 @@ async function main() {
   }
 
   const out = {
-    tip: "d1-phone-truth-map",
+    tip: "d2-client-phone-bundle-only-modality",
     sampled: sample.length,
     cleared,
     stillInvent: still,

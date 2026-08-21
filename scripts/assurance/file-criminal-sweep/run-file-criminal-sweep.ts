@@ -589,7 +589,7 @@ function scoreInvent(
     cctv_master_source: /CCTV master|full CCTV master|master footage|full master/i.test(bundleText),
     phone_download_claim: /phone download|source export referred|digital extraction|original download|phone extraction/i.test(claimBlob),
     phone_download_source:
-      /phone download|source export|handset download|digital extraction|extraction report|phone extraction/i.test(bundleText),
+      /phone download|source export|handset download|digital extraction|extraction report|phone extraction|logical download|download report/i.test(bundleText),
     cad_999_claim: /\bCAD\b|999\s+audio|complete CAD/i.test(claimBlob),
     cad_999_source: /\bCAD\b|999\s+audio|CAD\/999|command and (?:dispatch|control)/i.test(bundleText),
     interview_recording_claim: /interview recording|PACE recording|audio.?visual interview/i.test(claimBlob),
