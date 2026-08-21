@@ -30,6 +30,6 @@ Protected opposites still green: Trap interview TN · Tobin recording-vs-transcr
 
 ## Next
 
-- Optional tip Court re-sweep sample / full 2600 to measure invent_bwv / interview / CAD drop  
-- Then Client (D0) / File (E0)  
+- **PROOF DONE** — `CHUNK-C1-COURT-INVENT-PROOF.md` (bwv −519, interview −257, cad −194)
+- Client (D0) / File (E0)
 - Merge to programme only on explicit ask

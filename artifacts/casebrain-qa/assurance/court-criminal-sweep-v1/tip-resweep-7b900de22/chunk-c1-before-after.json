@@ -1,0 +1,49 @@
+{
+  "productTip": "7b900de22",
+  "freezeScored": 2397,
+  "tipScored": 2397,
+  "freezeInventSum": 1084,
+  "tipInventSum": 114,
+  "families": [
+    {
+      "family": "invent_bwv",
+      "freeze": 520,
+      "tip": 1,
+      "delta": -519
+    },
+    {
+      "family": "invent_interview_recording",
+      "freeze": 261,
+      "tip": 4,
+      "delta": -257
+    },
+    {
+      "family": "invent_cad_999",
+      "freeze": 194,
+      "tip": 0,
+      "delta": -194
+    },
+    {
+      "family": "invent_cctv_master",
+      "freeze": 8,
+      "tip": 8,
+      "delta": 0
+    },
+    {
+      "family": "invent_phone_download",
+      "freeze": 99,
+      "tip": 99,
+      "delta": 0
+    },
+    {
+      "family": "invent_bwv_full_export_from_stills",
+      "freeze": 0,
+      "tip": 0,
+      "delta": 0
+    }
+  ],
+  "mutePhone": {
+    "freeze": 287,
+    "tip": 287
+  }
+}

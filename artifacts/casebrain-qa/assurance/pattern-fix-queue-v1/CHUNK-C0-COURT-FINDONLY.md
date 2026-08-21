@@ -38,5 +38,5 @@ Court/Chase claim surface is **noisier than Overview/Papers tip** on invent_bwv 
 ## Next
 
 1. **C0.5 DONE** — see `CHUNK-C05-C1-COURT-INVENT-ARMOUR.md`  
-2. **C1 DONE** — shared-root Court invent armour + opposite tests  
-3. Optional Court tip re-sweep → then Client (D0) / File (E0)
+2. **C1 DONE + PROOF** — invent sum **1084→114** (`CHUNK-C1-COURT-INVENT-PROOF.md`)  
+3. **D0 RUNNING** — Client find-only · then File (E0)

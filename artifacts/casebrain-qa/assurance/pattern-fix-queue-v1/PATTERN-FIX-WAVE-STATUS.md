@@ -2,11 +2,15 @@
 
 
 
-**Verdict:** `C1_COURT_INVENT_ARMOUR` (C0.5 triage + shared-root Court invent armour; opposite PASS)
+**Verdict:** `C1_PROOF_COURT_INVENT_CLEARED` + `D0_RUNNING` (Client find-only in flight)
 
-**Chunk C0.5/C1 Court invent:** `CHUNK-C05-C1-COURT-INVENT-ARMOUR.md` · opposites in `f167-surgical-truth-opposite-direction.test.ts`
+**Chunk C1 Court invent proof:** `CHUNK-C1-COURT-INVENT-PROOF.md` · tip pack `court-criminal-sweep-v1/tip-resweep-7b900de22/` · invent sum **1084→114** · bwv **520→1** · interview **261→4** · cad **194→0**
 
-**Chunk C0 Court find-only:** `CHUNK-C0-COURT-FINDONLY.md` · pack `court-criminal-sweep-v1/` · tip `713a056b4` · hitlist **1478** (pre-armour tallies)
+**Chunk C0.5/C1 Court invent:** `CHUNK-C05-C1-COURT-INVENT-ARMOUR.md` · tip `7b900de22`
+
+**Chunk D0 Client find-only:** `CHUNK-D0-CLIENT-FINDONLY.md` · pack `client-criminal-sweep-v1/` · tip `7b900de22`
+
+**Chunk C0 Court find-only:** `CHUNK-C0-COURT-FINDONLY.md` · pack `court-criminal-sweep-v1/` · tip `713a056b4` · hitlist **1478** (pre-armour)
 
 **PR:** https://github.com/gduffy1993-png/casebrain-hub/pull/70
 
@@ -15,12 +19,6 @@
 **Chunk P0 Papers find-only:** `CHUNK-P0-PAPERS-FINDONLY.md` · pack `papers-criminal-sweep-v1/` · tip `9476419c9` · hitlist **759** · invent sum **1** · spotcheck `p0-pdf-spotcheck.json`
 
 **Chunk 3 family armour:** `CHUNK-3-FAMILY-ARMOUR.md` · Preview https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app · live `live-auth-chunk3-after-bwv/` · **committed+pushed** `6e63bb6d2`
-
-**Chunk 2 scale proof:** `CHUNK-2-SCALE-PROOF.md` · tip pack `overview-criminal-sweep-v1/tip-resweep-2e6d6d344/`
-
-**Chunk 1 polish:** `CHUNK-1-RESIDUAL-POLISH.md` · live `live-auth-chunk1-residual/`  
-
-**Prior:** `CHUNK_1_CLEAN_NO_FIX` / `GRANT_CCTV_MASTER_INVENT_FIXED` / `HIGH_VALUE_LEFTOVERS_DONE` / `CHUNK_2_PROOF_STRONG` / `CHUNK_3_ARMOUR_STRONG`
 
 **Merge:** **NOT STARTED**  
 
