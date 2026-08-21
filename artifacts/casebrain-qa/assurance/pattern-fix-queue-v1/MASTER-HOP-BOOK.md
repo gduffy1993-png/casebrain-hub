@@ -14,12 +14,13 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 
 | Status | N |
 |--------|--:|
-| FIXED (prior surgical + Trap CCTV + this wave + A lock) | 19 |
+| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client) | 21 |
 | OPEN (remaining) | 0 |
-| STOP → Phase B (Papers / Client) | 2 |
+| STOP → Phase B (Papers / Client) | 0 |
 | WATCH (UI / soft Chase inject / volume triage) | 4 |
 
-**Phase A locked:** `cbf40f08f` · Preview https://casebrain-jo16a5tt0-gduffy1993-pngs-projects.vercel.app · see `PHASE-A-LOCK.md`
+**Phase A locked:** `cbf40f08f` · Preview https://casebrain-jo16a5tt0-gduffy1993-pngs-projects.vercel.app · see `PHASE-A-LOCK.md`  
+**Phase B tip:** `a13739f4b` · Preview https://casebrain-98u6ps28m-gduffy1993-pngs-projects.vercel.app · see `PHASE-B-PAPERS-CLIENT.md`
 
 ---
 
@@ -69,18 +70,17 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 - **Fix:** `reconcilePhoneDownloadModalityItems` (`d228df56e`) — mid-state inject; Brookes full TP; Arden property TN
 - **Opposite:** Brookes full download outstanding TP; Arden property-phone TN — **PASS**
 
-### 5. `PAPERS_COLLAPSED_NO_DOC_INVENTORY` · Phase B · order **4**
+### 5. `PAPERS_COLLAPSED_NO_DOC_INVENTORY` · FIXED (Phase B) · order **4**
 - **Surfaces:** Papers
-- **Class:** surface mute
-- **Gym:** **8/8** (Arden, Brookes, Trap, Dunn, Ahmed, Patel, Tobin, Grant)
-- **PDF verify:** Live gym was Control Room + `MORE PAPERS DETAIL UNAVAILABLE`
-- **Phase B:** Dedicated Papers doc inventory from ledger materials (exists/type/status/pages where detectable) — not Control Room clone.
+- **Class:** surface mute → inventory
+- **Fix:** `PapersDocInventoryPanel` + papers surface primary swap (`a13739f4b`)
+- **Live:** Arden/Brookes/Trap Papers inventory PASS @ `98u6`
 
-### 6. `CLIENT_TAB_EQUALS_COURT_CONTROL_ROOM` · Phase B · order **4b**
+### 6. `CLIENT_TAB_EQUALS_COURT_CONTROL_ROOM` · FIXED (Phase B) · order **4b**
 - **Surfaces:** Client Summary vs Court
 - **Class:** surface / projection
-- **Gym:** Arden, Brookes, Trap
-- **Phase B:** Distinct client-facing factual summary (`tab=summary` / PilotSummaryView) — not Court Control Room duplicate. Note: prior live harness used wrong tab id `client-summary`.
+- **Fix:** PilotSummaryView papers-facts strip + correct `tab=summary` harness (`a13739f4b`)
+- **Live:** Client ≠ Court pressure; Court keeps pressure desk @ `98u6`
 
 ### 7. `HEARING_DATE_USED_AS_OPERATIONAL_DEADLINE` · FIXED · order **5**
 - **Surfaces:** Header OK as listing status; **Chase deadlineLabel** reuses same string
