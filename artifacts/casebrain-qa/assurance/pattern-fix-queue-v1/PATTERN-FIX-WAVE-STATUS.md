@@ -2,7 +2,9 @@
 
 
 
-**Verdict:** `C4_COURT_CCTV_NOT_FULL_SEQUENCE` (witness not-full-CCTV ≠ master invent)
+**Verdict:** `C5_COURT_INTERVIEW_DETECTOR_AND_GLUED_BWV`
+
+**Chunk C5 Court tip residuals:** `CHUNK-C5-COURT-INTERVIEW-GLUED-BWV.md` · invent_interview ×4 detector + gauntlet glued BWV
 
 **Chunk C4 Court CCTV:** `CHUNK-C4-COURT-CCTV-NOT-FULL.md`
 
