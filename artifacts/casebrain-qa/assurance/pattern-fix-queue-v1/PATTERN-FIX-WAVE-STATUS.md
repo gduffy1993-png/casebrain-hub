@@ -2,15 +2,17 @@
 
 
 
-**Verdict:** `CHUNK_3_ARMOUR_STRONG` (BWV stills≠full-export fixed; 10 opposite pairs armoured; live canaries PASS)
+**Verdict:** `P0_COMPLETE_FINDONLY` (Papers 2600 scored; invent quiet; P0.5 triage — mute_phone WATCH, modality soft noise, invent_bwv one-off)
 
-**Chunk 3 family armour:** `CHUNK-3-FAMILY-ARMOUR.md` · Preview https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app · live `live-auth-chunk3-after-bwv/`
+**Chunk P0 Papers find-only:** `CHUNK-P0-PAPERS-FINDONLY.md` · pack `papers-criminal-sweep-v1/` · tip `6e63bb6d2` · hitlist **759** · invent sum **1** · spotcheck `p0-pdf-spotcheck.json`
+
+**Chunk 3 family armour:** `CHUNK-3-FAMILY-ARMOUR.md` · Preview https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app · live `live-auth-chunk3-after-bwv/` · **committed+pushed** `6e63bb6d2`
 
 **Chunk 2 scale proof:** `CHUNK-2-SCALE-PROOF.md` · tip pack `overview-criminal-sweep-v1/tip-resweep-2e6d6d344/`
 
 **Chunk 1 polish:** `CHUNK-1-RESIDUAL-POLISH.md` · live `live-auth-chunk1-residual/`  
 
-**Prior:** `CHUNK_1_CLEAN_NO_FIX` / `GRANT_CCTV_MASTER_INVENT_FIXED` / `HIGH_VALUE_LEFTOVERS_DONE` / `CHUNK_2_PROOF_STRONG`
+**Prior:** `CHUNK_1_CLEAN_NO_FIX` / `GRANT_CCTV_MASTER_INVENT_FIXED` / `HIGH_VALUE_LEFTOVERS_DONE` / `CHUNK_2_PROOF_STRONG` / `CHUNK_3_ARMOUR_STRONG`
 
 **Merge:** **NOT STARTED**  
 
@@ -27,7 +29,7 @@
 
 **Grant CCTV invent tip SHA:** `2e6d6d3447d5398980a2c0b7aa3f983b73deb8b2`  
 
-**Chunk 3 BWV Preview:** https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app (worktree deploy; commit pending)
+**Chunk 3 BWV tip SHA:** `6e63bb6d2` · Preview https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app
 
 **Freeze baseline (pre-wave product):** `55c41d8956c044d20f4265cccc6fd8669349d2ae`  
 
