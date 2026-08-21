@@ -29,6 +29,26 @@ import {
 } from "@/lib/criminal/solicitor-display-dedupe";
 import { displayPilotStripCharge, displayPilotStripClient } from "./workflowPilotDisplay";
 import { solicitorReadyGateCopy } from "./pilotReviewCopy";
+import { buildBundleTruthLedger } from "@/lib/criminal/bundle-truth-ledger";
+import type { NormalisedMaterialRow } from "@/lib/criminal/bundle-truth-types";
+
+function clientPapersFactLines(rows: NormalisedMaterialRow[]): string[] {
+  const out: string[] = [];
+  for (const row of rows.slice(0, 8)) {
+    const status =
+      row.status === "served"
+        ? "on the papers"
+        : row.status === "partial" || row.status === "draft" || row.status === "unsigned"
+          ? "only partly on the papers"
+          : row.status === "referred_only"
+            ? "referred to but not fully served"
+            : row.status === "outstanding" || row.status === "absent"
+              ? "not on the papers yet"
+              : "not safely confirmed on the papers";
+    out.push(`${row.label} — ${status}.`);
+  }
+  return out;
+}
 
 export type PilotSummaryViewProps = {
   caseId: string;
@@ -163,6 +183,11 @@ export function PilotSummaryView({
   const { loading, matterBrief, matterConfidence, doNotOverstate, bundleMeta, outputIntegrity, allegation } =
     useMatterBrief(caseId);
   const bundleHay = bundleMeta?.frontMatterScan ?? "";
+  const papersFacts = useMemo(() => {
+    if (!bundleHay.trim()) return [] as string[];
+    const ledger = buildBundleTruthLedger({ bundleText: bundleHay });
+    return clientPapersFactLines(ledger.materials);
+  }, [bundleHay]);
   const filteredDoNot = useMemo(
     () =>
       collapseDontSayMg11WitnessLines(
@@ -235,7 +260,8 @@ export function PilotSummaryView({
             </div>
             <h2 className="text-base font-semibold text-slate-100 mt-1">{heading}</h2>
             <p className="text-xs text-slate-500 mt-2">
-              Client-facing draft. Review before sending.
+              Client-facing factual update from the papers — not a court control-room desk. Review before
+              sending.
             </p>
           </div>
           <Button
@@ -250,6 +276,20 @@ export function PilotSummaryView({
             {copied === "client" ? "Copied" : "Copy client-safe summary"}
           </Button>
         </div>
+        {!loading && papersFacts.length ? (
+          <div className="mt-3 rounded-md border border-slate-700/60 bg-slate-950/40 px-3 py-2.5 space-y-1.5" data-testid="client-papers-facts">
+            <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">
+              What the papers show
+            </p>
+            <ul className="list-disc pl-4 space-y-1 text-xs text-slate-300">
+              {papersFacts.map((line, i) => (
+                <li key={i} className="leading-relaxed">
+                  {line}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
         {!loading && clientSafeText ? (
           <p className="mt-3 text-sm text-slate-200 leading-relaxed whitespace-pre-wrap">{clientSafeText}</p>
         ) : null}

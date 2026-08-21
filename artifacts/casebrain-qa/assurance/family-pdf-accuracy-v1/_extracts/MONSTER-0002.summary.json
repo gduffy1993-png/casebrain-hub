@@ -1,0 +1,164 @@
+{
+  "case_key": "MONSTER-0002",
+  "ok": true,
+  "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Monster_and_Charge_Coverage_2026\\casebrain_monster_charge\\Monster_Bundle_Load_Pack\\pdfs\\CB-MONSTER-2026-0002.pdf",
+  "pdf_sha256": "bf3626dc86ecdf4bc11f8ef7618c0354817dc20e9a10dfac9947024f405ce7da",
+  "page_count": 500,
+  "char_count": 249495,
+  "term_hits": {
+    "CCTV": 12,
+    "continuity": 2,
+    "interview": 4,
+    "ABE": 619,
+    "phone": 1,
+    "extraction": 99,
+    "property": 98,
+    "MG6": 12,
+    "MG11": 1
+  },
+  "term_excerpts": {
+    "CCTV": [
+      {
+        "page": 2,
+        "excerpt": "mmary; receipt timing buried; wrong label on shop log Disclosure issue: full till log, complete receipt audit, original CCTV, clean exhibit list correcting wrong label. Safe move: chase missing material and do not overstate provisional strategy. Receipt timing may assist dishonesty d"
+      },
+      {
+        "page": 2,
+        "excerpt": "ill/source data confirms payment sequence. Exhibits: EX-MON-MG5-02; EX-MON-MG6-02; EX-MON-INT-02; EX-MON-REC-02; EX-MON-CCTV-02 CB-MONSTER-2026-0002 | fictional long-bundle stress page 2"
+      },
+      {
+        "page": 8,
+        "excerpt": "oto, store staff MG11, old duplicate summary. Outstanding / incomplete: full till log, complete receipt audit, original CCTV, clean exhibit list correcting wrong label. Do not treat unserved source data as proved. Chase the full source material and latest disclosure position before f"
+      },
+      {
+        "page": 12,
+        "excerpt": "ALUATION PDF - NOT REAL POLICE MATERIAL EXHIBIT LIST EX-MON-MG5-02; EX-MON-MG6-02; EX-MON-INT-02; EX-MON-REC-02; EX-MON-CCTV-02 All exhibit codes above are fictional EX-MON-* codes for CaseBrain evaluation only. CB-MONSTER-2026-0002 | fictional long-bundle stress page 12"
+      }
+    ],
+    "continuity": [
+      {
+        "page": 5,
+        "excerpt": "y; receipt timing buried; wrong label on shop log Strategy must remain provisional where source documents, clean scans, continuity or latest disclosure are missing. CB-MONSTER-2026-0002 | fictional long-bundle stress page 5"
+      },
+      {
+        "page": 14,
+        "excerpt": "y supports the allegation. This creates pressure if proved because the solicitor can ask for missing pages/source files/continuity and record prejudice from incomplete service. This point collapses if: point collapses if till log shows no payment attempt before exit. Do not treat the strat"
+      }
+    ],
+    "interview": [
+      {
+        "page": 1,
+        "excerpt": "sue: 500-page duplicate/wrong label bundle Key pages: charge p2; old duplicate MG5 p44; correct MG6 p145; receipt p333; interview p410 Gold answers are in separate .txt files only and are not included inside this PDF. CB-MONSTER-2026-0002 | fictional long-bundle stress page 1"
+      },
+      {
+        "page": 4,
+        "excerpt": "gination pages. Important case material is buried at: charge p2; old duplicate MG5 p44; correct MG6 p145; receipt p333; interview p410. Correct behaviour is to find charge/MG6/interview/exhibits, flag missing material, and not pretend every referenced source is safely served. CB-MONSTER-2"
+      },
+      {
+        "page": 4,
+        "excerpt": "arge p2; old duplicate MG5 p44; correct MG6 p145; receipt p333; interview p410. Correct behaviour is to find charge/MG6/interview/exhibits, flag missing material, and not pretend every referenced source is safely served. CB-MONSTER-2026-0002 | fictional long-bundle stress page 4"
+      },
+      {
+        "page": 10,
+        "excerpt": "10 of 500 - Theft from shop - duplicate and mislabeled long bundle FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL INTERVIEW / CLIENT ACCOUNT Partial admission: handled goods but says payment failed and offered to pay immediately. Client account is a working instruction only. Where i"
+      }
+    ],
+    "ABE": [
+      {
+        "page": 1,
+        "excerpt": "CB-MONSTER-2026-0002 - Monster Bundle Load Pack Page 1 of 500 - Theft from shop - duplicate and mislabeled long bundle FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL PACK / LOAD NOTICE FICTIONAL CASEBRAIN MONSTER BUNDLE LOAD PACK. Not a real case. No real pe"
+      },
+      {
+        "page": 1,
+        "excerpt": "erial, addresses or phone numbers. Case reference: CB-MONSTER-2026-0002 Case title: Theft from shop - duplicate and mislabeled long bundle Defendant(s): Blake Hart Stage: trial listed in 7 days Bundle type: monster load stress, 500 actual pages. Main issue: 500-page duplicate/wrong"
+      },
+      {
+        "page": 1,
+        "excerpt": "Stage: trial listed in 7 days Bundle type: monster load stress, 500 actual pages. Main issue: 500-page duplicate/wrong label bundle Key pages: charge p2; old duplicate MG5 p44; correct MG6 p145; receipt p333; interview p410 Gold answers are in separate .txt files only and are not in"
+      },
+      {
+        "page": 2,
+        "excerpt": "CB-MONSTER-2026-0002 - Monster Bundle Load Pack Page 2 of 500 - Theft from shop - duplicate and mislabeled long bundle FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL CHARGE / ALLEGATION Offence: Theft from shop Exact allegation wording: On 03/06/2026 at Mark"
+      }
+    ],
+    "phone": [
+      {
+        "page": 1,
+        "excerpt": "OAD NOTICE FICTIONAL CASEBRAIN MONSTER BUNDLE LOAD PACK. Not a real case. No real people, police material, addresses or phone numbers. Case reference: CB-MONSTER-2026-0002 Case title: Theft from shop - duplicate and mislabeled long bundle Defendant(s): Blake Hart Stage: trial listed i"
+      }
+    ],
+    "extraction": [
+      {
+        "page": 6,
+        "excerpt": "OT REAL POLICE MATERIAL NOISE / LONG BUNDLE PAGE Duplicate pagination marker. This page is included to test long-bundle extraction and not to add new case facts. Safe behaviour: use only the relevant served text and flag source gaps rather than inferring missing content. CB-MONSTER-2026-00"
+      },
+      {
+        "page": 11,
+        "excerpt": "OT REAL POLICE MATERIAL NOISE / LONG BUNDLE PAGE Duplicate pagination marker. This page is included to test long-bundle extraction and not to add new case facts. Safe behaviour: use only the relevant served text and flag source gaps rather than inferring missing content. CB-MONSTER-2026-00"
+      },
+      {
+        "page": 16,
+        "excerpt": "OT REAL POLICE MATERIAL NOISE / LONG BUNDLE PAGE Duplicate pagination marker. This page is included to test long-bundle extraction and not to add new case facts. Safe behaviour: use only the relevant served text and flag source gaps rather than inferring missing content. CB-MONSTER-2026-00"
+      },
+      {
+        "page": 21,
+        "excerpt": "OT REAL POLICE MATERIAL NOISE / LONG BUNDLE PAGE Duplicate pagination marker. This page is included to test long-bundle extraction and not to add new case facts. Safe behaviour: use only the relevant served text and flag source gaps rather than inferring missing content. CB-MONSTER-2026-00"
+      }
+    ],
+    "property": [
+      {
+        "page": 3,
+        "excerpt": "and mislabeled long bundle FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL NOISE / LONG BUNDLE PAGE Noise extract: property receipt wrapper / envelope note / pagination marker. Relevant issue remains duplicate old summary; receipt timing buried; wrong label on shop log. Safe behavio"
+      },
+      {
+        "page": 13,
+        "excerpt": "and mislabeled long bundle FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL NOISE / LONG BUNDLE PAGE Noise extract: property receipt wrapper / envelope note / pagination marker. Relevant issue remains duplicate old summary; receipt timing buried; wrong label on shop log. Safe behavio"
+      },
+      {
+        "page": 18,
+        "excerpt": "and mislabeled long bundle FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL NOISE / LONG BUNDLE PAGE Noise extract: property receipt wrapper / envelope note / pagination marker. Relevant issue remains duplicate old summary; receipt timing buried; wrong label on shop log. Safe behavio"
+      },
+      {
+        "page": 23,
+        "excerpt": "and mislabeled long bundle FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL NOISE / LONG BUNDLE PAGE Noise extract: property receipt wrapper / envelope note / pagination marker. Relevant issue remains duplicate old summary; receipt timing buried; wrong label on shop log. Irrelevant a"
+      }
+    ],
+    "MG6": [
+      {
+        "page": 1,
+        "excerpt": "00 actual pages. Main issue: 500-page duplicate/wrong label bundle Key pages: charge p2; old duplicate MG5 p44; correct MG6 p145; receipt p333; interview p410 Gold answers are in separate .txt files only and are not included inside this PDF. CB-MONSTER-2026-0002 | fictional long-bun"
+      },
+      {
+        "page": 2,
+        "excerpt": "may assist dishonesty dispute only if full till/source data confirms payment sequence. Exhibits: EX-MON-MG5-02; EX-MON-MG6-02; EX-MON-INT-02; EX-MON-REC-02; EX-MON-CCTV-02 CB-MONSTER-2026-0002 | fictional long-bundle stress page 2"
+      },
+      {
+        "page": 4,
+        "excerpt": "xtracts or irrelevant pagination pages. Important case material is buried at: charge p2; old duplicate MG5 p44; correct MG6 p145; receipt p333; interview p410. Correct behaviour is to find charge/MG6/interview/exhibits, flag missing material, and not pretend every referenced source"
+      },
+      {
+        "page": 4,
+        "excerpt": ": charge p2; old duplicate MG5 p44; correct MG6 p145; receipt p333; interview p410. Correct behaviour is to find charge/MG6/interview/exhibits, flag missing material, and not pretend every referenced source is safely served. CB-MONSTER-2026-0002 | fictional long-bundle stress page 4"
+      }
+    ],
+    "MG11": [
+      {
+        "page": 8,
+        "excerpt": "E MATERIAL MG6 / DISCLOSURE POSITION Served according to MG6 extract: MG5, MG6, partial till receipt photo, store staff MG11, old duplicate summary. Outstanding / incomplete: full till log, complete receipt audit, original CCTV, clean exhibit list correcting wrong label. Do not treat"
+      }
+    ]
+  },
+  "key_pages": {
+    "1": "CB-MONSTER-2026-0002 - Monster Bundle Load Pack\nPage 1 of 500 - Theft from shop - duplicate and mislabeled long bundle\nFICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL\nPACK / LOAD NOTICE\nFICTIONAL CASEBRAIN MONSTER BUNDLE LOAD PACK. Not a real case. No real people, police material,\naddresses or phone numbers.\nCase reference: CB-MONSTER-2026-0002\nCase title: Theft from shop - duplicate and mislabeled long bundle\nDefendant(s): Blake Hart\nStage: trial listed in 7 days\nBundle type: monster load stress, 500 actual pages. Main issue: 500-page duplicate/wrong label\nbundle\nKey pages: charge p2; old duplicate MG5 p44; correct MG6 p145; receipt p333; interview p410\nGold answers are in separate .txt files only and are not included inside this PDF.\nCB-MONSTER-2026-0002 | fictional long-bundle stress page 1\n",
+    "2": "CB-MONSTER-2026-0002 - Monster Bundle Load Pack\nPage 2 of 500 - Theft from shop - duplicate and mislabeled long bundle\nFICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL\nCHARGE / ALLEGATION\nOffence: Theft from shop\nExact allegation wording: On 03/06/2026 at Market Arcade, Blake Hart is alleged to have\ndishonestly appropriated retail goods belonging to Northgate Stores intending permanently to\ndeprive.\nThe prosecution must prove the offence as charged. For any unusual or specialist issue,\nsolicitor review is required.\nBURIED KEY EXTRACT\nThis is a buried relevant page for CB-MONSTER-2026-0002.\nMain chaos issue: duplicate old summary; receipt timing buried; wrong label on shop log\nDisclosure issue: full till log, complete receipt audit, original CCTV, clean exhibit list\ncorrecting wrong label.\nSafe move: chase missing material and do not overstate provisional strategy. Receipt timing may\nassist dishonesty dispute only if full till/source data confirms payment sequence.\nExhibits: EX-MON-MG5-02; EX-MON-MG6-02; EX-MON-INT-02; EX-MON-REC-02; EX-MON-CCTV-02\nCB-MONSTER-2026-0002 | fictional long-bundle stress page 2\n",
+    "3": "CB-MONSTER-2026-0002 - Monster Bundle Load Pack\nPage 3 of 500 - Theft from shop - duplicate and mislabeled long bundle\nFICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL\nNOISE / LONG BUNDLE PAGE\nNoise extract: property receipt wrapper / envelope note / pagination marker. Relevant issue\nremains duplicate old summary; receipt timing buried; wrong label on shop log.\nSafe behaviour: use only the relevant served text and flag source gaps rather than inferring\nmissing content.\nCB-MONSTER-2026-0002 | fictional long-bundle stress page 3\n",
+    "5": "CB-MONSTER-2026-0002 - Monster Bundle Load Pack\nPage 5 of 500 - Theft from shop - duplicate and mislabeled long bundle\nFICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL\nMG5 SUMMARY\nCrown narrative: On 03/06/2026 at Market Arcade, Blake Hart is alleged to have dishonestly\nappropriated retail goods belonging to Northgate Stores intending permanently to deprive.\nThe Crown relies on the listed exhibits, but this monster bundle deliberately mixes important\ndocuments with noisy, duplicated or incomplete material.\nFile-chaos note: duplicate old summary; receipt timing buried; wrong label on shop log\nStrategy must remain provisional where source documents, clean scans, continuity or latest\ndisclosure are missing.\nCB-MONSTER-2026-0002 | fictional long-bundle stress page 5\n",
+    "14": "CB-MONSTER-2026-0002 - Monster Bundle Load Pack\nPage 14 of 500 - Theft from shop - duplicate and mislabeled long bundle\nFICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL\nSTRATEGY SAFETY NOTE\nThis may assist the defence because: Receipt timing may assist dishonesty dispute only if full\ntill/source data confirms payment sequence.\nThis may assist the Crown if served source material cures the gap or clearly supports the\nallegation.\nThis creates pressure if proved because the solicitor can ask for missing pages/source\nfiles/continuity and record prejudice from incomplete service.\nThis point collapses if: point collapses if till log shows no payment attempt before exit.\nDo not treat the strategy as final until source material and instructions are reviewed by a\nsolicitor.\nCB-MONSTER-2026-0002 | fictional long-bundle stress page 14\n",
+    "4": "CB-MONSTER-2026-0002 - Monster Bundle Load Pack\nPage 4 of 500 - Theft from shop - duplicate and mislabeled long bundle\nFICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL\nBUNDLE INDEX / LOAD STRESS\nBundle index states pages 1-500.\nThis test file contains actual pages 1-500 but many pages are noise, duplicated wrappers, old\nextracts or irrelevant pagination pages.\nImportant case material is buried at: charge p2; old duplicate MG5 p44; correct MG6 p145;\nreceipt p333; interview p410.\nCorrect behaviour is to find charge/MG6/interview/exhibits, flag missing material, and not\npretend every referenced source is safely served.\nCB-MONSTER-2026-0002 | fictional long-bundle stress page 4\n",
+    "6": "CB-MONSTER-2026-0002 - Monster Bundle Load Pack\nPage 6 of 500 - Theft from shop - duplicate and mislabeled long bundle\nFICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL\nNOISE / LONG BUNDLE PAGE\nDuplicate pagination marker. This page is included to test long-bundle extraction and not to\nadd new case facts.\nSafe behaviour: use only the relevant served text and flag source gaps rather than inferring\nmissing content.\nCB-MONSTER-2026-0002 | fictional long-bundle stress page 6\n",
+    "11": "CB-MONSTER-2026-0002 - Monster Bundle Load Pack\nPage 11 of 500 - Theft from shop - duplicate and mislabeled long bundle\nFICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL\nNOISE / LONG BUNDLE PAGE\nDuplicate pagination marker. This page is included to test long-bundle extraction and not to\nadd new case facts.\nSafe behaviour: use only the relevant served text and flag source gaps rather than inferring\nmissing content.\nCB-MONSTER-2026-0002 | fictional long-bundle stress page 11\n",
+    "13": "CB-MONSTER-2026-0002 - Monster Bundle Load Pack\nPage 13 of 500 - Theft from shop - duplicate and mislabeled long bundle\nFICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL\nNOISE / LONG BUNDLE PAGE\nNoise extract: property receipt wrapper / envelope note / pagination marker. Relevant issue\nremains duplicate old summary; receipt timing buried; wrong label on shop log.\nSafe behaviour: use only the relevant served text and flag source gaps rather than inferring\nmissing content.\nCB-MONSTER-2026-0002 | fictional long-bundle stress page 13\n",
+    "8": "CB-MONSTER-2026-0002 - Monster Bundle Load Pack\nPage 8 of 500 - Theft from shop - duplicate and mislabeled long bundle\nFICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL\nMG6 / DISCLOSURE POSITION\nServed according to MG6 extract: MG5, MG6, partial till receipt photo, store staff MG11, old\nduplicate summary.\nOutstanding / incomplete: full till log, complete receipt audit, original CCTV, clean exhibit\nlist correcting wrong label.\nDo not treat unserved source data as proved. Chase the full source material and latest\ndisclosure position before final advice.\nCB-MONSTER-2026-0002 | fictional long-bundle stress page 8\n"
+  },
+  "first_page_preview": "CB-MONSTER-2026-0002 - Monster Bundle Load Pack\nPage 1 of 500 - Theft from shop - duplicate and mislabeled long bundle\nFICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL\nPACK / LOAD NOTICE\nFICTIONAL CASEBRAIN MONSTER BUNDLE LOAD PACK. Not a real case. No real people, police material,\naddresses or phone numbers.\nCase reference: CB-MONSTER-2026-0002\nCase title: Theft from shop - duplicate and mislabeled long bundle\nDefendant(s): Blake Hart\nStage: trial listed in 7 days\nBundle type: monster load stress, 500 actual pages. Main issue: 500-page duplicate/wrong label\nbundle\nKey pages: charge p2; old duplicate MG5 p44; correct MG6 p145; receipt p333; interview p410\nGold answers are in separate .txt files only and are not included inside this PDF.\nCB-MONSTER-2026-0002 | fictional long-bundle stres"
+}

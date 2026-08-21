@@ -1,0 +1,271 @@
+
+===== PAGE 1 =====
+CB-TB-014
+Page 1
+CROWN PROSECUTION FILE
+CB-TB-014 | 26NS100014
+Initial prosecution material and hearing documents
+Matter reference
+CB-TB-014
+URN
+26NS100014
+Defendant
+James Patterson
+Date of birth
+19/06/1988
+Court
+Crown Court at Manchester
+Hearing
+07/08/2026 at 10:00
+Stage
+Crown Court first hearing
+Offence family
+Serious violence
+Bundle index
+Tab
+Document
+Date
+Notes
+1
+Cover and index
+07/08/2026
+Matter overview
+2
+Indictment draft and first hearing notice
+28/06/2026
+Defendant: James Patterson
+3
+MG5 case summary
+29/06/2026
+Summary and issues
+4
+MG11 witness statement - Marcus Vale
+29/06/2026
+Prosecution witness
+5
+MG11 witness statement - PC Rachel North
+30/06/2026
+Prosecution witness
+6
+CAD / custody extract
+28/06/2026
+Timing and sequence
+7
+MG6 schedule
+30/06/2026
+Served and outstanding material
+8
+Exhibit list
+30/06/2026
+Exhibits/correspondence
+Pagination follows the tab order above. Blank lines on schedules are retained where material is awaited.
+
+===== PAGE 2 =====
+CB-TB-014
+Page 2
+INDICTMENT DRAFT AND FIRST HEARING NOTICE
+CB-TB-014 | 26NS100014
+Crown Court at Manchester - 07/08/2026 at 10:00
+Defendant
+James Patterson
+DOB
+19/06/1988
+Address
+Address withheld in served copy
+URN
+26NS100014
+Court
+Crown Court at Manchester
+Next hearing
+07/08/2026 at 10:00
+Prosecutor
+Northshire CPS
+Police force
+Northshire Police
+Statement of offence
+Wounding with intent, contrary to section 18 Offences Against the Person Act 1861
+Particulars of offence
+On 29 June 2026 at Northbridge, James Patterson is alleged unlawfully and maliciously to have wounded Marcus Vale with intent to cause
+grievous bodily harm.
+Count
+Statement of offence
+Particulars
+1
+Wounding with intent, contrary to
+section 18 Offences Against the
+Person Act 1861
+On 29 June 2026 at Northbridge, wounded Marcus Vale with intent to cause
+grievous bodily harm.
+Listing note
+Listed for case management and plea indication. Defence access recorded on Common Platform.
+
+===== PAGE 3 =====
+CB-TB-014
+Page 3
+MG5 CASE SUMMARY
+CB-TB-014 | 26NS100014
+Police report and prosecution summary
+Defendant
+James Patterson
+URN
+26NS100014
+Anticipated plea
+Not yet indicated
+Bail/remand
+Police bail to court
+Interview
+Interview summary served
+Victim/witness
+Marcus Vale / PC Rachel North
+Case summary
+The allegation is a serious assault with a knife outside a flat block. The indictment draft sets out the full section 18 wording over several
+lines. The custody record contains administrative PACE tick-boxes that are not part of the charge.
+The Crown relies on complainant evidence, partial CCTV and medical photographs. The knife is not recovered.
+Issues for review
+No.
+Issue noted on review
+1
+Knife not recovered.
+2
+CCTV does not show full incident.
+3
+Medical report served but causation detail is brief.
+4
+Custody PACE tick-boxes sit near charge page and should not be treated as allegation wording.
+
+===== PAGE 4 =====
+CB-TB-014
+Page 4
+MG11 WITNESS STATEMENT
+CB-TB-014 | 26NS100014
+Statement of Marcus Vale
+Statement of
+Marcus Vale
+Age if under 18
+Over 18
+Occupation
+Civilian witness
+Statement date
+02/07/2026
+URN
+26NS100014
+Witness type
+Complainant
+This statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I may be liable to prosecution if I have
+wilfully stated anything which I know to be false or do not believe to be true.
+James swung at me with a knife and I felt a cut to my arm. I ran into the block and called for help.
+I know James from the area. I was bleeding and attended hospital.
+Signature
+Electronically signed
+Date
+02/07/2026
+
+===== PAGE 5 =====
+CB-TB-014
+Page 5
+MG11 WITNESS STATEMENT
+CB-TB-014 | 26NS100014
+Statement of PC Rachel North
+Statement of
+PC Rachel North
+Age if under 18
+Over 18
+Occupation
+Police officer
+Statement date
+03/07/2026
+URN
+26NS100014
+Witness type
+Officer
+This statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I may be liable to prosecution if I have
+wilfully stated anything which I know to be false or do not believe to be true.
+I attended the scene and saw blood on the floor near the entrance. CCTV from the block was downloaded for a short time period.
+The knife was not recovered during the search.
+Signature
+Electronically signed
+Date
+03/07/2026
+
+===== PAGE 6 =====
+CB-TB-014
+Page 6
+CAD / CUSTODY EXTRACT
+CB-TB-014 | 26NS100014
+Extract from served police material
+Time
+Entry
+Source
+Notes
+22:14
+Call reporting stabbing
+CAD
+22:21
+Police attend flat block
+CAD
+22:44
+CCTV downloaded
+Officer note
+Short window
+00:15
+Custody record created
+Custody
+Administrative PACE
+boxes present
+Custody administrative fields appear near the charge sheet and are not evidential allegations.
+
+===== PAGE 7 =====
+CB-TB-014
+Page 7
+MG6 SCHEDULE
+CB-TB-014 | 26NS100014
+Material recorded by disclosure officer
+Item
+Description
+Status
+Disclosure note
+S1
+MG11 Marcus Vale
+Served
+Relied on by prosecution
+S2
+Medical discharge summary
+Served
+Served with initial material
+O1
+Full CCTV window from flat block
+Outstanding
+Requested from officer in case
+O2
+Knife search log
+Outstanding
+Awaited from third party or unit
+O3
+Scenes-of-crime blood swab report
+Outstanding
+Listed, not served
+Disclosure officer note
+The most serious allegation turns on intent, weapon evidence and CCTV scope.
+
+===== PAGE 8 =====
+CB-TB-014
+Page 8
+EXHIBIT LIST
+CB-TB-014 | 26NS100014
+Extract from case file
+Ref
+Description
+State
+Notes
+EX-01
+Medical photographs
+Served
+Arm wound
+EX-02
+Flat block CCTV clip
+Served
+Partial
+EX-03
+Knife search log
+Outstanding
+No knife recovered in served papers

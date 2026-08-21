@@ -227,24 +227,41 @@ function scanStructuredOutstandingItems(ctx: { text: string; sections: SectionCh
 }
 
 function detectCctvStillsVsMaster(ctx: { text: string; lower: string }): ExplanationBlock[] {
-  const hasStills = /cctv still|stills are served|still images only/i.test(ctx.lower);
-  const hasMasterOut = /master footage|export log.*outstanding|full cctv master/i.test(ctx.lower);
+  const hasStills = /cctv still|stills are served|still images only|partial cctv stills/i.test(ctx.lower);
+  // Master outstanding only — do NOT treat "export log" as a proxy for master.
+  const hasMasterOut = /master footage|full cctv master|cctv master outstanding/i.test(ctx.lower);
+  // Export-log exhibit/modality must be source-established (Ahmed opposite), never inferred from master alone.
+  const hasExportLog = /\bexport\s+log\b/i.test(ctx.lower);
   if (!hasStills || !hasMasterOut) return [];
 
   const basisLine =
-    ctx.text.split("\n").find((l) => /stills are served|still images only|master footage/i.test(l)) ??
-    "CCTV stills served; full master footage and export log outstanding on papers.";
+    ctx.text.split("\n").find((l) =>
+      /stills are served|still images only|partial cctv stills|master footage|full cctv master/i.test(l),
+    ) ??
+    (hasExportLog
+      ? "CCTV stills served; full master footage and export log outstanding on papers."
+      : "CCTV stills served; full master footage outstanding on papers.");
+
+  const issue = hasExportLog
+    ? "CCTV — stills served; full master footage / export log outstanding"
+    : "CCTV — stills served; full master footage outstanding";
 
   return [
     {
-      issue: "CCTV — stills served; full master footage / export log outstanding",
+      issue,
       sourceSection: "CCTV / video section",
       sourceBasis: snippet(basisLine),
       status: "partial",
-      whyItMatters: whyItMattersForIssue("CCTV master footage"),
-      safeNextAction: safeNextActionForIssue("CCTV export log"),
+      whyItMatters: hasExportLog
+        ? whyItMattersForIssue("CCTV master footage and export log")
+        : "Timing, attribution, identification/driver issue, causation, continuity, and hearing safety depend on full master footage — not stills or summaries alone.",
+      safeNextAction: hasExportLog
+        ? "Chase master footage, export log, and continuity statement before fixing the hearing position."
+        : "Chase master footage and continuity statement before fixing the hearing position.",
       confidenceTag: "provisional",
-      doNotOverstate: doNotOverstateForIssue("CCTV footage", "partial"),
+      doNotOverstate: hasExportLog
+        ? "Do not say CCTV is missing; say full master footage/export log is not yet served while stills or summaries may be on file."
+        : "Do not say CCTV is missing; say full master footage is not yet served while stills or summaries may be on file.",
     },
   ];
 }

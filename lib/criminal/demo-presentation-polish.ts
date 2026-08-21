@@ -78,12 +78,15 @@ export function isDigitalHarassmentBundleHay(bundleHay: string, allegation = "")
   );
 }
 
+/**
+ * True only for digital-disclosure / harassment shapes.
+ * Must NOT fire on property-of-theft "phone" (e.g. robbery of a phone) or bare MG6 wording.
+ */
 function isDigitalDisclosureHay(bundleHay: string, allegation = ""): boolean {
+  if (isDigitalHarassmentBundleHay(bundleHay, allegation)) return true;
   const hay = `${allegation} ${bundleHay}`.toLowerCase();
-  return (
-    isDigitalHarassmentBundleHay(bundleHay, allegation) ||
-    /phone|message|whatsapp|sms|subscriber|attribution|mg11|extraction|handset|source export|digital disclosure|device metadata/i.test(hay) ||
-    /mg6\s*\/\s*unused|unused schedule clarification/i.test(hay)
+  return /(?:full\s+)?phone\s+(?:extraction|download|attribution)|phone\s+download|source\s+export|device\s+download|whatsapp|\bsms\b|subscriber|handset|device\s+metadata|message\s+pack|screenshot|cellebrite|\bufed\b|digital\s+disclosure/i.test(
+    hay,
   );
 }
 
@@ -226,7 +229,9 @@ type ChaseDisplayItem = {
 };
 
 function digitalHay(item: ChaseDisplayItem): string {
-  return `${item.label} ${(item.mergedFrom ?? []).join(" ")} ${item.draftChaseWording ?? ""} ${item.whyItMatters ?? ""}`.toLowerCase();
+  // Exclude draftChaseWording — overflow drafts historically invented "subscriber/account data"
+  // and display polish then renamed Trap cards to Subscriber.
+  return `${item.label} ${(item.mergedFrom ?? []).join(" ")} ${item.whyItMatters ?? ""}`.toLowerCase();
 }
 
 function mg6GenericLabel(label: string): boolean {
@@ -234,8 +239,25 @@ function mg6GenericLabel(label: string): boolean {
 }
 
 function digitalChaseLabel(hay: string): string | null {
-  if (/phone|extraction|download|device download/i.test(hay)) return "Full phone download / source extraction";
-  if (/subscriber|account|sim|attribution/i.test(hay)) return "Subscriber / account data";
+  // Word boundaries matter: bare /sim/ matched inside "assuming" and invented Trap subscriber cards.
+  if (
+    /\blogical\s+download\s+summary|phone\s+download\s+reference\s+referenced\s+only|extraction\s+summary\s+only|full\s+report\s+not\s+in/i.test(
+      hay,
+    )
+  ) {
+    return "Phone extraction summary only — full download report not in section";
+  }
+  if (/\b(?:phone|extraction|download|device\s+download)\b/i.test(hay)) {
+    return "Full phone download / source extraction";
+  }
+  if (
+    /\b(?:subscriber(?:\s+report|\s+return|\s+data)?|account\s+data|phone\s+attribution|handset\s+attribution|sim\s*(?:\/|&)?\s*imei|\bimei\b)\b/i.test(
+      hay,
+    ) &&
+    !/\bassuming\b/i.test(hay)
+  ) {
+    return "Subscriber / account data";
+  }
   if (/screenshot|message|whatsapp|sms|export|device material/i.test(hay)) {
     return "Message export / source device material";
   }
@@ -244,18 +266,41 @@ function digitalChaseLabel(hay: string): string | null {
   if (/continuity|provenance/i.test(hay) && /cctv|stills|camera/i.test(hay)) return "CCTV continuity / provenance";
   if (/bwv|body[-\s]?worn/i.test(hay)) return "Full BWV export";
   if (/custody|pace/i.test(hay)) return "Full custody record";
+  if (/interview/.test(hay) && /recording\s*\/\s*transcript|recording\s+and\s+transcript/i.test(hay)) {
+    return "Interview recording and transcript";
+  }
+  if (/interview/.test(hay) && /transcript/i.test(hay) && !/recording/i.test(hay)) {
+    return "Interview transcript";
+  }
+  if (/interview/.test(hay) && /recording|audio|video/i.test(hay)) {
+    return "Interview recording";
+  }
   if (/interview/.test(hay) && /target|defendant|co-def/i.test(hay)) return "Target defendant interview";
   if (/handle|attribution report/i.test(hay)) return "Handle attribution report";
   if (/platform|encro|county/i.test(hay)) return "Platform / source extraction";
   if (/call log/i.test(hay)) return "Call logs";
-  if (/harassment|digital|phone|message/i.test(hay)) return "Outstanding digital disclosure material";
+  if (/harassment|digital|phone|message|attribution/i.test(hay)) return "Outstanding digital disclosure material";
   return null;
 }
 
 /** UI-only chase card title — does not change chase brain output. */
-export function displayChaseCardLabel(item: ChaseDisplayItem): string {
-  const hay = digitalHay(item);
+export function displayChaseCardLabel(item: ChaseDisplayItem, bundleHay = ""): string {
+  const hay = `${digitalHay(item)}\n${bundleHay}`;
   const normalized = item.label.replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
+
+  // Prefer PDF-true phone download identity over harassment playbook message-export label.
+  if (
+    /\b(?:message\s+export|source\s+device\s+material|full\s+message\s+export)\b/i.test(normalized) &&
+    /\b(?:phone\s+download|source\s+export|original\s+download|full\s+phone)\b/i.test(hay)
+  ) {
+    return "Full phone download / source extraction";
+  }
+
+  if (/interview\s+recording\s*\/\s*transcript/i.test(normalized)) {
+    const digital = digitalChaseLabel(hay);
+    if (digital && /interview/i.test(digital)) return digital;
+    return "Interview recording";
+  }
 
   if (/^additional\s+source[- ]material\s+issues?\b/i.test(normalized)) {
     const fromMerged = (item.mergedFrom ?? [])

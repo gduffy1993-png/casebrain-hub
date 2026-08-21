@@ -1,0 +1,93 @@
+CB
+
+CASE WORK
+
+SOLO WORKSPACE
+gduffy1993+casebrain@gmail.com
+I'm working as:
+Criminal Defence Solicitor
+Search
+New Upload
+Sign Out
+Trial: 4d left · 25/25 cases · 25/100 docs
+Upgrade
+
+Vincent Grant
+
+Possession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971
+
+Northbridge Magistrates' Court
+·
+Hearing date passed · 21 Jun 2026
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+Court
+Papers
+Client Summary
+CPS Chase
+File
+Record Position
+Upload Evidence
+
+MAIN ISSUE
+
+Disclosure completeness and outstanding source material.
+
+CASE SNAPSHOT
+
+EVIDENCE STATE
+
+5 served · 1 missing
+
+DISCLOSURE GAPS
+
+CCTV outstanding
+CCTV master outstanding
+CAD / 999 audio / control-room material
+
+RISK FLAGS
+
+Some points are not established yet — check the wording guardrails.
+WORDING GUARDRAILS
+
+SAFE WORDING ON CURRENT PAPERS
+
+Disclosure completeness and outstanding source material.
+BWV served — check before relying on it.
+Custody / PACE record on file — check before relying on it.
+
+DO NOT OVERSTATE
+
+DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
+
+SOLICITOR REVIEW
+Avoid firm wording until the papers confirm it
+No support on the papers for custody safeguards. Avoid relying on it until confirmed.
+Do not rely on drug continuity unless lab/continuity material is served.
+COURT PREP
+
+COURT POSITION
+
+Solicitor review required
+
+Possession, knowledge, intent to supply and phone attribution remain conditional on served body-worn video, phone/device material.
+
+Review court position
+Prepare CPS chase
+CLIENT SUMMARY
+Review client update
+
+Client update drafted from the current papers. Review before sending.
+
+EVIDENCE GAPS
+full transcript
+MISSING
+
+Papers on this matter
+
+1 file on record
+
+DOCUMENTS

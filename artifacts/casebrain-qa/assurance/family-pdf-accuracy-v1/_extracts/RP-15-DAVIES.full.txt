@@ -1,0 +1,342 @@
+
+===== PAGE 1 =====
+Case papers - bundle index
+CB-TB-439
+CB-TB-439 / page 1
+Case papers
+R v Layla Davies
+Defendant:
+Layla Davies
+Court:
+Crown Court at Sheffield
+Current hearing:
+19 June 2026 at 10:00
+Stage:
+Magistrates trial listing
+Primary charge:
+Concealing criminal property, contrary to section 327 Proceeds of Crime Act 2002
+Tab
+Document
+Pages / note
+1
+Cover and index
+1-1
+2
+Charge sheet / case details
+2-2
+3
+MG5 case summary
+3-3
+4
+MG11 statement
+4-5
+5
+MG11 officer or civilian statement
+5-6
+6
+CAD / custody / interview note
+6-6
+7
+MG6 schedule
+7-7
+8
+Disclosure correspondence
+8-9
+9
+Exhibit list
+9-10
+
+===== PAGE 2 =====
+Charge / case details
+CB-TB-439
+CB-TB-439 / page 2
+Charge sheet
+Field
+Entry
+URN
+26/649446/A
+Defendant
+Layla Davies
+Date of birth
+09/04/1991
+Court
+Crown Court at Sheffield
+Hearing
+19 June 2026 at 10:00
+Offence
+Concealing criminal property, contrary to section 327 Proceeds of Crime Act 2002
+
+===== PAGE 3 =====
+MG5 - case summary
+CB-TB-439
+CB-TB-439 / page 3
+Police report - case summary
+Field
+Entry
+Defendant
+Layla Davies
+Allegation
+Concealing criminal property, contrary to section 327 Proceeds of Crime Act 2002
+Complainant / reporter
+Rachel Green
+Location
+Queens Parade
+Hearing reference
+19 June 2026 at 10:00
+Summary of evidence
+The prosecution summary alleges that Layla Davies was involved in an incident at Queens Parade on 15 May 2026. The
+account in this summary is short and relies on material listed elsewhere in the papers.
+The summary refers to custody record extract and to material marked as not yet supplied on the schedule. The account
+remains subject to review once the underlying material is served.
+The narrative also mentions Jamie Vale, although the header of this bundle names only Layla Davies as the defendant for
+these papers.
+Issues for review
+- co-defendant material mixed into primary bundle
+- Check whether the listed outstanding material has now been served.
+- Confirm the current hearing date against the listing notice.
+
+===== PAGE 4 =====
+MG11 - witness statement
+CB-TB-439
+CB-TB-439 / page 4
+Witness statement
+Field
+Entry
+URN
+26/563207/A
+Statement of
+Rachel Green
+Age if under 18
+Over 18
+Occupation / role
+complainant / reporting person
+Date
+15 May 2026
+This statement is true to the best of my knowledge and belief and I make it knowing that it may be placed before a court.
+I was at Queens Parade on 15 May 2026. I saw part of the incident. My view was from across the road.
+Signed: Rachel Green Date: 1 May 2026
+
+===== PAGE 5 =====
+MG11 - witness statement
+CB-TB-439
+CB-TB-439 / page 5
+Witness statement
+Field
+Entry
+URN
+26/290374/A
+Statement of
+PC Lane
+Age if under 18
+Over 18
+Occupation / role
+police officer / civilian witness
+Date
+15 May 2026
+This statement is true to the best of my knowledge and belief and I make it knowing that it may be placed before a court.
+I was at Queens Parade on 15 May 2026. I saw part of the incident. My view was from near the shop entrance.
+Signed: PC Lane Date: 1 May 2026
+
+===== PAGE 6 =====
+Digital extraction / device note
+CB-TB-439
+CB-TB-439 / page 6
+Digital extraction / device note
+Item
+Entry
+Note
+Device 1
+Handset seized from kitchen worktop
+Ownership not confirmed
+SIM / IMEI
+Not recorded on this extract
+Full report awaited
+Download
+Partial logical download referred to
+No full download attached
+Messages
+Screenshots in officer note only
+Raw extraction absent
+
+===== PAGE 7 =====
+MG6 - non-sensitive material schedule
+CB-TB-439
+CB-TB-439 / page 7
+Disclosure schedule
+Item
+Description
+Status
+Notes
+MG6/01
+custody record extract
+Served
+Contained in papers
+MG6/02
+old charge sheet
+Served
+Contained in papers
+MG6/03
+bank schedule extract
+Served
+Contained in papers
+MG6/04
+bank source statements
+Outstanding
+Not in papers supplied
+MG6/05
+CCTV continuity log
+Outstanding
+Awaiting export
+MG6/06
+analyst certificate
+Outstanding
+Awaiting export
+MG6/07
+final medical report
+Outstanding
+Requested from officer in case
+
+===== PAGE 8 =====
+Disclosure correspondence
+CB-TB-439
+CB-TB-439 / page 8
+Disclosure update email
+From
+case progression unit
+To
+defence representative
+Sent
+19 June 2026
+Subject
+CB-TB-439 - disclosure update
+The schedule has been reviewed. Further material remains outstanding and will be sent when received from police.
+
+===== PAGE 9 =====
+Exhibit list
+CB-TB-439
+CB-TB-439 / page 9
+Exhibit and media references
+Ref
+Description
+Produced by
+Note
+EX/01
+Officer body worn video clip
+PC Harris
+Partial clip only
+CCTV/2
+External camera export
+Store manager
+Export log absent
+AB/3
+Photograph / injury image
+PC Lee
+Continuity page not supplied
+DIG/4
+Phone screenshot bundle
+DC Morgan
+Raw extraction absent
+
+===== PAGE 10 =====
+Court case management note
+CB-TB-439
+CB-TB-439 / page 10
+Plea and trial preparation note
+Issue
+Current entry
+Plea
+Not guilty / indicated or to be confirmed
+Current hearing
+19 June 2026 at 10:00
+Court
+Crown Court at Sheffield
+Trial issues
+Identification, disclosure, continuity and admissibility remain under review
+Directions
+Disclosure to be chased; defence statement date to be fixed if required
+Witnesses
+Complainant, police officer, civilian witness where served
+
+===== PAGE 11 =====
+Disclosure note
+CB-TB-439
+CB-TB-439 / page 11
+Disclosure note
+This page is legible but appears out of sequence from the surrounding papers.
+The page is a copy of material already seen elsewhere but uses a slightly different document date.
+
+===== PAGE 12 =====
+Continuation sheet
+CB-TB-439
+CB-TB-439 / page 12
+Continuation sheet
+The papers on this page refer to Layla Davies and to the incident at Queens Parade. The reference is included without a full
+supporting exhibit.
+This page is legible but appears out of sequence from the surrounding papers.
+The item number on this sheet does not match the item number in the schedule.
+The page is a copy of material already seen elsewhere but uses a slightly different document date.
+
+===== PAGE 13 =====
+Media viewing note
+CB-TB-439
+CB-TB-439 / page 13
+Media viewing note
+The officer note records that further checks are required before the schedule can be treated as complete.
+This page is legible but appears out of sequence from the surrounding papers.
+The page is a copy of material already seen elsewhere but uses a slightly different document date.
+
+===== PAGE 14 =====
+Disclosure note
+CB-TB-439
+CB-TB-439 / page 14
+Disclosure note
+This page is legible but appears out of sequence from the surrounding papers.
+The page is a copy of material already seen elsewhere but uses a slightly different document date.
+
+===== PAGE 15 =====
+Continuation sheet
+CB-TB-439
+CB-TB-439 / page 15
+Continuation sheet
+The item number on this sheet does not match the item number in the schedule.
+A continuation marker appears at the foot of the page. The next supplied page does not continue the same document.
+The officer note records that further checks are required before the schedule can be treated as complete.
+The papers on this page refer to Layla Davies and to the incident at Queens Parade. The reference is included without a full
+supporting exhibit.
+
+===== PAGE 16 =====
+Page from case progression file
+CB-TB-439
+CB-TB-439 / page 16
+Page from case progression file
+This page is legible but appears out of sequence from the surrounding papers.
+The officer note records that further checks are required before the schedule can be treated as complete.
+
+===== PAGE 17 =====
+Unused material note
+CB-TB-439
+CB-TB-439 / page 17
+Unused material note
+The item number on this sheet does not match the item number in the schedule.
+The officer note records that further checks are required before the schedule can be treated as complete.
+A continuation marker appears at the foot of the page. The next supplied page does not continue the same document.
+The page is a copy of material already seen elsewhere but uses a slightly different document date.
+
+===== PAGE 18 =====
+Media viewing note
+CB-TB-439
+CB-TB-439 / page 18
+Media viewing note
+A continuation marker appears at the foot of the page. The next supplied page does not continue the same document.
+The officer note records that further checks are required before the schedule can be treated as complete.
+This page is legible but appears out of sequence from the surrounding papers.
+The item number on this sheet does not match the item number in the schedule.
+
+===== PAGE 19 =====
+Continuation sheet
+CB-TB-439
+CB-TB-439 / page 19
+Continuation sheet
+The officer note records that further checks are required before the schedule can be treated as complete.
+The papers on this page refer to Layla Davies and to the incident at Queens Parade. The reference is included without a full
+supporting exhibit.

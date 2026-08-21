@@ -34,7 +34,7 @@ export const CRIMINAL_BRIEF_PLAYBOOKS: Record<CriminalBriefPlanProfile, Criminal
   custody_pace: {
     id: "custody_pace",
     commonIssues: ["PACE safeguards", "custody timing", "interview fairness"],
-    missingMaterial: ["full custody record", "PACE interview recording", "custody risk assessments"],
+    missingMaterial: ["full custody record", "PACE interview material", "custody risk assessments"],
     safeWording: {
       today: "Custody/PACE safeguards cannot be finally assessed until the full custody and interview material is served.",
       summary: "The case requires caution on custody safeguards and interview fairness until source records are reviewed.",
@@ -43,7 +43,9 @@ export const CRIMINAL_BRIEF_PLAYBOOKS: Record<CriminalBriefPlanProfile, Criminal
     risks: ["Extract-only custody records may hide timing or safeguard issues."],
     opportunities: ["Preserve PACE/safeguard points until the full record is served."],
     doNotOverstate: ["Do not say safeguards were followed from an extract-only custody record."],
-    chaseTemplates: ["Full custody record, detention log, risk assessment, and interview recording."],
+    // Do not bake "interview recording" into the template — that invents recording modality from
+    // PACE/custody alone (Court C0.5/C1). Recording/transcript chase only when PDF establishes it.
+    chaseTemplates: ["Full custody record, detention log, and risk assessment."],
     clientSafeStyle: "Explain that custody fairness is being checked, not assumed.",
   },
   domestic_harassment: {

@@ -1,6 +1,7 @@
 import { buildBundleTruthLedger } from "@/lib/criminal/bundle-truth-ledger";
 import type { BundleOffenceFamily, NormalisedMaterialRow } from "@/lib/criminal/bundle-truth-types";
 import { extractAllBundleContradictions } from "@/lib/criminal/merge-bundle-contradictions";
+import { gateMaterialLines } from "@/lib/criminal/chase-source-gate";
 import { buildSourceTruthFingerprint } from "@/lib/criminal/source-truth-guardian/fingerprint";
 import type {
   SourceTruthEvidenceCategory,
@@ -174,6 +175,9 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
   });
   const playbook = CRIMINAL_BRIEF_PLAYBOOKS[profile];
   const buckets = bucketMaterials(ledger?.materials ?? []);
+  // Playbook missing-material seeds must not invent CCTV/BWV/CAD when the bundle never
+  // establishes them (Trap invent-advisory "assuming missing CCTV" is not establishment).
+  const gatedPlaybookMissing = gateMaterialLines(playbook.missingMaterial, bundleText);
 
   const servedEvidence = uniqueEvidence(buckets.served.map(toEvidenceItem), 24);
   const limitedEvidence = uniqueEvidence(
@@ -188,7 +192,7 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
     [
       ...buckets.missing.map(toEvidenceItem),
       ...(input.missingMaterial ?? []).map(missingLabelToEvidenceItem),
-      ...playbook.missingMaterial.map(missingLabelToEvidenceItem),
+      ...gatedPlaybookMissing.map(missingLabelToEvidenceItem),
     ],
     24,
   );
@@ -215,6 +219,7 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
         ...contradictionRequired,
       ],
       summary: [playbook.safeWording.summary, ...playbook.opportunities.slice(0, 2), ...contradictionRequired],
+      // Compound chase templates are family-gated later in buildDisclosureChaseBrief.
       chase: [playbook.safeWording.chase, ...playbook.chaseTemplates.slice(0, 3)],
     },
     playbookId: playbook.id,

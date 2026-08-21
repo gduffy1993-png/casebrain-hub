@@ -1,0 +1,149 @@
+{
+  "case_key": "RP-10-PATTERSON",
+  "ok": true,
+  "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Blind_Bundle_Factory_v2_30_bundles (1)\\pdfs\\CB-TB-014_James_Patterson.pdf",
+  "pdf_sha256": "c172b0138636b21984c81193f9975383be2525e6b5eddf325023423aae7600ec",
+  "page_count": 8,
+  "char_count": 5423,
+  "term_hits": {
+    "CCTV": 7,
+    "\\bCAD\\b": 4,
+    "interview": 2,
+    "download": 2,
+    "MG6": 2,
+    "MG11": 5,
+    "custody": 7,
+    "hearing": 6
+  },
+  "term_excerpts": {
+    "CCTV": [
+      {
+        "page": 3,
+        "excerpt": "tains administrative PACE tick-boxes that are not part of the charge. The Crown relies on complainant evidence, partial CCTV and medical photographs. The knife is not recovered. Issues for review No. Issue noted on review 1 Knife not recovered. 2 CCTV does not show full incident. 3 M"
+      },
+      {
+        "page": 3,
+        "excerpt": "d medical photographs. The knife is not recovered. Issues for review No. Issue noted on review 1 Knife not recovered. 2 CCTV does not show full incident. 3 Medical report served but causation detail is brief. 4 Custody PACE tick-boxes sit near charge page and should not be treated as"
+      },
+      {
+        "page": 5,
+        "excerpt": "ich I know to be false or do not believe to be true. I attended the scene and saw blood on the floor near the entrance. CCTV from the block was downloaded for a short time period. The knife was not recovered during the search. Signature Electronically signed Date 03/07/2026"
+      },
+      {
+        "page": 6,
+        "excerpt": "rved police material Time Entry Source Notes 22:14 Call reporting stabbing CAD 22:21 Police attend flat block CAD 22:44 CCTV downloaded Officer note Short window 00:15 Custody record created Custody Administrative PACE boxes present Custody administrative fields appear near the charg"
+      }
+    ],
+    "\\bCAD\\b": [
+      {
+        "page": 1,
+        "excerpt": "Marcus Vale 29/06/2026 Prosecution witness 5 MG11 witness statement - PC Rachel North 30/06/2026 Prosecution witness 6 CAD / custody extract 28/06/2026 Timing and sequence 7 MG6 schedule 30/06/2026 Served and outstanding material 8 Exhibit list 30/06/2026 Exhibits/correspondence Pa"
+      },
+      {
+        "page": 6,
+        "excerpt": "CB-TB-014 Page 6 CAD / CUSTODY EXTRACT CB-TB-014 | 26NS100014 Extract from served police material Time Entry Source Notes 22:14 Call reporting stabbing CAD 22:21 Police attend flat"
+      },
+      {
+        "page": 6,
+        "excerpt": "XTRACT CB-TB-014 | 26NS100014 Extract from served police material Time Entry Source Notes 22:14 Call reporting stabbing CAD 22:21 Police attend flat block CAD 22:44 CCTV downloaded Officer note Short window 00:15 Custody record created Custody Administrative PACE boxes present Custo"
+      },
+      {
+        "page": 6,
+        "excerpt": "ct from served police material Time Entry Source Notes 22:14 Call reporting stabbing CAD 22:21 Police attend flat block CAD 22:44 CCTV downloaded Officer note Short window 00:15 Custody record created Custody Administrative PACE boxes present Custody administrative fields appear nea"
+      }
+    ],
+    "interview": [
+      {
+        "page": 3,
+        "excerpt": "on summary Defendant James Patterson URN 26NS100014 Anticipated plea Not yet indicated Bail/remand Police bail to court Interview Interview summary served Victim/witness Marcus Vale / PC Rachel North Case summary The allegation is a serious assault with a knife outside a flat block. The i"
+      },
+      {
+        "page": 3,
+        "excerpt": "Defendant James Patterson URN 26NS100014 Anticipated plea Not yet indicated Bail/remand Police bail to court Interview Interview summary served Victim/witness Marcus Vale / PC Rachel North Case summary The allegation is a serious assault with a knife outside a flat block. The indictment"
+      }
+    ],
+    "download": [
+      {
+        "page": 5,
+        "excerpt": "r do not believe to be true. I attended the scene and saw blood on the floor near the entrance. CCTV from the block was downloaded for a short time period. The knife was not recovered during the search. Signature Electronically signed Date 03/07/2026"
+      },
+      {
+        "page": 6,
+        "excerpt": "police material Time Entry Source Notes 22:14 Call reporting stabbing CAD 22:21 Police attend flat block CAD 22:44 CCTV downloaded Officer note Short window 00:15 Custody record created Custody Administrative PACE boxes present Custody administrative fields appear near the charge sheet a"
+      }
+    ],
+    "MG6": [
+      {
+        "page": 1,
+        "excerpt": "ess statement - PC Rachel North 30/06/2026 Prosecution witness 6 CAD / custody extract 28/06/2026 Timing and sequence 7 MG6 schedule 30/06/2026 Served and outstanding material 8 Exhibit list 30/06/2026 Exhibits/correspondence Pagination follows the tab order above. Blank lines on sc"
+      },
+      {
+        "page": 7,
+        "excerpt": "CB-TB-014 Page 7 MG6 SCHEDULE CB-TB-014 | 26NS100014 Material recorded by disclosure officer Item Description Status Disclosure note S1 MG11 Marcus Vale Served Relied on by prosecu"
+      }
+    ],
+    "MG11": [
+      {
+        "page": 1,
+        "excerpt": "draft and first hearing notice 28/06/2026 Defendant: James Patterson 3 MG5 case summary 29/06/2026 Summary and issues 4 MG11 witness statement - Marcus Vale 29/06/2026 Prosecution witness 5 MG11 witness statement - PC Rachel North 30/06/2026 Prosecution witness 6 CAD / custody extrac"
+      },
+      {
+        "page": 1,
+        "excerpt": "MG5 case summary 29/06/2026 Summary and issues 4 MG11 witness statement - Marcus Vale 29/06/2026 Prosecution witness 5 MG11 witness statement - PC Rachel North 30/06/2026 Prosecution witness 6 CAD / custody extract 28/06/2026 Timing and sequence 7 MG6 schedule 30/06/2026 Served and"
+      },
+      {
+        "page": 4,
+        "excerpt": "CB-TB-014 Page 4 MG11 WITNESS STATEMENT CB-TB-014 | 26NS100014 Statement of Marcus Vale Statement of Marcus Vale Age if under 18 Over 18 Occupation Civilian witness Statement date 0"
+      },
+      {
+        "page": 5,
+        "excerpt": "CB-TB-014 Page 5 MG11 WITNESS STATEMENT CB-TB-014 | 26NS100014 Statement of PC Rachel North Statement of PC Rachel North Age if under 18 Over 18 Occupation Police officer Statement"
+      }
+    ],
+    "custody": [
+      {
+        "page": 1,
+        "excerpt": "s Vale 29/06/2026 Prosecution witness 5 MG11 witness statement - PC Rachel North 30/06/2026 Prosecution witness 6 CAD / custody extract 28/06/2026 Timing and sequence 7 MG6 schedule 30/06/2026 Served and outstanding material 8 Exhibit list 30/06/2026 Exhibits/correspondence Pagination f"
+      },
+      {
+        "page": 3,
+        "excerpt": "lt with a knife outside a flat block. The indictment draft sets out the full section 18 wording over several lines. The custody record contains administrative PACE tick-boxes that are not part of the charge. The Crown relies on complainant evidence, partial CCTV and medical photographs."
+      },
+      {
+        "page": 3,
+        "excerpt": "iew 1 Knife not recovered. 2 CCTV does not show full incident. 3 Medical report served but causation detail is brief. 4 Custody PACE tick-boxes sit near charge page and should not be treated as allegation wording."
+      },
+      {
+        "page": 6,
+        "excerpt": "CB-TB-014 Page 6 CAD / CUSTODY EXTRACT CB-TB-014 | 26NS100014 Extract from served police material Time Entry Source Notes 22:14 Call reporting stabbing CAD 22:21 Police attend flat block CAD"
+      }
+    ],
+    "hearing": [
+      {
+        "page": 1,
+        "excerpt": "CB-TB-014 Page 1 CROWN PROSECUTION FILE CB-TB-014 | 26NS100014 Initial prosecution material and hearing documents Matter reference CB-TB-014 URN 26NS100014 Defendant James Patterson Date of birth 19/06/1988 Court Crown Court at Manchester Hearing 07/08/2026 at 10"
+      },
+      {
+        "page": 1,
+        "excerpt": "r reference CB-TB-014 URN 26NS100014 Defendant James Patterson Date of birth 19/06/1988 Court Crown Court at Manchester Hearing 07/08/2026 at 10:00 Stage Crown Court first hearing Offence family Serious violence Bundle index Tab Document Date Notes 1 Cover and index 07/08/2026 Matter ov"
+      },
+      {
+        "page": 1,
+        "excerpt": "Patterson Date of birth 19/06/1988 Court Crown Court at Manchester Hearing 07/08/2026 at 10:00 Stage Crown Court first hearing Offence family Serious violence Bundle index Tab Document Date Notes 1 Cover and index 07/08/2026 Matter overview 2 Indictment draft and first hearing notice 2"
+      },
+      {
+        "page": 1,
+        "excerpt": "violence Bundle index Tab Document Date Notes 1 Cover and index 07/08/2026 Matter overview 2 Indictment draft and first hearing notice 28/06/2026 Defendant: James Patterson 3 MG5 case summary 29/06/2026 Summary and issues 4 MG11 witness statement - Marcus Vale 29/06/2026 Prosecution wit"
+      }
+    ]
+  },
+  "key_pages": {
+    "1": "CB-TB-014\nPage 1\nCROWN PROSECUTION FILE\nCB-TB-014 | 26NS100014\nInitial prosecution material and hearing documents\nMatter reference\nCB-TB-014\nURN\n26NS100014\nDefendant\nJames Patterson\nDate of birth\n19/06/1988\nCourt\nCrown Court at Manchester\nHearing\n07/08/2026 at 10:00\nStage\nCrown Court first hearing\nOffence family\nSerious violence\nBundle index\nTab\nDocument\nDate\nNotes\n1\nCover and index\n07/08/2026\nMatter overview\n2\nIndictment draft and first hearing notice\n28/06/2026\nDefendant: James Patterson\n3\nMG5 case summary\n29/06/2026\nSummary and issues\n4\nMG11 witness statement - Marcus Vale\n29/06/2026\nProsecution witness\n5\nMG11 witness statement - PC Rachel North\n30/06/2026\nProsecution witness\n6\nCAD / custody extract\n28/06/2026\nTiming and sequence\n7\nMG6 schedule\n30/06/2026\nServed and outstanding material\n8\nExhibit list\n30/06/2026\nExhibits/correspondence\nPagination follows the tab order above. Blank lines on schedules are retained where material is awaited.\n",
+    "2": "CB-TB-014\nPage 2\nINDICTMENT DRAFT AND FIRST HEARING NOTICE\nCB-TB-014 | 26NS100014\nCrown Court at Manchester - 07/08/2026 at 10:00\nDefendant\nJames Patterson\nDOB\n19/06/1988\nAddress\nAddress withheld in served copy\nURN\n26NS100014\nCourt\nCrown Court at Manchester\nNext hearing\n07/08/2026 at 10:00\nProsecutor\nNorthshire CPS\nPolice force\nNorthshire Police\nStatement of offence\nWounding with intent, contrary to section 18 Offences Against the Person Act 1861\nParticulars of offence\nOn 29 June 2026 at Northbridge, James Patterson is alleged unlawfully and maliciously to have wounded Marcus Vale with intent to cause\ngrievous bodily harm.\nCount\nStatement of offence\nParticulars\n1\nWounding with intent, contrary to\nsection 18 Offences Against the\nPerson Act 1861\nOn 29 June 2026 at Northbridge, wounded Marcus Vale with intent to cause\ngrievous bodily harm.\nListing note\nListed for case management and plea indication. Defence access recorded on Common Platform.\n",
+    "3": "CB-TB-014\nPage 3\nMG5 CASE SUMMARY\nCB-TB-014 | 26NS100014\nPolice report and prosecution summary\nDefendant\nJames Patterson\nURN\n26NS100014\nAnticipated plea\nNot yet indicated\nBail/remand\nPolice bail to court\nInterview\nInterview summary served\nVictim/witness\nMarcus Vale / PC Rachel North\nCase summary\nThe allegation is a serious assault with a knife outside a flat block. The indictment draft sets out the full section 18 wording over several\nlines. The custody record contains administrative PACE tick-boxes that are not part of the charge.\nThe Crown relies on complainant evidence, partial CCTV and medical photographs. The knife is not recovered.\nIssues for review\nNo.\nIssue noted on review\n1\nKnife not recovered.\n2\nCCTV does not show full incident.\n3\nMedical report served but causation detail is brief.\n4\nCustody PACE tick-boxes sit near charge page and should not be treated as allegation wording.\n",
+    "6": "CB-TB-014\nPage 6\nCAD / CUSTODY EXTRACT\nCB-TB-014 | 26NS100014\nExtract from served police material\nTime\nEntry\nSource\nNotes\n22:14\nCall reporting stabbing\nCAD\n22:21\nPolice attend flat block\nCAD\n22:44\nCCTV downloaded\nOfficer note\nShort window\n00:15\nCustody record created\nCustody\nAdministrative PACE\nboxes present\nCustody administrative fields appear near the charge sheet and are not evidential allegations.\n",
+    "5": "CB-TB-014\nPage 5\nMG11 WITNESS STATEMENT\nCB-TB-014 | 26NS100014\nStatement of PC Rachel North\nStatement of\nPC Rachel North\nAge if under 18\nOver 18\nOccupation\nPolice officer\nStatement date\n03/07/2026\nURN\n26NS100014\nWitness type\nOfficer\nThis statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I may be liable to prosecution if I have\nwilfully stated anything which I know to be false or do not believe to be true.\nI attended the scene and saw blood on the floor near the entrance. CCTV from the block was downloaded for a short time period.\nThe knife was not recovered during the search.\nSignature\nElectronically signed\nDate\n03/07/2026\n",
+    "7": "CB-TB-014\nPage 7\nMG6 SCHEDULE\nCB-TB-014 | 26NS100014\nMaterial recorded by disclosure officer\nItem\nDescription\nStatus\nDisclosure note\nS1\nMG11 Marcus Vale\nServed\nRelied on by prosecution\nS2\nMedical discharge summary\nServed\nServed with initial material\nO1\nFull CCTV window from flat block\nOutstanding\nRequested from officer in case\nO2\nKnife search log\nOutstanding\nAwaited from third party or unit\nO3\nScenes-of-crime blood swab report\nOutstanding\nListed, not served\nDisclosure officer note\nThe most serious allegation turns on intent, weapon evidence and CCTV scope.\n"
+  },
+  "first_page_preview": "CB-TB-014\nPage 1\nCROWN PROSECUTION FILE\nCB-TB-014 | 26NS100014\nInitial prosecution material and hearing documents\nMatter reference\nCB-TB-014\nURN\n26NS100014\nDefendant\nJames Patterson\nDate of birth\n19/06/1988\nCourt\nCrown Court at Manchester\nHearing\n07/08/2026 at 10:00\nStage\nCrown Court first hearing\nOffence family\nSerious violence\nBundle index\nTab\nDocument\nDate\nNotes\n1\nCover and index\n07/08/2026\nMatter overview\n2\nIndictment draft and first hearing notice\n28/06/2026\nDefendant: James Patterson\n3\nMG5 case summary\n29/06/2026\nSummary and issues\n4\nMG11 witness statement - Marcus Vale\n29/06/2026\nProsecution witness\n5\nMG11 witness statement - PC Rachel North\n30/06/2026\nProsecution witness\n6\nCAD / custody extract\n28/06/2026\nTiming and sequence\n7\nMG6 schedule\n30/06/2026\nServed and outstanding material"
+}

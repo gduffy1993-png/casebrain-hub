@@ -192,6 +192,7 @@ function buildEvidenceGapsSection(
   chase: DisclosureChaseBrief,
   matterConfidence: MatterConfidenceResult | null,
   doNotOverstate: string[],
+  bundleText?: string | null,
 ): ExportPackSection {
   const five = buildFiveAnswersView({
     allegation,
@@ -199,6 +200,7 @@ function buildEvidenceGapsSection(
     chase,
     matterConfidence,
     doNotOverstate,
+    bundleText: bundleText ?? undefined,
   });
 
   const lines = five.evidenceState.rows.slice(0, 8).map((row) => {
@@ -283,6 +285,8 @@ export type BuildExportPackInput = {
   matterReference?: string | null;
   /** Extra text scanned for a URN from the papers (bundle / charge sheet extract). */
   urnCandidateTexts?: string[];
+  /** PDF/source hay for truth-map expansion — never invent phone gaps from do-not-overstate alone. */
+  bundleText?: string | null;
 };
 
 export function buildExportPack(input: BuildExportPackInput): ExportPackModel {
@@ -300,6 +304,7 @@ export function buildExportPack(input: BuildExportPackInput): ExportPackModel {
     matterUrn = null,
     matterReference = null,
     urnCandidateTexts = [],
+    bundleText = null,
   } = input;
 
   const resolvedUrn =
@@ -331,6 +336,7 @@ export function buildExportPack(input: BuildExportPackInput): ExportPackModel {
     chase,
     matterConfidence,
     doNotOverstate,
+    bundleText ?? urnCandidateTexts.join("\n"),
   );
   const doNot = buildDoNotOverstateSection(doNotOverstate);
 

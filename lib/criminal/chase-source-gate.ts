@@ -27,11 +27,16 @@ export type FamilySupport = "mentioned" | "negated" | "absent";
 const MENTION_RES: Record<ChaseGateFamily, RegExp> = {
   cctv: /\bcctv\b|video\s+footage|camera\s+footage|dashcam|master\s+footage|\bfootage\b/i,
   bwv: /\bbwv\b|body[-\s]?worn/i,
-  cad_999: /\b999\b|\bcad\b|command\s+(?:and\s+)?(?:control|dispatch)|control[-\s]?room\s+log|dispatch\s+log|emergency\s+call/i,
+  // Never treat bare "999" (page numbers / schedule noise) as CAD establishment.
+  cad_999:
+    /\bcad\b|CAD\s*\/\s*999|999\s+(?:audio|call|recording)|command\s+(?:and\s+)?(?:control|dispatch)|control[-\s]?room\s+log|dispatch\s+log|emergency\s+call/i,
   medical: /\bmedical\b|hospital|a\s*&\s*e\b|ambulance|paramedic|\bgp\s+records?\b|\bfme\b|pathology|injury\s+report/i,
-  interview: /\binterview\b|\bpace\b|custody\s+record/i,
-  mg6_unused: /\bmg6\b|unused\s+material|disclosure\s+schedule|schedule\s+of\s+(?:unused|non[-\s]?sensitive)/i,
-  phone: /\bphone\b|\bmobile\b|handset|device\s+download|device\s*\/\s*login|login\s+audit|ip\s*\/\s*access|\bsim\b|\bimei\b|subscriber|phone\s+attribution|phone\s+extraction/i,
+  interview: /\binterview\s+(?:recording|transcript|audio|video)\b|\bpace\s+interview\b|interview\s+recording|interview\s+transcript/i,
+  // Unused/MG6C schedule — not a plain MG6 extract presence alone.
+  mg6_unused: /\bmg6c\b|unused\s+material|unused\s+schedule|schedule\s+of\s+(?:unused|non[-\s]?sensitive)|mg6\s*\/\s*unused|schedule\s+clarification/i,
+  // Require digital-evidence phone signals — not property-of-theft "stolen a phone".
+  phone:
+    /(?:full\s+)?phone\s+(?:extraction|download|attribution)|phone\s+download|source\s+export|device\s+download|device\s*\/\s*login|login\s+audit|ip\s*\/\s*access|\bsim\b|\bimei\b|subscriber|handset|cellebrite|\bufed\b|mobile\s+(?:extraction|download)/i,
   forensic: /forensic|\bdna\b|fingerprint|\bswab\b/i,
   bank_financial:
     /\bbank(?:ing)?\b|account\s+control|account\s+ownership|transaction(?:s)?|bank\s+statements?|account\s+statements?|financial\s+records?|financial\s+statements?|poca|source.of.funds|mailbox|email\s+(?:export|source)|bookkeeper|accountant/i,
@@ -53,9 +58,188 @@ const CHASE_VERB_RE = /\b(chase|obtain|request|provide|serve|secure|pursue|outst
 
 const GATE_FAMILIES = Object.keys(MENTION_RES) as ChaseGateFamily[];
 
+/**
+ * Trap-style invent advisories name CCTV/BWV/forensics only to forbid invention.
+ * Those hits must not establish the family for chase / overview promotion.
+ */
+const DO_NOT_INVENT_ADVISORY_RE =
+  /[^.!?\n]*(?:\b(?:do\s+not|should\s+not)\b[^.!?\n]{0,100}?\b(?:invent|assume|strengthen(?:ed)?)\b[^.!?\n]{0,100}?\b(?:cctv|bwv|footage|forensic)|(?:assuming|do\s+not\s+assume)\s+missing\s+(?:cctv|bwv|footage|forensic(?:\s+evidence)?))[^.!?\n]*[.!?\n]?/gi;
+
+const FAMILIES_AFFECTED_BY_INVENT_ADVISORY = new Set<ChaseGateFamily>(["cctv", "bwv", "forensic"]);
+
+/** Strip do-not-invent advisory clauses before testing whether a family is established. */
+export function stripDoNotInventAdvisory(text: string): string {
+  return text.replace(DO_NOT_INVENT_ADVISORY_RE, " ");
+}
+
+/**
+ * Thin schedule/review CCTV/BWV language is not master / full-window / continuity establishment.
+ * Grant-style "Review whether listed CCTV/BWV has been served" must not promote invents.
+ */
+const THIN_LISTED_CCTV_BWV_RE =
+  /review\s+whether\s+listed\s+cctv\s*\/?\s*bwv[^.!\n]*|listed\s+cctv\s*\/\s*bwv/gi;
+
+/** Product checklist labels that must not circularly establish master/full-window. */
+const PRODUCT_CCTV_INVENT_LABEL_RE =
+  /CCTV Full Window|CCTV Continuity|CCTV full window\s*\/\s*master footage|CCTV \(full window[^)]*\)/gi;
+
+/** Affirmative master / full-window establishment on the papers (not thin listed CCTV/BWV). */
+export function isCctvMasterEstablished(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = stripDoNotInventAdvisory(sourceText)
+    .replace(THIN_LISTED_CCTV_BWV_RE, " ")
+    .replace(PRODUCT_CCTV_INVENT_LABEL_RE, " ");
+  return /CCTV master|full CCTV master|master footage|full master|full\s*(?:time\s+)?window|full\s+cctv(?:\s+master)?\b/i.test(
+    hay,
+  );
+}
+
+/**
+ * Affirmative CCTV continuity establishment — bare "officer continuity" or thin listed CCTV/BWV
+ * is not enough; require continuity tied to CCTV/footage or an explicit continuity statement.
+ */
+export function isCctvContinuityEstablished(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = stripDoNotInventAdvisory(sourceText)
+    .replace(THIN_LISTED_CCTV_BWV_RE, " ")
+    .replace(PRODUCT_CCTV_INVENT_LABEL_RE, " ");
+  return (
+    /\bcctv\s+continuity\b|\bcontinuity\s+statement\b|\bcontinuity\s+log\b|\bchain\s+of\s+custody\b/i.test(
+      hay,
+    ) ||
+    (/\b(?:cctv|footage|master)\b/i.test(hay) &&
+      /\bcontinuity\b/i.test(hay) &&
+      !/\bofficer\s+continuity\b/i.test(hay))
+  );
+}
+
+/** True when a chase/material line is a CCTV master / full-window invent surface. */
+export function lineClaimsCctvMasterOrFullWindow(line: string): boolean {
+  return /CCTV master|master footage|full CCTV master|CCTV Full Window|full\s*(?:time\s+)?window|CCTV full window/i.test(
+    line,
+  );
+}
+
+/** True when a chase/material line is a CCTV continuity invent surface. */
+export function lineClaimsCctvContinuity(line: string): boolean {
+  return /CCTV Continuity|CCTV continuity|cctv[^.\n]{0,40}continuity|continuity[^.\n]{0,40}cctv/i.test(
+    line,
+  );
+}
+
+/**
+ * Affirmative BWV full-export / clip / incident-window establishment.
+ * Dunn-style "BWV stills Served" alone must not establish a full-export chase.
+ */
+export function isBwvFullExportEstablished(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = stripDoNotInventAdvisory(sourceText).replace(THIN_LISTED_CCTV_BWV_RE, " ");
+
+  const stillsServedOnly =
+    /\bbwv\s+stills?\s+served\b|\bs\d+\s*bwv\s+stills?\b/i.test(hay) &&
+    !/\b(?:full\s+bwv|bwv\s+(?:full\s+)?export|bwv\s+footage|bwv\s+clip|full\s+(?:bwv\s+)?incident\s+window|body[- ]?worn[^.\n]{0,50}(?:full\s+export|outstanding|not\s+served|not\s+attached))\b/i.test(
+      hay,
+    ) &&
+    !/\bbwv\b(?![^.!\n]{0,20}stills)[^.\n]{0,60}(?:outstanding|not\s+served|not\s+attached|referred(?:\s+only)?|full\s+export)/i.test(
+      hay,
+    );
+  if (stillsServedOnly) return false;
+
+  return (
+    /\bfull\s+bwv(?:\s+(?:export|footage|sequence|incident(?:\s+window)?))?\b/i.test(hay) ||
+    /\bbwv\s+(?:full\s+)?export\b/i.test(hay) ||
+    /\bfull\s+(?:bwv\s+)?incident\s+window\b/i.test(hay) ||
+    /\bbwv\s+clip\s+(?:outstanding|needed|not\s+served)\b/i.test(hay) ||
+    /\bu\d+\s*bwv(?:\s+clip)?\s+outstanding\b/i.test(hay) ||
+    /\bbwv\b[^.\n]{0,60}(?:not\s+served|not\s+attached|referred(?:\s+only)?|outstanding)\b/i.test(hay) ||
+    /\bbody[- ]?worn\b[^.\n]{0,60}(?:not\s+served|not\s+attached|referred(?:\s+only)?|outstanding|full\s+export)\b/i.test(
+      hay,
+    )
+  );
+}
+
+/** True when a chase/material line is a BWV full-export invent surface. */
+export function lineClaimsBwvFullExport(line: string): boolean {
+  return (
+    /\bfull\s+bwv\s+export\b|\bbwv\s+(?:full\s+)?export\b|\bfull\s+bwv\b|\bbwv\s+incident\s+window\b/i.test(
+      line,
+    ) ||
+    (/\b(?:bwv|body[- ]?worn)\b/i.test(line) &&
+      /\b(?:full\s+export|continuity|audit\s+trail)\b/i.test(line))
+  );
+}
+
+/**
+ * Affirmative CAD / 999-audio / control-room establishment.
+ * Bare schedule "page 999" must not establish a CAD chase (Court C0.5 hop).
+ */
+export function isCad999Established(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const affirmativeHay = sourceText
+    .replace(/\bno\s+cad\b[^.\n]{0,80}/gi, " ")
+    .replace(/\bno\s+999\s+audio\b[^.\n]{0,40}/gi, " ")
+    .replace(/\bno\s+999\s+call\b[^.\n]{0,40}/gi, " ");
+  return (
+    /\bcad\b/i.test(affirmativeHay) ||
+    /\bCAD\s*\/\s*999\b/i.test(affirmativeHay) ||
+    /\b999\s+(?:audio|call|recording)\b/i.test(affirmativeHay) ||
+    /\bcommand\s+(?:and\s+)?(?:control|dispatch)\b/i.test(affirmativeHay) ||
+    /\bcontrol[-\s]?room\s+log\b/i.test(affirmativeHay) ||
+    /\bdispatch\s+log\b/i.test(affirmativeHay) ||
+    /\bemergency\s+call\b/i.test(affirmativeHay)
+  );
+}
+
+/**
+ * Affirmative interview *recording* modality (not PACE interview / summary alone).
+ * Court C0.5: "PACE interview conducted" must not invent "Interview recording" chase.
+ */
+export function isInterviewRecordingEstablished(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = sourceText;
+  const established =
+    /\binterview\s+recording\b/i.test(hay) ||
+    /\bPACE\s+recording\b/i.test(hay) ||
+    /\baudio[-\s]?visual\s+interview\b/i.test(hay) ||
+    /\bROTI\b/i.test(hay) ||
+    // Tobin-style modality split: recording state flagged while interview is on the papers.
+    (/\binterview\b/i.test(hay) &&
+      /\brecording\s+state\s+(?:not\s+safely\s+confirmed|outstanding|missing|unclear)\b/i.test(hay)) ||
+    (/\binterview\b/i.test(hay) &&
+      /\b(?:full\s+)?recording\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|needed|not\s+safely\s+confirmed)\b/i.test(
+        hay,
+      ));
+  const negated =
+    /\bno\s+(?:pace\s+)?(?:interview\s+)?recording\b/i.test(hay) ||
+    /\b(?:interview\s+)?recording\s+(?:not|never)\s+(?:made|taken|served|attached)\b/i.test(hay);
+  return established && !negated;
+}
+
+/** Affirmative interview transcript modality. */
+export function isInterviewTranscriptEstablished(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = sourceText;
+  const established =
+    /\binterview\s+transcript\b/i.test(hay) ||
+    /\bPACE\s+transcript\b/i.test(hay) ||
+    (/\binterview\b/i.test(hay) &&
+      /\b(?:full\s+)?transcript\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|needed|served|present)\b/i.test(
+        hay,
+      ));
+  const negated =
+    /\bno\s+(?:pace\s+)?(?:interview\s+)?transcript\b/i.test(hay) ||
+    /\b(?:interview\s+)?transcript\s+(?:not|never)\s+(?:made|taken|served|attached)\b/i.test(hay);
+  return established && !negated;
+}
+
+function mentionHaystack(family: ChaseGateFamily, sourceText: string): string {
+  if (!FAMILIES_AFFECTED_BY_INVENT_ADVISORY.has(family)) return sourceText;
+  return stripDoNotInventAdvisory(sourceText);
+}
+
 export function familySupport(family: ChaseGateFamily, sourceText: string): FamilySupport {
   if (NEGATION_RES[family].test(sourceText)) return "negated";
-  if (MENTION_RES[family].test(sourceText)) return "mentioned";
+  if (MENTION_RES[family].test(mentionHaystack(family, sourceText))) return "mentioned";
   return "absent";
 }
 
@@ -102,6 +286,25 @@ export type ChaseLineGateResult =
 export function gateChaseLine(line: string, sourceText: string | null | undefined): ChaseLineGateResult {
   if (!sourceText?.trim()) return { action: "keep" };
   if (!CHASE_VERB_RE.test(line)) return { action: "keep" };
+
+  if (lineClaimsCctvMasterOrFullWindow(line)) {
+    const cctvSupport = familySupport("cctv", sourceText);
+    if (cctvSupport === "negated") {
+      return { action: "replace", family: "cctv", replacement: confirmNoneLine("cctv") };
+    }
+    if (!isCctvMasterEstablished(sourceText)) {
+      return { action: "drop", family: "cctv" };
+    }
+  } else if (lineClaimsCctvContinuity(line)) {
+    const cctvSupport = familySupport("cctv", sourceText);
+    if (cctvSupport === "negated") {
+      return { action: "replace", family: "cctv", replacement: confirmNoneLine("cctv") };
+    }
+    if (!isCctvContinuityEstablished(sourceText)) {
+      return { action: "drop", family: "cctv" };
+    }
+  }
+
   const fams = familiesInText(line);
   if (!fams.length) return { action: "keep" };
 
@@ -133,11 +336,127 @@ export function gateChaseLines(lines: string[], sourceText: string | null | unde
 }
 
 /**
+ * Expand compound battleboard chase templates into atomic family lines, then gate.
+ * Prevents "Chase CAD + 999 + CCTV master" / "recording/transcript" from inventing
+ * missing modalities when only one family (or a sibling modality) is on the papers.
+ */
+export function expandAndGateChaseLines(
+  lines: string[],
+  sourceText: string | null | undefined,
+): string[] {
+  const expanded = lines
+    .flatMap((line) => expandCompoundChaseLine(line))
+    .flatMap((line) => filterModalitySpecificChaseLine(line, sourceText));
+  return gateChaseLines(expanded, sourceText);
+}
+
+function expandCompoundChaseLine(line: string): string[] {
+  const t = line.trim();
+  if (!t) return [];
+
+  // Timeline lump: CAD + 999 + CCTV master
+  if (/Chase CAD audit,\s*999 audio,\s*and CCTV master with continuity/i.test(t)) {
+    return ["Chase CAD audit.", "Chase 999 audio.", "Chase CCTV master with continuity."];
+  }
+  if (/Chase CAD audit and 999 audio/i.test(t)) {
+    return ["Chase CAD audit.", "Chase 999 audio."];
+  }
+  if (/Chase CCTV master and continuity/i.test(t)) {
+    return ["Chase CCTV master with continuity."];
+  }
+
+  // Interview lump: recording/transcript (+ optional pre-interview disclosure)
+  if (/Chase interview recording\s*\/\s*transcript and pre-interview disclosure/i.test(t)) {
+    return [
+      "Chase interview recording.",
+      "Chase interview transcript.",
+      "Chase pre-interview disclosure.",
+    ];
+  }
+  if (/Chase interview recording\s*\/\s*transcript/i.test(t)) {
+    return ["Chase interview recording.", "Chase interview transcript."];
+  }
+
+  return [t];
+}
+
+function filterModalitySpecificChaseLine(
+  line: string,
+  sourceText: string | null | undefined,
+): string[] {
+  const t = line.trim();
+  if (!t || !sourceText?.trim()) return t ? [t] : [];
+
+  // Drop CCTV *master* / full-window chase unless papers affirmatively establish that modality
+  // (thin "listed CCTV/BWV" / review-whether-served must not keep a master invent line).
+  if (lineClaimsCctvMasterOrFullWindow(t)) {
+    if (!isCctvMasterEstablished(sourceText)) return [];
+  }
+
+  // Drop CCTV continuity chase unless papers affirmatively establish continuity (not officer continuity alone).
+  if (lineClaimsCctvContinuity(t) && !lineClaimsCctvMasterOrFullWindow(t)) {
+    if (!isCctvContinuityEstablished(sourceText)) return [];
+  }
+
+  // Drop BWV chase lines unless papers affirmatively establish full-export/clip/outstanding
+  // (BWV stills served alone must not keep a full-export invent line).
+  if (/\b(?:bwv|body[- ]?worn)\b/i.test(t)) {
+    if (!isBwvFullExportEstablished(sourceText)) return [];
+  }
+
+  // Drop interview *recording* chase unless recording modality is established
+  // (PACE interview / transcript/summary alone must not keep a recording invent line).
+  if (/\binterview recording\b/i.test(t) && !/\binterview transcript\b/i.test(t)) {
+    if (!isInterviewRecordingEstablished(sourceText)) return [];
+  }
+
+  // CAD family — drop audit / 999-audio / lumped CAD chase from page-999 noise alone.
+  if (
+    /Chase CAD audit/i.test(t) ||
+    /Chase 999 audio/i.test(t) ||
+    /\bCAD\s*\/\s*999\b/i.test(t) ||
+    /\bCAD\s*\/\s*999\s+audio\b/i.test(t)
+  ) {
+    if (!isCad999Established(sourceText)) return [];
+    if (/Chase 999 audio/i.test(t)) {
+      const audioEstablished =
+        /999\s+audio|emergency\s+call\s+(?:recording|audio)|999\s+call\s+(?:recording|audio)/i.test(
+          sourceText.replace(/\bno\s+999\s+audio\b[^.\n]{0,40}/gi, " "),
+        );
+      if (!audioEstablished) return [];
+    }
+  }
+
+  return [t];
+}
+
+/**
  * Gate disclosure/material lines that name a family but may omit chase verbs
  * (workflow profile labels, MG6 chase bullets, assistant lists).
  */
 export function gateMaterialLine(line: string, sourceText: string | null | undefined): ChaseLineGateResult {
   if (!sourceText?.trim()) return { action: "keep" };
+
+  // Modality gate — listed CCTV/BWV alone must not keep Full Window / master / continuity labels.
+  // Negated CCTV still becomes confirm-none (not a silent drop).
+  if (lineClaimsCctvMasterOrFullWindow(line)) {
+    const cctvSupport = familySupport("cctv", sourceText);
+    if (cctvSupport === "negated") {
+      return { action: "replace", family: "cctv", replacement: confirmNoneLine("cctv") };
+    }
+    if (!isCctvMasterEstablished(sourceText)) {
+      return { action: "drop", family: "cctv" };
+    }
+  } else if (lineClaimsCctvContinuity(line)) {
+    const cctvSupport = familySupport("cctv", sourceText);
+    if (cctvSupport === "negated") {
+      return { action: "replace", family: "cctv", replacement: confirmNoneLine("cctv") };
+    }
+    if (!isCctvContinuityEstablished(sourceText)) {
+      return { action: "drop", family: "cctv" };
+    }
+  }
+
   const fams = familiesInText(line);
   if (!fams.length) return { action: "keep" };
   for (const family of fams) {

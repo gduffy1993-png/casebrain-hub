@@ -304,10 +304,9 @@ check("clips do not prove the master is served", () => {
   );
 });
 
-check("served BWV / 999-CAD / custody / interview are not chased as absent", () => {
+check("served BWV / custody / interview are not chased as absent; CAD extract ≠ 999 audio", () => {
   const families = [
     { req: "Body-worn video", row: "BWV footage" },
-    { req: "999 call recording", row: "CAD / 999 log" },
     { req: "Custody record", row: "Custody record" },
     { req: "PACE interview", row: "PACE interview recording" },
   ];
@@ -317,6 +316,16 @@ check("served BWV / 999-CAD / custody / interview are not chased as absent", () 
     ]);
     assert.equal(r.suppress, true, f.req);
   }
+  // Opposite modality: CAD extract Present must not suppress 999 audio chase.
+  const audioVsExtract = shouldSuppressChaseAsAlreadyOnFile("999 audio outstanding", [
+    { label: "CAD / 999 extract", state: "served" as const },
+  ]);
+  assert.equal(audioVsExtract.suppress, false, "CAD extract must not satisfy 999 audio");
+  // Same modality extract request may suppress when extract is served.
+  const extractVsExtract = shouldSuppressChaseAsAlreadyOnFile("CAD / 999 extract", [
+    { label: "CAD incident log extract", state: "served" as const },
+  ]);
+  assert.equal(extractVsExtract.suppress, true, "served CAD extract suppresses extract chase");
 });
 
 check("genuinely missing material remains visible", () => {

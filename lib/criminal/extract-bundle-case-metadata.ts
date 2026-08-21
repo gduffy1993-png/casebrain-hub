@@ -160,7 +160,7 @@ export function buildMetadataScan(fullText: string): string {
 
 /** Stop before these tokens when trimming a person-name capture from table-style PDF text. */
 const PERSON_CAPTURE_STOP =
-  /\s*(?:\||\s+DOB\b|Complainant\b|Victim\b|Venue\b|Court\b|Stage\b|Bail\b|Offence\b|Offense\b|Charge\b|Allegation\b|Next\s+hearing\b|[\n\r])/i;
+  /\s*(?:\||\s+DOB\b|Date\s+of\s+birth\b|\bDate\b|Complainant\b|Victim\b|Venue\b|Court\b|Stage\b|Bail\b|Offence\b|Offense\b|Charge\b|Allegation\b|Next\s+hearing\b|[\n\r])/i;
 
 const PERSON_NAME_TOKEN = `[A-Za-z][A-Za-z'’.\-]+`;
 const PERSON_NAME_CAPTURE = `(${PERSON_NAME_TOKEN}(?:\\s+${PERSON_NAME_TOKEN}){0,3})`;
@@ -181,17 +181,23 @@ function normalizeCapturedPersonTokens(raw: string): string {
 function trimPersonCapture(raw: string): string {
   let t = raw.replace(/^\|+|\|+$/g, "").replace(/\s+/g, " ").trim();
   t = t.replace(/([A-Za-z])DOB(?=\d|\b)/i, "$1");
+  // DefendantAlex MorleyDate of birth27/11/1992 — strip before camelCase split
+  t = t.replace(/Date\s+of\s+birth\b.*$/i, "").trim();
   t = t.replace(/\bDOB\b.*$/i, "").trim();
   t = t.replace(/\bMatter reference\b.*$/i, "").trim();
   t = t.replace(/\bURN[A-Z0-9]+\b.*$/i, "").trim();
   t = t.replace(/\bPrimary\b.*$/i, "").trim();
   t = t.replace(/([a-z])([A-Z])/g, "$1 $2");
   t = normalizeCapturedPersonTokens(t);
+  // After camelCase: "Morley Date of birth…"
+  t = t.replace(/\bDate\s+of\s+birth\b.*$/i, "").trim();
   const stop = t.search(PERSON_CAPTURE_STOP);
   if (stop >= 0) t = t.slice(0, stop).trim();
   t = t.replace(/\|.+$/, "").trim();
   const dob = t.search(/\s+DOB\b/i);
   if (dob >= 0) t = t.slice(0, dob).trim();
+  const dateOfBirth = t.search(/\s+Date\s+of\s+birth\b/i);
+  if (dateOfBirth >= 0) t = t.slice(0, dateOfBirth).trim();
   return t;
 }
 
@@ -1447,8 +1453,12 @@ function normalizeGluedHearingScan(scan: string): string {
       /(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4})at(\d{1,2}:\d{2})/gi,
       "$1 at $2",
     )
+    // StatusremandNext hearing18/08/2026 — split glue before Next hearing (no word-boundary)
+    .replace(/([a-z0-9])(Next\s*hearing)/gi, "$1 $2")
     .replace(/\bNext hearing(?=\d)/gi, "Next hearing ")
     .replace(/\bHearing(?=\d{1,2}(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec))/gi, "Hearing ")
+    // VenueHearing24 June… / ManchesterHearing04/08…
+    .replace(/([a-z])Hearing(?=\d)/gi, "$1 Hearing ")
     .replace(
       /( at [A-Za-z'’]+?)(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec))/gi,
       "$1 $2",
@@ -1525,6 +1535,8 @@ function extractCourt(scan: string): string | null {
       .replace(/\bMatter ref\b.*$/i, "")
       .replace(/\bProsecution Authority\b.*$/i, "")
       .replace(/\bCase ref\b.*$/i, "")
+      // CourtCrown Court at Manchester Hearing — trailing Hearing label is not venue
+      .replace(/\s+Hearing\s*$/i, "")
       .trim();
 
   const courtHearingVenue = scan.match(
@@ -1542,7 +1554,7 @@ function extractCourt(scan: string): string | null {
   }
 
   const crownGlued = scan.match(
-    /Crown Court(?:Hearing)?\s+at\s+([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)*)/i,
+    /Crown Court(?:Hearing)?\s+at\s+([A-Z][A-Za-z]+(?:\s+(?!Hearing\b|Next\b|Stage\b|Plea\b)[A-Z][A-Za-z]+)*)/i,
   );
   if (crownGlued?.[1]) {
     const v = cleanLineValue(`Crown Court at ${crownGlued[1]}`);
@@ -1550,7 +1562,7 @@ function extractCourt(scan: string): string | null {
   }
 
   const crownAt = scan.match(
-    /Crown Court at [A-Z][A-Za-z]+(?:\s+(?!HHJ\b|His\b|Her\b|LORD\b|LADY\b|MR\b|MRS\b|THE\b)[A-Z][A-Za-z]+)*/i,
+    /Crown Court at [A-Z][A-Za-z]+(?:\s+(?!HHJ\b|His\b|Her\b|LORD\b|LADY\b|MR\b|MRS\b|THE\b|Hearing\b|Next\b|Stage\b|Plea\b|Status\b|Bundle\b)[A-Z][A-Za-z]+)*/i,
   );
   if (crownAt?.[0]) {
     const v = cleanLineValue(crownAt[0]);
@@ -1713,6 +1725,20 @@ function extractNextHearing(scan: string): {
     ),
   );
   if (nextHearingGlued?.[1]) tryHearing(nextHearingGlued[1]);
+
+  // Trap / thin covers: StatusremandNext hearing18/08/2026 (after normalize split)
+  if (!nextHearingRaw) {
+    const nextHearingSlash = hearingScan.match(
+      /\bNext hearing\s*(\d{1,2}\/\d{1,2}\/\d{2,4}(?:\s+\d{1,2}:\d{2})?)/i,
+    );
+    if (nextHearingSlash?.[1]) tryHearing(nextHearingSlash[1]);
+  }
+  if (!nextHearingRaw) {
+    const nextHearingSlashRaw = scan.match(
+      /\bNext hearing\s*(\d{1,2}\/\d{1,2}\/\d{2,4}(?:\s+\d{1,2}:\d{2})?)/i,
+    );
+    if (nextHearingSlashRaw?.[1]) tryHearing(nextHearingSlashRaw[1]);
+  }
 
   if (!nextHearingRaw) {
     const courtSlashHearing = hearingScan.match(

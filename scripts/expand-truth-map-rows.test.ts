@@ -48,6 +48,8 @@ const expanded = expandTruthMapRowsForDisplay({
   chase,
   allegation,
   doNotOverstate,
+  bundleText:
+    "Harassment screenshots served. Phone extraction summary only. Full phone download / source export outstanding. Subscriber report not served.",
 });
 
 assert.ok(expanded.some((r) => r.existence === "served" && /screenshot|message pack/i.test(r.label)));
@@ -55,6 +57,37 @@ assert.ok(expanded.some((r) => /phone extraction summary/i.test(r.label) && r.ex
 assert.ok(expanded.some((r) => /full phone download/i.test(r.label) && r.existence === "missing"));
 assert.ok(expanded.some((r) => /subscriber|attribution/i.test(r.label) && r.existence === "missing"));
 assert.ok(!expanded.some((r) => /unused schedule clarification/i.test(r.label)));
+
+// Client D0.5: do-not-overstate "phone" alone must not invent Brookes download pack.
+const inventFromDoNot = expandTruthMapRowsForDisplay({
+  rows: collapsed,
+  chase: {
+    disclosureSummary: "Provisional disclosure.",
+    safeCourtLine: "Provisional.",
+    primaryItems: [
+      {
+        label: "MG6 / unused schedule clarification",
+        source: "MG6C",
+        baseStatus: "outstanding",
+        draftChaseWording: "Please clarify MG6.",
+        courtLine: "",
+        whyItMatters: "Schedule",
+        evidenceAnchor: null,
+      },
+    ],
+    items: [],
+  } as unknown as DisclosureChaseBrief,
+  allegation,
+  doNotOverstate: [
+    "Do not import phone extraction/metadata unless the papers support it.",
+    "Do not state the defendant sent messages unless attribution is served and safe.",
+  ],
+  bundleText: "Harassment charge. MG6 schedule Present. No phone download or screenshots on file.",
+});
+assert.ok(
+  !inventFromDoNot.some((r) => /full phone download/i.test(r.label)),
+  "do-not-overstate phone must not invent Full phone download missing",
+);
 
 const war = {
   safePositionToday: "Provisional — attribution disputed.",
@@ -68,6 +101,8 @@ const view = buildFiveAnswersView({
   chase,
   matterConfidence: null,
   doNotOverstate,
+  bundleText:
+    "Harassment screenshots served. Phone extraction summary only. Full phone download / source export outstanding. Subscriber report not served.",
 });
 
 const gotRight = view.evidenceState.rows.filter((r) => r.existence === "served");

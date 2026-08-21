@@ -1,0 +1,223 @@
+{
+  "case_key": "RP-15-DAVIES",
+  "ok": true,
+  "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-401-500-v5\\pdfs\\CB-TB-439_Davies.pdf",
+  "pdf_sha256": "adb988b033c4130a577b8a07b3090b5145515d8ff67f6eb7184222c2eb8d0dcd",
+  "page_count": 19,
+  "char_count": 8222,
+  "term_hits": {
+    "CCTV": 2,
+    "export\\s*log": 1,
+    "continuity": 3,
+    "\\bCAD\\b": 1,
+    "interview": 1,
+    "phone": 1,
+    "download": 3,
+    "extraction": 4,
+    "property": 3,
+    "MG6": 9,
+    "MG11": 4,
+    "unused": 2,
+    "identification": 1,
+    "body[- ]?worn": 1,
+    "custody": 3,
+    "hearing": 5
+  },
+  "term_excerpts": {
+    "CCTV": [
+      {
+        "page": 7,
+        "excerpt": "ank schedule extract Served Contained in papers MG6/04 bank source statements Outstanding Not in papers supplied MG6/05 CCTV continuity log Outstanding Awaiting export MG6/06 analyst certificate Outstanding Awaiting export MG6/07 final medical report Outstanding Requested from office"
+      },
+      {
+        "page": 9,
+        "excerpt": "it and media references Ref Description Produced by Note EX/01 Officer body worn video clip PC Harris Partial clip only CCTV/2 External camera export Store manager Export log absent AB/3 Photograph / injury image PC Lee Continuity page not supplied DIG/4 Phone screenshot bundle DC Mo"
+      }
+    ],
+    "export\\s*log": [
+      {
+        "page": 9,
+        "excerpt": "uced by Note EX/01 Officer body worn video clip PC Harris Partial clip only CCTV/2 External camera export Store manager Export log absent AB/3 Photograph / injury image PC Lee Continuity page not supplied DIG/4 Phone screenshot bundle DC Morgan Raw extraction absent"
+      }
+    ],
+    "continuity": [
+      {
+        "page": 7,
+        "excerpt": "chedule extract Served Contained in papers MG6/04 bank source statements Outstanding Not in papers supplied MG6/05 CCTV continuity log Outstanding Awaiting export MG6/06 analyst certificate Outstanding Awaiting export MG6/07 final medical report Outstanding Requested from officer in case"
+      },
+      {
+        "page": 9,
+        "excerpt": "s Partial clip only CCTV/2 External camera export Store manager Export log absent AB/3 Photograph / injury image PC Lee Continuity page not supplied DIG/4 Phone screenshot bundle DC Morgan Raw extraction absent"
+      },
+      {
+        "page": 10,
+        "excerpt": "confirmed Current hearing 19 June 2026 at 10:00 Court Crown Court at Sheffield Trial issues Identification, disclosure, continuity and admissibility remain under review Directions Disclosure to be chased; defence statement date to be fixed if required Witnesses Complainant, police officer,"
+      }
+    ],
+    "\\bCAD\\b": [
+      {
+        "page": 1,
+        "excerpt": "Charge sheet / case details 2-2 3 MG5 case summary 3-3 4 MG11 statement 4-5 5 MG11 officer or civilian statement 5-6 6 CAD / custody / interview note 6-6 7 MG6 schedule 7-7 8 Disclosure correspondence 8-9 9 Exhibit list 9-10"
+      }
+    ],
+    "interview": [
+      {
+        "page": 1,
+        "excerpt": "case details 2-2 3 MG5 case summary 3-3 4 MG11 statement 4-5 5 MG11 officer or civilian statement 5-6 6 CAD / custody / interview note 6-6 7 MG6 schedule 7-7 8 Disclosure correspondence 8-9 9 Exhibit list 9-10"
+      }
+    ],
+    "phone": [
+      {
+        "page": 9,
+        "excerpt": "camera export Store manager Export log absent AB/3 Photograph / injury image PC Lee Continuity page not supplied DIG/4 Phone screenshot bundle DC Morgan Raw extraction absent"
+      }
+    ],
+    "download": [
+      {
+        "page": 6,
+        "excerpt": "Handset seized from kitchen worktop Ownership not confirmed SIM / IMEI Not recorded on this extract Full report awaited Download Partial logical download referred to No full download attached Messages Screenshots in officer note only Raw extraction absent"
+      },
+      {
+        "page": 6,
+        "excerpt": "en worktop Ownership not confirmed SIM / IMEI Not recorded on this extract Full report awaited Download Partial logical download referred to No full download attached Messages Screenshots in officer note only Raw extraction absent"
+      },
+      {
+        "page": 6,
+        "excerpt": "irmed SIM / IMEI Not recorded on this extract Full report awaited Download Partial logical download referred to No full download attached Messages Screenshots in officer note only Raw extraction absent"
+      }
+    ],
+    "extraction": [
+      {
+        "page": 6,
+        "excerpt": "Digital extraction / device note CB-TB-439 CB-TB-439 / page 6 Digital extraction / device note Item Entry Note Device 1 Handset seized from kitchen worktop Ownership not confirme"
+      },
+      {
+        "page": 6,
+        "excerpt": "Digital extraction / device note CB-TB-439 CB-TB-439 / page 6 Digital extraction / device note Item Entry Note Device 1 Handset seized from kitchen worktop Ownership not confirmed SIM / IMEI Not recorded on this extract Full report awaited"
+      },
+      {
+        "page": 6,
+        "excerpt": "d Download Partial logical download referred to No full download attached Messages Screenshots in officer note only Raw extraction absent"
+      },
+      {
+        "page": 9,
+        "excerpt": "g absent AB/3 Photograph / injury image PC Lee Continuity page not supplied DIG/4 Phone screenshot bundle DC Morgan Raw extraction absent"
+      }
+    ],
+    "property": [
+      {
+        "page": 1,
+        "excerpt": "t Sheffield Current hearing: 19 June 2026 at 10:00 Stage: Magistrates trial listing Primary charge: Concealing criminal property, contrary to section 327 Proceeds of Crime Act 2002 Tab Document Pages / note 1 Cover and index 1-1 2 Charge sheet / case details 2-2 3 MG5 case summary 3-3 4"
+      },
+      {
+        "page": 2,
+        "excerpt": "avies Date of birth 09/04/1991 Court Crown Court at Sheffield Hearing 19 June 2026 at 10:00 Offence Concealing criminal property, contrary to section 327 Proceeds of Crime Act 2002"
+      },
+      {
+        "page": 3,
+        "excerpt": "B-439 CB-TB-439 / page 3 Police report - case summary Field Entry Defendant Layla Davies Allegation Concealing criminal property, contrary to section 327 Proceeds of Crime Act 2002 Complainant / reporter Rachel Green Location Queens Parade Hearing reference 19 June 2026 at 10:00 Summary"
+      }
+    ],
+    "MG6": [
+      {
+        "page": 1,
+        "excerpt": "5 case summary 3-3 4 MG11 statement 4-5 5 MG11 officer or civilian statement 5-6 6 CAD / custody / interview note 6-6 7 MG6 schedule 7-7 8 Disclosure correspondence 8-9 9 Exhibit list 9-10"
+      },
+      {
+        "page": 7,
+        "excerpt": "MG6 - non-sensitive material schedule CB-TB-439 CB-TB-439 / page 7 Disclosure schedule Item Description Status Notes MG6/01 custody record extract Served Contained"
+      },
+      {
+        "page": 7,
+        "excerpt": "MG6 - non-sensitive material schedule CB-TB-439 CB-TB-439 / page 7 Disclosure schedule Item Description Status Notes MG6/01 custody record extract Served Contained in papers MG6/02 old charge sheet Served Contained in papers MG6/03 bank schedule extract Served Contained in papers"
+      },
+      {
+        "page": 7,
+        "excerpt": "439 / page 7 Disclosure schedule Item Description Status Notes MG6/01 custody record extract Served Contained in papers MG6/02 old charge sheet Served Contained in papers MG6/03 bank schedule extract Served Contained in papers MG6/04 bank source statements Outstanding Not in papers"
+      }
+    ],
+    "MG11": [
+      {
+        "page": 1,
+        "excerpt": "ime Act 2002 Tab Document Pages / note 1 Cover and index 1-1 2 Charge sheet / case details 2-2 3 MG5 case summary 3-3 4 MG11 statement 4-5 5 MG11 officer or civilian statement 5-6 6 CAD / custody / interview note 6-6 7 MG6 schedule 7-7 8 Disclosure correspondence 8-9 9 Exhibit list 9"
+      },
+      {
+        "page": 1,
+        "excerpt": "ment Pages / note 1 Cover and index 1-1 2 Charge sheet / case details 2-2 3 MG5 case summary 3-3 4 MG11 statement 4-5 5 MG11 officer or civilian statement 5-6 6 CAD / custody / interview note 6-6 7 MG6 schedule 7-7 8 Disclosure correspondence 8-9 9 Exhibit list 9-10"
+      },
+      {
+        "page": 4,
+        "excerpt": "MG11 - witness statement CB-TB-439 CB-TB-439 / page 4 Witness statement Field Entry URN 26/563207/A Statement of Rachel Green Age if under 18 Over 18 Occupation / r"
+      },
+      {
+        "page": 5,
+        "excerpt": "MG11 - witness statement CB-TB-439 CB-TB-439 / page 5 Witness statement Field Entry URN 26/290374/A Statement of PC Lane Age if under 18 Over 18 Occupation / role p"
+      }
+    ],
+    "unused": [
+      {
+        "page": 17,
+        "excerpt": "Unused material note CB-TB-439 CB-TB-439 / page 17 Unused material note The item number on this sheet does not match the item number in the schedule. The officer note"
+      },
+      {
+        "page": 17,
+        "excerpt": "Unused material note CB-TB-439 CB-TB-439 / page 17 Unused material note The item number on this sheet does not match the item number in the schedule. The officer note records that further checks are required before th"
+      }
+    ],
+    "identification": [
+      {
+        "page": 10,
+        "excerpt": "guilty / indicated or to be confirmed Current hearing 19 June 2026 at 10:00 Court Crown Court at Sheffield Trial issues Identification, disclosure, continuity and admissibility remain under review Directions Disclosure to be chased; defence statement date to be fixed if required Witnesses Comp"
+      }
+    ],
+    "body[- ]?worn": [
+      {
+        "page": 9,
+        "excerpt": "Exhibit list CB-TB-439 CB-TB-439 / page 9 Exhibit and media references Ref Description Produced by Note EX/01 Officer body worn video clip PC Harris Partial clip only CCTV/2 External camera export Store manager Export log absent AB/3 Photograph / injury image PC Lee Continuity page not"
+      }
+    ],
+    "custody": [
+      {
+        "page": 1,
+        "excerpt": "e sheet / case details 2-2 3 MG5 case summary 3-3 4 MG11 statement 4-5 5 MG11 officer or civilian statement 5-6 6 CAD / custody / interview note 6-6 7 MG6 schedule 7-7 8 Disclosure correspondence 8-9 9 Exhibit list 9-10"
+      },
+      {
+        "page": 3,
+        "excerpt": "2026. The account in this summary is short and relies on material listed elsewhere in the papers. The summary refers to custody record extract and to material marked as not yet supplied on the schedule. The account remains subject to review once the underlying material is served. The na"
+      },
+      {
+        "page": 7,
+        "excerpt": "- non-sensitive material schedule CB-TB-439 CB-TB-439 / page 7 Disclosure schedule Item Description Status Notes MG6/01 custody record extract Served Contained in papers MG6/02 old charge sheet Served Contained in papers MG6/03 bank schedule extract Served Contained in papers MG6/04 ban"
+      }
+    ],
+    "hearing": [
+      {
+        "page": 1,
+        "excerpt": "-TB-439 CB-TB-439 / page 1 Case papers R v Layla Davies Defendant: Layla Davies Court: Crown Court at Sheffield Current hearing: 19 June 2026 at 10:00 Stage: Magistrates trial listing Primary charge: Concealing criminal property, contrary to section 327 Proceeds of Crime Act 2002 Tab Do"
+      },
+      {
+        "page": 2,
+        "excerpt": "Charge sheet Field Entry URN 26/649446/A Defendant Layla Davies Date of birth 09/04/1991 Court Crown Court at Sheffield Hearing 19 June 2026 at 10:00 Offence Concealing criminal property, contrary to section 327 Proceeds of Crime Act 2002"
+      },
+      {
+        "page": 3,
+        "excerpt": "property, contrary to section 327 Proceeds of Crime Act 2002 Complainant / reporter Rachel Green Location Queens Parade Hearing reference 19 June 2026 at 10:00 Summary of evidence The prosecution summary alleges that Layla Davies was involved in an incident at Queens Parade on 15 May 20"
+      },
+      {
+        "page": 3,
+        "excerpt": "al mixed into primary bundle - Check whether the listed outstanding material has now been served. - Confirm the current hearing date against the listing notice."
+      }
+    ]
+  },
+  "key_pages": {
+    "1": "Case papers - bundle index\nCB-TB-439\nCB-TB-439 / page 1\nCase papers\nR v Layla Davies\nDefendant:\nLayla Davies\nCourt:\nCrown Court at Sheffield\nCurrent hearing:\n19 June 2026 at 10:00\nStage:\nMagistrates trial listing\nPrimary charge:\nConcealing criminal property, contrary to section 327 Proceeds of Crime Act 2002\nTab\nDocument\nPages / note\n1\nCover and index\n1-1\n2\nCharge sheet / case details\n2-2\n3\nMG5 case summary\n3-3\n4\nMG11 statement\n4-5\n5\nMG11 officer or civilian statement\n5-6\n6\nCAD / custody / interview note\n6-6\n7\nMG6 schedule\n7-7\n8\nDisclosure correspondence\n8-9\n9\nExhibit list\n9-10\n",
+    "2": "Charge / case details\nCB-TB-439\nCB-TB-439 / page 2\nCharge sheet\nField\nEntry\nURN\n26/649446/A\nDefendant\nLayla Davies\nDate of birth\n09/04/1991\nCourt\nCrown Court at Sheffield\nHearing\n19 June 2026 at 10:00\nOffence\nConcealing criminal property, contrary to section 327 Proceeds of Crime Act 2002\n",
+    "3": "MG5 - case summary\nCB-TB-439\nCB-TB-439 / page 3\nPolice report - case summary\nField\nEntry\nDefendant\nLayla Davies\nAllegation\nConcealing criminal property, contrary to section 327 Proceeds of Crime Act 2002\nComplainant / reporter\nRachel Green\nLocation\nQueens Parade\nHearing reference\n19 June 2026 at 10:00\nSummary of evidence\nThe prosecution summary alleges that Layla Davies was involved in an incident at Queens Parade on 15 May 2026. The\naccount in this summary is short and relies on material listed elsewhere in the papers.\nThe summary refers to custody record extract and to material marked as not yet supplied on the schedule. The account\nremains subject to review once the underlying material is served.\nThe narrative also mentions Jamie Vale, although the header of this bundle names only Layla Davies as the defendant for\nthese papers.\nIssues for review\n- co-defendant material mixed into primary bundle\n- Check whether the listed outstanding material has now been served.\n- Confirm the current hearing date against the listing notice.\n",
+    "7": "MG6 - non-sensitive material schedule\nCB-TB-439\nCB-TB-439 / page 7\nDisclosure schedule\nItem\nDescription\nStatus\nNotes\nMG6/01\ncustody record extract\nServed\nContained in papers\nMG6/02\nold charge sheet\nServed\nContained in papers\nMG6/03\nbank schedule extract\nServed\nContained in papers\nMG6/04\nbank source statements\nOutstanding\nNot in papers supplied\nMG6/05\nCCTV continuity log\nOutstanding\nAwaiting export\nMG6/06\nanalyst certificate\nOutstanding\nAwaiting export\nMG6/07\nfinal medical report\nOutstanding\nRequested from officer in case\n",
+    "9": "Exhibit list\nCB-TB-439\nCB-TB-439 / page 9\nExhibit and media references\nRef\nDescription\nProduced by\nNote\nEX/01\nOfficer body worn video clip\nPC Harris\nPartial clip only\nCCTV/2\nExternal camera export\nStore manager\nExport log absent\nAB/3\nPhotograph / injury image\nPC Lee\nContinuity page not supplied\nDIG/4\nPhone screenshot bundle\nDC Morgan\nRaw extraction absent\n",
+    "6": "Digital extraction / device note\nCB-TB-439\nCB-TB-439 / page 6\nDigital extraction / device note\nItem\nEntry\nNote\nDevice 1\nHandset seized from kitchen worktop\nOwnership not confirmed\nSIM / IMEI\nNot recorded on this extract\nFull report awaited\nDownload\nPartial logical download referred to\nNo full download attached\nMessages\nScreenshots in officer note only\nRaw extraction absent\n",
+    "17": "Unused material note\nCB-TB-439\nCB-TB-439 / page 17\nUnused material note\nThe item number on this sheet does not match the item number in the schedule.\nThe officer note records that further checks are required before the schedule can be treated as complete.\nA continuation marker appears at the foot of the page. The next supplied page does not continue the same document.\nThe page is a copy of material already seen elsewhere but uses a slightly different document date.\n",
+    "10": "Court case management note\nCB-TB-439\nCB-TB-439 / page 10\nPlea and trial preparation note\nIssue\nCurrent entry\nPlea\nNot guilty / indicated or to be confirmed\nCurrent hearing\n19 June 2026 at 10:00\nCourt\nCrown Court at Sheffield\nTrial issues\nIdentification, disclosure, continuity and admissibility remain under review\nDirections\nDisclosure to be chased; defence statement date to be fixed if required\nWitnesses\nComplainant, police officer, civilian witness where served\n"
+  },
+  "first_page_preview": "Case papers - bundle index\nCB-TB-439\nCB-TB-439 / page 1\nCase papers\nR v Layla Davies\nDefendant:\nLayla Davies\nCourt:\nCrown Court at Sheffield\nCurrent hearing:\n19 June 2026 at 10:00\nStage:\nMagistrates trial listing\nPrimary charge:\nConcealing criminal property, contrary to section 327 Proceeds of Crime Act 2002\nTab\nDocument\nPages / note\n1\nCover and index\n1-1\n2\nCharge sheet / case details\n2-2\n3\nMG5 case summary\n3-3\n4\nMG11 statement\n4-5\n5\nMG11 officer or civilian statement\n5-6\n6\nCAD / custody / interview note\n6-6\n7\nMG6 schedule\n7-7\n8\nDisclosure correspondence\n8-9\n9\nExhibit list\n9-10\n"
+}

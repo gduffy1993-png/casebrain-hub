@@ -5,7 +5,7 @@
 
 import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
 import { scrubDevRefs } from "@/lib/criminal/dev-ref-scrub";
-import { gateChaseLines } from "@/lib/criminal/chase-source-gate";
+import { expandAndGateChaseLines } from "@/lib/criminal/chase-source-gate";
 
 export type BattleboardRouteStatus = "viable" | "conditional" | "blocked";
 
@@ -2402,11 +2402,11 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
       : GLOBAL_COLLAPSE;
 
   // Chase source gate: templated "chase X" moves must be backed by the bundle —
-  // dropped when the family is never mentioned, replaced with confirm-none
-  // wording when the file explicitly says the material does not exist.
+  // drop absent families; expand compound CAD/CCTV/interview lumps so one mentioned
+  // sibling modality cannot invent another (master vs stills, recording vs transcript).
   const sanitizedRoutes = routes.map(sanitizeRoute).map((r) => ({
     ...r,
-    next_moves: gateChaseLines(r.next_moves, bundleText),
+    next_moves: expandAndGateChaseLines(r.next_moves, bundleText),
   }));
   const sanitizedPrimary = sanitizedRoutes[0];
   const summaryLine = sanitizeDisplayLine(solicitor_safe_summary);
@@ -2451,7 +2451,7 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
     primary_route: sanitizedPrimary,
     routes: sanitizedRoutes,
     global_collapse_risks: sanitizeStringList(globalRisks, 8),
-    urgent_next_moves: sanitizeStringList(gateChaseLines(urgent_next_moves, bundleText), 6),
+    urgent_next_moves: sanitizeStringList(expandAndGateChaseLines(urgent_next_moves, bundleText), 6),
     diagnostics: {
       corpus_markers: corpusMarkers,
       safeguards_signal_count: safScore,

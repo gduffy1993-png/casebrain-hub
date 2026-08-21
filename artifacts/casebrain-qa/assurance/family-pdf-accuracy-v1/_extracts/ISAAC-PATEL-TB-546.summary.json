@@ -1,0 +1,233 @@
+{
+  "case_key": "ISAAC-PATEL-TB-546",
+  "ok": true,
+  "pdf_path": "C:\\Users\\gduff\\Downloads\\00-CASEBRAIN-PILOT-20\\CB-TB-546_Patel.pdf",
+  "pdf_sha256": "bc5d732fa9306133c0c7d7fe2ea85a8e7d65a5d1b30a823ac491495839e0a6ef",
+  "page_count": 27,
+  "char_count": 10383,
+  "term_hits": {
+    "CCTV": 5,
+    "master": 5,
+    "continuity": 5,
+    "\\bCAD\\b": 10,
+    "interview": 27,
+    "recording": 16,
+    "transcript": 11,
+    "MG6": 46,
+    "MG11": 17,
+    "custody": 16,
+    "hearing": 9
+  },
+  "term_excerpts": {
+    "CCTV": [
+      {
+        "page": 7,
+        "excerpt": "3 MG5 case summary served available in bundle MG6/04 signed final MG11 outstanding requested / not attached MG6/05 full CCTV master outstanding requested / not attached MG6/06 custody record pages 3-5 outstanding requested / not attached MG6/07 full interview transcript outstanding r"
+      },
+      {
+        "page": 12,
+        "excerpt": "3 MG5 case summary served available in bundle MG6/04 signed final MG11 outstanding requested / not attached MG6/05 full CCTV master outstanding requested / not attached MG6/06 custody record pages 3-5 outstanding requested / not attached MG6/07 full interview transcript outstanding r"
+      },
+      {
+        "page": 17,
+        "excerpt": "3 MG5 case summary served available in bundle MG6/04 signed final MG11 outstanding requested / not attached MG6/05 full CCTV master outstanding requested / not attached MG6/06 custody record pages 3-5 outstanding requested / not attached MG6/07 full interview transcript outstanding r"
+      },
+      {
+        "page": 22,
+        "excerpt": "3 MG5 case summary served available in bundle MG6/04 signed final MG11 outstanding requested / not attached MG6/05 full CCTV master outstanding requested / not attached MG6/06 custody record pages 3-5 outstanding requested / not attached MG6/07 full interview transcript outstanding r"
+      }
+    ],
+    "master": [
+      {
+        "page": 7,
+        "excerpt": "case summary served available in bundle MG6/04 signed final MG11 outstanding requested / not attached MG6/05 full CCTV master outstanding requested / not attached MG6/06 custody record pages 3-5 outstanding requested / not attached MG6/07 full interview transcript outstanding requeste"
+      },
+      {
+        "page": 12,
+        "excerpt": "case summary served available in bundle MG6/04 signed final MG11 outstanding requested / not attached MG6/05 full CCTV master outstanding requested / not attached MG6/06 custody record pages 3-5 outstanding requested / not attached MG6/07 full interview transcript outstanding requeste"
+      },
+      {
+        "page": 17,
+        "excerpt": "case summary served available in bundle MG6/04 signed final MG11 outstanding requested / not attached MG6/05 full CCTV master outstanding requested / not attached MG6/06 custody record pages 3-5 outstanding requested / not attached MG6/07 full interview transcript outstanding requeste"
+      },
+      {
+        "page": 22,
+        "excerpt": "case summary served available in bundle MG6/04 signed final MG11 outstanding requested / not attached MG6/05 full CCTV master outstanding requested / not attached MG6/06 custody record pages 3-5 outstanding requested / not attached MG6/07 full interview transcript outstanding requeste"
+      }
+    ],
+    "continuity": [
+      {
+        "page": 3,
+        "excerpt": "in an incident at or near Northbridge High Street. The account relies on witness description, timing material and item continuity. There is an issue for review: case stops mid-narrative after continuation page. The papers do not resolve this point on the face of the served material. Inter"
+      },
+      {
+        "page": 8,
+        "excerpt": "EXHIBIT LIST CB-TB-546 Page 8 Exhibit List EX/01 - item referred to in MG5 (listed). EX/02 - continuity note to be checked against witness and MG6 schedule. CPS disclosure email: further material may be served before the next hearing."
+      },
+      {
+        "page": 13,
+        "excerpt": "EXHIBIT LIST CBTB546 Page 13 Exhibit List EX/01 - item referred to in MG5 (listed). EX/02 - continuity note to be checked against witness and MG6 schedule. CPS disclosure email: further material may be served before the next hearing."
+      },
+      {
+        "page": 18,
+        "excerpt": "EXHIBIT LIST CB-TB-546 Page 18 Exhibit List EX/01 - item referred to in MG5 (listed). EX/02 - continuity note to be checked against witness and MG6 schedule. CPS disclosure email: further material may be served before the next hearing."
+      }
+    ],
+    "\\bCAD\\b": [
+      {
+        "page": 4,
+        "excerpt": ". My account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing material. I refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle."
+      },
+      {
+        "page": 5,
+        "excerpt": ". My account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing material. I refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle."
+      },
+      {
+        "page": 9,
+        "excerpt": ". My account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing material. I refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle."
+      },
+      {
+        "page": 10,
+        "excerpt": ". My account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing material. I refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle."
+      }
+    ],
+    "interview": [
+      {
+        "page": 1,
+        "excerpt": "sheet / case details Tab 2: MG5 case summary Tab 3: MG11 witness statement Tab 4: MG11 police statement Tab 5: Custody/interview note Tab 6: MG6 disclosure schedule Tab 7: Exhibit list"
+      },
+      {
+        "page": 3,
+        "excerpt": "e stops mid-narrative after continuation page. The papers do not resolve this point on the face of the served material. Interview position is summarised only. Where the full recording or transcript is not served, the account must not be treated as a settled admission. Issues for review -"
+      },
+      {
+        "page": 6,
+        "excerpt": "CUSTODY / INTERVIEW NOTE CB-TB-546 Page 6 Custody / interview extract Arrest authorised in relation to Affray. Legal advice requested. Interview summary available on this file. Fu"
+      },
+      {
+        "page": 6,
+        "excerpt": "CUSTODY / INTERVIEW NOTE CB-TB-546 Page 6 Custody / interview extract Arrest authorised in relation to Affray. Legal advice requested. Interview summary available on this file. Full interview recording / transcript: not s"
+      }
+    ],
+    "recording": [
+      {
+        "page": 3,
+        "excerpt": "ers do not resolve this point on the face of the served material. Interview position is summarised only. Where the full recording or transcript is not served, the account must not be treated as a settled admission. Issues for review - case stops mid-narrative after continuation page - Con"
+      },
+      {
+        "page": 4,
+        "excerpt": "orted at the time. There may be a timing issue when compared with the CAD or listing material. I refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle."
+      },
+      {
+        "page": 5,
+        "excerpt": "orted at the time. There may be a timing issue when compared with the CAD or listing material. I refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle."
+      },
+      {
+        "page": 6,
+        "excerpt": "rest authorised in relation to Affray. Legal advice requested. Interview summary available on this file. Full interview recording / transcript: not served in this bundle."
+      }
+    ],
+    "transcript": [
+      {
+        "page": 3,
+        "excerpt": "solve this point on the face of the served material. Interview position is summarised only. Where the full recording or transcript is not served, the account must not be treated as a settled admission. Issues for review - case stops mid-narrative after continuation page - Confirm served ma"
+      },
+      {
+        "page": 6,
+        "excerpt": "sed in relation to Affray. Legal advice requested. Interview summary available on this file. Full interview recording / transcript: not served in this bundle."
+      },
+      {
+        "page": 7,
+        "excerpt": "ing requested / not attached MG6/06 custody record pages 3-5 outstanding requested / not attached MG6/07 full interview transcript outstanding requested / not attached"
+      },
+      {
+        "page": 11,
+        "excerpt": "sed in relation to Affray. Legal advice requested. Interview summary available on this file. Full interview recording / transcript: not served in this bundle."
+      }
+    ],
+    "MG6": [
+      {
+        "page": 1,
+        "excerpt": "Tab 2: MG5 case summary Tab 3: MG11 witness statement Tab 4: MG11 police statement Tab 5: Custody/interview note Tab 6: MG6 disclosure schedule Tab 7: Exhibit list"
+      },
+      {
+        "page": 3,
+        "excerpt": "ttled admission. Issues for review - case stops mid-narrative after continuation page - Confirm served material against MG6 schedule - Check whether hearing/listing date has been superseded"
+      },
+      {
+        "page": 7,
+        "excerpt": "MG6 DISCLOSURE SCHEDULE CBTB546 Page 7 Item Description Status Notes MG6/01 forensic submission note served listed as served MG6/02 charge sheet served available i"
+      },
+      {
+        "page": 7,
+        "excerpt": "MG6 DISCLOSURE SCHEDULE CBTB546 Page 7 Item Description Status Notes MG6/01 forensic submission note served listed as served MG6/02 charge sheet served available in bundle MG6/03 MG5 case summary served available in bundle MG6/04 si"
+      }
+    ],
+    "MG11": [
+      {
+        "page": 1,
+        "excerpt": "age: First appearance URN: 26/171779/NBR Bundle index Tab 1: Charge sheet / case details Tab 2: MG5 case summary Tab 3: MG11 witness statement Tab 4: MG11 police statement Tab 5: Custody/interview note Tab 6: MG6 disclosure schedule Tab 7: Exhibit list"
+      },
+      {
+        "page": 1,
+        "excerpt": "171779/NBR Bundle index Tab 1: Charge sheet / case details Tab 2: MG5 case summary Tab 3: MG11 witness statement Tab 4: MG11 police statement Tab 5: Custody/interview note Tab 6: MG6 disclosure schedule Tab 7: Exhibit list"
+      },
+      {
+        "page": 4,
+        "excerpt": "MG11 - WITNESS STATEMENT CBTB546 Page 4 WITNESS STATEMENT Statement of: Sofia Thornton Date: 19/02/2026 Continuation sheet. The first page of this statement is not"
+      },
+      {
+        "page": 5,
+        "excerpt": "MG11 - POLICE STATEMENT CB-TB-546 Page 5 WITNESS STATEMENT Statement of: Noah Morgan Date: 17/08/2026 I make this statement about the incident involving Isaac Patel"
+      }
+    ],
+    "custody": [
+      {
+        "page": 1,
+        "excerpt": ": Charge sheet / case details Tab 2: MG5 case summary Tab 3: MG11 witness statement Tab 4: MG11 police statement Tab 5: Custody/interview note Tab 6: MG6 disclosure schedule Tab 7: Exhibit list"
+      },
+      {
+        "page": 6,
+        "excerpt": "CUSTODY / INTERVIEW NOTE CB-TB-546 Page 6 Custody / interview extract Arrest authorised in relation to Affray. Legal advice requested. Interview summary available on t"
+      },
+      {
+        "page": 6,
+        "excerpt": "CUSTODY / INTERVIEW NOTE CB-TB-546 Page 6 Custody / interview extract Arrest authorised in relation to Affray. Legal advice requested. Interview summary available on this file. Full interview recording / trans"
+      },
+      {
+        "page": 7,
+        "excerpt": "ned final MG11 outstanding requested / not attached MG6/05 full CCTV master outstanding requested / not attached MG6/06 custody record pages 3-5 outstanding requested / not attached MG6/07 full interview transcript outstanding requested / not attached"
+      }
+    ],
+    "hearing": [
+      {
+        "page": 1,
+        "excerpt": "CASE PAPERS - INDEX CBTB546 Page 1 R v Isaac Patel Defendant: Isaac Patel Court: Southford MagistratesCourt Hearing: 25August 2026 10:30 Stage: First appearance URN: 26/171779/NBR Bundle index Tab 1: Charge sheet / case details Tab 2: MG5 case summary Tab 3: MG11 witness sta"
+      },
+      {
+        "page": 2,
+        "excerpt": "CHARGE SHEET / CASE DETAILS CBTB546 Page 2 Defendant and hearing details DefendantIsaacPatel DOB: 12/04/2004 CourtHearingSouthford Magistrates Court 25 August 2026 10:30 Current stage: First appearance Charge Affray contrary"
+      },
+      {
+        "page": 2,
+        "excerpt": "CHARGE SHEET / CASE DETAILS CBTB546 Page 2 Defendant and hearing details DefendantIsaacPatel DOB: 12/04/2004 CourtHearingSouthford Magistrates Court 25 August 2026 10:30 Current stage: First appearance Charge Affray contrary to section 3 Public Order Act 1986 Particulars: On 22 Au"
+      },
+      {
+        "page": 2,
+        "excerpt": "idge, the defendant is alleged to have committed the offence described above. The prosecution papers are served for the hearing listed."
+      }
+    ]
+  },
+  "key_pages": {
+    "1": "CASE PAPERS - INDEX\nCBTB546\nPage 1\nR v Isaac Patel\nDefendant: Isaac Patel\nCourt: Southford MagistratesCourt\nHearing: 25August 2026 10:30\nStage: First appearance\nURN: 26/171779/NBR\nBundle index\nTab 1: Charge sheet / case details\nTab 2: MG5 case summary\nTab 3: MG11 witness statement\nTab 4: MG11 police statement\nTab 5: Custody/interview note\nTab 6: MG6 disclosure schedule\nTab 7: Exhibit list\n",
+    "2": "CHARGE SHEET / CASE DETAILS\nCBTB546\nPage 2\nDefendant and hearing details\nDefendantIsaacPatel\nDOB: 12/04/2004\nCourtHearingSouthford Magistrates Court 25 August 2026 10:30\nCurrent stage: First appearance\nCharge\nAffray\ncontrary to section 3 Public Order Act 1986\nParticulars: On 22 August 2026 at Northbridge, the defendant is alleged to have committed the offence described above. The\nprosecution papers are served for the hearing listed.\n",
+    "3": "MG5 - CASE SUMMARY\nCBTB546\nPage 3\nSummary of key evidence\nThe Crown case is that Isaac Patel was involved in an incident at or near Northbridge High Street. The account relies on witness\ndescription, timing material and item continuity.\nThere is an issue for review: case stops mid-narrative after continuation page. The papers do not resolve this point on the face of the\nserved material.\nInterview position is summarised only. Where the full recording or transcript is not served, the account must not be treated as a settled\nadmission.\nIssues for review\n- case stops mid-narrative after continuation page\n- Confirm served material against MG6 schedule\n- Check whether hearing/listing date has been superseded\n",
+    "7": "MG6 DISCLOSURE SCHEDULE\nCBTB546\nPage 7\nItem\nDescription\nStatus\nNotes\nMG6/01\nforensic submission note\nserved\nlisted as served\nMG6/02\ncharge sheet\nserved\navailable in bundle\nMG6/03\nMG5 case summary\nserved\navailable in bundle\nMG6/04\nsigned final MG11\noutstanding\nrequested / not attached\nMG6/05\nfull CCTV master\noutstanding\nrequested / not attached\nMG6/06\ncustody record pages 3-5\noutstanding\nrequested / not attached\nMG6/07\nfull interview transcript\noutstanding\nrequested / not attached\n",
+    "12": "MG6 DISCLOSURE SCHEDULE\nCB-TB-546\nPage 12\nItem\nDescription\nStatus\nNotes\nMG6/01\nforensic submission note\nserved\navailable in bundle\nMG6/02\ncharge sheet\nserved\navailable in bundle\nMG6/03\nMG5 case summary\nserved\navailable in bundle\nMG6/04\nsigned final MG11\noutstanding\nrequested / not attached\nMG6/05\nfull CCTV master\noutstanding\nrequested / not attached\nMG6/06\ncustody record pages 3-5\noutstanding\nrequested / not attached\nMG6/07\nfull interview transcript\noutstanding\nrequested / not attached\n",
+    "8": "EXHIBIT LIST\nCB-TB-546\nPage 8\nExhibit List\nEX/01 - item referred to in MG5 (listed).\nEX/02 - continuity note to be checked against witness and MG6 schedule.\nCPS disclosure email: further material may be served before the next hearing.\n",
+    "4": "MG11 - WITNESS STATEMENT\nCBTB546\nPage 4\nWITNESS STATEMENT\nStatement of: Sofia Thornton\nDate: 19/02/2026\nContinuation sheet. The first page of this statement is not placed immediately before this page in the bundle.\nI make this statement about the incident involving Isaac Patel.\nMy account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing\nmaterial.\nI refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle.\n",
+    "5": "MG11 - POLICE STATEMENT\nCB-TB-546\nPage 5\nWITNESS STATEMENT\nStatement of: Noah Morgan\nDate: 17/08/2026\nI make this statement about the incident involving Isaac Patel.\nMy account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing\nmaterial.\nI refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle.\n",
+    "6": "CUSTODY / INTERVIEW NOTE\nCB-TB-546\nPage 6\nCustody / interview extract\nArrest authorised in relation to Affray.\nLegal advice requested. Interview summary available on this file.\nFull interview recording / transcript: not served in this bundle.\n"
+  },
+  "first_page_preview": "CASE PAPERS - INDEX\nCBTB546\nPage 1\nR v Isaac Patel\nDefendant: Isaac Patel\nCourt: Southford MagistratesCourt\nHearing: 25August 2026 10:30\nStage: First appearance\nURN: 26/171779/NBR\nBundle index\nTab 1: Charge sheet / case details\nTab 2: MG5 case summary\nTab 3: MG11 witness statement\nTab 4: MG11 police statement\nTab 5: Custody/interview note\nTab 6: MG6 disclosure schedule\nTab 7: Exhibit list\n"
+}

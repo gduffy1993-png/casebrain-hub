@@ -9,6 +9,7 @@ import {
   SERIOUS_VIOLENCE_PRIMARY_ROUTE_TITLE,
   SERIOUS_VIOLENCE_PROVISIONAL_COURT_LINE,
 } from "@/lib/eval/casebrain-auditor/provisional-offence-policy";
+import { stripDoNotInventAdvisory } from "@/lib/criminal/chase-source-gate";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { isPlaceholderHearingIso } from "@/lib/criminal/solicitor-hearing-display";
 import type { BattleboardOutput, BattleboardRoute } from "@/lib/criminal/strategy-battleboard";
@@ -126,7 +127,8 @@ const PROFILE_PACKS: Record<StandardWorkflowProfile, ProfilePack> = {
     primaryRouteTitle: "Identification / participation / attribution pressure",
     disclosureItems: [
       "Full CCTV master footage",
-      "CCTV continuity / export log",
+      "CCTV continuity / provenance",
+      "CCTV export log",
       "ID procedure material",
       "999 / CAD timing material",
       "Complainant first account",
@@ -134,12 +136,14 @@ const PROFILE_PACKS: Record<StandardWorkflowProfile, ProfilePack> = {
       "Final signed complainant statement",
     ],
     nextActions: [
-      "Chase full CCTV master/export log and continuity.",
+      "Chase full CCTV master and continuity.",
+      "Chase CCTV export log.",
       "Chase ID procedure material and complainant first account.",
       "Take instructions on presence, clothing and served CCTV/ID material.",
     ],
     courtRecordAsks: [
-      "Ask the court to record that full CCTV master/export log appears outstanding on the current papers.",
+      "Ask the court to record that full CCTV master appears outstanding on the current papers.",
+      "Ask the court to record that CCTV export log appears outstanding on the current papers.",
       "Ask the court to record that ID procedure material appears outstanding.",
       "Ask the court to record that 999/CAD timing material appears outstanding.",
       "Ask the court to record that complainant first account material appears outstanding.",
@@ -421,6 +425,16 @@ const PROFILE_SOURCE_SUPPORT_RULES: SourceSupportRule[] = [
     output: /\b(?:full phone extraction|phone download|source export|device download|sim|imei|subscriber)\b/i,
     source: /\b(?:full phone extraction|phone extraction|phone download|source export|device download|sim|imei|subscriber)\b/i,
   },
+  {
+    output: /\bexport\s+log\b/i,
+    source: /\bexport\s+log\b/i,
+  },
+  // CCTV master/continuity — invent-advisory "assuming missing CCTV" is not source support.
+  {
+    output: /\b(?:full cctv|cctv master|cctv continuity|cctv export|master footage|full\s*window)\b/i,
+    source:
+      /\b(?:cctv\s+stills|partial\s+cctv|full\s+cctv|cctv\s+master|master\s+footage|full\s*(?:time\s+)?window|cctv\s+(?:footage|export|continuity|outstanding)|video\s+footage|camera\s+footage|dashcam)\b/i,
+  },
 ];
 
 const ASSERTIVE_SOURCE_EXPECTATION_RE =
@@ -441,7 +455,12 @@ function profileLineHasSourceSupport(
   if (!sourceText) return true;
 
   for (const rule of PROFILE_SOURCE_SUPPORT_RULES) {
-    if (rule.output.test(line) && !rule.source.test(sourceText)) return false;
+    if (!rule.output.test(line)) continue;
+    // Invent-advisory "assuming missing CCTV" must not satisfy CCTV master/continuity support.
+    const hay = /\b(?:cctv|master footage|full\s*window)\b/i.test(line)
+      ? stripDoNotInventAdvisory(sourceText)
+      : sourceText;
+    if (!rule.source.test(hay)) return false;
   }
   return true;
 }
@@ -544,6 +563,32 @@ export function pickWorkflowPrimaryRoute(
   return substantive ?? routes[0] ?? null;
 }
 
+/** Build robbery conditional phrase; drop modality clauses the papers never mention. */
+function robberySourceMaterialPhrase(context: WorkflowProfileContext): string {
+  const profile: WorkflowProfile = "robbery_identification";
+  const parts = ["full CCTV", "ID procedure material"];
+  if (profileLineHasSourceSupport("999/CAD timing", context, profile)) {
+    parts.push("999/CAD timing");
+  }
+  parts.push(
+    "complainant statement",
+    "any other-person attribution expressly raised by the papers",
+    "interview material",
+  );
+  if (parts.length === 1) return parts[0]!;
+  if (parts.length === 2) return `${parts[0]} and ${parts[1]}`;
+  return `${parts.slice(0, -1).join(", ")}, and ${parts[parts.length - 1]}`;
+}
+
+function robberySafeCourtLine(context: WorkflowProfileContext): string {
+  const phrase = robberySourceMaterialPhrase(context);
+  return `Identification and participation remain conditional on ${phrase}. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.`;
+}
+
+function robberyDisclosureCaseWideLine(context: WorkflowProfileContext): string {
+  return `Identification, participation and attribution remain conditional on ${robberySourceMaterialPhrase(context)}.`;
+}
+
 export function workflowSafeCourtLine(context: WorkflowProfileContext): string | null {
   const profile = resolveWorkflowProfile(context);
   switch (profile) {
@@ -552,7 +597,7 @@ export function workflowSafeCourtLine(context: WorkflowProfileContext): string |
     case "pwits_phone_attribution":
       return "Possession and phone-attribution issues remain conditional on served extraction and search material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
     case "robbery_identification":
-      return "Identification and participation remain conditional on full CCTV, ID procedure material, 999/CAD timing, complainant statement, any other-person attribution expressly raised by the papers, and interview material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
+      return robberySafeCourtLine(context);
     case "generic_motoring_provisional":
       return MOTORING_PROVISIONAL_COURT_LINE;
     case "generic_serious_violence_provisional":
@@ -564,6 +609,7 @@ export function workflowSafeCourtLine(context: WorkflowProfileContext): string |
   }
 }
 
+/** @deprecated Prefer {@link robberyDisclosureCaseWideLine} via workflowDisclosureCaseWideLine. */
 const ROBBERY_DISCLOSURE_CASE_WIDE =
   "Identification, participation and attribution remain conditional on full CCTV, ID procedure material, 999/CAD timing, complainant statement, any other-person attribution expressly raised by the papers, and interview material.";
 
@@ -580,7 +626,7 @@ export function workflowDisclosureCaseWideLine(context: WorkflowProfileContext):
     return "Possession, knowledge, intent to supply and phone attribution remain conditional on full phone extraction, search BWV, drug/cash continuity and co-occupier material.";
   }
   if (profile === "robbery_identification") {
-    return ROBBERY_DISCLOSURE_CASE_WIDE;
+    return robberyDisclosureCaseWideLine(context);
   }
   if (profile === "generic_motoring_provisional") {
     return "Standard of driving, driver attribution, collision sequence, dashcam/CCTV/BWV, CAD/999, expert/collision material, medical/injury evidence where relevant, and served interview/account remain conditional on service.";
@@ -890,7 +936,7 @@ export function isMalformedPilotEvidenceAnchor(text: string): boolean {
 }
 
 /** Leon / robbery pilot display — phone-free wording and clean CCTV fragments. */
-function normalizeRobberyPilotVisibleLine(line: string): string {
+function normalizeRobberyPilotVisibleLine(line: string, context: WorkflowProfileContext): string {
   let s = line.trim();
   if (!s) return s;
 
@@ -902,13 +948,13 @@ function normalizeRobberyPilotVisibleLine(line: string): string {
     /Identification, participation and attribution remain conditional/i.test(s) &&
     /phone evidence/i.test(s)
   ) {
-    return ROBBERY_DISCLOSURE_CASE_WIDE;
+    return robberyDisclosureCaseWideLine(context);
   }
 
   if (/phone evidence and witness source material/i.test(s)) {
     s = s.replace(
       /phone evidence and witness source material/gi,
-      ROBBERY_SOURCE_MATERIAL_PHRASE,
+      robberySourceMaterialPhrase(context),
     );
   }
 
@@ -940,7 +986,7 @@ export function sanitizePilotVisibleLine(
 
   const profile = resolveWorkflowProfile(context);
   if (profile === "robbery_identification") {
-    t = normalizeRobberyPilotVisibleLine(t);
+    t = normalizeRobberyPilotVisibleLine(t, context);
   }
 
   if (isMalformedPilotEvidenceAnchor(t)) {
@@ -948,7 +994,7 @@ export function sanitizePilotVisibleLine(
       t = t.replace(/\s*\/\s*against extract\b/gi, "").replace(/\bagainst extract\b/gi, "").trim();
       if (!t) return null;
     } else if (profile === "robbery_identification") {
-      const recovered = normalizeRobberyPilotVisibleLine(t);
+      const recovered = normalizeRobberyPilotVisibleLine(t, context);
       if (
         recovered ===
         "CCTV footage is not served in full; any other-person attribution must be checked against served papers."

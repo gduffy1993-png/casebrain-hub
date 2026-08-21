@@ -1,0 +1,170 @@
+[
+  {
+    "unique_key": "sha:1db27817afb48d5a92aeb5ea69d09183c56e36c37d53aaa3b0a9871d7b2f688d",
+    "case_key": "PDF-1db27817afb4",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Blind_Bundle_Factory_v2_30_bundles (1)\\pdfs\\CB-TB-001_Ryan_Hale.pdf",
+    "family": "mute_hearing_despite_pdf"
+  },
+  {
+    "unique_key": "sha:0b966f3d6296a8359519de929cd2dd558a4b6bdd47b17f6924d0c11b27f4c69f",
+    "case_key": "ARDEN-MONSTER-0001",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Monster_and_Charge_Coverage_2026\\casebrain_monster_charge\\Monster_Bundle_Load_Pack\\pdfs\\CB-MONSTER-2026-0001.pdf",
+    "family": "mute_hearing_despite_pdf"
+  },
+  {
+    "unique_key": "sha:d7709f8ba67e686353a9e653e13967a12e2b8da3b54bcb6fbe459dddc101e0d6",
+    "case_key": "PDF-d7709f8ba67e",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CB-TB-10_Neil_Mitchell.pdf",
+    "family": "invent_court_header"
+  },
+  {
+    "unique_key": "sha:e9fbf463f6aec6f229ea0ada385df91a26ae6a5d1be009337bc995965dc4441c",
+    "case_key": "PDF-e9fbf463f6ae",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CB-TB-16_Kian_Doyle.pdf",
+    "family": "invent_court_header"
+  },
+  {
+    "unique_key": "sha:5bcd36e1ef8c3611e43e76cef64bbef75056bc76a812d2857977e8e6cfcd42d9",
+    "case_key": "RP-06",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Packs_V_W_X_2026\\CaseBrain_Packs_V_W_X_2026\\Pack_V_CB_LEVERAGE_2026\\pdfs\\CB-LEVERAGE-2026-0001.pdf",
+    "family": "mute_hearing_despite_pdf"
+  },
+  {
+    "unique_key": "sha:0f43e4fab5fa0a7b250de5101ad14b6ad0310a549ddca44bbd6e179d6cb9f523",
+    "case_key": "CB-CHARGE-2026-0001",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Monster_and_Charge_Coverage_2026\\casebrain_monster_charge\\Charge_Coverage_Smoke_Pack\\pdfs\\CB-CHARGE-2026-0001.pdf",
+    "family": "mute_hearing_despite_pdf"
+  },
+  {
+    "unique_key": "sha:cbc1d8d5da2238bb4124df1af92745ae1823be2b491273906e1d03e2f703e7be",
+    "case_key": "RP-09",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Eval_Regression_Packs_C_D\\CaseBrain_Eval_Regression_Packs_C_D\\Pack_C_Hallucination_Trap\\PDFs\\CB-TRAP-2026-0030.pdf",
+    "family": "mute_hearing_despite_pdf"
+  },
+  {
+    "unique_key": "sha:b325fb23d6c9a7e367c6568de260ffc0be86a8be9dd63f99122250a9962dde2e",
+    "case_key": "CB-CHARGE-2026-0002",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Monster_and_Charge_Coverage_2026\\casebrain_monster_charge\\Charge_Coverage_Smoke_Pack\\pdfs\\CB-CHARGE-2026-0002.pdf",
+    "family": "mute_hearing_despite_pdf"
+  },
+  {
+    "unique_key": "sha:5bd795c2cb77ed3be00e2d7f2fac21a18f439f600117f5b573dd411139aaabb3",
+    "case_key": "CB-CHARGE-2026-0004",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Monster_and_Charge_Coverage_2026\\casebrain_monster_charge\\Charge_Coverage_Smoke_Pack\\pdfs\\CB-CHARGE-2026-0004.pdf",
+    "family": "mute_hearing_despite_pdf"
+  },
+  {
+    "unique_key": "sha:93024377e3dfe32bb7813e5ea98072f476840badeadf077fdc2b49bbb659cee2",
+    "case_key": "CB-CHARGE-2026-0011",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Monster_and_Charge_Coverage_2026\\casebrain_monster_charge\\Charge_Coverage_Smoke_Pack\\pdfs\\CB-CHARGE-2026-0011.pdf",
+    "family": "mute_hearing_despite_pdf"
+  },
+  {
+    "unique_key": "sha:00c4901e34559769c5bec177fb9f01c087ee44a8cbed0e056f216dc11166bddd",
+    "case_key": "PDF-00c4901e3455",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-901-1100-v5\\pdfs\\CB-TB-975_Brooks.pdf",
+    "family": "invent_court_header"
+  },
+  {
+    "unique_key": "sha:0db26fb8bf9a348b67057653e87d738c10ea5e690fec3340bc9f09fd0752bb4b",
+    "case_key": "PDF-0db26fb8bf9a",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-901-1100-v5\\pdfs\\CB-TB-914_Farrell.pdf",
+    "family": "invent_court_header"
+  },
+  {
+    "unique_key": "sha:0f3efd3906ed6f5378dbe66745483b7e0be57642178fe1624d1395e0dbef1328",
+    "case_key": "PDF-0f3efd3906ed",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-101-200-v4\\pdfs\\CB-TB-182_Brooks.pdf",
+    "family": "invent_court_header"
+  },
+  {
+    "unique_key": "sha:14700df3912a2c5adddd86ee394de647fdb5c99bf834c0f566bd51130017cd3a",
+    "case_key": "PDF-14700df3912a",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-101-200-v4\\pdfs\\CB-TB-114_Hardy.pdf",
+    "family": "invent_court_header"
+  },
+  {
+    "unique_key": "sha:1976cff5174a7775205d447c00b1293d04e685846fb9c42a9fc34b0cb1557261",
+    "case_key": "PDF-1976cff5174a",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Blind_Bundle_Factory_v2_30_bundles (1)\\pdfs\\CB-TB-012_Alex_Morley.pdf",
+    "family": "mute_defendant_despite_pdf"
+  },
+  {
+    "unique_key": "sha:1bd82cab8217d963045f6e63c868ca5381e9bdd4c1d0b68cab57d18e74e8e4bc",
+    "case_key": "PDF-1bd82cab8217",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-901-1100-v5\\pdfs\\CB-TB-972_Akhtar.pdf",
+    "family": "invent_court_header"
+  },
+  {
+    "unique_key": "sha:1e223a9582a41c18a84fdadb9799741a0bd02ffe2a65a6c06764664ca609aef7",
+    "case_key": "PDF-1e223a9582a4",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-101-200-v4\\pdfs\\CB-TB-110_Okonkwo.pdf",
+    "family": "invent_court_header"
+  },
+  {
+    "unique_key": "sha:1f901eb7cb56291af5909e25ec437203d90a19fe177e12df868b0d59d93ef9e0",
+    "case_key": "PDF-1f901eb7cb56",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-101-200-v4\\pdfs\\CB-TB-194_Ahmed.pdf",
+    "family": "invent_court_header"
+  },
+  {
+    "unique_key": "sha:226801f85a3c0c39908ef30ba8f9ee6aa329999842ac3452307525a354e984b2",
+    "case_key": "PDF-226801f85a3c",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-101-200-v4\\pdfs\\CB-TB-160_Marlow.pdf",
+    "family": "invent_court_header"
+  },
+  {
+    "unique_key": "sha:287c7211fa15c443bbd097a6165049c86a4f2001bea0ddc0630ebcd511ab7052",
+    "case_key": "PDF-287c7211fa15",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\test casess\\gauntlet-06-dup-mg6.pdf",
+    "family": "mute_defendant_despite_pdf"
+  },
+  {
+    "unique_key": "sha:29c8f36160c1e12d43a1227bcb1a3a2b9f847d9a28796be945191fcd8fc97483",
+    "case_key": "PDF-29c8f36160c1",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-901-1100-v5\\pdfs\\CB-TB-905_Doyle.pdf",
+    "family": "invent_court_header"
+  },
+  {
+    "unique_key": "sha:33245afe3cec9b24e07f67668ce0e61414b6a7d97d2278862877f7f0cae32421",
+    "case_key": "PDF-33245afe3cec",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\cb-tb-901-1100-v5\\pdfs\\CB-TB-912_Archer.pdf",
+    "family": "invent_court_header"
+  },
+  {
+    "unique_key": "sha:3fe917d580ae34f1b9ee5e56692dc03e7ef0f4c28d3ae027283cd57e115a5d3a",
+    "case_key": "PDF-3fe917d580ae",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\test casess\\gauntlet-05-offence-mix.pdf",
+    "family": "mute_defendant_despite_pdf"
+  },
+  {
+    "unique_key": "sha:4a2a9b7bcd3d330375fca9fea7623e3997181eabd46fb6c5a150021df9da36d8",
+    "case_key": "PDF-4a2a9b7bcd3d",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Blind_Bundle_Factory_v2_30_bundles (1)\\pdfs\\CB-TB-019_Ella_Shaw.pdf",
+    "family": "mute_defendant_despite_pdf"
+  },
+  {
+    "unique_key": "sha:6393bb4453b2c82a35ac169442bca4e3915cbe44d8efae12101fa98a37a8a9c2",
+    "case_key": "PDF-6393bb4453b2",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\custody.pdf (1).pdf",
+    "family": "mute_defendant_despite_pdf"
+  },
+  {
+    "unique_key": "sha:6b4d1cac021d87073059afa3d421f4b12d057a6ccd1bd662e7ad18a169dbff6f",
+    "case_key": "PDF-6b4d1cac021d",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Blind_Bundle_Factory_v2_30_bundles (1)\\pdfs\\CB-TB-007_Zara_Wright.pdf",
+    "family": "mute_defendant_despite_pdf"
+  },
+  {
+    "unique_key": "sha:6f4d8dfbaa3b7de2c4b223cdfb437231aefc842a70bb6ee6e08dd55dd76822e8",
+    "case_key": "PDF-6f4d8dfbaa3b",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Blind_Bundle_Factory_v2_30_bundles (1)\\pdfs\\CB-TB-018_Oscar_Bell.pdf",
+    "family": "mute_defendant_despite_pdf"
+  },
+  {
+    "unique_key": "sha:6f4e0892558b7d5633c4c4da255689922e7e1aafd03b078945840227cea034a0",
+    "case_key": "PDF-6f4e0892558b",
+    "pdf_path": "C:\\Users\\gduff\\Downloads\\CaseBrain_Blind_Bundle_Factory_v2_30_bundles (1)\\pdfs\\CB-TB-020_Ethan_Miles.pdf",
+    "family": "mute_defendant_despite_pdf"
+  }
+]
