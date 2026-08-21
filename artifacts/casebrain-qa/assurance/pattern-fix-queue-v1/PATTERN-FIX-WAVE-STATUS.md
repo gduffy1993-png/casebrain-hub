@@ -2,9 +2,11 @@
 
 
 
-**Verdict:** `C0_COMPLETE_FINDONLY` (Court 2600 scored; invent_bwv **520** / interview **261** / CAD invent **194** — triage next)
+**Verdict:** `C1_COURT_INVENT_ARMOUR` (C0.5 triage + shared-root Court invent armour; opposite PASS)
 
-**Chunk C0 Court find-only:** `CHUNK-C0-COURT-FINDONLY.md` · pack `court-criminal-sweep-v1/` · tip `e3179fa74` · hitlist **1478**
+**Chunk C0.5/C1 Court invent:** `CHUNK-C05-C1-COURT-INVENT-ARMOUR.md` · opposites in `f167-surgical-truth-opposite-direction.test.ts`
+
+**Chunk C0 Court find-only:** `CHUNK-C0-COURT-FINDONLY.md` · pack `court-criminal-sweep-v1/` · tip `713a056b4` · hitlist **1478** (pre-armour tallies)
 
 **PR:** https://github.com/gduffy1993-png/casebrain-hub/pull/70
 

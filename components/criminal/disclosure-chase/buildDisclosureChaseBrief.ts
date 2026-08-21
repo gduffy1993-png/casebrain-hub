@@ -45,8 +45,11 @@ import {
   familySupport,
   gateProseAgainstSource,
   isBwvFullExportEstablished,
+  isCad999Established,
   isCctvContinuityEstablished,
   isCctvMasterEstablished,
+  isInterviewRecordingEstablished,
+  isInterviewTranscriptEstablished,
   type ChaseGateFamily,
 } from "@/lib/criminal/chase-source-gate";
 import { buildCriminalBriefPlan, type CriminalBriefPlan } from "@/lib/criminal/brief-plan";
@@ -150,7 +153,11 @@ const CHASE_FAMILIES: FamilyDef[] = [
     label: "CAD / 999 audio / control-room material",
     source: "Police control room",
     priority: 3,
-    match: (t) => /\b(999|cad|control\s*room|dispatch)\b/.test(t),
+    // Bare "999" (page / schedule noise) must not classify as CAD (Court C0.5).
+    match: (t) =>
+      /\b(cad|control\s*room|dispatch\s+log|999\s+(?:audio|call|recording)|CAD\s*\/\s*999|emergency\s+call)\b/i.test(
+        t,
+      ),
   },
   {
     id: "bwv",
@@ -453,7 +460,9 @@ export function interviewChaseLabelFromSignals(blob: string): string {
 
 /**
  * Split interview summary≠recording≠transcript on Chase cards.
- * Drop summary-only invent; keep recording/transcript when PDF-established.
+ * Drop summary-only invent; drop recording invent unless PDF establishes recording modality
+ * (PACE interview / custody alone must not become "Interview recording").
+ * Keep recording/transcript when PDF-established.
  */
 export function reconcileInterviewModalityItems(
   items: DisclosureChaseItem[],
@@ -483,20 +492,72 @@ export function reconcileInterviewModalityItems(
       // Thin-file invent (Trap): no PACE recording/transcript established on papers.
       // Evaluate source hay only — do not treat the chase card's own blend label as establishment.
       const sourceHay = `${bundleText ?? ""}`;
+      const provenanceHay = item.provenance?.unresolvedConflictOrLimitation ?? "";
+      const modalityHay = `${sourceHay}\n${provenanceHay}`;
       const thinFileNoPace =
         /\bno\s+pace\s+interview\b/i.test(sourceHay) ||
         /\bno\s+(?:pace\s+)?interview\s+(?:transcript|summary|recording)\b/i.test(sourceHay);
       const sourceEstablishesRecordingOrTranscript =
-        /\b(?:full\s+)?(?:interview\s+)?(?:recording|transcript)\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|needed)\b/i.test(
-          sourceHay,
-        ) ||
-        /\b(?:outstanding|not\s+served|not\s+attached|needed)\b[^.\n]{0,48}\b(?:full\s+)?(?:interview\s+)?(?:recording|transcript)\b/i.test(
-          sourceHay,
-        );
+        isInterviewRecordingEstablished(modalityHay) || isInterviewTranscriptEstablished(modalityHay);
       if (thinFileNoPace && !sourceEstablishesRecordingOrTranscript) return null;
+
+      const labelClaimsRecording =
+        /\binterview\s+recording\b/i.test(item.label) ||
+        /\brecording\s*\/\s*transcript\b/i.test(item.label) ||
+        (/^Interview recording$/i.test(item.label.trim()) &&
+          !/\btranscript\b/i.test(item.label));
+
+      // Court C0.5: PACE interview / custody without recording modality → never invent recording.
+      // Use source + provenance only (never the card's own "Interview recording" label).
+      if (labelClaimsRecording && !isInterviewRecordingEstablished(modalityHay)) {
+        if (isInterviewTranscriptEstablished(modalityHay)) {
+          return {
+            ...item,
+            label: "Interview transcript",
+            draftChaseWording:
+              "Please provide the interview transcript, or confirm in writing why it is not available.",
+            courtLine: toCourtLine("Interview transcript"),
+            whyItMatters:
+              "Interview summary or partial record on file is not a substitute for the full transcript.",
+          };
+        }
+        if (
+          /\b(?:pace\s+interview|custody\s+record|detention\s+log|safeguards?\s+checklist)\b/i.test(
+            sourceHay,
+          )
+        ) {
+          return {
+            ...item,
+            label: "Full custody record / PACE material",
+            draftChaseWording:
+              "Please provide the full custody record, detention log, risk assessment and safeguards checklist, or confirm why any item is unavailable.",
+            courtLine: toCourtLine("Full custody record / PACE material"),
+            whyItMatters:
+              "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          };
+        }
+        return null;
+      }
 
       const label = interviewChaseLabelFromSignals(blob);
       if (label === item.label && !/recording\s*\/\s*transcript/i.test(item.label)) return item;
+
+      // interviewChaseLabelFromSignals may still default to "Interview recording" —
+      // re-check establishment before keeping that invent surface.
+      if (/\binterview\s+recording\b/i.test(label) && !isInterviewRecordingEstablished(modalityHay)) {
+        if (isInterviewTranscriptEstablished(modalityHay)) {
+          return {
+            ...item,
+            label: "Interview transcript",
+            draftChaseWording:
+              "Please provide the interview transcript, or confirm in writing why it is not available.",
+            courtLine: toCourtLine("Interview transcript"),
+            whyItMatters:
+              "Interview summary or partial record on file is not a substitute for the full transcript.",
+          };
+        }
+        return null;
+      }
 
       return {
         ...item,
@@ -1434,6 +1495,10 @@ function gateItemsAgainstSource(
     if (item.familyId === "bwv" && !isBwvFullExportEstablished(bundleText)) {
       continue;
     }
+    // Bare page-999 / schedule noise must not keep CAD lump invent (Court C0.5).
+    if (item.familyId === "cad_999" && !isCad999Established(bundleText)) {
+      continue;
+    }
 
     const families = gateFamiliesForItem(item);
     if (!families.length) {
@@ -1859,12 +1924,37 @@ function canonicalLedgerMaterial(
     };
   }
   if (familyId === "interview" && /\bcustody|pace|detention|safeguard/i.test(displayLine)) {
+    // Only treat recording/transcript as established from this line when it is not merely a
+    // custody lump that also names interview recording as a template invent.
+    const recordingModalityLine =
+      /\binterview\s+recording\b/i.test(displayLine) &&
+      !/\bfull\s+custody\s+record\b/i.test(displayLine);
+    const transcriptModalityLine =
+      /\binterview\s+transcript\b/i.test(displayLine) &&
+      !/\bfull\s+custody\s+record\b/i.test(displayLine);
+    if (recordingModalityLine || (isInterviewRecordingEstablished(displayLine) && !/\bfull\s+custody\s+record\b/i.test(displayLine))) {
+      return {
+        label: "Interview recording",
+        whyItMatters: "Interview summary on file is not a substitute for the interview recording.",
+        draftChaseWording:
+          "Please provide the interview recording, or confirm in writing why it is not available.",
+      };
+    }
+    if (transcriptModalityLine || (isInterviewTranscriptEstablished(displayLine) && !/\bfull\s+custody\s+record\b/i.test(displayLine))) {
+      return {
+        label: "Interview transcript",
+        whyItMatters:
+          "Interview summary or partial record on file is not a substitute for the full transcript.",
+        draftChaseWording:
+          "Please provide the interview transcript, or confirm in writing why it is not available.",
+      };
+    }
     return {
       label: "Full custody record / PACE material",
       anchor: "MG6/MG6C schedule — custody record extract only",
       whyItMatters: "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
       draftChaseWording:
-        "Please provide the full custody record, detention log, risk assessment, safeguards checklist and interview recording/transcript, or confirm why any item is unavailable.",
+        "Please provide the full custody record, detention log, risk assessment and safeguards checklist, or confirm why any item is unavailable.",
     };
   }
   // Papers/Chase shared root: prefer clean phone-download identity over multi-clause schedule prose
@@ -2101,6 +2191,9 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   // collapse/finalize was rewriting digital cards into "Outstanding source material…".
   items = reconcilePhoneDownloadModalityItems(items, modalityHay);
   items = reconcileSubscriberModalityItems(items, modalityHay);
+  // Re-assert interview recording≠PACE/custody after collapse/finalize (Court C1).
+  items = reconcileInterviewModalityItems(items, input.bundleText);
+  items = reconcileCad999ModalityItems(items, input.bundleText);
   items = finalizeDisclosureChasePresentation(items);
   items = items.map((item) => ({
     ...item,

@@ -14,7 +14,7 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 
 | Status | N |
 |--------|--:|
-| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute) | 23 |
+| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute + C1 Court invent) | 26 |
 | OPEN (remaining) | 0 |
 | STOP → Phase B (Papers / Client) | 0 |
 | WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft) | 6 |
@@ -36,6 +36,9 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 | `TRAP_INTERVIEW_RECORDING_INVENT` | Overview/Court/Papers/Chase | invent | Trap-0030 | No PACE recording/transcript | LIVE TN on freeze Preview |
 | `BWV_STILLS_SERVED_PROMOTED_TO_FULL_EXPORT` | Chase (+ Overview gaps) | invent / modality | Dunn TN; Tobin/CASE-02 TP | Dunn S01 BWV stills Served ≠ full export | Chunk 3 — `isBwvFullExportEstablished` + family gate · Preview `76gk8` · opposite I3 |
 | `PAPERS_PHONE_DOWNLOAD_MUTE` | Papers inventory + Chase | mute / modality | Brookes TP; Arden TN | Outstanding download outside MG6 head + download≠subscriber collapse | Chunk P1 — material ITEM_RE + denial + subscriber rewrite guard · opposite L2 |
+| `COURT_DO_NOT_INVENT_DETECTOR_NOISE` | Court sweep invent flags | detector | Arden invent_bwv | DO_NOT “Do not import BWV/CAD…” ≠ invent claim | C0.5 — inventClaimBlob excludes DO_NOT |
+| `COURT_INTERVIEW_RECORDING_FROM_PACE_PLAYBOOK` | Court/Chase | invent | RP-03; PDF-0d761… | PACE/custody ≠ interview recording | C1 — playbook + reconcileInterview + establishment helpers |
+| `COURT_CAD_FROM_PAGE_999` | Court/Chase | invent | PDF-044f2ca43399 | Bare schedule “999” ≠ CAD | C1 — isCad999Established + match tighten |
 
 ---
 

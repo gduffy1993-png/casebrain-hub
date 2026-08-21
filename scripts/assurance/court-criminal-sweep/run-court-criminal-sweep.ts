@@ -583,7 +583,7 @@ function scoreInvent(
     cad_999_claim: /\bCAD\b|999\s+audio|complete CAD/i.test(claimBlob),
     cad_999_source: /\bCAD\b|999\s+audio|CAD\/999|command and (?:dispatch|control)/i.test(bundleText),
     interview_recording_claim: /interview recording|PACE recording|audio.?visual interview/i.test(claimBlob),
-    interview_recording_source: /interview recording|PACE recording|audio.?visual|ROTI|tape/i.test(bundleText),
+    interview_recording_source: /interview recording|PACE recording|audio.?visual interview|\bROTI\b/i.test(bundleText),
     subscriber_claim: /subscriber|account (?:records?|data)/i.test(claimBlob),
     subscriber_source: /subscriber|account (?:records?|data)/i.test(bundleText),
     bwv_claim: /\bBWV\b|body[- ]worn/i.test(claimBlob),
@@ -712,6 +712,7 @@ function scoreInvent(
 function projectCourt(bundleTextRaw: string, title: string): {
   claims: string[];
   claimBlob: string;
+  inventClaimBlob: string;
   identity: { defendant?: string | null; offence?: string | null };
   ledgerMeta: SweepResult["ledgerMeta"];
   engineMs: number;
@@ -773,6 +774,9 @@ function projectCourt(bundleTextRaw: string, title: string): {
     if (line) claims.push(`DO_NOT | ${line}`);
   }
 
+  // Invent scoring must ignore DO_NOT / do-not-overstate lines — they name families only to forbid invention
+  // (C0.5: invent_bwv 519/520 and invent_cad ~164 were DO_NOT detector noise).
+  const inventClaimBlob = claims.filter((c) => !/^DO_NOT\b/i.test(c)).join("\n");
   const claimBlob = claims.join("\n");
   const defendant =
     ledger.defendant?.defendant ||
@@ -786,6 +790,7 @@ function projectCourt(bundleTextRaw: string, title: string): {
   return {
     claims,
     claimBlob,
+    inventClaimBlob,
     identity: { defendant, offence },
     ledgerMeta: {
       materialCount: claims.length,
@@ -1256,7 +1261,7 @@ async function main() {
       base.courtClaims = proj.claims;
       base.identityHints = proj.identity;
       base.ledgerMeta = proj.ledgerMeta;
-      const scored = scoreInvent(text, proj.claimBlob, proj.ledgerMeta.materialCount, proj.ledgerMeta.hearingRaw);
+      const scored = scoreInvent(text, proj.inventClaimBlob, proj.ledgerMeta.materialCount, proj.ledgerMeta.hearingRaw);
       base.inventFlags = scored.inventFlags;
       base.muteFlags = scored.muteFlags;
       base.modalityFlags = scored.modalityFlags;

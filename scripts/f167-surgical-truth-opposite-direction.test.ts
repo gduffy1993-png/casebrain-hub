@@ -1018,6 +1018,117 @@ Evidence referred or outstanding: Full BWV export; full custody record.
     "No PACE interview transcript or summary is provided. Outstanding/not provided: interview record.",
   );
   assert.equal(trapInterview.length, 0, "Trap: do not invent interview recording from interview record alone");
+
+  // Court C0.5 / C1: PACE interview alone must not invent Interview recording chase.
+  const paceOnlyInterview = reconcileInterviewModalityItems(
+    [
+      {
+        id: "chase-family-interview",
+        familyId: "interview",
+        label: "Interview recording",
+        whyItMatters: "test",
+        source: "Custody",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "test",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording: "Please provide Interview recording",
+        courtLine: "Interview recording outstanding",
+        mergedFrom: ["PACE interview conducted"],
+      },
+    ],
+    "Defendant attended PACE interview under caution. Custody record extract Present. Charge: theft.",
+  );
+  assert.ok(
+    paceOnlyInterview.every((i) => !/\binterview recording\b/i.test(i.label)),
+    "PACE interview alone must not keep Interview recording invent label",
+  );
+
+  const recordingOutstanding = reconcileInterviewModalityItems(
+    [
+      {
+        id: "chase-family-interview",
+        familyId: "interview",
+        label: "Interview recording",
+        whyItMatters: "test",
+        source: "Custody",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "test",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording: "Please provide Interview recording",
+        courtLine: "Interview recording outstanding",
+        mergedFrom: ["Interview recording outstanding"],
+      },
+    ],
+    "Full interview recording outstanding. Interview transcript not served. PACE interview conducted.",
+  );
+  assert.ok(
+    recordingOutstanding.some((i) => /\binterview recording\b/i.test(i.label)),
+    "opposite: interview recording outstanding still surfaces",
+  );
+
+  // Court C0.5 / C1: bare page-999 must not invent CAD chase; real CAD stays.
+  const page999Cad = expandAndGateChaseLines(
+    ["Chase CAD audit and 999 audio.", "CAD / 999 audio / control-room material outstanding."],
+    "MG6 schedule page 999. Outstanding material listed. Robbery charge. No CAD log on file.",
+  );
+  assert.equal(
+    page999Cad.filter((l) => /\bCAD\b|999\s+audio/i.test(l)).length,
+    0,
+    "page-999 alone must not invent CAD / 999 audio chase",
+  );
+
+  const dunnCadKeep = expandAndGateChaseLines(
+    ["Chase CAD audit and 999 audio."],
+    "CAD / 999 Extract present. 999 audio outstanding. CAD log full print outstanding.",
+  );
+  assert.ok(dunnCadKeep.some((l) => /CAD audit|999 audio/i.test(l)), "opposite: real CAD/999 audio keeps chase");
+
+  // End-to-end Court C1: playbook/PACE must not invent recording; PDF recording outstanding stays.
+  const paceBrief = buildDisclosureChaseBrief({
+    caseId: "c1-pace",
+    caseTitle: "pace-only",
+    clientLabel: "D",
+    allegation: "Theft",
+    stage: "PTPH",
+    hearingStatus: "Unknown",
+    hearingDateIso: null,
+    bundleHealth: "ok",
+    positionStatus: "provisional",
+    battleboard: null,
+    bundleText:
+      "Defendant attended PACE interview under caution. Custody record extract Present. Charge: theft.",
+  });
+  assert.ok(
+    [...paceBrief.primaryItems, ...paceBrief.additionalItems].every(
+      (i) => !/\binterview recording\b/i.test(i.label),
+    ),
+    "buildDisclosureChaseBrief: PACE/custody alone must not invent Interview recording",
+  );
+
+  const recordingBrief = buildDisclosureChaseBrief({
+    caseId: "c1-rec",
+    caseTitle: "recording-outstanding",
+    clientLabel: "D",
+    allegation: "Theft",
+    stage: "PTPH",
+    hearingStatus: "Unknown",
+    hearingDateIso: null,
+    bundleHealth: "ok",
+    positionStatus: "provisional",
+    battleboard: null,
+    bundleText:
+      "Full interview recording outstanding. Interview transcript not served. PACE interview conducted. MG6 schedule Present.",
+  });
+  assert.ok(
+    [...recordingBrief.primaryItems, ...recordingBrief.additionalItems].some((i) =>
+      /\binterview recording\b/i.test(i.label),
+    ),
+    "buildDisclosureChaseBrief: interview recording outstanding still surfaces",
+  );
 }
 
 console.log("f167-surgical-truth-opposite-direction: PASS");

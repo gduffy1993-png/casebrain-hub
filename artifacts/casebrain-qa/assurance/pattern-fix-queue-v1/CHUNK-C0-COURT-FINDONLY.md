@@ -37,6 +37,6 @@ Court/Chase claim surface is **noisier than Overview/Papers tip** on invent_bwv 
 
 ## Next
 
-1. **C0.5** PDF spot-check `invent_bwv` + `invent_interview_recording` + `invent_cad_999` samples  
-2. **C1** shared-root Court invent armour with opposite tests  
-3. Then Client (D0) / File (E0)
+1. **C0.5 DONE** — see `CHUNK-C05-C1-COURT-INVENT-ARMOUR.md`  
+2. **C1 DONE** — shared-root Court invent armour + opposite tests  
+3. Optional Court tip re-sweep → then Client (D0) / File (E0)

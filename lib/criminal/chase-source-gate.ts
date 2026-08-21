@@ -27,7 +27,9 @@ export type FamilySupport = "mentioned" | "negated" | "absent";
 const MENTION_RES: Record<ChaseGateFamily, RegExp> = {
   cctv: /\bcctv\b|video\s+footage|camera\s+footage|dashcam|master\s+footage|\bfootage\b/i,
   bwv: /\bbwv\b|body[-\s]?worn/i,
-  cad_999: /\b999\b|\bcad\b|command\s+(?:and\s+)?(?:control|dispatch)|control[-\s]?room\s+log|dispatch\s+log|emergency\s+call/i,
+  // Never treat bare "999" (page numbers / schedule noise) as CAD establishment.
+  cad_999:
+    /\bcad\b|CAD\s*\/\s*999|999\s+(?:audio|call|recording)|command\s+(?:and\s+)?(?:control|dispatch)|control[-\s]?room\s+log|dispatch\s+log|emergency\s+call/i,
   medical: /\bmedical\b|hospital|a\s*&\s*e\b|ambulance|paramedic|\bgp\s+records?\b|\bfme\b|pathology|injury\s+report/i,
   interview: /\binterview\s+(?:recording|transcript|audio|video)\b|\bpace\s+interview\b|interview\s+recording|interview\s+transcript/i,
   // Unused/MG6C schedule — not a plain MG6 extract presence alone.
@@ -165,6 +167,69 @@ export function lineClaimsBwvFullExport(line: string): boolean {
     (/\b(?:bwv|body[- ]?worn)\b/i.test(line) &&
       /\b(?:full\s+export|continuity|audit\s+trail)\b/i.test(line))
   );
+}
+
+/**
+ * Affirmative CAD / 999-audio / control-room establishment.
+ * Bare schedule "page 999" must not establish a CAD chase (Court C0.5 hop).
+ */
+export function isCad999Established(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const affirmativeHay = sourceText
+    .replace(/\bno\s+cad\b[^.\n]{0,80}/gi, " ")
+    .replace(/\bno\s+999\s+audio\b[^.\n]{0,40}/gi, " ")
+    .replace(/\bno\s+999\s+call\b[^.\n]{0,40}/gi, " ");
+  return (
+    /\bcad\b/i.test(affirmativeHay) ||
+    /\bCAD\s*\/\s*999\b/i.test(affirmativeHay) ||
+    /\b999\s+(?:audio|call|recording)\b/i.test(affirmativeHay) ||
+    /\bcommand\s+(?:and\s+)?(?:control|dispatch)\b/i.test(affirmativeHay) ||
+    /\bcontrol[-\s]?room\s+log\b/i.test(affirmativeHay) ||
+    /\bdispatch\s+log\b/i.test(affirmativeHay) ||
+    /\bemergency\s+call\b/i.test(affirmativeHay)
+  );
+}
+
+/**
+ * Affirmative interview *recording* modality (not PACE interview / summary alone).
+ * Court C0.5: "PACE interview conducted" must not invent "Interview recording" chase.
+ */
+export function isInterviewRecordingEstablished(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = sourceText;
+  const established =
+    /\binterview\s+recording\b/i.test(hay) ||
+    /\bPACE\s+recording\b/i.test(hay) ||
+    /\baudio[-\s]?visual\s+interview\b/i.test(hay) ||
+    /\bROTI\b/i.test(hay) ||
+    // Tobin-style modality split: recording state flagged while interview is on the papers.
+    (/\binterview\b/i.test(hay) &&
+      /\brecording\s+state\s+(?:not\s+safely\s+confirmed|outstanding|missing|unclear)\b/i.test(hay)) ||
+    (/\binterview\b/i.test(hay) &&
+      /\b(?:full\s+)?recording\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|needed|not\s+safely\s+confirmed)\b/i.test(
+        hay,
+      ));
+  const negated =
+    /\bno\s+(?:pace\s+)?(?:interview\s+)?recording\b/i.test(hay) ||
+    /\b(?:interview\s+)?recording\s+(?:not|never)\s+(?:made|taken|served|attached)\b/i.test(hay);
+  return established && !negated;
+}
+
+/** Affirmative interview transcript modality. */
+export function isInterviewTranscriptEstablished(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = sourceText;
+  const established =
+    /\binterview\s+transcript\b/i.test(hay) ||
+    /\bPACE\s+transcript\b/i.test(hay) ||
+    (/\binterview\b/i.test(hay) &&
+      /\b(?:full\s+)?transcript\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|needed|served|present)\b/i.test(
+        hay,
+      ));
+  const negated =
+    /\bno\s+(?:pace\s+)?(?:interview\s+)?transcript\b/i.test(hay) ||
+    /\b(?:interview\s+)?transcript\s+(?:not|never)\s+(?:made|taken|served|attached)\b/i.test(hay);
+  return established && !negated;
 }
 
 function mentionHaystack(family: ChaseGateFamily, sourceText: string): string {
@@ -340,37 +405,23 @@ function filterModalitySpecificChaseLine(
   }
 
   // Drop interview *recording* chase unless recording modality is established
-  // (transcript/summary alone must not keep a recording invent line).
-  // Reject negation prose ("No PACE recording wording") as establishment.
+  // (PACE interview / transcript/summary alone must not keep a recording invent line).
   if (/\binterview recording\b/i.test(t) && !/\binterview transcript\b/i.test(t)) {
-    const recordingEstablished =
-      /(?:interview recording|PACE recording|audio.?visual interview)\b/i.test(sourceText) ||
-      /\bROTI\b/i.test(sourceText);
-    const recordingNegated =
-      /\bno\s+(?:pace\s+)?(?:interview\s+)?recording\b|\b(?:interview\s+)?recording\s+(?:not|never)\b/i.test(
-        sourceText,
-      );
-    if (!recordingEstablished || recordingNegated) return [];
+    if (!isInterviewRecordingEstablished(sourceText)) return [];
   }
 
-  // CAD family mention is broad (\b999\b) — do not keep CAD-audit / 999-audio
-  // chases from page-number or schedule "999" noise alone.
-  // Strip "No CAD … / No 999 audio …" negation clauses before affirmative tests.
-  if (/Chase CAD audit/i.test(t) || /Chase 999 audio/i.test(t)) {
-    const affirmativeHay = sourceText
-      .replace(/\bno\s+cad\b[^.\n]{0,80}/gi, " ")
-      .replace(/\bno\s+999\s+audio\b[^.\n]{0,40}/gi, " ");
-    if (/Chase CAD audit/i.test(t)) {
-      const cadEstablished =
-        /\bCAD\b|CAD\/999|command and (?:dispatch|control)|control[-\s]?room\s+log|dispatch\s+log/i.test(
-          affirmativeHay,
-        );
-      if (!cadEstablished) return [];
-    }
+  // CAD family — drop audit / 999-audio / lumped CAD chase from page-999 noise alone.
+  if (
+    /Chase CAD audit/i.test(t) ||
+    /Chase 999 audio/i.test(t) ||
+    /\bCAD\s*\/\s*999\b/i.test(t) ||
+    /\bCAD\s*\/\s*999\s+audio\b/i.test(t)
+  ) {
+    if (!isCad999Established(sourceText)) return [];
     if (/Chase 999 audio/i.test(t)) {
       const audioEstablished =
         /999\s+audio|emergency\s+call\s+(?:recording|audio)|999\s+call\s+(?:recording|audio)/i.test(
-          affirmativeHay,
+          sourceText.replace(/\bno\s+999\s+audio\b[^.\n]{0,40}/gi, " "),
         );
       if (!audioEstablished) return [];
     }
