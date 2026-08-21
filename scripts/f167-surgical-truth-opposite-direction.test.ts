@@ -15,7 +15,7 @@ import {
   reconcilePhoneDownloadModalityItems,
   reconcileSubscriberModalityItems,
 } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
-import { familySupport } from "../lib/criminal/chase-source-gate";
+import { familySupport, expandAndGateChaseLines } from "../lib/criminal/chase-source-gate";
 import {
   displayChaseCardLabel,
   isDigitalHarassmentBundleHay,
@@ -648,6 +648,44 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
     assert.ok(
       mid.some((i) => /summary only|full download report not in section/i.test(i.label)),
       "Grant: mid-state label survives finalize",
+    );
+  }
+
+  // Overview battleboard: compound chase templates must not invent missing modalities.
+  {
+    const thinNoMedia = expandAndGateChaseLines(
+      ["Chase CAD audit, 999 audio, and CCTV master with continuity."],
+      "Defendant: Barlow. MG6 disclosure schedule. Outstanding material listed.",
+    );
+    assert.equal(thinNoMedia.length, 0, "thin file: no CAD/999/CCTV master invent from timeline lump");
+
+    const transcriptOnly = expandAndGateChaseLines(
+      ["Chase interview recording/transcript and pre-interview disclosure."],
+      "MG6/05 full interview transcript Outstanding Listed but not attached. Interview summary on file. No PACE recording wording.",
+    );
+    assert.ok(
+      transcriptOnly.some((l) => /interview transcript/i.test(l)),
+      "transcript outstanding: transcript chase survives",
+    );
+    assert.equal(
+      transcriptOnly.filter((l) => /interview recording/i.test(l)).length,
+      0,
+      "transcript outstanding: recording invent dropped",
+    );
+
+    const stillsOnly = expandAndGateChaseLines(
+      ["Chase CCTV master and continuity."],
+      "Partial CCTV stills served. Continuity statement outstanding. No master wording.",
+    );
+    assert.equal(stillsOnly.length, 0, "stills≠master: CCTV master chase dropped");
+
+    const ardenMaster = expandAndGateChaseLines(
+      ["Chase CCTV master and continuity."],
+      "Partial CCTV stills served. Full CCTV master outstanding. Continuity statement outstanding.",
+    );
+    assert.ok(
+      ardenMaster.some((l) => /CCTV master/i.test(l)),
+      "Arden opposite: master outstanding keeps CCTV master chase",
     );
   }
 

@@ -155,6 +155,85 @@ export function gateChaseLines(lines: string[], sourceText: string | null | unde
 }
 
 /**
+ * Expand compound battleboard chase templates into atomic family lines, then gate.
+ * Prevents "Chase CAD + 999 + CCTV master" / "recording/transcript" from inventing
+ * missing modalities when only one family (or a sibling modality) is on the papers.
+ */
+export function expandAndGateChaseLines(
+  lines: string[],
+  sourceText: string | null | undefined,
+): string[] {
+  const expanded = lines
+    .flatMap((line) => expandCompoundChaseLine(line))
+    .flatMap((line) => filterModalitySpecificChaseLine(line, sourceText));
+  return gateChaseLines(expanded, sourceText);
+}
+
+function expandCompoundChaseLine(line: string): string[] {
+  const t = line.trim();
+  if (!t) return [];
+
+  // Timeline lump: CAD + 999 + CCTV master
+  if (/Chase CAD audit,\s*999 audio,\s*and CCTV master with continuity/i.test(t)) {
+    return ["Chase CAD audit.", "Chase 999 audio.", "Chase CCTV master with continuity."];
+  }
+  if (/Chase CAD audit and 999 audio/i.test(t)) {
+    return ["Chase CAD audit.", "Chase 999 audio."];
+  }
+  if (/Chase CCTV master and continuity/i.test(t)) {
+    return ["Chase CCTV master with continuity."];
+  }
+
+  // Interview lump: recording/transcript (+ optional pre-interview disclosure)
+  if (/Chase interview recording\s*\/\s*transcript and pre-interview disclosure/i.test(t)) {
+    return [
+      "Chase interview recording.",
+      "Chase interview transcript.",
+      "Chase pre-interview disclosure.",
+    ];
+  }
+  if (/Chase interview recording\s*\/\s*transcript/i.test(t)) {
+    return ["Chase interview recording.", "Chase interview transcript."];
+  }
+
+  return [t];
+}
+
+function filterModalitySpecificChaseLine(
+  line: string,
+  sourceText: string | null | undefined,
+): string[] {
+  const t = line.trim();
+  if (!t || !sourceText?.trim()) return t ? [t] : [];
+
+  // Drop CCTV *master* chase unless papers establish master/full-window language
+  // (generic CCTV / stills must not keep a master invent line).
+  if (/CCTV master|master footage|full CCTV master/i.test(t)) {
+    const masterEstablished =
+      /CCTV master|full CCTV master|master footage|full master|full\s*(?:time\s+)?window/i.test(
+        sourceText,
+      );
+    if (!masterEstablished) return [];
+  }
+
+  // Drop interview *recording* chase unless recording modality is established
+  // (transcript/summary alone must not keep a recording invent line).
+  // Reject negation prose ("No PACE recording wording") as establishment.
+  if (/\binterview recording\b/i.test(t) && !/\binterview transcript\b/i.test(t)) {
+    const recordingEstablished =
+      /(?:interview recording|PACE recording|audio.?visual interview)\b/i.test(sourceText) ||
+      /\bROTI\b/i.test(sourceText);
+    const recordingNegated =
+      /\bno\s+(?:pace\s+)?(?:interview\s+)?recording\b|\b(?:interview\s+)?recording\s+(?:not|never)\b/i.test(
+        sourceText,
+      );
+    if (!recordingEstablished || recordingNegated) return [];
+  }
+
+  return [t];
+}
+
+/**
  * Gate disclosure/material lines that name a family but may omit chase verbs
  * (workflow profile labels, MG6 chase bullets, assistant lists).
  */
