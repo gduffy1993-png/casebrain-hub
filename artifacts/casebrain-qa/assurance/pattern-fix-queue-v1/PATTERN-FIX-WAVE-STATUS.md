@@ -1,35 +1,70 @@
 # PATTERN FIX WAVE - STATUS
 
-**Verdict:** `A_LOCKED_B_DONE`  
+**Verdict:** `LEFTOVERS_PARTIAL_C_PARTIAL`  
 **Phase-A-lock SHA:** `cbf40f08f381d1e39d7326059dbe24cb71beacce`  
 **Phase-B tip SHA:** `a13739f4bd4f3016ca0c76b25364c36bd44857e8`  
+**Soft Chase SHA:** `925ed950cba9fe9f242f016e6230ecd96e7f0ffc`  
+**Phase C tip SHA:** `d9f2bc152cc1df533535692632f32dac91089c84`  
 **Freeze baseline (pre-wave product):** `55c41d8956c044d20f4265cccc6fd8669349d2ae`  
+**Preview (C tip):** https://casebrain-8jff5rq5s-gduffy1993-pngs-projects.vercel.app  
+**Preview (Soft Chase):** https://casebrain-ksobqbr7b-gduffy1993-pngs-projects.vercel.app  
+**Preview (invent expand):** https://casebrain-13mmhhfrn-gduffy1993-pngs-projects.vercel.app  
 **Preview (B tip):** https://casebrain-98u6ps28m-gduffy1993-pngs-projects.vercel.app  
 **Preview (A lock):** https://casebrain-jo16a5tt0-gduffy1993-pngs-projects.vercel.app  
 **Hop book:** `artifacts/casebrain-qa/assurance/pattern-fix-queue-v1/MASTER-HOP-BOOK.md`  
-**A lock:** `PHASE-A-LOCK.md` · **B note:** `PHASE-B-PAPERS-CLIENT.md`  
+**A lock:** `PHASE-A-LOCK.md` · **B note:** `PHASE-B-PAPERS-CLIENT.md` · **C triage:** `PHASE-C-OVERVIEW-TRIAGE.md`  
 **Updated:** 2026-08-21
 
 ---
 
 ## Phase A — LOCKED
 
-Hard canaries green @ `jo16` / `cbf40f08f` (Trap subscriber invent TN, Tobin CAD soft-drop, Arden export/phone TN + master TP, opposite PASS). Soft Chase-inject mutes documented in `PHASE-A-LOCK.md`.
+Hard canaries green @ `jo16` / `cbf40f08f`. Soft Chase-inject mutes closed on tip via primary-board promotion (`925ed950c`).
 
 ---
 
 ## Phase B — DONE
 
-| Hop | Live @ `98u6` |
-|-----|---------------|
-| `PAPERS_COLLAPSED_NO_DOC_INVENTORY` | **PASS** — Papers inventory on Arden/Brookes/Trap; no Control Room clone; no MORE PAPERS DETAIL UNAVAILABLE |
-| `CLIENT_TAB_EQUALS_COURT_CONTROL_ROOM` | **PASS** — Client Summary (`summary`) has papers-facts strip; Court (`today`) keeps pressure desk |
+Papers inventory + distinct Client Summary live @ `98u6` / `a13739f4b`.
 
 ---
 
-## Soft watch (carry)
+## Soft Chase leftovers — FIXED (unit + deploy)
 
-Brookes/Ahmed subscriber + Grant/Tobin phone mid-state **Chase card inject** may still mute live while Papers/Overview language is PDF-true.
+| Item | Result |
+|------|--------|
+| Brookes/Ahmed subscriber + phone inject buried under Other | **FIXED** — promote digital modality to `primaryItems` |
+| Grant/Tobin phone mid-state | same promote path |
+| Opposite Trap invent TN | **PASS** |
+| Live AUTH re-shot | **blocked** this session (QA password invalid) — canary lock uses tip Preview SHA + unit board |
+
+---
+
+## Phase C — Overview triage PARTIAL
+
+PDF-verify top invent families → shared-root battleboard compound chase invent.
+
+| Family | Freeze N | Sample 25 after tip | Class |
+|--------|----------:|--------------------:|-------|
+| invent_cctv_master | 177 | **0** | FIXED |
+| invent_interview_recording | 419 | **0** | FIXED |
+| invent_cad_999 | 82 | **0** | FIXED |
+| modality_summary_vs_recording | 117 | **7** | PARTIAL |
+| mute_phone_download | 445 | (WATCH) | WATCH — not automatic guilt |
+
+Full 2600 re-sweep not re-run end-to-end; sample rescore artefacts under `overview-criminal-sweep-v1/phase-c-invent-rescore*.json`.
+
+---
+
+## Canary lock board (tip)
+
+| Gate | Status |
+|------|--------|
+| Opposite suite | **PASS** |
+| Soft Chase primary promote | **PASS** (unit) |
+| invent CCTV master / interview recording / CAD sample | **0/25** after |
+| Arden/Trap/Brookes Phase A/B wins | **keep** (do not regress) |
+| Live AUTH browser | **pending password** |
 
 ---
 
