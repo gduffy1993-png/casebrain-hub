@@ -19,6 +19,7 @@ import { compareEvidenceChanges } from "@/lib/criminal/evidence-change-detector/
 import { loadEvidenceChangeSnapshot } from "@/lib/criminal/evidence-change-detector/evidence-change-snapshot-storage";
 import { SolicitorExportBuilderPanel } from "./control-room/SolicitorExportBuilderPanel";
 import { SolicitorDeepDetailGate } from "@/components/criminal/trust/SolicitorDeepDetailGate";
+import { PapersDocInventoryPanel } from "@/components/criminal/papers/PapersDocInventoryPanel";
 import { evaluateMatterIntegrity } from "@/lib/criminal/solicitor-output-integrity";
 import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
 import { SupervisorQAPanel } from "./control-room/SupervisorQAPanel";
@@ -1036,33 +1037,11 @@ export function CaseControlRoom({
 
     const primaryPanels = (
       <>
-        <ControlRoomCockpit
-          caseId={caseId}
-          caseTitle={caseTitleDisplay}
-          clientLabel={clientLabel}
-          courtLabel={courtLabelDisplay}
-          allegation={pilotOverrides ? "" : allegation}
-          stage={stage}
-          bundleLabel={bundleLabel}
-          positionLabel={positionLabel}
-          nextHearing={hearingLabelDisplay}
-          disclosureLabel={disclosureLabel}
-          bestRouteTitle={bestRouteTitle}
-          routeStatus={battleboard?.primary_route?.status ?? null}
-          prosecutionWeakness={prosecutionWeakness}
-          defenceRisks={defenceRisks}
-          immediateActions={immediateActions}
-          strategyBasisNotice={strategyBasisNotice}
-          positionNotice={positionNoticeOnce}
-          riskLabel={riskLabel}
-          safeCourtLine={safeCourtLine}
-          loading={snapshotLoading}
-          onExitClassic={exitClassic}
-          hideClassicWorkspace={isCriminalPilotMode()}
-          metadataNote={pilotDisplayMetadataNote(metadataNote)}
-          bundlePositionNote={bundlePositionNote}
-          battleboardSection={battleboardSectionNode ?? undefined}
-          pilotDark
+        <PapersDocInventoryPanel
+          ledger={truthLedger}
+          loading={bundleSourceLoading || snapshotLoading}
+          documentCount={bundleSource?.documentCount ?? null}
+          textChars={bundleSource?.combinedTextLength ?? null}
         />
         {thickPilotBundle ? (
           <PreHearingReadinessBadge
@@ -1192,14 +1171,12 @@ export function CaseControlRoom({
               >
                 <div>
                   <p className={workflowSectionTitle}>
-                    {thickPilotBundle ? "Full papers workspace" : "More papers detail"}
+                    {thickPilotBundle ? "Additional papers tools" : "More papers tools"}
                   </p>
                   <p className="text-xs text-slate-400 mt-1">
                     {papersDeepBlocked
                       ? solicitorReadyGateCopy(papersOutputIntegrity.banner)
-                      : thickPilotBundle
-                        ? "Proof map, readiness, exports, and supervisor tools — scroll inside this section."
-                        : "Proof map, readiness checks, and additional control-room panels."}
+                      : "Optional proof map, readiness exports, and supervisor tools — inventory stays above."}
                   </p>
                 </div>
                 {papersDeepOpen && !papersDeepBlocked ? (
@@ -1210,7 +1187,7 @@ export function CaseControlRoom({
               </button>
               {papersDeepBlocked ? (
                 <div className="mt-3 border-t border-slate-700/60 pt-3">
-                  <SolicitorDeepDetailGate integrity={papersOutputIntegrity} label="More papers detail">
+                  <SolicitorDeepDetailGate integrity={papersOutputIntegrity} label="Additional papers tools">
                     {null}
                   </SolicitorDeepDetailGate>
                 </div>
