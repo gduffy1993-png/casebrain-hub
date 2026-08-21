@@ -418,6 +418,12 @@ CAD / 999 extract Present.
     true,
     "summary-only / full recording outstanding establishes recording modality",
   );
+  // Murder-bundle mid-state: Full recording/transcript outstanding
+  assert.match(
+    "Summary only. Full recording/transcript outstanding.",
+    /full recording(?:\/transcript)? outstanding/i,
+    "recording/transcript outstanding counts as interview_recording_source",
+  );
 
   const ardenBrief = buildDisclosureChaseBrief({
     ...ARDEN_CTX,
