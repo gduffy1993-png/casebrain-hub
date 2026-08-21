@@ -1,43 +1,35 @@
 /**
- * Client criminal corpus sweep — Chunk D0 find-only (Client Summary / client-safe export).
+ * Overview criminal corpus sweep — Pass 1 (Overview-first).
  *
- * Projects Client-safe summary + matter-brief client section + export client_summary vs PDF/source text.
  * Read-only w.r.t product behaviour / DB (service-role READ only).
  * Routes:
- *   BACKEND_LIVE              — reuse extracted_text already on eval/QA cases
- *   OFFLINE_CLIENT_PROJECTION  — extract PDF text + Client claim projectors
- *   SKIP                      — no text, corrupt, non-criminal, duplicate hash
+ *   BACKEND_LIVE            — reuse extracted_text already on eval/QA cases
+ *   OFFLINE_OVERVIEW_PROJECTION — extract PDF text + same Overview claim projectors
+ *   SKIP                    — no text, corrupt, non-criminal, duplicate hash
  *
  * Resume:
- *   npx tsx scripts/assurance/client-criminal-sweep/run-client-criminal-sweep.ts
- *   npx tsx scripts/assurance/client-criminal-sweep/run-client-criminal-sweep.ts --limit=50
- *   npx tsx scripts/assurance/client-criminal-sweep/run-client-criminal-sweep.ts --concurrency=6
- *
- * Reuse criminal unique index:
- *   CLIENT_SWEEP_REUSE_INDEX=1 CLIENT_SWEEP_INDEX_SRC=artifacts/.../court-criminal-sweep-v1/CRIMINAL-UNIQUE-INDEX.csv
+ *   npx tsx scripts/assurance/overview-criminal-sweep/run-overview-criminal-sweep.ts
+ *   npx tsx scripts/assurance/overview-criminal-sweep/run-overview-criminal-sweep.ts --limit=200
+ *   npx tsx scripts/assurance/overview-criminal-sweep/run-overview-criminal-sweep.ts --concurrency=6
+ *   npx tsx scripts/assurance/overview-criminal-sweep/run-overview-criminal-sweep.ts --index-only
  */
 import fs from "node:fs";
 import path from "node:path";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import { buildDisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
-import { buildHearingWarRoomBrief } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
-import { buildMatterBrief } from "@/components/criminal/workflow/buildMatterBrief";
-import { buildCriminalBriefPlan } from "@/lib/criminal/brief-plan";
-import { buildClientSafeExplanation } from "@/lib/criminal/build-client-safe-explanation";
-import { buildContradictionActions } from "@/lib/criminal/contradiction-actions";
-import { buildBundleTruthLedger } from "@/lib/criminal/bundle-truth-ledger";
-import { buildExportPack } from "@/lib/criminal/export-pack";
-import { extractAllBundleContradictions } from "@/lib/criminal/merge-bundle-contradictions";
+import { buildStrategyBattleboard } from "@/lib/criminal/strategy-battleboard";
+import { collectChaseItems } from "@/components/criminal/control-room/chaseItems";
+import { generateExplanationFidelity } from "@/lib/eval/casebrain-auditor/explanation-fidelity-generate";
 import { extractTextFromFileBuffer } from "@/lib/upload/extract-text-from-file";
 
 const ROOT = process.cwd();
-const PRODUCT_SHA = process.env.F167_PRODUCT_SHA?.trim() || "7b900de22";
+const PRODUCT_SHA =
+  process.env.F167_PRODUCT_SHA?.trim() || "55c41d8956c044d20f4265cccc6fd8669349d2ae";
 const PREVIEW =
   process.env.F167_PREVIEW?.replace(/\/$/, "") ||
-  "https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app";
-const DEFAULT_OUT = path.join(ROOT, "artifacts/casebrain-qa/assurance/client-criminal-sweep-v1");
+  "https://casebrain-8h2c8ennr-gduffy1993-pngs-projects.vercel.app";
+const DEFAULT_OUT = path.join(ROOT, "artifacts/casebrain-qa/assurance/overview-criminal-sweep-v1");
 const OUT_DIR = (() => {
-  const raw = process.env.CLIENT_SWEEP_OUT_DIR?.trim();
+  const raw = process.env.OVERVIEW_SWEEP_OUT_DIR?.trim();
   if (!raw) return DEFAULT_OUT;
   return path.isAbsolute(raw) ? raw : path.join(ROOT, raw);
 })();
@@ -46,23 +38,23 @@ const MASTER_CSV = path.join(
   "artifacts/casebrain-qa/assurance/multicase-independent-review-v1/audit-pack/MASTER-CASE-INDEX.csv",
 );
 const INDEX_CSV = path.join(OUT_DIR, "CRIMINAL-UNIQUE-INDEX.csv");
-const NDJSON = path.join(OUT_DIR, "client-sweep.ndjson");
-const HITLIST_CSV = path.join(OUT_DIR, "CLIENT-FAIL-HITLIST.csv");
-const STATUS_MD = path.join(OUT_DIR, "CLIENT-SWEEP-STATUS.md");
+const NDJSON = path.join(OUT_DIR, "overview-sweep.ndjson");
+const HITLIST_CSV = path.join(OUT_DIR, "OVERVIEW-FAIL-HITLIST.csv");
+const STATUS_MD = path.join(OUT_DIR, "OVERVIEW-SWEEP-STATUS.md");
 const CHECKPOINT = path.join(OUT_DIR, "checkpoint.json");
 /** When set, reuse existing CRIMINAL-UNIQUE-INDEX.csv in OUT_DIR (or copy from this path). */
 const REUSE_INDEX =
-  process.env.CLIENT_SWEEP_REUSE_INDEX?.trim() === "1" ||
-  Boolean(process.env.CLIENT_SWEEP_INDEX_SRC?.trim());
+  process.env.OVERVIEW_SWEEP_REUSE_INDEX?.trim() === "1" ||
+  Boolean(process.env.OVERVIEW_SWEEP_INDEX_SRC?.trim());
 
 /** Known eval / legacy org that already holds many criminal docs — READ ONLY. */
-const EVAL_ORG = process.env.CLIENT_SWEEP_EVAL_ORG || "11f3d373-a6d0-4a58-ac72-59b5365dc367";
+const EVAL_ORG = process.env.OVERVIEW_SWEEP_EVAL_ORG || "11f3d373-a6d0-4a58-ac72-59b5365dc367";
 
 const MAX_BUNDLE = 220_000;
-const DEFAULT_CONCURRENCY = Math.max(1, Number(process.env.CLIENT_SWEEP_CONCURRENCY || 4));
-const DEFAULT_LIMIT = Number(process.env.CLIENT_SWEEP_LIMIT || 0); // 0 = all remaining
+const DEFAULT_CONCURRENCY = Math.max(1, Number(process.env.OVERVIEW_SWEEP_CONCURRENCY || 4));
+const DEFAULT_LIMIT = Number(process.env.OVERVIEW_SWEEP_LIMIT || 0); // 0 = all remaining
 
-type Route = "BACKEND_LIVE" | "OFFLINE_CLIENT_PROJECTION" | "SKIP";
+type Route = "BACKEND_LIVE" | "OFFLINE_OVERVIEW_PROJECTION" | "SKIP";
 
 type IndexRow = {
   unique_key: string;
@@ -96,23 +88,16 @@ type SweepResult = {
   engineMs: number;
   ok: boolean;
   error?: string;
-  clientClaims: string[];
+  overviewClaims: string[];
   inventFlags: string[];
   muteFlags: string[];
   modalityFlags: string[];
   contradictionFlags: string[];
-  dateRoleFlags: string[];
   materialFlags: string[];
   failReasons: string[];
   identityHints: {
     defendant?: string | null;
     offence?: string | null;
-  };
-  ledgerMeta: {
-    materialCount: number;
-    hearingRaw: string | null;
-    hearingDateIso: string | null;
-    charge: string | null;
   };
   evidence: {
     export_log_claim: boolean;
@@ -129,8 +114,6 @@ type SweepResult = {
     subscriber_source: boolean;
     bwv_claim: boolean;
     bwv_source: boolean;
-    bwv_full_export_claim: boolean;
-    bwv_stills_source: boolean;
     mg_forms_source: boolean;
     id_procedure_source: boolean;
     charge_source: boolean;
@@ -228,7 +211,7 @@ function writeStatus(partial: {
   note?: string;
   etaHint?: string;
 }) {
-  const md = `# CLIENT CRIMINAL SWEEP — STATUS
+  const md = `# OVERVIEW CRIMINAL SWEEP — STATUS
 
 **Verdict:** \`${partial.verdict}\`
 **Product SHA (frozen):** \`${PRODUCT_SHA}\`
@@ -242,11 +225,11 @@ function writeStatus(partial: {
 |--------|--:|
 | Criminal unique (hash-deduped) | **${partial.totalUnique}** |
 | Routed BACKEND_LIVE | ${partial.backendLive} |
-| Routed OFFLINE_CLIENT_PROJECTION | ${partial.offline} |
+| Routed OFFLINE_OVERVIEW_PROJECTION | ${partial.offline} |
 | Routed SKIP | ${partial.skipped} |
-| Client scored (ndjson unique keys) | **${partial.scored}** |
+| Overview scored (ndjson lines) | **${partial.scored}** |
 | Invent-flag events (sum) | ${partial.inventTotal} |
-| Client-fail hitlist rows | ${partial.failHits ?? "—"} |
+| Overview-fail hitlist rows | ${partial.failHits ?? "—"} |
 
 ## Top invent / modality families (so far)
 
@@ -258,23 +241,23 @@ ${
 
 ## Method
 
-1. Tip SHA \`${PRODUCT_SHA}\` — Client Summary find-only (no product edits)
-2. Reuse Overview \`CRIMINAL-UNIQUE-INDEX.csv\` (2600 criminal unique)
+1. Freeze candidate SHA \`${PRODUCT_SHA}\`
+2. Build \`CRIMINAL-UNIQUE-INDEX.csv\` from MASTER-CASE-INDEX (pool=criminal, hash-dedupe)
 3. Route BACKEND_LIVE (eval/legacy extracted_text READ) vs OFFLINE PDF projection vs SKIP
-4. Claim surface = Disclosure Chase labels/courtLines + safe court line + war-room position
-5. Cheap invent/mute/modality/date-role flags — **volume = triage, not guilt**
+4. Pass 1 Overview-only claim projection via product libraries (battleboard + chase gate + explanation-fidelity)
+5. Cheap invent/mute/modality flags — **no gold file invention**; GOLD diffs only where gold already exists elsewhere
 6. Crash-safe NDJSON append; resume skips completed \`unique_key\`
-7. Emit \`CLIENT-FAIL-HITLIST.csv\`
+7. Emit \`OVERVIEW-FAIL-HITLIST.csv\` (invent/mute/modality/contradiction/engine error only — no gold ≠ fail)
 
 ## Resume
 
 \`\`\`bash
-CLIENT_SWEEP_REUSE_INDEX=1 CLIENT_SWEEP_INDEX_SRC=artifacts/casebrain-qa/assurance/overview-criminal-sweep-v1/CRIMINAL-UNIQUE-INDEX.csv \\
-npx tsx scripts/assurance/court-criminal-sweep/run-court-criminal-sweep.ts --concurrency=6
+npx tsx scripts/assurance/overview-criminal-sweep/run-overview-criminal-sweep.ts
+npx tsx scripts/assurance/overview-criminal-sweep/run-overview-criminal-sweep.ts --limit=500 --concurrency=6
 \`\`\`
 
-Pack: \`artifacts/casebrain-qa/assurance/client-criminal-sweep-v1/\`
-Hitlist: \`artifacts/casebrain-qa/assurance/client-criminal-sweep-v1/CLIENT-FAIL-HITLIST.csv\`
+Pack: \`artifacts/casebrain-qa/assurance/overview-criminal-sweep-v1/\`
+Hitlist: \`artifacts/casebrain-qa/assurance/overview-criminal-sweep-v1/OVERVIEW-FAIL-HITLIST.csv\`
 
 ${partial.note ? `\n## Note\n\n${partial.note}\n` : ""}${partial.etaHint ? `\n## ETA\n\n${partial.etaHint}\n` : ""}
 `;
@@ -294,7 +277,7 @@ function loadIndexFromCsv(csvPath: string): IndexRow[] {
     strata_tags: r.strata_tags || "",
     gold_tier: r.gold_tier || "",
     pool: r.pool || "criminal",
-    route: (r.route as Route) || "OFFLINE_CLIENT_PROJECTION",
+    route: (r.route as Route) || "OFFLINE_OVERVIEW_PROJECTION",
     skip_reason: r.skip_reason || "",
     backend_case_id: r.backend_case_id || "",
     match_hint: r.match_hint || "",
@@ -303,10 +286,10 @@ function loadIndexFromCsv(csvPath: string): IndexRow[] {
 
 function resolveCriminalUniqueIndex(): IndexRow[] {
   fs.mkdirSync(OUT_DIR, { recursive: true });
-  const src = process.env.CLIENT_SWEEP_INDEX_SRC?.trim();
+  const src = process.env.OVERVIEW_SWEEP_INDEX_SRC?.trim();
   if (src) {
     const abs = path.isAbsolute(src) ? src : path.join(ROOT, src);
-    if (!fs.existsSync(abs)) throw new Error(`CLIENT_SWEEP_INDEX_SRC missing: ${abs}`);
+    if (!fs.existsSync(abs)) throw new Error(`OVERVIEW_SWEEP_INDEX_SRC missing: ${abs}`);
     if (path.resolve(abs) !== path.resolve(INDEX_CSV)) {
       fs.copyFileSync(abs, INDEX_CSV);
     }
@@ -342,13 +325,13 @@ function buildCriminalUniqueIndex(): IndexRow[] {
     const pdfPath = (r.pdf_path || "").trim();
     const pdfExists = pdfPath ? fs.existsSync(pdfPath) : false;
     const backend = (r.backend_case_id || "").trim();
-    let route: Route = "OFFLINE_CLIENT_PROJECTION";
+    let route: Route = "OFFLINE_OVERVIEW_PROJECTION";
     let skip = "";
     if (backend) {
       route = "BACKEND_LIVE";
     } else if (!pdfExists) {
       // may still match backend by title later; provisional offline if path missing
-      route = "OFFLINE_CLIENT_PROJECTION";
+      route = "OFFLINE_OVERVIEW_PROJECTION";
       if (!pdfPath) skip = "no_pdf_path";
       else skip = "pdf_path_missing_on_disk";
     }
@@ -555,60 +538,31 @@ function matchBackend(
   return null;
 }
 
-function scoreInvent(
-  bundleText: string,
-  claimBlob: string,
-  materialCount: number,
-  hearingRaw: string | null,
-): Pick<
+function scoreInvent(bundleText: string, claimBlob: string): Pick<
   SweepResult,
-  | "inventFlags"
-  | "muteFlags"
-  | "modalityFlags"
-  | "contradictionFlags"
-  | "dateRoleFlags"
-  | "materialFlags"
-  | "failReasons"
-  | "evidence"
+  "inventFlags" | "muteFlags" | "modalityFlags" | "contradictionFlags" | "materialFlags" | "failReasons" | "evidence"
 > {
   const inventFlags: string[] = [];
   const muteFlags: string[] = [];
   const modalityFlags: string[] = [];
   const contradictionFlags: string[] = [];
-  const dateRoleFlags: string[] = [];
   const materialFlags: string[] = [];
 
-  // Strip modality negation notes — "not full phone download…" is truth-map prose, not an invent claim.
-  const phoneClaimHay = claimBlob
-    .replace(/not\s+(?:a\s+)?full\s+phone\s+download[^.!\n]{0,100}/gi, " ")
-    .replace(/not\s+full\s+phone\s+download[^.!\n]{0,100}/gi, " ")
-    .replace(/screenshots?\s+alone\s+are\s+not\s+attribution[^.!\n]{0,80}/gi, " ");
   const evidence = {
     export_log_claim: /\bexport\s+log\b/i.test(claimBlob),
     export_log_source: /\bexport\s*log\b/i.test(bundleText),
     cctv_master_claim: /CCTV master|full CCTV master|master footage|master recording/i.test(claimBlob),
-    cctv_master_source:
-      /CCTV master|full CCTV master|master footage|full master|full\s*(?:time\s+)?window|full\s+cctv\s+(?:master|window)/i.test(
-        bundleText,
-      ),
-    phone_download_claim:
-      /phone download|source export referred|digital extraction|original download|phone extraction/i.test(phoneClaimHay),
-    phone_download_source:
-      /phone download|source export|handset download|digital extraction|extraction report|phone extraction|logical download|download report/i.test(
-        bundleText,
-      ),
+    cctv_master_source: /CCTV master|full CCTV master|master footage|full master|full\s*(?:time\s+)?window|full\s+cctv\s+(?:master|window)/i.test(bundleText),
+    phone_download_claim: /phone download|source export referred|digital extraction|original download/i.test(claimBlob),
+    phone_download_source: /phone download|source export|handset download|digital extraction|extraction report|phone extraction|logical download|download report/i.test(bundleText),
     cad_999_claim: /\bCAD\b|999\s+audio|complete CAD/i.test(claimBlob),
     cad_999_source: /\bCAD\b|999\s+audio|CAD\/999|command and (?:dispatch|control)/i.test(bundleText),
     interview_recording_claim: /interview recording|PACE recording|audio.?visual interview/i.test(claimBlob),
-    interview_recording_source: /interview recording|PACE recording|audio.?visual interview|\bROTI\b/i.test(bundleText),
+    interview_recording_source: /interview recording|PACE recording|audio.?visual|ROTI|tape/i.test(bundleText),
     subscriber_claim: /subscriber|account (?:records?|data)/i.test(claimBlob),
     subscriber_source: /subscriber|account (?:records?|data)/i.test(bundleText),
     bwv_claim: /\bBWV\b|body[- ]worn/i.test(claimBlob),
     bwv_source: /\bBWV\b|body[- ]worn/i.test(bundleText),
-    bwv_full_export_claim: /full (?:BWV|body[- ]worn).{0,40}export|BWV (?:clip|footage) export|full digital export/i.test(
-      claimBlob,
-    ),
-    bwv_stills_source: /BWV stills|body[- ]worn.{0,40}stills|stills?.{0,40}BWV/i.test(bundleText),
     mg_forms_source: /\bMG\s?(?:5|6|9|11|12)\b|\bMG5\b|\bMG6\b|\bMG11\b/i.test(bundleText),
     id_procedure_source: /\bVIPER\b|identification parade|ID procedure|video identification/i.test(bundleText),
     charge_source: /\bcharge\b|information\/summons|appeared on charge/i.test(bundleText),
@@ -617,24 +571,13 @@ function scoreInvent(
 
   const thin = bundleText.length < 3500;
   const trapThin = /hallucination trap|do not invent|no pace interview transcript or summary/i.test(bundleText);
-  const richSource =
-    evidence.mg_forms_source ||
-    evidence.cctv_master_source ||
-    evidence.phone_download_source ||
-    evidence.cad_999_source ||
-    evidence.interview_recording_source ||
-    /\bschedule\b|\bexhibit\b/i.test(bundleText);
-
-  // Court empty claim surface on rich file (soft mute of court/chase projection)
-  if (materialCount === 0 && richSource && bundleText.length > 2500 && claimBlob.trim().length < 40) {
-    muteFlags.push("mute_court_claim_collapse");
-  }
 
   if (evidence.export_log_claim && !evidence.export_log_source) inventFlags.push("invent_export_log");
   if (evidence.cctv_master_claim && !evidence.cctv_master_source && (thin || trapThin || !/\bcctv\b/i.test(bundleText))) {
     inventFlags.push("invent_cctv_master");
   }
   if (evidence.phone_download_claim && !evidence.phone_download_source) {
+    // property-phone only?
     if (/\bphone\b/i.test(bundleText) && !/download|extraction|subscriber|handset dump/i.test(bundleText)) {
       inventFlags.push("invent_phone_download_from_property");
     } else {
@@ -647,10 +590,8 @@ function scoreInvent(
   }
   if (evidence.subscriber_claim && !evidence.subscriber_source && thin) inventFlags.push("invent_subscriber_thin");
   if (evidence.bwv_claim && !evidence.bwv_source) inventFlags.push("invent_bwv");
-  if (evidence.bwv_full_export_claim && evidence.bwv_stills_source && !/full (?:BWV|body[- ]worn).{0,40}export|BWV clip outstanding/i.test(bundleText)) {
-    inventFlags.push("invent_bwv_full_export_from_stills");
-  }
 
+  // mutes: clear outstanding in source, absent from claims
   if (evidence.export_log_source && /outstanding|not attached|not served/i.test(bundleText) && !evidence.export_log_claim) {
     muteFlags.push("mute_export_log");
   }
@@ -664,8 +605,14 @@ function scoreInvent(
     muteFlags.push("mute_cad_999");
   }
 
+  // modality collapses / merges
   if (/\bstills?\b/i.test(bundleText) && evidence.cctv_master_claim && /CCTV outstanding(?! master)/i.test(claimBlob)) {
     modalityFlags.push("modality_stills_collapsed_to_generic_cctv");
+  }
+  if (/\bstills?\b/i.test(bundleText) && /continuity/i.test(bundleText) && /CCTV - stills served; full master/i.test(claimBlob) === false) {
+    if (/continuity outstanding|continuity statement/i.test(claimBlob) && /stills/i.test(claimBlob) && evidence.cctv_master_claim) {
+      modalityFlags.push("modality_stills_continuity_merge");
+    }
   }
   if (/screenshot/i.test(bundleText) && evidence.phone_download_claim && !/screenshot/i.test(claimBlob)) {
     modalityFlags.push("modality_screenshot_vs_download");
@@ -673,35 +620,27 @@ function scoreInvent(
   if (/interview summary/i.test(bundleText) && evidence.interview_recording_claim) {
     modalityFlags.push("modality_summary_vs_recording");
   }
-  if (/BLEED \| client_contains_court_control_language/i.test(claimBlob)) {
-    materialFlags.push("client_court_language_bleed");
-  }
-  if (/BLEED \| client_contains_papers_inventory_chrome/i.test(claimBlob)) {
-    materialFlags.push("client_papers_inventory_bleed");
-  }
   if (/\bproperty\b.{0,40}\bphone\b|\bphone\b.{0,40}\bproperty\b/i.test(bundleText) && evidence.phone_download_claim) {
     modalityFlags.push("modality_property_phone_vs_download");
   }
-  if (evidence.bwv_stills_source && evidence.bwv_full_export_claim) {
-    modalityFlags.push("modality_bwv_stills_vs_full_export");
-  }
 
+  // self-contradiction inside Overview claim set
+  if (/no invented|do not invent|not served/i.test(claimBlob) && /served according|full CCTV master outstanding/i.test(claimBlob) === false) {
+    if (/interview recording/i.test(claimBlob) && /no comment|summary only|no pace/i.test(claimBlob)) {
+      contradictionFlags.push("contradict_interview_recording_vs_summary");
+    }
+  }
   if (evidence.cctv_master_claim && /no CCTV|CCTV not|no master/i.test(claimBlob) && /master outstanding/i.test(claimBlob)) {
     contradictionFlags.push("contradict_cctv_master_present_and_absent");
   }
   if (evidence.export_log_claim && /no export log|export log not/i.test(claimBlob)) {
     contradictionFlags.push("contradict_export_log");
   }
-
-  // Date-role soft detectors (find-only triage — not guilt)
-  if (hearingRaw && /deadline|chase by|ops deadline/i.test(claimBlob) && /hearing/i.test(hearingRaw)) {
-    dateRoleFlags.push("date_role_hearing_reused_as_deadline_language");
-  }
-  if (hearingRaw && /\b20\d{2}-\d{2}-\d{2}\b/.test(hearingRaw) === false && /\b\d{1,2}[\/.\-]\d{1,2}[\/.\-]\d{2,4}\b/.test(hearingRaw)) {
-    // informational only when claim also invents ISO — keep soft
-    if (/hearing date passed/i.test(claimBlob)) dateRoleFlags.push("date_role_hearing_passed_chrome");
+  if (/phone download/i.test(claimBlob) && /phone download not|no phone download|property only/i.test(claimBlob)) {
+    contradictionFlags.push("contradict_phone_download");
   }
 
+  // material coverage markers (informational — absence alone is not fail)
   if (evidence.charge_source) materialFlags.push("src_charge");
   if (evidence.hearing_source) materialFlags.push("src_hearing");
   if (evidence.mg_forms_source) materialFlags.push("src_mg_forms");
@@ -711,177 +650,56 @@ function scoreInvent(
   if (/\bcctv\b/i.test(bundleText)) materialFlags.push("src_cctv");
   if (/\bstills?\b/i.test(bundleText)) materialFlags.push("src_cctv_stills");
   if (/\bcontinuity\b/i.test(bundleText)) materialFlags.push("src_continuity");
-  if (materialCount > 0) materialFlags.push(`client_claims_${Math.min(materialCount, 40)}`);
 
-  const failReasons = [
-    ...inventFlags,
-    ...muteFlags,
-    ...modalityFlags,
-    ...contradictionFlags,
-    ...dateRoleFlags,
-    ...materialFlags.filter((f) => /bleed/i.test(f)),
-  ];
-  return {
-    inventFlags,
-    muteFlags,
-    modalityFlags,
-    contradictionFlags,
-    dateRoleFlags,
-    materialFlags,
-    failReasons,
-    evidence,
-  };
+  const failReasons = [...inventFlags, ...muteFlags, ...modalityFlags, ...contradictionFlags];
+  return { inventFlags, muteFlags, modalityFlags, contradictionFlags, materialFlags, failReasons, evidence };
 }
 
-function projectClient(bundleTextRaw: string, title: string): {
+async function projectOverview(bundleTextRaw: string, title: string): Promise<{
   claims: string[];
   claimBlob: string;
-  inventClaimBlob: string;
   identity: { defendant?: string | null; offence?: string | null };
-  ledgerMeta: SweepResult["ledgerMeta"];
   engineMs: number;
-} {
+}> {
   const bundleText = bundleTextRaw.slice(0, MAX_BUNDLE);
   const t0 = Date.now();
-  const ledger = buildBundleTruthLedger({ bundleText });
-  const allegation = ledger.charge?.wording || title || "Criminal allegation";
-  const clientLabel = ledger.defendant?.defendant || title || "Defendant";
+  const bb = buildStrategyBattleboard({
+    case_id: "overview-sweep",
+    bundle_text: bundleText,
+    offence_label: null,
+    committed_strategy: null,
+    position_text: null,
+    recorded_position: null,
+    stance_detected: null,
+    interview_stance: null,
+    strategy_summary_lines: [`Case title: ${title}`],
+    outstanding_disclosure: [],
+  } as any);
+  const chase = collectChaseItems({ battleboard: bb, bundleText });
+  const fidelity = generateExplanationFidelity(bundleText);
+  const fidelityIssues = fidelity.flatMap((s) => s.blocks?.map((b) => b.issue) ?? []).filter(Boolean);
+  const routeMoves = (bb.routes ?? []).flatMap((r: any) => r.next_moves ?? []).slice(0, 20);
+  const claims = Array.from(
+    new Set(
+      [...chase, ...fidelityIssues, ...(bb.urgent_next_moves ?? []).slice(0, 12), ...routeMoves]
+        .map((s) => String(s).trim())
+        .filter(Boolean),
+    ),
+  ).slice(0, 40);
 
-  const chase = buildDisclosureChaseBrief({
-    caseId: "client-sweep",
-    caseTitle: title || "Client sweep case",
-    clientLabel,
-    allegation,
-    stage: "PTPH",
-    hearingStatus: ledger.hearing?.rawLiteral ? "Listed" : "Unknown",
-    hearingDateIso: ledger.hearing?.dateIso ?? null,
-    bundleHealth: "ok",
-    positionStatus: "provisional",
-    battleboard: null,
-    bundleText,
-  });
-
-  const war = buildHearingWarRoomBrief({
-    caseId: "client-sweep",
-    caseTitle: title || "Client sweep case",
-    clientLabel,
-    allegation,
-    stage: "PTPH",
-    hearingStatus: ledger.hearing?.rawLiteral ? "Listed" : "Unknown",
-    bundleHealth: "ok",
-    positionStatus: "provisional",
-    readiness: "provisional",
-    hasSavedPosition: false,
-    battleboard: null,
-    chaseItems: chase.primaryItems.map((i) => i.label),
-    bundleText,
-  });
-
-  const briefPlan = buildCriminalBriefPlan({
-    allegation,
-    bundleText,
-    ledger,
-  });
-
-  const contradictions = extractAllBundleContradictions(bundleText);
-  const contradictionActions = buildContradictionActions(contradictions);
-  const clientSafe = buildClientSafeExplanation({
-    clientLabel,
-    allegation,
-    contradictions,
-    contradictionActionLines: contradictionActions.map((a) => a.clientSafeLine),
-    hasOutstandingDisclosure: chase.primaryItems.length > 0,
-    fallback: war.draftWording?.clientExplanation ?? null,
-  });
-
-  const matter = buildMatterBrief({
-    warRoom: war,
-    chase,
-    primaryRouteTitle: null,
-    briefPlan,
-  });
-  const clientSection = matter.sections.find((s) => s.id === "client");
-
-  const exportPack = buildExportPack({
-    caseId: "client-sweep",
-    allegation,
-    warRoom: war,
-    chase,
-    briefPlan,
-    matterConfidence: null,
-    doNotOverstate: war.doNotOverstate ?? [],
-    primaryRouteTitle: null,
-    urnCandidateTexts: [bundleText.slice(0, 4000)],
-    bundleText,
-  });
-  const exportClient = exportPack.sections.find((s) => s.id === "client_summary");
-  const exportGaps = exportPack.sections.find((s) => s.id === "evidence_gaps");
-
-  const claims: string[] = [];
-  if (clientSafe) claims.push(`CLIENT_SAFE | ${clientSafe}`);
-  if (war.draftWording?.clientExplanation) {
-    claims.push(`CLIENT_EXPLAIN | ${war.draftWording.clientExplanation}`);
-  }
-  if (clientSection?.paragraph) claims.push(`MATTER_CLIENT | ${clientSection.paragraph}`);
-  for (const b of clientSection?.bullets ?? []) {
-    if (b) claims.push(`MATTER_CLIENT_BULLET | ${b}`);
-  }
-  if (exportClient?.textForClipboard) {
-    claims.push(`EXPORT_CLIENT | ${exportClient.textForClipboard.slice(0, 1200)}`);
-  }
-  // Evidence-gaps export is client-facing bleed of chase invents (gym CLIENT≈Court risk).
-  if (exportGaps?.textForClipboard) {
-    claims.push(`EXPORT_GAPS | ${exportGaps.textForClipboard.slice(0, 1600)}`);
-  }
-  for (const item of chase.primaryItems.slice(0, 12)) {
-    claims.push(`CHASE_BLEED | ${item.label} | ${item.baseStatus}`);
-  }
-  if (ledger.defendant?.defendant) claims.push(`IDENTITY_DEFENDANT | ${ledger.defendant.defendant}`);
-  if (ledger.charge?.wording) claims.push(`IDENTITY_CHARGE | ${ledger.charge.wording}`);
-  for (const line of war.doNotOverstate ?? []) {
-    if (line) claims.push(`DO_NOT | ${line}`);
-  }
-
-  // Court language bleed into client-safe surfaces (gym CLIENT_TAB_EQUALS_COURT hop).
-  const clientCore = [
-    clientSafe,
-    war.draftWording?.clientExplanation ?? "",
-    clientSection?.paragraph ?? "",
-    exportClient?.textForClipboard ?? "",
-  ].join("\n");
-  if (
-    /asks the court to record|defence asks the court|safe court line|PTPH|adjournment application/i.test(
-      clientCore,
-    )
-  ) {
-    claims.push("BLEED | client_contains_court_control_language");
-  }
-  if (/PAPERS INVENTORY|Document \/ schedule inventory/i.test(clientCore)) {
-    claims.push("BLEED | client_contains_papers_inventory_chrome");
-  }
-
-  const inventClaimBlob = claims.filter((c) => !/^DO_NOT\b/i.test(c)).join("\n");
   const claimBlob = claims.join("\n");
   const defendant =
-    ledger.defendant?.defendant ||
     (title.match(/\b(?:R\s*v\.?\s+)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/)?.[1] ?? null) ||
-    null;
+    (bundleText.match(/Defendant\(s\):\s*([^\n]+)/i)?.[1]?.trim() ?? null);
   const offence =
-    ledger.charge?.wording ||
-    bundleText.match(/\b(Robbery|Affray|Theft|Burglary|Harassment|ABH|GBH|Assault)\b/i)?.[1] ||
+    bundleText.match(/Offence:\s*([^\n]+)/i)?.[1]?.trim() ??
+    bundleText.match(/\b(Robbery|Affray|Theft|Burglary|Harassment|ABH|GBH|Assault)\b/i)?.[1] ??
     null;
 
   return {
     claims,
     claimBlob,
-    inventClaimBlob,
     identity: { defendant, offence },
-    ledgerMeta: {
-      materialCount: claims.length,
-      hearingRaw: ledger.hearing?.rawLiteral ?? null,
-      hearingDateIso: ledger.hearing?.dateIso ?? null,
-      charge: ledger.charge?.wording ?? null,
-    },
     engineMs: Date.now() - t0,
   };
 }
@@ -957,13 +775,12 @@ function tallyFromNdjson(): {
     for (const f of o.modalityFlags || []) fam.set(f, (fam.get(f) || 0) + 1);
     for (const f of o.muteFlags || []) fam.set(`mute:${f}`, (fam.get(`mute:${f}`) || 0) + 1);
     for (const f of (o as any).contradictionFlags || []) fam.set(`contra:${f}`, (fam.get(`contra:${f}`) || 0) + 1);
-    for (const f of o.dateRoleFlags || []) fam.set(`date:${f}`, (fam.get(`date:${f}`) || 0) + 1);
   }
   const topFamilies = [...fam.entries()].sort((a, b) => b[1] - a[1]).slice(0, 15);
   return { scored: byKey.size, inventTotal, failHits, topFamilies, byRoute };
 }
 
-/** Emit Client-fail hitlist for fix-queue triage. Volume ≠ guilt. */
+/** Emit Overview-fail hitlist for other lanes. No gold ≠ fail. */
 function writeHitlist(): number {
   const header = [
     "unique_key",
@@ -1001,15 +818,11 @@ function writeHitlist(): number {
     const mute = o.muteFlags || [];
     const modality = o.modalityFlags || [];
     const contra = o.contradictionFlags || [];
-    const dateRole = o.dateRoleFlags || [];
-    const fails = Array.from(
-      new Set([...(o.failReasons || []), ...invent, ...mute, ...modality, ...contra, ...dateRole]),
-    );
+    const fails = Array.from(new Set([...(o.failReasons || []), ...invent, ...mute, ...modality, ...contra]));
     const isFail = fails.length > 0 || o.ok === false;
     if (!isFail) continue;
     n++;
-    const family =
-      invent[0] || modality[0] || mute[0] || dateRole[0] || contra[0] || (o.ok === false ? "engine_error" : "court_fail");
+    const family = invent[0] || modality[0] || mute[0] || contra[0] || (o.ok === false ? "engine_error" : "overview_fail");
     rows.push(
       [
         o.unique_key,
@@ -1018,28 +831,16 @@ function writeHitlist(): number {
         o.pdf_sha256,
         o.route,
         o.backend_case_id || "",
-        o.ok === false
-          ? "ERROR"
-          : invent.length
-            ? "INVENT"
-            : modality.length
-              ? "MODALITY"
-              : mute.length
-                ? "MUTE"
-                : dateRole.length
-                  ? "DATE_ROLE"
-                  : contra.length
-                    ? "CONTRADICTION"
-                    : "FAIL",
+        o.ok === false ? "ERROR" : invent.length ? "INVENT" : modality.length ? "MODALITY" : mute.length ? "MUTE" : contra.length ? "CONTRADICTION" : "FAIL",
         family,
         invent.join("|"),
         mute.join("|"),
         modality.join("|"),
-        [...contra, ...dateRole].join("|"),
+        contra.join("|"),
         (o.materialFlags || []).join("|"),
         String(o.sourceChars ?? ""),
         o.error || "",
-        (o.clientClaims || []).slice(0, 3).join(" || ").slice(0, 240),
+        (o.overviewClaims || []).slice(0, 3).join(" || ").slice(0, 240),
       ]
         .map((v) => csvEscape(String(v)))
         .join(","),
@@ -1053,7 +854,7 @@ function verdictLabel(complete: boolean, scored: number, total: number, blocked?
   if (blocked) return "BLOCKED";
   if (complete) return "COMPLETE";
   if (scored > 0 && scored < total) return "PARTIAL";
-  return "CLIENT_SWEEP_RUNNING";
+  return "OVERVIEW_SWEEP_RUNNING";
 }
 
 async function main() {
@@ -1080,10 +881,10 @@ async function main() {
 
   if (indexOnly) {
     writeStatus({
-      verdict: "CLIENT_SWEEP_RUNNING",
+      verdict: "OVERVIEW_SWEEP_RUNNING",
       totalUnique: index.length,
       backendLive: index.filter((r) => r.route === "BACKEND_LIVE").length,
-      offline: index.filter((r) => r.route === "OFFLINE_CLIENT_PROJECTION").length,
+      offline: index.filter((r) => r.route === "OFFLINE_OVERVIEW_PROJECTION").length,
       skipped: index.filter((r) => r.route === "SKIP").length,
       scored: 0,
       inventTotal: 0,
@@ -1100,7 +901,7 @@ async function main() {
       verdict: "BLOCKED",
       totalUnique: index.length,
       backendLive: 0,
-      offline: index.filter((r) => r.route === "OFFLINE_CLIENT_PROJECTION").length,
+      offline: index.filter((r) => r.route === "OFFLINE_OVERVIEW_PROJECTION").length,
       skipped: index.filter((r) => r.route === "SKIP").length,
       scored: 0,
       inventTotal: 0,
@@ -1110,8 +911,7 @@ async function main() {
   }
 
   let corpus = { byId: new Map<string, BackendCase>(), byNeedle: new Map<string, string>() };
-  const offlineOnly = process.env.CLIENT_SWEEP_OFFLINE_ONLY?.trim() === "1";
-  if (url && key && !offlineOnly) {
+  if (url && key) {
     const supabase = createClient(url, key, { auth: { persistSession: false } });
     console.log("loading BACKEND_LIVE corpus (eval org READ)...");
     const extraIds = [
@@ -1126,14 +926,8 @@ async function main() {
       "a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27",
       "e2841289-1ed2-4dc4-9acf-dd22a03b63fc",
     ];
-    try {
-      corpus = await loadBackendCorpus(supabase, extraIds);
-      console.log("backend_cases_with_text", corpus.byId.size);
-    } catch (e: any) {
-      console.warn("backend_corpus_load_failed_continuing_offline", String(e?.message || e).slice(0, 200));
-    }
-  } else if (offlineOnly) {
-    console.log("CLIENT_SWEEP_OFFLINE_ONLY=1 — skipping backend corpus load");
+    corpus = await loadBackendCorpus(supabase, extraIds);
+    console.log("backend_cases_with_text", corpus.byId.size);
   }
 
   // Re-route using backend matches
@@ -1151,7 +945,7 @@ async function main() {
         row.route = "SKIP";
         row.skip_reason = row.skip_reason || "no_backend_match_and_no_pdf";
       } else {
-        row.route = "OFFLINE_CLIENT_PROJECTION";
+        row.route = "OFFLINE_OVERVIEW_PROJECTION";
         row.skip_reason = "";
       }
     }
@@ -1188,7 +982,7 @@ async function main() {
 
   const done = loadCompletedKeys();
   const routeRank = (r: IndexRow) =>
-    r.route === "BACKEND_LIVE" ? 0 : r.route === "OFFLINE_CLIENT_PROJECTION" ? 1 : 2;
+    r.route === "BACKEND_LIVE" ? 0 : r.route === "OFFLINE_OVERVIEW_PROJECTION" ? 1 : 2;
   let pending = index
     .filter((r) => !done.has(r.unique_key))
     .sort((a, b) => routeRank(a) - routeRank(b) || a.case_key.localeCompare(b.case_key));
@@ -1200,12 +994,12 @@ async function main() {
 
   const routeCounts = {
     backendLive: index.filter((r) => r.route === "BACKEND_LIVE").length,
-    offline: index.filter((r) => r.route === "OFFLINE_CLIENT_PROJECTION").length,
+    offline: index.filter((r) => r.route === "OFFLINE_OVERVIEW_PROJECTION").length,
     skipped: index.filter((r) => r.route === "SKIP").length,
   };
 
   writeStatus({
-    verdict: "CLIENT_SWEEP_RUNNING",
+    verdict: "OVERVIEW_SWEEP_RUNNING",
     totalUnique: index.length,
     ...routeCounts,
     scored: done.size,
@@ -1254,21 +1048,14 @@ async function main() {
       sourceChars: 0,
       engineMs: 0,
       ok: false,
-      clientClaims: [],
+      overviewClaims: [],
       inventFlags: [],
       muteFlags: [],
       modalityFlags: [],
       contradictionFlags: [],
-      dateRoleFlags: [],
       materialFlags: [],
       failReasons: [],
       identityHints: {},
-      ledgerMeta: {
-        materialCount: 0,
-        hearingRaw: null,
-        hearingDateIso: null,
-        charge: null,
-      },
       evidence: {
         export_log_claim: false,
         export_log_source: false,
@@ -1284,8 +1071,6 @@ async function main() {
         subscriber_source: false,
         bwv_claim: false,
         bwv_source: false,
-        bwv_full_export_claim: false,
-        bwv_stills_source: false,
         mg_forms_source: false,
         id_procedure_source: false,
         charge_source: false,
@@ -1310,7 +1095,7 @@ async function main() {
           if (row.pdf_path && fs.existsSync(row.pdf_path)) {
             const ex = await extractPdfText(row.pdf_path);
             text = ex.text;
-            base.route = "OFFLINE_CLIENT_PROJECTION";
+            base.route = "OFFLINE_OVERVIEW_PROJECTION";
             if (ex.error && !text) throw new Error(ex.error);
           } else {
             base.route = "SKIP";
@@ -1340,17 +1125,15 @@ async function main() {
         return base;
       }
 
-      const proj = projectClient(text, row.display_name || row.source_id || row.case_key);
+      const proj = await projectOverview(text, row.display_name || row.source_id || row.case_key);
       base.engineMs = proj.engineMs;
-      base.clientClaims = proj.claims;
+      base.overviewClaims = proj.claims;
       base.identityHints = proj.identity;
-      base.ledgerMeta = proj.ledgerMeta;
-      const scored = scoreInvent(text, proj.inventClaimBlob, proj.ledgerMeta.materialCount, proj.ledgerMeta.hearingRaw);
+      const scored = scoreInvent(text, proj.claimBlob);
       base.inventFlags = scored.inventFlags;
       base.muteFlags = scored.muteFlags;
       base.modalityFlags = scored.modalityFlags;
       base.contradictionFlags = scored.contradictionFlags;
-      base.dateRoleFlags = scored.dateRoleFlags;
       base.materialFlags = scored.materialFlags;
       base.failReasons = scored.failReasons;
       base.evidence = scored.evidence;
@@ -1365,7 +1148,7 @@ async function main() {
         const remain = index.length - tall.scored;
         const etaMin = rate > 0 ? Math.round(remain / rate / 60) : null;
         writeStatus({
-          verdict: "CLIENT_SWEEP_RUNNING",
+          verdict: "OVERVIEW_SWEEP_RUNNING",
           totalUnique: index.length,
           ...routeCounts,
           scored: tall.scored,
@@ -1466,4 +1249,3 @@ main().catch((e) => {
   }
   process.exit(1);
 });
-
