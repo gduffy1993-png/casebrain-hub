@@ -430,6 +430,16 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
     "opposite: Brookes full download TP",
   );
 
+  // Brookes: inject full download when no upstream phone card exists yet.
+  const brookesInjectOnly = reconcilePhoneDownloadModalityItems(
+    [],
+    "Full phone download outstanding. Source export not served. Subscriber report not served.",
+  );
+  assert.ok(
+    brookesInjectOnly.some((i) => /Full phone download/i.test(i.label)),
+    "Brookes: full download inject when no upstream card",
+  );
+
   const arden = reconcilePhoneDownloadModalityItems(
     [
       {

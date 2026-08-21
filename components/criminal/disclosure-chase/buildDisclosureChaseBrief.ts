@@ -318,8 +318,9 @@ export function reconcileCad999ModalityItems(
   return items
     .map((item) => {
       if (item.familyId !== "cad_999") return item;
+      const itemBlob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? ""].join("\n");
       // Item-local + hay: schedule "Present" language OR a served CAD/999 Extract section body.
-      const blob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? "", hay].join("\n");
+      const blob = `${itemBlob}\n${hay}`;
 
       const extractPresent =
         /\b\d*cad(?:\s*\/\s*999)?(?:\s+incident\s+log)?\s+extract\b[\s\S]{0,40}\b(?:present|served|included)/i.test(
@@ -332,7 +333,10 @@ export function reconcileCad999ModalityItems(
         /\b\d*cad\s*\/\s*999\s+extractpresent\b/i.test(blob) ||
         // Served extract document body (Tobin): section title + timed entries — not a missing-extract chase.
         (/\bcad\s*\/\s*999\s+extract\b/i.test(blob) &&
-          /\b(?:time\s+entry|call\s+received|unit\s*assigned|officer\s+arriv)/i.test(blob));
+          /\b(?:time\s+entry|call\s+received|unit\s*assigned|officer\s+arriv)/i.test(blob)) ||
+        // Chase already anchored to a CAD/999 Extract document title (Tobin live residual).
+        (/\bcad\s*\/\s*999\s+extract\b/i.test(itemBlob) &&
+          !/\b(?:outstanding|not\s+attached|not\s+served|missing)\b/i.test(itemBlob));
 
       const audioOutstanding =
         /\b999\s+audio\b[\s\S]{0,40}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
@@ -594,6 +598,31 @@ export function reconcilePhoneDownloadModalityItems(
           "Please confirm whether a full phone download / source export exists beyond the logical/summary note on file, or confirm in writing why it is not available.",
         courtLine: toCourtLine(label),
         mergedFrom: ["Phone download mid-state on papers"],
+      });
+    }
+  }
+
+  // Brookes-style: papers expressly establish full download outstanding but no chase card yet.
+  if (fullOutstanding && !(propertyPhone && !downloadFamilyAffirmed)) {
+    const hasFull = filtered.some((i) => /Full phone download/i.test(i.label));
+    if (!hasFull) {
+      const label = "Full phone download / source extraction";
+      filtered.push({
+        id: "chase-phone-full-outstanding",
+        familyId: "other",
+        label,
+        whyItMatters:
+          "Original download / source export is outstanding on the disclosure papers.",
+        source: "Crown / disclosure officer (confirm on file)",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "Before next hearing",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording:
+          "Please provide the full phone download / source export, or confirm in writing why it is not available.",
+        courtLine: toCourtLine(label),
+        mergedFrom: ["Full phone download outstanding on papers"],
       });
     }
   }
