@@ -586,14 +586,20 @@ export function reconcilePhoneDownloadModalityItems(
 ): DisclosureChaseItem[] {
   const hay = `${bundleText ?? ""}`;
   const midState =
-    /\blogical\s+download\s+summary\b/i.test(hay) ||
+    /logical\s+download\s+summary/i.test(hay) ||
     /\bphone\s+download\s+reference\s+referenced\s+only\b/i.test(hay) ||
     /\breferenced\s+only\b[^.\n]{0,40}\bphone\s+download\b/i.test(hay) ||
-    /\bextraction\s+summary\s+only\b/i.test(hay) ||
-    /\bfull\s+report\s+not\s+in\s+(?:the\s+)?section\b/i.test(hay);
+    /extraction\s+summary\s+only/i.test(hay) ||
+    /full\s+report\s+not\s+in\s+(?:the\s+)?section/i.test(hay) ||
+    /download\s+report\s*summary/i.test(hay);
 
   const fullOutstanding =
     /\b(?:full\s+)?phone\s+download\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|expressly|referred)\b/i.test(
+      hay,
+    ) ||
+    // Glued: phone extractionOutstanding / full phone extractionOutstandingnot
+    /\b(?:full\s+)?phone\s+extraction\s*(?:outstanding|not\s+served|not\s+attached|not\s+yet)/i.test(hay) ||
+    /\b(?:full\s+)?phone\s+extraction\b[^.\n]{0,48}\b(?:outstanding|not\s+served|not\s+attached|not\s+yet|referred)\b/i.test(
       hay,
     ) ||
     /\bphone\s+download\s*\/\s*source\s+export\b/i.test(hay) ||
@@ -628,6 +634,12 @@ export function reconcilePhoneDownloadModalityItems(
 
     // Arden-like: property phone alone must not invent a download chase.
     if (propertyPhone && !downloadFamilyAffirmed) {
+      return null;
+    }
+
+    // Playbook / MG6 "phone download" seed without download-family establishment
+    // (SIM/IMEI/subscriber alone) must not become a Full phone download card.
+    if (!downloadFamilyAffirmed && !midState && !fullOutstanding) {
       return null;
     }
 

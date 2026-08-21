@@ -2,7 +2,9 @@
 
 
 
-**Verdict:** `E1_PROOF_LIVE_AUTH_PASS` (File invent_court **43→0** + live AUTH Overview→File gates **PASS**)
+**Verdict:** `C2_COURT_PHONE_DOWNLOAD_GATE` (Court invent_phone residual — SIM≠download; tip sample **40/40** cleared)
+
+**Chunk C2 Court phone:** `CHUNK-C2-COURT-PHONE-GATE.md` · tip sample `court-criminal-sweep-v1/tip-sample-c2-phone.json`
 
 **Chunk E1 proof:** `CHUNK-E1-FILE-INVENT-PROOF.md` · tip pack `file-criminal-sweep-v1/tip-resweep-627789b1e/` · invent_court **43→0**
 
@@ -18,9 +20,9 @@
 
 **Chunk C1 Court invent proof:** `CHUNK-C1-COURT-INVENT-PROOF.md` · tip pack `court-criminal-sweep-v1/tip-resweep-7b900de22/` · invent sum **1084→114**
 
-**PR:** https://github.com/gduffy1993-png/casebrain-hub/pull/70
+**PR:** https://github.com/gduffy1993-png/casebrain-hub/pull/70 · **MERGED** → `recovery/pre-assurance-good-f167c5876` @ `fc797e5b7`
 
-**Merge:** **NOT STARTED**  
+**Merge to programme/release:** **NOT STARTED** (needs explicit owner ask)  
 
 
 **Phase-A-lock SHA:** `cbf40f08f381d1e39d7326059dbe24cb71beacce`  
