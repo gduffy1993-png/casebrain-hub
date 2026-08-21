@@ -602,9 +602,9 @@ export function HearingWarRoom({
         snapshotMissing: snapshot?.evidence.missingEvidence,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
         battleboard,
-        bundleText: bundleContextHay || null,
+        bundleText: bundleSource?.frontMatterScan ?? null,
       }),
-    [snapshot, effectiveProceduralSafety, battleboard, bundleContextHay],
+    [snapshot, effectiveProceduralSafety, battleboard, bundleSource?.frontMatterScan],
   );
 
   const positionStatus = useMemo(() => {
