@@ -18,9 +18,9 @@
 
 **Chunk C1 Court invent proof:** `CHUNK-C1-COURT-INVENT-PROOF.md` · tip pack `court-criminal-sweep-v1/tip-resweep-7b900de22/` · invent sum **1084→114**
 
-**PR:** https://github.com/gduffy1993-png/casebrain-hub/pull/70
+**PR:** https://github.com/gduffy1993-png/casebrain-hub/pull/70 · **MERGED** → `recovery/pre-assurance-good-f167c5876` @ `fc797e5b7`
 
-**Merge:** **NOT STARTED**  
+**Merge to programme/release:** **NOT STARTED** (needs explicit owner ask)  
 
 
 **Phase-A-lock SHA:** `cbf40f08f381d1e39d7326059dbe24cb71beacce`  
