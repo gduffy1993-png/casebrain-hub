@@ -1,12 +1,14 @@
 # Actual CaseBrain output — RP-17-FRESH-BROOKES
 
-**Live capture on frozen Preview:** **NOT CAPTURED**
+**Capture:** LIVE on Preview `3fa12f9d6` after clean-PDF re-upload.  
+**caseId:** `2dcdc59d-ff44-4bc8-ac31-bd11a954a59e`  
+**Dumps:** `_live/brookes-trap-closeout/brookes/` (+ mirrored `_live/canaries/brookes/`)
 
-Reason (honest):
-- Workspace trial at capture time showed **25/25 cases** on Arden session chrome — fresh uploads not used this pass.
-- No `ensureQaUser` / password reset performed (forbidden).
-- Prefer deepen PDF gold over empty packaging.
+## Headline live lines
 
-**Evaluation path for product judge:** `GAP_NO_LIVE_ON_PREVIEW`
+- Overview disclosure gap: **Phone download / source export referred to, not served on file**
+- Chase: **Full phone download / source extraction** — MISSING
+- Court/Papers readiness WHY: **Original download and voice note outstanding**
+- Subscriber / attribution outstanding on Overview + Court
 
-When live capture is available later on same SHA `02d9125473f2413d7079b41b9e0ec596598e4682`, drop dumps beside this file and re-score `pdf-vs-output-diff.md`.
+See `pdf-vs-output-diff.md` for TP/TN scoring.

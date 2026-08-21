@@ -15,7 +15,7 @@ import {
   reconcilePhoneDownloadModalityItems,
   reconcileSubscriberModalityItems,
 } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
-import { familySupport, expandAndGateChaseLines, gateMaterialLines, isCctvContinuityEstablished, isCctvMasterEstablished } from "../lib/criminal/chase-source-gate";
+import { familySupport, expandAndGateChaseLines, gateMaterialLines, isBwvFullExportEstablished, isCctvContinuityEstablished, isCctvMasterEstablished } from "../lib/criminal/chase-source-gate";
 import {
   displayChaseCardLabel,
   isDigitalHarassmentBundleHay,
@@ -408,6 +408,116 @@ The case should not be strengthened by assuming missing CCTV, statements, codes,
     !gateMaterialLines(["CCTV Full Window", "CCTV full window / master footage"], TRAP_THIN).length,
     "Trap: CCTV master/full-window invent labels dropped",
   );
+}
+
+// --- I3: BWV stills served ≠ full BWV export invent; Tobin/CASE-02 opposite must keep ---
+{
+  const DUNN_BWV_STILLS = `
+MG6 DISCLOSURE SCHEDULE
+S01 BWV stills Served Included in present papers
+S02 interview summary Served Included in present papers
+S04 CAD incident log extract Served
+O01 full interview transcript Outstanding
+O05 999 audio Outstanding Listed but not attached
+I have been shown reference BWV/02.
+`.trim();
+
+  assert.equal(
+    isBwvFullExportEstablished(DUNN_BWV_STILLS),
+    false,
+    "Dunn: BWV stills Served alone is not full-export establishment",
+  );
+
+  const dunnBrief = buildDisclosureChaseBrief({
+    caseId: "dunn-bwv-stills",
+    caseTitle: "Ellis Dunn",
+    allegation: "Conspiracy to burgle",
+    stage: "PTPH",
+    hearingStatus: "listed",
+    hearingDateIso: null,
+    bundleHealth: "partial",
+    positionStatus: "provisional",
+    battleboard: null,
+    snapshotMissing: [{ label: "Body Worn Video (BWV)", status: "MISSING" }],
+    bundleText: DUNN_BWV_STILLS,
+  });
+  assert.ok(
+    !dunnBrief.items.some((i) => i.familyId === "bwv" || /BWV|body-worn|full export/i.test(i.label)),
+    "Dunn: stills served must not invent BWV full-export chase",
+  );
+  assert.ok(
+    !dunnBrief.items.some((i) => /full BWV export|full export and continuity/i.test(i.whyItMatters)),
+    "Dunn: whyItMatters must not invent full BWV export from stills",
+  );
+
+  const TOBIN_BWV_OUTSTANDING = `
+MG6 Schedule
+U1 BWV clip Outstanding Needed for continuity
+U3 Full CCTV master Part copy only Needed for attribution
+TEL/5 Body worn video not served
+`.trim();
+  assert.equal(
+    isBwvFullExportEstablished(TOBIN_BWV_OUTSTANDING),
+    true,
+    "Tobin opposite: BWV clip outstanding establishes full-export family",
+  );
+  const tobinBrief = buildDisclosureChaseBrief({
+    caseId: "tobin-bwv-out",
+    caseTitle: "Imani Tobin",
+    allegation: "Wounding with intent",
+    stage: "PTPH",
+    hearingStatus: "listed",
+    hearingDateIso: null,
+    bundleHealth: "partial",
+    positionStatus: "provisional",
+    battleboard: null,
+    snapshotMissing: [{ label: "Body Worn Video (BWV)", status: "MISSING" }],
+    bundleText: TOBIN_BWV_OUTSTANDING,
+  });
+  assert.ok(
+    tobinBrief.items.some((i) => i.familyId === "bwv" || /BWV|body-worn/i.test(i.label)),
+    "Tobin opposite: BWV outstanding must remain chaseable",
+  );
+
+  const CASE02_BWV_REFERRED = `
+MG6C — UNUSED MATERIAL SCHEDULE
+MG6C/010 — Body-worn video PC Daniels — referred on schedule — full export not attached.
+Evidence referred or outstanding: Full BWV export; full custody record.
+`.trim();
+  assert.equal(
+    isBwvFullExportEstablished(CASE02_BWV_REFERRED),
+    true,
+    "CASE-02 opposite: BWV referred / full export not attached establishes",
+  );
+  const case02Brief = buildDisclosureChaseBrief({
+    caseId: "case02-bwv-ref",
+    caseTitle: "Casey Fry",
+    allegation: "Assault emergency worker",
+    stage: "PTPH",
+    hearingStatus: "listed",
+    hearingDateIso: null,
+    bundleHealth: "partial",
+    positionStatus: "provisional",
+    battleboard: null,
+    snapshotMissing: [{ label: "Body Worn Video (BWV)", status: "MISSING" }],
+    bundleText: CASE02_BWV_REFERRED,
+  });
+  assert.ok(
+    case02Brief.items.some((i) => i.familyId === "bwv" || /BWV|body-worn/i.test(i.label)),
+    "CASE-02 opposite: full BWV export referred must remain chaseable",
+  );
+
+  const stillsGate = expandAndGateChaseLines(
+    ["Chase full BWV export."],
+    DUNN_BWV_STILLS,
+  );
+  assert.equal(stillsGate.length, 0, "stills≠full BWV: expand gate drops invent line");
+
+  const tobinGate = expandAndGateChaseLines(
+    ["Chase full BWV export."],
+    TOBIN_BWV_OUTSTANDING,
+  );
+  assert.ok(tobinGate.some((l) => /BWV/i.test(l)), "Tobin opposite: expand gate keeps BWV chase");
 }
 
 // --- J: Trap /sim/-in-assuming must not invent Subscriber; real subscriber must ---

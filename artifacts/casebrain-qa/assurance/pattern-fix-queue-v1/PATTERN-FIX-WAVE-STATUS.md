@@ -2,7 +2,18 @@
 
 
 
-**Verdict:** `GRANT_CCTV_MASTER_INVENT_FIXED` (was `HIGH_VALUE_LEFTOVERS_DONE`)  
+**Verdict:** `CHUNK_3_ARMOUR_STRONG` (BWV stills≠full-export fixed; 10 opposite pairs armoured; live canaries PASS)
+
+**Chunk 3 family armour:** `CHUNK-3-FAMILY-ARMOUR.md` · Preview https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app · live `live-auth-chunk3-after-bwv/`
+
+**Chunk 2 scale proof:** `CHUNK-2-SCALE-PROOF.md` · tip pack `overview-criminal-sweep-v1/tip-resweep-2e6d6d344/`
+
+**Chunk 1 polish:** `CHUNK-1-RESIDUAL-POLISH.md` · live `live-auth-chunk1-residual/`  
+
+**Prior:** `CHUNK_1_CLEAN_NO_FIX` / `GRANT_CCTV_MASTER_INVENT_FIXED` / `HIGH_VALUE_LEFTOVERS_DONE` / `CHUNK_2_PROOF_STRONG`
+
+**Merge:** **NOT STARTED**  
+
 
 **Phase-A-lock SHA:** `cbf40f08f381d1e39d7326059dbe24cb71beacce`  
 
@@ -16,25 +27,13 @@
 
 **Grant CCTV invent tip SHA:** `2e6d6d3447d5398980a2c0b7aa3f983b73deb8b2`  
 
+**Chunk 3 BWV Preview:** https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app (worktree deploy; commit pending)
+
 **Freeze baseline (pre-wave product):** `55c41d8956c044d20f4265cccc6fd8669349d2ae`  
 
 **Preview (Grant CCTV invent tip):** https://casebrain-2r0jobmh3-gduffy1993-pngs-projects.vercel.app  
 
-**Preview (HV tip):** https://casebrain-1u1mg5j9d-gduffy1993-pngs-projects.vercel.app  
-
-**Preview (C tip):** https://casebrain-8jff5rq5s-gduffy1993-pngs-projects.vercel.app  
-
-**Preview (Soft Chase):** https://casebrain-ksobqbr7b-gduffy1993-pngs-projects.vercel.app  
-
 **Hop book:** `artifacts/casebrain-qa/assurance/pattern-fix-queue-v1/MASTER-HOP-BOOK.md`  
-
-**A lock:** `PHASE-A-LOCK.md` · **B note:** `PHASE-B-PAPERS-CLIENT.md` · **C triage:** `PHASE-C-OVERVIEW-TRIAGE.md`  
-
-**HV RIP:** `HIGH-VALUE-LEFTOVERS-RIP.md`  
-
-**Grant invent fix:** `GRANT-CCTV-MASTER-INVENT-FIX.md` · **Word-for-word:** `WORD-FOR-WORD-PDF-LIVE.md`  
-
-**Live AUTH:** `live-auth-word-for-word-after-cctv-fix/`  
 
 **Updated:** 2026-08-21
 
@@ -90,23 +89,27 @@ Papers inventory + distinct Client Summary live @ `98u6` / `a13739f4b`.
 
 
 
-## Phase C - Overview triage PARTIAL → HV closeout
+## Phase C - Overview triage → Chunk 2 scale proof
 
 
 
-| Family | Freeze N | Sample 25 after tip | Class |
+| Family | Freeze N | Tip full 2600 | Class |
 
-|--------|----------:|--------------------:|-------|
+|--------|----------:|--------------:|-------|
 
-| invent_cctv_master | 177 | **0** | FIXED |
+| invent_cctv_master | 177 | **16** | DROPPED (~91%); residual detector/affirmative-gap (spot-check) |
 
-| invent_interview_recording | 419 | **0** | FIXED |
+| invent_interview_recording | 477 | **0** | CLEARED |
 
-| invent_cad_999 | 82 | **0** | FIXED |
+| invent_cad_999 | 94 | **0** | CLEARED |
 
-| modality_summary_vs_recording | 117 | **7** | PDF-true contrast (no invent shared-root) |
+| modality_summary_vs_recording | 301 | **103** | DROPPED; leftovers PDF-true contrast |
 
-| mute_phone_download | 445 | (WATCH) | WATCH — Brookes Overview still shows phone gap |
+| mute_phone_download | 695 | **695** | WATCH — still high |
+
+
+
+See `CHUNK-2-SCALE-PROOF.md`.
 
 
 
@@ -114,7 +117,7 @@ Papers inventory + distinct Client Summary live @ `98u6` / `a13739f4b`.
 
 
 
-## Canary lock board (HV tip + live AUTH)
+## Canary lock board (Chunk 3 @ `76gk8`)
 
 
 
@@ -122,15 +125,19 @@ Papers inventory + distinct Client Summary live @ `98u6` / `a13739f4b`.
 
 |------|--------|
 
-| Opposite suite | **PASS** |
+| Opposite suite (incl. I3 BWV) | **PASS** |
 
-| Soft Chase primary promote | **PASS** (unit + live Brookes) |
+| Dunn BWV full-export invent TN | **PASS** |
 
-| invent CCTV / interview / CAD sample | **0/25** |
+| Grant CCTV master invent TN | **PASS** |
 
-| Arden/Trap/Brookes/Grant live AUTH | **PASS** |
+| Arden CCTV master TP | **PASS** |
 
-| Live AUTH browser | **HIGH_VALUE_LEFTOVERS_DONE** |
+| Trap invent TN | **PASS** |
+
+| Brookes phone download TP | **PASS** |
+
+| Soft Chase primary promote | **PASS** (held) |
 
 
 

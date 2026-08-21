@@ -1,7 +1,9 @@
 # Source map — RP-17-FRESH-BROOKES
 
 **Gold tier:** GOLD_A_PDF (PDF extract; not CaseBrain output)
-**PDF:** `C:\Users\gduff\Downloads\CB-FRESH-001_Taylor_Brookes_Digital_Attribution.pdf`
+**PDF (gold path):** `C:\Users\gduff\Downloads\CB-FRESH-001_Taylor_Brookes_Digital_Attribution.pdf`  
+**Note:** Downloads original fails product XRef parse. Live ingest used rebuilt clean PDF from `_extracts/RP-17-FRESH-BROOKES.full.txt` → `_live/brookes-trap-closeout/CB-FRESH-001_Taylor_Brookes_CLEAN.pdf`.  
+**Live caseId (SHA `3fa12f9d6`):** `2dcdc59d-ff44-4bc8-ac31-bd11a954a59e`
 **SHA256:** `c5808d92030c0eb2005b40da003e8be027b09daae1f5844e1aea4b1fede24cd6`
 **Pages / chars:** 10 / 12054
 **Family pair:** `phone_download_POSITIVE_control|subscriber_gap|screenshot_vs_export`

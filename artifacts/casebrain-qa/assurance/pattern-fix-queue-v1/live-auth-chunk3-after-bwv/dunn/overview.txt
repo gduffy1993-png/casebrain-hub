@@ -9,16 +9,16 @@ Criminal Defence Solicitor
 Search
 New Upload
 Sign Out
-Trial: 4d left · 24/25 cases · 24/100 docs
+Trial: 3d left · 24/25 cases · 24/100 docs
 Upgrade
 
-Taylor Brookes
+Ellis Dunn
 
-Charge not safely identified from uploaded papers
+Conspiracy to burgle, contrary to section 1 of the Criminal Law Act 1977
 
-Northbank Crown Court
+Crown Court at Manchester
 ·
-Hearing date passed · 6 Jul 2026
+Hearing date passed · 7 Jul 2026
 PROVISIONAL — CHECK PAPERS
 
 Next: Chase outstanding disclosure and record provisional hearing position.
@@ -40,13 +40,13 @@ CASE SNAPSHOT
 
 EVIDENCE STATE
 
-7 served · 2 missing · 2 incomplete
+4 served · 1 missing · 2 incomplete
 
 DISCLOSURE GAPS
 
-Phone download / source export referred to, not served on file
-Exhibit mapping / provenance
-Outstanding source material on disclosure schedule
+CCTV outstanding
+999 audio outstanding
+Interview recording outstanding
 
 RISK FLAGS
 
@@ -56,8 +56,8 @@ WORDING GUARDRAILS
 SAFE WORDING ON CURRENT PAPERS
 
 Disclosure completeness and outstanding source material.
-Subscriber / attribution data needs checking — do not rely on it without checking the source.
-Screenshot / message pack served — check before relying on it.
+Any hearing position should be conditional appears on the papers — check before relying on it.
+Any position is subject to instructions appears on the papers — check before relying on it.
 
 DO NOT OVERSTATE
 
@@ -65,15 +65,15 @@ DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
 
 SOLICITOR REVIEW
 Avoid firm wording until the papers confirm it
+No support on the papers for phone extraction/metadata. Avoid relying on it until confirmed.
 Assumed position may conflict with interview or served evidence.
-Crown may link the missing/source material to Taylor Brookes Complainant if served.
 COURT PREP
 
 COURT POSITION
 
 Solicitor review required
 
-Possession, knowledge, intent to supply and phone attribution remain conditional on served phone/device material.
+Identification, participation and attribution remain conditional on served CCTV, CAD/999 material.
 
 Review court position
 Prepare CPS chase
@@ -83,9 +83,7 @@ Review client update
 Client update drafted from the current papers. Review before sending.
 
 EVIDENCE GAPS
-Subscriber / attribution data outstanding
-MISSING
-schedule 12-13 Original download and voice note
+Items marked
 MISSING
 
 Papers on this matter

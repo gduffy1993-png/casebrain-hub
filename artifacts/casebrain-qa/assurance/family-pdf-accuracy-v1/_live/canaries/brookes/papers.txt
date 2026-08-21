@@ -9,16 +9,16 @@ Criminal Defence Solicitor
 Search
 New Upload
 Sign Out
-Trial: 4d left · 25/25 cases · 25/100 docs
+Trial: 4d left · 24/25 cases · 24/100 docs
 Upgrade
 
-Client not on papers
+Taylor Brookes
 
 Charge not safely identified from uploaded papers
 
-Court not safely identified from uploaded papers
+Northbank Crown Court
 ·
-Hearing not on papers
+Hearing date passed · 6 Jul 2026
 PROVISIONAL — CHECK PAPERS
 
 Next: Chase outstanding disclosure and record provisional hearing position.
@@ -31,22 +31,20 @@ CPS Chase
 File
 Record Position
 Upload Evidence
-Criminal case
+Criminal case — Possession / knowledge / phone-attribution
 CONTROL ROOM
 
-Client name not safely extracted
-
-Offence wording not safely extracted
+Taylor Brookes
 
 Stage: Stage not recorded
 
 Defence position not safely recorded yet — position is provisional; confirm client instructions before relying on it.
 
-Add charge sheet or key evidence for offence-specific strategy — Offence not identified.
+Bundle note (provisional): position conditional pending digital/BWV material.
 
 BUNDLE HEALTH
 
-Partial (on file text) (1 doc · 233 chars text)
+Partial (on file text) (1 doc · 12k chars text)
 
 POSITION STATUS
 
@@ -58,36 +56,51 @@ Key risks on file — review before fixing a route
 
 DISCLOSURE CHASE
 
-Source-material chase (6 items)
+Source-material chase (7 items)
 
 PRIMARY DEFENCE PRESSURE ROUTE
 
-Continuity / provenance pressure
+Possession / knowledge / phone-attribution pressure
 
-VIABLE — CONDITIONAL ON SERVED MATERIAL
+CONDITIONAL ON SERVED MATERIAL
 
-[PDF extraction failed: PDF parsing failed: bad XRef entry. The PDF may be corrupted, password-protected, or use an unsupported format.. File stored but text extraction unavailable. Please re-upload a valid PDF or use OCR if needed.]
+Subscriber data or phone attribution report not served.
 
 BIGGEST RISK / WHAT COULD HURT US
 
 Assumed position may conflict with interview or served evidence.
-Continuity/provenance may later be proved on served material.
+Client account conflicts with served source material.
 
 NEXT 3 SOLICITOR ACTIONS
 
-Chase continuity statements and master/source files for key exhibits.
-Chase/record: Map exhibit references across MG5/MG6 before trial theory is fixed.
-Chase/record: Record what handling/provenance material is still outstanding.
+Chase full phone extraction and attribution/SIM/IMEI material.
+Take instructions on phone ownership, shared premises, co-occupiers and knowledge/control.
 
 SAFE COURT LINE (TODAY)
 
-Continuity/provenance remains conditional; request outstanding source/continuity material and a timetable.
+Possession and phone-attribution issues remain conditional on served extraction and search material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.
 
 Provisional · solicitor review · do not overstate
 
 state: not safely confirmed · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof
 
-MORE PAPERS DETAIL
+Pre-hearing readiness
+
+Not ready to rely on yet
+
+SOLICITOR REVIEW REQUIRED
+
+Pre-hearing readiness reflects whether served papers support a safe hearing position — not case strength or plea advice. Core source material or review gaps mean it is not safe to rely on this matter for a final hearing position on current papers. 3 core disclosure issues — such as CCTV, CAD, interview, laboratory, medical or continuity material where relevant — outstanding or partial on served papers. Provisional view — papers incomplete; do not finalise a hearing line without solicitor review.
+
+Not case strength · not plea advice · papers readiness only
+
+WHY THIS READINESS?
+Some digital material is described in schedules but not served in original format. — outstanding or partial on served papers (COVER SHEET).
+Original download and voice note outstanding. — outstanding or partial on served papers (COVER SHEET).
+Original WhatsApp export not served. — outstanding or partial on served papers (MG5 CASE SUMMARY).
+Show why this readiness
+
+FULL PAPERS WORKSPACE
 
 More detailed drafting is held back until the source position is clearer.
 

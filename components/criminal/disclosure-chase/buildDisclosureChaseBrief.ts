@@ -44,6 +44,7 @@ import {
   familyDisplayName,
   familySupport,
   gateProseAgainstSource,
+  isBwvFullExportEstablished,
   isCctvContinuityEstablished,
   isCctvMasterEstablished,
   type ChaseGateFamily,
@@ -156,7 +157,20 @@ const CHASE_FAMILIES: FamilyDef[] = [
     label: "Body-worn video (BWV)",
     source: "Police / officer body-worn video",
     priority: 4,
-    match: (t) => /\b(bwv|body\s*worn|body-worn)\b/.test(t),
+    // Stills-only served lines must not classify as full-export BWV chase (Dunn).
+    // Require clip/export/footage/outstanding/not-served language, or BWV without stills-served-only.
+    match: (t) => {
+      if (!/\b(bwv|body\s*worn|body-worn)\b/.test(t)) return false;
+      if (
+        /\bbwv\s+stills?\b/.test(t) &&
+        !/\b(?:full|export|footage|clip|incident\s+window|outstanding|not\s+served|not\s+attached|referred)\b/.test(
+          t,
+        )
+      ) {
+        return false;
+      }
+      return true;
+    },
   },
   {
     id: "interview",
@@ -1405,6 +1419,10 @@ function gateItemsAgainstSource(
       continue;
     }
     if (item.familyId === "cctv_continuity" && !isCctvContinuityEstablished(bundleText)) {
+      continue;
+    }
+    // BWV stills served alone must not keep a full-export invent chase (Dunn opposite Tobin/CASE-02).
+    if (item.familyId === "bwv" && !isBwvFullExportEstablished(bundleText)) {
       continue;
     }
 

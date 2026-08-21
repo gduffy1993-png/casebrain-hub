@@ -9,16 +9,16 @@ Criminal Defence Solicitor
 Search
 New Upload
 Sign Out
-Trial: 4d left · 24/25 cases · 24/100 docs
+Trial: 3d left · 24/25 cases · 24/100 docs
 Upgrade
 
-Taylor Brookes
+Leo Greene
 
-Charge not safely identified from uploaded papers
+Assault by beating
 
-Northbank Crown Court
+Northshire Magistrates Court
 ·
-Hearing date passed · 6 Jul 2026
+Hearing not on papers
 PROVISIONAL — CHECK PAPERS
 
 Next: Chase outstanding disclosure and record provisional hearing position.
@@ -40,7 +40,7 @@ TOTAL
 
 OVERDUE
 
-2
+0
 
 DUE SOON
 
@@ -56,7 +56,7 @@ RECEIVED
 
 NOT STARTED
 
-0
+2
 
 All
 Overdue
@@ -65,61 +65,55 @@ Chased
 Received
 Exhibit mapping / provenance
 
-Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.
+Violence/source material appears outstanding on the current papers — solicitor review required.
 
-OVERDUE
-NOT SAFELY CONFIRMED
-Source
-Crown / disclosure officer (confirm on file)
-Deadline
-Hearing date passed · 6 Jul 2026
-Provenance
-state: missing · limitation: Source reference present; exact document title/type and page still need checking.
-Copy CPS chase
-Provisional: check source before sending
-Copy court line
-Full phone download / source extraction
-
-Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.
-
-OVERDUE
+OUTSTANDING
 MISSING
 Source
 Crown / disclosure officer (confirm on file)
 Deadline
-Hearing date passed · 6 Jul 2026
+Before next listing — confirm disclosure timetable
 Provenance
 state: missing · limitation: Source reference present; exact document title/type and page still need checking.
 Copy CPS chase
 Provisional: check source before sending
 Copy court line
-Exhibit mapping / provenance
-OVERDUE
-
-WHY IT MATTERS
+Complainant MG11 / source material
 
 Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.
 
+NOT SAFELY CONFIRMED
+MISSING
+Source
+Crown / disclosure officer (confirm on file)
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+state: not safely confirmed · limitation: Source reference present; exact document title/type and page still need checking.
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Exhibit mapping / provenance
+OUTSTANDING
+
+WHY IT MATTERS
+
+Violence/source material appears outstanding on the current papers — solicitor review required.
+
 Source: Crown / disclosure officer (confirm on file)
 
-Deadline: Hearing date passed · 6 Jul 2026
+Deadline: Before next listing — confirm disclosure timetable
 
-Linked route: Digital attribution / phone harassment pressure
+Linked route: Interview / account pressure
 
 MERGED FROM FILE
 
 Exhibit mapping / provenance
-Drug item continuity / lab continuity note
-Further papers on the file
-=== SECTION: SCREENSHOT EXHIBIT PRINT — EV/1 ===
-EXHIBIT EV/1 — WhatsApp screenshot print, supplied as cropped images. The printout contains no nat
-Digital continuity notes
-No original audio, transcript, speaker comparison, or continuity. NB-26-0721 — R v Taylor Brookes
-Continuity note
+/not provided: interview record, continuity / provenance note if relied upon. Note: items described as
 
 EVIDENCE ANCHOR
 
-This bundle contains charge material, summary, statements, exhibit references, interview summary,
+Outstanding/not provided: interview record, continuity / provenance note if relied upon. Note: items described as
 
 DRAFT CHASE WORDING
 
@@ -129,7 +123,7 @@ COURT LINE
 
 The defence asks the court to record that exhibit mapping / provenance appears outstanding on the current file and should be disclosed on a timetable.
 
-Case-wide court line (provisional): Possession, knowledge, intent to supply and phone attribution remain conditional on served phone/device material.
+Case-wide court line (provisional): Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.
 
 Provisional chase list · check source before sending
 

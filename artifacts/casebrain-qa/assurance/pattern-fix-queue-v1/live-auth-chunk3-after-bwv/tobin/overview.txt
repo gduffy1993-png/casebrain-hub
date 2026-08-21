@@ -9,16 +9,16 @@ Criminal Defence Solicitor
 Search
 New Upload
 Sign Out
-Trial: 4d left · 24/25 cases · 24/100 docs
+Trial: 3d left · 24/25 cases · 24/100 docs
 Upgrade
 
-Taylor Brookes
+Imani Tobin
 
-Charge not safely identified from uploaded papers
+Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861
 
-Northbank Crown Court
+Northbridge Magistrates' Court
 ·
-Hearing date passed · 6 Jul 2026
+Listed · 8 Sept 2026
 PROVISIONAL — CHECK PAPERS
 
 Next: Chase outstanding disclosure and record provisional hearing position.
@@ -40,13 +40,13 @@ CASE SNAPSHOT
 
 EVIDENCE STATE
 
-7 served · 2 missing · 2 incomplete
+6 served · 2 missing · 1 incomplete
 
 DISCLOSURE GAPS
 
-Phone download / source export referred to, not served on file
+Medical / expert source report
 Exhibit mapping / provenance
-Outstanding source material on disclosure schedule
+Subscriber / attribution data outstanding
 
 RISK FLAGS
 
@@ -56,8 +56,8 @@ WORDING GUARDRAILS
 SAFE WORDING ON CURRENT PAPERS
 
 Disclosure completeness and outstanding source material.
-Subscriber / attribution data needs checking — do not rely on it without checking the source.
-Screenshot / message pack served — check before relying on it.
+Interview material on file — check before relying on it.
+BWV served — check before relying on it.
 
 DO NOT OVERSTATE
 
@@ -66,14 +66,14 @@ DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
 SOLICITOR REVIEW
 Avoid firm wording until the papers confirm it
 Assumed position may conflict with interview or served evidence.
-Crown may link the missing/source material to Taylor Brookes Complainant if served.
+Medical evidence may support Crown causation if proved on served papers.
 COURT PREP
 
 COURT POSITION
 
 Solicitor review required
 
-Possession, knowledge, intent to supply and phone attribution remain conditional on served phone/device material.
+The defence asks the court to record that full custody and interview records remain outstanding.
 
 Review court position
 Prepare CPS chase
@@ -85,8 +85,13 @@ Client update drafted from the current papers. Review before sending.
 EVIDENCE GAPS
 Subscriber / attribution data outstanding
 MISSING
-schedule 12-13 Original download and voice note
-MISSING
+PROOF / AUDIT DEPTH
+
+Proof receipts and truth map — expand when you need source depth.
+
+Advanced review
+
+Confidence dashboard · Decision options · Advice change radar · Re-run diff · Feedback
 
 Papers on this matter
 

@@ -1,6 +1,6 @@
 # PHASE C — Overview@2600 triage
 
-**Verdict contribution:** `LEFTOVERS_PARTIAL_C_PARTIAL`  
+**Verdict contribution:** `TIP_LIVE_PARTIAL` (C invent sample FIXED; live AUTH soft leftover)  
 **Branch:** `fix/f167-surgical-truth-v1`  
 **Tip SHA:** `d9f2bc152cc1df533535692632f32dac91089c84`  
 **Soft Chase SHA:** `925ed950cba9fe9f242f016e6230ecd96e7f0ffc`  
@@ -77,10 +77,16 @@ Do **not** treat remaining mute_phone volume as product guilt.
 
 | Canary | Expected | Unit / tip | Live AUTH |
 |--------|----------|------------|-----------|
-| Brookes phone + subscriber Chase inject | primary cards | **PASS** (primaryItems) | AUTH blocked this session (sign-in failed on tip Preview) — unit + Soft Chase deploy `ksob` / tip redeploy |
-| Ahmed subscriber | primary | covered by same promote | same |
-| Grant/Tobin phone mid-state | primary when hay establishes | unit mid-state PASS | same |
-| Trap subscriber invent | TN | **PASS** | keep |
+| Brookes phone + subscriber Chase inject | primary cards | **PASS** (primaryItems) | Live tip: phone **visible** but under Other (1) soft-primary residual — `LIVE-AUTH-TIP-WALK.md` |
+| Ahmed subscriber | primary | covered by same promote | smoke walked; no invent fail |
+| Grant/Tobin phone mid-state | primary when hay establishes | unit mid-state PASS | Grant CAD extract not outstanding **PASS** |
+| Trap subscriber invent | TN | **PASS** | live AUTH **PASS** |
+
+---
+
+## Live AUTH tip
+
+See `LIVE-AUTH-TIP-WALK.md`. Verdict `TIP_LIVE_PARTIAL`: invent canaries green; Brookes Soft Chase primary nesting leftover; `modality_summary_vs_recording` residual 7 + `mute_phone_download` WATCH unchanged (Overview still shows Brookes phone gap).
 
 ---
 

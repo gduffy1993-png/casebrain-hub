@@ -1,0 +1,389 @@
+{
+  "preview": "https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app",
+  "cases": {
+    "Arden": {
+      "caseId": "99090c69-5d78-41e3-946d-119b4bc335ba",
+      "tabs": {
+        "overview": {
+          "len": 340,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": false,
+          "exportLog": false,
+          "cad": false,
+          "coDef": false,
+          "hearingPassed": false
+        },
+        "papers": {
+          "len": 4128,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": true,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": true,
+          "exportLog": false,
+          "cad": true,
+          "coDef": false,
+          "hearingPassed": false
+        },
+        "disclosure-chase": {
+          "len": 3904,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": true,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": true,
+          "exportLog": false,
+          "cad": false,
+          "coDef": false,
+          "hearingPassed": false
+        }
+      }
+    },
+    "Trap": {
+      "caseId": "ce5bc9f2-f570-411e-bcab-5004d80acf4c",
+      "tabs": {
+        "overview": {
+          "len": 531,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": false,
+          "exportLog": false,
+          "cad": false,
+          "coDef": false,
+          "hearingPassed": false
+        },
+        "papers": {
+          "len": 2567,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": true,
+          "exportLog": false,
+          "cad": false,
+          "coDef": false,
+          "hearingPassed": false
+        },
+        "disclosure-chase": {
+          "len": 2780,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": true,
+          "exportLog": false,
+          "cad": false,
+          "coDef": false,
+          "hearingPassed": false
+        }
+      }
+    },
+    "Dunn": {
+      "caseId": "a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01",
+      "tabs": {
+        "overview": {
+          "len": 1798,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": false,
+          "exportLog": false,
+          "cad": true,
+          "coDef": false,
+          "hearingPassed": true
+        },
+        "papers": {
+          "len": 4170,
+          "bwvCard": true,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": false,
+          "exportLog": false,
+          "cad": true,
+          "coDef": true,
+          "hearingPassed": true
+        },
+        "disclosure-chase": {
+          "len": 3978,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": true,
+          "exportLog": false,
+          "cad": true,
+          "coDef": false,
+          "hearingPassed": true
+        }
+      }
+    },
+    "Grant": {
+      "caseId": "e2841289-1ed2-4dc4-9acf-dd22a03b63fc",
+      "tabs": {
+        "overview": {
+          "len": 645,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": false,
+          "exportLog": false,
+          "cad": false,
+          "coDef": false,
+          "hearingPassed": true
+        },
+        "papers": {
+          "len": 3039,
+          "bwvCard": true,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": true,
+          "exportLog": false,
+          "cad": true,
+          "coDef": false,
+          "hearingPassed": true
+        },
+        "disclosure-chase": {
+          "len": 2705,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": true,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": false,
+          "exportLog": false,
+          "cad": false,
+          "coDef": false,
+          "hearingPassed": true
+        }
+      }
+    },
+    "Tobin": {
+      "caseId": "a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27",
+      "tabs": {
+        "overview": {
+          "len": 1927,
+          "bwvCard": true,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": false,
+          "exportLog": false,
+          "cad": false,
+          "coDef": false,
+          "hearingPassed": false
+        },
+        "papers": {
+          "len": 4187,
+          "bwvCard": true,
+          "bwvFullExportWhy": false,
+          "cctvMaster": true,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": true,
+          "exportLog": false,
+          "cad": true,
+          "coDef": false,
+          "hearingPassed": false
+        },
+        "disclosure-chase": {
+          "len": 3471,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": true,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": false,
+          "exportLog": false,
+          "cad": false,
+          "coDef": false,
+          "hearingPassed": false
+        }
+      }
+    },
+    "Brookes": {
+      "caseId": "2dcdc59d-ff44-4bc8-ac31-bd11a954a59e",
+      "tabs": {
+        "overview": {
+          "len": 570,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": false,
+          "exportLog": false,
+          "cad": false,
+          "coDef": false,
+          "hearingPassed": true
+        },
+        "papers": {
+          "len": 5320,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": true,
+          "exportLog": false,
+          "cad": true,
+          "coDef": false,
+          "hearingPassed": true
+        },
+        "disclosure-chase": {
+          "len": 3932,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": true,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": false,
+          "exportLog": false,
+          "cad": false,
+          "coDef": false,
+          "hearingPassed": true
+        }
+      }
+    },
+    "Ahmed": {
+      "caseId": "ba22e8bb-832c-43b8-8986-20ea5f5bf7c4",
+      "tabs": {
+        "overview": {
+          "len": 626,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": false,
+          "exportLog": false,
+          "cad": false,
+          "coDef": false,
+          "hearingPassed": true
+        },
+        "papers": {
+          "len": 2926,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": true,
+          "exportLog": true,
+          "cad": true,
+          "coDef": false,
+          "hearingPassed": true
+        },
+        "disclosure-chase": {
+          "len": 3912,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": false,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": true,
+          "exportLog": false,
+          "cad": true,
+          "coDef": false,
+          "hearingPassed": true
+        }
+      }
+    },
+    "Patel": {
+      "caseId": "ed3c9806-3227-4ee9-ad86-9784e6000084",
+      "tabs": {
+        "overview": {
+          "len": 1709,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": true,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": false,
+          "exportLog": false,
+          "cad": true,
+          "coDef": false,
+          "hearingPassed": false
+        },
+        "papers": {
+          "len": 1767,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": true,
+          "phoneDownload": false,
+          "inventInterviewBlend": true,
+          "mg6cChase": false,
+          "mg11": true,
+          "exportLog": true,
+          "cad": true,
+          "coDef": false,
+          "hearingPassed": false
+        },
+        "disclosure-chase": {
+          "len": 3956,
+          "bwvCard": false,
+          "bwvFullExportWhy": false,
+          "cctvMaster": true,
+          "phoneDownload": false,
+          "inventInterviewBlend": false,
+          "mg6cChase": false,
+          "mg11": true,
+          "exportLog": false,
+          "cad": true,
+          "coDef": false,
+          "hearingPassed": false
+        }
+      }
+    }
+  },
+  "canaryBoard": {
+    "dunnBwvFullExportInventTN": true,
+    "grantCctvMasterInventTN": true,
+    "ardenCctvMasterTP": true,
+    "trapInventTN": true,
+    "brookesPhoneTP": true
+  },
+  "verdict": "CHUNK_3_LIVE_GATES_PASS"
+}

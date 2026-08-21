@@ -125,6 +125,48 @@ export function lineClaimsCctvContinuity(line: string): boolean {
   );
 }
 
+/**
+ * Affirmative BWV full-export / clip / incident-window establishment.
+ * Dunn-style "BWV stills Served" alone must not establish a full-export chase.
+ */
+export function isBwvFullExportEstablished(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = stripDoNotInventAdvisory(sourceText).replace(THIN_LISTED_CCTV_BWV_RE, " ");
+
+  const stillsServedOnly =
+    /\bbwv\s+stills?\s+served\b|\bs\d+\s*bwv\s+stills?\b/i.test(hay) &&
+    !/\b(?:full\s+bwv|bwv\s+(?:full\s+)?export|bwv\s+footage|bwv\s+clip|full\s+(?:bwv\s+)?incident\s+window|body[- ]?worn[^.\n]{0,50}(?:full\s+export|outstanding|not\s+served|not\s+attached))\b/i.test(
+      hay,
+    ) &&
+    !/\bbwv\b(?![^.!\n]{0,20}stills)[^.\n]{0,60}(?:outstanding|not\s+served|not\s+attached|referred(?:\s+only)?|full\s+export)/i.test(
+      hay,
+    );
+  if (stillsServedOnly) return false;
+
+  return (
+    /\bfull\s+bwv(?:\s+(?:export|footage|sequence|incident(?:\s+window)?))?\b/i.test(hay) ||
+    /\bbwv\s+(?:full\s+)?export\b/i.test(hay) ||
+    /\bfull\s+(?:bwv\s+)?incident\s+window\b/i.test(hay) ||
+    /\bbwv\s+clip\s+(?:outstanding|needed|not\s+served)\b/i.test(hay) ||
+    /\bu\d+\s*bwv(?:\s+clip)?\s+outstanding\b/i.test(hay) ||
+    /\bbwv\b[^.\n]{0,60}(?:not\s+served|not\s+attached|referred(?:\s+only)?|outstanding)\b/i.test(hay) ||
+    /\bbody[- ]?worn\b[^.\n]{0,60}(?:not\s+served|not\s+attached|referred(?:\s+only)?|outstanding|full\s+export)\b/i.test(
+      hay,
+    )
+  );
+}
+
+/** True when a chase/material line is a BWV full-export invent surface. */
+export function lineClaimsBwvFullExport(line: string): boolean {
+  return (
+    /\bfull\s+bwv\s+export\b|\bbwv\s+(?:full\s+)?export\b|\bfull\s+bwv\b|\bbwv\s+incident\s+window\b/i.test(
+      line,
+    ) ||
+    (/\b(?:bwv|body[- ]?worn)\b/i.test(line) &&
+      /\b(?:full\s+export|continuity|audit\s+trail)\b/i.test(line))
+  );
+}
+
 function mentionHaystack(family: ChaseGateFamily, sourceText: string): string {
   if (!FAMILIES_AFFECTED_BY_INVENT_ADVISORY.has(family)) return sourceText;
   return stripDoNotInventAdvisory(sourceText);
@@ -289,6 +331,12 @@ function filterModalitySpecificChaseLine(
   // Drop CCTV continuity chase unless papers affirmatively establish continuity (not officer continuity alone).
   if (lineClaimsCctvContinuity(t) && !lineClaimsCctvMasterOrFullWindow(t)) {
     if (!isCctvContinuityEstablished(sourceText)) return [];
+  }
+
+  // Drop BWV chase lines unless papers affirmatively establish full-export/clip/outstanding
+  // (BWV stills served alone must not keep a full-export invent line).
+  if (/\b(?:bwv|body[- ]?worn)\b/i.test(t)) {
+    if (!isBwvFullExportEstablished(sourceText)) return [];
   }
 
   // Drop interview *recording* chase unless recording modality is established

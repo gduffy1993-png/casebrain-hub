@@ -1,36 +1,46 @@
 {
   "preview": "https://casebrain-o0y9c5fq9-gduffy1993-pngs-projects.vercel.app",
+  "productSha": "3fa12f9d6e7c7aa179d8308f2686e0cc62463f73",
   "found": {
     "Brookes": {
-      "caseId": "1c9afb96-1309-479c-b459-6d9665019663",
-      "href": "/cases/1c9afb96-1309-479c-b459-6d9665019663?tab=overview&controlRoom=1",
-      "label": "Taylor Brookes 1 document on file: Taylor Brookes CRIMINAL"
+      "caseId": "2dcdc59d-ff44-4bc8-ac31-bd11a954a59e",
+      "href": "/cases/2dcdc59d-ff44-4bc8-ac31-bd11a954a59e?tab=overview&controlRoom=1",
+      "label": "Taylor Brookes Digital Attribution (clean)"
+    },
+    "Trap": {
+      "caseId": "ce5bc9f2-f570-411e-bcab-5004d80acf4c",
+      "href": "/cases/ce5bc9f2-f570-411e-bcab-5004d80acf4c?tab=overview&controlRoom=1",
+      "label": "CB-TRAP-2026-0030 Leo Greene"
     },
     "Dunn": {
       "caseId": "a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01",
       "href": "/cases/a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01?tab=overview&controlRoom=1",
-      "label": "Dunn 1 document on file: Dunn CRIMINAL"
+      "label": "Dunn"
     },
     "Ahmed": {
       "caseId": "ba22e8bb-832c-43b8-8986-20ea5f5bf7c4",
       "href": "/cases/ba22e8bb-832c-43b8-8986-20ea5f5bf7c4?tab=overview&controlRoom=1",
-      "label": "Ahmed 1 document on file: Ahmed CRIMINAL"
+      "label": "Ahmed"
     },
     "Patel": {
       "caseId": "ed3c9806-3227-4ee9-ad86-9784e6000084",
       "href": "/cases/ed3c9806-3227-4ee9-ad86-9784e6000084?tab=overview&controlRoom=1",
-      "label": "LIVE 01 Isaac Patel Affray Recovery Proof Affray CRIMINAL"
+      "label": "LIVE 01 Isaac Patel Affray Recovery Proof"
     },
     "Tobin": {
       "caseId": "a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27",
       "href": "/cases/a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27?tab=overview&controlRoom=1",
-      "label": "Imani Tobin Wounding with intent to cause grievous bodily harm CRIMINAL"
+      "label": "Imani Tobin"
     },
     "Grant": {
       "caseId": "e2841289-1ed2-4dc4-9acf-dd22a03b63fc",
       "href": "/cases/e2841289-1ed2-4dc4-9acf-dd22a03b63fc?tab=overview&controlRoom=1",
-      "label": "Grant 1 document on file: Grant CRIMINAL"
+      "label": "Grant"
+    },
+    "Arden": {
+      "caseId": "99090c69-5d78-41e3-946d-119b4bc335ba",
+      "href": "/cases/99090c69-5d78-41e3-946d-119b4bc335ba?tab=overview&controlRoom=1",
+      "label": "Arden Vale"
     }
-  },
-  "linkCount": 25
+  }
 }

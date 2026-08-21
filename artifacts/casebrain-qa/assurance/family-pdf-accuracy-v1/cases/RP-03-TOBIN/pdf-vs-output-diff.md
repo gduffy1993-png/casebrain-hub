@@ -1,10 +1,13 @@
 # PDF ↔ Output diff — RP-03-TOBIN
 
-**Status:** PDF gold built; **live output GAP** on frozen Preview this pack.
+**Status:** Light-scored from existing live dumps on SHA `3fa12f9d6` (no new upload).  
+**Live caseId:** `a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27`  
+**Dumps:** `_live/canaries/tobin/`
 
 | Claim family | Kind | PDF gold stance | Live result | Notes |
 |--------------|------|-----------------|-------------|-------|
-| (family) `phone_download_referenced_only|CAD_999_extract|BWV_outstanding|CCTV_master_part` | FACT/ADVISORY | See `source-map.md` | **NOT_SCORED_LIVE** | Need live dump on `02d9125473f2413d7079b41b9e0ec596598e4682` |
-| Opposite-direction coverage | META | Pair vs RP-17 (download expressly outstanding to chase); ARDEN (no phone digital) | PDF-only | Counts toward family shortlist coverage |
+| CAD / 999 extract | FACT | CAD/999 extract present; chase audio gaps as appropriate | **TP** | Overview + Chase CAD/999 |
+| Phone download referenced-only (mid-state) | ADVISORY | Download referenced, not full outstanding chase like Brookes | **AMBIG** | No strong “phone download outstanding” line in dumps; not over-promoted |
+| BWV outstanding | FACT | BWV clip outstanding | **NOT_RE-SCORED** | Left as prior pack note |
 
-**Do not invent CaseBrain lines.** Re-run live capture to convert NOT_SCORED_LIVE → MATCH / FP / FN.
+No product fix from this light score.

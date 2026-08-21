@@ -9,16 +9,16 @@ Criminal Defence Solicitor
 Search
 New Upload
 Sign Out
-Trial: 4d left · 24/25 cases · 24/100 docs
+Trial: 3d left · 24/25 cases · 24/100 docs
 Upgrade
 
-Taylor Brookes
+Client not on papers
 
 Charge not safely identified from uploaded papers
 
-Northbank Crown Court
+Southford Magistrates' Court
 ·
-Hearing date passed · 6 Jul 2026
+Upcoming · 25 Aug 2026
 PROVISIONAL — CHECK PAPERS
 
 Next: Chase outstanding disclosure and record provisional hearing position.
@@ -40,13 +40,13 @@ CASE SNAPSHOT
 
 EVIDENCE STATE
 
-7 served · 2 missing · 2 incomplete
+1 served · 4 missing
 
 DISCLOSURE GAPS
 
-Phone download / source export referred to, not served on file
-Exhibit mapping / provenance
-Outstanding source material on disclosure schedule
+CCTV outstanding
+CCTV master outstanding
+999 audio outstanding
 
 RISK FLAGS
 
@@ -56,8 +56,7 @@ WORDING GUARDRAILS
 SAFE WORDING ON CURRENT PAPERS
 
 Disclosure completeness and outstanding source material.
-Subscriber / attribution data needs checking — do not rely on it without checking the source.
-Screenshot / message pack served — check before relying on it.
+Interview material on file — check before relying on it.
 
 DO NOT OVERSTATE
 
@@ -66,14 +65,14 @@ DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
 SOLICITOR REVIEW
 Avoid firm wording until the papers confirm it
 Assumed position may conflict with interview or served evidence.
-Crown may link the missing/source material to Taylor Brookes Complainant if served.
+CAD/999 timing may affect Crown sequence if proved on served material.
 COURT PREP
 
 COURT POSITION
 
 Solicitor review required
 
-Possession, knowledge, intent to supply and phone attribution remain conditional on served phone/device material.
+The defence asks the court to record that full custody and interview records remain outstanding.
 
 Review court position
 Prepare CPS chase
@@ -83,9 +82,11 @@ Review client update
 Client update drafted from the current papers. Review before sending.
 
 EVIDENCE GAPS
-Subscriber / attribution data outstanding
+CCTV master outstanding
 MISSING
-schedule 12-13 Original download and voice note
+Custody / PACE record outstanding
+MISSING
+Interview recording and transcript outstanding
 MISSING
 
 Papers on this matter

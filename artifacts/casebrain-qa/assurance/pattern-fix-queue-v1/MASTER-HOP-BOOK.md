@@ -14,13 +14,14 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 
 | Status | N |
 |--------|--:|
-| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client) | 21 |
+| FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV) | 22 |
 | OPEN (remaining) | 0 |
 | STOP → Phase B (Papers / Client) | 0 |
-| WATCH (UI / soft Chase inject / volume triage) | 4 |
+| WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft) | 7 |
 
 **Phase A locked:** `cbf40f08f` · Preview https://casebrain-jo16a5tt0-gduffy1993-pngs-projects.vercel.app · see `PHASE-A-LOCK.md`  
-**Phase B tip:** `a13739f4b` · Preview https://casebrain-98u6ps28m-gduffy1993-pngs-projects.vercel.app · see `PHASE-B-PAPERS-CLIENT.md`
+**Phase B tip:** `a13739f4b` · Preview https://casebrain-98u6ps28m-gduffy1993-pngs-projects.vercel.app · see `PHASE-B-PAPERS-CLIENT.md`  
+**Chunk 3:** `CHUNK-3-FAMILY-ARMOUR.md` · Preview https://casebrain-76gk8vbwk-gduffy1993-pngs-projects.vercel.app
 
 ---
 
@@ -33,78 +34,13 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 | `ARDEN_PHONE_DOWNLOAD_FROM_PROPERTY` | Overview/Chase | invent | Arden | Stolen phone ≠ download | F167 surgical `70314a041` |
 | `ARDEN_INTERVIEW_RECORDING_FROM_SUMMARY` | Overview/Chase | invent / modality | Arden | Summary served; recording not outstanding | F167 surgical `c400b76ba` |
 | `TRAP_INTERVIEW_RECORDING_INVENT` | Overview/Court/Papers/Chase | invent | Trap-0030 | No PACE recording/transcript | LIVE TN on freeze Preview |
+| `BWV_STILLS_SERVED_PROMOTED_TO_FULL_EXPORT` | Chase (+ Overview gaps) | invent / modality | Dunn TN; Tobin/CASE-02 TP | Dunn S01 BWV stills Served ≠ full export | Chunk 3 — `isBwvFullExportEstablished` + family gate · Preview `76gk8` · opposite I3 |
 
 ---
 
 ## OPEN — fix order (gym / PDF-true)
 
-### 1. `INTERVIEW_SUMMARY_VS_RECORDING_LUMP` · FIXED · order **1**
-- **Surfaces:** Chase (+ Overview gaps volume)
-- **Class:** invent + modality lump
-- **Gym:** Tobin, Ahmed, Patel (lump); Trap invent already FIXED
-- **PDF verify:** Summary ≠ recording/transcript; chase as one card collapses modalities
-- **Fix:** `reconcileInterviewModalityItems` + modality-true family labels (`d228df56e`) — no slash-blend identity
-- **Opposite:** Patel/Tobin recording|transcript outstanding must still surface when PDF establishes it — **PASS**
-
-### 2. `CAD_EXTRACT_PRESENT_STILL_CHASED` · FIXED · order **2**
-- **Surfaces:** Chase (+ Overview gaps); Papers court-line CAD language
-- **Class:** modality lump / present→chase
-- **Gym:** Grant, Tobin, Dunn
-- **PDF verify:** Grant MERGED FROM shows `CAD / 999 extractPresent` while card still Outstanding “CAD / 999 audio…”
-- **Suggested fix:** CAD extract served ≠ chase whole CAD/999 family; split extract vs 999 audio vs full print
-- **Opposite:** Dunn — extract served + **999 audio outstanding** + CAD full print outstanding must remain chaseable as those modalities
-
-### 3. `CAD_999_INVENT_WITHOUT_SOURCE` · OPEN · order **2b** (same root)
-- **Surfaces:** Court/Overview
-- **Class:** invent
-- **Sweep triage:** invent_cad_999 ~94
-- **Gym / canary:** Arden TN already; residual volume
-- **Suggested fix:** Keep source-gate; ensure extract-only language does not invent 999 audio
-- **Opposite:** Dunn/Patel/Grant CAD pressure when PDF establishes CAD/999
-
-### 4. `PHONE_DOWNLOAD_MIDSTATE_MUTE_OR_SPLIT` · FIXED · order **3**
-- **Surfaces:** Papers TP soft / Chase mute split
-- **Class:** mute / mid-state
-- **Gym:** Grant, Tobin (Brookes TP + Arden property TN **held**)
-- **PDF verify:** Grant “Logical download summary only”; Tobin referenced-only
-- **Fix:** `reconcilePhoneDownloadModalityItems` (`d228df56e`) — mid-state inject; Brookes full TP; Arden property TN
-- **Opposite:** Brookes full download outstanding TP; Arden property-phone TN — **PASS**
-
-### 5. `PAPERS_COLLAPSED_NO_DOC_INVENTORY` · FIXED (Phase B) · order **4**
-- **Surfaces:** Papers
-- **Class:** surface mute → inventory
-- **Fix:** `PapersDocInventoryPanel` + papers surface primary swap (`a13739f4b`)
-- **Live:** Arden/Brookes/Trap Papers inventory PASS @ `98u6`
-
-### 6. `CLIENT_TAB_EQUALS_COURT_CONTROL_ROOM` · FIXED (Phase B) · order **4b**
-- **Surfaces:** Client Summary vs Court
-- **Class:** surface / projection
-- **Fix:** PilotSummaryView papers-facts strip + correct `tab=summary` harness (`a13739f4b`)
-- **Live:** Client ≠ Court pressure; Court keeps pressure desk @ `98u6`
-
-### 7. `HEARING_DATE_USED_AS_OPERATIONAL_DEADLINE` · FIXED · order **5**
-- **Surfaces:** Header OK as listing status; **Chase deadlineLabel** reuses same string
-- **Class:** date-role
-- **Gym:** Ahmed, Brookes, Dunn, Grant
-- **PDF verify:** Chase Deadline = `Hearing date passed · <date>` treated as disclosure ops deadline
-- **Suggested fix:** Separate listing status vs chase operational deadline wording
-- **Opposite:** Same-day / upcoming listing labels still accurate on header
-
-### 8. `SUBSCRIBER_MUTE_AND_INVENT_BOTH_WAYS` · FIXED · order **6**
-- **Surfaces:** Chase
-- **Class:** mute + invent
-- **Gym:** Mute Ahmed/Brookes; invent Trap thin file
-- **PDF verify:** Brookes “subscriber report not served” — Chase shows phone download but not subscriber; Trap invents Subscriber/account
-- **Fix:** `digitalChaseLabel` word boundaries (`1ff7099d5`) + `reconcileSubscriberModalityItems` (`d228df56e`)
-- **Opposite:** Brookes/Ahmed TP when outstanding; Trap TN when absent — **PASS**
-
-### 9. `STILLS_SERVED_PROMOTED_TO_CCTV_MASTER` · FIXED · order **7**
-- **Surfaces:** Papers + Chase
-- **Class:** invent
-- **Gym:** Dunn (opposite-pair of Arden/Patel master TP)
-- **PDF verify:** Dunn CCTV stills served; MG6 outstanding list has no CCTV master — stills must not become master chase
-- **Suggested fix:** `cctv_master` classify requires master/full-window language (stills alone ≠ master); keep Arden stills+master TP
-- **Opposite:** Arden/Patel master outstanding when established; Trap invent TN already FIXED
+_(Wave open list cleared into FIXED / WATCH. See Phase A–C + Chunk 1–3 artefacts.)_
 
 ---
 
@@ -113,10 +49,12 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 | ID | Why watch |
 |----|-----------|
 | `mute_phone_download` volume (~695) | Triage noise until Lane B/C confirm |
-| `BWV_STILLS_SERVED_PROMOTED_TO_FULL_EXPORT` | Dunn single-case invent; pair with stills≠master |
-| `EXPORT_LOG_PRESENT_GLUED_UNDER_MASTER` | Ahmed soft opposite — unit opposite already PASS |
+| `EXPORT_LOG_PRESENT_GLUED_UNDER_MASTER` | Ahmed soft opposite — unit opposite already PASS; Patel Papers glue residual |
 | `HEADER_CHARGE_MUTE_DESPITE_PDF` | Brookes/Patel — identity/extraction; not this truth wave |
 | `THIN_TRAP_INVENT_SUBSCRIBER` | Folded into subscriber both-ways (#8) |
+| `MG11_COMPLAINANT_LABEL_SOFT` | Chunk 3 — Trap/Arden both show Complainant MG11 card |
+| `TOBIN_BWV_CHASE_BOARD_SOFT_MUTE` | Chunk 3 — Overview BWV true; Chase board priority soft mute |
+| `HEARING_DATE_DEADLINE_UI_REUSE` | Chunk 3 — listing “Hearing date passed” still frames Chase Deadline label |
 
 ---
 
@@ -128,6 +66,8 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 4. Papers / Client=Court **only if** shared projection root (no redesign)  
 5. Hearing date ≠ chase ops deadline  
 6. Subscriber both ways  
-7. Dunn stills→master (no Arden/Patel/Trap regress)
+7. Dunn stills→master (no Arden/Patel/Trap regress)  
+8. **Chunk 3:** Dunn BWV stills→full export (**FIXED**)
 
-Companion: `MASTER-HOP-BOOK.csv` · status after wave: `PATTERN-FIX-WAVE-STATUS.md`
+Companion: `MASTER-HOP-BOOK.csv` · status after wave: `PATTERN-FIX-WAVE-STATUS.md`  
+Chunk 3 armour: `CHUNK-3-FAMILY-ARMOUR.md`
