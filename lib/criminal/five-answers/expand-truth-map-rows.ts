@@ -60,7 +60,8 @@ export function papersEstablishDigitalPhoneFamily(sourceHay: string): {
   const midState =
     /\blogical\s+download\s+summary\b/i.test(hay) ||
     /\bextraction\s+summary\s+only\b/i.test(hay) ||
-    /\bfull\s+report\s+not\s+in\s+(?:the\s+)?section\b/i.test(hay) ||
+    // Glued PDF: "summary onlyFull report not in this section"
+    /full\s+report\s+not\s+in\s+(?:the\s+|this\s+)?section\b/i.test(hay) ||
     /\bphone\s+download\s+reference\s+referenced\s+only\b/i.test(hay);
   const fullOutstanding =
     /\bfull\s+phone\s+download\b/i.test(hay) ||
@@ -112,18 +113,21 @@ export function expandTruthMapRowsForDisplay(input: {
     return buildTruthMapRowsFromTruthKey(input.truthKey);
   }
 
-  // Shape hay = allegation + chase *labels* + existing row labels + bundle.
-  // Never do-not-overstate, and never whyItMatters/notes that say "Screenshots alone…"
-  // (those are modality warnings — Client D0.5 self-fulfilling screenshot invent).
-  const chaseHay = haystack([
-    input.allegation,
-    ...input.rows.map((r) => r.label),
-    ...input.chase.primaryItems.map((i) => i.label),
-    ...input.chase.items.map((i) => i.label),
-    input.chase.disclosureSummary ?? "",
-    input.bundleText ?? "",
-  ]);
-  const papers = papersEstablishDigitalPhoneFamily(chaseHay);
+  // Phone modality (mid-state / full outstanding / subscriber) must come from the PDF
+  // bundle — never from chase labels we ourselves inject (circular invent: mid-state card
+  // wording → Full phone download [Missing] on Client export gaps).
+  // Screenshots may also use existing evidence-row labels. Never do-not-overstate /
+  // whyItMatters ("Screenshots alone…") — Client D0.5 self-fulfilling invent.
+  const modality = papersEstablishDigitalPhoneFamily(
+    haystack([input.allegation, input.bundleText ?? ""]),
+  );
+  const screenshotPapers = papersEstablishDigitalPhoneFamily(
+    haystack([input.allegation, ...input.rows.map((r) => r.label), input.bundleText ?? ""]),
+  );
+  const papers = {
+    ...modality,
+    screenshots: modality.screenshots || screenshotPapers.screenshots,
+  };
 
   if (!isDigitalHarassmentShape(input.allegation, papers)) {
     return input.rows;
