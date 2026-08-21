@@ -2,7 +2,11 @@
 
 
 
-**Verdict:** `E1_FILE_CHROME_ARMOUR` (File E0.5 triage + court/hearing/defendant glue armour; tip sample **21/28** cleared)
+**Verdict:** `E1_PROOF_LIVE_AUTH_PASS` (File invent_court **43→0** + live AUTH Overview→File gates **PASS**)
+
+**Chunk E1 proof:** `CHUNK-E1-FILE-INVENT-PROOF.md` · tip pack `file-criminal-sweep-v1/tip-resweep-627789b1e/` · invent_court **43→0**
+
+**Live AUTH E1:** `live-auth-e1-file/` · Preview https://casebrain-l632o48mf-gduffy1993-pngs-projects.vercel.app · tip `627789b1e`
 
 **Chunk E0.5/E1 File chrome:** `CHUNK-E05-E1-FILE-CHROME-ARMOUR.md` · tip sample `file-criminal-sweep-v1/tip-sample-e1-chrome.json`
 
