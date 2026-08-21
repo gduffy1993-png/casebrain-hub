@@ -2,11 +2,13 @@
 
 
 
-**Verdict:** `D3_CLIENT_PHONE_NEGATION_NOTE_HYGIENE` (residual invent_phone **7** = detector noise from Screenshot note; Court tip re-sweep in flight)
+**Verdict:** `C3_COURT_TIP_RESWEEP_PHONE_CLEAR` (Court invent_phone **99→0** · Client D3 residual noise cleared)
 
-**Chunk D3 Client negation hygiene:** `CHUNK-D3-CLIENT-PHONE-NEGATION-HYGIENE.md`
+**Chunk C3 Court tip re-sweep:** `CHUNK-C3-COURT-PHONE-TIP-RESWEEP-PROOF.md` · pack `court-criminal-sweep-v1/tip-resweep-d2-e20e0b1da/` · invent_phone **99→0**
 
-**Chunk D2 tip re-sweep proof:** `CHUNK-D2-CLIENT-TIP-RESWEEP-PROOF.md` · pack `client-criminal-sweep-v1/tip-resweep-d2-e20e0b1da/` · invent_phone **166→7**
+**Chunk D3 Client negation hygiene:** `CHUNK-D3-CLIENT-PHONE-NEGATION-HYGIENE.md` · PR #76 **MERGED**
+
+**Chunk D2 tip re-sweep proof:** `CHUNK-D2-CLIENT-TIP-RESWEEP-PROOF.md` · invent_phone **166→7** (then D3 → expected 0)
 
 **Chunk D2 Client phone residual:** `CHUNK-D2-CLIENT-PHONE-BUNDLE-ONLY.md` · tip sample **40/40**
 
