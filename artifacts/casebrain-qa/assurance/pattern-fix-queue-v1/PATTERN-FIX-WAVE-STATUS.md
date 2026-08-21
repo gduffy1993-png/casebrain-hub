@@ -2,7 +2,9 @@
 
 
 
-**Verdict:** `D1_CLIENT_PHONE_TRUTHMAP_ARMOUR` (D0.5 triage + truth-map/export phone invent armour; tip sample 23/40 cleared)
+**Verdict:** `E0_FILE_FINDONLY` (File tab scale find-only @ 2600; invent sum **43**; no product fix)
+
+**Chunk E0 File find-only:** `CHUNK-E0-FILE-FINDONLY.md` · pack `file-criminal-sweep-v1/` · tip `b47ead423` · hitlist **2074** · invent sum **43**
 
 **Chunk D0.5/D1 Client phone:** `CHUNK-D05-D1-CLIENT-PHONE-ARMOUR.md` · tip sample `client-criminal-sweep-v1/tip-sample-d1-phone.json`
 

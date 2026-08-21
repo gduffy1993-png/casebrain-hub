@@ -39,5 +39,5 @@ Bleed detectors (`client_court_language_bleed` / papers-inventory chrome): **0**
 ## Next
 
 1. **D0.5/D1 DONE** — see `CHUNK-D05-D1-CLIENT-PHONE-ARMOUR.md` (tip sample **23/40** cleared)  
-2. Residual phone invent WATCH **or** File (E0) find-only  
+2. Residual phone invent WATCH **or** File (E0) find-only → **E0 DONE** (`CHUNK-E0-FILE-FINDONLY.md`)  
 3. Live AUTH canaries when surfaces settle

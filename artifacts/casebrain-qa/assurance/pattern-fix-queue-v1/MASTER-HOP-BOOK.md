@@ -17,7 +17,7 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 | FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute + C1 Court invent + D1 Client phone) | 28 |
 | OPEN (remaining) | 0 |
 | STOP → Phase B (Papers / Client) | 0 |
-| WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft) | 6 |
+| WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft / File E0) | 8 |
 
 **Phase A locked:** `cbf40f08f` · Preview https://casebrain-jo16a5tt0-gduffy1993-pngs-projects.vercel.app · see `PHASE-A-LOCK.md`  
 **Phase B tip:** `a13739f4b` · Preview https://casebrain-98u6ps28m-gduffy1993-pngs-projects.vercel.app · see `PHASE-B-PAPERS-CLIENT.md`  
@@ -60,7 +60,9 @@ _(Wave open list cleared into FIXED / WATCH. See Phase A–C + Chunk 1–3 artef
 | `THIN_TRAP_INVENT_SUBSCRIBER` | Folded into subscriber both-ways (#8) |
 | `MG11_COMPLAINANT_LABEL_SOFT` | Chunk 3 — Trap/Arden both show Complainant MG11 card |
 | `TOBIN_BWV_CHASE_BOARD_SOFT_MUTE` | Chunk 3 — Overview BWV true; Chase board priority soft mute |
-| `HEARING_DATE_DEADLINE_UI_REUSE` | Chunk 3 — listing “Hearing date passed” still frames Chase Deadline label |
+| `HEARING_DATE_DEADLINE_UI_REUSE` | Chunk 3 + File E0 — listing “Hearing date passed” frames strip/ops chrome (~1980 File soft hits) |
+| `FILE_INVENT_COURT_HEADER_GLUE` | File E0 invent sum **43** — court cell absorbs “Hearing” (`Crown Court at X Hearing`) |
+| `FILE_MUTE_HEARING_OR_DEFENDANT` | File E0 mute_hearing **62** / mute_defendant **23** — E0.5 PDF-spotcheck before armour |
 
 ---
 
@@ -73,7 +75,9 @@ _(Wave open list cleared into FIXED / WATCH. See Phase A–C + Chunk 1–3 artef
 5. Hearing date ≠ chase ops deadline  
 6. Subscriber both ways  
 7. Dunn stills→master (no Arden/Patel/Trap regress)  
-8. **Chunk 3:** Dunn BWV stills→full export (**FIXED**)
+8. **Chunk 3:** Dunn BWV stills→full export (**FIXED**)  
+9. **File E0.5:** invent_court_header + mute_hearing/defendant spotcheck (skip date-role lump)
 
 Companion: `MASTER-HOP-BOOK.csv` · status after wave: `PATTERN-FIX-WAVE-STATUS.md`  
-Chunk 3 armour: `CHUNK-3-FAMILY-ARMOUR.md`
+Chunk 3 armour: `CHUNK-3-FAMILY-ARMOUR.md`  
+File E0: `CHUNK-E0-FILE-FINDONLY.md`
