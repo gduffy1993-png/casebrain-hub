@@ -1,0 +1,154 @@
+{
+  "tip_sha_note": "code tip with C4+C5 armour",
+  "source_hitlist": "C:\\Users\\gduff\\casebrain-hub-wt-f167-surgical-truth-v1\\artifacts\\casebrain-qa\\assurance\\court-criminal-sweep-v1\\tip-resweep-d2-e20e0b1da\\COURT-FAIL-HITLIST.csv",
+  "residual_keys": 13,
+  "cleared_keys": 13,
+  "invent_events_before": 13,
+  "invent_events_after": 0,
+  "by_flag": {
+    "invent_interview_recording": {
+      "before": 4,
+      "after": 0
+    },
+    "invent_bwv": {
+      "before": 1,
+      "after": 0
+    },
+    "invent_cctv_master": {
+      "before": 8,
+      "after": 0
+    }
+  },
+  "rows": [
+    {
+      "case_key": "PDF-0d761f8d2e28",
+      "source_id": "CB-Z-500-FRAUD-0029_Fraud_false_representation_500_page_bundle",
+      "before": [
+        "invent_interview_recording"
+      ],
+      "after": [],
+      "cleared": true,
+      "bundle_len": 220000
+    },
+    {
+      "case_key": "PDF-37b18da6090e",
+      "source_id": "CB-MURDER-TEST-0001_1000_page_criminal_defence_bundle",
+      "before": [
+        "invent_interview_recording"
+      ],
+      "after": [],
+      "cleared": true,
+      "bundle_len": 220000
+    },
+    {
+      "case_key": "PDF-ffe7a7da8c00",
+      "source_id": "CB-Z-500-THEFT-0012_Theft_from_shop_500_page_bundle",
+      "before": [
+        "invent_interview_recording"
+      ],
+      "after": [],
+      "cleared": true,
+      "bundle_len": 220000
+    },
+    {
+      "case_key": "RP-07",
+      "source_id": "RP-07",
+      "before": [
+        "invent_interview_recording"
+      ],
+      "after": [],
+      "cleared": true,
+      "bundle_len": 220000
+    },
+    {
+      "case_key": "PDF-287c7211fa15",
+      "source_id": "gauntlet-06-dup-mg6",
+      "before": [
+        "invent_bwv"
+      ],
+      "after": [],
+      "cleared": true,
+      "bundle_len": 3733
+    },
+    {
+      "case_key": "PDF-3b92b7adea4e",
+      "source_id": "CB-TB-1592_Wells",
+      "before": [
+        "invent_cctv_master"
+      ],
+      "after": [],
+      "cleared": true,
+      "bundle_len": 3394
+    },
+    {
+      "case_key": "PDF-439d81f34d57",
+      "source_id": "CB-TB-1493_Clarke",
+      "before": [
+        "invent_cctv_master"
+      ],
+      "after": [],
+      "cleared": true,
+      "bundle_len": 3076
+    },
+    {
+      "case_key": "PDF-4aa30a36748b",
+      "source_id": "CB-TB-1417_Turner",
+      "before": [
+        "invent_cctv_master"
+      ],
+      "after": [],
+      "cleared": true,
+      "bundle_len": 3388
+    },
+    {
+      "case_key": "PDF-a67176ef5bc2",
+      "source_id": "CB-TB-1585_Francis",
+      "before": [
+        "invent_cctv_master"
+      ],
+      "after": [],
+      "cleared": true,
+      "bundle_len": 3453
+    },
+    {
+      "case_key": "PDF-bd28054c194c",
+      "source_id": "CB-TB-1565_Morris",
+      "before": [
+        "invent_cctv_master"
+      ],
+      "after": [],
+      "cleared": true,
+      "bundle_len": 3391
+    },
+    {
+      "case_key": "PDF-cbba2e530d7a",
+      "source_id": "CB-TB-1474_West",
+      "before": [
+        "invent_cctv_master"
+      ],
+      "after": [],
+      "cleared": true,
+      "bundle_len": 3084
+    },
+    {
+      "case_key": "PDF-ee2c00fde9f1",
+      "source_id": "CB-TB-1386_Dacre",
+      "before": [
+        "invent_cctv_master"
+      ],
+      "after": [],
+      "cleared": true,
+      "bundle_len": 2956
+    },
+    {
+      "case_key": "PDF-f70717a83150",
+      "source_id": "CB-TB-1589_Thornton",
+      "before": [
+        "invent_cctv_master"
+      ],
+      "after": [],
+      "cleared": true,
+      "bundle_len": 3104
+    }
+  ]
+}
