@@ -26,4 +26,4 @@
 
 Arden / Trap / Brookes / Dunn · tabs: overview · papers · disclosure-chase · client-summary · court · file  
 
-Soft WATCH (mute volume / Brookes nesting) not in scope — invent canaries only.
+Soft WATCH: Brookes nesting **cleared** on this pack (phone primary; no Other bury) — see `CHUNK-S1-BROOKES-NESTING-CLEARED.md`. Mute volume still out of scope.
