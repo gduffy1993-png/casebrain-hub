@@ -78,6 +78,11 @@ assert.match(
   /enrichCourtTodayBundles\(\[requestedCaseId\]\)/,
   "Court Today must enrich the selected matter directly so the sidebar and main desk share the same case truth",
 );
+assert.match(
+  courtTodayClientSource,
+  /All open review items/,
+  "Court Today top KPI must label all-case review counts distinctly from the selected matter",
+);
 
 const appShellSource = fs.readFileSync("components/layout/app-shell.tsx", "utf8");
 assert.match(appShellSource, /overflow-x-hidden/, "Pilot app shell must contain horizontal overflow");

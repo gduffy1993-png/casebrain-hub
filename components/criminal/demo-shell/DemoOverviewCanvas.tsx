@@ -154,7 +154,10 @@ export function DemoOverviewCanvas({
   }
 
   return (
-    <div className="space-y-4 text-slate-900" data-testid="demo-overview-shell">
+    <div
+      className="space-y-4 rounded-[1.75rem] border border-slate-200 bg-slate-50 p-3 text-slate-900 shadow-2xl shadow-slate-950/10 sm:p-5"
+      data-testid="demo-overview-shell"
+    >
       {/* Case header + stats */}
       <header className="rounded-2xl border border-slate-800 bg-gradient-to-r from-slate-950 via-slate-900 to-blue-950 px-4 py-4 sm:px-5 shadow-sm">
         <div className="flex flex-wrap items-start justify-between gap-4">
@@ -189,7 +192,7 @@ export function DemoOverviewCanvas({
             <StatCard
               value={stats.openReviewItems}
               label="Open review"
-              hint={stats.activeChases ? "Includes active CPS chases" : "Needs checking"}
+              hint={stats.activeChases ? "Selected matter incl. CPS chases" : "Selected matter needs checking"}
               tone="sky"
             />
           </div>
@@ -407,7 +410,7 @@ export function DemoOverviewCanvas({
                 resolved
               </p>
               <p>
-                <span className="font-medium text-slate-800">{readiness.toBeChasedPct}%</span> To be chased
+                <span className="font-medium text-slate-800">{readiness.toBeChasedPct}%</span> Open review
               </p>
               <p className="pt-1 text-[11px] text-slate-400 inline-flex items-center gap-1">
                 <CheckCircle2 className="h-3 w-3" /> Soft projection from papers-backed counts

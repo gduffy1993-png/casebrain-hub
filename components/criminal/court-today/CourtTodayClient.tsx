@@ -435,7 +435,7 @@ export function CourtTodayClient() {
     [pilotVisibleBriefsForCounters],
   );
   const pilotChaseKpi = pilotMissingEvidenceItems > 0
-    ? { label: "Open review items", value: pilotMissingEvidenceItems }
+    ? { label: "All open review items", value: pilotMissingEvidenceItems }
     : { label: "Matters needing review", value: pilotChaseReviewMatterCount };
   const pilotAtRiskCount = useMemo(
     () => pilotVisibleBriefsForCounters.filter((brief) => brief.readiness === "red").length,

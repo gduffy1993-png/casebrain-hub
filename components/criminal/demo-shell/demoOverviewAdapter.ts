@@ -121,6 +121,13 @@ function recommendedActionForItem(item: DisclosureChaseItem): string {
   if (isPhoneOrSourceExportUnresolved(item)) {
     return "Confirm whether any phone extraction, download or source-export material exists before treating it as a disclosure chase.";
   }
+  const labelHay = normaliseIssueTitle(`${item.label} ${draft}`).toLowerCase();
+  if (/cctv continuity\s*\/\s*provenance/.test(labelHay)) {
+    return "Please provide the CCTV continuity record, provenance material, or confirm in writing why it is not available.";
+  }
+  if (/cctv full window|cctv master|master footage/.test(labelHay)) {
+    return "Please provide the full CCTV window, master footage or export log, or confirm in writing why it is not available.";
+  }
   if (draft) {
     return normaliseIssueTitle(draft)
       .replace(/^Please provide\s+(?!the\b)/i, "Please provide the ")
@@ -253,7 +260,10 @@ export function buildDemoReadiness(
     openIssues + evidenceCounts.served > 0
       ? Math.round((evidenceCounts.served / (openIssues + evidenceCounts.served)) * 100)
       : 0;
-  const toBeChasedPct = Math.min(100, Math.round(((stats.missing + stats.activeChases) / Math.max(1, openIssues || 1)) * 100));
+  const toBeChasedPct = Math.min(
+    100,
+    Math.round((stats.openReviewItems / Math.max(1, stats.openReviewItems + evidenceCounts.served)) * 100),
+  );
   const overallPct = Math.max(
     0,
     Math.min(

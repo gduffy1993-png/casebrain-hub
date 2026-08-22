@@ -49,6 +49,7 @@ const readiness = buildDemoReadiness(
 );
 assert.equal(readiness.softLabel, true);
 assert.ok(readiness.overallPct >= 0 && readiness.overallPct <= 95);
+assert.ok(readiness.toBeChasedPct > 0);
 
 const chased = buildDemoAttentionItems([
   sample({ id: "4", label: "CCTV continuity", baseStatus: "Chased" }),
@@ -114,6 +115,8 @@ assert.equal(cctvContinuity.title, "CCTV continuity / provenance");
 assert.doesNotMatch(cctvContinuity.blurb, /Review the cited source before relying/i);
 assert.match(cctvContinuity.recommendedAction, /CCTV continuity/);
 assert.doesNotMatch(cctvContinuity.recommendedAction, /CCTV Continuity/);
+assert.doesNotMatch(cctvContinuity.recommendedAction, /provide the CCTV continuity \/ provenance/i);
+assert.match(cctvContinuity.recommendedAction, /continuity record, provenance material/i);
 
 const phoneUnresolved = buildDemoAttentionItems([
   sample({
