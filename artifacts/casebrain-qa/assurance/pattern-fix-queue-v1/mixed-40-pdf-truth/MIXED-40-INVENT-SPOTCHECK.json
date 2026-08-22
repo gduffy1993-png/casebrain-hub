@@ -1,0 +1,67 @@
+{
+  "n_invent": 5,
+  "by_class": {
+    "PAIRING_SUSPECT": 3,
+    "TRUE_INVENT_CANDIDATE": 2
+  },
+  "rows": [
+    {
+      "caseId": "ed3c9806-3227-4ee9-ad86-9784e6000084",
+      "label": "LIVE 01 Isaac Patel Affray Recovery Proof Affray CRIMINAL",
+      "pdf": "CB-TB-546_Patel.pdf",
+      "pairingSuspect": true,
+      "trueInvent": [
+        "invent_export_log"
+      ],
+      "detectorNoiseOrMidstate": [
+        "invent_cctv_master",
+        "invent_interview_recording"
+      ],
+      "class": "PAIRING_SUSPECT"
+    },
+    {
+      "caseId": "3d52134b-6251-424a-8688-7c70fea3d379",
+      "label": "LIVE 03 Jordan Hale BWV Recovery Proof Assault on emergency worker CRIMINAL",
+      "pdf": "CB-FRESH-002_Jordan_Hale_Custody_BWV_Conflict.pdf",
+      "pairingSuspect": false,
+      "trueInvent": [
+        "invent_interview_recording"
+      ],
+      "detectorNoiseOrMidstate": [],
+      "class": "TRUE_INVENT_CANDIDATE"
+    },
+    {
+      "caseId": "91d42617-1aae-4b4e-b15b-1ded55e3dc74",
+      "label": "LIVE 02 Taylor Reed Phone Negation Recovery Proof Harassment CRIMINAL",
+      "pdf": "CB-TB-025_Reed.pdf",
+      "pairingSuspect": true,
+      "trueInvent": [],
+      "detectorNoiseOrMidstate": [
+        "invent_phone_download"
+      ],
+      "class": "PAIRING_SUSPECT"
+    },
+    {
+      "caseId": "e2841289-1ed2-4dc4-9acf-dd22a03b63fc",
+      "label": "Grant 1 document on file: Grant CRIMINAL",
+      "pdf": "CB-TB-1681_Grant.pdf",
+      "pairingSuspect": false,
+      "trueInvent": [
+        "invent_phone_download"
+      ],
+      "detectorNoiseOrMidstate": [],
+      "class": "TRUE_INVENT_CANDIDATE"
+    },
+    {
+      "caseId": "99090c69-5d78-41e3-946d-119b4bc335ba",
+      "label": "Robbery Charge, hearing and papers need solicitor review before relying on this matter. CRIMINAL",
+      "pdf": "CB-TB-1915_Arden.pdf",
+      "pairingSuspect": true,
+      "trueInvent": [
+        "invent_cctv_master"
+      ],
+      "detectorNoiseOrMidstate": [],
+      "class": "PAIRING_SUSPECT"
+    }
+  ]
+}
