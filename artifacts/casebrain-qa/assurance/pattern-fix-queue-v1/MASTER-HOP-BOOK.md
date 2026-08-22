@@ -20,7 +20,8 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 | STOP → Phase B (Papers / Client) | 0 |
 | WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft / File E0) | 7 |
 
-Brookes Soft Chase nesting: **CLEARED** on tip live AUTH C4/C5 (`CHUNK-S1-BROOKES-NESTING-CLEARED.md`).
+Brookes Soft Chase nesting: **CLEARED** on tip live AUTH C4/C5 (`CHUNK-S1-BROOKES-NESTING-CLEARED.md`).  
+Mute volume: **PARKED** (`CHUNK-M0-MUTE-WATCH-PARK.md`) — tip tallies are soft-projection triage; live canaries hold TP/TN.
 
 **Phase A locked:** `cbf40f08f` · Preview https://casebrain-jo16a5tt0-gduffy1993-pngs-projects.vercel.app · see `PHASE-A-LOCK.md`  
 **Phase B tip:** `a13739f4b` · Preview https://casebrain-98u6ps28m-gduffy1993-pngs-projects.vercel.app · see `PHASE-B-PAPERS-CLIENT.md`  

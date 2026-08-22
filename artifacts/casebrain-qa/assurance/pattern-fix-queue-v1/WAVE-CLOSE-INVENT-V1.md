@@ -35,9 +35,11 @@ Hard **invent** across Overview → Papers → Court → Client → File is clea
 
 ## Explicitly out of scope (WATCH backlog)
 
-Mute-volume detectors, File/UI date-role glue soft, Overview mute WATCH.  
-Brookes Chase nesting soft — **CLEARED** on tip live AUTH (`CHUNK-S1-BROOKES-NESTING-CLEARED.md`).  
-**Do not** reopen invent armour for mute volume without a new PDF-true invent failure.
+Mute-volume detectors — **PARKED** after canary triage (`CHUNK-M0-MUTE-WATCH-PARK.md`).  
+File/UI date-role glue soft, Overview mute WATCH (same park class).  
+Brookes Chase nesting soft — **CLEARED** (`CHUNK-S1-BROOKES-NESTING-CLEARED.md`).  
+**Do not** reopen invent armour for mute volume without a new PDF-true invent failure.  
+**Do not** inflate Court claims just to clear mute tallies.
 
 ---
 
