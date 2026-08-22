@@ -11,7 +11,6 @@ import {
 import { PilotMatterDesk } from "@/components/criminal/workflow/PilotMatterDesk";
 import {
   workflowMuted,
-  workflowPilotKpiTile,
   workflowSectionTitle,
 } from "@/components/criminal/workflow/workflowUi";
 import { CourtTodayReadinessBadge } from "./CourtTodayReadinessBadge";
@@ -87,23 +86,25 @@ function DeskKpiRow({
     ready: number;
   };
 }) {
+  const tile =
+    "rounded-xl border border-white/10 bg-white px-4 py-3 min-w-0 shadow-lg shadow-slate-950/20";
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 w-full">
-      <div className={`${workflowPilotKpiTile} py-2 px-3 min-w-0`}>
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full">
+      <div className={tile}>
         <p className={workflowSectionTitle}>Hearings today</p>
-        <p className="text-lg font-semibold text-slate-100 tabular-nums mt-0.5">{stats.today}</p>
+        <p className="text-2xl font-semibold text-slate-950 tabular-nums mt-1">{stats.today}</p>
       </div>
-      <div className={`${workflowPilotKpiTile} py-2 px-3 min-w-0`}>
+      <div className={tile}>
         <p className={workflowSectionTitle}>At risk</p>
-        <p className="text-lg font-semibold text-rose-400 tabular-nums mt-0.5">{stats.red}</p>
+        <p className="text-2xl font-semibold text-rose-600 tabular-nums mt-1">{stats.red}</p>
       </div>
-      <div className={`${workflowPilotKpiTile} py-2 px-3 min-w-0`}>
+      <div className={tile}>
         <p className={workflowSectionTitle}>{stats.chaseLabel ?? "Open review items"}</p>
-        <p className="text-lg font-semibold text-amber-400 tabular-nums mt-0.5">{stats.missingItems}</p>
+        <p className="text-2xl font-semibold text-amber-600 tabular-nums mt-1">{stats.missingItems}</p>
       </div>
-      <div className={`${workflowPilotKpiTile} py-2 px-3 min-w-0`}>
+      <div className={tile}>
         <p className={workflowSectionTitle}>Ready</p>
-        <p className="text-lg font-semibold text-emerald-400 tabular-nums mt-0.5">{stats.ready}</p>
+        <p className="text-2xl font-semibold text-emerald-600 tabular-nums mt-1">{stats.ready}</p>
       </div>
     </div>
   );
@@ -185,7 +186,7 @@ export function CourtTodayPilotSplit({
 
   return (
     <div
-      className="flex w-full max-w-full flex-col-reverse md:flex-row md:items-stretch gap-0 rounded-2xl border border-slate-700/70 bg-slate-950/80 min-h-[min(calc(100vh-10rem),920px)] overflow-hidden shadow-2xl"
+      className="flex w-full max-w-full flex-col-reverse md:flex-row md:items-stretch gap-0 rounded-[1.75rem] border border-slate-800 bg-slate-950 min-h-[min(calc(100vh-10rem),920px)] overflow-hidden shadow-2xl shadow-slate-950/35"
       data-testid="court-today-pilot-split"
     >
       <aside className="md:w-[min(300px,32%)] md:min-w-[248px] md:max-w-[320px] shrink-0 md:border-r border-slate-800 flex flex-col min-h-0 max-h-[42vh] md:max-h-none bg-slate-950/70">
@@ -234,10 +235,10 @@ export function CourtTodayPilotSplit({
       </aside>
 
       <main className="flex-1 min-w-0 flex flex-col min-h-0 border-t md:border-t-0 border-slate-800">
-        <div className="shrink-0 px-3 py-3 border-b border-slate-800 overflow-x-hidden bg-slate-950/40">
+        <div className="shrink-0 px-3 py-3 md:px-4 md:py-4 border-b border-slate-800 overflow-x-hidden bg-gradient-to-r from-slate-950 via-slate-950 to-blue-950/50">
           <DeskKpiRow stats={stats} />
         </div>
-        <div className="flex-1 min-h-0 overflow-y-auto p-2 md:p-3 [scrollbar-width:thin] [scrollbar-color:rgba(96,165,250,.55)_transparent] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-blue-400/40 [&::-webkit-scrollbar-track]:bg-transparent">
+        <div className="flex-1 min-h-0 overflow-y-auto p-2 md:p-4 [scrollbar-width:thin] [scrollbar-color:rgba(96,165,250,.55)_transparent] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-blue-400/40 [&::-webkit-scrollbar-track]:bg-transparent">
           {deskCaseId ? (
             <PilotMatterDesk
               caseId={deskCaseId}
