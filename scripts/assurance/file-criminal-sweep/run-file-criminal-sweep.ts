@@ -740,7 +740,7 @@ function scoreInvent(
   if (/HEADER_STAGE_MUTED\b/i.test(claimBlob) && pdfHasStage) {
     muteFlags.push("mute_stage_despite_pdf");
   }
-  if (/HEADER_HEARING_STATUS\s*\|\s*Hearing date passed/i.test(claimBlob)) {
+  if (/HEADER_HEARING_STATUS\s*\|\s*(?:Hearing date passed|Listing on papers · .* \(elapsed\))/i.test(claimBlob)) {
     dateRoleFlags.push("date_role_hearing_passed_as_ops_chrome");
   }
   // Invent: header shows a concrete identity string that PDF never supports (rare on File)

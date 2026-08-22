@@ -1066,7 +1066,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
     if (status.kind === "passed") {
       return {
         days,
-        sharedLabel: "Listing date passed — confirm next listing / chase outstanding disclosure",
+        sharedLabel: "Listing on papers elapsed — confirm next listing / chase outstanding disclosure",
         hearingDeadlineNote: null,
         urgency: "high",
         baseStatus: "Overdue",
@@ -1085,7 +1085,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
   if (days < 0) {
     return {
       days,
-      sharedLabel: "Listing date passed — confirm next listing / chase outstanding disclosure",
+      sharedLabel: "Listing on papers elapsed — confirm next listing / chase outstanding disclosure",
       hearingDeadlineNote: null,
       urgency: "high",
       baseStatus: "Overdue",

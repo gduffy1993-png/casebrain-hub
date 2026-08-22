@@ -1,6 +1,8 @@
 # PATTERN FIX WAVE - STATUS
 
-**Verdict:** `INVENT_WAVE_CLOSED` · `MUTE_WATCH_PARKED` — see `WAVE-CLOSE-INVENT-V1.md` · `CHUNK-M0-MUTE-WATCH-PARK.md`
+**Verdict:** `H1_HEARING_LISTING_ELAPSED_WORDING` — see `CHUNK-H1-HEARING-LISTING-ELAPSED.md`
+
+**Chunk H1 hearing listing:** `CHUNK-H1-HEARING-LISTING-ELAPSED.md` · Dunn `14:15` + elapsed wording (not “Hearing date passed”)
 
 **Mute M0 park:** `CHUNK-M0-MUTE-WATCH-PARK.md` · tip mute volume = triage; live canaries not invent-muted
 

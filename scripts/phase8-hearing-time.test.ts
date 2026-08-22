@@ -53,6 +53,24 @@ assert.equal(kinds.upcoming.kind, "upcoming");
 assert.equal(kinds.listed.kind, "listed");
 assert.equal(kinds.passed.kind, "passed");
 assert.equal(kinds.snapshot.kind, "snapshot");
+assert.match(kinds.passed.statusLabel, /Listing on papers · .* \(elapsed\)/i);
+assert.match(kinds.same_day.statusLabel, /Same-day listing/i);
+assert.match(kinds.upcoming.statusLabel, /Upcoming listing/i);
+assert.match(kinds.listed.statusLabel, /Listed on papers/i);
+
+// Time from listing raw only (Dunn-style) — not invent outcome language
+{
+  const withTime = resolveSolicitorHearingStatus({
+    bundleNextHearingIso: "2026-07-07",
+    nextHearingRaw: "07 July 2026 at 14:15",
+    asOf: new Date("2026-08-22T12:00:00Z"),
+  });
+  assert.equal(withTime.kind, "passed");
+  assert.equal(withTime.timeLiteral, "14:15");
+  assert.match(withTime.statusLabel, /14:15/);
+  assert.match(withTime.statusLabel, /elapsed/i);
+  assert.doesNotMatch(withTime.statusLabel, /Hearing date passed/i);
+}
 
 // Date boundaries (UTC day math)
 assert.equal(utcDayDiff(AS_OF, "2026-07-15"), 0);
