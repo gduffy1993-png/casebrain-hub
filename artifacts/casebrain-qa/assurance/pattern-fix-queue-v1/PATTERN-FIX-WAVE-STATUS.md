@@ -4,6 +4,8 @@
 
 **Chunk H1 hearing listing:** `CHUNK-H1-HEARING-LISTING-ELAPSED.md` · Dunn `14:15` + elapsed wording (not “Hearing date passed”)
 
+**Live AUTH H1:** `live-auth-h1-hearing/LIVE-AUTH-H1.md` · Preview https://casebrain-k8g8eup9r-gduffy1993-pngs-projects.vercel.app · **PASS**
+
 **Mixed-40 live cohort:** `mixed-40-pdf-truth/MIXED-40-VERDICT.md` · 14 live+PDF · 9 OK · invent flags mostly pairing/midstate
 
 **Mute M0 park:** `CHUNK-M0-MUTE-WATCH-PARK.md` · tip mute volume = triage; live canaries not invent-muted
