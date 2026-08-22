@@ -1,0 +1,43 @@
+{
+  "preview": "https://casebrain-k8g8eup9r-gduffy1993-pngs-projects.vercel.app",
+  "cases": {
+    "Dunn": {
+      "hearingPassedOld": false,
+      "listingElapsed": true,
+      "has1415": true,
+      "hasJul7": true,
+      "phoneTp": false,
+      "interviewRecording": false,
+      "headerSnip": "CB CASE WORK SOLO WORKSPACE gduffy1993+casebrain@gmail.com I'm working as: Criminal Defence Solicitor Search New Upload Sign Out Trial: 2d left · 24/25 cases · 24/100 docs Upgrade Ellis Dunn Conspiracy to burgle, contrary to section 1 of the Criminal Law Act 1977 Crown Court at Manchester · Listing on papers · 7 Jul 2026 at 14:15 (elapsed) PROVISIONAL — CHECK PAPERS Next: Chase outstanding disclos"
+    },
+    "Brookes": {
+      "hearingPassedOld": false,
+      "listingElapsed": true,
+      "has1415": false,
+      "hasJul7": false,
+      "phoneTp": false,
+      "interviewRecording": false,
+      "headerSnip": "CB CASE WORK SOLO WORKSPACE gduffy1993+casebrain@gmail.com I'm working as: Criminal Defence Solicitor Search New Upload Sign Out Trial: 2d left · 24/25 cases · 24/100 docs Upgrade Taylor Brookes Charge not safely identified from uploaded papers Northbank Crown Court · Listing on papers · 6 Jul 2026 at 10:00 (elapsed) PROVISIONAL — CHECK PAPERS Next: Chase outstanding disclosure and record provisio"
+    },
+    "Hale": {
+      "hearingPassedOld": false,
+      "listingElapsed": false,
+      "has1415": false,
+      "hasJul7": false,
+      "phoneTp": false,
+      "interviewRecording": false,
+      "headerSnip": "CB CASE WORK SOLO WORKSPACE gduffy1993+casebrain@gmail.com I'm working as: Criminal Defence Solicitor Search New Upload Sign Out Trial: 2d left · 24/25 cases · 24/100 docs Upgrade Client not on papers Assault on emergency worker Court not safely identified from uploaded papers · Hearing not on papers PROVISIONAL — CHECK PAPERS Next: Chase outstanding disclosure and record provisional hearing posit"
+    }
+  },
+  "haleChase": {
+    "interviewRecordingCard": false,
+    "recordingNotMentioned": false,
+    "recordingStateServed": false
+  },
+  "board": {
+    "dunnH1Elapsed": true,
+    "dunnH1Time": true,
+    "brookesNoOldPassed": true
+  },
+  "verdict": "H1_LIVE_AUTH_PASS"
+}
