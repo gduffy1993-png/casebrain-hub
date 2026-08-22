@@ -47,6 +47,8 @@ import {
 } from "@/lib/criminal/solicitor-display-dedupe";
 import { adaptFiveAnswersAndChaseToCanonical } from "@/lib/criminal/canonical-matter-state";
 import { useEffect, useMemo, useState } from "react";
+import { useDemoOverviewShell } from "@/components/criminal/demo-shell/useDemoOverviewShell";
+import { DemoOverviewView } from "@/components/criminal/demo-shell/DemoOverviewView";
 
 export function overviewServedEvidenceLine(label: string): string {
   const clean = label.replace(/\s+/g, " ").trim().replace(/\.+$/g, "");
@@ -64,6 +66,14 @@ export function overviewServedEvidenceLine(label: string): string {
 }
 
 export function FiveAnswersView({ caseId }: { caseId: string }) {
+  const demoShell = useDemoOverviewShell();
+  if (demoShell) {
+    return <DemoOverviewView caseId={caseId} />;
+  }
+  return <FiveAnswersViewClassic caseId={caseId} />;
+}
+
+function FiveAnswersViewClassic({ caseId }: { caseId: string }) {
   const [showLimitedLoadingFallback, setShowLimitedLoadingFallback] = useState(false);
   const {
     loading,
