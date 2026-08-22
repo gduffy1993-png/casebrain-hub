@@ -19,10 +19,10 @@ import type { CourtCaseBrief } from "./types";
 
 function solicitorReviewLabel(value: string): string {
   return value
-    .replace(/\bClient(?: name)? not safely extracted\b/gi, "Client details need review")
-    .replace(/\bOffence wording not safely extracted\b/gi, "Charge wording needs review")
-    .replace(/\bwording not safely extracted\b/gi, "Charge wording needs review")
-    .replace(/\bCourt not safely extracted\b/gi, "Court details need review");
+    .replace(/\bClient(?: name)? not safely extracted\b/gi, "Client not on papers")
+    .replace(/\bOffence wording not safely extracted\b/gi, "Charge not safely identified")
+    .replace(/\bwording not safely extracted\b/gi, "Charge not safely identified")
+    .replace(/\bCourt not safely extracted\b/gi, "Court not safely identified");
 }
 
 function MatterListItem({
@@ -63,7 +63,7 @@ function MatterListItem({
         <CourtTodayReadinessBadge readiness={brief.readiness} pilotMode />
         {brief.chaseItems.length > 0 ? (
           <Badge variant="warning" size="sm">
-            {brief.chaseItems.length} chase
+            {brief.chaseItems.length} review item{brief.chaseItems.length === 1 ? "" : "s"}
           </Badge>
         ) : null}
         {brief.positionStatus.toLowerCase().includes("not recorded") ? (
@@ -98,7 +98,7 @@ function DeskKpiRow({
         <p className="text-lg font-semibold text-rose-400 tabular-nums mt-0.5">{stats.red}</p>
       </div>
       <div className={`${workflowPilotKpiTile} py-2 px-3 min-w-0`}>
-        <p className={workflowSectionTitle}>{stats.chaseLabel ?? "Active chase items"}</p>
+        <p className={workflowSectionTitle}>{stats.chaseLabel ?? "Open review items"}</p>
         <p className="text-lg font-semibold text-amber-400 tabular-nums mt-0.5">{stats.missingItems}</p>
       </div>
       <div className={`${workflowPilotKpiTile} py-2 px-3 min-w-0`}>
@@ -185,11 +185,11 @@ export function CourtTodayPilotSplit({
 
   return (
     <div
-      className="flex w-full max-w-full flex-col-reverse md:flex-row md:items-stretch gap-0 rounded-xl border border-slate-700/70 bg-slate-950/50 min-h-[min(calc(100vh-10rem),920px)] overflow-hidden"
+      className="flex w-full max-w-full flex-col-reverse md:flex-row md:items-stretch gap-0 rounded-2xl border border-slate-700/70 bg-slate-950/80 min-h-[min(calc(100vh-10rem),920px)] overflow-hidden shadow-2xl"
       data-testid="court-today-pilot-split"
     >
-      <aside className="md:w-[min(300px,32%)] md:min-w-[248px] md:max-w-[320px] shrink-0 md:border-r border-slate-700/70 flex flex-col min-h-0 max-h-[42vh] md:max-h-none">
-        <div className="flex-1 overflow-y-auto px-2 pb-3 md:sticky md:top-0 md:max-h-[calc(100vh-10rem)]">
+      <aside className="md:w-[min(300px,32%)] md:min-w-[248px] md:max-w-[320px] shrink-0 md:border-r border-slate-800 flex flex-col min-h-0 max-h-[42vh] md:max-h-none bg-slate-950/70">
+        <div className="flex-1 overflow-y-auto px-2 pb-3 md:sticky md:top-0 md:max-h-[calc(100vh-10rem)] [scrollbar-width:thin] [scrollbar-color:rgba(96,165,250,.55)_transparent] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-blue-400/40 [&::-webkit-scrollbar-track]:bg-transparent">
           <div className="pt-3 pb-1">
             <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 px-1">
               {todayItems.length ? "Today" : tomorrowItems.length ? "Next listed" : "Today"}
@@ -233,11 +233,11 @@ export function CourtTodayPilotSplit({
         </div>
       </aside>
 
-      <main className="flex-1 min-w-0 flex flex-col min-h-0 border-t md:border-t-0 border-slate-700/70">
-        <div className="shrink-0 px-3 py-2 border-b border-slate-700/70 overflow-x-hidden">
+      <main className="flex-1 min-w-0 flex flex-col min-h-0 border-t md:border-t-0 border-slate-800">
+        <div className="shrink-0 px-3 py-3 border-b border-slate-800 overflow-x-hidden bg-slate-950/40">
           <DeskKpiRow stats={stats} />
         </div>
-        <div className="flex-1 min-h-0 overflow-y-auto p-2 md:p-3">
+        <div className="flex-1 min-h-0 overflow-y-auto p-2 md:p-3 [scrollbar-width:thin] [scrollbar-color:rgba(96,165,250,.55)_transparent] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-blue-400/40 [&::-webkit-scrollbar-track]:bg-transparent">
           {deskCaseId ? (
             <PilotMatterDesk
               caseId={deskCaseId}

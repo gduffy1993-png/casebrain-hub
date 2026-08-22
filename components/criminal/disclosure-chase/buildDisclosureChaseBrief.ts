@@ -733,7 +733,7 @@ export function reconcilePhoneDownloadModalityItems(
         draftChaseWording:
           "Please provide the full phone download / source export, or confirm in writing why it is not available.",
         courtLine: toCourtLine(label),
-        mergedFrom: ["Full phone download outstanding on papers"],
+        mergedFrom: ["Phone download / source extraction status unresolved on papers"],
       });
     }
   }

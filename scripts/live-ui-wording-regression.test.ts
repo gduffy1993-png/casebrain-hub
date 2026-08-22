@@ -110,6 +110,7 @@ const solicitorVisibleSources = [
   "components/criminal/disclosure-chase/DisclosureChase.tsx",
   "components/criminal/disclosure-chase/buildDisclosureChaseBrief.ts",
   "components/criminal/court-today/courtCaseBrief.ts",
+  "components/criminal/court-today/CourtTodayPilotSplit.tsx",
   "components/criminal/court-today/CourtTodayDiaryTable.tsx",
   "components/criminal/CaseControlRoom.tsx",
   "components/criminal/CaseFilesCompactStrip.tsx",
@@ -199,6 +200,9 @@ const forbiddenSolicitorVisibleCopy = [
   /PTPH \/ case management note/i,
   /MORE PAPERS DETAIL UNAVAILABLE/i,
   /FULL SUMMARY WORKSPACE UNAVAILABLE/i,
+  /Client details need review/i,
+  /Active chase items/i,
+  /\b\d+\s+chase\b/i,
 ];
 
 for (const file of solicitorVisibleSources) {
