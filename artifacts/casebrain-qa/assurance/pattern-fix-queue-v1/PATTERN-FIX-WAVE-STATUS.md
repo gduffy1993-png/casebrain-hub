@@ -4,6 +4,8 @@
 
 **Chunk H1 hearing listing:** `CHUNK-H1-HEARING-LISTING-ELAPSED.md` · Dunn `14:15` + elapsed wording (not “Hearing date passed”)
 
+**Mixed-40 live cohort:** `mixed-40-pdf-truth/MIXED-40-VERDICT.md` · 14 live+PDF · 9 OK · invent flags mostly pairing/midstate
+
 **Mute M0 park:** `CHUNK-M0-MUTE-WATCH-PARK.md` · tip mute volume = triage; live canaries not invent-muted
 
 **Soft S1 Brookes nesting:** `CHUNK-S1-BROOKES-NESTING-CLEARED.md` · live tip Chase has phone primary (no Other bury)
