@@ -1,6 +1,8 @@
 # PATTERN FIX WAVE - STATUS
 
-**Verdict:** `INVENT_WAVE_CLOSED` — see `WAVE-CLOSE-INVENT-V1.md` · soft nesting `S1_BROOKES_NESTING_CLEARED`
+**Verdict:** `INVENT_WAVE_CLOSED` · `MUTE_WATCH_PARKED` — see `WAVE-CLOSE-INVENT-V1.md` · `CHUNK-M0-MUTE-WATCH-PARK.md`
+
+**Mute M0 park:** `CHUNK-M0-MUTE-WATCH-PARK.md` · tip mute volume = triage; live canaries not invent-muted
 
 **Soft S1 Brookes nesting:** `CHUNK-S1-BROOKES-NESTING-CLEARED.md` · live tip Chase has phone primary (no Other bury)
 
