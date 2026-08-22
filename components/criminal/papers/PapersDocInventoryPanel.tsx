@@ -114,7 +114,7 @@ export function PapersDocInventoryPanel({
         <div className="text-[11px] text-slate-500 text-right space-y-0.5">
           {typeof documentCount === "number" ? <p>{documentCount} file(s) on record</p> : null}
           {typeof textChars === "number" && textChars > 0 ? (
-            <p>{Math.round(textChars / 1000)}k chars extracted</p>
+            <p>Source text available for review</p>
           ) : null}
           {ledger?.reviewRequired ? <p className="text-amber-400/90">Provisional — solicitor review</p> : null}
         </div>

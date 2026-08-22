@@ -122,7 +122,8 @@ export function DemoOverviewCanvas({
   const attentionSummary = [
     `${stats.missing} missing`,
     `${stats.incomplete} incomplete`,
-    stats.activeChases ? `${stats.activeChases} active chases` : "",
+    stats.activeChases ? `${stats.activeChases} active CPS chase${stats.activeChases === 1 ? "" : "s"}` : "",
+    `${stats.openReviewItems} open review item${stats.openReviewItems === 1 ? "" : "s"}`,
   ].filter(Boolean).join(" · ");
 
   const filtered = useMemo(() => {
@@ -186,9 +187,9 @@ export function DemoOverviewCanvas({
               tone="amber"
             />
             <StatCard
-              value={stats.activeChases}
-              label="Active chases"
-              hint="Awaiting response"
+              value={stats.openReviewItems}
+              label="Open review"
+              hint={stats.activeChases ? "Includes active CPS chases" : "Needs checking"}
               tone="sky"
             />
           </div>
@@ -218,7 +219,7 @@ export function DemoOverviewCanvas({
                   <option value="MISSING">Missing</option>
                   <option value="UNCLEAR">Unclear</option>
                   <option value="INCOMPLETE">Incomplete</option>
-                  <option value="ACTIVE">Active</option>
+                  <option value="ACTIVE">Chased</option>
                 </select>
               </label>
             </div>

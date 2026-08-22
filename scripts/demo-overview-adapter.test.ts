@@ -42,6 +42,7 @@ assert.equal(items[1].status, "UNCLEAR");
 const stats = buildDemoStatCounts(items, { missing: 1, incomplete: 1 });
 assert.ok(stats.missing >= 1);
 assert.equal(stats.activeChases, 0);
+assert.equal(stats.openReviewItems, 2);
 const readiness = buildDemoReadiness(
   { served: 2, missing: 1, incomplete: 1, referred: 0, notSafelyConfirmed: 0 },
   stats,
@@ -53,6 +54,7 @@ const chased = buildDemoAttentionItems([
   sample({ id: "4", label: "CCTV continuity", baseStatus: "Chased" }),
 ]);
 assert.equal(buildDemoStatCounts(chased, { missing: 0, incomplete: 0 }).activeChases, 1);
+assert.equal(buildDemoStatCounts(chased, { missing: 0, incomplete: 0 }).openReviewItems, 1);
 
 const deadlineOnly = buildDemoAttentionItems([
   sample({
@@ -98,5 +100,35 @@ const numericPage = buildDemoAttentionItems([
   }),
 ])[0];
 assert.ok(numericPage.sources.includes("MG6C Statement p.42"));
+
+const cctvContinuity = buildDemoAttentionItems([
+  sample({
+    id: "8",
+    label: "CCTV Continuity / provenance",
+    baseStatus: "Not safely confirmed",
+    whyItMatters: "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+    draftChaseWording: "Please provide CCTV Continuity / provenance or confirm in writing why it is not available.",
+  }),
+])[0];
+assert.equal(cctvContinuity.title, "CCTV continuity / provenance");
+assert.doesNotMatch(cctvContinuity.blurb, /Review the cited source before relying/i);
+assert.match(cctvContinuity.recommendedAction, /CCTV continuity/);
+assert.doesNotMatch(cctvContinuity.recommendedAction, /CCTV Continuity/);
+
+const phoneUnresolved = buildDemoAttentionItems([
+  sample({
+    id: "9",
+    label: "Full phone download outstanding",
+    baseStatus: "Outstanding",
+    familyId: "phone",
+    whyItMatters: "Phone download / source extraction status unresolved on papers.",
+    source: "Crown / disclosure officer (confirm on file)",
+    draftChaseWording: "",
+  }),
+])[0];
+assert.equal(phoneUnresolved.status, "UNCLEAR");
+assert.equal(phoneUnresolved.title, "Phone extraction/download status");
+assert.doesNotMatch(phoneUnresolved.recommendedAction, /outstanding/i);
+assert.match(phoneUnresolved.recommendedAction, /Confirm whether any phone extraction/i);
 
 console.log("demo-overview-adapter.test.ts: PASS");

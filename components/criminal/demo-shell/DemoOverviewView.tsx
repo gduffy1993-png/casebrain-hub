@@ -19,6 +19,11 @@ import {
 import { adaptFiveAnswersAndChaseToCanonical } from "@/lib/criminal/canonical-matter-state";
 import { polishChasePreviewLabel } from "@/lib/criminal/solicitor-display-dedupe";
 import {
+  displayPilotStripClient,
+  displayPilotStripHearing,
+  resolvePilotChargeDisplay,
+} from "@/components/criminal/workflow/workflowPilotDisplay";
+import {
   buildDemoAttentionItems,
   buildDemoReadiness,
   buildDemoStatCounts,
@@ -149,7 +154,7 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
       stageLine=""
       provisional
       readinessBanner=""
-      stats={{ missing: 0, incomplete: 0, activeChases: 0 }}
+      stats={{ missing: 0, incomplete: 0, activeChases: 0, openReviewItems: 0 }}
       attention={[]}
       courtLine=""
       clientUpdate=""
@@ -217,19 +222,25 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
         attention.slice(0, 3).map((a) => `Outstanding: ${a.title}`),
       ).join("\n") || "Limited papers — keep the client update provisional.";
 
+  const clientDisplay = displayPilotStripClient(
+    typeof clientLabel === "string" ? clientLabel : "",
+  );
   const clientName =
-    (typeof clientLabel === "string" && clientLabel.trim()) || "Client";
+    clientDisplay && !/\bnot on papers\b/i.test(clientDisplay)
+      ? clientDisplay
+      : "Client identity needs confirmation";
 
   const chargeLine =
-    polishPresentationLine(allegation ?? "", bundleHay) ||
-    "Charge not safely identified from uploaded papers";
+    resolvePilotChargeDisplay(polishPresentationLine(allegation ?? "", bundleHay));
 
   const provisional = matterConfidence.level !== "safe";
   const readinessBanner = provisional
     ? "Not ready for final court position — solicitor review required before relying on strategy lines."
     : "Papers look fuller — still check sources before fixing the hearing position.";
 
-  const stageLine = (typeof hearingLabel === "string" && hearingLabel.trim()) || "";
+  const stageLine = displayPilotStripHearing(
+    typeof hearingLabel === "string" ? hearingLabel : "",
+  );
 
   return (
     <DemoOverviewCanvas

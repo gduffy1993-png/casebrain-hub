@@ -25,6 +25,7 @@ export type DemoStatCounts = {
   missing: number;
   incomplete: number;
   activeChases: number;
+  openReviewItems: number;
 };
 
 export type DemoReadiness = {
@@ -49,6 +50,27 @@ function cleanOneLine(value: string | null | undefined): string {
   return (value ?? "").replace(/\s+/g, " ").trim();
 }
 
+function normaliseIssueTitle(value: string): string {
+  return cleanOneLine(value)
+    .replace(/\bCCTV\s+Continuity\b/g, "CCTV continuity")
+    .replace(/\bCCTV\s+Full\b/g, "CCTV full")
+    .replace(/\bFull\s+CCTV\b/g, "Full CCTV")
+    .replace(/\bMG6\s*\/\s*Unused\b/g, "MG6 / unused")
+    .replace(/\bPhone\s+download\s+outstanding\b/gi, "Phone extraction/download status")
+    .replace(/\bFull\s+phone\s+download\b/gi, "Phone extraction/download status")
+    .replace(/^Full\s+Phone extraction\/download status$/i, "Phone extraction/download status")
+    .replace(/\bsource\s+export\b/gi, "source export")
+    .replace(/\s+\/\s+/g, " / ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isGenericSourceReview(value: string): boolean {
+  return /review the cited source before relying on this item;?\s*record whether the material is served, incomplete, unclear or still awaited/i.test(
+    value,
+  );
+}
+
 function clampAtWordBoundary(value: string, max = 150): string {
   const clean = cleanOneLine(value);
   if (clean.length <= max) return clean;
@@ -57,14 +79,64 @@ function clampAtWordBoundary(value: string, max = 150): string {
   return `${clean.slice(0, cutAt).replace(/[,\s;:.-]+$/g, "")}…`;
 }
 
+function isPhoneOrSourceExportUnresolved(item: DisclosureChaseItem): boolean {
+  const hay = [
+    item.label,
+    item.familyId,
+    item.whyItMatters,
+    item.deadlineLabel,
+    item.source,
+    item.evidenceAnchor,
+    ...(item.mergedFrom ?? []),
+  ]
+    .join(" ")
+    .toLowerCase();
+  return (
+    /\b(phone|device|download|extraction|source export|logical download)\b/i.test(hay) &&
+    /\b(unresolved|not established|not safely confirmed|confirm on file|needs? checking)\b/i.test(hay)
+  );
+}
+
+function issueBlurbForItem(item: DisclosureChaseItem, title: string): string {
+  const raw = cleanOneLine(item.whyItMatters || item.deadlineLabel || "");
+  if (raw && !isGenericSourceReview(raw)) return clampAtWordBoundary(raw);
+  const hay = `${title} ${item.familyId}`.toLowerCase();
+  if (/cctv/.test(hay) && /continuity|provenance/.test(hay)) {
+    return "Continuity source needs checking before any CCTV point is relied on.";
+  }
+  if (/cctv/.test(hay) && /master|window|footage/.test(hay)) {
+    return "Full CCTV or master media status needs confirming before the hearing position is fixed.";
+  }
+  if (/\b(cad|999)\b/.test(hay)) {
+    return "CAD / 999 material is not safely confirmed on the current papers.";
+  }
+  if (/phone|device|download|extraction|source export/.test(hay)) {
+    return "Phone or source-extraction material is not established on the current papers.";
+  }
+  return "Source status needs confirming before this item is relied on.";
+}
+
 function recommendedActionForItem(item: DisclosureChaseItem): string {
   const draft = cleanOneLine(item.draftChaseWording);
-  if (draft) return draft;
-  const label = cleanOneLine(item.label) || "the outstanding material";
+  if (isPhoneOrSourceExportUnresolved(item)) {
+    return "Confirm whether any phone extraction, download or source-export material exists before treating it as a disclosure chase.";
+  }
+  if (draft) {
+    return normaliseIssueTitle(draft)
+      .replace(/^Please provide\s+(?!the\b)/i, "Please provide the ")
+      .replace(/\bCCTV\s+continuity\b/g, "CCTV continuity")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+  const label = normaliseIssueTitle(item.label) || "the material";
+  if (/not established|unresolved/i.test(`${item.whyItMatters} ${item.deadlineLabel}`)) {
+    return `Confirm whether ${label} exists before treating it as a disclosure chase.`;
+  }
   return `Chase ${label} and confirm the source position before fixing the hearing line.`;
 }
 
 function statusFromChase(item: DisclosureChaseItem): DemoAttentionStatus | null {
+  if (isPhoneOrSourceExportUnresolved(item)) return "UNCLEAR";
   switch (item.baseStatus) {
     case "Received":
       return null;
@@ -112,17 +184,21 @@ export function buildDemoAttentionItems(items: DisclosureChaseItem[]): DemoAtten
   for (const item of items) {
     const status = statusFromChase(item);
     if (!status) continue;
+    const title = normaliseIssueTitle(item.label);
+    const blurb = issueBlurbForItem(item, title);
     out.push({
       id: item.id,
-      title: cleanOneLine(item.label),
-      blurb: clampAtWordBoundary(item.whyItMatters || item.deadlineLabel || ""),
+      title,
+      blurb,
       status,
       impactTags: impactFromFamily(item.familyId),
-      why: cleanOneLine(item.whyItMatters) || "Material is outstanding or not safely confirmed on the papers.",
+      why: blurb || "Source status needs confirming before this item is relied on.",
       sources: sourceLines(item),
       recommendedAction: recommendedActionForItem(item),
-      chaseWording: cleanOneLine(item.draftChaseWording) || cleanOneLine(item.label),
-      courtWording: cleanOneLine(item.courtLine) || "Position remains provisional pending outstanding disclosure.",
+      chaseWording: recommendedActionForItem(item),
+      courtWording:
+        normaliseIssueTitle(cleanOneLine(item.courtLine)) ||
+        "Position remains provisional pending source-material review.",
       familyId: item.familyId,
     });
   }
@@ -149,6 +225,7 @@ export function buildDemoStatCounts(
     missing,
     incomplete,
     activeChases,
+    openReviewItems: attention.length,
   };
 }
 

@@ -116,6 +116,10 @@ const solicitorVisibleSources = [
   "components/criminal/CaseFilesCompactStrip.tsx",
   "components/criminal/workflow/PilotSummaryView.tsx",
   "components/criminal/workflow/PilotTodayDashboard.tsx",
+  "components/criminal/demo-shell/DemoOverviewView.tsx",
+  "components/criminal/demo-shell/DemoOverviewCanvas.tsx",
+  "components/criminal/demo-shell/demoOverviewAdapter.ts",
+  "components/criminal/papers/PapersDocInventoryPanel.tsx",
   "components/criminal/workflow/PilotCaseDocumentsPanel.tsx",
   "components/criminal/hearing-mode/HearingModePanel.tsx",
   "components/criminal/hearing-war-room/buildHearingWarRoomBrief.ts",
@@ -201,8 +205,12 @@ const forbiddenSolicitorVisibleCopy = [
   /MORE PAPERS DETAIL UNAVAILABLE/i,
   /FULL SUMMARY WORKSPACE UNAVAILABLE/i,
   /Client details need review/i,
+  /Client name not safely extracted/i,
   /Active chase items/i,
+  /Active chases/i,
   /\b\d+\s+chase\b/i,
+  /\bchars extracted\b/i,
+  /\bCCTV Continuity\b/,
 ];
 
 for (const file of solicitorVisibleSources) {
