@@ -45,6 +45,25 @@ function impactFromFamily(familyId: string): string[] {
   return ["Completeness"];
 }
 
+function cleanOneLine(value: string | null | undefined): string {
+  return (value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function clampAtWordBoundary(value: string, max = 150): string {
+  const clean = cleanOneLine(value);
+  if (clean.length <= max) return clean;
+  const boundary = clean.lastIndexOf(" ", max - 1);
+  const cutAt = boundary >= Math.floor(max * 0.65) ? boundary : max;
+  return `${clean.slice(0, cutAt).replace(/[,\s;:.-]+$/g, "")}…`;
+}
+
+function recommendedActionForItem(item: DisclosureChaseItem): string {
+  const draft = cleanOneLine(item.draftChaseWording);
+  if (draft) return draft;
+  const label = cleanOneLine(item.label) || "the outstanding material";
+  return `Chase ${label} and confirm the source position before fixing the hearing line.`;
+}
+
 function statusFromChase(item: DisclosureChaseItem): DemoAttentionStatus | null {
   switch (item.baseStatus) {
     case "Received":
@@ -65,9 +84,11 @@ function statusFromChase(item: DisclosureChaseItem): DemoAttentionStatus | null 
 
 function sourceLines(item: DisclosureChaseItem): string[] {
   const lines: string[] = [];
-  if (item.source?.trim()) lines.push(item.source.trim());
-  if (item.evidenceAnchor?.trim() && item.evidenceAnchor !== item.source) {
-    lines.push(item.evidenceAnchor.trim());
+  const source = cleanOneLine(item.source);
+  const anchor = cleanOneLine(item.evidenceAnchor);
+  if (source) lines.push(source);
+  if (anchor && anchor !== source) {
+    lines.push(anchor);
   }
   const prov = item.provenance;
   if (prov && typeof prov === "object") {
@@ -75,8 +96,11 @@ function sourceLines(item: DisclosureChaseItem): string[] {
       "sourceDocumentTitle" in prov && typeof prov.sourceDocumentTitle === "string"
         ? prov.sourceDocumentTitle
         : null;
+    const rawPage = "sourcePage" in prov ? (prov as { sourcePage?: unknown }).sourcePage : null;
     const page =
-      "sourcePage" in prov && typeof prov.sourcePage === "string" ? prov.sourcePage : null;
+      typeof rawPage === "string" || typeof rawPage === "number"
+        ? String(rawPage)
+        : null;
     if (title) lines.push(page ? `${title} p.${page}` : title);
   }
   if (!lines.length) lines.push("Check uploaded papers for the source reference.");
@@ -90,17 +114,15 @@ export function buildDemoAttentionItems(items: DisclosureChaseItem[]): DemoAtten
     if (!status) continue;
     out.push({
       id: item.id,
-      title: item.label.replace(/\s+/g, " ").trim(),
-      blurb: (item.whyItMatters || item.deadlineLabel || "").replace(/\s+/g, " ").trim().slice(0, 140),
+      title: cleanOneLine(item.label),
+      blurb: clampAtWordBoundary(item.whyItMatters || item.deadlineLabel || ""),
       status,
       impactTags: impactFromFamily(item.familyId),
-      why: item.whyItMatters?.trim() || "Material is outstanding or not safely confirmed on the papers.",
+      why: cleanOneLine(item.whyItMatters) || "Material is outstanding or not safely confirmed on the papers.",
       sources: sourceLines(item),
-      recommendedAction:
-        item.deadlineLabel?.trim() ||
-        "Chase the outstanding material and check the source before fixing the hearing position.",
-      chaseWording: item.draftChaseWording?.trim() || item.label,
-      courtWording: item.courtLine?.trim() || "Position remains provisional pending outstanding disclosure.",
+      recommendedAction: recommendedActionForItem(item),
+      chaseWording: cleanOneLine(item.draftChaseWording) || cleanOneLine(item.label),
+      courtWording: cleanOneLine(item.courtLine) || "Position remains provisional pending outstanding disclosure.",
       familyId: item.familyId,
     });
   }
@@ -126,7 +148,7 @@ export function buildDemoStatCounts(
   return {
     missing,
     incomplete,
-    activeChases: activeChases || Math.max(0, attention.length - missing),
+    activeChases,
   };
 }
 

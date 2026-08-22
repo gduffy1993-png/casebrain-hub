@@ -50,12 +50,12 @@ function StatCard({
   tone: "rose" | "amber" | "sky";
 }) {
   const tones = {
-    rose: "border-rose-200 bg-rose-50/80 text-rose-800",
-    amber: "border-amber-200 bg-amber-50/80 text-amber-900",
-    sky: "border-sky-200 bg-sky-50/80 text-sky-900",
+    rose: "border-rose-100 bg-white text-rose-800 shadow-lg shadow-slate-950/10",
+    amber: "border-amber-100 bg-white text-amber-900 shadow-lg shadow-slate-950/10",
+    sky: "border-blue-100 bg-white text-blue-900 shadow-lg shadow-slate-950/10",
   };
   return (
-    <div className={`rounded-xl border px-3.5 py-3 min-w-[7.5rem] ${tones[tone]}`}>
+    <div className={`rounded-xl border px-4 py-3 min-w-[8.5rem] ${tones[tone]}`}>
       <p className="text-2xl font-semibold tabular-nums leading-none">
         {value} <span className="text-sm font-medium">{label}</span>
       </p>
@@ -119,6 +119,11 @@ export function DemoOverviewCanvas({
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState<"all" | DemoAttentionStatus>("all");
   const [copied, setCopied] = useState<string | null>(null);
+  const attentionSummary = [
+    `${stats.missing} missing`,
+    `${stats.incomplete} incomplete`,
+    stats.activeChases ? `${stats.activeChases} active chases` : "",
+  ].filter(Boolean).join(" · ");
 
   const filtered = useMemo(() => {
     if (statusFilter === "all") return attention;
@@ -150,13 +155,13 @@ export function DemoOverviewCanvas({
   return (
     <div className="space-y-4 text-slate-900" data-testid="demo-overview-shell">
       {/* Case header + stats */}
-      <header className="rounded-2xl border border-slate-200 bg-white px-4 py-4 sm:px-5 shadow-sm">
+      <header className="rounded-2xl border border-slate-800 bg-gradient-to-r from-slate-950 via-slate-900 to-blue-950 px-4 py-4 sm:px-5 shadow-sm">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="min-w-0 space-y-1.5">
-            <h1 className="text-2xl sm:text-[1.7rem] font-semibold tracking-tight text-slate-950 truncate">
+            <h1 className="text-2xl sm:text-[1.8rem] font-semibold tracking-tight text-white truncate">
               {clientName}
             </h1>
-            <div className="flex flex-wrap items-center gap-2 text-sm text-slate-600">
+            <div className="flex flex-wrap items-center gap-2 text-sm text-slate-300">
               <span>
                 {chargeLine}
                 {stageLine ? ` · ${stageLine}` : ""}
@@ -167,8 +172,8 @@ export function DemoOverviewCanvas({
                 </span>
               ) : null}
             </div>
-            <div className="mt-2 flex items-start gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 max-w-xl">
-              <AlertCircle className="h-4 w-4 mt-0.5 shrink-0 text-slate-500" />
+            <div className="mt-2 flex items-start gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-100 max-w-xl">
+              <AlertCircle className="h-4 w-4 mt-0.5 shrink-0 text-rose-300" />
               <p>{readinessBanner}</p>
             </div>
           </div>
@@ -194,8 +199,14 @@ export function DemoOverviewCanvas({
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.95fr)]">
         <section className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden flex flex-col min-h-[28rem]">
           <div className="flex items-center justify-between gap-2 border-b border-slate-100 px-4 py-3">
-            <h2 className="text-sm font-semibold text-slate-900">What Needs Attention</h2>
+            <div>
+              <h2 className="text-sm font-semibold text-slate-900">What Needs Attention</h2>
+              <p className="mt-0.5 text-xs text-slate-500">{attentionSummary || "No open attention items"}</p>
+            </div>
             <div className="flex items-center gap-2">
+              <span className="hidden sm:inline-flex rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] text-slate-600">
+                Sort: Impact (High)
+              </span>
               <label className="inline-flex items-center gap-1.5 text-[11px] text-slate-500">
                 <Filter className="h-3.5 w-3.5" />
                 <select
