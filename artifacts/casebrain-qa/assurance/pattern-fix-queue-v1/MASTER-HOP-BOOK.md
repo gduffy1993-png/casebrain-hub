@@ -18,7 +18,9 @@ Sources merged: `overview-criminal-sweep-v1`, `surface-findonly-v1/papers-chase`
 | FIXED (prior surgical + Trap CCTV + this wave + A lock + B Papers/Client + Chunk 3 BWV + P1 phone mute + C1 Court invent + D1 Client phone + E1 File chrome + C2 Court phone + D2 Client residual + D3 negation hygiene + C4 CCTV not-full + C5 interview/glued BWV) | 36 |
 | OPEN (remaining) | 0 |
 | STOP → Phase B (Papers / Client) | 0 |
-| WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft / File E0) | 8 |
+| WATCH (UI / soft Chase inject / volume triage / Chunk 3 soft / File E0) | 7 |
+
+Brookes Soft Chase nesting: **CLEARED** on tip live AUTH C4/C5 (`CHUNK-S1-BROOKES-NESTING-CLEARED.md`).
 
 **Phase A locked:** `cbf40f08f` · Preview https://casebrain-jo16a5tt0-gduffy1993-pngs-projects.vercel.app · see `PHASE-A-LOCK.md`  
 **Phase B tip:** `a13739f4b` · Preview https://casebrain-98u6ps28m-gduffy1993-pngs-projects.vercel.app · see `PHASE-B-PAPERS-CLIENT.md`  
