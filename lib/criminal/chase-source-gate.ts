@@ -15,6 +15,7 @@ export type ChaseGateFamily =
   | "cctv"
   | "bwv"
   | "cad_999"
+  | "custody_pace"
   | "medical"
   | "interview"
   | "mg6_unused"
@@ -31,6 +32,8 @@ const MENTION_RES: Record<ChaseGateFamily, RegExp> = {
   // Never treat bare "999" (page numbers / schedule noise) as CAD establishment.
   cad_999:
     /\bcad\b|CAD\s*\/\s*999|999\s+(?:audio|call|recording)|command\s+(?:and\s+)?(?:control|dispatch)|control[-\s]?room\s+log|dispatch\s+log|emergency\s+call/i,
+  custody_pace:
+    /\b(?:custody\s+(?:record|log|sheet)|detention\s+log|PACE\s+(?:material|record|clock|Code\s+C|interview)|safeguards?\s+checklist|risk\s+assessment)\b/i,
   medical: /\bmedical\b|hospital|a\s*&\s*e\b|ambulance|paramedic|\bgp\s+records?\b|\bfme\b|pathology|injury\s+report/i,
   interview: /\binterview\s+(?:recording|transcript|audio|video)\b|\bpace\s+interview\b|interview\s+recording|interview\s+transcript/i,
   // Unused/MG6C schedule — not a plain MG6 extract presence alone.
@@ -47,6 +50,8 @@ const NEGATION_RES: Record<ChaseGateFamily, RegExp> = {
   cctv: /\bno\s+cctv\b|cctv\s+(?:is|was)?\s*not\s+available|without\s+cctv|no\s+(?:cctv|camera)\s+(?:footage|coverage)|no\s+footage\s+(?:exists|available|was)|cctv\s+does\s+not\s+exist|no\s+cctv\s+(?:was\s+)?(?:recovered|obtained|seized|in\s+operation)/i,
   bwv: /\bno\s+bwv\b|bwv\s+(?:is|was)?\s*not\s+(?:available|activated|worn)|no\s+body[-\s]?worn/i,
   cad_999: /no\s+999\s+call|no\s+cad\s+(?:log|record|entry)|999\s+call\s+not\s+(?:made|available)/i,
+  custody_pace:
+    /no\s+(?:custody\s+(?:record|log|sheet)|detention\s+log|PACE\s+(?:material|record)|safeguards?\s+checklist|risk\s+assessment)\s+(?:exists|available|served|prepared)|custody\s+record\s+not\s+(?:available|held)/i,
   medical: /no\s+medical\s+(?:evidence|records?|notes?|report|treatment)|did\s+not\s+(?:seek|require)\s+medical/i,
   interview: /no\s+interview\s+(?:was\s+)?(?:conducted|held)|declined\s+interview|interview\s+not\s+(?:conducted|recorded)/i,
   mg6_unused: /no\s+(?:mg6|unused\s+material|disclosure\s+schedule)\s+(?:exists|available|served|prepared)/i,
@@ -120,6 +125,31 @@ export function isCctvContinuityEstablished(sourceText: string): boolean {
       /\bcontinuity\b/i.test(hay) &&
       !/\bofficer\s+continuity\b/i.test(hay))
   );
+}
+
+/** Confirmation-only CCTV continuity language must not become an asserted outstanding chase. */
+export function isCctvContinuityConfirmationOnly(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = stripDoNotInventAdvisory(sourceText)
+    .replace(THIN_LISTED_CCTV_BWV_RE, " ")
+    .replace(PRODUCT_CCTV_INVENT_LABEL_RE, " ");
+  if (!/\bcctv\b/i.test(hay) || !/\bcontinuity\b/i.test(hay)) return false;
+  const confirmationOnly =
+    /\bcontinuity\s+of\s+cctv\s+sources\s*:\s*to\s+be\s+checked\b/i.test(hay) ||
+    /\bcctv\s+continuity\b[^.\n]{0,80}\b(?:to\s+be\s+checked|needs?\s+checking|needs?\s+confirm(?:ation|ing)|not\s+safely\s+confirmed|unclear|unknown)\b/i.test(
+      hay,
+    ) ||
+    /\b(?:to\s+be\s+checked|needs?\s+checking|needs?\s+confirm(?:ation|ing)|not\s+safely\s+confirmed|unclear|unknown)\b[^.\n]{0,80}\bcctv\s+continuity\b/i.test(
+      hay,
+    );
+  const assertedMissing =
+    /\bcctv\s+continuity\b[^.\n]{0,80}\b(?:outstanding|missing|not\s+served|not\s+provided|not\s+attached|awaited|awaiting)\b/i.test(
+      hay,
+    ) ||
+    /\b(?:outstanding|missing|not\s+served|not\s+provided|not\s+attached|awaited|awaiting)\b[^.\n]{0,80}\bcctv\s+continuity\b/i.test(
+      hay,
+    );
+  return confirmationOnly && !assertedMissing;
 }
 
 /** True when a chase/material line is a CCTV master / full-window invent surface. */
@@ -308,6 +338,7 @@ const FAMILY_DISPLAY: Record<ChaseGateFamily, string> = {
   cctv: "CCTV",
   bwv: "body-worn video",
   cad_999: "CAD/999 material",
+  custody_pace: "custody/PACE material",
   medical: "medical evidence",
   interview: "interview material",
   mg6_unused: "MG6/unused material",
@@ -570,6 +601,13 @@ export function gateMaterialLines(lines: string[], sourceText: string | null | u
  */
 export function gateProseAgainstSource(text: string, sourceText: string | null | undefined): string {
   if (!sourceText?.trim() || !text.trim()) return text;
+  if (
+    isCctvContinuityConfirmationOnly(sourceText) &&
+    lineClaimsCctvContinuity(text) &&
+    /\b(?:appears|remains)\s+outstanding\b/i.test(text)
+  ) {
+    return "CCTV continuity/provenance needs confirmation before the defence can rely on any CCTV point.";
+  }
   const fams = familiesInText(text);
   if (!fams.length) return text;
 

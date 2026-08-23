@@ -323,7 +323,10 @@ export function resolveCaseHeaderMetadata(input: {
       ? { label: truthLedger.defendant.defendant, source: "extracted_cover_fallback" as MetadataFieldSource }
       : resolveClientLabel(matter ?? null, bundleMetadata, bundleHeader);
   const allegation = resolveAllegation(snapshot, matter ?? null, bundleMetadata, bundleHeader, truthLedger);
-  const stage = resolveStage(snapshot, matter ?? null, bundleMetadata, bundleHeader, matterState);
+  const stage =
+    truthLedger?.stage?.trim()
+      ? { label: truthLedger.stage.trim(), source: "extracted_cover_fallback" as MetadataFieldSource }
+      : resolveStage(snapshot, matter ?? null, bundleMetadata, bundleHeader, matterState);
   const nextHearing = resolveNextHearing(snapshot, bundleMetadata, truthLedger);
 
   const court =

@@ -2003,14 +2003,14 @@ function extractNextHearing(scan: string): {
 
 function extractStage(scan: string, parsedHeader?: ParsedBundleHeader | null): string | null {
   const stageLine = scan.match(
-    /\b(?:Stage|Procedural stage|Case stage)\s*:?\s*([^\n|]{4,120}?)(?=\s*(?:\||\n|Custody|Defence|Defense|Next hearing|Bundle)\b)/i,
+    /\b(?:Current\s+stage|Stage|Procedural stage|Case stage)\s*:?\s*([^\n|]{4,120}?)(?=\s*(?:\||\n|Custody\b|Defence\b|Defense\b|Next hearing\b|Bundle\b|Charge\b|Court\b|URN\b|DOB\b|$))/i,
   );
   if (stageLine?.[1]) {
     const v = cleanLineValue(stageLine[1]);
     if (v) return v;
   }
   return (
-    extractLabeledValue(scan, ["Stage", "Procedural stage", "Case stage"]) ??
+    extractLabeledValue(scan, ["Current stage", "Stage", "Procedural stage", "Case stage"]) ??
     parsedHeader?.stage?.trim() ??
     null
   );

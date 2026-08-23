@@ -222,11 +222,14 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
         attention.slice(0, 3).map((a) => `Outstanding: ${a.title}`),
       ).join("\n") || "Limited papers — keep the client update provisional.";
 
-  const clientDisplay = displayPilotStripClient(
+  const clientDisplay = [
     typeof clientLabel === "string" ? clientLabel : "",
-  );
+    bundleMeta?.caseMetadata?.defendantName ?? "",
+  ]
+    .map((candidate) => displayPilotStripClient(candidate))
+    .find((candidate) => candidate && !/\bnot on papers\b/i.test(candidate));
   const clientName =
-    clientDisplay && !/\bnot on papers\b/i.test(clientDisplay)
+    clientDisplay
       ? clientDisplay
       : "Client identity needs confirmation";
 

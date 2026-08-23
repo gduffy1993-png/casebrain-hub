@@ -499,6 +499,7 @@ export function ledgerAnchorForChaseFamily(
     cctv_continuity: /\b(cctv|continuity|provenance)\b/i,
     cad_999: /\b(999|cad|dispatch|control\s*room)\b/i,
     bwv: /\b(bwv|body[-\s]?worn)\b/i,
+    custody_pace: /\b(custody\s+(?:record|log|sheet)|detention\s+log|pace|safeguards?\s+checklist|risk\s+assessment)\b/i,
     interview: /\b(interview|transcript|pace)\b/i,
     mg6_unused: /\b(mg6|unused|disclosure\s*schedule)\b/i,
     medical_expert: /\b(medical|hospital|pathology|expert|fme|gp)\b/i,

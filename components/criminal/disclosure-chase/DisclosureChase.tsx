@@ -79,6 +79,7 @@ import {
 } from "@/lib/criminal/demo-presentation-polish";
 import { humanizeRemainingSnakeCaseTokens } from "@/lib/criminal/solicitor-visible-sanitization";
 import { createClient } from "@/lib/supabase/browser";
+import { canonicalRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
 
 const LOCAL_STORAGE_PREFIX = "casebrain:disclosure-chase:";
 
@@ -777,8 +778,14 @@ export function DisclosureChase({
   }, [hasSavedPosition, savedPosition, headerMeta.defencePosition, pilotMode, workflowContext]);
 
   const brief: DisclosureChaseBrief = useMemo(
-    () =>
-      buildDisclosureChaseBrief({
+    () => {
+      const canonicalRows = canonicalRowsForBuilder(bundleSource?.canonical ?? null);
+      const builderMissingRows =
+        canonicalRows.length > 0
+          ? canonicalRows
+          : snapshot?.evidence.missingEvidence ?? [];
+
+      return buildDisclosureChaseBrief({
         caseId,
         caseTitle,
         clientLabel,
@@ -789,17 +796,7 @@ export function DisclosureChase({
         bundleHealth: deriveBundleHealth(snapshot, bundleSource, battleboard),
         positionStatus,
         battleboard,
-        snapshotMissing: [
-          ...(snapshot?.evidence.missingEvidence ?? []),
-          ...(bundleSource?.canonical?.chaseLabels ?? []).map((label) => ({
-            label,
-            status: "Outstanding",
-          })),
-          // Overview gap projector labels — keep Chase modality hay aligned with Papers/Overview.
-          ...((bundleSource?.canonical?.evidenceRows ?? [])
-            .filter((r) => r.existence !== "served")
-            .map((r) => ({ label: r.label, status: "Outstanding" })) ?? []),
-        ],
+        snapshotMissing: builderMissingRows,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
         bundleText: bundleSource?.frontMatterScan ?? null,
         profileHint: pilotHeader?.profile ?? null,
@@ -808,7 +805,8 @@ export function DisclosureChase({
           label: r.label,
           state: r.existence,
         })),
-      }),
+      });
+    },
     [
       caseId,
       snapshot,

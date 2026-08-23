@@ -93,6 +93,7 @@ export function CaseWorkflowHeaderStrip({
         const meta = resolveCaseHeaderMetadata({
           bundleHeader: json.data.header ?? null,
           bundleMetadata: json.data.caseMetadata ?? null,
+          bundleText: json.data.frontMatterScan ?? null,
           snapshot: null,
         });
         const clientClean = pilot

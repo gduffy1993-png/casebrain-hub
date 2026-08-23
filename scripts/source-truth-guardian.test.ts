@@ -6,6 +6,10 @@ import {
   workflowProfileFallbackRisks,
   workflowTopNextActions,
 } from "../lib/criminal/pilot-workflow";
+import {
+  canonicalEvidenceStateRowsForBuilder,
+  canonicalRowsForBuilder,
+} from "../lib/criminal/canonical-evidence-status-bridge";
 import type { BattleboardOutput } from "../lib/criminal/strategy-battleboard";
 
 function battleboard(lines: Partial<BattleboardOutput["primary_route"]>): BattleboardOutput {
@@ -217,6 +221,174 @@ describe("source truth guardian", () => {
     expect(cctv).toBeTruthy();
     expect(cctv?.label).toMatch(/CCTV full window|master footage/i);
     expect(cctv?.evidenceAnchor ?? "").not.toMatch(/phone|source export|download/i);
+  });
+
+  it("does not promote a stolen-phone fact into a phone-download chase", () => {
+    const chase = buildDisclosureChaseBrief({
+      caseId: "CB-FRESH-003B",
+      caseTitle: "No phone extraction",
+      clientLabel: "No phone extraction",
+      allegation: "Robbery involving a stolen phone",
+      stage: "First Appearance",
+      hearingStatus: "Listed",
+      hearingDateIso: "2026-08-25T10:00:00",
+      bundleHealth: "Partial",
+      positionStatus: "Not recorded",
+      battleboard: null,
+      proceduralOutstanding: ["Full phone download / source export"],
+      bundleText: [
+        "Charge: robbery. The allegation is that a phone was stolen.",
+        "No phone extraction, download report, source export, SIM, IMEI or subscriber material is identified in the papers.",
+      ].join("\n"),
+    });
+
+    const visibleText = JSON.stringify(chase.items);
+    expect(chase.items.some((item) => item.familyId === "other" && /phone/i.test(item.label))).toBe(false);
+    expect(visibleText).not.toMatch(/Full phone download|source export|source extraction/i);
+  });
+
+  it("keeps unclear CCTV continuity as confirmation wording, not asserted outstanding", () => {
+    const chase = buildDisclosureChaseBrief({
+      caseId: "CB-FRESH-003C",
+      caseTitle: "Unclear CCTV continuity",
+      clientLabel: "Unclear CCTV continuity",
+      allegation: "Affray",
+      stage: "First Appearance",
+      hearingStatus: "Listed",
+      hearingDateIso: "2026-08-25T10:00:00",
+      bundleHealth: "Partial",
+      positionStatus: "Not recorded",
+      battleboard: null,
+      proceduralOutstanding: ["CCTV continuity / provenance"],
+      bundleText: "Continuity of CCTV sources: to be checked.",
+    });
+
+    const cctv = chase.items.find((item) => item.familyId === "cctv_continuity");
+    expect(cctv).toBeTruthy();
+    expect(cctv?.baseStatus).toBe("Not safely confirmed");
+    expect([cctv?.whyItMatters, cctv?.draftChaseWording, cctv?.courtLine].join("\n")).not.toMatch(
+      /appears outstanding|remains outstanding/i,
+    );
+    expect(cctv?.courtLine).toMatch(/needs confirmation|confirm/i);
+  });
+
+  it("does not let a hearing date promote canonical review-only evidence into due/outstanding", () => {
+    const chase = buildDisclosureChaseBrief({
+      caseId: "CB-FRESH-003D",
+      caseTitle: "Canonical review state",
+      clientLabel: "Canonical review state",
+      allegation: "Affray",
+      stage: "First Appearance",
+      hearingStatus: "Listed",
+      hearingDateIso: "2026-08-25T10:00:00",
+      bundleHealth: "Partial",
+      positionStatus: "Not recorded",
+      battleboard: null,
+      snapshotMissing: [
+        { label: "CCTV continuity / provenance", status: "UNASSESSED" },
+        { label: "Interview transcript", status: "referred_only" },
+      ],
+      bundleText: [
+        "Continuity of CCTV sources: to be checked.",
+        "Interview summary is on file. Full interview recording/transcript is not served and remains outstanding.",
+      ].join("\n"),
+    });
+
+    const continuity = chase.items.find((item) => item.familyId === "cctv_continuity");
+    expect(continuity).toBeTruthy();
+    expect(continuity?.baseStatus).toBe("Not safely confirmed");
+    expect(continuity?.deadlineLabel).toMatch(/confirm status/i);
+    expect([continuity?.whyItMatters, continuity?.draftChaseWording, continuity?.courtLine].join("\n")).not.toMatch(
+      /due soon|overdue|appears outstanding|remains outstanding/i,
+    );
+
+    const interview = chase.items.find((item) => item.familyId === "interview");
+    expect(interview).toBeTruthy();
+    expect(interview?.baseStatus).toBe("Not safely confirmed");
+  });
+
+  it("bridges canonical evidence states once, without flattening review-only rows into outstanding", () => {
+    const bridged = canonicalRowsForBuilder({
+      evidenceRows: [
+        { label: "CCTV continuity / provenance", existence: "not_safely_confirmed" },
+        { label: "Interview transcript", existence: "referred_only" },
+        { label: "CCTV master footage", existence: "missing" },
+        { label: "Served MG5", existence: "served" },
+      ],
+      chaseLabels: ["CCTV master footage"],
+    } as any);
+
+    expect(bridged).toEqual([
+      { label: "CCTV continuity / provenance", status: "UNASSESSED" },
+      { label: "Interview transcript", status: "UNASSESSED" },
+      { label: "CCTV master footage", status: "MISSING" },
+    ]);
+    expect(bridged).not.toContainEqual({ label: "Served MG5", status: "SERVED" });
+    expect(bridged).not.toContainEqual({ label: "CCTV continuity / provenance", status: "MISSING" });
+    expect(bridged).not.toContainEqual({ label: "Interview transcript", status: "MISSING" });
+  });
+
+  it("bridges live pipeline evidence state for output builders without turning every chase label outstanding", () => {
+    const bridged = canonicalEvidenceStateRowsForBuilder({
+      items: [
+        {
+          label: "CCTV continuity / provenance",
+          key: "cctv-continuity",
+          modality: "clip_or_still",
+          state: "not_safely_confirmed",
+          aliases: [],
+          defendants: [],
+          observations: [],
+          contradiction: null,
+          unresolved: true,
+          limitation: "Continuity source needs checking.",
+        },
+        {
+          label: "CCTV master footage",
+          key: "cctv-master",
+          modality: "master_media",
+          state: "missing",
+          aliases: [],
+          defendants: [],
+          observations: [],
+          contradiction: null,
+          unresolved: false,
+          limitation: null,
+        },
+        {
+          label: "Served MG5",
+          key: "mg5",
+          modality: "document",
+          state: "served",
+          aliases: [],
+          defendants: [],
+          observations: [],
+          contradiction: null,
+          unresolved: false,
+          limitation: null,
+        },
+      ],
+      contradictions: [],
+      chaseRequests: [
+        {
+          label: "CCTV continuity / provenance",
+          key: "cctv-continuity",
+          modality: "clip_or_still",
+          state: "not_safely_confirmed",
+          defendants: [],
+          reason: "Confirm continuity.",
+          unresolved: true,
+        },
+      ],
+      suppressed: [],
+    });
+
+    expect(bridged).toEqual([
+      { label: "CCTV continuity / provenance", status: "UNASSESSED" },
+      { label: "CCTV master footage", status: "MISSING" },
+    ]);
+    expect(bridged).not.toContainEqual({ label: "CCTV continuity / provenance", status: "MISSING" });
+    expect(bridged).not.toContainEqual({ label: "Served MG5", status: "SERVED" });
   });
 
   it("does not promote unsupported violence-profile prompts into Patel-style affray chases", () => {

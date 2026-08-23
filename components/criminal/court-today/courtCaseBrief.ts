@@ -176,6 +176,7 @@ function resolveCourtHeader(row: CourtCasesApiRow, enrichment: CourtTodayEnrichm
   return resolveCaseHeaderMetadata({
     snapshot: buildCourtTodaySnapshotStub(row),
     bundleMetadata: enrichment.bundleMetadata,
+    bundleText: enrichment.frontMatterScan ?? null,
     bundleHeader: enrichment.bundleHeader
       ? {
           shortTitle: enrichment.bundleHeader.shortTitle,

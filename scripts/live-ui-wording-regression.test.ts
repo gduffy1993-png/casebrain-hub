@@ -14,6 +14,7 @@ import {
 } from "../components/criminal/workflow/workflowPilotDisplay";
 import { sanitizeHeaderClient } from "../lib/criminal/resolve-case-header-metadata";
 import { cleanPilotHeaderClient } from "../lib/criminal/pilot-workflow";
+import { buildCourtCaseBrief } from "../components/criminal/court-today/courtCaseBrief";
 
 assert.equal(
   resolvePilotChargeDisplay("Offence wording not safely extracted"),
@@ -32,6 +33,40 @@ assert.equal(
 assert.equal(sanitizeHeaderClient("Holly Ahmed Date"), "Holly Ahmed");
 assert.equal(cleanPilotHeaderClient("Holly Ahmed Date"), "Holly Ahmed");
 assert.equal(sanitizeHeaderClient("Holly Ahmed DOB"), "Holly Ahmed");
+
+process.env.NEXT_PUBLIC_CRIMINAL_PILOT_MODE = "true";
+const patelThinFrontMatter = [
+  "CASE PAPERS - INDEX",
+  "R v Isaac Patel",
+  "DefendantIsaacPatel",
+  "CourtHearingSouthford Magistrates Court 25 August 2026 10:30",
+  "Current stage: First appearance",
+  "Charge",
+  "Affray",
+  "contrary to section 3 Public Order Act 1986",
+].join("\n");
+const patelBrief = buildCourtCaseBrief(
+  {
+    id: "7e763777-94a8-4958-a190-a35ef6ddb259",
+    title: "Client not on papers",
+    offence_label: "Affray (s.3 Public Order Act 1986)",
+    next_hearing_date: null,
+    next_hearing_type: null,
+    strategy_recorded: false,
+    strategy_preview: null,
+    disclosure_outstanding: null,
+  },
+  {
+    bundleMetadata: null,
+    bundleHeader: null,
+    frontMatterScan: patelThinFrontMatter,
+  },
+  { bucketNow: new Date("2026-08-22T12:00:00.000Z") },
+);
+assert.equal(patelBrief.clientLabel, "Isaac Patel");
+assert.doesNotMatch(patelBrief.clientLabel, /not on papers|not safely extracted/i);
+assert.match(patelBrief.hearingLabel, /25 Aug 2026|25 August 2026/);
+assert.match(patelBrief.stage, /First appearance/i);
 
 assert.equal(
   humanizeEvidenceLabel("MG6 disclosure schedule on file", "served"),

@@ -317,11 +317,21 @@ function guardChaseItem(
   if (!label.lines[0]) return { item: null, report: label.report };
   const why = guardSourceTruthLines([item.whyItMatters], base);
   const draft = guardSourceTruthLines([item.draftChaseWording], base);
+  const courtFallback =
+    item.baseStatus === "Not safely confirmed"
+      ? "The defence asks the court to record that this material needs confirmation before it is relied on."
+      : "The defence asks the court to record this material as outstanding.";
   const court = guardSourceTruthLines(
     [item.courtLine],
     base,
-    "The defence asks the court to record this material as outstanding.",
+    courtFallback,
   );
+  const guardedCourtLine = court.lines[0] ?? courtFallback;
+  const courtLine =
+    item.baseStatus === "Not safely confirmed" &&
+    /\b(?:appears|remains)\s+outstanding\b/i.test(guardedCourtLine)
+      ? courtFallback
+      : guardedCourtLine;
   const anchor = item.evidenceAnchor ? guardSourceTruthLines([item.evidenceAnchor], base) : null;
   return {
     item: {
@@ -329,7 +339,7 @@ function guardChaseItem(
       label: label.lines[0],
       whyItMatters: why.lines[0] ?? item.whyItMatters,
       draftChaseWording: draft.lines[0] ?? item.draftChaseWording,
-      courtLine: court.lines[0] ?? "The defence asks the court to record this material as outstanding.",
+      courtLine,
       evidenceAnchor: anchor ? anchor.lines[0] ?? null : item.evidenceAnchor,
     },
     report: mergeReports(label.report, why.report, draft.report, court.report, ...(anchor ? [anchor.report] : [])),
