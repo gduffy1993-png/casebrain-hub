@@ -80,10 +80,15 @@ No comment after limited disclosure. Defence later records that identification a
   const harassmentHay =
     "Harassment screenshots served. Full phone download / source export outstanding. Subscriber data missing.";
   const digitalPolished = polishPresentationLine("MG6 / unused schedule clarification", harassmentHay);
-  assert.match(
+  assert.doesNotMatch(
     digitalPolished,
     /phone download|source export/i,
-    "opposite: true digital-disclosure hay may still rewrite MG6 umbrella",
+    "digital-disclosure hay must not rewrite MG6 umbrella into a second phone chase",
+  );
+  assert.match(
+    digitalPolished,
+    /digital disclosure schedule/i,
+    "MG6 clarification becomes schedule wording, not phone download",
   );
 
   assert.equal(familySupport("phone", ARDEN_SNIPPET), "absent");

@@ -199,12 +199,21 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
   const stateCounts = canonicalMatter.evidence.counts;
 
   const chasePool = [...(chase.primaryItems ?? []), ...(chase.additionalItems ?? [])];
-  const attention = buildDemoAttentionItems(chasePool).map((item) => ({
+  const attentionRaw = buildDemoAttentionItems(chasePool).map((item) => ({
     ...item,
     title: polishChasePreviewLabel(polishPresentationLine(item.title, bundleHay)) || item.title,
     blurb: polishPresentationLine(item.blurb, bundleHay),
     why: polishPresentationLine(item.why, bundleHay),
   }));
+  // Post-polish: collapse phone-family titles that presentation polish may have renamed
+  const seenPhoneTitle = new Set<string>();
+  const attention = attentionRaw.filter((item) => {
+    const hay = item.title.toLowerCase();
+    if (!/\b(phone|download|extraction|source export|handset|device)\b/i.test(hay)) return true;
+    if (seenPhoneTitle.has("phone")) return false;
+    seenPhoneTitle.add("phone");
+    return true;
+  });
   const stats = buildDemoStatCounts(attention, stateCounts);
   const readiness = buildDemoReadiness(stateCounts, stats);
 

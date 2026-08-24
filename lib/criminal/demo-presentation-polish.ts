@@ -151,7 +151,11 @@ export function polishPresentationLine(line: string, bundleHay = ""): string {
     );
     t = t.replace(
       /mg6\s*\/\s*unused schedule clarification/gi,
-      "full phone download / source export",
+      "digital disclosure schedule item",
+    );
+    t = t.replace(
+      /mg6\s*\/\s*unused\s*\/\s*schedule clarification/gi,
+      "digital disclosure schedule item",
     );
     t = t.replace(
       /\bunused schedule clarification\b/gi,
