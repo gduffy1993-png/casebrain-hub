@@ -2,6 +2,7 @@ import { buildDisclosureChaseBrief } from "@/components/criminal/disclosure-chas
 import { buildHearingWarRoomBrief } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { buildCriminalBriefPlan } from "@/lib/criminal/brief-plan";
 import { buildBundleTruthLedger } from "@/lib/criminal/bundle-truth-ledger";
+import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { buildStrategyBattleboard } from "@/lib/criminal/strategy-battleboard";
 import { buildFiveAnswersView } from "@/lib/criminal/five-answers/build-five-answers-view";
 import { buildExportPack } from "@/lib/criminal/export-pack";
@@ -51,6 +52,14 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
   } = input;
 
   const ledger = buildBundleTruthLedger({ bundleText });
+  const listingMeta = extractBundleCaseMetadata(bundleText);
+  const stage = listingMeta.stage?.trim() || "PTPH";
+  const hearingDateIso = listingMeta.nextHearingIso?.trim() || null;
+  const hearingDateRaw = listingMeta.nextHearingRaw?.trim() || null;
+  const court = listingMeta.court?.trim() || null;
+  const hearingStatus: "Listed" | "Unknown" =
+    hearingDateIso || hearingDateRaw ? "Listed" : "Unknown";
+
   const briefPlan = buildCriminalBriefPlan({
     bundleText,
     ledger,
@@ -69,9 +78,9 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
     caseTitle,
     clientLabel,
     allegation,
-    stage: "PTPH",
-    hearingStatus: "Listed",
-    hearingDateIso: null,
+    stage,
+    hearingStatus,
+    hearingDateIso,
     bundleHealth: "thin",
     positionStatus: "Provisional",
     battleboard,
@@ -84,8 +93,8 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
     caseTitle,
     clientLabel,
     allegation,
-    stage: "PTPH",
-    hearingStatus: "Listed",
+    stage,
+    hearingStatus,
     bundleHealth: "thin",
     positionStatus: "Provisional",
     readiness: "Conditional",
@@ -203,7 +212,10 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
       clientLabel,
       allegation,
       offenceLabel,
-      stage: "PTPH",
+      stage,
+      court,
+      hearingDateRaw,
+      hearingDateIso,
     },
     matterConfidence: {
       level: matterConfidence.level,

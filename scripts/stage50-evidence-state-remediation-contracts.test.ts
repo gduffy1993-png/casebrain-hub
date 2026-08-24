@@ -405,6 +405,32 @@ await check("snapshot output keeps client identity available to audit/UI consume
   assert.match(JSON.stringify(snap), /Morgan Ellis/);
 });
 
+console.log("\nF09d — snapshot carries court + listing date from source papers");
+await check("clear PDF court and listing date surface in caseIdentity", () => {
+  const snap = buildCasebrainAuditSnapshot({
+    caseId: "MUT-F09D-LISTING",
+    clientLabel: "Taylor Brookes",
+    allegation: "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+    offenceLabel: "Harassment",
+    caseTitle: "R v Taylor Brookes",
+    bundleText: [
+      "Defendant: Taylor Brookes",
+      "Court: Northgate Magistrates' Court",
+      "Statement of Offence:",
+      "Harassment, contrary to section 2 of the Protection from Harassment Act 1997.",
+      "PTPH listed — 15 July 2026, 10:00, Northgate Magistrates' Court.",
+    ].join("\n"),
+  });
+  assert.match(String(snap.caseIdentity?.court || ""), /Northgate Magistrates/i);
+  assert.ok(
+    snap.caseIdentity?.hearingDateIso || snap.caseIdentity?.hearingDateRaw,
+    "listing date must be carried when clear on papers",
+  );
+  const blob = JSON.stringify(snap);
+  assert.match(blob, /Northgate Magistrates/i);
+  assert.match(blob, /15 July 2026|2026-07-15/i);
+});
+
 console.log("\nF09c — source warnings and digital gaps stay in lane");
 await check("must-not-say source warnings are not exposed as evidence rows", () => {
   const snap = buildCasebrainAuditSnapshot({

@@ -1516,7 +1516,16 @@ function isAllegationIncidentDate(scan: string, dateLiteral: string): boolean {
   const idx = scan.toLowerCase().indexOf(dateLiteral.toLowerCase());
   if (idx < 0) return false;
   const before = scan.slice(Math.max(0, idx - 48), idx);
-  return /\b(?:on|at about)\s+$/i.test(before) || /\bExact allegation wording:[^\n]{0,80}$/i.test(before);
+  if (/\b(?:on|at about)\s+$/i.test(before) || /\bExact allegation wording:[^\n]{0,80}$/i.test(before)) {
+    return true;
+  }
+  // Offence window: "Between 1 January 2026 and 28 February 2026" is not a listing.
+  if (/\bbetween\s+$/i.test(before)) return true;
+  const around = scan.slice(Math.max(0, idx - 24), idx + dateLiteral.length + 48);
+  if (/\bbetween\b[\s\S]{0,40}\band\b/i.test(around) && !/\b(?:listed|hearing|ptph|pcm|ptr|appearance)\b/i.test(around)) {
+    return true;
+  }
+  return false;
 }
 
 function extractCourt(scan: string): string | null {
@@ -1640,6 +1649,8 @@ function findBestContextualHearingDate(scan: string): string | null {
   const month = MONTH_NAME;
   const time = HEARING_TIME_SUFFIX;
   const patterns: Array<{ re: RegExp; score: number }> = [
+    { re: new RegExp(`\\b(?:PTPH|PCM|PTR|First appearance|Trial)\\s+listed\\s*[—–:\\-]?\\s*(\\d{1,2}\\s+${month}[a-z]*\\s+\\d{4}${time})`, "gi"), score: 110 },
+    { re: new RegExp(`\\blisted\\s*[—–:\\-]\\s*(\\d{1,2}\\s+${month}[a-z]*\\s+\\d{4}${time})`, "gi"), score: 105 },
     { re: new RegExp(`\\bNext hearing\\s*[:.]?\\s*(\\d{1,2}\\s+${month}[a-z]*\\s+\\d{4}${time})`, "gi"), score: 100 },
     { re: new RegExp(`\\bCourtHearing[^\\n|]{0,100}?(\\d{1,2}\\s+${month}[a-z]*\\s+\\d{4}${time})`, "gi"), score: 95 },
     { re: /\bCourt\s*\/\s*Hearing\s*:[^\n|]{0,100}?(\d{1,2}\/\d{1,2}\/\d{2,4}\s+\d{1,2}:\d{2})/gi, score: 95 },
@@ -1717,6 +1728,26 @@ function extractNextHearing(scan: string): {
   };
   gluedCourtHearingDate(scan);
   if (!nextHearingRaw) gluedCourtHearingDate(hearingScan);
+
+  // Gold / fresh packs: "PTPH listed — 15 July 2026, 10:00, Northgate Magistrates' Court."
+  if (!nextHearingRaw) {
+    const listedLine = hearingScan.match(
+      new RegExp(
+        `\\b(?:PTPH|PCM|PTR|First appearance|Trial)\\s+listed\\s*[—–:\\-]?\\s*(\\d{1,2}\\s+${MONTH_NAME}[a-z]*\\s+\\d{4}${HEARING_TIME_SUFFIX})`,
+        "i",
+      ),
+    );
+    if (listedLine?.[1]) tryHearing(listedLine[1]);
+  }
+  if (!nextHearingRaw) {
+    const listedBare = hearingScan.match(
+      new RegExp(
+        `\\blisted\\s*[—–:\\-]\\s*(\\d{1,2}\\s+${MONTH_NAME}[a-z]*\\s+\\d{4}${HEARING_TIME_SUFFIX})`,
+        "i",
+      ),
+    );
+    if (listedBare?.[1]) tryHearing(listedBare[1]);
+  }
 
   const nextHearingGlued = hearingScan.match(
     new RegExp(
