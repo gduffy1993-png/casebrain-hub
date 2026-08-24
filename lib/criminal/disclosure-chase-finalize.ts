@@ -77,6 +77,11 @@ export function humanizeChaseFragmentLabel(raw: string): string {
   }
   if (/phone extraction|extraction summary/i.test(t)) return "Phone extraction source material";
   if (/subscriber\s+data|subscriber\s*\/\s*account/i.test(t)) return "Subscriber / account data";
+  if (/\bcomplete\s+cad\s*\/\s*999\s+log\b/i.test(t)) return "Complete CAD/999 log";
+  if (/\b999\s+(?:audio|call|recording)\b|\bemergency\s+call\b/i.test(t)) {
+    return "999 audio / emergency-call material";
+  }
+  if (/\b(?:cad|dispatch)(?:\s*\/\s*(?:dispatch|cad))?\b/i.test(t)) return "CAD / dispatch log material";
   if (/^MG6\b|mg6\s*\/\s*unused|disclosure schedule/i.test(t)) return "MG6 / unused schedule clarification";
 
   if (t.includes(";")) {
@@ -140,6 +145,17 @@ function interviewFamilyLabelLocal(hay: string): string {
   return "Interview recording";
 }
 
+function cad999FamilyLabelLocal(hay: string): string {
+  if (/\b999\s+(?:audio|call|recording)\b|\bemergency\s+call\b/i.test(hay)) {
+    return "999 audio / emergency-call material";
+  }
+  if (/\bcomplete\s+cad\s*\/\s*999\s+log\b/i.test(hay)) return "Complete CAD/999 log";
+  if (/\b(?:cad|dispatch)(?:\s*\/\s*(?:dispatch|cad))?\b/i.test(hay)) {
+    return "CAD / dispatch log material";
+  }
+  return "CAD / dispatch / 999 material";
+}
+
 function familyLabelForId(familyId: ChaseFamilyId, mergedFrom: string[] = []): string {
   switch (familyId) {
     case "cctv_continuity":
@@ -147,7 +163,7 @@ function familyLabelForId(familyId: ChaseFamilyId, mergedFrom: string[] = []): s
     case "cctv_master":
       return "CCTV full window / master footage";
     case "cad_999":
-      return "CAD / 999 audio / control-room material";
+      return cad999FamilyLabelLocal(mergedFrom.join(" "));
     case "bwv":
       return "Body-worn video (BWV)";
     case "interview":

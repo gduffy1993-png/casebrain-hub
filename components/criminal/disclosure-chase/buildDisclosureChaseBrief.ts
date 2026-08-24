@@ -152,7 +152,7 @@ const CHASE_FAMILIES: FamilyDef[] = [
   },
   {
     id: "cad_999",
-    label: "CAD / 999 audio / control-room material",
+    label: "CAD / dispatch / 999 material",
     source: "Police control room",
     priority: 3,
     // Bare "999" (page / schedule noise) must not classify as CAD (Court C0.5).
@@ -394,6 +394,14 @@ export function reconcileCad999ModalityItems(
           blob,
         );
 
+      const cadDispatchOutstanding =
+        /\b(?:cad|dispatch)(?:\s*\/\s*(?:dispatch|cad))?\b[\s\S]{0,56}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not|not\s+provided)/i.test(
+          blob,
+        ) ||
+        /\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not|not\s+provided)\b[\s\S]{0,56}\b(?:cad|dispatch)(?:\s*\/\s*(?:dispatch|cad))?\b/i.test(
+          blob,
+        );
+
       if (completeCad999LogOutstanding && !audioOutstanding && !fullPrintOutstanding) {
         const label = "Complete CAD/999 log";
         return {
@@ -408,6 +416,24 @@ export function reconcileCad999ModalityItems(
           mergedFrom: [
             label,
             ...((item.mergedFrom ?? []).filter((m) => /cad\s*\/\s*999\s+log/i.test(m))),
+          ].slice(0, 4),
+        };
+      }
+
+      if (cadDispatchOutstanding && !audioOutstanding && !fullPrintOutstanding && !completeCad999LogOutstanding) {
+        const label = "CAD / dispatch log material";
+        return {
+          ...item,
+          label,
+          familyId: "cad_999" as ChaseFamilyId,
+          whyItMatters:
+            "The papers identify a CAD/dispatch material gap — keep the request limited to the source the papers identify.",
+          draftChaseWording:
+            "Please provide the CAD / dispatch log material, or confirm in writing why it is not available.",
+          courtLine: toCourtLine(label),
+          mergedFrom: [
+            label,
+            ...((item.mergedFrom ?? []).filter((m) => /\b(?:cad|dispatch)\b/i.test(m))),
           ].slice(0, 4),
         };
       }
@@ -1272,7 +1298,7 @@ function inferWhyItMatters(
     case "cad_999":
       if (rt === "timeline")
         return `CAD/999 material may bear on deployment and timing on this file — appears outstanding until served${routeHint}.`;
-      return `CAD/999 audio appears outstanding — may assist sequence analysis if timing is in issue${routeHint}.`;
+      return `CAD/999 material may assist sequence analysis if timing is in issue; keep the request to the modality identified by the source${routeHint}.`;
     case "bwv":
       return `Officer BWV may bear on interaction at scene — appears outstanding; do not rely on it until served${routeHint}.`;
     case "custody_pace":

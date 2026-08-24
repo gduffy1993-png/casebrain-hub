@@ -529,6 +529,41 @@ describe("source truth guardian", () => {
     );
   });
 
+  it("does not promote CAD or dispatch-only source gaps into 999 audio", () => {
+    const chase = buildDisclosureChaseBrief({
+      caseId: "CB-FAMILY-MODALITY-CAD-DISPATCH",
+      caseTitle: "CAD dispatch only",
+      clientLabel: "CAD dispatch only",
+      allegation: "Affray",
+      stage: "First appearance",
+      hearingStatus: "Listed",
+      hearingDateIso: "2026-08-25T10:00:00",
+      bundleHealth: "Partial",
+      positionStatus: "Not recorded",
+      battleboard: null,
+      proceduralOutstanding: ["CAD / 999 audio / control-room material"],
+      bundleText: [
+        "MG6: CAD / dispatch | not served | fuller narrative attachment.",
+        "No 999 audio file or emergency-call recording is listed as served or missing.",
+      ].join("\n"),
+    });
+
+    const visibleText = [
+      chase.disclosureSummary,
+      chase.safeCourtLine,
+      ...chase.items.flatMap((item) => [
+        item.label,
+        item.baseStatus,
+        item.whyItMatters,
+        item.draftChaseWording,
+        item.courtLine,
+        ...(item.mergedFrom ?? []),
+      ]),
+    ].join("\n");
+    expect(visibleText).toMatch(/CAD \/ dispatch log material/i);
+    expect(visibleText).not.toMatch(/999 audio|emergency-call material|control-room material/i);
+  });
+
   it("keeps opposite-direction modalities when the PDF actually establishes them", () => {
     const chase = buildDisclosureChaseBrief({
       caseId: "CB-FAMILY-MODALITY-002",
