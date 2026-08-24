@@ -3,7 +3,7 @@
 Generated: 2026-08-24
 Branch: `ui/demo-overview-shell-v1`
 Tip before fix: `0177ba66d`
-Fix SHA: `f48f1f413`
+Fix SHA: `11ee9cf79`
 Preview AFTER: https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app
 Preview BEFORE lick: https://casebrain-l8dqkfmm0-gduffy1993-pngs-projects.vercel.app
 
