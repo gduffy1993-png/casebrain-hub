@@ -80,11 +80,25 @@ const overflowBucket = finalizeDisclosureChasePresentation([
 ]);
 
 assert.ok(overflowBucket.length >= 1);
-const overflowItem = overflowBucket.find((i) =>
-  /outstanding source material/i.test(i.label),
+// Soft-mute: PDF-true phone/subscriber must peel out of overflow — not bury under Other invent.
+const subscriber = overflowBucket.find((i) => /subscriber \/ account data/i.test(i.label));
+const phone = overflowBucket.find((i) => /phone extraction source material/i.test(i.label));
+assert.ok(subscriber, "expected subscriber modality card peeled from overflow");
+assert.ok(phone, "expected phone extraction modality card peeled from overflow");
+assert.ok(
+  overflowBucket.every((i) => !/additional source-material issues \(\d+ on file\)/i.test(i.label)),
+  "raw Additional source-material overflow label must not survive",
 );
-assert.ok(overflowItem, "expected human overflow card label");
-assert.doesNotMatch(overflowItem!.label, /additional source-material issues \(\d+ on file\)/i);
-assert.match(overflowItem!.draftChaseWording!, /Please provide the outstanding source material identified on the disclosure schedule/i);
+const leftover = overflowBucket.find(
+  (i) =>
+    /outstanding source material|screenshot|complainant mg11|message exports/i.test(i.label) &&
+    !/subscriber|phone extraction/i.test(i.label),
+);
+if (leftover) {
+  assert.match(
+    leftover.draftChaseWording!,
+    /Please provide the outstanding source material identified on the disclosure schedule/i,
+  );
+}
 
 console.log("disclosure-chase-finalize.test.ts: all assertions passed");

@@ -283,18 +283,21 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
   }
   const digitalFromMerged = mergedHumanized.find((m) => isDigitalModalityChaseLabel(m));
   if (digitalFromMerged && item.familyId === "other") {
-    // Prefer a digital modality identity when overflow mergedFrom still carries one.
-    label = digitalFromMerged;
     const digitalMerged = mergedHumanized.filter((m) => isDigitalModalityChaseLabel(m));
-    return {
-      ...item,
-      label,
-      mergedFrom: digitalMerged,
-      whyItMatters: sanitizeWhyItMatters(item.whyItMatters, digitalMerged.length),
-      draftChaseWording: cleanDraftWording(label, digitalMerged),
-      courtLine: cleanCourtLine(label),
-      evidenceAnchor: item.evidenceAnchor,
-    };
+    // Multiple phone/subscriber identities trapped in overflow — do not collapse here.
+    // Leave overflow identity so collapse/peel can emit distinct modality cards.
+    if (digitalMerged.length === 1) {
+      label = digitalFromMerged;
+      return {
+        ...item,
+        label,
+        mergedFrom: digitalMerged,
+        whyItMatters: sanitizeWhyItMatters(item.whyItMatters, digitalMerged.length),
+        draftChaseWording: cleanDraftWording(label, digitalMerged),
+        courtLine: cleanCourtLine(label),
+        evidenceAnchor: item.evidenceAnchor,
+      };
+    }
   }
   const needsFamilyLabel =
     !label ||
@@ -381,7 +384,7 @@ function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): Di
 
 /** Keep phone/subscriber modality cards distinct — Brookes/Ahmed must not mute under phone collapse. */
 export function isDigitalModalityChaseLabel(label: string): boolean {
-  return /^(Subscriber \/ account data|Full phone download \/ source extraction|Phone extraction summary only)/i.test(
+  return /^(Subscriber \/ account data|Full phone download \/ source extraction|Phone extraction summary only|Phone extraction source material)/i.test(
     label.trim(),
   );
 }
@@ -423,7 +426,6 @@ function collapseOtherFamilyItems(items: DisclosureChaseItem[]): DisclosureChase
 
 /** Pull PDF-true phone/subscriber identities out of overflow Other cards. */
 function peelDigitalModalitiesFromOtherItem(item: DisclosureChaseItem): DisclosureChaseItem[] {
-  if (isDigitalModalityChaseLabel(item.label)) return [item];
   const digitalLabels = dedupeByNorm(
     [item.label, ...item.mergedFrom]
       .map((m) => humanizeChaseFragmentLabel(m))
@@ -436,6 +438,16 @@ function peelDigitalModalitiesFromOtherItem(item: DisclosureChaseItem): Disclosu
       .map((m) => humanizeChaseFragmentLabel(m))
       .filter((m) => m && !isDigitalModalityChaseLabel(m)),
   );
+
+  // Already a single digital card with no trapped siblings — keep as-is.
+  if (
+    digitalLabels.length === 1 &&
+    isDigitalModalityChaseLabel(item.label) &&
+    nonDigitalMerged.length === 0
+  ) {
+    return [item];
+  }
+
   const out: DisclosureChaseItem[] = digitalLabels.map((label, idx) => ({
     ...item,
     id: `${item.id}-digital-${idx}`,
