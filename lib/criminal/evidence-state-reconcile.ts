@@ -162,6 +162,8 @@ export function reconcileEvidenceState(input: {
   baseStatus?: string;
   evidenceAnchor?: string | null;
   explicitState?: string | null;
+  /** Chase whyItMatters / note — used for referred-only cues only, never as outstanding proof. */
+  note?: string | null;
 }): SharedEvidenceState {
   if (input.explicitState) {
     const e = input.explicitState.toLowerCase().replace(/\s+/g, "_");
@@ -173,23 +175,43 @@ export function reconcileEvidenceState(input: {
     if (e === "not_safely_confirmed" || e === "unclear") return "not_safely_confirmed";
   }
 
-  // Do not use organisational chase-source labels (e.g. "CPS / expert source (confirm on file)")
-  // as evidence-state proof — only label, baseStatus, and evidenceAnchor.
-  const hay = `${input.label} ${input.evidenceAnchor ?? ""} ${input.baseStatus ?? ""}`;
+  // Label + anchor only for existence cues. Organisational chase chips (Outstanding /
+  // Overdue) must not poison the hay into missing when whyItMatters says referred.
+  const labelHay = `${input.label} ${input.evidenceAnchor ?? ""}`;
+  const referredHay = `${labelHay} ${input.note ?? ""}`;
+  const status = (input.baseStatus ?? "").toLowerCase().replace(/_/g, " ").trim();
 
   // Referred/listed/scheduled-not-served BEFORE outstanding/not-served (F01)
-  if (wordingIndicatesReferredOnly(hay)) {
+  if (wordingIndicatesReferredOnly(referredHay)) {
     return "referred_only";
   }
   // Partial/incomplete for the unit itself (not referred-only aggregates)
-  if (wordingIndicatesPartialIncomplete(hay)) {
+  if (wordingIndicatesPartialIncomplete(labelHay)) {
     return "incomplete";
   }
-  if (/\boutstanding\b|\bnot served\b|\bmissing\b|\babsent\b|\bnot provided\b/i.test(hay)) {
+  // Content-level missing cues on the unit label/anchor only (not chase status chips,
+  // not "appears outstanding" why-boilerplate).
+  if (/\boutstanding\b|\bnot served\b|\bmissing\b|\babsent\b|\bnot provided\b/i.test(labelHay)) {
     return "missing";
   }
-  if ((input.baseStatus ?? "").toLowerCase() === "received" || /\bserved\b/i.test(hay)) {
+  if (status === "received" || /\bserved\b/i.test(labelHay)) {
     return "served";
+  }
+  // Organisational / raw status chips (not content) — after referred/partial label cues
+  if (status === "partial" || status === "incomplete" || status === "draft" || status === "unsigned") {
+    return "incomplete";
+  }
+  // Genuine chase deadline chips without referred/partial/content cues → missing
+  if (
+    status === "outstanding" ||
+    status === "overdue" ||
+    status === "due soon" ||
+    status === "chased"
+  ) {
+    return "missing";
+  }
+  if (status === "not safely confirmed" || status === "unclear") {
+    return "not_safely_confirmed";
   }
   return "not_safely_confirmed";
 }

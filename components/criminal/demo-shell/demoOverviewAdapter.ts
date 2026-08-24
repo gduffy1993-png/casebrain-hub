@@ -186,16 +186,29 @@ function sourceLines(item: DisclosureChaseItem): string[] {
   return [...new Set(lines)].slice(0, 4);
 }
 
+function phoneAttentionFamilyKey(title: string, familyId: string): string | null {
+  const hay = `${title} ${familyId}`.toLowerCase();
+  if (!/\b(phone|download|extraction|source export|handset|device)\b/i.test(hay)) return null;
+  return "phone_extraction_download";
+}
+
 export function buildDemoAttentionItems(items: DisclosureChaseItem[]): DemoAttentionItem[] {
   const out: DemoAttentionItem[] = [];
+  const seenPhone = new Set<string>();
   for (const item of items) {
     const status = statusFromChase(item);
     if (!status) continue;
     const title = normaliseIssueTitle(item.label);
+    const phoneKey = phoneAttentionFamilyKey(title, item.familyId);
+    if (phoneKey) {
+      const dedupe = `${phoneKey}|${status}`;
+      if (seenPhone.has(dedupe)) continue;
+      seenPhone.add(dedupe);
+    }
     const blurb = issueBlurbForItem(item, title);
     out.push({
       id: item.id,
-      title,
+      title: phoneKey ? "Phone extraction/download status" : title,
       blurb,
       status,
       impactTags: impactFromFamily(item.familyId),

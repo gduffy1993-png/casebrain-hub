@@ -134,4 +134,25 @@ assert.equal(phoneUnresolved.title, "Phone extraction/download status");
 assert.doesNotMatch(phoneUnresolved.recommendedAction, /outstanding/i);
 assert.match(phoneUnresolved.recommendedAction, /Confirm whether any phone extraction/i);
 
+const phoneDupes = buildDemoAttentionItems([
+  sample({
+    id: "p1",
+    label: "Phone extraction/download status / source extraction",
+    baseStatus: "Outstanding",
+    familyId: "phone",
+    whyItMatters: "Original download / source export is outstanding on the disclosure papers.",
+    source: "Crown / disclosure officer (confirm on file)",
+  }),
+  sample({
+    id: "p2",
+    label: "full phone download / source export",
+    baseStatus: "Outstanding",
+    familyId: "phone",
+    whyItMatters: "Full phone download / source export outstanding.",
+    source: "Crown / disclosure officer (confirm on file)",
+  }),
+]);
+assert.equal(phoneDupes.length, 1, "phone extract + full download collapse on Overview attention");
+assert.equal(phoneDupes[0].title, "Phone extraction/download status");
+
 console.log("demo-overview-adapter.test.ts: PASS");

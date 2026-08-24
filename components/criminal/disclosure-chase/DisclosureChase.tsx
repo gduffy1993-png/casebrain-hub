@@ -263,6 +263,7 @@ function ChaseItemCard({
         ? "Outstanding"
         : item.baseStatus,
     evidenceAnchor: item.evidenceAnchor,
+    whyItMatters: item.whyItMatters,
   });
   const sourceBadgeRepeatsStatus =
     sourceStateBadgeLabel(itemSourceState).toLowerCase() === status.toLowerCase();
@@ -875,6 +876,7 @@ export function DisclosureChase({
           ? "Outstanding"
           : selectedItem.baseStatus,
       evidenceAnchor: selectedItem.evidenceAnchor,
+      whyItMatters: selectedItem.whyItMatters,
     });
     const chaseCopy = buildCopySafeResult({
       text: selectedItem.draftChaseWording ?? selectedItem.label,

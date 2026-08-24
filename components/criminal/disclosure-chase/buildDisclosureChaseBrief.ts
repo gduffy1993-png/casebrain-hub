@@ -1300,37 +1300,37 @@ function inferWhyItMatters(
   switch (familyId) {
     case "cctv_master":
       if (rt === "timeline")
-        return `On this file, timing/sequence may turn on served CCTV — full window/master footage appears outstanding${routeHint}.`;
+        return `On this file, timing/sequence may turn on served CCTV — full window/master footage is not safely confirmed on the current papers${routeHint}.`;
       if (rt === "identity")
         return `Identification issues on this file may depend on served CCTV — master footage not safely confirmed${routeHint}.`;
-      return `CCTV full window/master footage appears outstanding — may bear on timing or identification once served${routeHint}.`;
+      return `CCTV full window/master footage is not safely confirmed on the current papers — may bear on timing or identification once served${routeHint}.`;
     case "cctv_continuity":
       return `Continuity/provenance for CCTV may need to be established before any account is safely fixed${routeHint}.`;
     case "cad_999":
       if (rt === "timeline")
-        return `CAD/999 material may bear on deployment and timing on this file — appears outstanding until served${routeHint}.`;
+        return `CAD/999 material may bear on deployment and timing on this file — not safely confirmed until served${routeHint}.`;
       return `CAD/999 material may assist sequence analysis if timing is in issue; keep the request to the modality identified by the source${routeHint}.`;
     case "bwv":
-      return `Officer BWV may bear on interaction at scene — appears outstanding; do not rely on it until served${routeHint}.`;
+      return `Officer BWV may bear on interaction at scene — not safely confirmed on the current papers until served footage is on file${routeHint}.`;
     case "custody_pace":
       return `Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness${routeHint}.`;
     case "interview":
       if (rt === "interview")
         return `Interview recording/transcript needed to check account against MG5/MG6 before fixing hearing line${routeHint}.`;
-      return `Interview material appears outstanding — needed to test account against served prosecution material${routeHint}.`;
+      return `Interview material is not safely confirmed on the current papers — needed to test account against served prosecution material${routeHint}.`;
     case "mg6_unused":
       return `MG6/unused clarification may affect disclosure fairness and route viability — solicitor review required${routeHint}.`;
     case "medical_expert":
       if (rt === "causation")
-        return `Medical/expert source may bear on causation on this file — appears outstanding until served${routeHint}.`;
-      return `Medical/expert material appears outstanding — relevance depends on charge and served reports${routeHint}.`;
+        return `Medical/expert source may bear on causation on this file — not safely confirmed until served${routeHint}.`;
+      return `Medical/expert material is not safely confirmed on the current papers — relevance depends on charge and served reports${routeHint}.`;
     case "exhibit_provenance":
       return `Exhibit mapping/provenance may need to be confirmed before exhibits are relied upon in court${routeHint}.`;
     case "other": {
       const preview = mergedFrom.slice(0, 2).join("; ");
       return preview
         ? `Additional source-material points appear on file (${preview}) — not safely confirmed until reviewed.`
-        : "Additional source-material appears outstanding on the current file — solicitor to confirm relevance.";
+        : "Additional source-material appears on the current file — solicitor to confirm relevance.";
     }
   }
 }
@@ -2172,6 +2172,7 @@ export function isReviewOnlyChaseMaterial(item: Pick<
     source: item.source,
     baseStatus: probeStatus,
     evidenceAnchor: item.evidenceAnchor,
+    whyItMatters: item.whyItMatters,
   });
   return (
     sourceState === "not_safely_confirmed" ||

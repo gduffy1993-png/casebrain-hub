@@ -100,12 +100,15 @@ export function inferChaseItemSourceState(input: {
   source: string;
   baseStatus: string;
   evidenceAnchor?: string | null;
+  /** whyItMatters — referred-only cues only (see reconcileEvidenceState). */
+  whyItMatters?: string | null;
 }): SourceStateKind {
   const shared = reconcileEvidenceState({
     label: input.label,
     source: input.source,
     baseStatus: input.baseStatus,
     evidenceAnchor: input.evidenceAnchor,
+    note: input.whyItMatters,
   });
   const mapped = sharedStateToSourceStateKind(shared);
   if (mapped === "incomplete") return "incomplete";

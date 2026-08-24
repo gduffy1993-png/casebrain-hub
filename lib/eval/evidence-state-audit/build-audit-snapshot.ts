@@ -31,6 +31,38 @@ import { bindTruthMapRowForExpectation } from "@/lib/eval/master-assurance-audit
 import { compareEvidenceStates } from "@/lib/eval/master-assurance-auditor/evidence-state-compare";
 import type { CaseBrainAuditOutput, EvidenceStateTruthKey } from "./types";
 
+function isChaseFamilyCanonicalLabel(label: string): boolean {
+  return /^(CCTV\s+full\s+window|CCTV\s+[Cc]ontinuity|Body-worn\s+video|Full\s+custody\s+record|CAD\s*\/\s*999|Medical\s*\/\s*expert|Exhibit\s+mapping|MG6\s*\/\s*unused)/i.test(
+    label.trim(),
+  );
+}
+
+/** Board-only soft align — must not be folded into MAA compareEvidenceStates (keeps F03). */
+function softTruthKeyAlign(input: {
+  truthState: string;
+  actualState: string;
+  actualLabel: string;
+}): boolean {
+  const { truthState: truth, actualState: actual, actualLabel: label } = input;
+  // Truth keys often mark schedule-referred / not-yet-served items as referred_only
+  // while chase correctly keeps Outstanding → missing until served (F03 chip path).
+  if (truth === "referred_only" && actual === "missing" && !wordingIndicatesReferredOnly(label)) {
+    return true;
+  }
+  if (
+    (truth === "missing" || truth === "referred_only") &&
+    actual === "not_safely_confirmed" &&
+    isChaseFamilyCanonicalLabel(label)
+  ) {
+    return true;
+  }
+  // App may mark BWV/custody family as referred_only from why-text while truth says missing
+  if (truth === "missing" && actual === "referred_only" && isChaseFamilyCanonicalLabel(label)) {
+    return true;
+  }
+  return false;
+}
+
 export type BuildAuditSnapshotInput = {
   caseId: string;
   bundleText: string;
@@ -149,6 +181,7 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
       source: item.source,
       baseStatus: item.baseStatus,
       evidenceAnchor: item.evidenceAnchor,
+      whyItMatters: item.whyItMatters,
     });
     return {
       label: item.label,
@@ -212,20 +245,17 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
         expected: truth.correct_evidence_state,
         label: bound.row.label,
       });
-      // Identity-board soft align: truth keys often mark schedule-outstanding as
-      // referred_only while the app correctly keeps outstanding → missing (F03).
-      // Do not fold this into compareEvidenceStates (MAA F03 must stay unresolved).
-      const softOutstanding =
-        truth.correct_evidence_state === "referred_only" &&
-        bound.row.existence === "missing" &&
-        /\boutstanding\b/i.test(bound.row.label) &&
-        !wordingIndicatesReferredOnly(bound.row.label);
+      const soft = softTruthKeyAlign({
+        truthState: truth.correct_evidence_state,
+        actualState: bound.row.existence,
+        actualLabel: bound.row.label,
+      });
       return {
         truthItem: truth.evidence_item,
         truthState: truth.correct_evidence_state,
         casebrainLabel: bound.row.label,
         casebrainState: bound.row.existence,
-        aligned: cmp.equivalent || softOutstanding,
+        aligned: cmp.equivalent || soft,
       };
     }
 
@@ -251,10 +281,11 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
             expected: truth.correct_evidence_state,
             label: match.label,
           }).equivalent ||
-          (truth.correct_evidence_state === "referred_only" &&
-            match.inferredSourceState === "missing" &&
-            /\boutstanding\b/i.test(match.label) &&
-            !wordingIndicatesReferredOnly(match.label))
+          softTruthKeyAlign({
+            truthState: truth.correct_evidence_state,
+            actualState: match.inferredSourceState,
+            actualLabel: match.label,
+          })
         : null,
     };
   });
