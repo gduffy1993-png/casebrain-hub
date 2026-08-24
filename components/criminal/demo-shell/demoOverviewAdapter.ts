@@ -201,16 +201,16 @@ export function buildDemoAttentionItems(items: DisclosureChaseItem[]): DemoAtten
     const title = normaliseIssueTitle(item.label);
     const phoneKey = phoneAttentionFamilyKey(title, item.familyId);
     if (phoneKey) {
-      const dedupe = `${phoneKey}|${status}`;
-      if (seenPhone.has(dedupe)) continue;
-      seenPhone.add(dedupe);
+      // Collapse extract + full download regardless of MISSING vs UNCLEAR chip
+      if (seenPhone.has(phoneKey)) continue;
+      seenPhone.add(phoneKey);
     }
     const blurb = issueBlurbForItem(item, title);
     out.push({
       id: item.id,
       title: phoneKey ? "Phone extraction/download status" : title,
       blurb,
-      status,
+      status: phoneKey ? (status === "MISSING" ? "MISSING" : "UNCLEAR") : status,
       impactTags: impactFromFamily(item.familyId),
       why: blurb || "Source status needs confirming before this item is relied on.",
       sources: sourceLines(item),

@@ -148,8 +148,9 @@ const phoneDupes = buildDemoAttentionItems([
     label: "full phone download / source export",
     baseStatus: "Outstanding",
     familyId: "phone",
+    urgency: "high",
     whyItMatters: "Full phone download / source export outstanding.",
-    source: "Crown / disclosure officer (confirm on file)",
+    source: "Crown / disclosure officer",
   }),
 ]);
 assert.equal(phoneDupes.length, 1, "phone extract + full download collapse on Overview attention");
