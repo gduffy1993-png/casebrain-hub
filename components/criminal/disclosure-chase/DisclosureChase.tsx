@@ -66,7 +66,6 @@ import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-
 import { solicitorLinesNearlyEqual } from "@/lib/criminal/solicitor-display-dedupe";
 import {
   draftMisalignedToLabel,
-  isGenericSolicitorClutterLabel,
   sanitizeChaseMergedFrom,
   sanitizeSolicitorEvidenceAnchor,
 } from "@/lib/criminal/solicitor-signal-mute";
@@ -850,30 +849,21 @@ export function DisclosureChase({
   );
 
   const filteredItems = useMemo(
-    () => brief.items.filter((item) => matchesFilter(item, filter, localStatus)),
-    [brief.items, filter, localStatus],
+    () => brief.primaryItems.filter((item) => matchesFilter(item, filter, localStatus)),
+    [brief.primaryItems, filter, localStatus],
   );
 
-  const primaryIdSet = useMemo(() => new Set(brief.primaryItems.map((i) => i.id)), [brief.primaryItems]);
+  const filteredPrimary = filteredItems;
 
-  const filteredPrimary = useMemo(
-    () => filteredItems.filter((item) => primaryIdSet.has(item.id)),
-    [filteredItems, primaryIdSet],
-  );
+  // Shortlist freeze: solicitor Chase board = primary only (no Other resurrection).
+  const filteredAdditional: typeof filteredItems = [];
 
-  const filteredAdditional = useMemo(
-    () =>
-      filteredItems.filter(
-        (item) => !primaryIdSet.has(item.id) && !isGenericSolicitorClutterLabel(item.label),
-      ),
-    [filteredItems, primaryIdSet],
-  );
-
-  const selectedItem = brief.items.find((i) => i.id === selectedId) ?? filteredItems[0] ?? null;
+  const selectedItem =
+    brief.primaryItems.find((i) => i.id === selectedId) ?? filteredPrimary[0] ?? null;
   const bundleHay = [
     bundleSource?.frontMatterScan ?? "",
     allegation,
-    ...(brief.items ?? []).map((i) => `${i.label} ${i.whyItMatters ?? ""} ${i.draftChaseWording ?? ""}`),
+    ...(brief.primaryItems ?? []).map((i) => `${i.label} ${i.whyItMatters ?? ""} ${i.draftChaseWording ?? ""}`),
   ].join(" ");
   const displaySafeCourtLine = polishPresentationLine(brief.safeCourtLine, bundleHay);
 

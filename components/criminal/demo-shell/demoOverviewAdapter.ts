@@ -1,13 +1,9 @@
 /**
- * Presentation adapter only — maps existing chase / evidence counts into demo-shell props.
- * No new case facts; no invent / gate / hearing logic.
+ * Presentation adapter only — maps frozen chase primaryItems into demo-shell props.
+ * No invent / demote / phone collapse here — buildDisclosureChaseBrief owns the shortlist.
  */
 
 import type { DisclosureChaseItem } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
-import {
-  dedupeSolicitorAttentionByTitle,
-  demoteSolicitorClutter,
-} from "@/lib/criminal/solicitor-signal-mute";
 
 export type DemoAttentionStatus = "MISSING" | "UNCLEAR" | "INCOMPLETE" | "ACTIVE";
 
@@ -190,31 +186,19 @@ function sourceLines(item: DisclosureChaseItem): string[] {
   return [...new Set(lines)].slice(0, 4);
 }
 
-function phoneAttentionFamilyKey(title: string, familyId: string): string | null {
-  const hay = `${title} ${familyId}`.toLowerCase();
-  if (!/\b(phone|download|extraction|source export|handset|device)\b/i.test(hay)) return null;
-  return "phone_extraction_download";
-}
-
+/** Pure map from frozen shortlist — membership owned by buildDisclosureChaseBrief. */
 export function buildDemoAttentionItems(items: DisclosureChaseItem[]): DemoAttentionItem[] {
   const out: DemoAttentionItem[] = [];
-  const seenPhone = new Set<string>();
   for (const item of items) {
     const status = statusFromChase(item);
     if (!status) continue;
     const title = normaliseIssueTitle(item.label);
-    const phoneKey = phoneAttentionFamilyKey(title, item.familyId);
-    if (phoneKey) {
-      // Collapse extract + full download regardless of MISSING vs UNCLEAR chip
-      if (seenPhone.has(phoneKey)) continue;
-      seenPhone.add(phoneKey);
-    }
     const blurb = issueBlurbForItem(item, title);
     out.push({
       id: item.id,
-      title: phoneKey ? "Phone extraction/download status" : title,
+      title,
       blurb,
-      status: phoneKey ? (status === "MISSING" ? "MISSING" : "UNCLEAR") : status,
+      status,
       impactTags: impactFromFamily(item.familyId),
       why: blurb || "Source status needs confirming before this item is relied on.",
       sources: sourceLines(item),
@@ -226,45 +210,29 @@ export function buildDemoAttentionItems(items: DisclosureChaseItem[]): DemoAtten
       familyId: item.familyId,
     });
   }
-  // Prefer solicitor-critical gaps over generic exhibit/MG6/schedule clutter.
-  return demoteSolicitorClutter(
-    dedupeSolicitorAttentionByTitle(out),
-    (item) => item.title,
-  );
+  return out;
 }
 
 export function buildDemoStatCounts(
   attention: DemoAttentionItem[],
-  evidenceCounts: {
+  _evidenceCounts: {
     missing: number;
     incomplete: number;
     referred?: number;
     notSafelyConfirmed?: number;
   },
 ): DemoStatCounts {
-  // Overview chips must match the solicitor-visible attention list (post-mute).
-  // File/Papers keep canonical evidence counts; do not inflate Overview Missing/
-  // Incomplete with rows that attention already collapsed or muted.
+  // Chips must match frozen shortlist attention 1:1.
   const attentionMissing = attention.filter((a) => a.status === "MISSING").length;
   const attentionIncomplete = attention.filter(
     (a) => a.status === "UNCLEAR" || a.status === "INCOMPLETE",
   ).length;
-  const evidenceIncomplete =
-    (evidenceCounts.incomplete || 0) + (evidenceCounts.notSafelyConfirmed || 0);
   const activeChases = attention.filter((a) => a.status === "ACTIVE").length;
-  if (attention.length > 0) {
-    return {
-      missing: attentionMissing,
-      incomplete: attentionIncomplete,
-      activeChases,
-      openReviewItems: attention.length,
-    };
-  }
   return {
-    missing: evidenceCounts.missing || 0,
-    incomplete: evidenceIncomplete,
-    activeChases: 0,
-    openReviewItems: 0,
+    missing: attentionMissing,
+    incomplete: attentionIncomplete,
+    activeChases,
+    openReviewItems: attention.length,
   };
 }
 

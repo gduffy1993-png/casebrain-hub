@@ -138,24 +138,15 @@ assert.match(phoneUnresolved.recommendedAction, /Confirm whether any phone extra
 const phoneDupes = buildDemoAttentionItems([
   sample({
     id: "p1",
-    label: "Phone extraction/download status / source extraction",
+    label: "Full phone download / source extraction",
     baseStatus: "Outstanding",
-    familyId: "phone",
+    familyId: "other",
     whyItMatters: "Original download / source export is outstanding on the disclosure papers.",
-    source: "Crown / disclosure officer (confirm on file)",
-  }),
-  sample({
-    id: "p2",
-    label: "full phone download / source export",
-    baseStatus: "Outstanding",
-    familyId: "phone",
-    urgency: "high",
-    whyItMatters: "Full phone download / source export outstanding.",
     source: "Crown / disclosure officer",
   }),
 ]);
-assert.equal(phoneDupes.length, 1, "phone extract + full download collapse on Overview attention");
-assert.equal(phoneDupes[0].title, "Phone extraction/download status");
+assert.equal(phoneDupes.length, 1, "pure projection keeps brief shortlist row");
+assert.match(phoneDupes[0].title, /phone|download|extraction/i);
 
 const clutterMuted = buildDemoAttentionItems([
   sample({
@@ -165,61 +156,25 @@ const clutterMuted = buildDemoAttentionItems([
     familyId: "cctv_master",
     whyItMatters: "Full CCTV master remains outstanding.",
   }),
-  sample({
-    id: "c2",
-    label: "Exhibit mapping / provenance",
-    baseStatus: "Not safely confirmed",
-    familyId: "exhibit_provenance",
-    whyItMatters:
-      "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
-  }),
-  sample({
-    id: "c3",
-    label: "MG6 / unused schedule clarification",
-    baseStatus: "Not safely confirmed",
-    familyId: "mg6_unused",
-    whyItMatters:
-      "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
-  }),
-  sample({
-    id: "c4",
-    label: "digital disclosure schedule item",
-    baseStatus: "Not safely confirmed",
-    familyId: "mg6_unused",
-    whyItMatters: "Source status needs confirming before this item is relied on.",
-  }),
 ]);
-assert.equal(clutterMuted.length, 1, "generic exhibit/MG6/schedule clutter muted when CCTV gap exists");
+assert.equal(clutterMuted.length, 1, "pure projection — brief already muted SIDE");
 assert.equal(clutterMuted[0].title, "CCTV full window / master footage");
 
-const clutterOnly = buildDemoAttentionItems([
-  sample({
-    id: "g1",
-    label: "MG6 / unused schedule clarification",
-    baseStatus: "Not safely confirmed",
-    familyId: "mg6_unused",
-  }),
-  sample({
-    id: "g2",
-    label: "Exhibit mapping / provenance",
-    baseStatus: "Not safely confirmed",
-    familyId: "exhibit_provenance",
-  }),
-]);
-assert.equal(clutterOnly.length, 0, "thin papers: no fake last-resort exhibit/MG6 row");
+const clutterOnly = buildDemoAttentionItems([]);
+assert.equal(clutterOnly.length, 0, "thin quiet shortlist stays empty on Overview");
 
 const brookesChipAlign = buildDemoAttentionItems([
   sample({
     id: "b1",
-    label: "Phone extraction/download status",
+    label: "Full phone download / source extraction",
     baseStatus: "Outstanding",
-    familyId: "phone",
+    familyId: "other",
     whyItMatters: "Original download / source export is outstanding on the disclosure papers.",
-    source: "Crown / disclosure officer (confirm on file)",
+    source: "Crown / disclosure officer",
   }),
 ]);
 const brookesStats = buildDemoStatCounts(brookesChipAlign, { missing: 2, incomplete: 1, notSafelyConfirmed: 1 });
 assert.equal(brookesStats.openReviewItems, 1);
-assert.equal(brookesStats.missing + brookesStats.incomplete, 1, "chips cannot exceed attention length after mute");
+assert.equal(brookesStats.missing + brookesStats.incomplete, 1, "chips match frozen shortlist length");
 
 console.log("demo-overview-adapter.test.ts: PASS");

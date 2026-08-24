@@ -65,6 +65,7 @@ import {
 import {
   demoteSolicitorClutter,
   isGenericSolicitorClutterLabel,
+  sanitizeChaseMergedFrom,
   sanitizeSolicitorEvidenceAnchor,
 } from "@/lib/criminal/solicitor-signal-mute";
 import { composeStructuredSolicitorOutput } from "@/lib/criminal/structured-solicitor-output";
@@ -2194,7 +2195,10 @@ export function isReviewOnlyChaseMaterial(item: Pick<
 
 /**
  * Listing/hearing elapsed may mark genuine missing rows Overdue/Due soon.
- * Review-only rows stay "Not safely confirmed" (Needs confirmation in UI).
+ * Review-only / referred-only / unclear rows stay "Not safely confirmed"
+ * (Needs confirmation) — never Missing/Outstanding/Overdue in solicitor UI.
+ * PDF-true Outstanding (export not served) stays Outstanding — do not demote
+ * solely because source says "(confirm on file)".
  */
 export function clampChaseOperationalStatus(
   item: Pick<
@@ -2204,11 +2208,157 @@ export function clampChaseOperationalStatus(
   status: ChaseItemStatus = item.baseStatus,
 ): ChaseItemStatus {
   if (status === "Received" || status === "Chased") return status;
-  if (status !== "Overdue" && status !== "Due soon") return status;
-  if (isReviewOnlyChaseMaterial({ ...item, baseStatus: status })) {
-    return "Not safely confirmed";
+  if (status === "Overdue" || status === "Due soon") {
+    if (isReviewOnlyChaseMaterial({ ...item, baseStatus: status })) {
+      return "Not safely confirmed";
+    }
+    return status;
+  }
+  if (status === "Outstanding") {
+    const provRaw =
+      item.provenance && typeof item.provenance === "object" && "evidenceState" in item.provenance
+        ? String((item.provenance as { evidenceState?: unknown }).evidenceState ?? "")
+        : "";
+    const prov = provRaw.toLowerCase().replace(/[\s-]+/g, "_");
+    if (
+      prov === "not_safely_confirmed" ||
+      prov === "referred_only" ||
+      prov === "unclear" ||
+      prov === "unassessed" ||
+      prov === "needs_review"
+    ) {
+      return "Not safely confirmed";
+    }
+    if (
+      /not safely confirmed|referred to in limited form|source status needs confirming before/i.test(
+        item.whyItMatters ?? "",
+      )
+    ) {
+      return "Not safely confirmed";
+    }
+    const sourceState = inferChaseItemSourceState({
+      label: item.label,
+      source: item.source,
+      baseStatus: "Outstanding",
+      evidenceAnchor: item.evidenceAnchor,
+      whyItMatters: item.whyItMatters,
+    });
+    if (
+      sourceState === "not_safely_confirmed" ||
+      sourceState === "referred_only" ||
+      sourceState === "needs_review"
+    ) {
+      return "Not safely confirmed";
+    }
   }
   return status;
+}
+
+/** Phone extract + full download are one solicitor gap — collapse at brief time. */
+export function isSolicitorPhoneDownloadFamilyItem(item: DisclosureChaseItem): boolean {
+  if (/\bsubscriber\b|\baccount\s+data\b/i.test(item.label)) return false;
+  if (
+    isDigitalModalityChaseLabel(item.label) &&
+    /phone|download|extraction|source export/i.test(item.label)
+  ) {
+    return true;
+  }
+  const hay = [item.label, item.familyId, ...(item.mergedFrom ?? [])].join(" ");
+  return /\b(?:full\s+)?phone\s+download\b|\bphone\s+extraction\b|\bsource\s+export\b|\bmessage\s+export\b|\bsource\s+device\s+material\b/i.test(
+    hay,
+  );
+}
+
+/**
+ * Collapse extract/summary/full-download doubles into one primary digital card.
+ * Subscriber stays distinct when papers establish it separately.
+ */
+export function collapseSolicitorPhoneDownloadDoubles(
+  items: DisclosureChaseItem[],
+): DisclosureChaseItem[] {
+  const phoneish: DisclosureChaseItem[] = [];
+  const rest: DisclosureChaseItem[] = [];
+  for (const item of items) {
+    if (isSolicitorPhoneDownloadFamilyItem(item)) {
+      phoneish.push(item);
+    } else {
+      rest.push(item);
+    }
+  }
+  if (phoneish.length <= 1) return items;
+  const preferred =
+    phoneish.find((i) => /Full phone download/i.test(i.label)) ??
+    phoneish.find((i) =>
+      /Phone extraction\/download status|Phone extraction source material/i.test(i.label),
+    ) ??
+    phoneish.find((i) => /Phone extraction summary only/i.test(i.label)) ??
+    phoneish[0]!;
+  const mergedFrom = sanitizeChaseMergedFrom([
+    ...phoneish.flatMap((i) => i.mergedFrom ?? []),
+    ...phoneish.map((i) => i.label),
+  ]);
+  const evidenceAnchor = familySafeEvidenceAnchor(
+    preferred.familyId,
+    sanitizeSolicitorEvidenceAnchor(
+      preferred.evidenceAnchor ??
+        phoneish.map((i) => i.evidenceAnchor).find((a) => Boolean(a)) ??
+        null,
+    ),
+  );
+  return [
+    ...rest,
+    {
+      ...preferred,
+      label: /Full phone download|source extraction/i.test(preferred.label)
+        ? /Full phone download/i.test(preferred.label)
+          ? preferred.label
+          : "Full phone download / source extraction"
+        : "Full phone download / source extraction",
+      mergedFrom: mergedFrom.length ? mergedFrom : preferred.mergedFrom,
+      evidenceAnchor,
+      baseStatus: phoneish.reduce(
+        (acc, i) => mergeStatus(acc, i.baseStatus),
+        preferred.baseStatus,
+      ),
+    },
+  ];
+}
+
+/**
+ * Final solicitor shortlist freeze — single owner of primary chase/review items.
+ * SIDE clutter out; served out; phone doubles collapsed; anchors sanitized;
+ * additional overflow cleared so Overview and Chase share one primary list.
+ */
+export function assembleSolicitorShortlist(items: DisclosureChaseItem[]): {
+  items: DisclosureChaseItem[];
+  primaryItems: DisclosureChaseItem[];
+  additionalItems: DisclosureChaseItem[];
+} {
+  let next = demoteSolicitorClutter(dedupeDisclosureItems(items), (i) => i.label);
+  next = collapseSolicitorPhoneDownloadDoubles(next);
+  next = next
+    .map((item) => {
+      const evidenceAnchor = familySafeEvidenceAnchor(
+        item.familyId,
+        sanitizeSolicitorEvidenceAnchor(item.evidenceAnchor),
+      );
+      const baseStatus = clampChaseOperationalStatus({ ...item, evidenceAnchor });
+      return {
+        ...item,
+        evidenceAnchor,
+        baseStatus,
+        mergedFrom: sanitizeChaseMergedFrom(item.mergedFrom),
+      };
+    })
+    .filter((item) => item.baseStatus !== "Received")
+    .filter((item) => !isGenericSolicitorClutterLabel(item.label));
+
+  const { primaryItems } = splitPrimaryAdditional(next);
+  return {
+    items: primaryItems,
+    primaryItems,
+    additionalItems: [],
+  };
 }
 
 export function normalizeChaseOperationalStatuses(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
@@ -2767,10 +2917,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
 
   items = normalizeChaseOperationalStatuses(items);
 
-  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
-  // Drop clutter from the full item list so Chase TOTAL / filters cannot resurrect it.
-  items = items.filter((i) => !isGenericSolicitorClutterLabel(i.label));
-  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+  ({ items, primaryItems, additionalItems } = assembleSolicitorShortlist(items));
 
   const linkedRoutes = [
     ...new Set(items.map((i) => i.linkedRoute).filter((r): r is string => Boolean(r?.trim()))),
@@ -2779,16 +2926,12 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     linkedRoutes.unshift(input.battleboard.primary_route.title);
   }
 
-  const counters = computeCounters(items, {});
+  const counters = computeCounters(primaryItems, {});
 
   const disclosureSummary =
     primaryItems.length > 0
       ? `${primaryItems.length} priority chase item${primaryItems.length === 1 ? "" : "s"} — source-material review`
-      : items.length === 0
-        ? "No source-material chase items safely detected"
-        : items.length === 1
-          ? "1 grouped chase item — provisional"
-          : `${items.length} grouped chase items — provisional`;
+      : "No source-material chase items safely detected";
 
   const brief: DisclosureChaseBrief = {
     caseId: input.caseId,
