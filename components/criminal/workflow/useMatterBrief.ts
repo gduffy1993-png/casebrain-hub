@@ -230,6 +230,7 @@ export function useMatterBrief(caseId: string) {
         : null,
       bundleMetadata: bundleSource?.caseMetadata,
       bundleHeader: bundleSource?.header,
+      sourceCharges: bundleSource?.canonical?.charges ?? null,
       bundleText: bundleSource?.frontMatterScan ?? null,
       matterState,
     });

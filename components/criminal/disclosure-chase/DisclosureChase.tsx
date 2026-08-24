@@ -710,6 +710,8 @@ export function DisclosureChase({
           : null,
         bundleMetadata: bundleSource?.caseMetadata,
         bundleHeader: bundleSource?.header,
+        sourceCharges: bundleSource?.canonical?.charges ?? null,
+        bundleText: bundleSource?.frontMatterScan ?? null,
         matterState,
       }),
     [snapshot, matter, bundleSource, matterState],

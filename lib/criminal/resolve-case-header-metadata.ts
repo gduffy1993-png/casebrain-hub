@@ -6,6 +6,7 @@
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import { sanitizePublicDisplayLine } from "@/lib/criminal/dev-ref-scrub";
 import type { ExtractedBundleCaseMetadata, MetadataFieldSource } from "@/lib/criminal/extract-bundle-case-metadata";
+import type { StructuredChargeView } from "@/lib/criminal/structured-charge-state";
 import {
   isGluedHearingCourtOffenceLabel,
   parseUkHearingDateTime,
@@ -37,6 +38,11 @@ export type MatterHeaderInput = {
   bailStatus?: string | null;
   bailOutcome?: string | null;
 } | null;
+
+export type SourceBackedChargeInput = Pick<
+  StructuredChargeView,
+  "offence" | "statute" | "documentRole" | "extracted" | "confidence" | "confirmationLabel"
+>;
 
 export type CaseHeaderMetadata = {
   clientLabel: string;
@@ -99,6 +105,56 @@ function isGenericClassifierOffenceLabel(label: string | null | undefined): bool
   return false;
 }
 
+function formatSourceBackedCharge(charge: SourceBackedChargeInput): string | null {
+  if (charge.documentRole === "superseded") return null;
+  const offence = charge.offence?.replace(/\s+/g, " ").trim();
+  if (!offence || isUnknownOffenceLabel(offence) || isGenericClassifierOffenceLabel(offence)) return null;
+  if (/\bunresolved\b|not safely extracted|charge instrument on file/i.test(offence)) return null;
+  if (charge.extracted === false) return null;
+  const statute = charge.statute?.replace(/\s+/g, " ").trim();
+  if (statute && !new RegExp(`\\b${escapeRegExp(statute)}\\b`, "i").test(offence)) {
+    return `${offence} (${statute})`;
+  }
+  return offence;
+}
+
+function resolveSourceBackedCharge(
+  charges: readonly SourceBackedChargeInput[] | null | undefined,
+): { label: string; source: MetadataFieldSource } | null {
+  if (!charges?.length) return null;
+
+  const scored = charges
+    .map((charge, index) => {
+      const label = formatSourceBackedCharge(charge);
+      if (!label) return null;
+      const roleScore =
+        charge.documentRole === "operative"
+          ? 40
+          : charge.documentRole === "amended"
+            ? 35
+            : charge.documentRole === "unknown"
+              ? 20
+              : 0;
+      const confidenceScore =
+        typeof charge.confidence === "number" && Number.isFinite(charge.confidence)
+          ? Math.max(0, Math.min(1, charge.confidence)) * 20
+          : 10;
+      const confirmationScore =
+        charge.confirmationLabel === "confirmed"
+          ? 10
+          : charge.confirmationLabel === "pending"
+            ? 4
+            : 0;
+      return { label, score: roleScore + confidenceScore + confirmationScore - index / 1000 };
+    })
+    .filter((entry): entry is { label: string; score: number } => Boolean(entry));
+
+  scored.sort((a, b) => b.score - a.score);
+  return scored[0]?.label
+    ? { label: scored[0].label, source: "extracted_charge_fallback" }
+    : null;
+}
+
 function looksLikePersonName(value: string): boolean {
   const t = value.trim();
   if (t.length < 3 || t.length > 80) return false;
@@ -141,11 +197,15 @@ function resolveAllegation(
   bundle: BundleCaseMetadataInput,
   header: BundleSourceHeaderInput | null | undefined,
   truthLedger?: BundleTruthLedger | null,
+  sourceCharges?: readonly SourceBackedChargeInput[] | null,
 ): { label: string; source: MetadataFieldSource } {
   const ledgerCharge = truthLedger ? ledgerChargeDisplay(truthLedger) : null;
   if (ledgerCharge?.trim()) {
     return { label: ledgerCharge.trim(), source: truthLedger?.charge.sourceAnchor ? "extracted_charge_fallback" : bundle?.offenceSource ?? "extracted_charge_fallback" };
   }
+
+  const sourceCharge = resolveSourceBackedCharge(sourceCharges);
+  if (sourceCharge) return sourceCharge;
 
   if (bundle?.offenceDisplay?.trim()) {
     return { label: bundle.offenceDisplay.trim(), source: bundle.offenceSource };
@@ -308,11 +368,12 @@ export function resolveCaseHeaderMetadata(input: {
   matter?: MatterHeaderInput;
   bundleMetadata?: BundleCaseMetadataInput;
   bundleHeader?: BundleSourceHeaderInput | null;
+  sourceCharges?: readonly SourceBackedChargeInput[] | null;
   matterState?: string | null;
   bundleText?: string | null;
   truthLedger?: BundleTruthLedger | null;
 }): CaseHeaderMetadata {
-  const { snapshot, matter, bundleMetadata, bundleHeader, matterState, bundleText, truthLedger: ledgerInput } = input;
+  const { snapshot, matter, bundleMetadata, bundleHeader, sourceCharges, matterState, bundleText, truthLedger: ledgerInput } = input;
 
   const truthLedger =
     ledgerInput ??
@@ -322,7 +383,14 @@ export function resolveCaseHeaderMetadata(input: {
     truthLedger?.defendant.defendant && looksLikePersonName(truthLedger.defendant.defendant)
       ? { label: truthLedger.defendant.defendant, source: "extracted_cover_fallback" as MetadataFieldSource }
       : resolveClientLabel(matter ?? null, bundleMetadata, bundleHeader);
-  const allegation = resolveAllegation(snapshot, matter ?? null, bundleMetadata, bundleHeader, truthLedger);
+  const allegation = resolveAllegation(
+    snapshot,
+    matter ?? null,
+    bundleMetadata,
+    bundleHeader,
+    truthLedger,
+    sourceCharges,
+  );
   const stage =
     truthLedger?.stage?.trim()
       ? { label: truthLedger.stage.trim(), source: "extracted_cover_fallback" as MetadataFieldSource }

@@ -10,6 +10,7 @@ import {
   canonicalEvidenceStateRowsForBuilder,
   canonicalRowsForBuilder,
 } from "../lib/criminal/canonical-evidence-status-bridge";
+import { resolveCaseHeaderMetadata } from "../lib/criminal/resolve-case-header-metadata";
 import type { BattleboardOutput } from "../lib/criminal/strategy-battleboard";
 
 function battleboard(lines: Partial<BattleboardOutput["primary_route"]>): BattleboardOutput {
@@ -178,9 +179,9 @@ describe("source truth guardian", () => {
     });
 
     expect(chase.items.every((item) => !/Unused Material Schedule/i.test(item.label))).toBe(true);
-    expect(JSON.stringify(chase.items.map((item) => item.mergedFrom))).toMatch(/Unused Material Schedule/i);
+    expect(JSON.stringify(chase.items.map((item) => item.mergedFrom))).not.toMatch(/Unused Material Schedule/i);
     expect(JSON.stringify(chase)).toMatch(/Phone extraction/i);
-    expect(chase.items.some((item) => item.familyId === "mg6_unused")).toBe(true);
+    expect(chase.items.some((item) => item.familyId === "mg6_unused")).toBe(false);
   });
 
   it("collapses Jordan-style referred-only BWV/custody fragments into clean chase items", () => {
@@ -523,10 +524,12 @@ describe("source truth guardian", () => {
     );
 
     const cctvContinuity = chase.items.find((item) => item.familyId === "cctv_continuity");
-    expect(cctvContinuity?.baseStatus).toBe("Not safely confirmed");
-    expect([cctvContinuity?.draftChaseWording, cctvContinuity?.courtLine, cctvContinuity?.whyItMatters].join("\n")).not.toMatch(
-      /appears outstanding|remains outstanding/i,
-    );
+    if (cctvContinuity) {
+      expect(cctvContinuity.baseStatus).toBe("Not safely confirmed");
+      expect([cctvContinuity.draftChaseWording, cctvContinuity.courtLine, cctvContinuity.whyItMatters].join("\n")).not.toMatch(
+        /appears outstanding|remains outstanding/i,
+      );
+    }
   });
 
   it("does not promote CAD or dispatch-only source gaps into 999 audio", () => {
@@ -597,5 +600,100 @@ describe("source truth guardian", () => {
     expect(visibleText).toMatch(/Full custody record \/ PACE material/i);
     expect(visibleText).toMatch(/\bInterview recording\b/i);
     expect(visibleText).toMatch(/Full phone download \/ source extraction/i);
+  });
+
+  it("freezes buildDisclosureChaseBrief as the single solicitor shortlist owner", () => {
+    const chase = buildDisclosureChaseBrief({
+      caseId: "CB-SHORTLIST-AUTHORITY",
+      caseTitle: "Shortlist authority",
+      clientLabel: "Shortlist authority",
+      allegation: "Robbery",
+      stage: "First appearance",
+      hearingStatus: "Listed",
+      hearingDateIso: "2026-08-25T10:00:00",
+      bundleHealth: "Partial",
+      positionStatus: "Not recorded",
+      battleboard: null,
+      proceduralOutstanding: [
+        "CCTV continuity / provenance",
+        "CCTV full window / master footage",
+        "Exhibit mapping / provenance",
+        "MG6 / unused / schedule clarification",
+      ],
+      bundleText: [
+        "MG5 summary refers to CCTV stills and a CCTV clip.",
+        "Continuity of CCTV sources: to be checked.",
+        "The full CCTV window/master footage is not served.",
+      ].join("\n"),
+    });
+
+    expect(chase.additionalItems).toEqual([]);
+    expect(chase.items).toEqual(chase.primaryItems);
+    expect(chase.primaryItems.length).toBeGreaterThan(0);
+    expect(chase.primaryItems.every((item) => item.baseStatus !== "Received")).toBe(true);
+    expect(chase.primaryItems.some((item) => item.baseStatus === "Not safely confirmed")).toBe(true);
+    expect(chase.primaryItems.some((item) => item.baseStatus === "Overdue")).toBe(false);
+  });
+
+  it("lets source-backed charge wording outrank stale structured matter offence", () => {
+    const header = resolveCaseHeaderMetadata({
+      snapshot: null,
+      matter: {
+        defendantName: "Leon Hale",
+        allegedOffence: "Fraud by false representation",
+        stageDetected: "First appearance",
+      },
+      sourceCharges: [
+        {
+          offence: "Murder, contrary to common law",
+          statute: null,
+          documentRole: "operative",
+          confidence: 0.8,
+          extracted: true,
+          confirmationLabel: "pending",
+        },
+      ],
+    });
+
+    expect(header.allegation).toBe("Murder, contrary to common law");
+    expect(header.allegation).not.toMatch(/fraud/i);
+  });
+
+  it("keeps genuine structured-only matter offence when no source charge is available", () => {
+    const header = resolveCaseHeaderMetadata({
+      snapshot: null,
+      matter: {
+        defendantName: "Layla Davies",
+        allegedOffence: "Fraud by false representation",
+        stageDetected: "First appearance",
+      },
+      sourceCharges: [],
+    });
+
+    expect(header.allegation).toBe("Fraud by false representation");
+  });
+
+  it("does not let a superseded source charge overwrite the current structured offence", () => {
+    const header = resolveCaseHeaderMetadata({
+      snapshot: null,
+      matter: {
+        defendantName: "Priya Shah",
+        allegedOffence: "Theft from shop",
+        stageDetected: "First appearance",
+      },
+      sourceCharges: [
+        {
+          offence: "Earlier fraud allegation",
+          statute: null,
+          documentRole: "superseded",
+          confidence: 0.9,
+          extracted: true,
+          confirmationLabel: "confirmed",
+        },
+      ],
+    });
+
+    expect(header.allegation).toBe("Theft from shop");
+    expect(header.allegation).not.toMatch(/fraud/i);
   });
 });

@@ -334,34 +334,62 @@ function guardChaseItem(
   ctx: Omit<SourceTruthGuardianContext, "surface">,
 ): { item: DisclosureChaseItem | null; report: SourceTruthGuardianReport } {
   const base = { ...ctx, surface: "chase" as const };
-  const label = guardSourceTruthLines([item.label], base);
+  const modalityHay = [
+    ctx.bundleText ?? "",
+    item.evidenceAnchor ?? "",
+    item.whyItMatters ?? "",
+    item.draftChaseWording ?? "",
+    ...(item.mergedFrom ?? []),
+  ].join("\n");
+  const sourceCorrectedItem =
+    item.familyId === "interview" &&
+    /\binterview\s+recording\b/i.test(item.label) &&
+    (/\bmaterial\s+still\s+needed\s*:?.{0,160}\b(?:interview\s+)?transcript\b/i.test(modalityHay) ||
+      /\b(?:interview\s+)?transcript\b.{0,100}\b(?:not\s+in\s+this\s+section|not\s+(?:served|included|attached|provided|on\s+file)|missing|outstanding)\b/i.test(
+        modalityHay,
+      )) &&
+    !/\binterview\s+recording\s*\/\s*transcript\b|\binterview\s+recording\b.{0,100}\b(?:not\s+(?:served|included|attached|provided)|missing|outstanding)\b/i.test(
+      modalityHay,
+    )
+      ? {
+          ...item,
+          label: "Interview transcript",
+          draftChaseWording:
+            item.baseStatus === "Not safely confirmed"
+              ? "Please confirm the current status of the interview transcript before it is relied on."
+              : "Please provide the interview transcript, or confirm in writing why it is not available.",
+        }
+      : item;
+  const label = guardSourceTruthLines([sourceCorrectedItem.label], base);
   if (!label.lines[0]) return { item: null, report: label.report };
-  const why = guardSourceTruthLines([item.whyItMatters], base);
-  const draft = guardSourceTruthLines([item.draftChaseWording], base);
+  const why = guardSourceTruthLines([sourceCorrectedItem.whyItMatters], base);
+  const draft = guardSourceTruthLines([sourceCorrectedItem.draftChaseWording], base);
   const courtFallback =
-    item.baseStatus === "Not safely confirmed"
+    sourceCorrectedItem.baseStatus === "Not safely confirmed"
       ? "The defence asks the court to record that this material needs confirmation before it is relied on."
       : "The defence asks the court to record this material as outstanding.";
   const court = guardSourceTruthLines(
-    [item.courtLine],
+    [sourceCorrectedItem.courtLine],
     base,
     courtFallback,
   );
   const guardedCourtLine = court.lines[0] ?? courtFallback;
   const courtLine =
-    item.baseStatus === "Not safely confirmed" &&
-    /\b(?:appears|remains)\s+outstanding\b/i.test(guardedCourtLine)
+    sourceCorrectedItem.baseStatus === "Not safely confirmed" &&
+    /\b(?:appears|remain(?:s)?|is|are)\s+(?:missing|outstanding|overdue)\b|\bdue\s+soon\b|\boverdue\b|\bdisclosed\s+on\s+a\s+timetable\b/i.test(
+      guardedCourtLine,
+    )
       ? courtFallback
       : guardedCourtLine;
-  const anchor = item.evidenceAnchor ? guardSourceTruthLines([item.evidenceAnchor], base) : null;
+  const anchor = sourceCorrectedItem.evidenceAnchor ? guardSourceTruthLines([sourceCorrectedItem.evidenceAnchor], base) : null;
   return {
     item: {
-      ...item,
+      ...sourceCorrectedItem,
       label: label.lines[0],
-      whyItMatters: why.lines[0] ?? item.whyItMatters,
-      draftChaseWording: draft.lines[0] ?? item.draftChaseWording,
+      whyItMatters: why.lines[0] ?? sourceCorrectedItem.whyItMatters,
+      draftChaseWording: draft.lines[0] ?? sourceCorrectedItem.draftChaseWording,
       courtLine,
-      evidenceAnchor: anchor ? anchor.lines[0] ?? null : item.evidenceAnchor,
+      evidenceAnchor: anchor ? anchor.lines[0] ?? null : sourceCorrectedItem.evidenceAnchor,
     },
     report: mergeReports(label.report, why.report, draft.report, court.report, ...(anchor ? [anchor.report] : [])),
   };

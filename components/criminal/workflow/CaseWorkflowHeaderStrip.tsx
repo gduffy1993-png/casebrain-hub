@@ -86,6 +86,7 @@ export function CaseWorkflowHeaderStrip({
             documentCount?: number;
             combinedTextLength?: number;
             frontMatterScan?: string | null;
+            canonical?: { charges?: Parameters<typeof resolveCaseHeaderMetadata>[0]["sourceCharges"] } | null;
           };
         };
         const matter = await matterRes.json().catch(() => ({}));
@@ -93,6 +94,7 @@ export function CaseWorkflowHeaderStrip({
         const meta = resolveCaseHeaderMetadata({
           bundleHeader: json.data.header ?? null,
           bundleMetadata: json.data.caseMetadata ?? null,
+          sourceCharges: json.data.canonical?.charges ?? null,
           bundleText: json.data.frontMatterScan ?? null,
           snapshot: null,
         });

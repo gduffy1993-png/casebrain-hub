@@ -566,12 +566,51 @@ export function reconcileInterviewModalityItems(
       const sourceHay = `${bundleText ?? ""}`;
       const provenanceHay = item.provenance?.unresolvedConflictOrLimitation ?? "";
       const modalityHay = `${sourceHay}\n${provenanceHay}`;
+      const transcriptGapEstablished =
+        /\b(?:interview\s+)?transcript\b.{0,100}\b(?:not\s+(?:served|included|attached|provided|on\s+file)|missing|outstanding|not\s+in\s+this\s+section)\b/i.test(
+          modalityHay,
+        ) ||
+        /\b(?:not\s+(?:served|included|attached|provided|on\s+file)|missing|outstanding|not\s+in\s+this\s+section)\b.{0,100}\b(?:interview\s+)?transcript\b/i.test(
+          modalityHay,
+        ) ||
+        /\bmaterial\s+still\s+needed\s*:?.{0,160}\b(?:interview\s+)?transcript\b/i.test(
+          modalityHay,
+        ) ||
+        /\b(?:interview\s+)?transcript\b.{0,160}\b(?:still\s+needed|needed|requires?\s+completion)\b/i.test(
+          modalityHay,
+        );
+      const recordingGapEstablished =
+        /\b(?:interview\s+)?recording\b.{0,100}\b(?:not\s+(?:served|included|attached|provided|on\s+file)|missing|outstanding)\b/i.test(
+          modalityHay,
+        ) ||
+        /\b(?:not\s+(?:served|included|attached|provided|on\s+file)|missing|outstanding)\b.{0,100}\b(?:interview\s+)?recording\b/i.test(
+          modalityHay,
+        );
+      const transcriptItem = (): DisclosureChaseItem => ({
+        ...item,
+        label: "Interview transcript",
+        draftChaseWording:
+          "Please provide the interview transcript, or confirm in writing why it is not available.",
+        courtLine: toCourtLine("Interview transcript"),
+        whyItMatters:
+          "Interview summary or partial record on file is not a substitute for the full transcript.",
+        mergedFrom: [
+          "Interview transcript",
+          ...((item.mergedFrom ?? []).filter((m) =>
+            /\btranscript\b/i.test(m) && !/\brecording\b/i.test(m),
+          )),
+        ].slice(0, 4),
+      });
       const thinFileNoPace =
         /\bno\s+pace\s+interview\b/i.test(sourceHay) ||
         /\bno\s+(?:pace\s+)?interview\s+(?:transcript|summary|recording)\b/i.test(sourceHay);
       const sourceEstablishesRecordingOrTranscript =
         isInterviewRecordingEstablished(modalityHay) || isInterviewTranscriptEstablished(modalityHay);
       if (thinFileNoPace && !sourceEstablishesRecordingOrTranscript) return null;
+
+      if (transcriptGapEstablished && !recordingGapEstablished) {
+        return transcriptItem();
+      }
 
       const labelClaimsRecording =
         /\binterview\s+recording\b/i.test(item.label) ||
@@ -582,22 +621,8 @@ export function reconcileInterviewModalityItems(
       // Court C0.5: PACE interview / custody without recording modality → never invent recording.
       // Use source + provenance only (never the card's own "Interview recording" label).
       if (labelClaimsRecording && !isInterviewRecordingEstablished(modalityHay)) {
-        if (isInterviewTranscriptEstablished(modalityHay)) {
-          return {
-            ...item,
-            label: "Interview transcript",
-            draftChaseWording:
-              "Please provide the interview transcript, or confirm in writing why it is not available.",
-            courtLine: toCourtLine("Interview transcript"),
-            whyItMatters:
-              "Interview summary or partial record on file is not a substitute for the full transcript.",
-            mergedFrom: [
-              "Interview transcript",
-              ...((item.mergedFrom ?? []).filter((m) =>
-                /\btranscript\b/i.test(m) && !/\brecording\b/i.test(m),
-              )),
-            ].slice(0, 4),
-          };
+        if (isInterviewTranscriptEstablished(modalityHay) || (transcriptGapEstablished && !recordingGapEstablished)) {
+          return transcriptItem();
         }
       if (
         /\b(?:pace\s+interview|custody\s+record|detention\s+log|safeguards?\s+checklist)\b/i.test(
@@ -619,27 +644,24 @@ export function reconcileInterviewModalityItems(
       }
 
       const label = interviewChaseLabelFromSignals(blob);
-      if (label === item.label && !/recording\s*\/\s*transcript/i.test(item.label)) return item;
+      if (label === item.label && !/recording\s*\/\s*transcript/i.test(item.label)) {
+        if (
+          /\binterview\s+recording\b/i.test(label) &&
+          !isInterviewRecordingEstablished(modalityHay)
+        ) {
+          if (isInterviewTranscriptEstablished(modalityHay) || (transcriptGapEstablished && !recordingGapEstablished)) {
+            return transcriptItem();
+          }
+          return null;
+        }
+        return item;
+      }
 
       // interviewChaseLabelFromSignals may still default to "Interview recording" —
       // re-check establishment before keeping that invent surface.
       if (/\binterview\s+recording\b/i.test(label) && !isInterviewRecordingEstablished(modalityHay)) {
-        if (isInterviewTranscriptEstablished(modalityHay)) {
-          return {
-            ...item,
-            label: "Interview transcript",
-            draftChaseWording:
-              "Please provide the interview transcript, or confirm in writing why it is not available.",
-            courtLine: toCourtLine("Interview transcript"),
-            whyItMatters:
-              "Interview summary or partial record on file is not a substitute for the full transcript.",
-            mergedFrom: [
-              "Interview transcript",
-              ...((item.mergedFrom ?? []).filter((m) =>
-                /\btranscript\b/i.test(m) && !/\brecording\b/i.test(m),
-              )),
-            ].slice(0, 4),
-          };
+        if (isInterviewTranscriptEstablished(modalityHay) || (transcriptGapEstablished && !recordingGapEstablished)) {
+          return transcriptItem();
         }
         return null;
       }
@@ -2324,6 +2346,82 @@ export function collapseSolicitorPhoneDownloadDoubles(
   ];
 }
 
+function lowerFirst(text: string): string {
+  return text ? `${text.charAt(0).toLowerCase()}${text.slice(1)}` : text;
+}
+
+function hasAssertiveMissingOrDeadlineLanguage(text: string | null | undefined): boolean {
+  return /\b(?:appears|remain(?:s)?|is|are)\s+(?:missing|outstanding|overdue)\b|\bdue\s+soon\b|\boverdue\b|\bdisclosed\s+on\s+a\s+timetable\b|\bplease\s+provide\b/i.test(
+    text ?? "",
+  );
+}
+
+function normalizeReviewOnlySolicitorItem(item: DisclosureChaseItem): DisclosureChaseItem {
+  if (item.baseStatus !== "Not safely confirmed") return item;
+
+  const label = formatDisplayLabelCasing(normalizeRawLabel(item.label));
+  const noun = lowerFirst(label);
+  return {
+    ...item,
+    label,
+    urgency: item.urgency === "high" ? "medium" : item.urgency,
+    deadlineLabel: "Confirm status before relying on this item",
+    whyItMatters: hasAssertiveMissingOrDeadlineLanguage(item.whyItMatters)
+      ? `${label} needs checking before it is relied on.`
+      : item.whyItMatters,
+    draftChaseWording: hasAssertiveMissingOrDeadlineLanguage(item.draftChaseWording)
+      ? `Please confirm the current status of ${noun} before it is relied on.`
+      : item.draftChaseWording,
+    courtLine: hasAssertiveMissingOrDeadlineLanguage(item.courtLine)
+      ? `${COURT_RECORD_PREFIX} that ${noun} needs confirmation before the defence relies on it.`
+      : item.courtLine,
+  };
+}
+
+function normalizeFinalInterviewModalityItem(item: DisclosureChaseItem): DisclosureChaseItem {
+  if (item.familyId !== "interview" || !/\binterview\s+recording\b/i.test(item.label)) {
+    return item;
+  }
+  const hay = [
+    item.evidenceAnchor ?? "",
+    item.whyItMatters ?? "",
+    item.draftChaseWording ?? "",
+    ...(item.mergedFrom ?? []),
+  ].join("\n");
+  const transcriptOnlySignal =
+    /\bmaterial\s+still\s+needed\s*:?.{0,160}\b(?:interview\s+)?transcript\b/i.test(hay) ||
+    /\bfull\s+interview\s+transcript\b/i.test(hay) ||
+    /\bnot\s+a\s+full\s+transcript\b/i.test(hay) ||
+    /\btranscript\s*:\s*not\s+in\s+this\s+section\b/i.test(hay);
+  const recordingGapSignal =
+    /\binterview\s+recording\b.{0,100}\b(?:not\s+(?:served|included|attached|provided)|missing|outstanding)\b/i.test(
+      hay,
+    ) ||
+    /\b(?:not\s+(?:served|included|attached|provided)|missing|outstanding)\b.{0,100}\binterview\s+recording\b/i.test(
+      hay,
+    ) ||
+    /\binterview\s+recording\s*\/\s*transcript\b/i.test(hay);
+  if (!transcriptOnlySignal || recordingGapSignal) return item;
+  return {
+    ...item,
+    label: "Interview transcript",
+    whyItMatters:
+      "Interview summary or partial record on file is not a substitute for the full transcript.",
+    draftChaseWording:
+      item.baseStatus === "Not safely confirmed"
+        ? "Please confirm the current status of the interview transcript before it is relied on."
+        : "Please provide the interview transcript, or confirm in writing why it is not available.",
+    courtLine:
+      item.baseStatus === "Not safely confirmed"
+        ? `${COURT_RECORD_PREFIX} that the interview transcript needs confirmation before the defence relies on it.`
+        : toCourtLine("Interview transcript"),
+    mergedFrom: sanitizeChaseMergedFrom([
+      "Interview transcript",
+      ...(item.mergedFrom ?? []).filter((m) => !/\binterview\s+recording\b/i.test(m)),
+    ]),
+  };
+}
+
 /**
  * Final solicitor shortlist freeze — single owner of primary chase/review items.
  * SIDE clutter out; served out; phone doubles collapsed; anchors sanitized;
@@ -2343,12 +2441,12 @@ export function assembleSolicitorShortlist(items: DisclosureChaseItem[]): {
         sanitizeSolicitorEvidenceAnchor(item.evidenceAnchor),
       );
       const baseStatus = clampChaseOperationalStatus({ ...item, evidenceAnchor });
-      return {
+      return normalizeReviewOnlySolicitorItem(normalizeFinalInterviewModalityItem({
         ...item,
         evidenceAnchor,
         baseStatus,
         mergedFrom: sanitizeChaseMergedFrom(item.mergedFrom),
-      };
+      }));
     })
     .filter((item) => item.baseStatus !== "Received")
     .filter((item) => !isGenericSolicitorClutterLabel(item.label));
