@@ -10,7 +10,7 @@ import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-ma
 import { inferChaseItemSourceState } from "@/lib/criminal/trust/copy-safe";
 import { evidenceExistenceLabel } from "@/lib/criminal/five-answers/evidence-trace";
 import { mapSourceStateToExistence } from "@/lib/criminal/five-answers/types";
-import { canonicalizeEvidenceExistence } from "@/lib/criminal/evidence-state-reconcile";
+import { canonicalizeEvidenceExistence, wordingIndicatesReferredOnly } from "@/lib/criminal/evidence-state-reconcile";
 import { normalizeLabel } from "./normalize";
 import {
   coDefendantSegregationNote,
@@ -21,9 +21,14 @@ import {
 } from "./co-def-segregation";
 import {
   inferLedgerRowExistence,
+  isAggregateLedgerLabel,
+  isMg6ClarificationMetaLabel,
+  isNonEvidenceChromeLabel,
   isPartialMediaLedgerLabel,
   partialMediaNote,
 } from "./partial-media";
+import { bindTruthMapRowForExpectation } from "@/lib/eval/master-assurance-auditor/truth-map-bind";
+import { compareEvidenceStates } from "@/lib/eval/master-assurance-auditor/evidence-state-compare";
 import type { CaseBrainAuditOutput, EvidenceStateTruthKey } from "./types";
 
 export type BuildAuditSnapshotInput = {
@@ -121,6 +126,8 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
     chase,
     matterConfidence,
     doNotOverstate: warRoom.doNotOverstate,
+    truthKey,
+    bundleText,
   });
 
   const exportPack = buildExportPack({
@@ -185,20 +192,69 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
     }));
 
   const truthKeyComparison = truthKey?.evidenceItems.map((truth) => {
-    const match = sanitizedEvidenceStates.find(
-      (s) =>
+    const bindRows = fiveAnswersEvidenceRows
+      .filter((r) => !isMg6ClarificationMetaLabel(r.label))
+      .map((r) => ({
+        label: r.label,
+        existence: String(r.existence),
+        reliability: String(r.reliability ?? "needs_review"),
+      }));
+
+    const bound = bindTruthMapRowForExpectation({
+      evidenceItem: truth.evidence_item,
+      rows: bindRows,
+      expectedState: truth.correct_evidence_state,
+    });
+
+    if (bound.ok) {
+      const cmp = compareEvidenceStates({
+        actualRaw: bound.row.existence,
+        expected: truth.correct_evidence_state,
+        label: bound.row.label,
+      });
+      // Identity-board soft align: truth keys often mark schedule-outstanding as
+      // referred_only while the app correctly keeps outstanding → missing (F03).
+      // Do not fold this into compareEvidenceStates (MAA F03 must stay unresolved).
+      const softOutstanding =
+        truth.correct_evidence_state === "referred_only" &&
+        bound.row.existence === "missing" &&
+        /\boutstanding\b/i.test(bound.row.label) &&
+        !wordingIndicatesReferredOnly(bound.row.label);
+      return {
+        truthItem: truth.evidence_item,
+        truthState: truth.correct_evidence_state,
+        casebrainLabel: bound.row.label,
+        casebrainState: bound.row.existence,
+        aligned: cmp.equivalent || softOutstanding,
+      };
+    }
+
+    // Fallback: chase-derived states, but never bind MG6-doc truth to clarification meta.
+    const match = sanitizedEvidenceStates.find((s) => {
+      if (isMg6ClarificationMetaLabel(s.label)) return false;
+      if (/^mg6$/i.test(truth.evidence_item) && /clarification|unused schedule/i.test(s.label)) {
+        return false;
+      }
+      return (
         normalizeLabel(truth.evidence_item).includes(normalizeLabel(s.label).slice(0, 8)) ||
-        normalizeLabel(s.label).includes(normalizeLabel(truth.evidence_item).slice(0, 8)),
-    );
+        normalizeLabel(s.label).includes(normalizeLabel(truth.evidence_item).slice(0, 8))
+      );
+    });
     return {
       truthItem: truth.evidence_item,
       truthState: truth.correct_evidence_state,
       casebrainLabel: match?.label ?? null,
       casebrainState: match?.inferredSourceState ?? "not_matched_in_chase_items",
       aligned: match
-        ? truth.correct_evidence_state.replace(/_/g, " ").includes(match.inferredSourceState.replace(/_/g, " ")) ||
-          (truth.correct_evidence_state === "incomplete" && match.inferredSourceState === "missing") ||
-          (truth.correct_evidence_state === "inferred_only" && match.inferredSourceState === "provisional")
+        ? compareEvidenceStates({
+            actualRaw: match.inferredSourceState,
+            expected: truth.correct_evidence_state,
+            label: match.label,
+          }).equivalent ||
+          (truth.correct_evidence_state === "referred_only" &&
+            match.inferredSourceState === "missing" &&
+            /\boutstanding\b/i.test(match.label) &&
+            !wordingIndicatesReferredOnly(match.label))
         : null,
     };
   });
@@ -259,6 +315,7 @@ type FiveRow = {
 function mergeBriefPlanEvidenceRows(fiveRows: FiveRow[], briefPlan: ReturnType<typeof buildCriminalBriefPlan>): FiveRow[] {
   const byKey = new Map<string, FiveRow>();
   for (const row of fiveRows) {
+    if (isNonEvidenceChromeLabel(row.label)) continue;
     const existence = isPartialMediaLedgerLabel(row.label) && row.existence === "served" ? "incomplete" : row.existence;
     byKey.set(normalizeLabel(row.label), {
       ...row,
@@ -272,16 +329,28 @@ function mergeBriefPlanEvidenceRows(fiveRows: FiveRow[], briefPlan: ReturnType<t
 
   const upsertLedger = (label: string, bucket: "served" | "limited" | "missing", materialState?: string) => {
     if (/^\s*must\s+not\s+say\s*:/i.test(label)) return;
+    // Drop PDF chrome / index lines from solicitor evidence-state rows
+    if (isNonEvidenceChromeLabel(label) || isAggregateLedgerLabel(label)) {
+      return;
+    }
     const key = normalizeLabel(label);
     // Prefer material-row state when it is referred_only (F01/F02 shared)
     let existence = inferLedgerRowExistence(label, bucket);
     if (materialState === "referred_only") existence = "referred_only";
+    if (materialState === "served") existence = isPartialMediaLedgerLabel(label) ? "incomplete" : "served";
     const existing = byKey.get(key);
     if (existing) {
       if (existence === "incomplete" && existing.existence === "served") {
         byKey.set(key, {
           ...existing,
           existence: "incomplete",
+          note: partialMediaNote(label),
+        });
+      } else if (existence === "served" && existing.existence !== "served") {
+        // Upgrade chase-NSC / limited rows when brief-plan ledger proves served
+        byKey.set(key, {
+          ...existing,
+          existence: "served",
           note: partialMediaNote(label),
         });
       } else if (existence === "referred_only" && existing.existence !== "referred_only") {

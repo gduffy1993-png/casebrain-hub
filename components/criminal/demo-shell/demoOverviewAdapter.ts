@@ -221,12 +221,18 @@ export function buildDemoStatCounts(
     notSafelyConfirmed?: number;
   },
 ): DemoStatCounts {
+  // Prefer canonical evidence counts so Overview Missing/Incomplete match File/Papers.
+  // Attention list only fills gaps when evidence counts are empty, and always drives
+  // active-chase / open-review chips.
+  const attentionMissing = attention.filter((a) => a.status === "MISSING").length;
+  const attentionIncomplete = attention.filter(
+    (a) => a.status === "UNCLEAR" || a.status === "INCOMPLETE",
+  ).length;
+  const evidenceIncomplete =
+    (evidenceCounts.incomplete || 0) + (evidenceCounts.notSafelyConfirmed || 0);
   const missing =
-    attention.filter((a) => a.status === "MISSING").length || evidenceCounts.missing || 0;
-  const incomplete =
-    attention.filter((a) => a.status === "UNCLEAR" || a.status === "INCOMPLETE").length ||
-    evidenceCounts.incomplete ||
-    0;
+    evidenceCounts.missing > 0 ? evidenceCounts.missing : attentionMissing;
+  const incomplete = evidenceIncomplete > 0 ? evidenceIncomplete : attentionIncomplete;
   const activeChases = attention.filter((a) => a.status === "ACTIVE").length;
   return {
     missing,

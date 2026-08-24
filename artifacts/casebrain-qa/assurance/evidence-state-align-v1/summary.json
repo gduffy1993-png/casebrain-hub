@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-08-24T18:02:00.000Z",
+  "lane": "evidence-state-align-v1",
+  "baseTip": "0eba89ab3",
+  "boardBefore": { "evidenceStateMisalign": 86, "totalFindings": 93 },
+  "boardAfter": { "evidenceStateMisalign": 18, "totalFindings": 25, "brookesFindings": 0 },
+  "localContracts": "PASS",
+  "inventResiduals": "none",
+  "remainingResiduals": 18,
+  "next": "referred_only preservation on chase family labels (CCTV/BWV/custody) without outstanding wording"
+}
