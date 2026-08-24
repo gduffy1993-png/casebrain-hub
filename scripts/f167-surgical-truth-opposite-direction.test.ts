@@ -380,6 +380,36 @@ CAD / 999 extract Present.
   assert.equal(isCctvMasterEstablished(ARDEN_SNIPPET), true, "Arden: full CCTV master establishes");
   assert.equal(isCctvContinuityEstablished(ARDEN_SNIPPET), true, "Arden: continuity statement establishes");
 
+  // Invent mute shared-root: CCTV stills + unrelated forensic continuity ≠ CCTV continuity.
+  const DUNN_INVENT = `
+Conspiracy to burgle.
+Served: BWV stills, CCTV stills, CAD log extract, interview summary, custody timeline, exhibit list, MG6.
+Outstanding: full interview transcript, full CAD print, forensic continuity, 999 audio listed but not attached.
+No CCTV continuity. No CCTV master. No ID procedure.
+`.trim();
+  assert.equal(
+    isCctvContinuityEstablished(DUNN_INVENT),
+    false,
+    "Dunn invent: stills + forensic continuity must not establish CCTV continuity",
+  );
+  const dunnInventBrief = buildDisclosureChaseBrief({
+    caseId: "dunn-invent-mute",
+    caseTitle: "Ellis Dunn",
+    clientLabel: "Ellis Dunn",
+    allegation: "Conspiracy to burgle",
+    stage: "PTPH",
+    hearingStatus: "Listed",
+    hearingDateIso: null,
+    bundleHealth: "Partial",
+    positionStatus: "Provisional",
+    battleboard: null,
+    bundleText: DUNN_INVENT,
+  });
+  assert.ok(
+    !dunnInventBrief.items.some((i) => /CCTV continuity|CCTV master|ID procedure/i.test(i.label)),
+    "Dunn invent: continuity/master/ID must not appear on chase/Overview feed",
+  );
+
   // Court C4: witness "not the full CCTV or BWV sequence" must not establish master chase.
   const notFullCctvWitness =
     "I have been shown some material but not the full CCTV or BWV sequence. The timing I gave was approximate.";

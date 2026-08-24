@@ -13,6 +13,8 @@ import {
   gateMaterialLines,
   gateProseAgainstSource,
   confirmNoneLine,
+  isCctvContinuityEstablished,
+  isCctvMasterEstablished,
 } from "../lib/criminal/chase-source-gate";
 import { workflowDisclosureCaseWideLine } from "../lib/criminal/pilot-workflow";
 import {
@@ -37,6 +39,14 @@ const SRC_NEGATED = "MG5 summary. No CCTV available at the location. Officer att
 assert.equal(familySupport("cctv", SRC_NEGATED), "negated", "no CCTV available → negated");
 assert.equal(familySupport("bwv", SRC_NEGATED), "negated", "BWV not activated → negated");
 assert.equal(familySupport("medical", SRC_NEGATED), "negated", "did not seek medical → negated");
+assert.equal(
+  familySupport(
+    "cctv",
+    "CCTV stills Present. No CCTV master. No CCTV continuity record.",
+  ),
+  "mentioned",
+  "No CCTV master/continuity must not whole-family-negate when stills are served",
+);
 
 const SRC_INVENT_ADVISORY =
   "Outstanding: interview record. The case should not be strengthened by assuming missing CCTV, statements, codes, or forensic evidence.";
@@ -330,5 +340,65 @@ assert.ok(
   !/\bphone\b/i.test(gatedFraud) && !/\bbank\b/i.test(gatedFraud),
   "fraud case-wide line drops bank/phone when absent from source",
 );
+
+// ---------- invent mute: stills + unrelated forensic continuity ≠ CCTV continuity ----------
+const DUNN_LIKE = `
+Conspiracy to burgle. Co-defendant blame.
+Served: BWV stills, CCTV stills, CAD log extract, interview summary, custody timeline, exhibit list, MG6 schedule.
+Outstanding: full interview transcript, full CAD print, independent witness statement, forensic continuity, 999 audio listed but not attached.
+No CCTV continuity record. No CCTV master. No ID procedure.
+`.trim();
+assert.equal(
+  isCctvContinuityEstablished(DUNN_LIKE),
+  false,
+  "Dunn-like: CCTV stills + forensic continuity must not establish CCTV continuity",
+);
+assert.equal(
+  isCctvMasterEstablished(DUNN_LIKE),
+  false,
+  "Dunn-like: stills alone must not establish CCTV master",
+);
+assert.equal(
+  gateMaterialLines(["CCTV continuity / provenance", "CCTV master footage", "ID procedure material"], DUNN_LIKE).length,
+  0,
+  "Dunn-like: invent seeds for continuity/master/ID must drop",
+);
+assert.equal(
+  isCctvContinuityEstablished(
+    "Outstanding: full CCTV master, continuity statement, complete signed MG11.",
+  ),
+  true,
+  "opposite: continuity statement near CCTV master still establishes",
+);
+
+{
+  const brief = buildDisclosureChaseBrief({
+    caseId: "invent-mute-dunn-like",
+    caseTitle: "Ellis Dunn",
+    clientLabel: "Ellis Dunn",
+    allegation: "Conspiracy to burgle, contrary to section 1 of the Criminal Law Act 1977",
+    stage: "PTPH",
+    hearingStatus: "Listed",
+    hearingDateIso: "2026-07-07T14:15:00.000Z",
+    bundleHealth: "Partial",
+    positionStatus: "Provisional",
+    battleboard: null,
+    bundleText: DUNN_LIKE,
+  });
+  assert.ok(
+    !brief.items.some((i) => i.familyId === "cctv_continuity" || /CCTV continuity/i.test(i.label)),
+    "Dunn-like brief must not surface CCTV continuity invent",
+  );
+  assert.ok(
+    !brief.items.some((i) => i.familyId === "cctv_master" || /CCTV master|full window/i.test(i.label)),
+    "Dunn-like brief must not surface CCTV master invent",
+  );
+  assert.ok(
+    !/identification.*conditional on served CCTV|identification fairness/i.test(
+      [brief.safeCourtLine, ...brief.items.map((i) => i.courtLine)].join("\n"),
+    ),
+    "Dunn-like must not invent identification/CCTV court theory",
+  );
+}
 
 console.log("chase-source-gate tests: ALL PASS");

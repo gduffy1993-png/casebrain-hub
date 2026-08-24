@@ -47,7 +47,9 @@ const MENTION_RES: Record<ChaseGateFamily, RegExp> = {
 };
 
 const NEGATION_RES: Record<ChaseGateFamily, RegExp> = {
-  cctv: /\bno\s+cctv\b|cctv\s+(?:is|was)?\s*not\s+available|without\s+cctv|no\s+(?:cctv|camera)\s+(?:footage|coverage)|no\s+footage\s+(?:exists|available|was)|cctv\s+does\s+not\s+exist|no\s+cctv\s+(?:was\s+)?(?:recovered|obtained|seized|in\s+operation)/i,
+  // "No CCTV master/continuity" is modality-specific absence — not whole-family CCTV negation
+  // (stills may still be served; invent mute must drop master/continuity, not invent "no CCTV").
+  cctv: /\bno\s+cctv\b(?!\s+(?:master|continuity|provenance|full\s+window|stills?))|cctv\s+(?:is|was)?\s*not\s+available|without\s+cctv|no\s+(?:cctv|camera)\s+(?:footage|coverage)|no\s+footage\s+(?:exists|available|was)|cctv\s+does\s+not\s+exist|no\s+cctv\s+(?:was\s+)?(?:recovered|obtained|seized|in\s+operation)/i,
   bwv: /\bno\s+bwv\b|bwv\s+(?:is|was)?\s*not\s+(?:available|activated|worn)|no\s+body[-\s]?worn/i,
   cad_999: /no\s+999\s+call|no\s+cad\s+(?:log|record|entry)|999\s+call\s+not\s+(?:made|available)/i,
   custody_pace:
@@ -98,7 +100,11 @@ export function isCctvMasterEstablished(sourceText: string): boolean {
     // Witness/review "not the full CCTV…" is not master establishment (Court tip invent residual).
     .replace(/not\s+the\s+full\s+cctv\b[^.\n]{0,80}/gi, " ")
     .replace(/not\s+full\s+cctv\b[^.\n]{0,80}/gi, " ")
-    .replace(/shown\s+some\s+material\s+but\s+not\s+the\s+full\s+cctv\b[^.\n]{0,80}/gi, " ");
+    .replace(/shown\s+some\s+material\s+but\s+not\s+the\s+full\s+cctv\b[^.\n]{0,80}/gi, " ")
+    // Explicit negation / absence lines must not establish (Dunn invent mute).
+    .replace(/\bno\s+cctv\s+master\b[^.\n]{0,40}/gi, " ")
+    .replace(/\bno\s+(?:full\s+)?(?:cctv\s+)?(?:time\s+)?window\b[^.\n]{0,40}/gi, " ")
+    .replace(/\bno\s+master\s+footage\b[^.\n]{0,40}/gi, " ");
   // Affirmative master / full-window naming (including "full window missing" outstanding).
   // Do not treat bare "full CCTV or BWV sequence" after negation-strip leftovers as master.
   return (
@@ -110,21 +116,37 @@ export function isCctvMasterEstablished(sourceText: string): boolean {
 
 /**
  * Affirmative CCTV continuity establishment — bare "officer continuity" or thin listed CCTV/BWV
- * is not enough; require continuity tied to CCTV/footage or an explicit continuity statement.
+ * is not enough. Require continuity *tied to CCTV/footage* in the same phrase/window.
+ * Document-wide co-occurrence of "CCTV stills" + unrelated "forensic continuity" must NOT establish.
  */
 export function isCctvContinuityEstablished(sourceText: string): boolean {
   if (!sourceText?.trim()) return false;
   const hay = stripDoNotInventAdvisory(sourceText)
     .replace(THIN_LISTED_CCTV_BWV_RE, " ")
-    .replace(PRODUCT_CCTV_INVENT_LABEL_RE, " ");
-  return (
-    /\bcctv\s+continuity\b|\bcontinuity\s+statement\b|\bcontinuity\s+log\b|\bchain\s+of\s+custody\b/i.test(
+    .replace(PRODUCT_CCTV_INVENT_LABEL_RE, " ")
+    .replace(/\bno\s+cctv\s+continuity\b[^.\n]{0,60}/gi, " ")
+    .replace(/\bno\s+continuity\s+record\b[^.\n]{0,40}/gi, " ");
+
+  // Explicit CCTV-continuity naming.
+  if (
+    /\bcctv\s+continuity\b/i.test(hay) ||
+    /\bcontinuity\s+(?:of\s+)?(?:the\s+)?(?:cctv|footage|video)\b/i.test(hay) ||
+    /\b(?:cctv|footage|video)\s+continuity\s+(?:statement|log|record|note)\b/i.test(hay)
+  ) {
+    return true;
+  }
+
+  // Same-sentence / near-window only — never whole-document "CCTV" + "continuity".
+  const windowHit =
+    /\b(?:cctv|footage|master|video)\b[^.\n]{0,80}\bcontinuity\s+(?:statement|log|record|note|of\s+sources)?\b/i.test(
       hay,
     ) ||
-    (/\b(?:cctv|footage|master)\b/i.test(hay) &&
-      /\bcontinuity\b/i.test(hay) &&
-      !/\bofficer\s+continuity\b/i.test(hay))
-  );
+    /\bcontinuity\s+(?:statement|log|record|note)\b[^.\n]{0,80}\b(?:cctv|footage|master|video)\b/i.test(
+      hay,
+    );
+
+  if (!windowHit) return false;
+  return true;
 }
 
 /** Confirmation-only CCTV continuity language must not become an asserted outstanding chase. */
@@ -163,6 +185,29 @@ export function lineClaimsCctvMasterOrFullWindow(line: string): boolean {
 export function lineClaimsCctvContinuity(line: string): boolean {
   return /CCTV Continuity|CCTV continuity|cctv[^.\n]{0,40}continuity|continuity[^.\n]{0,40}cctv/i.test(
     line,
+  );
+}
+
+/** True when a chase/material line invents ID / VIPER / parade procedure. */
+export function lineClaimsIdentificationProcedure(line: string): boolean {
+  return /\b(?:id\s+procedure|identification\s+procedure|viper|vipers|id\s+parade|video\s+identification|parade\s+identification)\b/i.test(
+    line,
+  );
+}
+
+/**
+ * Affirmative ID / VIPER / parade establishment on the papers.
+ * Robbery pack must not invent ID procedure without this.
+ */
+export function isIdentificationProcedureEstablished(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = stripDoNotInventAdvisory(sourceText)
+    .replace(/\bno\s+(?:id|identification)\s+procedure\b[^.\n]{0,40}/gi, " ")
+    .replace(/\bno\s+(?:viper|vipers|id\s+parade|video\s+identification)\b[^.\n]{0,40}/gi, " ");
+  return (
+    /\b(?:id\s+procedure|identification\s+procedure|viper|vipers|id\s+parade|video\s+identification|parade\s+identification)\b/i.test(
+      hay,
+    ) || /\bcode\s+d\b[^.\n]{0,40}\b(?:identification|parade|viper)\b/i.test(hay)
   );
 }
 
@@ -398,6 +443,10 @@ export function gateChaseLine(line: string, sourceText: string | null | undefine
     if (!isPhoneDownloadEstablished(sourceText)) {
       return { action: "drop", family: "phone" };
     }
+  } else if (lineClaimsIdentificationProcedure(line)) {
+    if (!isIdentificationProcedureEstablished(sourceText)) {
+      return { action: "drop", family: "cctv" };
+    }
   }
 
   const fams = familiesInText(line);
@@ -505,6 +554,11 @@ function filterModalitySpecificChaseLine(
     if (!isPhoneDownloadEstablished(sourceText)) return [];
   }
 
+  // Drop ID / VIPER / parade chase unless papers establish the procedure.
+  if (lineClaimsIdentificationProcedure(t)) {
+    if (!isIdentificationProcedureEstablished(sourceText)) return [];
+  }
+
   // Drop interview *recording* chase unless recording modality is established
   // (PACE interview / transcript/summary alone must not keep a recording invent line).
   if (/\binterview recording\b/i.test(t) && !/\binterview transcript\b/i.test(t)) {
@@ -563,6 +617,10 @@ export function gateMaterialLine(line: string, sourceText: string | null | undef
     }
     if (!isPhoneDownloadEstablished(sourceText)) {
       return { action: "drop", family: "phone" };
+    }
+  } else if (lineClaimsIdentificationProcedure(line)) {
+    if (!isIdentificationProcedureEstablished(sourceText)) {
+      return { action: "drop", family: "cctv" };
     }
   }
 

@@ -48,8 +48,10 @@ import {
   isCad999Established,
   isCctvContinuityEstablished,
   isCctvMasterEstablished,
+  isIdentificationProcedureEstablished,
   isInterviewRecordingEstablished,
   isInterviewTranscriptEstablished,
+  lineClaimsIdentificationProcedure,
   type ChaseGateFamily,
 } from "@/lib/criminal/chase-source-gate";
 import { buildCriminalBriefPlan, type CriminalBriefPlan } from "@/lib/criminal/brief-plan";
@@ -1103,6 +1105,15 @@ function filterSafeChaseLabels(labels: string[], profile: CriminalBriefPlan["pro
 
 function classifyFamily(text: string): ChaseFamilyId {
   const t = text.toLowerCase();
+  // Prefer explicit interview recording/transcript modality over custody/PACE lump when both
+  // appear in the same ledger/plan line (Court C1 opposite: recording outstanding must surface).
+  if (
+    /\b(interview\s+recording|interview\s+transcript|interview\s+audio|interview\s+video|recording\s*\/\s*transcript)\b/.test(
+      t,
+    )
+  ) {
+    return "interview";
+  }
   for (const fam of CHASE_FAMILIES) {
     if (fam.match(t)) return fam.id;
   }
@@ -1762,6 +1773,15 @@ function gateItemsAgainstSource(
     }
     if (item.familyId === "cctv_continuity" && isCctvContinuityConfirmationOnly(bundleText)) {
       out.push(finalizeGatedDisclosureItem(cctvContinuityConfirmationItem(item), bundleText));
+      continue;
+    }
+    // Robbery / ID pack must not invent VIPER/parade without papers (Dunn invent mute).
+    if (
+      (lineClaimsIdentificationProcedure(item.label) ||
+        lineClaimsIdentificationProcedure(item.whyItMatters ?? "") ||
+        lineClaimsIdentificationProcedure(item.courtLine ?? "")) &&
+      !isIdentificationProcedureEstablished(bundleText)
+    ) {
       continue;
     }
     // BWV stills served alone must not keep a full-export invent chase (Dunn opposite Tobin/CASE-02).
