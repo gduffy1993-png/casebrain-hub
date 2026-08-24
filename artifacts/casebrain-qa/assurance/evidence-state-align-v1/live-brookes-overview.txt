@@ -47,7 +47,7 @@ Source status needs confirming before this item is relied on.
 
 Completeness
 
-Phone extraction/download status / source extraction
+Phone extraction/download status
 
 UNCLEAR
 
@@ -55,7 +55,7 @@ Original download / source export is outstanding on the disclosure papers.
 
 Completeness
 
-full phone download / source export
+digital disclosure schedule item
 
 UNCLEAR
 

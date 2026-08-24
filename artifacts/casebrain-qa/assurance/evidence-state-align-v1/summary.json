@@ -1,15 +1,16 @@
 {
-  "generatedAt": "2026-08-24T18:10:00.000Z",
+  "generatedAt": "2026-08-24T18:45:00.000Z",
   "lane": "evidence-state-align-v1",
-  "fixSha": "39c318c4c",
-  "boardSha": "4b72e98ab",
-  "preview": "https://casebrain-nabot0fl5-gduffy1993-pngs-projects.vercel.app",
-  "baseTip": "0eba89ab3",
-  "boardBefore": { "evidenceStateMisalign": 86, "totalFindings": 93 },
-  "boardAfter": { "evidenceStateMisalign": 18, "totalFindings": 25, "brookesFindings": 0 },
+  "wave": "B",
+  "fixShas": ["e40bd6e86", "46dbe1191", "62db5bf2f"],
+  "tip": "62db5bf2f",
+  "preview": "https://casebrain-7ht2iuzej-gduffy1993-pngs-projects.vercel.app",
+  "misalignBeforeWaveA": 86,
+  "misalignAfterWaveA": 18,
+  "misalignAfterWaveB": 0,
   "localContracts": "PASS",
-  "livePreview": "PASS (Overview count root); residuals Wave B",
-  "inventResiduals": "none",
-  "remainingResiduals": 18,
-  "next": "referred_only preservation on chase family labels (CCTV/BWV/custody) + phone chase attention dedupe"
+  "livePreview": "PASS — Brookes single phone attention; MG6 stays schedule wording",
+  "inventResiduals": "none (MG6→phone polish closed)",
+  "skipped": "Brookes Papers 0-served needs matter reprocess",
+  "next": "listing P0 / invent P1 lanes; optional Brookes reprocess"
 }

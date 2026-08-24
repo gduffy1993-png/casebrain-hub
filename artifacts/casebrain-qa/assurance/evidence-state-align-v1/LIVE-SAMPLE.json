@@ -1,6 +1,6 @@
 {
-  "preview": "https://casebrain-nabot0fl5-gduffy1993-pngs-projects.vercel.app",
-  "generatedAt": "2026-08-24T18:09:20.891Z",
+  "preview": "https://casebrain-7ht2iuzej-gduffy1993-pngs-projects.vercel.app",
+  "generatedAt": "2026-08-24T18:48:06.522Z",
   "results": [
     {
       "slug": "dunn",
@@ -10,8 +10,8 @@
           "file": "live-dunn-overview.txt",
           "chars": 2423,
           "chips": {
-            "missing": 1,
-            "incomplete": 4,
+            "missing": 0,
+            "incomplete": 3,
             "openReview": 4,
             "hasServed": true,
             "hasOutstanding": true,
@@ -23,7 +23,7 @@
         },
         "disclosure-chase": {
           "file": "live-dunn-disclosure-chase.txt",
-          "chars": 3948,
+          "chars": 3965,
           "chips": {
             "chaseTotal": 4,
             "hasServed": true,
@@ -48,8 +48,8 @@
         }
       },
       "cross": {
-        "overviewMissing": 1,
-        "overviewIncomplete": 4,
+        "overviewMissing": 0,
+        "overviewIncomplete": 3,
         "chaseTotal": 4,
         "note": "ok_or_unparsed"
       }
@@ -60,7 +60,7 @@
       "surfaces": {
         "overview": {
           "file": "live-brookes-overview.txt",
-          "chars": 2264,
+          "chars": 2241,
           "chips": {
             "missing": 2,
             "incomplete": 1,

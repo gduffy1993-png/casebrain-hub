@@ -6,7 +6,7 @@ Base: Wave A PASS (86→18) @ 39c318c4c
 ## Scope
 1. referred_only vs missing/NSC on chase family labels
 2. Brookes phone extract + full download attention dedupe
-3. Brookes Papers 0 served — **skipped** (needs live matter reprocess, not audit rebuild alone)
+3. Brookes Papers 0 served — **skipped** (needs live matter reprocess)
 4. Listing P0 — out of lane
 
 ## Results
@@ -14,24 +14,23 @@ Base: Wave A PASS (86→18) @ 39c318c4c
 | Metric | Wave A end | Wave B |
 |--------|------------|--------|
 | EVIDENCE_STATE_MISALIGN (selected 50) | 18 | **0** |
-| Total findings | 25 | 7 (listing+invent only) |
-| Phone attention double-list | FAIL | **PASS** (adapter test) |
+| Total findings (selected 50) | 25 | 7 (listing+invent only) |
+| Brookes phone double attention | FAIL | **PASS** (live) |
 
-## Fixes
-- `reconcileEvidenceState`: stop Outstanding chip poisoning hay; whyItMatters for referred cues only
-- `inferChaseItemSourceState` + five-answers / audit / DisclosureChase: pass whyItMatters
-- Chase why templates: drop “appears outstanding” boilerplate on CCTV/BWV/CAD/medical
-- Custody referred why → referred_only (product)
-- Overview `buildDemoAttentionItems`: collapse phone extract + full download to one attention row
-- Board soft align (audit only, not MAA F03): schedule-referred vs missing on chase families
+## Fixes / SHAs
+- `e40bd6e86` — referred_only via whyItMatters; Outstanding chip no longer poisons hay; phone attention collapse; chase why templates
+- `46dbe1191` — phone collapse across MISSING/UNCLEAR
+- `62db5bf2f` — stop MG6→phone polish rewrite (root of Brookes double); post-polish phone filter
 
-## Live
-Redeploy Preview after commit; Brookes Overview should show single phone attention row.
+## Live Preview
+https://casebrain-7ht2iuzej-gduffy1993-pngs-projects.vercel.app (`62db5bf2f`)
+
+Brookes Overview attention: Exhibit · Phone extraction/download status · digital disclosure schedule item (no second phone).
 
 ## Verdict
-**Wave B PASS** — evidence-state misalign cluster cleared on selected 50 (18→0).
+**Wave B PASS** — evidence misalign 18→0 on selected 50; phone double fixed live.
 
 ## Next
-- Invent/listing residuals (P0 hearing, P1 invent) — separate lanes
-- Optional: live Brookes reprocess for Papers served counts
-- Do not reopen invent-mute
+- Listing P0 / invent P1 — separate lanes
+- Optional Brookes Papers reprocess for served counts
+- Invent-mute stays closed
