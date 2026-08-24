@@ -73,6 +73,21 @@ const patelAffrayBundle = [
   "Interview summary is on file. Full interview recording/transcript is not served and remains outstanding.",
 ].join("\n");
 
+const ahmedBladedArticleBundle = [
+  "Defendant: Holly Ahmed",
+  "Court: Crown Court at Preston",
+  "Next hearing: 20 July 2026 at 12:30",
+  "Stage: Trial prep",
+  "Charge: Possession of a bladed article, contrary to section 139 Criminal Justice Act 1988.",
+  "MG5: search record and reasonable excuse referred. Material still needed: search record; reasonable excuse; full interview transcript.",
+  "Interview summary is on file. This is not a full transcript. Transcript: not in this section.",
+  "Custody record extract: arrival and risk assessment opened. Legal advice requested. Interview proposed. Appropriate adult / interpreter entry unclear.",
+  "MG6: complete CAD/999 log outstanding — not attached.",
+  "Medical / forensic note: short note records injury or forensic issue. Final report not included.",
+  "Exhibit list: CCTV export log short note. Continuity label unclear.",
+  "MG6C: phone subscriber data outstanding — not attached.",
+].join("\n");
+
 describe("source truth guardian", () => {
   it("blocks Taylor-style BWV/drugs bleed on a digital bundle without flattening safe output", () => {
     const brief = buildHearingWarRoomBrief({
@@ -448,5 +463,104 @@ describe("source truth guardian", () => {
     expect(visibleText).not.toMatch(/\bmedical|injury|BWV|body[-\s]?worn|999|CAD|retraction|domestic|self[-\s]?defence|causation\b/i);
     expect(visibleText).not.toMatch(/\bviolence assault\b/i);
     expect(visibleText).not.toMatch(/\bPTPH\b/i);
+  });
+
+  it("keeps Ahmed-style disclosure modalities in their own families", () => {
+    const chase = buildDisclosureChaseBrief({
+      caseId: "CB-FAMILY-MODALITY-001",
+      caseTitle: "Holly Ahmed",
+      clientLabel: "Holly Ahmed",
+      allegation: "Possession of a bladed article",
+      stage: "Trial prep",
+      hearingStatus: "Listed",
+      hearingDateIso: "2026-07-20T12:30:00",
+      bundleHealth: "Partial",
+      positionStatus: "Not recorded",
+      battleboard: null,
+      proceduralOutstanding: [
+        "CAD / 999 audio / control-room material",
+        "Full custody record / PACE material",
+        "Interview recording",
+        "Full phone download / source export",
+        "Medical / expert source report",
+        "CCTV continuity / provenance",
+      ],
+      bundleText: ahmedBladedArticleBundle,
+    });
+
+    const visibleText = [
+      chase.disclosureSummary,
+      chase.safeCourtLine,
+      ...chase.items.flatMap((item) => [
+        item.label,
+        item.baseStatus,
+        item.whyItMatters,
+        item.evidenceAnchor ?? "",
+        item.draftChaseWording,
+        item.courtLine,
+        ...(item.mergedFrom ?? []),
+      ]),
+    ].join("\n");
+
+    expect(visibleText).toMatch(/Complete CAD\/999 log/i);
+    expect(visibleText).not.toMatch(/999 audio|control-room material/i);
+
+    expect(visibleText).toMatch(/Subscriber \/ account data/i);
+    expect(visibleText).not.toMatch(/Full phone download|source export|source extraction|phone extraction/i);
+
+    expect(visibleText).toMatch(/Interview transcript/i);
+    expect(visibleText).not.toMatch(/\bInterview recording\b/i);
+
+    expect(visibleText).toMatch(/Final medical\/forensic report/i);
+    expect(visibleText).not.toMatch(/Medical \/ expert source report/i);
+    expect(visibleText).not.toMatch(/Further papers on the file/i);
+    expect(visibleText).not.toMatch(/outstanding source material remains/i);
+
+    const custody = chase.items.find((item) => /custody|PACE/i.test(item.label));
+    expect(custody?.baseStatus).toBe("Not safely confirmed");
+    expect([custody?.draftChaseWording, custody?.courtLine, custody?.whyItMatters].join("\n")).not.toMatch(
+      /full custody record.*(?:outstanding|provide the full custody record|remains missing|remains outstanding)/i,
+    );
+
+    const cctvContinuity = chase.items.find((item) => item.familyId === "cctv_continuity");
+    expect(cctvContinuity?.baseStatus).toBe("Not safely confirmed");
+    expect([cctvContinuity?.draftChaseWording, cctvContinuity?.courtLine, cctvContinuity?.whyItMatters].join("\n")).not.toMatch(
+      /appears outstanding|remains outstanding/i,
+    );
+  });
+
+  it("keeps opposite-direction modalities when the PDF actually establishes them", () => {
+    const chase = buildDisclosureChaseBrief({
+      caseId: "CB-FAMILY-MODALITY-002",
+      caseTitle: "Opposite modality pack",
+      clientLabel: "Opposite modality pack",
+      allegation: "Harassment",
+      stage: "PTPH",
+      hearingStatus: "Listed",
+      hearingDateIso: "2026-07-20T12:30:00",
+      bundleHealth: "Partial",
+      positionStatus: "Not recorded",
+      battleboard: null,
+      proceduralOutstanding: [
+        "CAD / 999 audio / control-room material",
+        "Full custody record / PACE material",
+        "Interview recording",
+        "Full phone download / source export",
+      ],
+      bundleText: [
+        "MG6: 999 audio outstanding — not attached.",
+        "MG6C: full CAD log print outstanding — not attached.",
+        "MG6C: full custody record outstanding — not attached.",
+        "MG6C: interview recording outstanding — not attached.",
+        "MG6C: full phone download / source export outstanding — not attached.",
+      ].join("\n"),
+    });
+
+    const visibleText = JSON.stringify(chase);
+    expect(visibleText).toMatch(/999 audio/i);
+    expect(visibleText).toMatch(/CAD log full print|full CAD log print/i);
+    expect(visibleText).toMatch(/Full custody record \/ PACE material/i);
+    expect(visibleText).toMatch(/\bInterview recording\b/i);
+    expect(visibleText).toMatch(/Full phone download \/ source extraction/i);
   });
 });

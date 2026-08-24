@@ -360,6 +360,14 @@ export function reconcileCad999ModalityItems(
       // Item-local + hay: schedule "Present" language OR a served CAD/999 Extract section body.
       const blob = `${itemBlob}\n${hay}`;
 
+      const completeCad999LogOutstanding =
+        /\b(?:complete\s+)?cad\s*\/\s*999\s+log\b[\s\S]{0,56}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
+          blob,
+        ) ||
+        /\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)\b[\s\S]{0,56}\b(?:complete\s+)?cad\s*\/\s*999\s+log\b/i.test(
+          blob,
+        );
+
       const extractPresent =
         /\b\d*cad(?:\s*\/\s*999)?(?:\s+incident\s+log)?\s+extract\b[\s\S]{0,40}\b(?:present|served|included)/i.test(
           blob,
@@ -385,6 +393,24 @@ export function reconcileCad999ModalityItems(
         /\bcad\s+log\s+full\s+print\b[\s\S]{0,40}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
           blob,
         );
+
+      if (completeCad999LogOutstanding && !audioOutstanding && !fullPrintOutstanding) {
+        const label = "Complete CAD/999 log";
+        return {
+          ...item,
+          label,
+          familyId: "cad_999" as ChaseFamilyId,
+          whyItMatters:
+            "The papers identify a CAD/999 log gap — keep the request limited to the log the source identifies.",
+          draftChaseWording:
+            "Please provide the complete CAD/999 log, or confirm in writing why it is not available.",
+          courtLine: toCourtLine(label),
+          mergedFrom: [
+            label,
+            ...((item.mergedFrom ?? []).filter((m) => /cad\s*\/\s*999\s+log/i.test(m))),
+          ].slice(0, 4),
+        };
+      }
 
       if (!extractPresent) return item;
 
@@ -531,13 +557,20 @@ export function reconcileInterviewModalityItems(
             courtLine: toCourtLine("Interview transcript"),
             whyItMatters:
               "Interview summary or partial record on file is not a substitute for the full transcript.",
+            mergedFrom: [
+              "Interview transcript",
+              ...((item.mergedFrom ?? []).filter((m) =>
+                /\btranscript\b/i.test(m) && !/\brecording\b/i.test(m),
+              )),
+            ].slice(0, 4),
           };
         }
-        if (
-          /\b(?:pace\s+interview|custody\s+record|detention\s+log|safeguards?\s+checklist)\b/i.test(
-            sourceHay,
-          )
-        ) {
+      if (
+        /\b(?:pace\s+interview|custody\s+record|detention\s+log|safeguards?\s+checklist)\b/i.test(
+          sourceHay,
+        )
+      ) {
+          if (!isFullCustodyRecordOutstanding(sourceHay)) return null;
           return {
             ...item,
             label: "Full custody record / PACE material",
@@ -566,6 +599,12 @@ export function reconcileInterviewModalityItems(
             courtLine: toCourtLine("Interview transcript"),
             whyItMatters:
               "Interview summary or partial record on file is not a substitute for the full transcript.",
+            mergedFrom: [
+              "Interview transcript",
+              ...((item.mergedFrom ?? []).filter((m) =>
+                /\btranscript\b/i.test(m) && !/\brecording\b/i.test(m),
+              )),
+            ].slice(0, 4),
           };
         }
         return null;
@@ -842,6 +881,64 @@ export function reconcileSubscriberModalityItems(
   }
 
   return filtered;
+}
+
+export function reconcileMedicalReportModalityItems(
+  items: DisclosureChaseItem[],
+  bundleText?: string | null,
+): DisclosureChaseItem[] {
+  const hay = `${bundleText ?? ""}`;
+  const finalReportOutstanding =
+    /\b(?:medical\s*\/\s*forensic\s+note|medical\s+note|forensic\s+note|injury\s+note)\b[\s\S]{0,120}\bfinal\s+report\s+(?:not\s+included|outstanding|not\s+attached|not\s+served)/i.test(
+      hay,
+    ) ||
+    /\bfinal\s+(?:medical\s*\/\s*forensic\s+)?report\b[\s\S]{0,80}\b(?:not\s+included|outstanding|not\s+attached|not\s+served)/i.test(
+      hay,
+    );
+
+  const filtered = items.map((item) => {
+    if (item.familyId !== "medical_expert") return item;
+    if (!finalReportOutstanding) return item;
+    return finalMedicalForensicReportItem(item);
+  });
+
+  if (!finalReportOutstanding) return filtered;
+  const hasFinal = filtered.some((item) => /final\s+medical\s*\/\s*forensic\s+report/i.test(item.label));
+  if (hasFinal) return filtered;
+
+  filtered.push({
+    id: "chase-final-medical-forensic-report",
+    familyId: "medical_expert",
+    label: "Final medical/forensic report",
+    whyItMatters:
+      "A short note is not a final report — keep the requested material limited to the report the source actually identifies.",
+    source: "Crown / disclosure officer (confirm on file)",
+    baseStatus: "Outstanding",
+    urgency: "medium",
+    deadlineLabel: "Before next hearing",
+    evidenceAnchor: "Medical / forensic note: final report not included",
+    linkedRoute: null,
+    draftChaseWording:
+      "Please provide the final medical/forensic report, or confirm in writing why it is not available.",
+    courtLine: toCourtLine("Final medical/forensic report"),
+    mergedFrom: ["Final medical/forensic report not included"],
+  });
+  return filtered;
+}
+
+function dropGenericFurtherPapersWhenSpecificItemsExist(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
+  const hasSpecific = items.some(
+    (item) =>
+      !/^Further papers on the file$/i.test(item.label) &&
+      !/^Outstanding source material/i.test(item.label) &&
+      !/^Further papers issue/i.test(item.label),
+  );
+  if (!hasSpecific) return items;
+  return items.filter(
+    (item) =>
+      !/^Further papers on the file$/i.test(item.label) &&
+      !/^Further papers issue/i.test(item.label),
+  );
 }
 
 function mapMaterialStatusToSharedState(status: string): EvidenceStateRow["state"] {
@@ -1517,6 +1614,12 @@ function isCctvContinuityConfirmationOnly(bundleText: string): boolean {
   if (!/\bcctv\b/i.test(hay) || !/\bcontinuity\b/i.test(hay)) return false;
   const confirmationOnly =
     /\bcontinuity\s+of\s+cctv\s+sources\s*:\s*to\s+be\s+checked\b/i.test(hay) ||
+    /\bcctv\b[^.\n]{0,120}\.[^.\n]{0,80}\bcontinuity\s+label\s+(?:unclear|unknown|to\s+be\s+checked|needs?\s+checking|needs?\s+confirm(?:ation|ing))/i.test(
+      hay,
+    ) ||
+    /\bcontinuity\s+label\s+(?:unclear|unknown|to\s+be\s+checked|needs?\s+checking|needs?\s+confirm(?:ation|ing))\b[^.\n]{0,120}\bcctv\b/i.test(
+      hay,
+    ) ||
     /\bcctv\s+continuity\b[^.\n]{0,80}\b(?:to\s+be\s+checked|needs?\s+checking|needs?\s+confirm(?:ation|ing)|not\s+safely\s+confirmed|unclear|unknown)\b/i.test(
       hay,
     ) ||
@@ -1531,6 +1634,70 @@ function isCctvContinuityConfirmationOnly(bundleText: string): boolean {
       hay,
     );
   return confirmationOnly && !assertedMissing;
+}
+
+function isFullCustodyRecordOutstanding(bundleText: string): boolean {
+  const hay = `${bundleText ?? ""}`;
+  return (
+    /\bfull\s+custody\s+record\b[\s\S]{0,80}\b(?:outstanding|missing|not\s+served|not\s+attached|not\s+provided|not\s+included)\b/i.test(
+      hay,
+    ) ||
+    /\b(?:outstanding|missing|not\s+served|not\s+attached|not\s+provided|not\s+included)\b[\s\S]{0,80}\bfull\s+custody\s+record\b/i.test(
+      hay,
+    ) ||
+    /\bcustody\s+record\b[\s\S]{0,80}\b(?:extract\s+only|extract)\b[\s\S]{0,80}\bfull\s+record\s+outstanding\b/i.test(
+      hay,
+    )
+  );
+}
+
+function isCustodyExtractReviewOnly(bundleText: string): boolean {
+  const hay = `${bundleText ?? ""}`;
+  return (
+    /\bcustody\s+record\s+extract\b/i.test(hay) &&
+    !isFullCustodyRecordOutstanding(hay)
+  );
+}
+
+function custodyPaceReviewOnlyItem(item: DisclosureChaseItem): DisclosureChaseItem {
+  const label = "Custody/PACE completeness review";
+  return {
+    ...item,
+    label,
+    baseStatus: "Not safely confirmed",
+    urgency: "medium",
+    deadlineLabel: "Confirm custody/PACE completeness before relying on safeguards",
+    whyItMatters:
+      "A custody record extract is on file; confirm whether the custody/PACE record is complete before assessing safeguards or interview fairness.",
+    draftChaseWording:
+      "Please confirm whether the custody/PACE record is complete, including any detention log, risk assessment, legal-advice, appropriate-adult or interpreter entries relied on.",
+    courtLine:
+      `${COURT_RECORD_PREFIX} that custody/PACE completeness needs confirmation before the defence relies on safeguards or interview fairness.`,
+    mergedFrom: [
+      "Custody record extract on file — completeness requires review",
+      ...((item.mergedFrom ?? []).filter((line) =>
+        /\bcustody\s+record\s+extract\b/i.test(line) &&
+        !/\bfull\s+custody\s+record\b/i.test(line),
+      )),
+    ].slice(0, 4),
+  };
+}
+
+function finalMedicalForensicReportItem(item: DisclosureChaseItem): DisclosureChaseItem {
+  const label = "Final medical/forensic report";
+  return {
+    ...item,
+    label,
+    whyItMatters:
+      "A short note is not a final report — keep the requested material limited to the report the source actually identifies.",
+    draftChaseWording:
+      "Please provide the final medical/forensic report, or confirm in writing why it is not available.",
+    courtLine: toCourtLine(label),
+    mergedFrom: [
+      "Final medical/forensic report not included",
+      ...((item.mergedFrom ?? []).filter((line) => /final\s+report\s+not\s+included|medical\s*\/\s*forensic\s+note/i.test(line))),
+    ].slice(0, 4),
+  };
 }
 
 function cctvContinuityConfirmationItem(item: DisclosureChaseItem): DisclosureChaseItem {
@@ -1577,6 +1744,17 @@ function gateItemsAgainstSource(
     }
     // Bare page-999 / schedule noise must not keep CAD lump invent (Court C0.5).
     if (item.familyId === "cad_999" && !isCad999Established(bundleText)) {
+      continue;
+    }
+    if (item.familyId === "custody_pace" && isCustodyExtractReviewOnly(bundleText)) {
+      out.push(finalizeGatedDisclosureItem(custodyPaceReviewOnlyItem(item), bundleText));
+      continue;
+    }
+    if (
+      item.familyId === "medical_expert" &&
+      /\bfinal\s+report\s+not\s+included\b|\bshort\s+note\b[\s\S]{0,80}\bfinal\s+report\b/i.test(bundleText)
+    ) {
+      out.push(finalizeGatedDisclosureItem(finalMedicalForensicReportItem(item), bundleText));
       continue;
     }
 
@@ -2169,6 +2347,17 @@ function canonicalLedgerMaterial(
         "Please provide the full BWV export, audit trail, redaction log and continuity/provenance material, or confirm in writing why it is not available.",
     };
   }
+  if (familyId === "cad_999") {
+    if (/\b(?:complete\s+)?cad\s*\/\s*999\s+log\b/i.test(displayLine)) {
+      return {
+        label: "Complete CAD/999 log",
+        whyItMatters:
+          "The papers identify a CAD/999 log gap — keep the request limited to the log the source identifies.",
+        draftChaseWording:
+          "Please provide the complete CAD/999 log, or confirm in writing why it is not available.",
+      };
+    }
+  }
   if (familyId === "custody_pace" || (familyId === "interview" && /\bcustody|pace|detention|safeguard/i.test(displayLine))) {
     // Only treat recording/transcript as established from this line when it is not merely a
     // custody lump that also names interview recording as a template invent.
@@ -2203,6 +2392,15 @@ function canonicalLedgerMaterial(
         "Please provide the full custody record, detention log, risk assessment and safeguards checklist, or confirm why any item is unavailable.",
     };
   }
+  if (familyId === "medical_expert" && /\bfinal\s+(?:medical\s*\/\s*forensic\s+)?report\b|\bfinal\s+report\s+not\s+included\b/i.test(displayLine)) {
+    return {
+      label: "Final medical/forensic report",
+      whyItMatters:
+        "A short note is not a final report — keep the requested material limited to the report the source actually identifies.",
+      draftChaseWording:
+        "Please provide the final medical/forensic report, or confirm in writing why it is not available.",
+    };
+  }
   // Papers/Chase shared root: prefer clean phone-download identity over multi-clause schedule prose
   // that also mentions subscriber (Brookes) — subscriber stays a distinct inject card.
   if (
@@ -2229,6 +2427,20 @@ function canonicalLedgerMaterial(
     };
   }
   return { label: formatDisplayLabelCasing(displayLine) };
+}
+
+function sourceBoundCaseWideLine(raw: string, bundleText: string | null | undefined): string {
+  if (!bundleText?.trim()) return raw;
+  if (
+    /\bfull\s+custody\s+and\s+interview\s+records\s+remain\s+outstanding\b/i.test(raw) &&
+    !isFullCustodyRecordOutstanding(bundleText)
+  ) {
+    if (isInterviewTranscriptEstablished(bundleText) && !isInterviewRecordingEstablished(bundleText)) {
+      return `${COURT_RECORD_PREFIX} that the interview transcript remains outstanding and custody/PACE completeness needs confirmation before the defence relies on safeguards or interview fairness.`;
+    }
+    return `${COURT_RECORD_PREFIX} that custody/PACE and interview material need source-status confirmation before the hearing position is fixed.`;
+  }
+  return raw;
 }
 
 function mergeContradictionActionItems(
@@ -2289,7 +2501,6 @@ function modalityEstablishmentHay(input: BuildDisclosureChaseBriefInput): string
     input.allegation ?? "",
     bb?.solicitor_safe_summary ?? "",
     ...(input.snapshotMissing ?? []).map((m) => m.label),
-    ...(input.proceduralOutstanding ?? []),
     ...(input.canonicalEvidenceRows ?? []).map((r) => `${r.label} ${r.state}`),
     ...(input.canonicalFindings ?? []).map((f) => `${f.title} ${f.summary ?? ""}`),
     ...(bb?.chase_now ?? []),
@@ -2408,6 +2619,9 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = reconcileSubscriberModalityItems(items, modalityHay);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
+  items = reconcileMedicalReportModalityItems(items, input.bundleText);
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
   const guardCtx = { ledger, bundleText: input.bundleText ?? null };
   items = items
     .filter(
@@ -2440,7 +2654,10 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   // Re-assert interview recording≠PACE/custody after collapse/finalize (Court C1).
   items = reconcileInterviewModalityItems(items, input.bundleText);
   items = reconcileCad999ModalityItems(items, input.bundleText);
+  items = reconcileMedicalReportModalityItems(items, input.bundleText);
   items = finalizeDisclosureChasePresentation(items);
+  items = reconcileMedicalReportModalityItems(items, input.bundleText);
+  items = dropGenericFurtherPapersWhenSpecificItemsExist(items);
   items = items.map((item) => ({
     ...item,
     evidenceAnchor: familySafeEvidenceAnchor(item.familyId, item.evidenceAnchor),
@@ -2528,14 +2745,14 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
       let raw = profileLine ?? briefPlan.chaseAngle ?? resolveSafeCourtLine(input.battleboard);
       if (!isCriminalPilotMode()) {
         return input.bundleText?.trim()
-          ? gateProseAgainstSource(raw, input.bundleText)
+          ? gateProseAgainstSource(sourceBoundCaseWideLine(raw, input.bundleText), input.bundleText)
           : raw;
       }
       raw = pilotCleanupVisibleText(
         sanitizePilotVisibleLine(raw, workflowContext) ?? raw,
       );
       return input.bundleText?.trim()
-        ? gateProseAgainstSource(raw, input.bundleText)
+        ? gateProseAgainstSource(sourceBoundCaseWideLine(raw, input.bundleText), input.bundleText)
         : raw;
     })(),
     items,
