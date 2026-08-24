@@ -7,6 +7,7 @@ import {
   isChaseMergedChromeLine,
   isGenericSolicitorClutterLabel,
   sanitizeChaseMergedFrom,
+  sanitizeSolicitorEvidenceAnchor,
 } from "../lib/criminal/solicitor-signal-mute";
 
 assert.equal(isGenericSolicitorClutterLabel("Exhibit mapping / provenance"), true);
@@ -30,11 +31,17 @@ assert.deepEqual(
   ["Interview transcript"],
 );
 
-const lastResort = demoteSolicitorClutter(
+const clutterOnly = demoteSolicitorClutter(
   [{ label: "MG6 / unused schedule clarification" }, { label: "Exhibit mapping / provenance" }],
   (i) => i.label,
 );
-assert.equal(lastResort.length, 1);
+assert.equal(clutterOnly.length, 0, "no fake last-resort clutter on thin papers");
+
+assert.equal(
+  demoteSolicitorClutter([{ label: "Exhibit mapping / provenance" }], (i) => i.label).length,
+  0,
+  "single clutter row also muted",
+);
 
 const deduped = dedupeSolicitorAttentionByTitle([
   { title: "digital disclosure schedule item" },
@@ -59,6 +66,15 @@ assert.deepEqual(cleaned, [
   "Complainant MG11 / source material",
   "full custody and interview records",
 ]);
+
+assert.equal(
+  sanitizeSolicitorEvidenceAnchor("Call data is partial; one co-defendant blames another."),
+  null,
+);
+assert.equal(
+  sanitizeSolicitorEvidenceAnchor("Full custody record referred on MG6 — export not served."),
+  "Full custody record referred on MG6 — export not served.",
+);
 
 assert.equal(
   draftMisalignedToLabel(

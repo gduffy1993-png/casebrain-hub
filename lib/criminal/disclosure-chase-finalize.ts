@@ -7,6 +7,7 @@ import type {
 import {
   draftMisalignedToLabel,
   sanitizeChaseMergedFrom,
+  sanitizeSolicitorEvidenceAnchor,
 } from "@/lib/criminal/solicitor-signal-mute";
 
 const COURT_RECORD_PREFIX = "The defence asks the court to record";
@@ -538,6 +539,7 @@ function alignDraftAndMerged(item: DisclosureChaseItem): DisclosureChaseItem {
     ...item,
     mergedFrom: mergedFrom.length ? mergedFrom : [label],
     draftChaseWording,
+    evidenceAnchor: sanitizeSolicitorEvidenceAnchor(item.evidenceAnchor),
   };
 }
 

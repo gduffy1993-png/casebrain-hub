@@ -65,6 +65,7 @@ import {
 import {
   demoteSolicitorClutter,
   isGenericSolicitorClutterLabel,
+  sanitizeSolicitorEvidenceAnchor,
 } from "@/lib/criminal/solicitor-signal-mute";
 import { composeStructuredSolicitorOutput } from "@/lib/criminal/structured-solicitor-output";
 import {
@@ -1164,8 +1165,9 @@ function familySafeEvidenceAnchor(
   familyId: ChaseFamilyId,
   anchor: string | null | undefined,
 ): string | null {
-  if (!anchor?.trim()) return null;
-  return disclosureChaseAnchorMatchesFamily(familyId, anchor) ? anchor : null;
+  const cleaned = sanitizeSolicitorEvidenceAnchor(anchor);
+  if (!cleaned) return null;
+  return disclosureChaseAnchorMatchesFamily(familyId, cleaned) ? cleaned : null;
 }
 
 function getFamilyDef(id: ChaseFamilyId): FamilyDef {

@@ -68,16 +68,30 @@ export function draftMisalignedToLabel(label: string, draft: string): boolean {
 
 /**
  * Drop generic exhibit/MG6/schedule clutter when substantive chase rows exist.
- * If everything is clutter, keep one last-resort row so the board is not empty.
+ * If everything left is clutter, return empty — a fake last-resort exhibit/MG6
+ * row confuses solicitors more than a quiet board on thin papers.
  */
 export function demoteSolicitorClutter<T>(
   items: T[],
   getLabel: (item: T) => string,
 ): T[] {
-  if (items.length <= 1) return items;
-  const substantive = items.filter((i) => !isGenericSolicitorClutterLabel(getLabel(i)));
-  if (substantive.length > 0) return substantive;
-  return items.slice(0, 1);
+  return items.filter((i) => !isGenericSolicitorClutterLabel(getLabel(i)));
+}
+
+/**
+ * Drop PDF/index chrome and strategy narrative that leaked into Evidence Anchor
+ * (e.g. "Call data is partial; one co-defendant blames another." on a custody card).
+ */
+export function sanitizeSolicitorEvidenceAnchor(
+  anchor: string | null | undefined,
+): string | null {
+  const t = (anchor || "").replace(/\s+/g, " ").trim();
+  if (!t) return null;
+  if (isChaseMergedChromeLine(t)) return null;
+  if (/co-defendant blames|one (?:co-)?defendant blames/i.test(t)) return null;
+  if (/^further review of the papers\b/i.test(t)) return null;
+  if (/^the prosecution case is that\b/i.test(t)) return null;
+  return t;
 }
 
 /** Collapse duplicate attention titles (e.g. two digital schedule rows). */

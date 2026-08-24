@@ -67,6 +67,7 @@ import { solicitorLinesNearlyEqual } from "@/lib/criminal/solicitor-display-dedu
 import {
   draftMisalignedToLabel,
   sanitizeChaseMergedFrom,
+  sanitizeSolicitorEvidenceAnchor,
 } from "@/lib/criminal/solicitor-signal-mute";
 import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import {
@@ -408,7 +409,10 @@ function DetailPanel({
   const displayWhy = displayChaseWhy(item.whyItMatters, item);
   const displaySource = displayChaseItemText(item.source, item);
   const displayRoute = displayChaseItemText(item.linkedRoute, item);
-  const displayAnchor = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.evidenceAnchor, item));
+  const safeAnchor = sanitizeSolicitorEvidenceAnchor(item.evidenceAnchor);
+  const displayAnchor = humanizeRemainingSnakeCaseTokens(
+    displayChaseItemText(safeAnchor, item),
+  );
   // Align draft to the solicitor-visible label (stop MG6 draft under MG11 peel).
   const draftSource = draftMisalignedToLabel(displayLabel, item.draftChaseWording)
     ? `Please provide ${displayLabel} or confirm in writing why it is not available.`
@@ -460,10 +464,10 @@ function DetailPanel({
             </ul>
           </div>
         )}
-        {item.evidenceAnchor && (
+        {safeAnchor && (
           <div>
             <p className={workflowSectionTitle}>Evidence anchor</p>
-            <p className="mt-1 text-xs leading-relaxed">{displayAnchor || item.evidenceAnchor}</p>
+            <p className="mt-1 text-xs leading-relaxed">{displayAnchor || safeAnchor}</p>
           </div>
         )}
         <div>

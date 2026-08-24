@@ -206,7 +206,7 @@ const clutterOnly = buildDemoAttentionItems([
     familyId: "exhibit_provenance",
   }),
 ]);
-assert.equal(clutterOnly.length, 1, "last-resort clutter kept when nothing substantive");
+assert.equal(clutterOnly.length, 0, "thin papers: no fake last-resort exhibit/MG6 row");
 
 const brookesChipAlign = buildDemoAttentionItems([
   sample({
