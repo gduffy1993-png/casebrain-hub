@@ -1,11 +1,15 @@
 {
-  "generatedAt": "2026-08-24T18:02:00.000Z",
+  "generatedAt": "2026-08-24T18:10:00.000Z",
   "lane": "evidence-state-align-v1",
+  "fixSha": "39c318c4c",
+  "boardSha": "4b72e98ab",
+  "preview": "https://casebrain-nabot0fl5-gduffy1993-pngs-projects.vercel.app",
   "baseTip": "0eba89ab3",
   "boardBefore": { "evidenceStateMisalign": 86, "totalFindings": 93 },
   "boardAfter": { "evidenceStateMisalign": 18, "totalFindings": 25, "brookesFindings": 0 },
   "localContracts": "PASS",
+  "livePreview": "PASS (Overview count root); residuals Wave B",
   "inventResiduals": "none",
   "remainingResiduals": 18,
-  "next": "referred_only preservation on chase family labels (CCTV/BWV/custody) without outstanding wording"
+  "next": "referred_only preservation on chase family labels (CCTV/BWV/custody) + phone chase attention dedupe"
 }

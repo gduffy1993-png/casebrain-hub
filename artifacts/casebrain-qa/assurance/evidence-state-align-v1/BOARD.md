@@ -47,10 +47,11 @@ Invent residuals: **none** (do not reopen invent-mute).
 
 - Local contracts: **PASS** (stage50, integrity, overview, demo-adapter, expand-truth-map, cps-chase-review)
 - Evidence-state misalign cluster: **PASS** (major reduction; 18 residuals ranked)
-- Live Preview: see WAVE-LIVE.md after deploy
+- Live Preview: **PASS** for Wave A count root — https://casebrain-nabot0fl5-gduffy1993-pngs-projects.vercel.app (`39c318c4c`) — see WAVE-LIVE.md
 
 ## Next recommendation
 
 1. Wave B: referred_only preservation on chase family labels (CCTV continuity / BWV / custody) when papers say referred/listed without “outstanding”.
-2. Listing identity P0 (hearing date clear but absent) — separate lane.
-3. Do not reopen invent-mute unless invent regression appears.
+2. Chase attention phone extract+full download still double-listed (evidence alias collapse ≠ chase list).
+3. Listing identity P0 (hearing date clear but absent) — separate lane.
+4. Do not reopen invent-mute unless invent regression appears.
