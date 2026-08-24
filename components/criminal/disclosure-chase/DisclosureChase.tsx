@@ -19,6 +19,7 @@ import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import {
   buildDisclosureChaseBrief,
   computeCounters,
+  displayChaseOperationalStatus,
   effectiveStatus,
   matchesFilter,
   type ChaseFilterBucket,
@@ -256,7 +257,11 @@ function ChaseItemCard({
   const itemSourceState = inferChaseItemSourceState({
     label: item.label,
     source: item.source,
-    baseStatus: item.baseStatus,
+    // Overdue/Due soon pollute source-state into NSC — probe material state separately.
+    baseStatus:
+      status === "Overdue" || status === "Due soon" || item.baseStatus === "Overdue" || item.baseStatus === "Due soon"
+        ? "Outstanding"
+        : item.baseStatus,
     evidenceAnchor: item.evidenceAnchor,
   });
   const sourceBadgeRepeatsStatus =
@@ -312,7 +317,7 @@ function ChaseItemCard({
           <p className={`${bodyClass} mt-1 line-clamp-2`}>{displayWhy || item.whyItMatters}</p>
         </div>
         <Badge variant={statusBadgeVariant(status)} size="sm">
-          {status}
+          {displayChaseOperationalStatus(status)}
         </Badge>
         {!sourceBadgeRepeatsStatus ? <SourceStateBadge state={itemSourceState} /> : null}
       </div>
@@ -409,7 +414,7 @@ function DetailPanel({
       >
         <h2 className={titleClass}>{displayLabel}</h2>
         <Badge variant={statusBadgeVariant(status)} size="sm" className="mt-2">
-          {status}
+          {displayChaseOperationalStatus(status)}
         </Badge>
       </header>
       <div className={`p-4 space-y-4 ${bodyClass}`}>
@@ -862,7 +867,15 @@ export function DisclosureChase({
         sourceState: "missing" as const,
       };
     }
-    const sourceState = inferChaseItemSourceState(selectedItem);
+    const sourceState = inferChaseItemSourceState({
+      label: selectedItem.label,
+      source: selectedItem.source,
+      baseStatus:
+        selectedItem.baseStatus === "Overdue" || selectedItem.baseStatus === "Due soon"
+          ? "Outstanding"
+          : selectedItem.baseStatus,
+      evidenceAnchor: selectedItem.evidenceAnchor,
+    });
     const chaseCopy = buildCopySafeResult({
       text: selectedItem.draftChaseWording ?? selectedItem.label,
       kind: "cps_chase",

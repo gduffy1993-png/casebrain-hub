@@ -68,6 +68,7 @@ import {
 } from "@/lib/criminal/extraction-provenance-boundary";
 import { utcDayDiff } from "@/lib/criminal/solicitor-time-clock";
 import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
+import { inferChaseItemSourceState } from "@/lib/criminal/trust/copy-safe";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted)\b/i;
@@ -1896,15 +1897,96 @@ function mergeDisclosureItems(
 }
 
 function mergeStatus(a: ChaseItemStatus, b: ChaseItemStatus): ChaseItemStatus {
+  // Review-only must not be promoted into deadline urgency (Overdue / Due soon).
+  if (a === "Not safely confirmed" || b === "Not safely confirmed") {
+    if (a === "Received" || b === "Received") return "Received";
+    if (a === "Chased" || b === "Chased") return "Chased";
+    return "Not safely confirmed";
+  }
   const order: ChaseItemStatus[] = [
     "Overdue",
     "Due soon",
     "Outstanding",
-    "Not safely confirmed",
     "Chased",
     "Received",
   ];
   return order[Math.min(order.indexOf(a), order.indexOf(b))] ?? a;
+}
+
+/** Review-only / uncertain source rows must not wear prosecution-deadline chips. */
+export function isReviewOnlyChaseMaterial(item: Pick<
+  DisclosureChaseItem,
+  "label" | "source" | "baseStatus" | "evidenceAnchor" | "provenance" | "whyItMatters"
+>): boolean {
+  if (item.baseStatus === "Not safely confirmed") return true;
+  const provRaw =
+    item.provenance && typeof item.provenance === "object" && "evidenceState" in item.provenance
+      ? String((item.provenance as { evidenceState?: unknown }).evidenceState ?? "")
+      : "";
+  const prov = provRaw.toLowerCase().replace(/[\s-]+/g, "_");
+  if (
+    prov === "not_safely_confirmed" ||
+    prov === "referred_only" ||
+    prov === "unclear" ||
+    prov === "unassessed" ||
+    prov === "needs_review"
+  ) {
+    return true;
+  }
+  // Soft review cues — do not treat listing-elapsed as a missed CPS deadline for these.
+  if (/\(confirm on file\)/i.test(item.source ?? "")) return true;
+  if (/Review the cited source before relying on this item/i.test(item.whyItMatters ?? "")) return true;
+
+  // Deadline chips (Overdue / Due soon) poison source-state inference into NSC —
+  // probe as Outstanding so genuine missing stays missing.
+  const probeStatus: ChaseItemStatus =
+    item.baseStatus === "Overdue" || item.baseStatus === "Due soon"
+      ? "Outstanding"
+      : item.baseStatus;
+  const sourceState = inferChaseItemSourceState({
+    label: item.label,
+    source: item.source,
+    baseStatus: probeStatus,
+    evidenceAnchor: item.evidenceAnchor,
+  });
+  return (
+    sourceState === "not_safely_confirmed" ||
+    sourceState === "referred_only" ||
+    sourceState === "needs_review"
+  );
+}
+
+/**
+ * Listing/hearing elapsed may mark genuine missing rows Overdue/Due soon.
+ * Review-only rows stay "Not safely confirmed" (Needs confirmation in UI).
+ */
+export function clampChaseOperationalStatus(
+  item: Pick<
+    DisclosureChaseItem,
+    "label" | "source" | "baseStatus" | "evidenceAnchor" | "provenance" | "whyItMatters"
+  >,
+  status: ChaseItemStatus = item.baseStatus,
+): ChaseItemStatus {
+  if (status === "Received" || status === "Chased") return status;
+  if (status !== "Overdue" && status !== "Due soon") return status;
+  if (isReviewOnlyChaseMaterial({ ...item, baseStatus: status })) {
+    return "Not safely confirmed";
+  }
+  return status;
+}
+
+export function normalizeChaseOperationalStatuses(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
+  return items.map((item) => {
+    const baseStatus = clampChaseOperationalStatus(item);
+    if (baseStatus === item.baseStatus) return item;
+    return { ...item, baseStatus };
+  });
+}
+
+/** Solicitor-facing status chip label (presentation only). */
+export function displayChaseOperationalStatus(status: ChaseItemStatus): string {
+  if (status === "Not safely confirmed") return "Needs confirmation";
+  return status;
 }
 
 function mergeUrgency(
@@ -2408,6 +2490,8 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   // due-soon/outstanding simply because there is a hearing date.
   items = applySnapshotStatusBoundaries(items, input);
 
+  items = normalizeChaseOperationalStatuses(items);
+
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   const linkedRoutes = [
@@ -2417,16 +2501,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     linkedRoutes.unshift(input.battleboard.primary_route.title);
   }
 
-  const counters: DisclosureChaseCounters = {
-    total: items.length,
-    overdue: items.filter((i) => i.baseStatus === "Overdue").length,
-    dueSoon: items.filter((i) => i.baseStatus === "Due soon").length,
-    chased: 0,
-    received: 0,
-    notStarted: items.filter(
-      (i) => i.baseStatus === "Outstanding" || i.baseStatus === "Not safely confirmed",
-    ).length,
-  };
+  const counters = computeCounters(items, {});
 
   const disclosureSummary =
     primaryItems.length > 0
@@ -2485,7 +2560,7 @@ export function computeCounters(
   let notStarted = 0;
 
   for (const item of items) {
-    const effective = localStatus[item.id] ?? item.baseStatus;
+    const effective = effectiveStatus(item, localStatus);
     if (effective === "Received") received++;
     else if (effective === "Chased") chased++;
     else if (effective === "Overdue") overdue++;
@@ -2512,7 +2587,7 @@ export function effectiveStatus(
   const local = localStatus[item.id];
   if (local === "Received") return "Received";
   if (local === "Chased") return "Chased";
-  return item.baseStatus;
+  return clampChaseOperationalStatus(item);
 }
 
 export function matchesFilter(
