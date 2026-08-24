@@ -79,9 +79,16 @@ function firstMatch(text: string, patterns: RegExp[]): string | undefined {
   for (const pattern of patterns) {
     const match = text.match(pattern);
     const value = match?.[1]?.trim();
-    if (value) return compact(value);
+    if (value) return compact(value.replace(/\*\*/g, "").replace(/^[:\s-]+/, ""));
   }
   return undefined;
+}
+
+function cleanDefendantName(value: string | undefined): string | undefined {
+  if (!value) return undefined;
+  const cleaned = compact(value.replace(/^r\s+v\s+/i, ""));
+  const name = cleaned.split(/\s+(?:DOB|D\.O\.B\.|date of birth)\b|[,(|—–]/i)[0]?.trim();
+  return name || cleaned;
 }
 
 function classifySourceState(sourceText: string, family: string): EvidenceState {
@@ -147,10 +154,10 @@ function extractSourceTruth(caseId: string, sourceText: string, truthKey: unknow
   return {
     caseId,
     sourceHash: sha256(sourceText),
-    defendant: firstMatch(sourceText, [
+    defendant: cleanDefendantName(firstMatch(sourceText, [
       /\bDefendant\s*:\s*([^\n\r]+)/i,
       /\bR\s+v\s+([A-Z][A-Za-z' -]{2,80})/i,
-    ]),
+    ])),
     charge: firstMatch(sourceText, [
       /\bCharge\s*:\s*([^\n\r]+)/i,
       /\bStatement of Offence\s*:\s*([^\n\r]+)/i,
@@ -241,8 +248,44 @@ function finding(severity: Severity, code: string, family: string, message: stri
   return { severity, code, family, message, sourceEvidence, appEvidence };
 }
 
+function hasCurrentAuditOutputSchema(appOutput: unknown): boolean {
+  if (!appOutput || typeof appOutput !== "object") return false;
+  return Object.prototype.hasOwnProperty.call(appOutput, "caseIdentity");
+}
+
 function compareTruthToApp(sourceTruth: SourceTruth, appOutput: unknown): { digest: CaseComparison["appDigest"]; findings: Finding[] } {
+  if (!appOutput) {
+    return {
+      digest: {
+        outputHash: null,
+        textLength: 0,
+        keyEvidenceLabels: [],
+      },
+      findings: [
+        finding("P3", "APP_OUTPUT_NOT_ON_DISK", "coverage", "Case has source text but no casebrain-output.json for automated comparison."),
+      ],
+    };
+  }
+
   const appText = stringifyAppOutput(appOutput);
+  if (!hasCurrentAuditOutputSchema(appOutput)) {
+    return {
+      digest: {
+        outputHash: sha256(appText),
+        textLength: appText.length,
+        keyEvidenceLabels: appEvidenceLabels(appText),
+      },
+      findings: [
+        finding(
+          "P3",
+          "APP_OUTPUT_STALE_SCHEMA",
+          "coverage",
+          "casebrain-output.json is present but predates the current audit schema; rerun the case before treating it as a live defect.",
+        ),
+      ],
+    };
+  }
+
   const appLower = normal(appText);
   const findings: Finding[] = [];
   const ev = sourceTruth.evidence;
@@ -287,7 +330,7 @@ function compareTruthToApp(sourceTruth: SourceTruth, appOutput: unknown): { dige
     findings.push(finding("P1", "EXPECTED_MISSING_NOT_CHASED", "medicalFinalReport", "Source says final medical/forensic report is missing, but app output does not surface that exact missing item.", ev.medicalFinalReport));
   }
 
-  if (sourceIs(ev.cctvMaster, "missing") && !appMentions(appLower, /\b(?:cctv master|master footage|full window)\b/i)) {
+  if (sourceIs(ev.cctvMaster, "missing") && !appMentions(appLower, /\b(?:cctv master|master footage|full window|full cctv|cctv export|premises cctv|street cctv)\b/i)) {
     findings.push(finding("P1", "EXPECTED_MISSING_NOT_CHASED", "cctvMaster", "Source says CCTV master/full window is missing, but app output does not surface it.", ev.cctvMaster));
   }
 
@@ -326,9 +369,6 @@ function compareCaseFolder(caseDir: string): CaseComparison | null {
   const appOutput = readJson(join(caseDir, "casebrain-output.json"));
   const sourceTruth = extractSourceTruth(caseId, sourceText, truthKey);
   const compared = compareTruthToApp(sourceTruth, appOutput);
-  if (!appOutput) {
-    compared.findings.push(finding("P3", "APP_OUTPUT_NOT_ON_DISK", "coverage", "Case has source text but no casebrain-output.json for automated comparison."));
-  }
   return {
     caseId,
     caseDir,

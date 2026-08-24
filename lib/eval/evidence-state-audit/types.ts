@@ -81,6 +81,13 @@ export type CaseBrainAuditOutput = {
   caseId: string;
   generatedAt?: string;
   source?: string;
+  caseIdentity?: {
+    caseTitle?: string;
+    clientLabel?: string;
+    allegation?: string;
+    offenceLabel?: string;
+    stage?: string;
+  };
   truthKeyComparison?: Array<{
     truthItem: string;
     truthState: string;

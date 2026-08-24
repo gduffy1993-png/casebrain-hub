@@ -22,6 +22,7 @@ describe("pdf output comparator", () => {
     });
 
     const compared = compareTruthToApp(truth, {
+      caseIdentity: { clientLabel: "Holly Ahmed" },
       caseTitle: "Holly Ahmed",
       evidenceStates: [
         { label: "Full phone download / source export", baseStatus: "Outstanding" },
@@ -48,6 +49,7 @@ describe("pdf output comparator", () => {
     });
 
     const compared = compareTruthToApp(truth, {
+      caseIdentity: { clientLabel: "Holly Ahmed" },
       caseTitle: "Holly Ahmed",
       evidenceStates: [
         { label: "Subscriber / account data", baseStatus: "Outstanding" },
@@ -60,5 +62,71 @@ describe("pdf output comparator", () => {
 
     const serious = compared.findings.filter((f) => f.severity === "P0" || f.severity === "P1");
     expect(serious).toEqual([]);
+  });
+
+  it("treats missing app output as coverage only, not identity failure", () => {
+    const truth = extractSourceTruth(
+      "no-output",
+      ["Defendant: Morgan Ellis", "Charge: Theft", "MG6: CCTV master outstanding."].join("\n"),
+      {},
+    );
+
+    const compared = compareTruthToApp(truth, null);
+
+    expect(compared.digest.outputHash).toBeNull();
+    expect(compared.findings).toHaveLength(1);
+    expect(compared.findings[0]?.code).toBe("APP_OUTPUT_NOT_ON_DISK");
+  });
+
+  it("normalises markdown defendant labels before identity comparison", () => {
+    const truth = extractSourceTruth(
+      "markdown-defendant",
+      ["**Defendant:** James Patterson (DOB: 15/03/1987)", "Charge: Assault"].join("\n"),
+      {},
+    );
+
+    const compared = compareTruthToApp(truth, {
+      caseIdentity: { clientLabel: "James Patterson", caseTitle: "R v James Patterson" },
+    });
+
+    expect(compared.findings.some((f) => f.code === "DEFENDANT_NOT_SHOWN_OR_CHANGED")).toBe(false);
+  });
+
+  it("treats stale pre-identity app output as coverage, not a live identity defect", () => {
+    const truth = extractSourceTruth(
+      "stale-output",
+      ["Defendant: Aiden Croft", "Charge: Burglary", "MG6: CCTV master outstanding."].join("\n"),
+      {},
+    );
+
+    const compared = compareTruthToApp(truth, {
+      caseId: "stale-output",
+      generatedAt: "2026-06-29T17:37:55.000Z",
+      evidenceStates: [{ label: "CCTV master", baseStatus: "Outstanding" }],
+    });
+
+    expect(compared.findings).toHaveLength(1);
+    expect(compared.findings[0]?.code).toBe("APP_OUTPUT_STALE_SCHEMA");
+    expect(compared.findings.some((f) => f.code === "DEFENDANT_NOT_SHOWN_OR_CHANGED")).toBe(false);
+  });
+
+  it("recognises full CCTV export wording without letting stills stand in for full media", () => {
+    const truth = extractSourceTruth(
+      "cctv-export",
+      ["Defendant: Priya Shah", "MG6C: full CCTV export outstanding — not on bundle."].join("\n"),
+      {},
+    );
+
+    const onlyStills = compareTruthToApp(truth, {
+      caseIdentity: { clientLabel: "Priya Shah" },
+      evidenceStates: [{ label: "CCTV stills", baseStatus: "served" }],
+    });
+    expect(onlyStills.findings.some((f) => f.code === "EXPECTED_MISSING_NOT_CHASED")).toBe(true);
+
+    const fullExport = compareTruthToApp(truth, {
+      caseIdentity: { clientLabel: "Priya Shah" },
+      evidenceStates: [{ label: "Full CCTV export", baseStatus: "Outstanding" }],
+    });
+    expect(fullExport.findings.some((f) => f.code === "EXPECTED_MISSING_NOT_CHASED")).toBe(false);
   });
 });

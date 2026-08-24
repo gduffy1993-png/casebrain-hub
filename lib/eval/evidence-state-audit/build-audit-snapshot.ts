@@ -198,6 +198,13 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
     generatedAt,
     caseId,
     source: "CaseBrain H5 presentation builders (no Brain 1 mutation)",
+    caseIdentity: {
+      caseTitle,
+      clientLabel,
+      allegation,
+      offenceLabel,
+      stage: "PTPH",
+    },
     matterConfidence: {
       level: matterConfidence.level,
       label: matterConfidence.label,
@@ -252,6 +259,7 @@ function mergeBriefPlanEvidenceRows(fiveRows: FiveRow[], briefPlan: ReturnType<t
   }
 
   const upsertLedger = (label: string, bucket: "served" | "limited" | "missing", materialState?: string) => {
+    if (/^\s*must\s+not\s+say\s*:/i.test(label)) return;
     const key = normalizeLabel(label);
     // Prefer material-row state when it is referred_only (F01/F02 shared)
     let existence = inferLedgerRowExistence(label, bucket);

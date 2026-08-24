@@ -177,7 +177,11 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
   const buckets = bucketMaterials(ledger?.materials ?? []);
   // Playbook missing-material seeds must not invent CCTV/BWV/CAD when the bundle never
   // establishes them (Trap invent-advisory "assuming missing CCTV" is not establishment).
-  const gatedPlaybookMissing = gateMaterialLines(playbook.missingMaterial, bundleText);
+  const hasSourceSpecificMissing =
+    buckets.missing.length > 0 || (input.missingMaterial?.filter((label) => label.trim()).length ?? 0) > 0;
+  const gatedPlaybookMissing = hasSourceSpecificMissing
+    ? []
+    : gateMaterialLines(playbook.missingMaterial, bundleText);
 
   const servedEvidence = uniqueEvidence(buckets.served.map(toEvidenceItem), 24);
   const limitedEvidence = uniqueEvidence(
