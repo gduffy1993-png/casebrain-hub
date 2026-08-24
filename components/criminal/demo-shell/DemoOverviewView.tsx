@@ -19,6 +19,10 @@ import {
 import { adaptFiveAnswersAndChaseToCanonical } from "@/lib/criminal/canonical-matter-state";
 import { polishChasePreviewLabel } from "@/lib/criminal/solicitor-display-dedupe";
 import {
+  dedupeSolicitorAttentionByTitle,
+  demoteSolicitorClutter,
+} from "@/lib/criminal/solicitor-signal-mute";
+import {
   displayPilotStripClient,
   displayPilotStripHearing,
   resolvePilotChargeDisplay,
@@ -207,13 +211,18 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
   }));
   // Post-polish: collapse phone-family titles that presentation polish may have renamed
   const seenPhoneTitle = new Set<string>();
-  const attention = attentionRaw.filter((item) => {
+  const attentionPhoneCollapsed = attentionRaw.filter((item) => {
     const hay = item.title.toLowerCase();
     if (!/\b(phone|download|extraction|source export|handset|device)\b/i.test(hay)) return true;
     if (seenPhoneTitle.has("phone")) return false;
     seenPhoneTitle.add("phone");
     return true;
   });
+  // Polish can rename MG6 → "digital disclosure schedule item" — demote again after rename.
+  const attention = demoteSolicitorClutter(
+    dedupeSolicitorAttentionByTitle(attentionPhoneCollapsed),
+    (item) => item.title,
+  );
   const stats = buildDemoStatCounts(attention, stateCounts);
   const readiness = buildDemoReadiness(stateCounts, stats);
 

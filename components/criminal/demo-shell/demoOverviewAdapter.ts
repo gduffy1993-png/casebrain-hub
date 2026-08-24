@@ -4,6 +4,10 @@
  */
 
 import type { DisclosureChaseItem } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import {
+  dedupeSolicitorAttentionByTitle,
+  demoteSolicitorClutter,
+} from "@/lib/criminal/solicitor-signal-mute";
 
 export type DemoAttentionStatus = "MISSING" | "UNCLEAR" | "INCOMPLETE" | "ACTIVE";
 
@@ -222,7 +226,11 @@ export function buildDemoAttentionItems(items: DisclosureChaseItem[]): DemoAtten
       familyId: item.familyId,
     });
   }
-  return out;
+  // Prefer solicitor-critical gaps over generic exhibit/MG6/schedule clutter.
+  return demoteSolicitorClutter(
+    dedupeSolicitorAttentionByTitle(out),
+    (item) => item.title,
+  );
 }
 
 export function buildDemoStatCounts(

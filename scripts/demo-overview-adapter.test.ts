@@ -156,4 +156,55 @@ const phoneDupes = buildDemoAttentionItems([
 assert.equal(phoneDupes.length, 1, "phone extract + full download collapse on Overview attention");
 assert.equal(phoneDupes[0].title, "Phone extraction/download status");
 
+const clutterMuted = buildDemoAttentionItems([
+  sample({
+    id: "c1",
+    label: "CCTV full window / master footage",
+    baseStatus: "Outstanding",
+    familyId: "cctv_master",
+    whyItMatters: "Full CCTV master remains outstanding.",
+  }),
+  sample({
+    id: "c2",
+    label: "Exhibit mapping / provenance",
+    baseStatus: "Not safely confirmed",
+    familyId: "exhibit_provenance",
+    whyItMatters:
+      "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+  }),
+  sample({
+    id: "c3",
+    label: "MG6 / unused schedule clarification",
+    baseStatus: "Not safely confirmed",
+    familyId: "mg6_unused",
+    whyItMatters:
+      "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+  }),
+  sample({
+    id: "c4",
+    label: "digital disclosure schedule item",
+    baseStatus: "Not safely confirmed",
+    familyId: "mg6_unused",
+    whyItMatters: "Source status needs confirming before this item is relied on.",
+  }),
+]);
+assert.equal(clutterMuted.length, 1, "generic exhibit/MG6/schedule clutter muted when CCTV gap exists");
+assert.equal(clutterMuted[0].title, "CCTV full window / master footage");
+
+const clutterOnly = buildDemoAttentionItems([
+  sample({
+    id: "g1",
+    label: "MG6 / unused schedule clarification",
+    baseStatus: "Not safely confirmed",
+    familyId: "mg6_unused",
+  }),
+  sample({
+    id: "g2",
+    label: "Exhibit mapping / provenance",
+    baseStatus: "Not safely confirmed",
+    familyId: "exhibit_provenance",
+  }),
+]);
+assert.equal(clutterOnly.length, 1, "last-resort clutter kept when nothing substantive");
+
 console.log("demo-overview-adapter.test.ts: PASS");

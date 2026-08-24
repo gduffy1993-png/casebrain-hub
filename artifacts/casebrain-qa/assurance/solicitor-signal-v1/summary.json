@@ -1,0 +1,34 @@
+{
+  "lane": "solicitor-signal-v1",
+  "generatedAt": "2026-08-24T20:30:00.000Z",
+  "previewBefore": "https://casebrain-l8dqkfmm0-gduffy1993-pngs-projects.vercel.app",
+  "previewAfter": "https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app",
+  "tipBefore": "0177ba66d",
+  "inventMuteClosed": true,
+  "casesLickedBefore": 13,
+  "casesLickedAfter": 8,
+  "trapOnPreview": false,
+  "noisePatterns": [
+    "exhibit_mapping_provenance_generic",
+    "mg6_or_digital_schedule_clutter",
+    "duplicate_digital_schedule_rows",
+    "attention_pile_on",
+    "chase_overflow_13_on_file_chrome"
+  ],
+  "liveNoiseScores": {
+    "brookes": { "beforeOpenReview": 3, "afterOpenReview": 1, "verdict": "PASS" },
+    "dunn": { "beforeOpenReview": 4, "afterOpenReview": 2, "verdict": "PASS" },
+    "ahmed": { "beforeOpenReview": 6, "afterOpenReview": 4, "verdict": "PASS" },
+    "grant": { "beforeOpenReview": 2, "afterOpenReview": 1, "verdict": "PASS" },
+    "arden": { "beforeOpenReview": 4, "afterOpenReview": 2, "verdict": "PASS" },
+    "tobin": { "beforeOpenReview": 5, "afterOpenReview": 3, "verdict": "PASS" },
+    "priya": { "beforeOpenReview": 4, "afterOpenReview": 1, "verdict": "PASS" }
+  },
+  "residuals": [
+    "trap_absent_from_qa_list",
+    "dunn_mg11_detail_mg6_draft_and_13_on_file_dump",
+    "overview_chip_vs_attention_length_mismatch",
+    "soft_readiness_pct_vanity",
+    "not_all_23_cases_relicked"
+  ]
+}

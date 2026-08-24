@@ -62,6 +62,10 @@ import {
   finalizeDisclosureChasePresentation,
   isDigitalModalityChaseLabel,
 } from "@/lib/criminal/disclosure-chase-finalize";
+import {
+  demoteSolicitorClutter,
+  isGenericSolicitorClutterLabel,
+} from "@/lib/criminal/solicitor-signal-mute";
 import { composeStructuredSolicitorOutput } from "@/lib/criminal/structured-solicitor-output";
 import {
   assertSafeEvidenceTitle,
@@ -1883,7 +1887,7 @@ function splitPrimaryAdditional(items: DisclosureChaseItem[]): {
   primaryItems: DisclosureChaseItem[];
   additionalItems: DisclosureChaseItem[];
 } {
-  const deduped = dedupeDisclosureItems(items);
+  const deduped = demoteSolicitorClutter(dedupeDisclosureItems(items), (i) => i.label);
   // Phone/subscriber modality injects use familyId "other" but must stay on the default
   // Chase board — burying them under collapsed "Other source-material items" soft-mutes
   // Brookes/Ahmed/Grant live while Overview still shows the PDF-true gaps.
@@ -1903,9 +1907,15 @@ function splitPrimaryAdditional(items: DisclosureChaseItem[]): {
     primaryItems.push(item);
   }
   const primaryIds = new Set(primaryItems.map((i) => i.id));
+  // Clutter demoted from primary still lands in additional (file-level), not deleted.
+  const clutterOnly = dedupeDisclosureItems(items).filter(
+    (i) =>
+      isGenericSolicitorClutterLabel(i.label) &&
+      !deduped.some((d) => d.id === i.id),
+  );
   return {
     primaryItems,
-    additionalItems: [...core.filter((i) => !primaryIds.has(i.id)), ...misc],
+    additionalItems: [...core.filter((i) => !primaryIds.has(i.id)), ...misc, ...clutterOnly],
   };
 }
 
