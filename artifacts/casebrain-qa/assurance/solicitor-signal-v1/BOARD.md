@@ -3,7 +3,7 @@
 Generated: 2026-08-24
 Branch: `ui/demo-overview-shell-v1`
 Wave 1: `11ee9cf79` (kitchen-sink mute)
-Wave 2 tip: (set on commit)
+Wave 2 tip: 86a5f6abc
 Preview FINAL: https://casebrain-g349ow2xb-gduffy1993-pngs-projects.vercel.app
 Prior Wave2 Preview: https://casebrain-dupg7uta0-gduffy1993-pngs-projects.vercel.app
 Invent-mute: **closed**
