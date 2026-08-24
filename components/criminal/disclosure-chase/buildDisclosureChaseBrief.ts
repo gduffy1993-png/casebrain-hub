@@ -2768,6 +2768,9 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = normalizeChaseOperationalStatuses(items);
 
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+  // Drop clutter from the full item list so Chase TOTAL / filters cannot resurrect it.
+  items = items.filter((i) => !isGenericSolicitorClutterLabel(i.label));
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   const linkedRoutes = [
     ...new Set(items.map((i) => i.linkedRoute).filter((r): r is string => Boolean(r?.trim()))),

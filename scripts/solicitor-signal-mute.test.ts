@@ -67,8 +67,9 @@ assert.deepEqual(cleaned, [
   "full custody and interview records",
 ]);
 
+assert.equal(isChaseMergedChromeLine("5Custody / interview / CAD material7"), true);
 assert.equal(
-  sanitizeSolicitorEvidenceAnchor("Call data is partial; one co-defendant blames another."),
+  sanitizeSolicitorEvidenceAnchor("5Custody / interview / CAD material7"),
   null,
 );
 assert.equal(

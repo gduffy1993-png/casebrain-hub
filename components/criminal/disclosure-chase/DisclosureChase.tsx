@@ -66,6 +66,7 @@ import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-
 import { solicitorLinesNearlyEqual } from "@/lib/criminal/solicitor-display-dedupe";
 import {
   draftMisalignedToLabel,
+  isGenericSolicitorClutterLabel,
   sanitizeChaseMergedFrom,
   sanitizeSolicitorEvidenceAnchor,
 } from "@/lib/criminal/solicitor-signal-mute";
@@ -861,7 +862,10 @@ export function DisclosureChase({
   );
 
   const filteredAdditional = useMemo(
-    () => filteredItems.filter((item) => !primaryIdSet.has(item.id)),
+    () =>
+      filteredItems.filter(
+        (item) => !primaryIdSet.has(item.id) && !isGenericSolicitorClutterLabel(item.label),
+      ),
     [filteredItems, primaryIdSet],
   );
 

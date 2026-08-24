@@ -27,6 +27,8 @@ export function isChaseMergedChromeLine(line: string): boolean {
     /^issues for review\b/i.test(t) ||
     /^items marked\b/i.test(t) ||
     /^call data is\b/i.test(t) ||
+    /^\d+\s*custody\b/i.test(t) ||
+    /^\d+[a-z].*\d+$/i.test(t) ||
     /^entries\.?$/i.test(t) ||
     /^o0?\d+[a-z]/i.test(t) ||
     /^charge sheet\b/i.test(t) ||
