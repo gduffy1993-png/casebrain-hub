@@ -91,6 +91,8 @@ export function sanitizeSolicitorEvidenceAnchor(
   if (/co-defendant blames|one (?:co-)?defendant blames/i.test(t)) return null;
   if (/^further review of the papers\b/i.test(t)) return null;
   if (/^the prosecution case is that\b/i.test(t)) return null;
+  // Live Dunn residual: admin "Directions sought: …" leaked as Evidence Anchor.
+  if (/^directions sought:/i.test(t)) return null;
   return t;
 }
 

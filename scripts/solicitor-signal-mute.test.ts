@@ -72,6 +72,12 @@ assert.equal(
   null,
 );
 assert.equal(
+  sanitizeSolicitorEvidenceAnchor(
+    "Directions sought: confirm service of core material, identify outstanding disclosure, and record any issue affecting readiness.",
+  ),
+  null,
+);
+assert.equal(
   sanitizeSolicitorEvidenceAnchor("Full custody record referred on MG6 — export not served."),
   "Full custody record referred on MG6 — export not served.",
 );

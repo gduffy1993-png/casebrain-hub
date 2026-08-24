@@ -1909,15 +1909,14 @@ function splitPrimaryAdditional(items: DisclosureChaseItem[]): {
     primaryItems.push(item);
   }
   const primaryIds = new Set(primaryItems.map((i) => i.id));
-  // Clutter demoted from primary still lands in additional (file-level), not deleted.
-  const clutterOnly = dedupeDisclosureItems(items).filter(
-    (i) =>
-      isGenericSolicitorClutterLabel(i.label) &&
-      !deduped.some((d) => d.id === i.id),
+  // Do not resurrect demoted clutter under "Other" — thin matters were still showing
+  // a lone exhibit/MG6 row that solicitors do not need.
+  const additionalItems = [...core.filter((i) => !primaryIds.has(i.id)), ...misc].filter(
+    (i) => !isGenericSolicitorClutterLabel(i.label),
   );
   return {
     primaryItems,
-    additionalItems: [...core.filter((i) => !primaryIds.has(i.id)), ...misc, ...clutterOnly],
+    additionalItems,
   };
 }
 
