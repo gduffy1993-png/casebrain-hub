@@ -15,6 +15,57 @@ export function isGenericSolicitorClutterLabel(label: string): boolean {
   );
 }
 
+/** PDF/index chrome that should never dump into Chase "Merged from file". */
+export function isChaseMergedChromeLine(line: string): boolean {
+  const t = (line || "").replace(/\s+/g, " ").trim();
+  if (!t) return true;
+  if (isGenericSolicitorClutterLabel(t)) return true;
+  return (
+    /^further papers on the file$/i.test(t) ||
+    /^additional source-material issues?\b/i.test(t) ||
+    /^other source-material items?\b/i.test(t) ||
+    /^issues for review\b/i.test(t) ||
+    /^items marked\b/i.test(t) ||
+    /^call data is\b/i.test(t) ||
+    /^entries\.?$/i.test(t) ||
+    /^o0?\d+[a-z]/i.test(t) ||
+    /^charge sheet\b/i.test(t) ||
+    /^mg5\s+case summary$/i.test(t) ||
+    /^case initiation\b/i.test(t) ||
+    /^interview\s*\/\s*account$/i.test(t) ||
+    /outstandingcontinuity awaited/i.test(t) ||
+    /\|\s*\d+\s*\|/.test(t)
+  );
+}
+
+/** Keep solicitor-useful merge siblings; drop chrome / clutter dumps. */
+export function sanitizeChaseMergedFrom(mergedFrom: string[] | null | undefined): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (const raw of mergedFrom ?? []) {
+    const t = (raw || "").replace(/\s+/g, " ").trim();
+    if (!t || isChaseMergedChromeLine(t)) continue;
+    const key = t.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(t);
+    if (out.length >= 6) break;
+  }
+  return out;
+}
+
+/**
+ * True when draft chase wording talks about MG6/schedule clutter but the
+ * visible card label is a different family (e.g. MG11 detail showing MG6 draft).
+ */
+export function draftMisalignedToLabel(label: string, draft: string): boolean {
+  const draftMg6 = /mg6\s*\/\s*unused|unused schedule clarification|digital disclosure schedule/i.test(
+    draft || "",
+  );
+  if (!draftMg6) return false;
+  return !/mg6|schedule clarification|digital disclosure schedule/i.test(label || "");
+}
+
 /**
  * Drop generic exhibit/MG6/schedule clutter when substantive chase rows exist.
  * If everything is clutter, keep one last-resort row so the board is not empty.

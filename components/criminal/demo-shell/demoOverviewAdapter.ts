@@ -242,24 +242,29 @@ export function buildDemoStatCounts(
     notSafelyConfirmed?: number;
   },
 ): DemoStatCounts {
-  // Prefer canonical evidence counts so Overview Missing/Incomplete match File/Papers.
-  // Attention list only fills gaps when evidence counts are empty, and always drives
-  // active-chase / open-review chips.
+  // Overview chips must match the solicitor-visible attention list (post-mute).
+  // File/Papers keep canonical evidence counts; do not inflate Overview Missing/
+  // Incomplete with rows that attention already collapsed or muted.
   const attentionMissing = attention.filter((a) => a.status === "MISSING").length;
   const attentionIncomplete = attention.filter(
     (a) => a.status === "UNCLEAR" || a.status === "INCOMPLETE",
   ).length;
   const evidenceIncomplete =
     (evidenceCounts.incomplete || 0) + (evidenceCounts.notSafelyConfirmed || 0);
-  const missing =
-    evidenceCounts.missing > 0 ? evidenceCounts.missing : attentionMissing;
-  const incomplete = evidenceIncomplete > 0 ? evidenceIncomplete : attentionIncomplete;
   const activeChases = attention.filter((a) => a.status === "ACTIVE").length;
+  if (attention.length > 0) {
+    return {
+      missing: attentionMissing,
+      incomplete: attentionIncomplete,
+      activeChases,
+      openReviewItems: attention.length,
+    };
+  }
   return {
-    missing,
-    incomplete,
-    activeChases,
-    openReviewItems: attention.length,
+    missing: evidenceCounts.missing || 0,
+    incomplete: evidenceIncomplete,
+    activeChases: 0,
+    openReviewItems: 0,
   };
 }
 

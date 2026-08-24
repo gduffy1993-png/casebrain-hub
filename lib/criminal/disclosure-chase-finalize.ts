@@ -4,6 +4,10 @@ import type {
   ChaseFamilyId,
   DisclosureChaseItem,
 } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import {
+  draftMisalignedToLabel,
+  sanitizeChaseMergedFrom,
+} from "@/lib/criminal/solicitor-signal-mute";
 
 const COURT_RECORD_PREFIX = "The defence asks the court to record";
 
@@ -523,6 +527,20 @@ function collapseFinalizedItemsByFamilyId(items: DisclosureChaseItem[]): Disclos
   return out;
 }
 
+function alignDraftAndMerged(item: DisclosureChaseItem): DisclosureChaseItem {
+  const mergedFrom = sanitizeChaseMergedFrom(item.mergedFrom);
+  const label = item.label;
+  let draftChaseWording = item.draftChaseWording;
+  if (draftMisalignedToLabel(label, draftChaseWording)) {
+    draftChaseWording = cleanDraftWording(label, mergedFrom.length ? mergedFrom : [label]);
+  }
+  return {
+    ...item,
+    mergedFrom: mergedFrom.length ? mergedFrom : [label],
+    draftChaseWording,
+  };
+}
+
 /** H2 P1 — presentation-only cleanup for solicitor-facing Chase cards. */
 export function finalizeDisclosureChasePresentation(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
   const byKey = new Map<string, DisclosureChaseItem>();
@@ -532,5 +550,5 @@ export function finalizeDisclosureChasePresentation(items: DisclosureChaseItem[]
     const existing = byKey.get(key);
     byKey.set(key, existing ? mergeFinalizedItems(existing, item) : item);
   }
-  return collapseFinalizedItemsByFamilyId([...byKey.values()]);
+  return collapseFinalizedItemsByFamilyId([...byKey.values()]).map(alignDraftAndMerged);
 }

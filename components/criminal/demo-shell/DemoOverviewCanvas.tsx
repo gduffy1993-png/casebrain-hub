@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import {
   AlertCircle,
-  CheckCircle2,
   Copy,
   Filter,
   Loader2,
@@ -64,33 +63,6 @@ function StatCard({
   );
 }
 
-function ReadinessRing({ pct }: { pct: number }) {
-  const r = 36;
-  const c = 2 * Math.PI * r;
-  const offset = c - (pct / 100) * c;
-  return (
-    <div className="relative h-24 w-24 shrink-0">
-      <svg viewBox="0 0 96 96" className="h-full w-full -rotate-90">
-        <circle cx="48" cy="48" r={r} fill="none" stroke="#e2e8f0" strokeWidth="10" />
-        <circle
-          cx="48"
-          cy="48"
-          r={r}
-          fill="none"
-          stroke="#1d4ed8"
-          strokeWidth="10"
-          strokeLinecap="round"
-          strokeDasharray={c}
-          strokeDashoffset={offset}
-        />
-      </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-xl font-semibold text-slate-900 tabular-nums">{pct}%</span>
-      </div>
-    </div>
-  );
-}
-
 export function DemoOverviewCanvas({
   clientName,
   chargeLine,
@@ -101,7 +73,7 @@ export function DemoOverviewCanvas({
   attention,
   courtLine,
   clientUpdate,
-  readiness,
+  readiness: _readiness,
   loading,
 }: {
   clientName: string;
@@ -396,27 +368,13 @@ export function DemoOverviewCanvas({
         </section>
 
         <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-          <h3 className="text-sm font-semibold text-slate-900">Case Readiness</h3>
-          <p className="mt-0.5 text-[11px] text-slate-500">Provisional — derived from open items (not a court score)</p>
-          <div className="mt-3 flex items-center gap-4">
-            <ReadinessRing pct={readiness.overallPct} />
-            <div className="space-y-1.5 text-xs text-slate-600">
-              <p>
-                <span className="font-medium text-slate-800">{readiness.evidenceGatheredPct}%</span> Evidence
-                gathered
-              </p>
-              <p>
-                <span className="font-medium text-slate-800">{readiness.issuesResolvedPct}%</span> Issues
-                resolved
-              </p>
-              <p>
-                <span className="font-medium text-slate-800">{readiness.toBeChasedPct}%</span> Open review
-              </p>
-              <p className="pt-1 text-[11px] text-slate-400 inline-flex items-center gap-1">
-                <CheckCircle2 className="h-3 w-3" /> Soft projection from papers-backed counts
-              </p>
-            </div>
-          </div>
+          <h3 className="text-sm font-semibold text-slate-900">Case readiness</h3>
+          <p className="mt-1 text-sm text-slate-600 leading-relaxed">
+            Provisional — not a court score.{" "}
+            {stats.openReviewItems > 0
+              ? `${stats.openReviewItems} open attention item${stats.openReviewItems === 1 ? "" : "s"} still need${stats.openReviewItems === 1 ? "s" : ""} solicitor review before the hearing position is fixed.`
+              : "No open attention items on this overview — still check papers before relying on strategy."}
+          </p>
         </section>
       </div>
     </div>

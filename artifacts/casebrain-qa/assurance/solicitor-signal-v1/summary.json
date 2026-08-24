@@ -1,34 +1,28 @@
 {
   "lane": "solicitor-signal-v1",
-  "generatedAt": "2026-08-24T20:30:00.000Z",
-  "previewBefore": "https://casebrain-l8dqkfmm0-gduffy1993-pngs-projects.vercel.app",
-  "previewAfter": "https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app",
-  "tipBefore": "0177ba66d",
+  "wave": 2,
+  "generatedAt": "2026-08-24T20:55:00.000Z",
+  "previewFinal": "https://casebrain-g349ow2xb-gduffy1993-pngs-projects.vercel.app",
+  "previewWave2a": "https://casebrain-dupg7uta0-gduffy1993-pngs-projects.vercel.app",
+  "previewWave1": "https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app",
+  "wave1Sha": "11ee9cf79",
   "inventMuteClosed": true,
-  "casesLickedBefore": 13,
-  "casesLickedAfter": 8,
+  "casesInventory": 23,
   "trapOnPreview": false,
-  "noisePatterns": [
-    "exhibit_mapping_provenance_generic",
-    "mg6_or_digital_schedule_clutter",
-    "duplicate_digital_schedule_rows",
-    "attention_pile_on",
-    "chase_overflow_13_on_file_chrome"
+  "fullLickCount": 23,
+  "finalTipSpotCheck": ["dunn", "brookes", "arden"],
+  "fixes": [
+    "overview_chips_follow_attention",
+    "chase_merged_chrome_sanitize",
+    "mg6_draft_align_to_display_label",
+    "soft_readiness_pct_muted"
   ],
-  "liveNoiseScores": {
-    "brookes": { "beforeOpenReview": 3, "afterOpenReview": 1, "verdict": "PASS" },
-    "dunn": { "beforeOpenReview": 4, "afterOpenReview": 2, "verdict": "PASS" },
-    "ahmed": { "beforeOpenReview": 6, "afterOpenReview": 4, "verdict": "PASS" },
-    "grant": { "beforeOpenReview": 2, "afterOpenReview": 1, "verdict": "PASS" },
-    "arden": { "beforeOpenReview": 4, "afterOpenReview": 2, "verdict": "PASS" },
-    "tobin": { "beforeOpenReview": 5, "afterOpenReview": 3, "verdict": "PASS" },
-    "priya": { "beforeOpenReview": 4, "afterOpenReview": 1, "verdict": "PASS" }
-  },
+  "passCore": ["brookes", "dunn", "arden", "ahmed", "grant"],
+  "passThinLastResort": ["vale", "patterson", "matter-details shells"],
   "residuals": [
-    "trap_absent_from_qa_list",
-    "dunn_mg11_detail_mg6_draft_and_13_on_file_dump",
-    "overview_chip_vs_attention_length_mismatch",
-    "soft_readiness_pct_vanity",
-    "not_all_23_cases_relicked"
+    "dunn_evidence_anchor_call_data_line",
+    "thin_shell_last_resort_clutter",
+    "trap_absent",
+    "not_all_23_reshot_on_final_tip"
   ]
 }

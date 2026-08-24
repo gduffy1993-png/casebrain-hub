@@ -39,8 +39,9 @@ assert.equal(items.length, 2);
 assert.equal(items[0].status, "MISSING");
 assert.equal(items[1].status, "UNCLEAR");
 
-const stats = buildDemoStatCounts(items, { missing: 1, incomplete: 1 });
-assert.ok(stats.missing >= 1);
+const stats = buildDemoStatCounts(items, { missing: 9, incomplete: 9 });
+assert.equal(stats.missing, 1, "Overview missing chip follows attention MISSING count");
+assert.equal(stats.incomplete, 1, "Overview incomplete chip follows attention UNCLEAR/INCOMPLETE");
 assert.equal(stats.activeChases, 0);
 assert.equal(stats.openReviewItems, 2);
 const readiness = buildDemoReadiness(
@@ -206,5 +207,19 @@ const clutterOnly = buildDemoAttentionItems([
   }),
 ]);
 assert.equal(clutterOnly.length, 1, "last-resort clutter kept when nothing substantive");
+
+const brookesChipAlign = buildDemoAttentionItems([
+  sample({
+    id: "b1",
+    label: "Phone extraction/download status",
+    baseStatus: "Outstanding",
+    familyId: "phone",
+    whyItMatters: "Original download / source export is outstanding on the disclosure papers.",
+    source: "Crown / disclosure officer (confirm on file)",
+  }),
+]);
+const brookesStats = buildDemoStatCounts(brookesChipAlign, { missing: 2, incomplete: 1, notSafelyConfirmed: 1 });
+assert.equal(brookesStats.openReviewItems, 1);
+assert.equal(brookesStats.missing + brookesStats.incomplete, 1, "chips cannot exceed attention length after mute");
 
 console.log("demo-overview-adapter.test.ts: PASS");

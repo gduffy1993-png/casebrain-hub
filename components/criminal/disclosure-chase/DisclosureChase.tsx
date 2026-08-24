@@ -64,6 +64,10 @@ import {
 } from "@/lib/criminal/solicitor-hearing-display";
 import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 import { solicitorLinesNearlyEqual } from "@/lib/criminal/solicitor-display-dedupe";
+import {
+  draftMisalignedToLabel,
+  sanitizeChaseMergedFrom,
+} from "@/lib/criminal/solicitor-signal-mute";
 import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import {
   clearLegacyDisclosureChaseStorage,
@@ -405,9 +409,14 @@ function DetailPanel({
   const displaySource = displayChaseItemText(item.source, item);
   const displayRoute = displayChaseItemText(item.linkedRoute, item);
   const displayAnchor = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.evidenceAnchor, item));
-  const displayDraft = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.draftChaseWording, item));
+  // Align draft to the solicitor-visible label (stop MG6 draft under MG11 peel).
+  const draftSource = draftMisalignedToLabel(displayLabel, item.draftChaseWording)
+    ? `Please provide ${displayLabel} or confirm in writing why it is not available.`
+    : item.draftChaseWording;
+  const displayDraft = humanizeRemainingSnakeCaseTokens(displayChaseItemText(draftSource, item));
   const displayCourt = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.courtLine, item));
   const displaySafeCourtLine = humanizeRemainingSnakeCaseTokens(displayChaseItemText(brief.safeCourtLine, item));
+  const solicitorMergedFrom = sanitizeChaseMergedFrom(item.mergedFrom);
   return (
     <aside className={`${shell} sticky top-4`}>
       <header
@@ -441,11 +450,11 @@ function DetailPanel({
             </p>
           )}
         </div>
-        {item.mergedFrom.length > 1 && (
+        {solicitorMergedFrom.length > 1 && (
           <div>
             <p className={workflowSectionTitle}>Merged from file</p>
             <ul className="mt-1 text-xs text-slate-600 list-disc pl-4 space-y-0.5">
-              {item.mergedFrom.map((m, i) => (
+              {solicitorMergedFrom.map((m, i) => (
                 <li key={i}>{displayChaseItemText(m, item) || m}</li>
               ))}
             </ul>
@@ -464,7 +473,7 @@ function DetailPanel({
               pilotEmbed ? "border-slate-600 text-slate-400" : "border-slate-200"
             }`}
           >
-            {displayDraft || item.draftChaseWording}
+            {displayDraft || draftSource}
           </p>
         </div>
         <div>

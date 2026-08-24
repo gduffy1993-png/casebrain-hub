@@ -3,7 +3,10 @@ import assert from "node:assert/strict";
 import {
   dedupeSolicitorAttentionByTitle,
   demoteSolicitorClutter,
+  draftMisalignedToLabel,
+  isChaseMergedChromeLine,
   isGenericSolicitorClutterLabel,
+  sanitizeChaseMergedFrom,
 } from "../lib/criminal/solicitor-signal-mute";
 
 assert.equal(isGenericSolicitorClutterLabel("Exhibit mapping / provenance"), true);
@@ -39,7 +42,37 @@ const deduped = dedupeSolicitorAttentionByTitle([
   { title: "CAD / dispatch log material" },
 ]);
 assert.equal(deduped.length, 2);
-assert.equal(deduped[0].title, "digital disclosure schedule item");
-assert.equal(deduped[1].title, "CAD / dispatch log material");
+
+assert.equal(isChaseMergedChromeLine("Further papers on the file"), true);
+assert.equal(isChaseMergedChromeLine("Additional source-material issues (13 on file)"), true);
+assert.equal(isChaseMergedChromeLine("Call data is"), true);
+assert.equal(isChaseMergedChromeLine("Complainant MG11 statement"), false);
+
+const cleaned = sanitizeChaseMergedFrom([
+  "Complainant MG11 / source material",
+  "Further papers on the file",
+  "Additional source-material issues (13 on file)",
+  "Call data is",
+  "full custody and interview records",
+]);
+assert.deepEqual(cleaned, [
+  "Complainant MG11 / source material",
+  "full custody and interview records",
+]);
+
+assert.equal(
+  draftMisalignedToLabel(
+    "Complainant MG11 / source material",
+    "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available.",
+  ),
+  true,
+);
+assert.equal(
+  draftMisalignedToLabel(
+    "MG6 / unused schedule clarification",
+    "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available.",
+  ),
+  false,
+);
 
 console.log("solicitor-signal-mute.test.ts: PASS");

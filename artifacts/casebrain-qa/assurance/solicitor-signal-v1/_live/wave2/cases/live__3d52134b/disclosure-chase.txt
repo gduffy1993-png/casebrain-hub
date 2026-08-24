@@ -1,0 +1,120 @@
+CB
+
+CASE WORK
+
+Trial: Trial ended — upgrade to upload more cases
+Upgrade
+
+Client not on papers
+
+Assault on emergency worker
+
+Court not safely identified from uploaded papers
+·
+Hearing not on papers
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+Court Position
+Papers & Evidence
+Client Summary
+CPS Chase
+File & Preparation
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+3
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+3
+
+All
+Overdue
+Due soon
+Chased
+Received
+Full custody record / PACE material
+
+Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.
+
+NEEDS CONFIRMATION
+REFERRED ONLY
+Source
+Crown / disclosure officer (confirm on file)
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+state: not safely confirmed · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Interview recording and transcript
+
+Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited. [exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding]
+
+NEEDS CONFIRMATION
+Source
+Crown / disclosure officer (confirm on file)
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+exact page unavailable (unsplit whole-document text) · state: missing · limitation: Recording state served; transcript state not safely confirmed.
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Other source-material items (1)
+Show
+Full custody record / PACE material
+NEEDS CONFIRMATION
+
+WHY IT MATTERS
+
+Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.
+
+Source: Crown / disclosure officer (confirm on file)
+
+Deadline: Before next listing — confirm disclosure timetable
+
+MERGED FROM FILE
+
+Full custody record / PACE material
+Full custody record, detention log, and risk assessment.
+
+DRAFT CHASE WORDING
+
+Please provide full custody record / PACE material or confirm in writing why it is not available.
+
+COURT LINE
+
+The defence asks the court to record that this material needs confirmation before it is relied on.
+
+Case-wide court line (provisional): The defence asks the court to record that custody/PACE and interview material need source-status confirmation before the hearing position is fixed.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.
