@@ -1,6 +1,6 @@
-# Audit board — 2026-08-25T07-53-06-966Z
+# Audit board — 2026-08-25T07-03-46-316Z
 
-Commit `ff1daccd4` (working tree dirty — numbers are not reproducible).
+Commit `c34e6917a` (working tree dirty — numbers are not reproducible).
 20 cases. 16 of 26 stated gaps reach the chase board.
 1 rule findings, 0 of them P0.
 
@@ -13,7 +13,7 @@ Commit `ff1daccd4` (working tree dirty — numbers are not reproducible).
 | `91d42617` | 2 | 0/0 | 0 | full |
 | `7e763777` | 7 | 3/4 | 1 | full |
 | `331f5ca6` | 6 | 0/0 | 0 | full |
-| `f57a2750` | 1 | 0/0 | 0 | full |
+| `f57a2750` | 1 | 0/0 | 0 | truncated |
 | `a42cb20a` | 4 | 1/3 | 0 | full |
 | `e2841289` | 1 | 0/0 | 0 | full |
 | `8e9d08be` | 0 | 0/0 | 0 | full |
@@ -25,7 +25,7 @@ Commit `ff1daccd4` (working tree dirty — numbers are not reproducible).
 | `918d817e` | 0 | 0/0 | 0 | full |
 | `4d1ed890` | 0 | 0/0 | 0 | full |
 | `09617e55` | 1 | 0/0 | 0 | full |
-| `14823d9e` | 8 | 1/4 | 0 | truncated |
+| `14823d9e` | 8 | 1/4 | 0 | full |
 
 ## Findings
 

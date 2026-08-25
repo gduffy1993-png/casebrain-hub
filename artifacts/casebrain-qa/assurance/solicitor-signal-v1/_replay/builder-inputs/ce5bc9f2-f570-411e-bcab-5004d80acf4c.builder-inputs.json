@@ -214,7 +214,7 @@
     "status": 200,
     "data": {
       "case_id": "ce5bc9f2-f570-411e-bcab-5004d80acf4c",
-      "generated_at": "2026-08-25T07:03:04.842Z",
+      "generated_at": "2026-08-25T07:52:27.648Z",
       "overall_status": "usable",
       "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Interview / account pressure (conditional) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
       "position_trust": "interview_from_file",
