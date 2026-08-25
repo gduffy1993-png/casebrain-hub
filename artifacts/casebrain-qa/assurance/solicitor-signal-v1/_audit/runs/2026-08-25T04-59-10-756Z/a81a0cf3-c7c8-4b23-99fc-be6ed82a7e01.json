@@ -1,0 +1,46 @@
+{
+  "caseId": "a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01",
+  "primary": [
+    {
+      "ref": "O02",
+      "label": "O02 CAD log full print",
+      "family": "cad_999",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "O03",
+      "label": "O03 independent witness statement",
+      "family": "exhibit_provenance",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "O04",
+      "label": "O04 forensic continuity statement",
+      "family": "exhibit_provenance",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "EX/03",
+      "label": "EX/03 Continuity note Eastmoor Police",
+      "family": "exhibit_provenance",
+      "status": "Outstanding"
+    },
+    {
+      "ref": null,
+      "label": "CAD / dispatch / 999 material",
+      "family": "cad_999",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Full custody record / PACE material",
+      "family": "custody_pace",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 40,
+  "statedGaps": 4,
+  "statedGapsOnBoard": 4,
+  "truncated": true,
+  "findings": []
+}

@@ -1,0 +1,584 @@
+{
+  "bundleSource": {
+    "status": 200,
+    "data": {
+      "combinedTextLength": 4245,
+      "documentCount": 1,
+      "documentRows": [
+        {
+          "id": "9fd6ac8f-131d-4c81-a10c-b5400a77557d",
+          "name": "CB-TB-1681_Grant.pdf",
+          "updatedAt": "2026-08-16T00:41:43.443548+00:00",
+          "lenExtracted": 4247,
+          "lenRaw": 4247,
+          "lenBody": 4245
+        }
+      ],
+      "health": {
+        "status": "partial",
+        "duplicateDocuments": 0,
+        "headerDetected": false,
+        "mg5Detected": false,
+        "mg6Detected": false,
+        "exhibitLineCount": 0
+      },
+      "header": null,
+      "snippets": {
+        "mg5": "MG5 - CASE SUMMARY\nURNNB26/792423DefendantVincent Grant\nAnticipated pleaNot indicatedCourt stageAppeal papers\nPolice allege that on 12/05/2026 at Minsterford, Vincent Grant was involved in an incident concerning Omar Iqbal. The prosecution summary relies on\nwitness account, officer attendance and material listed on the disclosure schedule. The defence position has not been fully recorded. Officers refer to\nmessages and handset material, but the present papers do not contain a complete extraction report.\nIssues for review\n- phone attribution\n- Review whether listed CCTV/BWV has been served\n- Confirm whether all MG11 statements are final signed copies\n- Check interview material against any summary relied upon\n\nCB-TB-1681 / Page 4Police papers - disclosure copy",
+        "mg6": null,
+        "mg11": "MG11 witness statementListed - not in papers\n5MG11 officer / continuationPresent\n6Digital / handset notePresent\n7Custody / interview noteListed - not in papers\n8CAD / 999 extractPresent\n9MG6 disclosure schedulePresent\n10Disclosure email / updatePresent\nNote: documents marked as listed but not in papers are not enclosed with this copy.\n\nCB-TB-1681 / Page 2Police papers - disclosure copy\nCHARGE SHEET / WRITTEN CHARGE\nDefendantVincent Grant\nCourtNorthbridge Magistrates' Court\nHearingHearing21 June 2026 at 11:00\nOffencePossession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971\nParticularsOn 7 May 2026 at Minsterford, the defendant is alleged to have committed the offence described above.\nAuthorised for first hearing / case progression. This page may be read with later summaries and schedules where updated material has been served.\n\nCB-TB-1681 / Page 3Police papers - disclosure copy",
+        "exhibits": null
+      },
+      "caseMetadata": {
+        "defendantName": "Vincent Grant",
+        "defendantSource": "extracted_cover_fallback",
+        "complainant": null,
+        "complainantSource": "unavailable",
+        "court": "Northbridge Magistrates' Court",
+        "courtSource": "extracted_cover_fallback",
+        "nextHearingRaw": "21 June 2026 at 11:00",
+        "nextHearingIso": "2026-06-21T11:00:00.000Z",
+        "nextHearingSource": "extracted_procedural_fallback",
+        "stage": "Appeal papers",
+        "stageSource": "extracted_cover_fallback",
+        "offenceWording": "Offence Possession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971",
+        "offenceDisplay": "Offence Possession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971",
+        "offenceSource": "extracted_charge_fallback",
+        "bailStatus": null,
+        "bailStatusSource": "unavailable",
+        "defencePosition": null,
+        "defencePositionSource": "unavailable"
+      },
+      "sizeProfile": {
+        "documentCount": 1,
+        "pdfCount": 1,
+        "pageCount": null,
+        "combinedTextLength": 4245,
+        "isLargeByText": false,
+        "isLargeByPages": false
+      },
+      "frontMatterScanLength": 4237,
+      "frontMatterScan": "CB-TB-1681 / Page 1Police papers - disclosure copy\nPROSECUTION PAPERS - DEFENCE COPY\nURN: NB26/1681 &nbsp;&nbsp; Case: R v Vincent Grant\nMatter detailsDefendant: Vincent Grant DOB: 02/01/1993\nOffencePossession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971\nListingCourt: Northbridge Magistrates' Court Hearing: 21 June 2026 at 11:00\nStageAppeal papers\nBundle index\nTabDocumentStatus\n1Cover and indexPresent\n2Charge sheet / written chargePresent\n3MG5 case summaryPresent\n4MG11 witness statementListed - not in papers\n5MG11 officer / continuationPresent\n6Digital / handset notePresent\n7Custody / interview noteListed - not in papers\n8CAD / 999 extractPresent\n9MG6 disclosure schedulePresent\n10Disclosure email / updatePresent\nNote: documents marked as listed but not in papers are not enclosed with this copy.\n\nCB-TB-1681 / Page 2Police papers - disclosure copy\nCHARGE SHEET / WRITTEN CHARGE\nDefendantVincent Grant\nCourtNorthbridge Magistrates' Court\nHearingHearing21 June 2026 at 11:00\nOffencePossession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971\nParticularsOn 7 May 2026 at Minsterford, the defendant is alleged to have committed the offence described above.\nAuthorised for first hearing / case progression. This page may be read with later summaries and schedules where updated material has been served.\n\nCB-TB-1681 / Page 3Police papers - disclosure copy\nMG5 - CASE SUMMARY\nURNNB26/792423DefendantVincent Grant\nAnticipated pleaNot indicatedCourt stageAppeal papers\nPolice allege that on 12/05/2026 at Minsterford, Vincent Grant was involved in an incident concerning Omar Iqbal. The prosecution summary relies on\nwitness account, officer attendance and material listed on the disclosure schedule. The defence position has not been fully recorded. Officers refer to\nmessages and handset material, but the present papers do not contain a complete extraction report.\nIssues for review\nphone attribution\nReview whether listed CCTV/BWV has been served\nConfirm whether all MG11 statements are final signed copies\nCheck interview material against any summary relied upon\n\nCB-TB-1681 / Page 4Police papers - disclosure copy\nWITNESS STATEMENT\nStatement ofOmar IqbalURNNB26/783615\nOccupationShop workerDate10 June 2026\n1. I make this statement about an incident at Minsterford. At about 16:15 I saw or heard part of the incident described in the officer summary.\n2. Police asked me about items recovered after a search. I cannot say who owned the handset or bag referred to in the officer note.\nThis statement is true to the best of my knowledge and belief.\nSignature: ____________________ Date: ____________________\n\nCB-TB-1681 / Page 5Police papers - disclosure copy\nDIGITAL MATERIAL / HANDSET NOTE\nDeviceFindingCaution\nHandset ARecovered near sofaOwnership not finally proved\nSIM/IMEIPartial subscriber returnRead with officer continuity\nDownloadLogical download summary onlyFull report not in this section\n\nCB-TB-1681 / Page 6Police papers - disclosure copy\nCUSTODY / INTERVIEW NOTE\nFieldEntry\nDefendantVincent Grant\nArrest time15:15\nRights and entitlementsRecorded as given\nInterviewSummary provided; full transcript outstanding\nObservation note[REDACTED] - section omitted in copy provided\nThe interview note is not a verbatim transcript unless separately served.\n\nCB-TB-1681 / Page 7Police papers - disclosure copy\nCAD / 999 EXTRACT\nTimeEntryOperator note\n0700Suspect description updatedSee separate log\n0706Caller recontactedFurther details requested\n0712Officer arrival recordedInitial call only\n0712Call received from member of publicNo recording attached\n\nCB-TB-1681 / Page 8Police papers - disclosure copy\nMG6 / DISCLOSURE SCHEDULE\nItemDescriptionStatusNotes\nM1Forensic submission noteServedSee tab\nM2Interview transcriptServedSee tab\nM3BWV booking-in clipServedCopy enclosed\nM4Custody recordServedSee tab\nM5Unused noteServedCopy enclosed\nM6MG11 complainantListed not enclosedDisclosure request pending\nM7MG11 officerRequestedNot served with this copy\nM8Seizure logListed not enclosedDisclosure request pending\nM9BWV PC KhanRequestedNot served with this copy\nM10Subscriber checkRequestedDisclosure request pending",
+      "canonical": {
+        "findings": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"CB-TB-1681_Grant.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-1681_Grant.pdf (case document) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state not_safely_confirmed; transcript state incomplete.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: incomplete · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "referenced_absent_attachment",
+            "title": "Referenced but absent attachment",
+            "summary": "\"with this copy\" is referenced in narrative but is absent on file.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-1681_Grant.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: absent · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [
+              {
+                "sourceDocumentTitle": "CB-TB-1681_Grant.pdf",
+                "sourcePage": null,
+                "compiledPage": null,
+                "pageIdentityKnown": false
+              }
+            ],
+            "attribution": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          }
+        ],
+        "findingSummaries": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"CB-TB-1681_Grant.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-1681_Grant.pdf (case document) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state not_safely_confirmed; transcript state incomplete.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: incomplete · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "referenced_absent_attachment",
+            "title": "Referenced but absent attachment",
+            "summary": "\"with this copy\" is referenced in narrative but is absent on file.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-1681_Grant.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: absent · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "critical",
+            "referencedAbsent": {
+              "referencedLabel": "with this copy"
+            }
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "info",
+            "referencedAbsent": null
+          }
+        ],
+        "evidenceRows": [
+          {
+            "label": "Review whether listed CCTV/BWV has been",
+            "existence": "served",
+            "note": "CB-TB-1681_Grant.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1681_Grant.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Rights and entitlementsRecorded as given InterviewSummary",
+            "existence": "served",
+            "note": "CB-TB-1681_Grant.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1681_Grant.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "is not a verbatim transcript unless separately",
+            "existence": "served",
+            "note": "CB-TB-1681_Grant.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1681_Grant.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "complainantListed not enclosedDisclosure request pending M7MG11 officerRequestedNot",
+            "existence": "served",
+            "note": "CB-TB-1681_Grant.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1681_Grant.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "not enclosedDisclosure request pending M9BWV PC KhanRequestedNot",
+            "existence": "served",
+            "note": "CB-TB-1681_Grant.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1681_Grant.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "full transcript",
+            "existence": "missing",
+            "note": "CB-TB-1681_Grant.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1681_Grant.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          }
+        ],
+        "charges": [],
+        "chaseLabels": [
+          "Interview recording",
+          "with this copy"
+        ],
+        "suppressedChaseLabels": [
+          "full transcript",
+          "Interview transcript"
+        ],
+        "documentRoles": [
+          {
+            "id": "9fd6ac8f-131d-4c81-a10c-b5400a77557d",
+            "title": "CB-TB-1681_Grant.pdf",
+            "role": "operative"
+          }
+        ],
+        "unitCount": 1,
+        "pageUnitCount": 1
+      }
+    }
+  },
+  "battleboard": {
+    "status": 200,
+    "data": {
+      "case_id": "e2841289-1ed2-4dc4-9acf-dd22a03b63fc",
+      "generated_at": "2026-08-25T05:01:59.720Z",
+      "overall_status": "usable",
+      "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Timeline / sequence / alibi pressure (conditional) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
+      "position_trust": "interview_from_file",
+      "position_notice": "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
+      "primary_route": {
+        "id": "timeline",
+        "title": "Timeline / sequence / alibi pressure",
+        "status": "conditional",
+        "route_type": "timeline",
+        "why_it_helps": [
+          "CAD / 999 EXTRACT",
+          "8 CAD / 999 extract Present",
+          "May assist if served timing material (CAD/999/CCTV/receipts) does not align with the Crown sequence on the papers.",
+          "Creates pressure if proved only after master/source times are compared — provisional until then."
+        ],
+        "what_hurts_us": [
+          "CAD/999 timing may affect Crown sequence if proved on served material.",
+          "Client account that conflicts with served source times."
+        ],
+        "evidence_anchors": [
+          "CAD / 999 EXTRACT",
+          "8 CAD / 999 extract Present"
+        ],
+        "collapse_risks": [
+          "Assumed position may conflict with interview or served evidence.",
+          "CAD/999 timing may affect Crown sequence if proved on served material.",
+          "Receipt/phone records undermine the defence timing account."
+        ],
+        "next_moves": [
+          "Chase CAD audit.",
+          "Take instructions on timing conflict and any alibi account.",
+          "Record defence position on sequence before the next hearing."
+        ],
+        "hearing_line": "Timing/sequence remains conditional on served CAD/999/CCTV material; ask the court to record what source material is still outstanding.",
+        "safety_note": "Do not present a firm alibi unless instructions and served material support it."
+      },
+      "routes": [
+        {
+          "id": "timeline",
+          "title": "Timeline / sequence / alibi pressure",
+          "status": "conditional",
+          "route_type": "timeline",
+          "why_it_helps": [
+            "CAD / 999 EXTRACT",
+            "8 CAD / 999 extract Present",
+            "May assist if served timing material (CAD/999/CCTV/receipts) does not align with the Crown sequence on the papers.",
+            "Creates pressure if proved only after master/source times are compared — provisional until then."
+          ],
+          "what_hurts_us": [
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Client account that conflicts with served source times."
+          ],
+          "evidence_anchors": [
+            "CAD / 999 EXTRACT",
+            "8 CAD / 999 extract Present"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Receipt/phone records undermine the defence timing account."
+          ],
+          "next_moves": [
+            "Chase CAD audit.",
+            "Take instructions on timing conflict and any alibi account.",
+            "Record defence position on sequence before the next hearing."
+          ],
+          "hearing_line": "Timing/sequence remains conditional on served CAD/999/CCTV material; ask the court to record what source material is still outstanding.",
+          "safety_note": "Do not present a firm alibi unless instructions and served material support it."
+        },
+        {
+          "id": "interview",
+          "title": "Interview / account pressure",
+          "status": "conditional",
+          "route_type": "interview",
+          "why_it_helps": [
+            "7 Custody / interview note Listed - not in papers",
+            "- Check interview material against any summary relied upon",
+            "The interview note is not a verbatim transcript unless separately served."
+          ],
+          "what_hurts_us": [
+            "Interview admission that narrows the defence route.",
+            "No comment or limited account where bad facts are already on the file."
+          ],
+          "evidence_anchors": [
+            "7 Custody / interview note Listed - not in papers",
+            "- Check interview material against any summary relied upon",
+            "CUSTODY / INTERVIEW NOTE",
+            "The interview note is not a verbatim transcript unless separately served."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Interview admission narrows the defence route.",
+            "Client account conflicts with served source material.",
+            "Missing disclosure is served and supports the Crown interview route."
+          ],
+          "next_moves": [
+            "Take instructions on interview stance and any prepared statement wording.",
+            "Chase interview transcript.",
+            "Chase pre-interview disclosure.",
+            "Record defence position; do not infer interview content beyond served wording."
+          ],
+          "hearing_line": "Interview/account remains conditional on served disclosure; do not overstate what the account proves at this stage.",
+          "safety_note": "Needs solicitor review — interview routes collapse quickly if admissions are clear on the papers."
+        },
+        {
+          "id": "identity",
+          "title": "Identification / visual ID pressure",
+          "status": "conditional",
+          "route_type": "identity",
+          "why_it_helps": [
+            "- Review whether listed CCTV/BWV has been served"
+          ],
+          "what_hurts_us": [
+            "Short, confident witness ID on served papers.",
+            "Clear CCTV/BWV sequence that matches Crown timing."
+          ],
+          "evidence_anchors": [
+            "- Review whether listed CCTV/BWV has been served"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "ID parade or formal identification procedure supports the Crown route if proved."
+          ],
+          "next_moves": [
+            "Take instructions on observation conditions and any ID dispute."
+          ],
+          "hearing_line": "On the file wording, identification remains conditional until served CCTV/source material and witness accounts are reconciled; do not overstate.",
+          "safety_note": "Needs solicitor review before any positive ID challenge is advanced at court."
+        },
+        {
+          "id": "disclosure",
+          "title": "Disclosure / source-material pressure",
+          "status": "conditional",
+          "route_type": "disclosure",
+          "why_it_helps": [
+            "May assist as conditional prosecution-pressure if MG6 or schedules show outstanding CCTV/CAD/999/MG11 or unused material.",
+            "Creates pressure if proved only once the listed source material is served and reviewed."
+          ],
+          "what_hurts_us": [
+            "Outstanding items are chased but return consistent with the Crown case.",
+            "Thin bundle with no published disclosure schedule to anchor a chase."
+          ],
+          "evidence_anchors": [
+            "CCTV full window",
+            "CCTV Continuity",
+            "Body Worn Video (BWV)",
+            "999 Call Audio",
+            "Interview Recording",
+            "Custody Record / Custody CCTV"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Outstanding disclosure is served and supports the Crown route.",
+            "MG6 itself lists the material as served and consistent.",
+            "Chase returns master CCTV that undermines the defence timing/ID point."
+          ],
+          "next_moves": [
+            "Chase CAD audit.",
+            "Ask for full MG11/source material and unused schedule detail.",
+            "Prepare hearing line on outstanding disclosure; set a timetable."
+          ],
+          "hearing_line": "The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until source material is served.",
+          "safety_note": "Disclosure pressure is not a merits win — needs solicitor review before plea or trial strategy is fixed."
+        },
+        {
+          "id": "continuity",
+          "title": "Continuity / provenance pressure",
+          "status": "conditional",
+          "route_type": "continuity",
+          "why_it_helps": [
+            "SIM/IMEIPartial subscriber return Read with officer continuity"
+          ],
+          "what_hurts_us": [
+            "Later continuity material is served and closes the gap.",
+            "Exhibit list appears complete on MG6 with no published tension."
+          ],
+          "evidence_anchors": [
+            "SIM/IMEIPartial subscriber return Read with officer continuity"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Continuity/provenance is later proved on served material.",
+            "Master CCTV/digital source file undermines the challenge if proved.",
+            "Lab/source report returns consistent with the Crown case."
+          ],
+          "next_moves": [
+            "Chase continuity statements and master/source files for key exhibits.",
+            "Map exhibit references across MG5/MG6 before trial theory is fixed.",
+            "Record what handling/provenance material is still outstanding."
+          ],
+          "hearing_line": "Continuity/provenance remains conditional; request outstanding source/continuity material and a timetable.",
+          "safety_note": "Do not tell the court exhibits are unusable unless the file publishes that gap."
+        },
+        {
+          "id": "intent",
+          "title": "Intent / mental element pressure",
+          "status": "conditional",
+          "route_type": "intent",
+          "why_it_helps": [
+            "Offence Possession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971"
+          ],
+          "what_hurts_us": [
+            "Clear admission or strong inference of intent on served papers.",
+            "Medical or circumstantial material that supports specific intent if proved."
+          ],
+          "evidence_anchors": [
+            "Offence Possession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Interview admission on intent is clear on served material.",
+            "Circumstantial sequence leaves little room for accident/lawful excuse on the papers."
+          ],
+          "next_moves": [
+            "Map Crown intent elements to MG5/MG6 and interview wording.",
+            "Take instructions on accident, lawful excuse, or self-defence only if the file supports them.",
+            "Chase expert/source reports before fixing intent theory."
+          ],
+          "hearing_line": "Intent remains a live Crown limb to prove; any defence point is conditional on served material and instructions — do not overstate.",
+          "safety_note": "Do not advance intent theories not supported by instructions and served papers."
+        }
+      ],
+      "global_collapse_risks": [
+        "CAD/999 timing may affect Crown sequence if proved on served material.",
+        "Client account conflicts with served source material.",
+        "Missing expert/source report comes back against defence.",
+        "Interview admission narrows the defence route.",
+        "Continuity/provenance is later proved."
+      ],
+      "urgent_next_moves": [
+        "Chase/record: Body Worn Video (BWV)",
+        "Chase/record: 999 Call Audio"
+      ],
+      "diagnostics": {
+        "corpus_markers": null,
+        "safeguards_signal_count": 0,
+        "multiparty_signal_count": 1,
+        "timeline_signal_count": 2,
+        "cps_pressure_signal_count": 0,
+        "readiness_signal_count": 0,
+        "hearing_court_signal_count": 0,
+        "backup_route_types": [
+          "interview",
+          "identity",
+          "disclosure",
+          "continuity",
+          "intent"
+        ],
+        "backup_route_titles": [
+          "Interview / account pressure",
+          "Identification / visual ID pressure",
+          "Disclosure / source-material pressure",
+          "Continuity / provenance pressure",
+          "Intent / mental element pressure"
+        ],
+        "primary_anchor_sample": [
+          "CAD / 999 EXTRACT",
+          "8CAD / 999 extract Present"
+        ],
+        "safeguards_anchor_sample": [],
+        "multiparty_anchor_sample": [],
+        "cps_pressure_anchor_sample": [],
+        "readiness_anchor_sample": [],
+        "hearing_court_anchor_sample": []
+      }
+    }
+  },
+  "matter": {
+    "status": 200,
+    "data": {
+      "matterState": null,
+      "station": {
+        "timeInCustodyAt": null,
+        "nextPaceReviewAt": null,
+        "interviewStance": null,
+        "stationSummary": null,
+        "groundsForArrest": null,
+        "dateOfArrest": null,
+        "allegedOffence": null,
+        "custodyNumber": null,
+        "policeStationName": null,
+        "clientInitials": null,
+        "clientYob": null,
+        "representationType": null,
+        "riskAppropriateAdult": false,
+        "riskInterpreter": false,
+        "riskMentalHealth": false,
+        "riskMedicalIssues": false,
+        "initialDisclosureReceived": null,
+        "initialDisclosureNotes": null
+      },
+      "bailReturnDate": null,
+      "bailOutcome": null,
+      "matterClosedAt": null,
+      "matterClosedReason": null,
+      "plea": null,
+      "pleaDate": null,
+      "defendantName": null,
+      "clientInitials": null,
+      "allegedOffence": null
+    }
+  },
+  "position": {
+    "status": 200,
+    "data": {
+      "ok": true,
+      "data": null,
+      "position": null
+    }
+  }
+}

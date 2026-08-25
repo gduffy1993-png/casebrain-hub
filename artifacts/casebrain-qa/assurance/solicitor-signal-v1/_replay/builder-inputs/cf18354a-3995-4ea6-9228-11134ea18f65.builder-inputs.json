@@ -1,0 +1,771 @@
+{
+  "bundleSource": {
+    "status": 200,
+    "data": {
+      "combinedTextLength": 27048,
+      "documentCount": 1,
+      "documentRows": [
+        {
+          "id": "50c24510-d0e2-4468-a741-dbb1326d41e2",
+          "name": "gauntlet-08-kitchen-sink.pdf",
+          "updatedAt": "2026-08-16T00:41:47.958113+00:00",
+          "lenExtracted": 27050,
+          "lenRaw": 27050,
+          "lenBody": 27048
+        }
+      ],
+      "health": {
+        "status": "partial",
+        "duplicateDocuments": 0,
+        "headerDetected": false,
+        "mg5Detected": false,
+        "mg6Detected": false,
+        "exhibitLineCount": 0
+      },
+      "header": null,
+      "snippets": {
+        "mg5": "MG5 CASE SUMMARY - MAIN NARRATIVE\nThe Crown allege Riley North struck Simon Hale with a broken bottle outside The Foundry public house. Co-defendant\nMilo Trent is alleged to have blocked the doorway. The prosecution say the injury was intentional and serious. Riley says\nSimon swung first, he moved backwards, and there was a struggle near broken glass. Riley denies intending serious\ninjury.\nThere is CCTV from the exterior doorway but the interior camera was not working. Several pages mention \"CCTV exists\"\nwithout distinguishing exterior CCTV from missing interior CCTV. The app must not say interior CCTV exists or proves\nthe defence.\nMedical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs\nshow a cut but severity and causation should remain provisional until the full medical report is served.",
+        "mg6": null,
+        "mg11": null,
+        "exhibits": null
+      },
+      "caseMetadata": {
+        "defendantName": "presence issue",
+        "defendantSource": "extracted_cover_fallback",
+        "complainant": "Simon Hale",
+        "complainantSource": "extracted_cover_fallback",
+        "court": "Northshire Crown Court Crown",
+        "courtSource": "extracted_cover_fallback",
+        "nextHearingRaw": "01 January 2024",
+        "nextHearingIso": "2024-01-01T10:00:00.000Z",
+        "nextHearingSource": "extracted_procedural_fallback",
+        "stage": null,
+        "stageSource": "unavailable",
+        "offenceWording": "Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861",
+        "offenceDisplay": "Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861",
+        "offenceSource": "extracted_charge_fallback",
+        "bailStatus": null,
+        "bailStatusSource": "unavailable",
+        "defencePosition": null,
+        "defencePositionSource": "unavailable"
+      },
+      "sizeProfile": {
+        "documentCount": 1,
+        "pdfCount": 1,
+        "pageCount": null,
+        "combinedTextLength": 27048,
+        "isLargeByText": false,
+        "isLargeByPages": false
+      },
+      "frontMatterScanLength": 27048,
+      "frontMatterScan": "Northshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 1\nOLD CASE COVER - SUPERSEDED\nOld magistrates allocation sheet shows next hearing 01 January 2024 and an old assault-only description. Later\nindictment and case progression note supersede this. Do not treat this as the live date or complete charge position.\nCHARGE SHEET / CASE INITIATION\nFieldEntryNote\nURNGAUNTLET-2026-0008Generated reference for this gauntlet matter\nDefendantRiley NorthSingle client unless document says otherwise\nCourtNorthshire Crown CourtCrown Court listed venue\nNext hearing17 June 2026 at 14:00PTPH - live current listing\nCPSNorthshire CPSReviewing lawyer not named\nOffenceSection 18 wounding with intent / alternative section\n20 - pub doorway injury; co-defendant presence\nissue\nCharge wording should be treated as primary until\nsuperseded\nCASE PROGRESSION EMAIL\nSent 08 June 2026: Matter adjourned to 17 June 2026 at 14:00 for PTPH at Northshire Crown Court. Outstanding: CCTV\nexport log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call\naudio.\nMG5 CASE SUMMARY - MAIN NARRATIVE\nThe Crown allege Riley North struck Simon Hale with a broken bottle outside The Foundry public house. Co-defendant\nMilo Trent is alleged to have blocked the doorway. The prosecution say the injury was intentional and serious. Riley says\nSimon swung first, he moved backwards, and there was a struggle near broken glass. Riley denies intending serious\ninjury.\nThere is CCTV from the exterior doorway but the interior camera was not working. Several pages mention \"CCTV exists\"\nwithout distinguishing exterior CCTV from missing interior CCTV. The app must not say interior CCTV exists or proves\nthe defence.\nMedical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs\nshow a cut but severity and causation should remain provisional until the full medical report is served.\nMG11 WITNESS STATEMENT - Complainant - Simon Hale\nStatement status: Signed. Witness: Complainant - Simon Hale.\nI remember Riley coming towards me. I had been arguing with him. I do not accept that I swung first. I was drinking and\nthe doorway was crowded.\nI think Milo was near the door but I cannot say exactly where Riley was standing when the glass broke.\nMG11 WITNESS STATEMENT - Door staff - Amber Noel\nStatement status: Draft / unsigned. Witness: Door staff - Amber Noel.\nMy view was partly blocked by customers. I saw pushing and then Simon holding his face. I cannot say if the bottle was\nalready broken before contact.\nI told police the interior camera had not been working for several weeks. Exterior camera faces the doorway but not the\nbar interior.\nMG11 WITNESS STATEMENT - PC Lewis Penn\nStatement status: Draft / unsigned. Witness: PC Lewis Penn.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 2\nI seized a broken bottle from near the doorway. Exhibit code LP/4 appears on one continuity sheet and LP/14 appears on\na later property record. This needs checking before any strong continuity point is taken.\nBody-worn video was activated after the arrest, not during the first witness conversation.\nCUSTODY / INTERVIEW EXTRACT\nDefendant: Riley North. Interview summary prepared from custody log and interview note. Full audio and transcript are\nnot served in this bundle.\nQ: Did you intentionally hit Simon Hale with a bottle?\nA: No. He swung first and everything happened fast near the doorway.\nQ: Did you have a bottle in your hand?\nA: I had a drink before, but I did not use it as a weapon.\nQ: Why is there blood on your sleeve?\nA: I was close to him after he was cut. People were pushing.\nQ: Did Milo block the door?\nA: No comment.\nINDICTMENT DRAFT - LATER VERSION\nCountDefendantAllegation\n1Riley Norths18 wounding with intent on Simon Hale, 29 May 2026, The Foundry doorway\nAlt 1Riley Norths20 unlawful wounding\n2Milo Trentassisting offender / public order role - draft only\nMG6C UNUSED MATERIAL SCHEDULE - MIXED AND DUPLICATED\nItemDescriptionStatus / relevance\nMG6C/001Exterior CCTV export log not servedCentral to sequence, doorway angle and continuity.\nMG6C/002Exterior CCTV export log not servedDuplicate copied entry.\nMG6C/003Interior CCTV not working according to door staffDo not chase as if it exists; may support disclosure\nline about absence/non-existence.\nMG6C/004Final consultant medical report absentDo not overstate injury severity or causation.\nMG6C/005Final consultant medical report absentDuplicate copied entry.\nMG6C/006Bottle exhibit continuity LP/4 vs LP/14 conflictContinuity/exhibit-code issue.\nMG6C/007CAD/999 audio not servedFirst complaint and timing.\nMG6C/008BWV initial witness account not servedFirst account and visible state.\nMG6C/009Door staff final signed MG11 absentSequence and camera-status issue.\nMG6C/010Custody CCTV not servedMay affect visible injury/condition after arrest.\nGLUED OCR LINE FROM PROPERTY RECORD\nEXHIBITCONTINUITY:LP/4orLP/14BROKENBOTTLE-SEIZEDFOUNDRYDOORWAY-LOGMISSING-CHECKBEFOREHEARING\nCPS REVIEW NOTE - BAD FACTS\nThe Crown will likely say the injury location and witness account are serious bad facts for the defence. However, missing\nexport logs, incomplete medical material, exhibit-code inconsistency and the self-defence account prevent a safe\noverconfident defence route.\nPROPERTY LOG - CONTINUATION 01\nProperty bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 3\nCUSTODY LOG - CONTINUATION 02\nDefendant booked at 00:43. Nurse note records small cut to defendant knuckle. No full custody CCTV served.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 4\nCCTV VIEWING NOTE - CONTINUATION 03\nExterior doorway camera reviewed by officer. Interior camera not working. Export hash/checksum not in bundle.\nTrap note: do not convert \"interior camera not working\" into a chase for available interior CCTV. The safe line is to ask\nthe Crown to confirm absence/non-function and preserve any maintenance log if relied on.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 5\nEMAIL CHAIN - CONTINUATION 04\nCase progression mentions old hearing date 01/01/2024 in copied footer; body confirms 17 June 2026.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 6\nMEDICAL SUMMARY - CONTINUATION 05\nAmbulance note records laceration. Final consultant opinion absent. No fracture report in this bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 7\nWITNESS CONTACT LOG - CONTINUATION 06\nDoor staff final signature chased. One witness says view blocked by pillar.\nOldFooterDate:01/01/2024 NewHearing:17June2026at14:00 PTPH\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 8\nDISCLOSURE CHASE NOTE - CONTINUATION 07\nCAD/999 audio, BWV and CCTV export log remain outstanding.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 9\nPROPERTY LOG - CONTINUATION 08\nProperty bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.\nCo-defendant material should not be confused with Riley North direct intent evidence. Milo Trent appears in\ndoorway-position notes only.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 10\nCUSTODY LOG - CONTINUATION 09\nDefendant booked at 00:43. Nurse note records small cut to defendant knuckle. No full custody CCTV served.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 11\nCCTV VIEWING NOTE - CONTINUATION 10\nExterior doorway camera reviewed by officer. Interior camera not working. Export hash/checksum not in bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 12\nEMAIL CHAIN - CONTINUATION 11\nCase progression mentions old hearing date 01/01/2024 in copied footer; body confirms 17 June 2026.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 13\nMEDICAL SUMMARY - CONTINUATION 12\nAmbulance note records laceration. Final consultant opinion absent. No fracture report in this bundle.\nTrap note: do not convert \"interior camera not working\" into a chase for available interior CCTV. The safe line is to ask\nthe Crown to confirm absence/non-function and preserve any maintenance log if relied on.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 14\nWITNESS CONTACT LOG - CONTINUATION 13\nDoor staff final signature chased. One witness says view blocked by pillar.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 15\nDISCLOSURE CHASE NOTE - CONTINUATION 14\nCAD/999 audio, BWV and CCTV export log remain outstanding.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 16\nPROPERTY LOG - CONTINUATION 15\nProperty bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 17\nCUSTODY LOG - CONTINUATION 16\nDefendant booked at 00:43. Nurse note records small cut to defendant knuckle. No full custody CCTV served.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 18\nCCTV VIEWING NOTE - CONTINUATION 17\nExterior doorway camera reviewed by officer. Interior camera not working. Export hash/checksum not in bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 19\nEMAIL CHAIN - CONTINUATION 18\nCase progression mentions old hearing date 01/01/2024 in copied footer; body confirms 17 June 2026.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 20\nMEDICAL SUMMARY - CONTINUATION 19\nAmbulance note records laceration. Final consultant opinion absent. No fracture report in this bundle.\nOldFooterDate:01/01/2024 NewHearing:17June2026at14:00 PTPH\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 21\nWITNESS CONTACT LOG - CONTINUATION 20\nDoor staff final signature chased. One witness says view blocked by pillar.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 22\nDISCLOSURE CHASE NOTE - CONTINUATION 21\nCAD/999 audio, BWV and CCTV export log remain outstanding.\nTrap note: do not convert \"interior camera not working\" into a chase for available interior CCTV. The safe line is to ask\nthe Crown to confirm absence/non-function and preserve any maintenance log if relied on.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 23\nPROPERTY LOG - CONTINUATION 22\nProperty bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 24\nCUSTODY LOG - CONTINUATION 23\nDefendant booked at 00:43. Nurse note records small cut to defendant knuckle. No full custody CCTV served.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 25\nCCTV VIEWING NOTE - CONTINUATION 24\nExterior doorway camera reviewed by officer. Interior camera not working. Export hash/checksum not in bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 26\nEMAIL CHAIN - CONTINUATION 25\nCase progression mentions old hearing date 01/01/2024 in copied footer; body confirms 17 June 2026.\nCo-defendant material should not be confused with Riley North direct intent evidence. Milo Trent appears in\ndoorway-position notes only.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 27\nMEDICAL SUMMARY - CONTINUATION 26\nAmbulance note records laceration. Final consultant opinion absent. No fracture report in this bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 28\nWITNESS CONTACT LOG - CONTINUATION 27\nDoor staff final signature chased. One witness says view blocked by pillar.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 29\nDISCLOSURE CHASE NOTE - CONTINUATION 28\nCAD/999 audio, BWV and CCTV export log remain outstanding.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 30\nPROPERTY LOG - CONTINUATION 29\nProperty bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 31\nCUSTODY LOG - CONTINUATION 30\nDefendant booked at 00:43. Nurse note records small cut to defendant knuckle. No full custody CCTV served.\nTrap note: do not convert \"interior camera not working\" into a chase for available interior CCTV. The safe line is to ask\nthe Crown to confirm absence/non-function and preserve any maintenance log if relied on.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 32\nCCTV VIEWING NOTE - CONTINUATION 31\nExterior doorway camera reviewed by officer. Interior camera not working. Export hash/checksum not in bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 33\nEMAIL CHAIN - CONTINUATION 32\nCase progression mentions old hearing date 01/01/2024 in copied footer; body confirms 17 June 2026.\nOldFooterDate:01/01/2024 NewHearing:17June2026at14:00 PTPH\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 34\nMEDICAL SUMMARY - CONTINUATION 33\nAmbulance note records laceration. Final consultant opinion absent. No fracture report in this bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 35\nWITNESS CONTACT LOG - CONTINUATION 34\nDoor staff final signature chased. One witness says view blocked by pillar.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 36\nDISCLOSURE CHASE NOTE - CONTINUATION 35\nCAD/999 audio, BWV and CCTV export log remain outstanding.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 37\nPROPERTY LOG - CONTINUATION 36\nProperty bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 38\nCUSTODY LOG - CONTINUATION 37\nDefendant booked at 00:43. Nurse note records small cut to defendant knuckle. No full custody CCTV served.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 39\nCCTV VIEWING NOTE - CONTINUATION 38\nExterior doorway camera reviewed by officer. Interior camera not working. Export hash/checksum not in bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 40\nEMAIL CHAIN - CONTINUATION 39\nCase progression mentions old hearing date 01/01/2024 in copied footer; body confirms 17 June 2026.\nTrap note: do not convert \"interior camera not working\" into a chase for available interior CCTV. The safe line is to ask\nthe Crown to confirm absence/non-function and preserve any maintenance log if relied on.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 41\nMEDICAL SUMMARY - CONTINUATION 40\nAmbulance note records laceration. Final consultant opinion absent. No fracture report in this bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 42\nWITNESS CONTACT LOG - CONTINUATION 41\nDoor staff final signature chased. One witness says view blocked by pillar.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 43\nDISCLOSURE CHASE NOTE - CONTINUATION 42\nCAD/999 audio, BWV and CCTV export log remain outstanding.\nCo-defendant material should not be confused with Riley North direct intent evidence. Milo Trent appears in\ndoorway-position notes only.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 44\nPROPERTY LOG - CONTINUATION 43\nProperty bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 45\nCUSTODY LOG - CONTINUATION 44\nDefendant booked at 00:43. Nurse note records small cut to defendant knuckle. No full custody CCTV served.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 46\nCCTV VIEWING NOTE - CONTINUATION 45\nExterior doorway camera reviewed by officer. Interior camera not working. Export hash/checksum not in bundle.\nOldFooterDate:01/01/2024 NewHearing:17June2026at14:00 PTPH\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 47\nEMAIL CHAIN - CONTINUATION 46\nCase progression mentions old hearing date 01/01/2024 in copied footer; body confirms 17 June 2026.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 48\nMEDICAL SUMMARY - CONTINUATION 47\nAmbulance note records laceration. Final consultant opinion absent. No fracture report in this bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 49\nWITNESS CONTACT LOG - CONTINUATION 48\nDoor staff final signature chased. One witness says view blocked by pillar.\nTrap note: do not convert \"interior camera not working\" into a chase for available interior CCTV. The safe line is to ask\nthe Crown to confirm absence/non-function and preserve any maintenance log if relied on.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 50\nDISCLOSURE CHASE NOTE - CONTINUATION 49\nCAD/999 audio, BWV and CCTV export log remain outstanding.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 51\nPROPERTY LOG - CONTINUATION 50\nProperty bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 52\nCUSTODY LOG - CONTINUATION 51\nDefendant booked at 00:43. Nurse note records small cut to defendant knuckle. No full custody CCTV served.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 53\nCCTV VIEWING NOTE - CONTINUATION 52\nExterior doorway camera reviewed by officer. Interior camera not working. Export hash/checksum not in bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 54\nEMAIL CHAIN - CONTINUATION 53\nCase progression mentions old hearing date 01/01/2024 in copied footer; body confirms 17 June 2026.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 55\nMEDICAL SUMMARY - CONTINUATION 54\nAmbulance note records laceration. Final consultant opinion absent. No fracture report in this bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 56\nWITNESS CONTACT LOG - CONTINUATION 55\nDoor staff final signature chased. One witness says view blocked by pillar.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 57\nDISCLOSURE CHASE NOTE - CONTINUATION 56\nCAD/999 audio, BWV and CCTV export log remain outstanding.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 58\nPROPERTY LOG - CONTINUATION 57\nProperty bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.\nTrap note: do not convert \"interior camera not working\" into a chase for available interior CCTV. The safe line is to ask\nthe Crown to confirm absence/non-function and preserve any maintenance log if relied on.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 59\nCUSTODY LOG - CONTINUATION 58\nDefendant booked at 00:43. Nurse note records small cut to defendant knuckle. No full custody CCTV served.\nOldFooterDate:01/01/2024 NewHearing:17June2026at14:00 PTPH\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 60\nCCTV VIEWING NOTE - CONTINUATION 59\nExterior doorway camera reviewed by officer. Interior camera not working. Export hash/checksum not in bundle.\nCo-defendant material should not be confused with Riley North direct intent evidence. Milo Trent appears in\ndoorway-position notes only.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 61\nEMAIL CHAIN - CONTINUATION 60\nCase progression mentions old hearing date 01/01/2024 in copied footer; body confirms 17 June 2026.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 62\nMEDICAL SUMMARY - CONTINUATION 61\nAmbulance note records laceration. Final consultant opinion absent. No fracture report in this bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 63\nWITNESS CONTACT LOG - CONTINUATION 62\nDoor staff final signature chased. One witness says view blocked by pillar.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 64\nDISCLOSURE CHASE NOTE - CONTINUATION 63\nCAD/999 audio, BWV and CCTV export log remain outstanding.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 65\nPROPERTY LOG - CONTINUATION 64\nProperty bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 66\nCUSTODY LOG - CONTINUATION 65\nDefendant booked at 00:43. Nurse note records small cut to defendant knuckle. No full custody CCTV served.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 67\nCCTV VIEWING NOTE - CONTINUATION 66\nExterior doorway camera reviewed by officer. Interior camera not working. Export hash/checksum not in bundle.\nTrap note: do not convert \"interior camera not working\" into a chase for available interior CCTV. The safe line is to ask\nthe Crown to confirm absence/non-function and preserve any maintenance log if relied on.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 68\nEMAIL CHAIN - CONTINUATION 67\nCase progression mentions old hearing date 01/01/2024 in copied footer; body confirms 17 June 2026.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 69\nMEDICAL SUMMARY - CONTINUATION 68\nAmbulance note records laceration. Final consultant opinion absent. No fracture report in this bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 70\nWITNESS CONTACT LOG - CONTINUATION 69\nDoor staff final signature chased. One witness says view blocked by pillar.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 71\nDISCLOSURE CHASE NOTE - CONTINUATION 70\nCAD/999 audio, BWV and CCTV export log remain outstanding.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 72\nPROPERTY LOG - CONTINUATION 71\nProperty bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.\nOldFooterDate:01/01/2024 NewHearing:17June2026at14:00 PTPH\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 73\nCUSTODY LOG - CONTINUATION 72\nDefendant booked at 00:43. Nurse note records small cut to defendant knuckle. No full custody CCTV served.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 74\nCCTV VIEWING NOTE - CONTINUATION 73\nExterior doorway camera reviewed by officer. Interior camera not working. Export hash/checksum not in bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 75\nEMAIL CHAIN - CONTINUATION 74\nCase progression mentions old hearing date 01/01/2024 in copied footer; body confirms 17 June 2026.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 76\nMEDICAL SUMMARY - CONTINUATION 75\nAmbulance note records laceration. Final consultant opinion absent. No fracture report in this bundle.\nTrap note: do not convert \"interior camera not working\" into a chase for available interior CCTV. The safe line is to ask\nthe Crown to confirm absence/non-function and preserve any maintenance log if relied on.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 77\nWITNESS CONTACT LOG - CONTINUATION 76\nDoor staff final signature chased. One witness says view blocked by pillar.\nCo-defendant material should not be confused with Riley North direct intent evidence. Milo Trent appears in\ndoorway-position notes only.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 78\nDISCLOSURE CHASE NOTE - CONTINUATION 77\nCAD/999 audio, BWV and CCTV export log remain outstanding.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 79\nPROPERTY LOG - CONTINUATION 78\nProperty bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 80\nCUSTODY LOG - CONTINUATION 79\nDefendant booked at 00:43. Nurse note records small cut to defendant knuckle. No full custody CCTV served.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 81\nCCTV VIEWING NOTE - CONTINUATION 80\nExterior doorway camera reviewed by officer. Interior camera not working. Export hash/checksum not in bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 82\nEMAIL CHAIN - CONTINUATION 81\nCase progression mentions old hearing date 01/01/2024 in copied footer; body confirms 17 June 2026.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 83\nMEDICAL SUMMARY - CONTINUATION 82\nAmbulance note records laceration. Final consultant opinion absent. No fracture report in this bundle.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 84\nWITNESS CONTACT LOG - CONTINUATION 83\nDoor staff final signature chased. One witness says view blocked by pillar.\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 85\nDISCLOSURE CHASE NOTE - CONTINUATION 84\nCAD/999 audio, BWV and CCTV export log remain outstanding.\nTrap note: do not convert \"interior camera not working\" into a chase for available interior CCTV. The safe line is to ask\nthe Crown to confirm absence/non-function and preserve any maintenance log if relied on.\nOldFooterDate:01/01/2024 NewHearing:17June2026at14:00 PTPH\n\nNorthshire PoliceURN: GAUNTLET-2026-0008\nGAUNTLET 08 - KITCHEN SINK BUNDLE\nPage 86\nPROPERTY LOG - CONTINUATION 85\nProperty bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.\nBAIL / HEARING NOTE\nThe matter is listed for PTPH. Defence position is not recorded in the papers. Any case theory is provisional pending\nsolicitor instructions and source review.\nCourt note requests: record outstanding CCTV continuity, MG6C service position, medical update where applicable, and\nany interview transcript issue.",
+      "canonical": {
+        "findings": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"gauntlet-08-kitchen-sink.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "gauntlet-08-kitchen-sink.pdf (indictment) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "draft_vs_signed",
+            "title": "Draft versus signed version change",
+            "summary": "Draft (gauntlet-08-kitchen-sink.pdf) and signed (gauntlet-08-kitchen-sink.pdf) compared; no field diffs extracted.",
+            "unresolved": true,
+            "provenanceLine": "gauntlet-08-kitchen-sink.pdf (statement) · state: needs review · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": true,
+            "pageIdentityNote": null,
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state not_safely_confirmed; transcript state not_safely_confirmed.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "gauntlet-08-kitchen-sink.pdf (custody record) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [],
+            "attribution": null
+          }
+        ],
+        "findingSummaries": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"gauntlet-08-kitchen-sink.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "gauntlet-08-kitchen-sink.pdf (indictment) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "draft_vs_signed",
+            "title": "Draft versus signed version change",
+            "summary": "Draft (gauntlet-08-kitchen-sink.pdf) and signed (gauntlet-08-kitchen-sink.pdf) compared; no field diffs extracted.",
+            "unresolved": true,
+            "provenanceLine": "gauntlet-08-kitchen-sink.pdf (statement) · state: needs review · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+            "severity": "info",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state not_safely_confirmed; transcript state not_safely_confirmed.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "gauntlet-08-kitchen-sink.pdf (custody record) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "info",
+            "referencedAbsent": null
+          }
+        ],
+        "evidenceRows": [
+          {
+            "label": "Full audio and transcript are not",
+            "existence": "served",
+            "note": "gauntlet-08-kitchen-sink.pdf · page identity unresolved",
+            "sourceDocumentTitle": "gauntlet-08-kitchen-sink.pdf",
+            "sourceDocumentType": "indictment",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Riley North"
+            ]
+          },
+          {
+            "label": "No full custody CCTV",
+            "existence": "served",
+            "note": "gauntlet-08-kitchen-sink.pdf · page identity unresolved",
+            "sourceDocumentTitle": "gauntlet-08-kitchen-sink.pdf",
+            "sourceDocumentType": "indictment",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Riley North"
+            ]
+          },
+          {
+            "label": "without distinguishing exterior CCTV",
+            "existence": "missing",
+            "note": "gauntlet-08-kitchen-sink.pdf · page identity unresolved",
+            "sourceDocumentTitle": "gauntlet-08-kitchen-sink.pdf",
+            "sourceDocumentType": "indictment",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Riley North"
+            ]
+          },
+          {
+            "label": "Full audio and transcript are",
+            "existence": "missing",
+            "note": "gauntlet-08-kitchen-sink.pdf · page identity unresolved",
+            "sourceDocumentTitle": "gauntlet-08-kitchen-sink.pdf",
+            "sourceDocumentType": "indictment",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Riley North"
+            ]
+          },
+          {
+            "label": "Officer note says final continuity statement",
+            "existence": "missing",
+            "note": "gauntlet-08-kitchen-sink.pdf · page identity unresolved",
+            "sourceDocumentTitle": "gauntlet-08-kitchen-sink.pdf",
+            "sourceDocumentType": "indictment",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Riley North"
+            ]
+          },
+          {
+            "label": "Final consultant opinion",
+            "existence": "missing",
+            "note": "gauntlet-08-kitchen-sink.pdf · page identity unresolved",
+            "sourceDocumentTitle": "gauntlet-08-kitchen-sink.pdf",
+            "sourceDocumentType": "indictment",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Riley North"
+            ]
+          },
+          {
+            "label": "BWV and CCTV export log remain",
+            "existence": "missing",
+            "note": "gauntlet-08-kitchen-sink.pdf · page identity unresolved",
+            "sourceDocumentTitle": "gauntlet-08-kitchen-sink.pdf",
+            "sourceDocumentType": "indictment",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Riley North"
+            ]
+          },
+          {
+            "label": "Medical material is",
+            "existence": "incomplete",
+            "note": "gauntlet-08-kitchen-sink.pdf · page identity unresolved",
+            "sourceDocumentTitle": "gauntlet-08-kitchen-sink.pdf",
+            "sourceDocumentType": "indictment",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Riley North"
+            ]
+          }
+        ],
+        "charges": [
+          {
+            "count": 1,
+            "offence": "Charge instrument on file — charge wording unresolved",
+            "statute": null,
+            "particulars": null,
+            "location": null,
+            "status": "pending",
+            "defendants": [],
+            "documentRole": "operative",
+            "sourceDocumentTitle": "gauntlet-08-kitchen-sink.pdf",
+            "sourceDocumentType": "indictment",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "confidence": 0.2,
+            "extracted": false,
+            "confirmationLabel": "unconfirmed"
+          }
+        ],
+        "chaseLabels": [
+          "Officer note says final continuity statement",
+          "Final consultant opinion",
+          "BWV and CCTV export log remain",
+          "Medical material is",
+          "Interview recording",
+          "Interview transcript"
+        ],
+        "suppressedChaseLabels": [
+          "without distinguishing exterior CCTV",
+          "Full audio and transcript are"
+        ],
+        "documentRoles": [
+          {
+            "id": "50c24510-d0e2-4468-a741-dbb1326d41e2",
+            "title": "gauntlet-08-kitchen-sink.pdf",
+            "role": "operative"
+          }
+        ],
+        "unitCount": 1,
+        "pageUnitCount": 1
+      }
+    }
+  },
+  "battleboard": {
+    "status": 200,
+    "data": {
+      "case_id": "cf18354a-3995-4ea6-9228-11134ea18f65",
+      "generated_at": "2026-08-25T05:02:06.595Z",
+      "overall_status": "usable",
+      "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Causation / injury route pressure (conditional) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
+      "position_trust": "interview_from_file",
+      "position_notice": "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
+      "primary_route": {
+        "id": "causation",
+        "title": "Causation / injury route pressure",
+        "status": "conditional",
+        "route_type": "causation",
+        "why_it_helps": [
+          "export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call",
+          "Court note requests: record outstanding CCTV Continuity, MG6C service position, medical update where applicable, and",
+          "MG11 WITNESS STATEMENT - Complainant - Simon Hale",
+          "MG6C/010 Custody CCTV not served — May affect visible injury/condition after arrest."
+        ],
+        "what_hurts_us": [
+          "Medical evidence that supports Crown causation on served papers.",
+          "Clear injury mechanism matching the Crown account."
+        ],
+        "evidence_anchors": [
+          "export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call",
+          "Court note requests: record outstanding CCTV Continuity, MG6C service position, medical update where applicable, and",
+          "MG11 WITNESS STATEMENT - Complainant - Simon Hale",
+          "MG6C/010 Custody CCTV not served — May affect visible injury/condition after arrest."
+        ],
+        "collapse_risks": [
+          "Assumed position may conflict with interview or served evidence.",
+          "Medical evidence may support Crown causation if proved on served papers.",
+          "Missing expert/source report may return against the defence route.",
+          "Complainant injury account may appear consistent across MG11 and medical material if proved."
+        ],
+        "next_moves": [
+          "Chase medical/expert/source reports listed on MG6.",
+          "Take instructions on injury mechanism dispute only if supported.",
+          "Separate injury causation from identification/timing theory."
+        ],
+        "hearing_line": "Causation/injury level is conditional on served medical material; ask for outstanding expert/source disclosure.",
+        "safety_note": "Needs solicitor review before running causation at hearing or in plea discussions."
+      },
+      "routes": [
+        {
+          "id": "causation",
+          "title": "Causation / injury route pressure",
+          "status": "conditional",
+          "route_type": "causation",
+          "why_it_helps": [
+            "export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call",
+            "Court note requests: record outstanding CCTV Continuity, MG6C service position, medical update where applicable, and",
+            "MG11 WITNESS STATEMENT - Complainant - Simon Hale",
+            "MG6C/010 Custody CCTV not served — May affect visible injury/condition after arrest."
+          ],
+          "what_hurts_us": [
+            "Medical evidence that supports Crown causation on served papers.",
+            "Clear injury mechanism matching the Crown account."
+          ],
+          "evidence_anchors": [
+            "export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call",
+            "Court note requests: record outstanding CCTV Continuity, MG6C service position, medical update where applicable, and",
+            "MG11 WITNESS STATEMENT - Complainant - Simon Hale",
+            "MG6C/010 Custody CCTV not served — May affect visible injury/condition after arrest."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Medical evidence may support Crown causation if proved on served papers.",
+            "Missing expert/source report may return against the defence route.",
+            "Complainant injury account may appear consistent across MG11 and medical material if proved."
+          ],
+          "next_moves": [
+            "Chase medical/expert/source reports listed on MG6.",
+            "Take instructions on injury mechanism dispute only if supported.",
+            "Separate injury causation from identification/timing theory."
+          ],
+          "hearing_line": "Causation/injury level is conditional on served medical material; ask for outstanding expert/source disclosure.",
+          "safety_note": "Needs solicitor review before running causation at hearing or in plea discussions."
+        },
+        {
+          "id": "multiparty",
+          "title": "Separate defendant / count-specific pressure",
+          "status": "conditional",
+          "route_type": "multiparty",
+          "why_it_helps": [
+            "20 - pub doorway injury; co-defendant presence",
+            "The Crown allege Riley North struck Simon Hale with a broken bottle outside The Foundry public house. Co-defendant",
+            "Co-defendant material should not be confused with Riley North direct intent evidence. Milo Trent appears in"
+          ],
+          "what_hurts_us": [
+            "Shared evidence, joint activity, admissions, or attribution evidence may connect defendants or counts on the papers.",
+            "Co-defendant material may be admissible and consistent with the Crown case if proved."
+          ],
+          "evidence_anchors": [
+            "20 - pub doorway injury; co-defendant presence",
+            "The Crown allege Riley North struck Simon Hale with a broken bottle outside The Foundry public house. Co-defendant",
+            "Co-defendant material should not be confused with Riley North direct intent evidence. Milo Trent appears in"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Crown can tie each item to this defendant and count on served material.",
+            "Co-defendant evidence is admissible and consistent if proved.",
+            "Joint enterprise or shared conduct wording undermines separate-role pressure."
+          ],
+          "next_moves": [
+            "Build defendant-by-defendant evidence matrix from served papers.",
+            "Build count-by-count proof table before fixing trial theory.",
+            "Chase attribution material, phone ownership, vehicle ownership, and role evidence if outstanding."
+          ],
+          "hearing_line": "Ask the court to record that case management directions must separate defendant and count issues — conditional on served evidence and solicitor review.",
+          "safety_note": "Conditional on served evidence and solicitor review — do not overstate separate-role points."
+        },
+        {
+          "id": "disclosure",
+          "title": "Disclosure / source-material pressure",
+          "status": "conditional",
+          "route_type": "disclosure",
+          "why_it_helps": [
+            "Court note requests: record outstanding CCTV Continuity, MG6C service position, medical update where applicable, and",
+            "MG6C/001 Exterior CCTV export log not served — Central to sequence, doorway angle and continuity.",
+            "MG6C/009 Door staff final signed MG11 absent — Sequence and camera-status issue.",
+            "MG6C/002 Exterior CCTV export log not served — Duplicate copied entry."
+          ],
+          "what_hurts_us": [
+            "Outstanding items are chased but return consistent with the Crown case.",
+            "Thin bundle with no published disclosure schedule to anchor a chase."
+          ],
+          "evidence_anchors": [
+            "Court note requests: record outstanding CCTV Continuity, MG6C service position, medical update where applicable, and",
+            "MG6C/001 Exterior CCTV export log not served — Central to sequence, doorway angle and continuity.",
+            "MG6C/009 Door staff final signed MG11 absent — Sequence and camera-status issue.",
+            "MG6C/002 Exterior CCTV export log not served — Duplicate copied entry.",
+            "CCTV full window",
+            "CCTV Continuity"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Outstanding disclosure is served and supports the Crown route.",
+            "MG6 itself lists the material as served and consistent.",
+            "Chase returns master CCTV that undermines the defence timing/ID point."
+          ],
+          "next_moves": [
+            "Chase CAD audit.",
+            "Chase 999 audio.",
+            "Ask for full MG11/source material and unused schedule detail.",
+            "Prepare hearing line on outstanding disclosure; set a timetable."
+          ],
+          "hearing_line": "The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until source material is served.",
+          "safety_note": "Disclosure pressure is not a merits win — needs solicitor review before plea or trial strategy is fixed."
+        },
+        {
+          "id": "identity",
+          "title": "Identification / visual ID pressure",
+          "status": "conditional",
+          "route_type": "identity",
+          "why_it_helps": [
+            "CAD/999 audio, BWV and CCTV export log remain outstanding.",
+            "Court note requests: record outstanding CCTV Continuity, MG6C service position, medical update where applicable, and",
+            "Sent 08 June 2026: Matter adjourned to 17 June 2026 at 14:00 for PTPH at Northshire Crown Court. Outstanding: CCTV",
+            "MG6C/001 Exterior CCTV export log not served — Central to sequence, doorway angle and continuity."
+          ],
+          "what_hurts_us": [
+            "Short, confident witness ID on served papers.",
+            "Clear CCTV/BWV sequence that matches Crown timing."
+          ],
+          "evidence_anchors": [
+            "CAD/999 audio, BWV and CCTV export log remain outstanding.",
+            "Court note requests: record outstanding CCTV Continuity, MG6C service position, medical update where applicable, and",
+            "Sent 08 June 2026: Matter adjourned to 17 June 2026 at 14:00 for PTPH at Northshire Crown Court. Outstanding: CCTV",
+            "MG6C/001 Exterior CCTV export log not served — Central to sequence, doorway angle and continuity."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "ID parade or formal identification procedure supports the Crown route if proved."
+          ],
+          "next_moves": [
+            "Take instructions on observation conditions and any ID dispute."
+          ],
+          "hearing_line": "On the file wording, identification remains conditional until served CCTV/source material and witness accounts are reconciled; do not overstate.",
+          "safety_note": "Needs solicitor review before any positive ID challenge is advanced at court."
+        },
+        {
+          "id": "interview",
+          "title": "Interview / account pressure",
+          "status": "conditional",
+          "route_type": "interview",
+          "why_it_helps": [
+            "export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call",
+            "Defendant: Riley North. Interview summary prepared from custody log and interview note. Full audio and transcript are"
+          ],
+          "what_hurts_us": [
+            "Interview admission that narrows the defence route.",
+            "No comment or limited account where bad facts are already on the file."
+          ],
+          "evidence_anchors": [
+            "export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call",
+            "CUSTODY / INTERVIEW EXTRACT",
+            "Defendant: Riley North. Interview summary prepared from custody log and interview note. Full audio and transcript are",
+            "any interview transcript issue."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Any interview admission, if served and reviewed, could narrow the defence route.",
+            "Client account conflicts with served source material."
+          ],
+          "next_moves": [
+            "Take instructions on interview stance and any prepared statement wording.",
+            "Chase interview transcript.",
+            "Chase pre-interview disclosure.",
+            "Record defence position; do not infer interview content beyond served wording."
+          ],
+          "hearing_line": "",
+          "safety_note": "Needs solicitor review — interview routes collapse quickly if admissions are clear on the papers."
+        },
+        {
+          "id": "continuity",
+          "title": "Continuity / provenance pressure",
+          "status": "conditional",
+          "route_type": "continuity",
+          "why_it_helps": [
+            "export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call",
+            "Court note requests: record outstanding CCTV Continuity, MG6C service position, medical update where applicable, and",
+            "MG6C/001 Exterior CCTV export log not served — Central to sequence, doorway angle and continuity.",
+            "I seized a broken bottle from near the doorway. Exhibit code LP/4 appears on one continuity sheet and LP/14 appears on"
+          ],
+          "what_hurts_us": [
+            "Later continuity material is served and closes the gap.",
+            "Exhibit list appears complete on MG6 with no published tension."
+          ],
+          "evidence_anchors": [
+            "export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call",
+            "Court note requests: record outstanding CCTV Continuity, MG6C service position, medical update where applicable, and",
+            "MG6C/001 Exterior CCTV export log not served — Central to sequence, doorway angle and continuity.",
+            "I seized a broken bottle from near the doorway. Exhibit code LP/4 appears on one continuity sheet and LP/14 appears on"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Continuity/provenance is later proved on served material.",
+            "Master CCTV/digital source file undermines the challenge if proved.",
+            "Lab/source report returns consistent with the Crown case."
+          ],
+          "next_moves": [
+            "Chase continuity statements and master/source files for key exhibits.",
+            "Map exhibit references across MG5/MG6 before trial theory is fixed.",
+            "Record what handling/provenance material is still outstanding."
+          ],
+          "hearing_line": "Continuity/provenance remains conditional; request outstanding source/continuity material and a timetable.",
+          "safety_note": "Do not tell the court exhibits are unusable unless the file publishes that gap."
+        },
+        {
+          "id": "intent",
+          "title": "Intent / mental element pressure",
+          "status": "conditional",
+          "route_type": "intent",
+          "why_it_helps": [
+            "export logs, incomplete medical material, exhibit-code inconsistency and the self-defence account prevent a safe",
+            "Offence Section 18 wounding with intent / alternative section",
+            "1 Riley Norths18 wounding with intent on Simon Hale, 29 May 2026, The Foundry doorway",
+            "Co-defendant material should not be confused with Riley North direct intent evidence. Milo Trent appears in"
+          ],
+          "what_hurts_us": [
+            "Clear admission or strong inference of intent on served papers.",
+            "Medical or circumstantial material that supports specific intent if proved."
+          ],
+          "evidence_anchors": [
+            "export logs, incomplete medical material, exhibit-code inconsistency and the self-defence account prevent a safe",
+            "Offence Section 18 wounding with intent / alternative section",
+            "1 Riley Norths18 wounding with intent on Simon Hale, 29 May 2026, The Foundry doorway",
+            "Co-defendant material should not be confused with Riley North direct intent evidence. Milo Trent appears in"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Medical evidence supports the Crown intent route if proved.",
+            "Interview admission on intent is clear on served material.",
+            "Circumstantial sequence leaves little room for accident/lawful excuse on the papers."
+          ],
+          "next_moves": [
+            "Map Crown intent elements to MG5/MG6 and interview wording.",
+            "Take instructions on accident, lawful excuse, or self-defence only if the file supports them.",
+            "Chase expert/source reports before fixing intent theory."
+          ],
+          "hearing_line": "Intent remains a live Crown limb to prove; any defence point is conditional on served material and instructions — do not overstate.",
+          "safety_note": "Do not advance intent theories not supported by instructions and served papers."
+        },
+        {
+          "id": "timeline",
+          "title": "Timeline / sequence / alibi pressure",
+          "status": "conditional",
+          "route_type": "timeline",
+          "why_it_helps": [
+            "export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call",
+            "CAD/999 audio, BWV and CCTV export log remain outstanding.",
+            "MG6C/001 Exterior CCTV export log not served — Central to sequence, doorway angle and continuity.",
+            "MG6C/007 CAD/999 audio not served — First complaint and timing."
+          ],
+          "what_hurts_us": [
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Client account that conflicts with served source times."
+          ],
+          "evidence_anchors": [
+            "export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call",
+            "CAD/999 audio, BWV and CCTV export log remain outstanding.",
+            "MG6C/001 Exterior CCTV export log not served — Central to sequence, doorway angle and continuity.",
+            "MG6C/007 CAD/999 audio not served — First complaint and timing."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Receipt/phone records undermine the defence timing account."
+          ],
+          "next_moves": [
+            "Chase CAD audit.",
+            "Chase 999 audio.",
+            "Take instructions on timing conflict and any alibi account.",
+            "Record defence position on sequence before the next hearing."
+          ],
+          "hearing_line": "Timing/sequence remains conditional on served CAD/999/CCTV material; ask the court to record what source material is still outstanding.",
+          "safety_note": "Do not present a firm alibi unless instructions and served material support it."
+        },
+        {
+          "id": "mitigation",
+          "title": "Mitigation / damage-limitation fallback",
+          "status": "conditional",
+          "route_type": "mitigation",
+          "why_it_helps": [
+            "The Crown will likely say the injury location and witness account are serious bad facts for the defence. However, missing"
+          ],
+          "what_hurts_us": [
+            "Early mitigation signals weakness before disclosure chase completes.",
+            "Bad facts on the file limit realistic reduction outcomes."
+          ],
+          "evidence_anchors": [
+            "CPS REVIEW NOTE - BAD FACTS",
+            "The Crown will likely say the injury location and witness account are serious bad facts for the defence. However, missing"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Fight routes strengthen after disclosure — mitigation prematurely narrows options.",
+            "Court views mitigation as acceptance of core facts not yet tested."
+          ],
+          "next_moves": [
+            "Keep mitigation fallback open while disclosure/timeline routes are chased.",
+            "Record instructions before any plea or sentence discussion.",
+            "Separate mitigation from live fight routes in hearing submissions."
+          ],
+          "hearing_line": "The defence preserves position on merits while recording that strategy remains provisional pending served material — do not overstate.",
+          "safety_note": "Mitigation is a fallback, not a substitute for testing outstanding source material."
+        }
+      ],
+      "global_collapse_risks": [
+        "CAD/999 timing may affect Crown sequence if proved on served material.",
+        "Client account conflicts with served source material.",
+        "Missing expert/source report comes back against defence.",
+        "Any interview admission, if served and reviewed, could narrow the defence route.",
+        "Continuity/provenance is later proved."
+      ],
+      "urgent_next_moves": [
+        "Chase/record: Body Worn Video (BWV)",
+        "Chase/record: 999 Call Audio",
+        "Chase/record: Custody Record / Custody CCTV"
+      ],
+      "diagnostics": {
+        "corpus_markers": null,
+        "safeguards_signal_count": 0,
+        "multiparty_signal_count": 1,
+        "timeline_signal_count": 3,
+        "cps_pressure_signal_count": 0,
+        "readiness_signal_count": 1,
+        "hearing_court_signal_count": 2,
+        "backup_route_types": [
+          "multiparty",
+          "disclosure",
+          "identity",
+          "interview",
+          "continuity",
+          "intent",
+          "timeline",
+          "mitigation"
+        ],
+        "backup_route_titles": [
+          "Separate defendant / count-specific pressure",
+          "Disclosure / source-material pressure",
+          "Identification / visual ID pressure",
+          "Interview / account pressure",
+          "Continuity / provenance pressure",
+          "Intent / mental element pressure",
+          "Timeline / sequence / alibi pressure",
+          "Mitigation / damage-limitation fallback"
+        ],
+        "primary_anchor_sample": [
+          "export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call",
+          "Court note requests: record outstanding CCTV continuity, MG6C service position, medical update where applicable, and",
+          "MG11 WITNESS STATEMENT - Complainant - Simon Hale"
+        ],
+        "safeguards_anchor_sample": [],
+        "multiparty_anchor_sample": [
+          "20 - pub doorway injury; co-defendant presence",
+          "The Crown allege Riley North struck Simon Hale with a broken bottle outside The Foundry public house. Co-defendant",
+          "Co-defendant material should not be confused with Riley North direct intent evidence. Milo Trent appears in"
+        ],
+        "cps_pressure_anchor_sample": [],
+        "readiness_anchor_sample": [],
+        "hearing_court_anchor_sample": []
+      }
+    }
+  },
+  "matter": {
+    "status": 200,
+    "data": {
+      "matterState": null,
+      "station": {
+        "timeInCustodyAt": null,
+        "nextPaceReviewAt": null,
+        "interviewStance": null,
+        "stationSummary": null,
+        "groundsForArrest": null,
+        "dateOfArrest": null,
+        "allegedOffence": null,
+        "custodyNumber": null,
+        "policeStationName": null,
+        "clientInitials": null,
+        "clientYob": null,
+        "representationType": null,
+        "riskAppropriateAdult": false,
+        "riskInterpreter": false,
+        "riskMentalHealth": false,
+        "riskMedicalIssues": false,
+        "initialDisclosureReceived": null,
+        "initialDisclosureNotes": null
+      },
+      "bailReturnDate": null,
+      "bailOutcome": null,
+      "matterClosedAt": null,
+      "matterClosedReason": null,
+      "plea": null,
+      "pleaDate": null,
+      "defendantName": "Riley North",
+      "clientInitials": null,
+      "allegedOffence": null
+    }
+  },
+  "position": {
+    "status": 200,
+    "data": {
+      "ok": true,
+      "data": null,
+      "position": null
+    }
+  }
+}

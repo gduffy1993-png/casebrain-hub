@@ -1,0 +1,503 @@
+{
+  "bundleSource": {
+    "status": 200,
+    "data": {
+      "combinedTextLength": 6893,
+      "documentCount": 1,
+      "documentRows": [
+        {
+          "id": "2f4795c3-9e15-4afa-8ccd-b16653d63bc8",
+          "name": "CB-TB-1573_Ahmed.pdf",
+          "updatedAt": "2026-08-16T00:41:49.147485+00:00",
+          "lenExtracted": 6895,
+          "lenRaw": 6895,
+          "lenBody": 6893
+        }
+      ],
+      "health": {
+        "status": "partial",
+        "duplicateDocuments": 0,
+        "headerDetected": false,
+        "mg5Detected": false,
+        "mg6Detected": false,
+        "exhibitLineCount": 0
+      },
+      "header": null,
+      "snippets": {
+        "mg5": "MG5 CASE SUMMARY\nURN 2026-158201\nThe prosecution summary alleges that Holly Ahmed was involved in an incident at New Cross\nParade. The complainant is recorded as Sophie Ward. The summary refers to search record and\nreasonable excuse, but not all material appears in this bundle. The defendant account is\nrecorded as disputed or not fully available on the current papers. An earlier note mentions a\nhearing on 27 August 2026 at 9:00; a later listing page gives 20 July 2026 at 12:30.\nIssueCurrent note\nServed materialMG5 summary; charge sheet; one MG11 statement\nMaterial still neededsearch record; reasonable excuse; full interview transcript\nReview pointhearing notice and older MG5 carry different dates\nCB-TB-1573 | Page 3",
+        "mg6": null,
+        "mg11": null,
+        "exhibits": null
+      },
+      "caseMetadata": {
+        "defendantName": "Holly Ahmed",
+        "defendantSource": "extracted_cover_fallback",
+        "complainant": null,
+        "complainantSource": "unavailable",
+        "court": "Crown Court at Preston",
+        "courtSource": "extracted_cover_fallback",
+        "nextHearingRaw": "20 July 2026 at 12:30",
+        "nextHearingIso": "2026-07-20T12:30:00.000Z",
+        "nextHearingSource": "extracted_procedural_fallback",
+        "stage": "Trial prep",
+        "stageSource": "extracted_cover_fallback",
+        "offenceWording": "Offence Possession of a bladed article in a public place, contrary to section 139 of the Criminal Justice Act 1988",
+        "offenceDisplay": "Offence Possession of a bladed article in a public place, contrary to section 139 of the Criminal Justice Act 1988",
+        "offenceSource": "extracted_charge_fallback",
+        "bailStatus": null,
+        "bailStatusSource": "unavailable",
+        "defencePosition": null,
+        "defencePositionSource": "unavailable"
+      },
+      "sizeProfile": {
+        "documentCount": 1,
+        "pdfCount": 1,
+        "pageCount": null,
+        "combinedTextLength": 6893,
+        "isLargeByText": false,
+        "isLargeByPages": false
+      },
+      "frontMatterScanLength": 6893,
+      "frontMatterScan": "PROSECUTION PAPERS - BUNDLE INDEX\nURN 2026-158201 / Case 26CR31683\nDefendantHolly Ahmed\nCourtCrown Court at Preston\nNext hearing20 July 2026 at 12:30\nStageTrial prep\nPrimary allegationBladed article\nProsecutor refNPS/6743/2026\nTabDocumentPages\n1Charge sheet2\n2MG5 case summary3\n3Additional MG11 statement4\n4Interview summary5\n5Custody record extract6\n6MG6 disclosure schedule7\n7Redacted custody note8\n8Late disclosure email9\n9Further schedule page10\n10Forensic or medical note11\n11Exhibit list continuation12\n12Additional schedule page13\n13Exhibit list continuation14\n14Disclosure note15\n15Continuation sheet16\n16Exhibit list continuation17\n17Disclosure note18\nThe bundle is provided for the hearing listed above. Page numbering follows the papers as received\nand may include loose continuation pages.\nCB-TB-1573 | Page 1\n\nCHARGE SHEET\nCase 26CR31683\nDefendant nameHolly Ahmed\nDate of birth06/02/1997\nAddress53 Beech Road, Riverton\nOffencePossession of a bladed article in a public place, contrary to section 139 of the Criminal Justice Act 1988\nCourtCrown Court at Preston\nHearing20 July 2026 at 12:30\nCB-TB-1573 | Page 2\n\nMG5 CASE SUMMARY\nURN 2026-158201\nThe prosecution summary alleges that Holly Ahmed was involved in an incident at New Cross\nParade. The complainant is recorded as Sophie Ward. The summary refers to search record and\nreasonable excuse, but not all material appears in this bundle. The defendant account is\nrecorded as disputed or not fully available on the current papers. An earlier note mentions a\nhearing on 27 August 2026 at 9:00; a later listing page gives 20 July 2026 at 12:30.\nIssueCurrent note\nServed materialMG5 summary; charge sheet; one MG11 statement\nMaterial still neededsearch record; reasonable excuse; full interview transcript\nReview pointhearing notice and older MG5 carry different dates\nCB-TB-1573 | Page 3\n\nWITNESS STATEMENT\nCriminal Justice Act 1967, section 9\nStatement ofClaire Norris\nAge if under 18Over 18\nOccupation\nDate14 June 2026\nURN2026-158201\nI make this statement about events at New Cross Parade. I remember seeing Holly Ahmed\nnearby. My first account was given shortly after the incident. I cannot now see the whole\nCCTV sequence and I rely on what I personally saw.\nThe person I describe was wearing dark clothing. I gave details to Civilian Witness Tracey\nMoore. I did not keep the original note I made on my phone.\nThis statement is true to the best of my knowledge and belief.\nSigned\nDate\nCB-TB-1573 | Page 4\n\nINTERVIEW SUMMARY\nThe summary records that Holly Ahmed answered questions about presence at New Cross Parade.\nThe summary is not a full transcript. It refers to a reply about ownership or involvement,\nbut the full question and answer sequence is not included.\nTape / digital refINT/1573/A\nTranscriptNot in this section\nSolicitor presentNot clearly recorded\nCB-TB-1573 | Page 5\n\nCUSTODY RECORD EXTRACT\nCustody no. C51909\nTimeEntry\n13:04Arrival and risk assessment opened\n13:22Legal advice requested\n10:05Interview proposed\n10:34Appropriate adult / interpreter entry unclear\nCB-TB-1573 | Page 6\n\nMG6 DISCLOSURE SCHEDULE\nItemDescriptionStatusNote\n1MG5 case summaryservedincluded\n2Charge sheetservedincluded\n3search recordoutstandingrequested\n4reasonable excuseoutstandingneeded before final position\n5complete CAD/999 logoutstandingnot attached\nCB-TB-1573 | Page 7\n\nCUSTODY RECORD EXTRACT\nCustody no. C51909\nTimeEntry\n13:04Arrival and risk assessment opened\n13:22Legal advice requested\n10:05Interview proposed\n10:34Appropriate adult / interpreter entry unclear\nCB-TB-1573 | Page 8\n\nDISCLOSURE CORRESPONDENCE\nFromcasework.disclosure@prosecution.example\nTodefence.enquiries@example\nDate18 June 2026\nSubject2026-158201 - material update\nPlease note the schedule has been updated. The attachment referred to in the prior message was\nnot included with the email. A further copy of search record has been requested from the\nofficer in the case.\nCB-TB-1573 | Page 9\n\nMG6C / DISCLOSURE UPDATE\nItemDescriptionStatusNote\n1MG5 case summaryservedincluded\n2Charge sheetservedincluded\n3search recordoutstandingrequested\n4reasonable excuseoutstandingneeded before final position\n5complete CAD/999 logoutstandingnot attached\nCB-TB-1573 | Page 10\n\nMEDICAL / FORENSIC NOTE\nA short note records an injury or forensic issue said to be connected to the allegation\ninvolving Holly Ahmed. The final report is not included in this bundle. The note should not be\ntreated as a complete expert report.\nCB-TB-1573 | Page 11\n\nEXHIBIT LIST\nExhibitDescriptionLocation in papers\nEX/01Officer notebook extractincluded\nEX/02Photograph or still imageincluded as description\nCCTV/3CCTV export logshort note\nAB/2Continuity labelunclear\nCB-TB-1573 | Page 12\n\nMG6C / DISCLOSURE UPDATE\nItemDescriptionStatusNote\n1MG5 case summaryservedincluded\n2Charge sheetservedincluded\n3search recordoutstandingrequested\n4reasonable excuseoutstandingneeded before final position\n5phone subscriber dataoutstandingnot attached\nCB-TB-1573 | Page 13\n\nEXHIBIT LIST\nExhibitDescriptionLocation in papers\nEX/01Officer notebook extractincluded\nEX/02Photograph or still imageincluded as description\nCCTV/3CCTV export logshort note\nAB/2Continuity labelunclear\nCB-TB-1573 | Page 14\n\nDISCLOSURE NOTE\nThis loose page relates to Holly Ahmed and the allegation listed on the charge page. It refers\nto search record and reasonable excuse, but the supporting material is not complete on the\nsupplied papers.\nCB-TB-1573 | Page 15\n\nCONTINUATION SHEET\nThis loose page relates to Holly Ahmed and the allegation listed on the charge page. It refers\nto search record and reasonable excuse, but the supporting material is not complete on the\nsupplied papers.\nCB-TB-1573 | Page 16\n\nEXHIBIT LIST\nExhibitDescriptionLocation in papers\nEX/01Officer notebook extractincluded\nEX/02Photograph or still imageincluded as description\nCCTV/3CCTV export logshort note\nAB/2Continuity labelunclear\nCB-TB-1573 | Page 17\n\nDISCLOSURE NOTE\nThis loose page relates to Holly Ahmed and the allegation listed on the charge page. It refers\nto search record and reasonable excuse, but the supporting material is not complete on the\nsupplied papers.\nCB-TB-1573 | Page 18\n\nCONTINUATION SHEET\nThis loose page relates to Holly Ahmed and the allegation listed on the charge page. It refers\nto search record and reasonable excuse, but the supporting material is not complete on the\nsupplied papers.\nCB-TB-1573 | Page 19\n\nMG6C / DISCLOSURE UPDATE\nItemDescriptionStatusNote\n1MG5 case summaryservedincluded\n2Charge sheetservedincluded\n3search recordoutstandingrequested\n4reasonable excuseoutstandingneeded before final position\n5complete CAD/999 logoutstandingnot attached\nCB-TB-1573 | Page 20\n\nCONTINUATION SHEET\nThis loose page relates to Holly Ahmed and the allegation listed on the charge page. It refers\nto search record and reasonable excuse, but the supporting material is not complete on the\nsupplied papers.\nCB-TB-1573 | Page 21",
+      "canonical": {
+        "findings": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"CB-TB-1573_Ahmed.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-1573_Ahmed.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state not_safely_confirmed; transcript state not_safely_confirmed.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Competing timestamps for the same event (hearing on 27 august 2026 at 9 00 a later listing page gives 20 july 2026 at 12): 9:00 vs 12:30. Affirmative PACE OK / no-breach is forbidden.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          }
+        ],
+        "findingSummaries": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"CB-TB-1573_Ahmed.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-1573_Ahmed.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state not_safely_confirmed; transcript state not_safely_confirmed.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Competing timestamps for the same event (hearing on 27 august 2026 at 9 00 a later listing page gives 20 july 2026 at 12): 9:00 vs 12:30. Affirmative PACE OK / no-breach is forbidden.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "critical",
+            "referencedAbsent": null
+          }
+        ],
+        "evidenceRows": [
+          {
+            "label": "list continuation17 17Disclosure note18 The bundle is",
+            "existence": "served",
+            "note": "CB-TB-1573_Ahmed.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1573_Ahmed.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "IssueCurrent note",
+            "existence": "served",
+            "note": "CB-TB-1573_Ahmed.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1573_Ahmed.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          }
+        ],
+        "charges": [],
+        "chaseLabels": [
+          "Interview recording",
+          "Interview transcript"
+        ],
+        "suppressedChaseLabels": [],
+        "documentRoles": [
+          {
+            "id": "2f4795c3-9e15-4afa-8ccd-b16653d63bc8",
+            "title": "CB-TB-1573_Ahmed.pdf",
+            "role": "operative"
+          }
+        ],
+        "unitCount": 1,
+        "pageUnitCount": 1
+      }
+    }
+  },
+  "battleboard": {
+    "status": 200,
+    "data": {
+      "case_id": "ba22e8bb-832c-43b8-8986-20ea5f5bf7c4",
+      "generated_at": "2026-08-25T05:02:02.869Z",
+      "overall_status": "usable",
+      "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Safeguards / participation pressure (viable) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
+      "position_trust": "interview_from_file",
+      "position_notice": "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
+      "primary_route": {
+        "id": "safeguards",
+        "title": "Safeguards / participation pressure",
+        "status": "viable",
+        "route_type": "safeguards",
+        "why_it_helps": [
+          "10:34 Appropriate adult / interpreter entry unclear"
+        ],
+        "what_hurts_us": [
+          "Safeguards may be documented as properly complied with on served papers.",
+          "Vulnerability may not be linked to the disputed issue on the Crown route."
+        ],
+        "evidence_anchors": [
+          "10:34 Appropriate adult / interpreter entry unclear"
+        ],
+        "collapse_risks": [
+          "Assumed position may conflict with interview or served evidence.",
+          "Custody/interview record shows safeguards were correctly followed.",
+          "Vulnerability is not linked to the disputed issue on served material.",
+          "Appropriate adult / interpreter records support the Crown account if proved."
+        ],
+        "next_moves": [
+          "Chase custody record, appropriate adult record, and interpreter record if referenced.",
+          "Chase vulnerability assessment, medical, or liaison notes if listed.",
+          "Record instructions on participation and understanding before fixing hearing strategy."
+        ],
+        "hearing_line": "Ask the court to record any safeguards/participation issue and direct service of relevant custody and interview records — conditional on served material.",
+        "safety_note": "Not a merits win — solicitor review required before advancing participation challenges."
+      },
+      "routes": [
+        {
+          "id": "safeguards",
+          "title": "Safeguards / participation pressure",
+          "status": "viable",
+          "route_type": "safeguards",
+          "why_it_helps": [
+            "10:34 Appropriate adult / interpreter entry unclear"
+          ],
+          "what_hurts_us": [
+            "Safeguards may be documented as properly complied with on served papers.",
+            "Vulnerability may not be linked to the disputed issue on the Crown route."
+          ],
+          "evidence_anchors": [
+            "10:34 Appropriate adult / interpreter entry unclear"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Custody/interview record shows safeguards were correctly followed.",
+            "Vulnerability is not linked to the disputed issue on served material.",
+            "Appropriate adult / interpreter records support the Crown account if proved."
+          ],
+          "next_moves": [
+            "Chase custody record, appropriate adult record, and interpreter record if referenced.",
+            "Chase vulnerability assessment, medical, or liaison notes if listed.",
+            "Record instructions on participation and understanding before fixing hearing strategy."
+          ],
+          "hearing_line": "Ask the court to record any safeguards/participation issue and direct service of relevant custody and interview records — conditional on served material.",
+          "safety_note": "Not a merits win — solicitor review required before advancing participation challenges."
+        },
+        {
+          "id": "causation",
+          "title": "Causation / injury route pressure",
+          "status": "viable",
+          "route_type": "causation",
+          "why_it_helps": [
+            "A short note records an injury or forensic issue said to be connected to the allegation",
+            "Parade. The complainant is recorded as Sophie Ward. The summary refers to search record and"
+          ],
+          "what_hurts_us": [
+            "Clear injury mechanism matching the Crown account."
+          ],
+          "evidence_anchors": [
+            "10 Forensic or medical note11",
+            "MEDICAL / FORENSIC NOTE",
+            "A short note records an injury or forensic issue said to be connected to the allegation",
+            "Parade. The complainant is recorded as Sophie Ward. The summary refers to search record and"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Medical evidence may support Crown causation if proved on served papers.",
+            "Missing expert/source report may return against the defence route.",
+            "Complainant injury account may appear consistent across MG11 and medical material if proved."
+          ],
+          "next_moves": [
+            "Chase medical/expert/source reports listed on MG6.",
+            "Take instructions on injury mechanism dispute only if supported.",
+            "Separate injury causation from identification/timing theory."
+          ],
+          "hearing_line": "Causation/injury level is conditional on served medical material; ask for outstanding expert/source disclosure.",
+          "safety_note": "Needs solicitor review before running causation at hearing or in plea discussions."
+        },
+        {
+          "id": "interview",
+          "title": "Interview / account pressure",
+          "status": "viable",
+          "route_type": "interview",
+          "why_it_helps": [
+            "Material still neededsearch record; reasonable excuse; full interview transcript"
+          ],
+          "what_hurts_us": [
+            "Interview admission that narrows the defence route.",
+            "No comment or limited account where bad facts are already on the file."
+          ],
+          "evidence_anchors": [
+            "Material still neededsearch record; reasonable excuse; full interview transcript",
+            "INTERVIEW SUMMARY",
+            "The summary records that Holly Ahmed answered questions about presence at New Cross Parade."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Any interview admission, if served and reviewed, could narrow the defence route.",
+            "Client account conflicts with served source material."
+          ],
+          "next_moves": [
+            "Take instructions on interview stance and any prepared statement wording.",
+            "Chase interview transcript.",
+            "Chase pre-interview disclosure.",
+            "Record defence position; do not infer interview content beyond served wording."
+          ],
+          "hearing_line": "",
+          "safety_note": "Needs solicitor review — interview routes collapse quickly if admissions are clear on the papers."
+        },
+        {
+          "id": "identity",
+          "title": "Identification / visual ID pressure",
+          "status": "viable",
+          "route_type": "identity",
+          "why_it_helps": [
+            "CCTV sequence and I rely on what I personally saw."
+          ],
+          "what_hurts_us": [
+            "Short, confident witness ID on served papers.",
+            "Clear CCTV/BWV sequence that matches Crown timing."
+          ],
+          "evidence_anchors": [
+            "CCTV sequence and I rely on what I personally saw.",
+            "CCTV/3 CCTV export logshort note"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "ID parade or formal identification procedure supports the Crown route if proved."
+          ],
+          "next_moves": [
+            "Take instructions on observation conditions and any ID dispute.",
+            "Map MG11 wording against served visual exhibits before fixing trial theory."
+          ],
+          "hearing_line": "On the file wording, identification remains conditional until served CCTV/source material and witness accounts are reconciled; do not overstate.",
+          "safety_note": "Needs solicitor review before any positive ID challenge is advanced at court."
+        },
+        {
+          "id": "timeline",
+          "title": "Timeline / sequence / alibi pressure",
+          "status": "viable",
+          "route_type": "timeline",
+          "why_it_helps": [
+            "5complete CAD/999 log outstanding not attached",
+            "CCTV sequence and I rely on what I personally saw.",
+            "but the full question and answer sequence is not included."
+          ],
+          "what_hurts_us": [
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Client account that conflicts with served source times."
+          ],
+          "evidence_anchors": [
+            "5complete CAD/999 log outstanding not attached",
+            "CCTV sequence and I rely on what I personally saw.",
+            "but the full question and answer sequence is not included."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Receipt/phone records undermine the defence timing account."
+          ],
+          "next_moves": [
+            "Chase CAD audit.",
+            "Take instructions on timing conflict and any alibi account.",
+            "Record defence position on sequence before the next hearing."
+          ],
+          "hearing_line": "Timing/sequence remains conditional on served CAD/999/CCTV material; ask the court to record what source material is still outstanding.",
+          "safety_note": "Do not present a firm alibi unless instructions and served material support it."
+        },
+        {
+          "id": "disclosure",
+          "title": "Disclosure / source-material pressure",
+          "status": "viable",
+          "route_type": "disclosure",
+          "why_it_helps": [
+            "MG6C / DISCLOSURE UPDATE",
+            "May assist as conditional prosecution-pressure if MG6 or schedules show outstanding CCTV/CAD/999/MG11 or unused material.",
+            "Creates pressure if proved only once the listed source material is served and reviewed."
+          ],
+          "what_hurts_us": [
+            "Outstanding items are chased but return consistent with the Crown case.",
+            "Thin bundle with no published disclosure schedule to anchor a chase."
+          ],
+          "evidence_anchors": [
+            "MG6C / DISCLOSURE UPDATE",
+            "CCTV full window",
+            "CCTV Continuity",
+            "Body Worn Video (BWV)",
+            "999 Call Audio",
+            "Interview Recording"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Outstanding disclosure is served and supports the Crown route.",
+            "MG6 itself lists the material as served and consistent.",
+            "Chase returns master CCTV that undermines the defence timing/ID point."
+          ],
+          "next_moves": [
+            "Chase CAD audit.",
+            "Ask for full MG11/source material and unused schedule detail.",
+            "Prepare hearing line on outstanding disclosure; set a timetable."
+          ],
+          "hearing_line": "The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until source material is served.",
+          "safety_note": "Disclosure pressure is not a merits win — needs solicitor review before plea or trial strategy is fixed."
+        }
+      ],
+      "global_collapse_risks": [
+        "CAD/999 timing may affect Crown sequence if proved on served material.",
+        "Client account conflicts with served source material.",
+        "Missing expert/source report comes back against defence.",
+        "Any interview admission, if served and reviewed, could narrow the defence route.",
+        "Continuity/provenance may later be proved on served material."
+      ],
+      "urgent_next_moves": [
+        "Chase/record: 999 Call Audio",
+        "Chase/record: Custody Record / Custody CCTV"
+      ],
+      "diagnostics": {
+        "corpus_markers": null,
+        "safeguards_signal_count": 2,
+        "multiparty_signal_count": 0,
+        "timeline_signal_count": 3,
+        "cps_pressure_signal_count": 0,
+        "readiness_signal_count": 0,
+        "hearing_court_signal_count": 1,
+        "backup_route_types": [
+          "causation",
+          "interview",
+          "identity",
+          "timeline",
+          "disclosure"
+        ],
+        "backup_route_titles": [
+          "Causation / injury route pressure",
+          "Interview / account pressure",
+          "Identification / visual ID pressure",
+          "Timeline / sequence / alibi pressure",
+          "Disclosure / source-material pressure"
+        ],
+        "primary_anchor_sample": [
+          "10:34Appropriate adult / interpreter entry unclear"
+        ],
+        "safeguards_anchor_sample": [
+          "10:34Appropriate adult / interpreter entry unclear"
+        ],
+        "multiparty_anchor_sample": [],
+        "cps_pressure_anchor_sample": [],
+        "readiness_anchor_sample": [],
+        "hearing_court_anchor_sample": []
+      }
+    }
+  },
+  "matter": {
+    "status": 200,
+    "data": {
+      "matterState": null,
+      "station": {
+        "timeInCustodyAt": null,
+        "nextPaceReviewAt": null,
+        "interviewStance": null,
+        "stationSummary": null,
+        "groundsForArrest": null,
+        "dateOfArrest": null,
+        "allegedOffence": null,
+        "custodyNumber": null,
+        "policeStationName": null,
+        "clientInitials": null,
+        "clientYob": null,
+        "representationType": null,
+        "riskAppropriateAdult": false,
+        "riskInterpreter": false,
+        "riskMentalHealth": false,
+        "riskMedicalIssues": false,
+        "initialDisclosureReceived": null,
+        "initialDisclosureNotes": null
+      },
+      "bailReturnDate": null,
+      "bailOutcome": null,
+      "matterClosedAt": null,
+      "matterClosedReason": null,
+      "plea": null,
+      "pleaDate": null,
+      "defendantName": null,
+      "clientInitials": null,
+      "allegedOffence": null
+    }
+  },
+  "position": {
+    "status": 200,
+    "data": {
+      "ok": true,
+      "data": null,
+      "position": null
+    }
+  }
+}

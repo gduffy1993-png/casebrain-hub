@@ -1,0 +1,58 @@
+{
+  "caseId": "687cf5a6-6898-4257-baef-33e33ace08df",
+  "primary": [
+    {
+      "ref": "MG6/05",
+      "label": "MG6/05 CCTV Continuity log",
+      "family": "cctv_continuity",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "MG6/07",
+      "label": "MG6/07 final medical report",
+      "family": "medical_expert",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "MG6/04",
+      "label": "MG6/04 bank source statements",
+      "family": "other",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "MG6/06",
+      "label": "MG6/06 analyst certificate",
+      "family": "other",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "CCTV/2",
+      "label": "CCTV/2 External camera export Store manager Export log",
+      "family": "other",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "EX/01",
+      "label": "Body-worn video (BWV)",
+      "family": "bwv",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "DIG/4",
+      "label": "DIG/4 Phone screenshot bundle DC Morgan Raw extraction",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Full phone download / source extraction",
+      "family": "other",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 24,
+  "statedGaps": 5,
+  "statedGapsOnBoard": 5,
+  "truncated": true,
+  "findings": []
+}

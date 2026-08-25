@@ -294,7 +294,7 @@
     "status": 200,
     "data": {
       "case_id": "a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27",
-      "generated_at": "2026-08-25T04:28:07.696Z",
+      "generated_at": "2026-08-25T05:01:57.335Z",
       "overall_status": "usable",
       "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Causation / injury route pressure (viable) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
       "position_trust": "interview_from_file",

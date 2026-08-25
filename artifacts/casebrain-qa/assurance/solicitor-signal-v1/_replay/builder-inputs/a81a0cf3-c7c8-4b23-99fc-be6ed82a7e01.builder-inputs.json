@@ -316,7 +316,7 @@
     "status": 200,
     "data": {
       "case_id": "a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01",
-      "generated_at": "2026-08-25T04:28:10.127Z",
+      "generated_at": "2026-08-25T05:02:09.467Z",
       "overall_status": "usable",
       "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Separate defendant / count-specific pressure (conditional) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
       "position_trust": "interview_from_file",

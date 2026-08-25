@@ -1,0 +1,354 @@
+{
+  "bundleSource": {
+    "status": 200,
+    "data": {
+      "combinedTextLength": 2644,
+      "documentCount": 1,
+      "documentRows": [
+        {
+          "id": "4bf6dd1d-5ebd-419f-b595-1b57e3445274",
+          "name": "police station.pdf",
+          "updatedAt": "2026-08-16T00:41:49.548065+00:00",
+          "lenExtracted": 2649,
+          "lenRaw": 2649,
+          "lenBody": 2644
+        }
+      ],
+      "health": {
+        "status": "partial",
+        "duplicateDocuments": 0,
+        "headerDetected": false,
+        "mg5Detected": false,
+        "mg6Detected": false,
+        "exhibitLineCount": 0
+      },
+      "header": null,
+      "snippets": {
+        "mg5": null,
+        "mg6": null,
+        "mg11": null,
+        "exhibits": null
+      },
+      "caseMetadata": {
+        "defendantName": "Liam Carter",
+        "defendantSource": "extracted_cover_fallback",
+        "complainant": null,
+        "complainantSource": "unavailable",
+        "court": null,
+        "courtSource": "unavailable",
+        "nextHearingRaw": "03/02/2025",
+        "nextHearingIso": "2025-02-03T10:00:00.000Z",
+        "nextHearingSource": "extracted_procedural_fallback",
+        "stage": null,
+        "stageSource": "unavailable",
+        "offenceWording": null,
+        "offenceDisplay": null,
+        "offenceSource": "unavailable",
+        "bailStatus": null,
+        "bailStatusSource": "unavailable",
+        "defencePosition": null,
+        "defencePositionSource": "unavailable"
+      },
+      "sizeProfile": {
+        "documentCount": 1,
+        "pdfCount": 1,
+        "pageCount": null,
+        "combinedTextLength": 2644,
+        "isLargeByText": false,
+        "isLargeByPages": false
+      },
+      "frontMatterScanLength": 2644,
+      "frontMatterScan": "CASE: R v Liam Carter \nDATE OF ARREST: 03/02/2025 \nTIME OF ARREST: 20:15 hours \nLOCATION OF ARREST: Middleton Road, Heywood \nARRESTING OFFICERS: PC Shaw 22415, PC Turner 19872 \nCUSTODY SUITE: Bury Custody Suite \nCUSTODY REF: 25/02/BC/194 \nAt 19:42 hours on 03/02/2025, officers were dispatched to a reported burglary at 14 \nAlderbank Close. A description was circulated of a male wearing a grey puffer jacket seen \non CCTV approaching the address shortly before the offence. \nAt approximately 20:15 hours, while conducting area searches, officers observed a lone \nmale walking southbound on Middleton Road. The male was wearing a grey puffer-style \njacket with the hood down. Officers noted that the male appeared to avoid eye contact and \nplaced his hands inside his pockets as the police vehicle approached. \nThe male was stopped and identified as Liam Carter, DOB 14/09/1999. He appeared \nnervous and gave short answers. Officers conducted a stop search under Section 1 PACE \non the grounds that he matched the general build and clothing description of the male seen \non CCTV. \nThe search revealed: \n– No stolen property \n– No tools \n– No gloves \n– No weapons \n– No items linking him to the burglary \nDespite this, officers believed the male’s clothing and build were sufficiently similar to the \nCCTV footage. Due to the proximity to the scene (0.6 miles), the time frame, and the \nongoing investigation, the male was arrested on suspicion of burglary. \nCarter was cautioned and made no reply. \nHe was transported to Bury Custody Suite at 20:32 hours. \nUpon arrival, he was booked in by the custody sergeant. He declined legal advice initially but \nlater accepted a duty solicitor. He made no complaints about his treatment and no injuries \nwere noted. \nA property search was authorised for the clothing worn at the time of arrest. No forensic \nopportunities were identified. No items of evidential value were seized. \nCarter was placed in Interview Room 2 at 22:10 hours. He was offered water and a break. \nHe declined to provide a written statement. \n\nThe interview commenced at 22:24 hours with the duty solicitor present. Carter answered \n“No Comment” to all questions put to him regarding: \n– His movements between 18:00 and 20:00 \n– Whether he had been on Alderbank Close \n– Whether he recognised himself on CCTV \n– Whether he had any involvement in the burglary \n– Whether he had knowledge of the stolen items \nThe interview concluded at 22:41 hours. \nCarter was returned to his cell pending further enquiries. \nNo further evidence was obtained during the period of detention. \nCarter was released under investigation at 01:15 hours.",
+      "canonical": {
+        "findings": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"police station.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "police station.pdf (custody record) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Competing timestamps for the same event (his movements between 18 00 and 20 00): 18:00 vs 20:00. Affirmative PACE OK / no-breach is forbidden.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          }
+        ],
+        "findingSummaries": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"police station.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "police station.pdf (custody record) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Competing timestamps for the same event (his movements between 18 00 and 20 00): 18:00 vs 20:00. Affirmative PACE OK / no-breach is forbidden.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "critical",
+            "referencedAbsent": null
+          }
+        ],
+        "evidenceRows": [],
+        "charges": [],
+        "chaseLabels": [],
+        "suppressedChaseLabels": [],
+        "documentRoles": [
+          {
+            "id": "4bf6dd1d-5ebd-419f-b595-1b57e3445274",
+            "title": "police station.pdf",
+            "role": "operative"
+          }
+        ],
+        "unitCount": 1,
+        "pageUnitCount": 1
+      }
+    }
+  },
+  "battleboard": {
+    "status": 200,
+    "data": {
+      "case_id": "8e9d08be-548e-44a3-90be-5f58083b62a5",
+      "generated_at": "2026-08-25T05:02:01.238Z",
+      "overall_status": "usable",
+      "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Identification / visual ID pressure (viable) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
+      "position_trust": "interview_from_file",
+      "position_notice": "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
+      "primary_route": {
+        "id": "identity",
+        "title": "Identification / visual ID pressure",
+        "status": "viable",
+        "route_type": "identity",
+        "why_it_helps": [
+          "on CCTV approaching the address shortly before the offence.",
+          "CCTV footage. Due to the proximity to the scene (0.6 miles), the time frame, and the",
+          "– Whether he recognised himself on CCTV"
+        ],
+        "what_hurts_us": [
+          "Short, confident witness ID on served papers.",
+          "Clear CCTV/BWV sequence that matches Crown timing."
+        ],
+        "evidence_anchors": [
+          "on CCTV approaching the address shortly before the offence.",
+          "on CCTV.",
+          "CCTV footage. Due to the proximity to the scene (0.6 miles), the time frame, and the",
+          "– Whether he recognised himself on CCTV"
+        ],
+        "collapse_risks": [
+          "Assumed position may conflict with interview or served evidence.",
+          "ID parade or formal identification procedure supports the Crown route if proved."
+        ],
+        "next_moves": [
+          "Take instructions on observation conditions and any ID dispute."
+        ],
+        "hearing_line": "On the file wording, identification remains conditional until served CCTV/source material and witness accounts are reconciled; do not overstate.",
+        "safety_note": "Needs solicitor review before any positive ID challenge is advanced at court."
+      },
+      "routes": [
+        {
+          "id": "identity",
+          "title": "Identification / visual ID pressure",
+          "status": "viable",
+          "route_type": "identity",
+          "why_it_helps": [
+            "on CCTV approaching the address shortly before the offence.",
+            "CCTV footage. Due to the proximity to the scene (0.6 miles), the time frame, and the",
+            "– Whether he recognised himself on CCTV"
+          ],
+          "what_hurts_us": [
+            "Short, confident witness ID on served papers.",
+            "Clear CCTV/BWV sequence that matches Crown timing."
+          ],
+          "evidence_anchors": [
+            "on CCTV approaching the address shortly before the offence.",
+            "on CCTV.",
+            "CCTV footage. Due to the proximity to the scene (0.6 miles), the time frame, and the",
+            "– Whether he recognised himself on CCTV"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "ID parade or formal identification procedure supports the Crown route if proved."
+          ],
+          "next_moves": [
+            "Take instructions on observation conditions and any ID dispute."
+          ],
+          "hearing_line": "On the file wording, identification remains conditional until served CCTV/source material and witness accounts are reconciled; do not overstate.",
+          "safety_note": "Needs solicitor review before any positive ID challenge is advanced at court."
+        },
+        {
+          "id": "interview",
+          "title": "Interview / account pressure",
+          "status": "viable",
+          "route_type": "interview",
+          "why_it_helps": [
+            "Carter was placed in Interview Room 2 at 22:10 hours. He was offered water and a break.",
+            "The interview commenced at 22:24 hours with the duty solicitor present. Carter answered",
+            "The interview concluded at 22:41 hours.",
+            "nervous and gave short answers. Officers conducted a stop search under Section 1 PACE"
+          ],
+          "what_hurts_us": [
+            "Interview admission that narrows the defence route.",
+            "No comment or limited account where bad facts are already on the file."
+          ],
+          "evidence_anchors": [
+            "Carter was placed in Interview Room 2 at 22:10 hours. He was offered water and a break.",
+            "The interview commenced at 22:24 hours with the duty solicitor present. Carter answered",
+            "The interview concluded at 22:41 hours.",
+            "nervous and gave short answers. Officers conducted a stop search under Section 1 PACE"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Any interview admission, if served and reviewed, could narrow the defence route.",
+            "Client account conflicts with served source material."
+          ],
+          "next_moves": [
+            "Take instructions on interview stance and any prepared statement wording.",
+            "Chase pre-interview disclosure.",
+            "Record defence position; do not infer interview content beyond served wording."
+          ],
+          "hearing_line": "",
+          "safety_note": "Needs solicitor review — interview routes collapse quickly if admissions are clear on the papers."
+        },
+        {
+          "id": "disclosure",
+          "title": "Disclosure / source-material pressure",
+          "status": "viable",
+          "route_type": "disclosure",
+          "why_it_helps": [
+            "May assist as conditional prosecution-pressure if MG6 or schedules show outstanding CCTV/CAD/999/MG11 or unused material.",
+            "Creates pressure if proved only once the listed source material is served and reviewed."
+          ],
+          "what_hurts_us": [
+            "Outstanding items are chased but return consistent with the Crown case.",
+            "Thin bundle with no published disclosure schedule to anchor a chase."
+          ],
+          "evidence_anchors": [
+            "CCTV full window",
+            "CCTV Continuity",
+            "Body Worn Video (BWV)",
+            "999 Call Audio",
+            "Interview Recording",
+            "Custody Record / Custody CCTV"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Outstanding disclosure is served and supports the Crown route.",
+            "MG6 itself lists the material as served and consistent.",
+            "Chase returns master CCTV that undermines the defence timing/ID point."
+          ],
+          "next_moves": [
+            "Ask for full MG11/source material and unused schedule detail.",
+            "Prepare hearing line on outstanding disclosure; set a timetable."
+          ],
+          "hearing_line": "The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until source material is served.",
+          "safety_note": "Disclosure pressure is not a merits win — needs solicitor review before plea or trial strategy is fixed."
+        }
+      ],
+      "global_collapse_risks": [
+        "CAD/999 timing may affect Crown sequence if proved on served material.",
+        "Client account conflicts with served source material.",
+        "Missing expert/source report comes back against defence.",
+        "Any interview admission, if served and reviewed, could narrow the defence route.",
+        "Continuity/provenance may later be proved on served material."
+      ],
+      "urgent_next_moves": [],
+      "diagnostics": {
+        "corpus_markers": null,
+        "safeguards_signal_count": 0,
+        "multiparty_signal_count": 0,
+        "timeline_signal_count": 0,
+        "cps_pressure_signal_count": 0,
+        "readiness_signal_count": 0,
+        "hearing_court_signal_count": 0,
+        "backup_route_types": [
+          "interview",
+          "disclosure"
+        ],
+        "backup_route_titles": [
+          "Interview / account pressure",
+          "Disclosure / source-material pressure"
+        ],
+        "primary_anchor_sample": [
+          "on CCTV approaching the address shortly before the offence.",
+          "on CCTV.",
+          "CCTV footage. Due to the proximity to the scene (0.6 miles), the time frame, and the"
+        ],
+        "safeguards_anchor_sample": [],
+        "multiparty_anchor_sample": [],
+        "cps_pressure_anchor_sample": [],
+        "readiness_anchor_sample": [],
+        "hearing_court_anchor_sample": []
+      }
+    }
+  },
+  "matter": {
+    "status": 200,
+    "data": {
+      "matterState": null,
+      "station": {
+        "timeInCustodyAt": null,
+        "nextPaceReviewAt": null,
+        "interviewStance": null,
+        "stationSummary": null,
+        "groundsForArrest": null,
+        "dateOfArrest": null,
+        "allegedOffence": null,
+        "custodyNumber": null,
+        "policeStationName": null,
+        "clientInitials": null,
+        "clientYob": null,
+        "representationType": null,
+        "riskAppropriateAdult": false,
+        "riskInterpreter": false,
+        "riskMentalHealth": false,
+        "riskMedicalIssues": false,
+        "initialDisclosureReceived": null,
+        "initialDisclosureNotes": null
+      },
+      "bailReturnDate": null,
+      "bailOutcome": null,
+      "matterClosedAt": null,
+      "matterClosedReason": null,
+      "plea": null,
+      "pleaDate": null,
+      "defendantName": null,
+      "clientInitials": null,
+      "allegedOffence": null
+    }
+  },
+  "position": {
+    "status": 200,
+    "data": {
+      "ok": true,
+      "data": null,
+      "position": null
+    }
+  }
+}

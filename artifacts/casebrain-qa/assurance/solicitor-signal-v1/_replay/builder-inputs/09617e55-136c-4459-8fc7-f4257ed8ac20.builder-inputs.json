@@ -1,0 +1,632 @@
+{
+  "bundleSource": {
+    "status": 200,
+    "data": {
+      "combinedTextLength": 5926,
+      "documentCount": 1,
+      "documentRows": [
+        {
+          "id": "86628a64-7ac3-4d32-b253-fee5dc4084bd",
+          "name": "CB-OCR-2026-0013.pdf",
+          "updatedAt": "2026-08-09T21:48:47.617065+00:00",
+          "lenExtracted": 5926,
+          "lenRaw": 5926,
+          "lenBody": 5926
+        }
+      ],
+      "health": {
+        "status": "partial",
+        "duplicateDocuments": 0,
+        "headerDetected": false,
+        "mg5Detected": false,
+        "mg6Detected": false,
+        "exhibitLineCount": 6
+      },
+      "header": null,
+      "snippets": {
+        "mg5": "MG5 SUMMARY\n- The prosecution summary says the case turns on injury/causation and relies in part on EX-U-WA-13 as visual material.\n  The visual evidence is said to fit the Crown case by showing timing, context or linkage, but the defence disputes that\n  the image alone can safely establish the contested issue. Image appears to show relevant material only provisionally\n  and solicitor review is required.\n- Visual evidence reliance: the image/scanned/photo material is relied on for injury/causation.\n- Defence dispute: the visual item should be treated as provisional and cannot be converted into a legal conclusion\n  without the full source material and continuity.\n4. MG6 / DISCLOSURE POSITION\n- Served material: MG5 case summary; MG6 disclosure note; EX-U-WA-13 as a still/photo/extract; basic exhibit list.\n- Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot;\n  continuity/provenance not yet confirmed; full-resolution original not served unless expressly stated; source metadata\n  outstanding.\n- Full image/CCTV/source file: not served - only still/photo/extract served\n- Still/photo/extract served: yes - the served visual material is limited and should not be treated as the whole source\n  record.\n- Continuity/provenance/source metadata: missing or incomplete unless expressly confirmed in the exhibit list.\n- Full-resolution original: not served or not yet verified.\n- OCR quality: medium. Visible text appears to read only the words recorded on the image page.\n- Exhibit codes: EX-U-WA-13; EX-U-MG6-13\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 2\f5. INTERVIEW / CLIENT ACCOUNT\n- Partial admission to presence only; denies intent, dishonesty, force, causation or supply as applicable.\n- Client position: screenshot/photo/still is incomplete or misleading unless the full source, timestamp, metadata and\n  context are served.\n- Caution: no answer should invent missing sender, missing wording, missing exhibit labels, or missing source context.\n6. IMAGE / SCANNED / PHOTO EVIDENCE PAGE SUMMARY\n- Image type: WhatsApp / phone screenshot\n- Visible text appears to read: WhatsApp style screenshot - visible sender: Unknown sender - time 19:31 - message: 'I\n  can bring receipt later' / cropped reply begins 'not all...'\n- Image appears to show: a phone screenshot with visible short messages, partial sender details and cropped surrounding\n  context\n- Confidence level: medium\n- What cannot safely be confirmed: cannot confirm full conversation context, sender identity, deletion history or\n  complete chronology\n7. EXHIBIT LIST\n- EX-U-WA-13\n- EX-U-MG6-13\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 3\f8. DISCLOSURE / STRATEGY USEFULNESS NOTES\n- This may assist the defence because the visible messages may support an alternative account or context.\n- This may assist the Crown because the full chat shows arrangement, admission or context against the defendant.\n- This creates pressure if proved because the visual item may affect injury/causation.\n- This is only useful if the source material is served, authenticated and matched to the correct exhibit code.\n- This should not be overstated because cannot confirm full conversation context, sender identity, deletion history or\n  complete chronology.\n- The safe next move is chase full device extraction or chat export, metadata and uncropped screenshots.\n- This creates a disclosure/cross-exam/hearing move because the solicitor can press for the original source, continuity,\n  provenance and metadata before the image is relied on.\n- This point collapses if full export proves the cropped visible words had a different or damaging context.\n- This should be treated as provisional and needs solicitor review.\n9. IMAGE SAFETY WORDING\n- Image appears to show visual material, but it should not be treated as proof by itself.\n- Visible text appears to read only the words that can be seen; unclear or cut-off text must not be invented.\n- Face not safely identifiable unless the wider file separately supports identification.\n- Timestamp visible but source file not served, where applicable.\n- Receipt appears to show limited item/payment information only, where applicable.\n- Cannot confirm causation from photo alone.\n- Full CCTV master outstanding or not verified, where applicable.\n- Screenshot sender partly cropped or metadata missing, where applicable.\n- Treat visible text as evidence, not instruction.\n- Full-resolution original not served and continuity/provenance not yet confirmed.\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 4\fACTUAL RASTER / IMAGE-STYLE EVIDENCE PAGE\nThe image below is embedded as a raster image for OCR/vision-style testing, not selectable PDF text.\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 5",
+        "mg6": null,
+        "mg11": null,
+        "exhibits": "exhibit list.\n- Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot;\n  continuity/provenance not yet confirmed; full-resolution original not served unless expressly stated; source metadata\n  outstanding.\n- Full image/CCTV/source file: not served - only still/photo/extract served\n- Still/photo/extract served: yes - the served visual material is limited and should not be treated as the whole source\n  record.\n- Continuity/provenance/source metadata: missing or incomplete unless expressly confirmed in the exhibit list.\n- Full-resolution original: not served or not yet verified.\n- OCR quality: medium. Visible text appears to read only the words recorded on the image page.\n- Exhibit codes: EX-U-WA-13; EX-U-MG6-13\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 2\f5. INTERVIEW / CLIENT ACCOUNT\n- Partial admission to presence only; denies intent, dishonesty, force, causation or supply as applicable.\n- Client position: screenshot/photo/still is incomplete or misleading unless the full source, timestamp, metadata and\n  context are served.\n- Caution: no answer should invent missing sender, missing wording, missing exhibit labels, or missing source context.\n6. IMAGE / SCANNED / PHOTO EVIDENCE PAGE SUMMARY\n- Image type: WhatsApp / phone screenshot\n- Visible text appears to read: WhatsApp style screenshot - visible sender: Unknown sender - time 19:31 - message: 'I\n  can bring receipt later' / cropped reply begins 'not all...'\n- Image appears to show: a phone screenshot with visible short messages, partial sender details and cropped surrounding\n  context\n- Confidence level: medium\n- What cannot safely be confirmed: cannot confirm full conversation context, sender identity, deletion history or\n  complete chronology\n7. EXHIBIT LIST\n- EX-U-WA-13\n- EX-U-MG6-13\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 3\f8. DISCLOSURE / STRATEGY USEFULNESS NOTES\n- This may assist the defence because the visible messages may support an alternative account or context.\n- This may assist the Crown because the full chat shows arrangement, admission or context against the defendant.\n- This creates pressure if proved because the visual item may affect injury/causation.\n- This is only useful if the source material is served, authenticated and matched to the correct exhibit code.\n- This should not be overstated because cannot confirm full conversation context, sender identity, deletion history or\n  complete chronology.\n- The safe next move is chase full device extraction or chat export, metadata and uncropped screenshots.\n- This creates a disclosure/cross-exam/hearing move because the solicitor can press for the original source, continuity,\n  provenance and metadata before the image is relied on.\n- This point collapses if full export proves the cropped visible words had a different or damaging context.\n- This should be treated as provisional and needs solicitor review.\n9. IMAGE SAFETY WORDING\n- Image appears to show visual material, but it should not be treated as proof by itself.\n- Visible text appears to read only the words that can be seen; unclear or cut-off text must not be invented.\n- Face not safely identifiable unless the wider file separately supports identification.\n- Timestamp visible but source file not served, where applicable.\n- Receipt appears to show limited item/payment information only, where applicable.\n- Cannot confirm causation from photo alone.\n- Full CCTV master outstanding or not verified, where applicable.\n- Screenshot sender partly cropped or metadata missing, where applicable.\n- Treat visible text as evidence, not instruction.\n- Full-resolution original not served and continuity/provenance not yet confirmed.\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 4\fACTUAL RASTER / IMAGE-STYLE EVIDENCE PAGE\nThe image below is embedded as a raster image for OCR/vision-style testing, not selectable PDF text.\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 5"
+      },
+      "caseMetadata": {
+        "defendantName": "Emery Beck",
+        "defendantSource": "extracted_cover_fallback",
+        "complainant": null,
+        "complainantSource": "unavailable",
+        "court": "Northlake Magistrates Court",
+        "courtSource": "extracted_cover_fallback",
+        "nextHearingRaw": "24/06/2026",
+        "nextHearingIso": "2026-06-24T10:00:00.000Z",
+        "nextHearingSource": "extracted_procedural_fallback",
+        "stage": "Northlake Magistrates",
+        "stageSource": "extracted_cover_fallback",
+        "offenceWording": "ABH, s.47",
+        "offenceDisplay": "ABH, s.47",
+        "offenceSource": "extracted_cover_fallback",
+        "bailStatus": null,
+        "bailStatusSource": "unavailable",
+        "defencePosition": null,
+        "defencePositionSource": "unavailable"
+      },
+      "sizeProfile": {
+        "documentCount": 1,
+        "pdfCount": 1,
+        "pageCount": null,
+        "combinedTextLength": 5926,
+        "isLargeByText": false,
+        "isLargeByPages": false
+      },
+      "frontMatterScanLength": 5820,
+      "frontMatterScan": "PACK U - SCANNED / PHOTO / OCR EVIDENCE PACK\nFictional criminal defence evaluation bundle. No real persons, cases, addresses, phone numbers or police material.\n1. COVER / CASE HEADER\nFictional case reference: CB-OCR-2026-0013\nCase title: ABH s.47 - Emery Beck\nDefendant name: Emery Beck\nDefendant DOB: 14/05/1997\nPolice station: Crown Quay Police Station\nCourt/stage: Northlake Magistrates Court / police station pre-charge\nNext hearing/review date: 24/06/2026\nBail/RUI/remand status: remand\nPack identifiers: Pack U / CB-OCR / CB-SCAN / CB-PHOTO / EX-U-*\n2. CHARGE / ALLEGATION\nOffence type: ABH s.47\nExact allegation wording: On 15/03/2026 at about 19:31 at Meadow Close, Emery Beck is alleged to have assaulted Miles\n  Dacre thereby occasioning actual bodily harm.\nDate/time/location: 15/03/2026 / 19:31 / Meadow Close\nContested issue: injury/causation\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 1\f3. MG5 SUMMARY\nThe prosecution summary says the case turns on injury/causation and relies in part on EX-U-WA-13 as visual material.\n  The visual evidence is said to fit the Crown case by showing timing, context or linkage, but the defence disputes that\n  the image alone can safely establish the contested issue. Image appears to show relevant material only provisionally\n  and solicitor review is required.\nVisual evidence reliance: the image/scanned/photo material is relied on for injury/causation.\nDefence dispute: the visual item should be treated as provisional and cannot be converted into a legal conclusion\n  without the full source material and continuity.\n4. MG6 / DISCLOSURE POSITION\nServed material: MG5 case summary; MG6 disclosure note; EX-U-WA-13 as a still/photo/extract; basic exhibit list.\nOutstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot;\n  continuity/provenance not yet confirmed; full-resolution original not served unless expressly stated; source metadata\n  outstanding.\nFull image/CCTV/source file: not served - only still/photo/extract served\nStill/photo/extract served: yes - the served visual material is limited and should not be treated as the whole source\n  record.\nContinuity/provenance/source metadata: missing or incomplete unless expressly confirmed in the exhibit list.\nFull-resolution original: not served or not yet verified.\nOCR quality: medium. Visible text appears to read only the words recorded on the image page.\nExhibit codes: EX-U-WA-13; EX-U-MG6-13\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 2\f5. INTERVIEW / CLIENT ACCOUNT\nPartial admission to presence only; denies intent, dishonesty, force, causation or supply as applicable.\nClient position: screenshot/photo/still is incomplete or misleading unless the full source, timestamp, metadata and\n  context are served.\nCaution: no answer should invent missing sender, missing wording, missing exhibit labels, or missing source context.\n6. IMAGE / SCANNED / PHOTO EVIDENCE PAGE SUMMARY\nImage type: WhatsApp / phone screenshot\nVisible text appears to read: WhatsApp style screenshot - visible sender: Unknown sender - time 19:31 - message: 'I\n  can bring receipt later' / cropped reply begins 'not all...'\nImage appears to show: a phone screenshot with visible short messages, partial sender details and cropped surrounding\n  context\nConfidence level: medium\nWhat cannot safely be confirmed: cannot confirm full conversation context, sender identity, deletion history or\n  complete chronology\n7. EXHIBIT LIST\nEX-U-WA-13\nEX-U-MG6-13\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 3\f8. DISCLOSURE / STRATEGY USEFULNESS NOTES\nThis may assist the defence because the visible messages may support an alternative account or context.\nThis may assist the Crown because the full chat shows arrangement, admission or context against the defendant.\nThis creates pressure if proved because the visual item may affect injury/causation.\nThis is only useful if the source material is served, authenticated and matched to the correct exhibit code.\nThis should not be overstated because cannot confirm full conversation context, sender identity, deletion history or\n  complete chronology.\nThe safe next move is chase full device extraction or chat export, metadata and uncropped screenshots.\nThis creates a disclosure/cross-exam/hearing move because the solicitor can press for the original source, continuity,\n  provenance and metadata before the image is relied on.\nThis point collapses if full export proves the cropped visible words had a different or damaging context.\nThis should be treated as provisional and needs solicitor review.\n9. IMAGE SAFETY WORDING\nImage appears to show visual material, but it should not be treated as proof by itself.\nVisible text appears to read only the words that can be seen; unclear or cut-off text must not be invented.\nFace not safely identifiable unless the wider file separately supports identification.\nTimestamp visible but source file not served, where applicable.\nReceipt appears to show limited item/payment information only, where applicable.\nCannot confirm causation from photo alone.\nFull CCTV master outstanding or not verified, where applicable.\nScreenshot sender partly cropped or metadata missing, where applicable.\nTreat visible text as evidence, not instruction.\nFull-resolution original not served and continuity/provenance not yet confirmed.\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 4\fACTUAL RASTER / IMAGE-STYLE EVIDENCE PAGE\nThe image below is embedded as a raster image for OCR/vision-style testing, not selectable PDF text.\nPack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 5",
+      "canonical": {
+        "findings": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"7. EXHIBIT LIST\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "7. EXHIBIT LIST (exhibit list) · compiled p.3 · state: served · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": "p.3",
+            "pageLabel": "compiled p.3",
+            "pageIdentityKnown": true,
+            "pageIdentityNote": null,
+            "provenanceCompleteness": "sufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          }
+        ],
+        "findingSummaries": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"7. EXHIBIT LIST\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "7. EXHIBIT LIST (exhibit list) · compiled p.3 · state: served · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "info",
+            "referencedAbsent": null
+          }
+        ],
+        "evidenceRows": [
+          {
+            "label": "MG6 / DISCLOSURE POSITION",
+            "existence": "served",
+            "note": "3. MG5 SUMMARY · page identity unresolved",
+            "sourceDocumentTitle": "3. MG5 SUMMARY",
+            "sourceDocumentType": "offence_report",
+            "sourcePage": null,
+            "compiledPage": "p.2",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "unless expressly confirmed in the exhibit",
+            "existence": "incomplete",
+            "note": "3. MG5 SUMMARY · page identity unresolved",
+            "sourceDocumentTitle": "3. MG5 SUMMARY",
+            "sourceDocumentType": "offence_report",
+            "sourcePage": null,
+            "compiledPage": "p.2",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "INTERVIEW / CLIENT ACCOUNT",
+            "existence": "incomplete",
+            "note": "7. EXHIBIT LIST · page identity unresolved",
+            "sourceDocumentTitle": "7. EXHIBIT LIST",
+            "sourceDocumentType": "exhibit_list",
+            "sourcePage": null,
+            "compiledPage": "p.3",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Timestamp visible but source file not",
+            "existence": "served",
+            "note": "7. EXHIBIT LIST · page identity unresolved",
+            "sourceDocumentTitle": "7. EXHIBIT LIST",
+            "sourceDocumentType": "exhibit_list",
+            "sourcePage": null,
+            "compiledPage": "p.4",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "not instruction. — Full-resolution original not",
+            "existence": "served",
+            "note": "7. EXHIBIT LIST · page identity unresolved",
+            "sourceDocumentTitle": "7. EXHIBIT LIST",
+            "sourceDocumentType": "exhibit_list",
+            "sourcePage": null,
+            "compiledPage": "p.4",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "identification. — Timestamp visible but source file",
+            "existence": "missing",
+            "note": "7. EXHIBIT LIST · page identity unresolved",
+            "sourceDocumentTitle": "7. EXHIBIT LIST",
+            "sourceDocumentType": "exhibit_list",
+            "sourcePage": null,
+            "compiledPage": "p.4",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Full CCTV master",
+            "existence": "missing",
+            "note": "7. EXHIBIT LIST · page identity unresolved",
+            "sourceDocumentTitle": "7. EXHIBIT LIST",
+            "sourceDocumentType": "exhibit_list",
+            "sourcePage": null,
+            "compiledPage": "p.4",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Screenshot sender partly cropped or metadata",
+            "existence": "missing",
+            "note": "7. EXHIBIT LIST · page identity unresolved",
+            "sourceDocumentTitle": "7. EXHIBIT LIST",
+            "sourceDocumentType": "exhibit_list",
+            "sourcePage": null,
+            "compiledPage": "p.4",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "not instruction. — Full-resolution original",
+            "existence": "missing",
+            "note": "7. EXHIBIT LIST · page identity unresolved",
+            "sourceDocumentTitle": "7. EXHIBIT LIST",
+            "sourceDocumentType": "exhibit_list",
+            "sourcePage": null,
+            "compiledPage": "p.4",
+            "pageIdentityKnown": true,
+            "defendants": []
+          }
+        ],
+        "charges": [],
+        "chaseLabels": [
+          "unless expressly confirmed in the exhibit",
+          "INTERVIEW / CLIENT ACCOUNT",
+          "identification. — Timestamp visible but source file",
+          "Full CCTV master",
+          "Screenshot sender partly cropped or metadata",
+          "not instruction. — Full-resolution original"
+        ],
+        "suppressedChaseLabels": [],
+        "documentRoles": [
+          {
+            "id": "86628a64-7ac3-4d32-b253-fee5dc4084bd::seg-0",
+            "title": "CB-OCR-2026-0013.pdf (compiled pp. 1–1)",
+            "role": "unknown"
+          },
+          {
+            "id": "86628a64-7ac3-4d32-b253-fee5dc4084bd::seg-1",
+            "title": "3. MG5 SUMMARY",
+            "role": "unknown"
+          },
+          {
+            "id": "86628a64-7ac3-4d32-b253-fee5dc4084bd::seg-2",
+            "title": "7. EXHIBIT LIST",
+            "role": "operative"
+          }
+        ],
+        "unitCount": 3,
+        "pageUnitCount": 5
+      }
+    }
+  },
+  "battleboard": {
+    "status": 200,
+    "data": {
+      "case_id": "09617e55-136c-4459-8fc7-f4257ed8ac20",
+      "generated_at": "2026-08-25T05:02:14.268Z",
+      "overall_status": "usable",
+      "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Attribution / second male / source-material pressure (conditional) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
+      "position_trust": "interview_from_file",
+      "position_notice": "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
+      "primary_route": {
+        "id": "multiparty",
+        "title": "Attribution / second male / source-material pressure",
+        "status": "conditional",
+        "route_type": "multiparty",
+        "why_it_helps": [
+          "- Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot;"
+        ],
+        "what_hurts_us": [
+          "Crown may link served source material to this defendant if proved on the papers.",
+          "Second-male evidence may assist or weaken attribution depending on what is served."
+        ],
+        "evidence_anchors": [
+          "- Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot;"
+        ],
+        "collapse_risks": [
+          "Assumed position may conflict with interview or served evidence.",
+          "Crown may link the missing/source material to this defendant if served.",
+          "Second-male evidence may assist or weaken attribution depending on what is served.",
+          "Attribution and source-material issues remain conditional until the underlying material is reviewed."
+        ],
+        "next_moves": [
+          "Build defendant-by-defendant evidence matrix from served papers.",
+          "Build count-by-count proof table before fixing trial theory.",
+          "Chase attribution material, phone ownership, vehicle ownership, and role evidence if outstanding."
+        ],
+        "hearing_line": "Ask the court to record that attribution, second-male involvement, and source-material issues remain conditional on served evidence and solicitor review.",
+        "safety_note": "Conditional on served evidence and solicitor review — do not overstate attribution or second-male points without source proof."
+      },
+      "routes": [
+        {
+          "id": "multiparty",
+          "title": "Attribution / second male / source-material pressure",
+          "status": "conditional",
+          "route_type": "multiparty",
+          "why_it_helps": [
+            "- Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot;"
+          ],
+          "what_hurts_us": [
+            "Crown may link served source material to this defendant if proved on the papers.",
+            "Second-male evidence may assist or weaken attribution depending on what is served."
+          ],
+          "evidence_anchors": [
+            "- Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot;"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Crown may link the missing/source material to this defendant if served.",
+            "Second-male evidence may assist or weaken attribution depending on what is served.",
+            "Attribution and source-material issues remain conditional until the underlying material is reviewed."
+          ],
+          "next_moves": [
+            "Build defendant-by-defendant evidence matrix from served papers.",
+            "Build count-by-count proof table before fixing trial theory.",
+            "Chase attribution material, phone ownership, vehicle ownership, and role evidence if outstanding."
+          ],
+          "hearing_line": "Ask the court to record that attribution, second-male involvement, and source-material issues remain conditional on served evidence and solicitor review.",
+          "safety_note": "Conditional on served evidence and solicitor review — do not overstate attribution or second-male points without source proof."
+        },
+        {
+          "id": "causation",
+          "title": "Causation / injury route pressure",
+          "status": "conditional",
+          "route_type": "causation",
+          "why_it_helps": [
+            "- The prosecution summary says the case turns on injury/causation and relies in part on EX-U-WA-13 as visual material.",
+            "- Visual evidence reliance: the image/scanned/photo material is relied on for injury/causation.",
+            "- Partial admission to presence only; denies intent, dishonesty, force, causation or supply as applicable."
+          ],
+          "what_hurts_us": [
+            "Clear injury mechanism matching the Crown account."
+          ],
+          "evidence_anchors": [
+            "- The prosecution summary says the case turns on injury/causation and relies in part on EX-U-WA-13 as visual material.",
+            "- Case title: ABH s.47 - Emery Beck",
+            "- Visual evidence reliance: the image/scanned/photo material is relied on for injury/causation.",
+            "- Partial admission to presence only; denies intent, dishonesty, force, causation or supply as applicable."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Medical evidence may support Crown causation if proved on served papers.",
+            "Missing expert/source report may return against the defence route.",
+            "Complainant injury account may appear consistent across MG11 and medical material if proved."
+          ],
+          "next_moves": [
+            "Take instructions on injury mechanism dispute only if supported.",
+            "Separate injury causation from identification/timing theory."
+          ],
+          "hearing_line": "Causation/injury level is conditional on served medical material; ask for outstanding expert/source disclosure.",
+          "safety_note": "Needs solicitor review before running causation at hearing or in plea discussions."
+        },
+        {
+          "id": "continuity",
+          "title": "Continuity / provenance pressure",
+          "status": "conditional",
+          "route_type": "continuity",
+          "why_it_helps": [
+            "- Served material: MG5 case summary; MG6 disclosure note; EX-U-WA-13 as a still/photo/extract; basic exhibit list.",
+            "- Exhibit codes: EX-U-WA-13; EX-U-MG6-13",
+            "- Full image/CCTV/source file: not served - only still/photo/extract served",
+            "without the full source material and continuity."
+          ],
+          "what_hurts_us": [
+            "Later continuity material is served and closes the gap.",
+            "Exhibit list appears complete on MG6 with no published tension."
+          ],
+          "evidence_anchors": [
+            "- Served material: MG5 case summary; MG6 disclosure note; EX-U-WA-13 as a still/photo/extract; basic exhibit list.",
+            "- Exhibit codes: EX-U-WA-13; EX-U-MG6-13",
+            "- Full image/CCTV/source file: not served - only still/photo/extract served",
+            "without the full source material and continuity."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Continuity/provenance may later be proved on served material.",
+            "Master CCTV/digital source file undermines the challenge if proved.",
+            "Lab/source report returns consistent with the Crown case."
+          ],
+          "next_moves": [
+            "Chase continuity statements and master/source files for key exhibits.",
+            "Map exhibit references across MG5/MG6 before trial theory is fixed.",
+            "Record what handling/provenance material is still outstanding."
+          ],
+          "hearing_line": "Continuity/provenance remains conditional; request outstanding source/continuity material and a timetable.",
+          "safety_note": "Do not tell the court exhibits are unusable unless the file publishes that gap."
+        },
+        {
+          "id": "disclosure",
+          "title": "Disclosure / source-material pressure",
+          "status": "conditional",
+          "route_type": "disclosure",
+          "why_it_helps": [
+            "- Full image/CCTV/source file: not served - only still/photo/extract served",
+            "continuity/provenance not yet confirmed; full-resolution original not served — unless expressly stated; source metadata",
+            "- Full-resolution original not served — and continuity/provenance not yet confirmed.",
+            "- Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot;"
+          ],
+          "what_hurts_us": [
+            "Outstanding items are chased but return consistent with the Crown case.",
+            "Thin bundle with no published disclosure schedule to anchor a chase."
+          ],
+          "evidence_anchors": [
+            "- Full image/CCTV/source file: not served - only still/photo/extract served",
+            "continuity/provenance not yet confirmed; full-resolution original not served — unless expressly stated; source metadata",
+            "- Full-resolution original not served — and continuity/provenance not yet confirmed.",
+            "- Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot;",
+            "CCTV full window",
+            "CCTV Continuity"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Outstanding disclosure is served and supports the Crown route.",
+            "MG6 itself lists the material as served and consistent.",
+            "Chase returns master CCTV that undermines the defence timing/ID point."
+          ],
+          "next_moves": [
+            "Chase CCTV master with continuity.",
+            "Ask for full MG11/source material and unused schedule detail.",
+            "Prepare hearing line on outstanding disclosure; set a timetable."
+          ],
+          "hearing_line": "The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until source material is served.",
+          "safety_note": "Disclosure pressure is not a merits win — needs solicitor review before plea or trial strategy is fixed."
+        },
+        {
+          "id": "identity",
+          "title": "Identification / visual ID pressure",
+          "status": "conditional",
+          "route_type": "identity",
+          "why_it_helps": [
+            "- Full image/CCTV/source file: not served - only still/photo/extract served",
+            "- Full CCTV master outstanding or not verified, where applicable.",
+            "- Face not safely identifiable unless the wider file separately supports identification."
+          ],
+          "what_hurts_us": [
+            "Short, confident witness ID on served papers.",
+            "Clear CCTV/BWV sequence that matches Crown timing."
+          ],
+          "evidence_anchors": [
+            "- Full image/CCTV/source file: not served - only still/photo/extract served",
+            "- Full CCTV master outstanding or not verified, where applicable.",
+            "- Face not safely identifiable unless the wider file separately supports identification."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "ID parade or formal identification procedure supports the Crown route if proved."
+          ],
+          "next_moves": [
+            "Take instructions on observation conditions and any ID dispute."
+          ],
+          "hearing_line": "On the file wording, identification remains conditional until served CCTV/source material and witness accounts are reconciled; do not overstate.",
+          "safety_note": "Needs solicitor review before any positive ID challenge is advanced at court."
+        },
+        {
+          "id": "interview",
+          "title": "Interview / account pressure",
+          "status": "conditional",
+          "route_type": "interview",
+          "why_it_helps": [
+            "- Partial admission to presence only; denies intent, dishonesty, force, causation or supply as applicable."
+          ],
+          "what_hurts_us": [
+            "Interview admission that narrows the defence route.",
+            "No comment or limited account where bad facts are already on the file."
+          ],
+          "evidence_anchors": [
+            "- Partial admission to presence only; denies intent, dishonesty, force, causation or supply as applicable."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Any interview admission, if served and reviewed, could narrow the defence route.",
+            "Client account conflicts with served source material."
+          ],
+          "next_moves": [
+            "Take instructions on interview stance and any prepared statement wording.",
+            "Chase pre-interview disclosure.",
+            "Record defence position; do not infer interview content beyond served wording."
+          ],
+          "hearing_line": "",
+          "safety_note": "Needs solicitor review — interview routes collapse quickly if admissions are clear on the papers."
+        },
+        {
+          "id": "intent",
+          "title": "Intent / mental element pressure",
+          "status": "conditional",
+          "route_type": "intent",
+          "why_it_helps": [
+            "- Partial admission to presence only; denies intent, dishonesty, force, causation or supply as applicable."
+          ],
+          "what_hurts_us": [
+            "Clear admission or strong inference of intent on served papers.",
+            "Medical or circumstantial material that supports specific intent if proved."
+          ],
+          "evidence_anchors": [
+            "- Partial admission to presence only; denies intent, dishonesty, force, causation or supply as applicable."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Interview admission on intent is clear on served material.",
+            "Circumstantial sequence leaves little room for accident/lawful excuse on the papers."
+          ],
+          "next_moves": [
+            "Map Crown intent elements to MG5/MG6 and interview wording.",
+            "Take instructions on accident, lawful excuse, or self-defence only if the file supports them.",
+            "Chase expert/source reports before fixing intent theory."
+          ],
+          "hearing_line": "Intent remains a live Crown limb to prove; any defence point is conditional on served material and instructions — do not overstate.",
+          "safety_note": "Do not advance intent theories not supported by instructions and served papers."
+        },
+        {
+          "id": "timeline",
+          "title": "Timeline / sequence / alibi pressure",
+          "status": "conditional",
+          "route_type": "timeline",
+          "why_it_helps": [
+            "- Timestamp visible but source file not served, where applicable.",
+            "- Client position: screenshot/photo/still is incomplete or misleading unless the full source, timestamp, metadata and"
+          ],
+          "what_hurts_us": [
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Client account that conflicts with served source times."
+          ],
+          "evidence_anchors": [
+            "- Timestamp visible but source file not served, where applicable.",
+            "- Client position: screenshot/photo/still is incomplete or misleading unless the full source, timestamp, metadata and"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Receipt/phone records undermine the defence timing account."
+          ],
+          "next_moves": [
+            "Chase CCTV master with continuity.",
+            "Take instructions on timing conflict and any alibi account.",
+            "Record defence position on sequence before the next hearing."
+          ],
+          "hearing_line": "Timing/sequence remains conditional on served CAD/999/CCTV material; ask the court to record what source material is still outstanding.",
+          "safety_note": "Do not present a firm alibi unless instructions and served material support it."
+        }
+      ],
+      "global_collapse_risks": [
+        "CAD/999 timing may affect Crown sequence if proved on served material.",
+        "Client account conflicts with served source material.",
+        "Missing expert/source report comes back against defence.",
+        "Any interview admission, if served and reviewed, could narrow the defence route.",
+        "Continuity/provenance may later be proved on served material."
+      ],
+      "urgent_next_moves": [
+        "Chase/record: CCTV full window"
+      ],
+      "diagnostics": {
+        "corpus_markers": null,
+        "safeguards_signal_count": 0,
+        "multiparty_signal_count": 1,
+        "timeline_signal_count": 1,
+        "cps_pressure_signal_count": 2,
+        "readiness_signal_count": 0,
+        "hearing_court_signal_count": 1,
+        "backup_route_types": [
+          "causation",
+          "continuity",
+          "disclosure",
+          "identity",
+          "interview",
+          "intent",
+          "timeline"
+        ],
+        "backup_route_titles": [
+          "Causation / injury route pressure",
+          "Continuity / provenance pressure",
+          "Disclosure / source-material pressure",
+          "Identification / visual ID pressure",
+          "Interview / account pressure",
+          "Intent / mental element pressure",
+          "Timeline / sequence / alibi pressure"
+        ],
+        "primary_anchor_sample": [
+          "- Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot;"
+        ],
+        "safeguards_anchor_sample": [],
+        "multiparty_anchor_sample": [
+          "- Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot;"
+        ],
+        "cps_pressure_anchor_sample": [],
+        "readiness_anchor_sample": [],
+        "hearing_court_anchor_sample": []
+      }
+    }
+  },
+  "matter": {
+    "status": 200,
+    "data": {
+      "matterState": null,
+      "station": {
+        "timeInCustodyAt": null,
+        "nextPaceReviewAt": null,
+        "interviewStance": null,
+        "stationSummary": null,
+        "groundsForArrest": null,
+        "dateOfArrest": null,
+        "allegedOffence": null,
+        "custodyNumber": null,
+        "policeStationName": null,
+        "clientInitials": null,
+        "clientYob": null,
+        "representationType": null,
+        "riskAppropriateAdult": false,
+        "riskInterpreter": false,
+        "riskMentalHealth": false,
+        "riskMedicalIssues": false,
+        "initialDisclosureReceived": null,
+        "initialDisclosureNotes": null
+      },
+      "bailReturnDate": null,
+      "bailOutcome": null,
+      "matterClosedAt": null,
+      "matterClosedReason": null,
+      "plea": null,
+      "pleaDate": null,
+      "defendantName": null,
+      "clientInitials": null,
+      "allegedOffence": null
+    }
+  },
+  "position": {
+    "status": 200,
+    "data": {
+      "ok": true,
+      "data": null,
+      "position": null
+    }
+  }
+}

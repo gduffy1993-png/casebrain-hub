@@ -1,0 +1,1502 @@
+{
+  "bundleSource": {
+    "status": 200,
+    "data": {
+      "combinedTextLength": 1614418,
+      "documentCount": 1,
+      "documentRows": [
+        {
+          "id": "11ebaec7-dbf7-40d2-874e-d60a5e2fb5a9",
+          "name": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+          "updatedAt": "2026-08-16T00:41:46.687038+00:00",
+          "lenExtracted": 1614420,
+          "lenRaw": 1614420,
+          "lenBody": 1614418
+        }
+      ],
+      "health": {
+        "status": "partial",
+        "duplicateDocuments": 0,
+        "headerDetected": false,
+        "mg5Detected": false,
+        "mg6Detected": false,
+        "exhibitLineCount": 919
+      },
+      "header": {
+        "reference": null,
+        "shortTitle": null,
+        "accused": null,
+        "otherParty": null,
+        "primaryEvalHook": null,
+        "stage": "PTPH / plea and trial preparation",
+        "messiness": null,
+        "plea": null
+      },
+      "snippets": {
+        "mg5": "MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG6 DISCLOSURE SCHEDULE - FRONT SUMMARY\nServed:\n- Charge sheet extract\n- MG5 case summary\n- Draft MG6 disclosure schedule\n- Selected MG11 witness extracts\n- Interview summary\n- Custody record summary\n- Initial exhibit list\n- Selected source-material summaries\nOutstanding:\nOutstanding item: final medical report - not served or served as summary only; chase before final position.\nOutstanding item: prior injury records - not served or served as summary only; chase before final position.\nOutstanding item: CCTV continuity - not served or served as summary only; chase before final position.\nOutstanding item: complainant first account - not served or served as summary only; chase before final\nposition.\nOutstanding item: interview transcript - not served or served as summary only; chase before final position.\nOutstanding item: Full CCTV master footage - not served or served as summary only; chase before final\nposition.\nOutstanding item: CCTV continuity/export log - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full 999 audio - not served or served as summary only; chase before final position.\nOutstanding item: Full CAD incident log - not served or served as summary only; chase before final position.\nOutstanding item: BWV from attending officers - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full interview audio/transcript - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody record full copy - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody CCTV - not served or served as summary only; chase before final position.\nOutstanding item: Unused material worksheet - not served or served as summary only; chase before final\nposition.\nOutstanding item: First account notes - not served or served as summary only; chase before final position.\nOutstanding item: Corrected witness drafts - not served or served as summary only; chase before final\nposition.\nOutstanding item: Scene photographs full set - not served or served as summary only; chase before final\nposition.\nOutstanding item: Exhibit continuity log - not served or served as summary only; chase before final position.\nUnused / sensitive / correction notes:\n- Unused material worksheet marked draft only; corrected index appears later and conflicts with first index.\n- Sensitive schedule existence noted but content not provided in this fictional test bundle.\n- Some page references are inconsistent because old versions remain in appendices.\nPartial / draft / summary-only items:\n- Summary only - underlying source not served for at least three key evidential areas.\n- Awaiting final report - forensic/medical/digital material remains provisional where relevant.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 20 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG6 DISCLOSURE SCHEDULE - FRONT SUMMARY\nServed:\n- Charge sheet extract\n- MG5 case summary\n- Draft MG6 disclosure schedule\n- Selected MG11 witness extracts\n- Interview summary\n- Custody record summary\n- Initial exhibit list\n- Selected source-material summaries\nOutstanding:\nOutstanding item: final medical report - not served or served as summary only; chase before final position.\nOutstanding item: prior injury records - not served or served as summary only; chase before final position.\nOutstanding item: CCTV continuity - not served or served as summary only; chase before final position.\nOutstanding item: complainant first account - not served or served as summary only; chase before final\nposition.\nOutstanding item: interview transcript - not served or served as summary only; chase before final position.\nOutstanding item: Full CCTV master footage - not served or served as summary only; chase before final\nposition.\nOutstanding item: CCTV continuity/export log - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full 999 audio - not served or served as summary only; chase before final position.\nOutstanding item: Full CAD incident log - not served or served as summary only; chase before final position.\nOutstanding item: BWV from attending officers - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full interview audio/transcript - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody record full copy - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody CCTV - not served or served as summary only; chase before final position.\nOutstanding item: Unused material worksheet - not served or served as summary only; chase before final\nposition.\nOutstanding item: First account notes - not served or served as summary only; chase before final position.\nOutstanding item: Corrected witness drafts - not served or served as summary only; chase before final\nposition.\nOutstanding item: Scene photographs full set - not served or served as summary only; chase before final\nposition.\nOutstanding item: Exhibit continuity log - not served or served as summary only; chase before final position.\nUnused / sensitive / correction notes:\n- Unused material worksheet marked draft only; corrected index appears later and conflicts with first index.\n- Sensitive schedule existence noted but content not provided in this fictional test bundle.\n- Some page references are inconsistent because old versions remain in appendices.\nPartial / draft / summary-only items:\n- Summary only - underlying source not served for at least three key evidential areas.\n- Awaiting final report - forensic/medical/digital material remains provisional where relevant.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 21 of 500",
+        "mg6": null,
+        "mg11": null,
+        "exhibits": "exhibit list\n- Selected source-material summaries\nOutstanding:\nOutstanding item: final medical report - not served or served as summary only; chase before final\nposition.\nOutstanding item: prior injury records - not served or served as summary only; chase before final\nposition.\nOutstanding item: CCTV continuity - not served or served as summary only; chase before final\nposition.\nOutstanding item: complainant first account - not served or served as summary only; chase before\nfinal position.\nOutstanding item: interview transcript - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full CCTV master footage - not served or served as summary only; chase before\nfinal position.\nOutstanding item: CCTV continuity/export log - not served or served as summary only; chase before\nfinal position.\nOutstanding item: Full 999 audio - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full CAD incident log - not served or served as summary only; chase before final\nposition.\nOutstanding item: BWV from attending officers - not served or served as summary only; chase before\nfinal position.\nOutstanding item: Full interview audio/transcript - not served or served as summary only; chase\nbefore final position.\nOutstanding item: Custody record full copy - not served or served as summary only; chase before\nfinal position.\nOutstanding item: Custody CCTV - not served or served as summary only; chase before final position.\nOutstanding item: Unused material worksheet - not served or served as summary only; chase before\nfinal position.\nOutstanding item: First account notes - not served or served as summary only; chase before final\nposition.\nOutstanding item: Corrected witness drafts - not served or served as summary only; chase before\nfinal position.\nOutstanding item: Scene photographs full set - not served or served as summary only; chase before\nfinal position.\nOutstanding item: Exhibit continuity log - not served or served as summary only; chase before final\nposition.\nUnused / sensitive / correction notes:\n- Unused material worksheet marked draft only; corrected index appears later and conflicts with\nfirst index.\n- Sensitive schedule existence noted but content not provided in this fictional test bundle.\n- Some page references are inconsistent because old versions remain in appendices.\nPartial / draft / summary-only items:\n- Summary only - underlying source not served for at least three key evidential areas.\n- Awaiting final report - forensic/medical/digital material remains provisional where relevant.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 4 of 500\nHEARING NOTE / SAFE PROVISIONAL POSITION\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nHEARING NOTE - PTPH / CASE MANAGEMENT\nHearing date: 22 May 2026 at 10:00\nCourt: Northchester Crown Court\nDefendant: Priya Vale\nCharge: Assault occasioning actual bodily harm, section 47 OAPA 1861\nProvisional plea/position: Not guilty on present instructions.\nLive defence issues: causation / old injury / medical report gap; source material, contradiction\nhandling and disclosure timetable.\nSafe court position: The defence is not ready to finalise trial issues until the listed source\nmaterial and final reports are served.\nDo not overstate: Do not say the Crown case collapses; do not say the defence route is proved;\nposition remains conditional.\nDisclosure timetable sought: full source material, final forensic/medical/digital reports,\ninterview/custody material and witness correction material.\nDefence risk note: If missing source material supports the Crown route, the present defence pressure\nmay narrow or require revised instructions.\nProsecution weakness note: The Crown summary relies on partial/draft/summary material and contains\nunresolved contradictions.\nInstructions still needed: client to confirm account after reviewing full\nCCTV/BWV/phone/forensic/witness material where relevant.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 5 of 500\nCASE INDEX\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nCASE INDEX - MESSY WORKING INDEX\nTab | Description | Page / status\nA    | Cover / case metadata                                   | 1 - served\nB    | Charge sheet extract                                    | 6 - served\nC    | MG5 case summary                                        | 8 - served / corrected\nD    | MG6 disclosure schedule                                 | 15 - draft\nE    | MG11 witness extracts                                   | 21-60 - mixed served/draft/corrected\nF    | Interview summary                                       | 61 - summary only\nG    | Custody / PACE                                          | 66 - custody record summary only\nH    | Source material summaries                               | 71-90 - partial\nI    | Disclosure chase note                                   | 91 - active\nJ    | Contradiction / pressure map                            | 94 - active\nK    | Exhibit list                                            | 97 - served\nL    | Appendices                                              | 101-500 - duplicate/draft/outdated pages\nDuplicate warning: old MG5 draft appears again in appendix and should not be treated as the final version.\nCorrected-page warning: witness index corrected after first service; both versions remain in the bundle.\nPage-reference warning: some schedule page references pre-date appendix renumbering.\nDraft only note: source material summaries are not a substitute for original recordings/files.\nWorking bundle - draft/served/o"
+      },
+      "caseMetadata": {
+        "defendantName": "Priya Vale",
+        "defendantSource": "extracted_cover_fallback",
+        "complainant": null,
+        "complainantSource": "unavailable",
+        "court": "Northchester Crown Court",
+        "courtSource": "extracted_cover_fallback",
+        "nextHearingRaw": "22 May 2026 at 10:00",
+        "nextHearingIso": "2026-05-22T10:00:00.000Z",
+        "nextHearingSource": "extracted_procedural_fallback",
+        "stage": "PTPH / plea and trial preparation",
+        "stageSource": "extracted_cover_fallback",
+        "offenceWording": "Assault occasioning actual bodily harm, s.47 OAPA 1861",
+        "offenceDisplay": "Assault occasioning actual bodily harm, s.47 OAPA 1861",
+        "offenceSource": "extracted_charge_fallback",
+        "bailStatus": "Conditional bail",
+        "bailStatusSource": "extracted_procedural_fallback",
+        "defencePosition": "Not guilty — ; causation, old injury and medical evidence disputed.",
+        "defencePositionSource": "extracted_procedural_fallback"
+      },
+      "sizeProfile": {
+        "documentCount": 1,
+        "pdfCount": 1,
+        "pageCount": 500,
+        "combinedTextLength": 1614418,
+        "isLargeByText": true,
+        "isLargeByPages": true
+      },
+      "frontMatterScanLength": 79806,
+      "frontMatterScan": "PACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 1 of 500\nCOVER / CASE SUMMARY\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nCOVER / CASE SUMMARY\nCase reference: CB-Z-500-ABH-0007\nPack Z case number: 07 of 40\nDefendant: Priya Vale\nDOB: 08/10/1995\nComplainant / deceased / key party: Eli Rook\nCourt: Northchester Crown Court\nNext hearing: 22 May 2026 at 10:00\nStage: PTPH / plea and trial preparation\nCustody/bail/remand status: Conditional bail\nCharge wording: Assault occasioning actual bodily harm, section 47 OAPA 1861\nDefence position: not guilty; causation, old injury and medical evidence disputed.\nBundle health note: partial served bundle; source material incomplete; causation / old injury /\nmedical report gap remains live; several schedules are draft/corrected/outdated.\nShort case summary: The Crown alleges that Priya Vale is responsible for abh s.47 connected with Eli\nRook at or near Westbridge Parade. The defence does not accept the Crown route without full source\nmaterial.\nKey disputed issues: causation / old injury / medical report gap; witness reliability; timing;\nsource material; exhibit continuity; what can safely be said at PTPH.\nServed material: charge sheet, MG5, draft MG6, selected witness extracts, selected summaries and\npartial schedules.\nOutstanding material: full source material, final reports, underlying recordings and continuity\ndocuments listed in the chase note.\nHearing note: PTPH listed. Defence position remains provisional pending disclosure timetable and\ninstructions.\nSafe provisional court position: Not guilty. Defence issues are conditional on full service of\nsource material. Do not overstate the defence case.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 2 of 500\nCASE SNAPSHOT / KEY DISPUTES\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nCASE SNAPSHOT / KEY DISPUTES\nCrown route on the papers: presence/opportunity plus selected witness or source-material summaries\nare said to support Assault occasioning actual bodily harm, section 47 OAPA 1861.\nDefence route on present papers: not guilty; causation, old injury and medical evidence disputed;\nroute cannot be finalised until missing source material is served.\nKey disputed issues:\ncausation / old injury / medical report gap\nreliability of summary-only source material\nconflict between first accounts and corrected statements\nmismatch between MG5 narrative and MG6 service status\nsource material not served but relied on in Crown summary\nsafe hearing position and disclosure timetable required\nServed / outstanding at a glance\nServed: Charge Sheet; MG5; draft MG6; selected MG11 extracts; partial summaries; initial exhibit\nlist; hearing note.\nOutstanding item: final medical report; prior injury records; CCTV continuity; complainant first\naccount; interview transcript.\nChase: Full CCTV master footage; CCTV continuity/export log; Full 999 audio; Full CAD incident log;\nBWV from attending officers.\nSource material summary only warning: several references are summary-only and the underlying\noriginal recordings/files are not served.\nDo not overstate: the present bundle does not safely prove the final route for either side without\nsource material review.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 3 of 500\nSERVED / OUTSTANDING FRONT SUMMARY\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG6 DISCLOSURE SCHEDULE - FRONT SUMMARY\nServed:\nCharge sheet extract\nMG5 case summary\nDraft MG6 disclosure schedule\nSelected MG11 witness extracts\nInterview summary\nCustody record summary\nInitial exhibit list\nSelected source-material summaries\nOutstanding:\nOutstanding item: final medical report - not served or served as summary only; chase before final\nposition.\nOutstanding item: prior injury records - not served or served as summary only; chase before final\nposition.\nOutstanding item: CCTV continuity - not served or served as summary only; chase before final\nposition.\nOutstanding item: complainant first account - not served or served as summary only; chase before\nfinal position.\nOutstanding item: interview transcript - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full CCTV master footage - not served or served as summary only; chase before\nfinal position.\nOutstanding item: CCTV continuity/export log - not served or served as summary only; chase before\nfinal position.\nOutstanding item: Full 999 audio - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full CAD incident log - not served or served as summary only; chase before final\nposition.\nOutstanding item: BWV from attending officers - not served or served as summary only; chase before\nfinal position.\nOutstanding item: Full interview audio/transcript - not served or served as summary only; chase\nbefore final position.\nOutstanding item: Custody record full copy - not served or served as summary only; chase before\nfinal position.\nOutstanding item: Custody CCTV - not served or served as summary only; chase before final position.\nOutstanding item: Unused material worksheet - not served or served as summary only; chase before\nfinal position.\nOutstanding item: First account notes - not served or served as summary only; chase before final\nposition.\nOutstanding item: Corrected witness drafts - not served or served as summary only; chase before\nfinal position.\nOutstanding item: Scene photographs full set - not served or served as summary only; chase before\nfinal position.\nOutstanding item: Exhibit continuity log - not served or served as summary only; chase before final\nposition.\nUnused / sensitive / correction notes:\nUnused material worksheet marked draft only; corrected index appears later and conflicts with\nfirst index.\nSensitive schedule existence noted but content not provided in this fictional test bundle.\nSome page references are inconsistent because old versions remain in appendices.\nPartial / draft / summary-only items:\nSummary only - underlying source not served for at least three key evidential areas.\nAwaiting final report - forensic/medical/digital material remains provisional where relevant.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 4 of 500\nHEARING NOTE / SAFE PROVISIONAL POSITION\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nHEARING NOTE - PTPH / CASE MANAGEMENT\nHearing date: 22 May 2026 at 10:00\nCourt: Northchester Crown Court\nDefendant: Priya Vale\nCharge: Assault occasioning actual bodily harm, section 47 OAPA 1861\nProvisional plea/position: Not guilty on present instructions.\nLive defence issues: causation / old injury / medical report gap; source material, contradiction\nhandling and disclosure timetable.\nSafe court position: The defence is not ready to finalise trial issues until the listed source\nmaterial and final reports are served.\nDo not overstate: Do not say the Crown case collapses; do not say the defence route is proved;\nposition remains conditional.\nDisclosure timetable sought: full source material, final forensic/medical/digital reports,\ninterview/custody material and witness correction material.\nDefence risk note: If missing source material supports the Crown route, the present defence pressure\nmay narrow or require revised instructions.\nProsecution weakness note: The Crown summary relies on partial/draft/summary material and contains\nunresolved contradictions.\nInstructions still needed: client to confirm account after reviewing full\nCCTV/BWV/phone/forensic/witness material where relevant.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 5 of 500\nCASE INDEX\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nCASE INDEX - MESSY WORKING INDEX\nTab | Description | Page / status\nA    | Cover / case metadata                                   | 1 - served\nB    | Charge sheet extract                                    | 6 - served\nC    | MG5 case summary                                        | 8 - served / corrected\nD    | MG6 disclosure schedule                                 | 15 - draft\nE    | MG11 witness extracts                                   | 21-60 - mixed served/draft/corrected\nF    | Interview summary                                       | 61 - summary only\nG    | Custody / PACE                                          | 66 - custody record summary only\nH    | Source material summaries                               | 71-90 - partial\nI    | Disclosure chase note                                   | 91 - active\nJ    | Contradiction / pressure map                            | 94 - active\nK    | Exhibit list                                            | 97 - served\nL    | Appendices                                              | 101-500 - duplicate/draft/outdated pages\nDuplicate warning: old MG5 draft appears again in appendix and should not be treated as the final version.\nCorrected-page warning: witness index corrected after first service; both versions remain in the bundle.\nPage-reference warning: some schedule page references pre-date appendix renumbering.\nDraft only note: source material summaries are not a substitute for original recordings/files.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 6 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nCHARGE SHEET EXTRACT\nCase reference: CB-Z-500-ABH-0007\nDefendant: Priya Vale DOB 08/10/1995\nCharge: Assault occasioning actual bodily harm, section 47 OAPA 1861\nParticulars: On a date in 2026 at or near Westbridge Parade, Priya Vale is alleged to have committed abh s.47\nin relation to Eli Rook.\nProsecution wording is served as a working extract only; route pressure: causation / old injury / medical\nreport gap.\nLive issues: intent/knowledge/participation/causation/attribution vary by offence and remain under review.\nNo expected answers are included in this bundle.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 7 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG5 CASE SUMMARY - DRAFT / CORRECTED EXTRACT\nCrown case summary paragraph 1: The Crown alleges Priya Vale is linked to the allegation by a combination of\npresence, witness evidence, source material summaries and exhibit continuity.\nCrown route: causation / old injury / medical report gap is treated by the Crown as answerable, but the\nsupporting material is incomplete.\nDefence observation: the MG5 sometimes states a source proves a point, while MG6 shows the full source\nmaterial is outstanding or summary-only.\nTiming note: first account timing and later corrected timing are not fully aligned.\nWitness note: at least one witness has a poor viewpoint, lighting issue, intoxication/memory issue, bias issue\nor corrected statement.\nSource warning: summary-only material should not be treated as the underlying source.\nCrown limitation: the summary does not resolve all contradictions in the pressure map.\nRepeated MG5 working line 1: route remains conditional on final medical report.\nRepeated MG5 working line 2: route remains conditional on prior injury records.\nRepeated MG5 working line 3: route remains conditional on CCTV continuity.\nRepeated MG5 working line 4: route remains conditional on complainant first account.\nRepeated MG5 working line 5: route remains conditional on interview transcript.\nRepeated MG5 working line 6: route remains conditional on Full CCTV master footage.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 8 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG5 CASE SUMMARY - DRAFT / CORRECTED EXTRACT\nCrown case summary paragraph 2: The Crown alleges Priya Vale is linked to the allegation by a combination of\npresence, witness evidence, source material summaries and exhibit continuity.\nCrown route: causation / old injury / medical report gap is treated by the Crown as answerable, but the\nsupporting material is incomplete.\nDefence observation: the MG5 sometimes states a source proves a point, while MG6 shows the full source\nmaterial is outstanding or summary-only.\nTiming note: first account timing and later corrected timing are not fully aligned.\nWitness note: at least one witness has a poor viewpoint, lighting issue, intoxication/memory issue, bias issue\nor corrected statement.\nSource warning: summary-only material should not be treated as the underlying source.\nCrown limitation: the summary does not resolve all contradictions in the pressure map.\nRepeated MG5 working line 1: route remains conditional on final medical report.\nRepeated MG5 working line 2: route remains conditional on prior injury records.\nRepeated MG5 working line 3: route remains conditional on CCTV continuity.\nRepeated MG5 working line 4: route remains conditional on complainant first account.\nRepeated MG5 working line 5: route remains conditional on interview transcript.\nRepeated MG5 working line 6: route remains conditional on Full CCTV master footage.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 9 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG5 CASE SUMMARY - DRAFT / CORRECTED EXTRACT\nCrown case summary paragraph 3: The Crown alleges Priya Vale is linked to the allegation by a combination of\npresence, witness evidence, source material summaries and exhibit continuity.\nCrown route: causation / old injury / medical report gap is treated by the Crown as answerable, but the\nsupporting material is incomplete.\nDefence observation: the MG5 sometimes states a source proves a point, while MG6 shows the full source\nmaterial is outstanding or summary-only.\nTiming note: first account timing and later corrected timing are not fully aligned.\nWitness note: at least one witness has a poor viewpoint, lighting issue, intoxication/memory issue, bias issue\nor corrected statement.\nSource warning: summary-only material should not be treated as the underlying source.\nCrown limitation: the summary does not resolve all contradictions in the pressure map.\nRepeated MG5 working line 1: route remains conditional on final medical report.\nRepeated MG5 working line 2: route remains conditional on prior injury records.\nRepeated MG5 working line 3: route remains conditional on CCTV continuity.\nRepeated MG5 working line 4: route remains conditional on complainant first account.\nRepeated MG5 working line 5: route remains conditional on interview transcript.\nRepeated MG5 working line 6: route remains conditional on Full CCTV master footage.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 10 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG5 CASE SUMMARY - DRAFT / CORRECTED EXTRACT\nCrown case summary paragraph 4: The Crown alleges Priya Vale is linked to the allegation by a combination of\npresence, witness evidence, source material summaries and exhibit continuity.\nCrown route: causation / old injury / medical report gap is treated by the Crown as answerable, but the\nsupporting material is incomplete.\nDefence observation: the MG5 sometimes states a source proves a point, while MG6 shows the full source\nmaterial is outstanding or summary-only.\nTiming note: first account timing and later corrected timing are not fully aligned.\nWitness note: at least one witness has a poor viewpoint, lighting issue, intoxication/memory issue, bias issue\nor corrected statement.\nSource warning: summary-only material should not be treated as the underlying source.\nCrown limitation: the summary does not resolve all contradictions in the pressure map.\nRepeated MG5 working line 1: route remains conditional on final medical report.\nRepeated MG5 working line 2: route remains conditional on prior injury records.\nRepeated MG5 working line 3: route remains conditional on CCTV continuity.\nRepeated MG5 working line 4: route remains conditional on complainant first account.\nRepeated MG5 working line 5: route remains conditional on interview transcript.\nRepeated MG5 working line 6: route remains conditional on Full CCTV master footage.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 11 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG5 CASE SUMMARY - DRAFT / CORRECTED EXTRACT\nCrown case summary paragraph 5: The Crown alleges Priya Vale is linked to the allegation by a combination of\npresence, witness evidence, source material summaries and exhibit continuity.\nCrown route: causation / old injury / medical report gap is treated by the Crown as answerable, but the\nsupporting material is incomplete.\nDefence observation: the MG5 sometimes states a source proves a point, while MG6 shows the full source\nmaterial is outstanding or summary-only.\nTiming note: first account timing and later corrected timing are not fully aligned.\nWitness note: at least one witness has a poor viewpoint, lighting issue, intoxication/memory issue, bias issue\nor corrected statement.\nSource warning: summary-only material should not be treated as the underlying source.\nCrown limitation: the summary does not resolve all contradictions in the pressure map.\nRepeated MG5 working line 1: route remains conditional on final medical report.\nRepeated MG5 working line 2: route remains conditional on prior injury records.\nRepeated MG5 working line 3: route remains conditional on CCTV continuity.\nRepeated MG5 working line 4: route remains conditional on complainant first account.\nRepeated MG5 working line 5: route remains conditional on interview transcript.\nRepeated MG5 working line 6: route remains conditional on Full CCTV master footage.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 12 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG5 CASE SUMMARY - DRAFT / CORRECTED EXTRACT\nCrown case summary paragraph 6: The Crown alleges Priya Vale is linked to the allegation by a combination of\npresence, witness evidence, source material summaries and exhibit continuity.\nCrown route: causation / old injury / medical report gap is treated by the Crown as answerable, but the\nsupporting material is incomplete.\nDefence observation: the MG5 sometimes states a source proves a point, while MG6 shows the full source\nmaterial is outstanding or summary-only.\nTiming note: first account timing and later corrected timing are not fully aligned.\nWitness note: at least one witness has a poor viewpoint, lighting issue, intoxication/memory issue, bias issue\nor corrected statement.\nSource warning: summary-only material should not be treated as the underlying source.\nCrown limitation: the summary does not resolve all contradictions in the pressure map.\nRepeated MG5 working line 1: route remains conditional on final medical report.\nRepeated MG5 working line 2: route remains conditional on prior injury records.\nRepeated MG5 working line 3: route remains conditional on CCTV continuity.\nRepeated MG5 working line 4: route remains conditional on complainant first account.\nRepeated MG5 working line 5: route remains conditional on interview transcript.\nRepeated MG5 working line 6: route remains conditional on Full CCTV master footage.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 13 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG5 CASE SUMMARY - DRAFT / CORRECTED EXTRACT\nCrown case summary paragraph 7: The Crown alleges Priya Vale is linked to the allegation by a combination of\npresence, witness evidence, source material summaries and exhibit continuity.\nCrown route: causation / old injury / medical report gap is treated by the Crown as answerable, but the\nsupporting material is incomplete.\nDefence observation: the MG5 sometimes states a source proves a point, while MG6 shows the full source\nmaterial is outstanding or summary-only.\nTiming note: first account timing and later corrected timing are not fully aligned.\nWitness note: at least one witness has a poor viewpoint, lighting issue, intoxication/memory issue, bias issue\nor corrected statement.\nSource warning: summary-only material should not be treated as the underlying source.\nCrown limitation: the summary does not resolve all contradictions in the pressure map.\nRepeated MG5 working line 1: route remains conditional on final medical report.\nRepeated MG5 working line 2: route remains conditional on prior injury records.\nRepeated MG5 working line 3: route remains conditional on CCTV continuity.\nRepeated MG5 working line 4: route remains conditional on complainant first account.\nRepeated MG5 working line 5: route remains conditional on interview transcript.\nRepeated MG5 working line 6: route remains conditional on Full CCTV master footage.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 14 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG5 CASE SUMMARY - DRAFT / CORRECTED EXTRACT\nCrown case summary paragraph 8: The Crown alleges Priya Vale is linked to the allegation by a combination of\npresence, witness evidence, source material summaries and exhibit continuity.\nCrown route: causation / old injury / medical report gap is treated by the Crown as answerable, but the\nsupporting material is incomplete.\nDefence observation: the MG5 sometimes states a source proves a point, while MG6 shows the full source\nmaterial is outstanding or summary-only.\nTiming note: first account timing and later corrected timing are not fully aligned.\nWitness note: at least one witness has a poor viewpoint, lighting issue, intoxication/memory issue, bias issue\nor corrected statement.\nSource warning: summary-only material should not be treated as the underlying source.\nCrown limitation: the summary does not resolve all contradictions in the pressure map.\nRepeated MG5 working line 1: route remains conditional on final medical report.\nRepeated MG5 working line 2: route remains conditional on prior injury records.\nRepeated MG5 working line 3: route remains conditional on CCTV continuity.\nRepeated MG5 working line 4: route remains conditional on complainant first account.\nRepeated MG5 working line 5: route remains conditional on interview transcript.\nRepeated MG5 working line 6: route remains conditional on Full CCTV master footage.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 15 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG6 DISCLOSURE SCHEDULE - FRONT SUMMARY\nServed:\nCharge sheet extract\nMG5 case summary\nDraft MG6 disclosure schedule\nSelected MG11 witness extracts\nInterview summary\nCustody record summary\nInitial exhibit list\nSelected source-material summaries\nOutstanding:\nOutstanding item: final medical report - not served or served as summary only; chase before final position.\nOutstanding item: prior injury records - not served or served as summary only; chase before final position.\nOutstanding item: CCTV continuity - not served or served as summary only; chase before final position.\nOutstanding item: complainant first account - not served or served as summary only; chase before final\nposition.\nOutstanding item: interview transcript - not served or served as summary only; chase before final position.\nOutstanding item: Full CCTV master footage - not served or served as summary only; chase before final\nposition.\nOutstanding item: CCTV continuity/export log - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full 999 audio - not served or served as summary only; chase before final position.\nOutstanding item: Full CAD incident log - not served or served as summary only; chase before final position.\nOutstanding item: BWV from attending officers - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full interview audio/transcript - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody record full copy - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody CCTV - not served or served as summary only; chase before final position.\nOutstanding item: Unused material worksheet - not served or served as summary only; chase before final\nposition.\nOutstanding item: First account notes - not served or served as summary only; chase before final position.\nOutstanding item: Corrected witness drafts - not served or served as summary only; chase before final\nposition.\nOutstanding item: Scene photographs full set - not served or served as summary only; chase before final\nposition.\nOutstanding item: Exhibit continuity log - not served or served as summary only; chase before final position.\nUnused / sensitive / correction notes:\nUnused material worksheet marked draft only; corrected index appears later and conflicts with first index.\nSensitive schedule existence noted but content not provided in this fictional test bundle.\nSome page references are inconsistent because old versions remain in appendices.\nPartial / draft / summary-only items:\nSummary only - underlying source not served for at least three key evidential areas.\nAwaiting final report - forensic/medical/digital material remains provisional where relevant.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 16 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG6 DISCLOSURE SCHEDULE - FRONT SUMMARY\nServed:\nCharge sheet extract\nMG5 case summary\nDraft MG6 disclosure schedule\nSelected MG11 witness extracts\nInterview summary\nCustody record summary\nInitial exhibit list\nSelected source-material summaries\nOutstanding:\nOutstanding item: final medical report - not served or served as summary only; chase before final position.\nOutstanding item: prior injury records - not served or served as summary only; chase before final position.\nOutstanding item: CCTV continuity - not served or served as summary only; chase before final position.\nOutstanding item: complainant first account - not served or served as summary only; chase before final\nposition.\nOutstanding item: interview transcript - not served or served as summary only; chase before final position.\nOutstanding item: Full CCTV master footage - not served or served as summary only; chase before final\nposition.\nOutstanding item: CCTV continuity/export log - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full 999 audio - not served or served as summary only; chase before final position.\nOutstanding item: Full CAD incident log - not served or served as summary only; chase before final position.\nOutstanding item: BWV from attending officers - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full interview audio/transcript - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody record full copy - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody CCTV - not served or served as summary only; chase before final position.\nOutstanding item: Unused material worksheet - not served or served as summary only; chase before final\nposition.\nOutstanding item: First account notes - not served or served as summary only; chase before final position.\nOutstanding item: Corrected witness drafts - not served or served as summary only; chase before final\nposition.\nOutstanding item: Scene photographs full set - not served or served as summary only; chase before final\nposition.\nOutstanding item: Exhibit continuity log - not served or served as summary only; chase before final position.\nUnused / sensitive / correction notes:\nUnused material worksheet marked draft only; corrected index appears later and conflicts with first index.\nSensitive schedule existence noted but content not provided in this fictional test bundle.\nSome page references are inconsistent because old versions remain in appendices.\nPartial / draft / summary-only items:\nSummary only - underlying source not served for at least three key evidential areas.\nAwaiting final report - forensic/medical/digital material remains provisional where relevant.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 17 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG6 DISCLOSURE SCHEDULE - FRONT SUMMARY\nServed:\nCharge sheet extract\nMG5 case summary\nDraft MG6 disclosure schedule\nSelected MG11 witness extracts\nInterview summary\nCustody record summary\nInitial exhibit list\nSelected source-material summaries\nOutstanding:\nOutstanding item: final medical report - not served or served as summary only; chase before final position.\nOutstanding item: prior injury records - not served or served as summary only; chase before final position.\nOutstanding item: CCTV continuity - not served or served as summary only; chase before final position.\nOutstanding item: complainant first account - not served or served as summary only; chase before final\nposition.\nOutstanding item: interview transcript - not served or served as summary only; chase before final position.\nOutstanding item: Full CCTV master footage - not served or served as summary only; chase before final\nposition.\nOutstanding item: CCTV continuity/export log - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full 999 audio - not served or served as summary only; chase before final position.\nOutstanding item: Full CAD incident log - not served or served as summary only; chase before final position.\nOutstanding item: BWV from attending officers - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full interview audio/transcript - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody record full copy - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody CCTV - not served or served as summary only; chase before final position.\nOutstanding item: Unused material worksheet - not served or served as summary only; chase before final\nposition.\nOutstanding item: First account notes - not served or served as summary only; chase before final position.\nOutstanding item: Corrected witness drafts - not served or served as summary only; chase before final\nposition.\nOutstanding item: Scene photographs full set - not served or served as summary only; chase before final\nposition.\nOutstanding item: Exhibit continuity log - not served or served as summary only; chase before final position.\nUnused / sensitive / correction notes:\nUnused material worksheet marked draft only; corrected index appears later and conflicts with first index.\nSensitive schedule existence noted but content not provided in this fictional test bundle.\nSome page references are inconsistent because old versions remain in appendices.\nPartial / draft / summary-only items:\nSummary only - underlying source not served for at least three key evidential areas.\nAwaiting final report - forensic/medical/digital material remains provisional where relevant.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 18 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG6 DISCLOSURE SCHEDULE - FRONT SUMMARY\nServed:\nCharge sheet extract\nMG5 case summary\nDraft MG6 disclosure schedule\nSelected MG11 witness extracts\nInterview summary\nCustody record summary\nInitial exhibit list\nSelected source-material summaries\nOutstanding:\nOutstanding item: final medical report - not served or served as summary only; chase before final position.\nOutstanding item: prior injury records - not served or served as summary only; chase before final position.\nOutstanding item: CCTV continuity - not served or served as summary only; chase before final position.\nOutstanding item: complainant first account - not served or served as summary only; chase before final\nposition.\nOutstanding item: interview transcript - not served or served as summary only; chase before final position.\nOutstanding item: Full CCTV master footage - not served or served as summary only; chase before final\nposition.\nOutstanding item: CCTV continuity/export log - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full 999 audio - not served or served as summary only; chase before final position.\nOutstanding item: Full CAD incident log - not served or served as summary only; chase before final position.\nOutstanding item: BWV from attending officers - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full interview audio/transcript - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody record full copy - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody CCTV - not served or served as summary only; chase before final position.\nOutstanding item: Unused material worksheet - not served or served as summary only; chase before final\nposition.\nOutstanding item: First account notes - not served or served as summary only; chase before final position.\nOutstanding item: Corrected witness drafts - not served or served as summary only; chase before final\nposition.\nOutstanding item: Scene photographs full set - not served or served as summary only; chase before final\nposition.\nOutstanding item: Exhibit continuity log - not served or served as summary only; chase before final position.\nUnused / sensitive / correction notes:\nUnused material worksheet marked draft only; corrected index appears later and conflicts with first index.\nSensitive schedule existence noted but content not provided in this fictional test bundle.\nSome page references are inconsistent because old versions remain in appendices.\nPartial / draft / summary-only items:\nSummary only - underlying source not served for at least three key evidential areas.\nAwaiting final report - forensic/medical/digital material remains provisional where relevant.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 19 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG6 DISCLOSURE SCHEDULE - FRONT SUMMARY\nServed:\nCharge sheet extract\nMG5 case summary\nDraft MG6 disclosure schedule\nSelected MG11 witness extracts\nInterview summary\nCustody record summary\nInitial exhibit list\nSelected source-material summaries\nOutstanding:\nOutstanding item: final medical report - not served or served as summary only; chase before final position.\nOutstanding item: prior injury records - not served or served as summary only; chase before final position.\nOutstanding item: CCTV continuity - not served or served as summary only; chase before final position.\nOutstanding item: complainant first account - not served or served as summary only; chase before final\nposition.\nOutstanding item: interview transcript - not served or served as summary only; chase before final position.\nOutstanding item: Full CCTV master footage - not served or served as summary only; chase before final\nposition.\nOutstanding item: CCTV continuity/export log - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full 999 audio - not served or served as summary only; chase before final position.\nOutstanding item: Full CAD incident log - not served or served as summary only; chase before final position.\nOutstanding item: BWV from attending officers - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full interview audio/transcript - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody record full copy - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody CCTV - not served or served as summary only; chase before final position.\nOutstanding item: Unused material worksheet - not served or served as summary only; chase before final\nposition.\nOutstanding item: First account notes - not served or served as summary only; chase before final position.\nOutstanding item: Corrected witness drafts - not served or served as summary only; chase before final\nposition.\nOutstanding item: Scene photographs full set - not served or served as summary only; chase before final\nposition.\nOutstanding item: Exhibit continuity log - not served or served as summary only; chase before final position.\nUnused / sensitive / correction notes:\nUnused material worksheet marked draft only; corrected index appears later and conflicts with first index.\nSensitive schedule existence noted but content not provided in this fictional test bundle.\nSome page references are inconsistent because old versions remain in appendices.\nPartial / draft / summary-only items:\nSummary only - underlying source not served for at least three key evidential areas.\nAwaiting final report - forensic/medical/digital material remains provisional where relevant.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 20 of 500\nCHARGE / MG5 / MG6 CORE PAPERS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG6 DISCLOSURE SCHEDULE - FRONT SUMMARY\nServed:\nCharge sheet extract\nMG5 case summary\nDraft MG6 disclosure schedule\nSelected MG11 witness extracts\nInterview summary\nCustody record summary\nInitial exhibit list\nSelected source-material summaries\nOutstanding:\nOutstanding item: final medical report - not served or served as summary only; chase before final position.\nOutstanding item: prior injury records - not served or served as summary only; chase before final position.\nOutstanding item: CCTV continuity - not served or served as summary only; chase before final position.\nOutstanding item: complainant first account - not served or served as summary only; chase before final\nposition.\nOutstanding item: interview transcript - not served or served as summary only; chase before final position.\nOutstanding item: Full CCTV master footage - not served or served as summary only; chase before final\nposition.\nOutstanding item: CCTV continuity/export log - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full 999 audio - not served or served as summary only; chase before final position.\nOutstanding item: Full CAD incident log - not served or served as summary only; chase before final position.\nOutstanding item: BWV from attending officers - not served or served as summary only; chase before final\nposition.\nOutstanding item: Full interview audio/transcript - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody record full copy - not served or served as summary only; chase before final\nposition.\nOutstanding item: Custody CCTV - not served or served as summary only; chase before final position.\nOutstanding item: Unused material worksheet - not served or served as summary only; chase before final\nposition.\nOutstanding item: First account notes - not served or served as summary only; chase before final position.\nOutstanding item: Corrected witness drafts - not served or served as summary only; chase before final\nposition.\nOutstanding item: Scene photographs full set - not served or served as summary only; chase before final\nposition.\nOutstanding item: Exhibit continuity log - not served or served as summary only; chase before final position.\nUnused / sensitive / correction notes:\nUnused material worksheet marked draft only; corrected index appears later and conflicts with first index.\nSensitive schedule existence noted but content not provided in this fictional test bundle.\nSome page references are inconsistent because old versions remain in appendices.\nPartial / draft / summary-only items:\nSummary only - underlying source not served for at least three key evidential areas.\nAwaiting final report - forensic/medical/digital material remains provisional where relevant.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 21 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 01 - Kian Cole - CORRECTED\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: possible bias.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 1.\nStatement line 2: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 2.\nStatement line 3: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 3.\nStatement line 4: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 4.\nStatement line 5: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 5.\nStatement line 6: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 6.\nStatement line 7: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 7.\nStatement line 8: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 8.\nStatement line 9: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 9.\nStatement line 10: Kian Cole records a detail that may assist or harm either side depending on\nsource material 10.\nStatement line 11: Kian Cole records a detail that may assist or harm either side depending on\nsource material 11.\nStatement line 12: Kian Cole records a detail that may assist or harm either side depending on\nsource material 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 22 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 02 - Zara Voss - SERVED EXTRACT\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: intoxication context.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 1.\nStatement line 2: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 2.\nStatement line 3: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 3.\nStatement line 4: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 4.\nStatement line 5: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 5.\nStatement line 6: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 6.\nStatement line 7: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 7.\nStatement line 8: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 8.\nStatement line 9: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 9.\nStatement line 10: Zara Voss records a detail that may assist or harm either side depending on\nsource material 10.\nStatement line 11: Zara Voss records a detail that may assist or harm either side depending on\nsource material 11.\nStatement line 12: Zara Voss records a detail that may assist or harm either side depending on\nsource material 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 23 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 03 - Owen Price - SERVED EXTRACT\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: heard rather than saw key act.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Owen Price records a detail that may assist or harm either side depending on\nsource material 1.\nStatement line 2: Owen Price records a detail that may assist or harm either side depending on\nsource material 2.\nStatement line 3: Owen Price records a detail that may assist or harm either side depending on\nsource material 3.\nStatement line 4: Owen Price records a detail that may assist or harm either side depending on\nsource material 4.\nStatement line 5: Owen Price records a detail that may assist or harm either side depending on\nsource material 5.\nStatement line 6: Owen Price records a detail that may assist or harm either side depending on\nsource material 6.\nStatement line 7: Owen Price records a detail that may assist or harm either side depending on\nsource material 7.\nStatement line 8: Owen Price records a detail that may assist or harm either side depending on\nsource material 8.\nStatement line 9: Owen Price records a detail that may assist or harm either side depending on\nsource material 9.\nStatement line 10: Owen Price records a detail that may assist or harm either side depending on\nsource material 10.\nStatement line 11: Owen Price records a detail that may assist or harm either side depending on\nsource material 11.\nStatement line 12: Owen Price records a detail that may assist or harm either side depending on\nsource material 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 24 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 04 - Lena Dyer - SERVED EXTRACT\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: first account differs from later line.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Lena Dyer records a detail that may assist or harm either side depending on source\nmaterial 1.\nStatement line 2: Lena Dyer records a detail that may assist or harm either side depending on source\nmaterial 2.\nStatement line 3: Lena Dyer records a detail that may assist or harm either side depending on source\nmaterial 3.\nStatement line 4: Lena Dyer records a detail that may assist or harm either side depending on source\nmaterial 4.\nStatement line 5: Lena Dyer records a detail that may assist or harm either side depending on source\nmaterial 5.\nStatement line 6: Lena Dyer records a detail that may assist or harm either side depending on source\nmaterial 6.\nStatement line 7: Lena Dyer records a detail that may assist or harm either side depending on source\nmaterial 7.\nStatement line 8: Lena Dyer records a detail that may assist or harm either side depending on source\nmaterial 8.\nStatement line 9: Lena Dyer records a detail that may assist or harm either side depending on source\nmaterial 9.\nStatement line 10: Lena Dyer records a detail that may assist or harm either side depending on\nsource material 10.\nStatement line 11: Lena Dyer records a detail that may assist or harm either side depending on\nsource material 11.\nStatement line 12: Lena Dyer records a detail that may assist or harm either side depending on\nsource material 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 25 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 05 - Theo Rowe - DRAFT ONLY\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: poor lighting.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Theo Rowe records a detail that may assist or harm either side depending on source\nmaterial 1.\nStatement line 2: Theo Rowe records a detail that may assist or harm either side depending on source\nmaterial 2.\nStatement line 3: Theo Rowe records a detail that may assist or harm either side depending on source\nmaterial 3.\nStatement line 4: Theo Rowe records a detail that may assist or harm either side depending on source\nmaterial 4.\nStatement line 5: Theo Rowe records a detail that may assist or harm either side depending on source\nmaterial 5.\nStatement line 6: Theo Rowe records a detail that may assist or harm either side depending on source\nmaterial 6.\nStatement line 7: Theo Rowe records a detail that may assist or harm either side depending on source\nmaterial 7.\nStatement line 8: Theo Rowe records a detail that may assist or harm either side depending on source\nmaterial 8.\nStatement line 9: Theo Rowe records a detail that may assist or harm either side depending on source\nmaterial 9.\nStatement line 10: Theo Rowe records a detail that may assist or harm either side depending on\nsource material 10.\nStatement line 11: Theo Rowe records a detail that may assist or harm either side depending on\nsource material 11.\nStatement line 12: Theo Rowe records a detail that may assist or harm either side depending on\nsource material 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 26 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 06 - Noah Blake - SERVED EXTRACT\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: partly obstructed viewpoint.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Noah Blake records a detail that may assist or harm either side depending on\nsource material 1.\nStatement line 2: Noah Blake records a detail that may assist or harm either side depending on\nsource material 2.\nStatement line 3: Noah Blake records a detail that may assist or harm either side depending on\nsource material 3.\nStatement line 4: Noah Blake records a detail that may assist or harm either side depending on\nsource material 4.\nStatement line 5: Noah Blake records a detail that may assist or harm either side depending on\nsource material 5.\nStatement line 6: Noah Blake records a detail that may assist or harm either side depending on\nsource material 6.\nStatement line 7: Noah Blake records a detail that may assist or harm either side depending on\nsource material 7.\nStatement line 8: Noah Blake records a detail that may assist or harm either side depending on\nsource material 8.\nStatement line 9: Noah Blake records a detail that may assist or harm either side depending on\nsource material 9.\nStatement line 10: Noah Blake records a detail that may assist or harm either side depending on\nsource material 10.\nStatement line 11: Noah Blake records a detail that may assist or harm either side depending on\nsource material 11.\nStatement line 12: Noah Blake records a detail that may assist or harm either side depending on\nsource material 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 27 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 07 - Iris Hart - SERVED EXTRACT\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: timing uncertainty.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Iris Hart records a detail that may assist or harm either side depending on source\nmaterial 1.\nStatement line 2: Iris Hart records a detail that may assist or harm either side depending on source\nmaterial 2.\nStatement line 3: Iris Hart records a detail that may assist or harm either side depending on source\nmaterial 3.\nStatement line 4: Iris Hart records a detail that may assist or harm either side depending on source\nmaterial 4.\nStatement line 5: Iris Hart records a detail that may assist or harm either side depending on source\nmaterial 5.\nStatement line 6: Iris Hart records a detail that may assist or harm either side depending on source\nmaterial 6.\nStatement line 7: Iris Hart records a detail that may assist or harm either side depending on source\nmaterial 7.\nStatement line 8: Iris Hart records a detail that may assist or harm either side depending on source\nmaterial 8.\nStatement line 9: Iris Hart records a detail that may assist or harm either side depending on source\nmaterial 9.\nStatement line 10: Iris Hart records a detail that may assist or harm either side depending on\nsource material 10.\nStatement line 11: Iris Hart records a detail that may assist or harm either side depending on\nsource material 11.\nStatement line 12: Iris Hart records a detail that may assist or harm either side depending on\nsource material 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 28 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 08 - Ezra Kent - CORRECTED\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: memory gap.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Ezra Kent records a detail that may assist or harm either side depending on source\nmaterial 1.\nStatement line 2: Ezra Kent records a detail that may assist or harm either side depending on source\nmaterial 2.\nStatement line 3: Ezra Kent records a detail that may assist or harm either side depending on source\nmaterial 3.\nStatement line 4: Ezra Kent records a detail that may assist or harm either side depending on source\nmaterial 4.\nStatement line 5: Ezra Kent records a detail that may assist or harm either side depending on source\nmaterial 5.\nStatement line 6: Ezra Kent records a detail that may assist or harm either side depending on source\nmaterial 6.\nStatement line 7: Ezra Kent records a detail that may assist or harm either side depending on source\nmaterial 7.\nStatement line 8: Ezra Kent records a detail that may assist or harm either side depending on source\nmaterial 8.\nStatement line 9: Ezra Kent records a detail that may assist or harm either side depending on source\nmaterial 9.\nStatement line 10: Ezra Kent records a detail that may assist or harm either side depending on\nsource material 10.\nStatement line 11: Ezra Kent records a detail that may assist or harm either side depending on\nsource material 11.\nStatement line 12: Ezra Kent records a detail that may assist or harm either side depending on\nsource material 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 29 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 09 - Freya Greene - SERVED EXTRACT\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: possible bias.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Freya Greene records a detail that may assist or harm either side depending on\nsource material 1.\nStatement line 2: Freya Greene records a detail that may assist or harm either side depending on\nsource material 2.\nStatement line 3: Freya Greene records a detail that may assist or harm either side depending on\nsource material 3.\nStatement line 4: Freya Greene records a detail that may assist or harm either side depending on\nsource material 4.\nStatement line 5: Freya Greene records a detail that may assist or harm either side depending on\nsource material 5.\nStatement line 6: Freya Greene records a detail that may assist or harm either side depending on\nsource material 6.\nStatement line 7: Freya Greene records a detail that may assist or harm either side depending on\nsource material 7.\nStatement line 8: Freya Greene records a detail that may assist or harm either side depending on\nsource material 8.\nStatement line 9: Freya Greene records a detail that may assist or harm either side depending on\nsource material 9.\nStatement line 10: Freya Greene records a detail that may assist or harm either side depending on\nsource material 10.\nStatement line 11: Freya Greene records a detail that may assist or harm either side depending on\nsource material 11.\nStatement line 12: Freya Greene records a detail that may assist or harm either side depending on\nsource material 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 30 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 10 - Kai Ash - DRAFT ONLY\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: intoxication context.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Kai Ash records a detail that may assist or harm either side depending on source\nmaterial 1.\nStatement line 2: Kai Ash records a detail that may assist or harm either side depending on source\nmaterial 2.\nStatement line 3: Kai Ash records a detail that may assist or harm either side depending on source\nmaterial 3.\nStatement line 4: Kai Ash records a detail that may assist or harm either side depending on source\nmaterial 4.\nStatement line 5: Kai Ash records a detail that may assist or harm either side depending on source\nmaterial 5.\nStatement line 6: Kai Ash records a detail that may assist or harm either side depending on source\nmaterial 6.\nStatement line 7: Kai Ash records a detail that may assist or harm either side depending on source\nmaterial 7.\nStatement line 8: Kai Ash records a detail that may assist or harm either side depending on source\nmaterial 8.\nStatement line 9: Kai Ash records a detail that may assist or harm either side depending on source\nmaterial 9.\nStatement line 10: Kai Ash records a detail that may assist or harm either side depending on source\nmaterial 10.\nStatement line 11: Kai Ash records a detail that may assist or harm either side depending on source\nmaterial 11.\nStatement line 12: Kai Ash records a detail that may assist or harm either side depending on source\nmaterial 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 31 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 11 - Luca Baines - SERVED EXTRACT\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: heard rather than saw key act.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Luca Baines records a detail that may assist or harm either side depending on\nsource material 1.\nStatement line 2: Luca Baines records a detail that may assist or harm either side depending on\nsource material 2.\nStatement line 3: Luca Baines records a detail that may assist or harm either side depending on\nsource material 3.\nStatement line 4: Luca Baines records a detail that may assist or harm either side depending on\nsource material 4.\nStatement line 5: Luca Baines records a detail that may assist or harm either side depending on\nsource material 5.\nStatement line 6: Luca Baines records a detail that may assist or harm either side depending on\nsource material 6.\nStatement line 7: Luca Baines records a detail that may assist or harm either side depending on\nsource material 7.\nStatement line 8: Luca Baines records a detail that may assist or harm either side depending on\nsource material 8.\nStatement line 9: Luca Baines records a detail that may assist or harm either side depending on\nsource material 9.\nStatement line 10: Luca Baines records a detail that may assist or harm either side depending on\nsource material 10.\nStatement line 11: Luca Baines records a detail that may assist or harm either side depending on\nsource material 11.\nStatement line 12: Luca Baines records a detail that may assist or harm either side depending on\nsource material 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 32 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 12 - Mira Shaw - SERVED EXTRACT\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: first account differs from later line.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Mira Shaw records a detail that may assist or harm either side depending on source\nmaterial 1.\nStatement line 2: Mira Shaw records a detail that may assist or harm either side depending on source\nmaterial 2.\nStatement line 3: Mira Shaw records a detail that may assist or harm either side depending on source\nmaterial 3.\nStatement line 4: Mira Shaw records a detail that may assist or harm either side depending on source\nmaterial 4.\nStatement line 5: Mira Shaw records a detail that may assist or harm either side depending on source\nmaterial 5.\nStatement line 6: Mira Shaw records a detail that may assist or harm either side depending on source\nmaterial 6.\nStatement line 7: Mira Shaw records a detail that may assist or harm either side depending on source\nmaterial 7.\nStatement line 8: Mira Shaw records a detail that may assist or harm either side depending on source\nmaterial 8.\nStatement line 9: Mira Shaw records a detail that may assist or harm either side depending on source\nmaterial 9.\nStatement line 10: Mira Shaw records a detail that may assist or harm either side depending on\nsource material 10.\nStatement line 11: Mira Shaw records a detail that may assist or harm either side depending on\nsource material 11.\nStatement line 12: Mira Shaw records a detail that may assist or harm either side depending on\nsource material 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 33 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 01 - Kian Cole - SERVED EXTRACT\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: poor lighting.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 1.\nStatement line 2: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 2.\nStatement line 3: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 3.\nStatement line 4: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 4.\nStatement line 5: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 5.\nStatement line 6: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 6.\nStatement line 7: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 7.\nStatement line 8: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 8.\nStatement line 9: Kian Cole records a detail that may assist or harm either side depending on source\nmaterial 9.\nStatement line 10: Kian Cole records a detail that may assist or harm either side depending on\nsource material 10.\nStatement line 11: Kian Cole records a detail that may assist or harm either side depending on\nsource material 11.\nStatement line 12: Kian Cole records a detail that may assist or harm either side depending on\nsource material 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 34 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 02 - Zara Voss - SERVED EXTRACT\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: partly obstructed viewpoint.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nStatement line 1: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 1.\nStatement line 2: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 2.\nStatement line 3: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 3.\nStatement line 4: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 4.\nStatement line 5: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 5.\nStatement line 6: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 6.\nStatement line 7: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 7.\nStatement line 8: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 8.\nStatement line 9: Zara Voss records a detail that may assist or harm either side depending on source\nmaterial 9.\nStatement line 10: Zara Voss records a detail that may assist or harm either side depending on\nsource material 10.\nStatement line 11: Zara Voss records a detail that may assist or harm either side depending on\nsource material 11.\nStatement line 12: Zara Voss records a detail that may assist or harm either side depending on\nsource material 12.\nWorking bundle - draft/served/outstanding material mixed - solicitor review required - no expected answers included.\n\nPACK Z - FICTIONAL TEST DATA ONLY - CB-Z-500-ABH-0007 - Hearing 22 May 2026 10:00Page 35 of 500\nMG11 WITNESS STATEMENTS\nNOTE: Fictional selectable-text criminal defence test bundle. No real person, court, force, address or case reference.\nMG11 WITNESS EXTRACT 03 - Owen Price - CORRECTED\nWitness says they were near Westbridge Parade and became aware of the incident involving Priya Vale\nand Eli Rook.\nFirst account: witness describes movement/noise/argument but does not safely resolve causation / old\ninjury / medical report gap.\nCorrected account: later statement adds detail but is not fully consistent with the first account or\ntiming note.\nViewpoint limitation: timing uncertainty.\nCross-reference: MG5 relies on this account more strongly than the witness wording may safely\nsupport.\nDisclosure note: officer notebook / first account note / BWV context should be checked before final\nreliance.\nDo not overstate: this extract may support a live issue but does not prove the final route alone.\nState",
+      "canonical": {
+        "findings": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf (case document) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state not_safely_confirmed; transcript state incomplete.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: incomplete · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          }
+        ],
+        "findingSummaries": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf (case document) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state not_safely_confirmed; transcript state incomplete.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: incomplete · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "info",
+            "referencedAbsent": null
+          }
+        ],
+        "evidenceRows": [
+          {
+            "label": "CASE SNAPSHOT / KEY DISPUTES Crown route",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "MG6 service status — source material not",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "safe hearing position and disclosure timetable required",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "MG6 DISCLOSURE SCHEDULE — FRONT",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "CCTV continuity — not served",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "complainant first account — not served",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "interview transcript — not served",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Full CCTV master footage — not",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "CCTV continuity/export log — not served",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Full 999 audio — not served",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Full CAD incident log — not",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "BWV from attending officers — not",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Full interview audio/transcript — not served",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Custody record full copy — not",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Custody CCTV — not served",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Unused material worksheet — not served",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "First account notes — not served",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Corrected witness drafts — not served",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Scene photographs full set — not",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Exhibit continuity log — not served",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Sensitive schedule existence noted but content not",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Summary only — underlying source not",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Prosecution wording is",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "WITNESS EXTRACT 02 — Zara Voss",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "WITNESS EXTRACT 03 — Owen Price",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "WITNESS EXTRACT 04 — Lena Dyer",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "WITNESS EXTRACT 06 — Noah Blake",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "WITNESS EXTRACT 07 — Iris Hart",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "WITNESS EXTRACT 09 — Freya Greene",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "WITNESS EXTRACT 11 — Luca Baines",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "WITNESS EXTRACT 12 — Mira Shaw",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "WITNESS EXTRACT 01 — Kian Cole",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "WITNESS EXTRACT 05 — Theo Rowe",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "WITNESS EXTRACT 08 — Ezra Kent",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "WITNESS EXTRACT 10 — Kai Ash",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "limited account",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "CUSTODY / PACE SECTION Custody record",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Full custody record not",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "master footage not",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "may overstate what current MG6 shows as",
+            "existence": "served",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "position and disclosure timetable required Served /",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "of 500 SERVED /",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Initial exhibit list — Selected source-material summaries",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "CCTV continuity",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "complainant first account",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "interview transcript",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Full CCTV master footage",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "CCTV continuity/export log",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Full 999 audio",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Full CAD incident log",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "BWV from attending officers",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Full interview audio/transcript",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Custody record full copy",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Custody CCTV",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Unused material worksheet",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "First account notes",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Corrected witness drafts",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Scene photographs full set",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Exhibit continuity log",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Summary only — underlying source",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "MG6 shows the full source material is",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "SUMMARY — SUMMARY ONLY / FULL RECORDING",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "full transcript/audio",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Full custody record",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Full custody record/CCTV",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "continuity",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "DISCLOSURE CHASE NOTE — ACTIVE",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "MG6 shows several underlying source materials are",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "full audio/transcript is",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Served material",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "master footage",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "TABLE — SUMMARY ONLY — UNDERLYING SOURCE",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "full custody CCTV",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "CORRESPONDENCE — SUMMARY ONLY — UNDERLYING SOURCE",
+            "existence": "missing",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "No comment /",
+            "existence": "incomplete",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Crown summary depends",
+            "existence": "incomplete",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Outstanding material",
+            "existence": "incomplete",
+            "note": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          }
+        ],
+        "charges": [],
+        "chaseLabels": [
+          "position and disclosure timetable required Served /",
+          "of 500 SERVED /",
+          "Initial exhibit list — Selected source-material summaries",
+          "complainant first account",
+          "Unused material worksheet",
+          "First account notes",
+          "Corrected witness drafts",
+          "Scene photographs full set",
+          "Exhibit continuity log",
+          "Summary only — underlying source",
+          "MG6 shows the full source material is",
+          "continuity",
+          "DISCLOSURE CHASE NOTE — ACTIVE",
+          "MG6 shows several underlying source materials are",
+          "Outstanding material",
+          "TABLE — SUMMARY ONLY — UNDERLYING SOURCE",
+          "CORRESPONDENCE — SUMMARY ONLY — UNDERLYING SOURCE",
+          "No comment /",
+          "Crown summary depends",
+          "Interview recording"
+        ],
+        "suppressedChaseLabels": [
+          "CCTV continuity",
+          "interview transcript",
+          "Full CCTV master footage",
+          "CCTV continuity/export log",
+          "Full 999 audio",
+          "Full CAD incident log",
+          "BWV from attending officers",
+          "Full interview audio/transcript",
+          "Custody record full copy",
+          "full custody CCTV",
+          "SUMMARY — SUMMARY ONLY / FULL RECORDING",
+          "full transcript/audio",
+          "Full custody record/CCTV",
+          "full audio/transcript is",
+          "master footage"
+        ],
+        "documentRoles": [
+          {
+            "id": "11ebaec7-dbf7-40d2-874e-d60a5e2fb5a9",
+            "title": "CB-Z-500-ABH-0007_ABH_s.47_500_page_bundle.pdf",
+            "role": "operative"
+          }
+        ],
+        "unitCount": 1,
+        "pageUnitCount": 1
+      }
+    }
+  },
+  "battleboard": {
+    "status": 200,
+    "data": {
+      "case_id": "f57a2750-d24e-42a2-9f73-92384db565dc",
+      "generated_at": "2026-08-25T05:01:54.822Z",
+      "overall_status": "usable",
+      "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Safeguards / participation pressure (conditional) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
+      "position_trust": "interview_from_file",
+      "position_notice": "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
+      "primary_route": {
+        "id": "safeguards",
+        "title": "Safeguards / participation pressure",
+        "status": "conditional",
+        "route_type": "safeguards",
+        "why_it_helps": [
+          "Live issues: intent/knowledge/participation/causation/attribution vary by offence and remain under review.",
+          "AA/interpreter/vulnerability issue: consider if flagged in the specific case papers; do not infer",
+          "Defence risk note: unexplained gaps or panic/no comment may be relied on by Crown depending on"
+        ],
+        "what_hurts_us": [
+          "Safeguards may be documented as properly complied with on served papers.",
+          "Vulnerability may not be linked to the disputed issue on the Crown route."
+        ],
+        "evidence_anchors": [
+          "Live issues: intent/knowledge/participation/causation/attribution vary by offence and remain under review.",
+          "AA/interpreter/vulnerability issue: consider if flagged in the specific case papers; do not infer",
+          "Defence risk note: unexplained gaps or panic/no comment may be relied on by Crown depending on"
+        ],
+        "collapse_risks": [
+          "Assumed position may conflict with interview or served evidence.",
+          "Custody/interview record shows safeguards were correctly followed.",
+          "Vulnerability is not linked to the disputed issue on served material.",
+          "Appropriate adult / interpreter records support the Crown account if proved."
+        ],
+        "next_moves": [
+          "Chase custody record, appropriate adult record, and interpreter record if referenced.",
+          "Chase vulnerability assessment, medical, or liaison notes if listed.",
+          "Record instructions on participation and understanding before fixing hearing strategy."
+        ],
+        "hearing_line": "Ask the court to record any safeguards/participation issue and direct service of relevant custody and interview records — conditional on served material.",
+        "safety_note": "Not a merits win — solicitor review required before advancing participation challenges."
+      },
+      "routes": [
+        {
+          "id": "safeguards",
+          "title": "Safeguards / participation pressure",
+          "status": "conditional",
+          "route_type": "safeguards",
+          "why_it_helps": [
+            "Live issues: intent/knowledge/participation/causation/attribution vary by offence and remain under review.",
+            "AA/interpreter/vulnerability issue: consider if flagged in the specific case papers; do not infer",
+            "Defence risk note: unexplained gaps or panic/no comment may be relied on by Crown depending on"
+          ],
+          "what_hurts_us": [
+            "Safeguards may be documented as properly complied with on served papers.",
+            "Vulnerability may not be linked to the disputed issue on the Crown route."
+          ],
+          "evidence_anchors": [
+            "Live issues: intent/knowledge/participation/causation/attribution vary by offence and remain under review.",
+            "AA/interpreter/vulnerability issue: consider if flagged in the specific case papers; do not infer",
+            "Defence risk note: unexplained gaps or panic/no comment may be relied on by Crown depending on"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Custody/interview record shows safeguards were correctly followed.",
+            "Vulnerability is not linked to the disputed issue on served material.",
+            "Appropriate adult / interpreter records support the Crown account if proved."
+          ],
+          "next_moves": [
+            "Chase custody record, appropriate adult record, and interpreter record if referenced.",
+            "Chase vulnerability assessment, medical, or liaison notes if listed.",
+            "Record instructions on participation and understanding before fixing hearing strategy."
+          ],
+          "hearing_line": "Ask the court to record any safeguards/participation issue and direct service of relevant custody and interview records — conditional on served material.",
+          "safety_note": "Not a merits win — solicitor review required before advancing participation challenges."
+        },
+        {
+          "id": "causation",
+          "title": "Causation / injury route pressure",
+          "status": "conditional",
+          "route_type": "causation",
+          "why_it_helps": [
+            "Relevance: 999/CAD may affect causation / old injury / medical report gap and the safe hearing",
+            "CCTV row 03 | time/ref 23:20 | continuity outstanding | comment: does not finally resolve causation",
+            "CCTV row 09 | time/ref 21:38 | continuity outstanding | comment: does not finally resolve causation"
+          ],
+          "what_hurts_us": [
+            "Clear injury mechanism matching the Crown account."
+          ],
+          "evidence_anchors": [
+            "Relevance: 999/CAD may affect causation / old injury / medical report gap and the safe hearing",
+            "CCTV row 03 | time/ref 23:20 | continuity outstanding | comment: does not finally resolve causation",
+            "CCTV row 09 | time/ref 21:38 | continuity outstanding | comment: does not finally resolve causation"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Medical evidence may support Crown causation if proved on served papers.",
+            "Missing expert/source report may return against the defence route.",
+            "Complainant injury account may appear consistent across MG11 and medical material if proved."
+          ],
+          "next_moves": [
+            "Chase medical/expert/source reports listed on MG6.",
+            "Take instructions on injury mechanism dispute only if supported.",
+            "Separate injury causation from identification/timing theory."
+          ],
+          "hearing_line": "Causation/injury level is conditional on served medical material; ask for outstanding expert/source disclosure.",
+          "safety_note": "Needs solicitor review before running causation at hearing or in plea discussions."
+        },
+        {
+          "id": "multiparty",
+          "title": "Attribution / second male / source-material pressure",
+          "status": "conditional",
+          "route_type": "multiparty",
+          "why_it_helps": [
+            "Live issues: intent/knowledge/participation/causation/attribution vary by offence and remain under review."
+          ],
+          "what_hurts_us": [
+            "Crown may link served source material to Priya Vale if proved on the papers.",
+            "Second-male evidence may assist or weaken attribution depending on what is served."
+          ],
+          "evidence_anchors": [
+            "Live issues: intent/knowledge/participation/causation/attribution vary by offence and remain under review."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Crown may link the missing/source material to Priya Vale if served.",
+            "Second-male evidence may assist or weaken attribution depending on what is served.",
+            "Attribution and source-material issues remain conditional until the underlying material is reviewed."
+          ],
+          "next_moves": [
+            "Build defendant-by-defendant evidence matrix from served papers.",
+            "Build count-by-count proof table before fixing trial theory.",
+            "Chase attribution material, phone ownership, vehicle ownership, and role evidence if outstanding."
+          ],
+          "hearing_line": "Ask the court to record that attribution, second-male involvement, and source-material issues remain conditional on served evidence and solicitor review.",
+          "safety_note": "Conditional on served evidence and solicitor review — do not overstate attribution or second-male points without source proof."
+        },
+        {
+          "id": "identity",
+          "title": "Identification / visual ID pressure",
+          "status": "conditional",
+          "route_type": "identity",
+          "why_it_helps": [
+            "Chase: Full CCTV master footage; CCTV Continuity/export log; Full 999 audio; Full CAD incident log;",
+            "Outstanding item: CCTV Continuity - not served — or served as summary only; chase before final",
+            "Outstanding item: CCTV Continuity/export log - not served — or served as summary only; chase before"
+          ],
+          "what_hurts_us": [
+            "Short, confident witness ID on served papers.",
+            "Clear CCTV/BWV sequence that matches Crown timing."
+          ],
+          "evidence_anchors": [
+            "Chase: Full CCTV master footage; CCTV Continuity/export log; Full 999 audio; Full CAD incident log;",
+            "Outstanding item: CCTV Continuity - not served — or served as summary only; chase before final",
+            "Outstanding item: CCTV Continuity/export log - not served — or served as summary only; chase before"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "ID parade or formal identification procedure supports the Crown route if proved."
+          ],
+          "next_moves": [
+            "Take instructions on observation conditions and any ID dispute.",
+            "Map MG11 wording against served visual exhibits before fixing trial theory."
+          ],
+          "hearing_line": "On the file wording, identification remains conditional until served CCTV/source material and witness accounts are reconciled; do not overstate.",
+          "safety_note": "Needs solicitor review before any positive ID challenge is advanced at court."
+        },
+        {
+          "id": "interview",
+          "title": "Interview / account pressure",
+          "status": "conditional",
+          "route_type": "interview",
+          "why_it_helps": [
+            "Outstanding item: interview transcript - not served — or served as summary only; chase before final",
+            "Outstanding item: Full interview audio/transcript - not served — or served as summary only; chase",
+            "Outstanding item: interview transcript - not served — or served as summary only; chase before final position.",
+            "Outstanding item: Full interview audio/transcript - not served — or served as summary only; chase before final"
+          ],
+          "what_hurts_us": [
+            "Interview admission that narrows the defence route.",
+            "No comment or limited account where bad facts are already on the file."
+          ],
+          "evidence_anchors": [
+            "Outstanding item: interview transcript - not served — or served as summary only; chase before final",
+            "Outstanding item: Full interview audio/transcript - not served — or served as summary only; chase",
+            "Outstanding item: interview transcript - not served — or served as summary only; chase before final position.",
+            "Outstanding item: Full interview audio/transcript - not served — or served as summary only; chase before final"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Any interview admission, if served and reviewed, could narrow the defence route.",
+            "Client account conflicts with served source material."
+          ],
+          "next_moves": [
+            "Take instructions on interview stance and any prepared statement wording.",
+            "Chase Interview recording.",
+            "Chase interview transcript.",
+            "Chase pre-interview disclosure.",
+            "Record defence position; do not infer interview content beyond served wording."
+          ],
+          "hearing_line": "",
+          "safety_note": "Needs solicitor review — interview routes collapse quickly if admissions are clear on the papers."
+        },
+        {
+          "id": "continuity",
+          "title": "Continuity / provenance pressure",
+          "status": "conditional",
+          "route_type": "continuity",
+          "why_it_helps": [
+            "Chase: Full CCTV master footage; CCTV Continuity/export log; Full 999 audio; Full CAD incident log;",
+            "Served: Charge Sheet; MG5; draft MG6; selected MG11 extracts; partial summaries; initial exhibit",
+            "999/CAD row 01 | time/ref 21:16 | continuity outstanding | comment: does not finally resolve",
+            "999/CAD row 07 | time/ref 23:34 | continuity outstanding | comment: does not finally resolve"
+          ],
+          "what_hurts_us": [
+            "Later continuity material is served and closes the gap.",
+            "Exhibit list appears complete on MG6 with no published tension."
+          ],
+          "evidence_anchors": [
+            "Chase: Full CCTV master footage; CCTV Continuity/export log; Full 999 audio; Full CAD incident log;",
+            "Served: Charge Sheet; MG5; draft MG6; selected MG11 extracts; partial summaries; initial exhibit",
+            "999/CAD row 01 | time/ref 21:16 | continuity outstanding | comment: does not finally resolve",
+            "999/CAD row 07 | time/ref 23:34 | continuity outstanding | comment: does not finally resolve"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Continuity/provenance may later be proved on served material.",
+            "Master CCTV/digital source file undermines the challenge if proved.",
+            "Lab/source report returns consistent with the Crown case."
+          ],
+          "next_moves": [
+            "Chase continuity statements and master/source files for key exhibits.",
+            "Map exhibit references across MG5/MG6 before trial theory is fixed.",
+            "Record what handling/provenance material is still outstanding."
+          ],
+          "hearing_line": "Continuity/provenance remains conditional; request outstanding source/continuity material and a timetable.",
+          "safety_note": "Do not tell the court exhibits are unusable unless the file publishes that gap."
+        },
+        {
+          "id": "intent",
+          "title": "Intent / mental element pressure",
+          "status": "conditional",
+          "route_type": "intent",
+          "why_it_helps": [
+            "Live issues: intent/knowledge/participation/causation/attribution vary by offence and remain under review."
+          ],
+          "what_hurts_us": [
+            "Clear admission or strong inference of intent on served papers.",
+            "Medical or circumstantial material that supports specific intent if proved."
+          ],
+          "evidence_anchors": [
+            "Live issues: intent/knowledge/participation/causation/attribution vary by offence and remain under review."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Interview admission on intent is clear on served material.",
+            "Circumstantial sequence leaves little room for accident/lawful excuse on the papers."
+          ],
+          "next_moves": [
+            "Map Crown intent elements to MG5/MG6 and interview wording.",
+            "Take instructions on accident, lawful excuse, or self-defence only if the file supports them.",
+            "Chase expert/source reports before fixing intent theory."
+          ],
+          "hearing_line": "Intent remains a live Crown limb to prove; any defence point is conditional on served material and instructions — do not overstate.",
+          "safety_note": "Do not advance intent theories not supported by instructions and served papers."
+        },
+        {
+          "id": "disclosure",
+          "title": "Disclosure / source-material pressure",
+          "status": "conditional",
+          "route_type": "disclosure",
+          "why_it_helps": [
+            "Outstanding item: CCTV Continuity - not served — or served as summary only; chase before final",
+            "Outstanding item: CCTV Continuity/export log - not served — or served as summary only; chase before",
+            "Outstanding item: CCTV Continuity - not served — or served as summary only; chase before final position.",
+            "Outstanding item: CCTV Continuity/export log - not served — or served as summary only; chase before final"
+          ],
+          "what_hurts_us": [
+            "Outstanding items are chased but return consistent with the Crown case.",
+            "Thin bundle with no published disclosure schedule to anchor a chase."
+          ],
+          "evidence_anchors": [
+            "Outstanding item: CCTV Continuity - not served — or served as summary only; chase before final",
+            "Outstanding item: CCTV Continuity/export log - not served — or served as summary only; chase before",
+            "Outstanding item: CCTV Continuity - not served — or served as summary only; chase before final position.",
+            "Outstanding item: CCTV Continuity/export log - not served — or served as summary only; chase before final",
+            "CCTV full window",
+            "CCTV Continuity"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Outstanding disclosure is served and supports the Crown route.",
+            "MG6 itself lists the material as served and consistent.",
+            "Chase returns master CCTV that undermines the defence timing/ID point."
+          ],
+          "next_moves": [
+            "Chase CCTV master with continuity.",
+            "Chase CAD audit.",
+            "Chase 999 audio.",
+            "Ask for full MG11/source material and unused schedule detail.",
+            "Prepare hearing line on outstanding disclosure; set a timetable."
+          ],
+          "hearing_line": "The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until source material is served.",
+          "safety_note": "Disclosure pressure is not a merits win — needs solicitor review before plea or trial strategy is fixed."
+        },
+        {
+          "id": "timeline",
+          "title": "Timeline / sequence / alibi pressure",
+          "status": "conditional",
+          "route_type": "timeline",
+          "why_it_helps": [
+            "Chase: Full CCTV master footage; CCTV Continuity/export log; Full 999 audio; Full CAD incident log;",
+            "999/CAD row 01 | time/ref 21:16 | continuity outstanding | comment: does not finally resolve",
+            "999/CAD row 07 | time/ref 23:34 | continuity outstanding | comment: does not finally resolve",
+            "999/CAD row 13 | time/ref 21:52 | continuity outstanding | comment: does not finally resolve"
+          ],
+          "what_hurts_us": [
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Client account that conflicts with served source times."
+          ],
+          "evidence_anchors": [
+            "Chase: Full CCTV master footage; CCTV Continuity/export log; Full 999 audio; Full CAD incident log;",
+            "999/CAD row 01 | time/ref 21:16 | continuity outstanding | comment: does not finally resolve",
+            "999/CAD row 07 | time/ref 23:34 | continuity outstanding | comment: does not finally resolve",
+            "999/CAD row 13 | time/ref 21:52 | continuity outstanding | comment: does not finally resolve"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Receipt/phone records undermine the defence timing account."
+          ],
+          "next_moves": [
+            "Chase CAD audit.",
+            "Chase 999 audio.",
+            "Chase CCTV master with continuity.",
+            "Take instructions on timing conflict and any alibi account.",
+            "Record defence position on sequence before the next hearing."
+          ],
+          "hearing_line": "Timing/sequence remains conditional on served CAD/999/CCTV material; ask the court to record what source material is still outstanding.",
+          "safety_note": "Do not present a firm alibi unless instructions and served material support it."
+        }
+      ],
+      "global_collapse_risks": [
+        "CAD/999 timing may affect Crown sequence if proved on served material.",
+        "Client account conflicts with served source material.",
+        "Missing expert/source report comes back against defence.",
+        "Any interview admission, if served and reviewed, could narrow the defence route.",
+        "Continuity/provenance may later be proved on served material."
+      ],
+      "urgent_next_moves": [
+        "Chase/record: CCTV full window",
+        "Chase/record: CCTV Continuity",
+        "Chase/record: Body Worn Video (BWV)",
+        "Chase/record: 999 Call Audio",
+        "Chase/record: Interview Recording",
+        "Chase/record: Custody Record / Custody CCTV"
+      ],
+      "diagnostics": {
+        "corpus_markers": null,
+        "safeguards_signal_count": 11,
+        "multiparty_signal_count": 1,
+        "timeline_signal_count": 2,
+        "cps_pressure_signal_count": 0,
+        "readiness_signal_count": 0,
+        "hearing_court_signal_count": 3,
+        "backup_route_types": [
+          "causation",
+          "multiparty",
+          "identity",
+          "interview",
+          "continuity",
+          "intent",
+          "disclosure",
+          "timeline"
+        ],
+        "backup_route_titles": [
+          "Causation / injury route pressure",
+          "Attribution / second male / source-material pressure",
+          "Identification / visual ID pressure",
+          "Interview / account pressure",
+          "Continuity / provenance pressure",
+          "Intent / mental element pressure",
+          "Disclosure / source-material pressure",
+          "Timeline / sequence / alibi pressure"
+        ],
+        "primary_anchor_sample": [
+          "Live issues: intent/knowledge/participation/causation/attribution vary by offence and remain under review.",
+          "AA/interpreter/vulnerability issue: consider if flagged in the specific case papers; do not infer",
+          "Defence risk note: unexplained gaps or panic/no comment may be relied on by Crown depending on"
+        ],
+        "safeguards_anchor_sample": [
+          "Live issues: intent/knowledge/participation/causation/attribution vary by offence and remain under review.",
+          "AA/interpreter/vulnerability issue: consider if flagged in the specific case papers; do not infer",
+          "Defence risk note: unexplained gaps or panic/no comment may be relied on by Crown depending on"
+        ],
+        "multiparty_anchor_sample": [
+          "Live issues: intent/knowledge/participation/causation/attribution vary by offence and remain under review."
+        ],
+        "cps_pressure_anchor_sample": [],
+        "readiness_anchor_sample": [],
+        "hearing_court_anchor_sample": []
+      }
+    }
+  },
+  "matter": {
+    "status": 200,
+    "data": {
+      "matterState": null,
+      "station": {
+        "timeInCustodyAt": null,
+        "nextPaceReviewAt": null,
+        "interviewStance": null,
+        "stationSummary": null,
+        "groundsForArrest": null,
+        "dateOfArrest": null,
+        "allegedOffence": null,
+        "custodyNumber": null,
+        "policeStationName": null,
+        "clientInitials": null,
+        "clientYob": null,
+        "representationType": null,
+        "riskAppropriateAdult": false,
+        "riskInterpreter": false,
+        "riskMentalHealth": false,
+        "riskMedicalIssues": false,
+        "initialDisclosureReceived": null,
+        "initialDisclosureNotes": null
+      },
+      "bailReturnDate": null,
+      "bailOutcome": null,
+      "matterClosedAt": null,
+      "matterClosedReason": null,
+      "plea": null,
+      "pleaDate": null,
+      "defendantName": "Priya Vale",
+      "clientInitials": null,
+      "allegedOffence": null
+    }
+  },
+  "position": {
+    "status": 200,
+    "data": {
+      "ok": true,
+      "data": null,
+      "position": null
+    }
+  }
+}

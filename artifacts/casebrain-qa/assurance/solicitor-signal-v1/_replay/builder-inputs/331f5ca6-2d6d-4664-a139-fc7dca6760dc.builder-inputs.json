@@ -1,0 +1,646 @@
+{
+  "bundleSource": {
+    "status": 200,
+    "data": {
+      "combinedTextLength": 16859,
+      "documentCount": 1,
+      "documentRows": [
+        {
+          "id": "98eac7bc-fce2-43f6-9c72-caf4d3d5f62d",
+          "name": "Untitled document (14).pdf",
+          "updatedAt": "2026-08-16T00:41:50.13442+00:00",
+          "lenExtracted": 16867,
+          "lenRaw": 16867,
+          "lenBody": 16859
+        }
+      ],
+      "health": {
+        "status": "partial",
+        "duplicateDocuments": 0,
+        "headerDetected": false,
+        "mg5Detected": false,
+        "mg6Detected": false,
+        "exhibitLineCount": 0
+      },
+      "header": null,
+      "snippets": {
+        "mg5": "MG5 Case Summary & Antecedents \n- Prosecution relies on witness ID, partial CCTV, partial DNA, medical. \nNo comment interview.   \n- Antecedents: minor, non-violent (theft 2019, public order 2021, \ncannabis 2022); no violence/weapons history. \n \n--- \n \n## 17 MG6C Unused Material Schedule (Incomplete) \n- Phone data (pending), additional CCTV (pending), clothing forensics \n(pending), PNB entries (partial), medical records (not obtained). \nDefence requests completion, forensic and phone disclosure, full \ncontinuity. \n \n--- \n \n## 18 Disclosure Correspondence (Highlights) \n- Defence (20 Aug): requests complete MG6C, CCTV continuity, phone data \nclarity, full forensic methodology/chain, medical mechanism \nclarification, timetable.   \n- CPS (25 Aug): acknowledges; working to complete by 01 Sep; continuity \nand phone reliance pending.   \n- Defence follow-up (28 Aug): presses for completion by PTPH (04 Sep); \nwill seek directions if not met. \n \n--- \n \n## 19 Defence Review & Strategy \n- **Primary Strategy:** Fight Charge (Trial Strategy) — challenge \nidentification reliability under Turnbull; if identification fails, \ncase collapses. Charge reduction (s18 → s20) remains fallback if \nidentification is admitted but intent is contestable.   \n- **Pressure Points:** Turnbull ID risk \n(lighting/hood/duration/uncertainty); CCTV quality insufficient for \nfacial ID; medical single-motion ambiguity; brief duration (15–30s); \npartial/non-exclusive DNA; incomplete MG6C; continuity gaps \n(CCTV/weapon); phone data pending.   \n\n- **Win Conditions (Fight Charge):** Identification successfully \nchallenged/excluded under Turnbull; prosecution case collapses; OR \nidentification admitted but intent not proven beyond reasonable doubt; \nmedical supports single/brief blow; CCTV shows no sustained/targeted \nconduct; weapon use lacks targeting/duration.   \n- **Win Conditions (Charge Reduction Fallback):** If identification \nadmitted, then: no s18 intent articulated beyond reasonable doubt; \nmedical supports single/brief blow; CCTV shows no sustained/targeted \nconduct; weapon use lacks targeting/duration; court accepts \nproportional downgrade.   \n- **Loss Conditions:** Identification admitted and reliable; \nprosecution shows sustained/targeted conduct; medical supports \nrepeated/targeted blows; CCTV shows prolonged attack; weapon use shows \ntargeting/duration; court rejects challenges.   \n- **Procedural Actions:** Request Turnbull direction; challenge CCTV \nquality for identification; chase disclosure with timetable; seek \ndirections if missed; full CCTV export + continuity; complete MG6C; \nforensic methodology + chain; medical mechanism clarification; \nphone/message disclosure. \n \n--- \n \n## 20 Defence Case Statement \n- **Primary Issue:** Identification reliability — Turnbull risk. \nConditions were poor (lighting variable, distance, brief duration \n~15–30s, hood obstruction throughout, witness uncertainty, similar \nclothing on others, CCTV quality insufficient for facial \nidentification). Defence will challenge identification and seek \nTurnbull direction. If identification is unreliable or excluded, case \nfails.   \n- **Secondary Issues:** If identification admitted, then intent \nthreshold (s18 vs s20), sequence/duration (brief), forensic weight \n(partial mixed DNA), disclosure completeness.   \n- **Position:** Identification is unreliable and should be excluded or \nheavily qualified under Turnbull. If identification is admitted, harm \naccepted but intent not at s18 threshold; circumstances support \ns20/lesser; seek charge review/downgrade as fallback. \n \n--- \n \n## 21 PTPH Case Management Note \n\n- PTPH 04 Sep 2024: Plea Not Guilty to s18. Defence primary position: \nidentification unreliable (Turnbull challenge). Fallback: contests \nintent; seeks reduction to s20 if identification admitted.   \n- Disclosure outstanding: MG6C incomplete; CCTV continuity; phone data; \nforensic methodology; full CCTV quality assessment for identification \npurposes.   \n- Directions requested: Turnbull direction on identification; \ncompletion by 15 Sep; charge review; possible defence medical expert; \ntrial window after disclosure. \n \n--- \n \n## 22 Bail Conditions Summary \n- Bailed 13 Aug; conditions: no contact with complainant; exclusion \nzone around Blue Lantern; reside at 12 Fiction Close; surrender \npassport; attend court; no further offences.   \n- Bail continued at PTPH; no breaches reported. \n \n--- \n \n## 23 Draft Skeleton Argument – Charge Reduction \n- Framework: s18 requires specific intent; s20 does not.   \n- Submissions: brief/chaotic 15–30s; no sustained/targeted conduct; \nmedical single-motion ambiguity; weapon presence alone not intent; \npartial DNA non-exclusive; ID poor.   \n- Proportional case management: invite s18 → s20; not a concession; \nreflects evidential intent contestability. \n \n--- \n \n## 24 Bundle Index \nLists all documents above and reiterates header/footer requirements.   \nHeader every page: “FICTIONAL TEST BUNDLE — NOT FOR REAL WORLD USE”   \nFooter watermark: “Training/Test Document”. \n \n--- \n \n## PDF Export Note \nTo produce the single PDF `S18_Test_Bundle_Charge_Reduction_v1.pdf`, \nexport this consolidated markdown (or the individual markdown set) \nensuring the required header/footer on every page and page numbering. \nIf you want, I can add a quick script/command to do the conversion.",
+        "mg6": null,
+        "mg11": null,
+        "exhibits": null
+      },
+      "caseMetadata": {
+        "defendantName": "Jordan Clarke",
+        "defendantSource": "extracted_cover_fallback",
+        "complainant": "Daniel Foster",
+        "complainantSource": "extracted_cover_fallback",
+        "court": "Fictional Crown Court for Testing",
+        "courtSource": "extracted_cover_fallback",
+        "nextHearingRaw": "12 August 2024",
+        "nextHearingIso": "2024-08-12T10:00:00.000Z",
+        "nextHearingSource": "extracted_procedural_fallback",
+        "stage": null,
+        "stageSource": "unavailable",
+        "offenceWording": "Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861",
+        "offenceDisplay": "Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861",
+        "offenceSource": "extracted_charge_fallback",
+        "bailStatus": null,
+        "bailStatusSource": "unavailable",
+        "defencePosition": "Contest intent; propose s18 → s20 based on",
+        "defencePositionSource": "extracted_procedural_fallback"
+      },
+      "sizeProfile": {
+        "documentCount": 1,
+        "pdfCount": 1,
+        "pageCount": null,
+        "combinedTextLength": 16859,
+        "isLargeByText": false,
+        "isLargeByPages": false
+      },
+      "frontMatterScanLength": 16324,
+      "frontMatterScan": "FICTIONAL TEST BUNDLE — NOT FOR REAL WORLD USE   \nTraining/Test Document \n \nS18 Test Bundle – Charge Reduction (Consolidated) \nCase Ref: CRN-TEST-8742   \nURN: URN-23-TEST-4411   \nDefendant: Jordan Clarke   \nCourt: Fictional Crown Court for Testing   \nIncident Date: 12 August 2024   \n \n--- \n \nContents \n1. 00_README (overview/checklist)   \n2. 01 Case Overview (front sheet)   \n3. 02 Charge Sheet   \n4. 03 Prosecution Case Summary   \n5. 04 Witness Statement – Complainant   \n6. 05 Witness Statement – Eyewitness   \n7. 06 Witness Statement – Door Staff/Bystander   \n8. 07 Officer Statement – Arrest   \n9. 08 Officer Statement – CCTV Seizure   \n10. 09 Exhibit Log & Continuity   \n11. 10 CCTV Schedule   \n12. 11 CCTV Stills Description   \n14. 12 Forensic Report   \n15. 13 Medical Report   \n16. 14 Custody Record Summary   \n17. 15 PACE Interview Record   \n18. 16 MG5 Case Summary & Antecedents   \n19. 17 MG6C Unused Material (incomplete)   \n20. 18 Disclosure Correspondence   \n21. 19 Defence Review & Strategy   \n22. 20 Defence Case Statement   \n23. 21 PTPH Case Management Note   \n24. 22 Bail Conditions Summary   \n25. 23 Draft Skeleton Argument (Identification Challenge & Charge \nReduction)   \n26. 24 Bundle Index   \n \n--- \n \n00_README – Bundle Overview & Upload Checklist \nFictional, solicitor-style Crown Court bundle for product testing. \nNot for real proceedings. \nUpload PDF name: `S18_Test_Bundle_Charge_Reduction_v1.pdf` (generated \nfrom these sections). \nExtract in CaseBrain: charges (s18 alleged, seek s20 reduction), \ndates (incident 12 Aug 2024; arrest/interview 13 Aug 2024), evidence \nmap (CCTV partial, knife, medical single-motion, witness statements), \ndisclosure gaps (incomplete MG6C, CCTV continuity gap, phone data \npending), continuity gaps (CCTV/weapon). \nPhase 2 expectations: Strategy Commitment → Charge Reduction, \ndirective plan with win/loss/outcome range; procedural actions: chase \nMG6C completion, CCTV continuity, phone/message disclosure, weapon \nhandling gap. \n \n--- \n \n01 Case Overview (Front Sheet) \nCase Ref: CRN-TEST-8742 | URN: URN-23-TEST-4411   \nDefendant: Jordan Clarke | DOB: 14 March 1998   \nAddress: 12 Fiction Close, London AB1 2CD | Phone: 07xxx \n123456   \nCourt: Fictional Crown Court for Testing | Next Hearing: PTPH \n– 04 Sep 2024   \nAlleged Offence: s18 OAPA 1861 (Wounding with intent)   \nDefence Position: Contest intent; propose s18 → s20 based on \nbrief/chaotic incident and evidential gaps. \n \nKey Dates \nIncident: 12 Aug 2024, ~23:48, outside “Blue Lantern” takeaway/taxi \nrank.   \nArrest: 13 Aug 2024, 02:15.   \nInterview: 13 Aug 2024, 09:30 (no comment, solicitor present).   \nMG5 served: 15 Aug 2024 (fictional).   \nMG6C provided: 17 Aug 2024 (incomplete). \n \nParties \nComplainant: Daniel Foster (22), 8 Market Row, London AB2 3EF.   \nEyewitness: Aisha Patel (taxi rank queue).   \nDoor Staff/Bystander: Kevin Morris (Red Lion pub).   \nArresting Officer: PC Rachel Turner.   \nCCTV Officer: DC Imran Shah. \n \nDefence Summary \nID disputed: hooded figure, poor lighting/angle; similar clothing \nworn by another male.   \nDuration: 15–30 seconds chaotic scuffle; no clear sustained \ntargeting.   \nMedical: single laceration; mechanism consistent with single motion; \nintent ambiguous.   \nWeapon: folding knife recovered nearby; partial DNA trace \n(non-exclusive); continuity gap between street recovery and lab intake.   \nInterview: no comment; solicitor present.   \nDisclosure: MG6C incomplete; CCTV continuity needs clarification; \nphone/messages referenced but not fully served. \n \nDefence Asks (Headlines) \n1. Full CCTV export with continuity from source to exhibit.   \n2. Completed MG6C/unused schedule; note missing/late items.   \n3. Forensic methodology + chain of custody for weapon; clarify handling \ngap.   \n4. Medical mechanism clarification (single vs sustained action).   \n5. Any phone/message data relied on or referenced.   \n6. Turnbull identification safeguards: lighting/angle/duration \ndocumentation. \n \n--- \n \n02 Charge Sheet (Fictional) \nCount 1: Wounding with intent (s18 OAPA 1861).   \nParticulars: On 12 Aug 2024 at the Blue Lantern takeaway/taxi rank, \nJordan Clarke allegedly wounded Daniel Foster with a folding knife, \nintending to cause GBH. \n \nProposed Defence Position: \nIntent contested; incident brief (15–30s).   \nPoor ID conditions (lighting/angle/partial hood; similar clothing).   \nMedical mechanism consistent with single motion; does not prove \nspecific intent.   \nWeapon recovered nearby; partial DNA (non-exclusive); continuity gap \nbetween recovery and lab intake.   \nSeeking s18 → s20 (or lesser) based on intent contestability. \n \n--- \n \n03 Prosecution Case Summary \n\nAllegation: At ~23:48 on 12 Aug 2024, outside Blue Lantern, defendant \nallegedly stabbed/lacerated Daniel Foster with a folding knife during a \nbrief altercation. Prosecution relies on witness statements \n(complainant, eyewitness, door staff), partial CCTV, medical evidence, \npartial DNA on knife, and no-comment interview. Prosecution infers \nintent from weapon use and injury. Disclosure: MG6C incomplete; CCTV \ncontinuity being finalised; unused review ongoing. \n \n--- \n \n04 Witness Statement – Complainant (Daniel Foster) \nIn taxi queue ~23:48; dark, partial lighting.   \nAttacker in dark hooded top; face unclear.   \nBrief exchange, then felt sharp pain left side; attacker fled.   \nIncident ~15–20s.   \nShown CCTV stills: looks similar but not 100% certain due to \nhood/lighting.   \nTaken to hospital; sutures. \n \n--- \n \n05 Witness Statement – Eyewitness (Aisha Patel) \nIn queue, 3–4 people back; saw two men arguing, one in dark hood.   \nBrief scuffle (~20–30s); hooded male produced object (looked like \nknife), fled.   \nLighting/angle poor; cannot be certain on ID; similar dark clothing \non others.   \nHelped complainant; ambulance called. \n \n--- \n \n06 Witness Statement – Door Staff/Bystander (Kevin Morris) \nDoor staff at Red Lion (~50m away) on break.   \nHeard voices, saw two men; one in dark hooded top.   \nSaw brief scuffle (~15–20s); hooded male pulled something \n(knife-like), fled.   \nLighting/angle poor; cannot be certain on ID; others in dark \nclothing.   \nBack view mainly; hood obscured face. \n \n--- \n \n07 Officer Statement – Arrest (PC Rachel Turner) \nArrested Jordan Clarke at 02:15 on 13 Aug 2024 at 12 Fiction Close.   \nCautioned; no reply.   \nRights offered; solicitor requested.   \nInterview 09:30 on 13 Aug 2024; no comment throughout; solicitor \npresent.   \nKnife recovered by SOCO; CCTV and witness statements obtained. \n \n--- \n \n08 Officer Statement – CCTV Seizure (DC Imran Shah) \nObtained CCTV from Blue Lantern, Red Lion, High Street (council).   \nDownload to USB on 13 Aug; 2-hour gap before formal logging \n(operational).   \nIncident timecodes ~23:48:12; duration ~15–30s.   \nQuality varies; faces not always visible; hoods and angles limit ID.   \nContinuity docs being finalised. \n \n--- \n \n09 Exhibit Log & Continuity (Highlights) \nEXH/001 Knife: Recovered 13 Aug 03:30; 2-hour property store gap \n(14:00–16:00) pending clarification; partial mixed DNA (not exclusive).   \nEXH/002-004 CCTV: 2–3 hour gap between download and formal \nlogging; documented in officer statement; needs formal continuity log \ncompletion.   \nEXH/005 Stills: Extracted for witness ID; faces unclear. \n \n--- \n \n10 CCTV Schedule (Highlights) \nCamera 1 (Blue Lantern): 23:48:12–23:48:42; partial view; \nsignage/angle obscure faces; medium quality.   \nCamera 2 (Red Lion): 23:48:10–23:48:35; distant; low/medium \nquality.   \nCamera 3 (High Street): 23:48:08–23:48:50; wide angle; figures \nsmall.   \nBest view: Camera 1 but facial visibility poor; hoods worn; lighting \nvariable. \n \n--- \n \n11 CCTV Stills Description (EXH/005) \nStills at key times show hooded male; faces unclear due to \nhoods/angles/lighting; multiple similar dark-clothed figures; witnesses \nnote similarity but uncertainty. \n \n--- \n \n11A Turnbull Identification Assessment (Supplemental) \nCase Ref: CRN-TEST-8742 | URN: URN-23-TEST-4411   \nAssessment Date: 30 August 2024 \n \nIdentification Conditions Summary \nLighting: Variable; streetlights and takeaway window lighting; \nareas of shadow; not optimal for facial identification.   \nDistance: Witnesses at 3–50 metres; door staff at ~50m; \ncomplainant at close range but brief exposure.   \nDuration: Incident visible for 15–30 seconds; identification \nwindow brief.   \nObstruction: Attacker wore dark hooded top with hood up \nthroughout; facial features not clearly visible in any CCTV still or \nwitness account.   \nAngle: CCTV angles partial; signage and camera positioning limit \nfacial visibility; back/side views primarily.   \nSimilarity: Multiple individuals in area wearing similar dark \nclothing; no distinctive features reliably distinguishing attacker from \nothers. \n \nTurnbull Risk Factors \n1. Poor viewing conditions: Lighting variable, distance, brief \nduration.   \n2. Obstruction: Hood worn throughout; no clear facial view.   \n3. Witness uncertainty: All witnesses express uncertainty; CCTV \nstills show similarity but not certainty.   \n4. Similar clothing: Other individuals in area wearing similar dark \nclothing.   \n5. No distinctive features: No reliable distinguishing features \nvisible in available evidence. \n \nCCTV Quality Assessment (Facial Identification) \nFacial visibility: Poor to non-existent across all cameras due to \nhood, angle, and lighting.   \nIdentification reliability: CCTV footage is unreliable for \npositive identification purposes. Facial features are not clearly \n\nvisible; identification would require inference from clothing and \ngeneral build, which is insufficient for Turnbull compliance.   \nUse of CCTV: CCTV may assist with sequence/duration assessment \nbut does not support reliable identification of the individual \ninvolved. \n \nConclusion \nIdentification evidence presents Turnbull risk. Conditions were poor \n(lighting, distance, duration, obstruction). Witnesses express \nuncertainty. CCTV does not provide reliable facial identification. \nDefence will challenge identification reliability and seek Turnbull \ndirection. \n \n--- \n \n12 Forensic Report (EXH/001 Knife) \nPartial mixed DNA profile; defendant present but not exclusive; \nsecondary transfer possible.   \nBlood traces on blade; insufficient for full DNA.   \nContinuity gap noted between recovery and lab intake; does not affect \nDNA result but needs clarification. \n \n--- \n \n13 Medical Report \nLaceration left flank ~8cm; penetrated muscle, no organ damage; \nsutured (12 stitches).   \nMechanism: single sharp-force trauma; consistent with single motion; \ninjury does not show multiple strikes or sustained attack.   \nMechanism alone cannot determine intent. \n \n--- \n \n14 Custody Record Summary \nArrest 13 Aug 02:15; booked 02:45; rights offered; solicitor \nrequested/attended.   \nInterview 09:30–10:15 (no comment); charged 11:00; bailed 12:00 with \nconditions (no contact, exclusion zone, reside, surrender passport). \n \n--- \n \n15 PACE Interview Record \nInterview under caution; no comment to all questions; solicitor \npresent; recorded audio/video; caution given. \n \n--- \n \n16 MG5 Case Summary & Antecedents \nProsecution relies on witness ID, partial CCTV, partial DNA, medical. \nNo comment interview.   \nAntecedents: minor, non-violent (theft 2019, public order 2021, \ncannabis 2022); no violence/weapons history. \n \n--- \n \n17 MG6C Unused Material Schedule (Incomplete) \nPhone data (pending), additional CCTV (pending), clothing forensics \n(pending), PNB entries (partial), medical records (not obtained). \nDefence requests completion, forensic and phone disclosure, full \ncontinuity. \n \n--- \n \n18 Disclosure Correspondence (Highlights) \nDefence (20 Aug): requests complete MG6C, CCTV continuity, phone data \nclarity, full forensic methodology/chain, medical mechanism \nclarification, timetable.   \nCPS (25 Aug): acknowledges; working to complete by 01 Sep; continuity \nand phone reliance pending.   \nDefence follow-up (28 Aug): presses for completion by PTPH (04 Sep); \nwill seek directions if not met. \n \n--- \n \n19 Defence Review & Strategy \nPrimary Strategy: Fight Charge (Trial Strategy) — challenge \nidentification reliability under Turnbull; if identification fails, \ncase collapses. Charge reduction (s18 → s20) remains fallback if \nidentification is admitted but intent is contestable.   \nPressure Points: Turnbull ID risk \n(lighting/hood/duration/uncertainty); CCTV quality insufficient for \nfacial ID; medical single-motion ambiguity; brief duration (15–30s); \npartial/non-exclusive DNA; incomplete MG6C; continuity gaps \n(CCTV/weapon); phone data pending.   \nWin Conditions (Fight Charge): Identification successfully \nchallenged/excluded under Turnbull; prosecution case collapses; OR \nidentification admitted but intent not proven beyond reasonable doubt; \nmedical supports single/brief blow; CCTV shows no sustained/targeted \nconduct; weapon use lacks targeting/duration.   \nWin Conditions (Charge Reduction Fallback): If identification \nadmitted, then: no s18 intent articulated beyond reasonable doubt; \nmedical supports single/brief blow; CCTV shows no sustained/targeted \nconduct; weapon use lacks targeting/duration; court accepts \nproportional downgrade.   \nLoss Conditions: Identification admitted and reliable; \nprosecution shows sustained/targeted conduct; medical supports \nrepeated/targeted blows; CCTV shows prolonged attack; weapon use shows \ntargeting/duration; court rejects challenges.   \nProcedural Actions: Request Turnbull direction; challenge CCTV \nquality for identification; chase disclosure with timetable; seek \ndirections if missed; full CCTV export + continuity; complete MG6C; \nforensic methodology + chain; medical mechanism clarification; \nphone/message disclosure. \n \n--- \n \n20 Defence Case Statement \nPrimary Issue: Identification reliability — Turnbull risk. \nConditions were poor (lighting variable, distance, brief duration \n~15–30s, hood obstruction throughout, witness uncertainty, similar \nclothing on others, CCTV quality insufficient for facial \nidentification). Defence will challenge identification and seek \nTurnbull direction. If identification is unreliable or excluded, case \nfails.   \nSecondary Issues: If identification admitted, then intent \nthreshold (s18 vs s20), sequence/duration (brief), forensic weight \n(partial mixed DNA), disclosure completeness.   \nPosition: Identification is unreliable and should be excluded or \nheavily qualified under Turnbull. If identification is admitted, harm \naccepted but intent not at s18 threshold; circumstances support \ns20/lesser; seek charge review/downgrade as fallback. \n \n--- \n \n21 PTPH Case Management Note \nPTPH 04 Sep 2024: Plea Not Guilty to s18. Defence primary position: \nidentification unreliable (Turnbull challenge). Fallback: contests \nintent; seeks reduction to s20 if identification admitted.   \nDisclosure outstanding: MG6C incomplete; CCTV continuity; phone data; \nforensic methodology; full CCTV quality assessment for identification \npurposes.   \nDirections requested: Turnbull direction on identification; \ncompletion by 15 Sep; charge review; possible defence medical expert; \ntrial window after disclosure. \n \n--- \n \n22 Bail Conditions Summary \nBailed 13 Aug; conditions: no contact with complainant; exclusion \nzone around Blue Lantern; reside at 12 Fiction Close; surrender \npassport; attend court; no further offences.   \nBail continued at PTPH; no breaches reported. \n \n--- \n \n23 Draft Skeleton Argument – Charge Reduction \nFramework: s18 requires specific intent; s20 does not.   \nSubmissions: brief/chaotic 15–30s; no sustained/targeted conduct; \nmedical single-motion ambiguity; weapon presence alone not intent; \npartial DNA non-exclusive; ID poor.   \nProportional case management: invite s18 → s20; not a concession; \nreflects evidential intent contestability. \n \n--- \n \n24 Bundle Index \nLists all documents above and reiterates header/footer requirements.   \nHeader every page: “FICTIONAL TEST BUNDLE — NOT FOR REAL WORLD USE”   \nFooter watermark: “Training/Test Document”. \n \n--- \n \nPDF Export Note \nTo produce the single PDF `S18_Test_Bundle_Charge_Reduction_v1.pdf`, \nexport this consolidated markdown (or the individual markdown set) \nensuring the required header/footer on every page and page numbering. \nIf you want, I can add a quick script/command to do the conversion.",
+      "canonical": {
+        "findings": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"Untitled document (14).pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "Untitled document (14).pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Competing timestamps for the same event (14 00 16 00 pending clarification partial mixed dna not exclusive): 14:00 vs 16:00. Affirmative PACE OK / no-breach is forbidden.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          }
+        ],
+        "findingSummaries": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"Untitled document (14).pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "Untitled document (14).pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Competing timestamps for the same event (14 00 16 00 pending clarification partial mixed dna not exclusive): 14:00 vs 16:00. Affirmative PACE OK / no-breach is forbidden.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "critical",
+            "referencedAbsent": null
+          }
+        ],
+        "evidenceRows": [
+          {
+            "label": "MG6C",
+            "existence": "served",
+            "note": "Untitled document (14).pdf · page identity unresolved",
+            "sourceDocumentTitle": "Untitled document (14).pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "to s20 if identification admitted. — Disclosure",
+            "existence": "missing",
+            "note": "Untitled document (14).pdf · page identity unresolved",
+            "sourceDocumentTitle": "Untitled document (14).pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "CCTV",
+            "existence": "incomplete",
+            "note": "Untitled document (14).pdf · page identity unresolved",
+            "sourceDocumentTitle": "Untitled document (14).pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "MG6C",
+            "existence": "incomplete",
+            "note": "Untitled document (14).pdf · page identity unresolved",
+            "sourceDocumentTitle": "Untitled document (14).pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "CCTV angles",
+            "existence": "incomplete",
+            "note": "Untitled document (14).pdf · page identity unresolved",
+            "sourceDocumentTitle": "Untitled document (14).pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "DNA on knife",
+            "existence": "incomplete",
+            "note": "Untitled document (14).pdf · page identity unresolved",
+            "sourceDocumentTitle": "Untitled document (14).pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "lighting. — Attacker in dark hooded",
+            "existence": "incomplete",
+            "note": "Untitled document (14).pdf · page identity unresolved",
+            "sourceDocumentTitle": "Untitled document (14).pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "mixed DNA profile",
+            "existence": "incomplete",
+            "note": "Untitled document (14).pdf · page identity unresolved",
+            "sourceDocumentTitle": "Untitled document (14).pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "DNA non-exclusive",
+            "existence": "incomplete",
+            "note": "Untitled document (14).pdf · page identity unresolved",
+            "sourceDocumentTitle": "Untitled document (14).pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          }
+        ],
+        "charges": [],
+        "chaseLabels": [
+          "MG6C",
+          "to s20 if identification admitted. — Disclosure",
+          "CCTV",
+          "CCTV angles",
+          "DNA on knife",
+          "lighting. — Attacker in dark hooded",
+          "mixed DNA profile",
+          "DNA non-exclusive"
+        ],
+        "suppressedChaseLabels": [],
+        "documentRoles": [
+          {
+            "id": "98eac7bc-fce2-43f6-9c72-caf4d3d5f62d",
+            "title": "Untitled document (14).pdf",
+            "role": "operative"
+          }
+        ],
+        "unitCount": 1,
+        "pageUnitCount": 1
+      }
+    }
+  },
+  "battleboard": {
+    "status": 200,
+    "data": {
+      "case_id": "331f5ca6-2d6d-4664-a139-fc7dca6760dc",
+      "generated_at": "2026-08-25T05:01:48.816Z",
+      "overall_status": "usable",
+      "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Causation / injury route pressure (conditional) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
+      "position_trust": "interview_from_file",
+      "position_notice": "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
+      "primary_route": {
+        "id": "causation",
+        "title": "Causation / injury route pressure",
+        "status": "conditional",
+        "route_type": "causation",
+        "why_it_helps": [
+          "map (CCTV partial, knife, medical single-motion, witness statements),",
+          "(complainant, eyewitness, door staff), partial CCTV, medical evidence,",
+          "- Prosecution relies on witness ID, partial CCTV, partial DNA, medical.",
+          "medical supports single/brief blow; CCTV shows no sustained/targeted"
+        ],
+        "what_hurts_us": [
+          "Clear injury mechanism matching the Crown account."
+        ],
+        "evidence_anchors": [
+          "map (CCTV partial, knife, medical single-motion, witness statements),",
+          "(complainant, eyewitness, door staff), partial CCTV, medical evidence,",
+          "- Prosecution relies on witness ID, partial CCTV, partial DNA, medical.",
+          "medical supports single/brief blow; CCTV shows no sustained/targeted"
+        ],
+        "collapse_risks": [
+          "Assumed position may conflict with interview or served evidence.",
+          "Medical evidence may support Crown causation if proved on served papers.",
+          "Missing expert/source report may return against the defence route.",
+          "Complainant injury account may appear consistent across MG11 and medical material if proved."
+        ],
+        "next_moves": [
+          "Chase medical/expert/source reports listed on MG6.",
+          "Take instructions on injury mechanism dispute only if supported.",
+          "Separate injury causation from identification/timing theory."
+        ],
+        "hearing_line": "Causation/injury level is conditional on served medical material; ask for outstanding expert/source disclosure.",
+        "safety_note": "Needs solicitor review before running causation at hearing or in plea discussions."
+      },
+      "routes": [
+        {
+          "id": "causation",
+          "title": "Causation / injury route pressure",
+          "status": "conditional",
+          "route_type": "causation",
+          "why_it_helps": [
+            "map (CCTV partial, knife, medical single-motion, witness statements),",
+            "(complainant, eyewitness, door staff), partial CCTV, medical evidence,",
+            "- Prosecution relies on witness ID, partial CCTV, partial DNA, medical.",
+            "medical supports single/brief blow; CCTV shows no sustained/targeted"
+          ],
+          "what_hurts_us": [
+            "Clear injury mechanism matching the Crown account."
+          ],
+          "evidence_anchors": [
+            "map (CCTV partial, knife, medical single-motion, witness statements),",
+            "(complainant, eyewitness, door staff), partial CCTV, medical evidence,",
+            "- Prosecution relies on witness ID, partial CCTV, partial DNA, medical.",
+            "medical supports single/brief blow; CCTV shows no sustained/targeted"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Medical evidence may support Crown causation if proved on served papers.",
+            "Missing expert/source report may return against the defence route.",
+            "Complainant injury account may appear consistent across MG11 and medical material if proved."
+          ],
+          "next_moves": [
+            "Chase medical/expert/source reports listed on MG6.",
+            "Take instructions on injury mechanism dispute only if supported.",
+            "Separate injury causation from identification/timing theory."
+          ],
+          "hearing_line": "Causation/injury level is conditional on served medical material; ask for outstanding expert/source disclosure.",
+          "safety_note": "Needs solicitor review before running causation at hearing or in plea discussions."
+        },
+        {
+          "id": "multiparty",
+          "title": "Separate defendant / count-specific pressure",
+          "status": "conditional",
+          "route_type": "multiparty",
+          "why_it_helps": [
+            "**Count 1:** Wounding with intent (s18 OAPA 1861)."
+          ],
+          "what_hurts_us": [
+            "Shared evidence, joint activity, admissions, or attribution evidence may connect defendants or counts on the papers.",
+            "Co-defendant material may be admissible and consistent with the Crown case if proved."
+          ],
+          "evidence_anchors": [
+            "**Count 1:** Wounding with intent (s18 OAPA 1861)."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Crown can tie each item to this defendant and count on served material.",
+            "Co-defendant evidence is admissible and consistent if proved.",
+            "Joint enterprise or shared conduct wording undermines separate-role pressure."
+          ],
+          "next_moves": [
+            "Build defendant-by-defendant evidence matrix from served papers.",
+            "Build count-by-count proof table before fixing trial theory.",
+            "Chase attribution material, phone ownership, vehicle ownership, and role evidence if outstanding."
+          ],
+          "hearing_line": "Ask the court to record that case management directions must separate defendant and count issues — conditional on served evidence and solicitor review.",
+          "safety_note": "Conditional on served evidence and solicitor review — do not overstate separate-role points."
+        },
+        {
+          "id": "identity",
+          "title": "Identification / visual ID pressure",
+          "status": "conditional",
+          "route_type": "identity",
+          "why_it_helps": [
+            "- Disclosure outstanding: MG6C incomplete; CCTV Continuity; phone data;",
+            "map (CCTV partial, knife, medical single-motion, witness statements),",
+            "disclosure gaps (incomplete MG6C, CCTV Continuity gap, phone data",
+            "pending), continuity gaps (CCTV/weapon)."
+          ],
+          "what_hurts_us": [
+            "Short, confident witness ID on served papers.",
+            "Clear CCTV/BWV sequence that matches Crown timing."
+          ],
+          "evidence_anchors": [
+            "- Disclosure outstanding: MG6C incomplete; CCTV Continuity; phone data;",
+            "map (CCTV partial, knife, medical single-motion, witness statements),",
+            "disclosure gaps (incomplete MG6C, CCTV Continuity gap, phone data",
+            "pending), continuity gaps (CCTV/weapon)."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "ID parade or formal identification procedure supports the Crown route if proved."
+          ],
+          "next_moves": [
+            "Take instructions on observation conditions and any ID dispute."
+          ],
+          "hearing_line": "On the file wording, identification remains conditional until served CCTV/source material and witness accounts are reconciled; do not overstate.",
+          "safety_note": "Needs solicitor review before any positive ID challenge is advanced at court."
+        },
+        {
+          "id": "disclosure",
+          "title": "Disclosure / source-material pressure",
+          "status": "conditional",
+          "route_type": "disclosure",
+          "why_it_helps": [
+            "- Disclosure outstanding: MG6C incomplete; CCTV Continuity; phone data;",
+            "disclosure gaps (incomplete MG6C, CCTV Continuity gap, phone data",
+            "MG6C completion, CCTV Continuity, phone/message disclosure, weapon",
+            "- Disclosure: MG6C incomplete; CCTV Continuity needs clarification;"
+          ],
+          "what_hurts_us": [
+            "Outstanding items are chased but return consistent with the Crown case.",
+            "Thin bundle with no published disclosure schedule to anchor a chase."
+          ],
+          "evidence_anchors": [
+            "- Disclosure outstanding: MG6C incomplete; CCTV Continuity; phone data;",
+            "disclosure gaps (incomplete MG6C, CCTV Continuity gap, phone data",
+            "MG6C completion, CCTV Continuity, phone/message disclosure, weapon",
+            "- Disclosure: MG6C incomplete; CCTV Continuity needs clarification;",
+            "CCTV full window",
+            "CCTV Continuity"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Outstanding disclosure is served and supports the Crown route.",
+            "MG6 itself lists the material as served and consistent.",
+            "Chase returns master CCTV that undermines the defence timing/ID point."
+          ],
+          "next_moves": [
+            "Ask for full MG11/source material and unused schedule detail.",
+            "Prepare hearing line on outstanding disclosure; set a timetable."
+          ],
+          "hearing_line": "The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until source material is served.",
+          "safety_note": "Disclosure pressure is not a merits win — needs solicitor review before plea or trial strategy is fixed."
+        },
+        {
+          "id": "interview",
+          "title": "Interview / account pressure",
+          "status": "conditional",
+          "route_type": "interview",
+          "why_it_helps": [
+            "dates (incident 12 Aug 2024; arrest/interview 13 Aug 2024), evidence",
+            "- Interview: 13 Aug 2024, 09:30 (no comment, solicitor present).",
+            "- Interview: no comment; solicitor present."
+          ],
+          "what_hurts_us": [
+            "Interview admission that narrows the defence route.",
+            "No comment or limited account where bad facts are already on the file."
+          ],
+          "evidence_anchors": [
+            "- Interview: 13 Aug 2024, 09:30 (no comment, solicitor present).",
+            "- Interview: no comment; solicitor present.",
+            "17. 15 PACE Interview Record",
+            "dates (incident 12 Aug 2024; arrest/interview 13 Aug 2024), evidence"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Any interview admission, if served and reviewed, could narrow the defence route.",
+            "Client account conflicts with served source material."
+          ],
+          "next_moves": [
+            "Take instructions on interview stance and any prepared statement wording.",
+            "Chase interview transcript.",
+            "Chase pre-interview disclosure.",
+            "Record defence position; do not infer interview content beyond served wording."
+          ],
+          "hearing_line": "",
+          "safety_note": "Needs solicitor review — interview routes collapse quickly if admissions are clear on the papers."
+        },
+        {
+          "id": "continuity",
+          "title": "Continuity / provenance pressure",
+          "status": "conditional",
+          "route_type": "continuity",
+          "why_it_helps": [
+            "- Disclosure outstanding: MG6C incomplete; CCTV Continuity; phone data;",
+            "disclosure gaps (incomplete MG6C, CCTV Continuity gap, phone data",
+            "pending), continuity gaps (CCTV/weapon).",
+            "MG6C completion, CCTV Continuity, phone/message disclosure, weapon"
+          ],
+          "what_hurts_us": [
+            "Later continuity material is served and closes the gap.",
+            "Exhibit list appears complete on MG6 with no published tension."
+          ],
+          "evidence_anchors": [
+            "- Disclosure outstanding: MG6C incomplete; CCTV Continuity; phone data;",
+            "disclosure gaps (incomplete MG6C, CCTV Continuity gap, phone data",
+            "pending), continuity gaps (CCTV/weapon).",
+            "MG6C completion, CCTV Continuity, phone/message disclosure, weapon"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Continuity/provenance may later be proved on served material.",
+            "Master CCTV/digital source file undermines the challenge if proved.",
+            "Lab/source report returns consistent with the Crown case."
+          ],
+          "next_moves": [
+            "Chase continuity statements and master/source files for key exhibits.",
+            "Map exhibit references across MG5/MG6 before trial theory is fixed.",
+            "Record what handling/provenance material is still outstanding."
+          ],
+          "hearing_line": "Continuity/provenance remains conditional; request outstanding source/continuity material and a timetable.",
+          "safety_note": "Do not tell the court exhibits are unusable unless the file publishes that gap."
+        },
+        {
+          "id": "intent",
+          "title": "Intent / mental element pressure",
+          "status": "conditional",
+          "route_type": "intent",
+          "why_it_helps": [
+            "intent from weapon use and injury. Disclosure: MG6C incomplete; CCTV",
+            "medical single-motion ambiguity; weapon presence alone not intent;",
+            "- **Alleged Offence:** s18 OAPA 1861 (Wounding with intent)",
+            "- **Defence Position:** Contest intent; propose s18 → s20 based on"
+          ],
+          "what_hurts_us": [
+            "Clear admission or strong inference of intent on served papers.",
+            "Medical or circumstantial material that supports specific intent if proved."
+          ],
+          "evidence_anchors": [
+            "intent from weapon use and injury. Disclosure: MG6C incomplete; CCTV",
+            "medical single-motion ambiguity; weapon presence alone not intent;",
+            "- **Alleged Offence:** s18 OAPA 1861 (Wounding with intent)",
+            "- **Defence Position:** Contest intent; propose s18 → s20 based on"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Interview admission on intent is clear on served material.",
+            "Circumstantial sequence leaves little room for accident/lawful excuse on the papers."
+          ],
+          "next_moves": [
+            "Map Crown intent elements to MG5/MG6 and interview wording.",
+            "Take instructions on accident, lawful excuse, or self-defence only if the file supports them.",
+            "Chase expert/source reports before fixing intent theory."
+          ],
+          "hearing_line": "Intent remains a live Crown limb to prove; any defence point is conditional on served material and instructions — do not overstate.",
+          "safety_note": "Do not advance intent theories not supported by instructions and served papers."
+        },
+        {
+          "id": "timeline",
+          "title": "Timeline / sequence / alibi pressure",
+          "status": "conditional",
+          "route_type": "timeline",
+          "why_it_helps": [
+            "- **Use of CCTV:** CCTV may assist with sequence/duration assessment",
+            "threshold (s18 vs s20), sequence/duration (brief), forensic weight"
+          ],
+          "what_hurts_us": [
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Client account that conflicts with served source times."
+          ],
+          "evidence_anchors": [
+            "- **Use of CCTV:** CCTV may assist with sequence/duration assessment",
+            "threshold (s18 vs s20), sequence/duration (brief), forensic weight"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Receipt/phone records undermine the defence timing account."
+          ],
+          "next_moves": [
+            "Take instructions on timing conflict and any alibi account.",
+            "Record defence position on sequence before the next hearing."
+          ],
+          "hearing_line": "Timing/sequence remains conditional on served CAD/999/CCTV material; ask the court to record what source material is still outstanding.",
+          "safety_note": "Do not present a firm alibi unless instructions and served material support it."
+        }
+      ],
+      "global_collapse_risks": [
+        "CAD/999 timing may affect Crown sequence if proved on served material.",
+        "Client account conflicts with served source material.",
+        "Missing expert/source report comes back against defence.",
+        "Any interview admission, if served and reviewed, could narrow the defence route.",
+        "Continuity/provenance may later be proved on served material."
+      ],
+      "urgent_next_moves": [
+        "Chase/record: CCTV Continuity",
+        "Chase/record: Custody Record / Custody CCTV"
+      ],
+      "diagnostics": {
+        "corpus_markers": null,
+        "safeguards_signal_count": 0,
+        "multiparty_signal_count": 1,
+        "timeline_signal_count": 1,
+        "cps_pressure_signal_count": 0,
+        "readiness_signal_count": 0,
+        "hearing_court_signal_count": 2,
+        "backup_route_types": [
+          "multiparty",
+          "identity",
+          "disclosure",
+          "interview",
+          "continuity",
+          "intent",
+          "timeline"
+        ],
+        "backup_route_titles": [
+          "Separate defendant / count-specific pressure",
+          "Identification / visual ID pressure",
+          "Disclosure / source-material pressure",
+          "Interview / account pressure",
+          "Continuity / provenance pressure",
+          "Intent / mental element pressure",
+          "Timeline / sequence / alibi pressure"
+        ],
+        "primary_anchor_sample": [
+          "map (CCTV partial, knife, medical single-motion, witness statements),",
+          "(complainant, eyewitness, door staff), partial CCTV, medical evidence,",
+          "- Prosecution relies on witness ID, partial CCTV, partial DNA, medical."
+        ],
+        "safeguards_anchor_sample": [],
+        "multiparty_anchor_sample": [
+          "**Count 1:** Wounding with intent (s18 OAPA 1861)."
+        ],
+        "cps_pressure_anchor_sample": [],
+        "readiness_anchor_sample": [],
+        "hearing_court_anchor_sample": []
+      }
+    }
+  },
+  "matter": {
+    "status": 200,
+    "data": {
+      "matterState": null,
+      "station": {
+        "timeInCustodyAt": null,
+        "nextPaceReviewAt": null,
+        "interviewStance": null,
+        "stationSummary": null,
+        "groundsForArrest": null,
+        "dateOfArrest": null,
+        "allegedOffence": null,
+        "custodyNumber": null,
+        "policeStationName": null,
+        "clientInitials": null,
+        "clientYob": null,
+        "representationType": null,
+        "riskAppropriateAdult": false,
+        "riskInterpreter": false,
+        "riskMentalHealth": false,
+        "riskMedicalIssues": false,
+        "initialDisclosureReceived": null,
+        "initialDisclosureNotes": null
+      },
+      "bailReturnDate": null,
+      "bailOutcome": null,
+      "matterClosedAt": null,
+      "matterClosedReason": null,
+      "plea": "not_guilty",
+      "pleaDate": null,
+      "defendantName": null,
+      "clientInitials": null,
+      "allegedOffence": null
+    }
+  },
+  "position": {
+    "status": 200,
+    "data": {
+      "ok": true,
+      "data": null,
+      "position": null
+    }
+  }
+}
