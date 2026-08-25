@@ -2942,11 +2942,41 @@ function modalityEstablishmentHay(input: BuildDisclosureChaseBriefInput): string
     .join("\n");
 }
 
+/**
+ * How much raw prose the presentation gates read.
+ *
+ * Every gate and modality check below asks one question — do the papers affirm this? — and answers it
+ * by running patterns across the text it is given. Each card asks separately, and the pipeline runs a
+ * dozen passes, so the cost multiplies through all three: measured on a 1.6-million-character bundle
+ * the board took 334 seconds, in the browser, on the case with the most papers.
+ *
+ * So the gates get a haystack rather than the bundle. Below this length it *is* the bundle, byte for
+ * byte, which is every case as things stand — the scan the app receives is capped before it arrives.
+ * Above it, the prose is bounded and the schedule rows the ledger found anywhere in the document are
+ * appended, because those rows are what the gates are really looking for and the ledger has already
+ * read the whole bundle to build them. That way reading further can never cost the board its speed.
+ */
+const GATE_PROSE_CHARS = 80_000;
+
+function buildGateHaystack(
+  bundleText: string | null | undefined,
+  ledger: BundleTruthLedger | null,
+): string | null | undefined {
+  if (!bundleText || bundleText.length <= GATE_PROSE_CHARS) return bundleText;
+  const rows = (ledger?.materials ?? []).map((m) =>
+    [m.displayLine, m.sourceAnchor?.excerpt].filter(Boolean).join(" — "),
+  );
+  return [bundleText.slice(0, GATE_PROSE_CHARS), ...rows].join("\n");
+}
+
 export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput): DisclosureChaseBrief {
   const ledger = input.bundleText?.trim()
     ? buildBundleTruthLedger({ bundleText: input.bundleText })
     : null;
-  const modalityHay = modalityEstablishmentHay(input);
+  // The ledger above reads the whole bundle. Everything downstream reads this.
+  const gateText = buildGateHaystack(input.bundleText, ledger);
+  // Built from the haystack for the same reason: the modality reconciles below search it per card.
+  const modalityHay = modalityEstablishmentHay({ ...input, bundleText: gateText });
   const briefPlan =
     input.briefPlan ??
     buildCriminalBriefPlan({
@@ -3014,13 +3044,13 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
         profile,
         ledger,
       ),
-      input.bundleText,
+      gateText,
     );
     ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
   } else {
     items = gateItemsAgainstSource(
       groupAndMergeLabels(chaseLabels, input.battleboard, deadline, ledger),
-      input.bundleText,
+      gateText,
     );
     ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
   }
@@ -3028,7 +3058,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   if (ledger && ledgerMaterialsNeedingChase(ledger).length > 0) {
     items = mergeLedgerDisclosureItems(items, ledger, deadline);
     // Ledger merge can re-introduce family items — re-apply source gate (incl. confirm-none).
-    items = gateItemsAgainstSource(items, input.bundleText);
+    items = gateItemsAgainstSource(items, gateText);
     ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
   }
 
@@ -3038,10 +3068,10 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = collapseDisclosureItemsByFamily(items);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
-  items = reconcileCad999ModalityItems(items, input.bundleText);
+  items = reconcileCad999ModalityItems(items, gateText);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
-  items = reconcileInterviewModalityItems(items, input.bundleText);
+  items = reconcileInterviewModalityItems(items, gateText);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   items = reconcilePhoneDownloadModalityItems(items, modalityHay);
@@ -3050,10 +3080,10 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = reconcileSubscriberModalityItems(items, modalityHay);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
-  items = reconcileMedicalReportModalityItems(items, input.bundleText);
+  items = reconcileMedicalReportModalityItems(items, gateText);
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
-  const guardCtx = { ledger, bundleText: input.bundleText ?? null };
+  const guardCtx = { ledger, bundleText: gateText ?? null };
   items = items
     .filter(
       (item) =>
@@ -3065,7 +3095,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     .map((item) => ({
       ...item,
       label: formatDisplayLabelCasing(normalizeRawLabel(item.label)),
-      mergedFrom: familySafeMergedFrom(item, input.bundleText),
+      mergedFrom: familySafeMergedFrom(item, gateText),
       evidenceAnchor: item.evidenceAnchor
         ? familySafeEvidenceAnchor(
             item.familyId,
@@ -3076,18 +3106,18 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     }));
   items = collapseDisclosureItemsByFamily(items);
   // Final source gate after presentation merges — preserves confirm-none / drops absent families.
-  items = gateItemsAgainstSource(items, input.bundleText);
+  items = gateItemsAgainstSource(items, gateText);
   items = finalizeDisclosureChasePresentation(items);
   // Re-assert PDF-true phone/subscriber after finalize overflow — Brookes soft-mute residual:
   // collapse/finalize was rewriting digital cards into "Outstanding source material…".
   items = reconcilePhoneDownloadModalityItems(items, modalityHay);
   items = reconcileSubscriberModalityItems(items, modalityHay);
   // Re-assert interview recording≠PACE/custody after collapse/finalize (Court C1).
-  items = reconcileInterviewModalityItems(items, input.bundleText);
-  items = reconcileCad999ModalityItems(items, input.bundleText);
-  items = reconcileMedicalReportModalityItems(items, input.bundleText);
+  items = reconcileInterviewModalityItems(items, gateText);
+  items = reconcileCad999ModalityItems(items, gateText);
+  items = reconcileMedicalReportModalityItems(items, gateText);
   items = finalizeDisclosureChasePresentation(items);
-  items = reconcileMedicalReportModalityItems(items, input.bundleText);
+  items = reconcileMedicalReportModalityItems(items, gateText);
   items = dropGenericFurtherPapersWhenSpecificItemsExist(items);
   items = items.map((item) => ({
     ...item,
@@ -3171,15 +3201,15 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
         isCriminalPilotMode() ? workflowDisclosureCaseWideLine(workflowContext) : null;
       let raw = profileLine ?? briefPlan.chaseAngle ?? resolveSafeCourtLine(input.battleboard);
       if (!isCriminalPilotMode()) {
-        return input.bundleText?.trim()
-          ? gateProseAgainstSource(sourceBoundCaseWideLine(raw, input.bundleText), input.bundleText)
+        return gateText?.trim()
+          ? gateProseAgainstSource(sourceBoundCaseWideLine(raw, gateText), gateText)
           : raw;
       }
       raw = pilotCleanupVisibleText(
         sanitizePilotVisibleLine(raw, workflowContext) ?? raw,
       );
-      return input.bundleText?.trim()
-        ? gateProseAgainstSource(sourceBoundCaseWideLine(raw, input.bundleText), input.bundleText)
+      return gateText?.trim()
+        ? gateProseAgainstSource(sourceBoundCaseWideLine(raw, gateText), gateText)
         : raw;
     })(),
     items,
@@ -3190,7 +3220,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     hearingDeadlineNote: deadline.hearingDeadlineNote,
   };
 
-  return guardDisclosureChaseBrief(brief, { ledger, bundleText: input.bundleText });
+  return guardDisclosureChaseBrief(brief, { ledger, bundleText: gateText });
 }
 
 export function computeCounters(

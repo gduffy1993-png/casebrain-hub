@@ -202,13 +202,51 @@ hot path of every case, and I would rather agree it with you than start it unsup
 Worth saying plainly: this is the same answer as the option I recommended, but now it is measured
 rather than argued.
 
+## 7a. The gate work, done — and it was not what I expected
+
+You said go, so I did section 7. The distilled haystack helped, but it was not the problem. Measuring
+where the time actually went, rather than where I assumed it went, changed the answer completely.
+
+**One regular expression was 49 of Hale's 55 seconds.** The pattern that strips "do not invent CCTV"
+advisories opened by consuming text up to the end of the sentence. Every gate strips those advisories
+before it looks for its family, every card is gated separately, and the pipeline gates repeatedly as
+the list is built: on Hale that came to **859 strips reading 110 million characters between them**,
+all of it the same handful of texts. The fix is to split the text on sentence ends first, so the
+pattern only ever looks at one clause, and to remember the answer, because it depends on nothing but
+the text.
+
+Then the profile moved to a second one. Deciding whether material is already on file compares every
+chase request against every evidence row, reducing both sides to a comparable key first — the same few
+hundred labels, reduced tens of thousands of times. Now remembered too.
+
+Measured, each change isolated by reverting it alone:
+
+| Case | Before | Regex fix only | Haystack only | Both |
+| --- | --- | --- | --- | --- |
+| Hale (167k chars) | 31.6 s | 5.4 s | 31.6 s | **3.8 s** |
+| `f57a2750` (1.6M chars) | 334 s | — | 81 s | **4.0 s** |
+| Synthetic 900-row schedule | 13.7 s | — | — | **2.1 s** |
+
+**The boards did not change.** Same eight cards on Hale, same two on the big case, and the audit
+runner gives byte-identical boards and findings across all seven captured cases with the changes on
+and off. This is speed only.
+
+`scripts/chase-gate-cost-truth.test.ts` now fails if a board build over a realistic bundle passes five
+seconds. It was checked the only way worth checking: with the old code restored, it fails at 10.9 s.
+
+Two honest notes. First, the gates read a bounded window of prose plus every schedule row the ledger
+found anywhere in the bundle — below that length it is the whole bundle, which is every case as things
+stand. On the 1.6M case, letting the gates read all the prose cost 10 s and dropped a card, so the
+window stays. Second, the caps are still at 80,000 and 250,000. Raising them is now a much smaller
+question than it was last night, but the rest of the bundle pipeline has not been measured, so I have
+not moved them.
+
 ## 8. The two decisions, now answered
 
-1. **The scan cap — read the whole bundle.** Attempted and measured; reverted pending the gate work
-   in section 7. The reading is cheap, the board build is not.
+1. **The scan cap — read the whole bundle.** The obstacle in section 7 is gone: the board now builds
+   in 4 seconds on a 1.6-million-character bundle instead of 334. The caps are still down, because the
+   board is not the only thing that reads a bundle and I have not measured the others yet.
 2. **Board size — stays at 8.** No change needed; that is what it already does.
-
-Next thing I need from you is whether to start the gate work described in section 7.
 
 ## Where the numbers stand
 

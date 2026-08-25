@@ -63,10 +63,35 @@ const PERMITTED_MODALITY_RELATIONSHIPS: ReadonlyArray<readonly [EvidenceModality
 ];
 
 export function inferEvidenceModality(label: string): EvidenceModality {
+  const cached = modalityCache.get(label);
+  if (cached !== undefined) return cached;
   for (const { modality, re } of MODALITY_PATTERNS) {
-    if (re.test(label)) return modality;
+    if (re.test(label)) return remember(modalityCache, label, modality);
   }
-  return "generic";
+  return remember(modalityCache, label, "generic");
+}
+
+/**
+ * Answers already worked out for a piece of wording.
+ *
+ * Deciding whether material is already on file compares every chase request against every evidence
+ * row, and both sides get reduced to a comparable key and a modality first. A board built from a heavy
+ * schedule asks about the same few hundred labels tens of thousands of times over, and on a bundle of
+ * nine hundred rows that reduction alone accounted for five of the board's thirteen seconds. Neither
+ * answer depends on anything but the label. Bounded, so the cache cannot outgrow the case that filled
+ * it.
+ */
+const LABEL_CACHE_LIMIT = 4_000;
+const modalityCache = new Map<string, EvidenceModality>();
+const aliasKeyCache = new Map<string, string>();
+
+function remember<T>(cache: Map<string, T>, label: string, value: T): T {
+  if (cache.size >= LABEL_CACHE_LIMIT) {
+    const oldest = cache.keys().next().value;
+    if (oldest !== undefined) cache.delete(oldest);
+  }
+  cache.set(label, value);
+  return value;
 }
 
 /**
@@ -347,12 +372,15 @@ export function modalitiesCompatibleForService(a: EvidenceModality, b: EvidenceM
 }
 
 function normalizeAliasKey(label: string): string {
-  return label
+  const cached = aliasKeyCache.get(label);
+  if (cached !== undefined) return cached;
+  const key = label
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, " ")
     .replace(/\b(the|a|an|full|complete|served|outstanding|missing)\b/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+  return remember(aliasKeyCache, label, key);
 }
 
 /** Map shared state onto presentation SourceStateKind-compatible values. */

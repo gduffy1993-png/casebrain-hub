@@ -9,7 +9,9 @@ import path from "node:path";
 import { buildDisclosureChaseBrief } from "../../../../../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { canonicalRowsForBuilder } from "../../../../../lib/criminal/canonical-evidence-status-bridge";
 
-const dir = path.join(__dirname, "builder-inputs");
+// `big-inputs` holds the same three captures taken while the app read whole bundles, so the cost of
+// reading further can be measured without putting the uncapped scan back in front of a solicitor.
+const dir = path.join(__dirname, process.env.INPUTS === "big" ? "big-inputs" : "builder-inputs");
 const cases = [
   "687cf5a6-6898-4257-baef-33e33ace08df",
   "14823d9e-1f0f-4cfc-af01-e6595d1cdfc4",
@@ -47,4 +49,6 @@ for (const caseId of cases) {
   console.log(
     `${caseId.slice(0, 8)}  chars=${String(text.length).padStart(9)}  board=${String(brief.primaryItems.length).padStart(2)}  brief=${String(ms).padStart(7)}ms`,
   );
+  // The labels, so a faster board can be checked against the same board rather than assumed.
+  for (const item of brief.primaryItems) console.log(`    ${item.label}`);
 }

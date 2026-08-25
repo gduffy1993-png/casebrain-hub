@@ -71,13 +71,50 @@ const GATE_FAMILIES = Object.keys(MENTION_RES) as ChaseGateFamily[];
  * Those hits must not establish the family for chase / overview promotion.
  */
 const DO_NOT_INVENT_ADVISORY_RE =
-  /[^.!?\n]*(?:\b(?:do\s+not|should\s+not)\b[^.!?\n]{0,100}?\b(?:invent|assume|strengthen(?:ed)?)\b[^.!?\n]{0,100}?\b(?:cctv|bwv|footage|forensic)|(?:assuming|do\s+not\s+assume)\s+missing\s+(?:cctv|bwv|footage|forensic(?:\s+evidence)?))[^.!?\n]*[.!?\n]?/gi;
+  /\b(?:do\s+not|should\s+not)\b[^.!?\n]{0,100}?\b(?:invent|assume|strengthen(?:ed)?)\b[^.!?\n]{0,100}?\b(?:cctv|bwv|footage|forensic)|(?:assuming|do\s+not\s+assume)\s+missing\s+(?:cctv|bwv|footage|forensic(?:\s+evidence)?)/i;
 
 const FAMILIES_AFFECTED_BY_INVENT_ADVISORY = new Set<ChaseGateFamily>(["cctv", "bwv", "forensic"]);
 
-/** Strip do-not-invent advisory clauses before testing whether a family is established. */
+/**
+ * Strip do-not-invent advisory clauses before testing whether a family is established.
+ *
+ * The clause is found by splitting on sentence ends rather than by asking one pattern to reach out to
+ * them. A bundle flattened out of a PDF can run thousands of characters without a full stop, and a
+ * pattern that opens by consuming to the sentence edge has to retry every one of those lengths at
+ * every position: on the case with the most papers that single match cost 49 of the board's 55
+ * seconds. Splitting first bounds what the pattern ever looks at to one clause.
+ */
 export function stripDoNotInventAdvisory(text: string): string {
-  return text.replace(DO_NOT_INVENT_ADVISORY_RE, " ");
+  const cached = strippedCache.get(text);
+  if (cached !== undefined) return cached;
+  const stripped = !DO_NOT_INVENT_ADVISORY_RE.test(text)
+    ? text
+    : text
+        .split(/(?<=[.!?\n])/)
+        .map((clause) => (DO_NOT_INVENT_ADVISORY_RE.test(clause) ? " " : clause))
+        .join("");
+  rememberStripped(text, stripped);
+  return stripped;
+}
+
+/**
+ * The last few texts stripped, because the pipeline asks the same question of the same papers.
+ *
+ * Every gate strips the advisory before it looks for its family, every card is gated separately, and
+ * the pipeline gates repeatedly as the list is built: on the case with the most papers that came to
+ * 859 strips reading 110 million characters, all of it the same handful of texts. The answer depends
+ * on nothing but the text, so it is worth keeping. Bounded to a few entries — a case builds its board
+ * from one bundle, and holding onto whole bundles is how a server runs out of memory.
+ */
+const STRIPPED_CACHE_LIMIT = 8;
+const strippedCache = new Map<string, string>();
+
+function rememberStripped(text: string, stripped: string): void {
+  if (strippedCache.size >= STRIPPED_CACHE_LIMIT) {
+    const oldest = strippedCache.keys().next().value;
+    if (oldest !== undefined) strippedCache.delete(oldest);
+  }
+  strippedCache.set(text, stripped);
 }
 
 /**
