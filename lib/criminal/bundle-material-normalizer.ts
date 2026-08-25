@@ -20,7 +20,7 @@ function compact(text: string): string {
  * words that end in status wording.
  */
 const WELDED_STATUS_RE =
-  /([a-z]{2,}?)(not\s+served|served|outstanding|referred\s+only|referenced\s+only|part\s+copy\s+only|partial|unsigned|absent|missing|awaiting|pending|requested)(?=[a-z]|\s|[.,;)]|$)/gi;
+  /([a-z]{2,}?|\d)(not\s+served|served|outstanding|referred\s+only|referenced\s+only|part\s+copy\s+only|partial|unsigned|absent|missing|awaiting|pending|requested)(?=[a-z]|\s|[.,;)]|$)/gi;
 
 /** Ordinary words that end in status wording and must survive intact. */
 const WELDED_STATUS_FALSE_POSITIVES =
@@ -60,8 +60,9 @@ export function deglueScheduleText(line: string): string {
   return masked
     // `MG6/04bank` / `MG6C/002CCTV` — split the cell that follows a schedule reference.
     .replace(/\b(MG\d{1,2}[A-Z]?\/\d{1,4})(?=[A-Za-z])/g, "$1 ")
-    // `MG11witness statement` — form number glued to its description.
-    .replace(/\b(MG\d{1,2}[A-Z]?)(?=[a-z]{3,})/g, "$1 ")
+    // `MG11witness statement` / `O01full interview transcript` — an exhibit or form
+    // reference glued to its description.
+    .replace(/\b(MG\d{1,2}[A-Z]?|[A-Z]{1,3}\d{1,3})(?=[a-z]{3,})/g, "$1 ")
     // `statementsOutstanding` — a lower-case word run glued to the next capitalised word.
     .replace(/([a-z]{2,})([A-Z])/g, "$1 $2")
     // `05CCTV` — digits glued to a following word, without breaking `MG6C` / `MG11A` refs.

@@ -118,6 +118,16 @@ const WELDED_TAIL_CASES: Array<{ line: string; expected: MaterialStatus; why: st
     expected: "served",
     why: "served stated twice must not be lost",
   },
+  {
+    line: "MG6/06 custody record pages 3-5outstanding requested / not attached",
+    expected: "outstanding",
+    why: "status welded to a page range must still be read",
+  },
+  {
+    line: "O01full interview transcript Outstanding Listed but not attached",
+    expected: "referred_only",
+    why: "an exhibit reference glued to its label must not change the state",
+  },
 ];
 
 for (const { line, expected, why } of WELDED_TAIL_CASES) {
