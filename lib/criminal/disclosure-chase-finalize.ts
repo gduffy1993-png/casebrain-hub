@@ -88,7 +88,16 @@ export function humanizeChaseFragmentLabel(raw: string): string {
     return "999 audio / emergency-call material";
   }
   if (/\b(?:cad|dispatch)(?:\s*\/\s*(?:dispatch|cad))?\b/i.test(t)) return "CAD / dispatch log material";
-  if (/^MG6\b|mg6\s*\/\s*unused|disclosure schedule/i.test(t)) return "MG6 / unused schedule clarification";
+  // `MG6/04 bank source statements` is an item the schedule lists; `MG6` or `MG6 disclosure
+  // schedule` is the schedule itself. Only the schedule warrants a clarification request — rewriting
+  // every row that opens with a reference collapsed distinct listed material onto one generic card,
+  // so a bank statement and an analyst certificate arrived as the same unsendable ask, twice.
+  if (
+    /^MG6C?\b(?!\s*[/\-\s]?\s*\d)/i.test(t) ||
+    /mg6\s*\/\s*unused|disclosure schedule/i.test(t)
+  ) {
+    return "MG6 / unused schedule clarification";
+  }
 
   if (t.includes(";")) {
     const parts = t

@@ -93,6 +93,20 @@ assert.ok(
   "material the schedule records as served must not be chased",
 );
 
+// --- A listed item is not the schedule it is listed on ---
+
+// Every label that opens `MG6` was being rewritten to the schedule-clarification card, so a bank
+// statement and an analyst certificate arrived as the same generic ask, twice over.
+for (const ref of ["MG6/04", "MG6/06"]) {
+  const card = brief.items.find((i) => i.label.includes(ref));
+  assert.ok(card, `${ref} must keep a card of its own — board was: ${board}`);
+  assert.doesNotMatch(
+    card!.label,
+    /unused schedule clarification/i,
+    `${ref} names listed material, so it must not be rewritten as the schedule itself`,
+  );
+}
+
 // --- Stated gaps take the slots ahead of templates ---
 
 const firstCard = brief.primaryItems[0]?.label ?? "";
