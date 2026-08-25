@@ -13,9 +13,28 @@ function compact(text: string): string {
   return text.replace(/\s+/g, " ").trim();
 }
 
+/**
+ * Split schedule cells that were joined without whitespace when the PDF was flattened
+ * (`bank source statementsOutstandingNot in papers supplied`). Status words only carry
+ * meaning to the classifiers when their word boundaries survive, so the join has to be
+ * undone before any status decision is taken. Single leading lower-case letters are left
+ * alone so device names such as `iPhone` are not broken apart.
+ */
+export function deglueScheduleText(line: string): string {
+  return line
+    // `MG6/04bank` / `MG6C/002CCTV` — split the cell that follows a schedule reference.
+    .replace(/\b(MG\d{1,2}[A-Z]?\/\d{1,4})(?=[A-Za-z])/g, "$1 ")
+    // `MG11witness statement` — form number glued to its description.
+    .replace(/\b(MG\d{1,2}[A-Z]?)(?=[a-z]{3,})/g, "$1 ")
+    // `statementsOutstanding` — a lower-case word run glued to the next capitalised word.
+    .replace(/([a-z]{2,})([A-Z])/g, "$1 $2")
+    // `05CCTV` — digits glued to a following word, without breaking `MG6C` / `MG11A` refs.
+    .replace(/(?<!\bMG\d{0,3})(\d)([A-Z])/g, "$1 $2");
+}
+
 /** Repair OCR-glued MG6 status tails: `not servedMay` → `not served — May`. */
 export function repairGluedMg6StatusText(line: string): string {
-  let s = line.replace(/\r\n/g, " ");
+  let s = deglueScheduleText(line.replace(/\r\n/g, " "));
   s = s.replace(/\b(MG6C?\/\d{3,4})([A-Za-z])/gi, "$1 — $2");
   s = s.replace(/\b(not\s+served)\s+([A-Z][A-Za-z]*)/gi, "$1 — $2");
   s = s.replace(/\b(not\s+served)([A-Z][A-Za-z]*)/gi, "$1 — $2");
@@ -96,7 +115,16 @@ function isLikelyMaterialLine(line: string): boolean {
 const ABSENT_ON_PAPERS_RE =
   /\bno\s+full\s+witness\s+pack\b|\bnot\s+contained\s+in\s+the\s+papers\b|\bis\s+not\s+contained\b/i;
 
+/**
+ * Service stated as a condition rather than a fact (`where served`, `if served`).
+ * These lines describe what would follow once material arrives, so they can never
+ * stand as proof that it is on file.
+ */
+const CONDITIONAL_SERVICE_RE =
+  /\b(?:where|if|when|once|unless|until|subject\s+to|pending)\s+(?:it\s+is\s+|they\s+are\s+|material\s+is\s+)?(?:served|provided|disclosed|supplied|service)\b/i;
+
 function hasNegativeOrLimitingSignal(line: string): boolean {
+  if (CONDITIONAL_SERVICE_RE.test(line)) return true;
   // Screenshots/summary served on bundle are limited artefacts but still positively served —
   // do not treat the mere word "screenshots" as a negative that blocks served classification.
   const servedOnBundle = /\bserved on bundle\b/i.test(line);
@@ -154,7 +182,10 @@ export function lineIndicatesReferredOnly(line: string): boolean {
 }
 
 export function classifyMaterialStatus(line: string): MaterialStatus | null {
-  const l = compact(line);
+  // Normalise here as well as at collection time: a glued cell hides the word
+  // boundaries the status patterns rely on, which silently reads "Outstanding
+  // Not in papers supplied" as served.
+  const l = repairGluedMg6StatusText(line);
   if (!l || l.length < 8) return null;
   // Property phone / explicit "no phone download" must not become inventory rows —
   // but do not kill a line that also carries other material (e.g. CCTV master).
