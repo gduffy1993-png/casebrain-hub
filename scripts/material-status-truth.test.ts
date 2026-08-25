@@ -69,6 +69,54 @@ for (const { glued, spaced, expected, why } of STATUS_TRUTH_CASES) {
   assert.equal(classifyMaterialStatus(glued), expected, `flattened form: ${why}`);
 }
 
+// Status wording welded on with no capital at the join.
+const WELDED_TAIL_CASES: Array<{ line: string; expected: MaterialStatus; why: string }> = [
+  {
+    line: "BWV/4 Photo stillnot served",
+    expected: "outstanding",
+    why: "'stillnot served' is not served",
+  },
+  {
+    line: "CCTV/3 Body worn videonot served",
+    expected: "outstanding",
+    why: "'videonot served' is not served",
+  },
+  {
+    line: "TEL/5 Medical notepartial",
+    expected: "draft",
+    why: "a partial note is not served",
+  },
+  {
+    line: "AB/2 Phone download referencereferenced only",
+    expected: "referred_only",
+    why: "referenced-only stays referred-only",
+  },
+  {
+    line: "EX/03 Continuity note Eastmoor Policeoutstanding",
+    expected: "outstanding",
+    why: "welded 'outstanding' must still register",
+  },
+  {
+    line: "CCTV/3 Property continuity noteserved",
+    expected: "served",
+    why: "welded 'served' must be recognised rather than dropped to unclear",
+  },
+];
+
+for (const { line, expected, why } of WELDED_TAIL_CASES) {
+  assert.equal(classifyMaterialStatus(line), expected, why);
+}
+
+// Ordinary words ending in status wording must survive intact.
+for (const untouched of [
+  "MG6/11 exhibit continuity preserved",
+  "MG6/12 officer account observed",
+  "MG6/13 court time reserved",
+  "MG6/14 review of the account is impartial",
+]) {
+  assert.equal(deglueScheduleText(untouched), untouched, `must not split: ${untouched}`);
+}
+
 // Service stated as a condition describes what would follow, not what is on file.
 for (const conditional of [
   "WitnessesComplainant, police officer, civilian witness where served",

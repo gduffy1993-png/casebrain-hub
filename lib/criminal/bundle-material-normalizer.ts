@@ -20,8 +20,27 @@ function compact(text: string): string {
  * undone before any status decision is taken. Single leading lower-case letters are left
  * alone so device names such as `iPhone` are not broken apart.
  */
+/**
+ * Status wording welded onto the end of a schedule cell with no capital to mark the
+ * join (`Photo stillnot served`, `continuity noteserved`). Anchored to the end of the
+ * cell because that is where the status column lands once a row is flattened.
+ */
+const TRAILING_WELDED_STATUS_RE =
+  /([a-z]{2,}?)(not\s+served|served|outstanding|referred\s+only|referenced\s+only|part\s+copy\s+only|partial|unsigned|absent|missing|awaiting|pending|requested)\s*$/i;
+
+/** Ordinary words that end in status wording and must not be split apart. */
+const WELDED_STATUS_FALSE_POSITIVES =
+  /^(?:preserved|conserved|subserved|undeserved|unobserved|observed|reserved|deserved|unserved|impartial|dismissing|impending|suspending|appending)$/i;
+
+function splitTrailingWeldedStatus(line: string): string {
+  return line.replace(TRAILING_WELDED_STATUS_RE, (match, head: string, status: string) => {
+    if (WELDED_STATUS_FALSE_POSITIVES.test(`${head}${status}`)) return match;
+    return `${head} ${status}`;
+  });
+}
+
 export function deglueScheduleText(line: string): string {
-  return line
+  return splitTrailingWeldedStatus(line)
     // `MG6/04bank` / `MG6C/002CCTV` — split the cell that follows a schedule reference.
     .replace(/\b(MG\d{1,2}[A-Z]?\/\d{1,4})(?=[A-Za-z])/g, "$1 ")
     // `MG11witness statement` — form number glued to its description.
@@ -165,7 +184,8 @@ export function lineIndicatesReferredOnly(line: string): boolean {
   // Uncertainty prose is not referred proof
   if (/^uncertain(?:\s+on\s+papers)?\s*:/i.test(l)) return false;
   if (/^referred\s+only\s*:/i.test(l)) return true;
-  if (/\breferred\s+only\b/i.test(l)) return true;
+  // "referenced only" is the same state as "referred only": named in the papers, not attached.
+  if (/\breferr?e(?:d|nced)\s+only\b/i.test(l)) return true;
   if (/\breferred\s+on\s+(?:mg6c?|schedule|index|disclosure)\b/i.test(l)) return true;
   if (/\breferred\s+to\b/i.test(l)) return true;
   if (/\b(?:listed|scheduled)\b[^.\n]{0,40}\bnot\s+(?:served|attached)\b/i.test(l)) return true;
