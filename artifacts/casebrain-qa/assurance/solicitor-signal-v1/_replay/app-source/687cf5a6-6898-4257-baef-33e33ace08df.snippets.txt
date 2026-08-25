@@ -1,0 +1,42 @@
+
+=== SNIPPET: mg5 ===
+MG5 - case summaryCB-TB-439
+CB-TB-439 / page 3
+Police report - case summary
+FieldEntry
+DefendantLayla Davies
+AllegationConcealing criminal property, contrary to section 327 Proceeds of Crime Act 2002
+Complainant / reporterRachel Green
+LocationQueens Parade
+Hearing reference19 June 2026 at 10:00
+Summary of evidence
+The prosecution summary alleges that Layla Davies was involved in an incident at Queens Parade on 15 May 2026. The
+account in this summary is short and relies on material listed elsewhere in the papers.
+The summary refers to custody record extract and to material marked as not yet supplied on the schedule. The account
+remains subject to review once the underlying material is served.
+The narrative also mentions Jamie Vale, although the header of this bundle names only Layla Davies as the defendant for
+these papers.
+Issues for review
+- co-defendant material mixed into primary bundle
+- Check whether the listed outstanding material has now been served.
+- Confirm the current hearing date against the listing notice.
+
+=== SNIPPET: mg6 ===
+null
+
+=== SNIPPET: mg11 ===
+MG11 - witness statementCB-TB-439
+CB-TB-439 / page 4
+Witness statement
+FieldEntry
+URN26/563207/A
+Statement ofRachel Green
+Age if under 18Over 18
+Occupation / rolecomplainant / reporting person
+Date15 May 2026
+This statement is true to the best of my knowledge and belief and I make it knowing that it may be placed before a court.
+I was at Queens Parade on 15 May 2026. I saw part of the incident. My view was from across the road.
+Signed: Rachel Green Date: 1 May 2026
+
+=== SNIPPET: exhibits ===
+null
