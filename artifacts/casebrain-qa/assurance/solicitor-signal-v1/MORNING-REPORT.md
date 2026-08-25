@@ -4,8 +4,12 @@ Everything is on PR #101. Nothing merged, nothing near production.
 
 ## What to read first
 
-One real bug fixed and proved live, one measurement problem in my own earlier work corrected, one
-audit runner built, and one new systemic issue found that is bigger than anything fixed so far.
+Two real bugs fixed and proved live, two measurement problems in my own earlier work corrected, an
+audit runner built that does twenty cases in two minutes, and one new systemic issue found that is
+bigger than anything fixed so far — the app only reads the first 80,000 characters of a bundle.
+
+Two of the three loose ends from last night are closed. The scan cap needs a decision from you
+before I touch it.
 
 ## 1. The bug: the app was asking for material the papers say is served
 
@@ -113,12 +117,33 @@ is not something to attempt unsupervised overnight. It is the next root, and I w
 the approach with you first — the choice is between raising the cap, reading the schedule sections
 specifically wherever they sit, or processing in passes.
 
-## 5. Still open
+## 5. Also fixed: a listed item is not the schedule it sits on
 
-- **Davies shows "MG6 / unused schedule clarification" twice.** Generic, unsendable, and it is the
-  schedule itself appearing as a request — rule 5. The guard rewrites a card it cannot verify into
-  that wording. Filtering it afterwards also removes a legitimate medical anchor, so the fix belongs
-  where the rewrite happens. Not yet fixed.
+Davies' board had been showing "MG6 / unused schedule clarification" twice. The cause was one line:
+any label opening with `MG6` was rewritten into that wording. So `MG6/04 bank source statements` and
+`MG6/06 analyst certificate` — two different documents — arrived as the same generic, unsendable card,
+and appeared twice because there were two of them.
+
+`MG6/04` is an item the schedule lists. `MG6 disclosure schedule` is the schedule itself. Only the
+second is a clarification request. Now narrowed accordingly.
+
+This also closed the loose end that had been open longest. Davies' live board reads:
+
+```
+MG6/05 CCTV Continuity log
+MG6/07 final medical report
+MG6/04 bank source statements
+MG6/06 analyst certificate
+CCTV/2 External camera export Store manager Export log
+Body-worn video (BWV)
+DIG/4 Phone screenshot bundle DC Morgan Raw extraction
+```
+
+Zero clarification cards, and `MG6/04` on the live screen — which until now had only ever appeared
+offline. All five of Davies' stated gaps now reach the board. Commit `9ac0989a9`.
+
+## 6. Still open
+
 - **Hale's outstanding CCTV, CAD and custody rows still do not reach the board.** The ledger holds
   them, correctly marked outstanding — `probe-hale-ledger.ts` shows this. They are dropped further
   down the pipeline than I traced before stopping to verify the fixes I already had.
@@ -126,7 +151,7 @@ specifically wherever they sit, or processing in passes.
 - **Interview recording/transcript** still fails at
   `f167-surgical-truth-opposite-direction.test.ts`. Pre-existing, confirmed by stashing.
 
-## 6. Two decisions I need from you
+## 7. Two decisions I need from you
 
 1. **The scan cap.** Which way do you want it: raise the limit, hunt out the schedule sections
    wherever they sit in the document, or read in passes? This is the biggest single accuracy win
