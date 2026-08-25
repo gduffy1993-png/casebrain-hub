@@ -91,7 +91,7 @@ function capture(): void {
 }
 
 /** Where `frontMatterScan` stops. A bundle longer than this is only read down to here. */
-const SCAN_CAP_CHARS = 80_000;
+const SCAN_CAP_CHARS = 2_000_000;
 
 type Finding = { rule: string; severity: "P0" | "P1" | "P2"; detail: string };
 

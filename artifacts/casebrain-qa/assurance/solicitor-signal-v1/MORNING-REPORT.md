@@ -235,17 +235,41 @@ and off. This is speed only.
 seconds. It was checked the only way worth checking: with the old code restored, it fails at 10.9 s.
 
 Two honest notes. First, the gates read a bounded window of prose plus every schedule row the ledger
-found anywhere in the bundle — below that length it is the whole bundle, which is every case as things
-stand. On the 1.6M case, letting the gates read all the prose cost 10 s and dropped a card, so the
-window stays. Second, the caps are still at 80,000 and 250,000. Raising them is now a much smaller
-question than it was last night, but the rest of the bundle pipeline has not been measured, so I have
-not moved them.
+found anywhere in the bundle — below that length it is the whole bundle. On the 1.6M case, letting
+the gates read all the prose cost 10 s and dropped a card, so the window stays. Second, the rest of
+the pipeline is now measured, and the scan cap is up — see 7b.
+
+## 7b. The rest of the pipeline, measured, and the scan cap is up
+
+You asked to raise the cap so the whole bundle is read. With the board no longer taking 334 seconds,
+I timed every other reader on the same three captures:
+
+| Reader | Hale 167k | Heaviest 1.6M |
+| --- | --- | --- |
+| Metadata scan | 2 ms | 13 ms |
+| Ledger / materials | 181 ms | 256 ms |
+| Contradictions | 13 ms | 80 ms |
+| Brief plan | 25 ms | 130 ms |
+| Chase board | 3.4 s | 3.6 s |
+| Hearing / court | 240 ms | 1.0 s |
+
+So the board was the only thing that hung. `FRONT_MATTER_CHARS` is now 2,000,000 — Hale's 167k
+bundle is read in full, and the 1.6M case is no longer judged on 5% of itself.
+
+I did **not** raise the ledger's own walk (`MATERIAL_SCAN_CHARS`, 250,000) to match. On the 1.6M
+case that walk finds no additional schedule references past 80k — 265 rows become 1,952, all
+unreferenced — and the board goes from 4 seconds to 8. Hale is 167k, so 250k still covers every
+paper on that case. The extra million characters would be noise.
+
+Hale's outstanding CCTV / CAD / custody rows are already in the 80k ledger. Raising the scan does
+not put them on the board. That drop is still the next product fix.
 
 ## 8. The two decisions, now answered
 
-1. **The scan cap — read the whole bundle.** The obstacle in section 7 is gone: the board now builds
-   in 4 seconds on a 1.6-million-character bundle instead of 334. The caps are still down, because the
-   board is not the only thing that reads a bundle and I have not measured the others yet.
+1. **The scan cap — read the whole bundle.** Done for the scan the rest of the app works from
+   (`FRONT_MATTER_CHARS` 2,000,000). The ledger still walks the first 250,000 of that scan, which
+   is every paper on Hale and the cases like it. The heaviest bundle's extra million characters
+   contain no further schedule references, so walking them is cost without a gap recovered.
 2. **Board size — stays at 8.** No change needed; that is what it already does.
 
 ## Where the numbers stand

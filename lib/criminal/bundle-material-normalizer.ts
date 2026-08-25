@@ -367,10 +367,12 @@ function rowConfidence(status: MaterialStatus, line: string): TruthConfidence {
 }
 
 /**
- * A schedule sits wherever the bundle puts it, which on a heavy case is well past a quarter of a
- * million characters. Reading further is cheap here — the ledger handles 1.6 million characters in
- * about a second — so this limit is not what holds the app back; the chase presentation gates are.
- * Raise this alongside `FRONT_MATTER_CHARS`, which currently stops the text arriving at all.
+ * How far into the arrived scan the ledger walks looking for schedule rows.
+ *
+ * Reading the whole document is cheap here — a second for 1.6 million characters — but most of
+ * what it finds past a quarter of a million is unreferenced noise, and turning that into chase
+ * cards is what pushed the heaviest board from 4 seconds to 8. Hale's bundle is 167k, so this
+ * still covers every paper on that case once `FRONT_MATTER_CHARS` lets the text arrive.
  */
 const MATERIAL_SCAN_CHARS = 250_000;
 

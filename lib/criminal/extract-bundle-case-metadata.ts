@@ -7,18 +7,16 @@ import type { ParsedBundleHeader } from "@/lib/bundle/parse-bundle-display";
 import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
 
 /**
- * How much of a bundle is read.
+ * How much of a bundle is read into the scan the rest of the app works from.
  *
- * This is the front third of a heavy Crown Court bundle, and it is not enough: a
- * 1.6-million-character bundle is judged on 5% of itself, with nothing to show the schedule was
- * never reached. Raising it is the right fix but not a sufficient one on its own — measured at
- * 2,000,000 the ledger still builds in about a second, while the chase board takes 465 seconds,
- * because the presentation gates re-scan the whole bundle per card across a dozen passes. Reading
- * more has to come with giving those gates a distilled haystack instead of the raw bundle.
+ * A 1.6-million-character Crown Court bundle used to be judged on the first 80,000 characters —
+ * 5% of the papers, with the schedule often never reached. The cap sat there because the chase
+ * board took 334 seconds on the full text. The gates now read a bounded haystack and the board
+ * builds in about 4 seconds on that same bundle, so the scan can cover the papers.
  *
  * See `artifacts/casebrain-qa/assurance/solicitor-signal-v1/MORNING-REPORT.md`.
  */
-const FRONT_MATTER_CHARS = 80_000;
+const FRONT_MATTER_CHARS = 2_000_000;
 const SECTION_BLOCK_CHARS = 6_000;
 
 const HIGH_VALUE_SECTIONS = [
