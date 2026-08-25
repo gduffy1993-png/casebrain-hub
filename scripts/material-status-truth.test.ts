@@ -101,6 +101,23 @@ const WELDED_TAIL_CASES: Array<{ line: string; expected: MaterialStatus; why: st
     expected: "served",
     why: "welded 'served' must be recognised rather than dropped to unclear",
   },
+  {
+    line: "MG6/01 forensic submission noteservedavailable in bundle",
+    expected: "served",
+    why: "status welded mid-cell must still be read",
+  },
+  {
+    line: "MG6/05 full CCTV masteroutstandingrequested / not attached",
+    // The schedule states outstanding; "requested / not attached" is the reason, so this
+    // is a gap rather than the softer referred-only state.
+    expected: "outstanding",
+    why: "outstanding stated mid-cell must win over the referred-only reading",
+  },
+  {
+    line: "MG6/02 charge sheetservedlisted as served",
+    expected: "served",
+    why: "served stated twice must not be lost",
+  },
 ];
 
 for (const { line, expected, why } of WELDED_TAIL_CASES) {
@@ -113,6 +130,11 @@ for (const untouched of [
   "MG6/12 officer account observed",
   "MG6/13 court time reserved",
   "MG6/14 review of the account is impartial",
+  "MG6/15 service of the exhibit is pending, depending on the officer in case",
+  // Brand and device names keep their internal capital.
+  "Original WhatsApp export not served.",
+  "MG6/16 iPhone handset download outstanding",
+  "MG6/17 YouTube upload referred only",
 ]) {
   assert.equal(deglueScheduleText(untouched), untouched, `must not split: ${untouched}`);
 }

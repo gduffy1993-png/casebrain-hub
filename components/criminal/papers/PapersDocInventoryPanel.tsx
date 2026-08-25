@@ -57,7 +57,13 @@ function typeHint(row: NormalisedMaterialRow): string {
   return "Source material";
 }
 
+const ROW_LIMIT = 40;
+
 function sortMaterials(rows: NormalisedMaterialRow[]): NormalisedMaterialRow[] {
+  // Rows carrying a schedule reference are the schedule itself; rows inferred from
+  // narrative prose come after them, so the row limit cannot push real schedule
+  // items out of view.
+  const scheduled = (row: NormalisedMaterialRow): number => (row.scheduleRef ? 0 : 1);
   const rank = (s: MaterialStatus): number => {
     switch (s) {
       case "outstanding":
@@ -75,7 +81,13 @@ function sortMaterials(rows: NormalisedMaterialRow[]): NormalisedMaterialRow[] {
         return 3;
     }
   };
-  return [...rows].sort((a, b) => rank(a.status) - rank(b.status) || a.label.localeCompare(b.label));
+  return [...rows].sort(
+    (a, b) =>
+      scheduled(a) - scheduled(b) ||
+      rank(a.status) - rank(b.status) ||
+      (a.scheduleRef ?? "").localeCompare(b.scheduleRef ?? "") ||
+      a.label.localeCompare(b.label),
+  );
 }
 
 /**
@@ -93,11 +105,14 @@ export function PapersDocInventoryPanel({
   documentCount?: number | null;
   textChars?: number | null;
 }) {
-  const materials = sortMaterials(ledger?.materials ?? []).slice(0, 40);
-  const served = materials.filter((m) => m.status === "served").length;
-  const gaps = materials.filter((m) =>
+  const allMaterials = ledger?.materials ?? [];
+  const materials = sortMaterials(allMaterials).slice(0, ROW_LIMIT);
+  // Counted across the whole ledger: the row limit is a display bound, not a finding.
+  const served = allMaterials.filter((m) => m.status === "served").length;
+  const gaps = allMaterials.filter((m) =>
     ["outstanding", "absent", "partial", "draft", "unsigned", "referred_only", "unclear"].includes(m.status),
   ).length;
+  const hidden = allMaterials.length - materials.length;
 
   return (
     <section
@@ -130,7 +145,9 @@ export function PapersDocInventoryPanel({
       ) : (
         <>
           <p className="text-[11px] text-slate-500">
-            {materials.length} material row(s) · {served} served/on-file · {gaps} gap / partial / unclear
+            {allMaterials.length} material row(s) · {served} served/on-file · {gaps} gap / partial /
+            unclear
+            {hidden > 0 ? ` · showing first ${materials.length}` : ""}
           </p>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs border-collapse">

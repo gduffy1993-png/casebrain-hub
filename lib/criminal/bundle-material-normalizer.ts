@@ -14,33 +14,50 @@ function compact(text: string): string {
 }
 
 /**
- * Split schedule cells that were joined without whitespace when the PDF was flattened
- * (`bank source statementsOutstandingNot in papers supplied`). Status words only carry
- * meaning to the classifiers when their word boundaries survive, so the join has to be
- * undone before any status decision is taken. Single leading lower-case letters are left
- * alone so device names such as `iPhone` are not broken apart.
+ * Status wording welded to a neighbouring word with no capital to mark the join
+ * (`Photo stillnot served`, `noteservedavailable in bundle`). Only applied to lines
+ * carrying a schedule or exhibit reference, because narrative prose contains ordinary
+ * words that end in status wording.
  */
-/**
- * Status wording welded onto the end of a schedule cell with no capital to mark the
- * join (`Photo stillnot served`, `continuity noteserved`). Anchored to the end of the
- * cell because that is where the status column lands once a row is flattened.
- */
-const TRAILING_WELDED_STATUS_RE =
-  /([a-z]{2,}?)(not\s+served|served|outstanding|referred\s+only|referenced\s+only|part\s+copy\s+only|partial|unsigned|absent|missing|awaiting|pending|requested)\s*$/i;
+const WELDED_STATUS_RE =
+  /([a-z]{2,}?)(not\s+served|served|outstanding|referred\s+only|referenced\s+only|part\s+copy\s+only|partial|unsigned|absent|missing|awaiting|pending|requested)(?=[a-z]|\s|[.,;)]|$)/gi;
 
-/** Ordinary words that end in status wording and must not be split apart. */
+/** Ordinary words that end in status wording and must survive intact. */
 const WELDED_STATUS_FALSE_POSITIVES =
-  /^(?:preserved|conserved|subserved|undeserved|unobserved|observed|reserved|deserved|unserved|impartial|dismissing|impending|suspending|appending)$/i;
+  /^(?:preserved|conserved|subserved|undeserved|unobserved|observed|reserved|deserved|unserved|misserved|impartial|dismissing|impending|suspending|appending|expending|depending|spending|upending)$/i;
 
-function splitTrailingWeldedStatus(line: string): string {
-  return line.replace(TRAILING_WELDED_STATUS_RE, (match, head: string, status: string) => {
+/** `MG6/04`, `CCTV/3`, `TEL/5`, `O02`, `U1` — the marks of an actual schedule row. */
+const SCHEDULE_ROW_REF_RE =
+  /\b(?:MG\d{1,2}[A-Z]?(?:\/\d{1,4})?|[A-Z]{2,4}\/\d{1,3}|[A-Z]\d{1,3})\b/;
+
+/** Brand and device names whose internal capital is part of the name. */
+const PROTECTED_COMPOUND_RE =
+  /\b(?:WhatsApp|iPhone|iPad|iCloud|iMessage|iTunes|YouTube|PayPal|eBay|MacBook|BlackBerry|LinkedIn|TikTok|SnapChat|OnlyFans|MoneyGram|PlayStation|McDonald)\b/g;
+
+function splitWeldedStatus(line: string): string {
+  if (!SCHEDULE_ROW_REF_RE.test(line)) return line;
+  return line.replace(WELDED_STATUS_RE, (match, head: string, status: string, offset: number) => {
     if (WELDED_STATUS_FALSE_POSITIVES.test(`${head}${status}`)) return match;
-    return `${head} ${status}`;
+    const next = line[offset + match.length];
+    return next && /[a-z]/.test(next) ? `${head} ${status} ` : `${head} ${status}`;
   });
 }
 
+/**
+ * Undo the whitespace loss that happens when a PDF schedule is flattened
+ * (`bank source statementsOutstandingNot in papers supplied`). Status words only carry
+ * meaning to the classifiers while their word boundaries survive, so the join has to be
+ * undone before any status decision is taken. Single leading lower-case letters are left
+ * alone so names such as `iPhone` are not broken apart.
+ */
 export function deglueScheduleText(line: string): string {
-  return splitTrailingWeldedStatus(line)
+  const held: string[] = [];
+  const masked = splitWeldedStatus(line).replace(PROTECTED_COMPOUND_RE, (name) => {
+    held.push(name);
+    return `\u0000${held.length - 1}\u0000`;
+  });
+
+  return masked
     // `MG6/04bank` / `MG6C/002CCTV` — split the cell that follows a schedule reference.
     .replace(/\b(MG\d{1,2}[A-Z]?\/\d{1,4})(?=[A-Za-z])/g, "$1 ")
     // `MG11witness statement` — form number glued to its description.
@@ -48,7 +65,8 @@ export function deglueScheduleText(line: string): string {
     // `statementsOutstanding` — a lower-case word run glued to the next capitalised word.
     .replace(/([a-z]{2,})([A-Z])/g, "$1 $2")
     // `05CCTV` — digits glued to a following word, without breaking `MG6C` / `MG11A` refs.
-    .replace(/(?<!\bMG\d{0,3})(\d)([A-Z])/g, "$1 $2");
+    .replace(/(?<!\bMG\d{0,3})(\d)([A-Z])/g, "$1 $2")
+    .replace(/\u0000(\d+)\u0000/g, (_, index: string) => held[Number(index)] ?? "");
 }
 
 /** Repair OCR-glued MG6 status tails: `not servedMay` → `not served — May`. */
