@@ -164,13 +164,51 @@ offline. All five of Davies' stated gaps now reach the board. Commit `9ac0989a9`
 - **Interview recording/transcript** still fails at
   `f167-surgical-truth-opposite-direction.test.ts`. Pre-existing, confirmed by stashing.
 
-## 7. Two decisions I need from you
+## 7. You said raise the cap. I tried it, and it needs a second piece of work
 
-1. **The scan cap.** Which way do you want it: raise the limit, hunt out the schedule sections
-   wherever they sit in the document, or read in passes? This is the biggest single accuracy win
-   available and it needs your call.
-2. **Board size.** The cap is 8 cards. Now that stated gaps take slots ahead of templates, a heavy
-   case fills all 8 with real gaps and the templates drop off entirely. Is 8 the right number?
+You chose "just raise the limit so the whole bundle is read". I did exactly that, measured it, and it
+does not stand up on its own — so it is reverted for now and nothing slow has shipped.
+
+There were two caps, not one: the API only builds 80,000 characters of scan text, and the ledger only
+reads 250,000 of whatever it gets. Raised both to 2,000,000 and deployed. **The reading worked.**
+Hale went from 80,000 characters to all 167,149. The big case went from 79,806 to 1,614,176 — from
+5% of its papers to all of them.
+
+Then the timings:
+
+| Case | Bundle | Ledger | Chase board |
+| --- | --- | --- | --- |
+| Davies | 8,104 chars | 30 ms | 1.2 s |
+| Hale | 167,149 | 131 ms | 48 s |
+| `f57a2750` | 1,614,176 | 1.1 s | 334 s |
+
+Reading the bundle is cheap — a second for 1.6 million characters. Building the board is what
+collapses, and it runs in the browser, so a solicitor opening the biggest case would get a hung tab.
+
+The cause is not the amount of text but how the board uses it. The presentation gates re-scan the
+whole bundle with dozens of patterns, once per card, across a dozen passes. Text length multiplies
+through all three.
+
+I fixed the two parts that were plainly wasteful and kept them: a heavy bundle was producing about
+two thousand cards to fill a board of eight, so the rows turned into cards are now bounded at 300 —
+taking stated, referenced gaps first, so only the weakest evidence of a gap is ever dropped — and a
+linear lookup inside the merge loop is now indexed. Necessary, not sufficient.
+
+**The remaining work is to give those gates a distilled haystack instead of the raw bundle.** They
+only ever ask "do the papers affirm this?", and the ledger rows already answer that, having been
+built from the whole bundle. Then the cap can go up and stay up. That is a real piece of work on the
+hot path of every case, and I would rather agree it with you than start it unsupervised.
+
+Worth saying plainly: this is the same answer as the option I recommended, but now it is measured
+rather than argued.
+
+## 8. The two decisions, now answered
+
+1. **The scan cap — read the whole bundle.** Attempted and measured; reverted pending the gate work
+   in section 7. The reading is cheap, the board build is not.
+2. **Board size — stays at 8.** No change needed; that is what it already does.
+
+Next thing I need from you is whether to start the gate work described in section 7.
 
 ## Where the numbers stand
 
