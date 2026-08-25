@@ -111,3 +111,67 @@ Opposite tests needed, so the fix cannot swing into invention:
 
 Sizing: eight assertions across two test files pin the stock labels
 (`scripts/bundle-truth-ledger.test.ts`, `scripts/source-truth-guardian.test.ts`).
+
+---
+
+# Result — shipped in `0ff7699ea`
+
+## The deepest cause was below all three instruments
+
+No row carried a reference at all. `parseScheduleRef` matched `MG6` only when followed by three or
+four digits, so the `MG6/04` form these schedules actually use returned null, and exhibit forms
+(`O03`, `EX/03`, `CCTV/2`, `BWV/4`, `AB/2`, `TEL/5`, `DIG/4`, `EX-MUR-005`) were not recognised at
+all. Every ledger row had `scheduleRef: null` — 0 of 24 on Davies, 0 of 42 on Patel, 0 of 250 on
+Hale. With nothing to tell two items apart, collapse-by-family was not being careless; it had no
+other key available.
+
+This also means the Papers "scheduled rows first" sort added earlier in this branch was sorting on a
+field that was always null, and had never had any effect.
+
+## What changed
+
+The reference now travels as data on the chase item (`sourceScheduleRef`), taken from the ledger row
+rather than re-parsed from display text. Material the schedule names then keeps its identity: it is
+not gated as an unsupported modality, not merged into a family card, not renamed by presentation,
+and it takes a board slot ahead of template items. Templates, prose fragments and the schedule
+header itself behave exactly as before.
+
+## Measured, offline over the exact app text
+
+| | before | after |
+| --- | --- | --- |
+| gaps the schedule states | 21 | 21 |
+| reaching the chase list | 1 | **16** |
+| rows with a parsed reference (Davies / Patel / Hale) | 0 / 0 / 0 | 10 / 9 / 23 |
+
+## Measured live, on preview `casebrain-dvpgymf6a`
+
+Captured Papers and CPS Chase for all seven cases; `chase-vs-schedule-check.cjs` reports stated
+gaps actually named on the chase board rising from **6 to 13** of 21, with chase items offered
+rising from 24 to 41.
+
+Dunn is the clearest case. Before: two generic cards. After, by name:
+
+```
+O03 independent witness statement Outstanding Continuity awaited
+O04 forensic continuity statement Outstanding Requested from OIC
+EX/03 Continuity note Eastmoor Police outstanding
+```
+
+## Known follow-ups, not fixed here
+
+1. **`MG6C/002` medical anchor assertion in `scripts/bundle-truth-ledger.test.ts` still fails.**
+   It was already failing on this branch before this work. The reference fix incidentally fixed it;
+   restricting source-named status to exclude the schedule header and generic clutter labels — which
+   `scripts/source-truth-guardian.test.ts` requires — re-broke it. Net position is unchanged from
+   the branch baseline, but the incidental fix was lost and the interaction is understood: a card
+   whose label reads as schedule chrome can still be the card carrying a real anchor. Filtering
+   those cards at the end of the pipeline removes the anchor with them, so the fix belongs at the
+   point the guard rewrites the label, not after it.
+2. **Davies gains an `MG6 / unused schedule clarification` card** that was not on the board before.
+   Substance is a legitimate unused-material ask, but the wording is not sendable.
+3. **Davies' `MG6/04 bank source statements` reaches the list offline but not live.** The offline
+   harness feeds `frontMatterScan`; the live app passes a longer `bundleText`. That gap between
+   harness input and live input needs closing before the next measurement is trusted.
+4. `scripts/f167-surgical-truth-opposite-direction.test.ts` line 686 (interview recording versus
+   transcript) fails identically before and after this change — pre-existing, untouched.

@@ -1,0 +1,100 @@
+
+### dunn__a81a0cf3
+    schedule gaps stated : 5
+    chase items offered  : 4
+    stated gaps named    : 1
+    chase list:
+      - This material remains outstanding on the papers. Chase or confirm status before fixing hea
+      - CAD / dispatch log material
+      - Full custody record / PACE material
+      - Custody/PACE material is referred to in limited form ÔÇö chase the full record before assess
+    stated in the schedule, not on the chase list:
+      ! EX/03      Outstanding / missing  EX/03 Continuity note Eastmoor Police outstanding
+      ! O02        Outstanding / missing  O02 CAD log full print Outstanding Not yet served
+      ! O03        Outstanding / missing  O03 independent witness statement Outstanding Continuity awaited
+      ! O04        Outstanding / missing  O04 forensic continuity statement Outstanding Requested from OIC
+
+### imani-tobin-wounding__a42cb20a
+    schedule gaps stated : 5
+    chase items offered  : 5
+    stated gaps named    : 2
+    chase list:
+      - TEL/5 Property continuity note referenced only
+      - Screenshots or partial extraction alone do not prove subscriber attribution.
+      - Full custody record / PACE material
+      - Custody/PACE material is referred to in limited form ÔÇö chase the full record before assess
+      - Copy court line
+    stated in the schedule, not on the chase list:
+      ! AB/2       Outstanding / missing  AB/2 Photo still not served
+      ! BWV/4      Outstanding / missing  BWV/4 Photo still not served
+      ! CCTV/3     Outstanding / missing  CCTV/3 Body worn video not served
+
+### isaac-patel__7e763777
+    schedule gaps stated : 4
+    chase items offered  : 8
+    stated gaps named    : 3
+    chase list:
+      - Full custody record / PACE material
+      - Custody/PACE material is referred to in limited form ÔÇö chase the full record before assess
+      - EX/02 ÔÇö continuity note to be checked against witness and MG6 schedule.
+      - EX/01 ÔÇö item referred to in MG5 (listed).
+      - The papers refer to this material, but it has not been confirmed as served. Chase or confi
+      - CCTV full window / master footage
+      - CAD / dispatch log material
+      - Copy court line
+    stated in the schedule, not on the chase list:
+      ! MG6/04     Outstanding / missing  MG6/04 signed final MG11 outstanding requested / not attached
+
+### layla-davies__687cf5a6
+    schedule gaps stated : 7
+    chase items offered  : 9
+    stated gaps named    : 7
+    chase list:
+      - This material remains outstanding on the papers. Chase or confirm status before fixing hea
+      - Body-worn video (BWV)
+      - BWV is referred to but not safely served in full ÔÇö chase the full export and continuity be
+      - DIG/4 Phone screenshot bundle DC Morgan Raw extraction absent
+      - The papers record this material as draft. Chase or confirm status before fixing hearing po
+      - Full phone download / source extraction
+      - Full custody record / PACE material
+      - Custody/PACE material is referred to in limited form ÔÇö chase the full record before assess
+      - Medical / expert source report
+
+### leon-hale-murder__14823d9e
+    schedule gaps stated : 0
+    chase items offered  : 8
+    stated gaps named    : 0
+    chase list:
+      - Interview summary on file is not a substitute for the recording and transcript modalities.
+      - Final medical/forensic report
+      - EX-MUR-001 Charge Sheet Served summary/draft
+      - EX-MUR-002 MG5 Case Summary Served summary/draft
+      - EX-MUR-007 Police Officer Statement Served summary/draft
+      - EX-MUR-008 Paramedic Note Served summary/draft
+      - EX-MUR-015 Knife Recovery Note Served summary/draft
+      - EX-MUR-016 Initial DNA Note Served summary/draft
+
+### robbery-charge__99090c69
+    schedule gaps stated : 0
+    chase items offered  : 4
+    stated gaps named    : 0
+    chase list:
+      - Exhibits: EX
+      - CCTV Continuity / provenance
+      - CCTV full window / master footage
+      - Copy court line
+
+### taylor-brookes-digital__2dcdc59d
+    schedule gaps stated : 0
+    chase items offered  : 3
+    stated gaps named    : 0
+    chase list:
+      - Full phone download / source extraction
+      - Full phone download / source extraction needs checking before it is relied on.
+      - Copy court line
+
+================ TOTALS ================
+schedule-stated gaps across cases : 21
+chase items offered               : 41
+stated gaps actually named        : 13
+stated gaps never offered         : 8

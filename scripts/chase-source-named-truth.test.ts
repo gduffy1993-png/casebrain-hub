@@ -15,6 +15,7 @@ MG6/01 custody record extract Served Contained in papers
 MG6/04 bank source statements Outstanding Not in papers supplied
 MG6/05 CCTV continuity log Outstanding Awaiting export
 MG6/06 analyst certificate Outstanding Awaiting export
+MG6/03 unused material schedule Outstanding Not supplied
 O03 independent witness statement Outstanding Continuity awaited
 O04 forensic continuity statement Outstanding Requested from OIC
 
