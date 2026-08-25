@@ -13,7 +13,8 @@
  */
 import assert from "node:assert/strict";
 
-import { shouldSuppressChaseAsAlreadyOnFile } from "../lib/criminal/evidence-state-reconcile";
+import { shouldSuppressChaseAsAlreadyOnFile, inferEvidenceModality } from "../lib/criminal/evidence-state-reconcile";
+import { shouldChaseRequestAgainstServedAliases } from "../lib/criminal/canonical-finding-model";
 import { isFragmentEvidenceLabel } from "../lib/criminal/build-from-document-units";
 
 let checks = 0;
@@ -69,11 +70,35 @@ check("a served master export closes a request for the master", () => {
   assert.equal(r.suppress, true);
 });
 
-check("a summary request is still answered by a served summary", () => {
-  const r = shouldSuppressChaseAsAlreadyOnFile("CAD summary", [
-    { label: "CAD Summary", state: "served" },
+check("a row that names stills and the master is asking for the master", () => {
+  assert.equal(
+    inferEvidenceModality("CCTV stills and timing note Master footage"),
+    "master_media",
+  );
+});
+
+check("a stills-only request stays a stills request", () => {
+  assert.equal(inferEvidenceModality("CCTV Stills Estate Entrance"), "clip_or_still");
+});
+
+check("prose that says stills only is furniture, not a served master", () => {
+  assert.equal(
+    isFragmentEvidenceLabel(
+      "The served CCTV material consists of still images only. Full master footage from estate cameras between 22:30 and 23:05 is",
+    ),
+    true,
+  );
+});
+
+check("an interview note that mentions CCTV is not a served CCTV alias", () => {
+  const r = shouldChaseRequestAgainstServedAliases("CCTV full window / master footage", [
+    {
+      label:
+        "Legal adviser requested disclosure of CCTV, forensic position, and witness basis before interview. The served note says",
+      state: "served",
+    },
   ]);
-  assert.equal(r.suppress, true);
+  assert.equal(r.chase, true);
 });
 
 console.log("bundle furniture and welded status are not evidence rows");

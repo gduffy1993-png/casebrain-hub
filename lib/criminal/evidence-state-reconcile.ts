@@ -65,6 +65,14 @@ const PERMITTED_MODALITY_RELATIONSHIPS: ReadonlyArray<readonly [EvidenceModality
 export function inferEvidenceModality(label: string): EvidenceModality {
   const cached = modalityCache.get(label);
   if (cached !== undefined) return cached;
+  // A schedule names the part on file and the whole that is not in the same row
+  // (`CCTV stills and timing note — master footage outstanding`). The request is for the whole.
+  const clipHit = /\b(clips?|stills?|screenshots?|excerpts?|snippets?)\b/i.test(label);
+  const masterHit =
+    /\b(master(?:\s+(?:cctv|footage|export|recording))?|full\s+(?:cctv|footage|video|export))\b/i.test(
+      label,
+    );
+  if (masterHit && clipHit) return remember(modalityCache, label, "master_media");
   for (const { modality, re } of MODALITY_PATTERNS) {
     if (re.test(label)) return remember(modalityCache, label, modality);
   }
@@ -295,7 +303,7 @@ const WHOLE_SCOPE_RE = /\b(master|full|original|complete|entire|unedited|whole|u
 const PART_SCOPE_RE =
   /\b(summary|summaries|index|extract|excerpt|excerpts|still|stills|clip|clips|screenshot|screenshots|snippet|snippets|partial|initial|draft|sample)\b/i;
 
-function evidenceScope(label: string): EvidenceScope {
+export function evidenceScopeOfLabel(label: string): EvidenceScope {
   // A row naming both asks for the whole: the part is what it says is already there.
   if (WHOLE_SCOPE_RE.test(label)) return "whole";
   if (PART_SCOPE_RE.test(label)) return "part";
@@ -326,7 +334,7 @@ export function shouldSuppressChaseAsAlreadyOnFile(
   rows: EvidenceStateRow[],
 ): { suppress: boolean; reason: string | null } {
   const reqMod = inferEvidenceModality(requestLabel);
-  const reqScope = evidenceScope(requestLabel);
+  const reqScope = evidenceScopeOfLabel(requestLabel);
 
   for (const row of rows) {
     const rowMod = row.modality ?? inferEvidenceModality(row.label);
@@ -338,7 +346,7 @@ export function shouldSuppressChaseAsAlreadyOnFile(
       if (labelDeniesService(row.label)) continue;
       // A part of a thing is not the thing: a served summary, index or extract leaves the full
       // version as outstanding as it was.
-      if (reqScope === "whole" && evidenceScope(row.label) === "part") continue;
+      if (reqScope === "whole" && evidenceScopeOfLabel(row.label) === "part") continue;
       if (reqMod === "transcript" && rowMod === "recording") {
         continue;
       }

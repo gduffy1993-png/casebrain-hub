@@ -28,6 +28,7 @@ import {
   shouldSuppressChaseAsAlreadyOnFile,
   type EvidenceStateRow,
 } from "@/lib/criminal/evidence-state-reconcile";
+import { isFragmentEvidenceLabel } from "@/lib/criminal/build-from-document-units";
 import {
   assertFindingProvenanceOrLimitation,
   type FindingProvenance,
@@ -323,10 +324,13 @@ export function reconcileChaseItemsAgainstServedMaterial(
 ): DisclosureChaseItem[] {
   if (!ledger?.materials?.length) return items;
 
-  const rows: EvidenceStateRow[] = ledger.materials.map((m) => ({
-    label: `${m.label}${m.detail ? ` ${m.detail}` : ""}`,
-    state: mapMaterialStatusToSharedState(m.status),
-  }));
+  const rows: EvidenceStateRow[] = ledger.materials.flatMap((m) => {
+    const label = `${m.label}${m.detail ? ` ${m.detail}` : ""}`;
+    // Narrative and bundle furniture reach the ledger because they mention a status word.
+    // They are not a served document, and they must not close a gap the schedule states.
+    if (isFragmentEvidenceLabel(m.label) || isFragmentEvidenceLabel(label)) return [];
+    return [{ label, state: mapMaterialStatusToSharedState(m.status) }];
+  });
 
   return items
     .map((item) => {
