@@ -105,6 +105,10 @@ function isGenericClassifierOffenceLabel(label: string | null | undefined): bool
   return false;
 }
 
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function formatSourceBackedCharge(charge: SourceBackedChargeInput): string | null {
   if (charge.documentRole === "superseded") return null;
   const offence = charge.offence?.replace(/\s+/g, " ").trim();
