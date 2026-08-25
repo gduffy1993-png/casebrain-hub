@@ -1,0 +1,982 @@
+{
+  "bundleSource": {
+    "status": 200,
+    "data": {
+      "combinedTextLength": 12101,
+      "documentCount": 1,
+      "documentRows": [
+        {
+          "id": "908909cd-67bb-468f-9129-17944e4d8314",
+          "name": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf",
+          "updatedAt": "2026-08-20T20:27:10.042437+00:00",
+          "lenExtracted": 12101,
+          "lenRaw": 12101,
+          "lenBody": 12101
+        }
+      ],
+      "health": {
+        "status": "partial",
+        "duplicateDocuments": 0,
+        "headerDetected": false,
+        "mg5Detected": true,
+        "mg6Detected": true,
+        "exhibitLineCount": 0
+      },
+      "header": null,
+      "snippets": {
+        "mg5": "MG5 case summary\n4-5\nCrown relies on screenshots and witness account.\n3",
+        "mg6": null,
+        "mg11": "=== SECTION: MG11 STATEMENT - ELLIE VARNA ===\nI am Ellie Varna. I know Taylor Brookes through people in our estate. I gave a statement to police\n in April 2026 about\nan incident outside Redwood House. On 09 May 2026 I received messages on WhatsApp from a contact s\naved in my\nphone as T. I believed this was Taylor because of how he wrote and because I had spoken to him on \nthat number\nbefore.\nThe messages said I should 'stop talking' and 'remember who knows where you live'. I was frightene\nd. I took\nscreenshots and sent them to PC Rowan Vale. I also played a voice note to my sister, but I could n\not forward it\nproperly at the time.\nI think the first message came in at around 22:45 on Friday 09 May 2026. I later told police in a \nfollow-up call that it\nwas Saturday night after work. I am not completely sure because I was upset and the messages were \non my phone\nfrom the weekend. The screenshot shows 10 May at the top of one screen and 09 May on another scree\nn.\nI did not reply apart from sending a question mark. I blocked the contact after taking screenshots\n. I did not keep a\nscreen recording. I have not changed my phone since then. The officer took photographs of my scree\nn using his\ndevice and asked me to email the screenshots, which I did.\nStatement issues visible on face\n- Witness says Friday 09 May in one paragraph and Saturday night in another.\n- Witness belief of sender is based on saved contact name, writing style, and previous use of numb\ner.\n- Statement does not confirm original WhatsApp export or device extraction.\fNB-26-0721 - R v Taylor Brookes\nPage 5",
+        "exhibits": null
+      },
+      "caseMetadata": {
+        "defendantName": "Taylor Brookes",
+        "defendantSource": "extracted_cover_fallback",
+        "complainant": null,
+        "complainantSource": "unavailable",
+        "court": "Northbank Crown Court",
+        "courtSource": "extracted_cover_fallback",
+        "nextHearingRaw": "06 July 2026 at 10:00",
+        "nextHearingIso": "2026-07-06T10:00:00.000Z",
+        "nextHearingSource": "extracted_procedural_fallback",
+        "stage": null,
+        "stageSource": "unavailable",
+        "offenceWording": null,
+        "offenceDisplay": null,
+        "offenceSource": "unavailable",
+        "bailStatus": null,
+        "bailStatusSource": "unavailable",
+        "defencePosition": null,
+        "defencePositionSource": "unavailable"
+      },
+      "sizeProfile": {
+        "documentCount": 1,
+        "pdfCount": 1,
+        "pageCount": null,
+        "combinedTextLength": 12101,
+        "isLargeByText": false,
+        "isLargeByPages": false
+      },
+      "frontMatterScanLength": 12061,
+      "frontMatterScan": "NB-26-0721 - R v Taylor Brookes\nPage 1\nINTERNAL CASE PAPERS BUNDLE\nR v Taylor Brookes - Digital Attribution / Witness Contact\n=== SECTION: COVER SHEET ===\nField\nEntry\nCase reference\nNB-26-0721\nDefendant\nTaylor Brookes\nComplainant / witness\nEllie Varna\nCourt\nNorthbank Crown Court\nNext hearing\nPTPH - 06 July 2026 at 10:00\nCurrent status\nBail with no-contact condition. Defence position: authorship of digital messages is disputed.\nBundle warning\nSome digital material is described in schedules but not served in original format.\nThis bundle contains charge material, summary, statements, exhibit references, interview summary, \nunused material\nschedule entries, and a draft disclosure request. It should be read with attention to source mater\nial, original device\ndata, metadata, and authorship.\nBundle index\nTab\nDocument\nPages\nNotes\n1\nCharge and particulars\n2-3\nParticulars state contact by WhatsApp and voice note.\n2\nMG5 case summary\n4-5\nCrown relies on screenshots and witness account.\n3\nMG11 Ellie Varna\n6-7\nIncludes date inconsistency.\n4\nScreenshot exhibit print\n8\nPartial screenshots only.\n5\nOfficer digital summary\n9\nPhone number believed linked; subscriber report not\nserved.\n6\nInterview summary\n10\nDenial; shared device raised.\n7\nExhibit log\n11\nDigital exhibit gap.\n8\nMG6C / disclosure schedule\n12-13\nOriginal download and voice note outstanding.\n9\nBail and disclosure request\n14\nNo-contact bail; draft request.\fNB-26-0721 - R v Taylor Brookes\nPage 2\n=== SECTION: CHARGE AND PARTICULARS ===\nCount\nAllegation\nParticulars\n1\nIntimidating a witness\nBetween 08 May 2026 and 10 May 2026, at Northbank, Taylor Brookes is\nalleged to have contacted Ellie Varna by WhatsApp message and voice note\nafter being told she was a prosecution witness.\n2\nMalicious communications\nOn or about 09 May 2026, messages were allegedly sent from number ending\n4471 containing threats and abusive language. Particulars are provisional\npending service of original device material.\nThe defendant denies sending the messages. The defence account recorded at interview is that the r\nelevant handset\nwas used by more than one person and that the screenshots do not prove authorship.\nBail position\nBail continued with conditions: not to contact Ellie Varna directly or indirectly; not to attend R\nedwood House\ncommunal entrance; to notify police of any change of mobile number. Defence reserves position on a\nttribution and\nscope of alleged contact.\fNB-26-0721 - R v Taylor Brookes\nPage 3\n=== SECTION: MG5 CASE SUMMARY ===\nOn 09 May 2026 Ellie Varna reported receiving WhatsApp messages from a number ending 4471. She sta\nted that the\nsender referred to her witness statement in earlier proceedings and told her to 'stop talking'. Sh\ne provided screenshot\nprintouts showing a contact named 'T'. One screenshot includes a voice note icon with duration 00:\n17, but the original\naudio file has not been served in this bundle.\nPolice state that the number ending 4471 is believed to be linked to Taylor Brookes. The basis for\n that belief is\nrecorded as previous contact number on custody records and a note from an officer who had dealt wi\nth him in March\n2026. No subscriber return, handset extraction, SIM registration, device attribution report, or or\niginal WhatsApp\nexport is included in the served papers.\nTaylor Brookes was interviewed on 15 May 2026. He denied sending the messages, accepted that he ha\nd used a\nphone with a SIM ending 4471 at points, and said the phone was shared with Casey Rowe and other pe\nople at a flat.\nHe said he had argued with Ellie Varna previously but denied threatening her or attempting to infl\nuence evidence.\nProsecution evidence listed in summary\nMG11 Ellie Varna, dated 10 May 2026.\nScreenshot printout EV/1, four cropped WhatsApp screens.\nOfficer note from PC Rowan Vale stating number ending 4471 believed linked to defendant.\nInterview summary, no full audio transcript served.\nKnown limitations in served papers\nOriginal WhatsApp export not served.\nVoice note original audio not served and no transcript served.\nSubscriber data or phone attribution report not served.\nNo continuity statement for how screenshots moved from witness handset to exhibit print.\fNB-26-0721 - R v Taylor Brookes\nPage 4\n=== SECTION: MG11 STATEMENT - ELLIE VARNA ===\nI am Ellie Varna. I know Taylor Brookes through people in our estate. I gave a statement to police\n in April 2026 about\nan incident outside Redwood House. On 09 May 2026 I received messages on WhatsApp from a contact s\naved in my\nphone as T. I believed this was Taylor because of how he wrote and because I had spoken to him on \nthat number\nbefore.\nThe messages said I should 'stop talking' and 'remember who knows where you live'. I was frightene\nd. I took\nscreenshots and sent them to PC Rowan Vale. I also played a voice note to my sister, but I could n\not forward it\nproperly at the time.\nI think the first message came in at around 22:45 on Friday 09 May 2026. I later told police in a \nfollow-up call that it\nwas Saturday night after work. I am not completely sure because I was upset and the messages were \non my phone\nfrom the weekend. The screenshot shows 10 May at the top of one screen and 09 May on another scree\nn.\nI did not reply apart from sending a question mark. I blocked the contact after taking screenshots\n. I did not keep a\nscreen recording. I have not changed my phone since then. The officer took photographs of my scree\nn using his\ndevice and asked me to email the screenshots, which I did.\nStatement issues visible on face\nWitness says Friday 09 May in one paragraph and Saturday night in another.\nWitness belief of sender is based on saved contact name, writing style, and previous use of numb\ner.\nStatement does not confirm original WhatsApp export or device extraction.\fNB-26-0721 - R v Taylor Brookes\nPage 5\n=== SECTION: SCREENSHOT EXHIBIT PRINT - EV/1 ===\nEXHIBIT EV/1 - WhatsApp screenshot print, supplied as cropped images. The printout contains no nat\nive export file,\nno visible full contact card, and no device metadata. The contact name displayed in the screenshot\n is 'T'.\nImage\nVisible text\nVisible time/date\nNotes\nEV/1-A\nstop talking before this gets worse\n09/05, 22:48\nSender display name cropped. No\nphone number visible.\nEV/1-B\nremember who knows where you live\n09/05, 22:50\nReply from witness: '?'\nEV/1-C\nvoice note icon, duration 00:17\n10/05, 00:03\nNo transcript. Original audio not in\nbundle.\nEV/1-D\nyou know what to do in court\n10/05, 00:04\nTop of screen shows contact name\n'T'; no number visible.\nOfficer endorsement on back of print: 'Screenshots received by email from EV on 10/05/26. Cropped \nby witness\nbefore sending. Original handset available if required.' No separate continuity statement is inclu\nded.\fNB-26-0721 - R v Taylor Brookes\nPage 6\n=== SECTION: OFFICER DIGITAL SUMMARY ===\nPC Rowan Vale records that the phone number ending 4471 is believed linked to Taylor Brookes becau\nse it appears\nas a historic contact number on a custody record dated March 2026 and because Ellie Varna had prev\niously used\nthat number to contact him. This summary does not attach the custody record, subscriber return, ca\nll data, phone\ndownload, or device attribution report.\nThe officer viewed screenshot images on the witness phone and received copies by email. The office\nr did not\nundertake a full handset examination. The device was not seized. No Cellebrite or similar extracti\non report is served.\nThe original voice note was not downloaded during the initial report.\nDigital continuity notes\nItem\nStatus\nRisk\nWitness handset\nNot seized; still with witness\nOriginal data available only if preserved.\nWhatsApp export\nNot served\nScreenshots alone do not show full metadata.\nSubscriber data\nNot served\nPhone number link remains officer belief.\nVoice note\nDescribed but not served\nNo original audio, transcript, speaker comparison, or continuity.\fNB-26-0721 - R v Taylor Brookes\nPage 7\n=== SECTION: INTERVIEW SUMMARY ===\nInterview date: 15 May 2026. The defendant was interviewed with a solicitor present. The full audi\no and transcript are\nnot included in this bundle; this is a summary note only.\nTaylor Brookes denied sending any threatening messages. He said he sometimes used a phone with a n\number\nending 4471 but that the phone was often left in a shared kitchen at River Yard flats. He named Ca\nsey Rowe as\nsomeone who also used the phone to message people. He said he had not seen Ellie Varna for weeks a\nnd had no\nreason to contact her about court.\nWhen shown the screenshot printout, he said the messages did not prove they came from him. He acce\npted he had\npreviously used the contact name 'T' but said anyone could have changed a display name. He denied \nbeing the\nperson speaking on the voice note, but the audio was not played in interview because the original \nfile was not\navailable.\nDefence instructions recorded\nAuthorship denied.\nShared handset / shared flat raised.\nVoice note not played in interview.\nDefendant does not accept that screenshots prove he sent the messages.\fNB-26-0721 - R v Taylor Brookes\nPage 8\n=== SECTION: EXHIBIT LOG ===\nExhibit\nDescription\nServed?\nContinuity note\nEV/1\nCropped WhatsApp screenshot printout\nYes\nReceived by email from witness; no full export.\nRV/1\nOfficer note linking number ending 4471\nYes\nBasis of belief stated; underlying subscriber record\nnot served.\nRV/2\nHistoric custody contact-number record\nNo\nReferenced in officer summary but not attached.\nEV/2\nOriginal voice note audio\nNo\nDescribed by witness; not downloaded or served.\nDR/1\nDigital attribution report\nNo\nOutstanding / not commissioned on served papers.\nThe exhibit log jumps from EV/1 to RV/1. There is no item showing a native WhatsApp export, no dev\nice report, and\nno chain showing how the original voice note was preserved.\fNB-26-0721 - R v Taylor Brookes\nPage 9\n=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===\nRef\nMaterial\nStatus\nRelevance / issue\nU1\nOriginal WhatsApp export from Ellie\nVarna's handset\nOutstanding - not served\nNeeded to verify message chronology,\ncontact number, metadata, and full\nconversation.\nU2\nOriginal 00:17 voice note audio\nOutstanding - not served\nNeeded to assess content, speaker,\ncontinuity, and whether alleged threat is\naccurately described.\nU3\nSubscriber / SIM registration or provider\nreturn for number ending 4471\nOutstanding - not served\nPhone number link to defendant remains\nunproved in served papers.\nU4\nDevice extraction or digital attribution\nreport\nNot commissioned / absent\nRelevant to authorship and shared-device\ndefence.\nU5\nEmail from witness attaching screenshots\nNot served\nRelevant to continuity and whether\nscreenshots were cropped before receipt.\nU6\nFull interview audio/transcript\nNot served\nSummary only served; wording of denial and\ninstructions should be checked.\nDisclosure officer note: 'Original digital material may be available from witness handset. No full\n phone examination\ncompleted as at 21 May 2026.'\fNB-26-0721 - R v Taylor Brookes\nPage 10\n=== SECTION: BAIL HISTORY AND DRAFT DISCLOSURE REQUEST ===\nBail condition history: no-contact condition added after charge. No alleged breach since condition\n imposed.\nDefendant maintains denial of authorship and says the condition is understood.\nDraft defence disclosure request\nPlease serve the native WhatsApp export or a proper forensic download showing the messages relie\nd on, including\ntimestamps, sender details, contact card, and any deleted/adjacent messages.\nPlease serve the original 00:17 voice note audio and any transcript or continuity record for it.\nPlease serve subscriber/provider evidence and any material relied on to link number ending 4471 \nto Taylor Brookes\nat the relevant time.\nPlease serve the email or transfer record by which the screenshots were received from Ellie Varn\na and any\ncontinuity statement concerning cropping or editing.\nPlease serve the full interview audio/transcript, not only the summary.\nSuggested safe hearing line: the defence does not accept authorship of the alleged messages on the\n served papers.\nThe issue is attribution, continuity, and original digital material.",
+      "canonical": {
+        "findings": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"INTERNAL CASE PAPERS BUNDLE\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "INTERNAL CASE PAPERS BUNDLE (bundle index) · p.1 (compiled p.1) · state: served · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": "p.1",
+            "compiledPage": "p.1",
+            "pageLabel": "p.1 (compiled p.1)",
+            "pageIdentityKnown": true,
+            "pageIdentityNote": null,
+            "provenanceCompleteness": "sufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state not_safely_confirmed; transcript state served.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "message_attribution",
+            "title": "Device, account and message authorship",
+            "summary": "device attributed to this person for Ellie\nVarna. Authorship of individual messages is not established — possession of a device or association with an account does not show who wrote a message.",
+            "unresolved": true,
+            "provenanceLine": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE === (telecoms report) · p.9 (compiled p.9) · state: not safely confirmed · defendant: Ellie\nVarna · limitation: Device possession or account association does not establish who wrote an individual message — authorship is not established on current material",
+            "defendant": "Ellie\nVarna",
+            "countNumber": null,
+            "sourcePage": "p.9",
+            "compiledPage": "p.9",
+            "pageLabel": "p.9 (compiled p.9)",
+            "pageIdentityKnown": true,
+            "pageIdentityNote": null,
+            "provenanceCompleteness": "sufficient",
+            "candidateAnchors": [],
+            "attribution": {
+              "defendants": [],
+              "coDefendantContamination": false,
+              "deviceOwner": "Ellie\nVarna",
+              "accountHolder": null,
+              "messageAuthor": null,
+              "authorshipBasis": "not_established",
+              "limitation": "Device possession or account association does not establish who wrote an individual message — authorship is not established on current material"
+            }
+          }
+        ],
+        "findingSummaries": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"INTERNAL CASE PAPERS BUNDLE\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "INTERNAL CASE PAPERS BUNDLE (bundle index) · p.1 (compiled p.1) · state: served · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state not_safely_confirmed; transcript state served.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "info",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "message_attribution",
+            "title": "Device, account and message authorship",
+            "summary": "device attributed to this person for Ellie\nVarna. Authorship of individual messages is not established — possession of a device or association with an account does not show who wrote a message.",
+            "unresolved": true,
+            "provenanceLine": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE === (telecoms report) · p.9 (compiled p.9) · state: not safely confirmed · defendant: Ellie\nVarna · limitation: Device possession or account association does not establish who wrote an individual message — authorship is not established on current material",
+            "severity": "critical",
+            "referencedAbsent": null
+          }
+        ],
+        "evidenceRows": [
+          {
+            "label": "subscriber report not",
+            "existence": "served",
+            "note": "INTERNAL CASE PAPERS BUNDLE · p.1",
+            "sourceDocumentTitle": "INTERNAL CASE PAPERS BUNDLE",
+            "sourceDocumentType": "bundle_index",
+            "sourcePage": "p.1",
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "subscriber report",
+            "existence": "missing",
+            "note": "INTERNAL CASE PAPERS BUNDLE · p.1",
+            "sourceDocumentTitle": "INTERNAL CASE PAPERS BUNDLE",
+            "sourceDocumentType": "bundle_index",
+            "sourcePage": "p.1",
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "schedule 12-13 Original download and voice note",
+            "existence": "missing",
+            "note": "INTERNAL CASE PAPERS BUNDLE · p.1",
+            "sourceDocumentTitle": "INTERNAL CASE PAPERS BUNDLE",
+            "sourceDocumentType": "bundle_index",
+            "sourcePage": "p.1",
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "date inconsistency. 4 Screenshot exhibit print 8",
+            "existence": "incomplete",
+            "note": "INTERNAL CASE PAPERS BUNDLE · p.1",
+            "sourceDocumentTitle": "INTERNAL CASE PAPERS BUNDLE",
+            "sourceDocumentType": "bundle_index",
+            "sourcePage": "p.1",
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "5 Officer digital",
+            "existence": "incomplete",
+            "note": "INTERNAL CASE PAPERS BUNDLE · p.1",
+            "sourceDocumentTitle": "INTERNAL CASE PAPERS BUNDLE",
+            "sourceDocumentType": "bundle_index",
+            "sourcePage": "p.1",
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "iginal WhatsApp export is included in",
+            "existence": "served",
+            "note": "=== SECTION: MG5 CASE SUMMARY === · p.3",
+            "sourceDocumentTitle": "=== SECTION: MG5 CASE SUMMARY ===",
+            "sourceDocumentType": "offence_report",
+            "sourcePage": "p.3",
+            "compiledPage": "p.3",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "no full audio transcript",
+            "existence": "served",
+            "note": "=== SECTION: MG5 CASE SUMMARY === · p.3",
+            "sourceDocumentTitle": "=== SECTION: MG5 CASE SUMMARY ===",
+            "sourceDocumentType": "offence_report",
+            "sourcePage": "p.3",
+            "compiledPage": "p.3",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Known limitations in",
+            "existence": "served",
+            "note": "=== SECTION: MG5 CASE SUMMARY === · p.3",
+            "sourceDocumentTitle": "=== SECTION: MG5 CASE SUMMARY ===",
+            "sourceDocumentType": "offence_report",
+            "sourcePage": "p.3",
+            "compiledPage": "p.3",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "papers — Original WhatsApp export not",
+            "existence": "served",
+            "note": "=== SECTION: MG5 CASE SUMMARY === · p.3",
+            "sourceDocumentTitle": "=== SECTION: MG5 CASE SUMMARY ===",
+            "sourceDocumentType": "offence_report",
+            "sourcePage": "p.3",
+            "compiledPage": "p.3",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Voice note original audio not",
+            "existence": "served",
+            "note": "=== SECTION: MG5 CASE SUMMARY === · p.3",
+            "sourceDocumentTitle": "=== SECTION: MG5 CASE SUMMARY ===",
+            "sourceDocumentType": "offence_report",
+            "sourcePage": "p.3",
+            "compiledPage": "p.3",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "no transcript",
+            "existence": "served",
+            "note": "=== SECTION: MG5 CASE SUMMARY === · p.3",
+            "sourceDocumentTitle": "=== SECTION: MG5 CASE SUMMARY ===",
+            "sourceDocumentType": "offence_report",
+            "sourcePage": "p.3",
+            "compiledPage": "p.3",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Subscriber data or phone attribution report not",
+            "existence": "served",
+            "note": "=== SECTION: MG5 CASE SUMMARY === · p.3",
+            "sourceDocumentTitle": "=== SECTION: MG5 CASE SUMMARY ===",
+            "sourceDocumentType": "offence_report",
+            "sourcePage": "p.3",
+            "compiledPage": "p.3",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "in served papers — Original WhatsApp export",
+            "existence": "missing",
+            "note": "=== SECTION: MG5 CASE SUMMARY === · p.3",
+            "sourceDocumentTitle": "=== SECTION: MG5 CASE SUMMARY ===",
+            "sourceDocumentType": "offence_report",
+            "sourcePage": "p.3",
+            "compiledPage": "p.3",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Voice note original audio",
+            "existence": "missing",
+            "note": "=== SECTION: MG5 CASE SUMMARY === · p.3",
+            "sourceDocumentTitle": "=== SECTION: MG5 CASE SUMMARY ===",
+            "sourceDocumentType": "offence_report",
+            "sourcePage": "p.3",
+            "compiledPage": "p.3",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Subscriber data or phone attribution report",
+            "existence": "missing",
+            "note": "=== SECTION: MG5 CASE SUMMARY === · p.3",
+            "sourceDocumentTitle": "=== SECTION: MG5 CASE SUMMARY ===",
+            "sourceDocumentType": "offence_report",
+            "sourcePage": "p.3",
+            "compiledPage": "p.3",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Cellebrite or similar extracti on report is",
+            "existence": "served",
+            "note": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6) · p.6",
+            "sourceDocumentTitle": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6)",
+            "sourceDocumentType": "custody_record",
+            "sourcePage": "p.6",
+            "compiledPage": "p.6",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "WhatsApp export Not",
+            "existence": "served",
+            "note": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6) · p.6",
+            "sourceDocumentTitle": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6)",
+            "sourceDocumentType": "custody_record",
+            "sourcePage": "p.6",
+            "compiledPage": "p.6",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Subscriber data Not",
+            "existence": "served",
+            "note": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6) · p.6",
+            "sourceDocumentTitle": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6)",
+            "sourceDocumentType": "custody_record",
+            "sourcePage": "p.6",
+            "compiledPage": "p.6",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Voice note Described but not",
+            "existence": "served",
+            "note": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6) · p.6",
+            "sourceDocumentTitle": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6)",
+            "sourceDocumentType": "custody_record",
+            "sourcePage": "p.6",
+            "compiledPage": "p.6",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "WhatsApp export",
+            "existence": "missing",
+            "note": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6) · p.6",
+            "sourceDocumentTitle": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6)",
+            "sourceDocumentType": "custody_record",
+            "sourcePage": "p.6",
+            "compiledPage": "p.6",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Subscriber data",
+            "existence": "missing",
+            "note": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6) · p.6",
+            "sourceDocumentTitle": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6)",
+            "sourceDocumentType": "custody_record",
+            "sourcePage": "p.6",
+            "compiledPage": "p.6",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Voice note Described but",
+            "existence": "missing",
+            "note": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6) · p.6",
+            "sourceDocumentTitle": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6)",
+            "sourceDocumentType": "custody_record",
+            "sourcePage": "p.6",
+            "compiledPage": "p.6",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Exhibit Description",
+            "existence": "served",
+            "note": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 8–8) · p.8",
+            "sourceDocumentTitle": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 8–8)",
+            "sourceDocumentType": "custody_record",
+            "sourcePage": "p.8",
+            "compiledPage": "p.8",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "underlying subscriber record not",
+            "existence": "served",
+            "note": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 8–8) · p.8",
+            "sourceDocumentTitle": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 8–8)",
+            "sourceDocumentType": "custody_record",
+            "sourcePage": "p.8",
+            "compiledPage": "p.8",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "report No Outstanding / not commissioned",
+            "existence": "served",
+            "note": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 8–8) · p.8",
+            "sourceDocumentTitle": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 8–8)",
+            "sourceDocumentType": "custody_record",
+            "sourcePage": "p.8",
+            "compiledPage": "p.8",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "underlying subscriber record",
+            "existence": "missing",
+            "note": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 8–8) · p.8",
+            "sourceDocumentTitle": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 8–8)",
+            "sourceDocumentType": "custody_record",
+            "sourcePage": "p.8",
+            "compiledPage": "p.8",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "DR/1 Digital attribution report No",
+            "existence": "missing",
+            "note": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 8–8) · p.8",
+            "sourceDocumentTitle": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 8–8)",
+            "sourceDocumentType": "custody_record",
+            "sourcePage": "p.8",
+            "compiledPage": "p.8",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "s handset Outstanding — not",
+            "existence": "served",
+            "note": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE === · p.9",
+            "sourceDocumentTitle": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===",
+            "sourceDocumentType": "disclosure_schedule",
+            "sourcePage": "p.9",
+            "compiledPage": "p.9",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "voice note audio Outstanding — not",
+            "existence": "served",
+            "note": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE === · p.9",
+            "sourceDocumentTitle": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===",
+            "sourceDocumentType": "disclosure_schedule",
+            "sourcePage": "p.9",
+            "compiledPage": "p.9",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Outstanding — not",
+            "existence": "served",
+            "note": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE === · p.9",
+            "sourceDocumentTitle": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===",
+            "sourceDocumentType": "disclosure_schedule",
+            "sourcePage": "p.9",
+            "compiledPage": "p.9",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "U5 Email from witness attaching screenshots Not",
+            "existence": "served",
+            "note": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE === · p.9",
+            "sourceDocumentTitle": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===",
+            "sourceDocumentType": "disclosure_schedule",
+            "sourcePage": "p.9",
+            "compiledPage": "p.9",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "U6 Full interview audio/transcript Not",
+            "existence": "served",
+            "note": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE === · p.9",
+            "sourceDocumentTitle": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===",
+            "sourceDocumentType": "disclosure_schedule",
+            "sourcePage": "p.9",
+            "compiledPage": "p.9",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Summary only",
+            "existence": "served",
+            "note": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE === · p.9",
+            "sourceDocumentTitle": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===",
+            "sourceDocumentType": "disclosure_schedule",
+            "sourcePage": "p.9",
+            "compiledPage": "p.9",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "s handset Outstanding",
+            "existence": "missing",
+            "note": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE === · p.9",
+            "sourceDocumentTitle": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===",
+            "sourceDocumentType": "disclosure_schedule",
+            "sourcePage": "p.9",
+            "compiledPage": "p.9",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "voice note audio Outstanding",
+            "existence": "missing",
+            "note": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE === · p.9",
+            "sourceDocumentTitle": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===",
+            "sourceDocumentType": "disclosure_schedule",
+            "sourcePage": "p.9",
+            "compiledPage": "p.9",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Not commissioned /",
+            "existence": "missing",
+            "note": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE === · p.9",
+            "sourceDocumentTitle": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===",
+            "sourceDocumentType": "disclosure_schedule",
+            "sourcePage": "p.9",
+            "compiledPage": "p.9",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "U5 Email from witness attaching screenshots",
+            "existence": "missing",
+            "note": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE === · p.9",
+            "sourceDocumentTitle": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===",
+            "sourceDocumentType": "disclosure_schedule",
+            "sourcePage": "p.9",
+            "compiledPage": "p.9",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "U6 Full interview audio/transcript",
+            "existence": "missing",
+            "note": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE === · p.9",
+            "sourceDocumentTitle": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===",
+            "sourceDocumentType": "disclosure_schedule",
+            "sourcePage": "p.9",
+            "compiledPage": "p.9",
+            "pageIdentityKnown": true,
+            "defendants": []
+          }
+        ],
+        "charges": [],
+        "chaseLabels": [
+          "schedule 12-13 Original download and voice note",
+          "5 Officer digital",
+          "in served papers — Original WhatsApp export",
+          "Voice note original audio",
+          "WhatsApp export",
+          "Voice note Described but",
+          "DR/1 Digital attribution report No",
+          "s handset Outstanding",
+          "voice note audio Outstanding",
+          "Not commissioned /",
+          "Interview recording"
+        ],
+        "suppressedChaseLabels": [
+          "subscriber report",
+          "date inconsistency. 4 Screenshot exhibit print 8",
+          "Subscriber data or phone attribution report",
+          "Subscriber data",
+          "underlying subscriber record",
+          "U5 Email from witness attaching screenshots",
+          "U6 Full interview audio/transcript"
+        ],
+        "documentRoles": [
+          {
+            "id": "908909cd-67bb-468f-9129-17944e4d8314::seg-0",
+            "title": "INTERNAL CASE PAPERS BUNDLE",
+            "role": "operative"
+          },
+          {
+            "id": "908909cd-67bb-468f-9129-17944e4d8314::seg-1",
+            "title": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 2–2)",
+            "role": "unknown"
+          },
+          {
+            "id": "908909cd-67bb-468f-9129-17944e4d8314::seg-2",
+            "title": "=== SECTION: MG5 CASE SUMMARY ===",
+            "role": "unknown"
+          },
+          {
+            "id": "908909cd-67bb-468f-9129-17944e4d8314::seg-3",
+            "title": "=== SECTION: MG11 STATEMENT - ELLIE VARNA ===",
+            "role": "unknown"
+          },
+          {
+            "id": "908909cd-67bb-468f-9129-17944e4d8314::seg-4",
+            "title": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 5–5)",
+            "role": "unknown"
+          },
+          {
+            "id": "908909cd-67bb-468f-9129-17944e4d8314::seg-5",
+            "title": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 6–6)",
+            "role": "unknown"
+          },
+          {
+            "id": "908909cd-67bb-468f-9129-17944e4d8314::seg-6",
+            "title": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 7–7)",
+            "role": "unknown"
+          },
+          {
+            "id": "908909cd-67bb-468f-9129-17944e4d8314::seg-7",
+            "title": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 8–8)",
+            "role": "unknown"
+          },
+          {
+            "id": "908909cd-67bb-468f-9129-17944e4d8314::seg-8",
+            "title": "=== SECTION: MG6C / UNUSED MATERIAL SCHEDULE ===",
+            "role": "unknown"
+          },
+          {
+            "id": "908909cd-67bb-468f-9129-17944e4d8314::seg-9",
+            "title": "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf (compiled pp. 10–10)",
+            "role": "unknown"
+          }
+        ],
+        "unitCount": 10,
+        "pageUnitCount": 10
+      }
+    }
+  },
+  "battleboard": {
+    "status": 200,
+    "data": {
+      "case_id": "2dcdc59d-ff44-4bc8-ac31-bd11a954a59e",
+      "generated_at": "2026-08-25T04:27:59.141Z",
+      "overall_status": "usable",
+      "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Attribution / second male / source-material pressure (conditional) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
+      "position_trust": "interview_from_file",
+      "position_notice": "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
+      "primary_route": {
+        "id": "multiparty",
+        "title": "Attribution / second male / source-material pressure",
+        "status": "conditional",
+        "route_type": "multiparty",
+        "why_it_helps": [
+          "- Subscriber data or phone attribution report not served.",
+          "The issue is attribution, continuity, and original digital material.",
+          "R v Taylor Brookes - Digital Attribution / Witness Contact",
+          "2026. No subscriber return, handset extraction, SIM registration, device attribution report, or or"
+        ],
+        "what_hurts_us": [
+          "Crown may link served source material to Taylor Brookes Complainant if proved on the papers.",
+          "Second-male evidence may assist or weaken attribution depending on what is served."
+        ],
+        "evidence_anchors": [
+          "- Subscriber data or phone attribution report not served.",
+          "The issue is attribution, continuity, and original digital material.",
+          "R v Taylor Brookes - Digital Attribution / Witness Contact",
+          "2026. No subscriber return, handset extraction, SIM registration, device attribution report, or or"
+        ],
+        "collapse_risks": [
+          "Assumed position may conflict with interview or served evidence.",
+          "Crown may link the missing/source material to Taylor Brookes Complainant if served.",
+          "Second-male evidence may assist or weaken attribution depending on what is served.",
+          "Attribution and source-material issues remain conditional until the underlying material is reviewed."
+        ],
+        "next_moves": [
+          "Build defendant-by-defendant evidence matrix from served papers.",
+          "Build count-by-count proof table before fixing trial theory.",
+          "Chase attribution material, phone ownership, vehicle ownership, and role evidence if outstanding."
+        ],
+        "hearing_line": "Ask the court to record that attribution, second-male involvement, and source-material issues remain conditional on served evidence and solicitor review.",
+        "safety_note": "Conditional on served evidence and solicitor review — do not overstate attribution or second-male points without source proof."
+      },
+      "routes": [
+        {
+          "id": "multiparty",
+          "title": "Attribution / second male / source-material pressure",
+          "status": "conditional",
+          "route_type": "multiparty",
+          "why_it_helps": [
+            "- Subscriber data or phone attribution report not served.",
+            "The issue is attribution, continuity, and original digital material.",
+            "R v Taylor Brookes - Digital Attribution / Witness Contact",
+            "2026. No subscriber return, handset extraction, SIM registration, device attribution report, or or"
+          ],
+          "what_hurts_us": [
+            "Crown may link served source material to Taylor Brookes Complainant if proved on the papers.",
+            "Second-male evidence may assist or weaken attribution depending on what is served."
+          ],
+          "evidence_anchors": [
+            "- Subscriber data or phone attribution report not served.",
+            "The issue is attribution, continuity, and original digital material.",
+            "R v Taylor Brookes - Digital Attribution / Witness Contact",
+            "2026. No subscriber return, handset extraction, SIM registration, device attribution report, or or"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Crown may link the missing/source material to Taylor Brookes Complainant if served.",
+            "Second-male evidence may assist or weaken attribution depending on what is served.",
+            "Attribution and source-material issues remain conditional until the underlying material is reviewed."
+          ],
+          "next_moves": [
+            "Build defendant-by-defendant evidence matrix from served papers.",
+            "Build count-by-count proof table before fixing trial theory.",
+            "Chase attribution material, phone ownership, vehicle ownership, and role evidence if outstanding."
+          ],
+          "hearing_line": "Ask the court to record that attribution, second-male involvement, and source-material issues remain conditional on served evidence and solicitor review.",
+          "safety_note": "Conditional on served evidence and solicitor review — do not overstate attribution or second-male points without source proof."
+        },
+        {
+          "id": "safeguards",
+          "title": "Safeguards / participation pressure",
+          "status": "conditional",
+          "route_type": "safeguards",
+          "why_it_helps": [
+            "The defendant denies sending the messages. The defence account recorded at interview is that the r"
+          ],
+          "what_hurts_us": [
+            "Safeguards may be documented as properly complied with on served papers.",
+            "Vulnerability may not be linked to the disputed issue on the Crown route."
+          ],
+          "evidence_anchors": [
+            "The defendant denies sending the messages. The defence account recorded at interview is that the r"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Custody/interview record shows safeguards were correctly followed.",
+            "Vulnerability is not linked to the disputed issue on served material.",
+            "Appropriate adult / interpreter records support the Crown account if proved."
+          ],
+          "next_moves": [
+            "Chase custody record, appropriate adult record, and interpreter record if referenced.",
+            "Record instructions on participation and understanding before fixing hearing strategy."
+          ],
+          "hearing_line": "Ask the court to record any safeguards/participation issue and direct service of relevant custody and interview records — conditional on served material.",
+          "safety_note": "Not a merits win — solicitor review required before advancing participation challenges."
+        },
+        {
+          "id": "disclosure",
+          "title": "Disclosure / source-material pressure",
+          "status": "conditional",
+          "route_type": "disclosure",
+          "why_it_helps": [
+            "Some digital material is described in schedules but not served — in original format.",
+            "- Original Whats App export not served.",
+            "- Voice note original audio not served — and no transcript served."
+          ],
+          "what_hurts_us": [
+            "Outstanding items are chased but return consistent with the Crown case.",
+            "Thin bundle with no published disclosure schedule to anchor a chase."
+          ],
+          "evidence_anchors": [
+            "Outstanding - not served",
+            "Some digital material is described in schedules but not served — in original format.",
+            "- Original Whats App export not served.",
+            "- Voice note original audio not served — and no transcript served.",
+            "CCTV full window",
+            "CCTV Continuity"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Outstanding disclosure is served and supports the Crown route.",
+            "MG6 itself lists the material as served and consistent.",
+            "Chase returns master CCTV that undermines the defence timing/ID point."
+          ],
+          "next_moves": [
+            "Ask for full MG11/source material and unused schedule detail.",
+            "Prepare hearing line on outstanding disclosure; set a timetable."
+          ],
+          "hearing_line": "The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until source material is served.",
+          "safety_note": "Disclosure pressure is not a merits win — needs solicitor review before plea or trial strategy is fixed."
+        },
+        {
+          "id": "interview",
+          "title": "Interview / account pressure",
+          "status": "conditional",
+          "route_type": "interview",
+          "why_it_helps": [
+            "This bundle contains charge material, summary, statements, exhibit references, interview summary,",
+            "The defendant denies sending the messages. The defence account recorded at interview is that the r",
+            "- Interview summary, no full audio transcript served."
+          ],
+          "what_hurts_us": [
+            "Interview admission that narrows the defence route.",
+            "No comment or limited account where bad facts are already on the file."
+          ],
+          "evidence_anchors": [
+            "This bundle contains charge material, summary, statements, exhibit references, interview summary,",
+            "Interview summary",
+            "The defendant denies sending the messages. The defence account recorded at interview is that the r",
+            "- Interview summary, no full audio transcript served."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Interview admission narrows the defence route.",
+            "Client account conflicts with served source material.",
+            "Missing disclosure is served and supports the Crown interview route."
+          ],
+          "next_moves": [
+            "Take instructions on interview stance and any prepared statement wording.",
+            "Chase interview transcript.",
+            "Chase pre-interview disclosure.",
+            "Record defence position; do not infer interview content beyond served wording."
+          ],
+          "hearing_line": "Interview/account remains conditional on served disclosure; do not overstate what the account proves at this stage.",
+          "safety_note": "Needs solicitor review — interview routes collapse quickly if admissions are clear on the papers."
+        },
+        {
+          "id": "continuity",
+          "title": "Continuity / provenance pressure",
+          "status": "conditional",
+          "route_type": "continuity",
+          "why_it_helps": [
+            "This bundle contains charge material, summary, statements, exhibit references, interview summary,",
+            "- No continuity statement for how screenshots moved from witness handset to exhibit print. NB-26-0721 - R v Taylor Brookes",
+            "before sending. Original handset available if required.' No separate continuity statement is inclu"
+          ],
+          "what_hurts_us": [
+            "Later continuity material is served and closes the gap.",
+            "Exhibit list appears complete on MG6 with no published tension."
+          ],
+          "evidence_anchors": [
+            "This bundle contains charge material, summary, statements, exhibit references, interview summary,",
+            "- No continuity statement for how screenshots moved from witness handset to exhibit print. NB-26-0721 - R v Taylor Brookes",
+            "before sending. Original handset available if required.' No separate continuity statement is inclu",
+            "Digital continuity notes"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Continuity/provenance may later be proved on served material.",
+            "Master CCTV/digital source file undermines the challenge if proved.",
+            "Lab/source report returns consistent with the Crown case."
+          ],
+          "next_moves": [
+            "Chase continuity statements and master/source files for key exhibits.",
+            "Map exhibit references across MG5/MG6 before trial theory is fixed.",
+            "Record what handling/provenance material is still outstanding."
+          ],
+          "hearing_line": "Continuity/provenance remains conditional; request outstanding source/continuity material and a timetable.",
+          "safety_note": "Do not tell the court exhibits are unusable unless the file publishes that gap."
+        }
+      ],
+      "global_collapse_risks": [
+        "CAD/999 timing may affect Crown sequence if proved on served material.",
+        "Client account conflicts with served source material.",
+        "Missing expert/source report comes back against defence.",
+        "Interview admission narrows the defence route.",
+        "Continuity/provenance may later be proved on served material."
+      ],
+      "urgent_next_moves": [],
+      "diagnostics": {
+        "corpus_markers": null,
+        "safeguards_signal_count": 1,
+        "multiparty_signal_count": 1,
+        "timeline_signal_count": 0,
+        "cps_pressure_signal_count": 0,
+        "readiness_signal_count": 0,
+        "hearing_court_signal_count": 1,
+        "backup_route_types": [
+          "safeguards",
+          "disclosure",
+          "interview",
+          "continuity"
+        ],
+        "backup_route_titles": [
+          "Safeguards / participation pressure",
+          "Disclosure / source-material pressure",
+          "Interview / account pressure",
+          "Continuity / provenance pressure"
+        ],
+        "primary_anchor_sample": [
+          "- Subscriber data or phone attribution report not served.",
+          "The issue is attribution, continuity, and original digital material.",
+          "R v Taylor Brookes - Digital Attribution / Witness Contact"
+        ],
+        "safeguards_anchor_sample": [
+          "The defendant denies sending the messages. The defence account recorded at interview is that the r"
+        ],
+        "multiparty_anchor_sample": [
+          "- Subscriber data or phone attribution report not served.",
+          "The issue is attribution, continuity, and original digital material.",
+          "R v Taylor Brookes - Digital Attribution / Witness Contact"
+        ],
+        "cps_pressure_anchor_sample": [],
+        "readiness_anchor_sample": [],
+        "hearing_court_anchor_sample": []
+      }
+    }
+  },
+  "matter": {
+    "status": 200,
+    "data": {
+      "matterState": null,
+      "station": {
+        "timeInCustodyAt": null,
+        "nextPaceReviewAt": null,
+        "interviewStance": null,
+        "stationSummary": null,
+        "groundsForArrest": null,
+        "dateOfArrest": null,
+        "allegedOffence": null,
+        "custodyNumber": null,
+        "policeStationName": null,
+        "clientInitials": null,
+        "clientYob": null,
+        "representationType": null,
+        "riskAppropriateAdult": false,
+        "riskInterpreter": false,
+        "riskMentalHealth": false,
+        "riskMedicalIssues": false,
+        "initialDisclosureReceived": null,
+        "initialDisclosureNotes": null
+      },
+      "bailReturnDate": null,
+      "bailOutcome": null,
+      "matterClosedAt": null,
+      "matterClosedReason": null,
+      "plea": null,
+      "pleaDate": null,
+      "defendantName": null,
+      "clientInitials": null,
+      "allegedOffence": null
+    }
+  },
+  "position": {
+    "status": 200,
+    "data": {
+      "ok": true,
+      "data": null,
+      "position": null
+    }
+  }
+}

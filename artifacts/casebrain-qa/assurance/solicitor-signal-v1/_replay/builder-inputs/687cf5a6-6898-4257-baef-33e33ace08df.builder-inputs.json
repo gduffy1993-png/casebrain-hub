@@ -1,0 +1,603 @@
+{
+  "bundleSource": {
+    "status": 200,
+    "data": {
+      "combinedTextLength": 8110,
+      "documentCount": 1,
+      "documentRows": [
+        {
+          "id": "4095be0b-e280-44a5-8112-62da068a4dad",
+          "name": "CB-TB-439_Davies.pdf",
+          "updatedAt": "2026-08-16T00:41:48.771268+00:00",
+          "lenExtracted": 8112,
+          "lenRaw": 8112,
+          "lenBody": 8110
+        }
+      ],
+      "health": {
+        "status": "partial",
+        "duplicateDocuments": 0,
+        "headerDetected": false,
+        "mg5Detected": false,
+        "mg6Detected": false,
+        "exhibitLineCount": 0
+      },
+      "header": {
+        "reference": null,
+        "shortTitle": null,
+        "accused": null,
+        "otherParty": null,
+        "primaryEvalHook": null,
+        "stage": "Magistrates trial listing",
+        "messiness": null,
+        "plea": null
+      },
+      "snippets": {
+        "mg5": "MG5 - case summaryCB-TB-439\nCB-TB-439 / page 3\nPolice report - case summary\nFieldEntry\nDefendantLayla Davies\nAllegationConcealing criminal property, contrary to section 327 Proceeds of Crime Act 2002\nComplainant / reporterRachel Green\nLocationQueens Parade\nHearing reference19 June 2026 at 10:00\nSummary of evidence\nThe prosecution summary alleges that Layla Davies was involved in an incident at Queens Parade on 15 May 2026. The\naccount in this summary is short and relies on material listed elsewhere in the papers.\nThe summary refers to custody record extract and to material marked as not yet supplied on the schedule. The account\nremains subject to review once the underlying material is served.\nThe narrative also mentions Jamie Vale, although the header of this bundle names only Layla Davies as the defendant for\nthese papers.\nIssues for review\n- co-defendant material mixed into primary bundle\n- Check whether the listed outstanding material has now been served.\n- Confirm the current hearing date against the listing notice.",
+        "mg6": null,
+        "mg11": "MG11 - witness statementCB-TB-439\nCB-TB-439 / page 4\nWitness statement\nFieldEntry\nURN26/563207/A\nStatement ofRachel Green\nAge if under 18Over 18\nOccupation / rolecomplainant / reporting person\nDate15 May 2026\nThis statement is true to the best of my knowledge and belief and I make it knowing that it may be placed before a court.\nI was at Queens Parade on 15 May 2026. I saw part of the incident. My view was from across the road.\nSigned: Rachel Green Date: 1 May 2026",
+        "exhibits": null
+      },
+      "caseMetadata": {
+        "defendantName": "Layla Davies",
+        "defendantSource": "extracted_cover_fallback",
+        "complainant": null,
+        "complainantSource": "unavailable",
+        "court": "Crown Court at Sheffield Current",
+        "courtSource": "extracted_cover_fallback",
+        "nextHearingRaw": "19 June 2026 at 10:00",
+        "nextHearingIso": "2026-06-19T10:00:00.000Z",
+        "nextHearingSource": "extracted_procedural_fallback",
+        "stage": "Magistrates trial listing",
+        "stageSource": "extracted_cover_fallback",
+        "offenceWording": "Primary charge:Concealing criminal property, contrary to section 327 Proceeds of Crime Act 2002",
+        "offenceDisplay": "Primary charge:Concealing criminal property, contrary to section 327 Proceeds of Crime Act 2002",
+        "offenceSource": "extracted_charge_fallback",
+        "bailStatus": null,
+        "bailStatusSource": "unavailable",
+        "defencePosition": null,
+        "defencePositionSource": "unavailable"
+      },
+      "sizeProfile": {
+        "documentCount": 1,
+        "pdfCount": 1,
+        "pageCount": null,
+        "combinedTextLength": 8110,
+        "isLargeByText": false,
+        "isLargeByPages": false
+      },
+      "frontMatterScanLength": 8104,
+      "frontMatterScan": "Case papers - bundle indexCB-TB-439\nCB-TB-439 / page 1\nCase papers\nR v Layla Davies\nDefendant:Layla Davies\nCourt:Crown Court at Sheffield\nCurrent hearing:19 June 2026 at 10:00\nStage:Magistrates trial listing\nPrimary charge:Concealing criminal property, contrary to section 327 Proceeds of Crime Act 2002\nTabDocumentPages / note\n1Cover and index1-1\n2Charge sheet / case details2-2\n3MG5 case summary3-3\n4MG11 statement4-5\n5MG11 officer or civilian statement5-6\n6CAD / custody / interview note6-6\n7MG6 schedule7-7\n8Disclosure correspondence8-9\n9Exhibit list9-10\n\nCharge / case detailsCB-TB-439\nCB-TB-439 / page 2\nCharge sheet\nFieldEntry\nURN26/649446/A\nDefendantLayla Davies\nDate of birth09/04/1991\nCourtCrown Court at Sheffield\nHearing19 June 2026 at 10:00\nOffenceConcealing criminal property, contrary to section 327 Proceeds of Crime Act 2002\n\nMG5 - case summaryCB-TB-439\nCB-TB-439 / page 3\nPolice report - case summary\nFieldEntry\nDefendantLayla Davies\nAllegationConcealing criminal property, contrary to section 327 Proceeds of Crime Act 2002\nComplainant / reporterRachel Green\nLocationQueens Parade\nHearing reference19 June 2026 at 10:00\nSummary of evidence\nThe prosecution summary alleges that Layla Davies was involved in an incident at Queens Parade on 15 May 2026. The\naccount in this summary is short and relies on material listed elsewhere in the papers.\nThe summary refers to custody record extract and to material marked as not yet supplied on the schedule. The account\nremains subject to review once the underlying material is served.\nThe narrative also mentions Jamie Vale, although the header of this bundle names only Layla Davies as the defendant for\nthese papers.\nIssues for review\nco-defendant material mixed into primary bundle\nCheck whether the listed outstanding material has now been served.\nConfirm the current hearing date against the listing notice.\n\nMG11 - witness statementCB-TB-439\nCB-TB-439 / page 4\nWitness statement\nFieldEntry\nURN26/563207/A\nStatement ofRachel Green\nAge if under 18Over 18\nOccupation / rolecomplainant / reporting person\nDate15 May 2026\nThis statement is true to the best of my knowledge and belief and I make it knowing that it may be placed before a court.\nI was at Queens Parade on 15 May 2026. I saw part of the incident. My view was from across the road.\nSigned: Rachel Green Date: 1 May 2026\n\nMG11 - witness statementCB-TB-439\nCB-TB-439 / page 5\nWitness statement\nFieldEntry\nURN26/290374/A\nStatement ofPC Lane\nAge if under 18Over 18\nOccupation / rolepolice officer / civilian witness\nDate15 May 2026\nThis statement is true to the best of my knowledge and belief and I make it knowing that it may be placed before a court.\nI was at Queens Parade on 15 May 2026. I saw part of the incident. My view was from near the shop entrance.\nSigned: PC Lane Date: 1 May 2026\n\nDigital extraction / device noteCB-TB-439\nCB-TB-439 / page 6\nDigital extraction / device note\nItemEntryNote\nDevice 1Handset seized from kitchen worktopOwnership not confirmed\nSIM / IMEINot recorded on this extractFull report awaited\nDownloadPartial logical download referred toNo full download attached\nMessagesScreenshots in officer note onlyRaw extraction absent\n\nMG6 - non-sensitive material scheduleCB-TB-439\nCB-TB-439 / page 7\nDisclosure schedule\nItemDescriptionStatusNotes\nMG6/01custody record extractServedContained in papers\nMG6/02old charge sheetServedContained in papers\nMG6/03bank schedule extractServedContained in papers\nMG6/04bank source statementsOutstandingNot in papers supplied\nMG6/05CCTV continuity logOutstandingAwaiting export\nMG6/06analyst certificateOutstandingAwaiting export\nMG6/07final medical reportOutstandingRequested from officer in case\n\nDisclosure correspondenceCB-TB-439\nCB-TB-439 / page 8\nDisclosure update email\nFromcase progression unit\nTodefence representative\nSent19 June 2026\nSubjectCB-TB-439 - disclosure update\nThe schedule has been reviewed. Further material remains outstanding and will be sent when received from police.\n\nExhibit listCB-TB-439\nCB-TB-439 / page 9\nExhibit and media references\nRefDescriptionProduced byNote\nEX/01Officer body worn video clipPC HarrisPartial clip only\nCCTV/2External camera exportStore managerExport log absent\nAB/3Photograph / injury imagePC LeeContinuity page not supplied\nDIG/4Phone screenshot bundleDC MorganRaw extraction absent\n\nCourt case management noteCB-TB-439\nCB-TB-439 / page 10\nPlea and trial preparation note\nIssueCurrent entry\nPleaNot guilty / indicated or to be confirmed\nCurrent hearing19 June 2026 at 10:00\nCourtCrown Court at Sheffield\nTrial issuesIdentification, disclosure, continuity and admissibility remain under review\nDirectionsDisclosure to be chased; defence statement date to be fixed if required\nWitnessesComplainant, police officer, civilian witness where served\n\nDisclosure noteCB-TB-439\nCB-TB-439 / page 11\nDisclosure note\nThis page is legible but appears out of sequence from the surrounding papers.\nThe page is a copy of material already seen elsewhere but uses a slightly different document date.\n\nContinuation sheetCB-TB-439\nCB-TB-439 / page 12\nContinuation sheet\nThe papers on this page refer to Layla Davies and to the incident at Queens Parade. The reference is included without a full\nsupporting exhibit.\nThis page is legible but appears out of sequence from the surrounding papers.\nThe item number on this sheet does not match the item number in the schedule.\nThe page is a copy of material already seen elsewhere but uses a slightly different document date.\n\nMedia viewing noteCB-TB-439\nCB-TB-439 / page 13\nMedia viewing note\nThe officer note records that further checks are required before the schedule can be treated as complete.\nThis page is legible but appears out of sequence from the surrounding papers.\nThe page is a copy of material already seen elsewhere but uses a slightly different document date.\n\nDisclosure noteCB-TB-439\nCB-TB-439 / page 14\nDisclosure note\nThis page is legible but appears out of sequence from the surrounding papers.\nThe page is a copy of material already seen elsewhere but uses a slightly different document date.\n\nContinuation sheetCB-TB-439\nCB-TB-439 / page 15\nContinuation sheet\nThe item number on this sheet does not match the item number in the schedule.\nA continuation marker appears at the foot of the page. The next supplied page does not continue the same document.\nThe officer note records that further checks are required before the schedule can be treated as complete.\nThe papers on this page refer to Layla Davies and to the incident at Queens Parade. The reference is included without a full\nsupporting exhibit.\n\nPage from case progression fileCB-TB-439\nCB-TB-439 / page 16\nPage from case progression file\nThis page is legible but appears out of sequence from the surrounding papers.\nThe officer note records that further checks are required before the schedule can be treated as complete.\n\nUnused material noteCB-TB-439\nCB-TB-439 / page 17\nUnused material note\nThe item number on this sheet does not match the item number in the schedule.\nThe officer note records that further checks are required before the schedule can be treated as complete.\nA continuation marker appears at the foot of the page. The next supplied page does not continue the same document.\nThe page is a copy of material already seen elsewhere but uses a slightly different document date.\n\nMedia viewing noteCB-TB-439\nCB-TB-439 / page 18\nMedia viewing note\nA continuation marker appears at the foot of the page. The next supplied page does not continue the same document.\nThe officer note records that further checks are required before the schedule can be treated as complete.\nThis page is legible but appears out of sequence from the surrounding papers.\nThe item number on this sheet does not match the item number in the schedule.\n\nContinuation sheetCB-TB-439\nCB-TB-439 / page 19\nContinuation sheet\nThe officer note records that further checks are required before the schedule can be treated as complete.\nThe papers on this page refer to Layla Davies and to the incident at Queens Parade. The reference is included without a full\nsupporting exhibit.",
+      "canonical": {
+        "findings": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"CB-TB-439_Davies.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-439_Davies.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "referenced_absent_attachment",
+            "title": "Referenced but absent attachment",
+            "summary": "\"MessagesScreenshots in officer note onlyRaw extraction absent\" is referenced in narrative but is absent on file.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-439_Davies.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: absent · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [
+              {
+                "sourceDocumentTitle": "CB-TB-439_Davies.pdf",
+                "sourcePage": null,
+                "compiledPage": null,
+                "pageIdentityKnown": false
+              }
+            ],
+            "attribution": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "hearing_notice_lifecycle",
+            "title": "Hearing notice lifecycle",
+            "summary": "Hearing notice: CB-TB-439_Davies.pdf.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-439_Davies.pdf (hearing notice) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [],
+            "attribution": null
+          }
+        ],
+        "findingSummaries": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"CB-TB-439_Davies.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-439_Davies.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "referenced_absent_attachment",
+            "title": "Referenced but absent attachment",
+            "summary": "\"MessagesScreenshots in officer note onlyRaw extraction absent\" is referenced in narrative but is absent on file.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-439_Davies.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: absent · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "critical",
+            "referencedAbsent": {
+              "referencedLabel": "MessagesScreenshots in officer note onlyRaw extraction absent"
+            }
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "info",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "hearing_notice_lifecycle",
+            "title": "Hearing notice lifecycle",
+            "summary": "Hearing notice: CB-TB-439_Davies.pdf.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-439_Davies.pdf (hearing notice) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "info",
+            "referencedAbsent": null
+          }
+        ],
+        "evidenceRows": [
+          {
+            "label": "primary bundle — Check whether the listed",
+            "existence": "missing",
+            "note": "CB-TB-439_Davies.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-439_Davies.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "MessagesScreenshots in officer note onlyRaw extraction",
+            "existence": "missing",
+            "note": "CB-TB-439_Davies.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-439_Davies.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Further material",
+            "existence": "missing",
+            "note": "CB-TB-439_Davies.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-439_Davies.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "clip only CCTV/2External camera exportStore managerExport log",
+            "existence": "missing",
+            "note": "CB-TB-439_Davies.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-439_Davies.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "not supplied DIG/4Phone screenshot bundleDC MorganRaw extraction",
+            "existence": "missing",
+            "note": "CB-TB-439_Davies.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-439_Davies.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          }
+        ],
+        "charges": [],
+        "chaseLabels": [
+          "primary bundle — Check whether the listed",
+          "MessagesScreenshots in officer note onlyRaw extraction",
+          "Further material",
+          "clip only CCTV/2External camera exportStore managerExport log",
+          "not supplied DIG/4Phone screenshot bundleDC MorganRaw extraction",
+          "MessagesScreenshots in officer note onlyRaw extraction absent"
+        ],
+        "suppressedChaseLabels": [],
+        "documentRoles": [
+          {
+            "id": "4095be0b-e280-44a5-8112-62da068a4dad",
+            "title": "CB-TB-439_Davies.pdf",
+            "role": "operative"
+          }
+        ],
+        "unitCount": 1,
+        "pageUnitCount": 1
+      }
+    }
+  },
+  "battleboard": {
+    "status": 200,
+    "data": {
+      "case_id": "687cf5a6-6898-4257-baef-33e33ace08df",
+      "generated_at": "2026-08-25T04:28:01.069Z",
+      "overall_status": "usable",
+      "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Causation / injury route pressure (conditional) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
+      "position_trust": "interview_from_file",
+      "position_notice": "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
+      "primary_route": {
+        "id": "causation",
+        "title": "Causation / injury route pressure",
+        "status": "conditional",
+        "route_type": "causation",
+        "why_it_helps": [
+          "AB/3 Photograph / injury image PC Lee Continuity page not supplied"
+        ],
+        "what_hurts_us": [
+          "Clear injury mechanism matching the Crown account."
+        ],
+        "evidence_anchors": [
+          "AB/3 Photograph / injury image PC Lee Continuity page not supplied"
+        ],
+        "collapse_risks": [
+          "Assumed position may conflict with interview or served evidence.",
+          "Medical evidence may support Crown causation if proved on served papers.",
+          "Missing expert/source report may return against the defence route.",
+          "Complainant injury account may appear consistent across MG11 and medical material if proved."
+        ],
+        "next_moves": [
+          "Chase medical/expert/source reports listed on MG6.",
+          "Take instructions on injury mechanism dispute only if supported.",
+          "Separate injury causation from identification/timing theory."
+        ],
+        "hearing_line": "Causation/injury level is conditional on served medical material; ask for outstanding expert/source disclosure.",
+        "safety_note": "Needs solicitor review before running causation at hearing or in plea discussions."
+      },
+      "routes": [
+        {
+          "id": "causation",
+          "title": "Causation / injury route pressure",
+          "status": "conditional",
+          "route_type": "causation",
+          "why_it_helps": [
+            "AB/3 Photograph / injury image PC Lee Continuity page not supplied"
+          ],
+          "what_hurts_us": [
+            "Clear injury mechanism matching the Crown account."
+          ],
+          "evidence_anchors": [
+            "AB/3 Photograph / injury image PC Lee Continuity page not supplied"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Medical evidence may support Crown causation if proved on served papers.",
+            "Missing expert/source report may return against the defence route.",
+            "Complainant injury account may appear consistent across MG11 and medical material if proved."
+          ],
+          "next_moves": [
+            "Chase medical/expert/source reports listed on MG6.",
+            "Take instructions on injury mechanism dispute only if supported.",
+            "Separate injury causation from identification/timing theory."
+          ],
+          "hearing_line": "Causation/injury level is conditional on served medical material; ask for outstanding expert/source disclosure.",
+          "safety_note": "Needs solicitor review before running causation at hearing or in plea discussions."
+        },
+        {
+          "id": "multiparty",
+          "title": "Separate defendant / count-specific pressure",
+          "status": "conditional",
+          "route_type": "multiparty",
+          "why_it_helps": [
+            "- co-defendant material mixed into primary bundle"
+          ],
+          "what_hurts_us": [
+            "Shared evidence, joint activity, admissions, or attribution evidence may connect defendants or counts on the papers.",
+            "Co-defendant material may be admissible and consistent with the Crown case if proved."
+          ],
+          "evidence_anchors": [
+            "- co-defendant material mixed into primary bundle"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Crown can tie each item to this defendant and count on served material.",
+            "Co-defendant evidence is admissible and consistent if proved.",
+            "Joint enterprise or shared conduct wording undermines separate-role pressure."
+          ],
+          "next_moves": [
+            "Build defendant-by-defendant evidence matrix from served papers.",
+            "Build count-by-count proof table before fixing trial theory.",
+            "Chase attribution material, phone ownership, vehicle ownership, and role evidence if outstanding."
+          ],
+          "hearing_line": "Ask the court to record that case management directions must separate defendant and count issues — conditional on served evidence and solicitor review.",
+          "safety_note": "Conditional on served evidence and solicitor review — do not overstate separate-role points."
+        },
+        {
+          "id": "disclosure",
+          "title": "Disclosure / source-material pressure",
+          "status": "conditional",
+          "route_type": "disclosure",
+          "why_it_helps": [
+            "- Check whether the listed outstanding material has now been served."
+          ],
+          "what_hurts_us": [
+            "Outstanding items are chased but return consistent with the Crown case.",
+            "Thin bundle with no published disclosure schedule to anchor a chase."
+          ],
+          "evidence_anchors": [
+            "- Check whether the listed outstanding material has now been served.",
+            "Unused material note",
+            "CCTV full window",
+            "CCTV Continuity",
+            "Body Worn Video (BWV)",
+            "999 Call Audio"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Outstanding disclosure is served and supports the Crown route.",
+            "MG6 itself lists the material as served and consistent.",
+            "Chase returns master CCTV that undermines the defence timing/ID point."
+          ],
+          "next_moves": [
+            "Ask for full MG11/source material and unused schedule detail.",
+            "Prepare hearing line on outstanding disclosure; set a timetable."
+          ],
+          "hearing_line": "The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until source material is served.",
+          "safety_note": "Disclosure pressure is not a merits win — needs solicitor review before plea or trial strategy is fixed."
+        },
+        {
+          "id": "identity",
+          "title": "Identification / visual ID pressure",
+          "status": "conditional",
+          "route_type": "identity",
+          "why_it_helps": [
+            "CCTV/2 External camera export Store manager Export log absent",
+            "EX/01 Officer body worn video clip PC Harris Partial clip only"
+          ],
+          "what_hurts_us": [
+            "Short, confident witness ID on served papers.",
+            "Clear CCTV/BWV sequence that matches Crown timing."
+          ],
+          "evidence_anchors": [
+            "CCTV/2 External camera export Store manager Export log absent",
+            "EX/01 Officer body worn video clip PC Harris Partial clip only"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "ID parade or formal identification procedure supports the Crown route if proved."
+          ],
+          "next_moves": [
+            "Take instructions on observation conditions and any ID dispute."
+          ],
+          "hearing_line": "On the file wording, identification remains conditional until served CCTV/source material and witness accounts are reconciled; do not overstate.",
+          "safety_note": "Needs solicitor review before any positive ID challenge is advanced at court."
+        },
+        {
+          "id": "timeline",
+          "title": "Timeline / sequence / alibi pressure",
+          "status": "conditional",
+          "route_type": "timeline",
+          "why_it_helps": [
+            "This page is legible but appears out of sequence from the surrounding papers."
+          ],
+          "what_hurts_us": [
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Client account that conflicts with served source times."
+          ],
+          "evidence_anchors": [
+            "This page is legible but appears out of sequence from the surrounding papers."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Receipt/phone records undermine the defence timing account."
+          ],
+          "next_moves": [
+            "Take instructions on timing conflict and any alibi account.",
+            "Record defence position on sequence before the next hearing."
+          ],
+          "hearing_line": "Timing/sequence remains conditional on served CAD/999/CCTV material; ask the court to record what source material is still outstanding.",
+          "safety_note": "Do not present a firm alibi unless instructions and served material support it."
+        },
+        {
+          "id": "continuity",
+          "title": "Continuity / provenance pressure",
+          "status": "conditional",
+          "route_type": "continuity",
+          "why_it_helps": [
+            "MG6/05 CCTV Continuity log Outstanding Awaiting export",
+            "Trial issues Identification, disclosure, continuity and admissibility remain under review"
+          ],
+          "what_hurts_us": [
+            "Later continuity material is served and closes the gap.",
+            "Exhibit list appears complete on MG6 with no published tension."
+          ],
+          "evidence_anchors": [
+            "MG6/05 CCTV Continuity log Outstanding Awaiting export",
+            "Trial issues Identification, disclosure, continuity and admissibility remain under review"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Continuity/provenance may later be proved on served material.",
+            "Master CCTV/digital source file undermines the challenge if proved.",
+            "Lab/source report returns consistent with the Crown case."
+          ],
+          "next_moves": [
+            "Chase continuity statements and master/source files for key exhibits.",
+            "Map exhibit references across MG5/MG6 before trial theory is fixed.",
+            "Record what handling/provenance material is still outstanding."
+          ],
+          "hearing_line": "Continuity/provenance remains conditional; request outstanding source/continuity material and a timetable.",
+          "safety_note": "Do not tell the court exhibits are unusable unless the file publishes that gap."
+        },
+        {
+          "id": "interview",
+          "title": "Interview / account pressure",
+          "status": "conditional",
+          "route_type": "interview",
+          "why_it_helps": [
+            "6 CAD / custody / interview note6-6",
+            "Interview position may create conditional pressure if the Crown relies on account wording but disclosure limits how it can be tested.",
+            "May assist only where served interview material and MG5/MG6 can be reconciled — provisional until then."
+          ],
+          "what_hurts_us": [
+            "Interview admission that narrows the defence route.",
+            "No comment or limited account where bad facts are already on the file."
+          ],
+          "evidence_anchors": [
+            "6 CAD / custody / interview note6-6"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Any interview admission, if served and reviewed, could narrow the defence route.",
+            "Client account conflicts with served source material."
+          ],
+          "next_moves": [
+            "Take instructions on interview stance and any prepared statement wording.",
+            "Chase pre-interview disclosure.",
+            "Record defence position; do not infer interview content beyond served wording."
+          ],
+          "hearing_line": "",
+          "safety_note": "Needs solicitor review — interview routes collapse quickly if admissions are clear on the papers."
+        }
+      ],
+      "global_collapse_risks": [
+        "CAD/999 timing may affect Crown sequence if proved on served material.",
+        "Client account conflicts with served source material.",
+        "Missing expert/source report comes back against defence.",
+        "Any interview admission, if served and reviewed, could narrow the defence route.",
+        "Continuity/provenance may later be proved on served material."
+      ],
+      "urgent_next_moves": [
+        "Chase/record: Custody Record / Custody CCTV"
+      ],
+      "diagnostics": {
+        "corpus_markers": null,
+        "safeguards_signal_count": 0,
+        "multiparty_signal_count": 1,
+        "timeline_signal_count": 2,
+        "cps_pressure_signal_count": 0,
+        "readiness_signal_count": 0,
+        "hearing_court_signal_count": 2,
+        "backup_route_types": [
+          "multiparty",
+          "disclosure",
+          "identity",
+          "timeline",
+          "continuity",
+          "interview"
+        ],
+        "backup_route_titles": [
+          "Separate defendant / count-specific pressure",
+          "Disclosure / source-material pressure",
+          "Identification / visual ID pressure",
+          "Timeline / sequence / alibi pressure",
+          "Continuity / provenance pressure",
+          "Interview / account pressure"
+        ],
+        "primary_anchor_sample": [
+          "MG6/07final medical report Outstanding Requested from officer in case",
+          "AB/3Photograph / injury imagePC Lee Continuity page not supplied"
+        ],
+        "safeguards_anchor_sample": [],
+        "multiparty_anchor_sample": [
+          "- co-defendant material mixed into primary bundle"
+        ],
+        "cps_pressure_anchor_sample": [],
+        "readiness_anchor_sample": [],
+        "hearing_court_anchor_sample": []
+      }
+    }
+  },
+  "matter": {
+    "status": 200,
+    "data": {
+      "matterState": null,
+      "station": {
+        "timeInCustodyAt": null,
+        "nextPaceReviewAt": null,
+        "interviewStance": null,
+        "stationSummary": null,
+        "groundsForArrest": null,
+        "dateOfArrest": null,
+        "allegedOffence": null,
+        "custodyNumber": null,
+        "policeStationName": null,
+        "clientInitials": null,
+        "clientYob": null,
+        "representationType": null,
+        "riskAppropriateAdult": false,
+        "riskInterpreter": false,
+        "riskMentalHealth": false,
+        "riskMedicalIssues": false,
+        "initialDisclosureReceived": null,
+        "initialDisclosureNotes": null
+      },
+      "bailReturnDate": null,
+      "bailOutcome": null,
+      "matterClosedAt": null,
+      "matterClosedReason": null,
+      "plea": null,
+      "pleaDate": null,
+      "defendantName": "Layla Davies",
+      "clientInitials": null,
+      "allegedOffence": null
+    }
+  },
+  "position": {
+    "status": 200,
+    "data": {
+      "ok": true,
+      "data": null,
+      "position": null
+    }
+  }
+}

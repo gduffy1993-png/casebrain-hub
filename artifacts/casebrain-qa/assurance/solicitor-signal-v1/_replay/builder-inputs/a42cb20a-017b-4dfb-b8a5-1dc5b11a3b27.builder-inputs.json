@@ -1,0 +1,703 @@
+{
+  "bundleSource": {
+    "status": 200,
+    "data": {
+      "combinedTextLength": 10816,
+      "documentCount": 1,
+      "documentRows": [
+        {
+          "id": "d6101df2-59de-4e07-9933-44b089a048ef",
+          "name": "CB-TB-1925_Tobin.pdf",
+          "updatedAt": "2026-08-16T00:41:44.028988+00:00",
+          "lenExtracted": 10818,
+          "lenRaw": 10818,
+          "lenBody": 10816
+        }
+      ],
+      "health": {
+        "status": "partial",
+        "duplicateDocuments": 0,
+        "headerDetected": false,
+        "mg5Detected": false,
+        "mg6Detected": false,
+        "exhibitLineCount": 0
+      },
+      "header": {
+        "reference": null,
+        "shortTitle": null,
+        "accused": null,
+        "otherParty": null,
+        "primaryEvalHook": null,
+        "stage": "Crown Court First Hearing",
+        "messiness": null,
+        "plea": null
+      },
+      "snippets": {
+        "mg5": "MG5 case summary\nTab 3    Witness material\nTab 4    Tab 4 - not included in current pack\nTab 5    Custody / interview or CAD extract\nTab 6    Disclosure schedule\nTab 7    Exhibits and service notes\nTab 8    Late service email\nDefendantImaniTobinDOB25/02/2002 CourtHearingNorthbridgeMagistrates'Court08September202610:45\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 2\nCharge Sheet\nFieldValueFieldValue\nDefendantImani TobinDOB25/02/2002\nCourtNorthbridge Magistrates' CourtURNNB/479865/25\nHearing08 September 2026 10:45Officer in caseDC Ashton\nOffence\nWounding with intent to cause grievous bodily harm, contrary to section 18 of the Offences\nagainst the Person Act 1861\nParticulars: It is alleged that on 3 June 2026 at The Duke public house, Imani Tobin committed the\noffence described above. The papers include only the material listed in the schedule and should be\nread with the disclosure position below.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 3\nMG5 Case Summary\nDefendant:Imani Tobin\nOffence family:s18\nPolice were called to The Duke public house near Bridge Road. The prosecution summary states that\nImani Tobin was identified as a suspect after witness accounts and material later reviewed by\nofficers. The file is not complete and the service position should be checked against the disclosure\nschedule. Issue requiring review: corrected indictment conflicts with old charge sheet.\nIssues for review\n- Confirm current charge wording against any later court document.\n- Check served material against MG6 schedule before relying on CCTV, BWV, CAD or phone\nevidence.\n- Consider whether the interview record or transcript is complete enough to rely on any\naccount.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 4\nMG6 Schedule\nItemDescriptionStatusNote\nS1First witness statementServedRelied upon subject to content\nS2MG5 case summaryServedRelied upon subject to content\nU1BWV clipOutstandingNeeded for continuity\nU2Forensic or medical reportPart copy onlyNeeded before safe reliance\nU3Full interview transcriptOutstandingNeeded before safe reliance\nU9Document marked served in MG5 but absent from\nbundle\nConflictCheck service record\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 5\nExhibit List\nRefDescriptionService\nTEL/5Body worn videoreferenced only\nTEL/5Photo stillreferenced only\nTEL/5Medical noteserved\nCCTV/3Body worn videonot served\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 6",
+        "mg6": null,
+        "mg11": "MG11 Witness Statement\nWitness Statement\nFieldValueFieldValue\nURNNB/479865/25Statement ofOlivia Reed\nAge if under 18Over 18OccupationParamedic\nI make this statement from my own recollection. I was at The Duke public house when I noticed an\nincident involving a person later said to be Imani Tobin. I cannot identify every person present.\nThe time I gave in my first account was approximate. I remember the event as happening a few minutes\nearlier than the time printed on the incident log. I did not see the whole incident from start to\nfinish. There was shouting and movement in the area. I saw contact but I cannot say from my position\nwhat caused the injury described later.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 18\nCustody and Interview Extract\nTimeEntry\n21:14Call received from member of public; location recorded as Br\n21:18Unitassigned;callerdescribessuspectbyclothingonly\n21:27Officer arrives; parties separated\n21:42Arrest recorded; grounds noted briefly\nCustody record includes redactions. The section around solicitor consultation is incomplete on the\ncopy supplied.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 19\nMG6 Schedule\nItemDescriptionStatusNote\nS1MG5 case summaryServedRelied upon subject to content\nS2Charge sheetServedRelied upon subject to content\nU1Phone extraction reportListed - not servedNeeded for attribution\nU2Continuity statementOutstandingNeeded for continuity\nU3Full CCTV masterPart copy onlyNeeded for attribution\nU9Document marked served in MG5 but absent from\nbundle\nConflictCheck service record\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 20\nMG11 Witness Statement\nWitness Statement\nFieldValueFieldValue\nURNNB/479865/25Statement ofSophie Allan\nAge if under 18Over 18OccupationRetail assistant\nI make this statement from my own recollection. I was at The Duke public house when I noticed an\nincident involving a person later said to be Imani Tobin. I cannot identify every person present.\nThe time I gave in my first account was approximate. There was shouting and movement in the area. I\nsaw contact but I cannot say from my position what caused the injury described later.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 21\nMG11 Witness Statement\nWitness Statement\nFieldValueFieldValue\nURNNB/479865/25Statement ofOlivia Reed\nAge if under 18Over 18OccupationStudent\nI make this statement from my own recollection. I was at The Duke public house when I noticed an\nincident involving a person later said to be Imani Tobin. I cannot identify every person present.\nThe time I gave in my first account was approximate. I remember the event as happening a few minutes\nearlier than the time printed on the incident log. I did not see the whole incident from start to\nfinish. There was shouting and movement in the area. I saw contact but I cannot say from my position\nwhat caused the injury described later.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 22\nCharge Sheet\nFieldValueFieldValue\nDefendantImani TobinDOB25/02/2002\nCourtNorthbridge Magistrates' CourtURNNB/479865/25\nHearing08 September 2026 10:45Officer in casePC Ellis\nOffence\nWounding with intent to cause grievous bodily harm, contrary to section 18 of the Offences\nagainst the Person Act 1861\nParticulars: It is alleged that on 3 June 2026 at The Duke public house, Imani Tobin committed the\noffence described above. The papers include only the material listed in the schedule and should be\nread with the disclosure position below.\nOlder administrative note: earlier charge wording on a previous printout should be checked against\nthe current charge page and any later indictment.",
+        "exhibits": null
+      },
+      "caseMetadata": {
+        "defendantName": "Imani Tobin",
+        "defendantSource": "extracted_cover_fallback",
+        "complainant": null,
+        "complainantSource": "unavailable",
+        "court": "Northbridge Magistrates' Court",
+        "courtSource": "extracted_cover_fallback",
+        "nextHearingRaw": "08 September 2026 10:45",
+        "nextHearingIso": "2026-09-08T10:45:00.000Z",
+        "nextHearingSource": "extracted_procedural_fallback",
+        "stage": "Crown",
+        "stageSource": "extracted_cover_fallback",
+        "offenceWording": "Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861",
+        "offenceDisplay": "Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861",
+        "offenceSource": "extracted_charge_fallback",
+        "bailStatus": null,
+        "bailStatusSource": "unavailable",
+        "defencePosition": null,
+        "defencePositionSource": "unavailable"
+      },
+      "sizeProfile": {
+        "documentCount": 1,
+        "pdfCount": 1,
+        "pageCount": null,
+        "combinedTextLength": 10816,
+        "isLargeByText": false,
+        "isLargeByPages": false
+      },
+      "frontMatterScanLength": 10810,
+      "frontMatterScan": "Northbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 1\nCase Papers\nR v Imani Tobin\nDefendant:Imani Tobin\nDate of birth:25/02/2002\nCourt:Northbridge Magistrates' Court\nHearing:Hearing08September20261045\nMatter ref:CB-TB-1925\nStage:Crown Court First Hearing\nIndex\nTab 1    Charge sheet / initial details\nTab 2    MG5 case summary\nTab 3    Witness material\nTab 4    Tab 4 - not included in current pack\nTab 5    Custody / interview or CAD extract\nTab 6    Disclosure schedule\nTab 7    Exhibits and service notes\nTab 8    Late service email\nDefendantImaniTobinDOB25/02/2002 CourtHearingNorthbridgeMagistrates'Court08September202610:45\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 2\nCharge Sheet\nFieldValueFieldValue\nDefendantImani TobinDOB25/02/2002\nCourtNorthbridge Magistrates' CourtURNNB/479865/25\nHearing08 September 2026 10:45Officer in caseDC Ashton\nOffence\nWounding with intent to cause grievous bodily harm, contrary to section 18 of the Offences\nagainst the Person Act 1861\nParticulars: It is alleged that on 3 June 2026 at The Duke public house, Imani Tobin committed the\noffence described above. The papers include only the material listed in the schedule and should be\nread with the disclosure position below.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 3\nMG5 Case Summary\nDefendant:Imani Tobin\nOffence family:s18\nPolice were called to The Duke public house near Bridge Road. The prosecution summary states that\nImani Tobin was identified as a suspect after witness accounts and material later reviewed by\nofficers. The file is not complete and the service position should be checked against the disclosure\nschedule. Issue requiring review: corrected indictment conflicts with old charge sheet.\nIssues for review\nConfirm current charge wording against any later court document.\nCheck served material against MG6 schedule before relying on CCTV, BWV, CAD or phone\nevidence.\nConsider whether the interview record or transcript is complete enough to rely on any\naccount.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 4\nMG6 Schedule\nItemDescriptionStatusNote\nS1First witness statementServedRelied upon subject to content\nS2MG5 case summaryServedRelied upon subject to content\nU1BWV clipOutstandingNeeded for continuity\nU2Forensic or medical reportPart copy onlyNeeded before safe reliance\nU3Full interview transcriptOutstandingNeeded before safe reliance\nU9Document marked served in MG5 but absent from\nbundle\nConflictCheck service record\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 5\nExhibit List\nRefDescriptionService\nTEL/5Body worn videoreferenced only\nTEL/5Photo stillreferenced only\nTEL/5Medical noteserved\nCCTV/3Body worn videonot served\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 6\nMG11 Witness Statement\nWitness Statement\nFieldValueFieldValue\nURNNB/479865/25Statement ofThomas Green\nAge if under 18Over 18OccupationRetail assistant\nI make this statement from my own recollection. I was at The Duke public house when I noticed an\nincident involving a person later said to be Imani Tobin. I cannot identify every person present.\nThe time I gave in my first account was approximate. There was shouting and movement in the area. I\nsaw contact but I cannot say from my position what caused the injury described later.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 7\nExhibit List\nRefDescriptionService\nTEL/5Medical notepartial\nBWV/4Photo stillnot served\nAB/2Photo stillnot served\nCCTV/3Property continuity noteserved\nTEL/5Property continuity notereferenced only\nAB/2Phone download referencereferenced only\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 8\nBanking Material Note\nBank or account material is summarised by the reviewing officer. Only partial statements are\nattached. The loss figure differs between the police summary and witness account.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 9\nDisclosure Email\nFrom: cps.review@north.example\nTo: defence.duty@north.example\nSubject: R v Tobin - service update\nFurther material is being chased. The attachment referred to in the previous message was not\nincluded with that message. Please treat the schedule as the current service position unless a\nlater court order states otherwise.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 10\nPlea and Trial Preparation Hearing Form\nThe King v Imani Tobin\nCount 1\nStatement of offence: Wounding with intent to cause grievous bodily harm, contrary to\nsection 18 of the Offences against the Person Act 1861\nParticulars of offence: Imani Tobin is alleged to have committed the offence at or near The\nDuke public house between the dates stated on the charge papers. Any earlier administrative\ncharge printout should be checked against this document.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 11\nCharge Sheet\nFieldValueFieldValue\nDefendantImani TobinDOB25/02/2002\nCourtNorthbridge Magistrates' CourtURNNB/479865/25\nHearing08 September 2026 10:45Officer in casePC Rowe\nOffence\nWounding with intent to cause grievous bodily harm, contrary to section 18 of the Offences\nagainst the Person Act 1861\nParticulars: It is alleged that on 12 May 2026 at The Duke public house, Imani Tobin committed the\noffence described above. The papers include only the material listed in the schedule and should be\nread with the disclosure position below.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 12\nBanking Material Note\nBank or account material is summarised by the reviewing officer. Only partial statements are\nattached. The loss figure differs between the police summary and witness account.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 13\nDigital Material Note\nDevice recorded as TEL/5. The note refers to a handset recovered near Bridge Road. Subscriber\nand SIM evidence are not complete. The extraction listed here is partial and should not be\ntreated as attribution without the underlying report.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 14\nCourt Listing Notice\nThe King v Imani Tobin\nCount 1\nStatement of offence: Wounding with intent to cause grievous bodily harm, contrary to\nsection 18 of the Offences against the Person Act 1861\nParticulars of offence: Imani Tobin is alleged to have committed the offence at or near The\nDuke public house between the dates stated on the charge papers. Any earlier administrative\ncharge printout should be checked against this document.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 15\nCAD / 999 Extract\nTimeEntry\n21:14Call received from member of public; location recorded as Br\n21:18Unitassigned;callerdescribessuspectbyclothingonly\n21:27Officer arrives; parties separated\n21:42Arrest recorded; grounds noted briefly\nCustody record includes redactions. The section around solicitor consultation is incomplete on the\ncopy supplied.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 16\nService Note\nRefDescriptionService\nCCTV/3Property continuity notereferenced only\nTEL/5Photo stillreferenced only\nBWV/4Property continuity notereferenced only\nTEL/5Medical notepartial\nTEL/5Body worn videoserved\nCCTV/3CCTV clipreferenced only\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 17\nMG11 Witness Statement\nWitness Statement\nFieldValueFieldValue\nURNNB/479865/25Statement ofOlivia Reed\nAge if under 18Over 18OccupationParamedic\nI make this statement from my own recollection. I was at The Duke public house when I noticed an\nincident involving a person later said to be Imani Tobin. I cannot identify every person present.\nThe time I gave in my first account was approximate. I remember the event as happening a few minutes\nearlier than the time printed on the incident log. I did not see the whole incident from start to\nfinish. There was shouting and movement in the area. I saw contact but I cannot say from my position\nwhat caused the injury described later.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 18\nCustody and Interview Extract\nTimeEntry\n21:14Call received from member of public; location recorded as Br\n21:18Unitassigned;callerdescribessuspectbyclothingonly\n21:27Officer arrives; parties separated\n21:42Arrest recorded; grounds noted briefly\nCustody record includes redactions. The section around solicitor consultation is incomplete on the\ncopy supplied.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 19\nMG6 Schedule\nItemDescriptionStatusNote\nS1MG5 case summaryServedRelied upon subject to content\nS2Charge sheetServedRelied upon subject to content\nU1Phone extraction reportListed - not servedNeeded for attribution\nU2Continuity statementOutstandingNeeded for continuity\nU3Full CCTV masterPart copy onlyNeeded for attribution\nU9Document marked served in MG5 but absent from\nbundle\nConflictCheck service record\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 20\nMG11 Witness Statement\nWitness Statement\nFieldValueFieldValue\nURNNB/479865/25Statement ofSophie Allan\nAge if under 18Over 18OccupationRetail assistant\nI make this statement from my own recollection. I was at The Duke public house when I noticed an\nincident involving a person later said to be Imani Tobin. I cannot identify every person present.\nThe time I gave in my first account was approximate. There was shouting and movement in the area. I\nsaw contact but I cannot say from my position what caused the injury described later.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 21\nMG11 Witness Statement\nWitness Statement\nFieldValueFieldValue\nURNNB/479865/25Statement ofOlivia Reed\nAge if under 18Over 18OccupationStudent\nI make this statement from my own recollection. I was at The Duke public house when I noticed an\nincident involving a person later said to be Imani Tobin. I cannot identify every person present.\nThe time I gave in my first account was approximate. I remember the event as happening a few minutes\nearlier than the time printed on the incident log. I did not see the whole incident from start to\nfinish. There was shouting and movement in the area. I saw contact but I cannot say from my position\nwhat caused the injury described later.\n\nNorthbridge PoliceURN NB/479865/25 | CB-TB-1925 | Page 22\nCharge Sheet\nFieldValueFieldValue\nDefendantImani TobinDOB25/02/2002\nCourtNorthbridge Magistrates' CourtURNNB/479865/25\nHearing08 September 2026 10:45Officer in casePC Ellis\nOffence\nWounding with intent to cause grievous bodily harm, contrary to section 18 of the Offences\nagainst the Person Act 1861\nParticulars: It is alleged that on 3 June 2026 at The Duke public house, Imani Tobin committed the\noffence described above. The papers include only the material listed in the schedule and should be\nread with the disclosure position below.\nOlder administrative note: earlier charge wording on a previous printout should be checked against\nthe current charge page and any later indictment.",
+      "canonical": {
+        "findings": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"CB-TB-1925_Tobin.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-1925_Tobin.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state not_safely_confirmed; transcript state served.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "hearing_notice_lifecycle",
+            "title": "Hearing notice lifecycle",
+            "summary": "Hearing notice: CB-TB-1925_Tobin.pdf.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-1925_Tobin.pdf (hearing notice) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [],
+            "attribution": null
+          }
+        ],
+        "findingSummaries": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"CB-TB-1925_Tobin.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-1925_Tobin.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state not_safely_confirmed; transcript state served.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "hearing_notice_lifecycle",
+            "title": "Hearing notice lifecycle",
+            "summary": "Hearing notice: CB-TB-1925_Tobin.pdf.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-1925_Tobin.pdf (hearing notice) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "info",
+            "referencedAbsent": null
+          }
+        ],
+        "evidenceRows": [
+          {
+            "label": "against any later court document. — Check",
+            "existence": "served",
+            "note": "CB-TB-1925_Tobin.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1925_Tobin.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Imani Tobin\nDate"
+            ]
+          },
+          {
+            "label": "interview transcriptOutstandingNeeded before safe reliance U9Document marked",
+            "existence": "served",
+            "note": "CB-TB-1925_Tobin.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1925_Tobin.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Imani Tobin\nDate"
+            ]
+          },
+          {
+            "label": "stillreferenced only TEL/5Medical noteserved CCTV/3Body worn videonot",
+            "existence": "served",
+            "note": "CB-TB-1925_Tobin.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1925_Tobin.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Imani Tobin\nDate"
+            ]
+          },
+          {
+            "label": "Exhibit List RefDescriptionService TEL/5Medical notepartial BWV/4Photo stillnot",
+            "existence": "served",
+            "note": "CB-TB-1925_Tobin.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1925_Tobin.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Imani Tobin\nDate"
+            ]
+          },
+          {
+            "label": "AB/2Photo stillnot",
+            "existence": "served",
+            "note": "CB-TB-1925_Tobin.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1925_Tobin.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Imani Tobin\nDate"
+            ]
+          },
+          {
+            "label": "masterPart copy onlyNeeded for attribution U9Document marked",
+            "existence": "served",
+            "note": "CB-TB-1925_Tobin.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1925_Tobin.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Imani Tobin\nDate"
+            ]
+          },
+          {
+            "label": "reliance U9Document marked served in MG5 but",
+            "existence": "missing",
+            "note": "CB-TB-1925_Tobin.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1925_Tobin.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Imani Tobin\nDate"
+            ]
+          },
+          {
+            "label": "attribution U9Document marked served in MG5 but",
+            "existence": "missing",
+            "note": "CB-TB-1925_Tobin.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1925_Tobin.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Imani Tobin\nDate"
+            ]
+          },
+          {
+            "label": "Northbridge PoliceURN",
+            "existence": "incomplete",
+            "note": "CB-TB-1925_Tobin.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-1925_Tobin.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": [
+              "Imani Tobin\nDate"
+            ]
+          }
+        ],
+        "charges": [],
+        "chaseLabels": [
+          "reliance U9Document marked served in MG5 but",
+          "attribution U9Document marked served in MG5 but",
+          "Northbridge PoliceURN",
+          "Interview recording"
+        ],
+        "suppressedChaseLabels": [],
+        "documentRoles": [
+          {
+            "id": "d6101df2-59de-4e07-9933-44b089a048ef",
+            "title": "CB-TB-1925_Tobin.pdf",
+            "role": "operative"
+          }
+        ],
+        "unitCount": 1,
+        "pageUnitCount": 1
+      }
+    }
+  },
+  "battleboard": {
+    "status": 200,
+    "data": {
+      "case_id": "a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27",
+      "generated_at": "2026-08-25T04:28:07.696Z",
+      "overall_status": "usable",
+      "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Causation / injury route pressure (viable) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
+      "position_trust": "interview_from_file",
+      "position_notice": "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
+      "primary_route": {
+        "id": "causation",
+        "title": "Causation / injury route pressure",
+        "status": "viable",
+        "route_type": "causation",
+        "why_it_helps": [
+          "U2 Forensic or medical report Part copy only Needed before safe reliance",
+          "saw contact but I can not say from my position what caused the injury described later.",
+          "what caused the injury described later."
+        ],
+        "what_hurts_us": [
+          "Medical evidence that supports Crown causation on served papers.",
+          "Clear injury mechanism matching the Crown account."
+        ],
+        "evidence_anchors": [
+          "U2 Forensic or medical report Part copy only Needed before safe reliance",
+          "saw contact but I can not say from my position what caused the injury described later.",
+          "what caused the injury described later."
+        ],
+        "collapse_risks": [
+          "Assumed position may conflict with interview or served evidence.",
+          "Medical evidence may support Crown causation if proved on served papers.",
+          "Missing expert/source report may return against the defence route.",
+          "Complainant injury account may appear consistent across MG11 and medical material if proved."
+        ],
+        "next_moves": [
+          "Chase medical/expert/source reports listed on MG6.",
+          "Take instructions on injury mechanism dispute only if supported.",
+          "Separate injury causation from identification/timing theory."
+        ],
+        "hearing_line": "Causation/injury level is conditional on served medical material; ask for outstanding expert/source disclosure.",
+        "safety_note": "Needs solicitor review before running causation at hearing or in plea discussions."
+      },
+      "routes": [
+        {
+          "id": "causation",
+          "title": "Causation / injury route pressure",
+          "status": "viable",
+          "route_type": "causation",
+          "why_it_helps": [
+            "U2 Forensic or medical report Part copy only Needed before safe reliance",
+            "saw contact but I can not say from my position what caused the injury described later.",
+            "what caused the injury described later."
+          ],
+          "what_hurts_us": [
+            "Medical evidence that supports Crown causation on served papers.",
+            "Clear injury mechanism matching the Crown account."
+          ],
+          "evidence_anchors": [
+            "U2 Forensic or medical report Part copy only Needed before safe reliance",
+            "saw contact but I can not say from my position what caused the injury described later.",
+            "what caused the injury described later."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Medical evidence may support Crown causation if proved on served papers.",
+            "Missing expert/source report may return against the defence route.",
+            "Complainant injury account may appear consistent across MG11 and medical material if proved."
+          ],
+          "next_moves": [
+            "Chase medical/expert/source reports listed on MG6.",
+            "Take instructions on injury mechanism dispute only if supported.",
+            "Separate injury causation from identification/timing theory."
+          ],
+          "hearing_line": "Causation/injury level is conditional on served medical material; ask for outstanding expert/source disclosure.",
+          "safety_note": "Needs solicitor review before running causation at hearing or in plea discussions."
+        },
+        {
+          "id": "multiparty",
+          "title": "Separate defendant / count-specific pressure",
+          "status": "conditional",
+          "route_type": "multiparty",
+          "why_it_helps": [
+            "U3 Full CCTV master Part copy only Needed for attribution",
+            "treated as attribution without the underlying report.",
+            "U1 Phone extraction report Listed - not served — Needed for attribution"
+          ],
+          "what_hurts_us": [
+            "Shared evidence, joint activity, admissions, or attribution evidence may connect defendants or counts on the papers.",
+            "Co-defendant material may be admissible and consistent with the Crown case if proved."
+          ],
+          "evidence_anchors": [
+            "U3 Full CCTV master Part copy only Needed for attribution",
+            "treated as attribution without the underlying report.",
+            "U1 Phone extraction report Listed - not served — Needed for attribution"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Crown can tie each item to this defendant and count on served material.",
+            "Co-defendant evidence is admissible and consistent if proved.",
+            "Joint enterprise or shared conduct wording undermines separate-role pressure."
+          ],
+          "next_moves": [
+            "Build defendant-by-defendant evidence matrix from served papers.",
+            "Build count-by-count proof table before fixing trial theory.",
+            "Chase attribution material, phone ownership, vehicle ownership, and role evidence if outstanding."
+          ],
+          "hearing_line": "Ask the court to record that case management directions must separate defendant and count issues — conditional on served evidence and solicitor review.",
+          "safety_note": "Conditional on served evidence and solicitor review — do not overstate separate-role points."
+        },
+        {
+          "id": "timeline",
+          "title": "Timeline / sequence / alibi pressure",
+          "status": "viable",
+          "route_type": "timeline",
+          "why_it_helps": [
+            "- Check served material against MG6 schedule before relying on CCTV, BWV, CAD or phone",
+            "Tab 5 Custody / interview or CAD extract"
+          ],
+          "what_hurts_us": [
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Client account that conflicts with served source times."
+          ],
+          "evidence_anchors": [
+            "- Check served material against MG6 schedule before relying on CCTV, BWV, CAD or phone",
+            "CAD / 999 Extract",
+            "Tab 5 Custody / interview or CAD extract"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Receipt/phone records undermine the defence timing account."
+          ],
+          "next_moves": [
+            "Chase CAD audit.",
+            "Chase CCTV master with continuity.",
+            "Take instructions on timing conflict and any alibi account.",
+            "Record defence position on sequence before the next hearing."
+          ],
+          "hearing_line": "Timing/sequence remains conditional on served CAD/999/CCTV material; ask the court to record what source material is still outstanding.",
+          "safety_note": "Do not present a firm alibi unless instructions and served material support it."
+        },
+        {
+          "id": "identity",
+          "title": "Identification / visual ID pressure",
+          "status": "viable",
+          "route_type": "identity",
+          "why_it_helps": [
+            "- Check served material against MG6 schedule before relying on CCTV, BWV, CAD or phone",
+            "CCTV/3 Property continuity noteserved",
+            "CCTV/3 Property continuity notereferenced only",
+            "BWV/4 Property continuity notereferenced only"
+          ],
+          "what_hurts_us": [
+            "Short, confident witness ID on served papers.",
+            "Clear CCTV/BWV sequence that matches Crown timing."
+          ],
+          "evidence_anchors": [
+            "- Check served material against MG6 schedule before relying on CCTV, BWV, CAD or phone",
+            "CCTV/3 Property continuity noteserved",
+            "CCTV/3 Property continuity notereferenced only",
+            "BWV/4 Property continuity notereferenced only"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "ID parade or formal identification procedure supports the Crown route if proved."
+          ],
+          "next_moves": [
+            "Take instructions on observation conditions and any ID dispute.",
+            "Map MG11 wording against served visual exhibits before fixing trial theory."
+          ],
+          "hearing_line": "On the file wording, identification remains conditional until served CCTV/source material and witness accounts are reconciled; do not overstate.",
+          "safety_note": "Needs solicitor review before any positive ID challenge is advanced at court."
+        },
+        {
+          "id": "intent",
+          "title": "Intent / mental element pressure",
+          "status": "viable",
+          "route_type": "intent",
+          "why_it_helps": [
+            "Wounding with intent to cause grievous bodily harm, contrary to section 18 of the Offences",
+            "Statement of offence: Wounding with intent to cause grievous bodily harm, contrary to"
+          ],
+          "what_hurts_us": [
+            "Clear admission or strong inference of intent on served papers.",
+            "Medical or circumstantial material that supports specific intent if proved."
+          ],
+          "evidence_anchors": [
+            "Wounding with intent to cause grievous bodily harm, contrary to section 18 of the Offences",
+            "Statement of offence: Wounding with intent to cause grievous bodily harm, contrary to"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Medical evidence supports the Crown intent route if proved.",
+            "Interview admission on intent is clear on served material.",
+            "Circumstantial sequence leaves little room for accident/lawful excuse on the papers."
+          ],
+          "next_moves": [
+            "Map Crown intent elements to MG5/MG6 and interview wording.",
+            "Take instructions on accident, lawful excuse, or self-defence only if the file supports them.",
+            "Chase expert/source reports before fixing intent theory."
+          ],
+          "hearing_line": "Intent remains a live Crown limb to prove; any defence point is conditional on served material and instructions — do not overstate.",
+          "safety_note": "Do not advance intent theories not supported by instructions and served papers."
+        },
+        {
+          "id": "interview",
+          "title": "Interview / account pressure",
+          "status": "conditional",
+          "route_type": "interview",
+          "why_it_helps": [
+            "Tab 5 Custody / interview or CAD extract",
+            "- Consider whether the interview record or transcript is complete enough to rely on any",
+            "U3 Full interview transcript Outstanding Needed before safe reliance"
+          ],
+          "what_hurts_us": [
+            "Interview admission that narrows the defence route.",
+            "No comment or limited account where bad facts are already on the file."
+          ],
+          "evidence_anchors": [
+            "Tab 5 Custody / interview or CAD extract",
+            "- Consider whether the interview record or transcript is complete enough to rely on any",
+            "U3 Full interview transcript Outstanding Needed before safe reliance",
+            "Custody and Interview Extract"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Any interview admission, if served and reviewed, could narrow the defence route.",
+            "Client account conflicts with served source material."
+          ],
+          "next_moves": [
+            "Take instructions on interview stance and any prepared statement wording.",
+            "Chase interview transcript.",
+            "Chase pre-interview disclosure.",
+            "Record defence position; do not infer interview content beyond served wording."
+          ],
+          "hearing_line": "",
+          "safety_note": "Needs solicitor review — interview routes collapse quickly if admissions are clear on the papers."
+        },
+        {
+          "id": "continuity",
+          "title": "Continuity / provenance pressure",
+          "status": "conditional",
+          "route_type": "continuity",
+          "why_it_helps": [
+            "CCTV/3 Property continuity noteserved",
+            "CCTV/3 Property continuity notereferenced only",
+            "BWV/4 Property continuity notereferenced only",
+            "U1 BWV clip Outstanding Needed for continuity"
+          ],
+          "what_hurts_us": [
+            "Later continuity material is served and closes the gap.",
+            "Exhibit list appears complete on MG6 with no published tension."
+          ],
+          "evidence_anchors": [
+            "CCTV/3 Property continuity noteserved",
+            "CCTV/3 Property continuity notereferenced only",
+            "BWV/4 Property continuity notereferenced only",
+            "U1 BWV clip Outstanding Needed for continuity"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Continuity/provenance is later proved on served material.",
+            "Master CCTV/digital source file undermines the challenge if proved.",
+            "Lab/source report returns consistent with the Crown case."
+          ],
+          "next_moves": [
+            "Chase continuity statements and master/source files for key exhibits.",
+            "Map exhibit references across MG5/MG6 before trial theory is fixed.",
+            "Record what handling/provenance material is still outstanding."
+          ],
+          "hearing_line": "Continuity/provenance remains conditional; request outstanding source/continuity material and a timetable.",
+          "safety_note": "Do not tell the court exhibits are unusable unless the file publishes that gap."
+        },
+        {
+          "id": "disclosure",
+          "title": "Disclosure / source-material pressure",
+          "status": "viable",
+          "route_type": "disclosure",
+          "why_it_helps": [
+            "May assist as conditional prosecution-pressure if MG6 or schedules show outstanding CCTV/CAD/999/MG11 or unused material.",
+            "Creates pressure if proved only once the listed source material is served and reviewed."
+          ],
+          "what_hurts_us": [
+            "Outstanding items are chased but return consistent with the Crown case.",
+            "Thin bundle with no published disclosure schedule to anchor a chase."
+          ],
+          "evidence_anchors": [
+            "CCTV full window",
+            "CCTV Continuity",
+            "Body Worn Video (BWV)",
+            "999 Call Audio",
+            "Interview Recording",
+            "Custody Record / Custody CCTV"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Outstanding disclosure is served and supports the Crown route.",
+            "MG6 itself lists the material as served and consistent.",
+            "Chase returns master CCTV that undermines the defence timing/ID point."
+          ],
+          "next_moves": [
+            "Chase CCTV master with continuity.",
+            "Chase CAD audit.",
+            "Ask for full MG11/source material and unused schedule detail.",
+            "Prepare hearing line on outstanding disclosure; set a timetable."
+          ],
+          "hearing_line": "The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until source material is served.",
+          "safety_note": "Disclosure pressure is not a merits win — needs solicitor review before plea or trial strategy is fixed."
+        }
+      ],
+      "global_collapse_risks": [
+        "CAD/999 timing may affect Crown sequence if proved on served material.",
+        "Client account conflicts with served source material.",
+        "Missing expert/source report comes back against defence.",
+        "Any interview admission, if served and reviewed, could narrow the defence route.",
+        "Continuity/provenance is later proved."
+      ],
+      "urgent_next_moves": [
+        "Chase/record: CCTV full window",
+        "Chase/record: CCTV Continuity",
+        "Chase/record: Body Worn Video (BWV)",
+        "Chase/record: 999 Call Audio",
+        "Chase/record: Custody Record / Custody CCTV"
+      ],
+      "diagnostics": {
+        "corpus_markers": null,
+        "safeguards_signal_count": 0,
+        "multiparty_signal_count": 2,
+        "timeline_signal_count": 2,
+        "cps_pressure_signal_count": 0,
+        "readiness_signal_count": 0,
+        "hearing_court_signal_count": 2,
+        "backup_route_types": [
+          "multiparty",
+          "timeline",
+          "identity",
+          "intent",
+          "interview",
+          "continuity",
+          "disclosure"
+        ],
+        "backup_route_titles": [
+          "Separate defendant / count-specific pressure",
+          "Timeline / sequence / alibi pressure",
+          "Identification / visual ID pressure",
+          "Intent / mental element pressure",
+          "Interview / account pressure",
+          "Continuity / provenance pressure",
+          "Disclosure / source-material pressure"
+        ],
+        "primary_anchor_sample": [
+          "U2Forensic or medical report Part copy only Needed before safe reliance",
+          "saw contact but I can not say from my position what caused the injury described later.",
+          "what caused the injury described later."
+        ],
+        "safeguards_anchor_sample": [],
+        "multiparty_anchor_sample": [
+          "U3Full CCTV master Part copy only Needed for attribution",
+          "treated as attribution without the underlying report.",
+          "U1Phone extraction report Listed - not served Needed for attribution"
+        ],
+        "cps_pressure_anchor_sample": [],
+        "readiness_anchor_sample": [],
+        "hearing_court_anchor_sample": []
+      }
+    }
+  },
+  "matter": {
+    "status": 200,
+    "data": {
+      "matterState": null,
+      "station": {
+        "timeInCustodyAt": null,
+        "nextPaceReviewAt": null,
+        "interviewStance": null,
+        "stationSummary": null,
+        "groundsForArrest": null,
+        "dateOfArrest": null,
+        "allegedOffence": null,
+        "custodyNumber": null,
+        "policeStationName": null,
+        "clientInitials": null,
+        "clientYob": null,
+        "representationType": null,
+        "riskAppropriateAdult": false,
+        "riskInterpreter": false,
+        "riskMentalHealth": false,
+        "riskMedicalIssues": false,
+        "initialDisclosureReceived": null,
+        "initialDisclosureNotes": null
+      },
+      "bailReturnDate": null,
+      "bailOutcome": null,
+      "matterClosedAt": null,
+      "matterClosedReason": null,
+      "plea": null,
+      "pleaDate": null,
+      "defendantName": "Imani Tobin",
+      "clientInitials": null,
+      "allegedOffence": null
+    }
+  },
+  "position": {
+    "status": 200,
+    "data": {
+      "ok": true,
+      "data": null,
+      "position": null
+    }
+  }
+}

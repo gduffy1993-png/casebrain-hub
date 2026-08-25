@@ -1,0 +1,604 @@
+{
+  "bundleSource": {
+    "status": 200,
+    "data": {
+      "combinedTextLength": 10251,
+      "documentCount": 1,
+      "documentRows": [
+        {
+          "id": "2fe7bb02-6431-447a-91d9-80aea22c1013",
+          "name": "CB-TB-546_Patel.pdf",
+          "updatedAt": "2026-08-16T00:41:48.360316+00:00",
+          "lenExtracted": 10253,
+          "lenRaw": 10253,
+          "lenBody": 10251
+        }
+      ],
+      "health": {
+        "status": "partial",
+        "duplicateDocuments": 0,
+        "headerDetected": false,
+        "mg5Detected": false,
+        "mg6Detected": false,
+        "exhibitLineCount": 0
+      },
+      "header": {
+        "reference": null,
+        "shortTitle": null,
+        "accused": null,
+        "otherParty": null,
+        "primaryEvalHook": null,
+        "stage": "First appearance",
+        "messiness": null,
+        "plea": null
+      },
+      "snippets": {
+        "mg5": "MG5 case summary\nTab 3: MG11 witness statement\nTab 4: MG11 police statement\nTab 5: Custody/interview note\nTab 6: MG6 disclosure schedule\nTab 7: Exhibit list\n\nCHARGE SHEET / CASE DETAILSCBTB546\nPage 2\nDefendant and hearing details\nDefendantIsaacPatel\nDOB: 12/04/2004\nCourtHearingSouthford Magistrates Court 25 August 2026 10:30\nCurrent stage: First appearance\nCharge\nAffray\ncontrary to section 3 Public Order Act 1986\nParticulars: On 22 August 2026 at Northbridge, the defendant is alleged to have committed the offence described above. The\nprosecution papers are served for the hearing listed.\n\nMG5 - CASE SUMMARYCBTB546\nPage 3\nSummary of key evidence\nThe Crown case is that Isaac Patel was involved in an incident at or near Northbridge High Street. The account relies on witness\ndescription, timing material and item continuity.\nThere is an issue for review: case stops mid-narrative after continuation page. The papers do not resolve this point on the face of the\nserved material.\nInterview position is summarised only. Where the full recording or transcript is not served, the account must not be treated as a settled\nadmission.\nIssues for review\n- case stops mid-narrative after continuation page\n- Confirm served material against MG6 schedule\n- Check whether hearing/listing date has been superseded",
+        "mg6": null,
+        "mg11": "MG11 witness statement\nTab 4: MG11 police statement\nTab 5: Custody/interview note\nTab 6: MG6 disclosure schedule\nTab 7: Exhibit list\n\nCHARGE SHEET / CASE DETAILSCBTB546\nPage 2\nDefendant and hearing details\nDefendantIsaacPatel\nDOB: 12/04/2004\nCourtHearingSouthford Magistrates Court 25 August 2026 10:30\nCurrent stage: First appearance\nCharge\nAffray\ncontrary to section 3 Public Order Act 1986\nParticulars: On 22 August 2026 at Northbridge, the defendant is alleged to have committed the offence described above. The\nprosecution papers are served for the hearing listed.",
+        "exhibits": null
+      },
+      "caseMetadata": {
+        "defendantName": "Isaac Patel",
+        "defendantSource": "extracted_cover_fallback",
+        "complainant": null,
+        "complainantSource": "unavailable",
+        "court": "Southford Magistrates Court",
+        "courtSource": "extracted_cover_fallback",
+        "nextHearingRaw": "25 August 2026 10:30",
+        "nextHearingIso": "2026-08-25T10:30:00.000Z",
+        "nextHearingSource": "extracted_procedural_fallback",
+        "stage": "First appearance",
+        "stageSource": "extracted_cover_fallback",
+        "offenceWording": "Affray, contrary to section 3 Public Order Act 1986",
+        "offenceDisplay": "Affray, contrary to section 3 Public Order Act 1986",
+        "offenceSource": "extracted_charge_fallback",
+        "bailStatus": null,
+        "bailStatusSource": "unavailable",
+        "defencePosition": null,
+        "defencePositionSource": "unavailable"
+      },
+      "sizeProfile": {
+        "documentCount": 1,
+        "pdfCount": 1,
+        "pageCount": null,
+        "combinedTextLength": 10251,
+        "isLargeByText": false,
+        "isLargeByPages": false
+      },
+      "frontMatterScanLength": 10245,
+      "frontMatterScan": "CASE PAPERS - INDEXCBTB546\nPage 1\nR v Isaac Patel\nDefendant: Isaac Patel\nCourt: Southford MagistratesCourt\nHearing: 25August 2026 10:30\nStage: First appearance\nURN: 26/171779/NBR\nBundle index\nTab 1: Charge sheet / case details\nTab 2: MG5 case summary\nTab 3: MG11 witness statement\nTab 4: MG11 police statement\nTab 5: Custody/interview note\nTab 6: MG6 disclosure schedule\nTab 7: Exhibit list\n\nCHARGE SHEET / CASE DETAILSCBTB546\nPage 2\nDefendant and hearing details\nDefendantIsaacPatel\nDOB: 12/04/2004\nCourtHearingSouthford Magistrates Court 25 August 2026 10:30\nCurrent stage: First appearance\nCharge\nAffray\ncontrary to section 3 Public Order Act 1986\nParticulars: On 22 August 2026 at Northbridge, the defendant is alleged to have committed the offence described above. The\nprosecution papers are served for the hearing listed.\n\nMG5 - CASE SUMMARYCBTB546\nPage 3\nSummary of key evidence\nThe Crown case is that Isaac Patel was involved in an incident at or near Northbridge High Street. The account relies on witness\ndescription, timing material and item continuity.\nThere is an issue for review: case stops mid-narrative after continuation page. The papers do not resolve this point on the face of the\nserved material.\nInterview position is summarised only. Where the full recording or transcript is not served, the account must not be treated as a settled\nadmission.\nIssues for review\ncase stops mid-narrative after continuation page\nConfirm served material against MG6 schedule\nCheck whether hearing/listing date has been superseded\n\nMG11 - WITNESS STATEMENTCBTB546\nPage 4\nWITNESS STATEMENT\nStatement of: Sofia ThorntonDate: 19/02/2026\nContinuation sheet. The first page of this statement is not placed immediately before this page in the bundle.\nI make this statement about the incident involving Isaac Patel.\nMy account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing\nmaterial.\nI refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle.\n\nMG11 - POLICE STATEMENTCB-TB-546\nPage 5\nWITNESS STATEMENT\nStatement of: Noah MorganDate: 17/08/2026\nI make this statement about the incident involving Isaac Patel.\nMy account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing\nmaterial.\nI refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle.\n\nCUSTODY / INTERVIEW NOTECB-TB-546\nPage 6\nCustody / interview extract\nArrest authorised in relation to Affray.\nLegal advice requested. Interview summary available on this file.\nFull interview recording / transcript: not served in this bundle.\n\nMG6 DISCLOSURE SCHEDULECBTB546\nPage 7\nItemDescriptionStatusNotes\nMG6/01forensic submission noteservedlisted as served\nMG6/02charge sheetservedavailable in bundle\nMG6/03MG5 case summaryservedavailable in bundle\nMG6/04signed final MG11outstandingrequested / not attached\nMG6/05full CCTV masteroutstandingrequested / not attached\nMG6/06custody record pages 3-5outstandingrequested / not attached\nMG6/07full interview transcriptoutstandingrequested / not attached\n\nEXHIBIT LISTCB-TB-546\nPage 8\nExhibit List\nEX/01 - item referred to in MG5 (listed).\nEX/02 - continuity note to be checked against witness and MG6 schedule.\nCPS disclosure email: further material may be served before the next hearing.\n\nMG11 - WITNESS STATEMENTCB-TB-546\nPage 9\nWITNESS STATEMENT\nStatement of: Zara MitchellDate: 25/01/2026\nI make this statement about the incident involving Isaac Patel.\nMy account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing\nmaterial.\nI refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle.\n\nMG11 - POLICE STATEMENTCBTB546\nPage 10\nWITNESS STATEMENT\nStatement of: Amira DoyleDate: 28/01/2026\nI make this statement about the incident involving Isaac Patel.\nMy account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing\nmaterial.\nI refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle.\n\nCUSTODY / INTERVIEW NOTECB-TB-546\nPage 11\nCustody / interview extract\nArrest authorised in relation to Affray.\nLegal advice requested. Interview summary available on this file.\nFull interview recording / transcript: not served in this bundle.\n\nMG6 DISCLOSURE SCHEDULECB-TB-546\nPage 12\nItemDescriptionStatusNotes\nMG6/01forensic submission noteservedavailable in bundle\nMG6/02charge sheetservedavailable in bundle\nMG6/03MG5 case summaryservedavailable in bundle\nMG6/04signed final MG11outstandingrequested / not attached\nMG6/05full CCTV masteroutstandingrequested / not attached\nMG6/06custody record pages 3-5outstandingrequested / not attached\nMG6/07full interview transcriptoutstandingrequested / not attached\n\nEXHIBIT LISTCBTB546\nPage 13\nExhibit List\nEX/01 - item referred to in MG5 (listed).\nEX/02 - continuity note to be checked against witness and MG6 schedule.\nCPS disclosure email: further material may be served before the next hearing.\n\nMG11 - WITNESS STATEMENTCB-TB-546\nPage 14\nWITNESS STATEMENT\nStatement of: Owen ReesDate: 23/03/2026\nI make this statement about the incident involving Isaac Patel.\nMy account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing\nmaterial.\nI refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle.\n\nMG11 - POLICE STATEMENTCB-TB-546\nPage 15\nWITNESS STATEMENT\nStatement of: Tara MarshDate: 16/01/2026\nI make this statement about the incident involving Isaac Patel.\nMy account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing\nmaterial.\nI refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle.\n\nCUSTODY / INTERVIEW NOTECBTB546\nPage 16\nCustody / interview extract\nArrest authorised in relation to Affray.\nLegal advice requested. Interview summary available on this file.\nFull interview recording / transcript: not served in this bundle.\n\nMG6 DISCLOSURE SCHEDULECB-TB-546\nPage 17\nItemDescriptionStatusNotes\nMG6/01forensic submission noteservedlisted as served\nMG6/02charge sheetservedlisted as served\nMG6/03MG5 case summaryservedavailable in bundle\nMG6/04signed final MG11outstandingrequested / not attached\nMG6/05full CCTV masteroutstandingrequested / not attached\nMG6/06custody record pages 3-5outstandingrequested / not attached\nMG6/07full interview transcriptoutstandingrequested / not attached\n\nEXHIBIT LISTCB-TB-546\nPage 18\nExhibit List\nEX/01 - item referred to in MG5 (listed).\nEX/02 - continuity note to be checked against witness and MG6 schedule.\nCPS disclosure email: further material may be served before the next hearing.\n\nMG11 - WITNESS STATEMENTCBTB546\nPage 19\nWITNESS STATEMENT\nStatement of: Noah LewisDate: 04/04/2026\nI make this statement about the incident involving Isaac Patel.\nMy account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing\nmaterial.\nI refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle.\n\nMG11 - POLICE STATEMENTCB-TB-546\nPage 20\nWITNESS STATEMENT\nStatement of: Liam PikeDate: 17/02/2026\nI make this statement about the incident involving Isaac Patel.\nMy account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing\nmaterial.\nI refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle.\n\nCUSTODY / INTERVIEW NOTECB-TB-546\nPage 21\nCustody / interview extract\nArrest authorised in relation to Affray.\nLegal advice requested. Interview summary available on this file.\nFull interview recording / transcript: not served in this bundle.\n\nMG6 DISCLOSURE SCHEDULECBTB546\nPage 22\nItemDescriptionStatusNotes\nMG6/01forensic submission noteservedavailable in bundle\nMG6/02charge sheetservedavailable in bundle\nMG6/03MG5 case summaryservedavailable in bundle\nMG6/04signed final MG11outstandingrequested / not attached\nMG6/05full CCTV masteroutstandingrequested / not attached\nMG6/06custody record pages 3-5outstandingrequested / not attached\nMG6/07full interview transcriptoutstandingrequested / not attached\n\nEXHIBIT LISTCB-TB-546\nPage 23\nExhibit List\nEX/01 - item referred to in MG5 (listed).\nEX/02 - continuity note to be checked against witness and MG6 schedule.\nCPS disclosure email: further material may be served before the next hearing.\n\nMG11 - WITNESS STATEMENTCB-TB-546\nPage 24\nWITNESS STATEMENT\nStatement of: Maya MorganDate: 07/01/2026\nI make this statement about the incident involving Isaac Patel.\nMy account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing\nmaterial.\nI refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle.\n\nMG11 - POLICE STATEMENTCBTB546\nPage 25\nWITNESS STATEMENT\nStatement of: Tara PatelDate: 25/03/2026\nI make this statement about the incident involving Isaac Patel.\nMy account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing\nmaterial.\nI refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle.\n\nCUSTODY / INTERVIEW NOTECB-TB-546\nPage 26\nCustody / interview extract\nArrest authorised in relation to Affray.\nLegal advice requested. Interview summary available on this file.\nFull interview recording / transcript: not served in this bundle.\n\nMG6 DISCLOSURE SCHEDULECB-TB-546\nPage 27\nItemDescriptionStatusNotes\nMG6/01forensic submission noteservedavailable in bundle\nMG6/02charge sheetservedavailable in bundle\nMG6/03MG5 case summaryservedavailable in bundle\nMG6/04signed final MG11outstandingrequested / not attached\nMG6/05full CCTV masteroutstandingrequested / not attached\nMG6/06custody record pages 3-5outstandingrequested / not attached\nMG6/07full interview transcriptoutstandingrequested / not attached",
+      "canonical": {
+        "findings": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"CB-TB-546_Patel.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-546_Patel.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state missing; transcript state served.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          },
+          {
+            "kind": "referenced_absent_attachment",
+            "title": "Referenced but absent attachment",
+            "summary": "\"MG6/05full CCTV masteroutstandingrequested / not attached\" is referenced in narrative but is absent on file.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-546_Patel.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: absent · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [
+              {
+                "sourceDocumentTitle": "CB-TB-546_Patel.pdf",
+                "sourcePage": null,
+                "compiledPage": null,
+                "pageIdentityKnown": false
+              }
+            ],
+            "attribution": null
+          },
+          {
+            "kind": "referenced_absent_attachment",
+            "title": "Referenced but absent attachment",
+            "summary": "\"MG6/07full interview transcriptoutstandingrequested / not att\" is referenced in narrative but is absent on file.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-546_Patel.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: absent · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; Supporting page is uncertain — provenance remains unresolved",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "known_document_unknown_page",
+            "candidateAnchors": [
+              {
+                "sourceDocumentTitle": "CB-TB-546_Patel.pdf",
+                "sourcePage": null,
+                "compiledPage": null,
+                "pageIdentityKnown": false
+              }
+            ],
+            "attribution": null
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageLabel": null,
+            "pageIdentityKnown": false,
+            "pageIdentityNote": "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "provenanceCompleteness": "insufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          }
+        ],
+        "findingSummaries": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"CB-TB-546_Patel.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-546_Patel.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "recording_vs_transcript",
+            "title": "Recording service versus transcript completeness",
+            "summary": "Recording state missing; transcript state served.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+            "severity": "review",
+            "referencedAbsent": null
+          },
+          {
+            "kind": "referenced_absent_attachment",
+            "title": "Referenced but absent attachment",
+            "summary": "\"MG6/05full CCTV masteroutstandingrequested / not attached\" is referenced in narrative but is absent on file.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-546_Patel.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: absent · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "critical",
+            "referencedAbsent": {
+              "referencedLabel": "MG6/05full CCTV masteroutstandingrequested / not attached"
+            }
+          },
+          {
+            "kind": "referenced_absent_attachment",
+            "title": "Referenced but absent attachment",
+            "summary": "\"MG6/07full interview transcriptoutstandingrequested / not att\" is referenced in narrative but is absent on file.",
+            "unresolved": true,
+            "provenanceLine": "CB-TB-546_Patel.pdf (charge sheet) · exact page unavailable (unsplit whole-document text) · state: absent · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; Supporting page is uncertain — provenance remains unresolved",
+            "severity": "critical",
+            "referencedAbsent": {
+              "referencedLabel": "MG6/07full interview transcriptoutstandingrequested / not att"
+            }
+          },
+          {
+            "kind": "custody_interview_clock",
+            "title": "Custody / interview clock",
+            "summary": "Custody and interview times compared; no conflict extracted.",
+            "unresolved": true,
+            "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+            "severity": "info",
+            "referencedAbsent": null
+          }
+        ],
+        "evidenceRows": [
+          {
+            "label": "full recording or transcript is not",
+            "existence": "served",
+            "note": "CB-TB-546_Patel.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-546_Patel.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "stops mid-narrative after continuation page — Confirm",
+            "existence": "served",
+            "note": "CB-TB-546_Patel.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-546_Patel.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "MG6/02charge sheetservedlisted as",
+            "existence": "served",
+            "note": "CB-TB-546_Patel.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-546_Patel.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          },
+          {
+            "label": "Where the full recording or transcript is",
+            "existence": "missing",
+            "note": "CB-TB-546_Patel.pdf · page identity unresolved",
+            "sourceDocumentTitle": "CB-TB-546_Patel.pdf",
+            "sourceDocumentType": "charge_sheet",
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false,
+            "defendants": []
+          }
+        ],
+        "charges": [],
+        "chaseLabels": [
+          "Interview recording",
+          "MG6/05full CCTV masteroutstandingrequested / not attached",
+          "MG6/07full interview transcriptoutstandingrequested / not att"
+        ],
+        "suppressedChaseLabels": [
+          "Where the full recording or transcript is"
+        ],
+        "documentRoles": [
+          {
+            "id": "2fe7bb02-6431-447a-91d9-80aea22c1013",
+            "title": "CB-TB-546_Patel.pdf",
+            "role": "operative"
+          }
+        ],
+        "unitCount": 1,
+        "pageUnitCount": 1
+      }
+    }
+  },
+  "battleboard": {
+    "status": 200,
+    "data": {
+      "case_id": "7e763777-94a8-4958-a190-a35ef6ddb259",
+      "generated_at": "2026-08-25T04:28:02.914Z",
+      "overall_status": "usable",
+      "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Public-order participation / identification / role pressure (conditional) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
+      "position_trust": "interview_from_file",
+      "position_notice": "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
+      "primary_route": {
+        "id": "pack_y_affray",
+        "title": "Public-order participation / identification / role pressure",
+        "status": "conditional",
+        "route_type": "identity",
+        "why_it_helps": [
+          "contrary to section 3 Public Order Act 1986"
+        ],
+        "what_hurts_us": [
+          "Clear CCTV/BWV may link the client to violent conduct if proved on served material.",
+          "Witness accounts may support Crown participation wording if consistent on the file."
+        ],
+        "evidence_anchors": [
+          "contrary to section 3 Public Order Act 1986"
+        ],
+        "collapse_risks": [
+          "Assumed position may conflict with interview or served evidence.",
+          "Served CCTV/BWV may support Crown participation and identification if proved.",
+          "Witness viewpoint may be sufficient on served MG11 material — conditional review required.",
+          "Outstanding source material may return consistent with the Crown route if served."
+        ],
+        "next_moves": [
+          "Take instructions on participation, role, and identification dispute only if supported.",
+          "Record what public-order source material remains outstanding before fixing trial theory."
+        ],
+        "hearing_line": "Participation, identification, and role remain conditional on served CCTV/BWV/witness source material; the defence does not overstate presence as proof of violence.",
+        "safety_note": "Conditional on served material and instructions — do not overstate public-order points at court."
+      },
+      "routes": [
+        {
+          "id": "pack_y_affray",
+          "title": "Public-order participation / identification / role pressure",
+          "status": "conditional",
+          "route_type": "identity",
+          "why_it_helps": [
+            "contrary to section 3 Public Order Act 1986"
+          ],
+          "what_hurts_us": [
+            "Clear CCTV/BWV may link the client to violent conduct if proved on served material.",
+            "Witness accounts may support Crown participation wording if consistent on the file."
+          ],
+          "evidence_anchors": [
+            "contrary to section 3 Public Order Act 1986"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Served CCTV/BWV may support Crown participation and identification if proved.",
+            "Witness viewpoint may be sufficient on served MG11 material — conditional review required.",
+            "Outstanding source material may return consistent with the Crown route if served."
+          ],
+          "next_moves": [
+            "Take instructions on participation, role, and identification dispute only if supported.",
+            "Record what public-order source material remains outstanding before fixing trial theory."
+          ],
+          "hearing_line": "Participation, identification, and role remain conditional on served CCTV/BWV/witness source material; the defence does not overstate presence as proof of violence.",
+          "safety_note": "Conditional on served material and instructions — do not overstate public-order points at court."
+        },
+        {
+          "id": "timeline",
+          "title": "Timeline / sequence / alibi pressure",
+          "status": "conditional",
+          "route_type": "timeline",
+          "why_it_helps": [
+            "My account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing"
+          ],
+          "what_hurts_us": [
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Client account that conflicts with served source times."
+          ],
+          "evidence_anchors": [
+            "My account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "CAD/999 timing may affect Crown sequence if proved on served material.",
+            "Receipt/phone records undermine the defence timing account."
+          ],
+          "next_moves": [
+            "Chase CAD audit.",
+            "Chase CCTV master with continuity.",
+            "Take instructions on timing conflict and any alibi account.",
+            "Record defence position on sequence before the next hearing."
+          ],
+          "hearing_line": "Timing/sequence remains conditional on served CAD/999/CCTV material; ask the court to record what source material is still outstanding.",
+          "safety_note": "Do not present a firm alibi unless instructions and served material support it."
+        },
+        {
+          "id": "interview",
+          "title": "Interview / account pressure",
+          "status": "conditional",
+          "route_type": "interview",
+          "why_it_helps": [
+            "MG6/07 full interview transcript outstanding requested / not attached",
+            "Interview position is summarised only. Where the full recording or transcript is not served, the account must not be treated as a settled",
+            "Full Interview recording / transcript: not served — in this bundle."
+          ],
+          "what_hurts_us": [
+            "Interview admission that narrows the defence route.",
+            "No comment or limited account where bad facts are already on the file."
+          ],
+          "evidence_anchors": [
+            "MG6/07 full interview transcript outstanding requested / not attached",
+            "Interview position is summarised only. Where the full recording or transcript is not served, the account must not be treated as a settled",
+            "Full Interview recording / transcript: not served — in this bundle.",
+            "Tab 5: Custody/interview note"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Any interview admission, if served and reviewed, could narrow the defence route.",
+            "Client account conflicts with served source material."
+          ],
+          "next_moves": [
+            "Take instructions on interview stance and any prepared statement wording.",
+            "Chase Interview recording.",
+            "Chase interview transcript.",
+            "Chase pre-interview disclosure.",
+            "Record defence position; do not infer interview content beyond served wording."
+          ],
+          "hearing_line": "",
+          "safety_note": "Needs solicitor review — interview routes collapse quickly if admissions are clear on the papers."
+        },
+        {
+          "id": "disclosure",
+          "title": "Disclosure / source-material pressure",
+          "status": "conditional",
+          "route_type": "disclosure",
+          "why_it_helps": [
+            "Interview position is summarised only. Where the full recording or transcript is not served, the account must not be treated as a settled",
+            "Full Interview recording / transcript: not served — in this bundle."
+          ],
+          "what_hurts_us": [
+            "Outstanding items are chased but return consistent with the Crown case.",
+            "Thin bundle with no published disclosure schedule to anchor a chase."
+          ],
+          "evidence_anchors": [
+            "Interview position is summarised only. Where the full recording or transcript is not served, the account must not be treated as a settled",
+            "Full Interview recording / transcript: not served — in this bundle.",
+            "CCTV full window",
+            "CCTV Continuity",
+            "Body Worn Video (BWV)",
+            "999 Call Audio"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Outstanding disclosure is served and supports the Crown route.",
+            "MG6 itself lists the material as served and consistent.",
+            "Chase returns master CCTV that undermines the defence timing/ID point."
+          ],
+          "next_moves": [
+            "Chase CCTV master with continuity.",
+            "Chase CAD audit.",
+            "Ask for full MG11/source material and unused schedule detail.",
+            "Prepare hearing line on outstanding disclosure; set a timetable."
+          ],
+          "hearing_line": "The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until source material is served.",
+          "safety_note": "Disclosure pressure is not a merits win — needs solicitor review before plea or trial strategy is fixed."
+        },
+        {
+          "id": "continuity",
+          "title": "Continuity / provenance pressure",
+          "status": "conditional",
+          "route_type": "continuity",
+          "why_it_helps": [
+            "EX/02 - continuity note to be checked against witness and MG6 schedule.",
+            "description, timing material and item continuity.",
+            "I refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle."
+          ],
+          "what_hurts_us": [
+            "Later continuity material is served and closes the gap.",
+            "Exhibit list appears complete on MG6 with no published tension."
+          ],
+          "evidence_anchors": [
+            "EX/02 - continuity note to be checked against witness and MG6 schedule.",
+            "description, timing material and item continuity.",
+            "I refer to an exhibit or recording where available, but I have not reviewed the full disclosure bundle."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Continuity/provenance may later be proved on served material.",
+            "Master CCTV/digital source file undermines the challenge if proved.",
+            "Lab/source report returns consistent with the Crown case."
+          ],
+          "next_moves": [
+            "Chase continuity statements and master/source files for key exhibits.",
+            "Map exhibit references across MG5/MG6 before trial theory is fixed.",
+            "Record what handling/provenance material is still outstanding."
+          ],
+          "hearing_line": "Continuity/provenance remains conditional; request outstanding source/continuity material and a timetable.",
+          "safety_note": "Do not tell the court exhibits are unusable unless the file publishes that gap."
+        },
+        {
+          "id": "identity",
+          "title": "Identification / visual ID pressure",
+          "status": "conditional",
+          "route_type": "identity",
+          "why_it_helps": [
+            "MG6/05 full CCTV master outstanding requested / not attached"
+          ],
+          "what_hurts_us": [
+            "Short, confident witness ID on served papers.",
+            "Clear CCTV/BWV sequence that matches Crown timing."
+          ],
+          "evidence_anchors": [
+            "MG6/05 full CCTV master outstanding requested / not attached"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "ID parade or formal identification procedure supports the Crown route if proved."
+          ],
+          "next_moves": [
+            "Take instructions on observation conditions and any ID dispute."
+          ],
+          "hearing_line": "On the file wording, identification remains conditional until served CCTV/source material and witness accounts are reconciled; do not overstate.",
+          "safety_note": "Needs solicitor review before any positive ID challenge is advanced at court."
+        }
+      ],
+      "global_collapse_risks": [
+        "CAD/999 timing may affect Crown sequence if proved on served material.",
+        "Client account conflicts with served source material.",
+        "Missing expert/source report comes back against defence.",
+        "Any interview admission, if served and reviewed, could narrow the defence route.",
+        "Continuity/provenance may later be proved on served material."
+      ],
+      "urgent_next_moves": [
+        "Chase/record: CCTV full window",
+        "Chase/record: 999 Call Audio",
+        "Chase/record: Interview Recording"
+      ],
+      "diagnostics": {
+        "corpus_markers": null,
+        "safeguards_signal_count": 0,
+        "multiparty_signal_count": 0,
+        "timeline_signal_count": 1,
+        "cps_pressure_signal_count": 1,
+        "readiness_signal_count": 0,
+        "hearing_court_signal_count": 2,
+        "backup_route_types": [
+          "timeline",
+          "interview",
+          "disclosure",
+          "continuity",
+          "identity"
+        ],
+        "backup_route_titles": [
+          "Timeline / sequence / alibi pressure",
+          "Interview / account pressure",
+          "Disclosure / source-material pressure",
+          "Continuity / provenance pressure",
+          "Identification / visual ID pressure"
+        ],
+        "primary_anchor_sample": [
+          "contrary to section 3 Public Order Act 1986"
+        ],
+        "safeguards_anchor_sample": [],
+        "multiparty_anchor_sample": [],
+        "cps_pressure_anchor_sample": [],
+        "readiness_anchor_sample": [],
+        "hearing_court_anchor_sample": []
+      }
+    }
+  },
+  "matter": {
+    "status": 200,
+    "data": {
+      "matterState": null,
+      "station": {
+        "timeInCustodyAt": null,
+        "nextPaceReviewAt": null,
+        "interviewStance": null,
+        "stationSummary": null,
+        "groundsForArrest": null,
+        "dateOfArrest": null,
+        "allegedOffence": null,
+        "custodyNumber": null,
+        "policeStationName": null,
+        "clientInitials": null,
+        "clientYob": null,
+        "representationType": null,
+        "riskAppropriateAdult": false,
+        "riskInterpreter": false,
+        "riskMentalHealth": false,
+        "riskMedicalIssues": false,
+        "initialDisclosureReceived": null,
+        "initialDisclosureNotes": null
+      },
+      "bailReturnDate": null,
+      "bailOutcome": null,
+      "matterClosedAt": null,
+      "matterClosedReason": null,
+      "plea": null,
+      "pleaDate": null,
+      "defendantName": "Isaac Patel",
+      "clientInitials": null,
+      "allegedOffence": null
+    }
+  },
+  "position": {
+    "status": 200,
+    "data": {
+      "ok": true,
+      "data": null,
+      "position": null
+    }
+  }
+}

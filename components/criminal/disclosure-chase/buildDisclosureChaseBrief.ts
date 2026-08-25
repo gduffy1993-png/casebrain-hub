@@ -1936,8 +1936,19 @@ function splitPrimaryAdditional(items: DisclosureChaseItem[]): {
     i.familyId !== "other" || isDigitalModalityChaseLabel(i.label) || isSourceNamedChaseItem(i);
   const core = deduped.filter(isPrimaryEligible);
   const misc = deduped.filter((i) => !isPrimaryEligible(i));
-  // Gaps the schedule states take the slots first; templates fill in behind them.
-  const sourceNamed = core.filter(isSourceNamedChaseItem);
+  // Gaps the schedule states take the slots first; templates fill in behind them. Among those,
+  // material the schedule records as absent outranks material it records as served in a summary or
+  // draft form: both are worth raising, but a board of eight `served summary/draft` rows buries the
+  // items nobody has yet handed over.
+  const sourceNamedAll = core.filter(isSourceNamedChaseItem);
+  const isStatedAbsent = (i: DisclosureChaseItem) =>
+    /\b(?:outstanding|not\s+served|missing|absent|not\s+(?:yet\s+)?provided)\b/i.test(
+      `${i.baseStatus} ${i.label}`,
+    );
+  const sourceNamed = [
+    ...sourceNamedAll.filter(isStatedAbsent),
+    ...sourceNamedAll.filter((i) => !isStatedAbsent(i)),
+  ];
   const remaining = core.filter((i) => !isSourceNamedChaseItem(i));
   const digital = remaining.filter((i) => isDigitalModalityChaseLabel(i.label));
   const nonDigitalCore = remaining.filter((i) => !isDigitalModalityChaseLabel(i.label));
@@ -2617,6 +2628,10 @@ function collapseDisclosureItemsByFamily(items: DisclosureChaseItem[]): Disclosu
   });
 }
 
+/** A schedule reference on its own — `EX/02`, `MG6/04`, `O03`, `EX-MUR-001`. */
+const SCHEDULE_REF_ONLY_RE =
+  /\b(?:MG\d{1,2}[A-Z]?(?:\/\d{1,4})?|EX-[A-Z]{2,4}-\d{2,4}|[A-Z]{1,5}\/\d{1,3}|O\d{2})\b/g;
+
 function mergeLedgerDisclosureItems(
   items: DisclosureChaseItem[],
   ledger: BundleTruthLedger,
@@ -2627,13 +2642,41 @@ function mergeLedgerDisclosureItems(
 
   for (const m of ledgerMaterialsNeedingChase(ledger)) {
     const familyId = classifyFamily(m.displayLine);
-    const canonical = canonicalLedgerMaterial(m.displayLine, familyId);
+    // Some rows carry the reference in the label and the description in the detail (`EX/02` /
+    // `continuity note ...`). A request worded from the reference alone names nothing, so the
+    // description has to be brought back in when the label is only a reference.
+    const requestLabel = /[A-Za-z]{4,}/.test(m.label.replace(SCHEDULE_REF_ONLY_RE, ""))
+      ? m.label
+      : [m.label, m.detail].filter(Boolean).join(" — ");
+    const canonical = canonicalLedgerMaterial(m.displayLine, familyId, requestLabel);
     const key = canonical.label.toLowerCase();
-    if (labelSeen.has(key)) continue;
-    labelSeen.add(key);
 
     const baseStatus: ChaseItemStatus =
       m.status === "outstanding" || m.status === "absent" ? "Outstanding" : "Not safely confirmed";
+
+    if (labelSeen.has(key)) {
+      // A template card already carries this wording. Dropping the schedule row as a duplicate
+      // loses it twice over, because the template it defers to is itself removed later for naming a
+      // modality the papers never affirm — so the gap the schedule states disappears entirely.
+      // Where the papers name the material, the template becomes that row: same wording, but now
+      // carrying the reference, the anchor and the status the schedule states.
+      const existingIndex = merged.findIndex(
+        (i) => i.label.toLowerCase() === key && !i.sourceScheduleRef,
+      );
+      if (existingIndex >= 0 && m.scheduleRef) {
+        const existing = merged[existingIndex]!;
+        merged[existingIndex] = {
+          ...existing,
+          sourceScheduleRef: m.scheduleRef,
+          baseStatus,
+          source: "MG6/MG6C disclosure schedule",
+          evidenceAnchor: existing.evidenceAnchor ?? formatDisplayLabelCasing(m.displayLine),
+          mergedFrom: [...existing.mergedFrom, m.displayLine],
+        };
+      }
+      continue;
+    }
+    labelSeen.add(key);
 
     merged.push({
       id: `ledger-material-${m.id}`,
@@ -2676,6 +2719,13 @@ function mergeLedgerDisclosureItems(
 function canonicalLedgerMaterial(
   displayLine: string,
   familyId: ChaseFamilyId,
+  /**
+   * The schedule row's description with its status cell removed. The family patterns below need the
+   * whole row to recognise a modality, but a request must be worded from the description alone —
+   * otherwise the card reads `MG5 Case Summary — Served summary/draft`, which states the item is
+   * served in the middle of asking for it.
+   */
+  descriptionLabel?: string | null,
 ): {
   label: string;
   anchor?: string;
@@ -2770,7 +2820,7 @@ function canonicalLedgerMaterial(
         "Please provide the full phone download / source export, or confirm in writing why it is not available.",
     };
   }
-  return { label: formatDisplayLabelCasing(displayLine) };
+  return { label: formatDisplayLabelCasing(descriptionLabel?.trim() || displayLine) };
 }
 
 function sourceBoundCaseWideLine(raw: string, bundleText: string | null | undefined): string {

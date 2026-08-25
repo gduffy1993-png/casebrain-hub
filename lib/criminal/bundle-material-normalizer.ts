@@ -268,7 +268,9 @@ function escapeForRegExp(value: string): string {
  * not mistaken for one.
  */
 export function parseScheduleRef(line: string): string | null {
-  const text = compact(line);
+  // Flattening welds the reference to the description it labels (`EX-MUR-001Charge Sheet`), which
+  // leaves no word boundary for the patterns below to end on. Restore the boundary first.
+  const text = deglueScheduleText(compact(line));
 
   const mg6 = text.match(/\b(MG6[A-Z]?)\s*[/\-\s]\s*(\d{1,4})\b/i);
   if (mg6?.[1] && mg6[2]) return `${mg6[1].toUpperCase()}/${mg6[2]}`;
@@ -306,6 +308,32 @@ function splitMaterialLabelDetail(line: string): { label: string; detail: string
     return { label: dashParts[0]!, detail: dashParts[1]! };
   }
   return { label: c, detail: null };
+}
+
+/**
+ * The status cell of a flattened schedule row, once degluing has restored its boundary
+ * (`EX-MUR-002 MG5 Case Summary Served summary/draft`).
+ *
+ * The description is what a solicitor asks for; the status cell is what the schedule says about it.
+ * Left welded together they produce requests that read `MG5 Case Summary Served summary/draft`,
+ * which no one can send, and which state the item is served in the middle of asking for it.
+ */
+const TRAILING_STATUS_CELL_RE =
+  /\s+((?:not\s+served|served|outstanding|missing|absent|unsigned|draft|partial|referred\s+only|referenced\s+only|awaiting|pending|requested)\b.*)$/i;
+
+function splitTrailingStatusCell(label: string): { label: string; statusCell: string | null } {
+  const match = label.match(TRAILING_STATUS_CELL_RE);
+  if (!match?.[1] || match.index === undefined) return { label, statusCell: null };
+  const description = label.slice(0, match.index).trim();
+  // A row that is only a status cell has no description to keep, and a bare reference is not one.
+  if (description.length < 3 || SCHEDULE_ROW_REF_RE.test(description) === false) {
+    return description.length >= 3
+      ? { label: description, statusCell: match[1].trim() }
+      : { label, statusCell: null };
+  }
+  const withoutRef = description.replace(SCHEDULE_ROW_REF_RE, "").trim();
+  if (withoutRef.length < 3) return { label, statusCell: null };
+  return { label: description, statusCell: match[1].trim() };
 }
 
 function normaliseDedupeKey(line: string, scheduleRef: string | null): string {
@@ -363,7 +391,12 @@ export function normaliseBundleMaterials(bundleText: string): NormalisedMaterial
     if (!status) continue;
 
     const scheduleRef = parseScheduleRef(line);
-    const { label, detail } = splitMaterialLabelDetail(line);
+    const split = splitMaterialLabelDetail(line);
+    const cell = splitTrailingStatusCell(split.label);
+    const label = cell.label;
+    // The status cell leaves the label but must not leave the row: it is what the schedule says
+    // about the item, and Papers still has to show it.
+    const detail = [cell.statusCell, split.detail].filter(Boolean).join(" — ") || null;
     const id = normaliseDedupeKey(line, scheduleRef);
     if (seen.has(id)) continue;
     seen.add(id);

@@ -1,0 +1,79 @@
+[
+  {
+    "caseId": "14823d9e-1f0f-4cfc-af01-e6595d1cdfc4",
+    "bundleSourceStatus": 200,
+    "scanChars": 80000,
+    "combinedTextLength": 167149,
+    "canonicalEvidenceRows": 121,
+    "canonicalFindings": 4,
+    "canonicalCharges": 2,
+    "battleboardStatus": 200,
+    "matterStatus": 200
+  },
+  {
+    "caseId": "2dcdc59d-ff44-4bc8-ac31-bd11a954a59e",
+    "bundleSourceStatus": 200,
+    "scanChars": 12061,
+    "combinedTextLength": 12101,
+    "canonicalEvidenceRows": 38,
+    "canonicalFindings": 4,
+    "canonicalCharges": 0,
+    "battleboardStatus": 200,
+    "matterStatus": 200
+  },
+  {
+    "caseId": "687cf5a6-6898-4257-baef-33e33ace08df",
+    "bundleSourceStatus": 200,
+    "scanChars": 8104,
+    "combinedTextLength": 8110,
+    "canonicalEvidenceRows": 5,
+    "canonicalFindings": 4,
+    "canonicalCharges": 0,
+    "battleboardStatus": 200,
+    "matterStatus": 200
+  },
+  {
+    "caseId": "7e763777-94a8-4958-a190-a35ef6ddb259",
+    "bundleSourceStatus": 200,
+    "scanChars": 10245,
+    "combinedTextLength": 10251,
+    "canonicalEvidenceRows": 4,
+    "canonicalFindings": 5,
+    "canonicalCharges": 0,
+    "battleboardStatus": 200,
+    "matterStatus": 200
+  },
+  {
+    "caseId": "99090c69-5d78-41e3-946d-119b4bc335ba",
+    "bundleSourceStatus": 200,
+    "scanChars": 80000,
+    "combinedTextLength": 145270,
+    "canonicalEvidenceRows": 9,
+    "canonicalFindings": 1,
+    "canonicalCharges": 0,
+    "battleboardStatus": 200,
+    "matterStatus": 200
+  },
+  {
+    "caseId": "a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27",
+    "bundleSourceStatus": 200,
+    "scanChars": 10810,
+    "combinedTextLength": 10816,
+    "canonicalEvidenceRows": 9,
+    "canonicalFindings": 3,
+    "canonicalCharges": 0,
+    "battleboardStatus": 200,
+    "matterStatus": 200
+  },
+  {
+    "caseId": "a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01",
+    "bundleSourceStatus": 200,
+    "scanChars": 8344,
+    "combinedTextLength": 8356,
+    "canonicalEvidenceRows": 7,
+    "canonicalFindings": 5,
+    "canonicalCharges": 0,
+    "battleboardStatus": 200,
+    "matterStatus": 200
+  }
+]
