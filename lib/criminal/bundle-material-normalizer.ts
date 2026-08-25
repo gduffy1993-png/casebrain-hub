@@ -251,12 +251,46 @@ export function classifyMaterialStatus(line: string): MaterialStatus | null {
   return null;
 }
 
-function parseScheduleRef(line: string): string | null {
-  const m =
-    line.match(/\b(MG6C?\/\d{3,4})\b/i) ??
-    line.match(/\b(MG6[A-Z]?[-\s]?\d{2,4})\b/i);
-  if (!m?.[1]) return null;
-  return compact(m[1]).replace(/\s+/g, "").toUpperCase();
+/** Case-file and URN numbering identifies the case, not a listed item on a schedule. */
+const NON_MATERIAL_REF_PREFIX = /^(?:URN|URNNP|CB)$/i;
+
+function escapeForRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * The reference a schedule gives a listed item — how a solicitor asks for it, and how two
+ * separately listed items are told apart.
+ *
+ * Covers the MG6 cell forms (`MG6/04`, `MG6C/002`, `MG6-04`, `MG6 04`) and the exhibit/unit forms
+ * these schedules use alongside them (`O02`, `EX/03`, `EX-MUR-005`, `CCTV/2`, `BWV/4`, `TEL/5`).
+ * Exhibit-style references must be upper case, so ordinary prose containing a slash and a digit is
+ * not mistaken for one.
+ */
+export function parseScheduleRef(line: string): string | null {
+  const text = compact(line);
+
+  const mg6 = text.match(/\b(MG6[A-Z]?)\s*[/\-\s]\s*(\d{1,4})\b/i);
+  if (mg6?.[1] && mg6[2]) return `${mg6[1].toUpperCase()}/${mg6[2]}`;
+
+  const exhibitChain = text.match(/\b(EX-[A-Z]{2,4}-\d{2,4})\b/);
+  if (exhibitChain?.[1]) return exhibitChain[1].toUpperCase();
+
+  const unitCell = text.match(/\b([A-Z]{2,5})\/(\d{1,3})\b/);
+  if (
+    unitCell?.[1] &&
+    unitCell[2] &&
+    !NON_MATERIAL_REF_PREFIX.test(unitCell[1]) &&
+    // `CAD/999` names two kinds of log; the 999 is the emergency number, not an item number.
+    unitCell[2] !== "999"
+  ) {
+    return `${unitCell[1].toUpperCase()}/${unitCell[2]}`;
+  }
+
+  const numberedExhibit = text.match(/\bO(\d{2})\b/);
+  if (numberedExhibit?.[1]) return `O${numberedExhibit[1]}`;
+
+  return null;
 }
 
 function splitMaterialLabelDetail(line: string): { label: string; detail: string | null } {
@@ -341,7 +375,7 @@ export function normaliseBundleMaterials(bundleText: string): NormalisedMaterial
     };
 
     const displayLine = (() => {
-      if (scheduleRef && new RegExp(`^${scheduleRef.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(label)) {
+      if (scheduleRef && new RegExp(`^${escapeForRegExp(scheduleRef)}\\b`, "i").test(label)) {
         return detail ? `${label} — ${detail}` : label;
       }
       return [scheduleRef, label, detail].filter(Boolean).join(" — ");

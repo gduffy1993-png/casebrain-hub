@@ -21,7 +21,12 @@ for (const [name, id] of cases) {
   console.log(`    ledger materials : ${ledger.materials.length}`);
   console.log(`    status counts    : ${JSON.stringify(counts)}`);
   console.log(`    needing chase    : ${ledgerMaterialsNeedingChase(ledger).length}`);
-  for (const m of ledger.materials.slice(0, 10)) {
-    console.log(`      [${m.status}] ${m.displayLine.slice(0, 76)}`);
+  console.log(`    rows with scheduleRef : ${ledger.materials.filter((m) => m.scheduleRef).length}`);
+  const gaps = ledger.materials.filter((m) =>
+    ["outstanding", "absent", "referred_only", "unsigned", "draft", "partial"].includes(m.status),
+  );
+  console.log(`    gap rows              : ${gaps.length}`);
+  for (const m of gaps.filter((g) => g.scheduleRef)) {
+    console.log(`      ref=${String(m.scheduleRef).padEnd(11)} [${m.status.padEnd(13)}] ${m.displayLine.slice(0, 62)}`);
   }
 }

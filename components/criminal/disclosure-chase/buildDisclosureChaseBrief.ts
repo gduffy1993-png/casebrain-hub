@@ -61,6 +61,7 @@ import { guardDisclosureChaseBrief, type SourceTruthGuardianReport } from "@/lib
 import {
   finalizeDisclosureChasePresentation,
   isDigitalModalityChaseLabel,
+  isSourceNamedChaseItem,
 } from "@/lib/criminal/disclosure-chase-finalize";
 import {
   demoteSolicitorClutter,
@@ -258,6 +259,12 @@ export type DisclosureChaseItem = {
   draftChaseWording: string;
   courtLine: string;
   mergedFrom: string[];
+  /**
+   * Schedule/exhibit reference carried from the ledger row this item came from (`MG6/04`, `O03`).
+   * Present only when the source names the item, so two separately referenced items are never
+   * treated as the same material even when they share a chase family.
+   */
+  sourceScheduleRef?: string | null;
   /** Mandatory finding provenance — limitation when exact doc/page/state/scope unavailable. */
   provenance?: FindingProvenance;
 };
@@ -1793,6 +1800,13 @@ function gateItemsAgainstSource(
   if (!bundleText?.trim()) return items;
   const out: DisclosureChaseItem[] = [];
   for (const item of items) {
+    // The gates below stop the app asking for a modality the papers never mention. An item the
+    // schedule lists by reference, with the status the schedule states, is the papers speaking —
+    // so it is not gated, and keeps the reference the request is made against.
+    if (isSourceNamedChaseItem(item)) {
+      out.push(item);
+      continue;
+    }
     // Affirmative modality gate — listed CCTV/BWV alone must not keep master/full-window/continuity.
     if (item.familyId === "cctv_master" && !isCctvMasterEstablished(bundleText)) {
       continue;
@@ -1916,18 +1930,19 @@ function splitPrimaryAdditional(items: DisclosureChaseItem[]): {
   // Phone/subscriber modality injects use familyId "other" but must stay on the default
   // Chase board — burying them under collapsed "Other source-material items" soft-mutes
   // Brookes/Ahmed/Grant live while Overview still shows the PDF-true gaps.
+  // Material the schedule names by reference belongs on the board whatever family it falls in:
+  // an outstanding `MG6/04 bank source statements` is the paper's own gap, not miscellany.
   const isPrimaryEligible = (i: DisclosureChaseItem) =>
-    i.familyId !== "other" || isDigitalModalityChaseLabel(i.label);
+    i.familyId !== "other" || isDigitalModalityChaseLabel(i.label) || isSourceNamedChaseItem(i);
   const core = deduped.filter(isPrimaryEligible);
   const misc = deduped.filter((i) => !isPrimaryEligible(i));
-  const digital = core.filter((i) => isDigitalModalityChaseLabel(i.label));
-  const nonDigitalCore = core.filter((i) => !isDigitalModalityChaseLabel(i.label));
+  // Gaps the schedule states take the slots first; templates fill in behind them.
+  const sourceNamed = core.filter(isSourceNamedChaseItem);
+  const remaining = core.filter((i) => !isSourceNamedChaseItem(i));
+  const digital = remaining.filter((i) => isDigitalModalityChaseLabel(i.label));
+  const nonDigitalCore = remaining.filter((i) => !isDigitalModalityChaseLabel(i.label));
   const primaryItems: DisclosureChaseItem[] = [];
-  for (const item of digital) {
-    if (primaryItems.length >= DISCLOSURE_CHASE_PRIMARY_CAP) break;
-    primaryItems.push(item);
-  }
-  for (const item of nonDigitalCore) {
+  for (const item of [...sourceNamed, ...digital, ...nonDigitalCore]) {
     if (primaryItems.length >= DISCLOSURE_CHASE_PRIMARY_CAP) break;
     primaryItems.push(item);
   }
@@ -2010,6 +2025,24 @@ function normalizeDisclosureItem(item: DisclosureChaseItem): DisclosureChaseItem
     return item;
   }
   const label = normalizeRawLabel(item.label);
+  // Material the schedule names keeps its own identity. Canonicalising it would relabel
+  // `O03 independent witness statement` as a family card, and the solicitor would lose the
+  // reference they need in order to ask for it.
+  if (item.sourceScheduleRef?.trim()) {
+    return {
+      ...item,
+      label,
+      courtLine: toCourtLine(label),
+      provenance:
+        item.provenance ??
+        chaseItemProvenance({
+          label,
+          source: item.source,
+          baseStatus: item.baseStatus,
+          evidenceAnchor: item.evidenceAnchor,
+        }),
+    };
+  }
   // Keep phone/subscriber modality cards stable — joining mergedFrom into the canonical
   // label lets finalize overflow-rewrite them and soft-mute Brookes under Other.
   if (isDigitalModalityChaseLabel(label)) {
@@ -2107,7 +2140,11 @@ function canonicalDisclosureMaterial(
 
 function disclosureItemDedupeKey(item: DisclosureChaseItem): string {
   const canonical = canonicalDisclosureMaterial(item.label, item.familyId, item.mergedFrom);
-  return `${canonical.familyId}:${canonical.label.toLowerCase().replace(/\s+/g, " ").trim()}`;
+  const key = `${canonical.familyId}:${canonical.label.toLowerCase().replace(/\s+/g, " ").trim()}`;
+  // Items the schedule names separately are separate material, whatever family they share:
+  // `O03 independent witness statement` and `O04 forensic continuity statement` must both stand.
+  const ref = item.sourceScheduleRef?.trim();
+  return ref ? `${key}#${ref.toLowerCase()}` : key;
 }
 
 function mergeDisclosureItems(
@@ -2601,6 +2638,7 @@ function mergeLedgerDisclosureItems(
     merged.push({
       id: `ledger-material-${m.id}`,
       familyId,
+      sourceScheduleRef: m.scheduleRef ?? null,
       label: canonical.label,
       whyItMatters: (() => {
         if (canonical.whyItMatters) return canonical.whyItMatters;

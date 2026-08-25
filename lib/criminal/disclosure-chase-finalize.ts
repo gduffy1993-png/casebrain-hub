@@ -6,6 +6,7 @@ import type {
 } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import {
   draftMisalignedToLabel,
+  isGenericSolicitorClutterLabel,
   sanitizeChaseMergedFrom,
   sanitizeSolicitorEvidenceAnchor,
 } from "@/lib/criminal/solicitor-signal-mute";
@@ -271,6 +272,21 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
     item.mergedFrom.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
   ).slice(0, 8);
 
+  // Presentation may tidy the wording of material the schedule names, but must not rename it
+  // into a family card — the reference is what the request is made against.
+  if (isSourceNamedChaseItem(item)) {
+    // Casing only. The fragment humaniser treats an MG6 label as schedule chrome and would
+    // rewrite `MG6/05 CCTV continuity log` into a generic clarification card.
+    const named = formatDisplayLabelCasing(item.label);
+    return {
+      ...item,
+      label: named,
+      whyItMatters: sanitizeWhyItMatters(item.whyItMatters, 1),
+      draftChaseWording: cleanDraftWording(named, [named]),
+      courtLine: cleanCourtLine(named),
+    };
+  }
+
   let label = humanizeChaseFragmentLabel(item.label);
   // Brookes/Ahmed soft-mute: never overflow-rewrite digital modality cards into
   // "Outstanding source material…" — that buries PDF-true phone/subscriber under Other.
@@ -354,7 +370,22 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
 }
 
 function itemFinalizeKey(item: DisclosureChaseItem): string {
-  return `${item.familyId}:${norm(item.label)}`;
+  const key = `${item.familyId}:${norm(item.label)}`;
+  const ref = item.sourceScheduleRef?.trim();
+  return ref ? `${key}#${ref.toLowerCase()}` : key;
+}
+
+/**
+ * Material the schedule names by reference. Such an item may be reworded, but must not be merged
+ * into a family card or renamed — the reference is how the solicitor asks for it, and the source
+ * naming it is what makes the request safe to send.
+ */
+export function isSourceNamedChaseItem(item: DisclosureChaseItem): boolean {
+  if (!item.sourceScheduleRef?.trim()) return false;
+  // A schedule is not a listed item on itself, and generic schedule chrome never becomes a
+  // request — carrying a reference must not resurrect either as material.
+  if (item.familyId === "mg6_unused") return false;
+  return !isGenericSolicitorClutterLabel(item.label);
 }
 
 function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): DisclosureChaseItem {
@@ -490,16 +521,22 @@ function collapseFinalizedItemsByFamilyId(items: DisclosureChaseItem[]): Disclos
 
   const out: DisclosureChaseItem[] = [];
   for (const [familyId, group] of byFamily) {
+    // Separately referenced material stands on its own; only unnamed items collapse to a card.
+    const named = group.filter(isSourceNamedChaseItem);
+    const rest = group.filter((item) => !isSourceNamedChaseItem(item));
+    out.push(...named);
+    if (rest.length === 0) continue;
+
     if (familyId === "other") {
-      out.push(...collapseOtherFamilyItems(group));
+      out.push(...collapseOtherFamilyItems(rest));
       continue;
     }
-    if (group.length === 1) {
-      out.push(group[0]!);
+    if (rest.length === 1) {
+      out.push(rest[0]!);
       continue;
     }
-    let merged = group[0]!;
-    for (const item of group.slice(1)) {
+    let merged = rest[0]!;
+    for (const item of rest.slice(1)) {
       merged = mergeFinalizedItems(merged, item);
     }
     const familyLabel = familyLabelForId(
