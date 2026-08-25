@@ -589,6 +589,28 @@ function sanitizeEvidenceLabel(raw: string): string {
 const GENERIC_EVIDENCE_TOKEN_RE =
   /^(evidence|summary|statement|prosecution|headline|referred|remains|final|outstanding|served|missing|pages?|bundle|schedule|section|particulars|offence|offense)$/i;
 
+/**
+ * Bundle furniture — the words a bundle uses to organise itself, not to name material.
+ *
+ * "CCTV SECTION" is a heading over the CCTV pages; it is not a document, and a solicitor cannot ask
+ * for it. Left alone it becomes a served row, and a served row cancels the request for the master
+ * footage the schedule states is outstanding. Note what is deliberately absent: "index" names real
+ * material ("scene photograph index"), so it cannot be furniture on its own.
+ */
+const BUNDLE_FURNITURE_RE =
+  /\b(section|heading|reference\s+area|bundle\s+detail|table\s+of\s+contents|page\s+range)\b/i;
+
+/**
+ * A status belongs to a row's state, not to its name.
+ *
+ * Flattening welds the status cell onto the text before it, so wording arrives as "Full 999 audioNot
+ * yet" — a label that says the material is not here, on a row recorded as served. Whatever else that
+ * is, it is not the name of a document, and it must not be treated as proof that anything was served.
+ * "Missing" is absent from the list on purpose: a missing person report is real material.
+ */
+const STATUS_INSIDE_LABEL_RE =
+  /not\s*(?:yet|served|excluded|provided|attached|available|disclosed)\b|\b(?:outstanding|withheld|awaited|awaiting)\b/i;
+
 /** Reject labels that are section headings, dangling conjunctions, or mid-sentence prose cuts. */
 export function isFragmentEvidenceLabel(label: string): boolean {
   const t = label.replace(/\s+/g, " ").trim();
@@ -599,8 +621,19 @@ export function isFragmentEvidenceLabel(label: string): boolean {
     return true;
   }
   if (/\b(headline summary|evidence referred or|prosecution relies on)\b/i.test(t)) return true;
+  // Welding leaves no boundary for these patterns to end on ("Reference areaBundle detailCaution"),
+  // so they are also asked of the wording with the lost spaces restored.
+  const unwelded = t.replace(/([a-z])([A-Z])/g, "$1 $2");
+  if (BUNDLE_FURNITURE_RE.test(t) || BUNDLE_FURNITURE_RE.test(unwelded)) return true;
+  if (STATUS_INSIDE_LABEL_RE.test(t) || STATUS_INSIDE_LABEL_RE.test(unwelded)) return true;
+  // Prose cut mid-sentence: a document name does not begin in lower case and run on for several
+  // words ("estate and arguing with MarcusCCTV stills were"). Two words are left alone, so material
+  // that genuinely starts lower case ("iPhone download") still stands.
+  if (/^[a-z]/.test(t) && t.split(/\s+/).length >= 3) return true;
   if (
-    /\b(or|and|on|of|for|with|by|to|from|at|the|a|an|relies|remains|referred|summary|stated)\s*$/i.test(t)
+    /\b(or|and|on|of|for|with|by|to|from|at|the|a|an|relies|remains|referred|summary|stated|is|are|was|were|been|yet)\s*$/i.test(
+      t,
+    )
   ) {
     return true;
   }

@@ -281,6 +281,43 @@ export function evidenceMaySatisfyRequest(
 }
 
 /**
+ * Whether wording asks for the whole of something, a part of it, or does not say.
+ *
+ * A schedule states a gap by naming what is on file and what is not, in the same row: "CCTV stills and
+ * timing note — master footage outstanding" means the stills are served and the master is not. So the
+ * scope a piece of wording asks about decides what can answer it, and it decides it across every
+ * family: a summary is not the full record, an index is not the photograph set, an extract is not the
+ * original log.
+ */
+type EvidenceScope = "whole" | "part" | "unspecified";
+
+const WHOLE_SCOPE_RE = /\b(master|full|original|complete|entire|unedited|whole|underlying|raw)\b/i;
+const PART_SCOPE_RE =
+  /\b(summary|summaries|index|extract|excerpt|excerpts|still|stills|clip|clips|screenshot|screenshots|snippet|snippets|partial|initial|draft|sample)\b/i;
+
+function evidenceScope(label: string): EvidenceScope {
+  // A row naming both asks for the whole: the part is what it says is already there.
+  if (WHOLE_SCOPE_RE.test(label)) return "whole";
+  if (PART_SCOPE_RE.test(label)) return "part";
+  return "unspecified";
+}
+
+/**
+ * True when a row's own wording denies that the material is on file.
+ *
+ * Rows reach here from prose as well as schedules, and flattening welds a status onto the text before
+ * it ("Full 999 audioNot yet"), which is how a row can arrive labelled as outstanding and stated as
+ * served. Where the label and the state disagree, the row proves nothing, and it must not be the reason
+ * a solicitor never sees a gap the papers state.
+ */
+function labelDeniesService(label: string): boolean {
+  return (
+    /not\s*(?:yet|served|provided|attached|available|on\s+file|disclosed)\b/i.test(label) ||
+    /\b(?:outstanding|awaited|awaiting|withheld)\b/i.test(label)
+  );
+}
+
+/**
  * Whether a chase request for `requestLabel` should be suppressed because
  * equivalent material is already served (or incomplete, not missing).
  */
@@ -289,6 +326,7 @@ export function shouldSuppressChaseAsAlreadyOnFile(
   rows: EvidenceStateRow[],
 ): { suppress: boolean; reason: string | null } {
   const reqMod = inferEvidenceModality(requestLabel);
+  const reqScope = evidenceScope(requestLabel);
 
   for (const row of rows) {
     const rowMod = row.modality ?? inferEvidenceModality(row.label);
@@ -297,6 +335,10 @@ export function shouldSuppressChaseAsAlreadyOnFile(
 
     // Served recording does not satisfy a request for a missing transcript.
     if (row.state === "served") {
+      if (labelDeniesService(row.label)) continue;
+      // A part of a thing is not the thing: a served summary, index or extract leaves the full
+      // version as outstanding as it was.
+      if (reqScope === "whole" && evidenceScope(row.label) === "part") continue;
       if (reqMod === "transcript" && rowMod === "recording") {
         continue;
       }
