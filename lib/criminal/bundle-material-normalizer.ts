@@ -368,10 +368,11 @@ function rowConfidence(status: MaterialStatus, line: string): TruthConfidence {
 
 /**
  * A schedule sits wherever the bundle puts it, which on a heavy case is well past a quarter of a
- * million characters. Stopping short of it means the ledger reports no gaps rather than reporting
- * that it never looked, so the limit only guards against a pathological upload.
+ * million characters. Reading further is cheap here — the ledger handles 1.6 million characters in
+ * about a second — so this limit is not what holds the app back; the chase presentation gates are.
+ * Raise this alongside `FRONT_MATTER_CHARS`, which currently stops the text arriving at all.
  */
-const MATERIAL_SCAN_CHARS = 2_000_000;
+const MATERIAL_SCAN_CHARS = 250_000;
 
 function collectMaterialLines(bundleText: string): string[] {
   const head = bundleText.slice(0, MATERIAL_SCAN_CHARS).replace(/\r\n/g, "\n");

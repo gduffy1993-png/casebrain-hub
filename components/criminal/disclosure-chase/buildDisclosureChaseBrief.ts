@@ -23,7 +23,7 @@ import {
   ledgerAnchorForChaseFamily,
   ledgerMaterialsNeedingChase,
 } from "@/lib/criminal/bundle-truth-ledger";
-import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
+import type { BundleTruthLedger, NormalisedMaterialRow } from "@/lib/criminal/bundle-truth-types";
 import {
   shouldSuppressChaseAsAlreadyOnFile,
   type EvidenceStateRow,
@@ -2628,6 +2628,37 @@ function collapseDisclosureItemsByFamily(items: DisclosureChaseItem[]): Disclosu
   });
 }
 
+/**
+ * How many rows needing chase are turned into cards.
+ *
+ * A 1.6-million-character bundle yields close to two thousand, and the board shows eight. Building
+ * a card for every one of them, then putting all of them through a dozen presentation passes, costs
+ * far more than it can ever show — and it is paid in the browser, on the case with the most papers.
+ *
+ * The rows kept are the ones a solicitor would reach for first: material the schedule names by
+ * reference and records as absent, then the rest of the named material, then everything else. So the
+ * bound only ever discards the weakest evidence of a gap, never a stated one.
+ */
+const LEDGER_CHASE_ROW_BUDGET = 300;
+
+function boundedMaterialsNeedingChase(ledger: BundleTruthLedger): NormalisedMaterialRow[] {
+  const rows = ledgerMaterialsNeedingChase(ledger);
+  if (rows.length <= LEDGER_CHASE_ROW_BUDGET) return rows;
+  const rank = (row: NormalisedMaterialRow): number => {
+    const stated = row.status === "outstanding" || row.status === "absent";
+    if (row.scheduleRef && stated) return 0;
+    if (row.scheduleRef) return 1;
+    if (stated) return 2;
+    return 3;
+  };
+  return [...rows]
+    .map((row, index) => ({ row, index, rank: rank(row) }))
+    // Ties keep source order, so the board stays stable between runs on the same papers.
+    .sort((a, b) => a.rank - b.rank || a.index - b.index)
+    .slice(0, LEDGER_CHASE_ROW_BUDGET)
+    .map((entry) => entry.row);
+}
+
 /** A schedule reference on its own — `EX/02`, `MG6/04`, `O03`, `EX-MUR-001`. */
 const SCHEDULE_REF_ONLY_RE =
   /\b(?:MG\d{1,2}[A-Z]?(?:\/\d{1,4})?|EX-[A-Z]{2,4}-\d{2,4}|[A-Z]{1,5}\/\d{1,3}|O\d{2})\b/g;
@@ -2639,8 +2670,16 @@ function mergeLedgerDisclosureItems(
 ): DisclosureChaseItem[] {
   const labelSeen = new Set(items.map((i) => i.label.toLowerCase()));
   const merged = [...items];
+  // Index by label so the source-named upgrade below is a lookup rather than a scan. A heavy bundle
+  // yields around two thousand rows needing chase, and scanning the list for each one turns the
+  // merge quadratic — which on a big case is the difference between a board and a hung tab.
+  const indexByLabel = new Map<string, number>();
+  merged.forEach((item, index) => {
+    const key = item.label.toLowerCase();
+    if (!indexByLabel.has(key)) indexByLabel.set(key, index);
+  });
 
-  for (const m of ledgerMaterialsNeedingChase(ledger)) {
+  for (const m of boundedMaterialsNeedingChase(ledger)) {
     const familyId = classifyFamily(m.displayLine);
     // Some rows carry the reference in the label and the description in the detail (`EX/02` /
     // `continuity note ...`). A request worded from the reference alone names nothing, so the
@@ -2660,10 +2699,8 @@ function mergeLedgerDisclosureItems(
       // modality the papers never affirm — so the gap the schedule states disappears entirely.
       // Where the papers name the material, the template becomes that row: same wording, but now
       // carrying the reference, the anchor and the status the schedule states.
-      const existingIndex = merged.findIndex(
-        (i) => i.label.toLowerCase() === key && !i.sourceScheduleRef,
-      );
-      if (existingIndex >= 0 && m.scheduleRef) {
+      const existingIndex = indexByLabel.get(key) ?? -1;
+      if (existingIndex >= 0 && m.scheduleRef && !merged[existingIndex]!.sourceScheduleRef) {
         const existing = merged[existingIndex]!;
         merged[existingIndex] = {
           ...existing,

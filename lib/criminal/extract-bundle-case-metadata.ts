@@ -9,15 +9,16 @@ import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
 /**
  * How much of a bundle is read.
  *
- * This was 80,000 characters, which is roughly the front third of a heavy Crown Court bundle. The
- * failure it caused was silent and worst where the stakes are highest: a 1.6-million-character
- * bundle was being judged on 5% of itself, with no indication that the schedule had never been
- * reached. A bundle the app has not read is not a bundle it can be trusted on.
+ * This is the front third of a heavy Crown Court bundle, and it is not enough: a
+ * 1.6-million-character bundle is judged on 5% of itself, with nothing to show the schedule was
+ * never reached. Raising it is the right fix but not a sufficient one on its own — measured at
+ * 2,000,000 the ledger still builds in about a second, while the chase board takes 465 seconds,
+ * because the presentation gates re-scan the whole bundle per card across a dozen passes. Reading
+ * more has to come with giving those gates a distilled haystack instead of the raw bundle.
  *
- * The bound that remains is a guard against a pathological upload taking a browser down with it,
- * not a judgement about which pages matter.
+ * See `artifacts/casebrain-qa/assurance/solicitor-signal-v1/MORNING-REPORT.md`.
  */
-const FRONT_MATTER_CHARS = 2_000_000;
+const FRONT_MATTER_CHARS = 80_000;
 const SECTION_BLOCK_CHARS = 6_000;
 
 const HIGH_VALUE_SECTIONS = [

@@ -136,7 +136,7 @@
     "status": 200,
     "data": {
       "case_id": "8e9d08be-548e-44a3-90be-5f58083b62a5",
-      "generated_at": "2026-08-25T05:02:01.238Z",
+      "generated_at": "2026-08-25T07:03:28.040Z",
       "overall_status": "usable",
       "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Identification / visual ID pressure (viable) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
       "position_trust": "interview_from_file",

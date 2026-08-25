@@ -79,7 +79,7 @@
   {
     "caseId": "f57a2750-d24e-42a2-9f73-92384db565dc",
     "bundleSourceStatus": 200,
-    "scanChars": 79806,
+    "scanChars": 1614176,
     "combinedTextLength": 1614418,
     "canonicalEvidenceRows": 77,
     "canonicalFindings": 3,
@@ -211,7 +211,7 @@
   {
     "caseId": "14823d9e-1f0f-4cfc-af01-e6595d1cdfc4",
     "bundleSourceStatus": 200,
-    "scanChars": 80000,
+    "scanChars": 167149,
     "combinedTextLength": 167149,
     "canonicalEvidenceRows": 121,
     "canonicalFindings": 4,
