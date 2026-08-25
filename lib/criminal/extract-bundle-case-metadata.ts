@@ -6,8 +6,18 @@
 import type { ParsedBundleHeader } from "@/lib/bundle/parse-bundle-display";
 import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
 
-/** Front matter + high-value procedural sections (not full 1000-page scan). */
-const FRONT_MATTER_CHARS = 80_000;
+/**
+ * How much of a bundle is read.
+ *
+ * This was 80,000 characters, which is roughly the front third of a heavy Crown Court bundle. The
+ * failure it caused was silent and worst where the stakes are highest: a 1.6-million-character
+ * bundle was being judged on 5% of itself, with no indication that the schedule had never been
+ * reached. A bundle the app has not read is not a bundle it can be trusted on.
+ *
+ * The bound that remains is a guard against a pathological upload taking a browser down with it,
+ * not a judgement about which pages matter.
+ */
+const FRONT_MATTER_CHARS = 2_000_000;
 const SECTION_BLOCK_CHARS = 6_000;
 
 const HIGH_VALUE_SECTIONS = [

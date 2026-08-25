@@ -366,8 +366,15 @@ function rowConfidence(status: MaterialStatus, line: string): TruthConfidence {
   return "high";
 }
 
+/**
+ * A schedule sits wherever the bundle puts it, which on a heavy case is well past a quarter of a
+ * million characters. Stopping short of it means the ledger reports no gaps rather than reporting
+ * that it never looked, so the limit only guards against a pathological upload.
+ */
+const MATERIAL_SCAN_CHARS = 2_000_000;
+
 function collectMaterialLines(bundleText: string): string[] {
-  const head = bundleText.slice(0, 250_000).replace(/\r\n/g, "\n");
+  const head = bundleText.slice(0, MATERIAL_SCAN_CHARS).replace(/\r\n/g, "\n");
   const lines: string[] = [];
   const seen = new Set<string>();
 
