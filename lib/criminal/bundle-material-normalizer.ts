@@ -336,6 +336,18 @@ function splitTrailingStatusCell(label: string): { label: string; statusCell: st
   return { label: description, statusCell: match[1].trim() };
 }
 
+/**
+ * The tab or row number a schedule table gives an entry (`10CCTV stills and timing note`). It
+ * identifies the row's position in the table, not the document, so it has no place in the name of
+ * the material a solicitor asks for. `999` is left alone — it names a kind of log, not a row.
+ */
+function stripLeadingRowNumber(label: string): string {
+  const stripped = label.replace(/^(\d{1,2})\s+(?=[A-Za-z])/, (match, digits: string) =>
+    digits === "999" ? match : "",
+  );
+  return stripped.trim().length >= 3 ? stripped.trim() : label;
+}
+
 function normaliseDedupeKey(line: string, scheduleRef: string | null): string {
   const base = (scheduleRef ?? line)
     .toUpperCase()
@@ -393,7 +405,7 @@ export function normaliseBundleMaterials(bundleText: string): NormalisedMaterial
     const scheduleRef = parseScheduleRef(line);
     const split = splitMaterialLabelDetail(line);
     const cell = splitTrailingStatusCell(split.label);
-    const label = cell.label;
+    const label = scheduleRef ? stripLeadingRowNumber(cell.label) : cell.label;
     // The status cell leaves the label but must not leave the row: it is what the schedule says
     // about the item, and Papers still has to show it.
     const detail = [cell.statusCell, split.detail].filter(Boolean).join(" — ") || null;

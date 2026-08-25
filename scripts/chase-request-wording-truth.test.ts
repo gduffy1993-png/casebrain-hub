@@ -56,6 +56,24 @@ assert.match(
   "the status cell must survive on the row even after leaving the label",
 );
 
+// A schedule table's tab number identifies the row's place in the table, not the document.
+const indexRows = normaliseBundleMaterials(`
+=== SECTION: MG6 DISCLOSURE SCHEDULE ===
+10CCTV stills and timing noteMaster footage outstandingEX-MUR-009
+11CAD and 999 summariesOriginal audio/log outstandingEX-MUR-012
+`);
+for (const row of indexRows) {
+  assert.doesNotMatch(
+    row.label,
+    /^\d{1,2}\s/,
+    `a row number is table furniture, not part of the material's name — got: ${row.label}`,
+  );
+}
+assert.ok(
+  indexRows.some((r) => /^CCTV stills/i.test(r.label)),
+  `the description must survive the row number being removed — got: ${indexRows.map((r) => r.label).join(" | ")}`,
+);
+
 const medical = rows.find((r) => r.scheduleRef === "MG6C/002");
 assert.ok(medical, "MG6C/002 must reach the ledger");
 assert.match(

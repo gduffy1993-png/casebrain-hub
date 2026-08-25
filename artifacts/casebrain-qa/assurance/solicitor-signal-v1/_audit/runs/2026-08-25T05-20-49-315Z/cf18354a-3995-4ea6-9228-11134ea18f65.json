@@ -1,0 +1,40 @@
+{
+  "caseId": "cf18354a-3995-4ea6-9228-11134ea18f65",
+  "primary": [
+    {
+      "ref": "MG6C/007",
+      "label": "MG6C/007 CAD/999 audio",
+      "family": "cad_999",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "MG6C/008",
+      "label": "Body-worn video (BWV)",
+      "family": "bwv",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "LP/4",
+      "label": "I seized a broken bottle from near the doorway. Exhibit code LP/4 appears on one continuity sheet and LP/14 appears on",
+      "family": "exhibit_provenance",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "CAD / dispatch / 999 material",
+      "family": "cad_999",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Full custody record / PACE material",
+      "family": "custody_pace",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 75,
+  "statedGaps": 6,
+  "statedGapsOnBoard": 2,
+  "truncated": false,
+  "findings": []
+}
