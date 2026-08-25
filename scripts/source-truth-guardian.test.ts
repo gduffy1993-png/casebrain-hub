@@ -2,7 +2,10 @@ import { describe, expect, it } from "vitest";
 import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildHearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import {
+  resolveDemoProfileFromContext,
+  workflowDisclosureCaseWideLine,
   workflowDisclosureChaseLabels,
+  workflowHeaderOverrides,
   workflowProfileFallbackRisks,
   workflowTopNextActions,
 } from "../lib/criminal/pilot-workflow";
@@ -695,5 +698,67 @@ describe("source truth guardian", () => {
 
     expect(header.allegation).toBe("Theft from shop");
     expect(header.allegation).not.toMatch(/fraud/i);
+  });
+
+  describe("demo matter names in served evidence", () => {
+    const pilotMode = <T,>(run: () => T): T => {
+      const previous = process.env.NEXT_PUBLIC_CRIMINAL_PILOT_MODE;
+      process.env.NEXT_PUBLIC_CRIMINAL_PILOT_MODE = "true";
+      try {
+        return run();
+      } finally {
+        process.env.NEXT_PUBLIC_CRIMINAL_PILOT_MODE = previous;
+      }
+    };
+
+    const haleContext = {
+      allegation: "Murder, contrary to common law",
+      clientLabel: "Leon Hale",
+      bundleText: [
+        "Pathology note records the fatal wound to the chest.",
+        "Blood pattern analysis not served: blood from struggle while checking Marcus Vale.",
+        "Marcus Vale phone download is incomplete and the export log is outstanding.",
+      ].join("\n"),
+    };
+
+    it("does not let a demo name inside served evidence rewrite the charge", () => {
+      const header = pilotMode(() => workflowHeaderOverrides("Leon Hale", haleContext));
+
+      expect(header?.allegation ?? haleContext.allegation).toBe("Murder, contrary to common law");
+      expect(header?.allegation ?? "").not.toMatch(/fraud/i);
+      expect(header?.title ?? "").not.toMatch(/Marcus\s+Vale/i);
+    });
+
+    it("does not force a fraud profile from a demo name in served evidence", () => {
+      const profile = pilotMode(() => resolveDemoProfileFromContext(haleContext));
+      const caseWide = pilotMode(() => workflowDisclosureCaseWideLine(haleContext));
+
+      expect(profile).toBeNull();
+      expect(caseWide ?? "").not.toMatch(/account-control|dishonesty/i);
+    });
+
+    it("still applies the demo pack when the demo name is the matter identity", () => {
+      const header = pilotMode(() =>
+        workflowHeaderOverrides("R v Marcus Vale", {
+          allegation: "Offence wording not safely extracted",
+          clientLabel: "Marcus Vale",
+        }),
+      );
+
+      expect(header?.profile).toBe("fraud_account_control");
+      expect(header?.allegation).toBe("Fraud by false representation");
+    });
+
+    it("prefers source-backed charge wording over the demo pack allegation", () => {
+      const header = pilotMode(() =>
+        workflowHeaderOverrides("R v Marcus Vale", {
+          allegation: "Fraud by false representation, Fraud Act 2006 s.2",
+          clientLabel: "Marcus Vale",
+        }),
+      );
+
+      expect(header?.allegation).toBe("Fraud by false representation, Fraud Act 2006 s.2");
+      expect(header?.profile).toBe("fraud_account_control");
+    });
   });
 });

@@ -261,15 +261,32 @@ function contextScan(context: WorkflowProfileContext): string {
     .join(" ");
 }
 
-/** Demo matter name match anywhere in case signals — forces profile for Marcus/Kian/Leon. */
+/**
+ * Identity-only scan for demo matter names. A demo name appearing inside served
+ * evidence text (witness, complainant, exhibit note) is not the identity of this
+ * matter, so bundle/route text must never force a demo profile or allegation.
+ */
+function demoIdentityScan(context: WorkflowProfileContext): string {
+  return [context.caseTitle, context.clientLabel].filter(Boolean).join(" ");
+}
+
+function isUnusableAllegationLabel(label: string): boolean {
+  return /\b(offence wording not safely extracted|unknown|add charge sheet)\b/i.test(label);
+}
+
+function demoMatchFromIdentity(
+  context: WorkflowProfileContext,
+): (typeof DEMO_TITLE_FALLBACK)[number] | null {
+  const scan = demoIdentityScan(context);
+  if (!scan.trim()) return null;
+  return DEMO_TITLE_FALLBACK.find((demo) => demo.titleRe.test(scan)) ?? null;
+}
+
+/** Demo matter name match on case identity — forces profile for Marcus/Kian/Leon. */
 export function resolveDemoProfileFromContext(
   context: WorkflowProfileContext,
 ): Exclude<WorkflowProfile, "generic"> | null {
-  const scan = contextScan(context);
-  for (const demo of DEMO_TITLE_FALLBACK) {
-    if (demo.titleRe.test(scan)) return demo.profile;
-  }
-  return null;
+  return demoMatchFromIdentity(context)?.profile ?? null;
 }
 
 function resolveProfileFromContext(context: WorkflowProfileContext): WorkflowProfile {
@@ -290,11 +307,9 @@ function scoreProfile(context: WorkflowProfileContext): Map<WorkflowProfile, num
     ["generic", 0],
   ]);
 
-  const scan = contextScan(context);
-  for (const demo of DEMO_TITLE_FALLBACK) {
-    if (demo.titleRe.test(scan)) {
-      scores.set(demo.profile, (scores.get(demo.profile) ?? 0) + 100);
-    }
+  const identityDemo = demoMatchFromIdentity(context);
+  if (identityDemo) {
+    scores.set(identityDemo.profile, (scores.get(identityDemo.profile) ?? 0) + 100);
   }
 
   const weightedFields: Array<{ text: string; weight: number }> = [
@@ -714,17 +729,20 @@ export function workflowHeaderOverrides(
   if (!isCriminalPilotMode()) return null;
   const t = caseTitle.trim();
   const fullContext: WorkflowProfileContext = { caseTitle: t, ...context };
-  const scan = contextScan(fullContext);
 
-  for (const demo of DEMO_TITLE_FALLBACK) {
-    if (demo.titleRe.test(scan)) {
-      return {
-        title: demo.title,
-        allegation: demo.allegation,
-        displayTitle: `${demo.title} — ${demo.allegation}`,
-        profile: demo.profile,
-      };
-    }
+  const identityDemo = demoMatchFromIdentity(fullContext);
+  if (identityDemo) {
+    const sourceAllegation = fullContext.allegation?.trim();
+    const allegation =
+      sourceAllegation && !isUnusableAllegationLabel(sourceAllegation)
+        ? sourceAllegation
+        : identityDemo.allegation;
+    return {
+      title: identityDemo.title,
+      allegation,
+      displayTitle: `${identityDemo.title} — ${allegation}`,
+      profile: identityDemo.profile,
+    };
   }
 
   const profile = resolveWorkflowProfile(fullContext);
@@ -741,8 +759,7 @@ export function workflowHeaderOverrides(
           ? GENERIC_PROVISIONAL_PRIMARY_ROUTE_TITLE
           : PROFILE_PACKS[profile].primaryRouteTitle.split(" pressure")[0] ?? profile;
   const cleanAllegation =
-    allegationFromContext &&
-    !/\b(offence wording not safely extracted|unknown|add charge sheet)\b/i.test(allegationFromContext)
+    allegationFromContext && !isUnusableAllegationLabel(allegationFromContext)
       ? allegationFromContext
       : defaultAllegation;
 
