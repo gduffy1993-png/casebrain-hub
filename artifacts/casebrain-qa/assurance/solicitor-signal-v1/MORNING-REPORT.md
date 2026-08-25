@@ -144,9 +144,22 @@ offline. All five of Davies' stated gaps now reach the board. Commit `9ac0989a9`
 
 ## 6. Still open
 
-- **Hale's outstanding CCTV, CAD and custody rows still do not reach the board.** The ledger holds
-  them, correctly marked outstanding — `probe-hale-ledger.ts` shows this. They are dropped further
-  down the pipeline than I traced before stopping to verify the fixes I already had.
+- **Hale's outstanding CCTV, CAD and custody rows still do not reach the board.** Narrowed but not
+  fixed. The ledger holds them correctly marked outstanding (`probe-hale-ledger.ts`):
+  `EX-MUR-009` CCTV master, `EX-MUR-012` original CAD audio, `EX-MUR-022` full custody record. By
+  the time the board is assembled they are gone entirely — not ranked low, absent
+  (`probe-hale-board.ts`). Something between the ledger merge and the shortlist is removing them.
+
+  I tried two fixes and **both had exactly no effect**, measured across all twenty cases: stripping
+  the table row number from labels, and ranking absence ahead of everything rather than only within
+  source-named items. Because neither did anything, I reverted the ranking change rather than ship
+  unproven churn, and kept the row-number strip only because it is independently right and now has
+  a test. Worth knowing before someone tries either again — I have ruled them out.
+
+  Two candidates remain, both needing a trace through the twelve reconcile-and-gate steps between
+  merge and shortlist: either the family collapse is folding them into a card that is then removed
+  for naming an unaffirmed modality, or one of the reconcile steps is dropping them. This wants a
+  proper instrumented trace, which is the first thing I would do next.
 - **`MG6C/002` medical anchor** still fails at `bundle-truth-ledger.test.ts:378`. Baseline, unchanged.
 - **Interview recording/transcript** still fails at
   `f167-surgical-truth-opposite-direction.test.ts`. Pre-existing, confirmed by stashing.
@@ -158,6 +171,19 @@ offline. All five of Davies' stated gaps now reach the board. Commit `9ac0989a9`
    available and it needs your call.
 2. **Board size.** The cap is 8 cards. Now that stated gaps take slots ahead of templates, a heavy
    case fills all 8 with real gaps and the templates drop off entirely. Is 8 the right number?
+
+## Where the numbers stand
+
+Across all twenty cases with a source PDF, on commit `7d3cd1788`:
+
+- **15 of 26** gaps the schedules state by reference reach the chase board.
+- **1** rule finding in total, and it is a P1 wording issue, not a false statement about evidence.
+- **Davies 5/5, Dunn 4/4** — every stated gap on the board, named, with its reference.
+- **Hale 1/4** — the truncated bundle and the dropped rows above.
+- **Patel 3/4, Tobin 1/3, `cf18354a` 2/6** — the remaining shortfall, and worth a look next.
+- Six cases have bundles of 240 characters or less and boards of 0–2 items. Those are almost
+  certainly documents that never processed properly rather than clean cases, and the runner cannot
+  tell the difference. That is worth checking before anyone reads a low board as good news.
 
 ## Checks run
 
