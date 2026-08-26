@@ -48,10 +48,11 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
   const buildTabHref = usePilotMatterTabHref();
 
   const visibleTabs = demoShell
-    ? [...DEMO_PRIMARY_TABS, ...DEMO_SECONDARY_TABS]
+    ? DEMO_PRIMARY_TABS
     : pilotMode
       ? [...PILOT_PRIMARY_TABS, ...PILOT_SECONDARY_TABS]
       : LEGACY_TABS.filter((t) => t.id !== "position" && t.id !== "battleboard");
+  const demoMoreActive = demoShell && DEMO_SECONDARY_TABS.some((t) => t.id === active);
 
   const navShell = demoShell
     ? "rounded-xl border border-slate-200 bg-white px-2 py-2 flex flex-wrap gap-1 shadow-sm"
@@ -79,9 +80,7 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
       {visibleTabs.map((t) => {
         const href = buildTabHref(caseId, t.id);
         const isActive = active === t.id;
-        const isSecondary =
-          (demoShell && DEMO_SECONDARY_TABS.some((s) => s.id === t.id)) ||
-          (pilotMode && !demoShell && PILOT_SECONDARY_TABS.some((s) => s.id === t.id));
+        const isSecondary = pilotMode && !demoShell && PILOT_SECONDARY_TABS.some((s) => s.id === t.id);
         return (
           <Link
             key={t.id}
@@ -97,6 +96,34 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
           </Link>
         );
       })}
+      {demoShell ? (
+        <details className="relative">
+          <summary
+            className={`${demoMoreActive ? activeCls : idleCls} list-none cursor-pointer [&::-webkit-details-marker]:hidden`}
+          >
+            More
+          </summary>
+          <div className="absolute left-0 z-20 mt-1 min-w-[10rem] rounded-lg border border-slate-200 bg-white p-1 shadow-lg">
+            {DEMO_SECONDARY_TABS.map((t) => {
+              const href = buildTabHref(caseId, t.id);
+              const isActive = active === t.id;
+              return (
+                <Link
+                  key={t.id}
+                  href={href}
+                  className={`block rounded-md px-3 py-1.5 text-sm ${
+                    isActive ? "bg-blue-50 font-medium text-blue-800" : "text-slate-600 hover:bg-slate-50"
+                  }`}
+                  aria-current={isActive ? "page" : undefined}
+                  prefetch={pathname.startsWith("/cases/") || pathname.startsWith("/court-today")}
+                >
+                  {t.label}
+                </Link>
+              );
+            })}
+          </div>
+        </details>
+      ) : null}
     </nav>
   );
 }
