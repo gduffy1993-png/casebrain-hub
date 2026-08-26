@@ -54,6 +54,14 @@ check("a row whose own wording denies service proves nothing", () => {
   assert.equal(r.suppress, false);
 });
 
+check("a referred-on-schedule fragment marked served does not close the BWV gap", () => {
+  const r = shouldChaseRequestAgainstServedAliases("Body-worn video", [
+    { label: "BWV referred on schedule but not", state: "served" },
+    { label: "Assault on emergency worker Custody extract", state: "served" },
+  ]);
+  assert.equal(r.chase, true);
+});
+
 console.log("the opposite direction: real service still closes a request");
 
 check("a served full record closes a request for the full record", () => {

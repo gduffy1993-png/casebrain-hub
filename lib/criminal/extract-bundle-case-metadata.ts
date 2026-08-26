@@ -3,6 +3,7 @@
  * Does not invent values — returns null when anchors are not clearly present.
  */
 
+import { isExtractionFailurePlaceholder } from "@/lib/bundle/bundle-document-text";
 import type { ParsedBundleHeader } from "@/lib/bundle/parse-bundle-display";
 import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
 
@@ -319,7 +320,25 @@ function extractDefendantName(scan: string): string | null {
     if (v) return v;
   }
 
+  // Cover sheet: the name sits on its own line above `Charge:` (`Taylor Reed\nCharge: Harassment`).
+  const nameAboveCharge = scan.match(
+    new RegExp(`^${PERSON_NAME_CAPTURE}\\s*[\\n\\r]+Charge\\s*:`, "im"),
+  );
+  if (nameAboveCharge?.[1]) {
+    const v = sanitizePersonName(nameAboveCharge[1]);
+    if (v && looksLikeCoverSheetPersonName(v)) return v;
+  }
+
   return null;
+}
+
+function looksLikeCoverSheetPersonName(value: string): boolean {
+  const words = value.trim().split(/\s+/).filter(Boolean);
+  if (words.length < 2 || words.length > 3) return false;
+  if (words.some((w) => /^(court|charge|offence|assault|crown|police|case|client)$/i.test(w))) {
+    return false;
+  }
+  return words.every((w) => /^[A-Z][a-z]+(?:-[A-Z][a-z]+)?$/.test(w));
 }
 
 /** Strip scan/OCR junk glued onto offence labels (gauntlet bundles). */
@@ -825,6 +844,18 @@ function extractPlainAllegationOffence(scan: string, fullText: string): string |
       )
     ) {
       return "Robbery";
+    }
+
+    const suspicion = normalized.match(
+      /\barrested on suspicion of ([a-z]+(?:\s+[a-z]+){0,3})(?:\.|,|;|\n|$)/i,
+    );
+    if (suspicion?.[1]) {
+      const noun = suspicion[1].trim().toLowerCase();
+      if (
+        /^(burglary|theft|robbery|fraud|harassment|affray|murder|manslaughter)$/i.test(noun)
+      ) {
+        return noun.charAt(0).toUpperCase() + noun.slice(1);
+      }
     }
   }
   return null;
@@ -1537,6 +1568,16 @@ function isAllegationIncidentDate(scan: string, dateLiteral: string): boolean {
   return false;
 }
 
+/** True when this date is the arrest clock, not a court listing. */
+function isArrestContextDate(scan: string, dateLiteral: string): boolean {
+  const idx = scan.toLowerCase().indexOf(dateLiteral.toLowerCase());
+  if (idx < 0) return false;
+  const before = scan.slice(Math.max(0, idx - 32), idx);
+  if (/\b(?:date of arrest|time of arrest)\s*:?\s*$/i.test(before)) return true;
+  if (/\barrested(?:\s+on)?\s*$/i.test(before)) return true;
+  return false;
+}
+
 function extractCourt(scan: string): string | null {
   const scrubGluedCourt = (value: string): string =>
     value
@@ -1652,6 +1693,9 @@ function findBestContextualHearingDate(scan: string): string | null {
   const add = (raw: string | null | undefined, score: number): void => {
     const date = cleanExtractedHearingRaw(raw ? cleanLineValue(raw) : null);
     if (!date || isJunkHearingValue(date)) return;
+    if (isDobContextDate(scan, date) || isDobContextDate(hearingScan, date)) return;
+    if (isAllegationIncidentDate(scan, date) || isAllegationIncidentDate(hearingScan, date)) return;
+    if (isArrestContextDate(scan, date) || isArrestContextDate(hearingScan, date)) return;
     candidates.push({ date, score });
   };
 
@@ -1674,7 +1718,8 @@ function findBestContextualHearingDate(scan: string): string | null {
     }
   }
 
-  if (candidates.length === 0) return extractHearingDateFragment(hearingScan);
+  // A date with no listing language is not a hearing (arrest date, DOB, incident date).
+  if (candidates.length === 0) return null;
   candidates.sort((a, b) => b.score - a.score);
   return candidates[0]!.date;
 }
@@ -1702,6 +1747,7 @@ function extractNextHearing(scan: string): {
     if (!v || isJunkHearingValue(v)) return;
     if (isDobContextDate(scan, v) || isDobContextDate(hearingScan, v)) return;
     if (isAllegationIncidentDate(scan, v) || isAllegationIncidentDate(hearingScan, v)) return;
+    if (isArrestContextDate(scan, v) || isArrestContextDate(hearingScan, v)) return;
     const vHasDate = hasUkHearingDatePattern(v);
     const vHasTime = /\d{1,2}:\d{2}/.test(v);
     if (nextHearingRaw) {
@@ -2188,6 +2234,7 @@ export function extractBundleCaseMetadata(
   };
 
   if (!fullText || fullText.trim().length < 40) return empty;
+  if (isExtractionFailurePlaceholder(fullText)) return empty;
 
   const scan = buildMetadataScan(fullText);
 

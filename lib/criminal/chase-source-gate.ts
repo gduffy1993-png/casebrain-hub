@@ -55,7 +55,7 @@ const NEGATION_RES: Record<ChaseGateFamily, RegExp> = {
   custody_pace:
     /no\s+(?:custody\s+(?:record|log|sheet)|detention\s+log|PACE\s+(?:material|record)|safeguards?\s+checklist|risk\s+assessment)\s+(?:exists|available|served|prepared)|custody\s+record\s+not\s+(?:available|held)/i,
   medical: /no\s+medical\s+(?:evidence|records?|notes?|report|treatment)|did\s+not\s+(?:seek|require)\s+medical/i,
-  interview: /no\s+interview\s+(?:was\s+)?(?:conducted|held)|declined\s+interview|interview\s+not\s+(?:conducted|recorded)/i,
+  interview: /no\s+interview\s+(?:was\s+)?(?:conducted|held)|declined\s+interview|interview\s+not\s+(?:conducted|recorded)|interview\s+recording\s+not\s+mentioned|interview\s+transcript\s+not\s+mentioned/i,
   mg6_unused: /no\s+(?:mg6|unused\s+material|disclosure\s+schedule)\s+(?:exists|available|served|prepared)/i,
   phone: /no\s+(?:phone|mobile|handset|device)\s+(?:was\s+)?(?:seized|recovered|examined)/i,
   forensic: /no\s+forensic\s+(?:evidence|material|examination)|no\s+dna\s+(?:was\s+)?(?:recovered|found|obtained)/i,
@@ -379,7 +379,7 @@ export function isInterviewRecordingEstablished(sourceText: string): boolean {
       ));
   const negated =
     /\bno\s+(?:pace\s+)?(?:interview\s+)?recording\b/i.test(hay) ||
-    /\b(?:interview\s+)?recording\s+(?:not|never)\s+(?:made|taken|served|attached)\b/i.test(hay);
+    /\b(?:interview\s+)?recording\s+(?:not|never)\s+(?:made|taken|served|attached|mentioned)\b/i.test(hay);
   return established && !negated;
 }
 
@@ -396,7 +396,7 @@ export function isInterviewTranscriptEstablished(sourceText: string): boolean {
       ));
   const negated =
     /\bno\s+(?:pace\s+)?(?:interview\s+)?transcript\b/i.test(hay) ||
-    /\b(?:interview\s+)?transcript\s+(?:not|never)\s+(?:made|taken|served|attached)\b/i.test(hay);
+    /\b(?:interview\s+)?transcript\s+(?:not|never)\s+(?:made|taken|served|attached|mentioned)\b/i.test(hay);
   return established && !negated;
 }
 

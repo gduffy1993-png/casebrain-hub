@@ -1,4 +1,5 @@
 import { normalizeLabel } from "./normalize";
+import { wordingIndicatesReferredOnly } from "@/lib/criminal/evidence-state-reconcile";
 
 const PARTIAL_MARKERS = [
   "partial",
@@ -121,17 +122,7 @@ export function isCustodyPaceBlendLabel(label: string): boolean {
 }
 
 function labelIndicatesReferredOnly(label: string): boolean {
-  const l = label.toLowerCase();
-  if (/^referred\s+only\s*:/i.test(label.trim())) return true;
-  if (/\breferred\s+only\b/.test(l)) return true;
-  if (/\breferred\s+on\s+(?:mg6c?|schedule|index|disclosure)\b/.test(l)) return true;
-  if (
-    /\breferred\b/.test(l) &&
-    /\b(?:export\s+not\s+served|not\s+attached|not\s+included|not\s+on\s+bundle)\b/.test(l)
-  ) {
-    return true;
-  }
-  return false;
+  return wordingIndicatesReferredOnly(label);
 }
 
 export function inferLedgerRowExistence(

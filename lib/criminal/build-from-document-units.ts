@@ -53,6 +53,10 @@ import {
   type TimestampObservation,
 } from "@/lib/criminal/timestamp-chronology";
 import type { SharedEvidenceState } from "@/lib/criminal/evidence-state-reconcile";
+import {
+  isInterviewRecordingEstablished,
+  isInterviewTranscriptEstablished,
+} from "@/lib/criminal/chase-source-gate";
 import { extractCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
 import {
   buildStructuredChargeView,
@@ -544,6 +548,9 @@ export function deriveEvidenceRowsFromDocumentUnits(
           label = recoverProfessionalEvidenceLabel(label);
           if (!label || label.length < 3) continue;
           if (isNoiseEvidenceLabel(label) || isFragmentEvidenceLabel(label)) continue;
+          // `not served` contains the word `served`. The capture eats `not` into the label and
+          // records the row as on file — the same flip as OutstandingNot, in a different pipeline.
+          if (state === "served" && /\bnot$/i.test(label)) continue;
           push({
             label,
             existence: state,
@@ -631,7 +638,7 @@ export function isFragmentEvidenceLabel(label: string): boolean {
   // that genuinely starts lower case ("iPhone download") still stands.
   if (/^[a-z]/.test(t) && t.split(/\s+/).length >= 3) return true;
   if (
-    /\b(or|and|on|of|for|with|by|to|from|at|the|a|an|relies|remains|referred|summary|stated|is|are|was|were|been|yet)\s*$/i.test(
+    /\b(or|and|on|of|for|with|by|to|from|at|the|a|an|relies|remains|referred|summary|stated|is|are|was|were|been|yet|not|but)\s*$/i.test(
       t,
     )
   ) {
@@ -808,21 +815,32 @@ function recordingTranscriptFromPages(documents: UploadedDocumentUnit[]): {
         snippet: t.slice(0, 120),
       };
       if (/\binterview\s+recording\b/i.test(t)) {
-        recordingState = /\binterview\s+recording\b.{0,40}\b(missing|outstanding|not served)\b/i.test(t)
-          ? "missing"
-          : "served";
-        anchors.push(anchor);
+        // "Interview recording not mentioned" names the modality to deny it.
+        // That is not served, and it is not a recording finding.
+        if (isInterviewRecordingEstablished(t)) {
+          recordingState = /\binterview\s+recording\b.{0,40}\b(missing|outstanding|not\s+served|not\s+attached)\b/i.test(
+            t,
+          )
+            ? "missing"
+            : "served";
+          anchors.push(anchor);
+        }
       }
       if (/\b(?:interview\s+)?transcript\b/i.test(t)) {
-        if (/\btranscript\b.{0,40}\b(incomplete|partial|missing|outstanding)\b/i.test(t) ||
-          /\b(incomplete|partial)\s+transcript\b/i.test(t)) {
-          transcriptState = "incomplete";
-        } else if (/\btranscript\b.{0,40}\b(served|complete|provided)\b/i.test(t)) {
-          transcriptState = "served";
-        } else {
-          transcriptState = transcriptState ?? "not_safely_confirmed";
+        const transcriptDenied =
+          /\b(?:interview\s+)?transcript\s+(?:not|never)\s+mentioned\b/i.test(t) &&
+          !isInterviewTranscriptEstablished(t);
+        if (!transcriptDenied) {
+          if (/\btranscript\b.{0,40}\b(incomplete|partial|missing|outstanding)\b/i.test(t) ||
+            /\b(incomplete|partial)\s+transcript\b/i.test(t)) {
+            transcriptState = "incomplete";
+          } else if (/\btranscript\b.{0,40}\b(served|complete|provided)\b/i.test(t)) {
+            transcriptState = "served";
+          } else {
+            transcriptState = transcriptState ?? "not_safely_confirmed";
+          }
+          anchors.push(anchor);
         }
-        anchors.push(anchor);
       }
     }
   }

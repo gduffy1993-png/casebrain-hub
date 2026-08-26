@@ -99,6 +99,20 @@ async function main() {
       "referred_only",
     );
   });
+  await check("negative: outstanding stated with referred-on-schedule is NOT referred_only", () => {
+    assert.equal(
+      lineIndicatesReferredOnly("BWV referred on schedule but not served — outstanding."),
+      false,
+    );
+    assert.equal(
+      wordingIndicatesReferredOnly("BWV referred on schedule but not served — outstanding."),
+      false,
+    );
+    assert.equal(
+      classifyMaterialStatus("BWV referred on schedule but not served — outstanding."),
+      "outstanding",
+    );
+  });
   await check("negative: outstanding alone is NOT referred_only", () => {
     assert.equal(lineIndicatesReferredOnly("Full CCTV master footage — outstanding"), false);
     assert.equal(

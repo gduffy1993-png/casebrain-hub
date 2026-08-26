@@ -1,6 +1,6 @@
 /**
  * CPS Chase: review-only rows must not wear Overdue/Due soon chips.
- * Missing rows with a real listing deadline may still be Overdue.
+ * Missing rows that already carry Overdue (not merely an elapsed listing) stay Overdue.
  */
 import assert from "node:assert/strict";
 import {
@@ -98,6 +98,34 @@ assert.equal(clampChaseOperationalStatus(missingOverdue), "Overdue");
 assert.equal(isReviewOnlyChaseMaterial(nscWithHearingElapsed), true);
 assert.equal(clampChaseOperationalStatus(nscWithHearingElapsed), "Not safely confirmed");
 assert.equal(clampChaseOperationalStatus(unclearReferred), "Not safely confirmed");
+
+const medicalNotIncluded = sample({
+  id: "med-1",
+  label: "Final medical/forensic report",
+  familyId: "medical_expert",
+  baseStatus: "Overdue",
+  source: "Crown / disclosure officer (confirm on file)",
+  evidenceAnchor: "Medical / forensic note: final report not included",
+  whyItMatters: "A short note is not a final report — keep the requested material limited to the report the source actually identifies.",
+  mergedFrom: ["Final medical/forensic report not included"],
+  provenance: {
+    sourceDocumentTitle: null,
+    sourceDocumentType: null,
+    sourcePage: null,
+    compiledPage: null,
+    pageIdentityKnown: false,
+    evidenceState: "missing",
+    defendant: null,
+    countNumber: null,
+    unresolvedConflictOrLimitation: null,
+  } as DisclosureChaseItem["provenance"],
+});
+assert.equal(
+  isReviewOnlyChaseMaterial(medicalNotIncluded),
+  false,
+  "a note that the final report is not included is a gap, not review-only boilerplate",
+);
+assert.equal(clampChaseOperationalStatus(medicalNotIncluded), "Overdue");
 assert.equal(displayChaseOperationalStatus("Not safely confirmed"), "Needs confirmation");
 assert.equal(displayChaseOperationalStatus("Overdue"), "Overdue");
 

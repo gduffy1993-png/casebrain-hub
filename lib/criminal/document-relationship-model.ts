@@ -15,6 +15,7 @@ import {
   inferEvidenceModality,
   evidenceScopeOfLabel,
   reconcileEvidenceState,
+  wordingIndicatesReferredOnly,
   type EvidenceModality,
   type SharedEvidenceState,
 } from "@/lib/criminal/evidence-state-reconcile";
@@ -246,6 +247,9 @@ export function aliasProvesSameServedItem(
   served: { label: string; state: SharedEvidenceState },
 ): boolean {
   if (served.state !== "served") return false;
+  // A truncated / referred-on-schedule row is not proof the item is on file, even if a later
+  // layer marked the fragment "served" (Jordan Hale: "BWV referred on schedule but not").
+  if (wordingIndicatesReferredOnly(served.label)) return false;
   const keyA = evidenceAliasKeyForLabel(request.label);
   const keyB = evidenceAliasKeyForLabel(served.label);
   if (!keyA || keyA !== keyB) return false;

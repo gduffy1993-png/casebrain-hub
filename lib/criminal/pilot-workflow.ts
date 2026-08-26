@@ -10,6 +10,7 @@ import {
   SERIOUS_VIOLENCE_PROVISIONAL_COURT_LINE,
 } from "@/lib/eval/casebrain-auditor/provisional-offence-policy";
 import { stripDoNotInventAdvisory, familySupport, confirmNoneLine } from "@/lib/criminal/chase-source-gate";
+import { demoPackConflictsWithSourceAllegation } from "@/lib/criminal/case-identity-boundary";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { isPlaceholderHearingIso } from "@/lib/criminal/solicitor-hearing-display";
 import type { BattleboardOutput, BattleboardRoute } from "@/lib/criminal/strategy-battleboard";
@@ -282,11 +283,24 @@ function demoMatchFromIdentity(
   return DEMO_TITLE_FALLBACK.find((demo) => demo.titleRe.test(scan)) ?? null;
 }
 
+/**
+ * Demo packs are another matter's clothes. A name hit on identity is not enough when
+ * the papers already name a different offence family (Marcus Vale fraud vs Vale robbery).
+ */
+function acceptedDemoMatch(
+  context: WorkflowProfileContext,
+): (typeof DEMO_TITLE_FALLBACK)[number] | null {
+  const demo = demoMatchFromIdentity(context);
+  if (!demo) return null;
+  if (demoPackConflictsWithSourceAllegation(context.allegation, demo.allegation)) return null;
+  return demo;
+}
+
 /** Demo matter name match on case identity — forces profile for Marcus/Kian/Leon. */
 export function resolveDemoProfileFromContext(
   context: WorkflowProfileContext,
 ): Exclude<WorkflowProfile, "generic"> | null {
-  return demoMatchFromIdentity(context)?.profile ?? null;
+  return acceptedDemoMatch(context)?.profile ?? null;
 }
 
 function resolveProfileFromContext(context: WorkflowProfileContext): WorkflowProfile {
@@ -307,7 +321,7 @@ function scoreProfile(context: WorkflowProfileContext): Map<WorkflowProfile, num
     ["generic", 0],
   ]);
 
-  const identityDemo = demoMatchFromIdentity(context);
+  const identityDemo = acceptedDemoMatch(context);
   if (identityDemo) {
     scores.set(identityDemo.profile, (scores.get(identityDemo.profile) ?? 0) + 100);
   }
@@ -730,7 +744,7 @@ export function workflowHeaderOverrides(
   const t = caseTitle.trim();
   const fullContext: WorkflowProfileContext = { caseTitle: t, ...context };
 
-  const identityDemo = demoMatchFromIdentity(fullContext);
+  const identityDemo = acceptedDemoMatch(fullContext);
   if (identityDemo) {
     const sourceAllegation = fullContext.allegation?.trim();
     const allegation =

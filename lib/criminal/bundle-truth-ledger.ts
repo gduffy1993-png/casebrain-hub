@@ -752,7 +752,9 @@ export function buildBundleTruthLedger(input: BuildBundleTruthLedgerInput): Bund
 }
 
 export function ledgerMaterialsNeedingChase(ledger: BundleTruthLedger): NormalisedMaterialRow[] {
+  // `unclear` is an inventory state, not a gap. A parseable `CCTV/3` on a location note
+  // must not become a request just because the code parsed.
   return ledger.materials.filter((m) =>
-    ["outstanding", "absent", "partial", "draft", "unsigned", "referred_only", "unclear"].includes(m.status),
+    ["outstanding", "absent", "partial", "draft", "unsigned", "referred_only"].includes(m.status),
   );
 }

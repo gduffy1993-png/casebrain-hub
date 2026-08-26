@@ -1,4 +1,7 @@
-import { humanizeChaseFragmentLabel } from "@/lib/criminal/disclosure-chase-finalize";
+import {
+  humanizeChaseFragmentLabel,
+  phoneDownloadIdentityLabel,
+} from "@/lib/criminal/disclosure-chase-finalize";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { evidenceRowFromSourceState } from "@/lib/criminal/five-answers/evidence-trace";
 import { sanitizeSolicitorVisibleText } from "@/lib/criminal/overview-presentation";
@@ -252,7 +255,7 @@ function digitalChaseLabel(hay: string): string | null {
     return "Phone extraction summary only — full download report not in section";
   }
   if (/\b(?:phone|extraction|download|device\s+download)\b/i.test(hay)) {
-    return "Full phone download / source extraction";
+    return phoneDownloadIdentityLabel(hay);
   }
   if (
     /\b(?:subscriber(?:\s+report|\s+return|\s+data)?|account\s+data|phone\s+attribution|handset\s+attribution|sim\s*(?:\/|&)?\s*imei|\bimei\b)\b/i.test(

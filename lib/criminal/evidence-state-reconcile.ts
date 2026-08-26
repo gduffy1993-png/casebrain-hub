@@ -103,18 +103,25 @@ function remember<T>(cache: Map<string, T>, label: string, value: T): T {
 }
 
 /**
+ * The papers named the gap as outstanding. "Referred on schedule" is how it was
+ * listed, not a review-only chip. Explicit "referred only" / "referenced only"
+ * still names the mid-state (F01/F02).
+ */
+export function outstandingStatedOverReferredOnly(text: string): boolean {
+  const hay = text.toLowerCase();
+  if (!/\boutstanding\b/.test(hay)) return false;
+  if (/^referred\s+only\s*:/i.test(text.trim())) return false;
+  if (/\breferr?e(?:d|nced)\s+only\b/.test(hay)) return false;
+  return true;
+}
+
+/**
  * True when wording proves referred/listed/scheduled but not served/attached.
- * Outstanding alone is NOT enough.
+ * Outstanding stated as the gap is NOT referred_only.
  */
 export function wordingIndicatesReferredOnly(text: string): boolean {
   const hay = text.toLowerCase();
-  if (
-    /\boutstanding\b/.test(hay) &&
-    !/\breferred\b/.test(hay) &&
-    !/\b(?:listed|scheduled)\b/.test(hay)
-  ) {
-    return false;
-  }
+  if (outstandingStatedOverReferredOnly(text)) return false;
   if (/^uncertain(?:\s+on\s+papers)?\s*:/i.test(text.trim())) return false;
   if (/^referred\s+only\s*:/i.test(text.trim()) || /\breferred\s+only\b/.test(hay)) return true;
   if (/\breferred\s+on\s+(?:mg6c?|schedule|index|disclosure)\b/.test(hay)) return true;
@@ -128,7 +135,7 @@ export function wordingIndicatesReferredOnly(text: string): boolean {
   }
   // "confirm on file" alone is organisational chase boilerplate — not referred proof
   if (/\bmentioned but\b|\bnot safely served\b|\bnot safely on file\b/.test(hay)) return true;
-  if (/\bnot\s+included\b|\bnot\s+attached\b|\bsummary\s+only\b/.test(hay)) return true;
+  if (/\bsummary\s+only\b/.test(hay) && !/\boutstanding\b/.test(hay)) return true;
   return false;
 }
 
@@ -224,7 +231,7 @@ export function reconcileEvidenceState(input: {
   }
   // Content-level missing cues on the unit label/anchor only (not chase status chips,
   // not "appears outstanding" why-boilerplate).
-  if (/\boutstanding\b|\bnot served\b|\bmissing\b|\babsent\b|\bnot provided\b/i.test(labelHay)) {
+  if (/\boutstanding\b|\bnot served\b|\bmissing\b|\babsent\b|\bnot provided\b|\bnot included\b|\bnot attached\b|\bnot in this (?:bundle|section)\b/i.test(labelHay)) {
     return "missing";
   }
   if (status === "received" || /\bserved\b/i.test(labelHay)) {
@@ -344,6 +351,7 @@ export function shouldSuppressChaseAsAlreadyOnFile(
     // Served recording does not satisfy a request for a missing transcript.
     if (row.state === "served") {
       if (labelDeniesService(row.label)) continue;
+      if (wordingIndicatesReferredOnly(row.label)) continue;
       // A part of a thing is not the thing: a served summary, index or extract leaves the full
       // version as outstanding as it was.
       if (reqScope === "whole" && evidenceScopeOfLabel(row.label) === "part") continue;

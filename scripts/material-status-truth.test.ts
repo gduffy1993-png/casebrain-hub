@@ -125,8 +125,18 @@ const WELDED_TAIL_CASES: Array<{ line: string; expected: MaterialStatus; why: st
   },
   {
     line: "O01full interview transcript Outstanding Listed but not attached",
-    expected: "referred_only",
-    why: "an exhibit reference glued to its label must not change the state",
+    expected: "outstanding",
+    why: "outstanding stated must win over listed-but-not-attached",
+  },
+  {
+    line: "BWV referred on schedule but not served — outstanding.",
+    expected: "outstanding",
+    why: "outstanding stated must win over referred-on-schedule",
+  },
+  {
+    line: "3search recordoutstandingrequested",
+    expected: "outstanding",
+    why: "a numbered MG6 cell with no letter-code still states outstanding",
   },
 ];
 
@@ -175,9 +185,21 @@ for (const untouched of [
   "MG6C/002 — Full medical report absent — injury severity incomplete",
   "MG11 complainant statement — draft unsigned — not final",
   "iPhone download outstanding",
+  "O05 999 audio Outstanding Listed but not attached",
 ]) {
   assert.equal(deglueScheduleText(untouched), untouched, `must not rewrite: ${untouched}`);
 }
+
+assert.equal(
+  deglueScheduleText("O05999 audio Outstanding Listed but not attached"),
+  "O05 999 audio Outstanding Listed but not attached",
+  "unused-item code welded to 999 audio must split",
+);
+assert.equal(
+  deglueScheduleText("O05999audio Outstanding"),
+  "O05 999 audio Outstanding",
+  "unused-item code welded to 999audio must split",
+);
 
 // Ledger level: a flattened schedule must report the same served count as the spaced one.
 const FLATTENED_SCHEDULE = `

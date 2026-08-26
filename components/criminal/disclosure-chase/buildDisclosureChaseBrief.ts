@@ -25,6 +25,7 @@ import {
 } from "@/lib/criminal/bundle-truth-ledger";
 import type { BundleTruthLedger, NormalisedMaterialRow } from "@/lib/criminal/bundle-truth-types";
 import {
+  outstandingStatedOverReferredOnly,
   shouldSuppressChaseAsAlreadyOnFile,
   type EvidenceStateRow,
 } from "@/lib/criminal/evidence-state-reconcile";
@@ -55,6 +56,13 @@ import {
   lineClaimsIdentificationProcedure,
   type ChaseGateFamily,
 } from "@/lib/criminal/chase-source-gate";
+import {
+  deglueBundleLines,
+  lineIndicatesReferredOnly,
+  lineIsLocationOrReviewNotGap,
+  lineIsScheduleFurniture,
+  stripLeadingOutstandingBoilerplate,
+} from "@/lib/criminal/bundle-material-normalizer";
 import { buildCriminalBriefPlan, type CriminalBriefPlan } from "@/lib/criminal/brief-plan";
 import { buildContradictionActions } from "@/lib/criminal/contradiction-actions";
 import { extractAllBundleContradictions } from "@/lib/criminal/merge-bundle-contradictions";
@@ -63,6 +71,8 @@ import {
   finalizeDisclosureChasePresentation,
   isDigitalModalityChaseLabel,
   isSourceNamedChaseItem,
+  phoneDownloadChaseWording,
+  phoneDownloadIdentityLabel,
 } from "@/lib/criminal/disclosure-chase-finalize";
 import {
   demoteSolicitorClutter,
@@ -371,11 +381,13 @@ export function reconcileCad999ModalityItems(
   items: DisclosureChaseItem[],
   bundleText?: string | null,
 ): DisclosureChaseItem[] {
-  const hay = `${bundleText ?? ""}`;
+  const hay = deglueBundleLines(`${bundleText ?? ""}`);
   return items
     .map((item) => {
       if (item.familyId !== "cad_999") return item;
-      const itemBlob = [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? ""].join("\n");
+      const itemBlob = deglueBundleLines(
+        [item.label, ...(item.mergedFrom ?? []), item.evidenceAnchor ?? ""].join("\n"),
+      );
       // Item-local + hay: schedule "Present" language OR a served CAD/999 Extract section body.
       const blob = `${itemBlob}\n${hay}`;
 
@@ -423,10 +435,15 @@ export function reconcileCad999ModalityItems(
 
       if (completeCad999LogOutstanding && !audioOutstanding && !fullPrintOutstanding) {
         const label = "Complete CAD/999 log";
+        const baseStatus: ChaseItemStatus =
+          item.baseStatus === "Overdue" || item.baseStatus === "Due soon"
+            ? item.baseStatus
+            : "Outstanding";
         return {
           ...item,
           label,
           familyId: "cad_999" as ChaseFamilyId,
+          baseStatus,
           whyItMatters:
             "The papers identify a CAD/999 log gap — keep the request limited to the log the source identifies.",
           draftChaseWording:
@@ -597,21 +614,34 @@ export function reconcileInterviewModalityItems(
         /\b(?:not\s+(?:served|included|attached|provided|on\s+file)|missing|outstanding)\b.{0,100}\b(?:interview\s+)?recording\b/i.test(
           modalityHay,
         );
-      const transcriptItem = (): DisclosureChaseItem => ({
-        ...item,
-        label: "Interview transcript",
-        draftChaseWording:
-          "Please provide the interview transcript, or confirm in writing why it is not available.",
-        courtLine: toCourtLine("Interview transcript"),
-        whyItMatters:
-          "Interview summary or partial record on file is not a substitute for the full transcript.",
-        mergedFrom: [
-          "Interview transcript",
-          ...((item.mergedFrom ?? []).filter((m) =>
-            /\btranscript\b/i.test(m) && !/\brecording\b/i.test(m),
-          )),
-        ].slice(0, 4),
-      });
+      const transcriptItem = (): DisclosureChaseItem => {
+        const baseStatus: ChaseItemStatus =
+          item.baseStatus === "Overdue" || item.baseStatus === "Due soon"
+            ? item.baseStatus
+            : "Outstanding";
+        return {
+          ...item,
+          label: "Interview transcript",
+          baseStatus,
+          draftChaseWording:
+            "Please provide the interview transcript, or confirm in writing why it is not available.",
+          courtLine: toCourtLine("Interview transcript"),
+          whyItMatters:
+            "Interview summary or partial record on file is not a substitute for the full transcript.",
+          mergedFrom: [
+            "Interview transcript",
+            ...((item.mergedFrom ?? []).filter((m) =>
+              /\btranscript\b/i.test(m) && !/\brecording\b/i.test(m),
+            )),
+          ].slice(0, 4),
+          provenance: chaseItemProvenance({
+            label: "Interview transcript",
+            source: item.source,
+            baseStatus,
+            evidenceAnchor: item.evidenceAnchor,
+          }),
+        };
+      };
       const thinFileNoPace =
         /\bno\s+pace\s+interview\b/i.test(sourceHay) ||
         /\bno\s+(?:pace\s+)?interview\s+(?:transcript|summary|recording)\b/i.test(sourceHay);
@@ -788,7 +818,7 @@ export function reconcilePhoneDownloadModalityItems(
     }
 
     if (fullOutstanding || /\bfull\s+phone\s+download\b/i.test(item.label)) {
-      const label = "Full phone download / source extraction";
+      const label = phoneDownloadIdentityLabel(`${item.label}\n${hay}`);
       return {
         ...item,
         label,
@@ -796,13 +826,12 @@ export function reconcilePhoneDownloadModalityItems(
         mergedFrom: [
           label,
           ...((item.mergedFrom ?? []).filter((m) =>
-            /\b(?:phone\s+download|source\s+export|phone\s+extraction|logical\s+download|original\s+download)\b/i.test(
+            /\b(?:phone\s+download|source\s+export|phone\s+extraction|logical\s+download|original\s+download|subscriber\s+mapping)\b/i.test(
               m,
             ),
           )),
         ].slice(0, 4),
-        draftChaseWording:
-          "Please provide the full phone download / source export, or confirm in writing why it is not available.",
+        draftChaseWording: phoneDownloadChaseWording(label),
         courtLine: toCourtLine(label),
       };
     }
@@ -845,21 +874,21 @@ export function reconcilePhoneDownloadModalityItems(
   if (fullOutstanding && !(propertyPhone && !downloadFamilyAffirmed)) {
     const hasFull = filtered.some((i) => /Full phone download/i.test(i.label));
     if (!hasFull) {
-      const label = "Full phone download / source extraction";
+      const label = phoneDownloadIdentityLabel(hay);
       filtered.push({
         id: "chase-phone-full-outstanding",
         familyId: "other",
         label,
-        whyItMatters:
-          "Original download / source export is outstanding on the disclosure papers.",
+        whyItMatters: /subscriber\s+mapping/i.test(label)
+          ? "The disclosure papers name the download and subscriber mapping as one outstanding cell."
+          : "Original download / source export is outstanding on the disclosure papers.",
         source: "Crown / disclosure officer (confirm on file)",
         baseStatus: "Outstanding",
         urgency: "high",
         deadlineLabel: "Before next hearing",
         evidenceAnchor: null,
         linkedRoute: null,
-        draftChaseWording:
-          "Please provide the full phone download / source export, or confirm in writing why it is not available.",
+        draftChaseWording: phoneDownloadChaseWording(label),
         courtLine: toCourtLine(label),
         mergedFrom: ["Phone download / source extraction status unresolved on papers"],
       });
@@ -878,16 +907,22 @@ export function reconcileSubscriberModalityItems(
   items: DisclosureChaseItem[],
   bundleText?: string | null,
 ): DisclosureChaseItem[] {
-  const hay = `${bundleText ?? ""}`;
-  // Allow newline-separated schedule cells (Ahmed: "phone subscriber data\noutstanding\nnot attached").
-  // Reverse path requires subscriber report/return/data so "Not served … Subscriber" index noise (Grant) does not invent.
+  const hay = deglueBundleLines(`${bundleText ?? ""}`);
+  // Subscriber *data/report/return/records* as its own wording is a gap (Ahmed / Brookes).
+  // `subscriber` was optional, so "download / subscriber mapping outstanding" invented a
+  // second card. Mapping glued to the download cell is not subscriber-data.
+  // Reverse path still requires the noun so "Not served … Subscriber" (Grant) does not invent.
+  const mappingOnlySubscriber =
+    /\bsubscriber\s+mapping\b/i.test(hay) &&
+    !/\bsubscriber\s+(?:report|return|data|records?)\b/i.test(hay);
   const establishedOutstanding =
-    /\b(?:phone\s+)?subscriber(?:\s+report|\s+return|\s+data)?\b[\s\S]{0,48}\b(?:outstanding|not\s+served|not\s+attached|not\s+complete|incomplete)/i.test(
+    !mappingOnlySubscriber &&
+    (/\b(?:phone\s+)?subscriber\s+(?:report|return|data|records?)\b[\s\S]{0,48}\b(?:outstanding|not\s+served|not\s+attached|not\s+complete|incomplete)/i.test(
       hay,
     ) ||
-    /\b(?:outstanding|not\s+served|not\s+attached)\b[\s\S]{0,48}\b(?:phone\s+)?subscriber(?:\s+report|\s+return|\s+data)\b/i.test(
-      hay,
-    );
+      /\b(?:outstanding|not\s+served|not\s+attached)\b[\s\S]{0,48}\b(?:phone\s+)?subscriber\s+(?:report|return|data|records?)\b/i.test(
+        hay,
+      ));
 
   const filtered = items
     .map((item) => {
@@ -899,14 +934,18 @@ export function reconcileSubscriberModalityItems(
         );
       if (!isSubscriber) return item;
       // Keep phone-download modality distinct — never rewrite Full phone download into Subscriber
-      // when one schedule line mentions both (Brookes: download + subscriber report not served).
+      // when one schedule line mentions both (Brookes: download + subscriber report not served;
+      // Reed: download / subscriber mapping is still one download cell).
       if (
-        /full\s+phone\s+download|phone\s+extraction\s+summary\s+only|phone\s+download\s*\/\s*source\s+extraction/i.test(
+        /full\s+phone\s+download|phone\s+extraction\s+summary\s+only|phone\s+download\s*\/\s*source\s+extraction|subscriber\s+mapping/i.test(
           item.label,
         )
       ) {
         return item;
       }
+      // The schedule already named this gap. Do not drop it because the raw PDF still has
+      // `dataoutstanding`, and do not rename it into a generic subscriber card.
+      if (isSourceNamedChaseItem(item)) return item;
       // Never keep a subscriber chase unless papers affirmatively establish it.
       if (!establishedOutstanding) return null;
       const label = "Subscriber / account data";
@@ -923,8 +962,18 @@ export function reconcileSubscriberModalityItems(
     })
     .filter((i): i is DisclosureChaseItem => i !== null);
 
+  // A numbered schedule cell (`5 phone subscriber data`) is the request. The template card is only
+  // for when the papers state the gap and no such row made it through.
+  if (filtered.some((i) => isSourceNamedChaseItem(i) && /subscriber/i.test(i.label))) {
+    return filtered.filter(
+      (i) =>
+        isSourceNamedChaseItem(i) ||
+        !/^subscriber\s*\/\s*account\s+data$/i.test(i.label),
+    );
+  }
+
   if (establishedOutstanding) {
-    const hasSub = filtered.some((i) => /\bsubscriber\b|\baccount\s+data\b/i.test(i.label));
+    const hasSub = filtered.some((i) => /subscriber|account\s+data/i.test(i.label));
     if (!hasSub) {
       const label = "Subscriber / account data";
       filtered.push({
@@ -1089,12 +1138,11 @@ export type BuildDisclosureChaseBriefInput = {
 
 function normalizeRawLabel(raw: string): string {
   const materialLabel = materialLabelFromCourtLine(raw);
-  return formatDisplayLabelCasing(
-    materialLabel
-      .replace(/^chase[:\s]*/i, "")
-      .replace(/^outstanding[:\s]*/i, "")
-      .trim(),
-  );
+  const stripped = stripLeadingOutstandingBoilerplate(materialLabel)
+    .replace(/^chase[:\s]*/i, "")
+    .replace(/[:—–-]+\s*$/g, "")
+    .trim();
+  return formatDisplayLabelCasing(stripped);
 }
 
 function materialLabelFromCourtLine(raw: string): string {
@@ -1109,6 +1157,8 @@ function materialLabelFromCourtLine(raw: string): string {
 function isUnsafeOrNonMaterialChaseLine(raw: string): boolean {
   const t = raw.trim();
   if (!t) return true;
+  if (lineIsScheduleFurniture(t)) return true;
+  if (/^(?:item|material)\s*:/i.test(t) && /[—–-]\s*$/.test(t)) return true;
   if (FORBIDDEN_RE.test(t)) return true;
   return /\b(win conditions?|case collapses|prosecution case collapses|crown case collapses|will be acquitted)\b/i.test(t) ||
     /\brecord what (?:pwits|robbery|fraud|violence) source material remains outstanding\b/i.test(t) ||
@@ -1266,7 +1316,8 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
         sharedLabel: "Listing on papers elapsed — confirm next listing / chase outstanding disclosure",
         hearingDeadlineNote: null,
         urgency: "high",
-        baseStatus: "Overdue",
+        // Listing elapsed is a header fact, not a missed CPIA/disclosure deadline.
+        baseStatus: "Outstanding",
       };
     }
     if (status.kind === "upcoming" || status.kind === "listed") {
@@ -1285,7 +1336,7 @@ function resolveDeadlineContext(days: number | null, hearingIso?: string | null,
       sharedLabel: "Listing on papers elapsed — confirm next listing / chase outstanding disclosure",
       hearingDeadlineNote: null,
       urgency: "high",
-      baseStatus: "Overdue",
+      baseStatus: "Outstanding",
     };
   }
   if (days === 0) {
@@ -1403,8 +1454,25 @@ function toCourtLine(canonicalLabel: string): string {
     kind: "court_line",
     safetyQualification: "Solicitor review required before addressing the court.",
   });
-  if (composed.ok && composed.text) return composed.text;
+  if (composed.ok && composed.text) {
+    // Transcript and recording are different material. A title-gate alias must not
+    // ask the court to record the one the papers did not state.
+    if (/\btranscript\b/i.test(core) && /\binterview recording\b/i.test(composed.text)) {
+      return composed.text.replace(/interview recording/gi, "interview transcript");
+    }
+    return composed.text;
+  }
   return `${COURT_RECORD_PREFIX} that ${core.charAt(0).toLowerCase()}${core.slice(1)} needs confirmation on the current file and should be disclosed on a timetable if it has not already been served.`;
+}
+
+function alignInterviewCourtLineToLabel(item: DisclosureChaseItem): DisclosureChaseItem {
+  if (!/\btranscript\b/i.test(item.label) || !/\binterview recording\b/i.test(item.courtLine ?? "")) {
+    return item;
+  }
+  return {
+    ...item,
+    courtLine: (item.courtLine ?? "").replace(/interview recording/gi, "interview transcript"),
+  };
 }
 
 function draftChaseWording(canonicalLabel: string, mergedFrom: string[]): string {
@@ -1728,43 +1796,16 @@ function isFullCustodyRecordOutstanding(bundleText: string): boolean {
   );
 }
 
-function isCustodyExtractReviewOnly(bundleText: string): boolean {
-  const hay = `${bundleText ?? ""}`;
-  return (
-    /\bcustody\s+record\s+extract\b/i.test(hay) &&
-    !isFullCustodyRecordOutstanding(hay)
-  );
-}
-
-function custodyPaceReviewOnlyItem(item: DisclosureChaseItem): DisclosureChaseItem {
-  const label = "Custody/PACE completeness review";
-  return {
-    ...item,
-    label,
-    baseStatus: "Not safely confirmed",
-    urgency: "medium",
-    deadlineLabel: "Confirm custody/PACE completeness before relying on safeguards",
-    whyItMatters:
-      "A custody record extract is on file; confirm whether the custody/PACE record is complete before assessing safeguards or interview fairness.",
-    draftChaseWording:
-      "Please confirm whether the custody/PACE record is complete, including any detention log, risk assessment, legal-advice, appropriate-adult or interpreter entries relied on.",
-    courtLine:
-      `${COURT_RECORD_PREFIX} that custody/PACE completeness needs confirmation before the defence relies on safeguards or interview fairness.`,
-    mergedFrom: [
-      "Custody record extract on file — completeness requires review",
-      ...((item.mergedFrom ?? []).filter((line) =>
-        /\bcustody\s+record\s+extract\b/i.test(line) &&
-        !/\bfull\s+custody\s+record\b/i.test(line),
-      )),
-    ].slice(0, 4),
-  };
-}
-
 function finalMedicalForensicReportItem(item: DisclosureChaseItem): DisclosureChaseItem {
   const label = "Final medical/forensic report";
+  const baseStatus: ChaseItemStatus =
+    item.baseStatus === "Overdue" || item.baseStatus === "Due soon"
+      ? item.baseStatus
+      : "Outstanding";
   return {
     ...item,
     label,
+    baseStatus,
     whyItMatters:
       "A short note is not a final report — keep the requested material limited to the report the source actually identifies.",
     draftChaseWording:
@@ -1774,6 +1815,12 @@ function finalMedicalForensicReportItem(item: DisclosureChaseItem): DisclosureCh
       "Final medical/forensic report not included",
       ...((item.mergedFrom ?? []).filter((line) => /final\s+report\s+not\s+included|medical\s*\/\s*forensic\s+note/i.test(line))),
     ].slice(0, 4),
+    provenance: chaseItemProvenance({
+      label,
+      source: item.source,
+      baseStatus,
+      evidenceAnchor: item.evidenceAnchor ?? "Medical / forensic note: final report not included",
+    }),
   };
 }
 
@@ -1804,10 +1851,21 @@ function gateItemsAgainstSource(
   if (!bundleText?.trim()) return items;
   const out: DisclosureChaseItem[] = [];
   for (const item of items) {
+    if (
+      lineIsLocationOrReviewNotGap(item.label) ||
+      (item.mergedFrom ?? []).some((line) => lineIsLocationOrReviewNotGap(line))
+    ) {
+      continue;
+    }
     // The gates below stop the app asking for a modality the papers never mention. An item the
     // schedule lists by reference, with the status the schedule states, is the papers speaking —
     // so it is not gated, and keeps the reference the request is made against.
     if (isSourceNamedChaseItem(item)) {
+      // A BWV exhibit code on a stills / "shown reference" line is not a full-export gap.
+      // Dunn: S01 stills served + BWV/02 mentioned must not skip the full-export exam.
+      if (item.familyId === "bwv" && !isBwvFullExportEstablished(bundleText)) {
+        continue;
+      }
       out.push(item);
       continue;
     }
@@ -1839,8 +1897,13 @@ function gateItemsAgainstSource(
     if (item.familyId === "cad_999" && !isCad999Established(bundleText)) {
       continue;
     }
-    if (item.familyId === "custody_pace" && isCustodyExtractReviewOnly(bundleText)) {
-      out.push(finalizeGatedDisclosureItem(custodyPaceReviewOnlyItem(item), bundleText));
+    // A custody extract on file is not a request for the full record. Chase full custody
+    // only when the papers state that gap — the same part≠whole move as BWV stills.
+    if (item.familyId === "custody_pace" && !isFullCustodyRecordOutstanding(bundleText)) {
+      if (isSourceNamedChaseItem(item)) {
+        out.push(item);
+        continue;
+      }
       continue;
     }
     if (
@@ -2043,7 +2106,7 @@ function normalizeDisclosureItem(item: DisclosureChaseItem): DisclosureChaseItem
   // Material the schedule names keeps its own identity. Canonicalising it would relabel
   // `O03 independent witness statement` as a family card, and the solicitor would lose the
   // reference they need in order to ask for it.
-  if (item.sourceScheduleRef?.trim()) {
+  if (item.sourceScheduleRef?.trim() || isSourceNamedChaseItem(item)) {
     return {
       ...item,
       label,
@@ -2159,7 +2222,9 @@ function disclosureItemDedupeKey(item: DisclosureChaseItem): string {
   // Items the schedule names separately are separate material, whatever family they share:
   // `O03 independent witness statement` and `O04 forensic continuity statement` must both stand.
   const ref = item.sourceScheduleRef?.trim();
-  return ref ? `${key}#${ref.toLowerCase()}` : key;
+  if (ref) return `${key}#${ref.toLowerCase()}`;
+  if (isSourceNamedChaseItem(item)) return `${key}#${item.id}`;
+  return key;
 }
 
 function mergeDisclosureItems(
@@ -2207,12 +2272,17 @@ function mergeDisclosureItems(
 }
 
 function mergeStatus(a: ChaseItemStatus, b: ChaseItemStatus): ChaseItemStatus {
-  // Review-only must not be promoted into deadline urgency (Overdue / Due soon).
-  if (a === "Not safely confirmed" || b === "Not safely confirmed") {
-    if (a === "Received" || b === "Received") return "Received";
-    if (a === "Chased" || b === "Chased") return "Chased";
-    return "Not safely confirmed";
-  }
+  if (a === "Received" || b === "Received") return "Received";
+  if (a === "Chased" || b === "Chased") return "Chased";
+  // A family template is review-only until the papers name the gap. That NSC chip must not
+  // eat a schedule row that is already Outstanding (Ahmed CAD/999 log). Listing urgency
+  // still must not promote a true review-only row: NSC + Overdue stays NSC.
+  const hasNsc = a === "Not safely confirmed" || b === "Not safely confirmed";
+  const hasOutstanding = a === "Outstanding" || b === "Outstanding";
+  const hasOverdue = a === "Overdue" || b === "Overdue" || a === "Due soon" || b === "Due soon";
+  if (hasNsc && hasOutstanding) return "Outstanding";
+  if (hasNsc && hasOverdue) return "Not safely confirmed";
+  if (hasNsc) return "Not safely confirmed";
   const order: ChaseItemStatus[] = [
     "Overdue",
     "Due soon",
@@ -2226,7 +2296,7 @@ function mergeStatus(a: ChaseItemStatus, b: ChaseItemStatus): ChaseItemStatus {
 /** Review-only / uncertain source rows must not wear prosecution-deadline chips. */
 export function isReviewOnlyChaseMaterial(item: Pick<
   DisclosureChaseItem,
-  "label" | "source" | "baseStatus" | "evidenceAnchor" | "provenance" | "whyItMatters"
+  "label" | "source" | "baseStatus" | "evidenceAnchor" | "provenance" | "whyItMatters" | "mergedFrom"
 >): boolean {
   if (item.baseStatus === "Not safely confirmed") return true;
   const provRaw =
@@ -2243,9 +2313,17 @@ export function isReviewOnlyChaseMaterial(item: Pick<
   ) {
     return true;
   }
-  // Soft review cues — do not treat listing-elapsed as a missed CPS deadline for these.
-  if (/\(confirm on file\)/i.test(item.source ?? "")) return true;
-  if (/Review the cited source before relying on this item/i.test(item.whyItMatters ?? "")) return true;
+  const papersHay = [item.label, item.evidenceAnchor ?? "", ...(item.mergedFrom ?? [])].join(" ");
+  const papersStateAGap =
+    /\b(?:outstanding|not\s+served|not\s+attached|not\s+included|not\s+in\s+this\s+(?:bundle|section))\b/i.test(
+      papersHay,
+    );
+  // `(confirm on file)` is organisational chase boilerplate, not referred proof — same as
+  // wordingIndicatesReferredOnly. A schedule/note that already names the gap is not review-only.
+  if (/\(confirm on file\)/i.test(item.source ?? "") && !papersStateAGap) return true;
+  if (/Review the cited source before relying on this item/i.test(item.whyItMatters ?? "") && !papersStateAGap) {
+    return true;
+  }
 
   // Deadline chips (Overdue / Due soon) poison source-state inference into NSC —
   // probe as Outstanding so genuine missing stays missing.
@@ -2268,20 +2346,31 @@ export function isReviewOnlyChaseMaterial(item: Pick<
 }
 
 /**
- * Listing/hearing elapsed may mark genuine missing rows Overdue/Due soon.
- * Review-only / referred-only / unclear rows stay "Not safely confirmed"
- * (Needs confirmation) — never Missing/Outstanding/Overdue in solicitor UI.
- * PDF-true Outstanding (export not served) stays Outstanding — do not demote
- * solely because source says "(confirm on file)".
+ * Listing elapsed is a header/timetable fact, not a missed CPIA chip.
+ * Review-only / referred-only / unclear rows stay "Not safely confirmed".
+ * Papers-stated Outstanding (not served / not included) stays Outstanding —
+ * do not demote solely because source says "(confirm on file)".
  */
 export function clampChaseOperationalStatus(
   item: Pick<
     DisclosureChaseItem,
-    "label" | "source" | "baseStatus" | "evidenceAnchor" | "provenance" | "whyItMatters"
+    | "label"
+    | "source"
+    | "baseStatus"
+    | "evidenceAnchor"
+    | "provenance"
+    | "whyItMatters"
+    | "mergedFrom"
   >,
   status: ChaseItemStatus = item.baseStatus,
 ): ChaseItemStatus {
   if (status === "Received" || status === "Chased") return status;
+  // Papers-stated outstanding is the gap. Canned family copy ("referred to but not
+  // safely served") must not demote it to a review chip. "Referred only" still wins.
+  const papersHay = [item.evidenceAnchor ?? "", ...(item.mergedFrom ?? [])].join(" ");
+  if (status === "Outstanding" && outstandingStatedOverReferredOnly(papersHay)) {
+    return status;
+  }
   if (status === "Overdue" || status === "Due soon") {
     if (isReviewOnlyChaseMaterial({ ...item, baseStatus: status })) {
       return "Not safely confirmed";
@@ -2665,21 +2754,29 @@ function boundedMaterialsNeedingChase(ledger: BundleTruthLedger): NormalisedMate
 
 /** A schedule reference on its own — `EX/02`, `MG6/04`, `O03`, `EX-MUR-001`. */
 const SCHEDULE_REF_ONLY_RE =
-  /\b(?:MG\d{1,2}[A-Z]?(?:\/\d{1,4})?|EX-[A-Z]{2,4}-\d{2,4}|[A-Z]{1,5}\/\d{1,3}|O\d{2})\b/g;
+  /\b(?:MG\d{1,2}[A-Z]?(?:\/\d{1,4})?|EX-[A-Z]{2,4}-\d{2,4}|[A-Z]{1,5}\/\d{1,3}|O\d{1,2})\b/g;
+
+function ledgerChaseDedupeKey(label: string): string {
+  return label
+    .toLowerCase()
+    .replace(/^\d{1,2}\s+/, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
 
 function mergeLedgerDisclosureItems(
   items: DisclosureChaseItem[],
   ledger: BundleTruthLedger,
   deadline: ReturnType<typeof resolveDeadlineContext>,
 ): DisclosureChaseItem[] {
-  const labelSeen = new Set(items.map((i) => i.label.toLowerCase()));
+  const labelSeen = new Set(items.map((i) => ledgerChaseDedupeKey(i.label)));
   const merged = [...items];
   // Index by label so the source-named upgrade below is a lookup rather than a scan. A heavy bundle
   // yields around two thousand rows needing chase, and scanning the list for each one turns the
   // merge quadratic — which on a big case is the difference between a board and a hung tab.
   const indexByLabel = new Map<string, number>();
   merged.forEach((item, index) => {
-    const key = item.label.toLowerCase();
+    const key = ledgerChaseDedupeKey(item.label);
     if (!indexByLabel.has(key)) indexByLabel.set(key, index);
   });
 
@@ -2692,7 +2789,14 @@ function mergeLedgerDisclosureItems(
       ? m.label
       : [m.label, m.detail].filter(Boolean).join(" — ");
     const canonical = canonicalLedgerMaterial(m.displayLine, familyId, requestLabel);
-    const key = canonical.label.toLowerCase();
+    if (
+      lineIsScheduleFurniture(m.label) ||
+      lineIsScheduleFurniture(canonical.label) ||
+      isUnsafeOrNonMaterialChaseLine(canonical.label)
+    ) {
+      continue;
+    }
+    const key = ledgerChaseDedupeKey(canonical.label);
 
     const baseStatus: ChaseItemStatus =
       m.status === "outstanding" || m.status === "absent" ? "Outstanding" : "Not safely confirmed";
@@ -2704,15 +2808,28 @@ function mergeLedgerDisclosureItems(
       // Where the papers name the material, the template becomes that row: same wording, but now
       // carrying the reference, the anchor and the status the schedule states.
       const existingIndex = indexByLabel.get(key) ?? -1;
-      if (existingIndex >= 0 && m.scheduleRef && !merged[existingIndex]!.sourceScheduleRef) {
+      if (
+        existingIndex >= 0 &&
+        (m.scheduleRef || m.status === "outstanding" || m.status === "absent")
+      ) {
         const existing = merged[existingIndex]!;
+        const nextStatus: ChaseItemStatus =
+          m.status === "outstanding" || m.status === "absent" ? "Outstanding" : existing.baseStatus;
+        const evidenceAnchor = existing.evidenceAnchor ?? formatDisplayLabelCasing(m.displayLine);
         merged[existingIndex] = {
           ...existing,
-          sourceScheduleRef: m.scheduleRef,
-          baseStatus,
+          label: /^\d{1,2}\s/.test(canonical.label) ? existing.label : canonical.label || existing.label,
+          sourceScheduleRef: m.scheduleRef ?? existing.sourceScheduleRef,
+          baseStatus: nextStatus,
           source: "MG6/MG6C disclosure schedule",
-          evidenceAnchor: existing.evidenceAnchor ?? formatDisplayLabelCasing(m.displayLine),
+          evidenceAnchor,
           mergedFrom: [...existing.mergedFrom, m.displayLine],
+          provenance: chaseItemProvenance({
+            label: existing.label,
+            source: "MG6/MG6C disclosure schedule",
+            baseStatus: nextStatus,
+            evidenceAnchor,
+          }),
         };
       }
       continue;
@@ -2774,12 +2891,23 @@ function canonicalLedgerMaterial(
   draftChaseWording?: string;
 } {
   if (familyId === "bwv") {
+    const draftChaseWording =
+      "Please provide the full BWV export, audit trail, redaction log and continuity/provenance material, or confirm in writing why it is not available.";
+    if (lineIndicatesReferredOnly(displayLine)) {
+      return {
+        label: "Body-worn video (BWV)",
+        anchor: "MG6/MG6C schedule — BWV referred to but not fully attached",
+        whyItMatters:
+          "BWV is referred to but not safely served in full — chase the full export and continuity before fixing the hearing position.",
+        draftChaseWording,
+      };
+    }
     return {
       label: "Body-worn video (BWV)",
-      anchor: "MG6/MG6C schedule — BWV referred to but not fully attached",
-      whyItMatters: "BWV is referred to but not safely served in full — chase the full export and continuity before fixing the hearing position.",
-      draftChaseWording:
-        "Please provide the full BWV export, audit trail, redaction log and continuity/provenance material, or confirm in writing why it is not available.",
+      anchor: displayLine.trim() ? formatDisplayLabelCasing(displayLine) : undefined,
+      whyItMatters:
+        "The papers identify a BWV gap — chase the full export and continuity before fixing the hearing position.",
+      draftChaseWording,
     };
   }
   if (familyId === "cad_999") {
@@ -2853,12 +2981,13 @@ function canonicalLedgerMaterial(
           "Please confirm whether a full phone download / source export exists beyond the logical/summary note on file, or confirm in writing why it is not available.",
       };
     }
+    const label = phoneDownloadIdentityLabel(displayLine);
     return {
-      label: "Full phone download / source extraction",
-      whyItMatters:
-        "Original download / source export is outstanding on the disclosure papers.",
-      draftChaseWording:
-        "Please provide the full phone download / source export, or confirm in writing why it is not available.",
+      label,
+      whyItMatters: /subscriber\s+mapping/i.test(label)
+        ? "The disclosure papers name the download and subscriber mapping as one outstanding cell."
+        : "Original download / source export is outstanding on the disclosure papers.",
+      draftChaseWording: phoneDownloadChaseWording(label),
     };
   }
   return { label: formatDisplayLabelCasing(descriptionLabel?.trim() || displayLine) };
@@ -2980,7 +3109,9 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   // The ledger above reads the whole bundle. Everything downstream reads this.
   const gateText = buildGateHaystack(input.bundleText, ledger);
   // Built from the haystack for the same reason: the modality reconciles below search it per card.
-  const modalityHay = modalityEstablishmentHay({ ...input, bundleText: gateText });
+  const modalityHay = deglueBundleLines(
+    modalityEstablishmentHay({ ...input, bundleText: gateText }),
+  );
   const briefPlan =
     input.briefPlan ??
     buildCriminalBriefPlan({
@@ -3124,7 +3255,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = reconcileMedicalReportModalityItems(items, gateText);
   items = dropGenericFurtherPapersWhenSpecificItemsExist(items);
   items = items.map((item) => ({
-    ...item,
+    ...alignInterviewCourtLineToLabel(item),
     evidenceAnchor: familySafeEvidenceAnchor(item.familyId, item.evidenceAnchor),
   }));
   items = reconcileChaseItemsAgainstServedMaterial(items, ledger);
@@ -3224,7 +3355,13 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     hearingDeadlineNote: deadline.hearingDeadlineNote,
   };
 
-  return guardDisclosureChaseBrief(brief, { ledger, bundleText: gateText });
+  const guarded = guardDisclosureChaseBrief(brief, { ledger, bundleText: gateText });
+  return {
+    ...guarded,
+    items: guarded.items.map(alignInterviewCourtLineToLabel),
+    primaryItems: guarded.primaryItems.map(alignInterviewCourtLineToLabel),
+    additionalItems: guarded.additionalItems.map(alignInterviewCourtLineToLabel),
+  };
 }
 
 export function computeCounters(

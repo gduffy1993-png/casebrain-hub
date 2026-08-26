@@ -24,6 +24,20 @@ export function isRawChaseFragmentLabel(label: string): boolean {
   );
 }
 
+/** Named schedule cell (`MG6C/002`, `MG6/04`) — citation, not chrome. */
+function isScheduleRowCitation(text: string): boolean {
+  return /\bMG6C?\/\d+/i.test(text);
+}
+
+function preferScheduleCitationAnchor(
+  a: string | null | undefined,
+  b: string | null | undefined,
+): string | null {
+  if (a && isScheduleRowCitation(a)) return a;
+  if (b && isScheduleRowCitation(b)) return b;
+  return a ?? b ?? null;
+}
+
 function stripCourtLinePrefix(raw: string): string {
   const t = raw.trim();
   const courtMatch = t.match(
@@ -79,7 +93,7 @@ export function humanizeChaseFragmentLabel(raw: string): string {
     return "Phone extraction summary only — full download report not in section";
   }
   if (/full\s+phone\s+download|phone\s+download\s*\/\s*source\s+extraction/i.test(t)) {
-    return "Full phone download / source extraction";
+    return phoneDownloadIdentityLabel(t);
   }
   if (/phone extraction|extraction summary/i.test(t)) return "Phone extraction source material";
   if (/subscriber\s+data|subscriber\s*\/\s*account/i.test(t)) return "Subscriber / account data";
@@ -355,8 +369,12 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
           : humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : item.mergedFrom);
   }
 
+  // Card titles may drop the cell code; Evidence Anchor must keep it so the solicitor
+  // can ask for MG6C/002 rather than a family template. Opposite: no citation in, none out.
   let evidenceAnchor = item.evidenceAnchor;
-  if (evidenceAnchor && isRawChaseFragmentLabel(evidenceAnchor)) {
+  if (evidenceAnchor && isScheduleRowCitation(evidenceAnchor)) {
+    evidenceAnchor = stripPagePipeFragments(formatDisplayLabelCasing(evidenceAnchor));
+  } else if (evidenceAnchor && isRawChaseFragmentLabel(evidenceAnchor)) {
     evidenceAnchor = humanizeChaseFragmentLabel(evidenceAnchor);
     if (isRawChaseFragmentLabel(evidenceAnchor)) evidenceAnchor = null;
   }
@@ -390,11 +408,20 @@ function itemFinalizeKey(item: DisclosureChaseItem): string {
  * naming it is what makes the request safe to send.
  */
 export function isSourceNamedChaseItem(item: DisclosureChaseItem): boolean {
-  if (!item.sourceScheduleRef?.trim()) return false;
-  // A schedule is not a listed item on itself, and generic schedule chrome never becomes a
-  // request — carrying a reference must not resurrect either as material.
   if (item.familyId === "mg6_unused") return false;
-  return !isGenericSolicitorClutterLabel(item.label);
+  if (isGenericSolicitorClutterLabel(item.label)) return false;
+  const blob = `${item.label} ${item.baseStatus} ${(item.mergedFrom ?? []).join(" ")}`;
+  const statedGap =
+    item.baseStatus === "Outstanding" ||
+    /\b(?:outstanding|not\s+served|missing|absent|referred(?:\s+only)?|awaiting\s+export)\b/i.test(
+      blob,
+    );
+  // A code is how the solicitor asks for a gap. It is not itself proof the item is missing.
+  if (item.sourceScheduleRef?.trim()) return statedGap;
+  // Numbered MG6 cells often have no letter-code (`3 search record outstanding`). They are still
+  // the papers naming the gap, so they must not be dropped as family-`other` miscellany.
+  if (item.id.startsWith("ledger-material-") && statedGap) return true;
+  return false;
 }
 
 function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): DisclosureChaseItem {
@@ -422,14 +449,37 @@ function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): Di
     urgency: a.urgency === "high" || b.urgency === "high" ? "high" : a.urgency,
     draftChaseWording: cleanDraftWording(label, digitalLabel ? [digitalLabel] : mergedFrom),
     courtLine: cleanCourtLine(label),
-    evidenceAnchor: a.evidenceAnchor ?? b.evidenceAnchor,
+    evidenceAnchor: preferScheduleCitationAnchor(a.evidenceAnchor, b.evidenceAnchor),
     linkedRoute: a.linkedRoute ?? b.linkedRoute,
   };
 }
 
+/**
+ * One schedule cell "download / subscriber mapping" is that cell — not source-extraction
+ * plus a separate subscriber-data card. Opposite: Brookes subscriber *report* / Ahmed
+ * subscriber *data* still keep the extraction identity for the download card.
+ */
+export function phoneDownloadIdentityLabel(text: string): string {
+  const t = text ?? "";
+  if (
+    /\bsubscriber\s+mapping\b/i.test(t) &&
+    !/\bsubscriber\s+(?:report|return|data|records?)\b/i.test(t)
+  ) {
+    return "Full phone download / subscriber mapping";
+  }
+  return "Full phone download / source extraction";
+}
+
+export function phoneDownloadChaseWording(label: string): string {
+  if (/subscriber\s+mapping/i.test(label)) {
+    return "Please provide the full phone download / subscriber mapping, or confirm in writing why it is not available.";
+  }
+  return "Please provide the full phone download / source export, or confirm in writing why it is not available.";
+}
+
 /** Keep phone/subscriber modality cards distinct — Brookes/Ahmed must not mute under phone collapse. */
 export function isDigitalModalityChaseLabel(label: string): boolean {
-  return /^(Subscriber \/ account data|Full phone download \/ source extraction|Phone extraction summary only|Phone extraction source material)/i.test(
+  return /^(Subscriber \/ account data|Full phone download \/ |Phone extraction summary only|Phone extraction source material)/i.test(
     label.trim(),
   );
 }

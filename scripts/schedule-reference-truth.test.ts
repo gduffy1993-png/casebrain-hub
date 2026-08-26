@@ -22,8 +22,12 @@ const SHOULD_PARSE: Array<[string, string]> = [
 
   // Exhibit and unit references used across the same schedules.
   ["O01 full interview transcript Outstanding Listed but not attached", "O01"],
+  ["O1 Full interview transcript Outstanding Requested / not served", "O1"],
+  ["O3 CCTV full export Outstanding Requested / not served", "O3"],
   ["O02 CAD log full print Outstanding Not yet served", "O02"],
   ["O04 forensic continuity statement Outstanding Requested from OIC", "O04"],
+  ["O05999 audio Outstanding Listed but not attached", "O05"],
+  ["O05 999 audio Outstanding Listed but not attached", "O05"],
   ["EX/03 Continuity note Eastmoor Police outstanding", "EX/03"],
   ["EX/01 — item referred to in MG5 (listed).", "EX/01"],
   ["CCTV/2 External camera export Store manager Export log absent", "CCTV/2"],

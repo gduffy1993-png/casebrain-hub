@@ -521,10 +521,7 @@ describe("source truth guardian", () => {
     expect(visibleText).not.toMatch(/outstanding source material remains/i);
 
     const custody = chase.items.find((item) => /custody|PACE/i.test(item.label));
-    expect(custody?.baseStatus).toBe("Not safely confirmed");
-    expect([custody?.draftChaseWording, custody?.courtLine, custody?.whyItMatters].join("\n")).not.toMatch(
-      /full custody record.*(?:outstanding|provide the full custody record|remains missing|remains outstanding)/i,
-    );
+    expect(custody).toBeUndefined();
 
     const cctvContinuity = chase.items.find((item) => item.familyId === "cctv_continuity");
     if (cctvContinuity) {
@@ -759,6 +756,19 @@ describe("source truth guardian", () => {
 
       expect(header?.allegation).toBe("Fraud by false representation, Fraud Act 2006 s.2");
       expect(header?.profile).toBe("fraud_account_control");
+    });
+
+    it("does not dress a Vale robbery in the Marcus Vale fraud pack", () => {
+      const header = pilotMode(() =>
+        workflowHeaderOverrides("R v Marcus Vale", {
+          allegation: "Robbery, contrary to section 8 Theft Act 1968",
+          clientLabel: "Marcus Andrew Vale",
+        }),
+      );
+
+      expect(header?.profile).not.toBe("fraud_account_control");
+      expect(header?.allegation ?? "").toMatch(/Robbery/i);
+      expect(header?.displayTitle ?? "").not.toMatch(/Fraud by false representation/i);
     });
   });
 });

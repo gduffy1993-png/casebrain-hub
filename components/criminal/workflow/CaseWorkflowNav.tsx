@@ -19,15 +19,15 @@ const PILOT_PRIMARY_TABS: { id: CaseWorkflowTabId; label: string }[] = [
 
 const DEMO_PRIMARY_TABS: { id: CaseWorkflowTabId; label: string }[] = [
   { id: "overview", label: "Overview" },
-  { id: "today", label: "Court Position" },
-  { id: "papers", label: "Papers & Evidence" },
-  { id: "summary", label: "Client Summary" },
-  { id: "disclosure-chase", label: "CPS Chase" },
+  { id: "file", label: "File" },
 ];
 
 const PILOT_SECONDARY_TABS: { id: CaseWorkflowTabId; label: string }[] = [{ id: "file", label: "File" }];
 const DEMO_SECONDARY_TABS: { id: CaseWorkflowTabId; label: string }[] = [
-  { id: "file", label: "File & Preparation" },
+  { id: "today", label: "Court" },
+  { id: "papers", label: "Papers" },
+  { id: "summary", label: "Client summary" },
+  { id: "disclosure-chase", label: "CPS chase" },
 ];
 
 const LEGACY_TABS: { id: CaseWorkflowTabId; label: string }[] = [

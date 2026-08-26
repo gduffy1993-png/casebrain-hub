@@ -29,12 +29,14 @@ import {
   buildDemoStatCounts,
 } from "./demoOverviewAdapter";
 import { DemoOverviewCanvas } from "./DemoOverviewCanvas";
+import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
 
 /**
  * Demo Overview — presentation only. Reuses useMatterBrief / five-answers / chase briefs.
  * Does not edit invent / gate / hearing brains.
  */
 export function DemoOverviewView({ caseId }: { caseId: string }) {
+  const buildTabHref = usePilotMatterTabHref();
   const [showLimitedLoadingFallback, setShowLimitedLoadingFallback] = useState(false);
   const {
     loading,
@@ -246,6 +248,8 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
     typeof hearingLabel === "string" ? hearingLabel : "",
   );
 
+  const doNotItems = dedupePresentationLines(filteredDoNotOverstate).slice(0, 3);
+
   return (
     <DemoOverviewCanvas
       clientName={clientName}
@@ -258,6 +262,11 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
       courtLine={courtLineText}
       clientUpdate={clientUpdate}
       readiness={readiness}
+      doNotItems={doNotItems}
+      fileHref={buildTabHref(caseId, "file")}
+      papersHref={buildTabHref(caseId, "papers")}
+      chaseHref={buildTabHref(caseId, "disclosure-chase")}
+      courtHref={buildTabHref(caseId, "today")}
     />
   );
 }

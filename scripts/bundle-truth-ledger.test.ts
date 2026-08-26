@@ -382,6 +382,33 @@ assert.ok(
   "medical chase must not fall back to MG11",
 );
 
+const FIXTURE_MEDICAL_PROSE = `
+=== SECTION: CHARGE ===
+Count 1: Unlawful wounding, section 20 OAPA 1861
+Defendant: Client Alpha
+The full medical report is outstanding and has not been served.
+`.trim();
+const dcMedicalProse = buildDisclosureChaseBrief({
+  caseId: "dc-medical-prose",
+  caseTitle: "R v Client Alpha",
+  clientLabel: "Client Alpha",
+  allegation: "Unlawful wounding",
+  stage: "PTPH",
+  hearingStatus: "Hearing listed",
+  hearingDateIso: null,
+  bundleHealth: "Provisional",
+  positionStatus: "Provisional",
+  battleboard: mockBattleboard,
+  bundleText: FIXTURE_MEDICAL_PROSE,
+});
+const proseMedical = [...dcMedicalProse.primaryItems, ...dcMedicalProse.items].find(
+  (i) => i.familyId === "medical_expert" || /\bmedical\b/i.test(i.label),
+);
+assert.ok(
+  !proseMedical?.evidenceAnchor?.includes("MG6C/002"),
+  "template-only medical without a schedule ref must not invent MG6C/002",
+);
+
 assert.equal(ledgerAnchorForChaseFamily("medical_expert", ledgerA)?.includes("MG6C/002"), true);
 assert.equal(ledgerAnchorForChaseFamily("interview", ledgerA)?.includes("MG6C/003"), true);
 assert.equal(ledgerAnchorForChaseFamily("cctv_master", ledgerA)?.includes("MG6C/001"), true);

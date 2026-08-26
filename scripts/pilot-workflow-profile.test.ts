@@ -70,6 +70,15 @@ assert.equal(
   "fraud_account_control",
 );
 
+assert.notEqual(
+  resolveWorkflowProfile({
+    caseTitle: "R v Marcus Vale",
+    clientLabel: "Marcus Andrew Vale",
+    allegation: "Robbery, contrary to section 8 Theft Act 1968",
+  }),
+  "fraud_account_control",
+);
+
 assert.equal(
   resolveWorkflowProfile({
     caseTitle: "Criminal matter",

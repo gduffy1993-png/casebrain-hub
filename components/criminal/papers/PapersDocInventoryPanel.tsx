@@ -57,7 +57,23 @@ function typeHint(row: NormalisedMaterialRow): string {
   return "Source material";
 }
 
-const ROW_LIMIT = 40;
+const ROW_LIMIT = 24;
+const GAP_STATUSES: MaterialStatus[] = [
+  "outstanding",
+  "absent",
+  "partial",
+  "draft",
+  "unsigned",
+  "referred_only",
+  "unclear",
+];
+
+function papersInventoryRows(rows: NormalisedMaterialRow[]): NormalisedMaterialRow[] {
+  const scheduled = rows.filter((row) => Boolean(row.scheduleRef?.trim()));
+  const gaps = rows.filter((row) => GAP_STATUSES.includes(row.status));
+  const source = scheduled.length ? scheduled : gaps.length ? gaps : rows;
+  return sortMaterials(source).slice(0, ROW_LIMIT);
+}
 
 function sortMaterials(rows: NormalisedMaterialRow[]): NormalisedMaterialRow[] {
   // Rows carrying a schedule reference are the schedule itself; rows inferred from
@@ -106,7 +122,7 @@ export function PapersDocInventoryPanel({
   textChars?: number | null;
 }) {
   const allMaterials = ledger?.materials ?? [];
-  const materials = sortMaterials(allMaterials).slice(0, ROW_LIMIT);
+  const materials = papersInventoryRows(allMaterials);
   // Counted across the whole ledger: the row limit is a display bound, not a finding.
   const served = allMaterials.filter((m) => m.status === "served").length;
   const gaps = allMaterials.filter((m) =>
@@ -123,7 +139,7 @@ export function PapersDocInventoryPanel({
         <div>
           <p className={workflowSectionTitle}>Papers inventory</p>
           <p className="text-xs text-slate-500 mt-1">
-            Document / schedule inventory from uploaded papers — not a court pressure desk.
+            Schedule cells from the extract — not the full novel, and not a court pressure desk.
           </p>
         </div>
         <div className="text-[11px] text-slate-500 text-right space-y-0.5">
@@ -147,7 +163,7 @@ export function PapersDocInventoryPanel({
           <p className="text-[11px] text-slate-500">
             {allMaterials.length} material row(s) · {served} served/on-file · {gaps} gap / partial /
             unclear
-            {hidden > 0 ? ` · showing first ${materials.length}` : ""}
+            {hidden > 0 ? ` · showing ${materials.length} schedule / gap cells` : ""}
           </p>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs border-collapse">

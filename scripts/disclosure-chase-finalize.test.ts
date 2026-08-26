@@ -3,6 +3,7 @@ import {
   humanizeChaseFragmentLabel,
   isRawChaseFragmentLabel,
   finalizeDisclosureChasePresentation,
+  phoneDownloadIdentityLabel,
 } from "../lib/criminal/disclosure-chase-finalize";
 import type { DisclosureChaseItem } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { lintWeirdness } from "../lib/criminal/weirdness-detector";
@@ -14,6 +15,16 @@ assert.equal(humanizeChaseFragmentLabel("Screenshot pack (served) | 5 |"), "Scre
 assert.equal(
   humanizeChaseFragmentLabel("MG6C/001 — Phone extraction — summary only, source download outstanding."),
   "Phone extraction source material",
+);
+assert.equal(
+  humanizeChaseFragmentLabel("Full phone download / subscriber mapping outstanding."),
+  "Full phone download / subscriber mapping",
+);
+assert.equal(
+  phoneDownloadIdentityLabel(
+    "Full phone download outstanding. Source export not served. Subscriber report not served.",
+  ),
+  "Full phone download / source extraction",
 );
 assert.equal(humanizeChaseFragmentLabel("MG11 — COMPLAINANT STATEMENT (draft unsigned)"), "Complainant MG11 statement");
 
@@ -32,6 +43,29 @@ const sampleItem = (label: string, familyId: DisclosureChaseItem["familyId"] = "
   courtLine: `The defence asks the court to record that ${label} appears outstanding.`,
   mergedFrom: [label, label, label],
 });
+
+const medicalCited = finalizeDisclosureChasePresentation([
+  {
+    ...sampleItem("Medical / expert source report", "medical_expert"),
+    evidenceAnchor: "MG6C/002 — Full medical report — absent — injury severity and causation incomplete",
+  },
+]);
+assert.ok(
+  medicalCited[0]?.evidenceAnchor?.includes("MG6C/002"),
+  "schedule-row evidence anchor must keep MG6C/002 through finalize",
+);
+
+const medicalTemplateOnly = finalizeDisclosureChasePresentation([
+  {
+    ...sampleItem("Medical / expert source report", "medical_expert"),
+    evidenceAnchor: "Full medical report",
+  },
+]);
+assert.equal(
+  medicalTemplateOnly[0]?.evidenceAnchor?.includes("MG6C/002") ?? false,
+  false,
+  "template-only medical must not invent MG6C/002",
+);
 
 const finalized = finalizeDisclosureChasePresentation([
   sampleItem("Screenshot pack (served) | 5 |", "mg6_unused"),

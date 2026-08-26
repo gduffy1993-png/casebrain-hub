@@ -8,6 +8,7 @@ import type {
   SourceAnchor,
   TruthConfidence,
 } from "./bundle-truth-types";
+import { outstandingStatedOverReferredOnly } from "./evidence-state-reconcile";
 
 function compact(text: string): string {
   return text.replace(/\s+/g, " ").trim();
@@ -20,15 +21,15 @@ function compact(text: string): string {
  * words that end in status wording.
  */
 const WELDED_STATUS_RE =
-  /([a-z]{2,}?|\d)(not\s+served|served|outstanding|referred\s+only|referenced\s+only|part\s+copy\s+only|partial|unsigned|absent|missing|awaiting|pending|requested)(?=[a-z]|\s|[.,;)]|$)/gi;
+  /([a-z]{2,}?|\d)(not\s+served|served|outstanding|referred\s+only|referenced\s+only|part\s+copy\s+only|partial|unsigned|absent|missing|awaiting|pending|requested|unclear)(?=[a-z]|\s|[.,;)]|$)/gi;
 
 /** Ordinary words that end in status wording and must survive intact. */
 const WELDED_STATUS_FALSE_POSITIVES =
   /^(?:preserved|conserved|subserved|undeserved|unobserved|observed|reserved|deserved|unserved|misserved|impartial|dismissing|impending|suspending|appending|expending|depending|spending|upending)$/i;
 
-/** `MG6/04`, `CCTV/3`, `TEL/5`, `O02`, `U1` — the marks of an actual schedule row. */
+/** `MG6/04`, `CCTV/3`, `TEL/5`, `O02`, `U1`, or a numbered cell `3search` — marks of a schedule row. */
 const SCHEDULE_ROW_REF_RE =
-  /\b(?:MG\d{1,2}[A-Z]?(?:\/\d{1,4})?|[A-Z]{2,4}\/\d{1,3}|[A-Z]\d{1,3})\b/;
+  /\b(?:MG\d{1,2}[A-Z]?(?:\/\d{1,4})?|[A-Z]{2,4}\/\d{1,3}|[A-Z]\d{1,3})\b|^\d{1,2}[A-Za-z]/;
 
 /** Brand and device names whose internal capital is part of the name. */
 const PROTECTED_COMPOUND_RE =
@@ -58,16 +59,32 @@ export function deglueScheduleText(line: string): string {
   });
 
   return masked
+    // `3search recordoutstandingrequested` — a numbered MG6 cell with no letter-code.
+    .replace(/^(\d{1,2})([A-Za-z])/, "$1 $2")
     // `MG6/04bank` / `MG6C/002CCTV` — split the cell that follows a schedule reference.
     .replace(/\b(MG\d{1,2}[A-Z]?\/\d{1,4})(?=[A-Za-z])/g, "$1 ")
     // `MG11witness statement` / `O01full interview transcript` — an exhibit or form
     // reference glued to its description.
     .replace(/\b(MG\d{1,2}[A-Z]?|[A-Z]{1,3}\d{1,3})(?=[a-z]{3,})/g, "$1 ")
+    // `O05999 audio` — unused-item code welded to 999 audio (emergency number, not exhibit 5999).
+    .replace(/\b(O\d{1,2})(999)(?=[A-Za-z])/g, "$1 $2 ")
+    .replace(/\b(O\d{1,2})(999)\b/g, "$1 $2")
+    // `Material still neededsearch record` — MG5 issue-table glue.
+    .replace(/\b(Material still needed)(?=[a-z])/gi, "$1 ")
     // `statementsOutstanding` — a lower-case word run glued to the next capitalised word.
     .replace(/([a-z]{2,})([A-Z])/g, "$1 $2")
     // `05CCTV` — digits glued to a following word, without breaking `MG6C` / `MG11A` refs.
     .replace(/(?<!\bMG\d{0,3})(\d)([A-Z])/g, "$1 $2")
     .replace(/\u0000(\d+)\u0000/g, (_, index: string) => held[Number(index)] ?? "");
+}
+
+/** Deglue each line so modality exams see the same boundaries the ledger already restored. */
+export function deglueBundleLines(text: string): string {
+  return text
+    .replace(/\r\n/g, "\n")
+    .split("\n")
+    .map((line) => deglueScheduleText(line))
+    .join("\n");
 }
 
 /** Repair OCR-glued MG6 status tails: `not servedMay` → `not served — May`. */
@@ -100,11 +117,130 @@ const MG6_HEAD_RE =
   /\b(?:mg6\s+disclosure\s+schedule|mg6\s+corrected|mg6\s+continuation|mg6\s+disclosure|mg6c|disclosure\s+schedule|unused\s+material\s+schedule)\b/i;
 
 const ITEM_RE =
-  /\b(?:cctv|bwv|999(?:\s+audio)?|cad(?:\s+log)?|scene\s+photos?|forensic|witness|medical|interview|transcript|mg11|statement|footage|recording|export\s+log|continuity|indictment|charge\s+sheet|mg5|(?:full\s+)?phone\s+download|phone\s+extraction|source\s+export|handset\s+download|device\s+download|digital\s+extraction|subscriber\s+(?:report|data|return|records?))\b/i;
+  /\b(?:cctv|bwv|999(?:\s+audio)?|cad(?:\s+log)?|scene\s+photos?|forensic|witness|medical|interview|transcript|mg11|statement|footage|recording|export\s+log|continuity|indictment|charge\s+sheet|mg5|(?:full\s+)?phone\s+download|phone\s+extraction|source\s+export|handset\s+download|device\s+download|digital\s+extraction|subscriber\s+(?:report|data|return|records?)|screenshots?|whatsapp)\b/i;
 
 /** Affirmative phone-download / source-export establishment — not property seizure alone. */
 const PHONE_DOWNLOAD_ITEM_RE =
   /\b(?:(?:full\s+)?phone\s+download|phone\s+extraction|source\s+export|handset\s+download|device\s+download|digital\s+extraction)\b/i;
+
+/**
+ * The line's only job is to say a modality is not on the papers.
+ * `No BWV. No CCTV.` and `Interview recording not mentioned` must not become inventory or chase.
+ */
+function lineDeniesMaterialExistence(line: string): boolean {
+  const l = compact(line);
+  if (/^no\s+bwv\.?\s*no\s+cctv\.?$/i.test(l)) return true;
+  if (/^no\s+(?:bwv|cctv|body[- ]?worn)(?:\.|$)/i.test(l) && !OUTSTANDING_STATUS_RE.test(l)) {
+    return true;
+  }
+  if (
+    /\b(?:interview\s+recording|interview\s+transcript|bwv|cctv|body[- ]?worn)\s+not\s+mentioned\b/i.test(
+      l,
+    )
+  ) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * A schedule talking about itself is not a listed item. Opposite: `MG6/04 bank source
+ * statements outstanding` still names the statements.
+ */
+export function lineIsScheduleFurniture(line: string): boolean {
+  const l = compact(line);
+  if (!l) return true;
+  if (/^[.\-/,:;]+$/.test(l)) return true;
+  if (/^outstanding\.?$/i.test(l)) return true;
+  if (/^entries\.?$/i.test(l)) return true;
+  if (/^outstanding\s+entries\.?$/i.test(l)) return true;
+  if (/^outstanding\s+are\s+not\s+served\.?$/i.test(l)) return true;
+  if (/^(?:are|is)\s+not\s+served\.?$/i.test(l)) return true;
+  if (/the schedule has been reviewed/i.test(l)) return true;
+  if (/further material remains outstanding and will be sent/i.test(l)) return true;
+  if (/status column should be checked/i.test(l)) return true;
+  if (/items described as\s+outstanding are not served/i.test(l)) return true;
+  if (/what is served from what is merely mentioned/i.test(l)) return true;
+  if (/^directions sought\s*:/i.test(l)) return true;
+  if (/^disclosure note\s*:\s*the status column/i.test(l)) return true;
+  if (/listed in the chase note/i.test(l)) return true;
+  if (
+    /\bfull source material\b/i.test(l) &&
+    /\bfinal reports\b/i.test(l) &&
+    /\bunderlying recordings\b/i.test(l)
+  ) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * `Outstanding item: Full 999 audio` / `Outstanding/not provided: interview record` — the
+ * outstanding word is the cell, not the name. Do not strip a bare leading `outstanding `
+ * (`outstanding are not served` is furniture, not `are not served`).
+ */
+export function stripLeadingOutstandingBoilerplate(line: string): string {
+  return compact(line)
+    .replace(/^outstanding\s+item\s*[:\-—–]\s*/i, "")
+    .replace(/^outstanding\s+material\s*[:\-—–]\s*/i, "")
+    .replace(/^outstanding\s*\/\s*not\s+provided\s*[:\-—–]\s*/i, "")
+    .replace(/^outstanding\s*:\s*/i, "")
+    // Flattened leftover after the outstanding word dropped off the line (`item: prior injury`).
+    .replace(/^(?:item|material)\s*[:\-—–]\s*/i, "");
+}
+
+function isOutstandingInstructionClause(part: string): boolean {
+  return /^(?:chase before\b|not served\b|or served as summary\b|listed but not\b|position\.?$)/i.test(
+    compact(part),
+  );
+}
+
+/**
+ * A glance line `Outstanding item: medical report; prior injury records; CCTV continuity` is
+ * several named cells, not one soup. Repeating `Outstanding item:` markers on a flattened line
+ * are the same. Opposite: `Full 999 audio …; chase before final position` stays one cell, and a
+ * slash pack (`full chat export / device extraction / …`) stays one Outstanding-material cell.
+ */
+export function splitOutstandingInventoryLine(line: string): string[] {
+  const t = compact(deglueScheduleText(line));
+  if (!t) return [];
+
+  const itemChunks = t
+    .split(/(?=\bOutstanding item\s*[:\-—–])/i)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  if (itemChunks.length > 1 && itemChunks.every((c) => /\bOutstanding item\s*[:\-—–]/i.test(c))) {
+    return itemChunks.flatMap((chunk) => splitOutstandingInventoryLine(chunk));
+  }
+
+  const materialChunks = t
+    .split(/(?=\bOutstanding material\s*[:\-—–])/i)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  if (
+    materialChunks.length > 1 &&
+    materialChunks.every((c) => /\bOutstanding material\s*[:\-—–]/i.test(c))
+  ) {
+    return [...new Set(materialChunks)];
+  }
+
+  const itemBody = t.match(/^Outstanding item\s*[:\-—–]\s*(.+)$/i);
+  if (itemBody?.[1] && /;/.test(itemBody[1])) {
+    const parts = itemBody[1].split(/;/).map((p) => compact(p)).filter(Boolean);
+    const names = parts.filter((p) => !isOutstandingInstructionClause(p));
+    if (names.length >= 2) {
+      return names.map(
+        (name) => `Outstanding item: ${name.replace(/[:—–-]+\s*$/g, "").trim()}`,
+      );
+    }
+  }
+
+  return [line.trim()].filter(Boolean);
+}
+
+function stripScheduleFurnitureClauses(line: string): string {
+  return compact(line).replace(/\bnote:\s*items described as.*$/i, "").trim();
+}
 
 /** Explicit denial / property-only — do not invent a download inventory row. */
 function lineDeniesOrIsPropertyOnlyPhone(line: string): boolean {
@@ -123,11 +259,35 @@ function lineDeniesOrIsPropertyOnlyPhone(line: string): boolean {
   return false;
 }
 
+/**
+ * A schedule or exhibit code names the row. It does not mean the material is missing.
+ * Location cells (`included`, `short note`) and review instructions (`check against the
+ * MG6 schedule`) must not become requests just because `CCTV/3` or `EX/02` parsed.
+ */
+export function lineIsLocationOrReviewNotGap(line: string): boolean {
+  const l = deglueScheduleText(compact(line));
+  if (!l) return false;
+  if (
+    /\b(?:outstanding|not\s+served|not\s+attached|not\s+included|absent|missing|awaiting\s+export)\b/i.test(
+      l,
+    )
+  ) {
+    return false;
+  }
+  if (/\bfinal\s+report\b/i.test(l) && /short\s*note/i.test(l)) return false;
+  if (/\bincluded(?:\s+as\s+description)?\b/i.test(l) && !/\bnot\s+included\b/i.test(l)) return true;
+  if (/short\s*note/i.test(l)) return true;
+  if (/\bcontinuity\s+label\s*unclear\b/i.test(l) || /\blabel\s*unclear\b/i.test(l)) return true;
+  if (/\bto\s+be\s+checked\s+against\b/i.test(l)) return true;
+  if (/\bconfirm\s+(?:served\s+)?material\s+against\b/i.test(l)) return true;
+  return false;
+}
+
 const DRAFT_STATUS_RE =
-  /\b(?:summary\s+only|extract\s+served\s+only|extract\s+only|partial|screenshots?\s*\/\s*summary|screenshots?\b|only\s+screenshots|later\s+note\s+suggests|draft\s+note|draft\s+only|\bdraft\b|unclear|served\s*\?\s*unclear|requires?\s+oic\s+check|sensitive\s+schedule\s+exists)\b/i;
+  /\b(?:summary\s+only|extract\s+served\s+only|extract\s+only|partial|screenshots?\s*\/\s*summary|only\s+screenshots|selected\s+screenshots|later\s+note\s+suggests|draft\s+note|draft\s+only|\bdraft\b|unclear|served\s*\?\s*unclear|requires?\s+oic\s+check|sensitive\s+schedule\s+exists)\b/i;
 
 const OUTSTANDING_STATUS_RE =
-  /\b(?:not\s+yet\s+served|not\s+served|not\s+fully\s+served|not\s+complete|not\s+on\s+file|not\s+attached|defence\s+request\s+outstanding|continuity\s+pending|continuity\s+outstanding|pending|await(?:ing|ed)?|to\s+follow|missing\s+source|full\s+master\s+not\s+on\s+file|full\s+recording\s+outstanding|\babsent\b|outstanding|check\s+full\s+(?:mg\s*11|bwv|first)|behind\s+this\s+extract\s+is\s+not)\b/i;
+  /\b(?:not\s+yet\s+served|not\s+served|not\s+fully\s+served|not\s+complete|not\s+on\s+file|not\s+attached|not\s+included|not\s+in\s+this\s+(?:bundle|section)|defence\s+request\s+outstanding|continuity\s+pending|continuity\s+outstanding|pending|await(?:ing|ed)?|to\s+follow|missing\s+source|full\s+master\s+not\s+on\s+file|full\s+recording\s+outstanding|\babsent\b|outstanding|check\s+full\s+(?:mg\s*11|bwv|first)|behind\s+this\s+extract\s+is\s+not)\b/i;
 
 const UNSIGNED_RE = /\b(?:unsigned|not\s+signed|awaiting\s+signature|draft\s+witness\s+statement)\b/i;
 
@@ -135,10 +295,11 @@ const POSITIVE_SERVED_RE =
   /\b(?:served|provided|disclosed|supplied|final\s+served|full\s+served|footage\s+provided|log\s+disclosed|statement\s+supplied)\b/i;
 
 const NEVER_IN_SERVED_RE =
-  /\b(?:not\s+served|not\s+yet\s+served|not\s+fully\s+served|not\s+complete|not\s+on\s+file|not\s+safely\s+separated|await(?:ing|ed)?|outstanding|defence\s+request\s+outstanding|continuity\s+pending|pending|to\s+follow|missing\s+source|summary\s+only|extract\s+served\s+only|extract\s+only|partial|screenshots?\s*\/\s*summary|screenshots?\b|only\s+screenshots|later\s+note\s+suggests|behind\s+this\s+extract|source\s+material\s+behind|check\s+full\s+(?:mg\s*11|bwv|first)|unclear|\bdraft\b|draft\s+only|draft\s+note|served\s*\?\s*unclear|requires?\s+oic\s+check|sensitive\s+schedule\s+exists|\babsent\b|\bunsigned\b)\b/i;
+  /\b(?:not\s+served|not\s+yet\s+served|not\s+fully\s+served|not\s+complete|not\s+on\s+file|not\s+included|not\s+attached|not\s+safely\s+separated|await(?:ing|ed)?|outstanding|defence\s+request\s+outstanding|continuity\s+pending|pending|to\s+follow|missing\s+source|summary\s+only|extract\s+served\s+only|extract\s+only|partial|screenshots?\s*\/\s*summary|only\s+screenshots|selected\s+screenshots|later\s+note\s+suggests|behind\s+this\s+extract|source\s+material\s+behind|check\s+full\s+(?:mg\s*11|bwv|first)|unclear|\bdraft\b|draft\s+only|draft\s+note|served\s*\?\s*unclear|requires?\s+oic\s+check|sensitive\s+schedule\s+exists|\babsent\b|\bunsigned\b)\b/i;
 
 function isLikelyMaterialLine(line: string): boolean {
   if (EXCLUDED_LINE_RE.test(line) || INDEX_NOISE_RE.test(line)) return false;
+  if (lineDeniesMaterialExistence(line) || lineIsScheduleFurniture(line)) return false;
   const U = line.toUpperCase();
   return (
     /\bMG6(?:[A-Z])?\b/.test(U) ||
@@ -163,10 +324,18 @@ const CONDITIONAL_SERVICE_RE =
 
 function hasNegativeOrLimitingSignal(line: string): boolean {
   if (CONDITIONAL_SERVICE_RE.test(line)) return true;
-  // Screenshots/summary served on bundle are limited artefacts but still positively served —
-  // do not treat the mere word "screenshots" as a negative that blocks served classification.
   const servedOnBundle = /\bserved on bundle\b/i.test(line);
   if (servedOnBundle && !/\bpartial\b|\bincomplete\b|\bnot\s+(?:served|attached|included)\b/i.test(line)) {
+    return false;
+  }
+  // A served screenshot pack is the item. "only screenshots" / "screenshots / summary"
+  // still limit a download. The bare word must not block served classification.
+  if (
+    POSITIVE_SERVED_RE.test(line) &&
+    /\bscreenshots?\b/i.test(line) &&
+    !/\bonly\s+screenshots|selected\s+screenshots|screenshots?\s*\/\s*summary/i.test(line) &&
+    !/\bnot\s+(?:served|attached|included)\b/i.test(line)
+  ) {
     return false;
   }
   if (NEVER_IN_SERVED_RE.test(line)) return true;
@@ -187,19 +356,13 @@ function isCleanPositiveServedLine(line: string): boolean {
 /**
  * Referred / listed / scheduled but not served-or-attached.
  * Checked before outstanding so "referred on MG6 — export not served" is not
- * collapsed to outstanding/missing.
+ * collapsed to outstanding/missing. Outstanding stated on the same line is the
+ * gap (Jordan BWV), not a review chip.
  */
 export function lineIndicatesReferredOnly(line: string): boolean {
   const l = compact(line);
   if (!l) return false;
-  // Outstanding (without referred/listed/scheduled) is never referred_only
-  if (
-    /\boutstanding\b/i.test(l) &&
-    !/\breferred\b/i.test(l) &&
-    !/\b(?:listed|scheduled)\b/i.test(l)
-  ) {
-    return false;
-  }
+  if (outstandingStatedOverReferredOnly(l)) return false;
   // Uncertainty prose is not referred proof
   if (/^uncertain(?:\s+on\s+papers)?\s*:/i.test(l)) return false;
   if (/^referred\s+only\s*:/i.test(l)) return true;
@@ -214,9 +377,10 @@ export function lineIndicatesReferredOnly(line: string): boolean {
   ) {
     return true;
   }
-  if (/\bmentioned but\b|\bnot\s+included\b|\bnot\s+attached\b|\bsummary\s+only\b/i.test(l)) {
+  if (/\bmentioned but\b|\bnot safely served\b|\bnot safely on file\b/i.test(l)) {
     return true;
   }
+  if (/\bsummary\s+only\b/i.test(l) && !/\boutstanding\b/i.test(l)) return true;
   return false;
 }
 
@@ -226,6 +390,8 @@ export function classifyMaterialStatus(line: string): MaterialStatus | null {
   // Not in papers supplied" as served.
   const l = repairGluedMg6StatusText(line);
   if (!l || l.length < 8) return null;
+  if (lineDeniesMaterialExistence(l) || lineIsScheduleFurniture(l)) return null;
+  if (lineIsLocationOrReviewNotGap(l)) return null;
   // Property phone / explicit "no phone download" must not become inventory rows —
   // but do not kill a line that also carries other material (e.g. CCTV master).
   if (lineDeniesOrIsPropertyOnlyPhone(l)) {
@@ -236,7 +402,8 @@ export function classifyMaterialStatus(line: string): MaterialStatus | null {
     if (!hasOtherMaterial) return null;
   }
   if (UNSIGNED_RE.test(l)) return "unsigned";
-  // Referred/listed/scheduled-not-served before outstanding — shared F01/F02 root.
+  // Referred-only before outstanding — F01 has no outstanding word. When the
+  // papers also say outstanding, that is the gap (see lineIndicatesReferredOnly).
   if (lineIndicatesReferredOnly(l)) {
     return "referred_only";
   }
@@ -247,7 +414,9 @@ export function classifyMaterialStatus(line: string): MaterialStatus | null {
   if (ABSENT_ON_PAPERS_RE.test(l)) return "absent";
   if (/\babsent\b/i.test(l)) return "absent";
   if (/\bpartial\b/i.test(l)) return "partial";
-  if (ITEM_RE.test(l) && !hasNegativeOrLimitingSignal(l)) return "unclear";
+  if (ITEM_RE.test(l) && !hasNegativeOrLimitingSignal(l) && lineLooksLikeScheduleInventoryRow(l)) {
+    return "unclear";
+  }
   return null;
 }
 
@@ -289,7 +458,7 @@ export function parseScheduleRef(line: string): string | null {
     return `${unitCell[1].toUpperCase()}/${unitCell[2]}`;
   }
 
-  const numberedExhibit = text.match(/\bO(\d{2})\b/);
+  const numberedExhibit = text.match(/\bO(\d{1,2})\b/);
   if (numberedExhibit?.[1]) return `O${numberedExhibit[1]}`;
 
   return null;
@@ -325,11 +494,21 @@ function splitTrailingStatusCell(label: string): { label: string; statusCell: st
   const match = label.match(TRAILING_STATUS_CELL_RE);
   if (!match?.[1] || match.index === undefined) return { label, statusCell: null };
   const description = label.slice(0, match.index).trim();
+  // "BWV referred on schedule but not served" is the description. Stripping `not served`
+  // as if it were an MG6 status column leaves a dangling `but` — that is a fragment, not
+  // a name. Opposite: `search record outstanding` still drops the status cell.
+  if (
+    !description ||
+    description.length < 3 ||
+    /\b(?:or|and|on|of|for|with|by|to|from|at|the|a|an|relies|remains|referred|summary|stated|is|are|was|were|been|yet|not|but)\s*$/i.test(
+      description,
+    )
+  ) {
+    return { label, statusCell: null };
+  }
   // A row that is only a status cell has no description to keep, and a bare reference is not one.
-  if (description.length < 3 || SCHEDULE_ROW_REF_RE.test(description) === false) {
-    return description.length >= 3
-      ? { label: description, statusCell: match[1].trim() }
-      : { label, statusCell: null };
+  if (SCHEDULE_ROW_REF_RE.test(description) === false) {
+    return { label: description, statusCell: match[1].trim() };
   }
   const withoutRef = description.replace(SCHEDULE_ROW_REF_RE, "").trim();
   if (withoutRef.length < 3) return { label, statusCell: null };
@@ -376,29 +555,95 @@ function rowConfidence(status: MaterialStatus, line: string): TruthConfidence {
  */
 const MATERIAL_SCAN_CHARS = 250_000;
 
+function lineLeavesSchedule(line: string): boolean {
+  const t = line.trim();
+  if (/^={2,}\s*SECTION:\s*(?!MG6)/i.test(t)) return true;
+  if (/^(?:CHARGE SHEET|WITNESS STATEMENT|MG5\s+CASE SUMMARY)\b/i.test(t)) return true;
+  if (/\bCriminal Justice Act 1967\b/i.test(t)) return true;
+  return false;
+}
+
+function lineIsNarrativeProse(line: string): boolean {
+  const l = compact(line);
+  if (/\bI\s+(?:remember|cannot|make this statement)\b/i.test(l)) return true;
+  if (/\bthis statement is true\b/i.test(l)) return true;
+  if (/\b(?:the\s+)?interview (?:commenced|concluded|started|ended)\b/i.test(l)) return true;
+  if (/\bplaced in Interview Room\b/i.test(l)) return true;
+  if (/\bWhether he\b/i.test(l)) return true;
+  if (/\bat \d{1,2}:\d{2} hours\b/i.test(l) && !parseScheduleRef(l)) return true;
+  return false;
+}
+
+/**
+ * A favourite word (interview, CCTV, statement) in a custody note is not a schedule row.
+ * Inventory is for lines that look like schedule or exhibit cells: a code, a numbered cell,
+ * or a short status cell.
+ */
+function lineLooksLikeScheduleInventoryRow(line: string): boolean {
+  const l = compact(deglueScheduleText(line));
+  if (!l || lineDeniesMaterialExistence(l) || lineIsNarrativeProse(l) || lineIsScheduleFurniture(l)) return false;
+  if (/^Served material\b/i.test(l) || /^Material still needed\b/i.test(l)) return false;
+  if (parseScheduleRef(l)) return true;
+  const words = l.split(/\s+/).filter(Boolean).length;
+  const hasStatus =
+    /\b(?:outstanding|not\s+served|not\s+attached|not\s+included|not\s+in\s+(?:the\s+)?papers|not\s+contained|absent|referred(?:\s+only)?|awaiting\s+export|unsigned|served)\b/i.test(
+      l,
+    ) || lineIndicatesReferredOnly(l);
+  if (/^\d{1,2}(?:\s+|[A-Za-z])/.test(l) && words <= 16 && hasStatus) return true;
+  if (DRAFT_STATUS_RE.test(l) && ITEM_RE.test(l) && words <= 22) return true;
+  if (hasStatus && ITEM_RE.test(l) && words <= 28) return true;
+  return false;
+}
+
 function collectMaterialLines(bundleText: string): string[] {
   const head = bundleText.slice(0, MATERIAL_SCAN_CHARS).replace(/\r\n/g, "\n");
   const lines: string[] = [];
   const seen = new Set<string>();
 
   const add = (raw: string) => {
-    const c = repairGluedMg6StatusText(raw);
+    const repaired = repairGluedMg6StatusText(raw);
+    if (lineIsScheduleFurniture(repaired)) return;
+    const c = stripScheduleFurnitureClauses(stripLeadingOutstandingBoilerplate(repaired));
     if (c.length < 10 || c.length > 320) return;
-    if (!isLikelyMaterialLine(c)) return;
-    const status = classifyMaterialStatus(c);
+    if (lineIsScheduleFurniture(c)) return;
+    if (!isLikelyMaterialLine(c) && !isLikelyMaterialLine(repaired)) return;
+    const status = classifyMaterialStatus(repaired) ?? classifyMaterialStatus(c);
     if (!status) return;
-    const key = normaliseDedupeKey(c, parseScheduleRef(c));
+    const key = normaliseDedupeKey(stripLeadingRowNumber(c), parseScheduleRef(c) ?? parseScheduleRef(repaired));
     if (seen.has(key)) return;
     seen.add(key);
-    lines.push(c);
+    lines.push(repaired);
   };
 
   let inSchedule = false;
   for (const raw of head.split(/\n/)) {
     const line = raw.trim();
     if (!line) continue;
-    if (MG6_HEAD_RE.test(line) || /\bMG6C?\b/i.test(line)) inSchedule = true;
-    if (inSchedule || ITEM_RE.test(line)) add(line);
+    if (lineLeavesSchedule(line)) inSchedule = false;
+    if (MG6_HEAD_RE.test(line) || /\bMG6C?\s*[/\-]\s*\d/i.test(line)) inSchedule = true;
+    const stillNeeded = deglueScheduleText(line).match(/^Material still needed\s*:?\s*(.+)$/i);
+    if (stillNeeded?.[1]) {
+      for (const part of stillNeeded[1].split(/;/)) {
+        const item = part.trim();
+        if (item.length >= 4) add(`${item} outstanding`);
+      }
+      continue;
+    }
+    const outstandingParts = splitOutstandingInventoryLine(line);
+    if (outstandingParts.length > 1) {
+      for (const part of outstandingParts) add(part);
+      continue;
+    }
+    if (lineLooksLikeScheduleInventoryRow(line)) add(line);
+    else if (
+      inSchedule &&
+      !lineIsNarrativeProse(line) &&
+      !lineIsScheduleFurniture(line) &&
+      classifyMaterialStatus(line) &&
+      line.split(/\s+/).filter(Boolean).length <= 36
+    ) {
+      add(line);
+    }
   }
 
   return lines;
@@ -409,17 +654,20 @@ export function normaliseBundleMaterials(bundleText: string): NormalisedMaterial
   const seen = new Set<string>();
 
   for (const line of collectMaterialLines(bundleText)) {
-    const status = classifyMaterialStatus(line);
+    const labelSource =
+      stripScheduleFurnitureClauses(stripLeadingOutstandingBoilerplate(line)) || line;
+    const status = classifyMaterialStatus(line) ?? classifyMaterialStatus(labelSource);
     if (!status) continue;
 
-    const scheduleRef = parseScheduleRef(line);
-    const split = splitMaterialLabelDetail(line);
+    const scheduleRef = parseScheduleRef(line) ?? parseScheduleRef(labelSource);
+    const split = splitMaterialLabelDetail(labelSource);
     const cell = splitTrailingStatusCell(split.label);
-    const label = scheduleRef ? stripLeadingRowNumber(cell.label) : cell.label;
+    const label = stripLeadingRowNumber(cell.label).replace(/[:—–-]+\s*$/g, "").trim();
+    if (label.length < 3 || lineIsScheduleFurniture(label)) continue;
     // The status cell leaves the label but must not leave the row: it is what the schedule says
     // about the item, and Papers still has to show it.
     const detail = [cell.statusCell, split.detail].filter(Boolean).join(" — ") || null;
-    const id = normaliseDedupeKey(line, scheduleRef);
+    const id = normaliseDedupeKey(label, scheduleRef);
     if (seen.has(id)) continue;
     seen.add(id);
 
