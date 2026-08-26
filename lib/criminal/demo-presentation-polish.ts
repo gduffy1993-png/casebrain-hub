@@ -3,7 +3,6 @@ import {
   phoneDownloadIdentityLabel,
 } from "@/lib/criminal/disclosure-chase-finalize";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
-import { evidenceRowFromSourceState } from "@/lib/criminal/five-answers/evidence-trace";
 import { sanitizeSolicitorVisibleText } from "@/lib/criminal/overview-presentation";
 
 /** Prod Taylor Loom demo case — presentation routing only. */
@@ -451,55 +450,11 @@ export function filterBundleFamilyWarnings(lines: string[], bundleHay: string): 
   return out;
 }
 
-/** Presentation-only truth-map rows for Taylor / phone-harassment demos when gaps collapse. */
+/** Presentation-only. Do not invent phone/subscriber/MG11 rows from a harassment word-shape. */
 export function ensureDigitalHarassmentGapRows(
   rows: FiveAnswersEvidenceRow[],
-  bundleHay: string,
-  allegation = "",
+  _bundleHay: string,
+  _allegation = "",
 ): FiveAnswersEvidenceRow[] {
-  if (!isDigitalHarassmentBundleHay(bundleHay, allegation)) return rows;
-
-  const hasGap = (re: RegExp) =>
-    rows.some((r) => re.test(`${r.label} ${r.note ?? ""}`) && r.existence !== "served");
-
-  const extras: FiveAnswersEvidenceRow[] = [];
-  if (!hasGap(/full phone download|phone download|source export|extraction download/i)) {
-    extras.push(
-      evidenceRowFromSourceState(
-        "Full phone download",
-        "missing",
-        "Chase full extraction source before fixing attribution.",
-      ),
-    );
-  }
-  if (!hasGap(/subscriber|attribution|account data|sim\b/i)) {
-    extras.push(
-      evidenceRowFromSourceState(
-        "Subscriber / attribution data",
-        "missing",
-        "Outstanding — screenshots alone do not prove who sent messages.",
-      ),
-    );
-  }
-  if (!hasGap(/mg11|complainant|witness statement/i)) {
-    extras.push(
-      evidenceRowFromSourceState(
-        "Complainant MG11",
-        "not_safely_confirmed",
-        "Draft or unsigned on file — confirm final signed statement before reliance.",
-      ),
-    );
-  }
-
-  if (!extras.length) return rows;
-
-  const seen = new Set<string>();
-  const merged: FiveAnswersEvidenceRow[] = [];
-  for (const row of [...extras, ...rows]) {
-    const key = row.label.trim().toLowerCase();
-    if (seen.has(key)) continue;
-    seen.add(key);
-    merged.push(row);
-  }
-  return merged.slice(0, 8);
+  return rows;
 }

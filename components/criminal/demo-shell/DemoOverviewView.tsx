@@ -28,7 +28,7 @@ import {
   buildDemoReadiness,
   buildDemoStatCounts,
 } from "./demoOverviewAdapter";
-import { DemoOverviewCanvas } from "./DemoOverviewCanvas";
+import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
 
 /**
@@ -225,7 +225,10 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
         attention.slice(0, 3).map((a) => `Outstanding: ${a.title}`),
       ).join("\n") || "Limited papers — keep the client update provisional.";
 
+  const liveFileIdentity = extractBundleCaseMetadata(bundleMeta?.frontMatterScan ?? "");
+
   const clientDisplay = [
+    liveFileIdentity.defendantName ?? "",
     typeof clientLabel === "string" ? clientLabel : "",
     bundleMeta?.caseMetadata?.defendantName ?? "",
   ]

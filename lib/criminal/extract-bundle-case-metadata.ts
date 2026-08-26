@@ -5,6 +5,7 @@
 
 import { isExtractionFailurePlaceholder } from "@/lib/bundle/bundle-document-text";
 import type { ParsedBundleHeader } from "@/lib/bundle/parse-bundle-display";
+import { deglueBundleLines } from "@/lib/criminal/bundle-material-normalizer";
 import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
 
 /**
@@ -247,9 +248,13 @@ function sanitizePersonName(value: string): string | null {
   }
   if (/^appears\s+in\b/i.test(t)) return null;
   if (/not\s+safely\s+extracted/i.test(t)) return null;
+  if (/\bnot\s+on\s+papers\b/i.test(t)) return null;
   // Interview / section-header mash (e.g. "Client ACCOUNT No comment after")
   if (/\b(?:account|comment|disclosure|interview|limited)\b/i.test(t)) return null;
   const words = t.split(/\s+/).filter(Boolean);
+  while (words.length > 1 && /^(?:defendant|accused|client)$/i.test(words[0]!)) {
+    words.shift();
+  }
   // Drop trailing prepositions / appeal glue ("Martin Adams On")
   while (words.length > 1 && /^(?:on|at|in|of|to|for|and|the)$/i.test(words[words.length - 1]!)) {
     words.pop();
@@ -266,8 +271,10 @@ function sanitizePersonName(value: string): string | null {
 }
 
 function extractDefendantName(scan: string): string | null {
+  const hay = deglueBundleLines(scan);
+
   const colonFirst =
-    extractLabeledValue(scan, [
+    extractLabeledValue(hay, [
       "Defendant(s)",
       "Defendant name",
       "Defendant",
@@ -290,29 +297,39 @@ function extractDefendantName(scan: string): string | null {
   ];
 
   for (const re of tablePatterns) {
-    const m = scan.match(re);
+    const m = hay.match(re);
     if (m?.[1]) {
       const v = sanitizePersonName(m[1]);
       if (v) return v;
     }
   }
 
-  // Title-case "R v Name"
-  const rv = scan.match(/\bR\s+v\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b/);
+  const gluedDefendant = hay.match(
+    /\b(?:Defendant|Accused)([A-Z][a-z]+[A-Z][a-z]+(?:[A-Z][a-z]+)?)\b/,
+  );
+  if (gluedDefendant?.[1]) {
+    const v = sanitizePersonName(gluedDefendant[1]);
+    if (v) return v;
+  }
+
+  // Title-case "R v Name", ALL CAPS "R V ISAAC PATEL", glued "R vIsaacPatel"
+  const rv =
+    hay.match(/\bR\s+v\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b/) ??
+    hay.match(/\bR\s+[vV]\s+([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+){0,2})\b/);
   if (rv?.[1]) {
     const v = sanitizePersonName(rv[1]);
     if (v) return v;
   }
 
   // Appeal transcripts: "REX\nV\nMARTIN ADAMS" (allow newlines / ALL CAPS)
-  const rex = scan.match(
+  const rex = hay.match(
     /\bREX\s+V\s+([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+){0,2})\b/i,
   );
   if (rex?.[1]) {
     const v = sanitizePersonName(rex[1].replace(/\s+/g, " "));
     if (v) return v;
   }
-  const rexNl = scan.match(
+  const rexNl = hay.match(
     /\bREX[\s\n]+V[\s\n]+([A-Z][A-Za-z]+(?:[\s\n]+[A-Z][A-Za-z]+){0,2})(?=[\s\n]+(?:_{2,}|ON\b|Computer|Before|CASE\b))/i,
   );
   if (rexNl?.[1]) {
@@ -321,7 +338,7 @@ function extractDefendantName(scan: string): string | null {
   }
 
   // Cover sheet: the name sits on its own line above `Charge:` (`Taylor Reed\nCharge: Harassment`).
-  const nameAboveCharge = scan.match(
+  const nameAboveCharge = hay.match(
     new RegExp(`^${PERSON_NAME_CAPTURE}\\s*[\\n\\r]+Charge\\s*:`, "im"),
   );
   if (nameAboveCharge?.[1]) {
