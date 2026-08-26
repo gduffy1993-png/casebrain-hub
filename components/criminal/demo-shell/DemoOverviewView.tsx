@@ -28,6 +28,7 @@ import {
   buildDemoReadiness,
   buildDemoStatCounts,
 } from "./demoOverviewAdapter";
+import { DemoOverviewCanvas } from "./DemoOverviewCanvas";
 import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
 
