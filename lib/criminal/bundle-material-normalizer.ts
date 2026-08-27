@@ -230,6 +230,7 @@ export function lineIsScheduleFurniture(line: string): boolean {
     if (/^Duplicated old summary wrapper\b/i.test(l)) return true;
     if (/^CAD\/999 audio, BWV and CCTV export log remain\b/i.test(l)) return true;
     if (/\bpre-cordon movement\b/i.test(l)) return true;
+    if (/\bno comment answers after limited disclosure\b/i.test(l)) return true;
   }
   if (labelIsStatusOnly(l)) return true;
   return false;
@@ -694,6 +695,7 @@ function lineIsNarrativeProse(line: string): boolean {
     return true;
   }
   if (!parseScheduleRef(l) && /\bno final statement tying every movement\b/i.test(l)) return true;
+  if (!parseScheduleRef(l) && /\bno comment answers after limited disclosure\b/i.test(l)) return true;
   return false;
 }
 

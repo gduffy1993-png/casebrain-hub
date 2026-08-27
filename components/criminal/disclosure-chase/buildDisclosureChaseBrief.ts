@@ -1137,6 +1137,13 @@ function dropGenericFamilyTemplateWhenSourceNamed(items: DisclosureChaseItem[]):
       }
       return false;
     }
+    if (
+      item.familyId === "interview" &&
+      item.id.startsWith("chase-family-") &&
+      items.some((other) => other.familyId === "interview" && itemHasMaterialCitation(other))
+    ) {
+      return false;
+    }
     if (isSourceNamedChaseItem(item)) return true;
     // MG5/strategy templates are not cells. Snapshot-named continuity (Arden) still stands.
     if (

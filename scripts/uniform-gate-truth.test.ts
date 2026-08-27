@@ -973,6 +973,8 @@ Charge: Murder
 EX-MUR-009 CCTV stills and timing note Master footage outstanding
 EX-MUR-012 CAD and 999 summaries Original audio/log outstanding
 EX-MUR-007 Police officer statement BWV not served
+EX-MUR-021 Interview summary Full recording/transcript outstanding
+There are some no comment answers after limited disclosure. Full interview recording and transcript are outstanding. The
 MG5 timing. Original 999 audio is not served, so the exact words, timing, background voices, and caller uncertainty cannot yet be checked.
 Full 999 audio Not yet served. Required to test source
 Full CAD incident log Not yet served. Required to test source
@@ -987,6 +989,27 @@ CAD log is outstanding.`,
   assert.ok(!hale.primaryItems.some((i) => /MG5 timing/i.test(i.label)), haleBoard);
   assert.ok(!hale.primaryItems.some((i) => /Required to test source/i.test(i.label)), haleBoard);
   assert.ok(!hale.primaryItems.some((i) => /^CAD log is outstanding/i.test(i.label)), haleBoard);
+  const haleInterview = hale.primaryItems.filter(
+    (i) => i.familyId === "interview" || /interview recording|interview transcript/i.test(i.label),
+  );
+  assert.equal(
+    haleInterview.length,
+    1,
+    `Hale EX-MUR-021 is one interview cell — got: ${haleBoard}`,
+  );
+  assert.equal(haleInterview[0]!.sourceScheduleRef, "EX-MUR-021");
+  assert.ok(
+    !hale.primaryItems.some((i) => /no comment answers after limited disclosure/i.test(i.label)),
+    haleBoard,
+  );
+
+  assert.equal(
+    lineIsScheduleFurniture(
+      "There are some no comment answers after limited disclosure. Full interview recording and transcript are outstanding. The",
+    ),
+    true,
+  );
+  assert.equal(lineIsScheduleFurniture("Full interview recording / transcript outstanding"), false);
 
   const vale = buildDisclosureChaseBrief(
     briefInput(
@@ -1063,6 +1086,45 @@ Prosecution relies on witness ID, partial CCTV, partial DNA, medical.`,
   assert.ok(
     !clarke.primaryItems.some((i) => /^Medical \/ expert source report$/i.test(i.label)),
     `medical template is not a schedule cell — got: ${clarkeBoard}`,
+  );
+
+  const patelInterview = buildDisclosureChaseBrief(
+    briefInput(
+      "patel-interview-cells",
+      `Isaac Patel
+Charge: Affray
+MG6/07 full interview transcript outstanding requested / not attached
+Full interview recording / transcript — not served — in this bundle.`,
+      { clientLabel: "Isaac Patel" },
+    ),
+  );
+  const patelInterviewBoard = patelInterview.primaryItems
+    .map((i) => `${i.sourceScheduleRef ?? "—"}:${i.label}`)
+    .join(" || ");
+  assert.ok(
+    patelInterview.primaryItems.some((i) => i.sourceScheduleRef === "MG6/07" || /MG6\/07/.test(i.label)),
+    `Patel MG6/07 transcript cell stays — got: ${patelInterviewBoard}`,
+  );
+  assert.equal(lineIsScheduleFurniture("Full interview recording / transcript outstanding"), false);
+
+  const valeContinuity = buildDisclosureChaseBrief(
+    briefInput(
+      "vale-two-continuity-cells",
+      `MG6 DISCLOSURE SCHEDULE
+Outstanding item: CCTV continuity
+Outstanding item: CCTV continuity/export log
+Outstanding item: final medical report`,
+      { clientLabel: "Priya Vale" },
+    ),
+  );
+  const valeContBoard = valeContinuity.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(
+    valeContinuity.primaryItems.some((i) => /^CCTV Continuity$/i.test(i.label) || /^CCTV continuity$/i.test(i.label)),
+    `Vale named CCTV continuity stays — got: ${valeContBoard}`,
+  );
+  assert.ok(
+    valeContinuity.primaryItems.some((i) => /continuity\/export log/i.test(i.label)),
+    `Vale named continuity/export log stays as its own cell — got: ${valeContBoard}`,
   );
 
   const daviesCourt = extractBundleCaseMetadata(
