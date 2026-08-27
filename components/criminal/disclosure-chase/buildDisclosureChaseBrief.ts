@@ -1102,6 +1102,47 @@ function itemHasMaterialCitation(item: DisclosureChaseItem): boolean {
   return /\b(?:MG\d{1,2}[A-Z]?(?:\/\d+)?|EX[-/][A-Z0-9-]+|O\d{1,2}|U\d)\b/i.test(item.label);
 }
 
+function interviewModalityFlags(text: string): { recording: boolean; transcript: boolean } {
+  const t = text.toLowerCase();
+  return {
+    recording: /\brecording\b/.test(t),
+    transcript: /\btranscript\b/.test(t),
+  };
+}
+
+function interviewItemBlob(item: DisclosureChaseItem): string {
+  return `${item.label} ${(item.mergedFrom ?? []).join(" ")} ${item.sourceScheduleRef ?? ""}`;
+}
+
+function citedInterviewSourceBlob(item: DisclosureChaseItem): string {
+  const rows = (item.mergedFrom ?? []).filter((line) =>
+    /\b(?:MG\d{1,2}[A-Z]?(?:\/\d+)?|EX[-/][A-Z0-9-]+|O\d{1,2}|U\d)\b/i.test(line),
+  );
+  if (rows.length) return `${item.sourceScheduleRef ?? ""} ${rows.join(" ")}`;
+  return `${item.sourceScheduleRef ?? ""} ${item.label}`;
+}
+
+/** Leftover restates the cited cell. Opposite: File-named recording beside a transcript-only MG6/07 stays. */
+function leftoverInterviewAddsNoNewModality(
+  leftover: DisclosureChaseItem,
+  cited: DisclosureChaseItem,
+): boolean {
+  const left = interviewModalityFlags(interviewItemBlob(leftover));
+  const named = interviewModalityFlags(citedInterviewSourceBlob(cited));
+  return (!left.recording || named.recording) && (!left.transcript || named.transcript);
+}
+
+function absorbInterviewRestatementWording(
+  host: DisclosureChaseItem,
+  leftover: DisclosureChaseItem,
+): DisclosureChaseItem {
+  const extra = [leftover.label, ...(leftover.mergedFrom ?? [])].filter(Boolean);
+  return {
+    ...host,
+    mergedFrom: [...new Set([...(host.mergedFrom ?? []), ...extra])],
+  };
+}
+
 function isExactFamilyTemplateLabel(item: DisclosureChaseItem): boolean {
   const def = CHASE_FAMILIES.find((fam) => fam.id === item.familyId);
   if (!def) return false;
@@ -1126,7 +1167,13 @@ function dropGenericFamilyTemplateWhenSourceNamed(items: DisclosureChaseItem[]):
     (item) => isSourceNamedChaseItem(item) && item.familyId === "cad_999" && itemHasMaterialCitation(item),
   );
 
-  return items.filter((item) => {
+  const citedInterview = items.filter(
+    (item) => item.familyId === "interview" && itemHasMaterialCitation(item),
+  );
+  const absorbed = new Map<string, DisclosureChaseItem>();
+  for (const cited of citedInterview) absorbed.set(cited.id, cited);
+
+  const kept = items.filter((item) => {
     if (citedMaster.length && itemNamesCctvMaster(item) && !citedMaster.includes(item)) {
       const ref = item.sourceScheduleRef?.trim();
       if (ref) {
@@ -1141,9 +1188,25 @@ function dropGenericFamilyTemplateWhenSourceNamed(items: DisclosureChaseItem[]):
     if (
       item.familyId === "interview" &&
       item.id.startsWith("chase-family-") &&
-      items.some((other) => other.familyId === "interview" && itemHasMaterialCitation(other))
+      items.some(
+        (other) =>
+          other.familyId === "interview" &&
+          (itemHasMaterialCitation(other) || isSourceNamedChaseItem(other)),
+      )
     ) {
       return false;
+    }
+    if (
+      item.familyId === "interview" &&
+      !itemHasMaterialCitation(item) &&
+      !item.id.startsWith("chase-family-")
+    ) {
+      const host = citedInterview.find((cited) => leftoverInterviewAddsNoNewModality(item, cited));
+      if (host) {
+        const current = absorbed.get(host.id) ?? host;
+        absorbed.set(host.id, absorbInterviewRestatementWording(current, item));
+        return false;
+      }
     }
     if (isSourceNamedChaseItem(item)) return true;
     // MG5/strategy templates are not cells. Snapshot-named continuity (Arden) still stands.
@@ -1168,6 +1231,8 @@ function dropGenericFamilyTemplateWhenSourceNamed(items: DisclosureChaseItem[]):
     }
     return true;
   });
+
+  return kept.map((item) => absorbed.get(item.id) ?? item);
 }
 
 function mapMaterialStatusToSharedState(status: string): EvidenceStateRow["state"] {

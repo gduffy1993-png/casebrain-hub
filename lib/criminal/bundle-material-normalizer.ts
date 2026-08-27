@@ -846,17 +846,6 @@ function collectMaterialLines(bundleText: string): string[] {
     const clauses = line.split(/(?<=\.)\s+(?=[A-Z])/).map((s) => s.trim()).filter(Boolean);
     const units = clauses.length > 1 ? clauses : [line];
     for (const unit of units) {
-      // Hale EX-MUR-021 is already one cell. Do not mint a second interview card from a leftover
-      // clause. Standalone File-named cells (`Full interview recording / transcript — not served`)
-      // still enter because they are not split leftovers.
-      if (
-        clauses.length > 1 &&
-        /\b(?:interview|transcript)\b/i.test(unit) &&
-        !parseScheduleRef(unit) &&
-        !isFormalOutstandingInventoryLine(unit)
-      ) {
-        continue;
-      }
     const stillNeeded = deglueScheduleText(unit).match(/^Material still needed\s*:?\s*(.+)$/i);
     if (stillNeeded?.[1]) {
       for (const part of stillNeeded[1].split(/;/)) {

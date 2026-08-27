@@ -1169,6 +1169,42 @@ Full interview recording / transcript — not served — in this bundle.`,
   );
   assert.equal(lineIsScheduleFurniture("Full interview recording / transcript outstanding"), false);
 
+  const patelSplit = buildDisclosureChaseBrief(
+    briefInput(
+      "patel-split-not-served",
+      `Isaac Patel
+Charge: Affray
+MG5 summary: CCTV stills are referred to. Full CCTV master footage is outstanding.
+Interview summary is on file. Full interview recording/transcript is not served and remains outstanding.`,
+      { clientLabel: "Isaac Patel" },
+    ),
+  );
+  const patelSplitText = JSON.stringify(patelSplit);
+  const patelSplitBoard = patelSplit.primaryItems
+    .map((i) => `${i.id}:${i.label} [${(i.mergedFrom ?? []).join(" | ")}]`)
+    .join(" || ");
+  assert.match(
+    patelSplitText,
+    /\b(?:interview recording|transcript)[^.!?]{0,120}\bnot served\b/i,
+    `File "not served" must remain on the interview card — got: ${patelSplitBoard}`,
+  );
+  assert.ok(
+    patelSplit.primaryItems.some(
+      (i) =>
+        (i.familyId === "interview" || /interview recording|transcript/i.test(i.label)) &&
+        /not served/i.test(`${i.label} ${(i.mergedFrom ?? []).join(" ")}`),
+    ),
+    `File "not served" must remain on the interview card — got: ${patelSplitBoard}`,
+  );
+  assert.ok(
+    !patelSplit.primaryItems.some((i) => i.id.startsWith("chase-family-") && i.familyId === "interview"),
+    `family template must not stand in for the File not-served leftover — got: ${patelSplitBoard}`,
+  );
+  assert.ok(
+    !patelSplit.primaryItems.some((i) => /stills are referred/i.test(i.label)),
+    patelSplitBoard,
+  );
+
   const valeContinuity = buildDisclosureChaseBrief(
     briefInput(
       "vale-two-continuity-cells",
