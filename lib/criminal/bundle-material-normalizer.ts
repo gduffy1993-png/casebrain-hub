@@ -171,7 +171,38 @@ export function lineIsScheduleFurniture(line: string): boolean {
   ) {
     return true;
   }
+  // Status with nothing named — not an inventory cell.
+  if (/^not\s+served\.?$/i.test(l)) return true;
+  if (/^not\s+commissioned\s*\/?\.?$/i.test(l)) return true;
+  if (/^disclosure\.?$/i.test(l)) return true;
+  if (/^caution\s*:/i.test(l) || /\bno answer should invent\b/i.test(l)) return true;
+  if (/^bundle health note\b/i.test(l)) return true;
+  if (/^bundle presentation\s*:/i.test(l)) return true;
+  if (/^pending\)/i.test(l)) return true;
+  if (/^map\s*\(\s*cctv/i.test(l)) return true;
+  if (/^\d{1,2}\.\s+\d{1,2}\.?$/i.test(l)) return true;
+  if (/^and phone reliance\b/i.test(l)) return true;
+  if (/interview position is summarised only/i.test(l)) return true;
+  if (/partial admission to presence only/i.test(l)) return true;
+  if (/^image appears to show\b/i.test(l)) return true;
+  if (/visible text appears to read only/i.test(l)) return true;
+  if (/cut-off text must not be invented/i.test(l)) return true;
+  if (labelIsStatusOnly(l)) return true;
   return false;
+}
+
+/** After status words fall off, nothing remains that a solicitor could chase. */
+function labelIsStatusOnly(line: string): boolean {
+  if (parseScheduleRef(line)) return false;
+  if (ITEM_RE.test(line)) return false;
+  const stripped = compact(line)
+    .replace(
+      /\b(?:outstanding|not\s+served|not\s+attached|not\s+commissioned|not\s+included|not\s+on\s+file|absent|missing|pending|awaiting(?:\s+export)?|draft|unsigned|referred(?:\s+only)?|requested)\b/gi,
+      " ",
+    )
+    .replace(/[./,:;()[\]—–\-]+/g, " ")
+    .trim();
+  return stripped.length < 4;
 }
 
 /**

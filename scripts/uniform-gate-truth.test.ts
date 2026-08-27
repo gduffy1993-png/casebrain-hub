@@ -16,6 +16,7 @@ import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-cha
 import {
   classifyMaterialStatus,
   deglueScheduleText,
+  lineIsScheduleFurniture,
   normaliseBundleMaterials,
   parseScheduleRef,
   splitOutstandingInventoryLine,
@@ -731,6 +732,43 @@ check("No BWV. No CCTV. is not an inventory row, and a date line is not deglued 
     deglueScheduleText("At 19:42 hours on 03/02/2025, officers were dispatched"),
     "At 19:42 hours on 03/02/2025, officers were dispatched",
   );
+});
+
+check("caution, bare not-served, and MG5 fragments are not chase cells; MG6/04 still is", () => {
+  assert.equal(lineIsScheduleFurniture("Caution: no answer should invent"), true);
+  assert.equal(lineIsScheduleFurniture("Not served"), true);
+  assert.equal(lineIsScheduleFurniture("Not commissioned /"), true);
+  assert.equal(lineIsScheduleFurniture("pending), continuity gaps (CCTV/weapon)."), true);
+  assert.equal(lineIsScheduleFurniture("MG6/04 bank source statements outstanding"), false);
+  const beck = normaliseBundleMaterials(
+    "MG6 DISCLOSURE SCHEDULE\nCaution: no answer should invent\nNot served\nFull CCTV master outstanding\n",
+  );
+  assert.ok(
+    !beck.some((r) => /caution|no answer should invent|^not served$/i.test(r.label)),
+    `got ${beck.map((r) => r.label).join(" | ")}`,
+  );
+  assert.ok(
+    beck.some((r) => /cctv master/i.test(r.label)),
+    `named CCTV master stays a row — got ${beck.map((r) => r.label).join(" | ")}`,
+  );
+  const brookes = buildDisclosureChaseBrief({
+    caseId: "brookes-furniture",
+    caseTitle: "Brookes",
+    clientLabel: "Taylor Brookes",
+    allegation: null,
+    stage: null,
+    hearingStatus: null,
+    hearingDateIso: null,
+    bundleHealth: "partial",
+    positionStatus: null,
+    battleboard: null,
+    bundleText:
+      "MG6 DISCLOSURE SCHEDULE\nOriginal WhatsApp export outstanding not served\nNot commissioned /\nNot served\nSubscriber data or phone attribution report outstanding",
+  });
+  const board = brookes.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(!brookes.primaryItems.some((i) => /^not served$/i.test(i.label)), board);
+  assert.ok(!brookes.primaryItems.some((i) => /not commissioned/i.test(i.label)), board);
+  assert.ok(brookes.primaryItems.some((i) => /whatsapp export/i.test(i.label)), board);
 });
 
 check("arrested on suspicion of involvement is not a charge", () => {
