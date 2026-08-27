@@ -337,12 +337,24 @@ function extractDefendantName(scan: string): string | null {
     if (v) return v;
   }
 
-  // Cover sheet: the name sits on its own line above `Charge:` (`Taylor Reed\nCharge: Harassment`).
+  // Cover sheet: name on its own line, then Charge — or Case ID then Charge
+  // (`Taylor Reed\nCharge: Harassment`, `Isaac Patel\nCase ID: …\nCharge: Affray`).
   const nameAboveCharge = hay.match(
-    new RegExp(`^${PERSON_NAME_CAPTURE}\\s*[\\n\\r]+Charge\\s*:`, "im"),
+    new RegExp(
+      `^\\s*${PERSON_NAME_CAPTURE}\\s*[\\n\\r]+(?:Case\\s*ID\\s*:[^\\n\\r]*[\\n\\r]+)?Charge\\s*:`,
+      "im",
+    ),
   );
   if (nameAboveCharge?.[1]) {
     const v = sanitizePersonName(nameAboveCharge[1]);
+    if (v && looksLikeCoverSheetPersonName(v)) return v;
+  }
+
+  const crownCase = hay.match(
+    /\b(?:the\s+)?Crown case is that\s+([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+){1,2})\b/,
+  );
+  if (crownCase?.[1]) {
+    const v = sanitizePersonName(crownCase[1]);
     if (v && looksLikeCoverSheetPersonName(v)) return v;
   }
 
@@ -2255,7 +2267,11 @@ export function extractBundleCaseMetadata(
 
   const scan = buildMetadataScan(fullText);
 
-  let defendantName = extractDefendantName(scan) ?? parsedHeader?.accused?.trim() ?? null;
+  let defendantName =
+    extractDefendantName(scan) ??
+    extractDefendantName(fullText) ??
+    parsedHeader?.accused?.trim() ??
+    null;
   if (defendantName) defendantName = sanitizePersonName(defendantName) ?? defendantName;
   const defendantSource: MetadataFieldSource = defendantName ? "extracted_cover_fallback" : "unavailable";
 

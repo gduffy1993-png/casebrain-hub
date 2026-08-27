@@ -52,6 +52,18 @@ check("a chase line citing another CB-TB is foreign; the home ref is not", () =>
   assert.deepEqual(foreignMatterRefs(papers, "O1 Full interview transcript — CB-TB-039"), []);
 });
 
+check("a cover line name then Case ID then Charge is still the defendant", () => {
+  const cover = [
+    "Isaac Patel",
+    "Case ID: 7e763777-94a0-4cfc-af01-e6595d1cdfc4",
+    "Charge: Affray",
+    "Court: Southford Magistrates' Court",
+    "First Appearance: 25 August 2026",
+    "Interview summary is on file. Full interview recording remains outstanding.",
+  ].join("\n");
+  assert.equal(extractBundleCaseMetadata(cover).defendantName, "Isaac Patel");
+});
+
 check("glued DefendantIsaacPatel and ALL CAPS R v are File identity, not a blank heading", () => {
   assert.equal(
     extractBundleCaseMetadata(

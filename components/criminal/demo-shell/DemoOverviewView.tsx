@@ -226,7 +226,13 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
         attention.slice(0, 3).map((a) => `Outstanding: ${a.title}`),
       ).join("\n") || "Limited papers — keep the client update provisional.";
 
-  const liveFileIdentity = extractBundleCaseMetadata(bundleMeta?.frontMatterScan ?? "");
+  const liveFileIdentity = extractBundleCaseMetadata(
+    [
+      bundleMeta?.frontMatterScan ?? "",
+      bundleMeta?.snippets?.mg5 ?? "",
+      bundleMeta?.snippets?.mg11 ?? "",
+    ].join("\n\n"),
+  );
 
   const clientDisplay = [
     liveFileIdentity.defendantName ?? "",
