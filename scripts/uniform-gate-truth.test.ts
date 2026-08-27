@@ -938,6 +938,148 @@ Full CCTV master outstanding or not verified, where applicable.`,
   );
 });
 
+check("glance/CAD lumps and MG5 sentences are not schedule cells; named cells stay", () => {
+  const briefInput = (id: string, bundleText: string, extra?: { clientLabel?: string }) => ({
+    caseId: id,
+    caseTitle: id,
+    clientLabel: extra?.clientLabel ?? id,
+    allegation: null as string | null,
+    stage: null as string | null,
+    hearingStatus: null as string | null,
+    hearingDateIso: null as string | null,
+    bundleHealth: "partial" as const,
+    positionStatus: null as string | null,
+    battleboard: null,
+    bundleText,
+  });
+
+  assert.equal(lineIsScheduleFurniture("Required to test source"), true);
+  assert.equal(lineIsScheduleFurniture("CAD log is outstanding."), true);
+  assert.equal(lineIsScheduleFurniture("MG5 timing. Original 999 audio is not served, so the exact words cannot yet be checked."), true);
+  assert.equal(lineIsScheduleFurniture("Phone data (pending), additional CCTV (pending), clothing forensics"), true);
+  assert.equal(
+    lineIsScheduleFurniture("involving Holly Ahmed. The final report is not included in this bundle. The note should not be"),
+    true,
+  );
+  assert.equal(lineIsScheduleFurniture("EX-MUR-012 CAD and 999 summaries Original audio/log outstanding"), false);
+  assert.equal(lineIsScheduleFurniture("O02 CAD log full print Outstanding Not yet served"), false);
+  assert.equal(lineIsScheduleFurniture("complete CAD/999 log outstanding not attached"), false);
+
+  const hale = buildDisclosureChaseBrief(
+    briefInput(
+      "hale-glance-cad",
+      `CB-MURDER-TEST-0001 - Leon Hale
+Charge: Murder
+EX-MUR-009 CCTV stills and timing note Master footage outstanding
+EX-MUR-012 CAD and 999 summaries Original audio/log outstanding
+EX-MUR-007 Police officer statement BWV not served
+MG5 timing. Original 999 audio is not served, so the exact words, timing, background voices, and caller uncertainty cannot yet be checked.
+Full 999 audio Not yet served. Required to test source
+Full CAD incident log Not yet served. Required to test source
+CAD Summary Served summary only Full incident log outstanding; timing differs slightly from MG5
+CAD log is outstanding.`,
+    ),
+  );
+  const haleBoard = hale.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(hale.primaryItems.some((i) => /EX-MUR-009|master footage/i.test(i.label)), haleBoard);
+  assert.ok(hale.primaryItems.some((i) => /EX-MUR-012|CAD and 999 summaries/i.test(i.label)), haleBoard);
+  assert.ok(hale.primaryItems.some((i) => /EX-MUR-007|BWV/i.test(i.label)), haleBoard);
+  assert.ok(!hale.primaryItems.some((i) => /MG5 timing/i.test(i.label)), haleBoard);
+  assert.ok(!hale.primaryItems.some((i) => /Required to test source/i.test(i.label)), haleBoard);
+  assert.ok(!hale.primaryItems.some((i) => /^CAD log is outstanding/i.test(i.label)), haleBoard);
+
+  const vale = buildDisclosureChaseBrief(
+    briefInput(
+      "vale-chase-before",
+      `MG6 DISCLOSURE SCHEDULE
+Outstanding item: final medical report; prior injury records; CCTV continuity.
+Outstanding item: Full 999 audio - not served or served as summary only; chase before final position.`,
+      { clientLabel: "Priya Vale" },
+    ),
+  );
+  const valeBoard = vale.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(vale.primaryItems.some((i) => /final medical report/i.test(i.label)), valeBoard);
+  const vale999 = vale.primaryItems.filter((i) => /999/i.test(i.label));
+  assert.equal(vale999.length, 1, `one 999 cell if File states it — got: ${valeBoard}`);
+  assert.doesNotMatch(vale999[0]!.label, /chase before/i);
+  assert.ok(!vale.primaryItems.some((i) => /^chase before/i.test(i.label)), valeBoard);
+
+  const dunn = buildDisclosureChaseBrief(
+    briefInput(
+      "dunn-o02-o05",
+      `MG6 DISCLOSURE SCHEDULE
+O02 CAD log full print Outstanding Not yet served
+O05 999 audio Outstanding Listed but not attached
+O03 independent witness statement Outstanding
+S04 CAD incident log extract Served`,
+    ),
+  );
+  const dunnBoard = dunn.primaryItems.map((i) => `${i.sourceScheduleRef ?? "—"}:${i.label}`).join(" || ");
+  const dunnO02 = dunn.primaryItems.find((i) => i.sourceScheduleRef === "O02");
+  const dunnO05 = dunn.primaryItems.find((i) => i.sourceScheduleRef === "O05");
+  assert.ok(dunnO02, `O02 CAD log full print must stand — got: ${dunnBoard}`);
+  assert.ok(dunnO05, `O05 999 audio must stand — got: ${dunnBoard}`);
+  assert.match(dunnO02!.label, /CAD log full print/i);
+  assert.doesNotMatch(dunnO02!.label, /999 audio/i);
+  assert.match(dunnO05!.label, /999 audio/i);
+  assert.doesNotMatch(dunnO05!.label, /CAD log full print/i);
+  assert.ok(
+    !dunn.primaryItems.some((i) => /^CAD \/ dispatch \/ 999 material$/i.test(i.label)),
+    `generic CAD template must not sit beside O02/O05 — got: ${dunnBoard}`,
+  );
+
+  const ahmed = buildDisclosureChaseBrief(
+    briefInput(
+      "ahmed-sentence",
+      `MG6 DISCLOSURE SCHEDULE
+3 search record outstanding requested
+5 complete CAD/999 log outstanding not attached
+5 phone subscriber data outstanding not attached
+involving Holly Ahmed. The final report is not included in this bundle. The note should not be treated as a report.`,
+      { clientLabel: "Holly Ahmed" },
+    ),
+  );
+  const ahmedBoard = ahmed.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(ahmed.primaryItems.some((i) => /search record/i.test(i.label)), ahmedBoard);
+  assert.ok(ahmed.primaryItems.some((i) => /cad\s*\/\s*999/i.test(i.label)), ahmedBoard);
+  assert.ok(!ahmed.primaryItems.some((i) => /involving Holly Ahmed/i.test(i.label)), ahmedBoard);
+  assert.ok(!ahmed.primaryItems.some((i) => /the note should not be/i.test(i.label)), ahmedBoard);
+
+  const clarke = buildDisclosureChaseBrief(
+    briefInput(
+      "clarke-pending",
+      `## 17 MG6C Unused Material Schedule (Incomplete)
+- Phone data (pending), additional CCTV (pending), clothing forensics
+(pending), PNB entries (partial), medical records (not obtained).
+- (CCTV/weapon); phone data
+MG6C/001 CCTV continuity log outstanding
+Prosecution relies on witness ID, partial CCTV, partial DNA, medical.`,
+    ),
+  );
+  const clarkeBoard = clarke.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(clarke.primaryItems.some((i) => /MG6C\/001|CCTV continuity log/i.test(i.label)), clarkeBoard);
+  assert.ok(!clarke.primaryItems.some((i) => /Phone data \(pending\)/i.test(i.label)), clarkeBoard);
+  assert.ok(!clarke.primaryItems.some((i) => /\(CCTV\/weapon\)/i.test(i.label)), clarkeBoard);
+  assert.ok(
+    !clarke.primaryItems.some((i) => /^Medical \/ expert source report$/i.test(i.label)),
+    `medical template is not a schedule cell — got: ${clarkeBoard}`,
+  );
+
+  const daviesCourt = extractBundleCaseMetadata(
+    "Defendant: Layla Davies\nCourtCrown Court at Sheffield Current listing 19 June 2026 at 10:00\nCharge: Concealing criminal property",
+  );
+  assert.equal(daviesCourt.court, "Crown Court at Sheffield");
+  assert.doesNotMatch(daviesCourt.court ?? "", /Current/i);
+
+  const greeneCourt = extractBundleCaseMetadata(
+    `AccusedLeo Greene DOB 07/07/1990Stagetrial listed in 7 days
+Police stationNorthgate Police StationCourtNorthshire Magistrates Court
+StatusremandNext hearing18/08/2026`,
+  );
+  assert.equal(greeneCourt.court, "Northshire Magistrates Court");
+  assert.doesNotMatch(greeneCourt.court ?? "", /days|Police station|^Court\s/i);
+});
+
 check("arrested on suspicion of involvement is not a charge", () => {
   const meta = extractBundleCaseMetadata(
     "CASE: R v Alex Neutral\nHe was arrested on suspicion of his involvement in the incident.",

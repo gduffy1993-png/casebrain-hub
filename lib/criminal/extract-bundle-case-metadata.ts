@@ -1509,6 +1509,8 @@ function isPlausibleCourtValue(value: string | null | undefined): boolean {
   if (!value) return false;
   const v = value.trim();
   if (v.length < 8 || /^court$/i.test(v)) return false;
+  if (/\bpolice station\b/i.test(v)) return false;
+  if (/^days\b/i.test(v) || /^\d+\s*days\b/i.test(v)) return false;
   return /(?:magistrates(?:\s+court)?|crown court|youth court)/i.test(v);
 }
 
@@ -1535,6 +1537,8 @@ function normalizeGluedHearingScan(scan: string): string {
     .replace(/(\d{1,2}\/\d{1,2}\/\d{2,4})(\d{1,2}:\d{2})/gi, "$1 $2")
     .replace(/(\d{4})at(\d{1,2}:\d{2})/gi, "$1 at $2")
     .replace(/\bCourtHearing:?/gi, "CourtHearing ")
+    .replace(/\bCourt(?=[A-Z][a-z])/g, "Court ")
+    .replace(/\bPolice station(?=[A-Z])/gi, "Police station ")
     .replace(/CrownCourtat([A-Za-z]+)/gi, "Crown Court at $1 ")
     .replace(/MagistratesCourtHearing/gi, "Magistrates Court Hearing ")
     .replace(/CourtHearingHearing/gi, "CourtHearing ")
@@ -1615,6 +1619,7 @@ function extractCourt(scan: string): string | null {
     value
       .replace(/^CourtHearing/i, "")
       .replace(/^Hearing/i, "")
+      .replace(/^Court\s+(?=(?:[A-Z][a-z]+\s+)*Magistrates)/, "")
       .replace(/Hearing\s*\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)[a-z]*\s+\d{4}.*$/i, "")
       .replace(/\s+\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)[a-z]*\s+\d{4}(?:\s+at\s+\d{1,2}:\d{2})?\s*$/i, "")
       // Strip judge / listing mash glued after venue (appeal transcripts)
@@ -1628,7 +1633,12 @@ function extractCourt(scan: string): string | null {
       .replace(/\bCase ref\b.*$/i, "")
       // CourtCrown Court at Manchester Hearing — trailing Hearing label is not venue
       .replace(/\s+Hearing\s*$/i, "")
+      .replace(/\s+Current(?:\s+listing)?\b.*$/i, "")
       .trim();
+
+  scan = normalizeGluedHearingScan(scan)
+    .replace(/\bCourt(?=[A-Z][a-z])/g, "Court ")
+    .replace(/\bPolice station(?=[A-Z])/gi, "Police station ");
 
   const courtHearingVenue = scan.match(
     /\bCourtHearing([A-Z][A-Za-z'’]+(?:\s+[A-Za-z'’]+)*\s+Magistrates(?:'|\u2019)?\s*Court)/i,
@@ -1645,7 +1655,7 @@ function extractCourt(scan: string): string | null {
   }
 
   const crownGlued = scan.match(
-    /Crown Court(?:Hearing)?\s+at\s+([A-Z][A-Za-z]+(?:\s+(?!Hearing\b|Next\b|Stage\b|Plea\b)[A-Z][A-Za-z]+)*)/i,
+    /Crown Court(?:Hearing)?\s+at\s+([A-Z][A-Za-z]+(?:\s+(?!Hearing\b|Next\b|Stage\b|Plea\b|Current\b|Status\b|Bundle\b)[A-Z][A-Za-z]+)*)/i,
   );
   if (crownGlued?.[1]) {
     const v = cleanLineValue(`Crown Court at ${crownGlued[1]}`);
@@ -1653,7 +1663,7 @@ function extractCourt(scan: string): string | null {
   }
 
   const crownAt = scan.match(
-    /Crown Court at [A-Z][A-Za-z]+(?:\s+(?!HHJ\b|His\b|Her\b|LORD\b|LADY\b|MR\b|MRS\b|THE\b|Hearing\b|Next\b|Stage\b|Plea\b|Status\b|Bundle\b)[A-Z][A-Za-z]+)*/i,
+    /Crown Court at [A-Z][A-Za-z]+(?:\s+(?!HHJ\b|His\b|Her\b|LORD\b|LADY\b|MR\b|MRS\b|THE\b|Hearing\b|Next\b|Stage\b|Plea\b|Status\b|Current\b|Bundle\b)[A-Z][A-Za-z]+)*/i,
   );
   if (crownAt?.[0]) {
     const v = cleanLineValue(crownAt[0]);
@@ -1661,7 +1671,7 @@ function extractCourt(scan: string): string | null {
   }
 
   const magLine = scan.match(
-    /\b([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)*\s+Magistrates(?:'|\u2019)?\s*Court)\b/i,
+    /\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+Magistrates(?:'|\u2019)?\s*Court)\b/,
   );
   if (magLine?.[1]) {
     const v = cleanLineValue(magLine[1].replace(/^CourtHearing/i, "").replace(/^Hearing/i, ""));

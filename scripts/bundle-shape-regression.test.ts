@@ -326,6 +326,8 @@ StatusremandNext hearing18/08/2026
 const e1TrapMeta = extractBundleCaseMetadata(e1TrapNextHearingSlash);
 assert.match(e1TrapMeta.nextHearingRaw ?? "", /18\/08\/2026/);
 assert.match(e1TrapMeta.defendantName ?? "", /Leo Greene/i);
+assert.match(e1TrapMeta.court ?? "", /Northshire Magistrates Court/i);
+assert.doesNotMatch(e1TrapMeta.court ?? "", /days|Police station/i);
 
 const e1DefendantDateGlue = `
 DefendantAlex MorleyDate of birth27/11/1992

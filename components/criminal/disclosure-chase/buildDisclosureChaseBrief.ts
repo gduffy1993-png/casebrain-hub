@@ -485,6 +485,24 @@ export function reconcileCad999ModalityItems(
 
       if (!extractPresent) return item;
 
+      const localAudioOutstanding =
+        /\b999\s+audio\b[\s\S]{0,40}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
+          itemBlob,
+        ) || /\bno\s+recording\s+attached\b/i.test(itemBlob);
+      const localPrintOutstanding =
+        /\bcad\s+log\s+full\s+print\b[\s\S]{0,40}\b(?:outstanding|not\s+attached|not\s+served|listed\s+but\s+not)/i.test(
+          itemBlob,
+        );
+      // O02 CAD log full print and O05 999 audio are two named cells. Hay contains both, so
+      // a bundle-wide mash would relabel each as the other. Generic family cards still mash.
+      if (
+        item.sourceScheduleRef?.trim() &&
+        (localAudioOutstanding || localPrintOutstanding) &&
+        localAudioOutstanding !== localPrintOutstanding
+      ) {
+        return item;
+      }
+
       if (!audioOutstanding && !fullPrintOutstanding) {
         // Grant/Tobin: extract present and no remaining CAD modality — do not chase as missing.
         return null;
@@ -1103,6 +1121,9 @@ function dropGenericFamilyTemplateWhenSourceNamed(items: DisclosureChaseItem[]):
   const citedMaster = items.filter(
     (item) => isSourceNamedChaseItem(item) && itemNamesCctvMaster(item) && itemHasMaterialCitation(item),
   );
+  const citedCad = items.filter(
+    (item) => isSourceNamedChaseItem(item) && item.familyId === "cad_999" && itemHasMaterialCitation(item),
+  );
 
   return items.filter((item) => {
     if (citedMaster.length && itemNamesCctvMaster(item) && !citedMaster.includes(item)) {
@@ -1116,10 +1137,27 @@ function dropGenericFamilyTemplateWhenSourceNamed(items: DisclosureChaseItem[]):
       }
       return false;
     }
-    if (!familiesWithNamed.has(item.familyId)) return true;
     if (isSourceNamedChaseItem(item)) return true;
+    // MG5/strategy templates are not cells. Snapshot-named continuity (Arden) still stands.
+    if (
+      isExactFamilyTemplateLabel(item) &&
+      item.familyId === "medical_expert"
+    ) {
+      return false;
+    }
+    if (
+      isExactFamilyTemplateLabel(item) &&
+      item.familyId === "cctv_continuity" &&
+      item.id.startsWith("contradiction-action-")
+    ) {
+      return false;
+    }
+    if (!familiesWithNamed.has(item.familyId)) return true;
     if (isExactFamilyTemplateLabel(item)) return false;
     if (item.familyId === "cctv_master" && namedCctvMaster) return false;
+    if (item.familyId === "cad_999" && (familiesWithNamed.has("cad_999") || citedCad.length)) {
+      return false;
+    }
     return true;
   });
 }

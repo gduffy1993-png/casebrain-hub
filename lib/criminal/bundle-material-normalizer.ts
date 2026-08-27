@@ -198,6 +198,31 @@ export function lineIsScheduleFurniture(line: string): boolean {
   ) {
     return true;
   }
+  // Glance / MG5 / strategy sentences are not cells. A schedule code still names a row.
+  if (!parseScheduleRef(l)) {
+    if (/\brequired to test source\b/i.test(l)) return true;
+    if (/^CAD log is outstanding\.?$/i.test(l)) return true;
+    if (/^MG5 timing\b/i.test(l)) return true;
+    if (/\bso the exact words\b/i.test(l)) return true;
+    if (/^CAD Summary\b/i.test(l) && /summary only/i.test(l)) return true;
+    if (/^Court note requests\s*:/i.test(l)) return true;
+    if (/^Phone data\s*\(\s*pending\s*\)/i.test(l)) return true;
+    if (/^\(\s*pending\s*\)/i.test(l)) return true;
+    if (/\(\s*CCTV\s*\/\s*weapon\s*\)/i.test(l)) return true;
+    if (/\bphone\/messages referenced but not fully\b/i.test(l)) return true;
+    if (/^Prosecution relies on\b/i.test(l)) return true;
+    if (
+      /^involving\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+/i.test(l) &&
+      /final report is not included/i.test(l)
+    ) {
+      return true;
+    }
+    if (/\bthe note should not be\b/i.test(l)) return true;
+    if (/\bthe matter is listed for\b/i.test(l) && /defence position is not recorded/i.test(l)) {
+      return true;
+    }
+    if (/corrected against server time/i.test(l)) return true;
+  }
   if (labelIsStatusOnly(l)) return true;
   return false;
 }
@@ -232,7 +257,7 @@ export function stripLeadingOutstandingBoilerplate(line: string): string {
 }
 
 function isOutstandingInstructionClause(part: string): boolean {
-  return /^(?:chase before\b|not served\b|or served as summary\b|listed but not\b|position\.?$)/i.test(
+  return /^(?:chase before\b|not served\b|or served as summary\b|listed but not\b|required to test source\b|position\.?$)/i.test(
     compact(part),
   );
 }
@@ -281,7 +306,11 @@ export function splitOutstandingInventoryLine(line: string): string[] {
 }
 
 function stripScheduleFurnitureClauses(line: string): string {
-  return compact(line).replace(/\bnote:\s*items described as.*$/i, "").trim();
+  return compact(line)
+    .replace(/\bnote:\s*items described as.*$/i, "")
+    .replace(/[;,—–-]\s*chase before(?:\s+final(?:\s+position)?)?\.?$/i, "")
+    .replace(/\s*[-—–]\s*not served or served as summary only/i, "")
+    .trim();
 }
 
 /** Explicit denial / property-only — do not invent a download inventory row. */
@@ -451,6 +480,14 @@ export function classifyMaterialStatus(line: string): MaterialStatus | null {
   }
   // Clean served-on-bundle / positive served lines beat draft/screenshot heuristics
   if (isCleanPositiveServedLine(l)) return "served";
+  // "not served or served as summary only; chase before" is an outstanding named cell,
+  // not a draft because the alternative wording contains "summary only".
+  if (
+    /\bnot\s+served\b/i.test(l) &&
+    /(?:or\s+)?served as summary only|chase before/i.test(l)
+  ) {
+    return "outstanding";
+  }
   if (DRAFT_STATUS_RE.test(l)) return "draft";
   if (OUTSTANDING_STATUS_RE.test(l)) return "outstanding";
   if (ABSENT_ON_PAPERS_RE.test(l)) return "absent";
@@ -630,6 +667,15 @@ function lineIsNarrativeProse(line: string): boolean {
   if (
     !parseScheduleRef(l) &&
     /\b(?:hooded (?:male|figure|top)|taxi queue|attacker in dark|faces? unclear)\b/i.test(l)
+  ) {
+    return true;
+  }
+  if (!parseScheduleRef(l) && /^MG5 timing\b/i.test(l)) return true;
+  if (!parseScheduleRef(l) && /\bso the exact words\b/i.test(l)) return true;
+  if (
+    !parseScheduleRef(l) &&
+    /\bthe final report is not included\b/i.test(l) &&
+    /\binvolving\b/i.test(l)
   ) {
     return true;
   }
