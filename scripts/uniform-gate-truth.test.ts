@@ -17,6 +17,7 @@ import {
   classifyMaterialStatus,
   deglueScheduleText,
   lineIsScheduleFurniture,
+  lineIsUnsourcedNarrativeChase,
   normaliseBundleMaterials,
   parseScheduleRef,
   splitOutstandingInventoryLine,
@@ -1185,6 +1186,7 @@ reserved — pending disclosure of the missing items listed in MG6 or the file n
   );
   const greeneBoard = greene.primaryItems.map((i) => i.label).join(" || ");
   assert.ok(!greene.primaryItems.some((i) => /^reserved\b/i.test(i.label)), greeneBoard);
+  assert.ok(greene.primaryItems.some((i) => /interview record/i.test(i.label)), greeneBoard);
 
   const brookes = buildDisclosureChaseBrief(
     briefInput(
@@ -1198,6 +1200,84 @@ sender referred to her witness statement in earlier proceedings and told her to 
   const brookesBoard = brookes.primaryItems.map((i) => i.label).join(" || ");
   assert.ok(brookes.primaryItems.some((i) => /WhatsApp export|phone download/i.test(i.label)), brookesBoard);
   assert.ok(!brookes.primaryItems.some((i) => /sender referred to/i.test(i.label)), brookesBoard);
+});
+
+check("narrative and wrapper prose are not chase cards; formal outstanding lists still are", () => {
+  const briefInput = (id: string, bundleText: string, extra?: { clientLabel?: string }) => ({
+    caseId: id,
+    caseTitle: id,
+    clientLabel: extra?.clientLabel ?? id,
+    allegation: null as string | null,
+    stage: null as string | null,
+    hearingStatus: null as string | null,
+    hearingDateIso: null as string | null,
+    bundleHealth: "partial" as const,
+    positionStatus: null as string | null,
+    battleboard: null,
+    bundleText,
+  });
+
+  assert.equal(lineIsUnsourcedNarrativeChase("corrected against server time for the hearing notice."), true);
+  assert.equal(lineIsUnsourcedNarrativeChase("Duplicated old summary wrapper from the earlier bundle."), true);
+  assert.equal(lineIsUnsourcedNarrativeChase("Reference to a source file exists in the index."), true);
+  assert.equal(
+    lineIsUnsourcedNarrativeChase("Ambulance note records laceration. Final consultant opinion outstanding."),
+    true,
+  );
+  assert.equal(lineIsUnsourcedNarrativeChase("O02 CAD log full print Outstanding Not yet served"), false);
+  assert.equal(lineIsUnsourcedNarrativeChase("Material still needed: search record"), false);
+  assert.equal(lineIsUnsourcedNarrativeChase("Outstanding/not provided: interview record"), false);
+  assert.equal(lineIsUnsourcedNarrativeChase("Full interview recording / transcript outstanding"), false);
+  assert.equal(lineIsUnsourcedNarrativeChase("Original WhatsApp export — not served."), false);
+
+  const kitchen = buildDisclosureChaseBrief(
+    briefInput(
+      "kitchen-prose",
+      `OLD CASE COVER
+Sent 08 June 2026: Matter adjourned to 17 June 2026 at 14:00 for PTPH at Northshire Crown Court. Outstanding: CCTV export log.
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent.
+Ambulance note records laceration. Final consultant opinion outstanding.
+MG6C/001 Exterior CCTV export log not served
+Duplicated old summary wrapper
+Reference to a source file exists in the index
+corrected against server time`,
+    ),
+  );
+  const kitchenBoard = kitchen.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(kitchen.primaryItems.some((i) => /MG6C\/001|CCTV export log/i.test(i.label)), kitchenBoard);
+  assert.ok(!kitchen.primaryItems.some((i) => /Sent 08 June/i.test(i.label)), kitchenBoard);
+  assert.ok(!kitchen.primaryItems.some((i) => /Ambulance note records/i.test(i.label)), kitchenBoard);
+  assert.ok(!kitchen.primaryItems.some((i) => /Medical material is incomplete/i.test(i.label)), kitchenBoard);
+  assert.ok(!kitchen.primaryItems.some((i) => /Duplicated old summary wrapper/i.test(i.label)), kitchenBoard);
+  assert.ok(!kitchen.primaryItems.some((i) => /source file exists/i.test(i.label)), kitchenBoard);
+  assert.ok(!kitchen.primaryItems.some((i) => /server time/i.test(i.label)), kitchenBoard);
+
+  const dunnNamed = buildDisclosureChaseBrief(
+    briefInput(
+      "dunn-named-cells",
+      `Ellis Dunn
+MG6 DISCLOSURE SCHEDULE
+O02 CAD log full print Outstanding Not yet served
+O05 999 audio Outstanding Listed but not attached
+Original WhatsApp export — not served.`,
+    ),
+  );
+  const dunnNamedBoard = dunnNamed.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(dunnNamed.primaryItems.some((i) => i.sourceScheduleRef === "O02"), dunnNamedBoard);
+  assert.ok(dunnNamed.primaryItems.some((i) => i.sourceScheduleRef === "O05"), dunnNamedBoard);
+  assert.ok(dunnNamed.primaryItems.some((i) => /WhatsApp export/i.test(i.label)), dunnNamedBoard);
+
+  const ahmedList = buildDisclosureChaseBrief(
+    briefInput(
+      "ahmed-material-needed",
+      `## Material still needed
+search record; reasonable excuse
+MG6 DISCLOSURE SCHEDULE
+3 search record outstanding requested`,
+    ),
+  );
+  const ahmedListBoard = ahmedList.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(ahmedList.primaryItems.some((i) => /search record/i.test(i.label)), ahmedListBoard);
 });
 
 check("arrested on suspicion of involvement is not a charge", () => {

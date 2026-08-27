@@ -144,12 +144,59 @@ function lineDeniesMaterialExistence(line: string): boolean {
 }
 
 /**
+ * Formal gap lists without a schedule code are still inventory (Ahmed-style
+ * "Material still needed", Greene "Outstanding/not provided"). Random MG5
+ * sentences are not.
+ */
+export function isFormalOutstandingInventoryLine(line: string): boolean {
+  const l = compact(deglueScheduleText(line));
+  if (!l) return false;
+  if (parseScheduleRef(l)) return true;
+  if (/^Material still needed\b/i.test(l)) return true;
+  if (/^Outstanding item\b/i.test(l)) return true;
+  if (/^Outstanding material\b/i.test(l)) return true;
+  if (/^Outstanding\s*\/\s*not provided\b/i.test(l)) return true;
+  if (/^Outstanding\s+item\s*[:\-—–]/i.test(l)) return true;
+  if (/^\d{1,2}\s+[A-Za-z].{2,80}$/i.test(l) && /\b(?:outstanding|not\s+served|not\s+attached|not\s+included|requested)\b/i.test(l) && l.split(/\s+/).length <= 16) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Narrative / wrapper / strategy prose must not become a chase card by itself.
+ * Schedule refs and formal outstanding lists stay.
+ */
+export function lineIsUnsourcedNarrativeChase(line: string): boolean {
+  const l = compact(line);
+  if (!l) return true;
+  if (isFormalOutstandingInventoryLine(l)) return false;
+  if (/corrected against server time/i.test(l)) return true;
+  if (/^reserved\b/i.test(l)) return true;
+  if (/duplicated old summary wrapper/i.test(l)) return true;
+  if (/reference to a source file exists/i.test(l)) return true;
+  if (/\bsource file exists\b/i.test(l) && !OUTSTANDING_STATUS_RE.test(l)) return true;
+  if (/^sent\s+\d{1,2}\b/i.test(l) && /\b(?:adjourned|ptph)\b/i.test(l)) return true;
+  if (/^ambulance note records\b/i.test(l)) return true;
+  if (/^medical material is incomplete\b/i.test(l)) return true;
+  if (/^the (?:crown|prosecution|defence|court|app|matter|note|schedule|oic)\b/i.test(l)) {
+    return true;
+  }
+  const words = l.split(/\s+/).filter(Boolean).length;
+  const clauses = (l.match(/[.!?]/g) ?? []).length;
+  if (clauses >= 2 && !parseScheduleRef(l)) return true;
+  if (words > 22 && clauses >= 1 && !parseScheduleRef(l) && !/^Outstanding\b/i.test(l)) return true;
+  return false;
+}
+
+/**
  * A schedule talking about itself is not a listed item. Opposite: `MG6/04 bank source
  * statements outstanding` still names the statements.
  */
 export function lineIsScheduleFurniture(line: string): boolean {
   const l = compact(line);
   if (!l) return true;
+  if (lineIsUnsourcedNarrativeChase(l) && !isFormalOutstandingInventoryLine(l)) return true;
   if (/^[.\-/,:;]+$/.test(l)) return true;
   if (/^outstanding\.?$/i.test(l)) return true;
   if (/^entries\.?$/i.test(l)) return true;
@@ -696,6 +743,7 @@ function lineIsNarrativeProse(line: string): boolean {
   }
   if (!parseScheduleRef(l) && /\bno final statement tying every movement\b/i.test(l)) return true;
   if (!parseScheduleRef(l) && /\bno comment answers after limited disclosure\b/i.test(l)) return true;
+  if (lineIsUnsourcedNarrativeChase(l)) return true;
   return false;
 }
 
@@ -707,16 +755,18 @@ function lineIsNarrativeProse(line: string): boolean {
 function lineLooksLikeScheduleInventoryRow(line: string): boolean {
   const l = compact(deglueScheduleText(line));
   if (!l || lineDeniesMaterialExistence(l) || lineIsNarrativeProse(l) || lineIsScheduleFurniture(l)) return false;
+  if (lineIsUnsourcedNarrativeChase(l)) return false;
   if (/^Served material\b/i.test(l) || /^Material still needed\b/i.test(l)) return false;
   if (parseScheduleRef(l)) return true;
+  if (isFormalOutstandingInventoryLine(l)) return true;
   const words = l.split(/\s+/).filter(Boolean).length;
   const hasStatus =
     /\b(?:outstanding|not\s+served|not\s+attached|not\s+included|not\s+in\s+(?:the\s+)?papers|not\s+contained|absent|referred(?:\s+only)?|awaiting\s+export|unsigned|served)\b/i.test(
       l,
     ) || lineIndicatesReferredOnly(l);
   if (/^\d{1,2}(?:\s+|[A-Za-z])/.test(l) && words <= 16 && hasStatus) return true;
-  if (DRAFT_STATUS_RE.test(l) && ITEM_RE.test(l) && words <= 22) return true;
-  if (hasStatus && ITEM_RE.test(l) && words <= 28) return true;
+  if (DRAFT_STATUS_RE.test(l) && ITEM_RE.test(l) && words <= 16) return true;
+  if (hasStatus && ITEM_RE.test(l) && words <= 16) return true;
   return false;
 }
 
@@ -727,10 +777,10 @@ function collectMaterialLines(bundleText: string): string[] {
 
   const add = (raw: string) => {
     const repaired = repairGluedMg6StatusText(raw);
-    if (lineIsScheduleFurniture(repaired)) return;
+    if (lineIsScheduleFurniture(repaired) || lineIsUnsourcedNarrativeChase(repaired)) return;
     const c = stripScheduleFurnitureClauses(stripLeadingOutstandingBoilerplate(repaired));
     if (c.length < 10 || c.length > 320) return;
-    if (lineIsScheduleFurniture(c)) return;
+    if (lineIsScheduleFurniture(c) || lineIsUnsourcedNarrativeChase(c)) return;
     if (!isLikelyMaterialLine(c) && !isLikelyMaterialLine(repaired)) return;
     const status = classifyMaterialStatus(repaired) ?? classifyMaterialStatus(c);
     if (!status) return;
@@ -752,7 +802,21 @@ function collectMaterialLines(bundleText: string): string[] {
     ) {
       inSchedule = true;
     }
-    const stillNeeded = deglueScheduleText(line).match(/^Material still needed\s*:?\s*(.+)$/i);
+    const clauses = line.split(/(?<=\.)\s+(?=[A-Z])/).map((s) => s.trim()).filter(Boolean);
+    const units = clauses.length > 1 ? clauses : [line];
+    const splitFromProse = clauses.length > 1;
+    for (const unit of units) {
+      // Do not mint a second interview/transcript card from a leftover clause.
+      // Standalone short cells (`Full interview recording / transcript outstanding`) still enter.
+      if (
+        splitFromProse &&
+        /\b(?:interview|transcript)\b/i.test(unit) &&
+        !parseScheduleRef(unit) &&
+        !isFormalOutstandingInventoryLine(unit)
+      ) {
+        continue;
+      }
+    const stillNeeded = deglueScheduleText(unit).match(/^Material still needed\s*:?\s*(.+)$/i);
     if (stillNeeded?.[1]) {
       for (const part of stillNeeded[1].split(/;/)) {
         const item = part.trim();
@@ -760,20 +824,22 @@ function collectMaterialLines(bundleText: string): string[] {
       }
       continue;
     }
-    const outstandingParts = splitOutstandingInventoryLine(line);
+    const outstandingParts = splitOutstandingInventoryLine(unit);
     if (outstandingParts.length > 1) {
       for (const part of outstandingParts) add(part);
       continue;
     }
-    if (lineLooksLikeScheduleInventoryRow(line)) add(line);
+    if (lineLooksLikeScheduleInventoryRow(unit)) add(unit);
     else if (
       inSchedule &&
-      !lineIsNarrativeProse(line) &&
-      !lineIsScheduleFurniture(line) &&
-      classifyMaterialStatus(line) &&
-      line.split(/\s+/).filter(Boolean).length <= 36
+      !lineIsNarrativeProse(unit) &&
+      !lineIsScheduleFurniture(unit) &&
+      !lineIsUnsourcedNarrativeChase(unit) &&
+      classifyMaterialStatus(unit) &&
+      unit.split(/\s+/).filter(Boolean).length <= 36
     ) {
-      add(line);
+      add(unit);
+    }
     }
   }
 
@@ -794,7 +860,7 @@ export function normaliseBundleMaterials(bundleText: string): NormalisedMaterial
     const split = splitMaterialLabelDetail(labelSource);
     const cell = splitTrailingStatusCell(split.label);
     const label = stripLeadingRowNumber(cell.label).replace(/[:—–-]+\s*$/g, "").trim();
-    if (label.length < 3 || lineIsScheduleFurniture(label)) continue;
+    if (label.length < 3 || lineIsScheduleFurniture(label) || lineIsUnsourcedNarrativeChase(label)) continue;
     // The status cell leaves the label but must not leave the row: it is what the schedule says
     // about the item, and Papers still has to show it.
     const detail = [cell.statusCell, split.detail].filter(Boolean).join(" — ") || null;

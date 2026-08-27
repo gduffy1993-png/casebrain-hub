@@ -62,6 +62,7 @@ import {
   lineIndicatesReferredOnly,
   lineIsLocationOrReviewNotGap,
   lineIsScheduleFurniture,
+  lineIsUnsourcedNarrativeChase,
   stripLeadingOutstandingBoilerplate,
 } from "@/lib/criminal/bundle-material-normalizer";
 import { buildCriminalBriefPlan, type CriminalBriefPlan } from "@/lib/criminal/brief-plan";
@@ -1270,6 +1271,7 @@ function isUnsafeOrNonMaterialChaseLine(raw: string): boolean {
   const t = raw.trim();
   if (!t) return true;
   if (lineIsScheduleFurniture(t)) return true;
+  if (lineIsUnsourcedNarrativeChase(t)) return true;
   if (/^(?:item|material)\s*:/i.test(t) && /[—–-]\s*$/.test(t)) return true;
   if (FORBIDDEN_RE.test(t)) return true;
   return /\b(win conditions?|case collapses|prosecution case collapses|crown case collapses|will be acquitted)\b/i.test(t) ||
