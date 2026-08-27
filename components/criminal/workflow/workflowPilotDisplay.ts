@@ -6,7 +6,7 @@ import {
 } from "@/lib/criminal/solicitor-display-dedupe";
 
 const INTERNAL_CLIENT_RES =
-  /unless document|not safely extracted|offence wording not|add charge sheet|unknown offence|allegation not recorded/i;
+  /unless document|not safely extracted|not on papers|offence wording not|add charge sheet|unknown offence|allegation not recorded|^client\b/i;
 
 const INTERNAL_CHARGE_RES =
   /unless document|not safely extracted|offence wording not|add charge sheet|unknown offence|allegation not recorded/i;
@@ -56,6 +56,27 @@ export function displayPilotStripClient(raw: string | null | undefined): string 
     .trim();
   if (!t || INTERNAL_CLIENT_RES.test(t)) return "";
   return t;
+}
+
+/** Stored titles like "Client not on papers" are not a File name. */
+export function isPlaceholderMatterTitle(raw: string | null | undefined): boolean {
+  const t = (raw ?? "").trim();
+  if (!t) return true;
+  if (/^untitled case$/i.test(t)) return true;
+  if (/^matter details to confirm/i.test(t)) return true;
+  return INTERNAL_CLIENT_RES.test(t);
+}
+
+/** List / heading title is the File name when the papers name someone. */
+export function fileBackedMatterTitle(
+  storedTitle: string | null | undefined,
+  fileName: string | null | undefined,
+): string {
+  const fromFile = displayPilotStripClient(fileName);
+  if (fromFile) return fromFile;
+  const stored = (storedTitle ?? "").trim();
+  if (stored && !isPlaceholderMatterTitle(stored)) return stored;
+  return "";
 }
 
 export function displayPilotStripCharge(raw: string | null | undefined): string {

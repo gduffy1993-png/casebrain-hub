@@ -149,6 +149,22 @@ assert.equal(
 const leonHeader = workflowHeaderOverrides("R v Leon Marsh");
 assert.equal(leonHeader!.displayTitle, "R v Leon Marsh — Robbery, Theft Act 1968 s.8");
 
+const patelFileHeader = workflowHeaderOverrides("Client not on papers", {
+  clientLabel: "Isaac Patel",
+  allegation: "Affray, contrary to section 3 Public Order Act 1986",
+});
+assert.ok(patelFileHeader);
+assert.match(patelFileHeader!.displayTitle, /Isaac Patel/);
+assert.doesNotMatch(patelFileHeader!.displayTitle, /not on papers|not safely extracted/i);
+
+const namelessFileHeader = workflowHeaderOverrides("Client not on papers", {
+  clientLabel: "Client name not safely extracted",
+  allegation: "Affray, contrary to section 3 Public Order Act 1986",
+});
+if (namelessFileHeader) {
+  assert.doesNotMatch(namelessFileHeader.displayTitle, /Isaac Patel|Jordan Hale|Holly Ahmed/i);
+}
+
 // --- Fraud chase ordering ---
 
 const fraudMixed = [

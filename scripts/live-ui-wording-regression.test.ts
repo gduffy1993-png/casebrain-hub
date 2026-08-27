@@ -10,6 +10,8 @@ import {
   PILOT_CHARGE_NOT_IDENTIFIED_LABEL,
   PILOT_COURT_NOT_IDENTIFIED_LABEL,
   displayPilotStripCharge,
+  displayPilotStripClient,
+  fileBackedMatterTitle,
   resolvePilotChargeDisplay,
 } from "../components/criminal/workflow/workflowPilotDisplay";
 import { sanitizeHeaderClient } from "../lib/criminal/resolve-case-header-metadata";
@@ -63,10 +65,46 @@ const patelBrief = buildCourtCaseBrief(
   },
   { bucketNow: new Date("2026-08-22T12:00:00.000Z") },
 );
+assert.equal(displayPilotStripClient("Client not on papers"), "");
+assert.equal(fileBackedMatterTitle("Client not on papers", "Isaac Patel"), "Isaac Patel");
+assert.equal(fileBackedMatterTitle("Client not on papers", "not safely extracted"), "");
+assert.equal(fileBackedMatterTitle("R v Jordan Hale", "Jordan Hale"), "Jordan Hale");
+
 assert.equal(patelBrief.clientLabel, "Isaac Patel");
+assert.equal(patelBrief.caseTitle, "Isaac Patel");
 assert.doesNotMatch(patelBrief.clientLabel, /not on papers|not safely extracted/i);
+assert.doesNotMatch(patelBrief.caseTitle, /not on papers|not safely extracted/i);
 assert.match(patelBrief.hearingLabel, /25 Aug 2026|25 August 2026/);
 assert.match(patelBrief.stage, /First appearance/i);
+
+const namelessFrontMatter = [
+  "CASE PAPERS - INDEX",
+  "CourtHearingSouthford Magistrates Court 25 August 2026 10:30",
+  "Charge",
+  "Affray",
+  "contrary to section 3 Public Order Act 1986",
+].join("\n");
+const namelessBrief = buildCourtCaseBrief(
+  {
+    id: "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee",
+    title: "Client not on papers",
+    offence_label: "Affray (s.3 Public Order Act 1986)",
+    next_hearing_date: null,
+    next_hearing_type: null,
+    strategy_recorded: false,
+    strategy_preview: null,
+    disclosure_outstanding: null,
+  },
+  {
+    bundleMetadata: null,
+    bundleHeader: null,
+    frontMatterScan: namelessFrontMatter,
+  },
+  { bucketNow: new Date("2026-08-22T12:00:00.000Z") },
+);
+assert.doesNotMatch(namelessBrief.clientLabel, /Isaac Patel|Jordan Hale|Holly Ahmed/i);
+assert.doesNotMatch(namelessBrief.caseTitle, /Isaac Patel|Jordan Hale|Holly Ahmed/i);
+assert.match(namelessBrief.clientLabel, /not safely extracted|not on papers/i);
 
 assert.equal(
   humanizeEvidenceLabel("MG6 disclosure schedule on file", "served"),

@@ -742,7 +742,17 @@ export function workflowHeaderOverrides(
 ): WorkflowHeaderOverride | null {
   if (!isCriminalPilotMode()) return null;
   const t = caseTitle.trim();
-  const fullContext: WorkflowProfileContext = { caseTitle: t, ...context };
+  const fileName = context?.clientLabel?.trim() ?? "";
+  const placeholderTitle =
+    !t ||
+    /^untitled case$/i.test(t) ||
+    /^client\b/i.test(t) ||
+    /not on papers|not safely extracted/i.test(t);
+  const heading =
+    placeholderTitle && fileName && !/^client\b/i.test(fileName) && !/not on papers|not safely extracted/i.test(fileName)
+      ? fileName
+      : t;
+  const fullContext: WorkflowProfileContext = { caseTitle: heading, ...context };
 
   const identityDemo = acceptedDemoMatch(fullContext);
   if (identityDemo) {
@@ -762,7 +772,7 @@ export function workflowHeaderOverrides(
   const profile = resolveWorkflowProfile(fullContext);
   if (profile === "generic") return null;
 
-  const title = t.startsWith("R v") ? t : t;
+  const title = heading.startsWith("R v") ? heading : heading;
   const allegationFromContext = fullContext.allegation?.trim();
   const defaultAllegation =
     profile === "generic_motoring_provisional"

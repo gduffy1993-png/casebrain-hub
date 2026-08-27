@@ -222,6 +222,14 @@ export function lineIsScheduleFurniture(line: string): boolean {
       return true;
     }
     if (/corrected against server time/i.test(l)) return true;
+    if (/^reserved\.?$/i.test(l)) return true;
+    if (/^reserved\s+[—–-]\s+pending disclosure/i.test(l)) return true;
+    if (/\bsender referred to .{0,80}witness statement in earlier proceedings\b/i.test(l)) return true;
+    if (/\bno final statement tying every movement\b/i.test(l)) return true;
+    if (/\bMatter adjourned to\b/i.test(l) && /\bfor PTPH\b/i.test(l)) return true;
+    if (/^Duplicated old summary wrapper\b/i.test(l)) return true;
+    if (/^CAD\/999 audio, BWV and CCTV export log remain\b/i.test(l)) return true;
+    if (/\bpre-cordon movement\b/i.test(l)) return true;
   }
   if (labelIsStatusOnly(l)) return true;
   return false;
@@ -679,6 +687,13 @@ function lineIsNarrativeProse(line: string): boolean {
   ) {
     return true;
   }
+  if (
+    !parseScheduleRef(l) &&
+    /\bsender referred to .{0,80}witness statement in earlier proceedings\b/i.test(l)
+  ) {
+    return true;
+  }
+  if (!parseScheduleRef(l) && /\bno final statement tying every movement\b/i.test(l)) return true;
   return false;
 }
 

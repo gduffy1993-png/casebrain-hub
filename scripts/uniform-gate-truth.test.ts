@@ -1078,6 +1078,64 @@ StatusremandNext hearing18/08/2026`,
   );
   assert.equal(greeneCourt.court, "Northshire Magistrates Court");
   assert.doesNotMatch(greeneCourt.court ?? "", /days|Police station|^Court\s/i);
+
+  assert.equal(lineIsScheduleFurniture("reserved"), true);
+  assert.equal(
+    lineIsScheduleFurniture("reserved — pending disclosure of the missing items listed in MG6 or the file note."),
+    true,
+  );
+  assert.equal(
+    lineIsScheduleFurniture(
+      "sender referred to her witness statement in earlier proceedings and told her to 'stop talking'.",
+    ),
+    true,
+  );
+  assert.equal(
+    lineIsScheduleFurniture(
+      "schedule is outstanding. There is no final statement tying every movement and exhibit handover into a complete chain.",
+    ),
+    true,
+  );
+  assert.equal(
+    lineIsScheduleFurniture(
+      "Sent 08 June 2026: Matter adjourned to 17 June 2026 at 14:00 for PTPH at Northshire Crown Court.",
+    ),
+    true,
+  );
+  assert.equal(
+    lineIsScheduleFurniture(
+      "records possible pre-cordon movement by members of the public. Full continuity schedule is outstanding.",
+    ),
+    true,
+  );
+  assert.equal(lineIsScheduleFurniture("O02 CAD log full print Outstanding Not yet served"), false);
+  assert.equal(lineIsScheduleFurniture("MG6C/001 CCTV continuity log outstanding"), false);
+
+  const greene = buildDisclosureChaseBrief(
+    briefInput(
+      "greene-reserved",
+      `AccusedLeo Greene
+Charge: Assault by beating
+Outstanding/not provided: interview record, continuity / provenance note if relied upon.
+reserved — pending disclosure of the missing items listed in MG6 or the file note.`,
+      { clientLabel: "Leo Greene" },
+    ),
+  );
+  const greeneBoard = greene.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(!greene.primaryItems.some((i) => /^reserved\b/i.test(i.label)), greeneBoard);
+
+  const brookes = buildDisclosureChaseBrief(
+    briefInput(
+      "brookes-sentence",
+      `Taylor Brookes
+Original WhatsApp export — not served.
+sender referred to her witness statement in earlier proceedings and told her to 'stop talking'. She`,
+      { clientLabel: "Taylor Brookes" },
+    ),
+  );
+  const brookesBoard = brookes.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(brookes.primaryItems.some((i) => /WhatsApp export|phone download/i.test(i.label)), brookesBoard);
+  assert.ok(!brookes.primaryItems.some((i) => /sender referred to/i.test(i.label)), brookesBoard);
 });
 
 check("arrested on suspicion of involvement is not a charge", () => {

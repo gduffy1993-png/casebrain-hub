@@ -21,6 +21,7 @@ import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-
 import type { DocumentRowMeta } from "@/lib/bundle/parse-bundle-display";
 import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { fileBackedMatterTitle } from "@/components/criminal/workflow/workflowPilotDisplay";
 import {
   buildChaseItemsForHearing,
   buildHearingWarRoomBrief,
@@ -216,7 +217,6 @@ export function useMatterBrief(caseId: string) {
   const pilotMatter = useMemo(() => {
     if (snapshotLoading || battleboardLoading || bundleLoading) return null;
 
-    const caseTitleBase = snapshot?.caseMeta?.title?.trim() || "Criminal case";
     const headerMeta = resolveCaseHeaderMetadata({
       snapshot,
       matter: matter
@@ -238,6 +238,10 @@ export function useMatterBrief(caseId: string) {
     const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
     const allegationBase = sanitizeHeaderAllegation(headerMeta.allegation);
     const clientLabel = isCriminalPilotMode() ? cleanPilotHeaderClient(clientLabelBase) : clientLabelBase;
+    const caseTitleBase =
+      fileBackedMatterTitle(snapshot?.caseMeta?.title, clientLabel) ||
+      snapshot?.caseMeta?.title?.trim() ||
+      "Criminal case";
     const pilotHeader = workflowHeaderOverrides(caseTitleBase, {
       allegation: allegationBase,
       routeTitle: battleboard?.primary_route?.title,

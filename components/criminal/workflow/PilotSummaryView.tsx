@@ -27,7 +27,7 @@ import {
   polishChasePreviewLabel,
   solicitorLinesNearlyEqual,
 } from "@/lib/criminal/solicitor-display-dedupe";
-import { displayPilotStripCharge, displayPilotStripClient } from "./workflowPilotDisplay";
+import { displayPilotStripCharge, displayPilotStripClient, isPlaceholderMatterTitle } from "./workflowPilotDisplay";
 import { solicitorReadyGateCopy } from "./pilotReviewCopy";
 import { buildBundleTruthLedger } from "@/lib/criminal/bundle-truth-ledger";
 import type { NormalisedMaterialRow } from "@/lib/criminal/bundle-truth-types";
@@ -200,7 +200,7 @@ export function PilotSummaryView({
   const todayHref = buildTabHref(caseId, "today");
 
   const heading =
-    caseTitle && !/^untitled case$/i.test(caseTitle.trim())
+    caseTitle && !isPlaceholderMatterTitle(caseTitle)
       ? caseTitle
       : [displayPilotStripClient(clientProp ?? ""), displayPilotStripCharge(chargeProp ?? "")]
           .filter((p) => p && !/not on papers/i.test(p))

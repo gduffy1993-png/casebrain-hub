@@ -16,6 +16,7 @@ import {
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { pilotCourtChaseLabels } from "@/lib/criminal/pilot-workflow";
 import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
+import { fileBackedMatterTitle } from "@/components/criminal/workflow/workflowPilotDisplay";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import type {
   CourtCaseBrief,
@@ -264,13 +265,15 @@ function buildChaseItems(
   row: CourtCasesApiRow,
   battleboard: BattleboardOutput | null | undefined,
   enrichment: CourtTodayEnrichment = {},
+  fileClientLabel?: string,
 ): string[] {
   if (isCriminalPilotMode()) {
+    const identity = fileBackedMatterTitle(row.title, fileClientLabel) || row.title;
     const pilotLabels = pilotCourtChaseLabels({
-      caseTitle: row.title,
+      caseTitle: identity,
       allegation: row.offence_label ?? undefined,
       routeTitle: battleboard?.primary_route?.title,
-      clientLabel: row.title,
+      clientLabel: identity,
     });
     if (pilotLabels.length) return pilotLabels;
   }
@@ -422,7 +425,7 @@ export function buildCourtCaseBrief(
       ? headerMeta.stage
       : "Stage not safely extracted — open case file";
   const stage = collapseHeaderCellDuplicates(stageRaw) || stageRaw;
-  const chaseItems = buildChaseItems(row, battleboard, enrichment);
+  const chaseItems = buildChaseItems(row, battleboard, enrichment, clientLabel);
   const readiness = resolveReadiness(row, bucket, chaseItems.length, battleboard, allegation, clientLabel);
   const hearingTimeLabel = resolveHearingTimeLabel(row, enrichment, hearingDate);
 
@@ -478,7 +481,7 @@ export function buildCourtCaseBrief(
 
   return {
     caseId,
-    caseTitle: row.title,
+    caseTitle: fileBackedMatterTitle(row.title, clientLabel) || row.title,
     clientLabel,
     allegation,
     stage,
