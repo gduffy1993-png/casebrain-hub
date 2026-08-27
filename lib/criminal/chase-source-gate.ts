@@ -138,6 +138,12 @@ export function isCctvMasterEstablished(sourceText: string): boolean {
     .replace(/not\s+the\s+full\s+cctv\b[^.\n]{0,80}/gi, " ")
     .replace(/not\s+full\s+cctv\b[^.\n]{0,80}/gi, " ")
     .replace(/shown\s+some\s+material\s+but\s+not\s+the\s+full\s+cctv\b[^.\n]{0,80}/gi, " ")
+    // Pack boilerplate: "Full CCTV master outstanding or not verified, where applicable."
+    // is not a schedule cell naming master (Beck stills-only).
+    .replace(
+      /(?:^|[.\n])[^\n.]{0,40}\bfull\s+cctv\s+master\b[^.!\n]{0,80}\bwhere\s+applicable\b/gi,
+      " ",
+    )
     // Explicit negation / absence lines must not establish (Dunn invent mute).
     .replace(/\bno\s+cctv\s+master\b[^.\n]{0,40}/gi, " ")
     .replace(/\bno\s+(?:full\s+)?(?:cctv\s+)?(?:time\s+)?window\b[^.\n]{0,40}/gi, " ")

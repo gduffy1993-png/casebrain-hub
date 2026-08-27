@@ -1569,6 +1569,9 @@ function isJunkHearingValue(raw: string | null | undefined): boolean {
   if (!hasUkHearingDatePattern(t) && /(?:Crown Court|Magistrates(?:'|\u2019)?(?:\s*Court)?|\bCourt\b)/i.test(t)) {
     return true;
   }
+  // "hearing line: the court…" / "line: the" is court-line prose, not a listing.
+  if (/^line\s*:/i.test(t) || /\bhearing[_\s-]?line\b/i.test(t)) return true;
+  if (!hasUkHearingDatePattern(t)) return true;
   return false;
 }
 
@@ -1823,6 +1826,16 @@ function extractNextHearing(scan: string): {
     );
     if (listedLine?.[1]) tryHearing(listedLine[1]);
   }
+  // Brookes cover: "Next hearing\nPTPH - 06 July 2026 at 10:00"
+  if (!nextHearingRaw) {
+    const ptphDash = hearingScan.match(
+      new RegExp(
+        `\\b(?:PTPH|PCM|PTR|First appearance|Trial)\\s*[—–:\\-]\\s*(\\d{1,2}\\s+${MONTH_NAME}[a-z]*\\s+\\d{4}${HEARING_TIME_SUFFIX})`,
+        "i",
+      ),
+    );
+    if (ptphDash?.[1]) tryHearing(ptphDash[1]);
+  }
   if (!nextHearingRaw) {
     const listedBare = hearingScan.match(
       new RegExp(
@@ -2076,27 +2089,16 @@ function extractNextHearing(scan: string): {
       } else {
         const windowMatch = scan.match(
           new RegExp(
-            `\\b0?${dateParts[1]}\\s+${monthPattern}[a-z]*\\s+${dateParts[3]}[\\s\\S]{0,180}?(?:at\\s+|Time\\s*:\\s*|Hearing\\s*time\\s*:\\s*)?(\\d{1,2}:\\d{2})`,
+            `\\b0?${dateParts[1]}\\s+${monthPattern}[a-z]*\\s+${dateParts[3]}(?:\\s|,){0,24}(?:at\\s+|Time\\s*:\\s*|Hearing\\s*time\\s*:\\s*)(\\d{1,2}:\\d{2})`,
             "i",
           ),
         );
         if (windowMatch?.[1]) {
           hearingRawCleaned = `${dateParts[1]} ${dateParts[2]} ${dateParts[3]} at ${windowMatch[1]}`;
         } else {
-          const timeLabel = scan.match(/\b(?:Hearing\s*time|Listed\s*time|Time)\s*:?\s*(\d{1,2}:\d{2})\b/i);
+          const timeLabel = scan.match(/\b(?:Hearing\s*time|Listed\s*time)\s*:?\s*(\d{1,2}:\d{2})\b/i);
           if (timeLabel?.[1]) {
             hearingRawCleaned = `${dateParts[1]} ${dateParts[2]} ${dateParts[3]} at ${timeLabel[1]}`;
-          } else {
-            const dateIdx = scan.search(
-              new RegExp(`\\b0?${dateParts[1]}\\s+${monthPattern}[a-z]*\\s+${dateParts[3]}\\b`, "i"),
-            );
-            if (dateIdx >= 0) {
-              const window = scan.slice(dateIdx, dateIdx + 420);
-              const timeNear = window.match(/\b(\d{1,2}:\d{2})\b/);
-              if (timeNear?.[1]) {
-                hearingRawCleaned = `${dateParts[1]} ${dateParts[2]} ${dateParts[3]} at ${timeNear[1]}`;
-              }
-            }
           }
         }
       }

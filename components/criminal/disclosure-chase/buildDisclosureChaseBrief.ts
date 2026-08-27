@@ -52,6 +52,7 @@ import {
   isCctvMasterEstablished,
   isIdentificationProcedureEstablished,
   isInterviewRecordingEstablished,
+  lineClaimsCctvMasterOrFullWindow,
   isInterviewTranscriptEstablished,
   lineClaimsIdentificationProcedure,
   type ChaseGateFamily,
@@ -127,6 +128,14 @@ type FamilyDef = {
 
 /** Invent-advisory only (Trap) — not an established CCTV exhibit / outstanding master. */
 function isCctvInventAdvisoryOnly(t: string): boolean {
+  // Pack boilerplate is not a schedule cell: "Full CCTV master … where applicable."
+  if (
+    /\bwhere\s+applicable\b/i.test(t) &&
+    /\b(?:full\s+cctv\s+master|cctv\s+master|master\s+footage)\b/i.test(t) &&
+    !/\b(?:MG\d{1,2}[A-Z]?(?:\/\d+)?|EX[-/][A-Z0-9-]+|O\d{1,2}|U\d)\b/i.test(t)
+  ) {
+    return true;
+  }
   if (
     !/\b(?:assuming\s+missing\s+cctv|do\s+not\s+(?:invent|assume)[^.!?\n]{0,80}\bcctv|should\s+not\s+be\s+strengthened\s+by\s+assuming\s+missing\s+cctv)\b/i.test(
       t,
@@ -1055,6 +1064,64 @@ function dropGenericFurtherPapersWhenSpecificItemsExist(items: DisclosureChaseIt
       !/^Further papers on the file$/i.test(item.label) &&
       !/^Further papers issue/i.test(item.label),
   );
+}
+
+function itemBlobForMasterClaim(item: DisclosureChaseItem): string {
+  return `${item.label} ${(item.mergedFrom ?? []).join(" ")} ${item.sourceScheduleRef ?? ""}`;
+}
+
+function itemNamesCctvMaster(item: DisclosureChaseItem): boolean {
+  return (
+    item.familyId === "cctv_master" ||
+    /^CCTV full window\s*\/\s*master footage$/i.test(item.label) ||
+    lineClaimsCctvMasterOrFullWindow(itemBlobForMasterClaim(item))
+  );
+}
+
+function itemHasMaterialCitation(item: DisclosureChaseItem): boolean {
+  if (item.sourceScheduleRef?.trim()) return true;
+  return /\b(?:MG\d{1,2}[A-Z]?(?:\/\d+)?|EX[-/][A-Z0-9-]+|O\d{1,2}|U\d)\b/i.test(item.label);
+}
+
+function isExactFamilyTemplateLabel(item: DisclosureChaseItem): boolean {
+  const def = CHASE_FAMILIES.find((fam) => fam.id === item.familyId);
+  if (!def) return false;
+  return def.label.replace(/\s+/g, " ").trim().toLowerCase() === item.label.replace(/\s+/g, " ").trim().toLowerCase();
+}
+
+/**
+ * A schedule cell that names the gap is the request. The family template is only for when
+ * the papers state the gap and no such row made it through. Patel MG6/05 full CCTV master
+ * must not also spawn "CCTV full window / master footage". Hale EX-MUR-009 must not also
+ * spawn narrative/template master. Opposite: stills-only must not invent master.
+ */
+function dropGenericFamilyTemplateWhenSourceNamed(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
+  const familiesWithNamed = new Set(items.filter(isSourceNamedChaseItem).map((item) => item.familyId));
+  const namedCctvMaster = items.some((item) => isSourceNamedChaseItem(item) && itemNamesCctvMaster(item));
+  if (namedCctvMaster) familiesWithNamed.add("cctv_master");
+
+  const citedMaster = items.filter(
+    (item) => isSourceNamedChaseItem(item) && itemNamesCctvMaster(item) && itemHasMaterialCitation(item),
+  );
+
+  return items.filter((item) => {
+    if (citedMaster.length && itemNamesCctvMaster(item) && !citedMaster.includes(item)) {
+      const ref = item.sourceScheduleRef?.trim();
+      if (ref) {
+        const sameRef = citedMaster.some(
+          (named) => (named.sourceScheduleRef ?? "").toLowerCase() === ref.toLowerCase(),
+        );
+        if (sameRef) return false;
+        return true;
+      }
+      return false;
+    }
+    if (!familiesWithNamed.has(item.familyId)) return true;
+    if (isSourceNamedChaseItem(item)) return true;
+    if (isExactFamilyTemplateLabel(item)) return false;
+    if (item.familyId === "cctv_master" && namedCctvMaster) return false;
+    return true;
+  });
 }
 
 function mapMaterialStatusToSharedState(status: string): EvidenceStateRow["state"] {
@@ -3254,6 +3321,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = finalizeDisclosureChasePresentation(items);
   items = reconcileMedicalReportModalityItems(items, gateText);
   items = dropGenericFurtherPapersWhenSpecificItemsExist(items);
+  items = dropGenericFamilyTemplateWhenSourceNamed(items);
   items = items.map((item) => ({
     ...alignInterviewCourtLineToLabel(item),
     evidenceAnchor: familySafeEvidenceAnchor(item.familyId, item.evidenceAnchor),

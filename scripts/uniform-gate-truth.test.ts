@@ -118,6 +118,37 @@ check("a date of arrest is not a listing", () => {
   );
   assert.match(listed.nextHearingRaw ?? "", /15 July 2026/i);
   assert.doesNotMatch(listed.nextHearingRaw ?? "", /03\/02\/2025/);
+
+  const brookesHearing = extractBundleCaseMetadata(
+    `NB-26-0721 - R v Taylor Brookes
+Court
+Northbank Crown Court
+Next hearing
+PTPH - 06 July 2026 at 10:00
+Current status
+Bail with no-contact condition.
+Prepare hearing line on outstanding disclosure; set a timetable.
+The defence asks the court to record outstanding disclosure.`,
+  );
+  assert.match(
+    brookesHearing.nextHearingRaw ?? "",
+    /06 July 2026/i,
+    `PTPH dash listing is the hearing — got ${brookesHearing.nextHearingRaw}`,
+  );
+  assert.doesNotMatch(brookesHearing.nextHearingRaw ?? "", /line:\s*the/i);
+
+  const clarkeHearing = extractBundleCaseMetadata(
+    `Defendant: Jordan Clarke
+Next Hearing: PTPH – 04 Sep 2024
+Alleged Offence: s18 OAPA 1861
+Incident: 12 Aug 2024, ~23:48, outside Blue Lantern.`,
+  );
+  assert.match(clarkeHearing.nextHearingRaw ?? "", /04 Sep(?:tember)? 2024/i);
+  assert.doesNotMatch(
+    clarkeHearing.nextHearingRaw ?? "",
+    /23:48/,
+    `incident clock is not the listing time — got ${clarkeHearing.nextHearingRaw}`,
+  );
 });
 
 check("not served is not served", () => {
@@ -469,6 +500,45 @@ Full phone download outstanding
     schedule.some((r) => /phone download/i.test(r.label) && r.status === "outstanding"),
     `a short outstanding item line must still be inventory — got ${schedule.map((r) => r.label).join(" | ")}`,
   );
+
+  const clarke = normaliseBundleMaterials(`
+# S18 Test Bundle
+19. 17 MG6C Unused Material (incomplete)
+## 04 Witness Statement – Complainant
+- In taxi queue ~23:48; dark, partial lighting.
+- Attacker in dark hooded top; face unclear.
+## 11 CCTV Stills Description
+Stills at key times show hooded male; faces unclear due to lighting.
+## 17 MG6C Unused Material
+MG6C/001 CCTV continuity log outstanding
+`);
+  assert.ok(
+    !clarke.some((r) => /taxi queue|hooded (?:male|top)|faces? unclear/i.test(r.label)),
+    `MG5/witness prose is not inventory — got ${clarke.map((r) => r.label).join(" | ")}`,
+  );
+  assert.ok(
+    clarke.some((r) => /cctv continuity/i.test(r.label)),
+    `a real MG6C cell must still be inventory — got ${clarke.map((r) => r.label).join(" | ")}`,
+  );
+
+  const hale = normaliseBundleMaterials(`
+4. MG6 DISCLOSURE SCHEDULE - OUTSTANDING MATERIAL
+Full CCTV master footage from estate cameras outstanding
+EX-MUR-009 CCTV stills and timing note Master footage outstanding
+10. CCTV SECTION - SERVED STILLS ONLY
+The served CCTV material consists of still images only.
+Leon was seen arguing with Marcus shortly before the fatal injury.
+The court can be asked to record outstanding CCTV, CAD/999, BWV.
+This may assist the defence because missing source pages create disclosure.
+`);
+  assert.ok(
+    hale.some((r) => /EX-MUR-009|full CCTV master/i.test(r.label)),
+    `Hale schedule cells stay — got ${hale.map((r) => r.label).join(" | ")}`,
+  );
+  assert.ok(
+    !hale.some((r) => /seen arguing|court can be asked|this may assist/i.test(r.label)),
+    `Hale MG5/strategy is not inventory — got ${hale.map((r) => r.label).join(" | ")}`,
+  );
 });
 
 console.log("the opposite direction: the passing uniform still holds");
@@ -740,6 +810,7 @@ check("caution, bare not-served, and MG5 fragments are not chase cells; MG6/04 s
   assert.equal(lineIsScheduleFurniture("Not commissioned /"), true);
   assert.equal(lineIsScheduleFurniture("pending), continuity gaps (CCTV/weapon)."), true);
   assert.equal(lineIsScheduleFurniture("MG6/04 bank source statements outstanding"), false);
+  assert.equal(lineIsScheduleFurniture("Full CCTV master outstanding or not verified, where applicable."), true);
   const beck = normaliseBundleMaterials(
     "MG6 DISCLOSURE SCHEDULE\nCaution: no answer should invent\nNot served\nFull CCTV master outstanding\n",
   );
@@ -771,11 +842,115 @@ check("caution, bare not-served, and MG5 fragments are not chase cells; MG6/04 s
   assert.ok(brookes.primaryItems.some((i) => /whatsapp export/i.test(i.label)), board);
 });
 
+check("named CCTV master is one cell; stills-only does not invent the template", () => {
+  const briefInput = (id: string, bundleText: string) => ({
+    caseId: id,
+    caseTitle: id,
+    clientLabel: id,
+    allegation: null as string | null,
+    stage: null as string | null,
+    hearingStatus: null as string | null,
+    hearingDateIso: null as string | null,
+    bundleHealth: "partial" as const,
+    positionStatus: null as string | null,
+    battleboard: null,
+    bundleText,
+  });
+  const masterish = (label: string) =>
+    /full window\s*\/\s*master footage|full CCTV master|cctv master|master footage/i.test(label);
+
+  const patel = buildDisclosureChaseBrief(
+    briefInput(
+      "patel-cctv-double",
+      "R v Isaac Patel\nCharge: Affray\nMG6 DISCLOSURE SCHEDULE\nMG6/05 full CCTV master outstanding requested / not attached\n",
+    ),
+  );
+  const patelBoard = patel.primaryItems.map((i) => i.label).join(" || ");
+  const patelMaster = patel.primaryItems.filter((i) => masterish(i.label));
+  assert.equal(patelMaster.length, 1, `Patel master must be one cell — got: ${patelBoard}`);
+  assert.ok(
+    /MG6\/05|full CCTV master/i.test(patelMaster[0]!.label),
+    `the schedule cell is the request — got ${patelMaster[0]!.label}`,
+  );
+  assert.ok(
+    !(
+      patel.primaryItems.some((i) => /^CCTV full window\s*\/\s*master footage$/i.test(i.label)) &&
+      patel.primaryItems.some((i) => /MG6\/05/i.test(i.label))
+    ),
+    `generic template must not sit beside MG6/05 — got: ${patelBoard}`,
+  );
+
+  const hale = buildDisclosureChaseBrief(
+    briefInput(
+      "hale-cctv-double",
+      `CB-MURDER-TEST-0001 - Leon Hale
+Charge: Murder
+10 CCTV stills and timing note Master footage outstanding EX-MUR-009
+Full CCTV master footage from estate cameras outstanding`,
+    ),
+  );
+  const haleBoard = hale.primaryItems.map((i) => i.label).join(" || ");
+  const haleMaster = hale.primaryItems.filter((i) => masterish(i.label));
+  assert.equal(haleMaster.length, 1, `Hale EX-MUR-009 and narrative master must be one cell — got: ${haleBoard}`);
+  assert.ok(
+    /EX-MUR-009|master footage/i.test(haleMaster[0]!.label),
+    `keep the cited cell — got ${haleMaster[0]!.label}`,
+  );
+
+  const stills = buildDisclosureChaseBrief(
+    briefInput(
+      "dunn-stills-only",
+      "MG6 DISCLOSURE SCHEDULE\nS05 CCTV stills Served Included in present papers\nNo full CCTV master. No master footage.\n",
+    ),
+  );
+  const stillsBoard = stills.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(
+    !stills.primaryItems.some((i) => i.familyId === "cctv_master" || masterish(i.label)),
+    `stills-only must not invent master — got: ${stillsBoard}`,
+  );
+
+  const beck = buildDisclosureChaseBrief(
+    briefInput(
+      "beck-stills-applicable",
+      `MG6 / DISCLOSURE POSITION
+Served material: EX-U-WA-13 as a still/photo/extract.
+Full image/CCTV/source file: not served - only still/photo/extract served.
+Full CCTV master outstanding or not verified, where applicable.`,
+    ),
+  );
+  const beckBoard = beck.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(
+    !beck.primaryItems.some(
+      (i) => i.familyId === "cctv_master" || /^CCTV full window\s*\/\s*master footage$/i.test(i.label),
+    ),
+    `where-applicable pack line is not a master cell — got: ${beckBoard}`,
+  );
+
+  const mg5 = buildDisclosureChaseBrief(
+    briefInput(
+      "patel-mg5-master",
+      "Isaac Patel\nCharge: Affray\nMG5: CCTV stills are referred to. The full CCTV master footage/export log is outstanding.\n",
+    ),
+  );
+  assert.ok(
+    mg5.primaryItems.some((i) => masterish(i.label)),
+    `MG5 naming master without a schedule code still surfaces — got: ${mg5.primaryItems.map((i) => i.label).join(" || ")}`,
+  );
+});
+
 check("arrested on suspicion of involvement is not a charge", () => {
   const meta = extractBundleCaseMetadata(
     "CASE: R v Alex Neutral\nHe was arrested on suspicion of his involvement in the incident.",
   );
   assert.doesNotMatch(meta.offenceDisplay ?? meta.offenceWording ?? "", /involvement/i);
+  const blankCharge = extractBundleCaseMetadata(
+    "R v Taylor Brookes\nNext hearing\nPTPH - 06 July 2026 at 10:00\nOriginal WhatsApp export outstanding.",
+  );
+  assert.equal(
+    blankCharge.offenceDisplay ?? blankCharge.offenceWording ?? null,
+    null,
+    `no Charge: on the File stays blank — got ${blankCharge.offenceDisplay ?? blankCharge.offenceWording}`,
+  );
 });
 
 console.log(`uniform-gate-truth: ${checks} checks PASS`);

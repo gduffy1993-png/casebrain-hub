@@ -359,6 +359,18 @@ assert.equal(
   "Dunn-like: stills alone must not establish CCTV master",
 );
 assert.equal(
+  isCctvMasterEstablished(
+    "Served material: EX-U-WA-13 as a still/photo/extract.\nFull CCTV master outstanding or not verified, where applicable.",
+  ),
+  false,
+  "Beck-like: where-applicable pack line must not establish CCTV master",
+);
+assert.equal(
+  isCctvMasterEstablished("MG6/05 full CCTV master outstanding requested / not attached"),
+  true,
+  "opposite: a schedule cell naming master still establishes",
+);
+assert.equal(
   gateMaterialLines(["CCTV continuity / provenance", "CCTV master footage", "ID procedure material"], DUNN_LIKE).length,
   0,
   "Dunn-like: invent seeds for continuity/master/ID must drop",

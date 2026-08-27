@@ -187,6 +187,17 @@ export function lineIsScheduleFurniture(line: string): boolean {
   if (/^image appears to show\b/i.test(l)) return true;
   if (/visible text appears to read only/i.test(l)) return true;
   if (/cut-off text must not be invented/i.test(l)) return true;
+  if (/^the court can be asked to record\b/i.test(l)) return true;
+  if (/^defence risk note\b/i.test(l)) return true;
+  if (/^safe move\s*:/i.test(l)) return true;
+  if (/^this may assist the (?:defence|crown)\b/i.test(l)) return true;
+  // Pack boilerplate is not a schedule cell (Beck: "Full CCTV master … where applicable").
+  if (
+    /\bwhere\s+applicable\b/i.test(l) &&
+    !/\b(?:MG\d{1,2}[A-Z]?(?:\/\d+)?|EX[-/][A-Z0-9-]+|O\d{1,2}|U\d)\b/i.test(l)
+  ) {
+    return true;
+  }
   if (labelIsStatusOnly(l)) return true;
   return false;
 }
@@ -590,6 +601,19 @@ function lineLeavesSchedule(line: string): boolean {
   const t = line.trim();
   if (/^={2,}\s*SECTION:\s*(?!MG6)/i.test(t)) return true;
   if (/^(?:CHARGE SHEET|WITNESS STATEMENT|MG5\s+CASE SUMMARY)\b/i.test(t)) return true;
+  if (/^#{1,3}\s+\d{0,2}\.?\s*(?:Witness Statement|Prosecution Case Summary|Charge Sheet|Case Overview)\b/i.test(t)) {
+    return true;
+  }
+  // Hale: "10. CCTV SECTION" / "2. CHARGE SHEET EXTRACT" is not the MG6 table.
+  // Opposite: "4. MG6 DISCLOSURE SCHEDULE" and "4A. MG6 … OUTSTANDING" stay in the schedule.
+  if (
+    /^\d+[A-Z]?\.\s+\S/.test(t) &&
+    !/\bMG6/i.test(t) &&
+    !/\bdisclosure schedule\b/i.test(t) &&
+    !/\bunused material\b/i.test(t)
+  ) {
+    return true;
+  }
   if (/\bCriminal Justice Act 1967\b/i.test(t)) return true;
   return false;
 }
@@ -602,6 +626,13 @@ function lineIsNarrativeProse(line: string): boolean {
   if (/\bplaced in Interview Room\b/i.test(l)) return true;
   if (/\bWhether he\b/i.test(l)) return true;
   if (/\bat \d{1,2}:\d{2} hours\b/i.test(l) && !parseScheduleRef(l)) return true;
+  // Clarke MG5 / witness prose is not an inventory cell.
+  if (
+    !parseScheduleRef(l) &&
+    /\b(?:hooded (?:male|figure|top)|taxi queue|attacker in dark|faces? unclear)\b/i.test(l)
+  ) {
+    return true;
+  }
   return false;
 }
 
@@ -651,7 +682,13 @@ function collectMaterialLines(bundleText: string): string[] {
     const line = raw.trim();
     if (!line) continue;
     if (lineLeavesSchedule(line)) inSchedule = false;
-    if (MG6_HEAD_RE.test(line) || /\bMG6C?\s*[/\-]\s*\d/i.test(line)) inSchedule = true;
+    if (
+      (MG6_HEAD_RE.test(line) || /\bMG6C?\s*[/\-]\s*\d/i.test(line)) &&
+      // Contents rows (`19. 17 MG6C Unused Material`) are not the schedule itself.
+      !/^\d{1,2}[.)]\s+\d{1,2}\s+/.test(line)
+    ) {
+      inSchedule = true;
+    }
     const stillNeeded = deglueScheduleText(line).match(/^Material still needed\s*:?\s*(.+)$/i);
     if (stillNeeded?.[1]) {
       for (const part of stillNeeded[1].split(/;/)) {

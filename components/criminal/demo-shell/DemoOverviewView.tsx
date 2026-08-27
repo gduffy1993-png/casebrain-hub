@@ -241,10 +241,7 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
   ]
     .map((candidate) => displayPilotStripClient(candidate))
     .find((candidate) => candidate && !/\bnot on papers\b/i.test(candidate));
-  const clientName =
-    clientDisplay
-      ? clientDisplay
-      : "Client identity needs confirmation";
+  const clientName = clientDisplay ?? "";
 
   const chargeLine =
     resolvePilotChargeDisplay(polishPresentationLine(allegation ?? "", bundleHay));
