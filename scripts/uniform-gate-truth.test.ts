@@ -16,6 +16,7 @@ import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-cha
 import {
   classifyMaterialStatus,
   deglueScheduleText,
+  lineIndicatesReferredOnly,
   lineIsScheduleFurniture,
   lineIsUnsourcedNarrativeChase,
   normaliseBundleMaterials,
@@ -471,6 +472,26 @@ The final report is not included in this bundle.`,
   const medical = brief.primaryItems.find((i) => /^Final medical\/forensic report$/i.test(i.label));
   assert.ok(medical, `final report not included must reach the board — got: ${board}`);
   assert.equal(medical!.baseStatus, "Outstanding", `final report not included must stay outstanding — got ${board}`);
+
+  const ahmedNoteOnly = buildDisclosureChaseBrief({
+    caseId: "ahmed-medical-note-narrative",
+    caseTitle: "Ahmed",
+    clientLabel: "Holly Ahmed",
+    allegation: "Possession of a bladed article",
+    stage: null,
+    hearingStatus: null,
+    hearingDateIso: null,
+    bundleHealth: "partial",
+    positionStatus: null,
+    battleboard: null,
+    bundleText: `Holly Ahmed
+Charge: Possession of a bladed article
+involving Holly Ahmed. The final report is not included in this bundle. The note should not be treated as a final report.`,
+  });
+  assert.ok(
+    !ahmedNoteOnly.primaryItems.some((i) => /^Final medical\/forensic report$/i.test(i.label)),
+    `narrative medical-note furniture is not a chase card — got: ${ahmedNoteOnly.primaryItems.map((i) => i.label).join(" || ")}`,
+  );
 });
 
 check("custody interview narrative is not an MG6 inventory", () => {
@@ -860,6 +881,16 @@ check("named CCTV master is one cell; stills-only does not invent the template",
   const masterish = (label: string) =>
     /full window\s*\/\s*master footage|full CCTV master|cctv master|master footage/i.test(label);
 
+  assert.equal(lineIndicatesReferredOnly("MG5: CCTV stills are referred to."), false);
+  assert.equal(lineIndicatesReferredOnly("MG6C/010 — BWV — referred to but not attached."), true);
+  assert.equal(lineIsScheduleFurniture("referred to on the schedule but not attached."), true);
+  assert.equal(lineIsScheduleFurniture("MG6C/010 — BWV — referred to but not attached."), false);
+  assert.equal(classifyMaterialStatus("MG5: CCTV stills are referred to."), null);
+  assert.equal(
+    classifyMaterialStatus("The full CCTV master footage/export log is outstanding."),
+    "outstanding",
+  );
+
   const patel = buildDisclosureChaseBrief(
     briefInput(
       "patel-cctv-double",
@@ -933,9 +964,30 @@ Full CCTV master outstanding or not verified, where applicable.`,
       "Isaac Patel\nCharge: Affray\nMG5: CCTV stills are referred to. The full CCTV master footage/export log is outstanding.\n",
     ),
   );
+  const mg5Board = mg5.primaryItems.map((i) => i.label).join(" || ");
   assert.ok(
     mg5.primaryItems.some((i) => masterish(i.label)),
-    `MG5 naming master without a schedule code still surfaces — got: ${mg5.primaryItems.map((i) => i.label).join(" || ")}`,
+    `MG5 naming master without a schedule code still surfaces — got: ${mg5Board}`,
+  );
+  assert.ok(
+    !mg5.primaryItems.some((i) => /stills are referred/i.test(i.label)),
+    `MG5 stills-sentence is mention, not a chase card — got: ${mg5Board}`,
+  );
+
+  const stillsMention = buildDisclosureChaseBrief(
+    briefInput(
+      "patel-mg5-stills-only",
+      "Isaac Patel\nCharge: Affray\nMG5: CCTV stills are referred to.\n",
+    ),
+  );
+  const stillsMentionBoard = stillsMention.primaryItems.map((i) => i.label).join(" || ");
+  assert.ok(
+    !stillsMention.primaryItems.some((i) => /stills are referred/i.test(i.label)),
+    `stills referred-to is not a card — got: ${stillsMentionBoard}`,
+  );
+  assert.ok(
+    !stillsMention.primaryItems.some((i) => i.familyId === "cctv_master" || masterish(i.label)),
+    `stills mention must not invent master — got: ${stillsMentionBoard}`,
   );
 });
 
@@ -1105,6 +1157,15 @@ Full interview recording / transcript — not served — in this bundle.`,
   assert.ok(
     patelInterview.primaryItems.some((i) => i.sourceScheduleRef === "MG6/07" || /MG6\/07/.test(i.label)),
     `Patel MG6/07 transcript cell stays — got: ${patelInterviewBoard}`,
+  );
+  assert.ok(
+    patelInterview.primaryItems.some(
+      (i) =>
+        /recording/i.test(i.label) &&
+        i.sourceScheduleRef !== "MG6/07" &&
+        !i.id.startsWith("chase-family-"),
+    ),
+    `File-named recording/transcript stays beside MG6/07 when File names both — got: ${patelInterviewBoard}`,
   );
   assert.equal(lineIsScheduleFurniture("Full interview recording / transcript outstanding"), false);
 

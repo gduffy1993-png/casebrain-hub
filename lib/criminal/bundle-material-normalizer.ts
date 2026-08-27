@@ -179,6 +179,19 @@ export function lineIsUnsourcedNarrativeChase(line: string): boolean {
   if (/^sent\s+\d{1,2}\b/i.test(l) && /\b(?:adjourned|ptph)\b/i.test(l)) return true;
   if (/^ambulance note records\b/i.test(l)) return true;
   if (/^medical material is incomplete\b/i.test(l)) return true;
+  if (
+    /\b(?:cctv\s+)?stills?\s+are\s+referred\s+to\b/i.test(l) &&
+    !/\b(?:outstanding|not\s+served|not\s+attached|master\s+footage|export\s+log)\b/i.test(l)
+  ) {
+    return true;
+  }
+  if (
+    !ITEM_RE.test(l) &&
+    !parseScheduleRef(l) &&
+    /\breferred\s+to\s+on\s+the\s+schedule\b/i.test(l)
+  ) {
+    return true;
+  }
   if (/^the (?:crown|prosecution|defence|court|app|matter|note|schedule|oic)\b/i.test(l)) {
     return true;
   }
@@ -258,6 +271,15 @@ export function lineIsScheduleFurniture(line: string): boolean {
     if (/\(\s*CCTV\s*\/\s*weapon\s*\)/i.test(l)) return true;
     if (/\bphone\/messages referenced but not fully\b/i.test(l)) return true;
     if (/^Prosecution relies on\b/i.test(l)) return true;
+    if (
+      /\b(?:cctv\s+)?stills?\s+are\s+referred\s+to\b/i.test(l) &&
+      !/\b(?:outstanding|not\s+served|not\s+attached|master\s+footage)\b/i.test(l)
+    ) {
+      return true;
+    }
+    if (!ITEM_RE.test(l) && /\breferred\s+to\s+on\s+the\s+schedule\b/i.test(l)) {
+      return true;
+    }
     if (
       /^involving\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+/i.test(l) &&
       /final report is not included/i.test(l)
@@ -496,7 +518,19 @@ export function lineIndicatesReferredOnly(line: string): boolean {
   // "referenced only" is the same state as "referred only": named in the papers, not attached.
   if (/\breferr?e(?:d|nced)\s+only\b/i.test(l)) return true;
   if (/\breferred\s+on\s+(?:mg6c?|schedule|index|disclosure)\b/i.test(l)) return true;
-  if (/\breferred\s+to\b/i.test(l)) return true;
+  // MG5 "CCTV stills are referred to" is mention, not a gap cell.
+  // Opposite: "referred to but not attached" / a schedule-coded referred row still is.
+  if (/\breferred\s+to\b/i.test(l)) {
+    if (parseScheduleRef(l)) return true;
+    if (
+      /\b(?:but\s+not|not\s+(?:served|attached|included|on\s+(?:file|bundle|papers))|not\s+fully)\b/i.test(
+        l,
+      )
+    ) {
+      return true;
+    }
+    if (/\bon\s+(?:the\s+)?(?:schedule|mg6c?)\b/i.test(l)) return true;
+  }
   if (/\b(?:listed|scheduled)\b[^.\n]{0,40}\bnot\s+(?:served|attached)\b/i.test(l)) return true;
   if (
     /\breferred\b/i.test(l) &&
@@ -726,6 +760,13 @@ function lineIsNarrativeProse(line: string): boolean {
   ) {
     return true;
   }
+  if (
+    !parseScheduleRef(l) &&
+    /\b(?:cctv\s+)?stills?\s+are\s+referred\s+to\b/i.test(l) &&
+    !/\b(?:outstanding|not\s+served|not\s+attached|master\s+footage)\b/i.test(l)
+  ) {
+    return true;
+  }
   if (!parseScheduleRef(l) && /^MG5 timing\b/i.test(l)) return true;
   if (!parseScheduleRef(l) && /\bso the exact words\b/i.test(l)) return true;
   if (
@@ -804,12 +845,12 @@ function collectMaterialLines(bundleText: string): string[] {
     }
     const clauses = line.split(/(?<=\.)\s+(?=[A-Z])/).map((s) => s.trim()).filter(Boolean);
     const units = clauses.length > 1 ? clauses : [line];
-    const splitFromProse = clauses.length > 1;
     for (const unit of units) {
-      // Do not mint a second interview/transcript card from a leftover clause.
-      // Standalone short cells (`Full interview recording / transcript outstanding`) still enter.
+      // Hale EX-MUR-021 is already one cell. Do not mint a second interview card from a leftover
+      // clause. Standalone File-named cells (`Full interview recording / transcript — not served`)
+      // still enter because they are not split leftovers.
       if (
-        splitFromProse &&
+        clauses.length > 1 &&
         /\b(?:interview|transcript)\b/i.test(unit) &&
         !parseScheduleRef(unit) &&
         !isFormalOutstandingInventoryLine(unit)
