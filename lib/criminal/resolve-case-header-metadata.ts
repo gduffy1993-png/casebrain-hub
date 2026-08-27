@@ -164,6 +164,7 @@ function looksLikePersonName(value: string): boolean {
   if (t.length < 3 || t.length > 80) return false;
   if (/^client\b/i.test(t)) return false;
   if (/not safely extracted/i.test(t)) return false;
+  if (/\b(?:unless document|says otherwise|do not treat)\b/i.test(t)) return false;
   if (/^\d+$/.test(t)) return false;
   if (/^[A-Z]{2,4}$/.test(t) && !/\s/.test(t)) return false;
   return /[A-Za-z]{2,}/.test(t);
@@ -454,7 +455,7 @@ export function sanitizeHeaderClient(label: string): string {
     .replace(/\bPrimary\b.*$/i, "")
     .replace(/\b(sheet\s*\/\s*indictment|indictment|extract)\b.*$/i, "")
     .trim();
-  if (!t || /^client\b/i.test(t) || /not safely extracted/i.test(t)) {
+  if (!t || /^client\b/i.test(t) || /not safely extracted/i.test(t) || /\bunless document\b|\bsays otherwise\b/i.test(t)) {
     return NOT_EXTRACTED_CLIENT;
   }
   return t;

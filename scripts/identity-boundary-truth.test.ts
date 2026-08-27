@@ -79,4 +79,88 @@ check("glued DefendantIsaacPatel and ALL CAPS R v are File identity, not a blank
   );
 });
 
+check("instruction prose is not the client, and an old allocation date is not the current listing", () => {
+  const kitchen = extractBundleCaseMetadata(`
+OLD CASE COVER - SUPERSEDED
+Old magistrates allocation sheet shows next hearing 01 January 2024 and an old assault-only description.
+Do not treat this as the live date or complete charge position.
+DefendantRiley NorthSingle client unless document says otherwise
+CourtNorthshire Crown CourtCrown Court listed venue
+Next hearing17 June 2026 at 14:00PTPH - live current listing
+Charge wording should be treated as primary until superseded
+CASE PROGRESSION EMAIL
+Sent 08 June 2026: Matter adjourned to 17 June 2026 at 14:00 for PTPH at Northshire Crown Court.
+  `);
+  assert.equal(kitchen.defendantName, "Riley North");
+  assert.doesNotMatch(kitchen.defendantName ?? "", /unless|document|otherwise/i);
+  assert.match(kitchen.nextHearingRaw ?? "", /17 June 2026/i);
+  assert.doesNotMatch(kitchen.nextHearingRaw ?? "", /January 2024|01 Jan/i);
+  assert.match(kitchen.court ?? "", /Northshire Crown Court/i);
+  assert.doesNotMatch(kitchen.court ?? "", /Court Court|Crown Court Crown/i);
+});
+
+check("a sole old next-hearing date still extracts when nothing later supersedes it", () => {
+  const onlyOld = extractBundleCaseMetadata(
+    "Defendant: Jane Cole\nCourt: Northgate Magistrates' Court\nNext hearing: 01 January 2024\nCharge: Theft",
+  );
+  assert.equal(onlyOld.defendantName, "Jane Cole");
+  assert.match(onlyOld.nextHearingRaw ?? "", /01 January 2024/i);
+  assert.match(onlyOld.offenceDisplay ?? onlyOld.offenceWording ?? "", /theft/i);
+});
+
+check("two equal-weight current next-hearing dates stay blank rather than picking the first", () => {
+  const clash = extractBundleCaseMetadata(
+    "Defendant: Jane Cole\nNext hearing: 12 March 2026 at 10:00\nNext hearing: 19 June 2026 at 14:00\nCharge: Theft",
+  );
+  assert.equal(
+    clash.nextHearingRaw,
+    null,
+    `conflicting current listings must not confidently pick one — got ${clash.nextHearingRaw}`,
+  );
+});
+
+check("Court glue does not emit Court Court or a police-station prefix", () => {
+  const greene = extractBundleCaseMetadata(
+    `AccusedLeo Greene DOB 07/07/1990Stagetrial listed in 7 days
+Police stationNorthgate Police StationCourtNorthshire Magistrates Court
+StatusremandNext hearing18/08/2026`,
+  );
+  assert.equal(greene.court, "Northshire Magistrates Court");
+  assert.doesNotMatch(greene.court ?? "", /^Court\s|Court Court|days|Police station/i);
+});
+
+check("Charge: Affray on a cover line is the charge, including the live Patel extract", () => {
+  const patel = extractBundleCaseMetadata(
+    [
+      "Isaac Patel",
+      "Case ID: 7e763777-94a8-4958-a190-a35ef6ddb259",
+      "Charge: Affray",
+      "Court: Southford Magistrates' Court",
+      "First Appearance: 25 August 2026",
+    ].join("\n"),
+  );
+  assert.equal(patel.defendantName, "Isaac Patel");
+  assert.match(patel.offenceDisplay ?? patel.offenceWording ?? "", /affray/i);
+  assert.match(patel.court ?? "", /Southford Magistrates/i);
+});
+
+check("quiet arrest-only papers still have no listing", () => {
+  const carter = extractBundleCaseMetadata(
+    "CASE: R v Liam Carter\nDATE OF ARREST: 03/02/2025\nThe male was arrested on suspicion of burglary.",
+  );
+  assert.equal(carter.nextHearingRaw, null);
+  assert.match(carter.offenceDisplay ?? carter.offenceWording ?? "", /burglary/i);
+});
+
+check("tab furniture is not a defendant; a real surname Chase still is", () => {
+  const chrome = extractBundleCaseMetadata(
+    "Client Summary\nCPS Chase\nFile & Preparation\nNo documents uploaded.",
+  );
+  assert.equal(chrome.defendantName, null);
+  assert.equal(
+    extractBundleCaseMetadata("Defendant: Jordan Chase\nCharge: Theft\nNext hearing: 15 July 2026").defendantName,
+    "Jordan Chase",
+  );
+});
+
 console.log(`identity-boundary-truth: ${checks} checks passed`);
