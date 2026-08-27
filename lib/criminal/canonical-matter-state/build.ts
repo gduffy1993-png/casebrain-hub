@@ -285,14 +285,20 @@ export function buildCanonicalMatterStateV1(input: BuildCanonicalMatterInput): C
         whyItMatters: item.whyItMatters ?? null,
       };
     });
-  // Add remaining live chase labels from pipeline (missing master etc.)
-  for (const label of pipeline?.chaseLabels ?? []) {
+  // Add remaining live active chase requests from the canonical state. Review-only
+  // states such as referred_only / not_safely_confirmed must not become active chase.
+  for (const request of pipeline?.evidenceState.chaseRequests ?? []) {
+    if (request.state !== "missing" && request.state !== "incomplete") continue;
+    const label = request.label;
     if (chaseItems.some((c) => c.label === label)) continue;
     chaseItems.push({
       id: stableId("ch", [label, "not_started"]),
       label,
       status: "not_started",
-      whyItMatters: "Outstanding on papers — chase required",
+      whyItMatters:
+        request.state === "incomplete"
+          ? "On file but incomplete — request the complete version"
+          : "Not served on current disclosure — chase required",
     });
   }
   const chaseCounts = countChase(chaseItems);

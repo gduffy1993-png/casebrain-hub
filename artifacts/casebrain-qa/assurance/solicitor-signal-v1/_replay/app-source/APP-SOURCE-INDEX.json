@@ -1,0 +1,65 @@
+[
+  {
+    "caseId": "687cf5a6-6898-4257-baef-33e33ace08df",
+    "status": 200,
+    "scanChars": 8104,
+    "combinedTextLength": 8110,
+    "documents": [
+      "CB-TB-439_Davies.pdf"
+    ]
+  },
+  {
+    "caseId": "7e763777-94a8-4958-a190-a35ef6ddb259",
+    "status": 200,
+    "scanChars": 10245,
+    "combinedTextLength": 10251,
+    "documents": [
+      "CB-TB-546_Patel.pdf"
+    ]
+  },
+  {
+    "caseId": "a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27",
+    "status": 200,
+    "scanChars": 10810,
+    "combinedTextLength": 10816,
+    "documents": [
+      "CB-TB-1925_Tobin.pdf"
+    ]
+  },
+  {
+    "caseId": "14823d9e-1f0f-4cfc-af01-e6595d1cdfc4",
+    "status": 200,
+    "scanChars": 80000,
+    "combinedTextLength": 167149,
+    "documents": [
+      "CB-MURDER-TEST-0001_criminal_defence_bundle.pdf"
+    ]
+  },
+  {
+    "caseId": "99090c69-5d78-41e3-946d-119b4bc335ba",
+    "status": 200,
+    "scanChars": 80000,
+    "combinedTextLength": 145270,
+    "documents": [
+      "CB-MONSTER-2026-0001.pdf"
+    ]
+  },
+  {
+    "caseId": "2dcdc59d-ff44-4bc8-ac31-bd11a954a59e",
+    "status": 200,
+    "scanChars": 12061,
+    "combinedTextLength": 12101,
+    "documents": [
+      "CB-FRESH-001_Taylor_Brookes_CLEAN.pdf"
+    ]
+  },
+  {
+    "caseId": "a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01",
+    "status": 200,
+    "scanChars": 8344,
+    "combinedTextLength": 8356,
+    "documents": [
+      "CB-TB-343_Dunn.pdf"
+    ]
+  }
+]

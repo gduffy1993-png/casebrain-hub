@@ -1,0 +1,16 @@
+{
+  "caseId": "c88821e3-bbb7-4528-9dd6-034592710e30",
+  "primary": [
+    {
+      "ref": null,
+      "label": "Full custody record / PACE material",
+      "family": "custody_pace",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 13,
+  "statedGaps": 0,
+  "statedGapsOnBoard": 0,
+  "truncated": false,
+  "findings": []
+}

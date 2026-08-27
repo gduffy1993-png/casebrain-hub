@@ -1,0 +1,46 @@
+{
+  "caseId": "331f5ca6-2d6d-4664-a139-fc7dca6760dc",
+  "primary": [
+    {
+      "ref": "EXH/002",
+      "label": "EXH/002-004 CCTV: 2–3 hour gap between download and formal",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EXH/005",
+      "label": "EXH/005 Stills: Extracted for witness ID; faces unclear.",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EXH/005",
+      "label": "CCTV Stills Description (EXH/005)",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "CCTV continuity / provenance",
+      "family": "cctv_continuity",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Full custody record / PACE material",
+      "family": "custody_pace",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Medical / expert source report",
+      "family": "medical_expert",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 107,
+  "statedGaps": 0,
+  "statedGapsOnBoard": 0,
+  "truncated": false,
+  "findings": []
+}

@@ -1,0 +1,492 @@
+[
+  {
+    "caseId": "cb-fresh-001-taylor-brookes",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "cb-fresh-002-jordan-hale",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "cb-found-2001-ellis",
+    "inventLabels": [
+      "CCTV Continuity / provenance"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": true,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "cb-found-2002-smith",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "cb-found-2003-nguyen",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "cb-found-2004-clarke",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "cb-found-2005-okafor",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "cb-found-2006-carter",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "cb-found-2007-morrison",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "demo-audit-07-phone-ocr-trap",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "demo-audit-13-co-def-index-trap",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "demo-audit-28-fraud-subscriber-trap",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "pilot-3-marcus-vale",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00001",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00002",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00003",
+    "inventLabels": [
+      "CCTV Continuity / provenance",
+      "CCTV full window / master footage"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": true,
+    "pdfHasMaster": true,
+    "pdfHasId": true
+  },
+  {
+    "caseId": "sc-00007",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00008",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00009",
+    "inventLabels": [
+      "CCTV Continuity / provenance",
+      "CCTV full window / master footage"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": true,
+    "pdfHasMaster": true,
+    "pdfHasId": true
+  },
+  {
+    "caseId": "sc-0000a",
+    "inventLabels": [
+      "CCTV Continuity / provenance"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": true,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-0000b",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-0000c",
+    "inventLabels": [
+      "CCTV full window / master footage"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": true,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-0000d",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-0000e",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-0000f",
+    "inventLabels": [
+      "CCTV Continuity / provenance",
+      "CCTV full window / master footage"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": true,
+    "pdfHasMaster": true,
+    "pdfHasId": true
+  },
+  {
+    "caseId": "sc-00013",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00014",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00015",
+    "inventLabels": [
+      "CCTV full window / master footage"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": true,
+    "pdfHasId": true
+  },
+  {
+    "caseId": "sc-00016",
+    "inventLabels": [
+      "CCTV Continuity / provenance"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": true,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00018",
+    "inventLabels": [
+      "CCTV full window / master footage"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": true,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00019",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-0001a",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-0001b",
+    "inventLabels": [
+      "CCTV Continuity / provenance",
+      "CCTV full window / master footage"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": true,
+    "pdfHasMaster": true,
+    "pdfHasId": true
+  },
+  {
+    "caseId": "sc-0001f",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00020",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00021",
+    "inventLabels": [
+      "CCTV Continuity / provenance",
+      "CCTV full window / master footage"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": true,
+    "pdfHasMaster": true,
+    "pdfHasId": true
+  },
+  {
+    "caseId": "sc-00022",
+    "inventLabels": [
+      "CCTV Continuity / provenance"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": true,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00023",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00024",
+    "inventLabels": [
+      "CCTV full window / master footage"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": true,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00025",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00026",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00027",
+    "inventLabels": [
+      "CCTV full window / master footage"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": true,
+    "pdfHasId": true
+  },
+  {
+    "caseId": "sc-0002b",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-0002c",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-0002d",
+    "inventLabels": [
+      "CCTV full window / master footage"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": true,
+    "pdfHasId": true
+  },
+  {
+    "caseId": "sc-0002e",
+    "inventLabels": [
+      "CCTV Continuity / provenance"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": true,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-0002f",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00030",
+    "inventLabels": [
+      "CCTV Continuity / provenance",
+      "CCTV full window / master footage"
+    ],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": true,
+    "pdfHasMaster": true,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00031",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  },
+  {
+    "caseId": "sc-00032",
+    "inventLabels": [],
+    "inventedWithoutSource": [],
+    "courtIdentificationInvent": false,
+    "pdfHasContinuity": false,
+    "pdfHasMaster": false,
+    "pdfHasId": false
+  }
+]

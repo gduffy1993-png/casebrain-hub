@@ -80,10 +80,15 @@ No comment after limited disclosure. Defence later records that identification a
   const harassmentHay =
     "Harassment screenshots served. Full phone download / source export outstanding. Subscriber data missing.";
   const digitalPolished = polishPresentationLine("MG6 / unused schedule clarification", harassmentHay);
-  assert.match(
+  assert.doesNotMatch(
     digitalPolished,
     /phone download|source export/i,
-    "opposite: true digital-disclosure hay may still rewrite MG6 umbrella",
+    "digital-disclosure hay must not rewrite MG6 umbrella into a second phone chase",
+  );
+  assert.match(
+    digitalPolished,
+    /digital disclosure schedule/i,
+    "MG6 clarification becomes schedule wording, not phone download",
   );
 
   assert.equal(familySupport("phone", ARDEN_SNIPPET), "absent");
@@ -379,6 +384,36 @@ CAD / 999 extract Present.
 
   assert.equal(isCctvMasterEstablished(ARDEN_SNIPPET), true, "Arden: full CCTV master establishes");
   assert.equal(isCctvContinuityEstablished(ARDEN_SNIPPET), true, "Arden: continuity statement establishes");
+
+  // Invent mute shared-root: CCTV stills + unrelated forensic continuity ≠ CCTV continuity.
+  const DUNN_INVENT = `
+Conspiracy to burgle.
+Served: BWV stills, CCTV stills, CAD log extract, interview summary, custody timeline, exhibit list, MG6.
+Outstanding: full interview transcript, full CAD print, forensic continuity, 999 audio listed but not attached.
+No CCTV continuity. No CCTV master. No ID procedure.
+`.trim();
+  assert.equal(
+    isCctvContinuityEstablished(DUNN_INVENT),
+    false,
+    "Dunn invent: stills + forensic continuity must not establish CCTV continuity",
+  );
+  const dunnInventBrief = buildDisclosureChaseBrief({
+    caseId: "dunn-invent-mute",
+    caseTitle: "Ellis Dunn",
+    clientLabel: "Ellis Dunn",
+    allegation: "Conspiracy to burgle",
+    stage: "PTPH",
+    hearingStatus: "Listed",
+    hearingDateIso: null,
+    bundleHealth: "Partial",
+    positionStatus: "Provisional",
+    battleboard: null,
+    bundleText: DUNN_INVENT,
+  });
+  assert.ok(
+    !dunnInventBrief.items.some((i) => /CCTV continuity|CCTV master|ID procedure/i.test(i.label)),
+    "Dunn invent: continuity/master/ID must not appear on chase/Overview feed",
+  );
 
   // Court C4: witness "not the full CCTV or BWV sequence" must not establish master chase.
   const notFullCctvWitness =
@@ -826,6 +861,15 @@ Evidence referred or outstanding: Full BWV export; full custody record.
     );
   }
 
+  const ahmedWelded = reconcileSubscriberModalityItems(
+    [],
+    "5phone subscriber dataoutstandingnot attached",
+  );
+  assert.ok(
+    ahmedWelded.some((i) => /subscriber/i.test(i.label)),
+    "Ahmed: welded subscriber dataoutstanding must still establish the gap",
+  );
+
   const ahmedSub = reconcileSubscriberModalityItems(
     [],
     "phone subscriber data outstanding not attached",
@@ -833,6 +877,41 @@ Evidence referred or outstanding: Full BWV export; full custody record.
   assert.ok(
     ahmedSub.some((i) => /subscriber/i.test(i.label)),
     "Ahmed: subscriber outstanding must surface",
+  );
+
+  const reedMappingHay =
+    "Taylor Reed\nCharge: Harassment\nScreenshots of WhatsApp messages served.\nFull phone download / subscriber mapping outstanding.\nNo BWV. No CCTV.";
+  const reedMappingInject = reconcileSubscriberModalityItems([], reedMappingHay);
+  assert.equal(
+    reedMappingInject.filter((i) => /subscriber/i.test(i.label)).length,
+    0,
+    "Reed: subscriber mapping glued to the download cell must not inject subscriber-data",
+  );
+  const reedMappingKeep = reconcileSubscriberModalityItems(
+    [
+      {
+        id: "r1",
+        familyId: "other",
+        label: "Full phone download / subscriber mapping",
+        whyItMatters: "test",
+        source: "Crown",
+        baseStatus: "Outstanding",
+        urgency: "high",
+        deadlineLabel: "test",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording: "Please provide full phone download / subscriber mapping",
+        courtLine: "phone",
+        mergedFrom: ["Full phone download / subscriber mapping outstanding"],
+      },
+    ],
+    reedMappingHay,
+  );
+  assert.equal(reedMappingKeep.length, 1, "Reed: one download/mapping cell stays one card");
+  assert.match(reedMappingKeep[0]!.label, /subscriber mapping/i);
+  assert.ok(
+    !reedMappingKeep.some((i) => /^Subscriber \/ account data$/i.test(i.label)),
+    "Reed: mapping is not a second Subscriber / account data card",
   );
 
   const ahmedNewline = reconcileSubscriberModalityItems(

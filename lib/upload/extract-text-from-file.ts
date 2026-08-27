@@ -6,6 +6,10 @@ import {
   summariseTextLayerCoverage,
   type ExtractedPageUnit,
 } from "@/lib/upload/pdf-page-units";
+import {
+  countPdfPageObjects,
+  extractPdfTextFromContentStreams,
+} from "@/lib/upload/pdf-stream-text-fallback";
 
 /**
  * Per-page text extraction using the parser's page renderer. Lives here because this
@@ -93,6 +97,15 @@ export async function extractTextAndMetaFromFileBuffer(
           : null;
       return { text: result.text || "", pageCount: pages, pageUnits: [], textLayerLimitation: null };
     } catch (error) {
+      const recovered = extractPdfTextFromContentStreams(buffer);
+      if (recovered) {
+        return {
+          text: recovered,
+          pageCount: countPdfPageObjects(buffer),
+          pageUnits: [],
+          textLayerLimitation: null,
+        };
+      }
       throw new Error(
         `PDF parsing failed: ${error instanceof Error ? error.message : "Unknown error"}. The PDF may be corrupted, password-protected, or use an unsupported format.`,
       );

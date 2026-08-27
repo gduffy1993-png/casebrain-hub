@@ -44,6 +44,24 @@ function isChaseOrDisclosureLine(line: string): boolean {
   );
 }
 
+function isSourceMaterialTitle(line: string): boolean {
+  return /^[A-Z0-9][A-Za-z0-9 /()&,'-]{2,90}\b(?:report|material|record|transcript|log|data|footage|provenance|schedule|clarification)$/i.test(
+    line.trim(),
+  );
+}
+
+function isSourceSupportedFinalMedicalReportLine(
+  line: string,
+  fp: ReturnType<typeof buildSourceTruthFingerprint>,
+): boolean {
+  if (!/\b(?:final\s+)?(?:medical\s*\/\s*forensic|forensic|medical)\s+report\b/i.test(line)) {
+    return false;
+  }
+  const state = categoryState(fp, "medical");
+  if (!state || state === "absent") return false;
+  return isChaseOrDisclosureLine(line) || isSourceMaterialTitle(line);
+}
+
 function criticalReason(line: string, fp: ReturnType<typeof buildSourceTruthFingerprint>): { flag: GuardianFlag; reason: string } | null {
   const lower = line.toLowerCase();
 
@@ -92,7 +110,10 @@ function criticalReason(line: string, fp: ReturnType<typeof buildSourceTruthFing
   if (has(lower, /\b(?:he|she|the defendant|client)\s+(?:assaulted|caused the injury|sent the messages|controlled her|controlled him)\b/i)) {
     return { flag: "guilt_assertion", reason: "Guilt or actus assertion surfaced as fact." };
   }
-  if (has(lower, /\b(?:second cctv angle|additional bwv clip|new witness|forensic report|metadata timeline)\b/i)) {
+  if (
+    has(lower, /\b(?:second cctv angle|additional bwv clip|new witness|forensic report|metadata timeline)\b/i) &&
+    !isSourceSupportedFinalMedicalReportLine(line, fp)
+  ) {
     return { flag: "invented_evidence", reason: "Line refers to an evidence category/asset not established by fingerprint." };
   }
   if (has(lower, /\binjury\s+consistent\s+with\s+assault\b/i) && !stateAllowsFact(categoryState(fp, "medical"))) {
@@ -313,27 +334,93 @@ function guardChaseItem(
   ctx: Omit<SourceTruthGuardianContext, "surface">,
 ): { item: DisclosureChaseItem | null; report: SourceTruthGuardianReport } {
   const base = { ...ctx, surface: "chase" as const };
-  const label = guardSourceTruthLines([item.label], base);
+  const modalityHay = [
+    ctx.bundleText ?? "",
+    item.evidenceAnchor ?? "",
+    item.whyItMatters ?? "",
+    item.draftChaseWording ?? "",
+    ...(item.mergedFrom ?? []),
+  ].join("\n");
+  const sourceCorrectedItem =
+    item.familyId === "interview" &&
+    /\binterview\s+recording\b/i.test(item.label) &&
+    (/\bmaterial\s+still\s+needed\s*:?.{0,160}\b(?:interview\s+)?transcript\b/i.test(modalityHay) ||
+      /\b(?:interview\s+)?transcript\b.{0,100}\b(?:not\s+in\s+this\s+section|not\s+(?:served|included|attached|provided|on\s+file)|missing|outstanding)\b/i.test(
+        modalityHay,
+      )) &&
+    !/\binterview\s+recording\s*\/\s*transcript\b|\binterview\s+recording\b.{0,100}\b(?:not\s+(?:served|included|attached|provided)|missing|outstanding)\b/i.test(
+      modalityHay,
+    )
+      ? {
+          ...item,
+          label: "Interview transcript",
+          draftChaseWording:
+            item.baseStatus === "Not safely confirmed"
+              ? "Please confirm the current status of the interview transcript before it is relied on."
+              : "Please provide the interview transcript, or confirm in writing why it is not available.",
+        }
+      : item;
+  const label = guardSourceTruthLines([sourceCorrectedItem.label], base);
   if (!label.lines[0]) return { item: null, report: label.report };
-  const why = guardSourceTruthLines([item.whyItMatters], base);
-  const draft = guardSourceTruthLines([item.draftChaseWording], base);
+  const why = guardSourceTruthLines([sourceCorrectedItem.whyItMatters], base);
+  const draft = guardSourceTruthLines([sourceCorrectedItem.draftChaseWording], base);
+  const courtFallback =
+    sourceCorrectedItem.baseStatus === "Not safely confirmed"
+      ? "The defence asks the court to record that this material needs confirmation before it is relied on."
+      : "The defence asks the court to record this material as outstanding.";
   const court = guardSourceTruthLines(
-    [item.courtLine],
+    [sourceCorrectedItem.courtLine],
     base,
-    "The defence asks the court to record this material as outstanding.",
+    courtFallback,
   );
-  const anchor = item.evidenceAnchor ? guardSourceTruthLines([item.evidenceAnchor], base) : null;
+  const guardedCourtLine = court.lines[0] ?? courtFallback;
+  const courtLine =
+    sourceCorrectedItem.baseStatus === "Not safely confirmed" &&
+    /\b(?:appears|remain(?:s)?|is|are)\s+(?:missing|outstanding|overdue)\b|\bdue\s+soon\b|\boverdue\b|\bdisclosed\s+on\s+a\s+timetable\b/i.test(
+      guardedCourtLine,
+    )
+      ? courtFallback
+      : guardedCourtLine;
+  const anchor = sourceCorrectedItem.evidenceAnchor ? guardSourceTruthLines([sourceCorrectedItem.evidenceAnchor], base) : null;
   return {
     item: {
-      ...item,
+      ...sourceCorrectedItem,
       label: label.lines[0],
-      whyItMatters: why.lines[0] ?? item.whyItMatters,
-      draftChaseWording: draft.lines[0] ?? item.draftChaseWording,
-      courtLine: court.lines[0] ?? "The defence asks the court to record this material as outstanding.",
-      evidenceAnchor: anchor ? anchor.lines[0] ?? null : item.evidenceAnchor,
+      whyItMatters: why.lines[0] ?? sourceCorrectedItem.whyItMatters,
+      draftChaseWording: draft.lines[0] ?? sourceCorrectedItem.draftChaseWording,
+      courtLine,
+      evidenceAnchor: anchor ? anchor.lines[0] ?? null : sourceCorrectedItem.evidenceAnchor,
     },
     report: mergeReports(label.report, why.report, draft.report, court.report, ...(anchor ? [anchor.report] : [])),
   };
+}
+
+function guardedChaseSummary(primaryCount: number, totalCount: number): string {
+  if (primaryCount > 0) {
+    return `${primaryCount} priority chase item${primaryCount === 1 ? "" : "s"} — source-material review`;
+  }
+  if (totalCount === 0) return "No source-material chase items safely detected";
+  if (totalCount === 1) return "1 grouped chase item — provisional";
+  return `${totalCount} grouped chase items — provisional`;
+}
+
+function guardedChaseCounters(items: DisclosureChaseItem[]): DisclosureChaseBrief["counters"] {
+  const counters: DisclosureChaseBrief["counters"] = {
+    total: items.length,
+    overdue: 0,
+    dueSoon: 0,
+    chased: 0,
+    received: 0,
+    notStarted: 0,
+  };
+  for (const item of items) {
+    if (item.baseStatus === "Overdue") counters.overdue += 1;
+    else if (item.baseStatus === "Due soon") counters.dueSoon += 1;
+    else if (item.baseStatus === "Chased") counters.chased += 1;
+    else if (item.baseStatus === "Received") counters.received += 1;
+    else counters.notStarted += 1;
+  }
+  return counters;
 }
 
 export function guardDisclosureChaseBrief(
@@ -357,12 +444,8 @@ export function guardDisclosureChaseBrief(
     items,
     primaryItems,
     additionalItems,
-    disclosureSummary: items.length ? brief.disclosureSummary : "Minimum disclosure chase required — provisional",
-    counters: {
-      ...brief.counters,
-      total: items.length,
-      notStarted: items.filter((i) => i.baseStatus === "Outstanding" || i.baseStatus === "Not safely confirmed").length,
-    },
+    disclosureSummary: guardedChaseSummary(primaryItems.length, items.length),
+    counters: guardedChaseCounters(items),
     sourceTruthGuardian: report,
   } as DisclosureChaseBrief;
 }

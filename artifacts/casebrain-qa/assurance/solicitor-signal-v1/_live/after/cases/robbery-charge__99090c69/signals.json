@@ -1,0 +1,83 @@
+{
+  "caseId": "99090c69-5d78-41e3-946d-119b4bc335ba",
+  "slug": "robbery-charge",
+  "label": "Robbery Charge, hearing and papers need solicitor review before relying on this matter. CRIMINAL",
+  "preview": "https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-24T19:38:22.399Z",
+  "tabs": {
+    "overview": {
+      "ok": true,
+      "textLen": 2043,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "Safe Court Line Copy safe court line Identification, participation and attribution remain conditional on served CCTV. Client Update Copy client update CLIENT-SAFE SUMMARY (not for court or CPS) We are reviewing the papers in your case (Robb",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "0 Missing",
+          "1 Incomplete",
+          "What Needs Attention",
+          "0 missing · 1 incomplete · 2 open review items",
+          "Missing",
+          "Unclear",
+          "Incomplete",
+          "Chased",
+          "CCTV continuity / provenance",
+          "UNCLEAR",
+          "Continuity source needs checking before any CCTV point is relied on.",
+          "CCTV full window / master footage",
+          "UNCLEAR",
+          "Full CCTV or master media status needs confirming before the hearing position is fixed.",
+          "UNCLEAR",
+          "CCTV continuity / provenance",
+          "Continuity source needs checking before any CCTV point is relied on.",
+          "Disclosure issue: full bundle pages 88-94 and 201-206, full CCTV master, continuity statement,",
+          "Please provide the CCTV continuity record, provenance material, or confirm in writing why it is not available.",
+          "Copy chase request",
+          "Identification, participation and attribution remain conditional on served CCTV."
+        ],
+        "textLen": 2043
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 2760,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "CHASED",
+          "Chased",
+          "CCTV Continuity / provenance",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "Copy CPS chase",
+          "CCTV full window / master footage",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "Copy CPS chase",
+          "CCTV Continuity / provenance",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "CCTV Continuity / provenance",
+          "/ incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity",
+          "Disclosure issue: full bundle pages 88-94 and 201-206, full CCTV master, continuity statement,",
+          "Disclosure issue: full bundle pages 88-94 and 201-206, full CCTV master, continuity statement,",
+          "DRAFT CHASE WORDING",
+          "Please provide CCTV Continuity / provenance or confirm in writing why it is not available.",
+          "Case-wide court line (provisional): Identification, participation and attribution remain conditional on served CCTV.",
+          "Provisional chase list · check source before sending",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 2760
+      }
+    }
+  }
+}

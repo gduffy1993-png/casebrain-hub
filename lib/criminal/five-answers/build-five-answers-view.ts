@@ -58,6 +58,7 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
             source: item.source,
             baseStatus: item.baseStatus,
             evidenceAnchor: item.evidenceAnchor,
+            whyItMatters: item.whyItMatters,
           });
           const row = evidenceRowFromSourceState(item.label, state, item.whyItMatters?.trim() || undefined);
           if (state === "missing") {
@@ -93,6 +94,7 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
       source: item.source,
       baseStatus: item.baseStatus,
       evidenceAnchor: item.evidenceAnchor,
+      whyItMatters: item.whyItMatters,
     });
     const copy = buildCopySafeResult({
       text: item.draftChaseWording,

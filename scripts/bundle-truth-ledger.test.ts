@@ -382,6 +382,33 @@ assert.ok(
   "medical chase must not fall back to MG11",
 );
 
+const FIXTURE_MEDICAL_PROSE = `
+=== SECTION: CHARGE ===
+Count 1: Unlawful wounding, section 20 OAPA 1861
+Defendant: Client Alpha
+The full medical report is outstanding and has not been served.
+`.trim();
+const dcMedicalProse = buildDisclosureChaseBrief({
+  caseId: "dc-medical-prose",
+  caseTitle: "R v Client Alpha",
+  clientLabel: "Client Alpha",
+  allegation: "Unlawful wounding",
+  stage: "PTPH",
+  hearingStatus: "Hearing listed",
+  hearingDateIso: null,
+  bundleHealth: "Provisional",
+  positionStatus: "Provisional",
+  battleboard: mockBattleboard,
+  bundleText: FIXTURE_MEDICAL_PROSE,
+});
+const proseMedical = [...dcMedicalProse.primaryItems, ...dcMedicalProse.items].find(
+  (i) => i.familyId === "medical_expert" || /\bmedical\b/i.test(i.label),
+);
+assert.ok(
+  !proseMedical?.evidenceAnchor?.includes("MG6C/002"),
+  "template-only medical without a schedule ref must not invent MG6C/002",
+);
+
 assert.equal(ledgerAnchorForChaseFamily("medical_expert", ledgerA)?.includes("MG6C/002"), true);
 assert.equal(ledgerAnchorForChaseFamily("interview", ledgerA)?.includes("MG6C/003"), true);
 assert.equal(ledgerAnchorForChaseFamily("cctv_master", ledgerA)?.includes("MG6C/001"), true);
@@ -465,14 +492,16 @@ const gluedCctv = guardSolicitorLine(
   "MG6C/001Canal Store exterior CCTV not served May show first movement and whether complainant",
   guardCtxA,
 );
-assert.match(gluedCctv ?? "", /MG6C\/001 — Canal Store exterior CCTV/);
+// The reference and the material must both survive, unglued. The separator between them follows
+// whichever ledger row backs the line, which reference-aware dedupe can change.
+assert.match(gluedCctv ?? "", /MG6C\/001 [—\s]*Canal Store exterior CCTV/);
 assert.doesNotMatch(gluedCctv ?? "", /MG6C\/001Canal/);
 
 const gluedMed = guardSolicitorLine(
   "MG6C/002Full medical report absent Injury severity and causation incomplete.",
   guardCtxA,
 );
-assert.match(gluedMed ?? "", /MG6C\/002 — Full medical report absent — Injury/i);
+assert.match(gluedMed ?? "", /MG6C\/002 [—\s]*Full medical report absent — Injury/i);
 assert.doesNotMatch(gluedMed ?? "", /absentInjury|MG6C\/002Full/i);
 
 const softenedInterview = guardSolicitorLine(
@@ -539,7 +568,7 @@ const owenQaMd = buildCaseQaPackMarkdown({
   bundleText: FIXTURE_A,
 });
 
-assert.match(owenQaMd, /MG6C\/001 — Canal Store exterior CCTV/);
+assert.match(owenQaMd, /MG6C\/001 [—\s]*Canal Store exterior CCTV/);
 assert.doesNotMatch(owenQaMd, /MG6C\/001Canal/);
 assert.doesNotMatch(owenQaMd, /^- Interview admission narrows the defence route\./m);
 assert.match(owenQaMd, /may later be proved on served material/i);

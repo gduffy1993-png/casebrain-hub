@@ -57,7 +57,29 @@ function typeHint(row: NormalisedMaterialRow): string {
   return "Source material";
 }
 
+const ROW_LIMIT = 24;
+const GAP_STATUSES: MaterialStatus[] = [
+  "outstanding",
+  "absent",
+  "partial",
+  "draft",
+  "unsigned",
+  "referred_only",
+  "unclear",
+];
+
+function papersInventoryRows(rows: NormalisedMaterialRow[]): NormalisedMaterialRow[] {
+  const scheduled = rows.filter((row) => Boolean(row.scheduleRef?.trim()));
+  const gaps = rows.filter((row) => GAP_STATUSES.includes(row.status));
+  const source = scheduled.length ? scheduled : gaps.length ? gaps : rows;
+  return sortMaterials(source).slice(0, ROW_LIMIT);
+}
+
 function sortMaterials(rows: NormalisedMaterialRow[]): NormalisedMaterialRow[] {
+  // Rows carrying a schedule reference are the schedule itself; rows inferred from
+  // narrative prose come after them, so the row limit cannot push real schedule
+  // items out of view.
+  const scheduled = (row: NormalisedMaterialRow): number => (row.scheduleRef ? 0 : 1);
   const rank = (s: MaterialStatus): number => {
     switch (s) {
       case "outstanding":
@@ -75,7 +97,13 @@ function sortMaterials(rows: NormalisedMaterialRow[]): NormalisedMaterialRow[] {
         return 3;
     }
   };
-  return [...rows].sort((a, b) => rank(a.status) - rank(b.status) || a.label.localeCompare(b.label));
+  return [...rows].sort(
+    (a, b) =>
+      scheduled(a) - scheduled(b) ||
+      rank(a.status) - rank(b.status) ||
+      (a.scheduleRef ?? "").localeCompare(b.scheduleRef ?? "") ||
+      a.label.localeCompare(b.label),
+  );
 }
 
 /**
@@ -93,11 +121,14 @@ export function PapersDocInventoryPanel({
   documentCount?: number | null;
   textChars?: number | null;
 }) {
-  const materials = sortMaterials(ledger?.materials ?? []).slice(0, 40);
-  const served = materials.filter((m) => m.status === "served").length;
-  const gaps = materials.filter((m) =>
+  const allMaterials = ledger?.materials ?? [];
+  const materials = papersInventoryRows(allMaterials);
+  // Counted across the whole ledger: the row limit is a display bound, not a finding.
+  const served = allMaterials.filter((m) => m.status === "served").length;
+  const gaps = allMaterials.filter((m) =>
     ["outstanding", "absent", "partial", "draft", "unsigned", "referred_only", "unclear"].includes(m.status),
   ).length;
+  const hidden = allMaterials.length - materials.length;
 
   return (
     <section
@@ -108,13 +139,13 @@ export function PapersDocInventoryPanel({
         <div>
           <p className={workflowSectionTitle}>Papers inventory</p>
           <p className="text-xs text-slate-500 mt-1">
-            Document / schedule inventory from uploaded papers — not a court pressure desk.
+            Schedule cells from the extract — not the full novel, and not a court pressure desk.
           </p>
         </div>
         <div className="text-[11px] text-slate-500 text-right space-y-0.5">
           {typeof documentCount === "number" ? <p>{documentCount} file(s) on record</p> : null}
           {typeof textChars === "number" && textChars > 0 ? (
-            <p>{Math.round(textChars / 1000)}k chars extracted</p>
+            <p>Source text available for review</p>
           ) : null}
           {ledger?.reviewRequired ? <p className="text-amber-400/90">Provisional — solicitor review</p> : null}
         </div>
@@ -130,7 +161,9 @@ export function PapersDocInventoryPanel({
       ) : (
         <>
           <p className="text-[11px] text-slate-500">
-            {materials.length} material row(s) · {served} served/on-file · {gaps} gap / partial / unclear
+            {allMaterials.length} material row(s) · {served} served/on-file · {gaps} gap / partial /
+            unclear
+            {hidden > 0 ? ` · showing ${materials.length} schedule / gap cells` : ""}
           </p>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs border-collapse">

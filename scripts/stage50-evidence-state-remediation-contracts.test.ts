@@ -99,6 +99,20 @@ async function main() {
       "referred_only",
     );
   });
+  await check("negative: outstanding stated with referred-on-schedule is NOT referred_only", () => {
+    assert.equal(
+      lineIndicatesReferredOnly("BWV referred on schedule but not served — outstanding."),
+      false,
+    );
+    assert.equal(
+      wordingIndicatesReferredOnly("BWV referred on schedule but not served — outstanding."),
+      false,
+    );
+    assert.equal(
+      classifyMaterialStatus("BWV referred on schedule but not served — outstanding."),
+      "outstanding",
+    );
+  });
   await check("negative: outstanding alone is NOT referred_only", () => {
     assert.equal(lineIndicatesReferredOnly("Full CCTV master footage — outstanding"), false);
     assert.equal(
@@ -387,6 +401,90 @@ async function main() {
     assert.ok(row, "amended indictment row present");
     assert.equal(row!.existence, "served");
   });
+
+console.log("\nF09b — snapshot carries source case identity");
+await check("snapshot output keeps client identity available to audit/UI consumers", () => {
+  const snap = buildCasebrainAuditSnapshot({
+      caseId: "MUT-F09B",
+      clientLabel: "Morgan Ellis",
+      allegation: "Theft",
+      offenceLabel: "Theft",
+      bundleText: [
+        "Defendant: Morgan Ellis",
+        "Charge: Theft, contrary to section 1 of the Theft Act 1968.",
+        "MG6: CCTV continuity referred only.",
+      ].join("\n"),
+    });
+  assert.equal(snap.caseIdentity?.clientLabel, "Morgan Ellis");
+  assert.match(JSON.stringify(snap), /Morgan Ellis/);
+});
+
+console.log("\nF09d — snapshot carries court + listing date from source papers");
+await check("clear PDF court and listing date surface in caseIdentity", () => {
+  const snap = buildCasebrainAuditSnapshot({
+    caseId: "MUT-F09D-LISTING",
+    clientLabel: "Taylor Brookes",
+    allegation: "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+    offenceLabel: "Harassment",
+    caseTitle: "R v Taylor Brookes",
+    bundleText: [
+      "Defendant: Taylor Brookes",
+      "Court: Northgate Magistrates' Court",
+      "Statement of Offence:",
+      "Harassment, contrary to section 2 of the Protection from Harassment Act 1997.",
+      "PTPH listed — 15 July 2026, 10:00, Northgate Magistrates' Court.",
+    ].join("\n"),
+  });
+  assert.match(String(snap.caseIdentity?.court || ""), /Northgate Magistrates/i);
+  assert.ok(
+    snap.caseIdentity?.hearingDateIso || snap.caseIdentity?.hearingDateRaw,
+    "listing date must be carried when clear on papers",
+  );
+  const blob = JSON.stringify(snap);
+  assert.match(blob, /Northgate Magistrates/i);
+  assert.match(blob, /15 July 2026|2026-07-15/i);
+});
+
+console.log("\nF09c — source warnings and digital gaps stay in lane");
+await check("must-not-say source warnings are not exposed as evidence rows", () => {
+  const snap = buildCasebrainAuditSnapshot({
+    caseId: "MUT-F09C-WARN",
+    clientLabel: "Lee Patterson",
+    allegation: "Violent disorder",
+    offenceLabel: "Violent disorder",
+    bundleText: [
+      "Defendant: Lee Patterson",
+      "MG5: Witness A: defendant present. Witness B cannot identify participant.",
+      "Must not say: presence proves guilt | BWV shows assault by defendant",
+      "MG6C/ID — ID procedure material — outstanding — not on bundle.",
+    ].join("\n"),
+  });
+  assert.ok(
+    !snap.fiveAnswersEvidenceRows.some((row) => /must not say|proves guilt/i.test(row.label)),
+    "warning-only phrases must not become evidence rows",
+  );
+});
+
+await check("source-specific digital gaps do not grow generic phone-download rows", () => {
+  const snap = buildCasebrainAuditSnapshot({
+    caseId: "MUT-F09C-DIGITAL",
+    clientLabel: "Jude Parch",
+    allegation: "Offence per charge sheet",
+    offenceLabel: "Criminal",
+    bundleText: [
+      "Defendant: Jude Parch",
+      "Message content suggests sender; platform attribution not served.",
+      "MG6C/PLA — platform export — Jude Parch — referred on MG6 — export not served.",
+      "MG6C/SUB — subscriber proof — Jude Parch — outstanding — not on bundle.",
+      "MG6C/DIG — digital extraction scope annex (Parch / folio 186) — outstanding — not on bundle.",
+    ].join("\n"),
+  });
+  const visibleRows = JSON.stringify(snap.fiveAnswersEvidenceRows);
+  assert.doesNotMatch(visibleRows, /\bfull phone extraction\b/i);
+  assert.doesNotMatch(visibleRows, /\bmetadata\/source download\b/i);
+  assert.match(visibleRows, /subscriber proof/i);
+  assert.match(visibleRows, /digital extraction scope annex/i);
+});
 
   console.log("\nF10 — do not invent referred_only from outstanding medical");
   await check("outstanding medical → missing, not referred_only", () => {

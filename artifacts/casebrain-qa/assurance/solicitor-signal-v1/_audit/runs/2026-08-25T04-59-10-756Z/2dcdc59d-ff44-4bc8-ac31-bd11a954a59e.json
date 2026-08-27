@@ -1,0 +1,16 @@
+{
+  "caseId": "2dcdc59d-ff44-4bc8-ac31-bd11a954a59e",
+  "primary": [
+    {
+      "ref": null,
+      "label": "Full phone download / source extraction",
+      "family": "other",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 84,
+  "statedGaps": 0,
+  "statedGapsOnBoard": 0,
+  "truncated": true,
+  "findings": []
+}

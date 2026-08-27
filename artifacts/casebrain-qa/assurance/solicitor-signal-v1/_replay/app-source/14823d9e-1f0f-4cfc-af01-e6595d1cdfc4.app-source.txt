@@ -1,0 +1,1156 @@
+CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 1
+FICTIONAL CRIMINAL DEFENCE CASE BUNDLE
+CB-MURDER-TEST-0001 - Leon Hale
+Fictional test data only. This bundle is created for testing a criminal defence case management application. It is not legal advice and
+does not describe real people, real institutions, real courts, real police forces, real locations, real case references, or real events.
+FieldBundle entry
+Case referenceCB-MURDER-TEST-0001
+DefendantLeon Hale | DOB 17/09/1996
+Complainant / deceasedMarcus Vale
+CourtNorthchester Crown Court
+Next hearing22 May 2026 at 10:00
+StagePTPH / plea and trial preparation
+Custody statusRemanded in custody
+ChargeMurder, contrary to common law
+Defence positionNot guilty. Self-defence, identification, causation, and attribution disputed.
+Bundle health notePartial served bundle. Outstanding phone, CCTV, forensic, pathology, interview, CAD/999, and
+witness material. Conflicting witness accounts.
+Bundle presentation: mixed solicitor/CPS-style disclosure pack with served material, outstanding schedules, witness extracts,
+interview summary, custody/PACE material, forensic notes, timeline material, exhibit list, duplicate/revised pages, and
+inconsistent timing references. Text is selectable.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 2
+1. COVER / CASE INDEX - DOCUMENT LIST
+The following index is intentionally mixed and partly incomplete to simulate a real pre-PTPH bundle. Some items are served as
+drafts or summaries only. Full source material remains outstanding.
+TabDocumentStatus / noteExhibit
+1Cover and case indexServed case bundle front sheet
+2Charge sheet extractServedEX-MUR-001
+3MG5 case summaryServedEX-MUR-002
+4MG6 disclosure scheduleServed / outstanding splitEX-MUR-003
+5MG11 Aisha TrentDraft, corrected laterEX-MUR-004
+6MG11 Jordan PikeDraft witness statementEX-MUR-005
+7MG11 Priya ColeDraft witness statementEX-MUR-006
+8Police officer statementBWV not servedEX-MUR-007
+9Paramedic noteInitial extract onlyEX-MUR-008
+10CCTV stills and timing noteMaster footage outstandingEX-MUR-009 to
+EX-MUR-011
+11CAD and 999 summariesOriginal audio/log outstandingEX-MUR-012 to
+EX-MUR-013
+12Pathology and forensic notesInitial/partial onlyEX-MUR-014 to
+EX-MUR-017
+13Phone and cell-site materialPartial summaries onlyEX-MUR-018 to
+EX-MUR-020
+14Interview summaryFull recording/transcript outstandingEX-MUR-021
+15Custody record summaryFull record/CCTV outstandingEX-MUR-022
+16Disclosure chase noteDefence chase listEX-MUR-023
+17Scene photograph indexIndex only, full set outstandingEX-MUR-024
+18Forensic continuity noteInitial chain note onlyEX-MUR-025CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 3
+1A. OUTDATED WITNESS INDEX - DRAFT ONLY
+DRAFT ONLY - This witness index appears in the served papers but is superseded by later listing notes. It is retained because it may
+explain naming/timing inconsistencies in the file.
+WitnessInitial listingLater position
+Aisha TrentPotential eye-witness: saw shiny objectCorrected statement: poor lighting and cannot be 100%
+Jordan PikeEstate residentStates second male in dark hoodie ran from stairwell
+Priya ColeHeard argumentReports shout of drop it and possible object in
+deceased hand
+Unnamed witness ATo be tracedStatement outstanding
+Unnamed witness BTo be tracedStatement outstanding
+Note: the witness index has not been cross-checked against all MG11 drafts. It should not be treated as a complete record of
+all available witnesses.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 4
+2. CHARGE SHEET EXTRACT
+Defendant: Leon Hale. Date of birth: 17/09/1996. Court: Northchester Crown Court. Case reference:
+CB-MURDER-TEST-0001.
+Charge: Leon Hale is charged with murder, contrary to common law, in that on 14 April 2026 at Eastgate Estate, Northchester,
+he unlawfully killed Marcus Vale with intent to kill or cause really serious harm.
+Alternative issue: manslaughter may arise depending on intent, self-defence, causation, and joint-enterprise evidence. Intent,
+self-defence, causation, and attribution are live issues.
+Custody status: remanded in custody. Next hearing: 22 May 2026 at 10:00. Stage: PTPH / plea and trial preparation.
+Defence position recorded on the face of the preliminary bundle: not guilty. Defendant denies intending to kill or cause really
+serious harm. He says he acted in fear after being approached with a knife and that another male may have inflicted the fatal
+wound during the struggle.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 5
+2A. CHARGE SHEET ADMINISTRATION NOTE
+This page is included to reflect the way criminal bundles often repeat front-sheet detail. It does not add a new charge. The live
+allegation remains murder, contrary to common law.
+Administrative fieldEntry
+Charge statusIndictable-only allegation; murder
+Alternative route mentionedPossible manslaughter depending on intent, self-defence, causation, and attribution
+Main prosecution theoryArgument, presence, CCTV movement, witness identification, partial forensic links
+Main defence areas flaggedSelf-defence, second male, causation, attribution, intent, disclosure gaps
+Hearing date22 May 2026 at 10:00CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 6
+3. MG5 CASE SUMMARY - OVERVIEW
+Marcus Vale was fatally stabbed near the stairwell area at Eastgate Estate on 14 April 2026. The Crown case is that Leon Hale
+was seen arguing with Marcus shortly before the fatal injury. CCTV stills show Leon entering the stairwell area at
+approximately 22:41 and leaving at approximately 22:47. A 999 call was recorded at 22:52.
+The Crown says the timing, the argument, Leon Hale presence, and witness references to a shiny object provide a route to
+prove that Leon unlawfully killed Marcus Vale with the necessary intent. The Crown also relies on partial forensic material and
+phone material which places Leon near the estate. The phone location material is not said in the current summary to prove the
+precise stabbing moment.
+Leon accepts being present and accepts arguing with Marcus. He denies bringing a knife and says Marcus or another male
+had a knife. He says he pushed Marcus away, fled during chaos, and did not intend to kill or cause really serious harm. He
+refers to a second male in a dark hooded jacket.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 7
+3A. MG5 CASE SUMMARY - PROSECUTION ROUTE
+The prosecution route is currently expressed as: presence at Eastgate Estate; argument with Marcus Vale; movement into and
+out of stairwell area; partial witness identification; forensic material on blood/DNA; and evidence of hostility in earlier phone
+messages. The Crown states that these strands should be considered together rather than in isolation.
+CCTV: still images are served but full master footage is not served. The entry camera places Leon at the estate entrance area
+at 22:41. A stairwell image is partially blocked. A possible second male is seen at 22:46 but the image is blurred.
+Forensics: knife recovered near bins behind estate. Initial DNA note records a partial mixed profile including Marcus Vale and a
+low-level partial profile that may include Leon Hale but cannot exclude others. Final DNA report and fingerprint report are
+outstanding.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 8
+3B. MG5 CASE SUMMARY - LIVE ISSUES
+The MG5 identifies several live issues: identity of the person who inflicted the fatal wound; whether Leon Hale acted in
+self-defence; whether a second male was involved; whether the forensic links are reliable; whether the fatal injury could have
+occurred in a struggle; and whether intent to kill or cause really serious harm can be proved.
+The summary notes that one witness says Leon may have had something shiny in his hand, but the witness later qualifies
+certainty because lighting was poor. Another witness says a second male in a dark hoodie ran from the stairwell and that Leon
+looked scared. A third witness heard someone shout drop it but did not see the wound caused.
+The case is not presented in this preliminary bundle as complete. Important source material remains outstanding, including full
+CCTV, continuity logs, full 999 audio, full CAD, BWV, final pathology, final DNA, fingerprints, full phone downloads, cell-site
+report, full interview audio/transcript, and custody CCTV.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 9
+3C. MG5 CASE SUMMARY - TIMING
+Current timing summary is provisional. CCTV still references place Leon near the entrance at 22:41. The stairwell camera
+angle is partly blocked. A possible second male is said to appear at or around 22:46. Leon is said to leave the stairwell area at
+approximately 22:47. CAD records the call at 22:52.
+The CCTV timing note refers to a possible 3-4 minute drift on Camera 3. The CAD summary narrative differs slightly from the
+MG5 timing. Original 999 audio is not served, so the exact words, timing, background voices, and caller uncertainty cannot yet
+be checked.
+The timing material currently proves presence and movement. It does not, in the served extract alone, conclusively prove who
+inflicted the fatal wound, what object was used, or whether the act occurred during an attack, a defensive movement, or a
+struggle.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 10
+4. MG6 DISCLOSURE SCHEDULE - SERVED MATERIAL
+The served material is listed below. Several documents are summaries, stills, or draft extracts rather than full source material.
+The schedule should be read alongside the outstanding list.
+Served itemStatusComment
+MG5 case summaryServed / summary or draftUse cautiously where marked draft or summary only.
+Charge sheetServed / summary or draftUse cautiously where marked draft or summary only.
+Draft MG11 witness statementsServed / summary or draftUse cautiously where marked draft or summary only.
+CCTV still images from estate entranceServed / summary or draftUse cautiously where marked draft or summary only.
+Initial pathology summaryServed / summary or draftUse cautiously where marked draft or summary only.
+Custody record summaryServed / summary or draftUse cautiously where marked draft or summary only.
+Interview summaryServed / summary or draftUse cautiously where marked draft or summary only.
+Partial phone download summaryServed / summary or draftUse cautiously where marked draft or summary only.
+Initial forensic noteServed / summary or draftUse cautiously where marked draft or summary only.
+CAD summaryServed / summary or draftUse cautiously where marked draft or summary only.
+999 call summary noteServed / summary or draftUse cautiously where marked draft or summary only.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 11
+4A. MG6 DISCLOSURE SCHEDULE - OUTSTANDING MATERIAL 1
+Outstanding material is not treated as served. The defence position should remain conditional where source material has not
+yet been provided.
+Outstanding itemReason given / notePotential significance
+Full CCTV master footage from estate cameras
+22:30-23:05
+Not yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+Could clarify movement, second male, timing
+drift, and whether stills are selective.
+CCTV continuity statement and export log
+Not yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+Could clarify movement, second male, timing
+drift, and whether stills are selective.
+Full 999 audioNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+Could test timing, caller words, number of
+men, and sequence before emergency
+response.
+Full CAD incident logNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+Could test timing, caller words, number of
+men, and sequence before emergency
+response.
+BWV from first attending officersNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+May affect completeness of case theory and
+fairness of PTPH position.
+Full pathology reportNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+Could affect causation, mechanism,
+attribution, and reliability of forensic route.
+Knife DNA report final versionNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+Could affect causation, mechanism,
+attribution, and reliability of forensic route.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 12
+4A. MG6 DISCLOSURE SCHEDULE - OUTSTANDING MATERIAL 2
+Outstanding material is not treated as served. The defence position should remain conditional where source material has not
+yet been provided.
+Outstanding itemReason given / notePotential significance
+Fingerprint report on knife/door/stairwell railNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+Could affect causation, mechanism,
+attribution, and reliability of forensic route.
+Full phone download and cell-site report
+Not yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+Could affect hostility/fear narrative and
+whether phone evidence proves only area
+presence.
+Messages between Leon and MarcusNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+Could affect hostility/fear narrative and
+whether phone evidence proves only area
+presence.
+Statements from two unnamed estate witnessesNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+May affect completeness of case theory and
+fairness of PTPH position.
+Full interview audio/transcriptNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+Could affect fairness, context of answers,
+and disclosure before interview.
+Custody CCTV for arrival and solicitor
+consultation timing
+Not yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+Could clarify movement, second male, timing
+drift, and whether stills are selective.
+Any unused intelligence about second maleNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+May affect completeness of case theory and
+fairness of PTPH position.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 13
+4A. MG6 DISCLOSURE SCHEDULE - OUTSTANDING MATERIAL 3
+Outstanding material is not treated as served. The defence position should remain conditional where source material has not
+yet been provided.
+Outstanding itemReason given / notePotential significance
+Any forensic contamination notesNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+Could affect causation, mechanism,
+attribution, and reliability of forensic route.
+Scene photographs full set
+Not yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+May affect completeness of case theory and
+fairness of PTPH position.
+Paramedic recordsNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+May affect completeness of case theory and
+fairness of PTPH position.
+Ambulance call logNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+Could test timing, caller words, number of
+men, and sequence before emergency
+response.
+Door access / stairwell entry logs if availableNot yet served. Required to test source
+reliability, timing, continuity, attribution, or
+causation.
+May affect completeness of case theory and
+fairness of PTPH position.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 14
+5. MG11 AISHA TRENT - DRAFT EXTRACT
+MG11 extract. Witness: Aisha Trent. This statement is fictional and provided as a draft or extract for testing.
+I live in the Eastgate Estate area. On the night in question I heard shouting near the stairwell. I looked from the walkway and
+saw Leon Hale arguing with Marcus Vale. I know Leon by sight from the estate but I do not know him well.
+I thought I saw something shiny in Leon hand when he moved towards the stairwell. I cannot say if it was a knife. It could have
+been metal or it could have been the light catching something. The lighting was poor by the stairwell.
+I did not see the stabbing itself. I heard a shout and then people moved quickly. I later told police I think it was Leon because
+he was the one I recognised in the argument. I cannot be 100 percent certain about what was in his hand or what happened
+inside the stairwell.
+Internal caution / pressure point:
+l
+Says she saw something shiny but later accepts lighting was poor.
+l
+Initially says I think it was Leon but later says she cannot be 100 percent certain.
+l
+Could not see the stabbing itself.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 15
+5A. MG11 AISHA TRENT - CORRECTED PAGE
+MG11 extract. Witness: Aisha Trent. This statement is fictional and provided as a draft or extract for testing.
+Correction: In my first draft I said Leon had a knife. I want to correct that. I saw something shiny, but I did not actually see a
+blade clearly. I was watching from an angle and there were shadows around the entrance.
+I could hear Marcus and Leon arguing. Marcus sounded angry. I cannot remember the exact words. I did not hear Leon say he
+was going to kill anyone. I did hear a male voice say get back but I cannot say who said it.
+This corrected page should replace the earlier wording where I appeared more certain about the object. I am certain Leon and
+Marcus were arguing, but I am not certain about the object or the moment of injury.
+Internal caution / pressure point:
+l
+Corrected witness certainty is lower than the first draft.
+l
+Identifies argument but not fatal act.
+l
+Does not support clear intent wording.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 16
+6. MG11 JORDAN PIKE - DRAFT EXTRACT
+MG11 extract. Witness: Jordan Pike. This statement is fictional and provided as a draft or extract for testing.
+I was near the Eastgate Estate entrance when I heard raised voices. I saw Marcus shouting near the stairwell. I saw Leon Hale
+nearby and he looked frightened or shocked. I then saw a second male in a dark hooded jacket run from the stairwell area.
+The second male was not someone I recognised. He was slimmer than Leon and had the hood up. I did not see Leon holding a
+knife. I did not see the exact moment Marcus was injured.
+I remember Marcus had been shouting threats earlier. I cannot say whether Marcus had anything in his hand because people
+were moving around and my view was not clear.
+Internal caution / pressure point:
+l
+Places second male at the scene.
+l
+Says Leon looked scared.
+l
+Does not see Leon holding a knife.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 17
+6A. MG11 JORDAN PIKE - CONTINUATION
+MG11 extract. Witness: Jordan Pike. This statement is fictional and provided as a draft or extract for testing.
+I heard someone say he has got something but I did not know who they meant. I remember glass or metal noise but I cannot
+place it. The stairwell area echoes and it is hard to separate sounds.
+Afterwards several people moved near the stairwell before police arrived. I saw at least two people look towards the ground
+near the bins. I did not touch anything. I did not see who moved where before the area was taped off.
+I have been shown a still image said to be from the entrance camera. It shows Leon but does not show the second male
+clearly. I told the officer the still does not show everything I saw.
+Internal caution / pressure point:
+l
+May support contamination or scene movement concern.
+l
+Says still image does not show full sequence.
+l
+Supports full CCTV chase.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 18
+7. MG11 PRIYA COLE - DRAFT EXTRACT
+MG11 extract. Witness: Priya Cole. This statement is fictional and provided as a draft or extract for testing.
+I heard an argument and then heard someone shout drop it. I looked towards the stairwell. I saw Marcus holding something low
+down but I cannot say what it was. It might have been a phone or something else. I then saw Leon run away.
+I did not see the wound caused. I saw people crowd around after Marcus fell or went down. I remember someone saying call
+an ambulance. I cannot say whether the injury was caused before or after the shout.
+I was frightened and I did not stay close. My statement is based on what I saw from the walkway and what I heard from the
+stairwell area.
+Internal caution / pressure point:
+l
+Reports shout of drop it.
+l
+Possible object in Marcus hand but uncertain.
+l
+Does not see wound caused.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 19
+7A. MG11 PRIYA COLE - HANDWRITTEN NOTE TRANSCRIBED
+MG11 extract. Witness: Priya Cole. This statement is fictional and provided as a draft or extract for testing.
+Transcribed note: shouted words were maybe drop it or stop it. I am not sure. I did not want to guess. I saw Leon leave fast and
+another shape behind him. The lighting by the wall was bad.
+The note is marked draft only. It appears to have been created before the typed statement. It should be compared with the final
+statement when served.
+Internal caution / pressure point:
+l
+Drop it / stop it uncertainty.
+l
+References another shape behind Leon.
+l
+Draft only and final statement not served.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 20
+8. MG11 POLICE OFFICER - FIRST ATTENDING OFFICER
+MG11 extract. Witness: PC Rowan Ellis. This statement is fictional and provided as a draft or extract for testing.
+I attended the Eastgate Estate following a call logged on CAD at approximately 22:52. On arrival I saw a male, later identified
+as Marcus Vale, with a serious wound. Emergency treatment was being attempted. A knife was later located near bins behind
+the estate.
+Body-worn video was activated on arrival. The BWV has not yet been served in this bundle. The stairwell area was busy.
+Several people had moved around the stairwell and entrance before the cordon was established.
+I noted a possible contamination risk because members of the public had moved close to the scene. A forensic officer was
+requested. I did not see the stabbing occur and I did not recover the knife personally.
+Internal caution / pressure point:
+l
+BWV not served.
+l
+Scene contamination concern.
+l
+Officer does not witness stabbing.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 21
+8A. POLICE OFFICER CONTINUATION - SCENE CONTROL
+MG11 extract. Witness: PC Rowan Ellis. This statement is fictional and provided as a draft or extract for testing.
+The cordon was placed after initial medical assistance. There was a delay while paramedics worked on Marcus Vale. The knife
+was pointed out by another officer after members of the public had already been moved away from the stairwell area.
+I cannot say whether the knife was moved before I saw it. The final continuity note should be checked. The exhibit bagging
+time appears later than the first CAD entry.
+Internal caution / pressure point:
+l
+Continuity timing needs checking.
+l
+Knife movement cannot be excluded from this extract.
+l
+Final continuity note outstanding.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 22
+9. PARAMEDIC EXTRACT
+MG11 extract. Witness: Paramedic Samir Kent. This statement is fictional and provided as a draft or extract for testing.
+On arrival, Marcus Vale had a single serious wound. Treatment was attempted. The timing between the injury and emergency
+call was unclear from witnesses at the scene. Several people gave different accounts of when the argument started and when
+Marcus went down.
+The wound required urgent treatment. I did not observe the incident. I cannot comment on the mechanics of how the wound
+was caused beyond what is recorded clinically. A full ambulance record is outstanding.
+Internal caution / pressure point:
+l
+Timing between injury and emergency call unclear.
+l
+No opinion on mechanics from this extract.
+l
+Full ambulance/paramedic record outstanding.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 23
+10. CCTV SECTION - SERVED STILLS ONLY
+The served CCTV material consists of still images only. Full master footage from estate cameras between 22:30 and 23:05 is
+not served. The stills include estate entrance and stairwell views. The stairwell view is partly blocked by a doorway and wall
+return.
+Estate entrance camera shows Leon Hale at around 22:41. Stairwell camera angle partly blocked. A possible second male is
+seen around 22:46 but the image is blurred. The Crown says CCTV supports presence. The defence says CCTV does not
+prove the stabbing or intent.
+CameraTime shownServed materialIssue
+Entrance camera22:41Still imageShows presence near estate entrance, not
+stabbing
+Stairwell camera22:46 approxStill imageBlocked angle; possible second male
+blurred
+Camera 3 timing noteMay drift 3-4 minutesNote onlyTiming alignment with CAD/999 needs full
+master and export logCB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 24
+10A. CCTV TIMING NOTE
+Camera 3 may have a timestamp drift of approximately 3-4 minutes. The note does not state whether the drift has been
+corrected against server time, export time, or another system clock. The export log and continuity statement are outstanding.
+If the camera is slow, the apparent order between Leon leaving, the second male movement, and the CAD entry may shift. If
+the camera is accurate, the current Crown timing may be easier to maintain. The served stills are insufficient to resolve this.
+The full master footage is required to test whether still images have been selected fairly and whether movement before 22:41
+or after 22:47 changes the context.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 25
+10B. CCTV STILL IMAGE DESCRIPTION - ENTRANCE
+Still 1: A male said to be Leon Hale is visible near the Eastgate Estate entrance. The person is moving towards the stairwell
+access area. The image does not show a knife. The image does not show Marcus Vale.
+Still 2: A group of persons is visible near the stairwell entrance. Faces are partly obscured. Lighting appears uneven. The
+description says Leon can be seen, but the still does not show the fatal injury.
+Note: this is a textual description of served stills only. No image is embedded because the bundle is fictional selectable-text
+test data.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 26
+10C. CCTV STILL IMAGE DESCRIPTION - STAIRWELL
+Stairwell still: the angle is partly blocked. A blurred male shape may be visible at or around 22:46. The description refers to a
+dark hooded jacket, but no final identification is made in the served material.
+The Crown may rely on the stills as supporting presence and sequence. The defence may rely on the limitations: no full
+incident, no clear contact, no clear knife use, and possible second male movement.
+Full footage, export logs, continuity statement, and camera timing notes remain outstanding.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 27
+11. 999 / CAD SECTION - SUMMARY
+CAD logs the emergency call at 22:52. The 999 summary note says the caller heard two or three men shouting. The caller says
+someone had a knife but does not identify who. The original audio is not served.
+The CAD narrative differs slightly from the MG5 timing. The MG5 places Leon movement around 22:41-22:47 and then records
+the 999 call at 22:52. Without the full audio and full CAD log, the exact timing, background words, caller uncertainty, and
+sequence cannot be checked.
+MaterialServed statusIssue
+CAD SummaryServed summary onlyFull incident log outstanding; timing differs slightly from MG5
+999 Summary NoteServed summary only
+Original audio outstanding; caller does not identify who had
+knife
+Ambulance call logOutstandingCould affect injury/call/treatment timelineCB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 28
+11A. 999 SUMMARY NOTE - TEXT EXTRACT
+Caller summary: caller heard two or three men shouting near Eastgate Estate stairwell. Caller said someone had a knife. Caller
+did not identify Leon Hale as the person with a knife. Caller described confusion and people running.
+The note records a phrase similar to he has been stabbed but does not state who said it. The summary is not a verbatim
+transcript. The original audio is required before any firm position is taken on words spoken, background voices, number of
+speakers, timing, and stress/uncertainty.
+Draft note caution: summary may omit hesitations, uncertainty, and background voices. This is not the full 999 audio.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 29
+11B. CAD SUMMARY NOTE - TIMING
+CAD summary shows call received at 22:52. Arrival and dispatch times are summarised but not fully broken down. The full
+CAD log is outstanding.
+The summary refers to a male injured near stairwell and possible weapon. It does not identify the suspect from the caller. It
+does not resolve whether two or three men were present.
+The CAD narrative differs slightly from the MG5 sequence because the MG5 relies on CCTV still times that may be affected by
+camera drift. This needs full CAD and CCTV continuity/export material.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 30
+12. FORENSIC SECTION - OVERVIEW
+The forensic material is partial. Knife, blood, pathology, fingerprint, and continuity issues are not finalised in the served bundle.
+The Crown may rely on partial forensic links, but the defence position remains conditional until final reports and continuity
+material are served.
+Knife found near bins behind estate. Partial DNA mixture includes Marcus Vale. Low-level partial profile may include Leon
+Hale, but the note says others cannot be excluded. Fingerprint result is outstanding. Chain of custody issue: knife bagged after
+scene contamination concern.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 31
+12A. KNIFE RECOVERY NOTE
+Knife was recovered near bins behind Eastgate Estate. The recovery note does not state that Leon Hale was seen placing the
+knife there. It records location, bagging, and request for DNA/fingerprint examination.
+The timing of bagging appears after initial scene movement. First officer notes several people moved near the stairwell before
+cordon. Final forensic continuity and contamination notes are outstanding.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 32
+12B. INITIAL DNA NOTE
+Initial DNA note: partial mixed DNA profile on knife. Marcus Vale included in the mixture. A low-level partial profile may include
+Leon Hale, but the profile is incomplete and others cannot be excluded from the current note.
+The note is not the final DNA report. It does not provide a final statistical evaluation. It does not resolve transfer mechanism,
+contamination, or whether Leon Hale handled the knife before, during, or after the incident.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 33
+12C. FINGERPRINT POSITION
+Fingerprint report on knife, door, and stairwell rail is outstanding. Current bundle does not provide a final fingerprint conclusion.
+This means any assertion about fingerprint support is not safely available from served material.
+Stairwell rail and door surfaces may matter because the defence account involves a struggle, pushing away, and movement
+through the stairwell. Absence or presence of prints may assist or damage either side depending on context.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 34
+12D. BLOOD STAIN NOTE
+Blood observed on Leon Hale sleeve. Leon says blood came from contact during struggle or when checking Marcus after
+injury. Crown says blood supports involvement. The current note does not resolve how blood transferred.
+The note does not prove stabbing by itself. The relevance depends on blood pattern, timing, contact, sequence, scene
+movement, and whether Leon touched Marcus after the injury. Full forensic blood analysis is not served.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 35
+12E. INITIAL PATHOLOGY SUMMARY
+Initial pathology summary records a single fatal stab wound. It says angle/depth could be consistent with forward thrust or
+struggle. The final pathology report is outstanding.
+No final opinion is served on whether the injury mechanism is more consistent with attack, defensive movement, struggle
+mechanics, accidental movement during a struggle, or another person inflicting the wound.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 36
+12F. FORENSIC CONTINUITY NOTE
+Initial continuity note records recovery and bagging steps but refers to scene contamination concern. The final continuity
+schedule is outstanding. There is no final statement tying every movement and exhibit handover into a complete chain.
+This note should be read with first officer statement and scene photograph index. It does not prove the exhibit was untouched
+before recovery. It does not exclude movement in the stairwell before cordon.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 37
+13. PHONE / DIGITAL SECTION - OVERVIEW
+Leon Hale phone places him near the Eastgate area. Cell-site material is not precise enough in the current summary to place
+him in the stairwell at the exact stabbing moment. Full phone download and final cell-site report are outstanding.
+Partial messages show argument earlier that day. Crown may rely on hostility. Defence says messages show fear, avoidance,
+and an attempt not to meet Marcus. Marcus Vale phone messages are incomplete. Possible messages with a second male are
+not served.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 38
+13A. LEON HALE PHONE SUMMARY
+Partial message extract: Leon appears to tell Marcus not tonight and leave it. Another message says I am not coming to fight
+you. There are also angry messages from both sides. The extract is partial and sequence may be incomplete.
+The Crown may say messages show hostility and motive. The defence may say the same messages show avoidance and fear.
+Full download is required to test deleted messages, context, timestamps, and whether messages continued after the
+argument.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 39
+13B. MARCUS VALE PHONE SUMMARY
+Marcus Vale phone summary is incomplete. Some earlier messages suggest confrontation. The served summary does not
+include a full conversation thread with Leon. It also refers to possible contact with another male, but that message chain is not
+served.
+Missing messages could matter to motive, fear, threats, second male involvement, and whether Marcus arranged to meet Leon
+or someone else. Full download is outstanding.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 40
+13C. CELL-SITE INITIAL NOTE
+Initial cell-site note places Leon Hale phone in the general Eastgate area around the relevant time. It does not, in the served
+summary, prove that he was inside the stairwell at the moment of fatal injury.
+The note does not resolve whether phone location aligns with CCTV timing drift. Full cell-site report and methodology are
+outstanding.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 41
+14. INTERVIEW SUMMARY - LEON HALE
+Leon Hale accepts being at Eastgate Estate. He accepts arguing with Marcus Vale. He denies bringing a knife. He says
+Marcus or another male had a knife. He says he pushed Marcus away and ran. He says he did not intend to kill or seriously
+harm Marcus.
+Leon says a second male in a dark hoodie was present. He says he panicked and did not call police. He says blood on his
+sleeve came from contact during the struggle or when checking Marcus after seeing the injury.
+There are some no comment answers after limited disclosure. Full interview recording and transcript are outstanding. The
+interview summary is not a verbatim transcript.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 42
+14A. INTERVIEW SUMMARY - SELECTED QUESTIONS
+TopicSummary of answerDisclosure note
+PresenceAccepts being at estate and arguing with MarcusCCTV stills were disclosed in limited form
+KnifeDenies bringing knife; says Marcus or another male had a knifeNo final forensic report disclosed
+IntentDenies intent to kill or cause really serious harmNo final pathology served
+Second maleSays dark hooded male was presentNo unused intelligence or statements served
+BloodSays blood from struggle/checking MarcusBlood pattern analysis not served
+No comment answersSome answers no comment after limited disclosureFull interview audio/transcript outstandingCB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 43
+14B. INTERVIEW SUMMARY - SOLICITOR DISCLOSURE NOTE
+Legal adviser requested disclosure of CCTV, forensic position, and witness basis before interview. Disclosure before interview
+was limited. The custody record summary is served but full custody record and custody CCTV are outstanding.
+Issue: whether interview answers, including no comment answers, were given after adequate disclosure. The summary does
+not include complete advice, complete questions, or the full order of disclosure.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 44
+15. CUSTODY / PACE SECTION - SUMMARY
+Custody record summary is served. Full custody record is outstanding. Custody CCTV for arrival and solicitor consultation
+timing is outstanding. The summary records that Leon was remanded in custody after charge.
+Legal adviser requested disclosure of CCTV, forensic position, and witness basis before interview. The served note says
+disclosure was limited before interview. This may affect how interview answers are understood, but the full record is required.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 45
+15A. CUSTODY TIMING NOTE
+Arrival time and solicitor consultation times are summarised but not complete. Custody CCTV may assist in checking timing
+and whether any material was shown or discussed before interview. The full custody record is outstanding.
+No allegation is made in this note that custody was unlawful. The issue for the bundle is completeness and context of interview
+disclosure.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 46
+16. DISCLOSURE CHASE NOTE - PART 1
+The defence should not finalise the hearing/trial position on incomplete source material. The following items are outstanding or
+require confirmation.
+Item to chaseWhy it matters
+Full CCTV master 22:30-23:05Tests full sequence, second male, timing drift, selective stills, and whether contact is
+shown.
+CCTV continuity/export logsTests authenticity, camera drift, export time, edits, and chain of custody.
+Full 999 audioTests exact words, number of men, uncertainty, background voices, and caller
+identification limits.
+Full CAD incident logTests event timing, dispatch entries, updates, and differences from MG5.
+BWV
+Tests scene condition, first accounts, movement before cordon, and body camera
+observations.
+Full pathology reportTests mechanism, causation, angle/depth, intent inference, and struggle possibilities.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 47
+16. DISCLOSURE CHASE NOTE - PART 2
+The defence should not finalise the hearing/trial position on incomplete source material. The following items are outstanding or
+require confirmation.
+Item to chaseWhy it matters
+Final DNA reportTests statistical weight, mixture interpretation, transfer, and inclusion/exclusion limits.
+Fingerprint reportTests handling of knife, door, rail, and whether forensic attribution is present or absent.
+Full phone downloads for Leon and MarcusTests messages, threats, fear/avoidance, second male contact, and missing context.
+Cell-site reportTests precision limits and whether phone evidence proves only area presence.
+Missing witness statementsTests second male, number of men, and whether Crown account is complete.
+Scene photosTests line of sight, obstruction, knife position, blood scene, and stairwell layout.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 48
+16. DISCLOSURE CHASE NOTE - PART 3
+The defence should not finalise the hearing/trial position on incomplete source material. The following items are outstanding or
+require confirmation.
+Item to chaseWhy it matters
+Contamination notesTests reliability of knife recovery and scene movement before cordon.
+Full interview transcript/audioTests exact questions, advice context, disclosure limits, and no comment answers.
+Custody CCTVTests arrival, consultation timing, and disclosure before interview.
+Paramedic/ambulance recordsTests timing, treatment, injury sequence, and witness comments at scene.
+Any material about second maleTests attribution, joint-enterprise theory, and whether Leon alone is safe Crown route.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 49
+17. CONTRADICTION / PRESSURE MAP - PART 1
+This map records contradictions and pressure points within the served bundle. It does not decide the case and does not state
+that either side wins.
+Pressure / contradictionBundle detail
+Witness 1 certainty
+Aisha Trent says she saw something shiny but later accepts poor lighting and cannot be 100
+percent certain.
+Second maleJordan Pike says a second male in a dark hoodie ran from the stairwell. CCTV still may show
+blurred second male.
+999 callerCaller says two or three men shouting and someone had a knife but does not identify who.
+Timing alignment
+MG5 timing, CAD time, and CCTV still times are not fully aligned; Camera 3 may drift 3-4
+minutes.
+Presence vs actCCTV supports presence but does not prove stabbing or intent from served stills alone.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 50
+17. CONTRADICTION / PRESSURE MAP - PART 2
+This map records contradictions and pressure points within the served bundle. It does not decide the case and does not state
+that either side wins.
+Pressure / contradictionBundle detail
+Forensic limitsKnife DNA is partial/mixed and final report is outstanding.
+Blood on sleeveCould support Crown involvement or defence account of struggle/contact depending pattern
+and timing.
+PathologyInitial note allows deliberate thrust or struggle mechanics; final report outstanding.
+Phone evidenceShows area presence/argument but does not prove fatal act or precise stairwell position.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 51
+18. HEARING NOTE - PTPH / PLEA AND TRIAL PREPARATION
+Hearing date: 22 May 2026 at 10:00. Court: Northchester Crown Court. Stage: PTPH / plea and trial preparation. Custody
+status: remanded in custody.
+Fictional solicitor note: Defence not ready to finalise trial issues until full CCTV, forensic, pathology, 999/CAD, interview, phone,
+and witness material are served. Current position: not guilty; self-defence, causation, identification, and attribution disputed.
+Safe hearing position: maintain conditional position pending outstanding source material. Ask court to record outstanding
+material and set a timetable for service. Do not overstate the defence case. Do not state that prosecution case collapses. Treat
+full CCTV, final pathology, final DNA, fingerprints, and phone material as capable of helping either side.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 52
+18A. HEARING PREPARATION CHECKLIST
+IssueCurrent bundle positionAction before/at hearing
+Plea/positionNot guilty indicated; self-defence, causation, attribution
+disputed
+Keep position conditional on outstanding source
+material
+CCTVStills only; master footage outstandingSeek timetable for master, continuity, export logs
+ForensicsInitial DNA/pathology only; fingerprints outstandingSeek final reports and contamination notes
+WitnessesDraft MG11s with contradiction; missing estate witnessesRequest final statements and unused intelligence
+Interview/custodySummary only; audio/transcript/custody CCTV outstandingRequest full interview and custody material
+DigitalPartial phone/cell-site summariesRequest full downloads and cell-site reportCB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 53
+19. EXHIBIT LIST - PART 1
+Exact exhibit codes used in this fictional bundle. No exhibit codes outside this list are intentionally introduced.
+CodeDescriptionStatus / comment
+EX-MUR-001Charge SheetServed summary/draft
+EX-MUR-002MG5 Case SummaryServed summary/draft
+EX-MUR-003MG6 Disclosure ScheduleServed summary/draft
+EX-MUR-004MG11 Aisha TrentServed summary/draft
+EX-MUR-005MG11 Jordan PikeServed summary/draft
+EX-MUR-006MG11 Priya ColeServed summary/draft
+EX-MUR-007Police Officer StatementServed summary/draft
+EX-MUR-008Paramedic NoteServed summary/draft
+EX-MUR-009CCTV Stills Estate EntranceServed summary/draftCB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 54
+19. EXHIBIT LIST - PART 2
+Exact exhibit codes used in this fictional bundle. No exhibit codes outside this list are intentionally introduced.
+CodeDescriptionStatus / comment
+EX-MUR-010CCTV Still StairwellServed summary/draft
+EX-MUR-011CCTV Timing NoteServed summary/draft
+EX-MUR-012CAD SummaryServed summary/draft
+EX-MUR-013999 Summary NoteServed summary/draft
+EX-MUR-014Initial Pathology SummaryServed summary/draft
+EX-MUR-015Knife Recovery NoteServed summary/draft
+EX-MUR-016Initial DNA NoteServed summary/draft
+EX-MUR-017Blood Stain NoteServed summary/draft
+EX-MUR-018Phone Summary Leon HaleServed summary/draftCB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 55
+19. EXHIBIT LIST - PART 3
+Exact exhibit codes used in this fictional bundle. No exhibit codes outside this list are intentionally introduced.
+CodeDescriptionStatus / comment
+EX-MUR-019Phone Summary Marcus ValeServed summary/draft
+EX-MUR-020Cell-site Initial NoteServed summary/draft
+EX-MUR-021Interview SummaryServed summary/draft
+EX-MUR-022Custody Record SummaryServed summary/draft
+EX-MUR-023Disclosure Chase NoteServed summary/draft
+EX-MUR-024Scene Photograph IndexIndex/note only
+EX-MUR-025Forensic Continuity NoteIndex/note onlyCB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 56
+20. DUPLICATE PAGE - MG6 OUTSTANDING SUMMARY
+DUPLICATE PAGE - Included in bundle twice. This page repeats the outstanding source material summary in condensed form.
+l
+Full CCTV master footage from estate cameras 22:30-23:05
+l
+CCTV continuity statement and export log
+l
+Full 999 audio
+l
+Full CAD incident log
+l
+BWV from first attending officers
+l
+Full pathology report
+l
+Knife DNA report final version
+l
+Fingerprint report on knife/door/stairwell rail
+l
+Full phone download and cell-site report
+l
+Messages between Leon and Marcus
+l
+Statements from two unnamed estate witnesses
+l
+Full interview audio/transcript
+The duplicate is retained to simulate a messy served bundle. It should not be treated as a new list of additional items.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 57
+20A. CORRECTED WITNESS STATEMENT COVER NOTE
+Corrected witness statement cover note: Aisha Trent first draft used stronger wording about a knife. The corrected version
+records that she saw something shiny but cannot be 100 percent certain due to poor lighting and angle.
+This correction may affect the weight of identification and weapon attribution, but it does not remove the evidence of argument
+or presence.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 58
+20B. DRAFT ONLY - FORENSIC LAB ADMIN NOTE
+DRAFT ONLY. Awaiting final report. The current lab note records preliminary observations only. It does not provide a final DNA
+statistical evaluation, fingerprint conclusion, or contamination analysis.
+AreaCurrent positionOutstanding
+Knife DNAPartial mixed profileFinal DNA report
+Knife fingerprintsNo final result in bundleFingerprint report
+Blood sleeveBlood notedPattern/transfer analysis
+Scene contaminationConcern notedFull contamination notesCB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 59
+20C. SCENE PHOTOGRAPH INDEX - INDEX ONLY
+The scene photograph index is served as an index only. The full photograph set is outstanding. The index refers to stairwell
+entrance, bins behind estate, rail, door, blood marking, and general scene layout.
+The index is not a substitute for photographs. It may identify relevant lines of sight and object positions, but full photographs
+are needed before firm conclusions are drawn.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 60
+20D. FORENSIC CONTINUITY NOTE - INITIAL
+Initial continuity note records that knife and clothing exhibits were bagged after the scene was made safe. The note also
+records possible pre-cordon movement by members of the public. Full continuity schedule is outstanding.
+The forensic continuity issue is not resolved in this bundle. It may assist either side depending on final chain of custody, scene
+movement, and contamination records.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 61
+ANNEX A - TIMELINE WORKING NOTE 01
+Timeline note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does
+not add a new allegation or new exhibit code.
+22:30-23:05 full master CCTV requested. Served stills only. Timing must be treated as provisional until export log and
+continuity statement are served.
+22:41 entrance still places Leon Hale near estate entrance. 22:46 blurred possible second male. 22:47 Leon said to leave area.
+22:52 CAD call. Camera 3 may drift 3-4 minutes.
+The order of events matters because presence, second male movement, and emergency call timing are all capable of
+supporting or undermining the Crown route.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 62
+ANNEX B - WITNESS CONSISTENCY WORKING NOTE 02
+Witness note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does
+not add a new allegation or new exhibit code.
+Aisha Trent: argument and shiny object but poor lighting. Jordan Pike: second male and Leon looked scared. Priya Cole: heard
+drop it / stop it and saw possible object in Marcus hand.
+The witness statements overlap on argument and confusion but conflict on weapon attribution and second male involvement.
+None of these extracts directly sees the fatal wound caused.
+Final MG11 statements and any unnamed estate witness statements remain outstanding.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 63
+ANNEX C - FORENSIC LIMITS WORKING NOTE 03
+Forensic note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does
+not add a new allegation or new exhibit code.
+Knife DNA is partial/mixed. Low-level profile may include Leon but cannot exclude others. Fingerprints outstanding. Final DNA
+report outstanding. Scene contamination concern noted.
+Blood on sleeve may support involvement or contact/struggle account depending on pattern, transfer, sequence, and whether
+Leon touched Marcus after injury.
+Final pathology is necessary before firm conclusions on mechanism, intent inference, and causation.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 64
+ANNEX D - DIGITAL MATERIAL WORKING NOTE 04
+Digital note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does not
+add a new allegation or new exhibit code.
+Phone summaries are partial. Leon phone near Eastgate area does not in current extract prove stairwell presence at exact
+moment. Messages show argument and possible fear/avoidance depending context.
+Marcus phone is incomplete. Possible missing messages with second male are flagged but not served. Full downloads and
+cell-site report remain outstanding.
+Digital material can cut both ways and should not be overstated at PTPH on served summaries alone.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 65
+ANNEX E - CUSTODY AND INTERVIEW WORKING NOTE 05
+PACE note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does not
+add a new allegation or new exhibit code.
+Disclosure before interview was limited. Legal adviser requested CCTV, forensic position, and witness basis. Full interview
+audio/transcript and custody CCTV are outstanding.
+No comment answers need to be read in the context of disclosure given at the time. The current interview summary is not a
+transcript.
+Full custody record and custody CCTV may matter for timing of consultation and disclosure.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 66
+ANNEX F - HEARING POSITION WORKING NOTE 06
+Hearing note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does
+not add a new allegation or new exhibit code.
+At PTPH, the defence position is not guilty with self-defence, causation, attribution, identification, and intent live. The position
+should remain conditional pending source material.
+The court can be asked to record outstanding CCTV, CAD/999, BWV, pathology, DNA/fingerprint, phone, interview, custody,
+and witness material.
+The note should not suggest the defence wins or that the prosecution case collapses. It should identify what is missing and
+why it matters.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 67
+ANNEX A - TIMELINE WORKING NOTE 07
+Timeline note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does
+not add a new allegation or new exhibit code.
+22:30-23:05 full master CCTV requested. Served stills only. Timing must be treated as provisional until export log and
+continuity statement are served.
+22:41 entrance still places Leon Hale near estate entrance. 22:46 blurred possible second male. 22:47 Leon said to leave area.
+22:52 CAD call. Camera 3 may drift 3-4 minutes.
+The order of events matters because presence, second male movement, and emergency call timing are all capable of
+supporting or undermining the Crown route.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 68
+ANNEX B - WITNESS CONSISTENCY WORKING NOTE 08
+Witness note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does
+not add a new allegation or new exhibit code.
+Aisha Trent: argument and shiny object but poor lighting. Jordan Pike: second male and Leon looked scared. Priya Cole: heard
+drop it / stop it and saw possible object in Marcus hand.
+The witness statements overlap on argument and confusion but conflict on weapon attribution and second male involvement.
+None of these extracts directly sees the fatal wound caused.
+Final MG11 statements and any unnamed estate witness statements remain outstanding.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 69
+ANNEX C - FORENSIC LIMITS WORKING NOTE 09
+Forensic note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does
+not add a new allegation or new exhibit code.
+Knife DNA is partial/mixed. Low-level profile may include Leon but cannot exclude others. Fingerprints outstanding. Final DNA
+report outstanding. Scene contamination concern noted.
+Blood on sleeve may support involvement or contact/struggle account depending on pattern, transfer, sequence, and whether
+Leon touched Marcus after injury.
+Final pathology is necessary before firm conclusions on mechanism, intent inference, and causation.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 70
+ANNEX D - DIGITAL MATERIAL WORKING NOTE 10
+Digital note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does not
+add a new allegation or new exhibit code.
+DUPLICATE / REPEATED WORKING PAGE - retained to simulate messy criminal bundle pagination. Do not treat repeated
+wording as a separate source of proof.
+Phone summaries are partial. Leon phone near Eastgate area does not in current extract prove stairwell presence at exact
+moment. Messages show argument and possible fear/avoidance depending context.
+Marcus phone is incomplete. Possible missing messages with second male are flagged but not served. Full downloads and
+cell-site report remain outstanding.
+Digital material can cut both ways and should not be overstated at PTPH on served summaries alone.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 71
+ANNEX E - CUSTODY AND INTERVIEW WORKING NOTE 11
+PACE note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does not
+add a new allegation or new exhibit code.
+Disclosure before interview was limited. Legal adviser requested CCTV, forensic position, and witness basis. Full interview
+audio/transcript and custody CCTV are outstanding.
+No comment answers need to be read in the context of disclosure given at the time. The current interview summary is not a
+transcript.
+Full custody record and custody CCTV may matter for timing of consultation and disclosure.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 72
+ANNEX F - HEARING POSITION WORKING NOTE 12
+Hearing note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does
+not add a new allegation or new exhibit code.
+At PTPH, the defence position is not guilty with self-defence, causation, attribution, identification, and intent live. The position
+should remain conditional pending source material.
+The court can be asked to record outstanding CCTV, CAD/999, BWV, pathology, DNA/fingerprint, phone, interview, custody,
+and witness material.
+The note should not suggest the defence wins or that the prosecution case collapses. It should identify what is missing and
+why it matters.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 73
+ANNEX A - TIMELINE WORKING NOTE 13
+Timeline note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does
+not add a new allegation or new exhibit code.
+22:30-23:05 full master CCTV requested. Served stills only. Timing must be treated as provisional until export log and
+continuity statement are served.
+22:41 entrance still places Leon Hale near estate entrance. 22:46 blurred possible second male. 22:47 Leon said to leave area.
+22:52 CAD call. Camera 3 may drift 3-4 minutes.
+The order of events matters because presence, second male movement, and emergency call timing are all capable of
+supporting or undermining the Crown route.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 74
+ANNEX B - WITNESS CONSISTENCY WORKING NOTE 14
+Witness note. This working page is included to create realistic bundle volume and repeated cross-reference material. It does
+not add a new allegation or new exhibit code.
+Aisha Trent: argument and shiny object but poor lighting. Jordan Pike: second male and Leon looked scared. Priya Cole: heard
+drop it / stop it and saw possible object in Marcus hand.
+The witness statements overlap on argument and confusion but conflict on weapon attribution and second male involvement.
+None of these extracts directly sees the fatal wound caused.
+Final MG11 statements and any unnamed estate witness statements remain outstanding.
+Reference areaBundle detailCaution
+CCTV
+Stills served only; full master 22:30-23:05 and export logs
+outstanding.
+Presence is not the same as fatal act; timing
+drift must be checked.
+WitnessStatements contain poor lighting, second male, and uncertainty
+about weapon/contact.
+Use final MG11s and do not overstate draft
+extracts.
+ForensicDNA partial/mixed, fingerprints outstanding, pathology initial
+only.
+Final reports may support Crown or defence.
+DigitalPhone summaries partial; cell-site not precise enough for
+stairwell moment.
+Full downloads needed before firm
+motive/location conclusions.
+Repeated reference note: cross-check against MG5, MG6, served MG11 extracts, forensic notes, phone summaries, and
+hearing note. Where source material is missing, the position remains conditional.CB-MURDER-TEST-0001 | FICTIONAL TEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 75
+ANNEX C - FORENSIC LIMITS WORKING NOTE 15
+Forensic note. This working 

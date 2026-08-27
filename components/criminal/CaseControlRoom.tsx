@@ -459,6 +459,7 @@ export function CaseControlRoom({
           : null,
         bundleMetadata: bundleSource?.caseMetadata,
         bundleHeader: bundleSource?.header,
+        sourceCharges: bundleSource?.canonical?.charges ?? null,
         matterState,
         bundleText: bundleSource?.frontMatterScan ?? null,
         truthLedger,

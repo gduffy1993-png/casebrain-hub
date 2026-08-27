@@ -13,6 +13,24 @@ import { convertGoldTruthKeyToEvidenceState } from "../lib/eval/evidence-state-a
 const ROOT = process.cwd();
 const OUT_ROOT = path.join(ROOT, "artifacts", "evidence-state-audit-local", "cases");
 
+function pause(ms: number): void {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
+
+function writeTextFileWithRetry(filePath: string, contents: string): void {
+  let lastError: unknown;
+  for (let attempt = 0; attempt < 40; attempt += 1) {
+    try {
+      fs.writeFileSync(filePath, contents, "utf8");
+      return;
+    } catch (error) {
+      lastError = error;
+      pause(250);
+    }
+  }
+  throw lastError;
+}
+
 function offenceLabel(family: string | undefined): string {
   switch (family) {
     case "fraud_account":
@@ -53,9 +71,9 @@ function seedGoldCase(bundleId: string): void {
 
   const outDir = path.join(OUT_ROOT, bundleId);
   fs.mkdirSync(outDir, { recursive: true });
-  fs.writeFileSync(path.join(outDir, "truth-key.json"), `${JSON.stringify(truthKey, null, 2)}\n`, "utf8");
-  fs.writeFileSync(path.join(outDir, "casebrain-output.json"), `${JSON.stringify(output, null, 2)}\n`, "utf8");
-  fs.writeFileSync(path.join(outDir, "bundle-text.md"), bundleText, "utf8");
+  writeTextFileWithRetry(path.join(outDir, "truth-key.json"), `${JSON.stringify(truthKey, null, 2)}\n`);
+  writeTextFileWithRetry(path.join(outDir, "casebrain-output.json"), `${JSON.stringify(output, null, 2)}\n`);
+  writeTextFileWithRetry(path.join(outDir, "bundle-text.md"), bundleText);
 
   console.log(`  seeded gold ${bundleId} (${truthKey.evidenceItems.length} truth items)`);
 }

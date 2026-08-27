@@ -21,6 +21,7 @@ import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-
 import type { DocumentRowMeta } from "@/lib/bundle/parse-bundle-display";
 import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { fileBackedMatterTitle } from "@/components/criminal/workflow/workflowPilotDisplay";
 import {
   buildChaseItemsForHearing,
   buildHearingWarRoomBrief,
@@ -44,6 +45,7 @@ import { buildSolicitorMatterStateVm } from "@/lib/criminal/solicitor-matter-sta
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { computeCounters } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import type { AuthenticatedMatterCanonicalPayload } from "@/lib/criminal/authenticated-matter-canonical";
+import { canonicalRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
 
 function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
   if (docCount === 0) return "unknown";
@@ -215,7 +217,6 @@ export function useMatterBrief(caseId: string) {
   const pilotMatter = useMemo(() => {
     if (snapshotLoading || battleboardLoading || bundleLoading) return null;
 
-    const caseTitleBase = snapshot?.caseMeta?.title?.trim() || "Criminal case";
     const headerMeta = resolveCaseHeaderMetadata({
       snapshot,
       matter: matter
@@ -229,6 +230,7 @@ export function useMatterBrief(caseId: string) {
         : null,
       bundleMetadata: bundleSource?.caseMetadata,
       bundleHeader: bundleSource?.header,
+      sourceCharges: bundleSource?.canonical?.charges ?? null,
       bundleText: bundleSource?.frontMatterScan ?? null,
       matterState,
     });
@@ -236,6 +238,10 @@ export function useMatterBrief(caseId: string) {
     const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
     const allegationBase = sanitizeHeaderAllegation(headerMeta.allegation);
     const clientLabel = isCriminalPilotMode() ? cleanPilotHeaderClient(clientLabelBase) : clientLabelBase;
+    const caseTitleBase =
+      fileBackedMatterTitle(snapshot?.caseMeta?.title, clientLabel) ||
+      snapshot?.caseMeta?.title?.trim() ||
+      "Criminal case";
     const pilotHeader = workflowHeaderOverrides(caseTitleBase, {
       allegation: allegationBase,
       routeTitle: battleboard?.primary_route?.title,
@@ -286,16 +292,20 @@ export function useMatterBrief(caseId: string) {
       clientLabel,
       profileHint: pilotHeader?.profile ?? null,
     };
+    const canonicalMissingRows = canonicalRowsForBuilder(bundleSource?.canonical);
+    const snapshotMissingRows = snapshot?.evidence.missingEvidence ?? [];
+    const builderMissingRows =
+      canonicalMissingRows.length > 0
+        ? canonicalMissingRows
+        : snapshotMissingRows;
+    const courtPressureRows =
+      canonicalMissingRows.length > 0
+        ? builderMissingRows.filter((item) => item.status === "MISSING")
+        : builderMissingRows;
 
     const chaseItemsAll = buildChaseItemsForHearing({
       battleboard,
-      snapshotMissing: [
-        ...(snapshot?.evidence.missingEvidence ?? []),
-        ...(bundleSource?.canonical?.chaseLabels ?? []).map((label) => ({
-          label,
-          status: "Outstanding",
-        })),
-      ],
+      snapshotMissing: courtPressureRows,
       proceduralOutstanding: undefined,
       bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
     });
@@ -303,8 +313,7 @@ export function useMatterBrief(caseId: string) {
       bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
       missingMaterial: [
         ...chaseItemsAll,
-        ...(snapshot?.evidence.missingEvidence?.map((item) => item.label) ?? []),
-        ...(bundleSource?.canonical?.chaseLabels ?? []),
+        ...courtPressureRows.map((item) => item.label),
       ],
       allegation,
     });
@@ -391,11 +400,7 @@ export function useMatterBrief(caseId: string) {
       positionStatus,
       battleboard,
       snapshotMissing: [
-        ...(snapshot?.evidence.missingEvidence ?? []),
-        ...(bundleSource?.canonical?.chaseLabels ?? []).map((label) => ({
-          label,
-          status: "Outstanding",
-        })),
+        ...builderMissingRows,
       ],
       bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
       profileHint: pilotHeader?.profile ?? null,
@@ -415,7 +420,7 @@ export function useMatterBrief(caseId: string) {
       documentCount,
       combinedTextLength: bundleSource?.combinedTextLength,
       bundleHealth: bundleHealthTier(bundleHealth, documentCount),
-      missingMaterialCount: chaseItemsAll.length,
+      missingMaterialCount: chase.items.length,
       genericProvisional: /provisional|thin|generic/i.test(`${bundleHealth} ${pilotHeader?.profile ?? ""}`),
       hasSafeCourtLine: Boolean(warRoom.safePositionToday?.trim()),
     });
@@ -485,6 +490,7 @@ export function useMatterBrief(caseId: string) {
             documentRows: bundleSource.documentRows,
             snippets: bundleSource.snippets,
             frontMatterScan: bundleSource.frontMatterScan,
+            caseMetadata: bundleSource.caseMetadata,
             canonical: bundleSource.canonical ?? null,
           }
         : null,

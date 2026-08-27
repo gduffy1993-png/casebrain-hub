@@ -9,7 +9,8 @@ import {
   SERIOUS_VIOLENCE_PRIMARY_ROUTE_TITLE,
   SERIOUS_VIOLENCE_PROVISIONAL_COURT_LINE,
 } from "@/lib/eval/casebrain-auditor/provisional-offence-policy";
-import { stripDoNotInventAdvisory } from "@/lib/criminal/chase-source-gate";
+import { stripDoNotInventAdvisory, familySupport, confirmNoneLine } from "@/lib/criminal/chase-source-gate";
+import { demoPackConflictsWithSourceAllegation } from "@/lib/criminal/case-identity-boundary";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { isPlaceholderHearingIso } from "@/lib/criminal/solicitor-hearing-display";
 import type { BattleboardOutput, BattleboardRoute } from "@/lib/criminal/strategy-battleboard";
@@ -261,15 +262,45 @@ function contextScan(context: WorkflowProfileContext): string {
     .join(" ");
 }
 
-/** Demo matter name match anywhere in case signals — forces profile for Marcus/Kian/Leon. */
+/**
+ * Identity-only scan for demo matter names. A demo name appearing inside served
+ * evidence text (witness, complainant, exhibit note) is not the identity of this
+ * matter, so bundle/route text must never force a demo profile or allegation.
+ */
+function demoIdentityScan(context: WorkflowProfileContext): string {
+  return [context.caseTitle, context.clientLabel].filter(Boolean).join(" ");
+}
+
+function isUnusableAllegationLabel(label: string): boolean {
+  return /\b(offence wording not safely extracted|unknown|add charge sheet)\b/i.test(label);
+}
+
+function demoMatchFromIdentity(
+  context: WorkflowProfileContext,
+): (typeof DEMO_TITLE_FALLBACK)[number] | null {
+  const scan = demoIdentityScan(context);
+  if (!scan.trim()) return null;
+  return DEMO_TITLE_FALLBACK.find((demo) => demo.titleRe.test(scan)) ?? null;
+}
+
+/**
+ * Demo packs are another matter's clothes. A name hit on identity is not enough when
+ * the papers already name a different offence family (Marcus Vale fraud vs Vale robbery).
+ */
+function acceptedDemoMatch(
+  context: WorkflowProfileContext,
+): (typeof DEMO_TITLE_FALLBACK)[number] | null {
+  const demo = demoMatchFromIdentity(context);
+  if (!demo) return null;
+  if (demoPackConflictsWithSourceAllegation(context.allegation, demo.allegation)) return null;
+  return demo;
+}
+
+/** Demo matter name match on case identity — forces profile for Marcus/Kian/Leon. */
 export function resolveDemoProfileFromContext(
   context: WorkflowProfileContext,
 ): Exclude<WorkflowProfile, "generic"> | null {
-  const scan = contextScan(context);
-  for (const demo of DEMO_TITLE_FALLBACK) {
-    if (demo.titleRe.test(scan)) return demo.profile;
-  }
-  return null;
+  return acceptedDemoMatch(context)?.profile ?? null;
 }
 
 function resolveProfileFromContext(context: WorkflowProfileContext): WorkflowProfile {
@@ -290,11 +321,9 @@ function scoreProfile(context: WorkflowProfileContext): Map<WorkflowProfile, num
     ["generic", 0],
   ]);
 
-  const scan = contextScan(context);
-  for (const demo of DEMO_TITLE_FALLBACK) {
-    if (demo.titleRe.test(scan)) {
-      scores.set(demo.profile, (scores.get(demo.profile) ?? 0) + 100);
-    }
+  const identityDemo = acceptedDemoMatch(context);
+  if (identityDemo) {
+    scores.set(identityDemo.profile, (scores.get(identityDemo.profile) ?? 0) + 100);
   }
 
   const weightedFields: Array<{ text: string; weight: number }> = [
@@ -334,7 +363,7 @@ export function resolveWorkflowProfileFromSignals(context: WorkflowProfileContex
 
   const allegationText = [context.allegation, context.caseTitle].filter(Boolean).join("; ");
   if (
-    /\b(theft|shoplifting)\b/i.test(allegationText) &&
+    /\b(theft|shoplifting|burglary|burgle)\b/i.test(allegationText) &&
     !/\b(robbery|snatch|mugging|assault|gbh|wounding|violence)\b/i.test(allegationText)
   ) {
     return "generic";
@@ -429,11 +458,28 @@ const PROFILE_SOURCE_SUPPORT_RULES: SourceSupportRule[] = [
     output: /\bexport\s+log\b/i,
     source: /\bexport\s+log\b/i,
   },
-  // CCTV master/continuity — invent-advisory "assuming missing CCTV" is not source support.
+  // CCTV master / full window — stills or partial extract alone are not support.
   {
-    output: /\b(?:full cctv|cctv master|cctv continuity|cctv export|master footage|full\s*window)\b/i,
+    output: /\b(?:full cctv|cctv master|master footage|full\s*window|cctv full window)\b/i,
     source:
-      /\b(?:cctv\s+stills|partial\s+cctv|full\s+cctv|cctv\s+master|master\s+footage|full\s*(?:time\s+)?window|cctv\s+(?:footage|export|continuity|outstanding)|video\s+footage|camera\s+footage|dashcam)\b/i,
+      /\b(?:full\s+cctv(?:\s+master|\s+window)?|cctv\s+master|master\s+footage|full\s*(?:time\s+)?window|cctv\s+(?:footage|export)\s+(?:outstanding|not\s+served|master))\b/i,
+  },
+  // CCTV continuity — require continuity language tied to CCTV; stills ≠ continuity.
+  {
+    output: /\bcctv\s+continuity\b|\bcontinuity\s+(?:of\s+)?(?:cctv|footage)\b/i,
+    source:
+      /\b(?:cctv\s+continuity|continuity\s+(?:of\s+)?(?:the\s+)?(?:cctv|footage|video)|(?:cctv|footage)\s+continuity\s+(?:statement|log|record|note)|continuity\s+statement[^.\n]{0,40}\b(?:cctv|footage))\b/i,
+  },
+  // Generic CCTV chase seeds — stills/partial may support a limited CCTV ask, not master/continuity.
+  {
+    output: /\bcctv\s+export\b|\bcctv\b/i,
+    source:
+      /\b(?:cctv\s+stills|partial\s+cctv|full\s+cctv|cctv\s+master|master\s+footage|cctv\s+(?:footage|export|continuity|outstanding)|video\s+footage|camera\s+footage|dashcam)\b/i,
+  },
+  // ID procedure — robbery pack must not invent VIPER/parade without papers.
+  {
+    output: /\b(?:id\s+procedure|identification\s+procedure|viper|id\s+parade|video\s+identification)\b/i,
+    source: /\b(?:id\s+procedure|identification\s+procedure|viper|id\s+parade|video\s+identification|parade\s+identification)\b/i,
   },
 ];
 
@@ -563,30 +609,53 @@ export function pickWorkflowPrimaryRoute(
   return substantive ?? routes[0] ?? null;
 }
 
-/** Build robbery conditional phrase; drop modality clauses the papers never mention. */
+/** Build robbery conditional phrase; drop modality clauses the papers never establish. */
 function robberySourceMaterialPhrase(context: WorkflowProfileContext): string {
   const profile: WorkflowProfile = "robbery_identification";
-  const parts = ["full CCTV", "ID procedure material"];
-  if (profileLineHasSourceSupport("999/CAD timing", context, profile)) {
-    parts.push("999/CAD timing");
-  }
-  parts.push(
+  const candidates = [
+    "full CCTV",
+    "ID procedure material",
+    "999/CAD timing",
     "complainant statement",
     "any other-person attribution expressly raised by the papers",
     "interview material",
-  );
+  ];
+  const parts = candidates.filter((line) => profileLineHasSourceSupport(line, context, profile));
+  if (!parts.length) return "material expressly raised by the papers";
   if (parts.length === 1) return parts[0]!;
   if (parts.length === 2) return `${parts[0]} and ${parts[1]}`;
   return `${parts.slice(0, -1).join(", ")}, and ${parts[parts.length - 1]}`;
 }
 
+function robberyIdentificationLead(context: WorkflowProfileContext): string {
+  // Do not invent "Identification …" court theory unless ID procedure / robbery ID is on the papers.
+  const idOnPapers = profileLineHasSourceSupport("ID procedure material", context, "robbery_identification");
+  const robberyIdSignal = /\b(robbery|mugging|snatch|poor identification|identification issue|viper|id parade|id procedure)\b/i.test(
+    contextScan(context),
+  );
+  if (idOnPapers || robberyIdSignal) {
+    return "Identification, participation and attribution";
+  }
+  return "Participation and attribution";
+}
+
 function robberySafeCourtLine(context: WorkflowProfileContext): string {
   const phrase = robberySourceMaterialPhrase(context);
-  return `Identification and participation remain conditional on ${phrase}. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.`;
+  let line = `${robberyIdentificationLead(context)} remain conditional on ${phrase}. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.`;
+  const source = context.bundleText?.trim();
+  if (source && familySupport("cctv", source) === "negated") {
+    line = `${line} ${confirmNoneLine("cctv")}`;
+  }
+  return line;
 }
 
 function robberyDisclosureCaseWideLine(context: WorkflowProfileContext): string {
-  return `Identification, participation and attribution remain conditional on ${robberySourceMaterialPhrase(context)}.`;
+  let line = `${robberyIdentificationLead(context)} remain conditional on ${robberySourceMaterialPhrase(context)}.`;
+  const source = context.bundleText?.trim();
+  if (source && familySupport("cctv", source) === "negated") {
+    line = `${line} ${confirmNoneLine("cctv")}`;
+  }
+  return line;
 }
 
 export function workflowSafeCourtLine(context: WorkflowProfileContext): string | null {
@@ -673,24 +742,37 @@ export function workflowHeaderOverrides(
 ): WorkflowHeaderOverride | null {
   if (!isCriminalPilotMode()) return null;
   const t = caseTitle.trim();
-  const fullContext: WorkflowProfileContext = { caseTitle: t, ...context };
-  const scan = contextScan(fullContext);
+  const fileName = context?.clientLabel?.trim() ?? "";
+  const placeholderTitle =
+    !t ||
+    /^untitled case$/i.test(t) ||
+    /^client\b/i.test(t) ||
+    /not on papers|not safely extracted/i.test(t);
+  const heading =
+    placeholderTitle && fileName && !/^client\b/i.test(fileName) && !/not on papers|not safely extracted/i.test(fileName)
+      ? fileName
+      : t;
+  const fullContext: WorkflowProfileContext = { caseTitle: heading, ...context };
 
-  for (const demo of DEMO_TITLE_FALLBACK) {
-    if (demo.titleRe.test(scan)) {
-      return {
-        title: demo.title,
-        allegation: demo.allegation,
-        displayTitle: `${demo.title} — ${demo.allegation}`,
-        profile: demo.profile,
-      };
-    }
+  const identityDemo = acceptedDemoMatch(fullContext);
+  if (identityDemo) {
+    const sourceAllegation = fullContext.allegation?.trim();
+    const allegation =
+      sourceAllegation && !isUnusableAllegationLabel(sourceAllegation)
+        ? sourceAllegation
+        : identityDemo.allegation;
+    return {
+      title: identityDemo.title,
+      allegation,
+      displayTitle: `${identityDemo.title} — ${allegation}`,
+      profile: identityDemo.profile,
+    };
   }
 
   const profile = resolveWorkflowProfile(fullContext);
   if (profile === "generic") return null;
 
-  const title = t.startsWith("R v") ? t : t;
+  const title = heading.startsWith("R v") ? heading : heading;
   const allegationFromContext = fullContext.allegation?.trim();
   const defaultAllegation =
     profile === "generic_motoring_provisional"
@@ -701,8 +783,7 @@ export function workflowHeaderOverrides(
           ? GENERIC_PROVISIONAL_PRIMARY_ROUTE_TITLE
           : PROFILE_PACKS[profile].primaryRouteTitle.split(" pressure")[0] ?? profile;
   const cleanAllegation =
-    allegationFromContext &&
-    !/\b(offence wording not safely extracted|unknown|add charge sheet)\b/i.test(allegationFromContext)
+    allegationFromContext && !isUnusableAllegationLabel(allegationFromContext)
       ? allegationFromContext
       : defaultAllegation;
 

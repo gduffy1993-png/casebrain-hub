@@ -19,6 +19,7 @@ import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import {
   buildDisclosureChaseBrief,
   computeCounters,
+  displayChaseOperationalStatus,
   effectiveStatus,
   matchesFilter,
   type ChaseFilterBucket,
@@ -63,6 +64,11 @@ import {
 } from "@/lib/criminal/solicitor-hearing-display";
 import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 import { solicitorLinesNearlyEqual } from "@/lib/criminal/solicitor-display-dedupe";
+import {
+  draftMisalignedToLabel,
+  sanitizeChaseMergedFrom,
+  sanitizeSolicitorEvidenceAnchor,
+} from "@/lib/criminal/solicitor-signal-mute";
 import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import {
   clearLegacyDisclosureChaseStorage,
@@ -79,6 +85,7 @@ import {
 } from "@/lib/criminal/demo-presentation-polish";
 import { humanizeRemainingSnakeCaseTokens } from "@/lib/criminal/solicitor-visible-sanitization";
 import { createClient } from "@/lib/supabase/browser";
+import { canonicalRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
 
 const LOCAL_STORAGE_PREFIX = "casebrain:disclosure-chase:";
 
@@ -255,8 +262,13 @@ function ChaseItemCard({
   const itemSourceState = inferChaseItemSourceState({
     label: item.label,
     source: item.source,
-    baseStatus: item.baseStatus,
+    // Overdue/Due soon pollute source-state into NSC — probe material state separately.
+    baseStatus:
+      status === "Overdue" || status === "Due soon" || item.baseStatus === "Overdue" || item.baseStatus === "Due soon"
+        ? "Outstanding"
+        : item.baseStatus,
     evidenceAnchor: item.evidenceAnchor,
+    whyItMatters: item.whyItMatters,
   });
   const sourceBadgeRepeatsStatus =
     sourceStateBadgeLabel(itemSourceState).toLowerCase() === status.toLowerCase();
@@ -311,7 +323,7 @@ function ChaseItemCard({
           <p className={`${bodyClass} mt-1 line-clamp-2`}>{displayWhy || item.whyItMatters}</p>
         </div>
         <Badge variant={statusBadgeVariant(status)} size="sm">
-          {status}
+          {displayChaseOperationalStatus(status)}
         </Badge>
         {!sourceBadgeRepeatsStatus ? <SourceStateBadge state={itemSourceState} /> : null}
       </div>
@@ -397,10 +409,18 @@ function DetailPanel({
   const displayWhy = displayChaseWhy(item.whyItMatters, item);
   const displaySource = displayChaseItemText(item.source, item);
   const displayRoute = displayChaseItemText(item.linkedRoute, item);
-  const displayAnchor = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.evidenceAnchor, item));
-  const displayDraft = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.draftChaseWording, item));
+  const safeAnchor = sanitizeSolicitorEvidenceAnchor(item.evidenceAnchor);
+  const displayAnchor = humanizeRemainingSnakeCaseTokens(
+    displayChaseItemText(safeAnchor, item),
+  );
+  // Align draft to the solicitor-visible label (stop MG6 draft under MG11 peel).
+  const draftSource = draftMisalignedToLabel(displayLabel, item.draftChaseWording)
+    ? `Please provide ${displayLabel} or confirm in writing why it is not available.`
+    : item.draftChaseWording;
+  const displayDraft = humanizeRemainingSnakeCaseTokens(displayChaseItemText(draftSource, item));
   const displayCourt = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.courtLine, item));
   const displaySafeCourtLine = humanizeRemainingSnakeCaseTokens(displayChaseItemText(brief.safeCourtLine, item));
+  const solicitorMergedFrom = sanitizeChaseMergedFrom(item.mergedFrom);
   return (
     <aside className={`${shell} sticky top-4`}>
       <header
@@ -408,7 +428,7 @@ function DetailPanel({
       >
         <h2 className={titleClass}>{displayLabel}</h2>
         <Badge variant={statusBadgeVariant(status)} size="sm" className="mt-2">
-          {status}
+          {displayChaseOperationalStatus(status)}
         </Badge>
       </header>
       <div className={`p-4 space-y-4 ${bodyClass}`}>
@@ -434,20 +454,20 @@ function DetailPanel({
             </p>
           )}
         </div>
-        {item.mergedFrom.length > 1 && (
+        {solicitorMergedFrom.length > 1 && (
           <div>
             <p className={workflowSectionTitle}>Merged from file</p>
             <ul className="mt-1 text-xs text-slate-600 list-disc pl-4 space-y-0.5">
-              {item.mergedFrom.map((m, i) => (
+              {solicitorMergedFrom.map((m, i) => (
                 <li key={i}>{displayChaseItemText(m, item) || m}</li>
               ))}
             </ul>
           </div>
         )}
-        {item.evidenceAnchor && (
+        {safeAnchor && (
           <div>
             <p className={workflowSectionTitle}>Evidence anchor</p>
-            <p className="mt-1 text-xs leading-relaxed">{displayAnchor || item.evidenceAnchor}</p>
+            <p className="mt-1 text-xs leading-relaxed">{displayAnchor || safeAnchor}</p>
           </div>
         )}
         <div>
@@ -457,7 +477,7 @@ function DetailPanel({
               pilotEmbed ? "border-slate-600 text-slate-400" : "border-slate-200"
             }`}
           >
-            {displayDraft || item.draftChaseWording}
+            {displayDraft || draftSource}
           </p>
         </div>
         <div>
@@ -690,6 +710,8 @@ export function DisclosureChase({
           : null,
         bundleMetadata: bundleSource?.caseMetadata,
         bundleHeader: bundleSource?.header,
+        sourceCharges: bundleSource?.canonical?.charges ?? null,
+        bundleText: bundleSource?.frontMatterScan ?? null,
         matterState,
       }),
     [snapshot, matter, bundleSource, matterState],
@@ -777,8 +799,14 @@ export function DisclosureChase({
   }, [hasSavedPosition, savedPosition, headerMeta.defencePosition, pilotMode, workflowContext]);
 
   const brief: DisclosureChaseBrief = useMemo(
-    () =>
-      buildDisclosureChaseBrief({
+    () => {
+      const canonicalRows = canonicalRowsForBuilder(bundleSource?.canonical ?? null);
+      const builderMissingRows =
+        canonicalRows.length > 0
+          ? canonicalRows
+          : snapshot?.evidence.missingEvidence ?? [];
+
+      return buildDisclosureChaseBrief({
         caseId,
         caseTitle,
         clientLabel,
@@ -789,17 +817,7 @@ export function DisclosureChase({
         bundleHealth: deriveBundleHealth(snapshot, bundleSource, battleboard),
         positionStatus,
         battleboard,
-        snapshotMissing: [
-          ...(snapshot?.evidence.missingEvidence ?? []),
-          ...(bundleSource?.canonical?.chaseLabels ?? []).map((label) => ({
-            label,
-            status: "Outstanding",
-          })),
-          // Overview gap projector labels — keep Chase modality hay aligned with Papers/Overview.
-          ...((bundleSource?.canonical?.evidenceRows ?? [])
-            .filter((r) => r.existence !== "served")
-            .map((r) => ({ label: r.label, status: "Outstanding" })) ?? []),
-        ],
+        snapshotMissing: builderMissingRows,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
         bundleText: bundleSource?.frontMatterScan ?? null,
         profileHint: pilotHeader?.profile ?? null,
@@ -808,7 +826,8 @@ export function DisclosureChase({
           label: r.label,
           state: r.existence,
         })),
-      }),
+      });
+    },
     [
       caseId,
       snapshot,
@@ -832,27 +851,21 @@ export function DisclosureChase({
   );
 
   const filteredItems = useMemo(
-    () => brief.items.filter((item) => matchesFilter(item, filter, localStatus)),
-    [brief.items, filter, localStatus],
+    () => brief.primaryItems.filter((item) => matchesFilter(item, filter, localStatus)),
+    [brief.primaryItems, filter, localStatus],
   );
 
-  const primaryIdSet = useMemo(() => new Set(brief.primaryItems.map((i) => i.id)), [brief.primaryItems]);
+  const filteredPrimary = filteredItems;
 
-  const filteredPrimary = useMemo(
-    () => filteredItems.filter((item) => primaryIdSet.has(item.id)),
-    [filteredItems, primaryIdSet],
-  );
+  // Shortlist freeze: solicitor Chase board = primary only (no Other resurrection).
+  const filteredAdditional: typeof filteredItems = [];
 
-  const filteredAdditional = useMemo(
-    () => filteredItems.filter((item) => !primaryIdSet.has(item.id)),
-    [filteredItems, primaryIdSet],
-  );
-
-  const selectedItem = brief.items.find((i) => i.id === selectedId) ?? filteredItems[0] ?? null;
+  const selectedItem =
+    brief.primaryItems.find((i) => i.id === selectedId) ?? filteredPrimary[0] ?? null;
   const bundleHay = [
     bundleSource?.frontMatterScan ?? "",
     allegation,
-    ...(brief.items ?? []).map((i) => `${i.label} ${i.whyItMatters ?? ""} ${i.draftChaseWording ?? ""}`),
+    ...(brief.primaryItems ?? []).map((i) => `${i.label} ${i.whyItMatters ?? ""} ${i.draftChaseWording ?? ""}`),
   ].join(" ");
   const displaySafeCourtLine = polishPresentationLine(brief.safeCourtLine, bundleHay);
 
@@ -864,7 +877,16 @@ export function DisclosureChase({
         sourceState: "missing" as const,
       };
     }
-    const sourceState = inferChaseItemSourceState(selectedItem);
+    const sourceState = inferChaseItemSourceState({
+      label: selectedItem.label,
+      source: selectedItem.source,
+      baseStatus:
+        selectedItem.baseStatus === "Overdue" || selectedItem.baseStatus === "Due soon"
+          ? "Outstanding"
+          : selectedItem.baseStatus,
+      evidenceAnchor: selectedItem.evidenceAnchor,
+      whyItMatters: selectedItem.whyItMatters,
+    });
     const chaseCopy = buildCopySafeResult({
       text: selectedItem.draftChaseWording ?? selectedItem.label,
       kind: "cps_chase",

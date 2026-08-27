@@ -47,4 +47,6 @@ export type CourtTodayEnrichment = {
   battleboard?: BattleboardOutput | null;
   bundleMetadata?: ExtractedBundleCaseMetadata | null;
   bundleHeader?: ParsedBundleHeader | null;
+  /** Compact source/front-matter text for header truth fallbacks when structured metadata is thin. */
+  frontMatterScan?: string | null;
 };

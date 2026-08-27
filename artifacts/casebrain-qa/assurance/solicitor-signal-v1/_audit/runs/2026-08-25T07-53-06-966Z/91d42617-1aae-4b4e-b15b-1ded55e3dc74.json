@@ -1,0 +1,22 @@
+{
+  "caseId": "91d42617-1aae-4b4e-b15b-1ded55e3dc74",
+  "primary": [
+    {
+      "ref": null,
+      "label": "Full phone download / source extraction",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Subscriber / account data",
+      "family": "other",
+      "status": "Outstanding"
+    }
+  ],
+  "ledgerRows": 2,
+  "statedGaps": 0,
+  "statedGapsOnBoard": 0,
+  "truncated": false,
+  "findings": []
+}

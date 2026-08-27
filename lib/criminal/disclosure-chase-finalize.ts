@@ -4,6 +4,12 @@ import type {
   ChaseFamilyId,
   DisclosureChaseItem,
 } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import {
+  draftMisalignedToLabel,
+  isGenericSolicitorClutterLabel,
+  sanitizeChaseMergedFrom,
+  sanitizeSolicitorEvidenceAnchor,
+} from "@/lib/criminal/solicitor-signal-mute";
 
 const COURT_RECORD_PREFIX = "The defence asks the court to record";
 
@@ -16,6 +22,20 @@ export function isRawChaseFragmentLabel(label: string): boolean {
   return /(^\s*(?:\|?\s*\d+\s*\||#{1,6}\s|mg11\s|mg6c?\/|bundle index|scanned continuation|page\s+\d+)|\|\s*\d+\s*\||\|\s*\*\*|particulars of offence)/i.test(
     label,
   );
+}
+
+/** Named schedule cell (`MG6C/002`, `MG6/04`) — citation, not chrome. */
+function isScheduleRowCitation(text: string): boolean {
+  return /\bMG6C?\/\d+/i.test(text);
+}
+
+function preferScheduleCitationAnchor(
+  a: string | null | undefined,
+  b: string | null | undefined,
+): string | null {
+  if (a && isScheduleRowCitation(a)) return a;
+  if (b && isScheduleRowCitation(b)) return b;
+  return a ?? b ?? null;
 }
 
 function stripCourtLinePrefix(raw: string): string {
@@ -73,11 +93,25 @@ export function humanizeChaseFragmentLabel(raw: string): string {
     return "Phone extraction summary only — full download report not in section";
   }
   if (/full\s+phone\s+download|phone\s+download\s*\/\s*source\s+extraction/i.test(t)) {
-    return "Full phone download / source extraction";
+    return phoneDownloadIdentityLabel(t);
   }
   if (/phone extraction|extraction summary/i.test(t)) return "Phone extraction source material";
   if (/subscriber\s+data|subscriber\s*\/\s*account/i.test(t)) return "Subscriber / account data";
-  if (/^MG6\b|mg6\s*\/\s*unused|disclosure schedule/i.test(t)) return "MG6 / unused schedule clarification";
+  if (/\bcomplete\s+cad\s*\/\s*999\s+log\b/i.test(t)) return "Complete CAD/999 log";
+  if (/\b999\s+(?:audio|call|recording)\b|\bemergency\s+call\b/i.test(t)) {
+    return "999 audio / emergency-call material";
+  }
+  if (/\b(?:cad|dispatch)(?:\s*\/\s*(?:dispatch|cad))?\b/i.test(t)) return "CAD / dispatch log material";
+  // `MG6/04 bank source statements` is an item the schedule lists; `MG6` or `MG6 disclosure
+  // schedule` is the schedule itself. Only the schedule warrants a clarification request — rewriting
+  // every row that opens with a reference collapsed distinct listed material onto one generic card,
+  // so a bank statement and an analyst certificate arrived as the same unsendable ask, twice.
+  if (
+    /^MG6C?\b(?!\s*[/\-\s]?\s*\d)/i.test(t) ||
+    /mg6\s*\/\s*unused|disclosure schedule/i.test(t)
+  ) {
+    return "MG6 / unused schedule clarification";
+  }
 
   if (t.includes(";")) {
     const parts = t
@@ -140,6 +174,17 @@ function interviewFamilyLabelLocal(hay: string): string {
   return "Interview recording";
 }
 
+function cad999FamilyLabelLocal(hay: string): string {
+  if (/\b999\s+(?:audio|call|recording)\b|\bemergency\s+call\b/i.test(hay)) {
+    return "999 audio / emergency-call material";
+  }
+  if (/\bcomplete\s+cad\s*\/\s*999\s+log\b/i.test(hay)) return "Complete CAD/999 log";
+  if (/\b(?:cad|dispatch)(?:\s*\/\s*(?:dispatch|cad))?\b/i.test(hay)) {
+    return "CAD / dispatch log material";
+  }
+  return "CAD / dispatch / 999 material";
+}
+
 function familyLabelForId(familyId: ChaseFamilyId, mergedFrom: string[] = []): string {
   switch (familyId) {
     case "cctv_continuity":
@@ -147,7 +192,7 @@ function familyLabelForId(familyId: ChaseFamilyId, mergedFrom: string[] = []): s
     case "cctv_master":
       return "CCTV full window / master footage";
     case "cad_999":
-      return "CAD / 999 audio / control-room material";
+      return cad999FamilyLabelLocal(mergedFrom.join(" "));
     case "bwv":
       return "Body-worn video (BWV)";
     case "interview":
@@ -250,6 +295,21 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
     item.mergedFrom.map((m) => humanizeChaseFragmentLabel(m)).filter(Boolean),
   ).slice(0, 8);
 
+  // Presentation may tidy the wording of material the schedule names, but must not rename it
+  // into a family card — the reference is what the request is made against.
+  if (isSourceNamedChaseItem(item)) {
+    // Casing only. The fragment humaniser treats an MG6 label as schedule chrome and would
+    // rewrite `MG6/05 CCTV continuity log` into a generic clarification card.
+    const named = formatDisplayLabelCasing(item.label);
+    return {
+      ...item,
+      label: named,
+      whyItMatters: sanitizeWhyItMatters(item.whyItMatters, 1),
+      draftChaseWording: cleanDraftWording(named, [named]),
+      courtLine: cleanCourtLine(named),
+    };
+  }
+
   let label = humanizeChaseFragmentLabel(item.label);
   // Brookes/Ahmed soft-mute: never overflow-rewrite digital modality cards into
   // "Outstanding source material…" — that buries PDF-true phone/subscriber under Other.
@@ -267,18 +327,21 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
   }
   const digitalFromMerged = mergedHumanized.find((m) => isDigitalModalityChaseLabel(m));
   if (digitalFromMerged && item.familyId === "other") {
-    // Prefer a digital modality identity when overflow mergedFrom still carries one.
-    label = digitalFromMerged;
     const digitalMerged = mergedHumanized.filter((m) => isDigitalModalityChaseLabel(m));
-    return {
-      ...item,
-      label,
-      mergedFrom: digitalMerged,
-      whyItMatters: sanitizeWhyItMatters(item.whyItMatters, digitalMerged.length),
-      draftChaseWording: cleanDraftWording(label, digitalMerged),
-      courtLine: cleanCourtLine(label),
-      evidenceAnchor: item.evidenceAnchor,
-    };
+    // Multiple phone/subscriber identities trapped in overflow — do not collapse here.
+    // Leave overflow identity so collapse/peel can emit distinct modality cards.
+    if (digitalMerged.length === 1) {
+      label = digitalFromMerged;
+      return {
+        ...item,
+        label,
+        mergedFrom: digitalMerged,
+        whyItMatters: sanitizeWhyItMatters(item.whyItMatters, digitalMerged.length),
+        draftChaseWording: cleanDraftWording(label, digitalMerged),
+        courtLine: cleanCourtLine(label),
+        evidenceAnchor: item.evidenceAnchor,
+      };
+    }
   }
   const needsFamilyLabel =
     !label ||
@@ -306,8 +369,12 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
           : humanOverflowCardLabel(mergedHumanized.length ? mergedHumanized : item.mergedFrom);
   }
 
+  // Card titles may drop the cell code; Evidence Anchor must keep it so the solicitor
+  // can ask for MG6C/002 rather than a family template. Opposite: no citation in, none out.
   let evidenceAnchor = item.evidenceAnchor;
-  if (evidenceAnchor && isRawChaseFragmentLabel(evidenceAnchor)) {
+  if (evidenceAnchor && isScheduleRowCitation(evidenceAnchor)) {
+    evidenceAnchor = stripPagePipeFragments(formatDisplayLabelCasing(evidenceAnchor));
+  } else if (evidenceAnchor && isRawChaseFragmentLabel(evidenceAnchor)) {
     evidenceAnchor = humanizeChaseFragmentLabel(evidenceAnchor);
     if (isRawChaseFragmentLabel(evidenceAnchor)) evidenceAnchor = null;
   }
@@ -330,7 +397,31 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
 }
 
 function itemFinalizeKey(item: DisclosureChaseItem): string {
-  return `${item.familyId}:${norm(item.label)}`;
+  const key = `${item.familyId}:${norm(item.label)}`;
+  const ref = item.sourceScheduleRef?.trim();
+  return ref ? `${key}#${ref.toLowerCase()}` : key;
+}
+
+/**
+ * Material the schedule names by reference. Such an item may be reworded, but must not be merged
+ * into a family card or renamed — the reference is how the solicitor asks for it, and the source
+ * naming it is what makes the request safe to send.
+ */
+export function isSourceNamedChaseItem(item: DisclosureChaseItem): boolean {
+  if (item.familyId === "mg6_unused") return false;
+  if (isGenericSolicitorClutterLabel(item.label)) return false;
+  const blob = `${item.label} ${item.baseStatus} ${(item.mergedFrom ?? []).join(" ")}`;
+  const statedGap =
+    item.baseStatus === "Outstanding" ||
+    /\b(?:outstanding|not\s+served|missing|absent|referred(?:\s+only)?|awaiting\s+export)\b/i.test(
+      blob,
+    );
+  // A code is how the solicitor asks for a gap. It is not itself proof the item is missing.
+  if (item.sourceScheduleRef?.trim()) return statedGap;
+  // Numbered MG6 cells often have no letter-code (`3 search record outstanding`). They are still
+  // the papers naming the gap, so they must not be dropped as family-`other` miscellany.
+  if (item.id.startsWith("ledger-material-") && statedGap) return true;
+  return false;
 }
 
 function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): DisclosureChaseItem {
@@ -358,14 +449,37 @@ function mergeFinalizedItems(a: DisclosureChaseItem, b: DisclosureChaseItem): Di
     urgency: a.urgency === "high" || b.urgency === "high" ? "high" : a.urgency,
     draftChaseWording: cleanDraftWording(label, digitalLabel ? [digitalLabel] : mergedFrom),
     courtLine: cleanCourtLine(label),
-    evidenceAnchor: a.evidenceAnchor ?? b.evidenceAnchor,
+    evidenceAnchor: preferScheduleCitationAnchor(a.evidenceAnchor, b.evidenceAnchor),
     linkedRoute: a.linkedRoute ?? b.linkedRoute,
   };
 }
 
+/**
+ * One schedule cell "download / subscriber mapping" is that cell — not source-extraction
+ * plus a separate subscriber-data card. Opposite: Brookes subscriber *report* / Ahmed
+ * subscriber *data* still keep the extraction identity for the download card.
+ */
+export function phoneDownloadIdentityLabel(text: string): string {
+  const t = text ?? "";
+  if (
+    /\bsubscriber\s+mapping\b/i.test(t) &&
+    !/\bsubscriber\s+(?:report|return|data|records?)\b/i.test(t)
+  ) {
+    return "Full phone download / subscriber mapping";
+  }
+  return "Full phone download / source extraction";
+}
+
+export function phoneDownloadChaseWording(label: string): string {
+  if (/subscriber\s+mapping/i.test(label)) {
+    return "Please provide the full phone download / subscriber mapping, or confirm in writing why it is not available.";
+  }
+  return "Please provide the full phone download / source export, or confirm in writing why it is not available.";
+}
+
 /** Keep phone/subscriber modality cards distinct — Brookes/Ahmed must not mute under phone collapse. */
 export function isDigitalModalityChaseLabel(label: string): boolean {
-  return /^(Subscriber \/ account data|Full phone download \/ source extraction|Phone extraction summary only)/i.test(
+  return /^(Subscriber \/ account data|Full phone download \/ |Phone extraction summary only|Phone extraction source material)/i.test(
     label.trim(),
   );
 }
@@ -407,7 +521,6 @@ function collapseOtherFamilyItems(items: DisclosureChaseItem[]): DisclosureChase
 
 /** Pull PDF-true phone/subscriber identities out of overflow Other cards. */
 function peelDigitalModalitiesFromOtherItem(item: DisclosureChaseItem): DisclosureChaseItem[] {
-  if (isDigitalModalityChaseLabel(item.label)) return [item];
   const digitalLabels = dedupeByNorm(
     [item.label, ...item.mergedFrom]
       .map((m) => humanizeChaseFragmentLabel(m))
@@ -420,6 +533,16 @@ function peelDigitalModalitiesFromOtherItem(item: DisclosureChaseItem): Disclosu
       .map((m) => humanizeChaseFragmentLabel(m))
       .filter((m) => m && !isDigitalModalityChaseLabel(m)),
   );
+
+  // Already a single digital card with no trapped siblings — keep as-is.
+  if (
+    digitalLabels.length === 1 &&
+    isDigitalModalityChaseLabel(item.label) &&
+    nonDigitalMerged.length === 0
+  ) {
+    return [item];
+  }
+
   const out: DisclosureChaseItem[] = digitalLabels.map((label, idx) => ({
     ...item,
     id: `${item.id}-digital-${idx}`,
@@ -457,16 +580,22 @@ function collapseFinalizedItemsByFamilyId(items: DisclosureChaseItem[]): Disclos
 
   const out: DisclosureChaseItem[] = [];
   for (const [familyId, group] of byFamily) {
+    // Separately referenced material stands on its own; only unnamed items collapse to a card.
+    const named = group.filter(isSourceNamedChaseItem);
+    const rest = group.filter((item) => !isSourceNamedChaseItem(item));
+    out.push(...named);
+    if (rest.length === 0) continue;
+
     if (familyId === "other") {
-      out.push(...collapseOtherFamilyItems(group));
+      out.push(...collapseOtherFamilyItems(rest));
       continue;
     }
-    if (group.length === 1) {
-      out.push(group[0]!);
+    if (rest.length === 1) {
+      out.push(rest[0]!);
       continue;
     }
-    let merged = group[0]!;
-    for (const item of group.slice(1)) {
+    let merged = rest[0]!;
+    for (const item of rest.slice(1)) {
       merged = mergeFinalizedItems(merged, item);
     }
     const familyLabel = familyLabelForId(
@@ -495,6 +624,21 @@ function collapseFinalizedItemsByFamilyId(items: DisclosureChaseItem[]): Disclos
   return out;
 }
 
+function alignDraftAndMerged(item: DisclosureChaseItem): DisclosureChaseItem {
+  const mergedFrom = sanitizeChaseMergedFrom(item.mergedFrom);
+  const label = item.label;
+  let draftChaseWording = item.draftChaseWording;
+  if (draftMisalignedToLabel(label, draftChaseWording)) {
+    draftChaseWording = cleanDraftWording(label, mergedFrom.length ? mergedFrom : [label]);
+  }
+  return {
+    ...item,
+    mergedFrom: mergedFrom.length ? mergedFrom : [label],
+    draftChaseWording,
+    evidenceAnchor: sanitizeSolicitorEvidenceAnchor(item.evidenceAnchor),
+  };
+}
+
 /** H2 P1 — presentation-only cleanup for solicitor-facing Chase cards. */
 export function finalizeDisclosureChasePresentation(items: DisclosureChaseItem[]): DisclosureChaseItem[] {
   const byKey = new Map<string, DisclosureChaseItem>();
@@ -504,5 +648,5 @@ export function finalizeDisclosureChasePresentation(items: DisclosureChaseItem[]
     const existing = byKey.get(key);
     byKey.set(key, existing ? mergeFinalizedItems(existing, item) : item);
   }
-  return collapseFinalizedItemsByFamilyId([...byKey.values()]);
+  return collapseFinalizedItemsByFamilyId([...byKey.values()]).map(alignDraftAndMerged);
 }

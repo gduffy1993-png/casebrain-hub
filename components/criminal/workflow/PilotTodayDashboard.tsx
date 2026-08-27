@@ -252,7 +252,7 @@ export function PilotTodayDashboard({
             className="mt-3 inline-flex text-xs font-semibold text-amber-300 hover:text-amber-100"
             data-testid="pilot-today-open-chase"
           >
-            Open Chase ({view.chaseItems.length}) →
+            Open CPS Chase ({chaseItems.length} review item{chaseItems.length === 1 ? "" : "s"}) →
           </Link>
         </CockpitCard>
 

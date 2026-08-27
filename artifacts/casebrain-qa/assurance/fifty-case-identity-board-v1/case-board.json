@@ -1,0 +1,2613 @@
+[
+  {
+    "caseId": "cb-fresh-001-taylor-brookes",
+    "pdf": {
+      "defendant": "Taylor Brookes",
+      "charge": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997.",
+      "court": "Northgate Magistrates' Court",
+      "hearingRaw": "15 July 2026, 10:00, Northgate Magistrates' Court",
+      "offenceDate": "1 January 2026 and 28 February 2026",
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Taylor Brookes",
+      "charge": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+      "court": "Northgate Magistrates' Court",
+      "hearingRaw": "15 July 2026 at 10:00",
+      "stage": "PTPH",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 27
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  },
+  {
+    "caseId": "cb-fresh-002-jordan-hale",
+    "pdf": {
+      "defendant": "Jordan Hale",
+      "charge": "Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018.",
+      "court": "Central Park Magistrates' Court",
+      "hearingRaw": "22 July 2026, 14:00, Central Park Magistrates' Court",
+      "offenceDate": "12 March 2026",
+      "families": {
+        "cctv": false,
+        "bwv": true,
+        "cad999": false,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Jordan Hale",
+      "charge": "Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+      "court": "Central Park Magistrates' Court",
+      "hearingRaw": "22 July 2026 at 14:00",
+      "stage": "PTPH",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 25
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P1",
+        "code": "INVENT_CCTV",
+        "family": "cctv",
+        "message": "App surfaces cctv but PDF does not establish it"
+      },
+      {
+        "severity": "P1",
+        "code": "INVENT_INTERVIEW",
+        "family": "interview",
+        "message": "App surfaces interview but PDF does not establish it"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"body-worn video (BWV)\"=referred_only vs app \"Body-worn video (BWV)\"=not_safely_confirmed",
+        "truthItem": "body-worn video (BWV)",
+        "truthState": "referred_only",
+        "appState": "not_safely_confirmed"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"custody record / PACE material\"=referred_only vs app \"Full custody record / PACE material\"=not_safely_confirmed",
+        "truthItem": "custody record / PACE material",
+        "truthState": "referred_only",
+        "appState": "not_safely_confirmed"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"body worn video\"=missing vs app \"Body-worn video (BWV)\"=not_safely_confirmed",
+        "truthItem": "body worn video",
+        "truthState": "missing",
+        "appState": "not_safely_confirmed"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"full custody record\"=missing vs app \"Full custody record / PACE material\"=not_safely_confirmed",
+        "truthItem": "full custody record",
+        "truthState": "missing",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  },
+  {
+    "caseId": "cb-found-2001-ellis",
+    "pdf": {
+      "defendant": "Morgan Ellis",
+      "charge": "Theft, contrary to section 1 of the Theft Act 1968.",
+      "court": "Riverside Magistrates' Court",
+      "hearingRaw": "2 August 2026",
+      "offenceDate": "2 August 2026",
+      "families": {
+        "cctv": true,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Morgan Ellis",
+      "charge": "Theft, contrary to section 1 of the Theft Act 1968",
+      "court": "Riverside Magistrates' Court",
+      "hearingRaw": "18 September 2026 at 10:00",
+      "stage": "PTPH",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 22
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "APP_MISSING_CLEAR_PDF"
+    },
+    "findings": [
+      {
+        "severity": "P0",
+        "code": "HEARING_DATE_CLEAR_BUT_ABSENT",
+        "family": "listing",
+        "message": "PDF listing \"2 August 2026\" not surfaced in app output",
+        "pdf": "2 August 2026"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"CCTV continuity\"=referred_only vs app \"CCTV Continuity / provenance\"=not_safely_confirmed",
+        "truthItem": "CCTV continuity",
+        "truthState": "referred_only",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  },
+  {
+    "caseId": "cb-found-2002-smith",
+    "pdf": {
+      "defendant": "Jordan Smith",
+      "charge": "Theft, contrary to section 1 of the Theft Act 1968.",
+      "court": "Hillford Magistrates' Court",
+      "hearingRaw": "24 August 2026 at 11:15",
+      "offenceDate": "10 August 2026",
+      "families": {
+        "cctv": true,
+        "bwv": false,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Jordan Smith",
+      "charge": "Theft, contrary to section 1 of the Theft Act 1968",
+      "court": "Hillford Magistrates' Court",
+      "hearingRaw": "24 August 2026 at 11:15",
+      "stage": "PTPH",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 28
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"full CCTV continuity\"=referred_only vs app \"CCTV Continuity / provenance\"=missing",
+        "truthItem": "full CCTV continuity",
+        "truthState": "referred_only",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "cb-found-2003-nguyen",
+    "pdf": {
+      "defendant": "Priya Nguyen",
+      "charge": "Common assault, contrary to section 39 of the Criminal Justice Act 1988.",
+      "court": "Brookfield Magistrates' Court",
+      "hearingRaw": "5 September 2026 at 14:30",
+      "offenceDate": "14 August 2026",
+      "families": {
+        "cctv": false,
+        "bwv": true,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": true
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Priya Nguyen",
+      "charge": "Common assault, contrary to section 39 of the Criminal Justice Act 1988",
+      "court": "Brookfield Magistrates' Court",
+      "hearingRaw": "5 September 2026 at 14:30",
+      "stage": "PTPH",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 29
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P1",
+        "code": "INVENT_CCTV",
+        "family": "cctv",
+        "message": "App surfaces cctv but PDF does not establish it"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  },
+  {
+    "caseId": "cb-found-2004-clarke",
+    "pdf": {
+      "defendant": "Daniel Clarke",
+      "charge": "Driving a motor vehicle after consuming so much alcohol that the proportion of alcohol in breath exceeded the prescribed limit, contrary to section 5(1)(a) of the Road Traffic Act 1988.",
+      "court": "Westvale Magistrates' Court",
+      "hearingRaw": "12 September 2026 at 09:45",
+      "offenceDate": "20 August 2026",
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Daniel Clarke",
+      "charge": "Driving a motor vehicle after consuming so much alcohol that the proportion of alcohol in breath exceeded the prescribed limit, contrary to section 5(1)(a) of the Road Traffic Act 1988",
+      "court": "Westvale Magistrates' Court",
+      "hearingRaw": "12 September 2026 at 09:45",
+      "stage": "PTPH",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 21
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  },
+  {
+    "caseId": "cb-found-2005-okafor",
+    "pdf": {
+      "defendant": "Amara Okafor",
+      "charge": "Possession of a controlled drug of Class B, contrary to section 5(2) of the Misuse of Drugs Act 1971.",
+      "court": "Northgate Magistrates' Court",
+      "hearingRaw": "3 October 2026 at 10:00",
+      "offenceDate": "6 September 2026",
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Amara Okafor",
+      "charge": "Possession of a controlled drug of Class B, contrary to section 5(2) of the Misuse of Drugs Act 1971",
+      "court": "Northgate Magistrates' Court",
+      "hearingRaw": "3 October 2026 at 10:00",
+      "stage": "PTPH",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 22
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=incomplete",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "incomplete"
+      }
+    ]
+  },
+  {
+    "caseId": "cb-found-2006-carter",
+    "pdf": {
+      "defendant": "Liam Carter",
+      "charge": "Theft, contrary to section 1 of the Theft Act 1968.",
+      "court": "Marston Magistrates' Court",
+      "hearingRaw": "19 August 2026 at 15:00",
+      "offenceDate": "2 August 2026",
+      "families": {
+        "cctv": true,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Liam Carter",
+      "charge": "Theft, contrary to section 1 of the Theft Act 1968",
+      "court": "Marston Magistrates' Court",
+      "hearingRaw": "19 August 2026 at 15:00",
+      "stage": "PTPH",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 19
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=missing",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "cb-found-2007-morrison",
+    "pdf": {
+      "defendant": "Ella Morrison",
+      "charge": "Theft, contrary to section 1 of the Theft Act 1968.",
+      "court": "Fenwick Magistrates' Court",
+      "hearingRaw": "19 September 2026",
+      "offenceDate": "5 September 2026",
+      "families": {
+        "cctv": true,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Ella Morrison",
+      "charge": "Theft, contrary to section 1 of the Theft Act 1968",
+      "court": "Fenwick Magistrates' Court",
+      "hearingRaw": "19 September 2026 at 14:00",
+      "stage": "PTPH",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 16
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=missing",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "demo-audit-07-phone-ocr-trap",
+    "pdf": {
+      "defendant": "Noah Pierce",
+      "charge": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+      "court": "Harbour Magistrates' Court",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Noah Pierce",
+      "charge": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+      "court": "Harbour Magistrates' Court",
+      "hearingRaw": "8 August 2026",
+      "stage": "PTPH",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 46
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"full phone download\"=missing vs app \"Full phone download / source extraction\"=incomplete",
+        "truthItem": "full phone download",
+        "truthState": "missing",
+        "appState": "incomplete"
+      }
+    ]
+  },
+  {
+    "caseId": "demo-audit-13-co-def-index-trap",
+    "pdf": {
+      "defendant": "Finn Doyle",
+      "charge": "Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968.",
+      "court": "Crown Court at Riverside",
+      "hearingRaw": "12 November 2026, Crown Court at Riverside",
+      "offenceDate": "4 January 2026",
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": true,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Finn Doyle",
+      "charge": "Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968",
+      "court": "Crown Court at Riverside",
+      "hearingRaw": "2026-08-24",
+      "stage": "PTPH",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 33
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "APP_MISSING_CLEAR_PDF"
+    },
+    "findings": [
+      {
+        "severity": "P0",
+        "code": "HEARING_DATE_CLEAR_BUT_ABSENT",
+        "family": "listing",
+        "message": "PDF listing \"12 November 2026, Crown Court at Riverside\" not surfaced in app output",
+        "pdf": "12 November 2026, Crown Court at Riverside"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"co-defendant Lexi Marsh interview summary\"=other_defendant_only vs app \"Interview transcript\"=not_safely_confirmed",
+        "truthItem": "co-defendant Lexi Marsh interview summary",
+        "truthState": "other_defendant_only",
+        "appState": "not_safely_confirmed"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Finn Doyle interview summary\"=missing vs app \"Interview transcript\"=not_safely_confirmed",
+        "truthItem": "Finn Doyle interview summary",
+        "truthState": "missing",
+        "appState": "not_safely_confirmed"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Finn Doyle interview audio\"=missing vs app \"Interview transcript\"=not_safely_confirmed",
+        "truthItem": "Finn Doyle interview audio",
+        "truthState": "missing",
+        "appState": "not_safely_confirmed"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Finn Doyle interview transcript\"=missing vs app \"Interview transcript\"=not_safely_confirmed",
+        "truthItem": "Finn Doyle interview transcript",
+        "truthState": "missing",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  },
+  {
+    "caseId": "demo-audit-28-fraud-subscriber-trap",
+    "pdf": {
+      "defendant": "Patterson Grant",
+      "charge": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006.",
+      "court": "Crown Court at Financial Hub",
+      "hearingRaw": "1 May 2025",
+      "offenceDate": "1 May 2025 and 30 September 2025",
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Patterson Grant",
+      "charge": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "court": "Crown Court at Financial Hub",
+      "hearingRaw": "2026-08-24",
+      "stage": "PTPH",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 30
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "APP_MISSING_CLEAR_PDF"
+    },
+    "findings": [
+      {
+        "severity": "P0",
+        "code": "HEARING_DATE_CLEAR_BUT_ABSENT",
+        "family": "listing",
+        "message": "PDF listing \"1 May 2025\" not surfaced in app output",
+        "pdf": "1 May 2025"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  },
+  {
+    "caseId": "pilot-3-marcus-vale",
+    "pdf": {
+      "defendant": "Marcus Vale",
+      "charge": "Fraud by false representation",
+      "court": "Northchester Crown Court",
+      "hearingRaw": "1 June 2026",
+      "offenceDate": null,
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Marcus Vale",
+      "charge": "Fraud by false representation",
+      "court": "Northchester Crown Court",
+      "hearingRaw": "1 June 2026 at 10:00",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 7
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": []
+  },
+  {
+    "caseId": "sc-00001",
+    "pdf": {
+      "defendant": "Jordan Blake",
+      "charge": "Fraud by false representation, Fraud Act 2006 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": "14 March 2024",
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Jordan Blake",
+      "charge": "Fraud by false representation, Fraud Act 2006 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "Plea and trial preparation",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 38
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": []
+  },
+  {
+    "caseId": "sc-00002",
+    "pdf": {
+      "defendant": "Sam Okonkwo",
+      "charge": "Possession with intent to supply Class A controlled drugs",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": false,
+        "bwv": true,
+        "cad999": false,
+        "interview": true,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Sam Okonkwo",
+      "charge": "Possession with intent to supply Class A controlled drugs",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Plea and trial preparation",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 44
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Full phone extraction\"=referred_only vs app \"Full phone download / source extraction\"=missing",
+        "truthItem": "Full phone extraction",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00003",
+    "pdf": {
+      "defendant": "Ella Shaw",
+      "charge": "Robbery, Theft Act 1968 s.8",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": true,
+        "cad999": true,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Ella Shaw",
+      "charge": "Robbery, Theft Act 1968 s.8",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "First hearing",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 58
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"CCTV continuity / export log\"=referred_only vs app \"CCTV Continuity / provenance\"=missing",
+        "truthItem": "CCTV continuity / export log",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Body worn video download outstanding\"=referred_only vs app \"Body-worn video (BWV)\"=missing",
+        "truthItem": "Body worn video download outstanding",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=missing",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00007",
+    "pdf": {
+      "defendant": "Morgan Drew",
+      "charge": "Fraud by false representation, Fraud Act 2006 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": true,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Morgan Drew",
+      "charge": "Fraud by false representation, Fraud Act 2006 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 33
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=missing",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00008",
+    "pdf": {
+      "defendant": "Riley Chen",
+      "charge": "Possession of a controlled drug with intent to supply — Misuse of Drugs Act 1971 s.5(3)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": false,
+        "bwv": true,
+        "cad999": false,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Riley Chen",
+      "charge": "Possession of a controlled drug with intent to supply — Misuse of Drugs Act 1971 s.5(3)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 45
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Full phone extraction\"=referred_only vs app \"Full phone download / source extraction\"=missing",
+        "truthItem": "Full phone extraction",
+        "truthState": "referred_only",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00009",
+    "pdf": {
+      "defendant": "Taylor Brooks",
+      "charge": "Robbery — s.8 Theft Act 1968 (alternative count: theft from person)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": false,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Taylor Brooks",
+      "charge": "Robbery — s.8 Theft Act 1968 (alternative count: theft from person)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 47
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"CCTV continuity / export log\"=referred_only vs app \"CCTV Continuity / provenance\"=missing",
+        "truthItem": "CCTV continuity / export log",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=missing",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-0000a",
+    "pdf": {
+      "defendant": "Casey Quinn",
+      "charge": "Section 20 grievous bodily harm — OAPA 1861",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": "14 March 2024",
+      "families": {
+        "cctv": true,
+        "bwv": true,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": true
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Casey Quinn",
+      "charge": "Section 20 grievous bodily harm — OAPA 1861",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 58
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Body worn video\"=referred_only vs app \"Body-worn video (BWV)\"=missing",
+        "truthItem": "Body worn video",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Medical / expert report\"=referred_only vs app \"Medical / expert source report\"=missing",
+        "truthItem": "Medical / expert report",
+        "truthState": "referred_only",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-0000b",
+    "pdf": {
+      "defendant": "Jamie Patel",
+      "charge": "Witness intimidation — Criminal Justice and Public Order Act 1994 s.51",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": "14 March 2024",
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Jamie Patel",
+      "charge": "Witness intimidation — Criminal Justice and Public Order Act 1994 s.51",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "First hearing",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 38
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Exhibit continuity\"=referred_only vs app \"Exhibit mapping / provenance\"=missing",
+        "truthItem": "Exhibit continuity",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Custody / PACE material limited on export\"=referred_only vs app \"Full custody record / PACE material\"=incomplete",
+        "truthItem": "Custody / PACE material limited on export",
+        "truthState": "referred_only",
+        "appState": "incomplete"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=missing",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-0000c",
+    "pdf": {
+      "defendant": "Alex Mercer",
+      "charge": "Driving without due care and attention — RTA 1988 s.3",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": "14 March 2024",
+      "families": {
+        "cctv": true,
+        "bwv": false,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Alex Mercer",
+      "charge": "Driving without due care and attention — RTA 1988 s.3",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "Magistrates'",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 40
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=incomplete",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "incomplete"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-0000d",
+    "pdf": {
+      "defendant": "Jordan Blake",
+      "charge": "Fraud by abuse of position, Fraud Act 2006 s.4",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": "14 March 2024",
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Jordan Blake",
+      "charge": "Fraud by abuse of position, Fraud Act 2006 s.4",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "Case management",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 38
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=missing",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-0000e",
+    "pdf": {
+      "defendant": "Sam Okonkwo",
+      "charge": "Possession of a controlled drug with intent to supply — Misuse of Drugs Act 1971 s.5(3)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": true,
+        "cad999": false,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Sam Okonkwo",
+      "charge": "Possession of a controlled drug with intent to supply — Misuse of Drugs Act 1971 s.5(3)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Magistrates'",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 46
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Full phone extraction\"=referred_only vs app \"Full phone download / source extraction\"=missing",
+        "truthItem": "Full phone extraction",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Custody / PACE material limited on export\"=referred_only vs app \"Full custody record / PACE material\"=incomplete",
+        "truthItem": "Custody / PACE material limited on export",
+        "truthState": "referred_only",
+        "appState": "incomplete"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=incomplete",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "incomplete"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-0000f",
+    "pdf": {
+      "defendant": "Ella Shaw",
+      "charge": "Robbery, Theft Act 1968 s.8",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": false,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Ella Shaw",
+      "charge": "Robbery, Theft Act 1968 s.8",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 50
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"CCTV continuity / export log\"=referred_only vs app \"CCTV Continuity / provenance\"=missing",
+        "truthItem": "CCTV continuity / export log",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=incomplete",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "incomplete"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00013",
+    "pdf": {
+      "defendant": "Morgan Drew",
+      "charge": "Fraud by abuse of position, Fraud Act 2006 s.4",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Morgan Drew",
+      "charge": "Fraud by abuse of position, Fraud Act 2006 s.4",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 30
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=missing",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00014",
+    "pdf": {
+      "defendant": "Riley Chen",
+      "charge": "Possession of a controlled drug with intent to supply — Misuse of Drugs Act 1971 s.5(3)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": true,
+        "cad999": false,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Riley Chen",
+      "charge": "Possession of a controlled drug with intent to supply — Misuse of Drugs Act 1971 s.5(3)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 50
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Full phone extraction\"=referred_only vs app \"Full phone download / source extraction\"=missing",
+        "truthItem": "Full phone extraction",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Custody / PACE material limited on export\"=referred_only vs app \"Full custody record / PACE material\"=incomplete",
+        "truthItem": "Custody / PACE material limited on export",
+        "truthState": "referred_only",
+        "appState": "incomplete"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00015",
+    "pdf": {
+      "defendant": "Taylor Brooks",
+      "charge": "Robbery, Theft Act 1968 s.8",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": "14 March 2024",
+      "families": {
+        "cctv": true,
+        "bwv": true,
+        "cad999": true,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Taylor Brooks",
+      "charge": "Robbery, Theft Act 1968 s.8",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "Plea and trial preparation",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 49
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Body worn video download outstanding\"=referred_only vs app \"Body-worn video (BWV)\"=missing",
+        "truthItem": "Body worn video download outstanding",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00016",
+    "pdf": {
+      "defendant": "Casey Quinn",
+      "charge": "Wounding with intent / s.18 OAPA 1861",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": true,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": true
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Casey Quinn",
+      "charge": "Wounding with intent / s.18 OAPA 1861",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 57
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Body worn video\"=referred_only vs app \"Body-worn video (BWV)\"=missing",
+        "truthItem": "Body worn video",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Medical / expert report\"=referred_only vs app \"Medical / expert source report\"=missing",
+        "truthItem": "Medical / expert report",
+        "truthState": "referred_only",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00018",
+    "pdf": {
+      "defendant": "Alex Mercer",
+      "charge": "Dangerous driving — RTA 1988 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": false,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": true
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Alex Mercer",
+      "charge": "Dangerous driving — RTA 1988 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Magistrates'",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 48
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=incomplete",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "incomplete"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00019",
+    "pdf": {
+      "defendant": "Jordan Blake",
+      "charge": "Fraud by false representation, Fraud Act 2006 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": "14 March 2024",
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Jordan Blake",
+      "charge": "Fraud by false representation, Fraud Act 2006 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 37
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": []
+  },
+  {
+    "caseId": "sc-0001a",
+    "pdf": {
+      "defendant": "Sam Okonkwo",
+      "charge": "Possession with intent to supply Class A controlled drugs",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": true,
+        "cad999": false,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Sam Okonkwo",
+      "charge": "Possession with intent to supply Class A controlled drugs",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 49
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Full phone extraction\"=referred_only vs app \"Full phone download / source extraction\"=missing",
+        "truthItem": "Full phone extraction",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Custody / PACE material limited on export\"=referred_only vs app \"Full custody record / PACE material\"=incomplete",
+        "truthItem": "Custody / PACE material limited on export",
+        "truthState": "referred_only",
+        "appState": "incomplete"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Body worn video download outstanding\"=referred_only vs app \"Body-worn video (BWV)\"=missing",
+        "truthItem": "Body worn video download outstanding",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=incomplete",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "incomplete"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-0001b",
+    "pdf": {
+      "defendant": "Ella Shaw",
+      "charge": "Robbery — s.8 Theft Act 1968 (alternative count: theft from person)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": false,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Ella Shaw",
+      "charge": "Robbery — s.8 Theft Act 1968 (alternative count: theft from person)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Plea and trial preparation",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 48
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"CCTV continuity / export log\"=referred_only vs app \"CCTV Continuity / provenance\"=missing",
+        "truthItem": "CCTV continuity / export log",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=incomplete",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "incomplete"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-0001f",
+    "pdf": {
+      "defendant": "Morgan Drew",
+      "charge": "Fraud by false representation, Fraud Act 2006 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Morgan Drew",
+      "charge": "Fraud by false representation, Fraud Act 2006 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Case management",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 38
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": []
+  },
+  {
+    "caseId": "sc-00020",
+    "pdf": {
+      "defendant": "Riley Chen",
+      "charge": "Possession with intent to supply Class A controlled drugs",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": false,
+        "bwv": true,
+        "cad999": false,
+        "interview": true,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Riley Chen",
+      "charge": "Possession with intent to supply Class A controlled drugs",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 46
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Full phone extraction\"=referred_only vs app \"Full phone download / source extraction\"=missing",
+        "truthItem": "Full phone extraction",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Custody / PACE material limited on export\"=referred_only vs app \"Full custody record / PACE material\"=incomplete",
+        "truthItem": "Custody / PACE material limited on export",
+        "truthState": "referred_only",
+        "appState": "incomplete"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=incomplete",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "incomplete"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00021",
+    "pdf": {
+      "defendant": "Taylor Brooks",
+      "charge": "Robbery — s.8 Theft Act 1968 (alternative count: theft from person)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": "14 March 2024",
+      "families": {
+        "cctv": true,
+        "bwv": true,
+        "cad999": true,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Taylor Brooks",
+      "charge": "Robbery — s.8 Theft Act 1968 (alternative count: theft from person)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 55
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"CCTV continuity / export log\"=referred_only vs app \"CCTV Continuity / provenance\"=missing",
+        "truthItem": "CCTV continuity / export log",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Body worn video download outstanding\"=referred_only vs app \"Body-worn video (BWV)\"=missing",
+        "truthItem": "Body worn video download outstanding",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00022",
+    "pdf": {
+      "defendant": "Casey Quinn",
+      "charge": "Unlawful wounding / GBH, s.20 OAPA 1861",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": true,
+        "cad999": true,
+        "interview": false,
+        "phone": true,
+        "medical": true
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Casey Quinn",
+      "charge": "Unlawful wounding / GBH, s.20 OAPA 1861",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "Plea and trial preparation",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 55
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Body worn video\"=referred_only vs app \"Body-worn video (BWV)\"=missing",
+        "truthItem": "Body worn video",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Medical / expert report\"=referred_only vs app \"Medical / expert source report\"=missing",
+        "truthItem": "Medical / expert report",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Body worn video download outstanding\"=referred_only vs app \"Body-worn video (BWV)\"=missing",
+        "truthItem": "Body worn video download outstanding",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=missing",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00023",
+    "pdf": {
+      "defendant": "Jamie Patel",
+      "charge": "Perverting the course of justice — common law",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": null,
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Jamie Patel",
+      "charge": "Perverting the course of justice — common law",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "First hearing",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 43
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Exhibit continuity\"=referred_only vs app \"Exhibit mapping / provenance\"=missing",
+        "truthItem": "Exhibit continuity",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Custody / PACE material limited on export\"=referred_only vs app \"Full custody record / PACE material\"=incomplete",
+        "truthItem": "Custody / PACE material limited on export",
+        "truthState": "referred_only",
+        "appState": "incomplete"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=incomplete",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "incomplete"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00024",
+    "pdf": {
+      "defendant": "Alex Mercer",
+      "charge": "Careless driving — RTA 1988 s.3",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": "14 March 2024",
+      "families": {
+        "cctv": true,
+        "bwv": false,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Alex Mercer",
+      "charge": "Careless driving — RTA 1988 s.3",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "First hearing",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 45
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": []
+  },
+  {
+    "caseId": "sc-00025",
+    "pdf": {
+      "defendant": "Jordan Blake",
+      "charge": "Fraud by abuse of position, Fraud Act 2006 s.4",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": null,
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Jordan Blake",
+      "charge": "Fraud by abuse of position, Fraud Act 2006 s.4",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "Case management",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 48
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": []
+  },
+  {
+    "caseId": "sc-00026",
+    "pdf": {
+      "defendant": "Sam Okonkwo",
+      "charge": "Possession of a controlled drug with intent to supply — Misuse of Drugs Act 1971 s.5(3)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": true,
+        "cad999": false,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Sam Okonkwo",
+      "charge": "Possession of a controlled drug with intent to supply — Misuse of Drugs Act 1971 s.5(3)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 47
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Full phone extraction\"=referred_only vs app \"Full phone download / source extraction\"=missing",
+        "truthItem": "Full phone extraction",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Body worn video download outstanding\"=referred_only vs app \"Body-worn video (BWV)\"=missing",
+        "truthItem": "Body worn video download outstanding",
+        "truthState": "referred_only",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00027",
+    "pdf": {
+      "defendant": "Ella Shaw",
+      "charge": "Robbery — s.8 Theft Act 1968 (alternative count: theft from person)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": "14 March 2024",
+      "families": {
+        "cctv": true,
+        "bwv": true,
+        "cad999": true,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Ella Shaw",
+      "charge": "Robbery — s.8 Theft Act 1968 (alternative count: theft from person)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "First hearing",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 49
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Body worn video download outstanding\"=referred_only vs app \"Body-worn video (BWV)\"=missing",
+        "truthItem": "Body worn video download outstanding",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-0002b",
+    "pdf": {
+      "defendant": "Morgan Drew",
+      "charge": "Fraud by false representation, Fraud Act 2006 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": true,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Morgan Drew",
+      "charge": "Fraud by false representation, Fraud Act 2006 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Case management",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 43
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": []
+  },
+  {
+    "caseId": "sc-0002c",
+    "pdf": {
+      "defendant": "Riley Chen",
+      "charge": "Possession with intent to supply Class A controlled drugs",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": true,
+        "cad999": false,
+        "interview": true,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Riley Chen",
+      "charge": "Possession with intent to supply Class A controlled drugs",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 48
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Full phone extraction\"=referred_only vs app \"Full phone download / source extraction\"=missing",
+        "truthItem": "Full phone extraction",
+        "truthState": "referred_only",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-0002d",
+    "pdf": {
+      "defendant": "Taylor Brooks",
+      "charge": "Robbery — s.8 Theft Act 1968 (alternative count: theft from person)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": "14 March 2024",
+      "families": {
+        "cctv": true,
+        "bwv": false,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Taylor Brooks",
+      "charge": "Robbery — s.8 Theft Act 1968 (alternative count: theft from person)",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "Plea and trial preparation",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 46
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-0002e",
+    "pdf": {
+      "defendant": "Casey Quinn",
+      "charge": "Section 20 grievous bodily harm — OAPA 1861",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": true,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": true
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Casey Quinn",
+      "charge": "Section 20 grievous bodily harm — OAPA 1861",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Case management",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 51
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Body worn video\"=referred_only vs app \"Body-worn video (BWV)\"=missing",
+        "truthItem": "Body worn video",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Medical / expert report\"=referred_only vs app \"Medical / expert source report\"=missing",
+        "truthItem": "Medical / expert report",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=missing",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-0002f",
+    "pdf": {
+      "defendant": "Jamie Patel",
+      "charge": "Perverting the course of justice — common law",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": true,
+        "bwv": false,
+        "cad999": false,
+        "interview": true,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Jamie Patel",
+      "charge": "Perverting the course of justice — common law",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Magistrates'",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 35
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Exhibit continuity\"=referred_only vs app \"Exhibit mapping / provenance\"=missing",
+        "truthItem": "Exhibit continuity",
+        "truthState": "referred_only",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00030",
+    "pdf": {
+      "defendant": "Alex Mercer",
+      "charge": "Dangerous driving — RTA 1988 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": "14 March 2024",
+      "families": {
+        "cctv": true,
+        "bwv": false,
+        "cad999": true,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Alex Mercer",
+      "charge": "Dangerous driving — RTA 1988 s.2",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "First hearing",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 54
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": []
+  },
+  {
+    "caseId": "sc-00031",
+    "pdf": {
+      "defendant": "Jordan Blake",
+      "charge": "Fraud by abuse of position, Fraud Act 2006 s.4",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "offenceDate": "14 March 2024",
+      "families": {
+        "cctv": false,
+        "bwv": false,
+        "cad999": false,
+        "interview": false,
+        "phone": false,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Jordan Blake",
+      "charge": "Fraud by abuse of position, Fraud Act 2006 s.4",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "14 March 2024",
+      "stage": "Plea and trial preparation",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 32
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "MATCH"
+    },
+    "findings": [
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=missing",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "missing"
+      }
+    ]
+  },
+  {
+    "caseId": "sc-00032",
+    "pdf": {
+      "defendant": "Sam Okonkwo",
+      "charge": "Possession with intent to supply Class A controlled drugs",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": null,
+      "offenceDate": null,
+      "families": {
+        "cctv": false,
+        "bwv": true,
+        "cad999": false,
+        "interview": false,
+        "phone": true,
+        "medical": false
+      },
+      "unclear": false
+    },
+    "app": {
+      "defendant": "Sam Okonkwo",
+      "charge": "Possession with intent to supply Class A controlled drugs",
+      "court": "Fictional Crown / Magistrates listing",
+      "hearingRaw": "position.",
+      "stage": "Crown",
+      "hasCaseIdentity": true,
+      "evidenceLabelCount": 47
+    },
+    "verdicts": {
+      "name": "MATCH",
+      "charge": "MATCH",
+      "court": "MATCH",
+      "hearing": "PDF_UNCLEAR"
+    },
+    "findings": [
+      {
+        "severity": "P1",
+        "code": "INVENT_CCTV",
+        "family": "cctv",
+        "message": "App surfaces cctv but PDF does not establish it"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Full phone extraction\"=referred_only vs app \"Full phone download / source extraction\"=missing",
+        "truthItem": "Full phone extraction",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Body worn video download outstanding\"=referred_only vs app \"Body-worn video (BWV)\"=missing",
+        "truthItem": "Body worn video download outstanding",
+        "truthState": "referred_only",
+        "appState": "missing"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"Custody / PACE material limited on export\"=referred_only vs app \"Full custody record / PACE material\"=incomplete",
+        "truthItem": "Custody / PACE material limited on export",
+        "truthState": "referred_only",
+        "appState": "incomplete"
+      },
+      {
+        "severity": "P2",
+        "code": "EVIDENCE_STATE_MISALIGN",
+        "family": "evidence",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed",
+        "truthItem": "mg6",
+        "truthState": "served",
+        "appState": "not_safely_confirmed"
+      }
+    ]
+  }
+]
