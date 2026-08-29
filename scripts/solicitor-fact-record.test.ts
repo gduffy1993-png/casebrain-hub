@@ -79,7 +79,7 @@ function row(label: string, existence: FiveAnswersEvidenceRow["existence"]): Fiv
 
 {
   const vm = buildSolicitorMatterStateVm({
-    evidenceRows: [row("MG11 complainant", "served"), row("CCTV extract", "referred")],
+    evidenceRows: [row("MG11 complainant", "served"), row("CCTV extract", "referred_only")],
     chaseCounters: { total: 2, overdue: 1, dueSoon: 0, chased: 0, received: 0, notStarted: 1 },
     allegation: "Theft of a bicycle",
     bundleHay: "Theft dishonest appropriation",

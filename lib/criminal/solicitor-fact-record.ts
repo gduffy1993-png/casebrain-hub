@@ -77,7 +77,7 @@ function countSlot(
  */
 function familyLooksSexualMappedToViolence(hay: string, family: string): boolean {
   if (family !== "violence") return false;
-  const h = hay.toLowerCase();
+  const h = hay.toLowerCase().replace(/\bno\s+(?:gbh|abh)\b/g, "");
   const sexual = /sexual (?:assault|offence)|sexual offences act|\babe\b|indecent assault/.test(h);
   const violenceCore = /\bgbh\b|\babh\b|s\.?\s*18|s\.?\s*20|assault occasioning|wounding/.test(h);
   return sexual && !violenceCore;
