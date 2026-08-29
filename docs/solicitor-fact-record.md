@@ -17,6 +17,7 @@ One renderer (`renderSolicitorFacts`) writes the same lines for Overview, Summar
 - Sexual-only files no longer confirm family as “Violence” on this record (legacy resolver still maps that for older gates).
 - Court, Papers, and Chase show the same **On the file** strip.
 - Live chat sends the desk record so counts match the tabs. If the model is integrity-blocked, chat shows the fact sheet instead of a dead banner. Eval gold routes are untouched.
+- Letter / PDF / propose-summary APIs still build as before. They all leave through one door (`gatedJsonResponse`). If that door blocks, they do not send. A `factSheet` field is attached for UIs that want the list. Clean letters are unchanged.
 
 ## Tests
 
