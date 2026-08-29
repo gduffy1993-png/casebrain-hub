@@ -103,6 +103,14 @@ export function resolveFamilyFactSlot(input: {
     resolution.family === "unknown" ||
     resolution.confidence === "uncertain"
   ) {
+    // Charge-sheet assaults the legacy resolver does not name (AEW / s.39).
+    if (
+      /assaults? on emergency workers|assault an emergency worker|common assault.*criminal justice act/i.test(
+        hay,
+      )
+    ) {
+      return confirmed("family", FAMILY_LABEL.violence, "charge_sheet_assault");
+    }
     return unknown("family", resolution.reason || "offence_family_uncertain");
   }
 
