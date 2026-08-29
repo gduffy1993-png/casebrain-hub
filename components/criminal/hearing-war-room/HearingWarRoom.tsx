@@ -38,6 +38,8 @@ import {
 import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowShell";
 import { buildControlRoomHref } from "./hearingWarRoomLinks";
 import { HearingWarRoomAssistant } from "./HearingWarRoomAssistant";
+import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
+import { SolicitorFactStrip } from "@/components/criminal/workflow/SolicitorFactStrip";
 import type { ControlRoomAssistantContext } from "@/components/criminal/control-room/assistantBattleboardFallback";
 import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
@@ -369,6 +371,7 @@ export function HearingWarRoom({
   embedInShell = false,
   deskChargeLine,
 }: HearingWarRoomProps) {
+  const { renderedFacts, factRecord } = useMatterBrief(caseId);
   const [matter, setMatter] = useState<MatterSummary | null>(null);
   const [battleboard, setBattleboard] = useState<BattleboardOutput | null>(null);
   const [battleboardLoading, setBattleboardLoading] = useState(true);
@@ -831,6 +834,10 @@ export function HearingWarRoom({
             </p>
           </div>
         ) : pilotTodayView ? (
+          <div className="space-y-3">
+          {renderedFacts ? (
+            <SolicitorFactStrip facts={renderedFacts} fingerprint={factRecord?.fingerprint ?? null} />
+          ) : null}
           <PilotTodayDashboard
             caseId={caseId}
             view={pilotTodayView}
@@ -846,6 +853,7 @@ export function HearingWarRoom({
               </SolicitorDeepDetailGate>
             }
           />
+          </div>
         ) : (
           <div className={`${workflowCard} p-6 text-sm text-slate-500`}>
             Matter dashboard will appear once case snapshot loads.
@@ -1213,6 +1221,7 @@ export function HearingWarRoom({
         planSummary={planSummary}
         evidenceSummary={evidenceSummary}
         timelineSummary={timelineSummary}
+        solicitorFactRecord={factRecord}
         assistantContext={assistantContext}
       />
       )}

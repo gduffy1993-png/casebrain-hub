@@ -6,6 +6,8 @@ import { AlertTriangle, ChevronDown, ChevronUp, Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { DashboardCard } from "./control-room/DashboardCard";
 import { ControlRoomAssistantDock } from "./control-room/ControlRoomAssistant";
+import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
+import { SolicitorFactStrip } from "@/components/criminal/workflow/SolicitorFactStrip";
 import { ControlRoomBattleboardAccordion } from "./control-room/ControlRoomBattleboardAccordion";
 import { CaseSummaryCard } from "./control-room/CaseSummaryCard";
 import { ControlRoomCockpit } from "./control-room/ControlRoomCockpit";
@@ -232,6 +234,7 @@ export function CaseControlRoom({
   surface = "default",
   embedInShell = false,
 }: CaseControlRoomProps) {
+  const { renderedFacts, factRecord } = useMatterBrief(caseId);
   const router = useRouter();
   const [papersDeepOpen, setPapersDeepOpen] = useState(false);
   const [matter, setMatter] = useState<MatterSummary | null>(null);
@@ -960,6 +963,7 @@ export function CaseControlRoom({
           planSummary={planSummary}
           evidenceSummary={evidenceSummary}
           timelineSummary={timelineSummary}
+          solicitorFactRecord={factRecord}
           assistantContext={{
             battleboard,
             allegation,
@@ -1009,6 +1013,7 @@ export function CaseControlRoom({
           planSummary={planSummary}
           evidenceSummary={evidenceSummary}
           timelineSummary={timelineSummary}
+          solicitorFactRecord={factRecord}
           assistantContext={{
             battleboard,
             allegation,
@@ -1035,6 +1040,9 @@ export function CaseControlRoom({
 
     const primaryPanels = (
       <>
+        {renderedFacts ? (
+          <SolicitorFactStrip facts={renderedFacts} fingerprint={factRecord?.fingerprint ?? null} />
+        ) : null}
         <ControlRoomCockpit
           caseId={caseId}
           caseTitle={caseTitleDisplay}
@@ -1411,6 +1419,7 @@ export function CaseControlRoom({
         planSummary={planSummary}
         evidenceSummary={evidenceSummary}
         timelineSummary={timelineSummary}
+        solicitorFactRecord={factRecord}
         assistantContext={{
           battleboard,
           allegation,

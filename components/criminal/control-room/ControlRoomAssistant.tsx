@@ -20,6 +20,8 @@ import {
   isIntegrityBlockedPayload,
   solicitorUiStateFromApiBody,
 } from "@/lib/criminal/integrity-blocked-consumer";
+import { renderSolicitorFacts } from "@/lib/criminal/solicitor-fact-renderer";
+import type { SolicitorFactRecord } from "@/lib/criminal/solicitor-fact-record";
 
 const CHAT_STORAGE_KEY_PREFIX = "casebrain:control-room-chat:";
 const ASSISTANT_TIMEOUT_MS = 90_000;
@@ -55,6 +57,7 @@ export type ControlRoomAssistantProps = {
   planSummary: string;
   evidenceSummary?: string;
   timelineSummary?: string;
+  solicitorFactRecord?: SolicitorFactRecord | null;
   assistantContext: ControlRoomAssistantContext;
 };
 
@@ -63,6 +66,7 @@ function AssistantChat({
   planSummary,
   evidenceSummary,
   timelineSummary,
+  solicitorFactRecord,
   assistantContext,
   onClose,
   showClose,
@@ -138,16 +142,21 @@ function AssistantChat({
             planSummary: trimmedPlan,
             evidenceSummary: trimmedEvidence,
             timelineSummary: trimmedTimeline,
+            solicitorFactRecord: solicitorFactRecord ?? undefined,
           }),
         });
         const data = await res.json().catch(() => ({}));
         if (isIntegrityBlockedPayload(data) || !canUseSolicitorApiResponse(data)) {
           const ui = solicitorUiStateFromApiBody(data);
+          const factFallback = solicitorFactRecord
+            ? renderSolicitorFacts(solicitorFactRecord).chatFactSheet
+            : null;
           setMessages((prev) => [
             ...prev,
             {
               role: "assistant",
-              content: ui.banner ?? "Solicitor review required — output integrity check failed.",
+              content:
+                factFallback ?? ui.banner ?? "Solicitor review required — output integrity check failed.",
             },
           ]);
           return;
@@ -181,7 +190,7 @@ function AssistantChat({
         setSending(false);
       }
     },
-    [assistantContext, caseId, trimmedEvidence, trimmedPlan, trimmedTimeline, sending],
+    [assistantContext, caseId, trimmedEvidence, trimmedPlan, trimmedTimeline, sending, solicitorFactRecord],
   );
 
   return (

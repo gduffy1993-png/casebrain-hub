@@ -3,7 +3,11 @@
  * Run: npx tsx scripts/solicitor-fact-record.test.ts
  */
 import assert from "node:assert/strict";
-import { buildSolicitorFactRecord, SOLICITOR_FACT_RECORD_VERSION } from "@/lib/criminal/solicitor-fact-record";
+import {
+  buildSolicitorFactRecord,
+  parseSolicitorFactRecordInput,
+  SOLICITOR_FACT_RECORD_VERSION,
+} from "@/lib/criminal/solicitor-fact-record";
 import {
   NOT_CONFIRMED_ON_FILE,
   renderSolicitorFacts,
@@ -114,6 +118,27 @@ function row(label: string, existence: FiveAnswersEvidenceRow["existence"]): Fiv
   const sheet = answerSolicitorFactQuestion("What is confirmed on the file?", rendered);
   assert.ok(sheet?.includes("Charge: Theft of a bicycle"));
   assert.equal(answerSolicitorFactQuestion("What must the prosecution prove?", rendered), null);
+}
+
+{
+  const vm = buildSolicitorMatterStateVm({
+    evidenceRows: [row("MG11 complainant", "served")],
+    chaseCounters: { total: 1, overdue: 0, dueSoon: 0, chased: 0, received: 0, notStarted: 1 },
+    allegation: "Theft of a bicycle",
+    bundleHay: "Theft dishonest appropriation",
+    caseId: "desk-payload",
+  });
+  const desk = buildSolicitorFactRecord({
+    allegation: "Theft of a bicycle",
+    bundleHay: "Theft dishonest appropriation",
+    matterState: vm,
+  });
+  const parsed = parseSolicitorFactRecordInput(JSON.parse(JSON.stringify(desk)));
+  assert.ok(parsed);
+  assert.equal(parsed?.slots.evidenceServed.value, desk.slots.evidenceServed.value);
+  assert.equal(parseSolicitorFactRecordInput({ version: "nope" }), null);
+  const fromDesk = renderSolicitorFacts(parsed!);
+  assert.match(fromDesk.evidenceCountsLine, /served/);
 }
 
 console.log("solicitor-fact-record.test.ts: PASS");

@@ -170,3 +170,44 @@ export function confirmedSlotValues(record: SolicitorFactRecord): string[] {
     .filter((s) => s.status === "confirmed" && s.value)
     .map((s) => s.value as string);
 }
+
+const FACT_SLOT_KEYS: Array<keyof SolicitorFactRecord["slots"]> = [
+  "charge",
+  "family",
+  "hearing",
+  "evidenceServed",
+  "evidenceReferred",
+  "evidenceMissing",
+  "evidenceIncomplete",
+  "evidenceNotSafelyConfirmed",
+  "chaseTotal",
+  "chaseOverdue",
+  "mg11",
+];
+
+function isFactSlot(value: unknown): value is SolicitorFactSlot {
+  if (!value || typeof value !== "object") return false;
+  const slot = value as SolicitorFactSlot;
+  return (
+    (slot.status === "confirmed" || slot.status === "unknown") &&
+    typeof slot.key === "string" &&
+    typeof slot.source === "string" &&
+    (slot.value === null || typeof slot.value === "string")
+  );
+}
+
+/** Accept a desk-built record from chat so counts match the solicitor tabs. */
+export function parseSolicitorFactRecordInput(raw: unknown): SolicitorFactRecord | null {
+  if (!raw || typeof raw !== "object") return null;
+  const rec = raw as SolicitorFactRecord;
+  if (rec.version !== SOLICITOR_FACT_RECORD_VERSION) return null;
+  if (!rec.slots || typeof rec.slots !== "object") return null;
+  for (const key of FACT_SLOT_KEYS) {
+    if (!isFactSlot(rec.slots[key])) return null;
+  }
+  return {
+    version: SOLICITOR_FACT_RECORD_VERSION,
+    fingerprint: typeof rec.fingerprint === "string" ? rec.fingerprint : null,
+    slots: rec.slots,
+  };
+}

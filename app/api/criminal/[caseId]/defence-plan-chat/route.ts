@@ -34,7 +34,10 @@ import {
   isPackAAProsecutionProveQuestion,
 } from "@/lib/criminal/pack-aa-messy-parsers";
 import { validateSolicitorSurface } from "@/lib/criminal/shared-solicitor-validator";
-import { buildSolicitorFactRecord } from "@/lib/criminal/solicitor-fact-record";
+import {
+  buildSolicitorFactRecord,
+  parseSolicitorFactRecordInput,
+} from "@/lib/criminal/solicitor-fact-record";
 import { renderSolicitorFacts } from "@/lib/criminal/solicitor-fact-renderer";
 import { answerSolicitorFactQuestion } from "@/lib/criminal/solicitor-fact-chat";
 import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
@@ -10458,7 +10461,13 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     return NextResponse.json({ ok: false, error: "Case not found" }, { status: 404 });
   }
 
-  let body: { message?: string; planSummary?: string; evidenceSummary?: string; timelineSummary?: string } = {};
+  let body: {
+    message?: string;
+    planSummary?: string;
+    evidenceSummary?: string;
+    timelineSummary?: string;
+    solicitorFactRecord?: unknown;
+  } = {};
   try {
     body = await request.json();
   } catch {
@@ -10553,9 +10562,11 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const bundleHeadlineBlock = extractBundleHeadlineBlock(combinedBundleFull);
 
   const skipFactRecordForEval = isEvalBypass || isFastEval || isEvalMode;
+  const deskFactRecord = skipFactRecordForEval ? null : parseSolicitorFactRecordInput(body.solicitorFactRecord);
   const solicitorFactRecord = skipFactRecordForEval
     ? null
-    : buildSolicitorFactRecord({
+    : deskFactRecord ??
+      buildSolicitorFactRecord({
         allegation: snapshot?.offence_detected_label ?? null,
         chargeWording: snapshot?.offence_detected_label ?? null,
         bundleHay: combinedBundleFull,

@@ -15,7 +15,8 @@ One renderer (`renderSolicitorFacts`) writes the same lines for Overview, Summar
 - Overview and Summary show an **On the file** strip from the same record.
 - If Summary copy is integrity-blocked, the landing paragraph is the fact lines — not a dirty essay with Copy disabled.
 - Sexual-only files no longer confirm family as “Violence” on this record (legacy resolver still maps that for older gates).
-- Chat (live solicitor, not eval headers) answers a narrow set of fact questions from the record and injects the fact sheet into the LLM source-of-truth block. Eval gold routes are untouched.
+- Court, Papers, and Chase show the same **On the file** strip.
+- Live chat sends the desk record so counts match the tabs. If the model is integrity-blocked, chat shows the fact sheet instead of a dead banner. Eval gold routes are untouched.
 
 ## Tests
 

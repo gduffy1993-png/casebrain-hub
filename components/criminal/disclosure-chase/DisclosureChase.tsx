@@ -27,6 +27,8 @@ import {
   type DisclosureChaseItem,
 } from "./buildDisclosureChaseBrief";
 import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowShell";
+import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
+import { SolicitorFactStrip } from "@/components/criminal/workflow/SolicitorFactStrip";
 import { SourceStateBadge } from "@/components/criminal/trust/SourceStateBadge";
 import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
 import { buildCopySafeResult, inferChaseItemSourceState } from "@/lib/criminal/trust/copy-safe";
@@ -489,6 +491,7 @@ export function DisclosureChase({
   controlRoomMode,
   embedInShell = false,
 }: DisclosureChaseProps) {
+  const { renderedFacts, factRecord } = useMatterBrief(caseId);
   const [matter, setMatter] = useState<MatterSummary | null>(null);
   const [battleboard, setBattleboard] = useState<BattleboardOutput | null>(null);
   const [battleboardLoading, setBattleboardLoading] = useState(true);
@@ -863,6 +866,9 @@ export function DisclosureChase({
 
   const chaseBody = (
     <>
+        {renderedFacts ? (
+          <SolicitorFactStrip facts={renderedFacts} fingerprint={factRecord?.fingerprint ?? null} />
+        ) : null}
         {!pilotEmbed ? (
         <header className={`${workflowCard} overflow-hidden`}>
           <div className="px-4 py-3 border-b border-slate-100 bg-gradient-to-r from-violet-50/80 to-white flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">

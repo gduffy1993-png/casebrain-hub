@@ -9,6 +9,8 @@
  */
 
 import { Fragment, useState, useEffect, useRef, useMemo } from "react";
+import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
+import { renderSolicitorFacts } from "@/lib/criminal/solicitor-fact-renderer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp, Send, Loader2, Check, Pencil, X } from "lucide-react";
@@ -179,6 +181,7 @@ function saveChatToStorage(caseId: string, messages: ChatMessage[]) {
 }
 
 export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, evidenceSummary, timelineSummary, caseNav, evalCases = [], allCases = [] }: DefencePlanBoxProps) {
+  const { factRecord, renderedFacts } = useMatterBrief(caseId);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [chatLoaded, setChatLoaded] = useState(false);
   const [chatInput, setChatInput] = useState("");
@@ -1192,16 +1195,18 @@ export function DefencePlanBox({ caseId, plan, offenceType, currentPhase = 2, ev
           planSummary: buildPlanSummaryForChat(plan),
           evidenceSummary: evidenceSummary?.slice(0, 1200) ?? "",
           timelineSummary: timelineSummary?.slice(0, 500) ?? "",
+          solicitorFactRecord: factRecord ?? undefined,
         }),
       });
       const data = await res.json().catch(() => ({}));
       if (isIntegrityBlockedPayload(data) || !canUseSolicitorApiResponse(data)) {
         const ui = solicitorUiStateFromApiBody(data);
+        const factFallback = renderedFacts?.chatFactSheet ?? (factRecord ? renderSolicitorFacts(factRecord).chatFactSheet : null);
         setChatMessages((prev) => [
           ...prev,
           {
             role: "assistant",
-            content: ui.banner ?? "Solicitor review required — output integrity check failed.",
+            content: factFallback ?? ui.banner ?? "Solicitor review required — output integrity check failed.",
           },
         ]);
       } else if (data.ok && typeof data.reply === "string") {
