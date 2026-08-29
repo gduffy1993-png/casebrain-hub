@@ -60,6 +60,28 @@ Chase: Not confirmed on the file.
 MG11: Not confirmed on the file.
 ```
 
-**Score:** 5/5 PASS
+| Daniel Clarke (motoring-clarke) | MATCH — Driving a motor vehicle after consuming so much alcohol that the proportion of alcohol in breath exceeded the prescribed limit, contrary to section 5(1)(a) of the Road Traffic Act 1988. | Motoring ✓ | Hearing: Upcoming · 12 Sept 2026 | clean | PASS |
+
+```
+Charge: Driving a motor vehicle after consuming so much alcohol that the proportion of alcohol in breath exceeded the prescribed limit, contrary to section 5(1)(a) of the Road Traffic Act 1988.
+Offence family: Motoring
+Hearing: Upcoming · 12 Sept 2026
+Evidence: Not confirmed on the file.
+Chase: Not confirmed on the file.
+MG11: Not confirmed on the file.
+```
+
+| Priya Nguyen (assault-nguyen) | MATCH — Common assault, contrary to section 39 of the Criminal Justice Act 1988. | Violence ✓ | Hearing: Upcoming · 5 Sept 2026 | clean | PASS |
+
+```
+Charge: Common assault, contrary to section 39 of the Criminal Justice Act 1988.
+Offence family: Violence
+Hearing: Upcoming · 5 Sept 2026
+Evidence: Not confirmed on the file.
+Chase: Not confirmed on the file.
+MG11: Not confirmed on the file.
+```
+
+**Score:** 7/7 PASS
 
 No live Clerk account was created (that login is on your laptop). This is the new mouth on the files themselves.

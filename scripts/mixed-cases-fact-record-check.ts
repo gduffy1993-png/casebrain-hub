@@ -66,6 +66,24 @@ const CASES: CaseSpec[] = [
     expectFamily: "Violence",
     forbid: /\bpwits\b|intent to supply|theft act 1968/i,
   },
+  {
+    id: "motoring-clarke",
+    file: "docs/bundle-foundation-pack/generated/sources/CB-FOUND-2004_Clarke_DrinkDrive.txt",
+    accused: "Daniel Clarke",
+    expectCharge: /road traffic act 1988|alcohol.*breath|prescribed limit/i,
+    expectFamily: "Motoring",
+    forbid: /\bpwits\b|intent to supply|gbh|section 20|theft act/i,
+    expectHearingHint: /12 Sep 2026/,
+  },
+  {
+    id: "assault-nguyen",
+    file: "docs/bundle-foundation-pack/generated/sources/CB-FOUND-2003_Nguyen_Assault.txt",
+    accused: "Priya Nguyen",
+    expectCharge: /common assault.*criminal justice act 1988/i,
+    expectFamily: "Violence",
+    forbid: /\bpwits\b|intent to supply|theft act|harassment act/i,
+    expectHearingHint: /5 Sep 2026/,
+  },
 ];
 
 function pullCharge(hay: string): string | null {
@@ -121,7 +139,7 @@ for (const spec of CASES) {
 
 rows.push(`**Score:** ${CASES.length - fails}/${CASES.length} PASS`);
 rows.push("");
-rows.push("No live Clerk account was created (that login is on your laptop). This is the new mouth on the files themselves.");
+rows.push("File-only check of the new mouth. Live production uploads are `scripts/mixed-cases-live-prod-check.ts`.");
 
 const outDir = resolve("artifacts/as-is-freeze");
 mkdirSync(outDir, { recursive: true });
