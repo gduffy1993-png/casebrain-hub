@@ -34,6 +34,10 @@ import {
   isPackAAProsecutionProveQuestion,
 } from "@/lib/criminal/pack-aa-messy-parsers";
 import { validateSolicitorSurface } from "@/lib/criminal/shared-solicitor-validator";
+import { buildSolicitorFactRecord } from "@/lib/criminal/solicitor-fact-record";
+import { renderSolicitorFacts } from "@/lib/criminal/solicitor-fact-renderer";
+import { answerSolicitorFactQuestion } from "@/lib/criminal/solicitor-fact-chat";
+import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -10547,6 +10551,41 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   }
 
   const bundleHeadlineBlock = extractBundleHeadlineBlock(combinedBundleFull);
+
+  const skipFactRecordForEval = isEvalBypass || isFastEval || isEvalMode;
+  const solicitorFactRecord = skipFactRecordForEval
+    ? null
+    : buildSolicitorFactRecord({
+        allegation: snapshot?.offence_detected_label ?? null,
+        chargeWording: snapshot?.offence_detected_label ?? null,
+        bundleHay: combinedBundleFull,
+        hearing: resolveSolicitorHearingStatus({
+          bundleHay: combinedBundleFull,
+        }),
+      });
+  const renderedSolicitorFacts = solicitorFactRecord ? renderSolicitorFacts(solicitorFactRecord) : null;
+  if (renderedSolicitorFacts) {
+    const factReply = answerSolicitorFactQuestion(message, renderedSolicitorFacts);
+    if (factReply) {
+      return jsonWithRoute(
+        {
+          ok: true,
+          reply: factReply,
+          eval_meta: routeEvalMeta(
+            "solicitor_fact_record",
+            message,
+            factReply,
+            combinedBundleFull,
+            combinedBundleFull.length,
+            true,
+            { reply_finalization: "deterministic" },
+          ),
+        },
+        "solicitor_fact_record",
+      );
+    }
+    sourceOfTruthBlock = `${renderedSolicitorFacts.chatFactSheet}\n\n${sourceOfTruthBlock}`;
+  }
 
   // Strict disclosure route: MG6 schedule questions bypass LLM generation completely.
   // For CB-GOLD / CB-TRAP files, prefer the eval-file MG6 disclosure builder so the

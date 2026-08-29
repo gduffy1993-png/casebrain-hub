@@ -13,6 +13,7 @@ import { buildCopySafeResult } from "@/lib/criminal/trust/copy-safe";
 import { SolicitorDeepDetailGate } from "@/components/criminal/trust/SolicitorDeepDetailGate";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
 import { useMatterBrief } from "./useMatterBrief";
+import { SolicitorFactStrip } from "./SolicitorFactStrip";
 import { workflowPilotCard, workflowSectionTitle } from "./workflowUi";
 import {
   displayChaseBulletLine,
@@ -92,8 +93,17 @@ export function PilotSummaryView({
 }: PilotSummaryViewProps) {
   const [fullOpen, setFullOpen] = useState(false);
   const [copied, setCopied] = useState<"client" | null>(null);
-  const { loading, matterBrief, matterConfidence, doNotOverstate, bundleMeta, outputIntegrity, allegation } =
-    useMatterBrief(caseId);
+  const {
+    loading,
+    matterBrief,
+    matterConfidence,
+    doNotOverstate,
+    bundleMeta,
+    outputIntegrity,
+    allegation,
+    renderedFacts,
+    factRecord,
+  } = useMatterBrief(caseId);
   const bundleHay = bundleMeta?.frontMatterScan ?? "";
   const filteredDoNot = useMemo(
     () =>
@@ -156,8 +166,16 @@ export function PilotSummaryView({
     return client ? [client, ...rest] : matterBrief.sections;
   }, [matterBrief]);
 
+  const lockedSummary =
+    outputIntegrity && !outputIntegrity.canCopy && renderedFacts
+      ? renderedFacts.displayLines.join("\n")
+      : clientSafeText;
+
   return (
     <div className="space-y-3" data-testid="pilot-summary-view">
+      {renderedFacts ? (
+        <SolicitorFactStrip facts={renderedFacts} fingerprint={factRecord?.fingerprint ?? null} />
+      ) : null}
       <div className={`${workflowPilotCard} px-4 py-3`}>
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="min-w-0">
@@ -182,8 +200,8 @@ export function PilotSummaryView({
             {copied === "client" ? "Copied" : "Copy client-safe summary"}
           </Button>
         </div>
-        {!loading && clientSafeText ? (
-          <p className="mt-3 text-sm text-slate-200 leading-relaxed whitespace-pre-wrap">{clientSafeText}</p>
+        {!loading && lockedSummary ? (
+          <p className="mt-3 text-sm text-slate-200 leading-relaxed whitespace-pre-wrap">{lockedSummary}</p>
         ) : null}
       </div>
 

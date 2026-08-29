@@ -12,6 +12,7 @@ import { ConfidenceDashboardPanel } from "@/components/criminal/confidence-dashb
 import { H5FeedbackFlag } from "@/components/criminal/feedback-console/H5FeedbackFlag";
 import { displayCopyBody } from "@/lib/criminal/five-answers/display-labels";
 import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
+import { SolicitorFactStrip } from "@/components/criminal/workflow/SolicitorFactStrip";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import { OverviewAdvancedPanel } from "./OverviewAdvancedPanel";
@@ -62,6 +63,8 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     outputIntegrity,
     canonical,
     evidenceRowsOverride,
+    renderedFacts,
+    factRecord,
   } = useMatterBrief(caseId);
   const buildTabHref = usePilotMatterTabHref();
   const bundleHay = useMemo(
@@ -211,7 +214,15 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     evidenceRows: view.evidenceState.rows,
     chase,
   });
-  const stateCounts = canonicalMatter.evidence.counts;
+  const stateCounts = factRecord
+    ? {
+        served: Number(factRecord.slots.evidenceServed.value ?? 0),
+        referred: Number(factRecord.slots.evidenceReferred.value ?? 0),
+        missing: Number(factRecord.slots.evidenceMissing.value ?? 0),
+        incomplete: Number(factRecord.slots.evidenceIncomplete.value ?? 0),
+        notSafelyConfirmed: Number(factRecord.slots.evidenceNotSafelyConfirmed.value ?? 0),
+      }
+    : canonicalMatter.evidence.counts;
   const topChase = dedupePresentationLines(
     view.chase
       .slice(0, 5)
@@ -252,6 +263,10 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     <div className="space-y-3" data-testid="five-answers-view">
       <div id="overview-understand" className="space-y-3 scroll-mt-4">
         {/* Shell strip owns defendant / charge / court / provisional badge — no inner repeat. */}
+
+        {renderedFacts ? (
+          <SolicitorFactStrip facts={renderedFacts} fingerprint={factRecord?.fingerprint ?? canonicalMatter.fingerprint} />
+        ) : null}
 
         {mainIssueDistinct ? (
           <section className={`${workflowPilotCard} px-3 py-2.5 sm:px-4`} data-testid="five-answers-case-saying">

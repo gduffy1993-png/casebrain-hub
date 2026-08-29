@@ -40,6 +40,8 @@ import { evaluateMatterIntegrity } from "@/lib/criminal/solicitor-output-integri
 import { resolveSolicitorHearingDateIso } from "@/lib/criminal/solicitor-hearing-display";
 import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 import { buildSolicitorMatterStateVm } from "@/lib/criminal/solicitor-matter-state";
+import { buildSolicitorFactRecord } from "@/lib/criminal/solicitor-fact-record";
+import { renderSolicitorFacts } from "@/lib/criminal/solicitor-fact-renderer";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { computeCounters } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import type { AuthenticatedMatterCanonicalPayload } from "@/lib/criminal/authenticated-matter-canonical";
@@ -457,6 +459,15 @@ export function useMatterBrief(caseId: string) {
       hearing: hearingResolved,
     });
 
+    const factRecord = buildSolicitorFactRecord({
+      allegation,
+      chargeWording: allegation,
+      bundleHay,
+      matterState: matterStateVm,
+      hearing: hearingResolved,
+    });
+    const renderedFacts = renderSolicitorFacts(factRecord);
+
     return {
       matterBrief,
       matterConfidence,
@@ -469,6 +480,8 @@ export function useMatterBrief(caseId: string) {
       hearingLabel,
       hearingStatusResolved: hearingResolved,
       matterStateVm,
+      factRecord,
+      renderedFacts,
       outputIntegrity,
       briefPlan,
       primaryRouteTitle,
@@ -512,6 +525,8 @@ export function useMatterBrief(caseId: string) {
     hearingLabel: pilotMatter?.hearingLabel ?? null,
     hearingStatusResolved: pilotMatter?.hearingStatusResolved ?? null,
     matterStateVm: pilotMatter?.matterStateVm ?? null,
+    factRecord: pilotMatter?.factRecord ?? null,
+    renderedFacts: pilotMatter?.renderedFacts ?? null,
     outputIntegrity: pilotMatter?.outputIntegrity ?? null,
     briefPlan: pilotMatter?.briefPlan ?? null,
     primaryRouteTitle: pilotMatter?.primaryRouteTitle ?? null,
