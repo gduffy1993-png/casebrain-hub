@@ -8,6 +8,7 @@ import {
   parseSolicitorFactRecordInput,
   SOLICITOR_FACT_RECORD_VERSION,
 } from "@/lib/criminal/solicitor-fact-record";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 import {
   NOT_CONFIRMED_ON_FILE,
   renderSolicitorFacts,
@@ -141,4 +142,34 @@ function row(label: string, existence: FiveAnswersEvidenceRow["existence"]): Fiv
   assert.match(fromDesk.evidenceCountsLine, /served/);
 }
 
-console.log("solicitor-fact-record.test.ts: PASS");
+void (async () => {
+  const blocked = gatedJsonResponse(
+    "api_letters_draft",
+    { subject: "Chase", body: "Please chase PWITS and intent to supply on this harassment file." },
+    {
+      allegation: "Harassment contrary to Protection from Harassment Act",
+      bundleHay: "WhatsApp screenshots MG11 complainant phone extraction",
+    },
+  );
+  assert.equal(blocked.status, 200);
+  const blockedBody = (await blocked.json()) as { status?: string; factSheet?: string; ok?: boolean };
+  assert.equal(blockedBody.status, "integrity_blocked");
+  assert.equal(blockedBody.ok, false);
+  assert.match(blockedBody.factSheet ?? "", /Not confirmed on the file|Harassment/);
+
+  const clean = gatedJsonResponse(
+    "api_letters_draft",
+    { subject: "Chase", body: "Please serve the outstanding complainant MG11." },
+    {
+      allegation: "Harassment contrary to Protection from Harassment Act",
+      bundleHay: "WhatsApp screenshots MG11 complainant phone extraction",
+    },
+  );
+  const cleanBody = (await clean.json()) as { body?: string; status?: string };
+  assert.equal(cleanBody.body, "Please serve the outstanding complainant MG11.");
+  assert.notEqual(cleanBody.status, "integrity_blocked");
+  console.log("solicitor-fact-record.test.ts: PASS");
+})().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
