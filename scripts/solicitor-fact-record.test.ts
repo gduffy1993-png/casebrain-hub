@@ -20,6 +20,8 @@ import {
 } from "@/lib/criminal/solicitor-fact-chat";
 import { buildSolicitorMatterStateVm } from "@/lib/criminal/solicitor-matter-state";
 import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { resolveSolicitorOffenceFamily } from "@/lib/criminal/solicitor-offence-family";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 
@@ -140,6 +142,40 @@ function row(label: string, existence: FiveAnswersEvidenceRow["existence"]): Fiv
   assert.equal(parseSolicitorFactRecordInput({ version: "nope" }), null);
   const fromDesk = renderSolicitorFacts(parsed!);
   assert.match(fromDesk.evidenceCountsLine, /served/);
+}
+
+{
+  const packA = readFileSync(resolve("docs/fictional-cases-40/NS-CPS-2026-0401.txt"), "utf8");
+  const hearing = resolveSolicitorHearingStatus({
+    bundleNextHearingIso: "1991-09-17",
+    bundleHay: packA,
+    asOf: new Date("2026-08-29T12:00:00Z"),
+  });
+  assert.equal(hearing.kind, "unknown");
+  const record = buildSolicitorFactRecord({
+    allegation: "Robbery + s.47",
+    bundleHay: packA,
+    hearing,
+  });
+  assert.equal(record.slots.hearing.status, "unknown");
+  assert.doesNotMatch(renderSolicitorFacts(record).hearingLine, /1991/);
+}
+
+{
+  const jordan = readFileSync(resolve("docs/cb-fresh-adversarial/sources/CB-FRESH-002_Jordan_Hale.txt"), "utf8");
+  const hearing = resolveSolicitorHearingStatus({
+    bundleNextHearingIso: "2026-03-12",
+    bundleHay: jordan,
+    asOf: new Date("2026-08-29T12:00:00Z"),
+  });
+  assert.equal(hearing.dateIso, "2026-07-22");
+  const record = buildSolicitorFactRecord({
+    allegation: "Assault an emergency worker",
+    bundleHay: jordan,
+    hearing,
+  });
+  assert.match(record.slots.hearing.value ?? "", /22 Jul 2026/);
+  assert.doesNotMatch(record.slots.hearing.value ?? "", /12 Mar/);
 }
 
 void (async () => {

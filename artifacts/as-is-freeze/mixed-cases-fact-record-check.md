@@ -82,6 +82,17 @@ Chase: Not confirmed on the file.
 MG11: Not confirmed on the file.
 ```
 
-**Score:** 7/7 PASS
+| Sam Rees (pack-a-rees) | MATCH — Robbery + s.47 (fictional charge drafting for test data). | Theft ✓ | Hearing: Not confirmed on the file. | clean | PASS |
 
-No live Clerk account was created (that login is on your laptop). This is the new mouth on the files themselves.
+```
+Charge: Robbery + s.47 (fictional charge drafting for test data).
+Offence family: Theft
+Hearing: Not confirmed on the file.
+Evidence: Not confirmed on the file.
+Chase: Not confirmed on the file.
+MG11: Not confirmed on the file.
+```
+
+**Score:** 8/8 PASS
+
+File-only check of the new mouth. Live production uploads are `scripts/mixed-cases-live-prod-check.ts`.

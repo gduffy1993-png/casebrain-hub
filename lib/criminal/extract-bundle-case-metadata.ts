@@ -5,6 +5,10 @@
 
 import type { ParsedBundleHeader } from "@/lib/bundle/parse-bundle-display";
 import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
+import {
+  isPoisonedHearingIso,
+  labelledHearingIsoFromHay,
+} from "@/lib/criminal/solicitor-hearing-display";
 
 /** Front matter + high-value procedural sections (not full 1000-page scan). */
 const FRONT_MATTER_CHARS = 80_000;
@@ -1784,6 +1788,16 @@ function extractNextHearing(scan: string): {
   if (hearingRawCleaned) {
     const parsed = parseUkHearingDateTime(hearingRawCleaned);
     if (parsed?.iso) nextHearingIso = parsed.iso;
+  }
+
+  if (nextHearingIso && isPoisonedHearingIso(nextHearingIso, scan)) {
+    const labelled = labelledHearingIsoFromHay(scan);
+    if (labelled && !isPoisonedHearingIso(labelled, scan)) {
+      nextHearingIso = labelled;
+    } else {
+      nextHearingIso = null;
+      hearingRawCleaned = null;
+    }
   }
 
   return {

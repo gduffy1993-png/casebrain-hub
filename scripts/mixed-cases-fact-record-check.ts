@@ -15,9 +15,10 @@ type CaseSpec = {
   file: string;
   accused: string;
   expectCharge: RegExp;
-  expectFamily: string;
+  expectFamily?: string;
   forbid: RegExp;
   expectHearingHint?: RegExp;
+  expectHearingUnknown?: boolean;
 };
 
 const AS_OF = new Date("2026-08-29T12:00:00Z");
@@ -84,12 +85,22 @@ const CASES: CaseSpec[] = [
     forbid: /\bpwits\b|intent to supply|theft act|harassment act/i,
     expectHearingHint: /5 Sep 2026/,
   },
+  {
+    id: "pack-a-rees",
+    file: "docs/fictional-cases-40/NS-CPS-2026-0401.txt",
+    accused: "Sam Rees",
+    expectCharge: /robbery/i,
+    forbid: /\bpwits\b|intent to supply|class a/i,
+    expectHearingUnknown: true,
+  },
 ];
 
 function pullCharge(hay: string): string | null {
   const block =
     hay.match(/Statement of Offence:\s*\n+([^\n]+)/i) ??
-    hay.match(/Statement of offence\s*\n+([^\n]+)/i);
+    hay.match(/Statement of offence\s*\n+([^\n]+)/i) ??
+    hay.match(/Offence\(s\) as tag:\s*([^\n]+)/i) ??
+    hay.match(/Short title:\s*([^\n]+)/i);
   const line = block?.[1]?.trim();
   return line && line.length > 8 ? line : null;
 }
@@ -120,8 +131,14 @@ for (const spec of CASES) {
   const sheet = rendered.chatFactSheet;
 
   const chargeOk = Boolean(allegation && spec.expectCharge.test(allegation) && record.slots.charge.status === "confirmed");
-  const familyOk = record.slots.family.status === "confirmed" && record.slots.family.value === spec.expectFamily;
-  const hearingOk = spec.expectHearingHint ? spec.expectHearingHint.test(rendered.hearingLine) : record.slots.hearing.status !== "unknown" || true;
+  const familyOk = spec.expectFamily
+    ? record.slots.family.status === "confirmed" && record.slots.family.value === spec.expectFamily
+    : true;
+  const hearingOk = spec.expectHearingUnknown
+    ? record.slots.hearing.status === "unknown" && !/19\d\d|20\d\d/.test(rendered.hearingLine)
+    : spec.expectHearingHint
+      ? spec.expectHearingHint.test(rendered.hearingLine)
+      : true;
   const leaks = solicitorTextAssertsUnconfirmedFamily(sheet, record);
   const forbidHit = spec.forbid.test(sheet);
   const ok = chargeOk && familyOk && !forbidHit && leaks.length === 0;

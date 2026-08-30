@@ -5,6 +5,7 @@
  */
 
 import { resolveSolicitorOffenceFamily, type OffenceFamilyResolution } from "@/lib/criminal/solicitor-offence-family";
+import { isPoisonedHearingIso } from "@/lib/criminal/solicitor-hearing-display";
 import type { SolicitorMatterStateVm } from "@/lib/criminal/solicitor-matter-state";
 import type { SolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 
@@ -138,10 +139,21 @@ export function buildSolicitorFactRecord(input: {
 
   const family = resolveFamilyFactSlot(input);
 
+  const hearingPoisoned = Boolean(
+    input.hearing?.dateIso &&
+      input.bundleHay &&
+      isPoisonedHearingIso(input.hearing.dateIso, input.bundleHay),
+  );
   const hearing =
-    input.hearing && input.hearing.kind !== "unknown" && input.hearing.statusLabel.trim()
+    input.hearing &&
+    input.hearing.kind !== "unknown" &&
+    input.hearing.statusLabel.trim() &&
+    !hearingPoisoned
       ? confirmed("hearing", input.hearing.statusLabel.trim(), `hearing:${input.hearing.kind}`)
-      : unknown("hearing", input.hearing?.statusLabel || "hearing_unknown");
+      : unknown(
+          "hearing",
+          hearingPoisoned ? "date_is_dob_or_offence_not_listing" : input.hearing?.statusLabel || "hearing_unknown",
+        );
 
   const haveState = Boolean(input.matterState);
   const ev = input.matterState?.evidence.counts;

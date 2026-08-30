@@ -8,6 +8,8 @@ Wrong facts are illegal. Incomplete is allowed.
 
 One `SolicitorFactRecord` owns charge, family, hearing, evidence counts, chase counts, MG11. Each slot is **confirmed** (value + source) or **unknown**. Unknown renders as `Not confirmed on the file.`
 
+A hearing is only confirmed from a **labelled listing** (PTPH / next hearing / date of hearing). A date of birth or an offence-particulars date (“On 12 March 2026 at …”) is not a hearing. If that is all the file has, the slot stays unknown. The same lock sits in `resolveSolicitorHearingDateIso`, so Overview, Court, Chase, and chat use it.
+
 One renderer (`renderSolicitorFacts`) writes the same lines for Overview, Summary, and (non-eval) chat.
 
 ## What changed in the app
