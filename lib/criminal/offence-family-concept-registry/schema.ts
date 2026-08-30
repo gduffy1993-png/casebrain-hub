@@ -174,6 +174,7 @@ export const AUDIT_FAMILY_TO_SOLICITOR: Record<string, SolicitorOffenceFamily> =
   assault: "violence",
   gbh: "violence",
   theft: "theft",
+  robbery: "robbery",
   motoring: "motoring",
   "drink-drive": "motoring",
   // Messy v9 scenario families
@@ -239,7 +240,8 @@ export function mapAuditScenarioFamilyToSolicitor(
   }
   if (/sexual|indecent|soa\b|historic-sexual/.test(key)) return "violence";
   if (/gbh|abh|assault|violence|wounding|public-order|bwv|abe|injury/.test(key)) return "violence";
-  if (/theft|robbery|fraud|shoplift|dishonest/.test(key)) return "theft";
+  if (/robbery/.test(key)) return "robbery";
+  if (/theft|fraud|shoplift|dishonest/.test(key)) return "theft";
   if (/motoring|drink|drive|sjp|telematics|anpr|vehicle|intoxilyser|rta/.test(key)) return "motoring";
   return null;
 }

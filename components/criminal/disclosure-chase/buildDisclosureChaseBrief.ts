@@ -11,7 +11,6 @@ import {
   pilotCleanupVisibleText,
   sanitizePilotVisibleLine,
   workflowDisclosureCaseWideLine,
-  workflowDisclosureChaseLabels,
   workflowDisclosureWhyItMatters,
 } from "@/lib/criminal/pilot-workflow";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
@@ -1315,9 +1314,6 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     clientLabel: input.clientLabel,
     profileHint: input.profileHint,
   };
-  const profile = resolveWorkflowProfile(workflowContext);
-  const profileLabels = workflowDisclosureChaseLabels(workflowContext);
-
   const chaseLabelsRaw = collectChaseItems({
     snapshotMissing: input.snapshotMissing,
     proceduralOutstanding: input.proceduralOutstanding,
@@ -1326,11 +1322,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   const chaseLabels = prioritizeWorkflowItems(
     filterWorkflowItems(
       filterSafeChaseLabels(
-        [
-          ...briefPlan.requiredOutputItems.chase,
-          ...briefPlan.missingEvidence.map((item) => item.label),
-          ...chaseLabelsRaw,
-        ],
+        chaseLabelsRaw,
         briefPlan.profile,
       ),
       workflowContext,
@@ -1345,32 +1337,11 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   let primaryItems: DisclosureChaseItem[];
   let additionalItems: DisclosureChaseItem[];
 
-  if (profileLabels && profile !== "generic") {
-    items = gateItemsAgainstSource(
-      buildWorkflowProfileDisclosureItems(
-        filterSafeChaseLabels(
-          [
-            ...briefPlan.requiredOutputItems.chase,
-            ...briefPlan.missingEvidence.map((item) => item.label),
-            ...profileLabels,
-          ],
-          briefPlan.profile,
-        ),
-        input.battleboard,
-        deadline,
-        profile,
-        ledger,
-      ),
-      input.bundleText,
-    );
-    ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
-  } else {
-    items = gateItemsAgainstSource(
-      groupAndMergeLabels(chaseLabels, input.battleboard, deadline, ledger),
-      input.bundleText,
-    );
-    ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
-  }
+  items = gateItemsAgainstSource(
+    groupAndMergeLabels(chaseLabels, input.battleboard, deadline, ledger),
+    input.bundleText,
+  );
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   if (ledger && ledgerMaterialsNeedingChase(ledger).length > 0) {
     items = mergeLedgerDisclosureItems(items, ledger, deadline);
@@ -1403,6 +1374,16 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = collapseDisclosureItemsByFamily(items);
   items = finalizeDisclosureChasePresentation(items);
   items = reconcileChaseItemsAgainstServedMaterial(items, ledger);
+  if (ledger) {
+    items = items.map((item) => {
+      if (/MG6C\s*\/\s*\d+/i.test(item.evidenceAnchor ?? "")) return item;
+      const fromLedger = ledgerAnchorForChaseFamily(item.familyId, ledger);
+      return fromLedger ? { ...item, evidenceAnchor: fromLedger } : item;
+    });
+  }
+  const ledgerAnchored = items.filter((item) => /MG6C\s*\/\s*\d+/i.test(item.evidenceAnchor ?? ""));
+  const unanchored = items.filter((item) => !/MG6C\s*\/\s*\d+/i.test(item.evidenceAnchor ?? ""));
+  items = [...ledgerAnchored, ...gateItemsAgainstSource(unanchored, input.bundleText)];
 
   // Alias-suppress using live document-derived evidence rows (not hardcoded assumptions).
   if (input.canonicalEvidenceRows?.length) {

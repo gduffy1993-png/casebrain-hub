@@ -41,6 +41,7 @@ import {
 import { renderSolicitorFacts } from "@/lib/criminal/solicitor-fact-renderer";
 import { answerSolicitorFactQuestion } from "@/lib/criminal/solicitor-fact-chat";
 import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
+import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -10566,14 +10567,20 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const solicitorFactRecord = skipFactRecordForEval
     ? null
     : deskFactRecord ??
-      buildSolicitorFactRecord({
-        allegation: snapshot?.offence_detected_label ?? null,
-        chargeWording: snapshot?.offence_detected_label ?? null,
-        bundleHay: combinedBundleFull,
-        hearing: resolveSolicitorHearingStatus({
+      (() => {
+        const extracted = combinedBundleFull.trim()
+          ? extractBundleCaseMetadata(combinedBundleFull)
+          : null;
+        const charge = extracted?.offenceDisplay ?? extracted?.offenceWording ?? null;
+        return buildSolicitorFactRecord({
+          allegation: charge,
+          chargeWording: charge,
           bundleHay: combinedBundleFull,
-        }),
-      });
+          hearing: resolveSolicitorHearingStatus({
+            bundleHay: combinedBundleFull,
+          }),
+        });
+      })();
   const renderedSolicitorFacts = solicitorFactRecord ? renderSolicitorFacts(solicitorFactRecord) : null;
   if (renderedSolicitorFacts) {
     const factReply = answerSolicitorFactQuestion(message, renderedSolicitorFacts);

@@ -70,7 +70,6 @@ import {
   pilotDisplayMetadataNote,
   pilotStrategyBasisDisplay,
   shouldSuppressPilotStrategyBasisReason,
-  workflowDisclosureChaseLabels,
   workflowHeaderOverrides,
   workflowPrimaryRouteTitle,
   workflowSafeCourtLine,
@@ -572,8 +571,6 @@ export function CaseControlRoom({
 
   const chaseItemsAll = useMemo(
     () => {
-      const profileLabels = workflowDisclosureChaseLabels(workflowContext);
-      if (profileLabels?.length) return profileLabels;
       const raw = collectChaseItems({
         snapshotMissing: snapshot?.evidence.missingEvidence,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,

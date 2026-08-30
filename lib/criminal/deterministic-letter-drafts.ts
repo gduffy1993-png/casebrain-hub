@@ -51,7 +51,7 @@ export function buildCriminalLetterDraft(kind: CriminalLetterKind, input: Crimin
   const hearingLine =
     input.nextHearingDate
       ? `Next hearing: ${formatDateShort(input.nextHearingDate)}${input.nextHearingType ? ` (${input.nextHearingType})` : ""}`
-      : "Next hearing: Not evidenced in the bundle yet";
+      : "Next hearing: Not confirmed on the file.";
 
   if (practice !== "criminal") {
     // Safety: this generator is for criminal only.

@@ -14,12 +14,12 @@ import {
 } from "@/lib/criminal/extract-bundle-case-metadata";
 import {
   buildBundleTruthLedger,
-  formatHearingDisplayFromLedger,
   ledgerChargeDisplay,
 } from "@/lib/criminal/bundle-truth-ledger";
 import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
+import { resolveSolicitorHearingDateIso } from "@/lib/criminal/solicitor-hearing-display";
 
 export type BundleSourceHeaderInput = {
   shortTitle?: string | null;
@@ -60,19 +60,6 @@ export type CaseHeaderMetadata = {
 const NOT_EXTRACTED_CLIENT = "Client name not safely extracted";
 const NOT_EXTRACTED_OFFENCE = "Offence wording not safely extracted";
 const NOT_EXTRACTED_HEARING = "No hearing date safely extracted";
-
-function formatGbDate(dateStr: string | null | undefined): string | null {
-  if (!dateStr) return null;
-  try {
-    return new Date(dateStr).toLocaleDateString("en-GB", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    });
-  } catch {
-    return null;
-  }
-}
 
 function isUnknownOffenceLabel(label: string | null | undefined): boolean {
   if (!label?.trim()) return true;
@@ -244,48 +231,34 @@ function resolveNextHearing(
   snapshot: CaseSnapshot | null,
   bundle: BundleCaseMetadataInput,
   truthLedger?: BundleTruthLedger | null,
+  bundleText?: string | null,
 ): { label: string; source: MetadataFieldSource } {
-  if (truthLedger) {
-    const fromLedger = formatHearingDisplayFromLedger(
-      truthLedger,
-      snapshot?.caseMeta?.hearingNextType,
-    );
-    if (fromLedger) {
-      return { label: fromLedger, source: truthLedger.hearing.sourceAnchor ? "extracted_procedural_fallback" : bundle?.nextHearingSource ?? "extracted_procedural_fallback" };
-    }
+  const hay = [bundleText, bundle?.nextHearingRaw, truthLedger?.hearing?.rawLiteral]
+    .filter(Boolean)
+    .join("\n");
+  const lockedIso = resolveSolicitorHearingDateIso({
+    bundleNextHearingIso: bundle?.nextHearingIso,
+    snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+    nextHearingRaw: bundle?.nextHearingRaw ?? truthLedger?.hearing?.rawLiteral,
+    bundleHay: hay,
+  });
+  if (!lockedIso) {
+    return { label: NOT_EXTRACTED_HEARING, source: "unavailable" };
   }
-
-  if (bundle?.nextHearingRaw?.trim()) {
-    const parsed = parseUkHearingDateTime(bundle.nextHearingRaw);
+  const listingRaw = bundle?.nextHearingRaw ?? truthLedger?.hearing?.rawLiteral ?? null;
+  const parsedListing = listingRaw ? parseUkHearingDateTime(listingRaw) : null;
+  if (parsedListing?.display && parsedListing.iso?.slice(0, 10) === lockedIso) {
     const type = snapshot?.caseMeta?.hearingNextType?.trim();
-    const display = parsed?.display ?? bundle.nextHearingRaw.trim();
-    const label = type ? `${type} · ${display}` : display;
-    return { label, source: bundle.nextHearingSource };
+    return {
+      label: type ? `${type} · ${parsedListing.display}` : parsedListing.display,
+      source: bundle?.nextHearingSource ?? "extracted_procedural_fallback",
+    };
   }
-
-  if (bundle?.nextHearingIso) {
-    const fromIso = formatHearingFromIso(
-      bundle.nextHearingIso,
-      snapshot?.caseMeta?.hearingNextType,
-    );
-    if (fromIso) {
-      return { label: fromIso, source: bundle.nextHearingSource };
-    }
-  }
-
-  const at = snapshot?.caseMeta?.hearingNextAt;
-  if (at) {
-    const datePart = formatGbDate(at);
-    if (datePart) {
-      const type = snapshot?.caseMeta?.hearingNextType?.trim();
-      return {
-        label: type ? `${type} · ${datePart}` : datePart,
-        source: "structured_field",
-      };
-    }
-  }
-
-  return { label: NOT_EXTRACTED_HEARING, source: "unavailable" };
+  const fromIso = formatHearingFromIso(lockedIso, snapshot?.caseMeta?.hearingNextType);
+  return {
+    label: fromIso ?? lockedIso,
+    source: bundle?.nextHearingSource ?? "extracted_procedural_fallback",
+  };
 }
 
 function buildMetadataNote(parts: Array<{ field: string; source: MetadataFieldSource }>): string {
@@ -317,7 +290,7 @@ export function resolveCaseHeaderMetadata(input: {
       : resolveClientLabel(matter ?? null, bundleMetadata, bundleHeader);
   const allegation = resolveAllegation(snapshot, matter ?? null, bundleMetadata, bundleHeader, truthLedger);
   const stage = resolveStage(snapshot, matter ?? null, bundleMetadata, bundleHeader, matterState);
-  const nextHearing = resolveNextHearing(snapshot, bundleMetadata, truthLedger);
+  const nextHearing = resolveNextHearing(snapshot, bundleMetadata, truthLedger, bundleText);
 
   const court =
     truthLedger?.court?.trim() ??

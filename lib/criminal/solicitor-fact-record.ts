@@ -4,7 +4,10 @@
  * Surfaces must not invent a charge, family, count, hearing, or MG11 status.
  */
 
-import { resolveSolicitorOffenceFamily, type OffenceFamilyResolution } from "@/lib/criminal/solicitor-offence-family";
+import {
+  classifyFamilyFromChargeLine,
+  type OffenceFamilyResolution,
+} from "@/lib/criminal/solicitor-offence-family";
 import { isPoisonedHearingIso } from "@/lib/criminal/solicitor-hearing-display";
 import type { SolicitorMatterStateVm } from "@/lib/criminal/solicitor-matter-state";
 import type { SolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
@@ -45,6 +48,7 @@ const FAMILY_LABEL: Record<string, string> = {
   drugs_possession: "Drug possession",
   drugs_supply: "Drug supply / PWITS",
   theft: "Theft",
+  robbery: "Robbery",
   motoring: "Motoring",
 };
 
@@ -90,38 +94,37 @@ export function resolveFamilyFactSlot(input: {
   bundleHay?: string | null;
   offenceFamily?: OffenceFamilyResolution | null;
 }): SolicitorFactSlot {
-  const hay = `${input.allegation ?? ""} ${input.chargeWording ?? ""} ${input.bundleHay ?? ""}`;
-  const resolution =
-    input.offenceFamily ??
-    resolveSolicitorOffenceFamily({
-      allegation: input.allegation,
-      chargeWording: input.chargeWording,
-      bundleHay: input.bundleHay,
-    });
+  const chargeText = `${input.chargeWording ?? ""} ${input.allegation ?? ""}`.trim();
+  const papers = input.bundleHay ?? "";
+  // Charge line only. Passed hay-based family is ignored — MG5 narrative is not the charge.
+  const resolution = classifyFamilyFromChargeLine(chargeText || null);
+
+  if (familyLooksSexualMappedToViolence(chargeText, resolution.family)) {
+    return unknown("family", "sexual_offence_not_confirmed_as_violence");
+  }
 
   if (
     resolution.failClosed ||
     resolution.family === "unknown" ||
     resolution.confidence === "uncertain"
   ) {
-    // Charge-sheet assaults the legacy resolver does not name (AEW / s.39).
-    if (
-      /assaults? on emergency workers|assault an emergency worker|common assault.*criminal justice act/i.test(
-        hay,
-      )
-    ) {
-      return confirmed("family", FAMILY_LABEL.violence, "charge_sheet_assault");
-    }
     return unknown("family", resolution.reason || "offence_family_uncertain");
   }
 
-  if (familyLooksSexualMappedToViolence(hay, resolution.family)) {
-    return unknown("family", "sexual_offence_not_confirmed_as_violence");
+  if (resolution.family === "harassment_other" || resolution.family === "harassment_digital") {
+    const digital =
+      /screenshot|phone|message|whatsapp|sms|subscriber|extraction|handset|digital/i.test(papers);
+    const label = digital ? FAMILY_LABEL.harassment_digital : FAMILY_LABEL.harassment_other;
+    return confirmed(
+      "family",
+      label,
+      digital ? "charge_line_harassment_digital_papers" : "charge_line_harassment",
+    );
   }
 
   const label = FAMILY_LABEL[resolution.family];
   if (!label) return unknown("family", "offence_family_unlabelled");
-  return confirmed("family", label, `solicitor_offence_family:${resolution.family}`);
+  return confirmed("family", label, `charge_line:${resolution.family}`);
 }
 
 export function buildSolicitorFactRecord(input: {

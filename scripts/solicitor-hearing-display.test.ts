@@ -8,6 +8,7 @@ import {
   resolveSolicitorHearingDateIso,
 } from "../lib/criminal/solicitor-hearing-display";
 import { extractBundleCaseMetadata } from "../lib/criminal/extract-bundle-case-metadata";
+import { resolveCaseHeaderMetadata } from "../lib/criminal/resolve-case-header-metadata";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
@@ -137,5 +138,13 @@ assert.equal(
   "2026-09-19",
   "extractor must store the listing, not the DOB or the 2016 offence",
 );
+
+const packAHeader = resolveCaseHeaderMetadata({
+  snapshot: null,
+  bundleText: packAFile,
+  bundleMetadata: extractBundleCaseMetadata(packAFile),
+});
+assert.doesNotMatch(packAHeader.nextHearing, /1991|17 Sep/, "header must not print the DOB");
+assert.match(packAHeader.nextHearing, /no hearing date safely extracted|not confirmed/i);
 
 console.log("solicitor-hearing-display.test.ts: PASS");

@@ -10,6 +10,8 @@ One `SolicitorFactRecord` owns charge, family, hearing, evidence counts, chase c
 
 A hearing is only confirmed from a **labelled listing** (PTPH / next hearing / date of hearing). We do not train a model for this.
 
+**Family from the charge line only.** MG5 saying “theft” does not relabel a Robbery + s.47 charge as Theft. Robbery is Robbery. If the charge line does not name a family, the slot stays unknown.
+
 **Date roles (do not sort “earliest vs latest” and guess):**
 
 - **DOB** = birthday. Never a hearing, even if it is the only date on the page.

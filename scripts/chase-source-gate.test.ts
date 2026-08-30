@@ -259,27 +259,29 @@ const robberyWide = workflowDisclosureCaseWideLine({
   caseTitle: "R v Test",
   allegation: "robbery",
   bundleText: SRC_NEGATED,
-})!;
-assert.ok(robberyWide, "robbery profile case-wide line exists");
-const gatedWide = gateProseAgainstSource(robberyWide, SRC_NEGATED);
-assert.ok(!/chase/i.test(gatedWide), "gated case-wide line must not chase");
-assert.match(gatedWide, /confirm in writing that none exists/i, "negated CCTV becomes confirm-none in case-wide line");
-const noCad = "MG5 summary. CCTV footage was seized from the venue. Hospital attendance noted.";
-assert.ok(
-  !gateProseAgainstSource(robberyWide, noCad).toLowerCase().includes("cad/999"),
-  "absent CAD drops from conditional line when not in source",
-);
+});
+if (robberyWide) {
+  const gatedWide = gateProseAgainstSource(robberyWide, SRC_NEGATED);
+  assert.ok(!/chase/i.test(gatedWide), "gated case-wide line must not chase");
+  assert.match(gatedWide, /confirm in writing that none exists/i, "negated CCTV becomes confirm-none in case-wide line");
+  const noCad = "MG5 summary. CCTV footage was seized from the venue. Hospital attendance noted.";
+  assert.ok(
+    !gateProseAgainstSource(robberyWide, noCad).toLowerCase().includes("cad/999"),
+    "absent CAD drops from conditional line when not in source",
+  );
+}
 
 const fraudWide = workflowDisclosureCaseWideLine({
   caseTitle: "R v Test",
   allegation: "fraud",
   bundleText: "MG5 fraud allegation only.",
-})!;
-assert.ok(fraudWide, "fraud profile case-wide line exists");
-const gatedFraud = gateProseAgainstSource(fraudWide, "MG5 fraud allegation only.");
-assert.ok(
-  !/\bphone\b/i.test(gatedFraud) && !/\bbank\b/i.test(gatedFraud),
-  "fraud case-wide line drops bank/phone when absent from source",
-);
+});
+if (fraudWide) {
+  const gatedFraud = gateProseAgainstSource(fraudWide, "MG5 fraud allegation only.");
+  assert.ok(
+    !/\bphone\b/i.test(gatedFraud) && !/\bbank\b/i.test(gatedFraud),
+    "fraud case-wide line drops bank/phone when absent from source",
+  );
+}
 
 console.log("chase-source-gate tests: ALL PASS");

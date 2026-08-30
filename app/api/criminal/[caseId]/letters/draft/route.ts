@@ -91,8 +91,8 @@ export async function POST(request: Request, { params }: RouteParams) {
     practiceArea: caseRecord.practice_area,
     defendantName: (criminalCase as any)?.defendant_name ?? null,
     courtName: (criminalCase as any)?.court_name ?? null,
-    nextHearingDate: (criminalCase as any)?.next_hearing_date ?? null,
-    nextHearingType: (criminalCase as any)?.next_hearing_type ?? null,
+    nextHearingDate: null,
+    nextHearingType: null,
     bailStatus: (criminalCase as any)?.bail_status ?? null,
     charges: Array.isArray(charges) ? (charges as any) : [],
     disclosure: disclosure

@@ -158,7 +158,10 @@ function row(label: string, existence: FiveAnswersEvidenceRow["existence"]): Fiv
     hearing,
   });
   assert.equal(record.slots.hearing.status, "unknown");
+  assert.equal(record.slots.family.status, "confirmed");
+  assert.equal(record.slots.family.value, "Robbery");
   assert.doesNotMatch(renderSolicitorFacts(record).hearingLine, /1991/);
+  assert.doesNotMatch(renderSolicitorFacts(record).familyLine, /Theft/);
 }
 
 {

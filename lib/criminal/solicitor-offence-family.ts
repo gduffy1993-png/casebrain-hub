@@ -19,6 +19,7 @@ export type SolicitorOffenceFamily =
   | "drugs_possession"
   | "drugs_supply"
   | "theft"
+  | "robbery"
   | "motoring"
   | "unknown";
 
@@ -132,6 +133,15 @@ export function resolveSolicitorOffenceFamily(input: {
     };
   }
 
+  if (/\brobbery\b/i.test(hay)) {
+    return {
+      family: "robbery",
+      confidence: "high",
+      failClosed: false,
+      reason: "Robbery on the charge line.",
+    };
+  }
+
   if (/\btheft\b|dishonest(?:ly)? appropriat|shoplift/i.test(hay)) {
     return {
       family: "theft",
@@ -180,8 +190,64 @@ const FAMILY_SEED: Record<Exclude<SolicitorOffenceFamily, "unknown">, string> = 
   drugs_possession: "Possession of a controlled drug",
   drugs_supply: "PWITS intent to supply controlled drug",
   theft: "Theft dishonest appropriation",
+  robbery: "Robbery theft act force",
   motoring: "Drink drive road traffic intoxilyser",
 };
+
+/**
+ * Family from the charge / short title only. Narrative hay is not used —
+ * MG5 mentioning "theft" must not relabel a Robbery + s.47 charge.
+ */
+export function classifyFamilyFromChargeLine(chargeText: string | null | undefined): OffenceFamilyResolution {
+  const hay = chargeText ?? "";
+  if (!hay.trim()) {
+    return {
+      family: "unknown",
+      confidence: "uncertain",
+      failClosed: true,
+      reason: "No charge line to map offence family.",
+    };
+  }
+
+  const cues: Array<{ re: RegExp; family: SolicitorOffenceFamily; reason: string }> = [
+    { re: /harassment|protection from harassment|stalking/i, family: "harassment_other", reason: "Harassment / stalking on the charge line." },
+    { re: /\bpwits\b|intent to supply|supply of (?:a )?controlled drug/i, family: "drugs_supply", reason: "Supply / PWITS on the charge line." },
+    { re: /possession of (?:a )?controlled drug|\bdrug possession\b|misuse of drugs/i, family: "drugs_possession", reason: "Drug possession on the charge line." },
+    { re: /\brobbery\b/i, family: "robbery", reason: "Robbery on the charge line." },
+    { re: /\bburglary\b/i, family: "theft", reason: "Burglary on the charge line." },
+    { re: /\btheft\b|dishonest(?:ly)? appropriat|shoplift/i, family: "theft", reason: "Theft on the charge line." },
+    {
+      re: /\bgbh\b|\babh\b|grievous bodily harm|actual bodily harm|s\.?\s*18|s\.?\s*20|s\.?\s*47|s\.?\s*39|section\s*1[478]|section\s*20|section\s*39|assault occasioning|wounding|\bviolence\b|common assault|assaults? on emergency workers|assault an emergency worker/i,
+      family: "violence",
+      reason: "Violence / assault on the charge line.",
+    },
+    { re: /sexual (?:assault|offence)|sexual offences act|\babe\b|indecent assault/i, family: "violence", reason: "Sexual offence on the charge line (legacy violence map)." },
+    { re: /drink.?drive|dangerous driving|speeding|road traffic|motoring|intoxilyser|driving a motor|motor vehicle|alcohol in breath|prescribed limit/i, family: "motoring", reason: "Motoring on the charge line." },
+  ];
+
+  let best: { index: number; family: SolicitorOffenceFamily; reason: string } | null = null;
+  for (const cue of cues) {
+    const m = hay.match(cue.re);
+    if (m?.index == null) continue;
+    if (!best || m.index < best.index) {
+      best = { index: m.index, family: cue.family, reason: cue.reason };
+    }
+  }
+  if (!best) {
+    return {
+      family: "unknown",
+      confidence: "uncertain",
+      failClosed: true,
+      reason: "Charge line does not map a family.",
+    };
+  }
+  return {
+    family: best.family,
+    confidence: "high",
+    failClosed: false,
+    reason: best.reason,
+  };
+}
 
 /**
  * Classify cross-family concepts via the Phase-4 concept registry.

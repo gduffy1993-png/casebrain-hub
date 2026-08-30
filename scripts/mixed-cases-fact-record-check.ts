@@ -90,6 +90,7 @@ const CASES: CaseSpec[] = [
     file: "docs/fictional-cases-40/NS-CPS-2026-0401.txt",
     accused: "Sam Rees",
     expectCharge: /robbery/i,
+    expectFamily: "Robbery",
     forbid: /\bpwits\b|intent to supply|class a/i,
     expectHearingUnknown: true,
   },

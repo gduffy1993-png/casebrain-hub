@@ -215,12 +215,14 @@ export function resolveSolicitorHearingDateIso(input: {
     return fromListing;
   }
 
+  // Papers are on the file: listing or nothing. Do not promote a stored ISO
+  // (Pack A stored the birthday). Status tests with no hay may still use ISO.
+  if (hay.trim()) return null;
+
   const fromBundleMeta = normalizeIsoDate(input.bundleNextHearingIso);
   const fromSnapshot = normalizeIsoDate(input.snapshotHearingNextAt);
   for (const candidate of [fromBundleMeta, fromSnapshot]) {
     if (!candidate || isPlaceholderHearingIso(candidate)) continue;
-    if (hay && !isPlausibleHearingAfterOffence(candidate, hay)) continue;
-    if (!hay && isPoisonedHearingIso(candidate, hay)) continue;
     return candidate;
   }
   return null;

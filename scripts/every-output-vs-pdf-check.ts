@@ -64,11 +64,12 @@ function pullCharge(hay: string): string | null {
   return line && line.length > 4 ? line : null;
 }
 
-function familyCueOnFile(hay: string, family: string | null): boolean {
+function familyCueOnCharge(charge: string | null, family: string | null): boolean {
   if (!family) return true;
-  const h = hay.toLowerCase();
-  if (family === "Violence") return /assault|gbh|abh|wounding|robbery|s\.?\s*1[478]|s\.?\s*20|s\.?\s*39|violence|emergency worker/i.test(h);
-  if (family === "Theft") return /\btheft\b|burglary|dishonest/i.test(h);
+  const h = (charge ?? "").toLowerCase();
+  if (family === "Robbery") return /\brobbery\b/i.test(h);
+  if (family === "Violence") return /assault|gbh|abh|grievous|wounding|s\.?\s*1[478]|s\.?\s*20|s\.?\s*39|section\s*1[478]|section\s*20|violence|emergency worker/i.test(h);
+  if (family === "Theft") return /\btheft\b|burglary|dishonest/i.test(h) && !/\brobbery\b/i.test(h);
   if (family === "Drug possession") return /possession|class [ab]|misuse of drugs/i.test(h) && !/\bpwits\b|intent to supply/i.test(h);
   if (family === "Drug supply / PWITS") return /\bpwits\b|intent to supply/i.test(h);
   if (family.startsWith("Harassment")) return /harassment|stalking/i.test(h);
@@ -132,8 +133,8 @@ for (const file of DIRS.flatMap(listTxt)) {
 
   const leaks = solicitorTextAssertsUnconfirmedFamily(rendered.chatFactSheet, record);
   const family = record.slots.family.value;
-  const familyOk = familyCueOnFile(hay, family);
-  if (!familyOk) notes.push(`family ${family} not cued on file`);
+  const familyOk = familyCueOnCharge(chargeOnFile, family);
+  if (!familyOk) notes.push(`family ${family} not cued on charge`);
 
   const leak = leaks.length > 0;
   const ok = chargeOk && hearingOk && countsOk && !dobAsHearing && !leak && familyOk && notes.length === 0;

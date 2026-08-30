@@ -55,12 +55,7 @@ export function resolveDemoPresentationHearingLabel({
   const listing = hay.match(
     /\b(PTPH|plea\s+and\s+trial\s+preparation|listing)\s*(?:listed)?\s*[—–-]\s*(\d{1,2})\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})(?:,\s*(\d{1,2}:\d{2}))?/i,
   );
-  if (!listing) {
-    if (/1\s+Jan\s+2026|01\/01\/2026|2026-01-01/i.test(current)) {
-      return "PTPH · 15 Jul 2026 at 10:00";
-    }
-    return current;
-  }
+  if (!listing) return current;
 
   const [, kindRaw, day, month, year, time] = listing;
   const kind = /plea\s+and\s+trial/i.test(kindRaw ?? "") ? "PTPH" : (kindRaw ?? "PTPH").toUpperCase();

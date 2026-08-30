@@ -11,7 +11,7 @@ import type { ParsedBundleHeader } from "@/lib/bundle/parse-bundle-display";
 import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { workflowCard, workflowPilotSixtyStrip } from "./workflowUi";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
-import { cleanPilotHeaderClient, cleanPilotCourtHeaderCell, cleanPilotHearingHeaderCell } from "@/lib/criminal/pilot-workflow";
+import { cleanPilotHeaderClient, cleanPilotCourtHeaderCell } from "@/lib/criminal/pilot-workflow";
 import {
   displayPilotStripClient,
   displayPilotStripCourt,
@@ -92,16 +92,18 @@ export function CaseWorkflowHeaderStrip({
         const meta = resolveCaseHeaderMetadata({
           bundleHeader: json.data.header ?? null,
           bundleMetadata: json.data.caseMetadata ?? null,
+          bundleText: json.data.frontMatterScan ?? null,
           snapshot: null,
         });
         const clientClean = pilot
           ? cleanPilotHeaderClient(sanitizeHeaderClient(meta.clientLabel))
           : sanitizeHeaderClient(meta.clientLabel);
         const chargeClean = sanitizeHeaderAllegation(meta.allegation);
-        const courtClean = pilot ? cleanPilotCourtHeaderCell(meta.court) : meta.court?.trim() || "";
-        const hearingClean = pilot
-          ? cleanPilotHearingHeaderCell(meta.nextHearing, json.data.caseMetadata?.nextHearingIso)
-          : meta.nextHearing?.trim() || "";
+        const courtClean = meta.court?.trim()
+          ? pilot
+            ? cleanPilotCourtHeaderCell(meta.court)
+            : meta.court.trim()
+          : "Not confirmed on the file.";
         const hearingHay = [
           json.data.caseMetadata?.nextHearingRaw,
           json.data.frontMatterScan,
@@ -111,17 +113,21 @@ export function CaseWorkflowHeaderStrip({
           .join("\n");
         const hearingDateIso = resolveSolicitorHearingDateIso({
           bundleNextHearingIso: json.data.caseMetadata?.nextHearingIso,
-          nextHearingRaw: meta.nextHearing,
+          nextHearingRaw: json.data.caseMetadata?.nextHearingRaw,
           bundleHay: hearingHay,
         });
         const hearingResolved = resolveSolicitorHearingStatus({
           bundleNextHearingIso: hearingDateIso,
-          nextHearingRaw: meta.nextHearing,
+          nextHearingRaw: json.data.caseMetadata?.nextHearingRaw,
           bundleHay: hearingHay,
         });
+        const lockedHearing =
+          hearingResolved.kind === "unknown" || !hearingDateIso
+            ? "Not confirmed on the file."
+            : hearingResolved.statusLabel;
         const hearingDisplay = resolveDemoPresentationHearingLabel({
           caseId,
-          currentLabel: hearingResolved.statusLabel || hearingClean,
+          currentLabel: lockedHearing,
           bundleHay: hearingHay,
         });
         const safeguards: string[] = [];
@@ -132,12 +138,14 @@ export function CaseWorkflowHeaderStrip({
         setStrip({
           client: pilot
             ? displayPilotStripClient(clientClean) || clientClean
-            : clientClean || "Client not on papers",
+            : clientClean || "Not confirmed on the file.",
           charge: pilot
             ? resolvePilotChargeDisplay(chargeClean, deskChargeLine)
-            : chargeClean || "Charge not on papers",
-          court: pilot ? displayPilotStripCourt(courtClean) || courtClean : courtClean || "Court not on papers",
-          hearing: pilot ? displayPilotStripHearing(hearingDisplay) || hearingDisplay : hearingDisplay || "Hearing not on papers",
+            : chargeClean || "Not confirmed on the file.",
+          court: pilot ? displayPilotStripCourt(courtClean) || courtClean : courtClean || "Not confirmed on the file.",
+          hearing: pilot
+            ? displayPilotStripHearing(hearingDisplay) || hearingDisplay
+            : hearingDisplay || "Not confirmed on the file.",
           health: healthFromDocCount(json.data.documentCount ?? 0),
           documentCount: json.data.documentCount ?? 0,
           combinedTextLength: json.data.combinedTextLength ?? 0,
