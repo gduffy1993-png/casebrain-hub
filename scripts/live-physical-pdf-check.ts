@@ -115,12 +115,18 @@ async function main(): Promise<void> {
     for (const spec of CASES) {
       const href = `${BASE}/cases/${spec.caseId}?tab=overview&controlRoom=1`;
       await page.goto(href, { waitUntil: "domcontentloaded", timeout: 45_000 });
-      const deadline = Date.now() + 40_000;
+      const deadline = Date.now() + 90_000;
       let body = "";
       while (Date.now() < deadline) {
         body = await page.locator("body").innerText();
-        if (/sam rees|taylor frost|rowan thornton|kian reid|charge not on papers|client name/i.test(body)) break;
-        await page.waitForTimeout(600);
+        const stillSpinning = /loading case overview|case overview will appear|loading matters/i.test(body);
+        const deskUp = /safe to say|not safe to say|case snapshot|charge not on papers|proof \/ audit/i.test(body);
+        if (!stillSpinning && deskUp) break;
+        await page.waitForTimeout(800);
+      }
+      body = await page.locator("body").innerText();
+      if (/loading case overview/i.test(body)) {
+        throw new Error(`${spec.id} still on loading screen — not a check`);
       }
       await shot(page, `physical_${spec.id}.png`);
       const nameOk = spec.expectName.test(body);
