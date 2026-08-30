@@ -21,6 +21,17 @@ const PASSWORD = process.env.SMOKE_PASSWORD ?? "ProdSmokeOnly!Jun2026";
 const SMOKE_EMAIL = process.env.MIXED_LIVE_FALLBACK_EMAIL ?? "demo.loom.taylor.1782877263@casebrain.qa.smoke";
 const SKIP_SIGNUP = process.env.MIXED_LIVE_SKIP_SIGNUP === "1" || Boolean(process.env.MIXED_LIVE_EMAIL?.trim());
 const PRESET_EMAIL = process.env.MIXED_LIVE_EMAIL?.trim() || null;
+const RECHECK = Object.fromEntries(
+  (process.env.MIXED_LIVE_RECHECK ?? "")
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => {
+      const [id, caseId] = part.split(":");
+      return [id, caseId];
+    })
+    .filter((pair): pair is [string, string] => Boolean(pair[0] && pair[1])),
+);
 const HEADLESS = process.env.CB_FRESH_HEADLESS !== "0";
 const UPLOAD_MS = Number(process.env.MIXED_LIVE_UPLOAD_TIMEOUT_MS ?? "180000");
 const PDF_DIR = path.join(ROOT, "docs", "cb-fresh-adversarial", "pdfs", "mixed-live");
@@ -224,15 +235,17 @@ async function uploadCase(page: Page, spec: CaseSpec, pdfPath: string): Promise<
 
 async function collectTab(page: Page, caseId: string, tab: string): Promise<string> {
   await page.goto(`${BASE}/cases/${caseId}?tab=${tab}&controlRoom=1`, { waitUntil: "domcontentloaded" });
-  const deadline = Date.now() + 40_000;
+  const deadline = Date.now() + 90_000;
+  let last = "";
   while (Date.now() < deadline) {
-    const body = await page.locator("body").innerText();
-    if (!/loading case overview|case overview will appear/i.test(body) || body.length > 400) {
-      if (/what is this case saying|on the file|charge|court|hearing|disclosure/i.test(body)) return body;
-    }
-    await page.waitForTimeout(800);
+    last = await page.locator("body").innerText();
+    const stillLoading = /loading case overview|case overview will appear/i.test(last);
+    const hasDesk =
+      /what is this case saying|on the file|charge not on papers|five answers|evidence truth/i.test(last);
+    if (!stillLoading && hasDesk) return last;
+    await page.waitForTimeout(1_000);
   }
-  return page.locator("body").innerText();
+  return last || page.locator("body").innerText();
 }
 
 function score(spec: CaseSpec, hay: string): Omit<CaseResult, "id" | "accused" | "caseId" | "account"> {
@@ -303,10 +316,14 @@ async function main(): Promise<void> {
     }
 
     for (const spec of CASES) {
-      console.log(`Uploading ${spec.title}…`);
-      let caseId: string | null = null;
+      let caseId: string | null = RECHECK[spec.id] ?? null;
+      if (caseId) {
+        console.log(`Rechecking ${spec.title} case=${caseId}`);
+      } else {
+        console.log(`Uploading ${spec.title}…`);
+      }
       try {
-        caseId = await uploadCase(page, spec, pdfs.get(spec.id)!);
+        if (!caseId) caseId = await uploadCase(page, spec, pdfs.get(spec.id)!);
       } catch (err) {
         const msg = err instanceof Error ? err.message : String(err);
         if (msg.includes("PAYWALL") && account !== SMOKE_EMAIL) {
