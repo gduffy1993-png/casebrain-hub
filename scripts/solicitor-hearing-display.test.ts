@@ -1,6 +1,7 @@
 #!/usr/bin/env npx tsx
 import assert from "node:assert/strict";
 import {
+  classifyPaperDateRoles,
   displaySolicitorStage,
   isPlaceholderHearingIso,
   parseHearingIsoFromListingText,
@@ -93,5 +94,48 @@ assert.equal(
   "2026-07-15",
 );
 assert.equal(extractBundleCaseMetadata(taylorFile).nextHearingIso?.slice(0, 10), "2026-07-15");
+
+assert.equal(
+  resolveSolicitorHearingDateIso({
+    bundleHay:
+      "Particulars: On 1 April 2024 at Northshire stole goods.\nPTPH listed — 14 May 2024.",
+  }),
+  "2024-05-14",
+  "later labelled listing is the hearing; earlier particulars are when it happened",
+);
+
+assert.equal(
+  resolveSolicitorHearingDateIso({
+    bundleNextHearingIso: "2024-04-01",
+    bundleHay: "On 1 April 2024 at the shop stole goods. Interview 20 April 2024. No listing.",
+  }),
+  null,
+  "offence date is not a hearing just because it is in the last 10 years",
+);
+
+assert.equal(
+  resolveSolicitorHearingDateIso({
+    bundleHay: "On 22 July 2026 at court the PTPH took place.\nPTPH listed — 12 March 2026.",
+  }),
+  null,
+  "a listing before the offence date is not plausible",
+);
+
+const tenYearHay =
+  "Accused: PAT LEE (DOB 04/02/1988)\nOn 3 June 2016 at High Street stole goods.\nPTPH listed — 19 September 2026.";
+const tenYearRoles = classifyPaperDateRoles(tenYearHay);
+assert.equal(tenYearRoles.latestOffenceIso, "2016-06-03");
+assert.ok(tenYearRoles.dobs.has("1988-02-04"));
+assert.equal(tenYearRoles.listingIso, "2026-09-19");
+assert.equal(
+  resolveSolicitorHearingDateIso({ bundleHay: tenYearHay, bundleNextHearingIso: "1988-02-04" }),
+  "2026-09-19",
+  "old offence stays the offence; later labelled listing is the hearing",
+);
+assert.equal(
+  extractBundleCaseMetadata(tenYearHay).nextHearingIso,
+  "2026-09-19",
+  "extractor must store the listing, not the DOB or the 2016 offence",
+);
 
 console.log("solicitor-hearing-display.test.ts: PASS");

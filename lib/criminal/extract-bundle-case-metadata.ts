@@ -6,7 +6,7 @@
 import type { ParsedBundleHeader } from "@/lib/bundle/parse-bundle-display";
 import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
 import {
-  isPoisonedHearingIso,
+  isPlausibleHearingAfterOffence,
   labelledHearingIsoFromHay,
 } from "@/lib/criminal/solicitor-hearing-display";
 
@@ -1790,9 +1790,9 @@ function extractNextHearing(scan: string): {
     if (parsed?.iso) nextHearingIso = parsed.iso;
   }
 
-  if (nextHearingIso && isPoisonedHearingIso(nextHearingIso, scan)) {
+  if (nextHearingIso && !isPlausibleHearingAfterOffence(nextHearingIso, scan)) {
     const labelled = labelledHearingIsoFromHay(scan);
-    if (labelled && !isPoisonedHearingIso(labelled, scan)) {
+    if (labelled && isPlausibleHearingAfterOffence(labelled, scan)) {
       nextHearingIso = labelled;
     } else {
       nextHearingIso = null;

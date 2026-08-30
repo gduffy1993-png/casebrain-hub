@@ -126,6 +126,44 @@ export function isPoisonedHearingIso(iso: string | null | undefined, hay: string
   return collectDobHearingPoisonIsos(hay).has(day) || collectOffenceHearingPoisonIsos(hay).has(day);
 }
 
+/**
+ * Roles on the papers. Do not train this.
+ * DOB = birthday. Offence = when it happened (particulars). Listing = court date.
+ * Today is only used later to say passed / upcoming — it is not read off the PDF.
+ * A hearing must not be the birthday, must not be the offence date, and must not
+ * sit before the offence date (charge already happened; listing comes after).
+ */
+export type PaperDateRoles = {
+  dobs: Set<string>;
+  offenceIsos: Set<string>;
+  listingIso: string | null;
+  latestOffenceIso: string | null;
+};
+
+export function classifyPaperDateRoles(hay: string | null | undefined): PaperDateRoles {
+  const dobs = collectDobHearingPoisonIsos(hay);
+  const offenceIsos = collectOffenceHearingPoisonIsos(hay);
+  const listingIso = parseHearingIsoFromListingText(hay);
+  let latestOffenceIso: string | null = null;
+  for (const iso of offenceIsos) {
+    if (!latestOffenceIso || iso > latestOffenceIso) latestOffenceIso = iso;
+  }
+  return { dobs, offenceIsos, listingIso, latestOffenceIso };
+}
+
+/** Listing is only safe if it is not a DOB/offence date and is not earlier than the offence. */
+export function isPlausibleHearingAfterOffence(
+  hearingIso: string | null | undefined,
+  hay: string | null | undefined,
+): boolean {
+  const day = normalizeIsoDate(hearingIso);
+  if (!day) return false;
+  const roles = classifyPaperDateRoles(hay);
+  if (roles.dobs.has(day) || roles.offenceIsos.has(day)) return false;
+  if (roles.latestOffenceIso && day < roles.latestOffenceIso) return false;
+  return true;
+}
+
 /** Parse a listing/PTPH date from bundle / raw hearing text into YYYY-MM-DD. */
 export function parseHearingIsoFromListingText(text: string | null | undefined): string | null {
   if (!text?.trim()) return null;
@@ -169,7 +207,11 @@ export function resolveSolicitorHearingDateIso(input: {
   const fromListing =
     parseHearingIsoFromListingText(input.bundleHay) ??
     parseHearingIsoFromListingText(input.nextHearingRaw);
-  if (fromListing && !isPlaceholderHearingIso(fromListing) && !isPoisonedHearingIso(fromListing, hay)) {
+  if (
+    fromListing &&
+    !isPlaceholderHearingIso(fromListing) &&
+    isPlausibleHearingAfterOffence(fromListing, hay)
+  ) {
     return fromListing;
   }
 
@@ -177,7 +219,8 @@ export function resolveSolicitorHearingDateIso(input: {
   const fromSnapshot = normalizeIsoDate(input.snapshotHearingNextAt);
   for (const candidate of [fromBundleMeta, fromSnapshot]) {
     if (!candidate || isPlaceholderHearingIso(candidate)) continue;
-    if (isPoisonedHearingIso(candidate, hay)) continue;
+    if (hay && !isPlausibleHearingAfterOffence(candidate, hay)) continue;
+    if (!hay && isPoisonedHearingIso(candidate, hay)) continue;
     return candidate;
   }
   return null;

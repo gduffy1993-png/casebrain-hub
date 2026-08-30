@@ -8,7 +8,17 @@ Wrong facts are illegal. Incomplete is allowed.
 
 One `SolicitorFactRecord` owns charge, family, hearing, evidence counts, chase counts, MG11. Each slot is **confirmed** (value + source) or **unknown**. Unknown renders as `Not confirmed on the file.`
 
-A hearing is only confirmed from a **labelled listing** (PTPH / next hearing / date of hearing). A date of birth or an offence-particulars date (“On 12 March 2026 at …”) is not a hearing. If that is all the file has, the slot stays unknown. The same lock sits in `resolveSolicitorHearingDateIso`, so Overview, Court, Chase, and chat use it.
+A hearing is only confirmed from a **labelled listing** (PTPH / next hearing / date of hearing). We do not train a model for this.
+
+**Date roles (do not sort “earliest vs latest” and guess):**
+
+- **DOB** = birthday. Never a hearing, even if it is the only date on the page.
+- **Particulars** (`On DATE at…`, `Between DATE and DATE`) = when the charge happened. That can be last month or ten years ago. Still not a hearing.
+- **Labelled listing** = the court date, and only if it is on or after the latest particulars date. Charge first, listing after.
+- **Today** is the clock on the machine. It is never read off the PDF. After a listing is confirmed, today only says passed / upcoming / same-day.
+- A later **unlabelled** date (interview, email, statement) is not a hearing just because it is after the charge. Unknown is allowed.
+
+Corpus check: `npx tsx scripts/every-output-vs-pdf-check.ts` — charge and hearing vs every source file in the fresh, foundation, theft, GBH, and Pack A sets.
 
 One renderer (`renderSolicitorFacts`) writes the same lines for Overview, Summary, and (non-eval) chat.
 
@@ -25,5 +35,6 @@ One renderer (`renderSolicitorFacts`) writes the same lines for Overview, Summar
 
 ```bash
 npx tsx scripts/solicitor-fact-record.test.ts
+npx tsx scripts/solicitor-hearing-display.test.ts
 npx tsx scripts/solicitor-output-integrity.test.ts
 ```
