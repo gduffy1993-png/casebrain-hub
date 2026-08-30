@@ -134,10 +134,25 @@ async function shot(page: Page, name: string): Promise<void> {
   await page.screenshot({ path: path.join(OUT_DIR, name), fullPage: true }).catch(() => undefined);
 }
 
+async function fillAuthForm(page: Page, email: string): Promise<void> {
+  const emailBox = page.getByLabel(/work email/i);
+  const passBox = page.getByLabel(/password|create password/i);
+  await emailBox.waitFor({ timeout: 20_000 });
+  await emailBox.click();
+  await emailBox.fill("");
+  await emailBox.pressSequentially(email, { delay: 15 });
+  await passBox.click();
+  await passBox.fill("");
+  await passBox.pressSequentially(PASSWORD, { delay: 10 });
+  const typed = await emailBox.inputValue();
+  if (typed !== email) {
+    throw new Error(`Email field stayed ${JSON.stringify(typed)} instead of ${email}`);
+  }
+}
+
 async function trySignUp(page: Page, email: string): Promise<"session" | "confirm" | "error"> {
   await page.goto(`${BASE}/sign-up`, { waitUntil: "domcontentloaded", timeout: 45_000 });
-  await page.locator("#email").fill(email);
-  await page.locator("#password").fill(PASSWORD);
+  await fillAuthForm(page, email);
   await page.getByRole("button", { name: /create account/i }).click();
   const deadline = Date.now() + 25_000;
   while (Date.now() < deadline) {
@@ -157,8 +172,7 @@ async function trySignUp(page: Page, email: string): Promise<"session" | "confir
 
 async function signIn(page: Page, email: string): Promise<boolean> {
   await page.goto(`${BASE}/sign-in`, { waitUntil: "domcontentloaded", timeout: 45_000 });
-  await page.locator("#email").fill(email);
-  await page.locator("#password").fill(PASSWORD);
+  await fillAuthForm(page, email);
   await page.getByRole("button", { name: /sign in/i }).click();
   const deadline = Date.now() + 30_000;
   while (Date.now() < deadline) {
