@@ -84,4 +84,14 @@ assert.equal(extractBundleCaseMetadata(packAFile).nextHearingIso, null, "Pack A 
 const jordanFile = readFileSync(resolve("docs/cb-fresh-adversarial/sources/CB-FRESH-002_Jordan_Hale.txt"), "utf8");
 assert.equal(extractBundleCaseMetadata(jordanFile).nextHearingIso, "2026-07-22");
 
+const taylorFile = readFileSync(resolve("docs/cb-fresh-adversarial/sources/CB-FRESH-001_Taylor_Brookes.txt"), "utf8");
+assert.equal(
+  resolveSolicitorHearingDateIso({
+    bundleNextHearingIso: "2026-01-01",
+    bundleHay: taylorFile,
+  }),
+  "2026-07-15",
+);
+assert.equal(extractBundleCaseMetadata(taylorFile).nextHearingIso?.slice(0, 10), "2026-07-15");
+
 console.log("solicitor-hearing-display.test.ts: PASS");

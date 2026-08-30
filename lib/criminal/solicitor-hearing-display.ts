@@ -109,6 +109,14 @@ export function collectOffenceHearingPoisonIsos(hay: string | null | undefined):
     if (/\b(?:hearing|listed|ptph|listing|court)\b/i.test(before)) continue;
     addIso(out, monthPartsToIso(m[1]!, m[2]!, m[3]!));
   }
+  const between = new RegExp(
+    `\\bBetween\\s+(\\d{1,2})\\s+(${MONTH_NAME})\\s+(\\d{4})\\s+and\\s+(\\d{1,2})\\s+(${MONTH_NAME})\\s+(\\d{4})`,
+    "gi",
+  );
+  for (const m of hay.matchAll(between)) {
+    addIso(out, monthPartsToIso(m[1]!, m[2]!, m[3]!));
+    addIso(out, monthPartsToIso(m[4]!, m[5]!, m[6]!));
+  }
   return out;
 }
 
