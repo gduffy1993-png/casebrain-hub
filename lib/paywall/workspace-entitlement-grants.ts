@@ -8,16 +8,16 @@ import type { WorkspaceEntitlementRecord } from "./workspace-entitlement";
 
 export const WORKSPACE_ENTITLEMENT_GRANTS: WorkspaceEntitlementRecord[] = [
   {
-    workspaceId: "1cf4ae7c-2c73-40ff-b1c1-957615cd1761",
+    workspaceId: "e066f4cd-749f-4436-baa9-8c187092149a",
     kind: "internal_qa",
     casesLimit: 25,
     documentsLimit: 100,
     analysesLimit: 100,
     exportsLimit: 40,
     bypassActive: false,
-    startsAt: "2026-08-09T20:41:12.928Z",
-    expiresAt: "2026-08-23T20:41:12.928Z",
-    grantedBy: "operator:real-pdf-live-pilot-v1",
-    reason: "Real-PDF authenticated 5→20 QA pilot",
+    startsAt: "2026-09-05T23:30:05.809Z",
+    expiresAt: "2026-09-19T23:30:05.809Z",
+    grantedBy: "operator:fresh-gold20-pr101",
+    reason: "Fresh Gold 20 live PDF QA",
   },
 ];
