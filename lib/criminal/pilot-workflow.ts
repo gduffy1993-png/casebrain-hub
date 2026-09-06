@@ -805,12 +805,16 @@ export function pilotHeaderOverrides(
 }
 
 export function cleanPilotHeaderClient(raw: string): string {
-  return raw
+  const t = raw
     .replace(/\s+(?:Date(?:\s+of\s+birth)?|DOB|D\.?O\.?B\.?)\s*$/i, "")
     .replace(/\bPrimary allegation\b.*$/i, "")
     .replace(/\bPrimary\b.*$/i, "")
     .replace(/\b(sheet\s*\/\s*indictment|indictment|extract)\b.*$/i, "")
     .trim();
+  if (!t || /^client\b/i.test(t) || /not safely extracted|not on papers/i.test(t)) {
+    return "Client not on papers";
+  }
+  return t;
 }
 
 export function pilotStrategyBasisDisplay(label: string | null | undefined): string | null {

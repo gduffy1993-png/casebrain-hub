@@ -28,7 +28,7 @@ import {
 } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { buildDisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildMatterBrief, type MatterBrief } from "./buildMatterBrief";
-import { assembleBundleTextForContradictions } from "@/lib/criminal/reasoning-v2/assemble-bundle-text";
+import { assembleBundleTextForReasoning } from "@/lib/criminal/reasoning-v2/assemble-bundle-text";
 import { buildCriminalBriefPlan } from "@/lib/criminal/brief-plan";
 import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-matter-confidence";
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
@@ -279,7 +279,7 @@ export function useMatterBrief(caseId: string) {
     });
     const bundleHealth = deriveBundleHealth(snapshot, bundleSource, battleboard);
 
-    const bundleTextForBrief = assembleBundleTextForContradictions({
+    const bundleTextForBrief = assembleBundleTextForReasoning({
       frontMatterScan: bundleSource?.frontMatterScan ?? null,
       snippets: bundleSource?.snippets,
     });

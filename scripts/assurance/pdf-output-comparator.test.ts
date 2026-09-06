@@ -129,4 +129,51 @@ describe("pdf output comparator", () => {
     });
     expect(fullExport.findings.some((f) => f.code === "EXPECTED_MISSING_NOT_CHASED")).toBe(false);
   });
+
+  it("matches expected chase labels through spacing and safe same-family wording", () => {
+    const cctvTruth = extractSourceTruth(
+      "retail-cctv",
+      ["Defendant: Ashleigh Merritt", "MG6: Retail CCTV continuity referred to; continuity to be checked."].join("\n"),
+      { expectedChaseItems: ["Retail CCTV continuity"] },
+    );
+
+    const cctvCompared = compareTruthToApp(cctvTruth, {
+      caseIdentity: { clientLabel: "Ashleigh Merritt" },
+      evidenceStates: [
+        {
+          label: "CCTV Continuity / provenance",
+          baseStatus: "Not safely confirmed",
+          evidenceAnchor: "CCTV list — ValueMart Northshire 20",
+        },
+      ],
+    });
+    expect(cctvCompared.findings.some((f) => f.code === "TRUTH_EXPECTED_CHASE_MISSING")).toBe(false);
+
+    const mg6Truth = extractSourceTruth(
+      "mg6-spacing",
+      ["Defendant: Defendant 024", "MG6C/MG6 — MG6 — outstanding — not on bundle."].join("\n"),
+      { expectedChaseItems: ["MG6/unused schedule clarification"] },
+    );
+
+    const mg6Compared = compareTruthToApp(mg6Truth, {
+      caseIdentity: { clientLabel: "Defendant 024" },
+      evidenceStates: [{ label: "MG6 / unused schedule clarification", baseStatus: "Not safely confirmed" }],
+    });
+    expect(mg6Compared.findings.some((f) => f.code === "TRUTH_EXPECTED_CHASE_MISSING")).toBe(false);
+  });
+
+  it("does not let another evidence family satisfy an expected chase", () => {
+    const truth = extractSourceTruth(
+      "wrong-family",
+      ["Defendant: Ashleigh Merritt", "MG6: Retail CCTV continuity referred to; continuity to be checked."].join("\n"),
+      { expectedChaseItems: ["Retail CCTV continuity"] },
+    );
+
+    const compared = compareTruthToApp(truth, {
+      caseIdentity: { clientLabel: "Ashleigh Merritt" },
+      evidenceStates: [{ label: "Phone subscriber continuity", baseStatus: "Not safely confirmed" }],
+    });
+
+    expect(compared.findings.some((f) => f.code === "TRUTH_EXPECTED_CHASE_MISSING")).toBe(true);
+  });
 });

@@ -14,7 +14,6 @@ import {
   sanitizeHeaderClient,
 } from "@/lib/criminal/resolve-case-header-metadata";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
-import { pilotCourtChaseLabels } from "@/lib/criminal/pilot-workflow";
 import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
 import { fileBackedMatterTitle } from "@/components/criminal/workflow/workflowPilotDisplay";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
@@ -202,16 +201,17 @@ function resolveExtractedHearingIso(enrichment: CourtTodayEnrichment): string | 
   return null;
 }
 
-/** Structured DB hearing first, then extracted bundle ISO — no guessing. */
+/** Structured File listing first, then stored DB date — no guessing. */
 export function resolveCourtHearingDate(
   row: CourtCasesApiRow,
   enrichment: CourtTodayEnrichment = {},
 ): Date | null {
-  const fromDb = parseHearingDate(row.next_hearing_date);
-  if (fromDb) return fromDb;
   const iso = resolveExtractedHearingIso(enrichment);
-  if (iso) return parseHearingDate(iso);
-  return null;
+  if (iso) {
+    const fromFile = parseHearingDate(iso);
+    if (fromFile) return fromFile;
+  }
+  return parseHearingDate(row.next_hearing_date);
 }
 
 function resolveBundleHealth(row: CourtCasesApiRow, battleboard: BattleboardOutput | null | undefined): string {
@@ -241,7 +241,7 @@ function resolveReadiness(
   const needsReview =
     bucket === "no_hearing" ||
     allegation.includes("not safely extracted") ||
-    clientLabel.includes("not safely extracted");
+    /not safely extracted|not on papers/i.test(clientLabel);
 
   if (needsReview) return "review";
 
@@ -267,16 +267,6 @@ function buildChaseItems(
   enrichment: CourtTodayEnrichment = {},
   fileClientLabel?: string,
 ): string[] {
-  if (isCriminalPilotMode()) {
-    const identity = fileBackedMatterTitle(row.title, fileClientLabel) || row.title;
-    const pilotLabels = pilotCourtChaseLabels({
-      caseTitle: identity,
-      allegation: row.offence_label ?? undefined,
-      routeTitle: battleboard?.primary_route?.title,
-      clientLabel: identity,
-    });
-    if (pilotLabels.length) return pilotLabels;
-  }
   const fromBoard = collectChaseItems({ battleboard: battleboard ?? null });
   if (fromBoard.length) return fromBoard.slice(0, 6);
   const n = row.disclosure_outstanding ?? 0;
@@ -295,16 +285,27 @@ function chaseSummary(items: string[]): string {
 
 function cleanPilotClientLabel(raw: string): string {
   const t = raw.trim();
-  if (!t) return t;
+  if (!t) return "Client not on papers";
+  if (/^client(?:\s+name)?\s+not\s+safely\s+extracted\b|^client\s+not\s+on\s+papers\b/i.test(t)) {
+    return "Client not on papers";
+  }
   const cleaned = t
     .replace(/\b(?:Date|Offence|Charge|Court|Hearing)\b[\s\S]*$/i, "")
     .replace(/\b(?:Primary allegation|Primary)\b.*$/i, "")
     .replace(/\b(?:sheet\s*\/\s*indictment|charge sheet|indictment)\b.*$/i, "")
     .replace(/\b(?:presence issue|fictional|testing|demo)\b[\s\S]*$/i, "")
     .trim();
+  if (!cleaned || /^client\b/i.test(cleaned) || /not safely extracted|not on papers/i.test(cleaned)) {
+    return "Client not on papers";
+  }
   const personLike = cleaned.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2})\b/);
-  const out = (personLike?.[1] ?? cleaned).trim();
-  return out || "Client not safely extracted";
+  if (personLike?.[1]) return personLike[1].trim();
+  const caps = [...cleaned.matchAll(/\b([A-Z][a-z]{2,})\b/g)]
+    .map((match) => match[1]!)
+    .filter((word) => !/^(Date|Charge|Court|Hearing|Primary|Defendant|Offence)$/.test(word));
+  if (caps.length >= 2) return caps.slice(0, 2).join(" ");
+  if (caps.length === 1) return caps[0]!;
+  return cleaned || "Client not on papers";
 }
 
 function cleanPilotAllegationLabel(raw: string): string {
@@ -410,7 +411,8 @@ export function buildCourtCaseBrief(
   const hearingDate = resolveCourtHearingDate(row, enrichment);
   const bucket = resolveHearingBucket(hearingDate, opts?.bucketNow);
   const pilotMode = isCriminalPilotMode();
-  const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
+  const fileDefendant = enrichment.bundleMetadata?.defendantName?.trim() || headerMeta.clientLabel;
+  const clientLabelBase = sanitizeHeaderClient(fileDefendant);
   const allegationBase = sanitizeHeaderAllegation(headerMeta.allegation);
   const clientLabel = pilotMode ? cleanPilotClientLabel(clientLabelBase) : clientLabelBase;
   const allegation = pilotMode
@@ -481,7 +483,7 @@ export function buildCourtCaseBrief(
 
   return {
     caseId,
-    caseTitle: fileBackedMatterTitle(row.title, clientLabel) || row.title,
+    caseTitle: fileBackedMatterTitle(row.title, clientLabel) || clientLabel,
     clientLabel,
     allegation,
     stage,
@@ -527,7 +529,7 @@ export function readinessLabel(readiness: CourtReadiness, opts?: { pilot?: boole
     case "red":
       return opts?.pilot ? "At risk" : "Red";
     case "review":
-      return opts?.pilot ? "Hearing date to confirm" : "Needs hearing review";
+      return opts?.pilot ? "Check papers" : "Needs hearing review";
   }
 }
 

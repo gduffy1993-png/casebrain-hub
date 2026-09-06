@@ -70,12 +70,10 @@ import {
   pilotDisplayMetadataNote,
   pilotStrategyBasisDisplay,
   shouldSuppressPilotStrategyBasisReason,
-  workflowDisclosureChaseLabels,
   workflowHeaderOverrides,
   workflowPrimaryRouteTitle,
   workflowSafeCourtLine,
   workflowTopNextActions,
-  prioritizeWorkflowItems,
   showPilotRouteDetailPanel,
 } from "@/lib/criminal/pilot-workflow";
 import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
@@ -572,15 +570,13 @@ export function CaseControlRoom({
 
   const chaseItemsAll = useMemo(
     () => {
-      const profileLabels = workflowDisclosureChaseLabels(workflowContext);
-      if (profileLabels?.length) return profileLabels;
       const raw = collectChaseItems({
         snapshotMissing: snapshot?.evidence.missingEvidence,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
-        battleboard,
+        battleboard: null,
         bundleText: workflowContext.bundleText ?? bundleSource?.frontMatterScan ?? null,
       });
-      return prioritizeWorkflowItems(raw, workflowContext);
+      return raw;
     },
     [snapshot, effectiveProceduralSafety, battleboard, workflowContext, bundleSource?.frontMatterScan],
   );

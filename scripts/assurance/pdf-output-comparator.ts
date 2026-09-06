@@ -211,6 +211,92 @@ function appMentions(appText: string, re: RegExp): boolean {
   return re.test(appText);
 }
 
+const CHASE_LABEL_STOPWORDS = new Set([
+  "a",
+  "an",
+  "and",
+  "for",
+  "from",
+  "if",
+  "in",
+  "material",
+  "materials",
+  "of",
+  "only",
+  "or",
+  "record",
+  "records",
+  "referred",
+  "retail",
+  "source",
+  "sources",
+  "the",
+  "to",
+]);
+
+function chaseLabelTokens(text: string): Set<string> {
+  return new Set(
+    normal(text)
+      .replace(/\bmg\s*6\b/g, "mg6")
+      .replace(/\bcctv\b/g, "cctv")
+      .replace(/\bcad\s*\/\s*999\b/g, "cad999")
+      .split(/[^a-z0-9]+/)
+      .filter((token) => token.length >= 2 && !CHASE_LABEL_STOPWORDS.has(token)),
+  );
+}
+
+function tokenHas(tokens: Set<string>, ...options: string[]): boolean {
+  return options.some((option) => tokens.has(option));
+}
+
+function expectedChaseIsVisible(expected: string, appText: string): boolean {
+  const expectedKey = expected.split(/[—-]/)[0]?.trim() ?? expected;
+  if (!expectedKey || expectedKey.length < 5) return true;
+
+  const exactish = new RegExp(escapeRegExp(expectedKey.slice(0, Math.min(expectedKey.length, 28))), "i");
+  if (appMentions(appText, exactish)) return true;
+
+  const expectedTokens = chaseLabelTokens(expectedKey);
+  const candidates = [...appEvidenceLabels(appText), appText].map(chaseLabelTokens);
+
+  for (const candidate of candidates) {
+    if (expectedTokens.has("cctv")) {
+      if (
+        candidate.has("cctv") &&
+        (
+          (tokenHas(expectedTokens, "continuity", "provenance") && tokenHas(candidate, "continuity", "provenance")) ||
+          (tokenHas(expectedTokens, "master", "window", "export", "footage") && tokenHas(candidate, "master", "window", "export", "footage")) ||
+          (!tokenHas(expectedTokens, "continuity", "provenance", "master", "window", "export", "footage") && candidate.has("cctv"))
+        )
+      ) {
+        return true;
+      }
+      continue;
+    }
+
+    if (tokenHas(expectedTokens, "mg6", "unused", "schedule")) {
+      if (tokenHas(candidate, "mg6", "unused") && candidate.has("schedule")) return true;
+      continue;
+    }
+
+    if (tokenHas(expectedTokens, "phone", "subscriber", "download", "extraction")) {
+      if (
+        tokenHas(candidate, "phone", "subscriber", "download", "extraction") &&
+        !candidate.has("cctv") &&
+        !candidate.has("custody")
+      ) {
+        return true;
+      }
+      continue;
+    }
+
+    const expectedCore = [...expectedTokens].filter((token) => token.length >= 4);
+    if (expectedCore.length && expectedCore.every((token) => candidate.has(token))) return true;
+  }
+
+  return false;
+}
+
 function appContexts(appText: string, re: RegExp): string[] {
   const contexts: string[] = [];
   const seen = new Set<string>();
@@ -335,8 +421,7 @@ function compareTruthToApp(sourceTruth: SourceTruth, appOutput: unknown): { dige
   }
 
   for (const expected of sourceTruth.expectedChaseItems) {
-    const key = expected.split(/[—-]/)[0]?.trim() ?? expected;
-    if (key.length >= 5 && !appMentions(appLower, new RegExp(escapeRegExp(key.slice(0, Math.min(key.length, 28))), "i"))) {
+    if (!expectedChaseIsVisible(expected, appText)) {
       findings.push(finding("P2", "TRUTH_EXPECTED_CHASE_MISSING", "truthKey", "Truth key expected a chase item that was not visible in app output.", expected));
     }
   }

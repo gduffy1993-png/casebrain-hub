@@ -212,12 +212,13 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
   const stats = buildDemoStatCounts(attention, stateCounts);
   const readiness = buildDemoReadiness(stateCounts, stats);
 
-  const courtLineText = hearingMode
-    ? polishPresentationLine(
-        displayCopyBody(hearingMode.safeCourtLine.text, hearingMode.safeCourtLine.footer ?? undefined),
-        bundleHay,
-      )
-    : "";
+  const courtLineText = polishPresentationLine(
+    chase.safeCourtLine?.trim() ||
+      (hearingMode
+        ? displayCopyBody(hearingMode.safeCourtLine.text, hearingMode.safeCourtLine.footer ?? undefined)
+        : ""),
+    bundleHay,
+  );
 
   const clientSummarySection = exportPack?.sections.find((s) => s.id === "client_summary");
   const clientUpdate = clientSummarySection
@@ -236,23 +237,34 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
 
   const clientDisplay = [
     liveFileIdentity.defendantName ?? "",
-    typeof clientLabel === "string" ? clientLabel : "",
     bundleMeta?.caseMetadata?.defendantName ?? "",
+    typeof clientLabel === "string" ? clientLabel : "",
   ]
     .map((candidate) => displayPilotStripClient(candidate))
     .find((candidate) => candidate && !/\bnot on papers\b/i.test(candidate));
   const clientName = clientDisplay ?? "";
 
-  const chargeLine =
-    resolvePilotChargeDisplay(polishPresentationLine(allegation ?? "", bundleHay));
+  const chargeLine = resolvePilotChargeDisplay(
+    polishPresentationLine(
+      liveFileIdentity.offenceDisplay ||
+        liveFileIdentity.offenceWording ||
+        allegation ||
+        "",
+      bundleHay,
+    ),
+  );
 
   const provisional = matterConfidence.level !== "safe";
   const readinessBanner = provisional
     ? "Not ready for final court position — solicitor review required before relying on strategy lines."
     : "Papers look fuller — still check sources before fixing the hearing position.";
 
+  const fileHearing = [liveFileIdentity.court, liveFileIdentity.nextHearingRaw]
+    .map((part) => (part ?? "").trim())
+    .filter(Boolean)
+    .join(" · ");
   const stageLine = displayPilotStripHearing(
-    typeof hearingLabel === "string" ? hearingLabel : "",
+    fileHearing || (typeof hearingLabel === "string" ? hearingLabel : ""),
   );
 
   const doNotItems = dedupePresentationLines(filteredDoNotOverstate).slice(0, 3);
