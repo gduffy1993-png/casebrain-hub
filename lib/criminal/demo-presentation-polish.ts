@@ -355,7 +355,7 @@ export function displayChaseItemText(text: string | null | undefined, item: Chas
   return polishPresentationLine(filtered ?? raw, context);
 }
 
-type BundleFamily = "bwv" | "custody" | "drugs" | "cctv" | "cad" | "encro" | "abe";
+type BundleFamily = "bwv" | "custody" | "drugs" | "cctv" | "cad" | "encro" | "abe" | "phone";
 
 function bundleMentionsFamily(hay: string, family: BundleFamily): boolean {
   switch (family) {
@@ -373,6 +373,10 @@ function bundleMentionsFamily(hay: string, family: BundleFamily): boolean {
       return /encro|handle|platform|county.?lines/i.test(hay);
     case "abe":
       return /\babe\b|achieving best evidence/i.test(hay);
+    case "phone":
+      return /phone\s+(?:extraction|download|attribution)|source export|subscriber|handset|\bsim\b|\bimei\b/i.test(
+        hay,
+      );
     default:
       return false;
   }
@@ -395,6 +399,10 @@ function lineMentionsFamily(line: string, family: BundleFamily): boolean {
       return /encro|handle attribution|platform extraction|county.?lines/i.test(l);
     case "abe":
       return /\babe\b|achieving best evidence/i.test(l);
+    case "phone":
+      return /phone\s+(?:extraction|download|attribution)|full extraction|source export|metadata proves attribution/i.test(
+        l,
+      );
     default:
       return false;
   }
@@ -422,7 +430,7 @@ function lineMentionsWrongFamilyTemplate(line: string, hay: string): boolean {
 /** Drop wrong-family do-not-say / risk lines when bundle does not mention that material. */
 export function filterBundleFamilyWarnings(lines: string[], bundleHay: string): string[] {
   const hay = bundleHay.toLowerCase();
-  const families: BundleFamily[] = ["bwv", "custody", "drugs", "cctv", "cad", "encro", "abe"];
+  const families: BundleFamily[] = ["bwv", "custody", "drugs", "cctv", "cad", "encro", "abe", "phone"];
   const seen = new Set<string>();
   const out: string[] = [];
 

@@ -683,7 +683,7 @@ Evidence referred or outstanding: Full BWV export; full custody record.
     "Full interview transcript Outstanding\nInterview record completeness caution",
   );
   assert.equal(tobinCard.length, 1);
-  assert.equal(tobinCard[0]!.label, "Interview recording");
+  assert.equal(tobinCard[0]!.label, "Interview transcript");
   assert.doesNotMatch(tobinCard[0]!.label, /recording\s*\/\s*transcript/i);
 
   assert.equal(

@@ -408,12 +408,15 @@ function itemFinalizeKey(item: DisclosureChaseItem): string {
  * naming it is what makes the request safe to send.
  */
 export function isSourceNamedChaseItem(item: DisclosureChaseItem): boolean {
-  if (item.familyId === "mg6_unused") return false;
   if (isGenericSolicitorClutterLabel(item.label)) return false;
+  // A ledger row with the schedule's own code is the papers speaking. Referred-only /
+  // extract-only / draft is still a named gap — do not wait for the word "outstanding".
+  if (item.id.startsWith("ledger-material-") && item.sourceScheduleRef?.trim()) return true;
+  if (item.familyId === "mg6_unused") return false;
   const blob = `${item.label} ${item.baseStatus} ${(item.mergedFrom ?? []).join(" ")}`;
   const statedGap =
     item.baseStatus === "Outstanding" ||
-    /\b(?:outstanding|not\s+served|missing|absent|referred(?:\s+only)?|awaiting\s+export)\b/i.test(
+    /\b(?:outstanding|not\s+served|not\s+attached|missing|absent|referred(?:\s+only)?|extract\s+only|draft\s+unsigned|awaiting\s+export)\b/i.test(
       blob,
     );
   // A code is how the solicitor asks for a gap. It is not itself proof the item is missing.

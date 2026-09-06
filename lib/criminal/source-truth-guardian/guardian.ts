@@ -201,7 +201,7 @@ export function guardSourceTruthLines(
       continue;
     }
 
-    if (/\bMG6C?:?\s*(?:Unused Material Schedule|Disclosure Schedule)\b/i.test(line)) {
+    if (/^MG6C?:?\s*(?:Unused Material Schedule|Disclosure Schedule)\.?$/i.test(line)) {
       decisions.push(decision(line, null, ctx.surface, "minor", ["mg6c_header_removed"], "MG6C heading is not a chase/content item."));
       continue;
     }

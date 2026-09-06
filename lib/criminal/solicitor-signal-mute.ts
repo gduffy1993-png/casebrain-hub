@@ -11,7 +11,11 @@ export function isGenericSolicitorClutterLabel(label: string): boolean {
     /^digital disclosure schedule item$/i.test(t) ||
     /mg6c?\s*clarification|mg6\s*\/\s*unused|unused schedule clarification/i.test(t) ||
     /^(?:additional|other)\s+source[- ]material(?:\s+issues?)?(?:\s*\(\d+\s*on file\))?$/i.test(t) ||
-    /^outstanding source material on disclosure schedule$/i.test(t)
+    /^outstanding source material on disclosure schedule$/i.test(t) ||
+    /outstanding action retained/i.test(t) ||
+    /each listed item reconciled/i.test(t) ||
+    /continuation check:\s*compiled page/i.test(t) ||
+    /^quality\s*\/\s*reconciliation\b/i.test(t)
   );
 }
 

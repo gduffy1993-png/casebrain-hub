@@ -27,9 +27,9 @@ const WELDED_STATUS_RE =
 const WELDED_STATUS_FALSE_POSITIVES =
   /^(?:preserved|conserved|subserved|undeserved|unobserved|observed|reserved|deserved|unserved|misserved|impartial|dismissing|impending|suspending|appending|expending|depending|spending|upending)$/i;
 
-/** `MG6/04`, `CCTV/3`, `TEL/5`, `O02`, `U1`, or a numbered cell `3search` — marks of a schedule row. */
+/** `MG6/04`, `EX-MUR-002`, `CCTV/3`, `TEL/5`, `O02`, `U1`, or a numbered cell `3search` — marks of a schedule row. */
 const SCHEDULE_ROW_REF_RE =
-  /\b(?:MG\d{1,2}[A-Z]?(?:\/\d{1,4})?|[A-Z]{2,4}\/\d{1,3}|[A-Z]\d{1,3})\b|^\d{1,2}[A-Za-z]/;
+  /\b(?:MG\d{1,2}[A-Z]?(?:\/\d{1,4})?|EX-[A-Z]{2,4}-\d{2,4}|[A-Z]{1,5}\/\d{1,3}|[A-Z]\d{1,3})\b|^\d{1,2}[A-Za-z]/;
 
 /** Brand and device names whose internal capital is part of the name. */
 const PROTECTED_COMPOUND_RE =
@@ -117,7 +117,7 @@ const MG6_HEAD_RE =
   /\b(?:mg6\s+disclosure\s+schedule|mg6\s+corrected|mg6\s+continuation|mg6\s+disclosure|mg6c|disclosure\s+schedule|unused\s+material\s+schedule)\b/i;
 
 const ITEM_RE =
-  /\b(?:cctv|bwv|999(?:\s+audio)?|cad(?:\s+log)?|scene\s+photos?|forensic|witness|medical|interview|transcript|mg11|statement|footage|recording|export\s+log|continuity|indictment|charge\s+sheet|mg5|(?:full\s+)?phone\s+download|phone\s+extraction|source\s+export|handset\s+download|device\s+download|digital\s+extraction|subscriber\s+(?:report|data|return|records?)|screenshots?|whatsapp)\b/i;
+  /\b(?:cctv|bwv|999(?:\s+audio)?|cad(?:\s+log)?|scene\s+photos?|forensic|witness|medical|interview|transcript|mg11|statement|footage|recording|export\s+log|continuity|indictment|charge\s+sheet|mg5|lab(?:oratory)?\s+analysis|search\s+record|(?:full\s+)?phone\s+download|phone\s+extraction|source\s+export|handset\s+download|device\s+download|digital\s+extraction|subscriber\s+(?:report|data|return|records?)|screenshots?|whatsapp)\b/i;
 
 /** Affirmative phone-download / source-export establishment — not property seizure alone. */
 const PHONE_DOWNLOAD_ITEM_RE =
@@ -209,6 +209,10 @@ export function lineIsUnsourcedNarrativeChase(line: string): boolean {
 export function lineIsScheduleFurniture(line: string): boolean {
   const l = compact(line);
   if (!l) return true;
+  const withoutScheduleRef = compact(l.replace(SCHEDULE_ROW_REF_RE, ""));
+  if (/^(?:unused\s+material\s+schedule|mg6c?\s+disclosure\s+schedule|disclosure\s+schedule)\b/i.test(withoutScheduleRef)) {
+    return true;
+  }
   if (lineIsUnsourcedNarrativeChase(l) && !isFormalOutstandingInventoryLine(l)) return true;
   if (/^[.\-/,:;]+$/.test(l)) return true;
   if (/^outstanding\.?$/i.test(l)) return true;
@@ -669,7 +673,7 @@ function splitTrailingStatusCell(label: string): { label: string; statusCell: st
   if (
     !description ||
     description.length < 3 ||
-    /\b(?:or|and|on|of|for|with|by|to|from|at|the|a|an|relies|remains|referred|summary|stated|is|are|was|were|been|yet|not|but)\s*$/i.test(
+    /\b(?:or|and|on|of|for|with|by|to|from|at|the|a|an|relies|remains|referred|stated|is|are|was|were|been|yet|not|but)\s*$/i.test(
       description,
     )
   ) {
@@ -680,6 +684,29 @@ function splitTrailingStatusCell(label: string): { label: string; statusCell: st
     return { label: description, statusCell: match[1].trim() };
   }
   const withoutRef = description.replace(SCHEDULE_ROW_REF_RE, "").trim();
+  if (withoutRef.length < 3) return { label, statusCell: null };
+  return { label: description, statusCell: match[1].trim() };
+}
+
+function splitScheduleStatusCell(
+  label: string,
+  scheduleRef: string | null,
+): { label: string; statusCell: string | null } {
+  const repaired = repairGluedMg6StatusText(label);
+  const match = repaired.match(TRAILING_STATUS_CELL_RE);
+  if (!match?.[1] || match.index === undefined) return { label, statusCell: null };
+  const description = repaired.slice(0, match.index).trim();
+  if (
+    !description ||
+    /\b(?:or|and|on|of|for|with|by|to|from|at|the|a|an|relies|remains|referred|stated|is|are|was|were|been|yet|not|but)\s*$/i.test(
+      description,
+    )
+  ) {
+    return { label, statusCell: null };
+  }
+  const withoutRef = scheduleRef
+    ? description.replace(new RegExp(`^${escapeForRegExp(scheduleRef)}\\b\\s*`, "i"), "").trim()
+    : description.replace(SCHEDULE_ROW_REF_RE, "").trim();
   if (withoutRef.length < 3) return { label, statusCell: null };
   return { label: description, statusCell: match[1].trim() };
 }
@@ -726,6 +753,10 @@ const MATERIAL_SCAN_CHARS = 250_000;
 
 function lineLeavesSchedule(line: string): boolean {
   const t = line.trim();
+  // A pipe-table cell (`MG5 case summary | yes |`) is still the MG6 schedule, not a new section.
+  if (/\|\s*(?:yes|no|n\/a|partial|not\s+served|outstanding|served|awaiting)\b/i.test(t)) {
+    return false;
+  }
   if (/^={2,}\s*SECTION:\s*(?!MG6)/i.test(t)) return true;
   if (/^(?:CHARGE SHEET|WITNESS STATEMENT|MG5\s+CASE SUMMARY)\b/i.test(t)) return true;
   if (/^#{1,3}\s+\d{0,2}\.?\s*(?:Witness Statement|Prosecution Case Summary|Charge Sheet|Case Overview)\b/i.test(t)) {
@@ -808,6 +839,13 @@ function lineLooksLikeScheduleInventoryRow(line: string): boolean {
   if (/^\d{1,2}(?:\s+|[A-Za-z])/.test(l) && words <= 16 && hasStatus) return true;
   if (DRAFT_STATUS_RE.test(l) && ITEM_RE.test(l) && words <= 16) return true;
   if (hasStatus && ITEM_RE.test(l) && words <= 16) return true;
+  if (
+    /\|/.test(l) &&
+    /\b(?:outstanding|not\s+served|not\s+attached|partial)\b/i.test(l) &&
+    words <= 20
+  ) {
+    return true;
+  }
   return false;
 }
 
@@ -889,11 +927,12 @@ export function normaliseBundleMaterials(bundleText: string): NormalisedMaterial
     const scheduleRef = parseScheduleRef(line) ?? parseScheduleRef(labelSource);
     const split = splitMaterialLabelDetail(labelSource);
     const cell = splitTrailingStatusCell(split.label);
-    const label = stripLeadingRowNumber(cell.label).replace(/[:—–-]+\s*$/g, "").trim();
+    const scheduleCell = cell.statusCell ? { label: cell.label, statusCell: null } : splitScheduleStatusCell(cell.label, scheduleRef);
+    const label = stripLeadingRowNumber(scheduleCell.label).replace(/[:—–-]+\s*$/g, "").trim();
     if (label.length < 3 || lineIsScheduleFurniture(label) || lineIsUnsourcedNarrativeChase(label)) continue;
     // The status cell leaves the label but must not leave the row: it is what the schedule says
     // about the item, and Papers still has to show it.
-    const detail = [cell.statusCell, split.detail].filter(Boolean).join(" — ") || null;
+    const detail = [cell.statusCell, scheduleCell.statusCell, split.detail].filter(Boolean).join(" — ") || null;
     const id = normaliseDedupeKey(label, scheduleRef);
     if (seen.has(id)) continue;
     seen.add(id);

@@ -71,6 +71,7 @@ const short = assembleSolicitorShortlist([
     baseStatus: "Outstanding",
     familyId: "cctv_master",
     whyItMatters: "Full CCTV master remains outstanding.",
+    mergedFrom: ["Full CCTV master remains outstanding."],
   }),
   sample({
     id: "c2",
@@ -174,7 +175,11 @@ const anchored = assembleSolicitorShortlist([
     } as DisclosureChaseItem["provenance"],
   }),
 ]);
-assert.equal(anchored.primaryItems[0]?.evidenceAnchor, null, "TOC chrome not an evidence anchor");
+assert.equal(
+  anchored.primaryItems.length,
+  0,
+  "PACE family template with TOC chrome and no papers naming stays quiet",
+);
 
 // Overview pure projection: chips == primary length / status
 const frozen = assembleSolicitorShortlist([

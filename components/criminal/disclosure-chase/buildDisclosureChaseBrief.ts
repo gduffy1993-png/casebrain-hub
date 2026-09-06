@@ -10,8 +10,6 @@ import {
   isMalformedPilotEvidenceAnchor,
   pilotCleanupVisibleText,
   sanitizePilotVisibleLine,
-  workflowDisclosureCaseWideLine,
-  workflowDisclosureChaseLabels,
   workflowDisclosureWhyItMatters,
 } from "@/lib/criminal/pilot-workflow";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
@@ -243,7 +241,7 @@ const CHASE_FAMILIES: FamilyDef[] = [
     priority: 7,
     // MG6 extract alone is not an unused-schedule chase — require unused/MG6C/schedule clarification signal.
     match: (t) =>
-      /\b(mg6c|unused\s+material|unused\s+schedule|schedule\s+clarification|material\s+not\s+used|cpi(a)?)\b/.test(
+      /\b(unused\s+material|unused\s+schedule|schedule\s+clarification|material\s+not\s+used|cpi(a)?)\b/.test(
         t,
       ) ||
       (/\bmg6\b/.test(t) && /\b(unused|schedule\s+clarification|disclosure\s+schedule)\b/.test(t)),
@@ -869,35 +867,6 @@ export function reconcilePhoneDownloadModalityItems(
 
   const filtered = out.filter((i): i is DisclosureChaseItem => i !== null);
 
-  // Inject mid-state card when bundle establishes it but no phoneish chase exists yet.
-  if (midState && !fullOutstanding && !(propertyPhone && !downloadFamilyAffirmed)) {
-    const hasPhone = filtered.some((i) =>
-      /\b(?:phone\s+download|phone\s+extraction|logical\s+download|source\s+export)\b/i.test(
-        `${i.label} ${(i.mergedFrom ?? []).join(" ")}`,
-      ),
-    );
-    if (!hasPhone) {
-      const label = "Phone extraction summary only — full download report not in section";
-      filtered.push({
-        id: "chase-phone-midstate",
-        familyId: "other",
-        label,
-        whyItMatters:
-          "A logical download summary or referenced-only note is not a full phone download report.",
-        source: "Crown / disclosure officer (confirm on file)",
-        baseStatus: "Not safely confirmed",
-        urgency: "medium",
-        deadlineLabel: "Before next hearing",
-        evidenceAnchor: null,
-        linkedRoute: null,
-        draftChaseWording:
-          "Please confirm whether a full phone download / source export exists beyond the logical/summary note on file, or confirm in writing why it is not available.",
-        courtLine: toCourtLine(label),
-        mergedFrom: ["Phone download mid-state on papers"],
-      });
-    }
-  }
-
   // Brookes-style: papers expressly establish full download outstanding but no chase card yet.
   if (fullOutstanding && !(propertyPhone && !downloadFamilyAffirmed)) {
     const hasFull = filtered.some((i) => /Full phone download/i.test(i.label));
@@ -919,6 +888,33 @@ export function reconcilePhoneDownloadModalityItems(
         draftChaseWording: phoneDownloadChaseWording(label),
         courtLine: toCourtLine(label),
         mergedFrom: ["Phone download / source extraction status unresolved on papers"],
+      });
+    }
+  }
+
+  // Grant/Tobin: papers name a logical/summary download without a full-outstanding cell.
+  if (midState && !fullOutstanding) {
+    const hasMid = filtered.some((i) =>
+      /summary only|full download report not in section/i.test(i.label),
+    );
+    if (!hasMid) {
+      const label = "Phone extraction summary only — full download report not in section";
+      filtered.push({
+        id: "chase-phone-mid-state",
+        familyId: "other",
+        label,
+        whyItMatters:
+          "A logical download summary or referenced-only note is not a full phone download report.",
+        source: "Crown / disclosure officer (confirm on file)",
+        baseStatus: "Not safely confirmed",
+        urgency: "high",
+        deadlineLabel: "Before next hearing",
+        evidenceAnchor: null,
+        linkedRoute: null,
+        draftChaseWording:
+          "Please confirm whether a full phone download / source export exists beyond the logical/summary note on file, or confirm in writing why it is not available.",
+        courtLine: toCourtLine(label),
+        mergedFrom: ["Logical download summary only — full report not in section"],
       });
     }
   }
@@ -1143,6 +1139,83 @@ function absorbInterviewRestatementWording(
   };
 }
 
+function isFamilyTemplateChaseCard(item: DisclosureChaseItem): boolean {
+  if (item.id.startsWith("ledger-material-")) return false;
+  if (item.id.startsWith("ledger-restore-")) return false;
+  if (item.id.startsWith("source-confirm-")) return false;
+  if (item.id.startsWith("workflow-chase-")) return true;
+  const def = CHASE_FAMILIES.find((fam) => fam.id === item.familyId);
+  const template = (def?.label ?? "").replace(/\s+/g, " ").trim().toLowerCase();
+  const outstandingNamed = (item.mergedFrom ?? []).some((line) =>
+    /\b(?:outstanding|not\s+served|not\s+attached|missing|absent|not\s+included|not\s+yet\s+served)\b/i.test(
+      line.replace(/\s+/g, " ").trim(),
+    ),
+  );
+  const papersNamedGap = (item.mergedFrom ?? []).some((line) => {
+    const n = line.replace(/\s+/g, " ").trim();
+    if (!n) return false;
+    if (outstandingNamed) return true;
+    return n.length >= 8 && n.toLowerCase() !== template;
+  });
+  const inventFamilies = new Set<ChaseFamilyId>(["cad_999", "custody_pace", "interview"]);
+  if (item.id.startsWith("chase-family-")) {
+    if (isSourceNamedChaseItem(item)) return false;
+    if (inventFamilies.has(item.familyId)) return !outstandingNamed;
+    if (papersNamedGap || outstandingNamed) return false;
+    return true;
+  }
+  return isExactFamilyTemplateLabel(item) && !papersNamedGap && !isSourceNamedChaseItem(item);
+}
+
+function cleanScheduleGlueLabel(label: string): string {
+  const raw = label.replace(/\s+/g, " ").trim();
+  const tableCellNoise =
+    /(?:^|\||\/)\s*(?:yes|no|n\/a|partial|unclear)(?:\s*\([^)]*\))?\s*(?:\||\/|$)/i.test(
+      raw,
+    );
+  if (!raw.includes("|") && !tableCellNoise) return raw;
+  const parts = raw
+    .split(/\s*[|/]\s*/)
+    .map((part) => part.trim())
+    .filter(
+      (part) =>
+        part &&
+        !/^(yes|no|n\/a|partial|unclear)(?:\s*\([^)]*\))?$/i.test(part),
+    );
+  if (!parts.length) return raw.replace(/[|/]/g, " ").replace(/\s+/g, " ").trim();
+  return parts.join(" / ");
+}
+
+function courtLineFromNamedChase(items: DisclosureChaseItem[]): string {
+  const named = items.slice(0, 4);
+  if (!named.length) {
+    return "No named outstanding material on the current papers — position stays provisional.";
+  }
+  const bits = [
+    ...new Set(
+      named.map((item) =>
+        cleanScheduleGlueLabel(item.label).replace(/[.]+$/g, "").trim(),
+      ),
+    ),
+  ];
+  const alreadyStatesGap = (line: string) =>
+    /\b(?:outstanding|not\s+yet\s+served|not\s+served|not\s+attached|missing|absent|not\s+included|extract\s+only|draft\s+unsigned)\b/i.test(
+      line,
+    );
+  if (bits.length === 1) {
+    if (alreadyStatesGap(bits[0]!)) {
+      return `The defence asks the court to record that ${bits[0]}.`;
+    }
+    return `The defence asks the court to record that ${bits[0]} remains outstanding on the papers.`;
+  }
+  const head = bits.slice(0, -1).join(", ");
+  const tail = bits[bits.length - 1];
+  if (bits.every(alreadyStatesGap)) {
+    return `The defence asks the court to record that ${head} and ${tail}.`;
+  }
+  return `The defence asks the court to record that ${head} and ${tail} remain outstanding on the papers.`;
+}
+
 function isExactFamilyTemplateLabel(item: DisclosureChaseItem): boolean {
   const def = CHASE_FAMILIES.find((fam) => fam.id === item.familyId);
   if (!def) return false;
@@ -1339,6 +1412,8 @@ function isUnsafeOrNonMaterialChaseLine(raw: string): boolean {
   if (lineIsUnsourcedNarrativeChase(t)) return true;
   if (/^(?:item|material)\s*:/i.test(t) && /[—–-]\s*$/.test(t)) return true;
   if (FORBIDDEN_RE.test(t)) return true;
+  if (/statement of offence\b/i.test(t) || /\bparticulars of offence\b/i.test(t)) return true;
+  if (/\|\s*\d+\s*\|/.test(t)) return true;
   return /\b(win conditions?|case collapses|prosecution case collapses|crown case collapses|will be acquitted)\b/i.test(t) ||
     /\brecord what (?:pwits|robbery|fraud|violence) source material remains outstanding\b/i.test(t) ||
     /\bprepare hearing line\b/i.test(t) ||
@@ -2017,6 +2092,61 @@ function cctvContinuityConfirmationItem(item: DisclosureChaseItem): DisclosureCh
   };
 }
 
+function seedCctvContinuityConfirmationItem(deadline: DeadlineContext): DisclosureChaseItem {
+  const label = "CCTV continuity / provenance";
+  const baseStatus: ChaseItemStatus = "Not safely confirmed";
+  return cctvContinuityConfirmationItem({
+    id: "source-confirm-cctv-continuity",
+    familyId: "cctv_continuity",
+    label,
+    whyItMatters: "Continuity source needs checking before any CCTV point is relied on.",
+    source: "Crown / disclosure officer (confirm on file)",
+    baseStatus,
+    urgency: deadline.urgency === "high" ? "medium" : deadline.urgency,
+    deadlineLabel: "Confirm status before relying on CCTV continuity",
+    evidenceAnchor: "Continuity of CCTV sources: to be checked.",
+    linkedRoute: null,
+    draftChaseWording:
+      "Please confirm the CCTV continuity record, provenance material, or confirm in writing why it is not available.",
+    courtLine:
+      `${COURT_RECORD_PREFIX} that CCTV continuity/provenance needs confirmation before the defence can rely on any CCTV point.`,
+    mergedFrom: ["Continuity of CCTV sources: to be checked."],
+    provenance: chaseItemProvenance({
+      label,
+      source: "Crown / disclosure officer (confirm on file)",
+      baseStatus,
+      evidenceAnchor: "Continuity of CCTV sources: to be checked.",
+    }),
+  });
+}
+
+function ensureCctvContinuityConfirmation(
+  items: DisclosureChaseItem[],
+  input: Pick<BuildDisclosureChaseBriefInput, "snapshotMissing" | "proceduralOutstanding">,
+  bundleText: string | null | undefined,
+  deadline: DeadlineContext,
+): DisclosureChaseItem[] {
+  if (!bundleText?.trim() || !isCctvContinuityConfirmationOnly(bundleText)) return items;
+  const hasConcreteContinuity = items.some(
+    (item) =>
+      item.familyId === "cctv_continuity" &&
+      (item.id.startsWith("source-confirm-") ||
+        item.id.startsWith("ledger-material-") ||
+        item.id.startsWith("ledger-restore-") ||
+        item.baseStatus === "Not safely confirmed"),
+  );
+  if (hasConcreteContinuity) return items;
+  const requested = [
+    ...(input.snapshotMissing ?? []).map((row) => row.label),
+    ...(input.proceduralOutstanding ?? []),
+  ].some((line) => /\bcctv\b/i.test(line) && /\bcontinuity|provenance\b/i.test(line));
+  if (!requested) return items;
+  return [
+    ...items.filter((item) => item.familyId !== "cctv_continuity" || !isFamilyTemplateChaseCard(item)),
+    seedCctvContinuityConfirmationItem(deadline),
+  ];
+}
+
 /**
  * Chase source gate: drop family items the bundle never mentions; convert
  * explicitly-negated families into confirm-none items instead of chases.
@@ -2030,6 +2160,10 @@ function gateItemsAgainstSource(
   if (!bundleText?.trim()) return items;
   const out: DisclosureChaseItem[] = [];
   for (const item of items) {
+    if (item.familyId === "cctv_continuity" && isCctvContinuityConfirmationOnly(bundleText)) {
+      out.push(finalizeGatedDisclosureItem(cctvContinuityConfirmationItem(item), bundleText));
+      continue;
+    }
     if (
       lineIsLocationOrReviewNotGap(item.label) ||
       (item.mergedFrom ?? []).some((line) => lineIsLocationOrReviewNotGap(line))
@@ -2042,7 +2176,17 @@ function gateItemsAgainstSource(
     if (isSourceNamedChaseItem(item)) {
       // A BWV exhibit code on a stills / "shown reference" line is not a full-export gap.
       // Dunn: S01 stills served + BWV/02 mentioned must not skip the full-export exam.
-      if (item.familyId === "bwv" && !isBwvFullExportEstablished(bundleText)) {
+      const itemSourceText = [
+        item.label,
+        item.whyItMatters ?? "",
+        item.evidenceAnchor ?? "",
+        ...(item.mergedFrom ?? []),
+      ].join("\n");
+      const sourceNamesBwvGap =
+        /\b(?:outstanding|not\s+served|not\s+attached|referred\s+(?:to\s+)?(?:but\s+)?not)\b/i.test(
+          itemSourceText,
+        );
+      if (item.familyId === "bwv" && !isBwvFullExportEstablished(bundleText) && !sourceNamesBwvGap) {
         continue;
       }
       out.push(item);
@@ -2053,10 +2197,6 @@ function gateItemsAgainstSource(
       continue;
     }
     if (item.familyId === "cctv_continuity" && !isCctvContinuityEstablished(bundleText)) {
-      continue;
-    }
-    if (item.familyId === "cctv_continuity" && isCctvContinuityConfirmationOnly(bundleText)) {
-      out.push(finalizeGatedDisclosureItem(cctvContinuityConfirmationItem(item), bundleText));
       continue;
     }
     // Robbery / ID pack must not invent VIPER/parade without papers (Dunn invent mute).
@@ -2124,8 +2264,12 @@ function familySafeMergedFrom(
 ): string[] {
   if (!item.mergedFrom?.length || !bundleText?.trim()) return item.mergedFrom ?? [];
   const allowedFamilies = new Set(gateFamiliesForItem(item));
+  const ref = item.sourceScheduleRef?.trim().toLowerCase();
   return item.mergedFrom.filter((line) => {
-    const families = familiesInText(line);
+    // The schedule row that named this card is not a conflicting family. `MG6C/010 — BWV`
+    // mentions both BWV and MG6C; dropping it as unused-schedule chrome emptied Hale's board.
+    if (ref && line.toLowerCase().includes(ref)) return true;
+    const families = familiesInText(line).filter((family) => family !== "mg6_unused");
     if (!families.length) return true;
     return families.every(
       (family) => allowedFamilies.has(family) && familySupport(family, bundleText) !== "absent",
@@ -2195,11 +2339,9 @@ function splitPrimaryAdditional(items: DisclosureChaseItem[]): {
     ...sourceNamedAll.filter(isStatedAbsent),
     ...sourceNamedAll.filter((i) => !isStatedAbsent(i)),
   ];
-  const remaining = core.filter((i) => !isSourceNamedChaseItem(i));
-  const digital = remaining.filter((i) => isDigitalModalityChaseLabel(i.label));
-  const nonDigitalCore = remaining.filter((i) => !isDigitalModalityChaseLabel(i.label));
+  const remaining = core.filter((i) => !isSourceNamedChaseItem(i) && !isFamilyTemplateChaseCard(i));
   const primaryItems: DisclosureChaseItem[] = [];
-  for (const item of [...sourceNamed, ...digital, ...nonDigitalCore]) {
+  for (const item of [...sourceNamed, ...remaining]) {
     if (primaryItems.length >= DISCLOSURE_CHASE_PRIMARY_CAP) break;
     primaryItems.push(item);
   }
@@ -2629,6 +2771,8 @@ export function collapseSolicitorPhoneDownloadDoubles(
   }
   if (phoneish.length <= 1) return items;
   const preferred =
+    phoneish.find((i) => i.sourceScheduleRef?.trim()) ??
+    phoneish.find((i) => i.id.startsWith("ledger-material-") && /MG6C?\//i.test(i.label)) ??
     phoneish.find((i) => /Full phone download/i.test(i.label)) ??
     phoneish.find((i) =>
       /Phone extraction\/download status|Phone extraction source material/i.test(i.label),
@@ -2647,15 +2791,18 @@ export function collapseSolicitorPhoneDownloadDoubles(
         null,
     ),
   );
+  const fileNamed = Boolean(preferred.sourceScheduleRef?.trim());
   return [
     ...rest,
     {
       ...preferred,
-      label: /Full phone download|source extraction/i.test(preferred.label)
-        ? /Full phone download/i.test(preferred.label)
-          ? preferred.label
-          : "Full phone download / source extraction"
-        : "Full phone download / source extraction",
+      label: fileNamed
+        ? preferred.label
+        : /Full phone download|source extraction/i.test(preferred.label)
+          ? /Full phone download/i.test(preferred.label)
+            ? preferred.label
+            : "Full phone download / source extraction"
+          : "Full phone download / source extraction",
       mergedFrom: mergedFrom.length ? mergedFrom : preferred.mergedFrom,
       evidenceAnchor,
       baseStatus: phoneish.reduce(
@@ -2761,15 +2908,18 @@ export function assembleSolicitorShortlist(items: DisclosureChaseItem[]): {
         sanitizeSolicitorEvidenceAnchor(item.evidenceAnchor),
       );
       const baseStatus = clampChaseOperationalStatus({ ...item, evidenceAnchor });
+      const label = cleanScheduleGlueLabel(item.label);
       return normalizeReviewOnlySolicitorItem(normalizeFinalInterviewModalityItem({
         ...item,
+        label,
         evidenceAnchor,
         baseStatus,
         mergedFrom: sanitizeChaseMergedFrom(item.mergedFrom),
       }));
     })
     .filter((item) => item.baseStatus !== "Received")
-    .filter((item) => !isGenericSolicitorClutterLabel(item.label));
+    .filter((item) => !isGenericSolicitorClutterLabel(item.label))
+    .filter((item) => isSourceNamedChaseItem(item) || !isFamilyTemplateChaseCard(item));
 
   const { primaryItems } = splitPrimaryAdditional(next);
   return {
@@ -2935,6 +3085,27 @@ function boundedMaterialsNeedingChase(ledger: BundleTruthLedger): NormalisedMate
 const SCHEDULE_REF_ONLY_RE =
   /\b(?:MG\d{1,2}[A-Z]?(?:\/\d{1,4})?|EX-[A-Z]{2,4}-\d{2,4}|[A-Z]{1,5}\/\d{1,3}|O\d{1,2})\b/g;
 
+function shouldUseProfessionalScheduleLabel(
+  familyId: ChaseFamilyId,
+  fileLabel: string,
+  canonicalLabel: string,
+): boolean {
+  const withoutRef = fileLabel.replace(SCHEDULE_REF_ONLY_RE, "").replace(/[—–-]+/g, " ").trim();
+  if (!withoutRef) return true;
+  if (familyId === "bwv") {
+    return /\b(?:bwv|body\s*worn(?:\s+video)?)\b/i.test(withoutRef);
+  }
+  if (familyId === "custody_pace") {
+    return /\b(?:custody\s+record|custody\s+extract|pace\s+material)\b/i.test(withoutRef);
+  }
+  if (familyId === "interview") {
+    return /\b(?:interview\s+(?:recording|transcript|audio|video)|recording\s*\/\s*transcript)\b/i.test(
+      withoutRef,
+    );
+  }
+  return Boolean(canonicalLabel) && canonicalLabel !== formatDisplayLabelCasing(fileLabel);
+}
+
 function ledgerChaseDedupeKey(label: string): string {
   return label
     .toLowerCase()
@@ -2959,7 +3130,10 @@ function mergeLedgerDisclosureItems(
     if (!indexByLabel.has(key)) indexByLabel.set(key, index);
   });
 
+  const scheduledHays: string[] = [];
+
   for (const m of boundedMaterialsNeedingChase(ledger)) {
+    if (/\|\s*\d+\s*\|/.test(`${m.label} ${m.displayLine}`)) continue;
     const familyId = classifyFamily(m.displayLine);
     // Some rows carry the reference in the label and the description in the detail (`EX/02` /
     // `continuity note ...`). A request worded from the reference alone names nothing, so the
@@ -2968,17 +3142,41 @@ function mergeLedgerDisclosureItems(
       ? m.label
       : [m.label, m.detail].filter(Boolean).join(" — ");
     const canonical = canonicalLedgerMaterial(m.displayLine, familyId, requestLabel);
+    const fileLabel = cleanScheduleGlueLabel(formatDisplayLabelCasing(requestLabel));
+    const useFileLabel =
+      Boolean(m.scheduleRef) &&
+      !shouldUseProfessionalScheduleLabel(familyId, fileLabel, canonical.label);
+    const cardLabel = useFileLabel ? fileLabel : canonical.label;
+    if (!m.scheduleRef) {
+      const hay = `${m.label} ${m.displayLine}`.toLowerCase();
+      const restatesScheduled = scheduledHays.some((s) => {
+        const phone = /\b(?:phone|extraction|download|source export)\b/.test(hay);
+        const mg11 = /\bmg11\b/.test(hay);
+        const subscriber = /\bsubscriber\b/.test(hay);
+        const bwv = /\bbwv\b|body[-\s]?worn/.test(hay);
+        const custody = /\bcustody\b/.test(hay);
+        if (phone && /\b(?:phone|extraction|download|source export)\b/.test(s)) return true;
+        if (mg11 && /\bmg11\b/.test(s)) return true;
+        if (subscriber && /\bsubscriber\b/.test(s)) return true;
+        if (bwv && (/\bbwv\b/.test(s) || /body[-\s]?worn/.test(s))) return true;
+        if (custody && /\bcustody\b/.test(s)) return true;
+        return false;
+      });
+      if (restatesScheduled) continue;
+    }
     if (
       lineIsScheduleFurniture(m.label) ||
-      lineIsScheduleFurniture(canonical.label) ||
-      isUnsafeOrNonMaterialChaseLine(canonical.label)
+      lineIsScheduleFurniture(cardLabel) ||
+      isUnsafeOrNonMaterialChaseLine(cardLabel)
     ) {
       continue;
     }
-    const key = ledgerChaseDedupeKey(canonical.label);
+    const key = ledgerChaseDedupeKey(cardLabel);
 
     const baseStatus: ChaseItemStatus =
-      m.status === "outstanding" || m.status === "absent" ? "Outstanding" : "Not safely confirmed";
+      m.status === "outstanding" || m.status === "absent" || m.status === "referred_only"
+        ? "Outstanding"
+        : "Not safely confirmed";
 
     if (labelSeen.has(key)) {
       // A template card already carries this wording. Dropping the schedule row as a duplicate
@@ -2997,7 +3195,7 @@ function mergeLedgerDisclosureItems(
         const evidenceAnchor = existing.evidenceAnchor ?? formatDisplayLabelCasing(m.displayLine);
         merged[existingIndex] = {
           ...existing,
-          label: /^\d{1,2}\s/.test(canonical.label) ? existing.label : canonical.label || existing.label,
+          label: /^\d{1,2}\s/.test(cardLabel) ? existing.label : cardLabel || existing.label,
           sourceScheduleRef: m.scheduleRef ?? existing.sourceScheduleRef,
           baseStatus: nextStatus,
           source: "MG6/MG6C disclosure schedule",
@@ -3014,13 +3212,19 @@ function mergeLedgerDisclosureItems(
       continue;
     }
     labelSeen.add(key);
+    if (m.scheduleRef) {
+      scheduledHays.push(`${m.label} ${m.displayLine}`.toLowerCase());
+    }
 
     merged.push({
       id: `ledger-material-${m.id}`,
       familyId,
       sourceScheduleRef: m.scheduleRef ?? null,
-      label: canonical.label,
+      label: cardLabel,
       whyItMatters: (() => {
+        if (useFileLabel) {
+          return `${fileLabel.replace(/[.]+$/g, "")} — as stated on the papers.`;
+        }
         if (canonical.whyItMatters) return canonical.whyItMatters;
         const statusProse = professionalMaterialStatusProse(m.status).replace(/\.$/, "");
         if (/chase or confirm/i.test(statusProse)) return `${statusProse}.`;
@@ -3038,8 +3242,10 @@ function mergeLedgerDisclosureItems(
         return formatDisplayLabelCasing(excerpt);
       })(),
       linkedRoute: null,
-      draftChaseWording: canonical.draftChaseWording ?? `Please provide ${canonical.label.toLowerCase()} or confirm in writing why it is not available.`,
-      courtLine: `${COURT_RECORD_PREFIX} that ${canonical.label.charAt(0).toLowerCase()}${canonical.label.slice(1)} remains ${professionalCourtStatusFragment(m.status)} on the current papers.`,
+      draftChaseWording: useFileLabel
+        ? `Please provide ${fileLabel.replace(/[.]+$/g, "")}, or confirm in writing why it is not available.`
+        : canonical.draftChaseWording ?? `Please provide ${cardLabel.toLowerCase()} or confirm in writing why it is not available.`,
+      courtLine: `${COURT_RECORD_PREFIX} that ${cardLabel.charAt(0).toLowerCase()}${cardLabel.slice(1)} remains ${professionalCourtStatusFragment(m.status)} on the current papers.`,
       mergedFrom: [m.displayLine],
     });
   }
@@ -3051,6 +3257,101 @@ function mergeLedgerDisclosureItems(
   });
 
   return merged;
+}
+
+function sourceBackedLedgerRestoreItem(
+  m: NormalisedMaterialRow,
+  deadline: ReturnType<typeof resolveDeadlineContext>,
+): DisclosureChaseItem | null {
+  if (!["outstanding", "absent", "referred_only"].includes(m.status)) return null;
+  const familyId = classifyFamily(m.displayLine);
+  if (familyId !== "custody_pace" && familyId !== "cctv_continuity") return null;
+  const requestLabel = /[A-Za-z]{4,}/.test(m.label.replace(SCHEDULE_REF_ONLY_RE, ""))
+    ? m.label
+    : [m.label, m.detail].filter(Boolean).join(" — ");
+  const canonical = canonicalLedgerMaterial(m.displayLine, familyId, requestLabel);
+  const label = canonical.label;
+  if (
+    lineIsScheduleFurniture(m.label) ||
+    lineIsScheduleFurniture(label) ||
+    isUnsafeOrNonMaterialChaseLine(label)
+  ) {
+    return null;
+  }
+  const baseStatus: ChaseItemStatus =
+    familyId === "cctv_continuity" && isCctvContinuityConfirmationOnly(m.displayLine)
+      ? "Not safely confirmed"
+      : "Outstanding";
+  const evidenceAnchor = canonical.anchor ?? formatDisplayLabelCasing(m.displayLine);
+  const fallbackWhy =
+    familyId === "cctv_continuity"
+      ? "Continuity source needs checking before any CCTV point is relied on."
+      : "The papers identify this custody/PACE gap — chase the source material before relying on safeguards or interview fairness.";
+  const fallbackDraft =
+    familyId === "cctv_continuity"
+      ? "Please confirm the CCTV continuity record, provenance material, or confirm in writing why it is not available."
+      : "Please provide the full custody record / PACE material, or confirm in writing why it is not available.";
+  const fallbackCourt =
+    familyId === "cctv_continuity"
+      ? `${COURT_RECORD_PREFIX} that CCTV continuity/provenance needs confirmation before the defence can rely on any CCTV point.`
+      : `${COURT_RECORD_PREFIX} that full custody record / PACE material remains ${professionalCourtStatusFragment(
+          m.status,
+        )} on the current papers.`;
+  return {
+    id: `ledger-restore-${m.id}`,
+    familyId,
+    sourceScheduleRef: m.scheduleRef ?? null,
+    label,
+    whyItMatters: canonical.whyItMatters ?? fallbackWhy,
+    source: "MG6/MG6C disclosure schedule",
+    baseStatus,
+    urgency: deadline.urgency,
+    deadlineLabel: deadline.sharedLabel,
+    evidenceAnchor,
+    linkedRoute: null,
+    draftChaseWording: canonical.draftChaseWording ?? fallbackDraft,
+    courtLine: fallbackCourt,
+    mergedFrom: [m.displayLine],
+    provenance: chaseItemProvenance({
+      label,
+      source: "MG6/MG6C disclosure schedule",
+      baseStatus,
+      evidenceAnchor,
+    }),
+  };
+}
+
+function restoreSourceBackedCriticalLedgerItems(
+  items: DisclosureChaseItem[],
+  ledger: BundleTruthLedger | null,
+  deadline: ReturnType<typeof resolveDeadlineContext>,
+): DisclosureChaseItem[] {
+  if (!ledger?.materials?.length) return items;
+  const next = [...items];
+  for (const m of boundedMaterialsNeedingChase(ledger)) {
+    const restored = sourceBackedLedgerRestoreItem(m, deadline);
+    if (!restored) continue;
+    if (
+      next.some(
+        (item) =>
+          item.familyId === restored.familyId &&
+          (isSourceNamedChaseItem(item) || item.id.startsWith("ledger-restore-")),
+      )
+    ) {
+      continue;
+    }
+    for (let i = next.length - 1; i >= 0; i -= 1) {
+      if (next[i]?.familyId === restored.familyId && isFamilyTemplateChaseCard(next[i]!)) {
+        next.splice(i, 1);
+      }
+    }
+    next.push(restored);
+  }
+  return next.sort((a, b) => {
+    const pa = CHASE_FAMILIES.find((f) => f.id === a.familyId)?.priority ?? 99;
+    const pb = CHASE_FAMILIES.find((f) => f.id === b.familyId)?.priority ?? 99;
+    return pa - pb;
+  });
 }
 
 function canonicalLedgerMaterial(
@@ -3311,29 +3612,17 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     clientLabel: input.clientLabel,
     profileHint: input.profileHint,
   };
-  const profile = resolveWorkflowProfile(workflowContext);
-  const profileLabels = workflowDisclosureChaseLabels(workflowContext);
-
+  const fileNamedGaps = ledger ? ledgerMaterialsNeedingChase(ledger) : [];
+  const useFileNamedBoard = fileNamedGaps.length > 0;
+  // File is the mouth: schedule rows the ledger named, or snapshot gaps gated
+  // against the papers. Playbook chase templates and strategy next-moves are not the PDF.
   const chaseLabelsRaw = collectChaseItems({
     snapshotMissing: input.snapshotMissing,
     proceduralOutstanding: input.proceduralOutstanding,
-    battleboard: input.battleboard,
+    battleboard: null,
     bundleText: input.bundleText,
   });
-  const chaseLabels = prioritizeWorkflowItems(
-    filterWorkflowItems(
-      filterSafeChaseLabels(
-        [
-          ...briefPlan.requiredOutputItems.chase,
-          ...briefPlan.missingEvidence.map((item) => item.label),
-          ...chaseLabelsRaw,
-        ],
-        briefPlan.profile,
-      ),
-      workflowContext,
-    ),
-    workflowContext,
-  );
+  const chaseLabels = filterSafeChaseLabels(chaseLabelsRaw, briefPlan.profile);
 
   const days = daysUntilHearing(input.hearingDateIso);
   const deadline = resolveDeadlineContext(days, input.hearingDateIso);
@@ -3342,60 +3631,53 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   let primaryItems: DisclosureChaseItem[];
   let additionalItems: DisclosureChaseItem[];
 
-  if (profileLabels && profile !== "generic") {
+  if (useFileNamedBoard && ledger) {
+    const merged = mergeLedgerDisclosureItems(
+      groupAndMergeLabels(chaseLabels, null, deadline, ledger),
+      ledger,
+      deadline,
+    );
     items = gateItemsAgainstSource(
-      buildWorkflowProfileDisclosureItems(
-        filterSafeChaseLabels(
-          [
-            ...briefPlan.requiredOutputItems.chase,
-            ...briefPlan.missingEvidence.map((item) => item.label),
-            ...profileLabels,
-          ],
-          briefPlan.profile,
-        ),
-        input.battleboard,
+      ensureCctvContinuityConfirmation(merged, input, gateText, deadline),
+      gateText,
+    );
+  } else {
+    items = gateItemsAgainstSource(
+      ensureCctvContinuityConfirmation(
+        groupAndMergeLabels(chaseLabels, input.battleboard, deadline, ledger),
+        input,
+        gateText,
         deadline,
-        profile,
-        ledger,
       ),
       gateText,
     );
+  }
+  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+  if (!useFileNamedBoard) {
+    items = mergeContradictionActionItems(items, input, deadline);
     ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
-  } else {
-    items = gateItemsAgainstSource(
-      groupAndMergeLabels(chaseLabels, input.battleboard, deadline, ledger),
-      gateText,
-    );
+
+    items = collapseDisclosureItemsByFamily(items);
+    ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+    items = reconcileCad999ModalityItems(items, gateText);
+    ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+    items = reconcileInterviewModalityItems(items, gateText);
+    ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+    items = reconcilePhoneDownloadModalityItems(items, modalityHay);
+    ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+    items = reconcileSubscriberModalityItems(items, modalityHay);
+    ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+
+    items = reconcileMedicalReportModalityItems(items, gateText);
     ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
   }
 
-  if (ledger && ledgerMaterialsNeedingChase(ledger).length > 0) {
-    items = mergeLedgerDisclosureItems(items, ledger, deadline);
-    // Ledger merge can re-introduce family items — re-apply source gate (incl. confirm-none).
-    items = gateItemsAgainstSource(items, gateText);
-    ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
-  }
-
-  items = mergeContradictionActionItems(items, input, deadline);
-  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
-
-  items = collapseDisclosureItemsByFamily(items);
-  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
-
-  items = reconcileCad999ModalityItems(items, gateText);
-  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
-
-  items = reconcileInterviewModalityItems(items, gateText);
-  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
-
-  items = reconcilePhoneDownloadModalityItems(items, modalityHay);
-  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
-
-  items = reconcileSubscriberModalityItems(items, modalityHay);
-  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
-
-  items = reconcileMedicalReportModalityItems(items, gateText);
-  ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
+  items = ensureCctvContinuityConfirmation(items, input, gateText, deadline);
 
   const guardCtx = { ledger, bundleText: gateText ?? null };
   items = items
@@ -3418,20 +3700,20 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
           )
         : item.evidenceAnchor,
     }));
-  items = collapseDisclosureItemsByFamily(items);
-  // Final source gate after presentation merges — preserves confirm-none / drops absent families.
+  if (!useFileNamedBoard) {
+    items = collapseDisclosureItemsByFamily(items);
+  }
   items = gateItemsAgainstSource(items, gateText);
   items = finalizeDisclosureChasePresentation(items);
-  // Re-assert PDF-true phone/subscriber after finalize overflow — Brookes soft-mute residual:
-  // collapse/finalize was rewriting digital cards into "Outstanding source material…".
-  items = reconcilePhoneDownloadModalityItems(items, modalityHay);
-  items = reconcileSubscriberModalityItems(items, modalityHay);
-  // Re-assert interview recording≠PACE/custody after collapse/finalize (Court C1).
-  items = reconcileInterviewModalityItems(items, gateText);
-  items = reconcileCad999ModalityItems(items, gateText);
-  items = reconcileMedicalReportModalityItems(items, gateText);
-  items = finalizeDisclosureChasePresentation(items);
-  items = reconcileMedicalReportModalityItems(items, gateText);
+  if (!useFileNamedBoard) {
+    items = reconcilePhoneDownloadModalityItems(items, modalityHay);
+    items = reconcileSubscriberModalityItems(items, modalityHay);
+    items = reconcileInterviewModalityItems(items, gateText);
+    items = reconcileCad999ModalityItems(items, gateText);
+    items = reconcileMedicalReportModalityItems(items, gateText);
+    items = finalizeDisclosureChasePresentation(items);
+    items = reconcileMedicalReportModalityItems(items, gateText);
+  }
   items = dropGenericFurtherPapersWhenSpecificItemsExist(items);
   items = dropGenericFamilyTemplateWhenSourceNamed(items);
   items = items.map((item) => ({
@@ -3484,6 +3766,8 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = applySnapshotStatusBoundaries(items, input);
 
   items = normalizeChaseOperationalStatuses(items);
+  items = ensureCctvContinuityConfirmation(items, input, gateText, deadline);
+  items = restoreSourceBackedCriticalLedgerItems(items, ledger, deadline);
 
   ({ items, primaryItems, additionalItems } = assembleSolicitorShortlist(items));
 
@@ -3512,16 +3796,14 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     positionStatus: input.positionStatus,
     disclosureSummary,
     safeCourtLine: (() => {
-      const profileLine =
-        isCriminalPilotMode() ? workflowDisclosureCaseWideLine(workflowContext) : null;
-      let raw = profileLine ?? briefPlan.chaseAngle ?? resolveSafeCourtLine(input.battleboard);
+      const fromNamed = courtLineFromNamedChase(primaryItems);
       if (!isCriminalPilotMode()) {
         return gateText?.trim()
-          ? gateProseAgainstSource(sourceBoundCaseWideLine(raw, gateText), gateText)
-          : raw;
+          ? gateProseAgainstSource(sourceBoundCaseWideLine(fromNamed, gateText), gateText)
+          : fromNamed;
       }
-      raw = pilotCleanupVisibleText(
-        sanitizePilotVisibleLine(raw, workflowContext) ?? raw,
+      const raw = pilotCleanupVisibleText(
+        sanitizePilotVisibleLine(fromNamed, workflowContext) ?? fromNamed,
       );
       return gateText?.trim()
         ? gateProseAgainstSource(sourceBoundCaseWideLine(raw, gateText), gateText)
