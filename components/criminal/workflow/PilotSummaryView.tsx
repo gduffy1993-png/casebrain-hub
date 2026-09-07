@@ -203,7 +203,6 @@ export function PilotSummaryView({
         hasOutstandingDisclosure: packetLedger.materials.some(
           (row) => row.status === "outstanding" || row.status === "absent",
         ),
-        ledger: packetLedger,
         fallback: buildClientPacketSummary({
           allegation: allegation ?? chargeProp,
           rows: packetLedger.materials,
