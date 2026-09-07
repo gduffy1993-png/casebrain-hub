@@ -4,6 +4,7 @@
 import assert from "node:assert/strict";
 import {
   assembleSolicitorShortlist,
+  buildDisclosureChaseBrief,
   clampChaseOperationalStatus,
   collapseSolicitorPhoneDownloadDoubles,
   type DisclosureChaseItem,
@@ -109,6 +110,48 @@ const thin = assembleSolicitorShortlist([
 ]);
 assert.equal(thin.primaryItems.length, 0, "thin papers stay quiet — no fake row");
 
+const cad999ScheduleOwner = assembleSolicitorShortlist([
+  sample({
+    id: "cad-schedule",
+    label: "CAD and 999 summaries Original audio/log",
+    baseStatus: "Outstanding",
+    familyId: "cad_999",
+    sourceScheduleRef: "EX-MUR-012",
+    evidenceAnchor: "EX-MUR-012 — CAD and 999 summaries Original audio/log outstanding",
+  }),
+  sample({
+    id: "cad-loose-999",
+    label: "Full 999 audio Not yet served",
+    baseStatus: "Outstanding",
+    familyId: "cad_999",
+  }),
+  sample({
+    id: "cad-loose-log",
+    label: "Full CAD incident log Not yet served",
+    baseStatus: "Outstanding",
+    familyId: "cad_999",
+  }),
+]);
+assert.deepEqual(
+  cad999ScheduleOwner.primaryItems.map((i) => i.label),
+  ["CAD and 999 summaries Original audio/log"],
+  "a referenced schedule CAD/999 gap owns the solicitor card; loose same-family repeats stay off the board",
+);
+
+const cad999LooseOnly = assembleSolicitorShortlist([
+  sample({
+    id: "cad-loose-only",
+    label: "Full 999 audio Not yet served",
+    baseStatus: "Outstanding",
+    familyId: "cad_999",
+  }),
+]);
+assert.deepEqual(
+  cad999LooseOnly.primaryItems.map((i) => i.familyId),
+  ["cad_999"],
+  "loose CAD/999 still shows when there is no schedule-ref owner",
+);
+
 // Dunn-like review must not become Overdue/Missing
 const dunnCad = sample({
   id: "d1",
@@ -202,5 +245,46 @@ assert.equal(attention.length, frozen.length, "Overview maps primary 1:1");
 assert.equal(stats.openReviewItems, frozen.length);
 assert.equal(stats.openReviewItems, 1, "phone double collapsed before Overview");
 assert.ok(stats.missing + stats.incomplete === 1);
+
+const murderBundleExtract = [
+  "R v Leon Hale",
+  "Charge: Murder, contrary to common law",
+  "Court: Northchester Crown Court",
+  "Next hearing: 22 May 2026 10:00 — First Appearance",
+  "EX-MUR-007 — Police officer statement BWV — not served",
+  "EX-MUR-009 — CCTV stills and timing note Master footage outstanding EX-MUR-009 to EX-MUR-011",
+  "EX-MUR-012 — CAD and 999 summaries Original audio/log outstanding",
+  "Full 999 audio Not yet served.",
+  "Full CAD incident log Not yet served.",
+  "EX-MUR-021 — Interview summary Full recording/transcript outstanding",
+  "EX-MUR-022 — Custody record summary Full record/CCTV outstanding",
+].join("\n");
+const murderBrief = buildDisclosureChaseBrief({
+  caseId: "hale-murder-regression",
+  caseTitle: "R v Leon Hale",
+  clientLabel: "Leon Hale",
+  allegation: "Murder, contrary to common law",
+  stage: "First Appearance",
+  hearingStatus: "Upcoming listing",
+  bundleHealth: "Source material on file",
+  positionStatus: "Provisional",
+  hearingDateIso: "2026-05-22T10:00:00.000Z",
+  bundleText: murderBundleExtract,
+  snapshotMissing: [],
+  proceduralOutstanding: [],
+  battleboard: null,
+});
+assert.ok(
+  !/Outstanding phone|and,|remains outstanding\.\s+remains outstanding/i.test(murderBrief.safeCourtLine),
+  "final safe court line is rebuilt from the guarded shortlist, not stale pre-guardian cards",
+);
+assert.ok(
+  !/Full 999 audio|Full CAD incident log/i.test(murderBrief.safeCourtLine),
+  "final safe court line uses the schedule-backed CAD/999 cell, not duplicate loose CAD/999 fragments",
+);
+assert.ok(
+  /CCTV|BWV|Interview|Custody|CAD|999/i.test(murderBrief.safeCourtLine),
+  "final safe court line still names actual source-backed gaps",
+);
 
 console.log("solicitor-shortlist-freeze.test.ts: PASS");

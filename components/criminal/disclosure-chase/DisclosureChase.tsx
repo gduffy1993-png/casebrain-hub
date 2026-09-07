@@ -30,7 +30,11 @@ import {
 import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowShell";
 import { SourceStateBadge, sourceStateBadgeLabel } from "@/components/criminal/trust/SourceStateBadge";
 import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
-import { buildCopySafeResult, inferChaseItemSourceState } from "@/lib/criminal/trust/copy-safe";
+import {
+  buildCopySafeResult,
+  chaseSourceStateProbeStatus,
+  inferChaseItemSourceState,
+} from "@/lib/criminal/trust/copy-safe";
 import {
   assertFindingProvenanceOrLimitation,
   formatFindingProvenanceLine,
@@ -262,11 +266,12 @@ function ChaseItemCard({
   const itemSourceState = inferChaseItemSourceState({
     label: item.label,
     source: item.source,
-    // Overdue/Due soon pollute source-state into NSC — probe material state separately.
-    baseStatus:
-      status === "Overdue" || status === "Due soon" || item.baseStatus === "Overdue" || item.baseStatus === "Due soon"
-        ? "Outstanding"
-        : item.baseStatus,
+    // Source-state must follow the final visible card state. Otherwise a row can display
+    // "Outstanding" beside a stale "Served" source badge when the shortlist has corrected it.
+    baseStatus: chaseSourceStateProbeStatus({
+      visibleStatus: status,
+      baseStatus: item.baseStatus,
+    }),
     evidenceAnchor: item.evidenceAnchor,
     whyItMatters: item.whyItMatters,
   });

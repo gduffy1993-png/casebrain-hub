@@ -15,6 +15,10 @@ import {
   buildDemoAttentionItems,
   buildDemoStatCounts,
 } from "../components/criminal/demo-shell/demoOverviewAdapter";
+import {
+  chaseSourceStateProbeStatus,
+  inferChaseItemSourceState,
+} from "../lib/criminal/trust/copy-safe";
 
 function sample(
   partial: Partial<DisclosureChaseItem> &
@@ -143,6 +147,31 @@ assert.ok(counters.notStarted >= 2, "review-only rows land in not-started/open b
 
 assert.equal(effectiveStatus(nscWithHearingElapsed, {}), "Not safely confirmed");
 assert.equal(effectiveStatus(missingOverdue, {}), "Overdue");
+
+const staleServedCard = sample({
+  id: "stale-served",
+  label: "999 audio / emergency-call material",
+  baseStatus: "Received",
+  source: "MG6/MG6C disclosure schedule",
+  evidenceAnchor: "EX-MUR-012 — CAD and 999 summaries Original audio/log outstanding",
+  whyItMatters: "Original audio/log outstanding on the papers.",
+});
+const probeStatus = chaseSourceStateProbeStatus({
+  visibleStatus: "Outstanding",
+  baseStatus: staleServedCard.baseStatus,
+});
+assert.equal(probeStatus, "Outstanding");
+assert.equal(
+  inferChaseItemSourceState({
+    label: staleServedCard.label,
+    source: staleServedCard.source,
+    baseStatus: probeStatus,
+    evidenceAnchor: staleServedCard.evidenceAnchor,
+    whyItMatters: staleServedCard.whyItMatters,
+  }),
+  "missing",
+  "an outstanding visible chase card must not display a stale served source-state badge",
+);
 
 const overviewItems = buildDemoAttentionItems([
   { ...missingOverdue, baseStatus: clampChaseOperationalStatus(missingOverdue) },

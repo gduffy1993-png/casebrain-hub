@@ -2326,11 +2326,33 @@ function splitPrimaryAdditional(items: DisclosureChaseItem[]): {
     i.familyId !== "other" || isDigitalModalityChaseLabel(i.label) || isSourceNamedChaseItem(i);
   const core = deduped.filter(isPrimaryEligible);
   const misc = deduped.filter((i) => !isPrimaryEligible(i));
+  const sourceRefOwnsLooseDuplicates = new Set<ChaseFamilyId>([
+    "cad_999",
+    "cctv_master",
+    "bwv",
+    "custody_pace",
+    "medical_expert",
+    "mg6_unused",
+  ]);
+  const familiesOwnedByScheduleRef = new Set(
+    core
+      .filter(
+        (i) =>
+          sourceRefOwnsLooseDuplicates.has(i.familyId) &&
+          Boolean(i.sourceScheduleRef?.trim()),
+      )
+      .map((i) => i.familyId),
+  );
+  const isLooseDuplicateOfScheduleRefOwner = (i: DisclosureChaseItem) =>
+    familiesOwnedByScheduleRef.has(i.familyId) &&
+    !i.sourceScheduleRef?.trim();
   // Gaps the schedule states take the slots first; templates fill in behind them. Among those,
   // material the schedule records as absent outranks material it records as served in a summary or
   // draft form: both are worth raising, but a board of eight `served summary/draft` rows buries the
   // items nobody has yet handed over.
-  const sourceNamedAll = core.filter(isSourceNamedChaseItem);
+  const sourceNamedAll = core.filter(
+    (i) => isSourceNamedChaseItem(i) && !isLooseDuplicateOfScheduleRefOwner(i),
+  );
   const isStatedAbsent = (i: DisclosureChaseItem) =>
     /\b(?:outstanding|not\s+served|missing|absent|not\s+(?:yet\s+)?provided)\b/i.test(
       `${i.baseStatus} ${i.label}`,
@@ -2339,7 +2361,12 @@ function splitPrimaryAdditional(items: DisclosureChaseItem[]): {
     ...sourceNamedAll.filter(isStatedAbsent),
     ...sourceNamedAll.filter((i) => !isStatedAbsent(i)),
   ];
-  const remaining = core.filter((i) => !isSourceNamedChaseItem(i) && !isFamilyTemplateChaseCard(i));
+  const remaining = core.filter(
+    (i) =>
+      !isSourceNamedChaseItem(i) &&
+      !isFamilyTemplateChaseCard(i) &&
+      !isLooseDuplicateOfScheduleRefOwner(i),
+  );
   const primaryItems: DisclosureChaseItem[] = [];
   for (const item of [...sourceNamed, ...remaining]) {
     if (primaryItems.length >= DISCLOSURE_CHASE_PRIMARY_CAP) break;
@@ -3487,6 +3514,14 @@ function sourceBoundCaseWideLine(raw: string, bundleText: string | null | undefi
   return raw;
 }
 
+function cleanCaseWideCourtLine(raw: string): string {
+  return raw
+    .replace(/\b(remains outstanding)\.\s+\1\b/gi, "$1")
+    .replace(/\s+and,\s+/g, " and ")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
 function mergeContradictionActionItems(
   items: DisclosureChaseItem[],
   input: BuildDisclosureChaseBriefInput,
@@ -3818,11 +3853,29 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   };
 
   const guarded = guardDisclosureChaseBrief(brief, { ledger, bundleText: gateText });
+  const guardedItems = guarded.items.map(alignInterviewCourtLineToLabel);
+  const guardedPrimaryItems = guarded.primaryItems.map(alignInterviewCourtLineToLabel);
+  const guardedAdditionalItems = guarded.additionalItems.map(alignInterviewCourtLineToLabel);
+  const finalSafeCourtLine = (() => {
+    const fromNamed = cleanCaseWideCourtLine(courtLineFromNamedChase(guardedPrimaryItems));
+    if (!isCriminalPilotMode()) {
+      return gateText?.trim()
+        ? gateProseAgainstSource(sourceBoundCaseWideLine(fromNamed, gateText), gateText)
+        : fromNamed;
+    }
+    const raw = pilotCleanupVisibleText(
+      sanitizePilotVisibleLine(fromNamed, workflowContext) ?? fromNamed,
+    );
+    return gateText?.trim()
+      ? gateProseAgainstSource(sourceBoundCaseWideLine(cleanCaseWideCourtLine(raw), gateText), gateText)
+      : cleanCaseWideCourtLine(raw);
+  })();
   return {
     ...guarded,
-    items: guarded.items.map(alignInterviewCourtLineToLabel),
-    primaryItems: guarded.primaryItems.map(alignInterviewCourtLineToLabel),
-    additionalItems: guarded.additionalItems.map(alignInterviewCourtLineToLabel),
+    safeCourtLine: finalSafeCourtLine,
+    items: guardedItems,
+    primaryItems: guardedPrimaryItems,
+    additionalItems: guardedAdditionalItems,
   };
 }
 
