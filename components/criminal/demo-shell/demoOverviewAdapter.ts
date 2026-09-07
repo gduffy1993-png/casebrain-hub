@@ -108,10 +108,10 @@ function issueBlurbForItem(item: DisclosureChaseItem, title: string): string {
     return "Full CCTV or master media status needs confirming before the hearing position is fixed.";
   }
   if (/\b(cad|999)\b/.test(hay)) {
-    return "CAD / 999 material is not safely confirmed on the current papers.";
+    return "CAD / 999 audio remains outstanding on the current papers.";
   }
   if (/phone|device|download|extraction|source export/.test(hay)) {
-    return "Phone or source-extraction material is not established on the current papers.";
+    return "Phone or source-extraction material remains outstanding on the current papers.";
   }
   return "Source status needs confirming before this item is relied on.";
 }

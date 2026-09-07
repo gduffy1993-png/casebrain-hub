@@ -30,25 +30,11 @@ import {
 import { displayPilotStripCharge, displayPilotStripClient, isPlaceholderMatterTitle } from "./workflowPilotDisplay";
 import { solicitorReadyGateCopy } from "./pilotReviewCopy";
 import { buildBundleTruthLedger } from "@/lib/criminal/bundle-truth-ledger";
-import type { NormalisedMaterialRow } from "@/lib/criminal/bundle-truth-types";
-
-function clientPapersFactLines(rows: NormalisedMaterialRow[]): string[] {
-  const out: string[] = [];
-  for (const row of rows.slice(0, 8)) {
-    const status =
-      row.status === "served"
-        ? "on the papers"
-        : row.status === "partial" || row.status === "draft" || row.status === "unsigned"
-          ? "only partly on the papers"
-          : row.status === "referred_only"
-            ? "referred to but not fully served"
-            : row.status === "outstanding" || row.status === "absent"
-              ? "not on the papers yet"
-              : "not safely confirmed on the papers";
-    out.push(`${row.label} — ${status}.`);
-  }
-  return out;
-}
+import {
+  buildClientPacketFacts,
+  buildClientPacketSummary,
+} from "@/lib/criminal/evidence-family-owner";
+import { buildClientSafeExplanation } from "@/lib/criminal/build-client-safe-explanation";
 
 export type PilotSummaryViewProps = {
   caseId: string;
@@ -183,11 +169,14 @@ export function PilotSummaryView({
   const { loading, matterBrief, matterConfidence, doNotOverstate, bundleMeta, outputIntegrity, allegation } =
     useMatterBrief(caseId);
   const bundleHay = bundleMeta?.frontMatterScan ?? "";
-  const papersFacts = useMemo(() => {
-    if (!bundleHay.trim()) return [] as string[];
-    const ledger = buildBundleTruthLedger({ bundleText: bundleHay });
-    return clientPapersFactLines(ledger.materials);
+  const packetLedger = useMemo(() => {
+    if (!bundleHay.trim()) return null;
+    return buildBundleTruthLedger({ bundleText: bundleHay });
   }, [bundleHay]);
+  const papersFacts = useMemo(
+    () => (packetLedger ? buildClientPacketFacts(packetLedger.materials) : []),
+    [packetLedger],
+  );
   const filteredDoNot = useMemo(
     () =>
       collapseDontSayMg11WitnessLines(
@@ -207,15 +196,27 @@ export function PilotSummaryView({
           .join(" — ") || "Case summary";
 
   const clientSafeText = useMemo(() => {
+    if (packetLedger) {
+      const fromPacket = buildClientSafeExplanation({
+        clientLabel: clientProp,
+        allegation: allegation ?? chargeProp,
+        hasOutstandingDisclosure: packetLedger.materials.some(
+          (row) => row.status === "outstanding" || row.status === "absent",
+        ),
+        ledger: packetLedger,
+        fallback: buildClientPacketSummary({
+          allegation: allegation ?? chargeProp,
+          rows: packetLedger.materials,
+        }),
+      });
+      if (fromPacket.trim()) return polishPresentationBlock(fromPacket, bundleHay);
+    }
     if (!matterBrief) return "";
     const clientSection = matterBrief.sections.find((s) => s.id === "client");
-    const parts = [
-      clientSection?.paragraph,
-      ...(clientSection?.bullets ?? []),
-    ].filter(Boolean);
+    const parts = [clientSection?.paragraph, ...(clientSection?.bullets ?? [])].filter(Boolean);
     if (parts.length) return polishPresentationBlock(parts.join("\n\n"), bundleHay);
-    return polishPresentationBlock(matterBrief.plainText.slice(0, 4000), bundleHay);
-  }, [matterBrief, bundleHay]);
+    return "";
+  }, [packetLedger, matterBrief, bundleHay, allegation, chargeProp, clientProp]);
 
   const clientCopy = useMemo(
     () =>
@@ -276,7 +277,7 @@ export function PilotSummaryView({
             {copied === "client" ? "Copied" : "Copy client-safe summary"}
           </Button>
         </div>
-        {!loading && papersFacts.length ? (
+        {papersFacts.length ? (
           <div className="mt-3 rounded-md border border-slate-700/60 bg-slate-950/40 px-3 py-2.5 space-y-1.5" data-testid="client-papers-facts">
             <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">
               What the papers show
@@ -290,8 +291,12 @@ export function PilotSummaryView({
             </ul>
           </div>
         ) : null}
-        {!loading && clientSafeText ? (
+        {clientSafeText ? (
           <p className="mt-3 text-sm text-slate-200 leading-relaxed whitespace-pre-wrap">{clientSafeText}</p>
+        ) : !loading ? (
+          <p className="mt-3 text-sm text-slate-400 leading-relaxed">
+            No client summary yet. This updates from the current File/Papers packet.
+          </p>
         ) : null}
       </div>
 
@@ -299,10 +304,10 @@ export function PilotSummaryView({
         <DontSaySafetyBox items={filteredDoNot.slice(0, 8)} />
       ) : null}
 
-      {loading ? (
+      {loading && !packetLedger ? (
         <div className={`${workflowPilotCard} p-8 flex items-center justify-center gap-2 text-slate-400`}>
           <Loader2 className="h-5 w-5 animate-spin text-blue-400" />
-          Building matter brief…
+          Checking the current papers…
         </div>
       ) : matterBrief ? (
         <>

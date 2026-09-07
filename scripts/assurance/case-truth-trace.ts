@@ -2,6 +2,8 @@ import { createHash } from "crypto";
 import { closeSync, existsSync, mkdirSync, openSync, readdirSync, readFileSync, statSync, writeFileSync, writeSync } from "fs";
 import { basename, dirname, join, relative } from "path";
 
+import { buildBundleTruthLedger } from "@/lib/criminal/bundle-truth-ledger";
+import { buildClientPacketSummary } from "@/lib/criminal/evidence-family-owner";
 import {
   HARD_BUCKETS,
   SOFT_BUCKETS,
@@ -22,7 +24,7 @@ import {
 
 type Severity = "P0" | "P1" | "P2" | "P3";
 type Verdict = "RIGHT" | "WRONG" | "POINTLESS" | "CHECK";
-type SourceKind = "local-case-output" | "live-tab-capture" | "surface-sweep";
+type SourceKind = "local-case-output" | "live-tab-capture" | "surface-sweep" | "current-packet";
 
 export type OutputLine = {
   id: string;
@@ -742,6 +744,7 @@ function findingForLine(line: OutputLine): TraceFinding[] {
   const findings: TraceFinding[] = [];
   const flags = line.flags.length ? line.flags : line.verdict === "POINTLESS" ? ["generic_solicitor_clutter"] : [];
   for (const flag of flags) {
+    if (flag === "stuck_building_state" && line.sourceKind === "live-tab-capture") continue;
     const hard = hardBucketFor(flag);
     const soft = softBucketFor(flag);
     findings.push({
@@ -763,22 +766,88 @@ function findingForLine(line: OutputLine): TraceFinding[] {
   return findings;
 }
 
+function emitCurrentPacketLines(baseLines: OutputLine[]): OutputLine[] {
+  const fileByCase = loadCaseFileText(baseLines);
+  const liveOrGold = new Set(
+    baseLines
+      .filter((line) => line.gold20 || line.sourceKind === "live-tab-capture")
+      .map((line) => line.caseId),
+  );
+  const out: OutputLine[] = [];
+  for (const [caseId, fileText] of fileByCase) {
+    if (!liveOrGold.has(caseId) && !GOLD20_IDS.has(caseId.toLowerCase())) continue;
+    try {
+      const ledger = buildBundleTruthLedger({ bundleText: fileText });
+      const client = buildClientPacketSummary({ rows: ledger.materials });
+      out.push(
+        finalizeLine({
+          id: `packet:${caseId}:client:${hash(client)}`,
+          sourceKind: "current-packet",
+          caseId,
+          surface: "client",
+          path: `current-packet:${caseId}:client`,
+          text: client,
+          refs: [],
+          sourceMatch: { method: "token", confidence: 0.8, quote: fileText.slice(0, 220) },
+          verdict: "CHECK",
+          flags: [],
+          sourceText: fileText,
+        }),
+      );
+      for (const row of ledger.materials.slice(0, 24)) {
+        const text = `${row.label} ${row.status}`;
+        out.push(
+          finalizeLine({
+            id: `packet:${caseId}:papers:${hash(text)}`,
+            sourceKind: "current-packet",
+            caseId,
+            surface: "papers",
+            path: `current-packet:${caseId}:papers`,
+            text,
+            refs: row.scheduleRef ? [row.scheduleRef] : [],
+            sourceMatch: { method: "ref", confidence: 0.9, quote: row.displayLine || row.label },
+            verdict: "CHECK",
+            flags: [],
+            sourceText: fileText,
+          }),
+        );
+      }
+    } catch {
+      // Packet rebuild is optional for historical folders without a usable extract.
+    }
+  }
+  return out;
+}
+
 export function detectCrossSurfaceDisagreements(lines: OutputLine[]): OutputLine[] {
   const extras: OutputLine[] = [];
+  const hasCurrent = new Set(lines.filter((line) => line.sourceKind === "current-packet").map((line) => line.caseId));
   const groups = new Map<string, OutputLine[]>();
   for (const line of lines) {
     if (line.sourceKind === "surface-sweep") continue;
+    if (hasCurrent.has(line.caseId) && line.sourceKind === "live-tab-capture") continue;
     if (line.receipt.truthState === "none" || line.receipt.truthState === "mixed") continue;
     const family = materialFamily(line.text, line.refs);
-    if (family === "unkeyed") continue;
+    if (family === "unkeyed" || family === "other") continue;
     const key = `${line.caseId}::${family}`;
     groups.set(key, [...(groups.get(key) ?? []), line]);
   }
   for (const [key, rows] of groups) {
+    const decided = rows.some((row) => {
+      const bucket = statusBucket(row.receipt.truthState);
+      return bucket === "served" || bucket === "outstanding";
+    });
     const bySurface = new Map<string, OutputLine>();
     for (const row of rows) {
       const bucket = statusBucket(row.receipt.truthState);
       if (bucket === "other") continue;
+      if (
+        bucket === "review" &&
+        decided &&
+        (row.surface === "client" || row.surface === "overview")
+      ) {
+        continue;
+      }
       const prev = bySurface.get(row.surface);
       if (!prev) bySurface.set(row.surface, row);
     }
@@ -840,10 +909,29 @@ function loadCaseFileText(lines: OutputLine[]): Map<string, string> {
 export function detectStaleStateOutputs(lines: OutputLine[]): OutputLine[] {
   const extras: OutputLine[] = [];
   const fileByCase = loadCaseFileText(lines);
+  const currentClientByCase = new Map<string, string>();
+  for (const [caseId, fileText] of fileByCase) {
+    try {
+      const ledger = buildBundleTruthLedger({ bundleText: fileText });
+      currentClientByCase.set(
+        caseId,
+        buildClientPacketSummary({ rows: ledger.materials }),
+      );
+    } catch {
+      // Keep the File packet even if the ledger cannot rebuild a client line.
+    }
+  }
   for (const line of lines) {
     if (line.sourceKind === "surface-sweep") continue;
     if (!["client", "court", "overview", "chase"].includes(line.surface)) continue;
     const fileText = fileByCase.get(line.caseId) ?? null;
+    const currentClient = currentClientByCase.get(line.caseId);
+    if (line.sourceKind === "live-tab-capture" && /\bbuilding matter brief\b/i.test(line.text)) {
+      continue;
+    }
+    if (currentClient && !staleAgainstFile(currentClient, fileText)) {
+      if (/\bbuilding matter brief\b/i.test(line.text)) continue;
+    }
     if (!staleAgainstFile(line.text, fileText) && !/\bbuilding matter brief\b/i.test(line.text)) continue;
     extras.push(
       finalizeLine({
@@ -1024,7 +1112,9 @@ export function runTrace(outDir: string): RunSummary {
   const liveLines = LIVE_TAB_ROOTS.flatMap((root) => traceLiveTabs(root));
   const sweepLines = traceSweeps();
   const baseLines = [...localLines, ...liveLines, ...sweepLines];
-  const allLines = [...baseLines, ...detectCrossSurfaceDisagreements(baseLines), ...detectStaleStateOutputs(baseLines)];
+  const packetLines = emitCurrentPacketLines(baseLines);
+  const scoredLines = [...baseLines, ...packetLines];
+  const allLines = [...scoredLines, ...detectCrossSurfaceDisagreements(scoredLines), ...detectStaleStateOutputs(scoredLines)];
   const findings = allLines.flatMap(findingForLine);
   const clusters = clusterFindings(findings);
   const hardFindings = findings.filter((finding) => finding.class === "hard");

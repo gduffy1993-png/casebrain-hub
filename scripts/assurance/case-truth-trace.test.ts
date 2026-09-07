@@ -5,6 +5,7 @@ import {
   classifySourceClass,
   hardBucketFor,
   inferOutputType,
+  inferTruthState,
   looksFactual,
   softBucketFor,
   staleAgainstFile,
@@ -173,6 +174,46 @@ describe("cross-surface and stale roots", () => {
     const lines = detectCrossSurfaceDisagreements([
       fakeLine("hale", "overview", "CAD and 999 summaries Original audio/log Outstanding", "outstanding"),
       fakeLine("hale", "chase", "CAD and 999 summaries Original audio/log Missing", "missing"),
+    ]);
+
+    expect(lines).toHaveLength(0);
+  });
+
+  it("does not treat client/overview review chips as a hard conflict with outstanding", () => {
+    const lines = detectCrossSurfaceDisagreements([
+      fakeLine("brookes", "client", "Full phone download — not safely confirmed on the papers.", "not_safely_confirmed"),
+      fakeLine("brookes", "papers", "Full phone download outstanding", "outstanding"),
+      fakeLine("brookes", "court", "Full phone download remains outstanding", "outstanding"),
+    ]);
+
+    expect(lines).toHaveLength(0);
+  });
+
+  it("does not treat a primary route-on-file line as a served interview status", () => {
+    expect(
+      inferTruthState(
+        "The case requires caution on custody safeguards and interview fairness until source records are reviewed. Primary route on file: Violence.",
+      ),
+    ).not.toBe("served");
+  });
+
+  it("does not let a client review chip fight a decided court/papers status", () => {
+    const lines = detectCrossSurfaceDisagreements([
+      fakeLine("brookes", "client", "Interview summary — not safely confirmed on the papers.", "not_safely_confirmed"),
+      fakeLine("brookes", "court", "Interview summary served", "served"),
+    ]);
+
+    expect(lines).toHaveLength(0);
+  });
+
+  it("does not treat summary-served and full-item-outstanding as the same family", () => {
+    const lines = detectCrossSurfaceDisagreements([
+      fakeLine("hale", "overview", "Interview summary served", "served"),
+      fakeLine("hale", "court", "full interview records remain outstanding", "outstanding"),
+      fakeLine("dunn", "overview", "CCTV stills served", "served"),
+      fakeLine("dunn", "client", "CCTV master footage outstanding", "outstanding"),
+      fakeLine("brookes", "papers", "Full phone download outstanding", "outstanding"),
+      fakeLine("brookes", "client", "iPhone handset on the papers", "served"),
     ]);
 
     expect(lines).toHaveLength(0);

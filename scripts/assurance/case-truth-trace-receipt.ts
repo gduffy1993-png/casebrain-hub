@@ -147,8 +147,18 @@ export function inferOutputType(path: string, surface: string, text: string): Ou
 
 export function inferTruthState(text: string): TruthState {
   const n = normal(text);
-  const served = /\b(?:served|on file)\b/.test(n.replace(/\bnot\s+(?:yet\s+)?served\b/g, " "));
-  const outstanding = /\b(?:outstanding|not served|not yet served|overdue|due soon)\b/.test(n);
+  const hedged = n
+    .replace(/\bnot\s+(?:yet\s+|fully\s+)?served\b/g, " ")
+    .replace(/\b(?:if|once|until|when|unless|pending)\s+(?:\w+\s+){0,12}served\b/g, " ")
+    .replace(/\b(?:on|from)\s+served\s+material\b/g, " ")
+    .replace(/\b(?:or|and|with)\s+served\s+evidence\b/g, " ")
+    .replace(/\b(?:primary\s+)?route on file\b/g, " ")
+    .replace(/\bon file:/g, " ")
+    .replace(/\bif proved\b/g, " ");
+  const served =
+    /\b(?:served|on file)\b/.test(hedged) ||
+    (/\bon the papers\b/.test(n) && !/\bnot\b/.test(n) && !/\bonly partly\b/.test(n));
+  const outstanding = /\b(?:outstanding|not served|not yet served|overdue|due soon|not on the papers yet)\b/.test(n);
   const missing = /\bmissing\b/.test(n);
   const review = /\b(?:not safely confirmed|unclear|needs confirmation)\b/.test(n);
   const referred = /\breferred only\b/.test(n);
@@ -369,19 +379,7 @@ export function softBucketFor(flag: string): SoftBucket | null {
   }
 }
 
-export function materialFamily(text: string, refs: string[]): string {
-  const n = normal(text);
-  const ref = refs[0]?.toUpperCase();
-  if (ref?.includes("EX-MUR-012") || /\b(?:cad|999)\b/.test(n)) return "cad_999";
-  if (ref?.includes("EX-MUR-009") || /\bcctv|master footage|export log\b/.test(n)) return "cctv";
-  if (/\b(?:phone download|phone extraction|subscriber|cell-site|tel\/)\b/.test(n)) return "phone";
-  if (/\bbwv|body-worn\b/.test(n)) return "bwv";
-  if (/\binterview|mg15\b/.test(n)) return "interview";
-  if (/\bcustody|pace\b/.test(n)) return "custody";
-  if (ref) return `ref:${ref}`;
-  const words = n.split(/[^a-z0-9]+/).filter((w) => w.length >= 4).slice(0, 4);
-  return words.join("_") || "unkeyed";
-}
+export { classifyEvidenceSubFamily as materialFamily } from "@/lib/criminal/evidence-family-owner";
 
 export function statusBucket(state: TruthState | string): "served" | "outstanding" | "review" | "other" {
   if (state === "served") return "served";
@@ -394,6 +392,9 @@ export function conflictingStatus(a: string, b: string): boolean {
   const left = statusBucket(a);
   const right = statusBucket(b);
   if (left === "other" || right === "other") return false;
+  if ((left === "review" && right === "outstanding") || (left === "outstanding" && right === "review")) {
+    return false;
+  }
   return left !== right;
 }
 
