@@ -112,6 +112,18 @@ describe("visible output receipts", () => {
     expect(receipt.unsupportedWarning).toBeNull();
   });
 
+  it("classes provisional solicitor caution lines as procedural, not unsupported served facts", () => {
+    const receipt = receiptFromCourtLine(
+      "Custody/PACE safeguards cannot be finally assessed until the full custody and interview material is served.",
+    );
+    expect(receipt.sourceClass).toBe("procedural_instruction");
+    expect(receipt.truthState).toBe("provisional");
+    expect(receipt.sourceRef).toBe("ref unavailable");
+    expect(receipt.sourcePage).toBe("page unavailable");
+    expect(receipt.guard).toMatch(/procedural/);
+    expect(receipt.unsupportedWarning).toBeNull();
+  });
+
   it("exposes an unsupported receipt when no File quote or ref exists", () => {
     const receipt = buildVisibleOutputReceipt({
       output: "Defence has a strong alibi on the papers",

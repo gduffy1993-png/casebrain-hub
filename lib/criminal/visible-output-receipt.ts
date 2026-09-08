@@ -56,7 +56,7 @@ const GENERATED_GAP_RE =
   /\b(?:full 999 audio|full cad incident log|full phone download|full phone extraction|source extraction|subscriber \/ account data|full cctv master)\b/i;
 const USER_RE = /\b(?:user entered|solicitor note|record position|flagged by user)\b/i;
 const PROCEDURAL_RE =
-  /\b(?:please provide|solicitor review required|review the cited source|confirm in writing why it is not available|check source before sending)\b/i;
+  /\b(?:please provide|solicitor review required|review the cited source|confirm in writing why it is not available|check source before sending|cannot safely fix|cannot be finally assessed|remain(?:s)? provisional|pending served|pending instructions|do not advance fixed trial theory|conditional on served)\b/i;
 const REF_RE = /\b(?:MG\d+[A-Z]?(?:\/\d+)?|EX[-/][A-Z0-9-]+|O\d{2}|TEL\/\d+)\b/i;
 
 function compact(text: string | number | null | undefined): string {
@@ -112,6 +112,9 @@ function inferTruthState(text: string, status?: string | null): string {
   if (s === "partial" || s === "incomplete") return "incomplete";
   const n = compact(text).toLowerCase();
   if (/\bno (?:named\s+)?(?:outstanding\s+)?(?:material|chase|gap|items?)\b/.test(n)) return "none";
+  if (PROCEDURAL_RE.test(n) && /\b(?:pending|until|provisional|conditional|cannot safely|cannot be finally)\b/.test(n)) {
+    return "provisional";
+  }
   if (/\bnot safely confirmed\b/.test(n)) return "not_safely_confirmed";
   if (/\b(?:outstanding|not yet served)\b/.test(n)) return "outstanding";
   if (/\bmissing\b/.test(n)) return "missing";
@@ -122,10 +125,10 @@ function inferTruthState(text: string, status?: string | null): string {
 function inferSourceClass(input: VisibleReceiptInput, quote: string | null, ref: string): VisibleSourceClass {
   const hay = `${input.output} ${input.sourceLabel ?? ""} ${input.surface}`;
   if (USER_RE.test(hay)) return "user_entered";
-  if (PROCEDURAL_RE.test(input.output) && !ABSENCE_RE.test(input.output) && ref === REF_UNAVAILABLE && !quote) {
+  if (!quote && ref === REF_UNAVAILABLE && ABSENCE_RE.test(input.output)) return "derived_from_absence";
+  if (PROCEDURAL_RE.test(input.output) && ref === REF_UNAVAILABLE && !quote) {
     return "procedural_instruction";
   }
-  if (!quote && ref === REF_UNAVAILABLE && ABSENCE_RE.test(input.output)) return "derived_from_absence";
   // A named schedule/exhibit ref is source-backed even when the cell says the item is missing.
   if (ref !== REF_UNAVAILABLE || (quote && !ABSENCE_RE.test(quote))) return "direct_pdf_quote";
   if (quote && ABSENCE_RE.test(quote)) return "derived_from_absence";
