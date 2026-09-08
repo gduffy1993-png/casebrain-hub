@@ -29,6 +29,8 @@ import {
 } from "./buildDisclosureChaseBrief";
 import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowShell";
 import { SourceStateBadge, sourceStateBadgeLabel } from "@/components/criminal/trust/SourceStateBadge";
+import { OutputReceiptDisclosure } from "@/components/criminal/trust/OutputReceiptDisclosure";
+import { receiptFromChaseItem, receiptFromCourtLine } from "@/lib/criminal/visible-output-receipt";
 import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
 import {
   buildCopySafeResult,
@@ -345,6 +347,9 @@ function ChaseItemCard({
           <dt className={labelClass}>Provenance</dt>
           <dd className={`${bodyClass} mt-0.5`}>{provenanceLine}</dd>
         </div>
+        <div className="col-span-2" onClick={(e) => e.stopPropagation()}>
+          <OutputReceiptDisclosure receipt={receiptFromChaseItem(item, "chase")} />
+        </div>
       </dl>
       <div className="px-4 pb-3 flex flex-wrap gap-1.5" onClick={(e) => e.stopPropagation()}>
         {!hideChaseStateActions && (
@@ -440,6 +445,7 @@ function DetailPanel({
         <div>
           <p className={workflowSectionTitle}>Why it matters</p>
           <p className="mt-1 leading-relaxed">{displayWhy || item.whyItMatters}</p>
+          <OutputReceiptDisclosure receipt={receiptFromChaseItem(item, "chase")} />
         </div>
         <div className="grid grid-cols-1 gap-2 text-xs">
           <p>
@@ -1027,6 +1033,16 @@ export function DisclosureChase({
                 Case-wide court line (provisional)
               </p>
               <p className="mt-2 text-sm text-slate-800 leading-relaxed">{displaySafeCourtLine}</p>
+              <OutputReceiptDisclosure
+                receipt={receiptFromCourtLine(
+                  displaySafeCourtLine,
+                  brief.primaryItems.find((item) => {
+                    const itemCourt = (item.courtLine ?? "").replace(/\s+/g, " ").trim();
+                    const court = displaySafeCourtLine.replace(/\s+/g, " ").trim();
+                    return Boolean(itemCourt) && (itemCourt === court || court.includes(item.label));
+                  }) ?? null,
+                )}
+              />
             </section>
             ) : null}
 

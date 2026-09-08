@@ -29,6 +29,7 @@ import {
   buildDemoStatCounts,
 } from "./demoOverviewAdapter";
 import { DemoOverviewCanvas } from "./DemoOverviewCanvas";
+import { receiptFromClientFactLine, receiptFromCourtLine } from "@/lib/criminal/visible-output-receipt";
 import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
 
@@ -226,6 +227,23 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
     : dedupePresentationLines(
         attention.slice(0, 3).map((a) => `Outstanding: ${a.title}`),
       ).join("\n") || "Limited papers — keep the client update provisional.";
+  const courtSource =
+    chasePool.find((item) => {
+      const itemCourt = (item.courtLine ?? "").replace(/\s+/g, " ").trim();
+      const court = courtLineText.replace(/\s+/g, " ").trim();
+      return Boolean(itemCourt) && (itemCourt === court || court.includes(item.label));
+    }) ?? null;
+  const courtReceipt = receiptFromCourtLine(courtLineText, courtSource);
+  const clientSource = chasePool.find((item) =>
+    clientUpdate.toLowerCase().includes((item.label ?? "").toLowerCase().slice(0, 24)),
+  );
+  const clientReceipt = receiptFromClientFactLine(clientUpdate, {
+    status: clientSource?.baseStatus,
+    scheduleRef: clientSource?.sourceScheduleRef,
+    displayLine: clientSource?.evidenceAnchor,
+    excerpt: clientSource?.evidenceAnchor,
+    sourceLabel: clientSource?.source,
+  });
 
   const liveFileIdentity = extractBundleCaseMetadata(
     [
@@ -279,7 +297,9 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
       stats={stats}
       attention={attention}
       courtLine={courtLineText}
+      courtReceipt={courtReceipt}
       clientUpdate={clientUpdate}
+      clientReceipt={clientReceipt}
       readiness={readiness}
       doNotItems={doNotItems}
       fileHref={buildTabHref(caseId, "file")}

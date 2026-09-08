@@ -102,6 +102,30 @@ const numericPage = buildDemoAttentionItems([
   }),
 ])[0];
 assert.ok(numericPage.sources.includes("MG6C Statement p.42"));
+assert.equal(numericPage.receipt.sourcePage, "42");
+assert.equal(numericPage.receipt.sourceDocument, "MG6C Statement");
+
+const unknownPage = buildDemoAttentionItems([
+  sample({
+    id: "7b",
+    label: "Unknown page",
+    baseStatus: "Outstanding",
+    provenance: {
+      sourceDocumentTitle: "MG6C Statement",
+      sourceDocumentType: "mg6c",
+      sourcePage: "1",
+      compiledPage: null,
+      pageIdentityKnown: false,
+      evidenceState: "missing",
+      defendant: null,
+      countNumber: null,
+      unresolvedConflictOrLimitation: null,
+    },
+  }),
+])[0];
+assert.ok(unknownPage.sources.includes("MG6C Statement"));
+assert.ok(!unknownPage.sources.some((line) => /p\.\s*1\b/.test(line)));
+assert.equal(unknownPage.receipt.sourcePage, "page unavailable");
 
 const cctvContinuity = buildDemoAttentionItems([
   sample({

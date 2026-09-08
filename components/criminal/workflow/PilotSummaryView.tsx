@@ -35,6 +35,8 @@ import {
   buildClientPacketSummary,
 } from "@/lib/criminal/evidence-family-owner";
 import { buildClientSafeExplanation } from "@/lib/criminal/build-client-safe-explanation";
+import { OutputReceiptDisclosure } from "@/components/criminal/trust/OutputReceiptDisclosure";
+import { receiptFromClientFactLine } from "@/lib/criminal/visible-output-receipt";
 
 export type PilotSummaryViewProps = {
   caseId: string;
@@ -281,12 +283,25 @@ export function PilotSummaryView({
             <p className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">
               What the papers show
             </p>
-            <ul className="list-disc pl-4 space-y-1 text-xs text-slate-300">
-              {papersFacts.map((line, i) => (
-                <li key={i} className="leading-relaxed">
-                  {line}
-                </li>
-              ))}
+            <ul className="list-disc pl-4 space-y-2 text-xs text-slate-300">
+              {papersFacts.map((line, i) => {
+                const match = packetLedger?.materials.find((row) => line.startsWith(row.label));
+                return (
+                  <li key={i} className="leading-relaxed">
+                    <p>{line}</p>
+                    <OutputReceiptDisclosure
+                      receipt={receiptFromClientFactLine(line, {
+                        status: match?.status,
+                        scheduleRef: match?.scheduleRef,
+                        displayLine: match?.displayLine,
+                        excerpt: match?.sourceAnchor.excerpt,
+                        sourceLabel: match?.sourceAnchor.sectionLabel,
+                      })}
+                      compact
+                    />
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ) : null}

@@ -2,6 +2,8 @@
 
 import type { BundleTruthLedger, MaterialStatus, NormalisedMaterialRow } from "@/lib/criminal/bundle-truth-types";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
+import { OutputReceiptDisclosure } from "@/components/criminal/trust/OutputReceiptDisclosure";
+import { receiptFromMaterialRow } from "@/lib/criminal/visible-output-receipt";
 
 const STATUS_LABEL: Record<MaterialStatus, string> = {
   served: "Served / on file",
@@ -188,6 +190,7 @@ export function PapersDocInventoryPanel({
                             {row.detail}
                           </p>
                         ) : null}
+                        <OutputReceiptDisclosure receipt={receiptFromMaterialRow(row)} compact />
                       </td>
                       <td className="py-2 pr-3 text-slate-400 whitespace-nowrap">{typeHint(row)}</td>
                       <td className={`py-2 pr-3 whitespace-nowrap ${statusTone(row.status)}`}>

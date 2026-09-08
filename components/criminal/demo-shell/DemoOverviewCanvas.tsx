@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { AlertCircle, Copy, FileText, Loader2, Mic, Phone, Video } from "lucide-react";
 import type { DemoAttentionItem, DemoAttentionStatus, DemoReadiness, DemoStatCounts } from "./demoOverviewAdapter";
+import { OutputReceiptDisclosure } from "@/components/criminal/trust/OutputReceiptDisclosure";
+import type { VisibleOutputReceipt } from "@/lib/criminal/visible-output-receipt";
 
 const STATUS_STYLES: Record<DemoAttentionStatus, string> = {
   MISSING: "bg-rose-50 text-rose-700 border-rose-200",
@@ -38,7 +40,9 @@ export function DemoOverviewCanvas({
   stats,
   attention,
   courtLine,
+  courtReceipt,
   clientUpdate,
+  clientReceipt,
   readiness: _readiness,
   doNotItems = [],
   fileHref,
@@ -55,7 +59,9 @@ export function DemoOverviewCanvas({
   stats: DemoStatCounts;
   attention: DemoAttentionItem[];
   courtLine: string;
+  courtReceipt?: VisibleOutputReceipt;
   clientUpdate: string;
+  clientReceipt?: VisibleOutputReceipt;
   readiness: DemoReadiness;
   doNotItems?: string[];
   fileHref?: string;
@@ -174,6 +180,7 @@ export function DemoOverviewCanvas({
                         ))}
                       </ul>
                       <p className="text-sm text-slate-700 leading-relaxed">{item.recommendedAction}</p>
+                      <OutputReceiptDisclosure receipt={item.receipt} />
                       <div className="flex flex-wrap gap-2">
                         <button
                           type="button"
@@ -220,6 +227,7 @@ export function DemoOverviewCanvas({
           </button>
         </div>
         <p className="text-sm text-slate-700 leading-relaxed">{courtLine || "Court line not ready yet."}</p>
+        {courtReceipt ? <OutputReceiptDisclosure receipt={courtReceipt} /> : null}
       </section>
 
       <div className="flex flex-wrap gap-3 text-xs font-semibold">
@@ -270,6 +278,7 @@ export function DemoOverviewCanvas({
           <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap">
             {clientUpdate || "Client update not ready yet."}
           </p>
+          {clientReceipt ? <OutputReceiptDisclosure receipt={clientReceipt} /> : null}
         </section>
       ) : null}
     </div>

@@ -4,6 +4,7 @@
  */
 
 import type { DisclosureChaseItem } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import { receiptFromChaseItem, type VisibleOutputReceipt } from "@/lib/criminal/visible-output-receipt";
 
 export type DemoAttentionStatus = "MISSING" | "UNCLEAR" | "INCOMPLETE" | "ACTIVE";
 
@@ -19,6 +20,7 @@ export type DemoAttentionItem = {
   chaseWording: string;
   courtWording: string;
   familyId: string;
+  receipt: VisibleOutputReceipt;
 };
 
 export type DemoStatCounts = {
@@ -175,9 +177,11 @@ function sourceLines(item: DisclosureChaseItem): string[] {
       "sourceDocumentTitle" in prov && typeof prov.sourceDocumentTitle === "string"
         ? prov.sourceDocumentTitle
         : null;
+    const pageKnown =
+      !("pageIdentityKnown" in prov) || (prov as { pageIdentityKnown?: boolean }).pageIdentityKnown !== false;
     const rawPage = "sourcePage" in prov ? (prov as { sourcePage?: unknown }).sourcePage : null;
     const page =
-      typeof rawPage === "string" || typeof rawPage === "number"
+      pageKnown && (typeof rawPage === "string" || typeof rawPage === "number")
         ? String(rawPage)
         : null;
     if (title) lines.push(page ? `${title} p.${page}` : title);
@@ -208,6 +212,7 @@ export function buildDemoAttentionItems(items: DisclosureChaseItem[]): DemoAtten
         normaliseIssueTitle(cleanOneLine(item.courtLine)) ||
         "Position remains provisional pending source-material review.",
       familyId: item.familyId,
+      receipt: receiptFromChaseItem(item, "overview"),
     });
   }
   return out;
