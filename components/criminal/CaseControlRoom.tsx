@@ -349,11 +349,15 @@ export function CaseControlRoom({
   }, [defencePlan, battleboard, bundleSource?.canonical?.findingSummaries]);
 
   const caseTitle = snapshot?.caseMeta?.title?.trim() || "Criminal case";
+  const sourceBundleText =
+    bundleSource?.canonical?.pageAwareFrontMatterScan ??
+    bundleSource?.frontMatterScan ??
+    null;
 
   const reasoningV2Result = useMemo(() => {
     if (!reasoningV2Enabled) return null;
     return buildReasoningV2ViewModel({
-      frontMatterScan: bundleSource?.frontMatterScan,
+      frontMatterScan: sourceBundleText,
       snippets: bundleSource?.snippets,
       combinedTextLength: bundleSource?.combinedTextLength,
       matterLabel: caseTitle,
@@ -385,7 +389,7 @@ export function CaseControlRoom({
         bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
         snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
         nextHearingRaw: bundleSource?.caseMetadata?.nextHearingRaw,
-        bundleHay: bundleSource?.frontMatterScan,
+        bundleHay: sourceBundleText,
       }),
       stage: displaySolicitorStage(
         bundleSource?.header?.stage ?? snapshot?.caseMeta?.caseStage ?? null,
@@ -402,7 +406,7 @@ export function CaseControlRoom({
             combinedTextLength: bundleSource.combinedTextLength,
             snippets: bundleSource.snippets,
             documentRows: bundleSource.documentRows?.map((r) => ({ updatedAt: r.updatedAt })),
-            frontMatterScan: bundleSource.frontMatterScan,
+            frontMatterScan: sourceBundleText,
           }
         : null,
     [bundleSource],
@@ -434,13 +438,13 @@ export function CaseControlRoom({
   ]);
 
   const truthLedger = useMemo((): BundleTruthLedger | null => {
-    const text = bundleSource?.frontMatterScan;
+    const text = sourceBundleText;
     if (!text?.trim()) return null;
     return buildBundleTruthLedger({
       bundleText: text,
       parsedHeader: bundleSource?.header ?? undefined,
     });
-  }, [bundleSource]);
+  }, [bundleSource?.header, sourceBundleText]);
 
   const headerMeta = useMemo(
     () =>
@@ -459,7 +463,7 @@ export function CaseControlRoom({
         bundleHeader: bundleSource?.header,
         sourceCharges: bundleSource?.canonical?.charges ?? null,
         matterState,
-        bundleText: bundleSource?.frontMatterScan ?? null,
+        bundleText: sourceBundleText ?? null,
         truthLedger,
       }),
     [snapshot, matter, bundleSource, matterState, truthLedger],
@@ -474,10 +478,10 @@ export function CaseControlRoom({
       workflowHeaderOverrides(caseTitle, {
         allegation: allegationBase,
         routeTitle: battleboard?.primary_route?.title,
-        bundleText: bundleSource?.frontMatterScan ?? null,
+        bundleText: sourceBundleText ?? null,
         clientLabel,
       }),
-    [caseTitle, allegationBase, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan],
+    [caseTitle, allegationBase, clientLabel, battleboard?.primary_route?.title, sourceBundleText],
   );
   const caseTitleDisplay = safeSolicitorCaseTitle(
     pilotOverrides?.displayTitle ?? pilotOverrides?.title ?? caseTitle,
@@ -488,16 +492,16 @@ export function CaseControlRoom({
     () =>
       evaluateMatterIntegrity({
         allegation,
-        bundleHay: bundleSource?.frontMatterScan ?? "",
+        bundleHay: sourceBundleText ?? "",
       }),
-    [allegation, bundleSource?.frontMatterScan],
+    [allegation, sourceBundleText],
   );
   const papersDeepBlocked = !papersOutputIntegrity.deepDetailAvailable;
 
   const proofMapResult = useMemo(() => {
     if (!proofMapEnabled) return null;
     return buildProductProofMap({
-      frontMatterScan: bundleSource?.frontMatterScan,
+      frontMatterScan: sourceBundleText,
       snippets: bundleSource?.snippets,
       combinedTextLength: bundleSource?.combinedTextLength,
       matterLabel: caseTitleDisplay,
@@ -511,11 +515,11 @@ export function CaseControlRoom({
       caseTitle: caseTitleDisplay,
       allegation,
       routeTitle: battleboard?.primary_route?.title,
-      bundleText: bundleSource?.frontMatterScan ?? null,
+      bundleText: sourceBundleText ?? null,
       clientLabel,
       profileHint: pilotOverrides?.profile ?? null,
     }),
-    [caseTitleDisplay, allegation, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan, pilotOverrides?.profile],
+    [caseTitleDisplay, allegation, clientLabel, battleboard?.primary_route?.title, sourceBundleText, pilotOverrides?.profile],
   );
 
   const pilotMode = isCriminalPilotMode();
@@ -532,7 +536,7 @@ export function CaseControlRoom({
     bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
     snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
     nextHearingRaw: bundleSource?.caseMetadata?.nextHearingRaw,
-    bundleHay: bundleSource?.frontMatterScan,
+    bundleHay: sourceBundleText,
   });
   const courtLabelDisplay = pilotMode
     ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
@@ -544,7 +548,7 @@ export function CaseControlRoom({
     nextHearingRaw: nextHearing,
     bundleHay: [
       bundleSource?.caseMetadata?.nextHearingRaw,
-      bundleSource?.frontMatterScan,
+      sourceBundleText,
     ]
       .filter(Boolean)
       .join("\n"),
@@ -574,11 +578,11 @@ export function CaseControlRoom({
         snapshotMissing: snapshot?.evidence.missingEvidence,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
         battleboard: null,
-        bundleText: workflowContext.bundleText ?? bundleSource?.frontMatterScan ?? null,
+        bundleText: workflowContext.bundleText ?? sourceBundleText ?? null,
       });
       return raw;
     },
-    [snapshot, effectiveProceduralSafety, battleboard, workflowContext, bundleSource?.frontMatterScan],
+    [snapshot, effectiveProceduralSafety, battleboard, workflowContext, sourceBundleText],
   );
 
   const chaseItems = useMemo(() => chaseItemsAll.slice(0, 6), [chaseItemsAll]);
@@ -594,7 +598,7 @@ export function CaseControlRoom({
         battleboard: filteredBattleboard ?? battleboard,
         chaseItems: chaseItemsAll,
         bundleMg5: bundleSource?.snippets?.mg5,
-        bundleCombinedText: bundleSource?.frontMatterScan ?? null,
+        bundleCombinedText: sourceBundleText ?? null,
         primaryPressureRouteLabel: workflowPrimaryRouteTitle(workflowContext),
         pilotMode,
         workflowContext,
@@ -607,7 +611,7 @@ export function CaseControlRoom({
       filteredBattleboard,
       chaseItemsAll,
       bundleSource?.snippets?.mg5,
-      bundleSource?.frontMatterScan,
+      sourceBundleText,
       workflowContext,
       pilotMode,
     ],
@@ -668,7 +672,7 @@ export function CaseControlRoom({
         battleboard,
         documentRows: bundleSource?.documentRows,
         hasBattleboardMaterial,
-        bundleTextHint: bundleSource?.frontMatterScan,
+        bundleTextHint: sourceBundleText,
       }),
     [snapshot, bundleSource, battleboard, hasBattleboardMaterial],
   );
@@ -697,7 +701,7 @@ export function CaseControlRoom({
   );
 
   const immediateActions = useMemo(() => {
-    const bundleHay = bundleSource?.frontMatterScan ?? "";
+    const bundleHay = sourceBundleText ?? "";
     const cleanActions = (actions: string[]) =>
       filterBundleFamilyWarnings(
         actions.map((line) => polishPresentationLine(line, bundleHay)),
@@ -733,7 +737,7 @@ export function CaseControlRoom({
       if (!items.some((i) => i.toLowerCase().includes(d.slice(0, 20).toLowerCase()))) items.push(d);
     }
     return cleanActions(stripRepeatedPositionNotice(items, positionNoticeOnce));
-  }, [hasSavedPosition, chaseItems, battleboard, defencePlan, positionNoticeOnce, workflowContext, bundleSource?.frontMatterScan]);
+  }, [hasSavedPosition, chaseItems, battleboard, defencePlan, positionNoticeOnce, workflowContext, sourceBundleText]);
 
   const { evidentialRisks, proceduralRisks, strategicRisks } = useMemo(() => {
     const cols = deriveRiskColumns(
@@ -745,7 +749,7 @@ export function CaseControlRoom({
       positionNoticeOnce,
       workflowContext,
     );
-    const bundleText = bundleSource?.frontMatterScan ?? null;
+    const bundleText = sourceBundleText ?? null;
     const bundleHay = bundleText ?? "";
     const polishRisk = (lines: string[]) =>
       filterBundleFamilyWarnings(
@@ -766,7 +770,7 @@ export function CaseControlRoom({
     positionNoticeOnce,
     workflowContext,
     truthLedger,
-    bundleSource?.frontMatterScan,
+    sourceBundleText,
   ]);
 
   const strategyBasisNotice = useMemo(() => {
@@ -788,7 +792,7 @@ export function CaseControlRoom({
         useFallbacks: false,
       }),
     );
-    const bundleHay = bundleSource?.frontMatterScan ?? "";
+    const bundleHay = sourceBundleText ?? "";
     const filtered = filterBundleFamilyWarnings(
       filterTemplateSafeLines(
       fromRoute.length
@@ -801,7 +805,7 @@ export function CaseControlRoom({
             ),
           ),
       truthLedger,
-      bundleSource?.frontMatterScan ?? null,
+      sourceBundleText ?? null,
       3,
       ).map((line) => polishPresentationLine(line, bundleHay)),
       bundleHay,
@@ -810,10 +814,10 @@ export function CaseControlRoom({
     return [
       "Outstanding source material may limit how Crown can prove its case — conditional on what is served.",
     ];
-  }, [battleboard, defencePlan, workflowContext, truthLedger, bundleSource?.frontMatterScan]);
+  }, [battleboard, defencePlan, workflowContext, truthLedger, sourceBundleText]);
 
   const defenceRisks = useMemo(() => {
-    const bundleHay = bundleSource?.frontMatterScan ?? "";
+    const bundleHay = sourceBundleText ?? "";
     const items = filterBundleFamilyWarnings(
       filterTemplateSafeLines(
       stripRepeatedPositionNotice(
@@ -832,7 +836,7 @@ export function CaseControlRoom({
         positionNoticeOnce,
       ),
       truthLedger,
-      bundleSource?.frontMatterScan ?? null,
+      sourceBundleText ?? null,
       2,
       ).map((line) => polishPresentationLine(line, bundleHay)),
       bundleHay,
@@ -841,7 +845,7 @@ export function CaseControlRoom({
     return [
       "Assumed position may conflict with interview or served evidence — solicitor review required.",
     ];
-  }, [filteredBattleboard, defencePlan, positionNoticeOnce, workflowContext, truthLedger, bundleSource?.frontMatterScan]);
+  }, [filteredBattleboard, defencePlan, positionNoticeOnce, workflowContext, truthLedger, sourceBundleText]);
 
   const bundlePositionNote = pilotMode ? pilotBundlePositionNote(workflowContext) : null;
 
@@ -857,7 +861,7 @@ export function CaseControlRoom({
     ? pilotCleanupVisibleText(
         displayPrimaryRouteTitle(
           bestRouteTitleRaw,
-          bundleSource?.frontMatterScan ?? "",
+          sourceBundleText ?? "",
           allegation,
         ),
       )
@@ -880,11 +884,11 @@ export function CaseControlRoom({
     }
     if (pilotMode) {
       return pilotCleanupVisibleText(
-        polishPresentationLine(sanitizePilotVisibleLine(line, workflowContext) ?? line, bundleSource?.frontMatterScan ?? ""),
+        polishPresentationLine(sanitizePilotVisibleLine(line, workflowContext) ?? line, sourceBundleText ?? ""),
       );
     }
     return line;
-  }, [battleboard, workflowContext, pilotMode, bundleSource?.frontMatterScan]);
+  }, [battleboard, workflowContext, pilotMode, sourceBundleText]);
 
   const exitClassic = () => {
     clearControlRoomPreference();
