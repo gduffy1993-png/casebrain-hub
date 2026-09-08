@@ -16,6 +16,7 @@ assert.equal(isGenericSolicitorClutterLabel("digital disclosure schedule item"),
 assert.equal(isGenericSolicitorClutterLabel("Additional source-material issues (13 on file)"), true);
 assert.equal(isGenericSolicitorClutterLabel("Missing source"), true);
 assert.equal(isGenericSolicitorClutterLabel("Do not treat"), true);
+assert.equal(isGenericSolicitorClutterLabel("Items marked"), true);
 assert.equal(isGenericSolicitorClutterLabel("Further papers"), true);
 assert.equal(isGenericSolicitorClutterLabel("Further papers on the file"), true);
 assert.equal(isGenericSolicitorClutterLabel("Phone extraction/download status"), false);
