@@ -751,6 +751,63 @@ function rowConfidence(status: MaterialStatus, line: string): TruthConfidence {
  */
 const MATERIAL_SCAN_CHARS = 250_000;
 
+type MaterialLineSourceContext = {
+  sourceDocumentTitle: string | null;
+  sourcePage: string | null;
+  compiledPage: string | null;
+  pageIdentityKnown: boolean | undefined;
+};
+
+type MaterialLineRecord = {
+  line: string;
+  sourceContext: MaterialLineSourceContext;
+};
+
+function emptyMaterialLineSourceContext(): MaterialLineSourceContext {
+  return {
+    sourceDocumentTitle: null,
+    sourcePage: null,
+    compiledPage: null,
+    pageIdentityKnown: undefined,
+  };
+}
+
+function normalizePageRefFromDigits(raw: string | null | undefined): string | null {
+  const digits = raw?.match(/\d+/)?.[0];
+  return digits && parseInt(digits, 10) > 0 ? `p.${parseInt(digits, 10)}` : null;
+}
+
+function parseDocumentTitleMarker(line: string): string | null {
+  const match = line.match(/^={3,}\s*(?!SECTION:)([^=]{3,160}?)\s*={3,}$/i);
+  return match?.[1]?.trim() || null;
+}
+
+function parsePageContextMarker(line: string): Omit<MaterialLineSourceContext, "sourceDocumentTitle"> | null {
+  const match = line.match(/^\[\s*([^\]]+?)\s*\]$/);
+  if (!match?.[1]) return null;
+  const label = match[1].trim();
+  if (/whole\s+document\b.*page\s+identity\s+unknown/i.test(label)) {
+    return {
+      sourcePage: null,
+      compiledPage: null,
+      pageIdentityKnown: false,
+    };
+  }
+  const beforeSlash = label.split("/")[0]?.trim() ?? "";
+  const sourcePage = /^p(?:age)?\.?\s*\d+/i.test(beforeSlash)
+    ? normalizePageRefFromDigits(beforeSlash)
+    : null;
+  const compiledPage = normalizePageRefFromDigits(
+    label.match(/\bcompiled\s+p(?:age)?\.?\s*\d+/i)?.[0] ?? null,
+  );
+  if (!sourcePage && !compiledPage) return null;
+  return {
+    sourcePage,
+    compiledPage,
+    pageIdentityKnown: true,
+  };
+}
+
 function lineLeavesSchedule(line: string): boolean {
   const t = line.trim();
   // A pipe-table cell (`MG5 case summary | yes |`) is still the MG6 schedule, not a new section.
@@ -849,10 +906,11 @@ function lineLooksLikeScheduleInventoryRow(line: string): boolean {
   return false;
 }
 
-function collectMaterialLines(bundleText: string): string[] {
+function collectMaterialLines(bundleText: string): MaterialLineRecord[] {
   const head = bundleText.slice(0, MATERIAL_SCAN_CHARS).replace(/\r\n/g, "\n");
-  const lines: string[] = [];
+  const lines: MaterialLineRecord[] = [];
   const seen = new Set<string>();
+  let currentContext = emptyMaterialLineSourceContext();
 
   const add = (raw: string) => {
     const repaired = repairGluedMg6StatusText(raw);
@@ -866,13 +924,30 @@ function collectMaterialLines(bundleText: string): string[] {
     const key = normaliseDedupeKey(stripLeadingRowNumber(c), parseScheduleRef(c) ?? parseScheduleRef(repaired));
     if (seen.has(key)) return;
     seen.add(key);
-    lines.push(repaired);
+    lines.push({ line: repaired, sourceContext: currentContext });
   };
 
   let inSchedule = false;
   for (const raw of head.split(/\n/)) {
     const line = raw.trim();
     if (!line) continue;
+    const documentTitle = parseDocumentTitleMarker(line);
+    if (documentTitle) {
+      currentContext = {
+        ...emptyMaterialLineSourceContext(),
+        sourceDocumentTitle: documentTitle,
+      };
+      inSchedule = false;
+      continue;
+    }
+    const pageContext = parsePageContextMarker(line);
+    if (pageContext) {
+      currentContext = {
+        ...currentContext,
+        ...pageContext,
+      };
+      continue;
+    }
     if (lineLeavesSchedule(line)) inSchedule = false;
     if (
       (MG6_HEAD_RE.test(line) || /\bMG6C?\s*[/\-]\s*\d/i.test(line)) &&
@@ -918,7 +993,8 @@ export function normaliseBundleMaterials(bundleText: string): NormalisedMaterial
   const rows: NormalisedMaterialRow[] = [];
   const seen = new Set<string>();
 
-  for (const line of collectMaterialLines(bundleText)) {
+  for (const record of collectMaterialLines(bundleText)) {
+    const { line, sourceContext } = record;
     const labelSource =
       stripScheduleFurnitureClauses(stripLeadingOutstandingBoilerplate(line)) || line;
     const status = classifyMaterialStatus(line) ?? classifyMaterialStatus(labelSource);
@@ -941,6 +1017,11 @@ export function normaliseBundleMaterials(bundleText: string): NormalisedMaterial
       documentPriority: "mg6",
       sectionLabel: scheduleRef ?? "MG6/MG6C",
       excerpt: line.slice(0, 220),
+      sourceDocumentTitle: sourceContext.sourceDocumentTitle,
+      sourceDocumentType: "mg6",
+      sourcePage: sourceContext.sourcePage,
+      compiledPage: sourceContext.compiledPage,
+      pageIdentityKnown: sourceContext.pageIdentityKnown,
     };
 
     const displayLine = (() => {

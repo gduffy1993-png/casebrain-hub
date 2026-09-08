@@ -299,12 +299,14 @@ function chaseItemProvenance(input: {
   sourceDocumentType?: string | null;
   sourcePage?: string | null;
   compiledPage?: string | null;
+  pageIdentityKnown?: boolean;
 }): FindingProvenance {
   return assertFindingProvenanceOrLimitation({
     sourceDocumentTitle: input.sourceDocumentTitle ?? null,
     sourceDocumentType: input.sourceDocumentType ?? null,
     sourcePage: input.sourcePage ?? null,
     compiledPage: input.compiledPage ?? null,
+    pageIdentityKnown: input.pageIdentityKnown,
     // Org chase-source labels (e.g. "Police / CCTV unit") are not document titles.
     sourceFilename: null,
     evidenceState: mapChaseStatusToEvidenceState(input.baseStatus),
@@ -1104,6 +1106,30 @@ function interviewModalityFlags(text: string): { recording: boolean; transcript:
     recording: /\brecording\b/.test(t),
     transcript: /\btranscript\b/.test(t),
   };
+}
+
+function chaseItemProvenanceFromMaterial(
+  material: NormalisedMaterialRow,
+  input: {
+    label: string;
+    baseStatus: ChaseItemStatus;
+    evidenceAnchor: string | null;
+  },
+): FindingProvenance {
+  return chaseItemProvenance({
+    label: input.label,
+    source: "MG6/MG6C disclosure schedule",
+    baseStatus: input.baseStatus,
+    evidenceAnchor: input.evidenceAnchor,
+    sourceDocumentTitle: material.sourceAnchor.sourceDocumentTitle ?? null,
+    sourceDocumentType:
+      material.sourceAnchor.sourceDocumentType ??
+      material.sourceAnchor.documentPriority ??
+      null,
+    sourcePage: material.sourceAnchor.sourcePage ?? null,
+    compiledPage: material.sourceAnchor.compiledPage ?? null,
+    pageIdentityKnown: material.sourceAnchor.pageIdentityKnown,
+  });
 }
 
 function interviewItemBlob(item: DisclosureChaseItem): string {
@@ -3228,9 +3254,8 @@ function mergeLedgerDisclosureItems(
           source: "MG6/MG6C disclosure schedule",
           evidenceAnchor,
           mergedFrom: [...existing.mergedFrom, m.displayLine],
-          provenance: chaseItemProvenance({
+          provenance: chaseItemProvenanceFromMaterial(m, {
             label: existing.label,
-            source: "MG6/MG6C disclosure schedule",
             baseStatus: nextStatus,
             evidenceAnchor,
           }),
@@ -3274,6 +3299,17 @@ function mergeLedgerDisclosureItems(
         : canonical.draftChaseWording ?? `Please provide ${cardLabel.toLowerCase()} or confirm in writing why it is not available.`,
       courtLine: `${COURT_RECORD_PREFIX} that ${cardLabel.charAt(0).toLowerCase()}${cardLabel.slice(1)} remains ${professionalCourtStatusFragment(m.status)} on the current papers.`,
       mergedFrom: [m.displayLine],
+      provenance: chaseItemProvenanceFromMaterial(m, {
+        label: cardLabel,
+        baseStatus,
+        evidenceAnchor: (() => {
+          const display = canonical.anchor ?? formatDisplayLabelCasing(m.displayLine);
+          if (!isAdminGuidanceLine(display)) return display;
+          const excerpt = m.sourceAnchor.excerpt;
+          if (!excerpt || isAdminGuidanceLine(excerpt)) return null;
+          return formatDisplayLabelCasing(excerpt);
+        })(),
+      }),
     });
   }
 
@@ -3339,9 +3375,8 @@ function sourceBackedLedgerRestoreItem(
     draftChaseWording: canonical.draftChaseWording ?? fallbackDraft,
     courtLine: fallbackCourt,
     mergedFrom: [m.displayLine],
-    provenance: chaseItemProvenance({
+    provenance: chaseItemProvenanceFromMaterial(m, {
       label,
-      source: "MG6/MG6C disclosure schedule",
       baseStatus,
       evidenceAnchor,
     }),

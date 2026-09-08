@@ -3,8 +3,13 @@
  * Built only from fields already on the item — never invents a page, ref, or quote.
  */
 
-import type { FindingProvenance } from "@/lib/criminal/finding-provenance";
+import {
+  buildFindingProvenance,
+  pageProvenanceForSurface,
+  type FindingProvenance,
+} from "@/lib/criminal/finding-provenance";
 import { classifyEvidenceSubFamily, type EvidenceSubFamily } from "@/lib/criminal/evidence-family-owner";
+import type { DocumentPriority } from "@/lib/criminal/bundle-truth-types";
 
 export type VisibleSourceClass =
   | "direct_pdf_quote"
@@ -77,11 +82,60 @@ function firstQuote(input: VisibleReceiptInput): string | null {
 
 function honestPage(provenance?: FindingProvenance | null): string {
   if (!provenance) return PAGE_UNAVAILABLE;
-  if (provenance.pageIdentityKnown === false) return PAGE_UNAVAILABLE;
-  const page = compact(provenance.sourcePage) || compact(provenance.compiledPage);
-  if (!page) return PAGE_UNAVAILABLE;
+  const projection = pageProvenanceForSurface({
+    ...provenance,
+    sourcePage: compact(provenance.sourcePage) || null,
+    compiledPage: compact(provenance.compiledPage) || null,
+  });
+  const page = compact(projection.pageLabel);
+  if (!projection.pageIdentityKnown || !page) return PAGE_UNAVAILABLE;
   if (/^(?:p\.?)?(?:null|undefined|nan|none|0+)$/i.test(page)) return PAGE_UNAVAILABLE;
   return page;
+}
+
+function evidenceStateFromReceiptStatus(status?: string | null): string | null {
+  const s = compact(status).toLowerCase();
+  if (!s) return null;
+  if (s === "served" || s === "received") return "served";
+  if (s === "partial" || s === "incomplete" || s === "draft" || s === "unsigned") return "incomplete";
+  if (s === "not safely confirmed" || s === "unclear" || s === "review") return "not_safely_confirmed";
+  if (s === "outstanding" || s === "overdue" || s === "due soon" || s === "missing" || s === "absent") {
+    return "missing";
+  }
+  return s;
+}
+
+function provenanceFromSourceAnchor(
+  anchor: {
+    documentPriority?: DocumentPriority | string | null;
+    sourceDocumentTitle?: string | null;
+    sourceDocumentType?: string | null;
+    sourcePage?: string | null;
+    compiledPage?: string | null;
+    pageIdentityKnown?: boolean;
+  } | null | undefined,
+  status?: string | null,
+): FindingProvenance | null {
+  if (!anchor) return null;
+  const hasAnyProvenance =
+    Boolean(compact(anchor.sourceDocumentTitle)) ||
+    Boolean(compact(anchor.sourceDocumentType)) ||
+    Boolean(compact(anchor.sourcePage)) ||
+    Boolean(compact(anchor.compiledPage)) ||
+    anchor.pageIdentityKnown === false;
+  if (!hasAnyProvenance) return null;
+  return buildFindingProvenance({
+    sourceDocumentTitle: anchor.sourceDocumentTitle ?? null,
+    sourceDocumentType: anchor.sourceDocumentType ?? (anchor.documentPriority ? String(anchor.documentPriority) : null),
+    sourcePage: anchor.sourcePage ?? null,
+    compiledPage: anchor.compiledPage ?? null,
+    pageIdentityKnown: anchor.pageIdentityKnown,
+    evidenceState: evidenceStateFromReceiptStatus(status),
+    unresolvedConflictOrLimitation:
+      anchor.pageIdentityKnown === false
+        ? "Supporting row came from unsplit whole-document text."
+        : undefined,
+  });
 }
 
 function honestRef(input: VisibleReceiptInput): string {
@@ -250,8 +304,18 @@ export function receiptFromMaterialRow(row: {
   scheduleRef?: string | null;
   displayLine?: string | null;
   detail?: string | null;
-  sourceAnchor?: { excerpt?: string | null; sectionLabel?: string | null } | null;
+  sourceAnchor?: {
+    excerpt?: string | null;
+    sectionLabel?: string | null;
+    documentPriority?: DocumentPriority | string | null;
+    sourceDocumentTitle?: string | null;
+    sourceDocumentType?: string | null;
+    sourcePage?: string | null;
+    compiledPage?: string | null;
+    pageIdentityKnown?: boolean;
+  } | null;
 }): VisibleOutputReceipt {
+  const provenance = provenanceFromSourceAnchor(row.sourceAnchor, row.status);
   return buildVisibleOutputReceipt({
     output: row.label,
     surface: "papers",
@@ -260,6 +324,7 @@ export function receiptFromMaterialRow(row: {
     sourceLabel: row.sourceAnchor?.sectionLabel ?? null,
     excerpt: row.sourceAnchor?.excerpt ?? row.displayLine ?? row.detail,
     evidenceAnchor: row.displayLine,
+    provenance,
   });
 }
 
@@ -342,8 +407,18 @@ export function receiptFromClientFactLine(
     displayLine?: string | null;
     excerpt?: string | null;
     sourceLabel?: string | null;
+    provenance?: FindingProvenance | null;
+    sourceAnchor?: {
+      documentPriority?: DocumentPriority | string | null;
+      sourceDocumentTitle?: string | null;
+      sourceDocumentType?: string | null;
+      sourcePage?: string | null;
+      compiledPage?: string | null;
+      pageIdentityKnown?: boolean;
+    } | null;
   } | null,
 ): VisibleOutputReceipt {
+  const provenance = row?.provenance ?? provenanceFromSourceAnchor(row?.sourceAnchor, row?.status);
   return buildVisibleOutputReceipt({
     output: line,
     surface: "client",
@@ -352,5 +427,6 @@ export function receiptFromClientFactLine(
     sourceLabel: row?.sourceLabel,
     excerpt: row?.excerpt ?? row?.displayLine,
     evidenceAnchor: row?.displayLine,
+    provenance,
   });
 }

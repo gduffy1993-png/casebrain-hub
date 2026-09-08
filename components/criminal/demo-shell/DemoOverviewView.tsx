@@ -61,14 +61,20 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
     return () => window.clearTimeout(timer);
   }, [caseId, loading]);
 
+  const sourceBundleText =
+    bundleMeta?.canonical?.pageAwareFrontMatterScan ??
+    (bundleMeta as { pageAwareFrontMatterScan?: string | null } | null)?.pageAwareFrontMatterScan ??
+    bundleMeta?.frontMatterScan ??
+    "";
+
   const bundleHay = useMemo(
     () =>
       [
-        bundleMeta?.frontMatterScan ?? "",
+        sourceBundleText,
         allegation ?? "",
         ...(chase?.primaryItems ?? []).map((i) => `${i.label} ${i.whyItMatters ?? ""}`),
       ].join(" "),
-    [bundleMeta?.frontMatterScan, allegation, chase?.primaryItems],
+    [sourceBundleText, allegation, chase?.primaryItems],
   );
 
   const filteredDoNotOverstate = useMemo(
@@ -84,7 +90,7 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
       chase,
       matterConfidence,
       doNotOverstate: filteredDoNotOverstate,
-      bundleText: bundleMeta?.frontMatterScan ?? undefined,
+      bundleText: sourceBundleText || undefined,
     });
     const gapRowsPolished = ensureDigitalHarassmentGapRows(
       built.evidenceState.rows,
@@ -95,7 +101,7 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
       ...built,
       evidenceState: { ...built.evidenceState, rows: dedupeEvidenceRowsByLabel(gapRowsPolished) },
     };
-  }, [warRoom, chase, allegation, matterConfidence, filteredDoNotOverstate, bundleMeta?.frontMatterScan, bundleHay]);
+  }, [warRoom, chase, allegation, matterConfidence, filteredDoNotOverstate, sourceBundleText, bundleHay]);
 
   const hearingMode = useMemo(() => {
     if (!briefPlan || !warRoom || !chase) return null;
@@ -253,11 +259,13 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
     displayLine: clientSource?.evidenceAnchor,
     excerpt: clientSource?.evidenceAnchor,
     sourceLabel: clientSource?.source,
+    provenance: clientSource?.provenance ?? null,
   });
 
   const liveFileIdentity = extractBundleCaseMetadata(
     [
       bundleMeta?.frontMatterScan ?? "",
+      sourceBundleText,
       bundleMeta?.snippets?.mg5 ?? "",
       bundleMeta?.snippets?.mg11 ?? "",
     ].join("\n\n"),

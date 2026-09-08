@@ -217,6 +217,9 @@ export function useMatterBrief(caseId: string) {
   const pilotMatter = useMemo(() => {
     if (snapshotLoading || battleboardLoading || bundleLoading) return null;
 
+    const pageAwareBundleText = bundleSource?.canonical?.pageAwareFrontMatterScan ?? null;
+    const bundleText = pageAwareBundleText ?? bundleSource?.frontMatterScan ?? null;
+
     const headerMeta = resolveCaseHeaderMetadata({
       snapshot,
       matter: matter
@@ -231,7 +234,7 @@ export function useMatterBrief(caseId: string) {
       bundleMetadata: bundleSource?.caseMetadata,
       bundleHeader: bundleSource?.header,
       sourceCharges: bundleSource?.canonical?.charges ?? null,
-      bundleText: bundleSource?.frontMatterScan ?? null,
+      bundleText,
       matterState,
     });
 
@@ -245,7 +248,7 @@ export function useMatterBrief(caseId: string) {
     const pilotHeader = workflowHeaderOverrides(caseTitleBase, {
       allegation: allegationBase,
       routeTitle: battleboard?.primary_route?.title,
-      bundleText: bundleSource?.frontMatterScan ?? null,
+      bundleText,
       clientLabel,
     });
     const caseTitle = safeSolicitorCaseTitle(pilotHeader?.displayTitle ?? pilotHeader?.title ?? caseTitleBase);
@@ -255,7 +258,7 @@ export function useMatterBrief(caseId: string) {
     : headerMeta.stage;
     const bundleHayForHearing = [
       bundleSource?.caseMetadata?.nextHearingRaw,
-      bundleSource?.frontMatterScan,
+      bundleText,
       bundleSource?.header?.shortTitle,
     ]
       .filter(Boolean)
@@ -280,15 +283,16 @@ export function useMatterBrief(caseId: string) {
     const bundleHealth = deriveBundleHealth(snapshot, bundleSource, battleboard);
 
     const bundleTextForBrief = assembleBundleTextForReasoning({
-      frontMatterScan: bundleSource?.frontMatterScan ?? null,
+      frontMatterScan: pageAwareBundleText ?? bundleSource?.frontMatterScan ?? null,
       snippets: bundleSource?.snippets,
     });
+    const sourceBundleText = bundleTextForBrief || bundleText || null;
 
     const workflowContext = {
       caseTitle,
       allegation,
       routeTitle: battleboard?.primary_route?.title,
-      bundleText: bundleSource?.frontMatterScan ?? null,
+      bundleText,
       clientLabel,
       profileHint: pilotHeader?.profile ?? null,
     };
@@ -307,10 +311,10 @@ export function useMatterBrief(caseId: string) {
       battleboard,
       snapshotMissing: courtPressureRows,
       proceduralOutstanding: undefined,
-      bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
+      bundleText: sourceBundleText,
     });
     const briefPlan = buildCriminalBriefPlan({
-      bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
+      bundleText: sourceBundleText,
       missingMaterial: [
         ...chaseItemsAll,
         ...courtPressureRows.map((item) => item.label),
@@ -382,7 +386,7 @@ export function useMatterBrief(caseId: string) {
       hasSavedPosition,
       chaseItems: chaseItemsAll,
       proceduralOutstanding: undefined,
-      bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
+      bundleText: sourceBundleText,
       profileHint: pilotHeader?.profile ?? null,
       briefPlan,
       canonicalFindings,
@@ -402,7 +406,7 @@ export function useMatterBrief(caseId: string) {
       snapshotMissing: [
         ...builderMissingRows,
       ],
-      bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
+      bundleText: sourceBundleText,
       profileHint: pilotHeader?.profile ?? null,
       briefPlan,
       canonicalFindings,
@@ -425,7 +429,7 @@ export function useMatterBrief(caseId: string) {
       hasSafeCourtLine: Boolean(warRoom.safePositionToday?.trim()),
     });
 
-    const bundleHay = `${bundleTextForBrief || bundleSource?.frontMatterScan || ""}`;
+    const bundleHay = `${sourceBundleText || ""}`;
     const hearingResolved = resolveSolicitorHearingStatus({
       bundleNextHearingIso: hearingDateIso,
       snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt ?? null,
@@ -490,6 +494,7 @@ export function useMatterBrief(caseId: string) {
             documentRows: bundleSource.documentRows,
             snippets: bundleSource.snippets,
             frontMatterScan: bundleSource.frontMatterScan,
+            pageAwareFrontMatterScan: pageAwareBundleText,
             caseMetadata: bundleSource.caseMetadata,
             canonical: bundleSource.canonical ?? null,
           }

@@ -34,6 +34,13 @@ function statusTone(status: MaterialStatus): string {
 }
 
 function pageHint(row: NormalisedMaterialRow): string | null {
+  const sourcePage = row.sourceAnchor.sourcePage?.trim();
+  const compiledPage = row.sourceAnchor.compiledPage?.trim();
+  if (row.sourceAnchor.pageIdentityKnown !== false) {
+    if (sourcePage && compiledPage && sourcePage !== compiledPage) return `${sourcePage} (compiled ${compiledPage})`;
+    if (sourcePage) return sourcePage;
+    if (compiledPage) return `compiled ${compiledPage}`;
+  }
   const hay = `${row.displayLine} ${row.detail ?? ""} ${row.sourceAnchor.excerpt ?? ""} ${row.scheduleRef ?? ""}`;
   const range = hay.match(/\bpages?\s+(\d+)\s*[-–—]\s*(\d+)\b/i);
   if (range) return `pp. ${range[1]}–${range[2]}`;

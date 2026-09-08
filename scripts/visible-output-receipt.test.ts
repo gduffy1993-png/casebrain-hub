@@ -3,7 +3,11 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { buildDemoAttentionItems } from "../components/criminal/demo-shell/demoOverviewAdapter";
-import type { DisclosureChaseItem } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import {
+  buildDisclosureChaseBrief,
+  type DisclosureChaseItem,
+} from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import { buildBundleTruthLedger } from "../lib/criminal/bundle-truth-ledger";
 import {
   buildVisibleOutputReceipt,
   receiptFromChaseItem,
@@ -172,6 +176,59 @@ describe("visible output receipts", () => {
     expect(receipt.family).toBe("cctv_master");
     expect(receipt.transformation).toBe("served stills split from missing master");
     expect(receipt.surface).toBe("papers");
+  });
+
+  it("keeps page-aware PDF provenance on Papers receipts", () => {
+    const ledger = buildBundleTruthLedger({
+      bundleText: [
+        "=== Davies unused material schedule.pdf ===",
+        "[p.7 / compiled p.42]",
+        "MG6/04 bank source statements Outstanding Not in papers supplied",
+      ].join("\n"),
+    });
+    const row = ledger.materials.find((material) => material.scheduleRef === "MG6/04");
+    expect(row).toBeTruthy();
+    expect(row?.sourceAnchor.sourceDocumentTitle).toBe("Davies unused material schedule.pdf");
+    expect(row?.sourceAnchor.sourcePage).toBe("p.7");
+    expect(row?.sourceAnchor.compiledPage).toBe("p.42");
+
+    const receipt = receiptFromMaterialRow(row!);
+    expectVisibleReceiptShape(receipt);
+    expect(receipt.sourceDocument).toBe("Davies unused material schedule.pdf");
+    expect(receipt.sourcePage).toBe("p.7 (compiled p.42)");
+    expect(receipt.supportingText).toMatch(/Outstanding Not in papers supplied/);
+  });
+
+  it("keeps page-aware PDF provenance when a schedule row becomes an Overview chase card", () => {
+    const bundleText = [
+      "=== Davies unused material schedule.pdf ===",
+      "[p.7 / compiled p.42]",
+      "MG6/04 bank source statements Outstanding Not in papers supplied",
+    ].join("\n");
+    const brief = buildDisclosureChaseBrief({
+      caseId: "receipt-page-test",
+      caseTitle: "R v Davies",
+      clientLabel: "Davies",
+      allegation: "Fraud",
+      stage: "First appearance",
+      hearingStatus: "Upcoming listing",
+      hearingDateIso: null,
+      bundleHealth: "Review papers",
+      positionStatus: "Position not safely recorded yet",
+      battleboard: null,
+      snapshotMissing: [],
+      proceduralOutstanding: [],
+      bundleText,
+    });
+    const item = brief.items.find((candidate) => candidate.sourceScheduleRef === "MG6/04");
+    expect(item).toBeTruthy();
+    expect(item?.provenance?.sourceDocumentTitle).toBe("Davies unused material schedule.pdf");
+    expect(item?.provenance?.sourcePage).toBe("p.7");
+    expect(item?.provenance?.compiledPage).toBe("p.42");
+
+    const receipt = receiptFromChaseItem(item!, "overview");
+    expect(receipt.sourcePage).toBe("p.7 (compiled p.42)");
+    expect(receipt.sourceDocument).toBe("Davies unused material schedule.pdf");
   });
 
   it("backs a multi-item court line with child receipts for every named item", () => {

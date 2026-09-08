@@ -170,7 +170,11 @@ export function PilotSummaryView({
   const [copied, setCopied] = useState<"client" | null>(null);
   const { loading, matterBrief, matterConfidence, doNotOverstate, bundleMeta, outputIntegrity, allegation } =
     useMatterBrief(caseId);
-  const bundleHay = bundleMeta?.frontMatterScan ?? "";
+  const bundleHay =
+    bundleMeta?.canonical?.pageAwareFrontMatterScan ??
+    (bundleMeta as { pageAwareFrontMatterScan?: string | null } | null)?.pageAwareFrontMatterScan ??
+    bundleMeta?.frontMatterScan ??
+    "";
   const packetLedger = useMemo(() => {
     if (!bundleHay.trim()) return null;
     return buildBundleTruthLedger({ bundleText: bundleHay });
@@ -296,6 +300,7 @@ export function PilotSummaryView({
                         displayLine: match?.displayLine,
                         excerpt: match?.sourceAnchor.excerpt,
                         sourceLabel: match?.sourceAnchor.sectionLabel,
+                        sourceAnchor: match?.sourceAnchor,
                       })}
                       compact
                     />

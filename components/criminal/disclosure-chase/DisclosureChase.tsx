@@ -706,6 +706,11 @@ export function DisclosureChase({
     };
   }, [caseId]);
 
+  const sourceBundleText =
+    bundleSource?.canonical?.pageAwareFrontMatterScan ??
+    bundleSource?.frontMatterScan ??
+    null;
+
   const headerMeta = useMemo(
     () =>
       resolveCaseHeaderMetadata({
@@ -722,10 +727,10 @@ export function DisclosureChase({
         bundleMetadata: bundleSource?.caseMetadata,
         bundleHeader: bundleSource?.header,
         sourceCharges: bundleSource?.canonical?.charges ?? null,
-        bundleText: bundleSource?.frontMatterScan ?? null,
+        bundleText: sourceBundleText,
         matterState,
       }),
-    [snapshot, matter, bundleSource, matterState],
+    [snapshot, matter, bundleSource, matterState, sourceBundleText],
   );
 
   const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
@@ -737,10 +742,10 @@ export function DisclosureChase({
       workflowHeaderOverrides(titleBase, {
         allegation: allegationBase,
         routeTitle: battleboard?.primary_route?.title,
-        bundleText: bundleSource?.frontMatterScan ?? null,
+        bundleText: sourceBundleText,
         clientLabel,
       }),
-    [titleBase, allegationBase, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan],
+    [titleBase, allegationBase, clientLabel, battleboard?.primary_route?.title, sourceBundleText],
   );
   const caseTitle = safeSolicitorCaseTitle(
     pilotHeader?.displayTitle ?? pilotHeader?.title ?? titleBase,
@@ -751,11 +756,11 @@ export function DisclosureChase({
       caseTitle,
       allegation,
       routeTitle: battleboard?.primary_route?.title,
-      bundleText: bundleSource?.frontMatterScan ?? null,
+      bundleText: sourceBundleText,
       clientLabel,
       profileHint: pilotHeader?.profile ?? null,
     }),
-    [caseTitle, allegation, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan, pilotHeader?.profile],
+    [caseTitle, allegation, clientLabel, battleboard?.primary_route?.title, sourceBundleText, pilotHeader?.profile],
   );
   const headerLoading = snapshotLoading || bundleLoading;
   const pilotMode = isCriminalPilotMode();
@@ -767,7 +772,7 @@ export function DisclosureChase({
     bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
     snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
     nextHearingRaw: bundleSource?.caseMetadata?.nextHearingRaw,
-    bundleHay: bundleSource?.frontMatterScan,
+    bundleHay: sourceBundleText,
   });
   const courtDisplay = pilotMode
     ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
@@ -779,7 +784,7 @@ export function DisclosureChase({
     nextHearingRaw: headerMeta.nextHearing,
     bundleHay: [
       bundleSource?.caseMetadata?.nextHearingRaw,
-      bundleSource?.frontMatterScan,
+      sourceBundleText,
     ]
       .filter(Boolean)
       .join("\n"),
@@ -830,7 +835,7 @@ export function DisclosureChase({
         battleboard,
         snapshotMissing: builderMissingRows,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
-        bundleText: bundleSource?.frontMatterScan ?? null,
+        bundleText: sourceBundleText,
         profileHint: pilotHeader?.profile ?? null,
         canonicalFindings: bundleSource?.canonical?.findingSummaries ?? [],
         canonicalEvidenceRows: (bundleSource?.canonical?.evidenceRows ?? []).map((r) => ({
@@ -853,6 +858,7 @@ export function DisclosureChase({
       headerMeta.nextHearing,
       hearingDisplay,
       pilotHeader?.profile,
+      sourceBundleText,
     ],
   );
 
@@ -874,7 +880,7 @@ export function DisclosureChase({
   const selectedItem =
     brief.primaryItems.find((i) => i.id === selectedId) ?? filteredPrimary[0] ?? null;
   const bundleHay = [
-    bundleSource?.frontMatterScan ?? "",
+    sourceBundleText ?? "",
     allegation,
     ...(brief.primaryItems ?? []).map((i) => `${i.label} ${i.whyItMatters ?? ""} ${i.draftChaseWording ?? ""}`),
   ].join(" ");
