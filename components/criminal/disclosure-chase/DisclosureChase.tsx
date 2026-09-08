@@ -1036,11 +1036,11 @@ export function DisclosureChase({
               <OutputReceiptDisclosure
                 receipt={receiptFromCourtLine(
                   displaySafeCourtLine,
-                  brief.primaryItems.find((item) => {
+                  brief.primaryItems.filter((item) => {
                     const itemCourt = (item.courtLine ?? "").replace(/\s+/g, " ").trim();
                     const court = displaySafeCourtLine.replace(/\s+/g, " ").trim();
                     return Boolean(itemCourt) && (itemCourt === court || court.includes(item.label));
-                  }) ?? null,
+                  }).slice(0, 4),
                 )}
               />
             </section>

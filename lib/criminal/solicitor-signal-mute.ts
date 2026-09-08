@@ -8,6 +8,9 @@ export function isGenericSolicitorClutterLabel(label: string): boolean {
   if (!t) return false;
   return (
     /^exhibit mapping\s*\/\s*provenance$/i.test(t) ||
+    /^missing source$/i.test(t) ||
+    /^do not treat$/i.test(t) ||
+    /^further papers(?:\s+on\s+the\s+file|\s+issue)?$/i.test(t) ||
     /^digital disclosure schedule item$/i.test(t) ||
     /mg6c?\s*clarification|mg6\s*\/\s*unused|unused schedule clarification/i.test(t) ||
     /^(?:additional|other)\s+source[- ]material(?:\s+issues?)?(?:\s*\(\d+\s*on file\))?$/i.test(t) ||

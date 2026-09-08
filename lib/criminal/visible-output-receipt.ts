@@ -8,6 +8,7 @@ import { classifyEvidenceSubFamily, type EvidenceSubFamily } from "@/lib/crimina
 
 export type VisibleSourceClass =
   | "direct_pdf_quote"
+  | "multi_source_backed"
   | "derived_from_absence"
   | "user_entered"
   | "procedural_instruction"
@@ -29,6 +30,7 @@ export type VisibleOutputReceipt = {
   guard: string;
   unsupportedWarning: string | null;
   family: EvidenceSubFamily;
+  childReceipts?: VisibleOutputReceipt[];
 };
 
 export type VisibleReceiptInput = {
@@ -49,7 +51,7 @@ const REF_UNAVAILABLE = "ref unavailable";
 const DOC_UNAVAILABLE = "unavailable";
 
 const ABSENCE_RE =
-  /\b(?:not (?:yet )?(?:served|attached|listed|supplied|included)|no (?:reference|mention|listing|entry)|outstanding|absent|not in papers|missing)\b/i;
+  /\b(?:not (?:yet )?(?:served|attached|listed|supplied|included)|no (?:named\s+)?(?:outstanding\s+)?(?:material|reference|mention|listing|entry|chase|gap|items?)|outstanding|absent|not in papers|missing)\b/i;
 const GENERATED_GAP_RE =
   /\b(?:full 999 audio|full cad incident log|full phone download|full phone extraction|source extraction|subscriber \/ account data|full cctv master)\b/i;
 const USER_RE = /\b(?:user entered|solicitor note|record position|flagged by user)\b/i;
@@ -109,6 +111,7 @@ function inferTruthState(text: string, status?: string | null): string {
   if (s === "not safely confirmed" || s === "unclear" || s === "review") return "not_safely_confirmed";
   if (s === "partial" || s === "incomplete") return "incomplete";
   const n = compact(text).toLowerCase();
+  if (/\bno (?:named\s+)?(?:outstanding\s+)?(?:material|chase|gap|items?)\b/.test(n)) return "none";
   if (/\bnot safely confirmed\b/.test(n)) return "not_safely_confirmed";
   if (/\b(?:outstanding|not yet served)\b/.test(n)) return "outstanding";
   if (/\bmissing\b/.test(n)) return "missing";
@@ -122,6 +125,7 @@ function inferSourceClass(input: VisibleReceiptInput, quote: string | null, ref:
   if (PROCEDURAL_RE.test(input.output) && !ABSENCE_RE.test(input.output) && ref === REF_UNAVAILABLE && !quote) {
     return "procedural_instruction";
   }
+  if (!quote && ref === REF_UNAVAILABLE && ABSENCE_RE.test(input.output)) return "derived_from_absence";
   // A named schedule/exhibit ref is source-backed even when the cell says the item is missing.
   if (ref !== REF_UNAVAILABLE || (quote && !ABSENCE_RE.test(quote))) return "direct_pdf_quote";
   if (quote && ABSENCE_RE.test(quote)) return "derived_from_absence";
@@ -149,6 +153,7 @@ function inferTransformation(
     return "phone contact/property split from missing download";
   }
   if (sourceClass === "derived_from_absence") return "absence rule";
+  if (sourceClass === "multi_source_backed") return "multi-item court/client line from shortlist receipts";
   if (sourceClass === "generated_from_missing_expected_material") {
     return "generated from missing expected material";
   }
@@ -163,6 +168,7 @@ function inferTransformation(
 
 function inferGuard(sourceClass: VisibleSourceClass, page: string): string {
   if (sourceClass === "unsupported") return "fail: factual output has no supporting File/PDF quote or ref";
+  if (sourceClass === "multi_source_backed") return "pass: multi-item line backed by child receipts";
   if (sourceClass === "direct_pdf_quote" && page !== PAGE_UNAVAILABLE) return "pass: source-backed with page";
   if (sourceClass === "direct_pdf_quote") return "pass: source-backed — page unavailable";
   if (sourceClass === "derived_from_absence") return "pass: derived from stated absence";
@@ -175,6 +181,7 @@ function inferGuard(sourceClass: VisibleSourceClass, page: string): string {
 
 function inferConfidence(sourceClass: VisibleSourceClass, page: string): number {
   if (sourceClass === "direct_pdf_quote") return page === PAGE_UNAVAILABLE ? 0.7 : 0.9;
+  if (sourceClass === "multi_source_backed") return 0.7;
   if (sourceClass === "derived_from_absence") return 0.65;
   if (sourceClass === "generated_from_missing_expected_material") return 0.5;
   if (sourceClass === "user_entered" || sourceClass === "procedural_instruction") return 0.4;
@@ -262,18 +269,65 @@ export function receiptFromCourtLine(
     mergedFrom?: string[];
     sourceScheduleRef?: string | null;
     provenance?: FindingProvenance | null;
-  } | null,
+    label?: string;
+    id?: string;
+  } | Array<{
+    baseStatus?: string | null;
+    source?: string | null;
+    evidenceAnchor?: string | null;
+    mergedFrom?: string[];
+    sourceScheduleRef?: string | null;
+    provenance?: FindingProvenance | null;
+    label: string;
+    id?: string;
+  }> | null,
 ): VisibleOutputReceipt {
+  const sources = Array.isArray(source) ? source : source ? [source] : [];
+  const childReceipts = sources
+    .filter((item): item is typeof item & { label: string } => Boolean(compact(item.label)))
+    .map((item) => receiptFromChaseItem(item, "court"));
+  if (childReceipts.length > 1) {
+    const refs = childReceipts.map((receipt) => receipt.sourceRef).filter((ref) => ref !== REF_UNAVAILABLE);
+    const quotes = childReceipts
+      .map((receipt) => receipt.supportingText)
+      .filter((quote): quote is string => Boolean(quote));
+    const backedChildren = childReceipts.filter((receipt) => receipt.sourceClass !== "unsupported");
+    const pageKnown = childReceipts.some((receipt) => receipt.sourcePage !== PAGE_UNAVAILABLE);
+    return {
+      output: compact(text),
+      outputType: "court_line",
+      surface: "court",
+      truthState: inferTruthState(text, sources.find((item) => item.baseStatus)?.baseStatus),
+      sourceClass: "multi_source_backed",
+      sourceDocument: "multiple source rows",
+      sourceRef: refs.length ? refs.join(", ") : REF_UNAVAILABLE,
+      sourcePage: pageKnown ? "mixed pages" : PAGE_UNAVAILABLE,
+      supportingText: quotes.length ? quotes.join(" | ") : null,
+      transformation: "multi-item court/client line from shortlist receipts",
+      confidence: backedChildren.length === childReceipts.length ? 0.75 : 0.45,
+      guard:
+        backedChildren.length === childReceipts.length
+          ? "pass: multi-item line backed by child receipts"
+          : "check: one or more child receipts lacks support",
+      unsupportedWarning:
+        backedChildren.length === childReceipts.length
+          ? null
+          : "Some items in this multi-item line lack a supporting File/PDF quote or ref.",
+      family: classifyEvidenceSubFamily(text, refs),
+      childReceipts,
+    };
+  }
+  const singleSource = sources[0] ?? null;
   return buildVisibleOutputReceipt({
     output: text,
     surface: "court",
     outputType: "court_line",
-    status: source?.baseStatus,
-    scheduleRef: source?.sourceScheduleRef,
-    sourceLabel: source?.source,
-    evidenceAnchor: source?.evidenceAnchor,
-    mergedFrom: source?.mergedFrom,
-    provenance: source?.provenance,
+    status: singleSource?.baseStatus,
+    scheduleRef: singleSource?.sourceScheduleRef,
+    sourceLabel: singleSource?.source,
+    evidenceAnchor: singleSource?.evidenceAnchor,
+    mergedFrom: singleSource?.mergedFrom,
+    provenance: singleSource?.provenance,
   });
 }
 

@@ -227,13 +227,23 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
     : dedupePresentationLines(
         attention.slice(0, 3).map((a) => `Outstanding: ${a.title}`),
       ).join("\n") || "Limited papers — keep the client update provisional.";
-  const courtSource =
-    chasePool.find((item) => {
-      const itemCourt = (item.courtLine ?? "").replace(/\s+/g, " ").trim();
-      const court = courtLineText.replace(/\s+/g, " ").trim();
-      return Boolean(itemCourt) && (itemCourt === court || court.includes(item.label));
-    }) ?? null;
-  const courtReceipt = receiptFromCourtLine(courtLineText, courtSource);
+  const courtLineNorm = courtLineText.replace(/\s+/g, " ").trim().toLowerCase();
+  const courtSources = chasePool
+    .filter((item) => {
+      const label = (item.label ?? "").replace(/\s+/g, " ").trim().toLowerCase();
+      const displayLabel =
+        polishChasePreviewLabel(polishPresentationLine(item.label, bundleHay)) ||
+        item.label;
+      const display = displayLabel.replace(/\s+/g, " ").trim().toLowerCase();
+      const itemCourt = (item.courtLine ?? "").replace(/\s+/g, " ").trim().toLowerCase();
+      return (
+        Boolean(label && courtLineNorm.includes(label)) ||
+        Boolean(display && courtLineNorm.includes(display)) ||
+        Boolean(itemCourt && itemCourt === courtLineNorm)
+      );
+    })
+    .slice(0, 4);
+  const courtReceipt = receiptFromCourtLine(courtLineText, courtSources);
   const clientSource = chasePool.find((item) =>
     clientUpdate.toLowerCase().includes((item.label ?? "").toLowerCase().slice(0, 24)),
   );

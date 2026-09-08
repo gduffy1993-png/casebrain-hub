@@ -8,6 +8,7 @@ import {
   buildVisibleOutputReceipt,
   receiptFromChaseItem,
   receiptFromClientFactLine,
+  receiptFromCourtLine,
   receiptFromMaterialRow,
 } from "../lib/criminal/visible-output-receipt";
 
@@ -99,6 +100,18 @@ describe("visible output receipts", () => {
     expect(receipt.unsupportedWarning).toBeNull();
   });
 
+  it("classes a no-named-material court line as derived from absence, not unsupported outstanding", () => {
+    const receipt = receiptFromCourtLine(
+      "No named outstanding material on the current papers — position stays provisional.",
+    );
+    expect(receipt.sourceClass).toBe("derived_from_absence");
+    expect(receipt.truthState).toBe("none");
+    expect(receipt.sourceRef).toBe("ref unavailable");
+    expect(receipt.sourcePage).toBe("page unavailable");
+    expect(receipt.guard).toMatch(/derived from stated absence/);
+    expect(receipt.unsupportedWarning).toBeNull();
+  });
+
   it("exposes an unsupported receipt when no File quote or ref exists", () => {
     const receipt = buildVisibleOutputReceipt({
       output: "Defence has a strong alibi on the papers",
@@ -147,6 +160,36 @@ describe("visible output receipts", () => {
     expect(receipt.family).toBe("cctv_master");
     expect(receipt.transformation).toBe("served stills split from missing master");
     expect(receipt.surface).toBe("papers");
+  });
+
+  it("backs a multi-item court line with child receipts for every named item", () => {
+    const receipt = receiptFromCourtLine(
+      "The defence asks the court to record that MG6/05 CCTV Continuity log and MG6/04 bank source statements remain outstanding on the papers.",
+      [
+        chase({
+          id: "cctv",
+          label: "MG6/05 CCTV Continuity log",
+          baseStatus: "Outstanding",
+          sourceScheduleRef: "MG6/05",
+          evidenceAnchor: "MG6/05 CCTV Continuity log — Outstanding Awaiting export",
+        }),
+        chase({
+          id: "bank",
+          label: "MG6/04 bank source statements",
+          baseStatus: "Outstanding",
+          sourceScheduleRef: "MG6/04",
+          evidenceAnchor: "MG6/04 bank source statements — Outstanding Not in papers supplied",
+        }),
+      ],
+    );
+    expect(receipt.sourceClass).toBe("multi_source_backed");
+    expect(receipt.sourceRef).toBe("MG6/05, MG6/04");
+    expect(receipt.childReceipts).toHaveLength(2);
+    expect(receipt.childReceipts?.map((child) => child.supportingText)).toEqual([
+      "MG6/05 CCTV Continuity log — Outstanding Awaiting export",
+      "MG6/04 bank source statements — Outstanding Not in papers supplied",
+    ]);
+    expect(receipt.guard).toMatch(/multi-item line backed/);
   });
 
   it("does not turn why-it-matters copy into a fake File quote", () => {

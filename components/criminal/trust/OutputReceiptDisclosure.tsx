@@ -13,6 +13,31 @@ function Row({ label, value, warn = false }: { label: string; value: string; war
   );
 }
 
+function ChildReceiptRows({ receipts }: { receipts: VisibleOutputReceipt[] }) {
+  if (!receipts.length) return null;
+  return (
+    <div className="border-t border-slate-200 pt-1.5" data-testid="output-receipt-children">
+      <p className="text-[10px] uppercase tracking-wide text-slate-500">Item receipts</p>
+      <ul className="mt-1 space-y-1">
+        {receipts.map((child, index) => (
+          <li
+            key={`${child.output}-${child.sourceRef}-${index}`}
+            className="rounded border border-slate-200 bg-white px-2 py-1 text-xs text-slate-700"
+          >
+            <p className="font-medium text-slate-800">{child.output}</p>
+            <p className="mt-0.5">
+              {child.sourceRef} · {child.sourceClass} · {child.truthState}
+            </p>
+            <p className="mt-0.5 text-slate-500">
+              {child.supportingText ?? "No supporting File/PDF quote available."}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export function OutputReceiptDisclosure({
   receipt,
   compact = false,
@@ -51,6 +76,7 @@ export function OutputReceiptDisclosure({
         <Row label="Transformation" value={receipt.transformation} />
         <Row label="Confidence" value={String(receipt.confidence)} />
         <Row label="Guard" value={receipt.guard} warn={Boolean(receipt.unsupportedWarning)} />
+        <ChildReceiptRows receipts={receipt.childReceipts ?? []} />
         {receipt.unsupportedWarning ? (
           <p className="text-xs text-amber-800 border-t border-amber-200 pt-1.5" data-testid="output-receipt-unsupported">
             {receipt.unsupportedWarning}

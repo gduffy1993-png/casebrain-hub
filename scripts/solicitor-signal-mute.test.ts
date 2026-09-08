@@ -14,6 +14,10 @@ assert.equal(isGenericSolicitorClutterLabel("Exhibit mapping / provenance"), tru
 assert.equal(isGenericSolicitorClutterLabel("MG6 / unused schedule clarification"), true);
 assert.equal(isGenericSolicitorClutterLabel("digital disclosure schedule item"), true);
 assert.equal(isGenericSolicitorClutterLabel("Additional source-material issues (13 on file)"), true);
+assert.equal(isGenericSolicitorClutterLabel("Missing source"), true);
+assert.equal(isGenericSolicitorClutterLabel("Do not treat"), true);
+assert.equal(isGenericSolicitorClutterLabel("Further papers"), true);
+assert.equal(isGenericSolicitorClutterLabel("Further papers on the file"), true);
 assert.equal(isGenericSolicitorClutterLabel("Phone extraction/download status"), false);
 assert.equal(isGenericSolicitorClutterLabel("CCTV full window / master footage"), false);
 assert.equal(isGenericSolicitorClutterLabel("Interview transcript"), false);
