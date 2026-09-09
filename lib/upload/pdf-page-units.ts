@@ -157,6 +157,32 @@ function collectPrintedPageMarkers(text: string): PrintedPageMarker[] {
   return markers;
 }
 
+const INLINE_PRINTED_PAGE_MARKER_RE =
+  /\b[A-Z]{2,}(?:[-/][A-Z0-9]+){1,6}\s*(?:\|\s*)?(?:page|pg\.?|p\.)\s*(\d{1,4})(?=\D|$)/gi;
+
+function collectInlinePrintedPageMarkers(text: string): PrintedPageMarker[] {
+  const markers: PrintedPageMarker[] = [];
+  for (const match of text.matchAll(INLINE_PRINTED_PAGE_MARKER_RE)) {
+    const page = parseInt(match[1] ?? "", 10);
+    const offset = match.index ?? -1;
+    if (!Number.isFinite(page) || page <= 0 || offset < 0) continue;
+    markers.push({ offset, page });
+  }
+  return markers;
+}
+
+function uniqueMarkers(markers: PrintedPageMarker[]): PrintedPageMarker[] {
+  const out: PrintedPageMarker[] = [];
+  const seen = new Set<string>();
+  for (const marker of markers.sort((a, b) => a.offset - b.offset)) {
+    const key = `${marker.offset}:${marker.page}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(marker);
+  }
+  return out;
+}
+
 /**
  * Some old uploads stored a whole PDF text blob without form-feed separators, but
  * the PDF text itself still printed a page header on each page (`Page 8Prepared
@@ -166,7 +192,10 @@ function collectPrintedPageMarkers(text: string): PrintedPageMarker[] {
  */
 export function splitCompiledPagesFromPrintedPageMarkers(text: string): string[] | null {
   if (!text?.trim()) return null;
-  const markers = collectPrintedPageMarkers(text);
+  const markers = uniqueMarkers([
+    ...collectPrintedPageMarkers(text),
+    ...collectInlinePrintedPageMarkers(text),
+  ]);
   if (markers.length < 2) return null;
 
   const first = markers[0]!;

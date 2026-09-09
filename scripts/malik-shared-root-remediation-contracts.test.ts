@@ -145,6 +145,20 @@ async function contractExactPageProvenance() {
     assert.match(units![2]!.text, /O02CAD log full printOutstandingNot yet served/);
   });
 
+  await check("old compact upload text with inline page headers recovers compiled page units", () => {
+    const compactOldUploadText = [
+      "CB-TB-014Page 1 CROWN PROSECUTION FILE Initial prosecution material.",
+      "CB-TB-014 | Page 2 CHARGE SHEET Common assault.",
+      "CB-TB-014 | Page 3 MG6 DISCLOSURE SCHEDULE O1 Full CCTV window Outstanding Requested.",
+    ].join(" ");
+    const units = pageUnitsFromExtractedText(compactOldUploadText);
+    assert.ok(units, "inline case/page headers should split legacy compact upload text");
+    assert.equal(units!.length, 3);
+    assert.deepEqual(units!.map((u) => u.compiledPage), [1, 2, 3]);
+    assert.deepEqual(units!.map((u) => u.sourcePage), [null, null, null]);
+    assert.match(units![2]!.text, /O1 Full CCTV window Outstanding Requested/);
+  });
+
   await check("negative: unsplittable text never becomes a page unit", () => {
     assert.equal(pageUnitsFromExtractedText("One continuous document with no separators."), null);
   });
