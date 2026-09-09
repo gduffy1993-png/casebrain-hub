@@ -73,6 +73,12 @@ export function readPrintedSourcePagination(
         sourcePageTotal: Number.isFinite(totalRaw) && totalRaw > 0 ? totalRaw : null,
       };
     }
+    // pdf.js sometimes welds the header together: `CB-TB-343    Page 8Prepared papers`.
+    // Accept those only when the line still looks like header/footer furniture.
+    const weldedPage = parsePrintedPageMarkerLine(line);
+    if (weldedPage != null) {
+      return { sourcePage: weldedPage, sourcePageTotal: null };
+    }
   }
   return null;
 }
@@ -110,12 +116,82 @@ export function splitCompiledPagesFromFormFeeds(text: string): string[] | null {
   return parts;
 }
 
+type PrintedPageMarker = {
+  offset: number;
+  page: number;
+};
+
+function parsePrintedPageMarkerLine(line: string): number | null {
+  const t = line.replace(/\s+/g, " ").trim();
+  if (!t || t.length > 180) return null;
+  const match = t.match(/\b(?:page|pg\.?|p\.)\s*(\d{1,4})(?=\D|$)/i);
+  if (!match?.[1]) return null;
+  const prefix = t.slice(0, match.index ?? 0).trim();
+  const suffix = t.slice((match.index ?? 0) + match[0].length).trim();
+  // Keep this to genuine header/footer-looking strings. We accept a matter reference
+  // before the page marker and short bundle furniture after it, but reject prose.
+  if (prefix) {
+    if (!/^[A-Z0-9][A-Z0-9/_ .-]{1,80}$/i.test(prefix)) return null;
+    if (!/\d/.test(prefix)) return null;
+  }
+  if (suffix && suffix.length > 80) return null;
+  if (!prefix && suffix && !/^(?:prepared papers|prosecution papers|case papers|court bundle|bundle|uploaded papers)\b/i.test(suffix)) {
+    return null;
+  }
+  if (suffix && /\b(?:witness|defendant|complainant|interview|statement|transcript|record)\b/i.test(suffix)) {
+    return null;
+  }
+  if (/[.;:]/.test(prefix) || /[.;:]/.test(suffix)) return null;
+  const page = parseInt(match[1], 10);
+  return Number.isFinite(page) && page > 0 ? page : null;
+}
+
+function collectPrintedPageMarkers(text: string): PrintedPageMarker[] {
+  const markers: PrintedPageMarker[] = [];
+  let offset = 0;
+  for (const rawLine of text.replace(/\r\n/g, "\n").split(/\n/)) {
+    const page = parsePrintedPageMarkerLine(rawLine);
+    if (page != null) markers.push({ offset, page });
+    offset += rawLine.length + 1;
+  }
+  return markers;
+}
+
+/**
+ * Some old uploads stored a whole PDF text blob without form-feed separators, but
+ * the PDF text itself still printed a page header on each page (`Page 8Prepared
+ * papers`). Recover page boundaries only from a strictly increasing printed page
+ * sequence. If the markers are not reliable, return null rather than inventing a
+ * page number.
+ */
+export function splitCompiledPagesFromPrintedPageMarkers(text: string): string[] | null {
+  if (!text?.trim()) return null;
+  const markers = collectPrintedPageMarkers(text);
+  if (markers.length < 2) return null;
+
+  const first = markers[0]!;
+  if (first.page !== 1 || first.offset > 1_000) return null;
+  for (let i = 1; i < markers.length; i++) {
+    if (markers[i]!.page !== markers[i - 1]!.page + 1) return null;
+  }
+
+  const parts: string[] = [];
+  for (let i = 0; i < markers.length; i++) {
+    const start = markers[i]!.offset;
+    const end = markers[i + 1]?.offset ?? text.length;
+    const part = text.slice(start, end).trim();
+    if (!part) return null;
+    parts.push(part);
+  }
+  return parts.length >= 2 ? parts : null;
+}
+
 /**
  * Page units from raw text. Uses form feeds when present; otherwise reports that the
  * text could not be split, so the caller keeps explicit unknown page identity.
  */
 export function pageUnitsFromExtractedText(text: string): ExtractedPageUnit[] | null {
-  const split = splitCompiledPagesFromFormFeeds(text);
+  const split = splitCompiledPagesFromFormFeeds(text) ?? splitCompiledPagesFromPrintedPageMarkers(text);
   if (!split) return null;
   return buildPageUnitsFromCompiledPageTexts(split);
 }
