@@ -33,6 +33,20 @@ import { receiptFromClientFactLine, receiptFromCourtLine } from "@/lib/criminal/
 import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
 
+function firstSourceLineMatching(text: string, pattern: RegExp): string | null {
+  const normalized = (text ?? "").replace(/\r/g, "\n");
+  for (const rawLine of normalized.split(/\n+/)) {
+    const line = rawLine.replace(/\s+/g, " ").trim();
+    if (line.length >= 8 && pattern.test(line)) return line;
+  }
+  const compact = normalized.replace(/\s+/g, " ").trim();
+  const match = compact.match(pattern);
+  if (!match || match.index === undefined) return null;
+  const start = Math.max(0, match.index - 80);
+  const end = Math.min(compact.length, match.index + match[0].length + 120);
+  return compact.slice(start, end).trim();
+}
+
 /**
  * Demo Overview — presentation only. Reuses useMatterBrief / five-answers / chase briefs.
  * Does not edit invent / gate / hearing brains.
@@ -249,7 +263,19 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
       );
     })
     .slice(0, 4);
-  const courtReceipt = receiptFromCourtLine(courtLineText, courtSources);
+  const absenceCourtSource =
+    courtSources.length === 0 && /\bno\s+cctv\b|cctv\s+(?:is|was)?\s*not\s+available|without\s+cctv/i.test(courtLineText)
+      ? {
+          label: courtLineText,
+          baseStatus: "Not safely confirmed",
+          source: "File extract",
+          evidenceAnchor: firstSourceLineMatching(
+            bundleHay,
+            /\bno\s+cctv\b[^.;\n]*|\bcctv\s+(?:is|was)?\s*not\s+available\b[^.;\n]*|\bwithout\s+cctv\b[^.;\n]*/i,
+          ),
+        }
+      : null;
+  const courtReceipt = receiptFromCourtLine(courtLineText, absenceCourtSource ? [absenceCourtSource] : courtSources);
   const clientSource = chasePool.find((item) =>
     clientUpdate.toLowerCase().includes((item.label ?? "").toLowerCase().slice(0, 24)),
   );

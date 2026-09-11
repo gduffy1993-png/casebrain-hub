@@ -56,7 +56,7 @@ const REF_UNAVAILABLE = "ref unavailable";
 const DOC_UNAVAILABLE = "unavailable";
 
 const ABSENCE_RE =
-  /\b(?:not (?:yet )?(?:served|attached|listed|supplied|included)|no (?:named\s+)?(?:outstanding\s+)?(?:material|reference|mention|listing|entry|chase|gap|items?)|outstanding|absent|not in papers|missing)\b/i;
+  /\b(?:not (?:yet )?(?:served|attached|listed|supplied|included)|no (?:named\s+)?(?:outstanding\s+)?(?:material|reference|mention|listing|entry|chase|gap|items?)|no (?:cctv|camera|footage|bwv|body[-\s]?worn|999|cad|phone|mobile|handset|medical|forensic|dna)|without (?:cctv|camera|footage|bwv|body[-\s]?worn)|outstanding|absent|not in papers|missing)\b/i;
 const GENERATED_GAP_RE =
   /\b(?:full 999 audio|full cad incident log|full phone download|full phone extraction|source extraction|subscriber \/ account data|full cctv master)\b/i;
 const USER_RE = /\b(?:user entered|solicitor note|record position|flagged by user)\b/i;

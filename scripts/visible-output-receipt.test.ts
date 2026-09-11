@@ -116,6 +116,26 @@ describe("visible output receipts", () => {
     expect(receipt.unsupportedWarning).toBeNull();
   });
 
+  it("classes a no-CCTV court line with a File quote as derived absence, not unsupported", () => {
+    const receipt = receiptFromCourtLine(
+      "The file indicates no CCTV is available — confirm in writing that none exists; absence may shift weight onto witness account quality and consistency.",
+      [
+        {
+          label: "The file indicates no CCTV is available",
+          baseStatus: "Not safely confirmed",
+          source: "File extract",
+          evidenceAnchor: "Sensitivities: no direct identification; no CCTV of scene; full fire cause report.",
+        },
+      ],
+    );
+    expect(receipt.sourceClass).toBe("derived_from_absence");
+    expect(receipt.truthState).toBe("not_safely_confirmed");
+    expect(receipt.sourceRef).toBe("ref unavailable");
+    expect(receipt.supportingText).toMatch(/no CCTV of scene/);
+    expect(receipt.guard).toMatch(/derived from stated absence/);
+    expect(receipt.unsupportedWarning).toBeNull();
+  });
+
   it("classes provisional solicitor caution lines as procedural, not unsupported served facts", () => {
     const receipt = receiptFromCourtLine(
       "Custody/PACE safeguards cannot be finally assessed until the full custody and interview material is served.",
