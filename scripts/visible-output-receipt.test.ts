@@ -12,6 +12,7 @@ import {
   buildVisibleOutputReceipt,
   receiptFromChaseItem,
   receiptFromClientFactLine,
+  receiptFromClientLineSources,
   receiptFromCourtLine,
   receiptFromMaterialRow,
 } from "../lib/criminal/visible-output-receipt";
@@ -279,6 +280,37 @@ describe("visible output receipts", () => {
       "MG6/04 bank source statements — Outstanding Not in papers supplied",
     ]);
     expect(receipt.guard).toMatch(/multi-item line backed/);
+  });
+
+  it("backs a multi-item client update with child receipts from the shortlist", () => {
+    const receipt = receiptFromClientLineSources(
+      "We are reviewing the papers and some evidence is still outstanding.",
+      [
+        chase({
+          id: "cctv",
+          label: "CCTV master footage",
+          baseStatus: "Outstanding",
+          sourceScheduleRef: "EX-MUR-009",
+          evidenceAnchor: "EX-MUR-009 — CCTV stills and timing note Master footage — outstanding",
+        }),
+        chase({
+          id: "cad",
+          label: "CAD and 999 summaries Original audio/log",
+          baseStatus: "Outstanding",
+          sourceScheduleRef: "EX-MUR-012",
+          evidenceAnchor: "EX-MUR-012 — CAD and 999 summaries Original audio/log — outstanding",
+        }),
+      ],
+    );
+    expect(receipt.surface).toBe("client");
+    expect(receipt.outputType).toBe("client_summary");
+    expect(receipt.sourceClass).toBe("multi_source_backed");
+    expect(receipt.sourceRef).toContain("EX-MUR-009");
+    expect(receipt.sourceRef).toContain("EX-MUR-012");
+    expect(receipt.supportingText).toMatch(/CCTV stills/);
+    expect(receipt.supportingText).toMatch(/CAD and 999/);
+    expect(receipt.unsupportedWarning).toBeNull();
+    expect(receipt.childReceipts).toHaveLength(2);
   });
 
   it("does not turn why-it-matters copy into a fake File quote", () => {

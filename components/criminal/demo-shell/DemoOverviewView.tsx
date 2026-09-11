@@ -29,7 +29,11 @@ import {
   buildDemoStatCounts,
 } from "./demoOverviewAdapter";
 import { DemoOverviewCanvas } from "./DemoOverviewCanvas";
-import { receiptFromClientFactLine, receiptFromCourtLine } from "@/lib/criminal/visible-output-receipt";
+import {
+  receiptFromClientFactLine,
+  receiptFromClientLineSources,
+  receiptFromCourtLine,
+} from "@/lib/criminal/visible-output-receipt";
 import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
 
@@ -279,14 +283,23 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
   const clientSource = chasePool.find((item) =>
     clientUpdate.toLowerCase().includes((item.label ?? "").toLowerCase().slice(0, 24)),
   );
-  const clientReceipt = receiptFromClientFactLine(clientUpdate, {
-    status: clientSource?.baseStatus,
-    scheduleRef: clientSource?.sourceScheduleRef,
-    displayLine: clientSource?.evidenceAnchor,
-    excerpt: clientSource?.evidenceAnchor,
-    sourceLabel: clientSource?.source,
-    provenance: clientSource?.provenance ?? null,
-  });
+  const clientSummarySources =
+    clientSource || !/\b(?:outstanding|missing|waiting|still reviewing|full disclosure)\b/i.test(clientUpdate)
+      ? []
+      : chasePool
+          .filter((item) => item.evidenceAnchor || item.sourceScheduleRef || item.provenance)
+          .slice(0, 4);
+  const clientReceipt =
+    clientSummarySources.length > 1
+      ? receiptFromClientLineSources(clientUpdate, clientSummarySources)
+      : receiptFromClientFactLine(clientUpdate, {
+          status: clientSource?.baseStatus,
+          scheduleRef: clientSource?.sourceScheduleRef,
+          displayLine: clientSource?.evidenceAnchor,
+          excerpt: clientSource?.evidenceAnchor,
+          sourceLabel: clientSource?.source,
+          provenance: clientSource?.provenance ?? null,
+        });
 
   const liveFileIdentity = extractBundleCaseMetadata(
     [

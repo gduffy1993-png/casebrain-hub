@@ -399,6 +399,64 @@ export function receiptFromCourtLine(
   });
 }
 
+export function receiptFromClientLineSources(
+  text: string,
+  sources: Array<{
+    baseStatus?: string | null;
+    source?: string | null;
+    evidenceAnchor?: string | null;
+    mergedFrom?: string[];
+    sourceScheduleRef?: string | null;
+    provenance?: FindingProvenance | null;
+    label: string;
+    id?: string;
+  }>,
+): VisibleOutputReceipt {
+  const childReceipts = sources
+    .filter((item) => Boolean(compact(item.label)))
+    .map((item) => receiptFromChaseItem(item, "client"));
+  if (childReceipts.length > 1) {
+    const refs = childReceipts.map((receipt) => receipt.sourceRef).filter((ref) => ref !== REF_UNAVAILABLE);
+    const quotes = childReceipts
+      .map((receipt) => receipt.supportingText)
+      .filter((quote): quote is string => Boolean(quote));
+    const backedChildren = childReceipts.filter((receipt) => receipt.sourceClass !== "unsupported");
+    const pageKnown = childReceipts.some((receipt) => receipt.sourcePage !== PAGE_UNAVAILABLE);
+    return {
+      output: compact(text),
+      outputType: "client_summary",
+      surface: "client",
+      truthState: inferTruthState(text, sources.find((item) => item.baseStatus)?.baseStatus),
+      sourceClass: "multi_source_backed",
+      sourceDocument: "multiple source rows",
+      sourceRef: refs.length ? refs.join(", ") : REF_UNAVAILABLE,
+      sourcePage: pageKnown ? "mixed pages" : PAGE_UNAVAILABLE,
+      supportingText: quotes.length ? quotes.join(" | ") : null,
+      transformation: "multi-item court/client line from shortlist receipts",
+      confidence: backedChildren.length === childReceipts.length ? 0.75 : 0.45,
+      guard:
+        backedChildren.length === childReceipts.length
+          ? "pass: multi-item line backed by child receipts"
+          : "check: one or more child receipts lacks support",
+      unsupportedWarning:
+        backedChildren.length === childReceipts.length
+          ? null
+          : "Some items in this multi-item line lack a supporting File/PDF quote or ref.",
+      family: classifyEvidenceSubFamily(text, refs),
+      childReceipts,
+    };
+  }
+  const singleSource = sources[0] ?? null;
+  return receiptFromClientFactLine(text, {
+    status: singleSource?.baseStatus,
+    scheduleRef: singleSource?.sourceScheduleRef,
+    displayLine: singleSource?.evidenceAnchor,
+    excerpt: singleSource?.evidenceAnchor,
+    sourceLabel: singleSource?.source,
+    provenance: singleSource?.provenance ?? null,
+  });
+}
+
 export function receiptFromClientFactLine(
   line: string,
   row?: {
