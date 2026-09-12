@@ -61,7 +61,7 @@ const GENERATED_GAP_RE =
   /\b(?:full 999 audio|full cad incident log|full phone download|full phone extraction|source extraction|subscriber \/ account data|full cctv master)\b/i;
 const USER_RE = /\b(?:user entered|solicitor note|record position|flagged by user)\b/i;
 const PROCEDURAL_RE =
-  /\b(?:please provide|solicitor review required|review the cited source|confirm in writing why it is not available|check source before sending|cannot safely fix|cannot be finally assessed|remain(?:s)? provisional|pending served|pending instructions|do not advance fixed trial theory|conditional on served)\b/i;
+  /\b(?:please provide|solicitor review required|review the cited source|confirm in writing why it is not available|check source before sending|cannot safely fix|cannot be finally assessed|remain(?:s)? provisional|pending served|pending instructions|do not advance fixed trial theory|conditional on served|client-safe summary|we are reviewing the papers|early-stage|nothing is final|full disclosure and your instructions|case is won or lost|need the full material|before giving firm advice)\b/i;
 const REF_RE = /\b(?:MG\d+[A-Z]?(?:\/\d+)?|EX[-/][A-Z0-9-]+|O\d{2}|TEL\/\d+)\b/i;
 
 function compact(text: string | number | null | undefined): string {

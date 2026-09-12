@@ -313,6 +313,20 @@ describe("visible output receipts", () => {
     expect(receipt.childReceipts).toHaveLength(2);
   });
 
+  it("treats standard provisional client-safe summary wording as procedural, not unsupported", () => {
+    const receipt = buildVisibleOutputReceipt({
+      output:
+        "CLIENT-SAFE SUMMARY (not for court or CPS) We are reviewing the papers in your case. This is early-stage — nothing is final until we have full disclosure and your instructions. We are not saying the case is won or lost — we need the full material before giving firm advice.",
+      surface: "client",
+      outputType: "client_summary",
+    });
+
+    expect(receipt.sourceClass).toBe("procedural_instruction");
+    expect(receipt.truthState).toBe("provisional");
+    expect(receipt.unsupportedWarning).toBeNull();
+    expect(receipt.guard).toMatch(/procedural/);
+  });
+
   it("does not turn why-it-matters copy into a fake File quote", () => {
     const receipt = receiptFromChaseItem(
       chase({
