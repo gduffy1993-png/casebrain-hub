@@ -1,6 +1,8 @@
-import { humanizeChaseFragmentLabel } from "@/lib/criminal/disclosure-chase-finalize";
+import {
+  humanizeChaseFragmentLabel,
+  phoneDownloadIdentityLabel,
+} from "@/lib/criminal/disclosure-chase-finalize";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
-import { evidenceRowFromSourceState } from "@/lib/criminal/five-answers/evidence-trace";
 import { sanitizeSolicitorVisibleText } from "@/lib/criminal/overview-presentation";
 
 /** Prod Taylor Loom demo case — presentation routing only. */
@@ -151,7 +153,11 @@ export function polishPresentationLine(line: string, bundleHay = ""): string {
     );
     t = t.replace(
       /mg6\s*\/\s*unused schedule clarification/gi,
-      "full phone download / source export",
+      "digital disclosure schedule item",
+    );
+    t = t.replace(
+      /mg6\s*\/\s*unused\s*\/\s*schedule clarification/gi,
+      "digital disclosure schedule item",
     );
     t = t.replace(
       /\bunused schedule clarification\b/gi,
@@ -248,7 +254,7 @@ function digitalChaseLabel(hay: string): string | null {
     return "Phone extraction summary only — full download report not in section";
   }
   if (/\b(?:phone|extraction|download|device\s+download)\b/i.test(hay)) {
-    return "Full phone download / source extraction";
+    return phoneDownloadIdentityLabel(hay);
   }
   if (
     /\b(?:subscriber(?:\s+report|\s+return|\s+data)?|account\s+data|phone\s+attribution|handset\s+attribution|sim\s*(?:\/|&)?\s*imei|\bimei\b)\b/i.test(
@@ -349,7 +355,7 @@ export function displayChaseItemText(text: string | null | undefined, item: Chas
   return polishPresentationLine(filtered ?? raw, context);
 }
 
-type BundleFamily = "bwv" | "custody" | "drugs" | "cctv" | "cad" | "encro" | "abe";
+type BundleFamily = "bwv" | "custody" | "drugs" | "cctv" | "cad" | "encro" | "abe" | "phone";
 
 function bundleMentionsFamily(hay: string, family: BundleFamily): boolean {
   switch (family) {
@@ -367,6 +373,10 @@ function bundleMentionsFamily(hay: string, family: BundleFamily): boolean {
       return /encro|handle|platform|county.?lines/i.test(hay);
     case "abe":
       return /\babe\b|achieving best evidence/i.test(hay);
+    case "phone":
+      return /phone\s+(?:extraction|download|attribution)|source export|subscriber|handset|\bsim\b|\bimei\b/i.test(
+        hay,
+      );
     default:
       return false;
   }
@@ -389,6 +399,10 @@ function lineMentionsFamily(line: string, family: BundleFamily): boolean {
       return /encro|handle attribution|platform extraction|county.?lines/i.test(l);
     case "abe":
       return /\babe\b|achieving best evidence/i.test(l);
+    case "phone":
+      return /phone\s+(?:extraction|download|attribution)|full extraction|source export|metadata proves attribution/i.test(
+        l,
+      );
     default:
       return false;
   }
@@ -416,7 +430,7 @@ function lineMentionsWrongFamilyTemplate(line: string, hay: string): boolean {
 /** Drop wrong-family do-not-say / risk lines when bundle does not mention that material. */
 export function filterBundleFamilyWarnings(lines: string[], bundleHay: string): string[] {
   const hay = bundleHay.toLowerCase();
-  const families: BundleFamily[] = ["bwv", "custody", "drugs", "cctv", "cad", "encro", "abe"];
+  const families: BundleFamily[] = ["bwv", "custody", "drugs", "cctv", "cad", "encro", "abe", "phone"];
   const seen = new Set<string>();
   const out: string[] = [];
 
@@ -444,55 +458,11 @@ export function filterBundleFamilyWarnings(lines: string[], bundleHay: string): 
   return out;
 }
 
-/** Presentation-only truth-map rows for Taylor / phone-harassment demos when gaps collapse. */
+/** Presentation-only. Do not invent phone/subscriber/MG11 rows from a harassment word-shape. */
 export function ensureDigitalHarassmentGapRows(
   rows: FiveAnswersEvidenceRow[],
-  bundleHay: string,
-  allegation = "",
+  _bundleHay: string,
+  _allegation = "",
 ): FiveAnswersEvidenceRow[] {
-  if (!isDigitalHarassmentBundleHay(bundleHay, allegation)) return rows;
-
-  const hasGap = (re: RegExp) =>
-    rows.some((r) => re.test(`${r.label} ${r.note ?? ""}`) && r.existence !== "served");
-
-  const extras: FiveAnswersEvidenceRow[] = [];
-  if (!hasGap(/full phone download|phone download|source export|extraction download/i)) {
-    extras.push(
-      evidenceRowFromSourceState(
-        "Full phone download",
-        "missing",
-        "Chase full extraction source before fixing attribution.",
-      ),
-    );
-  }
-  if (!hasGap(/subscriber|attribution|account data|sim\b/i)) {
-    extras.push(
-      evidenceRowFromSourceState(
-        "Subscriber / attribution data",
-        "missing",
-        "Outstanding — screenshots alone do not prove who sent messages.",
-      ),
-    );
-  }
-  if (!hasGap(/mg11|complainant|witness statement/i)) {
-    extras.push(
-      evidenceRowFromSourceState(
-        "Complainant MG11",
-        "not_safely_confirmed",
-        "Draft or unsigned on file — confirm final signed statement before reliance.",
-      ),
-    );
-  }
-
-  if (!extras.length) return rows;
-
-  const seen = new Set<string>();
-  const merged: FiveAnswersEvidenceRow[] = [];
-  for (const row of [...extras, ...rows]) {
-    const key = row.label.trim().toLowerCase();
-    if (seen.has(key)) continue;
-    seen.add(key);
-    merged.push(row);
-  }
-  return merged.slice(0, 8);
+  return rows;
 }

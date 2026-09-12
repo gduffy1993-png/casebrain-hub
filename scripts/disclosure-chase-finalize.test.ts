@@ -3,6 +3,7 @@ import {
   humanizeChaseFragmentLabel,
   isRawChaseFragmentLabel,
   finalizeDisclosureChasePresentation,
+  phoneDownloadIdentityLabel,
 } from "../lib/criminal/disclosure-chase-finalize";
 import type { DisclosureChaseItem } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { lintWeirdness } from "../lib/criminal/weirdness-detector";
@@ -14,6 +15,16 @@ assert.equal(humanizeChaseFragmentLabel("Screenshot pack (served) | 5 |"), "Scre
 assert.equal(
   humanizeChaseFragmentLabel("MG6C/001 — Phone extraction — summary only, source download outstanding."),
   "Phone extraction source material",
+);
+assert.equal(
+  humanizeChaseFragmentLabel("Full phone download / subscriber mapping outstanding."),
+  "Full phone download / subscriber mapping",
+);
+assert.equal(
+  phoneDownloadIdentityLabel(
+    "Full phone download outstanding. Source export not served. Subscriber report not served.",
+  ),
+  "Full phone download / source extraction",
 );
 assert.equal(humanizeChaseFragmentLabel("MG11 — COMPLAINANT STATEMENT (draft unsigned)"), "Complainant MG11 statement");
 
@@ -32,6 +43,29 @@ const sampleItem = (label: string, familyId: DisclosureChaseItem["familyId"] = "
   courtLine: `The defence asks the court to record that ${label} appears outstanding.`,
   mergedFrom: [label, label, label],
 });
+
+const medicalCited = finalizeDisclosureChasePresentation([
+  {
+    ...sampleItem("Medical / expert source report", "medical_expert"),
+    evidenceAnchor: "MG6C/002 — Full medical report — absent — injury severity and causation incomplete",
+  },
+]);
+assert.ok(
+  medicalCited[0]?.evidenceAnchor?.includes("MG6C/002"),
+  "schedule-row evidence anchor must keep MG6C/002 through finalize",
+);
+
+const medicalTemplateOnly = finalizeDisclosureChasePresentation([
+  {
+    ...sampleItem("Medical / expert source report", "medical_expert"),
+    evidenceAnchor: "Full medical report",
+  },
+]);
+assert.equal(
+  medicalTemplateOnly[0]?.evidenceAnchor?.includes("MG6C/002") ?? false,
+  false,
+  "template-only medical must not invent MG6C/002",
+);
 
 const finalized = finalizeDisclosureChasePresentation([
   sampleItem("Screenshot pack (served) | 5 |", "mg6_unused"),
@@ -80,11 +114,25 @@ const overflowBucket = finalizeDisclosureChasePresentation([
 ]);
 
 assert.ok(overflowBucket.length >= 1);
-const overflowItem = overflowBucket.find((i) =>
-  /outstanding source material/i.test(i.label),
+// Soft-mute: PDF-true phone/subscriber must peel out of overflow — not bury under Other invent.
+const subscriber = overflowBucket.find((i) => /subscriber \/ account data/i.test(i.label));
+const phone = overflowBucket.find((i) => /phone extraction source material/i.test(i.label));
+assert.ok(subscriber, "expected subscriber modality card peeled from overflow");
+assert.ok(phone, "expected phone extraction modality card peeled from overflow");
+assert.ok(
+  overflowBucket.every((i) => !/additional source-material issues \(\d+ on file\)/i.test(i.label)),
+  "raw Additional source-material overflow label must not survive",
 );
-assert.ok(overflowItem, "expected human overflow card label");
-assert.doesNotMatch(overflowItem!.label, /additional source-material issues \(\d+ on file\)/i);
-assert.match(overflowItem!.draftChaseWording!, /Please provide the outstanding source material identified on the disclosure schedule/i);
+const leftover = overflowBucket.find(
+  (i) =>
+    /outstanding source material|screenshot|complainant mg11|message exports/i.test(i.label) &&
+    !/subscriber|phone extraction/i.test(i.label),
+);
+if (leftover) {
+  assert.match(
+    leftover.draftChaseWording!,
+    /Please provide the outstanding source material identified on the disclosure schedule/i,
+  );
+}
 
 console.log("disclosure-chase-finalize.test.ts: all assertions passed");

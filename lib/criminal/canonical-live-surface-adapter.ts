@@ -46,6 +46,7 @@ import {
   type EnforcementAction,
 } from "@/lib/criminal/cross-exit-contradiction-scanner";
 import { sanitizeSolicitorProse } from "@/lib/criminal/solicitor-visible-sanitization";
+import { canonicalEvidenceStateRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
 
 export type LiveProductionSurfaces = {
   pipeline: LiveCanonicalPipelineResult;
@@ -174,12 +175,14 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
   const allegationForExits = allegationWithStatus || allegation;
   const caseTitle = opts?.caseTitle ?? "Live integration matter";
   const clientLabel = opts?.clientLabel ?? "Client";
+  const builderEvidenceRows = canonicalEvidenceStateRowsForBuilder(pipeline.evidenceState);
+  const activeMissingRows = builderEvidenceRows.filter((row) => row.status === "MISSING");
 
   const matterState = buildCanonicalMatterStateV1({
     caseId,
     allegation: allegationForExits,
     evidenceRows: evidenceRowsForFiveAnswers(pipeline),
-    chaseItems: pipeline.chaseLabels.map((label) => ({ label, baseStatus: "Outstanding" })),
+    chaseItems: activeMissingRows.map((row) => ({ label: row.label, baseStatus: row.status })),
     documents,
   });
 
@@ -195,7 +198,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     readiness: "Needs review",
     battleboard: null,
     hasSavedPosition: false,
-    chaseItems: pipeline.chaseLabels,
+    chaseItems: activeMissingRows.map((row) => row.label),
     bundleText: pipeline.bundleText,
     canonicalFindings: pipeline.findings,
   });
@@ -211,7 +214,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     bundleHealth: "Review papers",
     positionStatus: "Provisional",
     battleboard: null,
-    snapshotMissing: pipeline.chaseLabels.map((label) => ({ label, status: "Outstanding" })),
+    snapshotMissing: builderEvidenceRows,
     bundleText: pipeline.bundleText,
     canonicalFindings: pipeline.findings,
     // Reconciled canonical items, not the raw per-page observations: chase must not

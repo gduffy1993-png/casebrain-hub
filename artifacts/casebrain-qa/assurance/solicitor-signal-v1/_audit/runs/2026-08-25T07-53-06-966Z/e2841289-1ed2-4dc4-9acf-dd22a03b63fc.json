@@ -1,0 +1,16 @@
+{
+  "caseId": "e2841289-1ed2-4dc4-9acf-dd22a03b63fc",
+  "primary": [
+    {
+      "ref": null,
+      "label": "Phone extraction summary only — full download report not in section",
+      "family": "other",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 27,
+  "statedGaps": 0,
+  "statedGapsOnBoard": 0,
+  "truncated": false,
+  "findings": []
+}

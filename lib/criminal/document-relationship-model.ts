@@ -13,7 +13,9 @@ import {
 } from "@/lib/criminal/evidence-alias-dedupe";
 import {
   inferEvidenceModality,
+  evidenceScopeOfLabel,
   reconcileEvidenceState,
+  wordingIndicatesReferredOnly,
   type EvidenceModality,
   type SharedEvidenceState,
 } from "@/lib/criminal/evidence-state-reconcile";
@@ -245,18 +247,33 @@ export function aliasProvesSameServedItem(
   served: { label: string; state: SharedEvidenceState },
 ): boolean {
   if (served.state !== "served") return false;
+  // A truncated / referred-on-schedule row is not proof the item is on file, even if a later
+  // layer marked the fragment "served" (Jordan Hale: "BWV referred on schedule but not").
+  if (wordingIndicatesReferredOnly(served.label)) return false;
   const keyA = evidenceAliasKeyForLabel(request.label);
   const keyB = evidenceAliasKeyForLabel(served.label);
   if (!keyA || keyA !== keyB) return false;
   const scopesA = evidenceScopeTags(request.label);
   const scopesB = evidenceScopeTags(served.label);
   if (!scopesCompatible(scopesA, scopesB)) return false;
+  // A served part does not prove a request for the whole, even when they share a family token.
+  if (evidenceScopeOfLabel(request.label) === "whole" && evidenceScopeOfLabel(served.label) === "part") {
+    return false;
+  }
   const modA = inferEvidenceModality(request.label);
   const modB = inferEvidenceModality(served.label);
   if (modA === "master_media" && modB === "clip_or_still") return false;
   if (modB === "master_media" && modA === "clip_or_still") return false;
   if (modA === "recording" && modB === "transcript") return false;
   if (modB === "recording" && modA === "transcript") return false;
+  if (modA !== "generic" && modB !== "generic" && modA !== modB) {
+    const permitted =
+      (modA === "interview" && modB === "recording") ||
+      (modB === "interview" && modA === "recording") ||
+      (modA === "bwv" && modB === "recording") ||
+      (modB === "bwv" && modA === "recording");
+    if (!permitted) return false;
+  }
   if (modA === "generic" || modB === "generic") {
     // Generic alone is insufficient unless exact/near-exact label match after alias key.
     if (normalizeFieldValue(request.label) !== normalizeFieldValue(served.label) && keyA.startsWith("solo:")) {

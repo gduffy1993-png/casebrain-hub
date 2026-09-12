@@ -1,0 +1,75 @@
+{
+  "preview": "https://casebrain-jifw0ew6e-gduffy1993-pngs-projects.vercel.app",
+  "summary": [
+    {
+      "caseId": "687cf5a6-6898-4257-baef-33e33ace08df",
+      "slug": "layla-davies",
+      "label": "Layla Davies 1 document on file: Davies CRIMINAL",
+      "overviewOk": true,
+      "chaseOk": true,
+      "evidenceState": null,
+      "openChase": null,
+      "attentionCount": 24
+    },
+    {
+      "caseId": "7e763777-94a8-4958-a190-a35ef6ddb259",
+      "slug": "isaac-patel",
+      "label": "Isaac Patel 1 document on file: Patel CRIMINAL",
+      "overviewOk": true,
+      "chaseOk": true,
+      "evidenceState": null,
+      "openChase": null,
+      "attentionCount": 21
+    },
+    {
+      "caseId": "a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27",
+      "slug": "imani-tobin-wounding",
+      "label": "Imani Tobin Wounding with intent to cause grievous bodily harm CRIMINAL",
+      "overviewOk": true,
+      "chaseOk": true,
+      "evidenceState": null,
+      "openChase": null,
+      "attentionCount": 21
+    },
+    {
+      "caseId": "14823d9e-1f0f-4cfc-af01-e6595d1cdfc4",
+      "slug": "leon-hale-murder",
+      "label": "Leon Hale Murder, contrary to common law CRIMINAL",
+      "overviewOk": true,
+      "chaseOk": true,
+      "evidenceState": null,
+      "openChase": null,
+      "attentionCount": 17
+    },
+    {
+      "caseId": "99090c69-5d78-41e3-946d-119b4bc335ba",
+      "slug": "robbery-charge",
+      "label": "Robbery Charge, hearing and papers need solicitor review before relying on this ",
+      "overviewOk": true,
+      "chaseOk": true,
+      "evidenceState": null,
+      "openChase": null,
+      "attentionCount": 22
+    },
+    {
+      "caseId": "2dcdc59d-ff44-4bc8-ac31-bd11a954a59e",
+      "slug": "taylor-brookes-digital",
+      "label": "Taylor Brookes Digital Attribution (clean) 1 document on file: Taylor Brookes CL",
+      "overviewOk": true,
+      "chaseOk": true,
+      "evidenceState": null,
+      "openChase": null,
+      "attentionCount": 20
+    },
+    {
+      "caseId": "a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01",
+      "slug": "dunn",
+      "label": "Dunn 1 document on file: Dunn CRIMINAL",
+      "overviewOk": true,
+      "chaseOk": true,
+      "evidenceState": null,
+      "openChase": null,
+      "attentionCount": 21
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "caseId": "f57a2750-d24e-42a2-9f73-92384db565dc",
+  "primary": [
+    {
+      "ref": null,
+      "label": "Final medical/forensic report",
+      "family": "medical_expert",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 1952,
+  "statedGaps": 0,
+  "statedGapsOnBoard": 0,
+  "truncated": true,
+  "findings": []
+}

@@ -7,6 +7,7 @@ import { workflowCard, workflowPilotCard, workflowPilotNavActive, workflowPilotN
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { useCaseWorkflowActiveTab } from "./useCaseWorkflowActiveTab";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
+import { useDemoOverviewShell } from "@/components/criminal/demo-shell/useDemoOverviewShell";
 
 const PILOT_PRIMARY_TABS: { id: CaseWorkflowTabId; label: string }[] = [
   { id: "overview", label: "Overview" },
@@ -16,7 +17,18 @@ const PILOT_PRIMARY_TABS: { id: CaseWorkflowTabId; label: string }[] = [
   { id: "disclosure-chase", label: "CPS Chase" },
 ];
 
+const DEMO_PRIMARY_TABS: { id: CaseWorkflowTabId; label: string }[] = [
+  { id: "overview", label: "Overview" },
+  { id: "file", label: "File" },
+];
+
 const PILOT_SECONDARY_TABS: { id: CaseWorkflowTabId; label: string }[] = [{ id: "file", label: "File" }];
+const DEMO_SECONDARY_TABS: { id: CaseWorkflowTabId; label: string }[] = [
+  { id: "today", label: "Court" },
+  { id: "papers", label: "Papers" },
+  { id: "summary", label: "Client summary" },
+  { id: "disclosure-chase", label: "CPS chase" },
+];
 
 const LEGACY_TABS: { id: CaseWorkflowTabId; label: string }[] = [
   { id: "control-room", label: "Control Room" },
@@ -31,30 +43,50 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const pilotMode = isCriminalPilotMode();
+  const demoShell = useDemoOverviewShell();
   const active = useCaseWorkflowActiveTab();
   const buildTabHref = usePilotMatterTabHref();
 
-  const visibleTabs = pilotMode ? [...PILOT_PRIMARY_TABS, ...PILOT_SECONDARY_TABS] : LEGACY_TABS.filter((t) => t.id !== "position" && t.id !== "battleboard");
+  const visibleTabs = demoShell
+    ? DEMO_PRIMARY_TABS
+    : pilotMode
+      ? [...PILOT_PRIMARY_TABS, ...PILOT_SECONDARY_TABS]
+      : LEGACY_TABS.filter((t) => t.id !== "position" && t.id !== "battleboard");
+  const demoMoreActive = demoShell && DEMO_SECONDARY_TABS.some((t) => t.id === active);
+
+  const navShell = demoShell
+    ? "rounded-xl border border-slate-200 bg-white px-2 py-2 flex flex-wrap gap-1 shadow-sm"
+    : `${pilotMode ? workflowPilotCard : workflowCard} px-2 py-2 flex flex-wrap gap-1 ${
+        pilotMode ? "border-slate-700/70" : "border-slate-200"
+      }`;
+
+  const activeCls = demoShell
+    ? "rounded-lg bg-blue-600 px-3 py-1.5 text-sm font-medium text-white"
+    : workflowPilotNavActive;
+  const idleCls = demoShell
+    ? "rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 hover:bg-slate-100"
+    : workflowPilotNavIdle;
 
   return (
     <nav
-      className={`${pilotMode ? workflowPilotCard : workflowCard} px-2 py-2 flex flex-wrap gap-1 ${pilotMode ? "border-slate-700/70" : "border-slate-200"}`}
+      className={navShell}
       aria-label="Case workflow"
       data-testid="case-workflow-nav"
       data-pilot-mode={pilotMode ? "true" : "false"}
+      data-demo-shell={demoShell ? "true" : undefined}
       data-active-tab={active}
       data-url-tab={searchParams.get("tab") ?? ""}
     >
       {visibleTabs.map((t) => {
         const href = buildTabHref(caseId, t.id);
         const isActive = active === t.id;
-        const isSecondary = pilotMode && PILOT_SECONDARY_TABS.some((s) => s.id === t.id);
+        const isSecondary = pilotMode && !demoShell && PILOT_SECONDARY_TABS.some((s) => s.id === t.id);
         return (
           <Link
             key={t.id}
             href={href}
             scroll={t.id === "file" || t.id === "documents" ? false : undefined}
-            className={`${isActive ? workflowPilotNavActive : workflowPilotNavIdle} ${
+            className={`${isActive ? activeCls : idleCls} ${
               isSecondary ? "opacity-60 hover:opacity-100 text-[10px]" : ""
             }`}
             aria-current={isActive ? "page" : undefined}
@@ -64,6 +96,34 @@ export function CaseWorkflowNav({ caseId }: { caseId: string }) {
           </Link>
         );
       })}
+      {demoShell ? (
+        <details className="relative">
+          <summary
+            className={`${demoMoreActive ? activeCls : idleCls} list-none cursor-pointer [&::-webkit-details-marker]:hidden`}
+          >
+            More
+          </summary>
+          <div className="absolute left-0 z-20 mt-1 min-w-[10rem] rounded-lg border border-slate-200 bg-white p-1 shadow-lg">
+            {DEMO_SECONDARY_TABS.map((t) => {
+              const href = buildTabHref(caseId, t.id);
+              const isActive = active === t.id;
+              return (
+                <Link
+                  key={t.id}
+                  href={href}
+                  className={`block rounded-md px-3 py-1.5 text-sm ${
+                    isActive ? "bg-blue-50 font-medium text-blue-800" : "text-slate-600 hover:bg-slate-50"
+                  }`}
+                  aria-current={isActive ? "page" : undefined}
+                  prefetch={pathname.startsWith("/cases/") || pathname.startsWith("/court-today")}
+                >
+                  {t.label}
+                </Link>
+              );
+            })}
+          </div>
+        </details>
+      ) : null}
     </nav>
   );
 }

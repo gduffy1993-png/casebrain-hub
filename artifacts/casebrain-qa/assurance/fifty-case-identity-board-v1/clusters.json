@@ -1,0 +1,142 @@
+[
+  {
+    "signature": "P0:HEARING_DATE_CLEAR_BUT_ABSENT:listing",
+    "severity": "P0",
+    "code": "HEARING_DATE_CLEAR_BUT_ABSENT",
+    "family": "listing",
+    "count": 3,
+    "caseIds": [
+      "cb-found-2001-ellis",
+      "demo-audit-13-co-def-index-trap",
+      "demo-audit-28-fraud-subscriber-trap"
+    ],
+    "examples": [
+      {
+        "caseId": "cb-found-2001-ellis",
+        "message": "PDF listing \"2 August 2026\" not surfaced in app output",
+        "pdf": "2 August 2026"
+      },
+      {
+        "caseId": "demo-audit-13-co-def-index-trap",
+        "message": "PDF listing \"12 November 2026, Crown Court at Riverside\" not surfaced in app output",
+        "pdf": "12 November 2026, Crown Court at Riverside"
+      },
+      {
+        "caseId": "demo-audit-28-fraud-subscriber-trap",
+        "message": "PDF listing \"1 May 2025\" not surfaced in app output",
+        "pdf": "1 May 2025"
+      }
+    ]
+  },
+  {
+    "signature": "P1:INVENT_CCTV:cctv",
+    "severity": "P1",
+    "code": "INVENT_CCTV",
+    "family": "cctv",
+    "count": 3,
+    "caseIds": [
+      "cb-fresh-002-jordan-hale",
+      "cb-found-2003-nguyen",
+      "sc-00032"
+    ],
+    "examples": [
+      {
+        "caseId": "cb-fresh-002-jordan-hale",
+        "message": "App surfaces cctv but PDF does not establish it"
+      },
+      {
+        "caseId": "cb-found-2003-nguyen",
+        "message": "App surfaces cctv but PDF does not establish it"
+      },
+      {
+        "caseId": "sc-00032",
+        "message": "App surfaces cctv but PDF does not establish it"
+      }
+    ]
+  },
+  {
+    "signature": "P1:INVENT_INTERVIEW:interview",
+    "severity": "P1",
+    "code": "INVENT_INTERVIEW",
+    "family": "interview",
+    "count": 1,
+    "caseIds": [
+      "cb-fresh-002-jordan-hale"
+    ],
+    "examples": [
+      {
+        "caseId": "cb-fresh-002-jordan-hale",
+        "message": "App surfaces interview but PDF does not establish it"
+      }
+    ]
+  },
+  {
+    "signature": "P2:EVIDENCE_STATE_MISALIGN:evidence",
+    "severity": "P2",
+    "code": "EVIDENCE_STATE_MISALIGN",
+    "family": "evidence",
+    "count": 86,
+    "caseIds": [
+      "cb-fresh-001-taylor-brookes",
+      "cb-fresh-002-jordan-hale",
+      "cb-found-2001-ellis",
+      "cb-found-2002-smith",
+      "cb-found-2003-nguyen",
+      "cb-found-2004-clarke",
+      "cb-found-2005-okafor",
+      "cb-found-2006-carter",
+      "cb-found-2007-morrison",
+      "demo-audit-07-phone-ocr-trap",
+      "demo-audit-13-co-def-index-trap",
+      "demo-audit-28-fraud-subscriber-trap",
+      "sc-00002",
+      "sc-00003",
+      "sc-00007",
+      "sc-00008",
+      "sc-00009",
+      "sc-0000a",
+      "sc-0000b",
+      "sc-0000c",
+      "sc-0000d",
+      "sc-0000e",
+      "sc-0000f",
+      "sc-00013",
+      "sc-00014",
+      "sc-00015",
+      "sc-00016",
+      "sc-00018",
+      "sc-0001a",
+      "sc-0001b",
+      "sc-00020",
+      "sc-00021",
+      "sc-00022",
+      "sc-00023",
+      "sc-00026",
+      "sc-00027",
+      "sc-0002c",
+      "sc-0002d",
+      "sc-0002e",
+      "sc-0002f",
+      "sc-00031",
+      "sc-00032"
+    ],
+    "examples": [
+      {
+        "caseId": "cb-fresh-001-taylor-brookes",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed"
+      },
+      {
+        "caseId": "cb-fresh-002-jordan-hale",
+        "message": "Truth \"mg6\"=served vs app \"MG6 / unused schedule clarification\"=not_safely_confirmed"
+      },
+      {
+        "caseId": "cb-fresh-002-jordan-hale",
+        "message": "Truth \"body-worn video (BWV)\"=referred_only vs app \"Body-worn video (BWV)\"=not_safely_confirmed"
+      },
+      {
+        "caseId": "cb-fresh-002-jordan-hale",
+        "message": "Truth \"custody record / PACE material\"=referred_only vs app \"Full custody record / PACE material\"=not_safely_confirmed"
+      }
+    ]
+  }
+]

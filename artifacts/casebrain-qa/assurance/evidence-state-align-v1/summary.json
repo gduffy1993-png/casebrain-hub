@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-08-24T18:45:00.000Z",
+  "lane": "evidence-state-align-v1",
+  "wave": "B",
+  "fixShas": ["e40bd6e86", "46dbe1191", "62db5bf2f"],
+  "tip": "62db5bf2f",
+  "preview": "https://casebrain-7ht2iuzej-gduffy1993-pngs-projects.vercel.app",
+  "misalignBeforeWaveA": 86,
+  "misalignAfterWaveA": 18,
+  "misalignAfterWaveB": 0,
+  "localContracts": "PASS",
+  "livePreview": "PASS — Brookes single phone attention; MG6 stays schedule wording",
+  "inventResiduals": "none (MG6→phone polish closed)",
+  "skipped": "Brookes Papers 0-served needs matter reprocess",
+  "next": "listing P0 / invent P1 lanes; optional Brookes reprocess"
+}

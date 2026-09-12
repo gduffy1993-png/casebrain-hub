@@ -1,0 +1,78 @@
+CB
+
+CASE WORK
+
+Trial: Trial ended — upgrade to upload more cases
+Upgrade
+
+Leon Hale
+
+Murder, contrary to common law
+
+Northchester Crown Court
+·
+Listing on papers · 22 May 2026 at 10:00 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+Court Position
+Papers & Evidence
+Client Summary
+CPS Chase
+File & Preparation
+Papers on this matter
+
+Source bundle for this matter. 1 file — open PDF with View.
+
+criminal defence bundle.pdf
+
+Uploaded 09/08/2026 · 167,149 chars
+
+Text extracted (167,149 chars)
+
+View
+
+RAW SOURCE EXTRACT — NOT DRAFTING
+
+For checking the uploaded source only. Do not copy this as client, court, or CPS wording.
+
+Controlled fictional source pageTEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 1
+FICTIONAL CRIMINAL DEFENCE CASE BUNDLE
+CB-MURDER-TEST-0001 - Leon Hale
+Fictional test data only. This bundle is created for testing a criminal defence case management application. It is not legal advice and
+does not describe real people, real institutions, real courts, real police forces, real locations, real case references, or real events.
+FieldBundle entry
+Case referenceCB-MURDER-TEST-0001
+DefendantLeon Hale | DOB 17/09/1996
+Complainant / deceasedMarcus Vale
+CourtNorthchester Crown Court
+Next hearing22 May 2026 at 10:00
+StagePTPH / plea and trial preparation
+Custody statusRemanded in custody
+ChargeMurder, contrary to common law
+Defence positionNot guilty. Self-defence, identification, causation, and attribution disputed.
+Bundle health notePartial served bundle. Outstanding phone, CCTV, forensic, pathology, interview, CAD/999, and
+witness material. Conflicting witness accounts.
+Bundle presentation: mixed solicitor/CPS-style disclosure pack with served material, outstanding schedules, witness extracts,
+interview summary, custody/PACE material, forensic notes, timeline material, exhibit list, duplicate/revised pages, and
+inconsistent timing references. Text is selectable.Controlled fictional source pageTEST DATA ONLY | Northchester Crown CourtCriminal defence test bundle
+Selectable-text fictional bundle. No real people, institutions, or case reference.Page 2
+1. COVER / CASE INDEX - DOCUMENT LIST
+The following index is intentionally mixed and partly incomplete to simulate a real pre-PTPH bundle. Some items are served as
+drafts or summaries only. Full source material remains outstanding.
+TabDocumentStatus / noteExhibit
+1Cover and case indexServed case bundle front sheet
+2Charge sheet extractServedEX-MUR-001
+3MG5 case summaryServedEX-MUR-002
+4MG6 disclosure scheduleServed / outstanding splitEX-MUR-003
+5MG11 Aisha TrentDraft, corrected laterEX-MUR-004
+6MG11 Jordan PikeDraft witness statementEX-MUR-005
+7MG11 Priya ColeDraft witness statementEX-MUR-006
+8Police officer statementBWV not servedEX-MUR-007
+9Paramedic noteInitial extract onlyEX-MUR-008
+10CCTV stills and timing noteMaster footage outstandingEX-MUR-009 to
+EX-MUR-011
+11CAD and 999 summariesOriginal audio/log outstandi…

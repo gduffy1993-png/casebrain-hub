@@ -1,0 +1,34 @@
+{
+  "caseId": "a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27",
+  "primary": [
+    {
+      "ref": "AB/2",
+      "label": "AB/2 Photo still",
+      "family": "other",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "TEL/5",
+      "label": "TEL/5 Property continuity note",
+      "family": "exhibit_provenance",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Subscriber / account data",
+      "family": "other",
+      "status": "Outstanding"
+    },
+    {
+      "ref": null,
+      "label": "Full custody record / PACE material",
+      "family": "custody_pace",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 41,
+  "statedGaps": 3,
+  "statedGapsOnBoard": 1,
+  "truncated": true,
+  "findings": []
+}

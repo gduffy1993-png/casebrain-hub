@@ -10,6 +10,8 @@ import {
   Scale,
 } from "lucide-react";
 import { DontSaySafetyBox } from "@/components/criminal/trust/DontSaySafetyBox";
+import { OutputReceiptDisclosure } from "@/components/criminal/trust/OutputReceiptDisclosure";
+import { receiptFromCourtLine } from "@/lib/criminal/visible-output-receipt";
 import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
 import { TrustSectionChrome } from "@/components/criminal/trust/MatterConfidenceHeader";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
@@ -204,6 +206,7 @@ export function PilotTodayDashboard({
           </div>
         ))}
       </div>
+      <OutputReceiptDisclosure receipt={receiptFromCourtLine(safeLine)} />
 
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
         <CockpitCard
@@ -252,7 +255,7 @@ export function PilotTodayDashboard({
             className="mt-3 inline-flex text-xs font-semibold text-amber-300 hover:text-amber-100"
             data-testid="pilot-today-open-chase"
           >
-            Open Chase ({view.chaseItems.length}) →
+            Open CPS Chase ({chaseItems.length} review item{chaseItems.length === 1 ? "" : "s"}) →
           </Link>
         </CockpitCard>
 

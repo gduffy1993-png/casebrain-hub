@@ -10,10 +10,13 @@ import {
   PILOT_CHARGE_NOT_IDENTIFIED_LABEL,
   PILOT_COURT_NOT_IDENTIFIED_LABEL,
   displayPilotStripCharge,
+  displayPilotStripClient,
+  fileBackedMatterTitle,
   resolvePilotChargeDisplay,
 } from "../components/criminal/workflow/workflowPilotDisplay";
 import { sanitizeHeaderClient } from "../lib/criminal/resolve-case-header-metadata";
 import { cleanPilotHeaderClient } from "../lib/criminal/pilot-workflow";
+import { buildCourtCaseBrief } from "../components/criminal/court-today/courtCaseBrief";
 
 assert.equal(
   resolvePilotChargeDisplay("Offence wording not safely extracted"),
@@ -32,6 +35,76 @@ assert.equal(
 assert.equal(sanitizeHeaderClient("Holly Ahmed Date"), "Holly Ahmed");
 assert.equal(cleanPilotHeaderClient("Holly Ahmed Date"), "Holly Ahmed");
 assert.equal(sanitizeHeaderClient("Holly Ahmed DOB"), "Holly Ahmed");
+
+process.env.NEXT_PUBLIC_CRIMINAL_PILOT_MODE = "true";
+const patelThinFrontMatter = [
+  "CASE PAPERS - INDEX",
+  "R v Isaac Patel",
+  "DefendantIsaacPatel",
+  "CourtHearingSouthford Magistrates Court 25 August 2026 10:30",
+  "Current stage: First appearance",
+  "Charge",
+  "Affray",
+  "contrary to section 3 Public Order Act 1986",
+].join("\n");
+const patelBrief = buildCourtCaseBrief(
+  {
+    id: "7e763777-94a8-4958-a190-a35ef6ddb259",
+    title: "Client not on papers",
+    offence_label: "Affray (s.3 Public Order Act 1986)",
+    next_hearing_date: null,
+    next_hearing_type: null,
+    strategy_recorded: false,
+    strategy_preview: null,
+    disclosure_outstanding: null,
+  },
+  {
+    bundleMetadata: null,
+    bundleHeader: null,
+    frontMatterScan: patelThinFrontMatter,
+  },
+  { bucketNow: new Date("2026-08-22T12:00:00.000Z") },
+);
+assert.equal(displayPilotStripClient("Client not on papers"), "");
+assert.equal(fileBackedMatterTitle("Client not on papers", "Isaac Patel"), "Isaac Patel");
+assert.equal(fileBackedMatterTitle("Client not on papers", "not safely extracted"), "");
+assert.equal(fileBackedMatterTitle("R v Jordan Hale", "Jordan Hale"), "Jordan Hale");
+
+assert.equal(patelBrief.clientLabel, "Isaac Patel");
+assert.equal(patelBrief.caseTitle, "Isaac Patel");
+assert.doesNotMatch(patelBrief.clientLabel, /not on papers|not safely extracted/i);
+assert.doesNotMatch(patelBrief.caseTitle, /not on papers|not safely extracted/i);
+assert.match(patelBrief.hearingLabel, /25 Aug 2026|25 August 2026/);
+assert.match(patelBrief.stage, /First appearance/i);
+
+const namelessFrontMatter = [
+  "CASE PAPERS - INDEX",
+  "CourtHearingSouthford Magistrates Court 25 August 2026 10:30",
+  "Charge",
+  "Affray",
+  "contrary to section 3 Public Order Act 1986",
+].join("\n");
+const namelessBrief = buildCourtCaseBrief(
+  {
+    id: "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee",
+    title: "Client not on papers",
+    offence_label: "Affray (s.3 Public Order Act 1986)",
+    next_hearing_date: null,
+    next_hearing_type: null,
+    strategy_recorded: false,
+    strategy_preview: null,
+    disclosure_outstanding: null,
+  },
+  {
+    bundleMetadata: null,
+    bundleHeader: null,
+    frontMatterScan: namelessFrontMatter,
+  },
+  { bucketNow: new Date("2026-08-22T12:00:00.000Z") },
+);
+assert.doesNotMatch(namelessBrief.clientLabel, /Isaac Patel|Jordan Hale|Holly Ahmed/i);
+assert.doesNotMatch(namelessBrief.caseTitle, /Isaac Patel|Jordan Hale|Holly Ahmed/i);
+assert.match(namelessBrief.clientLabel, /not safely extracted|not on papers/i);
 
 assert.equal(
   humanizeEvidenceLabel("MG6 disclosure schedule on file", "served"),
@@ -78,6 +151,11 @@ assert.match(
   /enrichCourtTodayBundles\(\[requestedCaseId\]\)/,
   "Court Today must enrich the selected matter directly so the sidebar and main desk share the same case truth",
 );
+assert.match(
+  courtTodayClientSource,
+  /All open review items/,
+  "Court Today top KPI must label all-case review counts distinctly from the selected matter",
+);
 
 const appShellSource = fs.readFileSync("components/layout/app-shell.tsx", "utf8");
 assert.match(appShellSource, /overflow-x-hidden/, "Pilot app shell must contain horizontal overflow");
@@ -110,11 +188,16 @@ const solicitorVisibleSources = [
   "components/criminal/disclosure-chase/DisclosureChase.tsx",
   "components/criminal/disclosure-chase/buildDisclosureChaseBrief.ts",
   "components/criminal/court-today/courtCaseBrief.ts",
+  "components/criminal/court-today/CourtTodayPilotSplit.tsx",
   "components/criminal/court-today/CourtTodayDiaryTable.tsx",
   "components/criminal/CaseControlRoom.tsx",
   "components/criminal/CaseFilesCompactStrip.tsx",
   "components/criminal/workflow/PilotSummaryView.tsx",
   "components/criminal/workflow/PilotTodayDashboard.tsx",
+  "components/criminal/demo-shell/DemoOverviewView.tsx",
+  "components/criminal/demo-shell/DemoOverviewCanvas.tsx",
+  "components/criminal/demo-shell/demoOverviewAdapter.ts",
+  "components/criminal/papers/PapersDocInventoryPanel.tsx",
   "components/criminal/workflow/PilotCaseDocumentsPanel.tsx",
   "components/criminal/hearing-mode/HearingModePanel.tsx",
   "components/criminal/hearing-war-room/buildHearingWarRoomBrief.ts",
@@ -199,6 +282,13 @@ const forbiddenSolicitorVisibleCopy = [
   /PTPH \/ case management note/i,
   /MORE PAPERS DETAIL UNAVAILABLE/i,
   /FULL SUMMARY WORKSPACE UNAVAILABLE/i,
+  /Client details need review/i,
+  /Client name not safely extracted/i,
+  /Active chase items/i,
+  /Active chases/i,
+  /\b\d+\s+chase\b/i,
+  /\bchars extracted\b/i,
+  /\bCCTV Continuity\b/,
 ];
 
 for (const file of solicitorVisibleSources) {

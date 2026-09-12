@@ -16,6 +16,7 @@ import {
 import type { DocumentRowMeta } from "@/lib/bundle/parse-bundle-display";
 import { buildCaseSnapshot, type CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
+import type { AuthenticatedMatterCanonicalPayload } from "@/lib/criminal/authenticated-matter-canonical";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
 import {
   resolveCaseHeaderMetadata,
@@ -83,6 +84,7 @@ type BundleSourceSummary = {
     accused?: string | null;
   };
   caseMetadata?: ExtractedBundleCaseMetadata | null;
+  canonical?: AuthenticatedMatterCanonicalPayload | null;
 };
 
 type MatterSummary = {
@@ -367,6 +369,7 @@ export async function loadCaseQaPackInput(caseId: string): Promise<CaseQaPackInp
           frontMatterScan: bundleRes.data.frontMatterScan ?? null,
           header: bundleRes.data.header,
           caseMetadata: bundleRes.data.caseMetadata ?? null,
+          canonical: bundleRes.data.canonical ?? null,
         }
       : null;
 
@@ -387,6 +390,7 @@ export async function loadCaseQaPackInput(caseId: string): Promise<CaseQaPackInp
     matter,
     bundleMetadata: bundleSource?.caseMetadata,
     bundleHeader: bundleSource?.header ?? null,
+    sourceCharges: bundleSource?.canonical?.charges ?? null,
     matterState: matter?.stageDetected ?? null,
     bundleText: bundleSource?.frontMatterScan ?? null,
   });

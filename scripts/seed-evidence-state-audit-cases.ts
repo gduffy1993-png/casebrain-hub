@@ -25,12 +25,30 @@ const SIM_PACKS = [
   "simulator-pack-v4",
 ] as const;
 
-function resolveSimDir(caseId: string): string {
+function pause(ms: number): void {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
+
+function writeTextFileWithRetry(filePath: string, contents: string): void {
+  let lastError: unknown;
+  for (let attempt = 0; attempt < 40; attempt += 1) {
+    try {
+      fs.writeFileSync(filePath, contents, "utf8");
+      return;
+    } catch (error) {
+      lastError = error;
+      pause(250);
+    }
+  }
+  throw lastError;
+}
+
+function resolveSimDir(caseId: string): string | null {
   for (const pack of SIM_PACKS) {
     const dir = path.join(ROOT, "docs", "h4", pack, caseId);
     if (fs.existsSync(path.join(dir, "bundle-text.md"))) return dir;
   }
-  throw new Error(`Missing simulator bundle for ${caseId}`);
+  return null;
 }
 
 function offenceLabel(family: string | undefined): string {
@@ -52,8 +70,9 @@ function offenceLabel(family: string | undefined): string {
   }
 }
 
-function seedCase(caseId: string): void {
+function seedCase(caseId: string): boolean {
   const simDir = resolveSimDir(caseId);
+  if (!simDir) return false;
   const bundlePath = path.join(simDir, "bundle-text.md");
   const truthPath = path.join(simDir, "truth-key.json");
   if (!fs.existsSync(bundlePath) || !fs.existsSync(truthPath)) {
@@ -82,19 +101,29 @@ function seedCase(caseId: string): void {
 
   const outDir = path.join(OUT_ROOT, caseId);
   fs.mkdirSync(outDir, { recursive: true });
-  fs.writeFileSync(path.join(outDir, "truth-key.json"), `${JSON.stringify(truthKey, null, 2)}\n`, "utf8");
-  fs.writeFileSync(path.join(outDir, "casebrain-output.json"), `${JSON.stringify(output, null, 2)}\n`, "utf8");
-  fs.writeFileSync(path.join(outDir, "bundle-text.md"), bundleText, "utf8");
+  writeTextFileWithRetry(path.join(outDir, "truth-key.json"), `${JSON.stringify(truthKey, null, 2)}\n`);
+  writeTextFileWithRetry(path.join(outDir, "casebrain-output.json"), `${JSON.stringify(output, null, 2)}\n`);
+  writeTextFileWithRetry(path.join(outDir, "bundle-text.md"), bundleText);
 
   console.log(`  seeded ${caseId} (${truthKey.evidenceItems.length} truth items)`);
+  return true;
 }
 
 function main(): void {
   console.log("Seeding controlled evidence-state audit cases (simulator v2/v3)…");
+  const skipped: string[] = [];
   for (const caseId of AUDIT_SIMULATOR_CASE_IDS) {
-    seedCase(caseId);
+    if (!seedCase(caseId)) skipped.push(caseId);
   }
   const total = fs.readdirSync(OUT_ROOT, { withFileTypes: true }).filter((d) => d.isDirectory()).length;
+  if (skipped.length) {
+    const skippedPath = path.join(OUT_ROOT, "_skipped-missing-simulator-bundles.json");
+    writeTextFileWithRetry(
+      skippedPath,
+      `${JSON.stringify({ count: skipped.length, caseIds: skipped }, null, 2)}\n`,
+    );
+    console.log(`Skipped ${skipped.length} simulator ids with no local bundle; wrote ${skippedPath}`);
+  }
   console.log(`Done. ${total} case folders under artifacts/evidence-state-audit-local/cases/`);
 }
 

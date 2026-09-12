@@ -1,0 +1,68 @@
+{
+  "caseId": "f57a2750-d24e-42a2-9f73-92384db565dc",
+  "slug": "priya-vale-assault",
+  "label": "Priya Vale Assault occasioning actual bodily harm, section 47 OAPA 1861 CRIMINAL",
+  "preview": "https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-24T19:53:47.718Z",
+  "tabs": {
+    "overview": {
+      "ok": true,
+      "textLen": 2082,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "Safe Court Line Copy safe court line The defence asks the court to record that the interview transcript remains outstanding and custody/PACE completeness needs confirmation before the defence relies on safeguards or interview fairness. Clie",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "0 Missing",
+          "1 Incomplete",
+          "What Needs Attention",
+          "0 missing · 1 incomplete · 1 open review item",
+          "Missing",
+          "Unclear",
+          "Incomplete",
+          "Chased",
+          "UNCLEAR",
+          "UNCLEAR",
+          "Copy chase request",
+          "The defence asks the court to record that the interview transcript remains outstanding and custody/PACE completeness needs confirmation before the defence relies on safeguards or interview fairness."
+        ],
+        "textLen": 2082
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 2756,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "CHASED",
+          "Chased",
+          "CAD / dispatch log material",
+          "Copy CPS chase",
+          "Body-worn video (BWV)",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "Copy CPS chase",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "Copy CPS chase",
+          "CAD / dispatch log material",
+          "DRAFT CHASE WORDING",
+          "Please provide CAD / dispatch log material or confirm in writing why it is not available.",
+          "Provisional chase list · check source before sending",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 2756
+      }
+    }
+  }
+}

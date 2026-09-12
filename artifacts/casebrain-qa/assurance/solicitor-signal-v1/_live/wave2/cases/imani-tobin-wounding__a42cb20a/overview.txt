@@ -1,0 +1,10 @@
+Sign in to CaseBrain
+
+Continue to your secure criminal-defence workspace.
+
+Work email
+Password
+Forgot password?
+Sign In
+Data is encrypted in transit and at rest. Case documents are not used to train public AI models.
+Don't have an account? Sign up

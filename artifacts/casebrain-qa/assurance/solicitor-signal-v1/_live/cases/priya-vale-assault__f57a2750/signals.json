@@ -1,0 +1,169 @@
+{
+  "caseId": "f57a2750-d24e-42a2-9f73-92384db565dc",
+  "slug": "priya-vale-assault",
+  "label": "Priya Vale Assault occasioning actual bodily harm, section 47 OAPA 1861 CRIMINAL",
+  "preview": "https://casebrain-l8dqkfmm0-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-24T19:26:26.649Z",
+  "tabs": {
+    "overview": {
+      "ok": true,
+      "textLen": 2356,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "Safe Court Line Copy safe court line The defence asks the court to record that the interview transcript remains outstanding and custody/PACE completeness needs confirmation before the defence relies on safeguards or interview fairness. Clie",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "0 Missing",
+          "3 Incomplete",
+          "What Needs Attention",
+          "0 missing · 3 incomplete · 4 open review items",
+          "Missing",
+          "Unclear",
+          "Incomplete",
+          "Chased",
+          "MG6 / unused schedule clarification",
+          "UNCLEAR",
+          "UNCLEAR",
+          "UNCLEAR",
+          "MG6 / unused schedule clarification",
+          "UNCLEAR",
+          "UNCLEAR",
+          "MG6 / unused schedule clarification",
+          "MG6/MG6C disclosure schedule",
+          "Please provide the MG6 / unused schedule clarification or confirm in writing why it is not available.",
+          "Copy chase request",
+          "The defence asks the court to record that the interview transcript remains outstanding and custody/PACE completeness needs confirmation before the defence relies on safeguards or interview fairness."
+        ],
+        "textLen": 2356
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 3535,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "CHASED",
+          "Chased",
+          "CAD / dispatch log material",
+          "Copy CPS chase",
+          "Body-worn video (BWV)",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "Copy CPS chase",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "Copy CPS chase",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "Copy CPS chase",
+          "CAD / dispatch log material",
+          "DRAFT CHASE WORDING",
+          "Please provide CAD / dispatch log material or confirm in writing why it is not available.",
+          "Provisional chase list · check source before sending",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 3535
+      }
+    },
+    "file": {
+      "ok": true,
+      "textLen": 602,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase"
+        ],
+        "textLen": 602
+      }
+    },
+    "court": {
+      "ok": true,
+      "textLen": 741,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "Based on uploaded papers · conditional where papers are incomplete"
+        ],
+        "textLen": 741
+      }
+    },
+    "papers": {
+      "ok": true,
+      "textLen": 22815,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "40 material row(s) · 0 served/on-file · 40 gap / partial / unclear",
+          "forensic/medical/digital material remains provisional where relevant.",
+          "MG6 Outstanding / missing —",
+          "Defence risk note: If missing source material supports the Crown route, the present defence pressure",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "Outstanding item: final medical report; prior injury records; CCTV continuity; complainant first",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "route cannot be finalised until missing source material is served.",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "account; interview transcript.",
+          "MG6 Not safely confirmed —",
+          "BWV from attending officers.",
+          "MG6 Not safely confirmed —",
+          "MG6 Not safely confirmed —",
+          "CCTV/BWV/phone/forensic/witness material where relevant.",
+          "MG6 Not safely confirmed —",
+          "CHARGE / MG5 / MG6 CORE PAPERS",
+          "MG6 Not safely confirmed —",
+          "MG6 Not safely confirmed —",
+          "Chase: Full CCTV master footage; CCTV continuity/export log; Full 999 audio; Full CAD incident log;",
+          "MG6 Not safely confirmed —",
+          "MG6 Not safely confirmed —",
+          "MG6 Not safely confirmed —",
+          "Cross-reference: MG5 relies on this account more strongly than the witness wording may safely",
+          "MG6 Not safely confirmed —",
+          "MG6 Not safely confirmed —",
+          "MG6 Not safely confirmed —",
+          "D | MG6 disclosure schedule | 15",
+          "MG6 Draft —",
+          "Defence observation: the MG5 sometimes states a source proves a point, while MG6 shows the full source",
+          "MG6 Not safely confirmed —"
+        ],
+        "textLen": 22815
+      }
+    }
+  }
+}

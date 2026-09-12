@@ -1,0 +1,151 @@
+CB
+
+CASE WORK
+
+Trial: Trial ended — upgrade to upload more cases
+Upgrade
+
+Client not on papers
+
+Charge not safely identified from uploaded papers
+
+Southford Magistrates' Court
+·
+Upcoming listing · 25 Aug 2026
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+Court Position
+Papers & Evidence
+Client Summary
+CPS Chase
+File & Preparation
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+5
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+5
+
+All
+Overdue
+Due soon
+Chased
+Received
+CCTV Continuity / provenance
+
+Continuity source needs checking before any CCTV point is relied on.
+
+NEEDS CONFIRMATION
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Confirm status before relying on CCTV continuity
+Provenance
+state: not safely confirmed · limitation: Source reference present; exact document title/type and page still need checking.
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+CCTV full window / master footage
+
+Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.
+
+NEEDS CONFIRMATION
+Source
+Crown / disclosure officer (confirm on file)
+Deadline
+Chase before listed hearing
+Provenance
+state: not safely confirmed · limitation: Source reference present; exact document title/type and page still need checking.
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+CAD / dispatch log material
+
+The papers identify a CAD/dispatch material gap — keep the request limited to the source the papers identify.
+
+NEEDS CONFIRMATION
+Source
+Crown / disclosure officer (confirm on file)
+Deadline
+Chase before listed hearing
+Provenance
+state: not safely confirmed · limitation: Source reference present; exact document title/type and page still need checking.
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Full custody record / PACE material
+
+Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.
+
+NEEDS CONFIRMATION
+Source
+Crown / disclosure officer (confirm on file)
+Deadline
+Chase before listed hearing
+Provenance
+state: missing · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Other source-material items (1)
+Show
+CCTV Continuity / provenance
+NEEDS CONFIRMATION
+
+WHY IT MATTERS
+
+Continuity source needs checking before any CCTV point is relied on.
+
+Source: MG6/MG6C disclosure schedule
+
+Deadline: Confirm status before relying on CCTV continuity
+
+MERGED FROM FILE
+
+CCTV Continuity / provenance
+Continuity of CCTV sources: to be checked.
+
+EVIDENCE ANCHOR
+
+Continuity of CCTV sources: to be checked.
+
+DRAFT CHASE WORDING
+
+Please provide CCTV Continuity / provenance or confirm in writing why it is not available.
+
+COURT LINE
+
+The defence asks the court to record that this material needs confirmation before it is relied on.
+
+Case-wide court line (provisional): The defence asks the court to record that custody/PACE and interview material need source-status confirmation before the hearing position is fixed.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

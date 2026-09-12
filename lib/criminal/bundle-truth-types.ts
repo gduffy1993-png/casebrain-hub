@@ -49,6 +49,16 @@ export type SourceAnchor = {
   documentPriority: DocumentPriority;
   sectionLabel: string | null;
   excerpt: string | null;
+  /** Uploaded document title when the PDF/text stream preserved it. */
+  sourceDocumentTitle?: string | null;
+  /** Uploaded document type when known; falls back to documentPriority for schedule rows. */
+  sourceDocumentType?: string | null;
+  /** Source document page, only when genuinely known from page units. */
+  sourcePage?: string | null;
+  /** Compiled-bundle page, only when genuinely known from page units. */
+  compiledPage?: string | null;
+  /** False for unsplit whole-document text; undefined means the older text path had no page data. */
+  pageIdentityKnown?: boolean;
 };
 
 export type NormalisedMaterialRow = {

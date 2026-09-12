@@ -1,0 +1,40 @@
+
+=== SNIPPET: mg5 ===
+MG5 CASE SUMMARY
+CB-TB-343    Page 3Prepared papers
+URNNP/2026/000343DefendantEllis Dunn
+OffenceConspiracy burglaryStagetrial preparation
+CourtCrown Court at ManchesterHearing07 July 2026 at 14:15
+Summary of allegation
+The prosecution case is that Ellis Dunn was involved in an incident at Albion Road on 29/05/2026. Call data is partial; one
+co-defendant blames another. The file records matters requiring review before the next hearing.
+Issues for review
+- Call data is partial; one co-defendant blames another.
+- Disclosure position should be checked against the MG6 schedule.
+- Any hearing position should be conditional on served material only.
+Interview / account
+The defendant gave no comment to evidential questions following limited disclosure.
+
+MG5 CASE SUMMARY - CONTINUATION
+CB-TB-343    Page 4Prepared papers
+URNNP/2026/000343DefendantEllis Dunn
+OffenceConspiracy burglaryStagetrial preparation
+CourtCrown Court at ManchesterHearing07 July 2026 at 14:15
+Summary of allegation
+The prosecution case is that Ellis Dunn was involved in an incident at Albion Road on 29/05/2026. Call data is partial; one
+co-defendant blames another. The file records matters requiring review before the next hearing.
+Issues for review
+- Call data is partial; one co-defendant blames another.
+- Disclosure position should be checked against the MG6 schedule.
+- Any hearing position should be conditional on served material only.
+Interview / account
+The defendant denied intent and said the prosecution summary does not record the full context.
+
+=== SNIPPET: mg6 ===
+null
+
+=== SNIPPET: mg11 ===
+null
+
+=== SNIPPET: exhibits ===
+null

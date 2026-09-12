@@ -1,0 +1,92 @@
+{
+  "caseId": "331f5ca6-2d6d-4664-a139-fc7dca6760dc",
+  "slug": "wounding",
+  "label": "Wounding / causing GBH with intent 1 document on file: Untitled document (14) CRIMINAL",
+  "preview": "https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-24T19:53:23.744Z",
+  "tabs": {
+    "overview": {
+      "ok": true,
+      "textLen": 2557,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "Safe Court Line Copy safe court line The defence asks the court to record that custody/PACE and interview material need source-status confirmation before the hearing position is fixed. Client Update Copy client update CLIENT-SAFE SUMMARY (n",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "0 Missing",
+          "2 Incomplete",
+          "What Needs Attention",
+          "0 missing · 2 incomplete · 3 open review items",
+          "Missing",
+          "Unclear",
+          "Incomplete",
+          "Chased",
+          "CCTV continuity / provenance",
+          "UNCLEAR",
+          "Continuity source needs checking before any CCTV point is relied on.",
+          "Full custody record / PACE material",
+          "UNCLEAR",
+          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          "UNCLEAR",
+          "UNCLEAR",
+          "CCTV continuity / provenance",
+          "Continuity source needs checking before any CCTV point is relied on.",
+          "9. 08 Officer Statement — CCTV Seizure",
+          "Please provide the CCTV continuity record, provenance material, or confirm in writing why it is not available.",
+          "Copy chase request",
+          "The defence asks the court to record that custody/PACE and interview material need source-status confirmation before the hearing position is fixed.",
+          "(not for court or CPS) We are reviewing the papers in your case (Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861). This is early-stage — nothing is final until we have full disclosure and your instructions. What the witness describes does not fully match what the CCTV clip shows about contact or force. More than one date is mentioned on the charge, but the summary may only describe one incident. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice."
+        ],
+        "textLen": 2557
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 3405,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "CHASED",
+          "Chased",
+          "CCTV Continuity / provenance",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "Copy CPS chase",
+          "Full custody record / PACE material",
+          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          "REFERRED ONLY",
+          "Listing on papers elapsed — confirm next listing / chase outstanding disclosure",
+          "Copy CPS chase",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "Listing on papers elapsed — confirm next listing / chase outstanding disclosure",
+          "Copy CPS chase",
+          "CCTV Continuity / provenance",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "CCTV Continuity / provenance",
+          "pending), continuity gaps (CCTV/weapon).",
+          "1. Full CCTV export with continuity from source to exhibit.",
+          "Force-vs-CCTV inconsistency (force / weapon alleged vs limited contact on CCTV)",
+          "9. 08 Officer Statement — CCTV Seizure",
+          "DRAFT CHASE WORDING",
+          "Please provide CCTV Continuity / provenance or confirm in writing why it is not available.",
+          "The defence asks the court to record that cCTV Continuity / provenance needs confirmation before the defence relies on it.",
+          "Case-wide court line (provisional): The defence asks the court to record that custody/PACE and interview material need source-status confirmation before the hearing position is fixed.",
+          "Provisional chase list · check source before sending",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 3405
+      }
+    }
+  }
+}

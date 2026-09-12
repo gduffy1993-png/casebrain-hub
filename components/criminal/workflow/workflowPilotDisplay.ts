@@ -6,7 +6,7 @@ import {
 } from "@/lib/criminal/solicitor-display-dedupe";
 
 const INTERNAL_CLIENT_RES =
-  /unless document|not safely extracted|offence wording not|add charge sheet|unknown offence|allegation not recorded/i;
+  /unless document|not safely extracted|not on papers|offence wording not|add charge sheet|unknown offence|allegation not recorded|^client\b/i;
 
 const INTERNAL_CHARGE_RES =
   /unless document|not safely extracted|offence wording not|add charge sheet|unknown offence|allegation not recorded/i;
@@ -55,7 +55,35 @@ export function displayPilotStripClient(raw: string | null | undefined): string 
     .replace(/\s+(?:Date(?:\s+of\s+birth)?|DOB|D\.?O\.?B\.?)\s*$/i, "")
     .trim();
   if (!t || INTERNAL_CLIENT_RES.test(t)) return "";
+  if (isPlaceholderMatterTitle(t)) return "";
   return t;
+}
+
+/** Stored titles like "Client not on papers" are not a File name. */
+export function isPlaceholderMatterTitle(raw: string | null | undefined): boolean {
+  const t = (raw ?? "").trim();
+  if (!t) return true;
+  if (/^untitled case$/i.test(t)) return true;
+  if (/^matter details to confirm/i.test(t)) return true;
+  if (/^selected matter$/i.test(t)) return true;
+  if (/^[a-z]/.test(t)) return true;
+  if (/\bdenies\b|\bpositions\b/i.test(t) && !/^[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,2}$/.test(t)) return true;
+  if (t.split(/\s+/).length >= 5 && !/^[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3}$/.test(t)) return true;
+  return INTERNAL_CLIENT_RES.test(t);
+}
+
+/** List / heading title is the File name when the papers name someone. */
+export function fileBackedMatterTitle(
+  storedTitle: string | null | undefined,
+  fileName: string | null | undefined,
+): string {
+  const fromFile = displayPilotStripClient(fileName);
+  if (fromFile && !isPlaceholderMatterTitle(fromFile)) return fromFile;
+  const stored = (storedTitle ?? "").trim();
+  if (stored && !isPlaceholderMatterTitle(stored)) return stored;
+  const person = `${fromFile} ${stored}`.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)\b/);
+  if (person?.[1] && !isPlaceholderMatterTitle(person[1])) return person[1];
+  return "";
 }
 
 export function displayPilotStripCharge(raw: string | null | undefined): string {
