@@ -3,7 +3,13 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { AlertCircle, Copy, FileText, Loader2, Mic, Phone, ShieldCheck, Video } from "lucide-react";
-import type { DemoAttentionItem, DemoAttentionStatus, DemoReadiness, DemoStatCounts } from "./demoOverviewAdapter";
+import type {
+  DemoAttentionItem,
+  DemoAttentionStatus,
+  DemoKeyDefenceIssue,
+  DemoReadiness,
+  DemoStatCounts,
+} from "./demoOverviewAdapter";
 import { OutputReceiptDisclosure } from "@/components/criminal/trust/OutputReceiptDisclosure";
 import type { VisibleOutputReceipt } from "@/lib/criminal/visible-output-receipt";
 
@@ -38,6 +44,7 @@ export function DemoOverviewCanvas({
   provisional,
   readinessBanner,
   stats,
+  keyIssues,
   attention,
   courtLine,
   courtReceipt,
@@ -57,6 +64,7 @@ export function DemoOverviewCanvas({
   provisional: boolean;
   readinessBanner: string;
   stats: DemoStatCounts;
+  keyIssues: DemoKeyDefenceIssue[];
   attention: DemoAttentionItem[];
   courtLine: string;
   courtReceipt?: VisibleOutputReceipt;
@@ -159,6 +167,39 @@ export function DemoOverviewCanvas({
           </div>
         </div>
       </header>
+
+      {keyIssues.length ? (
+        <section className="rounded-2xl border border-amber-200 bg-amber-50/70 p-4 shadow-sm">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <h2 className="text-base font-semibold text-slate-950">Key defence issues</h2>
+              <p className="mt-0.5 text-xs text-amber-900/70">
+                Highest-value points from the papers. Each one keeps its source receipt.
+              </p>
+            </div>
+            <span className="rounded-full bg-white/80 px-2.5 py-1 text-xs font-semibold text-amber-800">
+              {keyIssues.length} issue{keyIssues.length === 1 ? "" : "s"}
+            </span>
+          </div>
+          <div className="mt-3 grid gap-3 lg:grid-cols-2">
+            {keyIssues.map((issue) => (
+              <article key={issue.id} className="rounded-xl border border-amber-100 bg-white p-3 shadow-sm">
+                <h3 className="text-sm font-semibold text-slate-950">{issue.issue}</h3>
+                <p className="mt-1 text-xs leading-relaxed text-slate-600">{issue.why}</p>
+                <p className="mt-2 text-xs font-medium leading-relaxed text-slate-800">
+                  Next: {issue.nextAction}
+                </p>
+                <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-slate-500">
+                  Source: {issue.sourceLine}
+                </p>
+                <div className="mt-2">
+                  <OutputReceiptDisclosure receipt={issue.receipt} compact />
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
         <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">

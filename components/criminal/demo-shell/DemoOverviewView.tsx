@@ -25,6 +25,7 @@ import {
 } from "@/components/criminal/workflow/workflowPilotDisplay";
 import {
   buildDemoAttentionItems,
+  buildDemoKeyDefenceIssues,
   buildDemoReadiness,
   buildDemoStatCounts,
 } from "./demoOverviewAdapter";
@@ -183,6 +184,7 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
       provisional
       readinessBanner=""
       stats={{ missing: 0, incomplete: 0, activeChases: 0, openReviewItems: 0 }}
+      keyIssues={[]}
       attention={[]}
       courtLine=""
       clientUpdate=""
@@ -236,6 +238,7 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
   }));
   const stats = buildDemoStatCounts(attention, stateCounts);
   const readiness = buildDemoReadiness(stateCounts, stats);
+  const keyIssues = buildDemoKeyDefenceIssues(sourceBundleText, chasePool);
 
   const courtLineText = polishPresentationLine(
     chase.safeCourtLine?.trim() ||
@@ -352,6 +355,7 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
       provisional={provisional}
       readinessBanner={readinessBanner}
       stats={stats}
+      keyIssues={keyIssues}
       attention={attention}
       courtLine={courtLineText}
       courtReceipt={courtReceipt}

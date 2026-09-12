@@ -4,6 +4,7 @@
 import assert from "node:assert/strict";
 import {
   buildDemoAttentionItems,
+  buildDemoKeyDefenceIssues,
   buildDemoReadiness,
   buildDemoStatCounts,
 } from "../components/criminal/demo-shell/demoOverviewAdapter";
@@ -200,5 +201,33 @@ const brookesChipAlign = buildDemoAttentionItems([
 const brookesStats = buildDemoStatCounts(brookesChipAlign, { missing: 2, incomplete: 1, notSafelyConfirmed: 1 });
 assert.equal(brookesStats.openReviewItems, 1);
 assert.equal(brookesStats.missing + brookesStats.incomplete, 1, "chips match frozen shortlist length");
+
+const grantLikeText = `
+URN: NB26/1681
+CHARGE PARTICULARS: possession with intent to supply class A, alleged on 7 May 2026.
+MG5 case summary: incident alleged on 12 May 2026. Reference NB26/792423.
+Handset A was recovered near a sofa. Ownership is not finally proved and subscriber return is only partial.
+Omar Iqbal says he cannot say who owned the handset or bag.
+M2 Interview transcript — Served.
+Custody / interview note: only interview summary provided; full transcript outstanding.
+M9 BWV PC Khan — Requested — Not served with this copy.
+`;
+
+const grantIssues = buildDemoKeyDefenceIssues(grantLikeText, []);
+assert.ok(grantIssues.length >= 5, "Grant-style bundle surfaces compact high-value issues");
+assert.ok(grantIssues.length <= 5, "Key defence issues stay capped");
+assert.ok(grantIssues.some((i) => /witness cannot/i.test(i.issue)), "witness limitation is surfaced");
+assert.ok(grantIssues.some((i) => /attribution/i.test(i.issue)), "phone attribution is surfaced");
+assert.ok(grantIssues.some((i) => /date/i.test(i.issue)), "date conflict is surfaced");
+assert.ok(grantIssues.some((i) => /identifier|urn/i.test(i.issue)), "URN conflict is surfaced");
+assert.ok(grantIssues.some((i) => /interview/i.test(i.issue)), "interview status conflict is surfaced");
+for (const issue of grantIssues) {
+  assert.ok(issue.sourceLine.length > 8, `${issue.issue} has a source line`);
+  assert.notEqual(issue.receipt.sourceClass, "unsupported", `${issue.issue} has a receipt`);
+  assert.equal(issue.receipt.outputType, "key_defence_issue");
+}
+
+const quietIssues = buildDemoKeyDefenceIssues("Charge sheet only. Defendant named. No schedule supplied.", []);
+assert.equal(quietIssues.length, 0, "quiet thin file does not get fake key issues");
 
 console.log("demo-overview-adapter.test.ts: PASS");

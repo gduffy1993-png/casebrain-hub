@@ -4,7 +4,11 @@
  */
 
 import type { DisclosureChaseItem } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
-import { receiptFromChaseItem, type VisibleOutputReceipt } from "@/lib/criminal/visible-output-receipt";
+import {
+  buildVisibleOutputReceipt,
+  receiptFromChaseItem,
+  type VisibleOutputReceipt,
+} from "@/lib/criminal/visible-output-receipt";
 
 export type DemoAttentionStatus = "MISSING" | "UNCLEAR" | "INCOMPLETE" | "ACTIVE";
 
@@ -21,6 +25,16 @@ export type DemoAttentionItem = {
   courtWording: string;
   familyId: string;
   receipt: VisibleOutputReceipt;
+};
+
+export type DemoKeyDefenceIssue = {
+  id: string;
+  issue: string;
+  why: string;
+  nextAction: string;
+  sourceLine: string;
+  receipt: VisibleOutputReceipt;
+  priority: number;
 };
 
 export type DemoStatCounts = {
@@ -50,6 +64,193 @@ function impactFromFamily(familyId: string): string[] {
 
 function cleanOneLine(value: string | null | undefined): string {
   return (value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function sourceSnippet(text: string, pattern: RegExp): string | null {
+  const normalized = (text ?? "").replace(/\r/g, "\n");
+  for (const rawLine of normalized.split(/\n+/)) {
+    const line = cleanOneLine(rawLine);
+    if (line.length >= 8 && pattern.test(line)) return line;
+  }
+  const compact = cleanOneLine(normalized);
+  const match = compact.match(pattern);
+  if (!match || match.index === undefined) return null;
+  const start = Math.max(0, match.index - 90);
+  const end = Math.min(compact.length, match.index + match[0].length + 140);
+  return compact.slice(start, end).trim();
+}
+
+function linesMatching(text: string, pattern: RegExp): string[] {
+  return (text ?? "")
+    .replace(/\r/g, "\n")
+    .split(/\n+/)
+    .map(cleanOneLine)
+    .filter((line) => line.length >= 8 && pattern.test(line));
+}
+
+function distinctDatesFrom(lines: string[]): string[] {
+  const dates = new Set<string>();
+  for (const line of lines) {
+    for (const hit of line.matchAll(/\b(?:\d{1,2}[\/.-]\d{1,2}[\/.-]\d{2,4}|\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|June|Jul|July|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\s+\d{2,4})\b/gi)) {
+      dates.add(hit[0].toLowerCase().replace(/\s+/g, " "));
+    }
+  }
+  return [...dates];
+}
+
+function issueReceipt(issue: string, sourceLine: string, status = "Not safely confirmed"): VisibleOutputReceipt {
+  return buildVisibleOutputReceipt({
+    output: issue,
+    surface: "overview",
+    outputType: "key_defence_issue",
+    status,
+    sourceLabel: "File extract",
+    excerpt: sourceLine,
+    evidenceAnchor: sourceLine,
+  });
+}
+
+function pushKeyIssue(
+  out: DemoKeyDefenceIssue[],
+  seen: Set<string>,
+  input: Omit<DemoKeyDefenceIssue, "id" | "receipt">,
+) {
+  const key = input.issue.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  if (!key || seen.has(key) || !input.sourceLine) return;
+  seen.add(key);
+  out.push({
+    ...input,
+    id: `key-${out.length + 1}-${key.slice(0, 28).replace(/\s+/g, "-")}`,
+    receipt: issueReceipt(input.issue, input.sourceLine),
+  });
+}
+
+/**
+ * High-value solicitor issues only — separate from the disclosure chase list.
+ * Every issue must be tied to a File/PDF line, otherwise it is not shown.
+ */
+export function buildDemoKeyDefenceIssues(
+  bundleText: string,
+  chaseItems: DisclosureChaseItem[] = [],
+): DemoKeyDefenceIssue[] {
+  const text = bundleText ?? "";
+  const out: DemoKeyDefenceIssue[] = [];
+  const seen = new Set<string>();
+
+  const witnessOwnership = sourceSnippet(
+    text,
+    /\b(?:cannot|can't|could not|unable)\b[^.\n]{0,120}\b(?:own|owned|ownership|identify|say who)\b[^.\n]{0,100}\b(?:handset|phone|bag|device)\b|\b(?:handset|phone|bag|device)\b[^.\n]{0,100}\b(?:cannot|can't|could not|unable)\b[^.\n]{0,120}\b(?:own|owned|ownership|identify|say who)\b/i,
+  );
+  const attribution = sourceSnippet(
+    text,
+    /\b(?:handset|phone|device|bag)\b[^.\n]{0,140}\b(?:ownership|attribution|subscriber|recovered near|near a sofa|not finally proved|not proved|not established|unclear|partial)\b|\b(?:ownership|attribution|subscriber)\b[^.\n]{0,140}\b(?:handset|phone|device|bag|not finally proved|not proved|not established|unclear|partial)\b/i,
+  );
+  if (witnessOwnership && attribution) {
+    pushKeyIssue(out, seen, {
+      issue: "Witness cannot identify ownership and phone attribution needs review",
+      why: "This matters because possession or attribution may be disputed if ownership is not proved and a witness cannot identify who owned the item.",
+      nextAction: "Take instructions on ownership, test the witness limitation, and chase any missing attribution material.",
+      sourceLine: `${attribution} | ${witnessOwnership}`,
+      priority: 100,
+    });
+  } else if (witnessOwnership) {
+    pushKeyIssue(out, seen, {
+      issue: "Witness cannot safely identify handset or bag ownership",
+      why: "This matters because possession or attribution may be disputed if the witness cannot say who owned the item.",
+      nextAction: "Take instructions on ownership and test any Crown attribution before relying on a possession route.",
+      sourceLine: witnessOwnership,
+      priority: 100,
+    });
+  } else if (attribution) {
+    pushKeyIssue(out, seen, {
+      issue: "Phone or item attribution is not safely proved",
+      why: "This matters because the Crown may need to connect the client to the handset, bag or account before the inference is safe.",
+      nextAction: "Check the attribution evidence, take instructions, and chase any missing subscriber or extraction material.",
+      sourceLine: attribution,
+      priority: 95,
+    });
+  }
+
+  const phoneGap = sourceSnippet(
+    text,
+    /\b(?:full\s+)?(?:handset|phone|device)\b[^.\n]{0,80}\b(?:download|extraction|report)\b[^.\n]{0,100}\b(?:not served|outstanding|missing|absent|not attached|not enclosed|requested)\b|\b(?:logical download summary|subscriber return is only partial|subscriber check[^.\n]{0,80}(?:not served|partial|requested|not enclosed))\b/i,
+  );
+  if (phoneGap) {
+    pushKeyIssue(out, seen, {
+      issue: "Full phone extraction or subscriber material is not complete",
+      why: "This matters because a summary or partial subscriber return may not prove the full attribution picture.",
+      nextAction: "Chase the full extraction/report or subscriber material and avoid treating the phone evidence as complete.",
+      sourceLine: phoneGap,
+      priority: 90,
+    });
+  }
+
+  const chargeDateLines = linesMatching(text, /\b(?:charge|particulars|statement of offence)\b/i);
+  const incidentDateLines = linesMatching(text, /\b(?:mg5|incident|offence date|alleges?|occurred)\b/i);
+  const chargeDates = distinctDatesFrom(chargeDateLines);
+  const incidentDates = distinctDatesFrom(incidentDateLines);
+  const differentDate = chargeDates.find((date) => !incidentDates.includes(date));
+  if (differentDate && incidentDates.length) {
+    const sourceLine = cleanOneLine(
+      [chargeDateLines.find((l) => l.toLowerCase().includes(differentDate)), incidentDateLines[0]]
+        .filter(Boolean)
+        .join(" | "),
+    );
+    if (sourceLine) {
+      pushKeyIssue(out, seen, {
+        issue: "Charge date and case narrative date need reconciliation",
+        why: "This matters because the solicitor should not let the offence date and narrative date drift into one clean timeline.",
+        nextAction: "Check the charge sheet against the MG5/case summary and ask the Crown to confirm the correct date.",
+        sourceLine,
+        priority: 85,
+      });
+    }
+  }
+
+  const urnLines = linesMatching(text, /\b(?:URN|case ref|case reference|[A-Z]{2,5}\d{2}\/\d{3,})\b/i);
+  const urns = new Set<string>();
+  for (const line of urnLines) {
+    for (const hit of line.matchAll(/\b(?:[A-Z]{2,5}\d{2}\/\d{3,}|URN\s*[:#-]?\s*[A-Z0-9/-]+)\b/gi)) {
+      urns.add(cleanOneLine(hit[0]).toUpperCase());
+    }
+  }
+  if (urns.size > 1) {
+    pushKeyIssue(out, seen, {
+      issue: "Case identifiers or URNs conflict across the papers",
+      why: "This matters because mixed identifiers can mean the bundle is stitched from inconsistent source documents.",
+      nextAction: "Check whether the references relate to the same matter before relying on a single clean case identity.",
+      sourceLine: urnLines.slice(0, 3).join(" | "),
+      priority: 80,
+    });
+  }
+
+  const interviewServed = sourceSnippet(text, /\b(?:interview|transcript|ROTI)\b[^.\n]{0,100}\b(?:served|enclosed|on file)\b/i);
+  const interviewMissing = sourceSnippet(text, /\b(?:full\s+)?(?:interview|transcript|ROTI|recording)\b[^.\n]{0,120}\b(?:outstanding|not served|missing|not attached|summary only)\b/i);
+  if (interviewServed && interviewMissing && interviewServed !== interviewMissing) {
+    pushKeyIssue(out, seen, {
+      issue: "Interview service status conflicts on the papers",
+      why: "This matters because an interview summary is not the same as a full transcript or recording.",
+      nextAction: "Confirm exactly what interview material is served before advising on admissions or interview fairness.",
+      sourceLine: `${interviewServed} | ${interviewMissing}`,
+      priority: 78,
+    });
+  }
+
+  const bwvGap =
+    sourceSnippet(text, /\bM\d{1,3}\b[^.\n]{0,80}\b(?:BWV|body[-\s]?worn|body worn video)\b[^.\n]{0,120}\b(?:requested|not served|not enclosed|outstanding|missing)\b/i) ||
+    sourceSnippet(text, /\b(?:BWV|body[-\s]?worn|body worn video)\b[^.\n]{0,120}\b(?:requested|not served|not enclosed|outstanding|missing)\b/i);
+  const alreadyHasBwv = chaseItems.some((item) => /\b(?:bwv|body[-\s]?worn)\b/i.test(`${item.label} ${item.evidenceAnchor ?? ""}`));
+  if (bwvGap && !alreadyHasBwv) {
+    pushKeyIssue(out, seen, {
+      issue: "BWV appears requested but not served",
+      why: "This matters because body-worn video may affect identification, continuity or officer account reliability.",
+      nextAction: "Add BWV to the disclosure chase and avoid fixing the hearing position until its status is confirmed.",
+      sourceLine: bwvGap,
+      priority: 76,
+    });
+  }
+
+  return out.sort((a, b) => b.priority - a.priority).slice(0, 5);
 }
 
 function normaliseIssueTitle(value: string): string {
@@ -227,6 +428,7 @@ export function buildDemoStatCounts(
     notSafelyConfirmed?: number;
   },
 ): DemoStatCounts {
+  void _evidenceCounts;
   // Chips must match frozen shortlist attention 1:1.
   const attentionMissing = attention.filter((a) => a.status === "MISSING").length;
   const attentionIncomplete = attention.filter(

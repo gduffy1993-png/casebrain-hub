@@ -89,6 +89,22 @@ describe("visible output receipts", () => {
     expect(receipt.unsupportedWarning).toBeNull();
   });
 
+  it("recognises simple MG6 schedule references like M9", () => {
+    const receipt = buildVisibleOutputReceipt({
+      output: "BWV appears requested but not served",
+      surface: "overview",
+      outputType: "key_defence_issue",
+      status: "Outstanding",
+      excerpt: "M9 BWV PC Khan — Requested — Not served with this copy.",
+      evidenceAnchor: "M9 BWV PC Khan — Requested — Not served with this copy.",
+      sourceLabel: "File extract",
+    });
+
+    expect(receipt.sourceRef).toBe("M9");
+    expect(receipt.sourceClass).not.toBe("unsupported");
+    expect(receipt.supportingText).toMatch(/Not served/);
+  });
+
   it("exposes a derived/absence receipt without inventing a page or ref", () => {
     const receipt = buildVisibleOutputReceipt({
       output: "999 audio remains outstanding on the current papers",
