@@ -5,6 +5,7 @@ import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
 import { buildFiveAnswersView } from "@/lib/criminal/five-answers/build-five-answers-view";
 import { buildHearingMode } from "@/lib/criminal/hearing-mode";
 import { buildExportPack } from "@/lib/criminal/export-pack";
+import { assembleBundleTextForReasoning } from "@/lib/criminal/reasoning-v2/assemble-bundle-text";
 import { displayCopyBody } from "@/lib/criminal/five-answers/display-labels";
 import {
   ensureDigitalHarassmentGapRows,
@@ -85,15 +86,24 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
     (bundleMeta as { pageAwareFrontMatterScan?: string | null } | null)?.pageAwareFrontMatterScan ??
     bundleMeta?.frontMatterScan ??
     "";
+  const issueBundleText = useMemo(
+    () =>
+      assembleBundleTextForReasoning({
+        frontMatterScan: sourceBundleText,
+        snippets: bundleMeta?.snippets,
+      }) || sourceBundleText,
+    [sourceBundleText, bundleMeta?.snippets],
+  );
 
   const bundleHay = useMemo(
     () =>
       [
         sourceBundleText,
+        issueBundleText,
         allegation ?? "",
         ...(chase?.primaryItems ?? []).map((i) => `${i.label} ${i.whyItMatters ?? ""}`),
       ].join(" "),
-    [sourceBundleText, allegation, chase?.primaryItems],
+    [sourceBundleText, issueBundleText, allegation, chase?.primaryItems],
   );
 
   const filteredDoNotOverstate = useMemo(
@@ -238,7 +248,7 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
   }));
   const stats = buildDemoStatCounts(attention, stateCounts);
   const readiness = buildDemoReadiness(stateCounts, stats);
-  const keyIssues = buildDemoKeyDefenceIssues(sourceBundleText, chasePool);
+  const keyIssues = buildDemoKeyDefenceIssues(issueBundleText, chasePool);
 
   const courtLineText = polishPresentationLine(
     chase.safeCourtLine?.trim() ||

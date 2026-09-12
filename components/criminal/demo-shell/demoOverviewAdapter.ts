@@ -173,7 +173,7 @@ export function buildDemoKeyDefenceIssues(
 
   const phoneGap = sourceSnippet(
     text,
-    /\b(?:full\s+)?(?:handset|phone|device)\b[^.\n]{0,80}\b(?:download|extraction|report)\b[^.\n]{0,100}\b(?:not served|outstanding|missing|absent|not attached|not enclosed|requested)\b|\b(?:logical download summary|subscriber return is only partial|subscriber check[^.\n]{0,80}(?:not served|partial|requested|not enclosed))\b/i,
+    /\b(?:full\s+)?(?:handset|phone|device)\b[^.\n]{0,120}\b(?:download|extraction|report)\b[^.\n]{0,120}\b(?:not served|outstanding|missing|absent|not attached|not enclosed|requested)\b|\b(?:handset|phone|device)\b[^.\n]{0,160}\b(?:do not contain|does not contain|no|without)\b[^.\n]{0,80}\b(?:complete|full)\b[^.\n]{0,60}\b(?:download|extraction|report)\b|\b(?:logical download summary|subscriber return is only partial|subscriber check[^.\n]{0,80}(?:not served|partial|requested|not enclosed))\b/i,
   );
   if (phoneGap) {
     pushKeyIssue(out, seen, {
@@ -247,6 +247,23 @@ export function buildDemoKeyDefenceIssues(
       nextAction: "Add BWV to the disclosure chase and avoid fixing the hearing position until its status is confirmed.",
       sourceLine: bwvGap,
       priority: 76,
+    });
+  }
+
+  const cad999Gap = sourceSnippet(
+    text,
+    /\b(?:CAD|999|call)\b[^.\n]{0,140}\b(?:no recording attached|recording not attached|recording absent|audio not attached|audio missing|not served)\b/i,
+  );
+  const alreadyHasCad999 = chaseItems.some((item) =>
+    /\b(?:cad|999|dispatch|control[-\s]?room|call recording)\b/i.test(`${item.label} ${item.evidenceAnchor ?? ""}`),
+  );
+  if (cad999Gap && !alreadyHasCad999) {
+    pushKeyIssue(out, seen, {
+      issue: "CAD/999 recording is not attached",
+      why: "This matters because a summary of a call is not the same as the original audio or complete incident log.",
+      nextAction: "Chase the recording or ask the Crown to confirm in writing why it is unavailable.",
+      sourceLine: cad999Gap,
+      priority: 74,
     });
   }
 

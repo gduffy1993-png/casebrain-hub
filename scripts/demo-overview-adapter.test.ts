@@ -206,11 +206,13 @@ const grantLikeText = `
 URN: NB26/1681
 CHARGE PARTICULARS: possession with intent to supply class A, alleged on 7 May 2026.
 MG5 case summary: incident alleged on 12 May 2026. Reference NB26/792423.
+The prosecution summary relies on messages and handset material, but the present papers do not contain a complete extraction report.
 Handset A was recovered near a sofa. Ownership is not finally proved and subscriber return is only partial.
 Omar Iqbal says he cannot say who owned the handset or bag.
 M2 Interview transcript — Served.
 Custody / interview note: only interview summary provided; full transcript outstanding.
 M9 BWV PC Khan — Requested — Not served with this copy.
+0712 Call received from member of public. No recording attached.
 `;
 
 const grantIssues = buildDemoKeyDefenceIssues(grantLikeText, []);
@@ -218,6 +220,7 @@ assert.ok(grantIssues.length >= 5, "Grant-style bundle surfaces compact high-val
 assert.ok(grantIssues.length <= 5, "Key defence issues stay capped");
 assert.ok(grantIssues.some((i) => /witness cannot/i.test(i.issue)), "witness limitation is surfaced");
 assert.ok(grantIssues.some((i) => /attribution/i.test(i.issue)), "phone attribution is surfaced");
+assert.ok(grantIssues.some((i) => /phone extraction|subscriber/i.test(i.issue)), "full phone extraction gap is surfaced");
 assert.ok(grantIssues.some((i) => /date/i.test(i.issue)), "date conflict is surfaced");
 assert.ok(grantIssues.some((i) => /identifier|urn/i.test(i.issue)), "URN conflict is surfaced");
 assert.ok(grantIssues.some((i) => /interview/i.test(i.issue)), "interview status conflict is surfaced");
