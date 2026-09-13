@@ -634,6 +634,14 @@ export function parseScheduleRef(line: string): string | null {
   const numberedExhibit = text.match(/\bO(\d{1,2})\b/);
   if (numberedExhibit?.[1]) return `O${numberedExhibit[1]}`;
 
+  // Some MG6-style schedules use simple row refs such as `M9 BWV PC Khan`. Keep this
+  // anchored to the start of the row so ordinary prose containing `M9` is not treated as a
+  // material reference.
+  const simpleScheduleCell = text.match(/^([A-Z]\d{1,3})\b/);
+  if (simpleScheduleCell?.[1] && !NON_MATERIAL_REF_PREFIX.test(simpleScheduleCell[1])) {
+    return simpleScheduleCell[1].toUpperCase();
+  }
+
   return null;
 }
 

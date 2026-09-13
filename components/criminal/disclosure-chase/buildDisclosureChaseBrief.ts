@@ -333,6 +333,35 @@ function mapChaseStatusToEvidenceState(status: ChaseItemStatus): string {
   }
 }
 
+function leadingMaterialRefFromEvidenceLabel(label: string): string | null {
+  const match = label
+    .replace(/\s+/g, " ")
+    .trim()
+    .match(/^(MG\d{1,2}[A-Z]?(?:\/\d{1,4})?|EX-[A-Z]{2,4}-\d{2,4}|[A-Z]{1,5}\/\d{1,3}|O\d{1,2}|[A-Z]\d{1,3})\b/i);
+  return match?.[1]?.toUpperCase() ?? null;
+}
+
+function evidenceLabelKey(label: string): string {
+  return label.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+function evidenceRowsCompatibleWithRequestRef(
+  item: DisclosureChaseItem,
+  rows: EvidenceStateRow[],
+): EvidenceStateRow[] {
+  const ref = item.sourceScheduleRef?.trim().toUpperCase();
+  if (!ref) return rows;
+  const itemKey = evidenceLabelKey(item.label);
+  return rows.filter((row) => {
+    const rowRef = leadingMaterialRefFromEvidenceLabel(row.label);
+    if (rowRef) return rowRef === ref;
+    // A generic/no-ref served line ("review whether listed BWV has been served") cannot close a
+    // different named schedule cell (`M9 BWV PC Khan — not served`). Only a no-ref row that is
+    // actually the same label may satisfy a ref-specific request.
+    return evidenceLabelKey(row.label) === itemKey;
+  });
+}
+
 /**
  * Shared served/referred/missing/incomplete reconciliation (read-only over the ledger).
  * Served material is not chased as absent; incomplete material is shown as incomplete,
@@ -354,7 +383,8 @@ export function reconcileChaseItemsAgainstServedMaterial(
 
   return items
     .map((item) => {
-      const aliasVerdict = shouldChaseRequestAgainstServedAliases(item.label, rows);
+      const rowsForItem = evidenceRowsCompatibleWithRequestRef(item, rows);
+      const aliasVerdict = shouldChaseRequestAgainstServedAliases(item.label, rowsForItem);
       if (!aliasVerdict.chase) {
         if (/incomplete/i.test(aliasVerdict.reason ?? "")) {
           return {
@@ -366,7 +396,7 @@ export function reconcileChaseItemsAgainstServedMaterial(
         }
         return null;
       }
-      const verdict = shouldSuppressChaseAsAlreadyOnFile(item.label, rows);
+      const verdict = shouldSuppressChaseAsAlreadyOnFile(item.label, rowsForItem);
       if (!verdict.suppress) return item;
       // Recording served but transcript incomplete → keep visible as incomplete, not missing.
       if (/incomplete/i.test(verdict.reason ?? "")) {
@@ -3136,7 +3166,7 @@ function boundedMaterialsNeedingChase(ledger: BundleTruthLedger): NormalisedMate
 
 /** A schedule reference on its own — `EX/02`, `MG6/04`, `O03`, `EX-MUR-001`. */
 const SCHEDULE_REF_ONLY_RE =
-  /\b(?:MG\d{1,2}[A-Z]?(?:\/\d{1,4})?|EX-[A-Z]{2,4}-\d{2,4}|[A-Z]{1,5}\/\d{1,3}|O\d{1,2})\b/g;
+  /\b(?:MG\d{1,2}[A-Z]?(?:\/\d{1,4})?|EX-[A-Z]{2,4}-\d{2,4}|[A-Z]{1,5}\/\d{1,3}|O\d{1,2}|[A-Z]\d{1,3})\b/g;
 
 function shouldUseProfessionalScheduleLabel(
   familyId: ChaseFamilyId,
@@ -3146,7 +3176,10 @@ function shouldUseProfessionalScheduleLabel(
   const withoutRef = fileLabel.replace(SCHEDULE_REF_ONLY_RE, "").replace(/[—–-]+/g, " ").trim();
   if (!withoutRef) return true;
   if (familyId === "bwv") {
-    return /\b(?:bwv|body\s*worn(?:\s+video)?)\b/i.test(withoutRef);
+    // `M9 BWV PC Khan — not served` is already the schedule's own chase wording. Do not
+    // collapse named BWV cells into a generic full-export card; only the bare family label needs
+    // professional wording.
+    return /^(?:bwv|body[-\s]?worn(?:\s+video)?)$/i.test(withoutRef);
   }
   if (familyId === "custody_pace") {
     return /\b(?:custody\s+record|custody\s+extract|pace\s+material)\b/i.test(withoutRef);

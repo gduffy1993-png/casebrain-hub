@@ -382,6 +382,45 @@ CAD / 999 extract Present.
     "Grant: no master/full-window/continuity chase labels",
   );
 
+  const GRANT_M9_SCHEDULE = `
+MG5 case summary
+Review whether listed CCTV/BWV has been served.
+
+MG6C disclosure schedule
+M2Interview transcriptServedSee tab
+M3BWV booking-in clipServedCopy enclosed
+M6MG11 complainantListed not enclosedDisclosure request pending
+M7MG11 officerRequestedNot served with this copy
+M8Seizure logListed not enclosedDisclosure request pending
+M9BWV PC KhanRequestedNot served with this copy
+M10Subscriber checkRequestedDisclosure request pending
+`.trim();
+  const grantM9Brief = buildDisclosureChaseBrief({
+    caseId: "grant-m9-bwv",
+    caseTitle: "Vincent Grant",
+    allegation: "Possession with intent to supply",
+    stage: "First appearance",
+    hearingStatus: "listed",
+    hearingDateIso: null,
+    bundleHealth: "partial",
+    positionStatus: "provisional",
+    battleboard: null,
+    snapshotMissing: [],
+    bundleText: GRANT_M9_SCHEDULE,
+  });
+  assert.ok(
+    grantM9Brief.primaryItems.some(
+      (i) => i.sourceScheduleRef === "M9" && /M9\s+BWV\s+PC\s+Khan/i.test(i.label),
+    ),
+    "Grant: M9 BWV PC Khan not-served schedule row must survive served M3 BWV alias",
+  );
+  assert.ok(
+    !grantM9Brief.primaryItems.some(
+      (i) => i.sourceScheduleRef === "M3" || /M3\s+BWV\s+booking-in\s+clip/i.test(i.label),
+    ),
+    "Grant: served M3 BWV clip must not become a chase",
+  );
+
   assert.equal(isCctvMasterEstablished(ARDEN_SNIPPET), true, "Arden: full CCTV master establishes");
   assert.equal(isCctvContinuityEstablished(ARDEN_SNIPPET), true, "Arden: continuity statement establishes");
 
