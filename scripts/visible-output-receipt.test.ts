@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { buildDemoAttentionItems } from "../components/criminal/demo-shell/demoOverviewAdapter";
+import { buildDemoKeyDefenceIssues } from "../components/criminal/demo-shell/demoOverviewAdapter";
 import {
   buildDisclosureChaseBrief,
   type DisclosureChaseItem,
@@ -103,6 +104,21 @@ describe("visible output receipts", () => {
     expect(receipt.sourceRef).toBe("M9");
     expect(receipt.sourceClass).not.toBe("unsupported");
     expect(receipt.supportingText).toMatch(/Not served/);
+  });
+
+  it("carries page context onto source-backed key defence issue receipts", () => {
+    const issues = buildDemoKeyDefenceIssues(
+      [
+        "CB-TB-1681 / Page 3Police papers - disclosure copy",
+        "MG5 - CASE SUMMARY",
+        "Officers refer to messages and handset material, but the present papers do not contain a complete extraction report.",
+      ].join("\n"),
+    );
+    const phoneIssue = issues.find((issue) => /phone extraction|subscriber/i.test(issue.issue));
+    expect(phoneIssue).toBeTruthy();
+    expect(phoneIssue?.sourceLine).toMatch(/^p\.3 \|/);
+    expect(phoneIssue?.receipt.sourcePage).toBe("p.3");
+    expect(phoneIssue?.receipt.sourceClass).toBe("direct_pdf_quote");
   });
 
   it("exposes a derived/absence receipt without inventing a page or ref", () => {

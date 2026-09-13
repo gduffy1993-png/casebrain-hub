@@ -80,8 +80,16 @@ function firstQuote(input: VisibleReceiptInput): string | null {
   return candidates[0] ?? null;
 }
 
-function honestPage(provenance?: FindingProvenance | null): string {
-  if (!provenance) return PAGE_UNAVAILABLE;
+function pageFromText(text: string | null): string | null {
+  const line = compact(text);
+  const hit =
+    line.match(/\bp(?:age)?\.?\s*(\d{1,4})(?!\d)/i) ||
+    line.match(/\b\/\s*Page\s+(\d{1,4})(?!\d)/i);
+  return hit?.[1] ? `p.${hit[1]}` : null;
+}
+
+function honestPage(provenance: FindingProvenance | null | undefined, quote: string | null): string {
+  if (!provenance) return pageFromText(quote) ?? PAGE_UNAVAILABLE;
   const projection = pageProvenanceForSurface({
     ...provenance,
     sourcePage: compact(provenance.sourcePage) || null,
@@ -249,7 +257,7 @@ export function buildVisibleOutputReceipt(input: VisibleReceiptInput): VisibleOu
   const output = compact(input.output);
   const quote = firstQuote(input);
   const ref = honestRef(input);
-  const page = honestPage(input.provenance);
+  const page = honestPage(input.provenance, quote);
   const family = classifyEvidenceSubFamily(output, ref === REF_UNAVAILABLE ? [] : [ref]);
   const sourceClass = inferSourceClass(input, quote, ref);
   const transformation = inferTransformation(input, sourceClass, family, quote);

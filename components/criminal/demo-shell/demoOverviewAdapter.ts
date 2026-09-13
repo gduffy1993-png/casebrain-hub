@@ -66,26 +66,47 @@ function cleanOneLine(value: string | null | undefined): string {
   return (value ?? "").replace(/\s+/g, " ").trim();
 }
 
+function pageLabelFromLine(value: string): string | null {
+  const line = cleanOneLine(value);
+  const hit =
+    line.match(/\b(?:compiled\s+)?p(?:age)?\.?\s*(\d{1,4})(?!\d)/i) ||
+    line.match(/\b\/\s*Page\s+(\d{1,4})(?!\d)/i);
+  return hit?.[1] ? `p.${hit[1]}` : null;
+}
+
+function withPagePrefix(line: string, page: string | null): string {
+  const clean = cleanOneLine(line);
+  if (!clean || !page || /^p\.\d+\s*\|/i.test(clean)) return clean;
+  return `${page} | ${clean}`;
+}
+
 function sourceSnippet(text: string, pattern: RegExp): string | null {
   const normalized = (text ?? "").replace(/\r/g, "\n");
+  let currentPage: string | null = null;
   for (const rawLine of normalized.split(/\n+/)) {
     const line = cleanOneLine(rawLine);
-    if (line.length >= 8 && pattern.test(line)) return line;
+    const page = pageLabelFromLine(line);
+    if (page) currentPage = page;
+    if (line.length >= 8 && pattern.test(line)) return withPagePrefix(line, currentPage);
   }
   const compact = cleanOneLine(normalized);
   const match = compact.match(pattern);
   if (!match || match.index === undefined) return null;
   const start = Math.max(0, match.index - 90);
   const end = Math.min(compact.length, match.index + match[0].length + 140);
-  return compact.slice(start, end).trim();
+  return withPagePrefix(compact.slice(start, end).trim(), pageLabelFromLine(compact.slice(Math.max(0, match.index - 400), match.index)));
 }
 
 function linesMatching(text: string, pattern: RegExp): string[] {
-  return (text ?? "")
-    .replace(/\r/g, "\n")
-    .split(/\n+/)
-    .map(cleanOneLine)
-    .filter((line) => line.length >= 8 && pattern.test(line));
+  const out: string[] = [];
+  let currentPage: string | null = null;
+  for (const rawLine of (text ?? "").replace(/\r/g, "\n").split(/\n+/)) {
+    const line = cleanOneLine(rawLine);
+    const page = pageLabelFromLine(line);
+    if (page) currentPage = page;
+    if (line.length >= 8 && pattern.test(line)) out.push(withPagePrefix(line, currentPage));
+  }
+  return out;
 }
 
 function distinctDatesFrom(lines: string[]): string[] {
