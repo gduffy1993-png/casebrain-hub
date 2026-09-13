@@ -112,6 +112,13 @@ function strongTokens(input) {
   ];
 }
 
+function stripReceiptPagePrefix(input) {
+  return String(input || "")
+    .replace(/^\s*p(?:age)?\.?\s*\d{1,4}\s*\|\s*/i, "")
+    .replace(/^\s*compiled\s+p(?:age)?\.?\s*\d{1,4}\s*\|\s*/i, "")
+    .trim();
+}
+
 function nearbyRefAndWordsMatch(quotePart, pdfText, sourceRef) {
   const refs = sourceRefsFrom(quotePart, sourceRef);
   if (!refs.length) return false;
@@ -143,6 +150,7 @@ function nearbyRefAndWordsMatch(quotePart, pdfText, sourceRef) {
 }
 
 function quotePartMatchesPdf(quotePart, pdfText, sourceRef = "") {
+  quotePart = stripReceiptPagePrefix(quotePart);
   const normalizedPdf = normalize(pdfText);
   const normalizedQuote = normalize(quotePart);
   if (!normalizedQuote || !normalizedPdf) return null;
@@ -166,10 +174,10 @@ function quotePartMatchesPdf(quotePart, pdfText, sourceRef = "") {
 
 function quoteMatchesPdf(quote, pdfText, sourceRef = "") {
   if (!quote || !pdfText) return null;
-  const parts = String(quote)
+  const parts = stripReceiptPagePrefix(String(quote))
     .split("|")
-    .map((part) => part.trim())
-    .filter(Boolean);
+    .map((part) => stripReceiptPagePrefix(part.trim()))
+    .filter((part) => part && !/^(?:compiled\s+)?p(?:age)?\.?\s*\d{1,4}$/i.test(part));
   if (!parts.length) return null;
   const refs = sourceRefsFrom(quote, sourceRef);
   const fallbackRefs = refs.length === parts.length ? refs : [];

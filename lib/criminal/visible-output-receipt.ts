@@ -69,7 +69,13 @@ function compact(text: string | number | null | undefined): string {
   return String(text ?? "").replace(/\s+/g, " ").trim();
 }
 
-function firstQuote(input: VisibleReceiptInput): string | null {
+function stripReceiptPagePrefix(text: string): string {
+  return compact(text)
+    .replace(/^(?:compiled\s+)?p(?:age)?\.?\s*\d{1,4}\s*\|\s*/i, "")
+    .trim();
+}
+
+function firstRawQuote(input: VisibleReceiptInput): string | null {
   const candidates = [
     input.excerpt,
     input.evidenceAnchor,
@@ -78,6 +84,13 @@ function firstQuote(input: VisibleReceiptInput): string | null {
     .map(compact)
     .filter((line) => line.length >= 8);
   return candidates[0] ?? null;
+}
+
+function firstQuote(input: VisibleReceiptInput): string | null {
+  const raw = firstRawQuote(input);
+  if (!raw) return null;
+  const stripped = stripReceiptPagePrefix(raw);
+  return stripped.length >= 8 ? stripped : raw;
 }
 
 function pageFromText(text: string | null): string | null {
@@ -255,9 +268,10 @@ function inferConfidence(sourceClass: VisibleSourceClass, page: string): number 
 
 export function buildVisibleOutputReceipt(input: VisibleReceiptInput): VisibleOutputReceipt {
   const output = compact(input.output);
+  const rawQuote = firstRawQuote(input);
   const quote = firstQuote(input);
   const ref = honestRef(input);
-  const page = honestPage(input.provenance, quote);
+  const page = honestPage(input.provenance, rawQuote);
   const family = classifyEvidenceSubFamily(output, ref === REF_UNAVAILABLE ? [] : [ref]);
   const sourceClass = inferSourceClass(input, quote, ref);
   const transformation = inferTransformation(input, sourceClass, family, quote);

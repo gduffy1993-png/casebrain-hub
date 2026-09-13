@@ -4,11 +4,17 @@
  */
 
 import type { DisclosureChaseItem } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import { buildFindingProvenance } from "@/lib/criminal/finding-provenance";
 import {
   buildVisibleOutputReceipt,
   receiptFromChaseItem,
   type VisibleOutputReceipt,
 } from "@/lib/criminal/visible-output-receipt";
+
+type SourcedLine = {
+  quote: string;
+  page: string | null;
+};
 
 export type DemoAttentionStatus = "MISSING" | "UNCLEAR" | "INCOMPLETE" | "ACTIVE";
 
@@ -74,75 +80,95 @@ function pageLabelFromLine(value: string): string | null {
   return hit?.[1] ? `p.${hit[1]}` : null;
 }
 
-function withPagePrefix(line: string, page: string | null): string {
-  const clean = cleanOneLine(line);
-  if (!clean || !page || /^p\.\d+\s*\|/i.test(clean)) return clean;
-  return `${page} | ${clean}`;
-}
-
-function sourceSnippet(text: string, pattern: RegExp): string | null {
+function sourceSnippet(text: string, pattern: RegExp): SourcedLine | null {
   const normalized = (text ?? "").replace(/\r/g, "\n");
   let currentPage: string | null = null;
   for (const rawLine of normalized.split(/\n+/)) {
     const line = cleanOneLine(rawLine);
     const page = pageLabelFromLine(line);
     if (page) currentPage = page;
-    if (line.length >= 8 && pattern.test(line)) return withPagePrefix(line, currentPage);
+    if (line.length >= 8 && pattern.test(line)) return { quote: line, page: currentPage };
   }
   const compact = cleanOneLine(normalized);
   const match = compact.match(pattern);
   if (!match || match.index === undefined) return null;
   const start = Math.max(0, match.index - 90);
   const end = Math.min(compact.length, match.index + match[0].length + 140);
-  return withPagePrefix(compact.slice(start, end).trim(), pageLabelFromLine(compact.slice(Math.max(0, match.index - 400), match.index)));
+  return {
+    quote: compact.slice(start, end).trim(),
+    page: pageLabelFromLine(compact.slice(Math.max(0, match.index - 400), match.index)),
+  };
 }
 
-function linesMatching(text: string, pattern: RegExp): string[] {
-  const out: string[] = [];
+function linesMatching(text: string, pattern: RegExp): SourcedLine[] {
+  const out: SourcedLine[] = [];
   let currentPage: string | null = null;
   for (const rawLine of (text ?? "").replace(/\r/g, "\n").split(/\n+/)) {
     const line = cleanOneLine(rawLine);
     const page = pageLabelFromLine(line);
     if (page) currentPage = page;
-    if (line.length >= 8 && pattern.test(line)) out.push(withPagePrefix(line, currentPage));
+    if (line.length >= 8 && pattern.test(line)) out.push({ quote: line, page: currentPage });
   }
   return out;
 }
 
-function distinctDatesFrom(lines: string[]): string[] {
+function joinSourced(lines: Array<SourcedLine | null | undefined>): SourcedLine | null {
+  const real = lines.filter((line): line is SourcedLine => Boolean(line?.quote));
+  if (!real.length) return null;
+  const pages = [...new Set(real.map((line) => line.page).filter((page): page is string => Boolean(page)))];
+  return {
+    quote: real.map((line) => line.quote).join(" | "),
+    page: pages.length === 1 ? pages[0] : null,
+  };
+}
+
+function distinctDatesFrom(lines: SourcedLine[]): string[] {
   const dates = new Set<string>();
   for (const line of lines) {
-    for (const hit of line.matchAll(/\b(?:\d{1,2}[\/.-]\d{1,2}[\/.-]\d{2,4}|\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|June|Jul|July|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\s+\d{2,4})\b/gi)) {
+    for (const hit of line.quote.matchAll(/\b(?:\d{1,2}[\/.-]\d{1,2}[\/.-]\d{2,4}|\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|June|Jul|July|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\s+\d{2,4})\b/gi)) {
       dates.add(hit[0].toLowerCase().replace(/\s+/g, " "));
     }
   }
   return [...dates];
 }
 
-function issueReceipt(issue: string, sourceLine: string, status = "Not safely confirmed"): VisibleOutputReceipt {
+function issueReceipt(issue: string, source: SourcedLine, status = "Not safely confirmed"): VisibleOutputReceipt {
+  const quote = source.quote;
   return buildVisibleOutputReceipt({
     output: issue,
     surface: "overview",
     outputType: "key_defence_issue",
     status,
     sourceLabel: "File extract",
-    excerpt: sourceLine,
-    evidenceAnchor: sourceLine,
+    excerpt: quote,
+    evidenceAnchor: quote,
+    provenance: source.page
+      ? buildFindingProvenance({
+          sourceDocumentTitle: "File extract",
+          sourceDocumentType: "file_extract",
+          sourcePage: source.page,
+          pageIdentityKnown: true,
+        })
+      : undefined,
   });
 }
 
 function pushKeyIssue(
   out: DemoKeyDefenceIssue[],
   seen: Set<string>,
-  input: Omit<DemoKeyDefenceIssue, "id" | "receipt">,
+  input: Omit<DemoKeyDefenceIssue, "id" | "receipt" | "sourceLine"> & { source: SourcedLine },
 ) {
   const key = input.issue.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
-  if (!key || seen.has(key) || !input.sourceLine) return;
+  if (!key || seen.has(key) || !input.source.quote) return;
   seen.add(key);
   out.push({
-    ...input,
     id: `key-${out.length + 1}-${key.slice(0, 28).replace(/\s+/g, "-")}`,
-    receipt: issueReceipt(input.issue, input.sourceLine),
+    issue: input.issue,
+    why: input.why,
+    nextAction: input.nextAction,
+    sourceLine: input.source.quote,
+    priority: input.priority,
+    receipt: issueReceipt(input.issue, input.source),
   });
 }
 
@@ -171,7 +197,7 @@ export function buildDemoKeyDefenceIssues(
       issue: "Witness cannot identify ownership and phone attribution needs review",
       why: "This matters because possession or attribution may be disputed if ownership is not proved and a witness cannot identify who owned the item.",
       nextAction: "Take instructions on ownership, test the witness limitation, and chase any missing attribution material.",
-      sourceLine: `${attribution} | ${witnessOwnership}`,
+      source: joinSourced([attribution, witnessOwnership])!,
       priority: 100,
     });
   } else if (witnessOwnership) {
@@ -179,7 +205,7 @@ export function buildDemoKeyDefenceIssues(
       issue: "Witness cannot safely identify handset or bag ownership",
       why: "This matters because possession or attribution may be disputed if the witness cannot say who owned the item.",
       nextAction: "Take instructions on ownership and test any Crown attribution before relying on a possession route.",
-      sourceLine: witnessOwnership,
+      source: witnessOwnership,
       priority: 100,
     });
   } else if (attribution) {
@@ -187,7 +213,7 @@ export function buildDemoKeyDefenceIssues(
       issue: "Phone or item attribution is not safely proved",
       why: "This matters because the Crown may need to connect the client to the handset, bag or account before the inference is safe.",
       nextAction: "Check the attribution evidence, take instructions, and chase any missing subscriber or extraction material.",
-      sourceLine: attribution,
+      source: attribution,
       priority: 95,
     });
   }
@@ -201,7 +227,7 @@ export function buildDemoKeyDefenceIssues(
       issue: "Full phone extraction or subscriber material is not complete",
       why: "This matters because a summary or partial subscriber return may not prove the full attribution picture.",
       nextAction: "Chase the full extraction/report or subscriber material and avoid treating the phone evidence as complete.",
-      sourceLine: phoneGap,
+      source: phoneGap,
       priority: 90,
     });
   }
@@ -212,17 +238,16 @@ export function buildDemoKeyDefenceIssues(
   const incidentDates = distinctDatesFrom(incidentDateLines);
   const differentDate = chargeDates.find((date) => !incidentDates.includes(date));
   if (differentDate && incidentDates.length) {
-    const sourceLine = cleanOneLine(
-      [chargeDateLines.find((l) => l.toLowerCase().includes(differentDate)), incidentDateLines[0]]
-        .filter(Boolean)
-        .join(" | "),
-    );
-    if (sourceLine) {
+    const source = joinSourced([
+      chargeDateLines.find((line) => line.quote.toLowerCase().includes(differentDate)),
+      incidentDateLines[0],
+    ]);
+    if (source) {
       pushKeyIssue(out, seen, {
         issue: "Charge date and case narrative date need reconciliation",
         why: "This matters because the solicitor should not let the offence date and narrative date drift into one clean timeline.",
         nextAction: "Check the charge sheet against the MG5/case summary and ask the Crown to confirm the correct date.",
-        sourceLine,
+        source,
         priority: 85,
       });
     }
@@ -231,7 +256,7 @@ export function buildDemoKeyDefenceIssues(
   const urnLines = linesMatching(text, /\b(?:URN|case ref|case reference|[A-Z]{2,5}\d{2}\/\d{3,})\b/i);
   const urns = new Set<string>();
   for (const line of urnLines) {
-    for (const hit of line.matchAll(/\b(?:[A-Z]{2,5}\d{2}\/\d{3,}|URN\s*[:#-]?\s*[A-Z0-9/-]+)\b/gi)) {
+    for (const hit of line.quote.matchAll(/\b(?:[A-Z]{2,5}\d{2}\/\d{3,}|URN\s*[:#-]?\s*[A-Z0-9/-]+)\b/gi)) {
       urns.add(cleanOneLine(hit[0]).toUpperCase());
     }
   }
@@ -240,19 +265,19 @@ export function buildDemoKeyDefenceIssues(
       issue: "Case identifiers or URNs conflict across the papers",
       why: "This matters because mixed identifiers can mean the bundle is stitched from inconsistent source documents.",
       nextAction: "Check whether the references relate to the same matter before relying on a single clean case identity.",
-      sourceLine: urnLines.slice(0, 3).join(" | "),
+      source: joinSourced(urnLines.slice(0, 3))!,
       priority: 80,
     });
   }
 
   const interviewServed = sourceSnippet(text, /\b(?:interview|transcript|ROTI)\b[^.\n]{0,100}\b(?:served|enclosed|on file)\b/i);
   const interviewMissing = sourceSnippet(text, /\b(?:full\s+)?(?:interview|transcript|ROTI|recording)\b[^.\n]{0,120}\b(?:outstanding|not served|missing|not attached|summary only)\b/i);
-  if (interviewServed && interviewMissing && interviewServed !== interviewMissing) {
+  if (interviewServed && interviewMissing && interviewServed.quote !== interviewMissing.quote) {
     pushKeyIssue(out, seen, {
       issue: "Interview service status conflicts on the papers",
       why: "This matters because an interview summary is not the same as a full transcript or recording.",
       nextAction: "Confirm exactly what interview material is served before advising on admissions or interview fairness.",
-      sourceLine: `${interviewServed} | ${interviewMissing}`,
+      source: joinSourced([interviewServed, interviewMissing])!,
       priority: 78,
     });
   }
@@ -266,7 +291,7 @@ export function buildDemoKeyDefenceIssues(
       issue: "BWV appears requested but not served",
       why: "This matters because body-worn video may affect identification, continuity or officer account reliability.",
       nextAction: "Add BWV to the disclosure chase and avoid fixing the hearing position until its status is confirmed.",
-      sourceLine: bwvGap,
+      source: bwvGap,
       priority: 76,
     });
   }
@@ -283,7 +308,7 @@ export function buildDemoKeyDefenceIssues(
       issue: "CAD/999 recording is not attached",
       why: "This matters because a summary of a call is not the same as the original audio or complete incident log.",
       nextAction: "Chase the recording or ask the Crown to confirm in writing why it is unavailable.",
-      sourceLine: cad999Gap,
+      source: cad999Gap,
       priority: 74,
     });
   }

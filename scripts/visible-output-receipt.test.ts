@@ -116,8 +116,33 @@ describe("visible output receipts", () => {
     );
     const phoneIssue = issues.find((issue) => /phone extraction|subscriber/i.test(issue.issue));
     expect(phoneIssue).toBeTruthy();
-    expect(phoneIssue?.sourceLine).toMatch(/^p\.3 \|/);
+    expect(phoneIssue?.sourceLine).toMatch(/complete extraction report/i);
+    expect(phoneIssue?.sourceLine).not.toMatch(/^p\.3\s*\|/);
+    expect(phoneIssue?.receipt.supportingText).toMatch(/complete extraction report/i);
+    expect(phoneIssue?.receipt.supportingText).not.toMatch(/^p\.3\s*\|/);
     expect(phoneIssue?.receipt.sourcePage).toBe("p.3");
+    expect(phoneIssue?.receipt.sourceClass).toBe("direct_pdf_quote");
+  });
+
+  it("keeps a prefixed excerpt as page, not as the File quote", () => {
+    const receipt = buildVisibleOutputReceipt({
+      output: "Full phone extraction or subscriber material is not complete",
+      surface: "overview",
+      outputType: "key_defence_issue",
+      excerpt: "p.3 | the present papers do not contain a complete extraction report.",
+    });
+    expect(receipt.sourcePage).toBe("p.3");
+    expect(receipt.supportingText).toBe("the present papers do not contain a complete extraction report.");
+  });
+
+  it("does not invent a page when the extract has the quote but no page header", () => {
+    const issues = buildDemoKeyDefenceIssues(
+      "Officers refer to messages and handset material, but the present papers do not contain a complete extraction report.",
+    );
+    const phoneIssue = issues.find((issue) => /phone extraction|subscriber/i.test(issue.issue));
+    expect(phoneIssue).toBeTruthy();
+    expect(phoneIssue?.receipt.sourcePage).toBe("page unavailable");
+    expect(phoneIssue?.receipt.supportingText).toMatch(/complete extraction report/i);
     expect(phoneIssue?.receipt.sourceClass).toBe("direct_pdf_quote");
   });
 
