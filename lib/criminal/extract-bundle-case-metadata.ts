@@ -7,6 +7,7 @@ import { isExtractionFailurePlaceholder } from "@/lib/bundle/bundle-document-tex
 import type { ParsedBundleHeader } from "@/lib/bundle/parse-bundle-display";
 import { deglueBundleLines } from "@/lib/criminal/bundle-material-normalizer";
 import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
+import { extractSmokePackFrontSheet } from "@/lib/criminal/smoke-pack-front-sheet";
 
 /**
  * How much of a bundle is read into the scan the rest of the app works from.
@@ -2414,23 +2415,52 @@ export function extractBundleCaseMetadata(
     parsedHeader?.accused?.trim() ??
     null;
   if (defendantName) defendantName = sanitizePersonName(defendantName) ?? defendantName;
-  const defendantSource: MetadataFieldSource = defendantName ? "extracted_cover_fallback" : "unavailable";
+  let defendantSource: MetadataFieldSource = defendantName ? "extracted_cover_fallback" : "unavailable";
 
   let complainant =
     extractComplainantName(scan) ?? sanitizeComplainantName(parsedHeader?.otherParty) ?? null;
   const complainantSource: MetadataFieldSource = complainant ? "extracted_cover_fallback" : "unavailable";
 
-  const court = extractCourt(scan);
-  const courtSource: MetadataFieldSource = court ? "extracted_cover_fallback" : "unavailable";
+  let court = extractCourt(scan);
+  let courtSource: MetadataFieldSource = court ? "extracted_cover_fallback" : "unavailable";
 
   const hearing = extractNextHearing(scan);
 
-  const stage = extractStage(scan, parsedHeader);
-  const stageSource: MetadataFieldSource = stage ? "extracted_cover_fallback" : "unavailable";
+  let stage = extractStage(scan, parsedHeader);
+  let stageSource: MetadataFieldSource = stage ? "extracted_cover_fallback" : "unavailable";
 
   let { wording: offenceWording, source: offenceSource } = extractOffenceWording(scan, fullText);
 
-  if (!offenceWording && parsedHeader?.shortTitle?.trim()) {
+  const smokeSheet = extractSmokePackFrontSheet(fullText);
+  if (smokeSheet.detected) {
+    defendantName = smokeSheet.defendantName;
+    if (smokeSheet.court) {
+      court = smokeSheet.court;
+      courtSource = "extracted_cover_fallback";
+    } else {
+      court = null;
+      courtSource = "unavailable";
+    }
+    if (smokeSheet.stage) {
+      stage = smokeSheet.stage;
+      stageSource = "extracted_cover_fallback";
+    } else {
+      stage = null;
+      stageSource = "unavailable";
+    }
+    if (smokeSheet.exactChargeWording || smokeSheet.offenceFamily) {
+      offenceWording = smokeSheet.exactChargeWording ?? smokeSheet.offenceFamily;
+      offenceSource = smokeSheet.exactChargeWording
+        ? "extracted_charge_fallback"
+        : "extracted_cover_fallback";
+    } else {
+      offenceWording = null;
+      offenceSource = "unavailable";
+    }
+    defendantSource = defendantName ? "extracted_cover_fallback" : "unavailable";
+  }
+
+  if (!smokeSheet.detected && !offenceWording && parsedHeader?.shortTitle?.trim()) {
     const short = parsedHeader.shortTitle.trim();
     if (/contrary to section|oapa|abh|gbh|assault|murder|common law/i.test(short)) {
       offenceWording = short;
@@ -2439,6 +2469,7 @@ export function extractBundleCaseMetadata(
   }
 
   if (
+    !smokeSheet.detected &&
     parsedHeader?.shortTitle?.trim() &&
     offenceWording &&
     isProvisionalOffenceTagWording(offenceWording)
@@ -2447,7 +2478,7 @@ export function extractBundleCaseMetadata(
     offenceSource = "extracted_cover_fallback";
   }
 
-  if (!offenceWording && parsedHeader?.shortTitle?.trim()) {
+  if (!smokeSheet.detected && !offenceWording && parsedHeader?.shortTitle?.trim()) {
     offenceWording = parsedHeader.shortTitle.trim();
     offenceSource = "extracted_cover_fallback";
   }

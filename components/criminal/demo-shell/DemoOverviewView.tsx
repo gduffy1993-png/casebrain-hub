@@ -347,12 +347,13 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
     ? "Not ready for final court position — solicitor review required before relying on strategy lines."
     : "Papers look fuller — still check sources before fixing the hearing position.";
 
-  const fileHearing = [liveFileIdentity.court, liveFileIdentity.nextHearingRaw]
+  const fileHearing = [liveFileIdentity.court, liveFileIdentity.stage]
     .map((part) => (part ?? "").trim())
     .filter(Boolean)
-    .join(" · ");
+    .join(" / ");
   const stageLine = displayPilotStripHearing(
-    fileHearing || (typeof hearingLabel === "string" ? hearingLabel : ""),
+    [fileHearing, liveFileIdentity.nextHearingRaw].filter(Boolean).join(" · ") ||
+      (typeof hearingLabel === "string" ? hearingLabel : ""),
   );
 
   const doNotItems = dedupePresentationLines(filteredDoNotOverstate).slice(0, 3);

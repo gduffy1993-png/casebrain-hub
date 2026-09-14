@@ -74,6 +74,7 @@ import {
   phoneDownloadChaseWording,
   phoneDownloadIdentityLabel,
 } from "@/lib/criminal/disclosure-chase-finalize";
+import { smokePackOutstandingChaseDrafts } from "@/lib/criminal/smoke-pack-front-sheet";
 import {
   demoteSolicitorClutter,
   isGenericSolicitorClutterLabel,
@@ -2176,6 +2177,53 @@ function seedCctvContinuityConfirmationItem(deadline: DeadlineContext): Disclosu
   });
 }
 
+function ensureSmokePackOutstandingChaseItems(
+  items: DisclosureChaseItem[],
+  bundleText: string | null | undefined,
+  deadline: DeadlineContext,
+): DisclosureChaseItem[] {
+  const drafts = smokePackOutstandingChaseDrafts(bundleText ?? "");
+  if (!drafts.length) return items;
+  const next = [...items];
+  for (const draft of drafts) {
+    const already = next.some((item) => {
+      const hay = `${item.label} ${item.evidenceAnchor ?? ""} ${draft.label}`.toLowerCase();
+      return (
+        item.id === draft.id ||
+        (item.evidenceAnchor === draft.evidenceAnchor &&
+          item.label.replace(/\s+/g, " ").trim().toLowerCase() === draft.label.toLowerCase()) ||
+        (hay.includes(draft.label.toLowerCase().slice(0, 24)) &&
+          /outstanding material/i.test(item.evidenceAnchor ?? ""))
+      );
+    });
+    if (already) continue;
+    next.push({
+      id: draft.id,
+      familyId: "other",
+      label: draft.label,
+      whyItMatters: draft.whyItMatters,
+      source: "File extract",
+      baseStatus: "Not safely confirmed",
+      urgency: deadline.urgency,
+      deadlineLabel: deadline.sharedLabel,
+      evidenceAnchor: draft.evidenceAnchor,
+      linkedRoute: null,
+      draftChaseWording: draft.draftChaseWording,
+      courtLine: toCourtLine(draft.label),
+      mergedFrom: [draft.evidenceAnchor],
+      provenance: chaseItemProvenance({
+        label: draft.label,
+        source: "File extract",
+        baseStatus: "Not safely confirmed",
+        evidenceAnchor: draft.evidenceAnchor,
+        sourceDocumentTitle: "File extract",
+        pageIdentityKnown: false,
+      }),
+    });
+  }
+  return next;
+}
+
 function ensureCctvContinuityConfirmation(
   items: DisclosureChaseItem[],
   input: Pick<BuildDisclosureChaseBriefInput, "snapshotMissing" | "proceduralOutstanding">,
@@ -3873,6 +3921,12 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   items = restoreSourceBackedCriticalLedgerItems(items, ledger, deadline);
 
   ({ items, primaryItems, additionalItems } = assembleSolicitorShortlist(items));
+  const smokePacked = ensureSmokePackOutstandingChaseItems(items, input.bundleText, deadline);
+  if (smokePacked.length !== items.length) {
+    items = smokePacked.slice(0, DISCLOSURE_CHASE_PRIMARY_CAP);
+    primaryItems = items;
+    additionalItems = [];
+  }
 
   const linkedRoutes = [
     ...new Set(items.map((i) => i.linkedRoute).filter((r): r is string => Boolean(r?.trim()))),

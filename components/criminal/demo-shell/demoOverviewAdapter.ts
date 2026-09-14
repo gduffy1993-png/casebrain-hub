@@ -5,6 +5,7 @@
 
 import type { DisclosureChaseItem } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildFindingProvenance } from "@/lib/criminal/finding-provenance";
+import { extractSmokePackFrontSheet } from "@/lib/criminal/smoke-pack-front-sheet";
 import {
   buildVisibleOutputReceipt,
   receiptFromChaseItem,
@@ -183,6 +184,20 @@ export function buildDemoKeyDefenceIssues(
   const text = bundleText ?? "";
   const out: DemoKeyDefenceIssue[] = [];
   const seen = new Set<string>();
+
+  const smokeSheet = extractSmokePackFrontSheet(text);
+  const proofPressure =
+    smokeSheet.proofPressure &&
+    sourceSnippet(text, /^\s*Proof pressure\s*:\s*.+/im);
+  if (proofPressure && smokeSheet.proofPressure) {
+    pushKeyIssue(out, seen, {
+      issue: `${smokeSheet.proofPressure.charAt(0).toUpperCase()}${smokeSheet.proofPressure.slice(1)} is the labelled proof pressure`,
+      why: "This matters because the front sheet names the proof pressure that still needs solicitor review before the hearing position is fixed.",
+      nextAction: "Review the labelled proof pressure against served papers and keep the position provisional until source material is confirmed.",
+      source: proofPressure,
+      priority: 110,
+    });
+  }
 
   const witnessOwnership = sourceSnippet(
     text,
