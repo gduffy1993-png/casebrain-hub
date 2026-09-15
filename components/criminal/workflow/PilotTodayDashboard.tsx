@@ -173,7 +173,6 @@ export function PilotTodayDashboard({
     view.chaseItems
       .map((line) => polishChasePreviewLabel(line) ?? "")
       .filter(Boolean),
-    view.safeCourtLine,
   ).slice(0, listCap);
   const askCourtItems = dedupePilotCourtRecordLines(
     dedupePilotLines(view.askCourtToRecord, view.safeCourtLine),
