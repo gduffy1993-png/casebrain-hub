@@ -284,7 +284,9 @@ export function buildChaseItemsForHearing(input: {
   battleboard?: BattleboardOutput | null;
   bundleText?: string | null;
 }): string[] {
-  return collectChaseItems(input);
+  return collectChaseItems(input).filter(
+    (line) => !lineIsUnbackedOffenceFamilyFurniture(line, input.bundleText),
+  );
 }
 
 function lineBlockedByLedger(raw: string, ledger: BundleTruthLedger, bundleText?: string | null): boolean {

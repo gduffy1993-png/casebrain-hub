@@ -6,7 +6,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
-import { buildHearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
+import { buildHearingWarRoomBrief, buildChaseItemsForHearing } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { extractBundleCaseMetadata } from "../lib/criminal/extract-bundle-case-metadata";
 import { lineIsUnsourcedNarrativeChase } from "../lib/criminal/bundle-material-normalizer";
 import { lineIsUnbackedOffenceFamilyFurniture } from "../lib/criminal/smoke-pack-front-sheet";
@@ -106,6 +106,12 @@ const valeCourtHay = [
 
 // 1. Drug-driving front-sheet does not emit possession/phone/CCTV/pre-interview lines.
 assert.doesNotMatch(valeCourtHay, FAMILY_FURNITURE);
+const valeHearingChase = buildChaseItemsForHearing({
+  bundleText: VALE_BELL,
+  snapshotMissing: [],
+  battleboard: null,
+}).join("\n");
+assert.doesNotMatch(valeHearingChase, FAMILY_FURNITURE);
 
 // 2. Court/detail uses proof pressure from labelled PDF, not generic family furniture.
 assert.match(valeWar.safePositionToday, /driver identity and toxicology procedure/i);
