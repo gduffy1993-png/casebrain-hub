@@ -218,6 +218,36 @@ export function lineIsUnsourcedNarrativeChase(line: string): boolean {
 }
 
 /**
+ * Legal-issue clauses, email-attachment tails, officer-note sentences, and cut
+ * cautions are not named disclosure material. Schedule-coded document gaps stay.
+ */
+export function isClauseOrFragmentChaseLabel(line: string): boolean {
+  const l = compact(line);
+  if (!l) return true;
+  if (parseScheduleRef(l) && ITEM_RE.test(l)) return false;
+
+  const statusStripped = compact(
+    l
+      .replace(/^\d{1,2}\s+/, "")
+      .replace(
+        /\b(?:outstanding|requested|not served|not attached|not included|missing|needed before final position|to follow)\b/gi,
+        "",
+      )
+      .replace(/[:—–,.]+/g, " "),
+  );
+  if (/^(?:reasonable excuse|no reasonable excuse|lawful excuse)$/i.test(statusStripped)) return true;
+  if (/\bnot included with the email\b/i.test(l)) return true;
+  if (/\bofficer note says\b/i.test(l)) return true;
+  if (/\bmust not be treated as a settled\b/i.test(l)) return true;
+  if (/\bthis point collapses if\b/i.test(l) || /\bstrategy point collapses if\b/i.test(l)) return true;
+  if (/\b(?:solicitor )?review remains outstanding or incomplete\b/i.test(l) && !parseScheduleRef(l)) {
+    return true;
+  }
+  if (/^where the (?:full )?(?:recording|transcript)\b/i.test(l) && !parseScheduleRef(l)) return true;
+  return false;
+}
+
+/**
  * A schedule talking about itself is not a listed item. Opposite: `MG6/04 bank source
  * statements outstanding` still names the statements.
  */

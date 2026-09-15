@@ -57,6 +57,7 @@ import {
 } from "@/lib/criminal/chase-source-gate";
 import {
   deglueBundleLines,
+  isClauseOrFragmentChaseLabel,
   lineIndicatesReferredOnly,
   lineIsLocationOrReviewNotGap,
   lineIsScheduleFurniture,
@@ -1471,6 +1472,7 @@ function isUnsafeOrNonMaterialChaseLine(raw: string): boolean {
   const t = raw.trim();
   if (!t) return true;
   if (lineIsScheduleFurniture(t)) return true;
+  if (isClauseOrFragmentChaseLabel(t)) return true;
   if (lineIsUnsourcedNarrativeChase(t)) return true;
   if (/\bthis point collapses if\b/i.test(t) || /\bstrategy point collapses if\b/i.test(t)) return true;
   if (/^(?:item|material)\s*:/i.test(t) && /[—–-]\s*$/.test(t)) return true;
@@ -3056,6 +3058,7 @@ export function assembleSolicitorShortlist(items: DisclosureChaseItem[]): {
     })
     .filter((item) => item.baseStatus !== "Received")
     .filter((item) => !isGenericSolicitorClutterLabel(item.label))
+    .filter((item) => !isClauseOrFragmentChaseLabel(item.label))
     .filter((item) => isSourceNamedChaseItem(item) || !isFamilyTemplateChaseCard(item));
 
   const { primaryItems } = splitPrimaryAdditional(next);
@@ -3307,6 +3310,8 @@ function mergeLedgerDisclosureItems(
     if (
       lineIsScheduleFurniture(m.label) ||
       lineIsScheduleFurniture(cardLabel) ||
+      isUnsafeOrNonMaterialChaseLine(m.label) ||
+      isUnsafeOrNonMaterialChaseLine(m.displayLine) ||
       isUnsafeOrNonMaterialChaseLine(cardLabel)
     ) {
       continue;
@@ -3424,6 +3429,8 @@ function sourceBackedLedgerRestoreItem(
   if (
     lineIsScheduleFurniture(m.label) ||
     lineIsScheduleFurniture(label) ||
+    isUnsafeOrNonMaterialChaseLine(m.label) ||
+    isUnsafeOrNonMaterialChaseLine(m.displayLine) ||
     isUnsafeOrNonMaterialChaseLine(label)
   ) {
     return null;
@@ -3940,6 +3947,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   }
   items = items.filter((item) => {
     if (item.id.startsWith("source-confirm-smoke-")) return true;
+    if (isClauseOrFragmentChaseLabel(item.label)) return false;
     return !lineIsUnbackedOffenceFamilyFurniture(item.label, input.bundleText);
   });
   primaryItems = items.filter((item) => primaryItems.some((p) => p.id === item.id));

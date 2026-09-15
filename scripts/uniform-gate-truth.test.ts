@@ -278,7 +278,10 @@ Item Description Status Note
   });
   const board = brief.primaryItems.map((i) => i.label).join(" || ");
   assert.ok(/search record/i.test(board), `search record must be on the board — got: ${board}`);
-  assert.ok(/reasonable excuse/i.test(board), `reasonable excuse must be on the board — got: ${board}`);
+  assert.ok(
+    !/reasonable excuse/i.test(board),
+    `reasonable excuse is a clause, not a chase card — got: ${board}`,
+  );
   const cad = brief.primaryItems.find((i) => /cad\s*\/\s*999/i.test(i.label));
   assert.ok(cad, `complete CAD/999 log must be on the board — got: ${board}`);
   assert.equal(cad!.baseStatus, "Outstanding", `welded CAD outstanding must stay outstanding — got ${cad!.baseStatus}`);

@@ -1,3 +1,4 @@
+import { isClauseOrFragmentChaseLabel } from "@/lib/criminal/bundle-material-normalizer";
 import { formatDisplayLabelCasing } from "@/lib/criminal/bundle-truth-ledger";
 import { sentenceCasePreservingAcronyms } from "@/lib/criminal/solicitor-visible-quality";
 import type {
@@ -409,6 +410,7 @@ function itemFinalizeKey(item: DisclosureChaseItem): string {
  */
 export function isSourceNamedChaseItem(item: DisclosureChaseItem): boolean {
   if (isGenericSolicitorClutterLabel(item.label)) return false;
+  if (isClauseOrFragmentChaseLabel(item.label)) return false;
   // A ledger row with the schedule's own code is the papers speaking. Referred-only /
   // extract-only / draft is still a named gap — do not wait for the word "outstanding".
   if (item.id.startsWith("ledger-material-") && item.sourceScheduleRef?.trim()) return true;
