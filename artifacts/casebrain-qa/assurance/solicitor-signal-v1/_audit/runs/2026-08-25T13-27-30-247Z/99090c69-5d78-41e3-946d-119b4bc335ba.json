@@ -1,0 +1,28 @@
+{
+  "caseId": "99090c69-5d78-41e3-946d-119b4bc335ba",
+  "primary": [
+    {
+      "ref": "MG6/01",
+      "label": "Exhibits: EX-MON-MG5-01; EX-MON-MG6-01; EX-MON-INT-01; EX-MON-CCTV-01; EX-MON-MG11-01",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "CCTV continuity / provenance",
+      "family": "cctv_continuity",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "CCTV full window / master footage",
+      "family": "cctv_master",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 19,
+  "statedGaps": 0,
+  "statedGapsOnBoard": 0,
+  "truncated": true,
+  "findings": []
+}

@@ -1,0 +1,140 @@
+CB
+
+CASE WORK
+
+Trial: 5d left · 24/25 cases · 24/100 docs
+Upgrade
+Overview
+File
+More
+
+CASE COMMAND CENTRE
+
+Vale Bell
+On 16/07/2026 at Eastmere Bus Station, Vale Bell is alleged to have driven a motor vehicle with a specified controlled drug above the pre… · Riverton Crown Court / trial tomorrow
+PROVISIONAL
+
+Do not import another offence-family template unless the papers support it.
+
+1
+
+MISSING
+
+Needs chase
+
+2
+
+INCOMPLETE
+
+Needs completion
+
+3
+
+OPEN REVIEW
+
+Needs checking
+
+Key defence issues
+
+Highest-value points from the papers. Each one keeps its source receipt.
+
+1 issue
+Driver identity and toxicology procedure is the labelled proof pressure
+
+This matters because the front sheet names the proof pressure that still needs solicitor review before the hearing position is fixed.
+
+Next: Review the labelled proof pressure against served papers and keep the position provisional until source material is confirmed.
+
+Source: Proof pressure: driver identity and toxicology procedure
+
+Why / source receipt
+OUTPUT
+Driver identity and toxicology procedure is the labelled proof pressure
+TYPE / SURFACE
+key_defence_issue · overview
+TRUTH STATE
+not_safely_confirmed
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+File extract
+REF
+ref unavailable
+PAGE
+p.2
+FILE QUOTE
+Proof pressure: driver identity and toxicology procedure
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+What needs attention
+
+One shortlist from the papers. If the file is quiet, this board stays quiet.
+
+3 items
+
+source material for driver identity and toxicology procedure
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+Full continuity/provenance
+
+UNCLEAR
+
+The front sheet labels this as outstanding source material — keep it on review/chase until the papers confirm service.
+
+Offence-specific expert or statutory material needed for solicitor review
+
+UNCLEAR
+
+The front sheet labels this as outstanding source material — keep it on review/chase until the papers confirm service.
+
+SELECTED ISSUE
+
+source material for driver identity and toxicology procedure
+MISSING
+
+WHY CASEBRAIN SAYS THIS
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+SOURCES
+
+MG6/MG6C disclosure schedule
+source material for driver identity and toxicology procedure — outstanding
+MG6 / DISCLOSURE POSITION
+
+RECOMMENDED ACTION
+
+Please provide the source material for driver identity and toxicology procedure or confirm in writing why it is not available.
+
+Why / source receipt
+Copy chase request
+Copy court wording
+Safe court line
+Copy safe court line
+
+The defence asks the court to record that source material for driver identity and toxicology procedure, Full continuity/provenance and Offence-specific expert or statutory material needed for solicitor review remain outstanding on the papers.
+
+Why / source receipt
+Client update
+Copy client update
+
+CLIENT-SAFE SUMMARY
+(not for court or CPS) We are reviewing the papers in your case (On 16/07/2026 at Eastmere Bus Station, Vale Bell is alleged to have driven a motor vehicle with a specified controlled drug above the pre…). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.
+
+Why / source receipt
+Detail tabs
+
+Main answer is above. Open the detail views only when you need the full source desk.
+
+File & source →
+Papers detail →
+CPS chase detail →
+Court detail →
+Readiness: 4% provisional score from papers-backed counts.

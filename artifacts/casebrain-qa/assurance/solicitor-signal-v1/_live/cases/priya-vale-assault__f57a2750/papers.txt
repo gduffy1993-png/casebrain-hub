@@ -1,0 +1,734 @@
+CB
+
+CASE WORK
+
+Trial: Trial ended — upgrade to upload more cases
+Upgrade
+Overview
+Court Position
+Papers & Evidence
+Client Summary
+CPS Chase
+File & Preparation
+Record Position
+Upload Evidence
+
+PAPERS INVENTORY
+
+Document / schedule inventory from uploaded papers — not a court pressure desk.
+
+1 file(s) on record
+
+Source text available for review
+
+Provisional — solicitor review
+
+40 material row(s) · 0 served/on-file · 40 gap / partial / unclear
+
+MATERIAL	TYPE	STATUS	PAGES / REF
+
+
+Awaiting final report
+
+forensic/medical/digital material remains provisional where relevant.
+
+	MG6	Outstanding / missing	—
+
+
+Defence risk note: If missing source material supports the Crown route, the present defence pressure
+
+	MG6	Outstanding / missing	—
+
+
+Hearing note: PTPH listed. Defence position remains provisional pending disclosure timetable and
+
+	MG6	Outstanding / missing	—
+
+
+material is outstanding or summary-only.
+
+	MG6	Outstanding / missing	—
+
+
+original recordings/files are not served.
+
+	MG6	Outstanding / missing	—
+
+
+Outstanding item: final medical report; prior injury records; CCTV continuity; complainant first
+
+	MG6	Outstanding / missing	—
+
+
+Outstanding material: full source material, final reports, underlying recordings and continuity
+
+	MG6	Outstanding / missing	—
+
+
+Outstanding:
+
+	MG6	Outstanding / missing	—
+
+
+route cannot be finalised until missing source material is served.
+
+	MG6	Outstanding / missing	—
+
+
+Served / outstanding at a glance
+
+	MG6	Outstanding / missing	—
+
+
+SERVED / OUTSTANDING FRONT SUMMARY
+
+	MG6	Outstanding / missing	—
+
+
+source material not served
+
+but relied on in Crown summary
+
+	MG6	Outstanding / missing	—
+
+
+account; interview transcript.
+
+	MG6	Not safely confirmed	—
+
+
+BWV from attending officers.
+
+	MG6	Not safely confirmed	—
+
+
+causation / old injury / medical report gap
+
+	MG6	Not safely confirmed	—
+
+
+CCTV/BWV/phone/forensic/witness material where relevant.
+
+	MG6	Not safely confirmed	—
+
+
+CHARGE / MG5 / MG6 CORE PAPERS
+
+	MG6	Not safely confirmed	—
+
+
+Charge sheet extract
+
+	MG6	Not safely confirmed	—
+
+
+Chase: Full CCTV master footage; CCTV continuity/export log; Full 999 audio; Full CAD incident log;
+
+	MG6	Not safely confirmed	—
+
+
+Corrected account: later statement adds detail but is not fully consistent with the first account or
+
+	MG6	Not safely confirmed	—
+
+
+Corrected-page warning: witness index corrected after first service; both versions remain in the bundle.
+
+	MG6	Not safely confirmed	—
+
+
+Cross-reference: MG5 relies on this account more strongly than the witness wording may safely
+
+	MG6	Not safely confirmed	—
+
+
+Crown route on the papers: presence/opportunity plus selected witness or source-material summaries
+
+	MG6	Not safely confirmed	—
+
+
+Crown route: causation / old injury / medical report gap is treated by the Crown as answerable, but the
+
+	MG6	Not safely confirmed	—
+
+
+D | MG6 disclosure schedule | 15
+
+draft
+
+	MG6	Draft	—
+
+
+Defence observation: the MG5 sometimes states a source proves a point, while MG6 shows the full source
+
+	MG6	Not safely confirmed	—
+
+
+Defence position: not guilty; causation, old injury and medical evidence disputed.
+
+	MG6	Not safely confirmed	—
+
+
+Defence route on present papers: not guilty; causation, old injury and medical evidence disputed;
+
+	MG6	Not safely confirmed	—
+
+
+Disclosure note: officer notebook / first account note / BWV context should be checked before final
+
+	MG6	Not safely confirmed	—
+
+
+Disclosure timetable sought: full source material, final forensic/medical/digital reports,
+
+	MG6	Not safely confirmed	—
+
+
+Draft MG6 disclosure schedule
+
+	MG6	Draft	—
+
+
+Draft only note: source material summaries are not a substitute for original recordings/files.
+
+	MG6	Draft	—
+
+
+E | MG11 witness extracts | 21-60
+
+mixed served/draft/corrected
+
+	MG6	Draft	—
+
+
+F | Interview summary | 61
+
+summary only
+
+	MG6	Referred only	—
+
+
+First account: witness describes movement/noise/argument but does not safely resolve causation / old
+
+	MG6	Not safely confirmed	—
+
+
+G | Custody / PACE | 66
+
+custody record summary only
+
+	MG6	Referred only	—
+
+
+H | Source material summaries | 71-90
+
+partial
+
+	MG6	Draft	—
+
+
+injury / medical report gap.
+
+	MG6	Not safely confirmed	—
+
+
+Interview summary
+
+	MG6	Not safely confirmed	—
+
+
+interview/custody material and witness correction material.
+
+	MG6	Not safely confirmed	—
+
+Inventory is provisional and limited to what the extract establishes. Missing ranges appear only when the papers state them — gaps are not invented for a fuller-looking list.
+
+Pre-hearing readiness
+
+Not ready to rely on yet
+
+SOLICITOR REVIEW REQUIRED
+
+Pre-hearing readiness reflects whether served papers support a safe hearing position — not case strength or plea advice. Core source material or review gaps mean it is not safe to rely on this matter for a final hearing position on current papers. 68 core disclosure issues — such as CCTV, CAD, interview, laboratory, medical or continuity material where relevant — outstanding or partial on served papers. Provisional view — papers incomplete; do not finalise a hearing line without solicitor review. Stage on file: PTPH / plea and trial preparation.
+
+Not case strength · not plea advice · papers readiness only
+
+WHY THIS READINESS?
+final medical report; prior injury records; CCTV continuity; complainant first — outstanding or partial on served papers (MG6 disclosure schedule).
+incident timing — CAD / witness / corrected index unresolved — unresolved on papers (999 / CAD section / witness statements / index).
+Violence case with unresolved contradictions and outstanding material — solicitor review required.
+Show why this readiness
+
+ADDITIONAL PAPERS TOOLS
+
+Optional proof map, readiness exports, and supervisor tools — inventory stays above.
+
+Proof map
+
+Assault occasioning actual bodily harm, s.47 OAPA 1861 · PTPH / plea and trial preparation
+
+SERIOUS VIOLENCE
+OFFENCE-FAMILY PROOF MAP
+
+Solicitor review required before relying on this proof map at hearing.
+
+Violence case with unresolved contradictions and outstanding material — solicitor review required.
+Violence case with outstanding material on papers — solicitor review before fixing hearing position.
+WHAT THE CROWN MUST PROVE
+
+Unlawful assault / force
+
+Crown must prove the defendant applied unlawful force — elements sketch only; verify particulars against MG5.
+
+Charge sheet / MG5 · Assault occasioning actual bodily harm, s.47 OAPA 1861 — Priya Vale
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not treat force as finally proved without reconciled witness/CCTV/medical material.
+
+Serious injury / GBH threshold
+
+Crown must prove qualifying injury (e.g. GBH/wounding threshold) — provisional until served medical/expert material.
+
+Charge / medical references · Defence position: not guilty; causation, old injury and medical evidence disputed.
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state injury grade or mechanism as final without served medical/expert reports.
+
+Causation / mechanism
+
+Crown must link act to injury (e.g. blow, fall, kerb) — timing and sequence may be disputed on papers.
+
+MG5 / witness / medical · Defence position: not guilty; causation, old injury and medical evidence disputed.
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state causation is finally proved while expert/medical/CCTV gaps remain.
+
+Identification / attribution
+
+Crown must prove the defendant as perpetrator — ID may depend on CCTV/witness quality.
+
+MG5 / MG11 / CCTV · Key disputed issues: causation / old injury / medical report gap; witness reliability; timing;
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not treat partial CCTV, weak lighting, or friend witness alone as conclusive ID.
+
+Witness reliability / timing
+
+N/A — assess witness accounts and timing consistency on served papers.
+
+MG11 / CAD / index · medical report gap remains live; several schedules are draft/corrected/outdated.
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not merge conflicting witness/CAD/index timings into one account.
+
+CCTV / BWV / 999 / CAD
+
+N/A — continuity and full logs may be required for sequence and ID routes.
+
+CCTV list / CAD / 999 · Outstanding item: final medical report; prior injury records; CCTV continuity; complainant first
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not say full footage or audio is available if only partial extracts or lists are served.
+
+Medical / expert evidence
+
+Crown may rely on medical/expert evidence for injury and mechanism — often outstanding on initial papers.
+
+Medical / forensic schedule · Defence position: not guilty; causation, old injury and medical evidence disputed.
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state injury mechanism or expert opinion as final until reports are served.
+
+Interview / custody / PACE
+
+N/A — interview account and custody/PACE compliance may affect route assessment.
+
+Interview / custody record · Custody/bail/remand status: Conditional bail
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not infer guilt from no comment; do not overstate pre-interview disclosure.
+
+Disclosure completeness
+
+N/A — chase CCTV continuity, medical, 999/CAD/BWV, unused material before fixing route.
+
+MG6 / disclosure · Bundle health note: partial served bundle; source material incomplete; causation / old injury /
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not fix trial/hearing position before outstanding violence disclosure is chased.
+
+Show fewer proof points
+WHAT THE BUNDLE APPEARS TO SUPPORT
+
+No served material safely linked to proof points on current papers.
+
+MISSING OR UNCLEAR
+
+final medical report - not served or served as summary only; chase before final
+
+MG6 disclosure schedule · Outstanding item: final medical report - not served or served as summary only; chase before final
+
+Disclosure chase: Chase final expert/medical/forensic report; record that causation remains provisional on current papers.
+
+OUTSTANDING
+
+final medical report - not served or served as summary only; chase before final
+
+MG6 disclosure schedule · Outstanding item: final medical report - not served or served as summary only; chase before final
+
+Disclosure chase: Chase final expert/medical/forensic report; record that causation remains provisional on current papers.
+
+OUTSTANDING
+
+final medical report - not served or served as summary only; chase before final
+
+MG6 disclosure schedule · Outstanding item: final medical report - not served or served as summary only; chase before final
+
+Disclosure chase: Chase final expert/medical/forensic report; record that causation remains provisional on current papers.
+
+OUTSTANDING
+
+final medical report - not served or served as summary only; chase before final
+
+MG6 disclosure schedule · Outstanding item: final medical report - not served or served as summary only; chase before final
+
+Disclosure chase: Chase final expert/medical/forensic report; record that causation remains provisional on current papers.
+
+OUTSTANDING
+Show 81 more
+DISCLOSURE CHASE LINKED TO PROOF ISSUES
+
+final medical report - not served or served as summary only; chase before final
+
+MG6 disclosure schedule · Outstanding item: final medical report - not served or served as summary only; chase before final
+
+Disclosure chase: Chase final expert/medical/forensic report; record that causation remains provisional on current papers.
+
+OUTSTANDING
+
+final medical report - not served or served as summary only; chase before final
+
+MG6 disclosure schedule · Outstanding item: final medical report - not served or served as summary only; chase before final
+
+Disclosure chase: Chase final expert/medical/forensic report; record that causation remains provisional on current papers.
+
+OUTSTANDING
+
+final medical report - not served or served as summary only; chase before final
+
+MG6 disclosure schedule · Outstanding item: final medical report - not served or served as summary only; chase before final
+
+Disclosure chase: Chase final expert/medical/forensic report; record that causation remains provisional on current papers.
+
+OUTSTANDING
+
+final medical report - not served or served as summary only; chase before final
+
+MG6 disclosure schedule · Outstanding item: final medical report - not served or served as summary only; chase before final
+
+Disclosure chase: Chase final expert/medical/forensic report; record that causation remains provisional on current papers.
+
+OUTSTANDING
+Show 88 more
+
+Working proof map on current papers — not final legal advice. Solicitor review before reliance.
+
+Draft solicitor outputs
+
+Generated from the current papers analysis — draft only, not for automatic sending.
+
+DRAFT ONLY
+
+Draft only — solicitor review required. Not a final court document. No automatic send.
+
+EXPORT TYPE
+
+Disclosure chase
+Hearing prep note
+Case handover
+
+PREVIEW
+
+Copy draft
+Mark reviewed
+Needs review
+Supervisor review
+
+Supervisor review required before relying on this position
+
+NOT CASE STRENGTH
+
+Review prioritisation on the current papers view — not win probability or plea advice.
+
+Pre-hearing readiness: not ready to rely on yet on current papers.
+Reasoning V2 flags human review on the current papers view.
+War Room flags solicitor review before fixing hearing line.
+8 core disclosure items outstanding on papers.
+1 unresolved contradiction(s) on papers.
+Show 1 more
+REVIEW DETAIL
+
+SUPERVISOR SIGN-OFF
+
+Record a review action for this matter — metadata only, not legal advice.
+
+OPTIONAL NOTE (SHORT)
+Mark reviewed
+Escalate
+No obvious issue
+Reasoning
+
+Why this route — from uploaded papers · review only
+
+SOLICITOR REVIEW REQUIRED
+Collapse
+
+Human review required
+
+Violence case with unresolved contradictions and outstanding material — solicitor review required.
+Violence case with outstanding material on papers — solicitor review before fixing hearing position.
+1. PRIMARY ROUTE
+
+Violence / injury / identification / disclosure pressure
+
+Assault occasioning actual bodily harm, s.47 OAPA 1861 · PTPH / plea and trial preparation
+
+2. WHY THIS ROUTE IS LIVE
+
+Primary route "Violence / injury / identification / disclosure pressure" is live on current papers (offence lens: ). 9 Crown proof point(s) are under pressure from the evidence graph. 96 missing or partial disclosure item(s) limit how firmly Crown can rely on linked proof points — route remains provisional. 5 contradiction(s) on the map are unresolved; do not merge conflicting accounts before reconciliation on file. Human review required before fixing advice or hearing position.
+
+3. PROOF POINTS UNDER PRESSURE
+Disclosure completeness
+33 pressure link(s)
+Identification / attribution
+16 pressure link(s)
+CCTV / BWV / 999 / CAD
+16 pressure link(s)
+Causation / mechanism
+15 pressure link(s)
+Witness reliability / timing
+7 pressure link(s)
+Interview / custody / PACE
+7 pressure link(s)
+Unlawful assault / force
+6 pressure link(s)
+Serious injury / GBH threshold
+5 pressure link(s)
+Medical / expert evidence
+5 pressure link(s)
+4. EVIDENCE HELPING DEFENCE
+
+final medical report; prior injury records; CCTV continuity; complainant first
+
+MG6 disclosure schedule · Outstanding item: final medical report; prior injury records; CCTV continuity; complainant first
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state full CCTV is available for playback until master export and continuity are on file.
+
+final medical report; prior injury records; CCTV continuity; complainant first
+
+MG6 disclosure schedule · Outstanding item: final medical report; prior injury records; CCTV continuity; complainant first
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state full CCTV is available for playback until master export and continuity are on file.
+
+final medical report; prior injury records; CCTV continuity; complainant first
+
+MG6 disclosure schedule · Outstanding item: final medical report; prior injury records; CCTV continuity; complainant first
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state full CCTV is available for playback until master export and continuity are on file.
+
+final medical report; prior injury records; CCTV continuity; complainant first
+
+MG6 disclosure schedule · Outstanding item: final medical report; prior injury records; CCTV continuity; complainant first
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state full CCTV is available for playback until master export and continuity are on file.
+
+Show 99 more
+5. EVIDENCE HURTING DEFENCE
+6. MISSING MATERIAL
+
+final medical report; prior injury records; CCTV continuity; complainant first
+
+MG6 disclosure schedule · Outstanding item: final medical report; prior injury records; CCTV continuity; complainant first
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state full CCTV is available for playback until master export and continuity are on file.
+
+final medical report; prior injury records; CCTV continuity; complainant first
+
+MG6 disclosure schedule · Outstanding item: final medical report; prior injury records; CCTV continuity; complainant first
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state full CCTV is available for playback until master export and continuity are on file.
+
+final medical report; prior injury records; CCTV continuity; complainant first
+
+MG6 disclosure schedule · Outstanding item: final medical report; prior injury records; CCTV continuity; complainant first
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state full CCTV is available for playback until master export and continuity are on file.
+
+final medical report; prior injury records; CCTV continuity; complainant first
+
+MG6 disclosure schedule · Outstanding item: final medical report; prior injury records; CCTV continuity; complainant first
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state full CCTV is available for playback until master export and continuity are on file.
+
+Show 92 more
+7. CONTRADICTIONS / UNRESOLVED CONFLICTS
+
+incident timing — CAD / witness / corrected index unresolved
+
+999 / CAD section / witness statements / index · Papers record timing differences between CAD, witness accounts, and/or corrected index material.
+
+SOLICITOR REVIEW
+PROVISIONAL
+
+Do not overstate: Do not say Crown timing is wrong; say timing is unresolved or conflicting on the served papers.
+
+incident timing — CAD / witness / corrected index unresolved
+
+999 / CAD section / witness statements / index · Papers record timing differences between CAD, witness accounts, and/or corrected index material.
+
+SOLICITOR REVIEW
+PROVISIONAL
+
+Do not overstate: Do not say Crown timing is wrong; say timing is unresolved or conflicting on the served papers.
+
+incident timing — CAD / witness / corrected index unresolved
+
+999 / CAD section / witness statements / index · Papers record timing differences between CAD, witness accounts, and/or corrected index material.
+
+SOLICITOR REVIEW
+PROVISIONAL
+
+Do not overstate: Do not say Crown timing is wrong; say timing is unresolved or conflicting on the served papers.
+
+incident timing — CAD / witness / corrected index unresolved
+
+999 / CAD section / witness statements / index · Papers record timing differences between CAD, witness accounts, and/or corrected index material.
+
+SOLICITOR REVIEW
+PROVISIONAL
+
+Do not overstate: Do not say Crown timing is wrong; say timing is unresolved or conflicting on the served papers.
+
+Show 1 more
+8. WHAT WOULD WEAKEN OR COLLAPSE THE ROUTE
+final medical report; prior injury records; CCTV continuity; complainant first: Crown case may be incomplete on served papers for this proof point.
+final medical report - not served or served as summary only; chase before final: Crown case may be incomplete on served papers for this proof point.
+prior injury records - not served or served as summary only; chase before final: Crown case may be incomplete on served papers for this proof point.
+CCTV continuity - not served or served as summary only; chase before final: Crown case may be incomplete on served papers for this proof point.
+complainant first account - not served or served as summary only; chase before: Crown case may be incomplete on served papers for this proof point.
+Show 17 more
+9. DISCLOSURE CHASE PRIORITIES
+
+final medical report; prior injury records; CCTV continuity; complainant first
+
+Chase master footage, export log, and continuity statement before fixing the hearing position.
+
+Record disclosure chase for final medical report; prior injury records; CCTV continuity; complainant first; request timetable on file.
+
+final medical report - not served or served as summary only; chase before final
+
+Chase final expert/medical/forensic report; record that causation remains provisional on current papers.
+
+Record disclosure chase for final medical report - not served or served as summary only; chase before final; request timetable on file.
+
+prior injury records - not served or served as summary only; chase before final
+
+Record on file; chase prosecution disclosure with a focused request; take instructions before fixing the hearing position.
+
+Record disclosure chase for prior injury records - not served or served as summary only; chase before final; request timetable on file.
+
+CCTV continuity - not served or served as summary only; chase before final
+
+Chase master footage, export log, and continuity statement before fixing the hearing position.
+
+Record disclosure chase for CCTV continuity - not served or served as summary only; chase before final; request timetable on file.
+
+Show 27 more
+10. SAFE NEXT ACTION
+
+Chase master footage, export log, and continuity statement before fixing the hearing position.
+
+11. DO-NOT-OVERSTATE WARNING
+
+Do not treat force as finally proved without reconciled witness/CCTV/medical material. Do not state injury grade or mechanism as final without served medical/expert reports. Do not state causation is finally proved while expert/medical/CCTV gaps remain. Do not treat partial CCTV, weak lighting, or friend witness alone as conclusive ID. Do not merge conflicting witness/CAD/index timings into one account.
+
+12. HUMAN REVIEW REQUIRED
+
+Yes — review before fixing hearing position or concessions.
+
+From uploaded papers · conditional · provisional where stated · no predictions
+
+Mark this reasoning
+
+Mark whether this papers-based reasoning is useful for solicitor review — not advice.
+
+Useful
+Missed key issue
+Too vague
+Unsafe / overconfident
+Needs solicitor review
+Good enough for hearing prep
+OPTIONAL NOTE (SHORT)
+Save feedback
+Client account consistency check
+
+Compare structured client account to the current papers analysis — not advice; solicitor review required.
+
+Select structured account options (provisional). Do not paste case papers.
+
+Denies presence
+Denies participation
+Denies possession
+Denies intent
+Accepts presence but disputes role
+Accepts possession but disputes supply
+Self-defence / defensive force
+Accident / no dangerous standard
+Mistaken identity
+No comment / limited instructions
+Other (short note)
+Compare to papers analysis
+
+Based on uploaded papers · conditional where papers are incomplete

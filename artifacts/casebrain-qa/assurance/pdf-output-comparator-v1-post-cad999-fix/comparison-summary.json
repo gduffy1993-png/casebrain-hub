@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-08-24T03:17:23.555Z",
+  "casesRoot": "artifacts/evidence-state-audit-local/cases",
+  "totalCaseFolders": 530,
+  "comparedCases": 529,
+  "casesWithAppOutput": 499,
+  "totalFindings": 886,
+  "bySeverity": {
+    "P0": 0,
+    "P1": 287,
+    "P2": 569,
+    "P3": 30
+  },
+  "clusterCount": 5
+}

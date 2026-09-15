@@ -18,7 +18,7 @@ import {
   serializeCanonicalFindingForSurface,
   type CanonicalFinding,
 } from "@/lib/criminal/canonical-finding-model";
-import { buildHearingWarRoomBrief, type HearingWarRoomBrief } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
+import { buildHearingWarRoomBrief, buildChaseItemsForHearing, type HearingWarRoomBrief } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import {
   buildDisclosureChaseBrief,
   type DisclosureChaseBrief,
@@ -46,6 +46,7 @@ import {
   type EnforcementAction,
 } from "@/lib/criminal/cross-exit-contradiction-scanner";
 import { sanitizeSolicitorProse } from "@/lib/criminal/solicitor-visible-sanitization";
+import { canonicalEvidenceStateRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
 
 export type LiveProductionSurfaces = {
   pipeline: LiveCanonicalPipelineResult;
@@ -174,13 +175,39 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
   const allegationForExits = allegationWithStatus || allegation;
   const caseTitle = opts?.caseTitle ?? "Live integration matter";
   const clientLabel = opts?.clientLabel ?? "Client";
+  const builderEvidenceRows = canonicalEvidenceStateRowsForBuilder(pipeline.evidenceState);
+  const activeMissingRows = builderEvidenceRows.filter((row) => row.status === "MISSING");
 
   const matterState = buildCanonicalMatterStateV1({
     caseId,
     allegation: allegationForExits,
     evidenceRows: evidenceRowsForFiveAnswers(pipeline),
-    chaseItems: pipeline.chaseLabels.map((label) => ({ label, baseStatus: "Outstanding" })),
+    chaseItems: activeMissingRows.map((row) => ({ label: row.label, baseStatus: row.status })),
     documents,
+  });
+
+  const disclosureChase = buildDisclosureChaseBrief({
+    caseId,
+    caseTitle,
+    clientLabel,
+    allegation: allegationForExits,
+    stage: "Case management",
+    hearingStatus: "Listed",
+    hearingDateIso: null,
+    bundleHealth: "Review papers",
+    positionStatus: "Provisional",
+    battleboard: null,
+    snapshotMissing: builderEvidenceRows,
+    bundleText: pipeline.bundleText,
+    canonicalFindings: pipeline.findings,
+    // Reconciled canonical items, not the raw per-page observations: chase must not
+    // re-ask for anything the reconciled state already treats as served.
+    canonicalEvidenceRows: pipeline.evidenceState.items.map((i) => ({
+      label: i.label,
+      state: i.state,
+      modality: i.modality,
+      aliases: i.aliases,
+    })),
   });
 
   const warRoom = buildHearingWarRoomBrief({
@@ -195,33 +222,13 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     readiness: "Needs review",
     battleboard: null,
     hasSavedPosition: false,
-    chaseItems: pipeline.chaseLabels,
+    chaseItems: buildChaseItemsForHearing({
+      snapshotMissing: activeMissingRows,
+      bundleText: pipeline.bundleText,
+      fileBackedShortlist: disclosureChase.primaryItems.map((item) => item.label),
+    }),
     bundleText: pipeline.bundleText,
     canonicalFindings: pipeline.findings,
-  });
-
-  const disclosureChase = buildDisclosureChaseBrief({
-    caseId,
-    caseTitle,
-    clientLabel,
-    allegation: allegationForExits,
-    stage: "Case management",
-    hearingStatus: "Listed",
-    hearingDateIso: null,
-    bundleHealth: "Review papers",
-    positionStatus: "Provisional",
-    battleboard: null,
-    snapshotMissing: pipeline.chaseLabels.map((label) => ({ label, status: "Outstanding" })),
-    bundleText: pipeline.bundleText,
-    canonicalFindings: pipeline.findings,
-    // Reconciled canonical items, not the raw per-page observations: chase must not
-    // re-ask for anything the reconciled state already treats as served.
-    canonicalEvidenceRows: pipeline.evidenceState.items.map((i) => ({
-      label: i.label,
-      state: i.state,
-      modality: i.modality,
-      aliases: i.aliases,
-    })),
   });
 
   const truthMap = buildFiveAnswersView({

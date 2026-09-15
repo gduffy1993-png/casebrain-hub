@@ -1,0 +1,150 @@
+{
+  "caseId": "3d52134b-6251-424a-8688-7c70fea3d379",
+  "slug": "live",
+  "label": "LIVE 03 Jordan Hale BWV Recovery Proof Assault on emergency worker CRIMINAL",
+  "preview": "https://casebrain-l8dqkfmm0-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-24T19:22:17.804Z",
+  "tabs": {
+    "overview": {
+      "ok": true,
+      "textLen": 2266,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "Safe Court Line Copy safe court line The defence asks the court to record that custody/PACE and interview material need source-status confirmation before the hearing position is fixed. Client Update Copy client update CLIENT-SAFE SUMMARY (n",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "0 Missing",
+          "2 Incomplete",
+          "What Needs Attention",
+          "0 missing · 2 incomplete · 3 open review items",
+          "Missing",
+          "Unclear",
+          "Incomplete",
+          "Chased",
+          "Full custody record / PACE material",
+          "UNCLEAR",
+          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          "Interview recording and transcript",
+          "UNCLEAR",
+          "MG6 / unused schedule clarification",
+          "UNCLEAR",
+          "UNCLEAR",
+          "Full custody record / PACE material",
+          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          "Please provide the full custody record / PACE material or confirm in writing why it is not available.",
+          "Copy chase request",
+          "The defence asks the court to record that custody/PACE and interview material need source-status confirmation before the hearing position is fixed."
+        ],
+        "textLen": 2266
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 3038,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "CHASED",
+          "Chased",
+          "Full custody record / PACE material",
+          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          "REFERRED ONLY",
+          "Copy CPS chase",
+          "Interview recording and transcript",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited. [exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding]",
+          "exact page unavailable (unsplit whole-document text) · state: missing · limitation: Recording state served; transcript state not safely confirmed.",
+          "Copy CPS chase",
+          "Full custody record / PACE material",
+          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          "Full custody record / PACE material",
+          "DRAFT CHASE WORDING",
+          "Please provide full custody record / PACE material or confirm in writing why it is not available.",
+          "Case-wide court line (provisional): The defence asks the court to record that custody/PACE and interview material need source-status confirmation before the hearing position is fixed.",
+          "Provisional chase list · check source before sending",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 3038
+      }
+    },
+    "file": {
+      "ok": true,
+      "textLen": 870,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "LIVE-03-bwv-cctv.pdf",
+          "Custody extract served (PACE clock summary).",
+          "BWV referred on schedule but not served — outstanding.",
+          "Interview recording not mentioned."
+        ],
+        "textLen": 870
+      }
+    },
+    "court": {
+      "ok": true,
+      "textLen": 1070,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "2 material row(s) · 0 served/on-file · 2 gap / partial / unclear",
+          "BWV referred on schedule but not served",
+          "MG6 Referred only —",
+          "Interview recording not mentioned.",
+          "MG6 Not safely confirmed —",
+          "Inventory is provisional and limited to what the extract establishes. Missing ranges appear only when the papers state them — gaps are not invented for a fuller-looking list.",
+          "Based on uploaded papers · conditional where papers are incomplete"
+        ],
+        "textLen": 1070
+      }
+    },
+    "papers": {
+      "ok": true,
+      "textLen": 1300,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "2 material row(s) · 0 served/on-file · 2 gap / partial / unclear",
+          "BWV referred on schedule but not served",
+          "MG6 Referred only —",
+          "Interview recording not mentioned.",
+          "MG6 Not safely confirmed —",
+          "Inventory is provisional and limited to what the extract establishes. Missing ranges appear only when the papers state them — gaps are not invented for a fuller-looking list.",
+          "Based on uploaded papers · conditional where papers are incomplete"
+        ],
+        "textLen": 1300
+      }
+    }
+  }
+}

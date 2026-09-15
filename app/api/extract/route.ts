@@ -7,6 +7,7 @@ import { extractCaseFacts, summariseDocument } from "@/lib/ai";
 import { redact } from "@/lib/redact";
 import { env } from "@/lib/env";
 import { extractCriminalCaseMeta, persistCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
+import { extractTextFromFileBuffer } from "@/lib/upload/extract-text-from-file";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
 
 export const runtime = "nodejs";
@@ -62,7 +63,11 @@ export async function POST(request: Request) {
   let text: string;
   let extractionError: string | null = null;
   try {
-    text = await extractTextFromBuffer(buffer, document.type);
+    text = await extractTextFromFileBuffer(
+      document.name || "document",
+      document.type || "application/octet-stream",
+      buffer,
+    );
   } catch (error) {
     console.error(`[extract] Failed to extract text from ${document.name}`, error);
     extractionError = error instanceof Error ? error.message : "Unknown extraction error";
@@ -187,42 +192,5 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json({ success: true, extracted, summary });
-}
-
-async function extractTextFromBuffer(buffer: Buffer, mimeType: string): Promise<string> {
-  if (mimeType === "application/pdf") {
-    try {
-      const pdfParse = (await import("pdf-parse")).default;
-      const result = await pdfParse(buffer, {
-        max: 0, // Parse all pages
-      });
-      return result.text || "";
-    } catch (error) {
-      throw new Error(
-        `PDF parsing failed: ${error instanceof Error ? error.message : "Unknown error"}. The PDF may be corrupted, password-protected, or use an unsupported format.`,
-      );
-    }
-  }
-  if (
-    mimeType ===
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-  ) {
-    try {
-      const mammoth = await import("mammoth");
-      const result = await mammoth.extractRawText({ buffer });
-      return result.value || "";
-    } catch (error) {
-      throw new Error(
-        `DOCX parsing failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-      );
-    }
-  }
-  
-  // For plain text files, try UTF-8 first, then fallback to latin1
-  try {
-    return buffer.toString("utf-8");
-  } catch {
-    return buffer.toString("latin1");
-  }
 }
 

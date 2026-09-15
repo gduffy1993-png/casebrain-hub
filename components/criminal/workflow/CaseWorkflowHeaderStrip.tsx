@@ -13,7 +13,6 @@ import { workflowCard, workflowPilotSixtyStrip } from "./workflowUi";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { cleanPilotHeaderClient, cleanPilotCourtHeaderCell, cleanPilotHearingHeaderCell } from "@/lib/criminal/pilot-workflow";
 import {
-  PILOT_COURT_NOT_IDENTIFIED_LABEL,
   displayPilotStripClient,
   displayPilotStripCourt,
   displayPilotStripHearing,
@@ -86,6 +85,7 @@ export function CaseWorkflowHeaderStrip({
             documentCount?: number;
             combinedTextLength?: number;
             frontMatterScan?: string | null;
+            canonical?: { charges?: Parameters<typeof resolveCaseHeaderMetadata>[0]["sourceCharges"] } | null;
           };
         };
         const matter = await matterRes.json().catch(() => ({}));
@@ -93,6 +93,8 @@ export function CaseWorkflowHeaderStrip({
         const meta = resolveCaseHeaderMetadata({
           bundleHeader: json.data.header ?? null,
           bundleMetadata: json.data.caseMetadata ?? null,
+          sourceCharges: json.data.canonical?.charges ?? null,
+          bundleText: json.data.frontMatterScan ?? null,
           snapshot: null,
         });
         const clientClean = pilot
@@ -132,17 +134,17 @@ export function CaseWorkflowHeaderStrip({
         if (matter?.station?.riskMedicalIssues) safeguards.push("Medical");
         setStrip({
           client: pilot
-            ? displayPilotStripClient(clientClean) || "Client not on papers"
-            : clientClean || "Client not on papers",
+            ? displayPilotStripClient(clientClean)
+            : clientClean,
           charge: pilot
             ? resolvePilotChargeDisplay(chargeClean, deskChargeLine)
-            : chargeClean || "Charge not on papers",
+            : chargeClean,
           court: pilot
-            ? displayPilotStripCourt(courtClean) || PILOT_COURT_NOT_IDENTIFIED_LABEL
-            : courtClean || "Court not on papers",
+            ? displayPilotStripCourt(courtClean)
+            : courtClean,
           hearing: pilot
-            ? displayPilotStripHearing(hearingDisplay) || "Hearing not on papers"
-            : hearingDisplay || "Hearing not on papers",
+            ? displayPilotStripHearing(hearingDisplay)
+            : hearingDisplay,
           health: healthFromDocCount(json.data.documentCount ?? 0),
           documentCount: json.data.documentCount ?? 0,
           combinedTextLength: json.data.combinedTextLength ?? 0,

@@ -314,6 +314,8 @@ function isWeakMatterTitle(raw: string | null | undefined): boolean {
   const original = (raw ?? "").trim();
   const t = cleanMatterTitle(original);
   if (!t) return true;
+  if (/^mixed\s+/i.test(original)) return true;
+  if (t.split(/\s+/).length >= 5 && !/^[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3}$/.test(t)) return true;
   if (/^cb\s+\w+/i.test(original) && t === original) return true;
   if (/^case\s*\d+$/i.test(t)) return true;
   if (/^awaiting/i.test(t)) return true;
@@ -394,12 +396,18 @@ function caseTitleDisplay(caseItem: {
   charge_offences?: string[] | null;
   document_names?: string[] | null;
 }): string {
-  const title = cleanMatterTitle(caseItem.title);
+  const defendant = caseItem.defendant_name?.trim();
+  if (defendant && !/not on papers|review|not safely extracted/i.test(defendant)) {
+    return defendant;
+  }
+  const title = cleanMatterTitle(caseItem.title)?.replace(/^MIXED\s+/i, "").trim();
+  const namedPerson = title.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)\b/);
+  if (namedPerson?.[1] && namedPerson[1].split(/\s+/).length <= 3) {
+    return namedPerson[1];
+  }
   if (!isWeakMatterTitle(title)) {
     return title;
   }
-  const defendant = caseItem.defendant_name?.trim();
-  if (defendant && !/not on papers|review/i.test(defendant)) return defendant;
   const offence =
     caseItem.offence_override?.trim() ||
     caseItem.charge_offences?.find((charge) => charge.trim())?.trim() ||

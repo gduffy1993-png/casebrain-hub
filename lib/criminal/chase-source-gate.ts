@@ -15,6 +15,7 @@ export type ChaseGateFamily =
   | "cctv"
   | "bwv"
   | "cad_999"
+  | "custody_pace"
   | "medical"
   | "interview"
   | "mg6_unused"
@@ -31,6 +32,8 @@ const MENTION_RES: Record<ChaseGateFamily, RegExp> = {
   // Never treat bare "999" (page numbers / schedule noise) as CAD establishment.
   cad_999:
     /\bcad\b|CAD\s*\/\s*999|999\s+(?:audio|call|recording)|command\s+(?:and\s+)?(?:control|dispatch)|control[-\s]?room\s+log|dispatch\s+log|emergency\s+call/i,
+  custody_pace:
+    /\b(?:custody\s+(?:record|log|sheet)|detention\s+log|PACE\s+(?:material|record|clock|Code\s+C|interview)|safeguards?\s+checklist|risk\s+assessment)\b/i,
   medical: /\bmedical\b|hospital|a\s*&\s*e\b|ambulance|paramedic|\bgp\s+records?\b|\bfme\b|pathology|injury\s+report/i,
   interview: /\binterview\s+(?:recording|transcript|audio|video)\b|\bpace\s+interview\b|interview\s+recording|interview\s+transcript/i,
   // Unused/MG6C schedule — not a plain MG6 extract presence alone.
@@ -44,11 +47,15 @@ const MENTION_RES: Record<ChaseGateFamily, RegExp> = {
 };
 
 const NEGATION_RES: Record<ChaseGateFamily, RegExp> = {
-  cctv: /\bno\s+cctv\b|cctv\s+(?:is|was)?\s*not\s+available|without\s+cctv|no\s+(?:cctv|camera)\s+(?:footage|coverage)|no\s+footage\s+(?:exists|available|was)|cctv\s+does\s+not\s+exist|no\s+cctv\s+(?:was\s+)?(?:recovered|obtained|seized|in\s+operation)/i,
+  // "No CCTV master/continuity" is modality-specific absence — not whole-family CCTV negation
+  // (stills may still be served; invent mute must drop master/continuity, not invent "no CCTV").
+  cctv: /\bno\s+cctv\b(?!\s+(?:master|continuity|provenance|full\s+window|stills?))|cctv\s+(?:is|was)?\s*not\s+available|without\s+cctv|no\s+(?:cctv|camera)\s+(?:footage|coverage)|no\s+footage\s+(?:exists|available|was)|cctv\s+does\s+not\s+exist|no\s+cctv\s+(?:was\s+)?(?:recovered|obtained|seized|in\s+operation)/i,
   bwv: /\bno\s+bwv\b|bwv\s+(?:is|was)?\s*not\s+(?:available|activated|worn)|no\s+body[-\s]?worn/i,
   cad_999: /no\s+999\s+call|no\s+cad\s+(?:log|record|entry)|999\s+call\s+not\s+(?:made|available)/i,
+  custody_pace:
+    /no\s+(?:custody\s+(?:record|log|sheet)|detention\s+log|PACE\s+(?:material|record)|safeguards?\s+checklist|risk\s+assessment)\s+(?:exists|available|served|prepared)|custody\s+record\s+not\s+(?:available|held)/i,
   medical: /no\s+medical\s+(?:evidence|records?|notes?|report|treatment)|did\s+not\s+(?:seek|require)\s+medical/i,
-  interview: /no\s+interview\s+(?:was\s+)?(?:conducted|held)|declined\s+interview|interview\s+not\s+(?:conducted|recorded)/i,
+  interview: /no\s+interview\s+(?:was\s+)?(?:conducted|held)|declined\s+interview|interview\s+not\s+(?:conducted|recorded)|interview\s+recording\s+not\s+mentioned|interview\s+transcript\s+not\s+mentioned/i,
   mg6_unused: /no\s+(?:mg6|unused\s+material|disclosure\s+schedule)\s+(?:exists|available|served|prepared)/i,
   phone: /no\s+(?:phone|mobile|handset|device)\s+(?:was\s+)?(?:seized|recovered|examined)/i,
   forensic: /no\s+forensic\s+(?:evidence|material|examination)|no\s+dna\s+(?:was\s+)?(?:recovered|found|obtained)/i,
@@ -64,13 +71,50 @@ const GATE_FAMILIES = Object.keys(MENTION_RES) as ChaseGateFamily[];
  * Those hits must not establish the family for chase / overview promotion.
  */
 const DO_NOT_INVENT_ADVISORY_RE =
-  /[^.!?\n]*(?:\b(?:do\s+not|should\s+not)\b[^.!?\n]{0,100}?\b(?:invent|assume|strengthen(?:ed)?)\b[^.!?\n]{0,100}?\b(?:cctv|bwv|footage|forensic)|(?:assuming|do\s+not\s+assume)\s+missing\s+(?:cctv|bwv|footage|forensic(?:\s+evidence)?))[^.!?\n]*[.!?\n]?/gi;
+  /\b(?:do\s+not|should\s+not)\b[^.!?\n]{0,100}?\b(?:invent|assume|strengthen(?:ed)?)\b[^.!?\n]{0,100}?\b(?:cctv|bwv|footage|forensic)|(?:assuming|do\s+not\s+assume)\s+missing\s+(?:cctv|bwv|footage|forensic(?:\s+evidence)?)/i;
 
 const FAMILIES_AFFECTED_BY_INVENT_ADVISORY = new Set<ChaseGateFamily>(["cctv", "bwv", "forensic"]);
 
-/** Strip do-not-invent advisory clauses before testing whether a family is established. */
+/**
+ * Strip do-not-invent advisory clauses before testing whether a family is established.
+ *
+ * The clause is found by splitting on sentence ends rather than by asking one pattern to reach out to
+ * them. A bundle flattened out of a PDF can run thousands of characters without a full stop, and a
+ * pattern that opens by consuming to the sentence edge has to retry every one of those lengths at
+ * every position: on the case with the most papers that single match cost 49 of the board's 55
+ * seconds. Splitting first bounds what the pattern ever looks at to one clause.
+ */
 export function stripDoNotInventAdvisory(text: string): string {
-  return text.replace(DO_NOT_INVENT_ADVISORY_RE, " ");
+  const cached = strippedCache.get(text);
+  if (cached !== undefined) return cached;
+  const stripped = !DO_NOT_INVENT_ADVISORY_RE.test(text)
+    ? text
+    : text
+        .split(/(?<=[.!?\n])/)
+        .map((clause) => (DO_NOT_INVENT_ADVISORY_RE.test(clause) ? " " : clause))
+        .join("");
+  rememberStripped(text, stripped);
+  return stripped;
+}
+
+/**
+ * The last few texts stripped, because the pipeline asks the same question of the same papers.
+ *
+ * Every gate strips the advisory before it looks for its family, every card is gated separately, and
+ * the pipeline gates repeatedly as the list is built: on the case with the most papers that came to
+ * 859 strips reading 110 million characters, all of it the same handful of texts. The answer depends
+ * on nothing but the text, so it is worth keeping. Bounded to a few entries — a case builds its board
+ * from one bundle, and holding onto whole bundles is how a server runs out of memory.
+ */
+const STRIPPED_CACHE_LIMIT = 8;
+const strippedCache = new Map<string, string>();
+
+function rememberStripped(text: string, stripped: string): void {
+  if (strippedCache.size >= STRIPPED_CACHE_LIMIT) {
+    const oldest = strippedCache.keys().next().value;
+    if (oldest !== undefined) strippedCache.delete(oldest);
+  }
+  strippedCache.set(text, stripped);
 }
 
 /**
@@ -93,7 +137,17 @@ export function isCctvMasterEstablished(sourceText: string): boolean {
     // Witness/review "not the full CCTV…" is not master establishment (Court tip invent residual).
     .replace(/not\s+the\s+full\s+cctv\b[^.\n]{0,80}/gi, " ")
     .replace(/not\s+full\s+cctv\b[^.\n]{0,80}/gi, " ")
-    .replace(/shown\s+some\s+material\s+but\s+not\s+the\s+full\s+cctv\b[^.\n]{0,80}/gi, " ");
+    .replace(/shown\s+some\s+material\s+but\s+not\s+the\s+full\s+cctv\b[^.\n]{0,80}/gi, " ")
+    // Pack boilerplate: "Full CCTV master outstanding or not verified, where applicable."
+    // is not a schedule cell naming master (Beck stills-only).
+    .replace(
+      /(?:^|[.\n])[^\n.]{0,40}\bfull\s+cctv\s+master\b[^.!\n]{0,80}\bwhere\s+applicable\b/gi,
+      " ",
+    )
+    // Explicit negation / absence lines must not establish (Dunn invent mute).
+    .replace(/\bno\s+cctv\s+master\b[^.\n]{0,40}/gi, " ")
+    .replace(/\bno\s+(?:full\s+)?(?:cctv\s+)?(?:time\s+)?window\b[^.\n]{0,40}/gi, " ")
+    .replace(/\bno\s+master\s+footage\b[^.\n]{0,40}/gi, " ");
   // Affirmative master / full-window naming (including "full window missing" outstanding).
   // Do not treat bare "full CCTV or BWV sequence" after negation-strip leftovers as master.
   return (
@@ -105,21 +159,62 @@ export function isCctvMasterEstablished(sourceText: string): boolean {
 
 /**
  * Affirmative CCTV continuity establishment — bare "officer continuity" or thin listed CCTV/BWV
- * is not enough; require continuity tied to CCTV/footage or an explicit continuity statement.
+ * is not enough. Require continuity *tied to CCTV/footage* in the same phrase/window.
+ * Document-wide co-occurrence of "CCTV stills" + unrelated "forensic continuity" must NOT establish.
  */
 export function isCctvContinuityEstablished(sourceText: string): boolean {
   if (!sourceText?.trim()) return false;
   const hay = stripDoNotInventAdvisory(sourceText)
     .replace(THIN_LISTED_CCTV_BWV_RE, " ")
-    .replace(PRODUCT_CCTV_INVENT_LABEL_RE, " ");
-  return (
-    /\bcctv\s+continuity\b|\bcontinuity\s+statement\b|\bcontinuity\s+log\b|\bchain\s+of\s+custody\b/i.test(
+    .replace(PRODUCT_CCTV_INVENT_LABEL_RE, " ")
+    .replace(/\bno\s+cctv\s+continuity\b[^.\n]{0,60}/gi, " ")
+    .replace(/\bno\s+continuity\s+record\b[^.\n]{0,40}/gi, " ");
+
+  // Explicit CCTV-continuity naming.
+  if (
+    /\bcctv\s+continuity\b/i.test(hay) ||
+    /\bcontinuity\s+(?:of\s+)?(?:the\s+)?(?:cctv|footage|video)\b/i.test(hay) ||
+    /\b(?:cctv|footage|video)\s+continuity\s+(?:statement|log|record|note)\b/i.test(hay)
+  ) {
+    return true;
+  }
+
+  // Same-sentence / near-window only — never whole-document "CCTV" + "continuity".
+  const windowHit =
+    /\b(?:cctv|footage|master|video)\b[^.\n]{0,80}\bcontinuity\s+(?:statement|log|record|note|of\s+sources)?\b/i.test(
       hay,
     ) ||
-    (/\b(?:cctv|footage|master)\b/i.test(hay) &&
-      /\bcontinuity\b/i.test(hay) &&
-      !/\bofficer\s+continuity\b/i.test(hay))
-  );
+    /\bcontinuity\s+(?:statement|log|record|note)\b[^.\n]{0,80}\b(?:cctv|footage|master|video)\b/i.test(
+      hay,
+    );
+
+  if (!windowHit) return false;
+  return true;
+}
+
+/** Confirmation-only CCTV continuity language must not become an asserted outstanding chase. */
+export function isCctvContinuityConfirmationOnly(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = stripDoNotInventAdvisory(sourceText)
+    .replace(THIN_LISTED_CCTV_BWV_RE, " ")
+    .replace(PRODUCT_CCTV_INVENT_LABEL_RE, " ");
+  if (!/\bcctv\b/i.test(hay) || !/\bcontinuity\b/i.test(hay)) return false;
+  const confirmationOnly =
+    /\bcontinuity\s+of\s+cctv\s+sources\s*:\s*to\s+be\s+checked\b/i.test(hay) ||
+    /\bcctv\s+continuity\b[^.\n]{0,80}\b(?:to\s+be\s+checked|needs?\s+checking|needs?\s+confirm(?:ation|ing)|not\s+safely\s+confirmed|unclear|unknown)\b/i.test(
+      hay,
+    ) ||
+    /\b(?:to\s+be\s+checked|needs?\s+checking|needs?\s+confirm(?:ation|ing)|not\s+safely\s+confirmed|unclear|unknown)\b[^.\n]{0,80}\bcctv\s+continuity\b/i.test(
+      hay,
+    );
+  const assertedMissing =
+    /\bcctv\s+continuity\b[^.\n]{0,80}\b(?:outstanding|missing|not\s+served|not\s+provided|not\s+attached|awaited|awaiting)\b/i.test(
+      hay,
+    ) ||
+    /\b(?:outstanding|missing|not\s+served|not\s+provided|not\s+attached|awaited|awaiting)\b[^.\n]{0,80}\bcctv\s+continuity\b/i.test(
+      hay,
+    );
+  return confirmationOnly && !assertedMissing;
 }
 
 /** True when a chase/material line is a CCTV master / full-window invent surface. */
@@ -133,6 +228,29 @@ export function lineClaimsCctvMasterOrFullWindow(line: string): boolean {
 export function lineClaimsCctvContinuity(line: string): boolean {
   return /CCTV Continuity|CCTV continuity|cctv[^.\n]{0,40}continuity|continuity[^.\n]{0,40}cctv/i.test(
     line,
+  );
+}
+
+/** True when a chase/material line invents ID / VIPER / parade procedure. */
+export function lineClaimsIdentificationProcedure(line: string): boolean {
+  return /\b(?:id\s+procedure|identification\s+procedure|viper|vipers|id\s+parade|video\s+identification|parade\s+identification)\b/i.test(
+    line,
+  );
+}
+
+/**
+ * Affirmative ID / VIPER / parade establishment on the papers.
+ * Robbery pack must not invent ID procedure without this.
+ */
+export function isIdentificationProcedureEstablished(sourceText: string): boolean {
+  if (!sourceText?.trim()) return false;
+  const hay = stripDoNotInventAdvisory(sourceText)
+    .replace(/\bno\s+(?:id|identification)\s+procedure\b[^.\n]{0,40}/gi, " ")
+    .replace(/\bno\s+(?:viper|vipers|id\s+parade|video\s+identification)\b[^.\n]{0,40}/gi, " ");
+  return (
+    /\b(?:id\s+procedure|identification\s+procedure|viper|vipers|id\s+parade|video\s+identification|parade\s+identification)\b/i.test(
+      hay,
+    ) || /\bcode\s+d\b[^.\n]{0,40}\b(?:identification|parade|viper)\b/i.test(hay)
   );
 }
 
@@ -267,7 +385,7 @@ export function isInterviewRecordingEstablished(sourceText: string): boolean {
       ));
   const negated =
     /\bno\s+(?:pace\s+)?(?:interview\s+)?recording\b/i.test(hay) ||
-    /\b(?:interview\s+)?recording\s+(?:not|never)\s+(?:made|taken|served|attached)\b/i.test(hay);
+    /\b(?:interview\s+)?recording\s+(?:not|never)\s+(?:made|taken|served|attached|mentioned)\b/i.test(hay);
   return established && !negated;
 }
 
@@ -284,7 +402,7 @@ export function isInterviewTranscriptEstablished(sourceText: string): boolean {
       ));
   const negated =
     /\bno\s+(?:pace\s+)?(?:interview\s+)?transcript\b/i.test(hay) ||
-    /\b(?:interview\s+)?transcript\s+(?:not|never)\s+(?:made|taken|served|attached)\b/i.test(hay);
+    /\b(?:interview\s+)?transcript\s+(?:not|never)\s+(?:made|taken|served|attached|mentioned)\b/i.test(hay);
   return established && !negated;
 }
 
@@ -308,6 +426,7 @@ const FAMILY_DISPLAY: Record<ChaseGateFamily, string> = {
   cctv: "CCTV",
   bwv: "body-worn video",
   cad_999: "CAD/999 material",
+  custody_pace: "custody/PACE material",
   medical: "medical evidence",
   interview: "interview material",
   mg6_unused: "MG6/unused material",
@@ -366,6 +485,10 @@ export function gateChaseLine(line: string, sourceText: string | null | undefine
     }
     if (!isPhoneDownloadEstablished(sourceText)) {
       return { action: "drop", family: "phone" };
+    }
+  } else if (lineClaimsIdentificationProcedure(line)) {
+    if (!isIdentificationProcedureEstablished(sourceText)) {
+      return { action: "drop", family: "cctv" };
     }
   }
 
@@ -474,6 +597,11 @@ function filterModalitySpecificChaseLine(
     if (!isPhoneDownloadEstablished(sourceText)) return [];
   }
 
+  // Drop ID / VIPER / parade chase unless papers establish the procedure.
+  if (lineClaimsIdentificationProcedure(t)) {
+    if (!isIdentificationProcedureEstablished(sourceText)) return [];
+  }
+
   // Drop interview *recording* chase unless recording modality is established
   // (PACE interview / transcript/summary alone must not keep a recording invent line).
   if (/\binterview recording\b/i.test(t) && !/\binterview transcript\b/i.test(t)) {
@@ -533,6 +661,10 @@ export function gateMaterialLine(line: string, sourceText: string | null | undef
     if (!isPhoneDownloadEstablished(sourceText)) {
       return { action: "drop", family: "phone" };
     }
+  } else if (lineClaimsIdentificationProcedure(line)) {
+    if (!isIdentificationProcedureEstablished(sourceText)) {
+      return { action: "drop", family: "cctv" };
+    }
   }
 
   const fams = familiesInText(line);
@@ -570,6 +702,13 @@ export function gateMaterialLines(lines: string[], sourceText: string | null | u
  */
 export function gateProseAgainstSource(text: string, sourceText: string | null | undefined): string {
   if (!sourceText?.trim() || !text.trim()) return text;
+  if (
+    isCctvContinuityConfirmationOnly(sourceText) &&
+    lineClaimsCctvContinuity(text) &&
+    /\b(?:appears|remains)\s+outstanding\b/i.test(text)
+  ) {
+    return "CCTV continuity/provenance needs confirmation before the defence can rely on any CCTV point.";
+  }
   const fams = familiesInText(text);
   if (!fams.length) return text;
 

@@ -40,6 +40,24 @@ export type CopySafeResult = {
   blockedReason: string | null;
 };
 
+export function chaseSourceStateProbeStatus(input: {
+  visibleStatus?: string | null;
+  baseStatus: string;
+}): string {
+  const visible = (input.visibleStatus ?? "").trim();
+  if (
+    visible === "Outstanding" ||
+    visible === "Overdue" ||
+    visible === "Due soon"
+  ) {
+    return "Outstanding";
+  }
+  if (visible === "Not safely confirmed") return "Not safely confirmed";
+  if (visible === "Received" || visible === "Chased") return visible;
+  if (input.baseStatus === "Overdue" || input.baseStatus === "Due soon") return "Outstanding";
+  return input.baseStatus;
+}
+
 const SENDABILITY_LABELS: Record<SendabilityLevel, string> = {
   safe_to_send: "Safe to send",
   needs_solicitor_review: "Needs solicitor review",
@@ -100,12 +118,15 @@ export function inferChaseItemSourceState(input: {
   source: string;
   baseStatus: string;
   evidenceAnchor?: string | null;
+  /** whyItMatters — referred-only cues only (see reconcileEvidenceState). */
+  whyItMatters?: string | null;
 }): SourceStateKind {
   const shared = reconcileEvidenceState({
     label: input.label,
     source: input.source,
     baseStatus: input.baseStatus,
     evidenceAnchor: input.evidenceAnchor,
+    note: input.whyItMatters,
   });
   const mapped = sharedStateToSourceStateKind(shared);
   if (mapped === "incomplete") return "incomplete";

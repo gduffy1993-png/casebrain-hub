@@ -1,0 +1,22 @@
+{
+  "caseId": "3d52134b-6251-424a-8688-7c70fea3d379",
+  "primary": [
+    {
+      "ref": null,
+      "label": "Full custody record / PACE material",
+      "family": "custody_pace",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Interview recording",
+      "family": "interview",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 2,
+  "statedGaps": 0,
+  "statedGapsOnBoard": 0,
+  "truncated": false,
+  "findings": []
+}

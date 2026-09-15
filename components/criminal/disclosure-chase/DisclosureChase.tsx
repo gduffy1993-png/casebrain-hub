@@ -19,6 +19,7 @@ import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import {
   buildDisclosureChaseBrief,
   computeCounters,
+  displayChaseOperationalStatus,
   effectiveStatus,
   matchesFilter,
   type ChaseFilterBucket,
@@ -28,8 +29,14 @@ import {
 } from "./buildDisclosureChaseBrief";
 import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowShell";
 import { SourceStateBadge, sourceStateBadgeLabel } from "@/components/criminal/trust/SourceStateBadge";
+import { OutputReceiptDisclosure } from "@/components/criminal/trust/OutputReceiptDisclosure";
+import { receiptFromChaseItem, receiptFromCourtLine } from "@/lib/criminal/visible-output-receipt";
 import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
-import { buildCopySafeResult, inferChaseItemSourceState } from "@/lib/criminal/trust/copy-safe";
+import {
+  buildCopySafeResult,
+  chaseSourceStateProbeStatus,
+  inferChaseItemSourceState,
+} from "@/lib/criminal/trust/copy-safe";
 import {
   assertFindingProvenanceOrLimitation,
   formatFindingProvenanceLine,
@@ -63,6 +70,11 @@ import {
 } from "@/lib/criminal/solicitor-hearing-display";
 import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 import { solicitorLinesNearlyEqual } from "@/lib/criminal/solicitor-display-dedupe";
+import {
+  draftMisalignedToLabel,
+  sanitizeChaseMergedFrom,
+  sanitizeSolicitorEvidenceAnchor,
+} from "@/lib/criminal/solicitor-signal-mute";
 import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import {
   clearLegacyDisclosureChaseStorage,
@@ -79,6 +91,7 @@ import {
 } from "@/lib/criminal/demo-presentation-polish";
 import { humanizeRemainingSnakeCaseTokens } from "@/lib/criminal/solicitor-visible-sanitization";
 import { createClient } from "@/lib/supabase/browser";
+import { canonicalRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
 
 const LOCAL_STORAGE_PREFIX = "casebrain:disclosure-chase:";
 
@@ -255,8 +268,14 @@ function ChaseItemCard({
   const itemSourceState = inferChaseItemSourceState({
     label: item.label,
     source: item.source,
-    baseStatus: item.baseStatus,
+    // Source-state must follow the final visible card state. Otherwise a row can display
+    // "Outstanding" beside a stale "Served" source badge when the shortlist has corrected it.
+    baseStatus: chaseSourceStateProbeStatus({
+      visibleStatus: status,
+      baseStatus: item.baseStatus,
+    }),
     evidenceAnchor: item.evidenceAnchor,
+    whyItMatters: item.whyItMatters,
   });
   const sourceBadgeRepeatsStatus =
     sourceStateBadgeLabel(itemSourceState).toLowerCase() === status.toLowerCase();
@@ -311,7 +330,7 @@ function ChaseItemCard({
           <p className={`${bodyClass} mt-1 line-clamp-2`}>{displayWhy || item.whyItMatters}</p>
         </div>
         <Badge variant={statusBadgeVariant(status)} size="sm">
-          {status}
+          {displayChaseOperationalStatus(status)}
         </Badge>
         {!sourceBadgeRepeatsStatus ? <SourceStateBadge state={itemSourceState} /> : null}
       </div>
@@ -327,6 +346,9 @@ function ChaseItemCard({
         <div className="col-span-2">
           <dt className={labelClass}>Provenance</dt>
           <dd className={`${bodyClass} mt-0.5`}>{provenanceLine}</dd>
+        </div>
+        <div className="col-span-2" onClick={(e) => e.stopPropagation()}>
+          <OutputReceiptDisclosure receipt={receiptFromChaseItem(item, "chase")} />
         </div>
       </dl>
       <div className="px-4 pb-3 flex flex-wrap gap-1.5" onClick={(e) => e.stopPropagation()}>
@@ -397,10 +419,18 @@ function DetailPanel({
   const displayWhy = displayChaseWhy(item.whyItMatters, item);
   const displaySource = displayChaseItemText(item.source, item);
   const displayRoute = displayChaseItemText(item.linkedRoute, item);
-  const displayAnchor = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.evidenceAnchor, item));
-  const displayDraft = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.draftChaseWording, item));
+  const safeAnchor = sanitizeSolicitorEvidenceAnchor(item.evidenceAnchor);
+  const displayAnchor = humanizeRemainingSnakeCaseTokens(
+    displayChaseItemText(safeAnchor, item),
+  );
+  // Align draft to the solicitor-visible label (stop MG6 draft under MG11 peel).
+  const draftSource = draftMisalignedToLabel(displayLabel, item.draftChaseWording)
+    ? `Please provide ${displayLabel} or confirm in writing why it is not available.`
+    : item.draftChaseWording;
+  const displayDraft = humanizeRemainingSnakeCaseTokens(displayChaseItemText(draftSource, item));
   const displayCourt = humanizeRemainingSnakeCaseTokens(displayChaseItemText(item.courtLine, item));
   const displaySafeCourtLine = humanizeRemainingSnakeCaseTokens(displayChaseItemText(brief.safeCourtLine, item));
+  const solicitorMergedFrom = sanitizeChaseMergedFrom(item.mergedFrom);
   return (
     <aside className={`${shell} sticky top-4`}>
       <header
@@ -408,13 +438,14 @@ function DetailPanel({
       >
         <h2 className={titleClass}>{displayLabel}</h2>
         <Badge variant={statusBadgeVariant(status)} size="sm" className="mt-2">
-          {status}
+          {displayChaseOperationalStatus(status)}
         </Badge>
       </header>
       <div className={`p-4 space-y-4 ${bodyClass}`}>
         <div>
           <p className={workflowSectionTitle}>Why it matters</p>
           <p className="mt-1 leading-relaxed">{displayWhy || item.whyItMatters}</p>
+          <OutputReceiptDisclosure receipt={receiptFromChaseItem(item, "chase")} />
         </div>
         <div className="grid grid-cols-1 gap-2 text-xs">
           <p>
@@ -434,20 +465,20 @@ function DetailPanel({
             </p>
           )}
         </div>
-        {item.mergedFrom.length > 1 && (
+        {solicitorMergedFrom.length > 1 && (
           <div>
             <p className={workflowSectionTitle}>Merged from file</p>
             <ul className="mt-1 text-xs text-slate-600 list-disc pl-4 space-y-0.5">
-              {item.mergedFrom.map((m, i) => (
+              {solicitorMergedFrom.map((m, i) => (
                 <li key={i}>{displayChaseItemText(m, item) || m}</li>
               ))}
             </ul>
           </div>
         )}
-        {item.evidenceAnchor && (
+        {safeAnchor && (
           <div>
             <p className={workflowSectionTitle}>Evidence anchor</p>
-            <p className="mt-1 text-xs leading-relaxed">{displayAnchor || item.evidenceAnchor}</p>
+            <p className="mt-1 text-xs leading-relaxed">{displayAnchor || safeAnchor}</p>
           </div>
         )}
         <div>
@@ -457,7 +488,7 @@ function DetailPanel({
               pilotEmbed ? "border-slate-600 text-slate-400" : "border-slate-200"
             }`}
           >
-            {displayDraft || item.draftChaseWording}
+            {displayDraft || draftSource}
           </p>
         </div>
         <div>
@@ -675,6 +706,11 @@ export function DisclosureChase({
     };
   }, [caseId]);
 
+  const sourceBundleText =
+    bundleSource?.canonical?.pageAwareFrontMatterScan ??
+    bundleSource?.frontMatterScan ??
+    null;
+
   const headerMeta = useMemo(
     () =>
       resolveCaseHeaderMetadata({
@@ -690,9 +726,11 @@ export function DisclosureChase({
           : null,
         bundleMetadata: bundleSource?.caseMetadata,
         bundleHeader: bundleSource?.header,
+        sourceCharges: bundleSource?.canonical?.charges ?? null,
+        bundleText: sourceBundleText,
         matterState,
       }),
-    [snapshot, matter, bundleSource, matterState],
+    [snapshot, matter, bundleSource, matterState, sourceBundleText],
   );
 
   const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
@@ -704,10 +742,10 @@ export function DisclosureChase({
       workflowHeaderOverrides(titleBase, {
         allegation: allegationBase,
         routeTitle: battleboard?.primary_route?.title,
-        bundleText: bundleSource?.frontMatterScan ?? null,
+        bundleText: sourceBundleText,
         clientLabel,
       }),
-    [titleBase, allegationBase, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan],
+    [titleBase, allegationBase, clientLabel, battleboard?.primary_route?.title, sourceBundleText],
   );
   const caseTitle = safeSolicitorCaseTitle(
     pilotHeader?.displayTitle ?? pilotHeader?.title ?? titleBase,
@@ -718,11 +756,11 @@ export function DisclosureChase({
       caseTitle,
       allegation,
       routeTitle: battleboard?.primary_route?.title,
-      bundleText: bundleSource?.frontMatterScan ?? null,
+      bundleText: sourceBundleText,
       clientLabel,
       profileHint: pilotHeader?.profile ?? null,
     }),
-    [caseTitle, allegation, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan, pilotHeader?.profile],
+    [caseTitle, allegation, clientLabel, battleboard?.primary_route?.title, sourceBundleText, pilotHeader?.profile],
   );
   const headerLoading = snapshotLoading || bundleLoading;
   const pilotMode = isCriminalPilotMode();
@@ -734,7 +772,7 @@ export function DisclosureChase({
     bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
     snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
     nextHearingRaw: bundleSource?.caseMetadata?.nextHearingRaw,
-    bundleHay: bundleSource?.frontMatterScan,
+    bundleHay: sourceBundleText,
   });
   const courtDisplay = pilotMode
     ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
@@ -746,7 +784,7 @@ export function DisclosureChase({
     nextHearingRaw: headerMeta.nextHearing,
     bundleHay: [
       bundleSource?.caseMetadata?.nextHearingRaw,
-      bundleSource?.frontMatterScan,
+      sourceBundleText,
     ]
       .filter(Boolean)
       .join("\n"),
@@ -777,8 +815,14 @@ export function DisclosureChase({
   }, [hasSavedPosition, savedPosition, headerMeta.defencePosition, pilotMode, workflowContext]);
 
   const brief: DisclosureChaseBrief = useMemo(
-    () =>
-      buildDisclosureChaseBrief({
+    () => {
+      const canonicalRows = canonicalRowsForBuilder(bundleSource?.canonical ?? null);
+      const builderMissingRows =
+        canonicalRows.length > 0
+          ? canonicalRows
+          : snapshot?.evidence.missingEvidence ?? [];
+
+      return buildDisclosureChaseBrief({
         caseId,
         caseTitle,
         clientLabel,
@@ -789,26 +833,17 @@ export function DisclosureChase({
         bundleHealth: deriveBundleHealth(snapshot, bundleSource, battleboard),
         positionStatus,
         battleboard,
-        snapshotMissing: [
-          ...(snapshot?.evidence.missingEvidence ?? []),
-          ...(bundleSource?.canonical?.chaseLabels ?? []).map((label) => ({
-            label,
-            status: "Outstanding",
-          })),
-          // Overview gap projector labels — keep Chase modality hay aligned with Papers/Overview.
-          ...((bundleSource?.canonical?.evidenceRows ?? [])
-            .filter((r) => r.existence !== "served")
-            .map((r) => ({ label: r.label, status: "Outstanding" })) ?? []),
-        ],
+        snapshotMissing: builderMissingRows,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
-        bundleText: bundleSource?.frontMatterScan ?? null,
+        bundleText: sourceBundleText,
         profileHint: pilotHeader?.profile ?? null,
         canonicalFindings: bundleSource?.canonical?.findingSummaries ?? [],
         canonicalEvidenceRows: (bundleSource?.canonical?.evidenceRows ?? []).map((r) => ({
           label: r.label,
           state: r.existence,
         })),
-      }),
+      });
+    },
     [
       caseId,
       snapshot,
@@ -823,6 +858,7 @@ export function DisclosureChase({
       headerMeta.nextHearing,
       hearingDisplay,
       pilotHeader?.profile,
+      sourceBundleText,
     ],
   );
 
@@ -832,27 +868,21 @@ export function DisclosureChase({
   );
 
   const filteredItems = useMemo(
-    () => brief.items.filter((item) => matchesFilter(item, filter, localStatus)),
-    [brief.items, filter, localStatus],
+    () => brief.primaryItems.filter((item) => matchesFilter(item, filter, localStatus)),
+    [brief.primaryItems, filter, localStatus],
   );
 
-  const primaryIdSet = useMemo(() => new Set(brief.primaryItems.map((i) => i.id)), [brief.primaryItems]);
+  const filteredPrimary = filteredItems;
 
-  const filteredPrimary = useMemo(
-    () => filteredItems.filter((item) => primaryIdSet.has(item.id)),
-    [filteredItems, primaryIdSet],
-  );
+  // Shortlist freeze: solicitor Chase board = primary only (no Other resurrection).
+  const filteredAdditional: typeof filteredItems = [];
 
-  const filteredAdditional = useMemo(
-    () => filteredItems.filter((item) => !primaryIdSet.has(item.id)),
-    [filteredItems, primaryIdSet],
-  );
-
-  const selectedItem = brief.items.find((i) => i.id === selectedId) ?? filteredItems[0] ?? null;
+  const selectedItem =
+    brief.primaryItems.find((i) => i.id === selectedId) ?? filteredPrimary[0] ?? null;
   const bundleHay = [
-    bundleSource?.frontMatterScan ?? "",
+    sourceBundleText ?? "",
     allegation,
-    ...(brief.items ?? []).map((i) => `${i.label} ${i.whyItMatters ?? ""} ${i.draftChaseWording ?? ""}`),
+    ...(brief.primaryItems ?? []).map((i) => `${i.label} ${i.whyItMatters ?? ""} ${i.draftChaseWording ?? ""}`),
   ].join(" ");
   const displaySafeCourtLine = polishPresentationLine(brief.safeCourtLine, bundleHay);
 
@@ -864,7 +894,16 @@ export function DisclosureChase({
         sourceState: "missing" as const,
       };
     }
-    const sourceState = inferChaseItemSourceState(selectedItem);
+    const sourceState = inferChaseItemSourceState({
+      label: selectedItem.label,
+      source: selectedItem.source,
+      baseStatus:
+        selectedItem.baseStatus === "Overdue" || selectedItem.baseStatus === "Due soon"
+          ? "Outstanding"
+          : selectedItem.baseStatus,
+      evidenceAnchor: selectedItem.evidenceAnchor,
+      whyItMatters: selectedItem.whyItMatters,
+    });
     const chaseCopy = buildCopySafeResult({
       text: selectedItem.draftChaseWording ?? selectedItem.label,
       kind: "cps_chase",
@@ -1000,6 +1039,16 @@ export function DisclosureChase({
                 Case-wide court line (provisional)
               </p>
               <p className="mt-2 text-sm text-slate-800 leading-relaxed">{displaySafeCourtLine}</p>
+              <OutputReceiptDisclosure
+                receipt={receiptFromCourtLine(
+                  displaySafeCourtLine,
+                  brief.primaryItems.filter((item) => {
+                    const itemCourt = (item.courtLine ?? "").replace(/\s+/g, " ").trim();
+                    const court = displaySafeCourtLine.replace(/\s+/g, " ").trim();
+                    return Boolean(itemCourt) && (itemCourt === court || court.includes(item.label));
+                  }).slice(0, 4),
+                )}
+              />
             </section>
             ) : null}
 

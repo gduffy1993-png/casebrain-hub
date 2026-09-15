@@ -4,7 +4,9 @@
  * Maps real uploaded documents → pipeline → payloads the browser builders consume.
  */
 
+import { getDocumentBodyText } from "@/lib/bundle/bundle-document-text";
 import { buildBundleSourcePayload } from "@/lib/bundle/parse-bundle-display";
+import { buildMetadataScan } from "@/lib/criminal/extract-bundle-case-metadata";
 import {
   pageUnitsFromExtractedText,
   type ExtractedPageUnit,
@@ -62,12 +64,12 @@ export type AuthenticatedMatterCanonicalPayload = {
   documentRoles: Array<{ id: string; title: string | null; role: string }>;
   unitCount: number;
   pageUnitCount: number;
+  /** Metadata-sized text with document/page markers preserved for page-aware receipts. */
+  pageAwareFrontMatterScan?: string | null;
 };
 
 function bodyText(doc: CaseDocumentRow): string {
-  const raw = typeof doc.raw_text === "string" ? doc.raw_text : "";
-  const ext = typeof doc.extracted_text === "string" ? doc.extracted_text : "";
-  return (raw.trim() || ext.trim() || "").trim();
+  return getDocumentBodyText(doc);
 }
 
 /**
@@ -360,6 +362,7 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
     })),
     unitCount: units.length,
     pageUnitCount: units.reduce((n, u) => n + u.pages.length, 0),
+    pageAwareFrontMatterScan: pipeline.bundleText?.trim() ? buildMetadataScan(pipeline.bundleText) : null,
   };
 
   const surfaces =

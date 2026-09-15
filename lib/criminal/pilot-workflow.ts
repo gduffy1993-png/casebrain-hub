@@ -1,6 +1,8 @@
 import {
   GENERIC_PROVISIONAL_COURT_LINE,
   GENERIC_PROVISIONAL_PRIMARY_ROUTE_TITLE,
+  isDrugDrivingContext,
+  isMotoringOffenceText,
   isProvisionalWorkflowProfile,
   MOTORING_DISCLOSURE_ITEMS,
   MOTORING_PRIMARY_ROUTE_TITLE,
@@ -9,7 +11,17 @@ import {
   SERIOUS_VIOLENCE_PRIMARY_ROUTE_TITLE,
   SERIOUS_VIOLENCE_PROVISIONAL_COURT_LINE,
 } from "@/lib/eval/casebrain-auditor/provisional-offence-policy";
-import { stripDoNotInventAdvisory } from "@/lib/criminal/chase-source-gate";
+import {
+  lineIsUnbackedOffenceFamilyFurniture,
+  looksLikeSmokePackFrontSheet,
+  smokePackSolicitorFurniture,
+} from "@/lib/criminal/smoke-pack-front-sheet";
+import { stripDoNotInventAdvisory, familySupport, confirmNoneLine } from "@/lib/criminal/chase-source-gate";
+import {
+  demoPackConflictsWithSourceAllegation,
+  isProofPressureAllegationLabel,
+  isUnusableAllegationLabel,
+} from "@/lib/criminal/case-identity-boundary";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { isPlaceholderHearingIso } from "@/lib/criminal/solicitor-hearing-display";
 import type { BattleboardOutput, BattleboardRoute } from "@/lib/criminal/strategy-battleboard";
@@ -206,7 +218,8 @@ const PROFILE_SIGNAL_RULES: Array<{
   {
     profile: "pwits_phone_attribution",
     patterns: [
-      { re: /\b(pwits|possession with intent|class\s*a|controlled drug)\b/i, weight: 12 },
+      { re: /\b(pwits|possession with intent|class\s*a)\b/i, weight: 12 },
+      { re: /\bcontrolled drug\b/i, weight: 12 },
       { re: /\b(phone attribution|handset|sim|imei|subscriber|phone extraction)\b/i, weight: 10 },
       { re: /\b(premises search|search bwv|drug continuity|co-occupier|shared premises)\b/i, weight: 6 },
     ],
@@ -261,15 +274,41 @@ function contextScan(context: WorkflowProfileContext): string {
     .join(" ");
 }
 
-/** Demo matter name match anywhere in case signals — forces profile for Marcus/Kian/Leon. */
+/**
+ * Identity-only scan for demo matter names. A demo name appearing inside served
+ * evidence text (witness, complainant, exhibit note) is not the identity of this
+ * matter, so bundle/route text must never force a demo profile or allegation.
+ */
+function demoIdentityScan(context: WorkflowProfileContext): string {
+  return [context.caseTitle, context.clientLabel].filter(Boolean).join(" ");
+}
+
+function demoMatchFromIdentity(
+  context: WorkflowProfileContext,
+): (typeof DEMO_TITLE_FALLBACK)[number] | null {
+  const scan = demoIdentityScan(context);
+  if (!scan.trim()) return null;
+  return DEMO_TITLE_FALLBACK.find((demo) => demo.titleRe.test(scan)) ?? null;
+}
+
+/**
+ * Demo packs are another matter's clothes. A name hit on identity is not enough when
+ * the papers already name a different offence family (Marcus Vale fraud vs Vale robbery).
+ */
+function acceptedDemoMatch(
+  context: WorkflowProfileContext,
+): (typeof DEMO_TITLE_FALLBACK)[number] | null {
+  const demo = demoMatchFromIdentity(context);
+  if (!demo) return null;
+  if (demoPackConflictsWithSourceAllegation(context.allegation, demo.allegation)) return null;
+  return demo;
+}
+
+/** Demo matter name match on case identity — forces profile for Marcus/Kian/Leon. */
 export function resolveDemoProfileFromContext(
   context: WorkflowProfileContext,
 ): Exclude<WorkflowProfile, "generic"> | null {
-  const scan = contextScan(context);
-  for (const demo of DEMO_TITLE_FALLBACK) {
-    if (demo.titleRe.test(scan)) return demo.profile;
-  }
-  return null;
+  return acceptedDemoMatch(context)?.profile ?? null;
 }
 
 function resolveProfileFromContext(context: WorkflowProfileContext): WorkflowProfile {
@@ -290,11 +329,9 @@ function scoreProfile(context: WorkflowProfileContext): Map<WorkflowProfile, num
     ["generic", 0],
   ]);
 
-  const scan = contextScan(context);
-  for (const demo of DEMO_TITLE_FALLBACK) {
-    if (demo.titleRe.test(scan)) {
-      scores.set(demo.profile, (scores.get(demo.profile) ?? 0) + 100);
-    }
+  const identityDemo = acceptedDemoMatch(context);
+  if (identityDemo) {
+    scores.set(identityDemo.profile, (scores.get(identityDemo.profile) ?? 0) + 100);
   }
 
   const weightedFields: Array<{ text: string; weight: number }> = [
@@ -309,6 +346,13 @@ function scoreProfile(context: WorkflowProfileContext): Map<WorkflowProfile, num
     for (const { text, weight: fieldWeight } of weightedFields) {
       if (!text.trim()) continue;
       for (const { re, weight } of patterns) {
+        if (
+          profile === "pwits_phone_attribution" &&
+          /\bcontrolled drug\b/i.test(re.source) &&
+          (isDrugDrivingContext(text) || isMotoringOffenceText(text))
+        ) {
+          continue;
+        }
         if (re.test(text)) total += weight * fieldWeight;
       }
     }
@@ -334,10 +378,17 @@ export function resolveWorkflowProfileFromSignals(context: WorkflowProfileContex
 
   const allegationText = [context.allegation, context.caseTitle].filter(Boolean).join("; ");
   if (
-    /\b(theft|shoplifting)\b/i.test(allegationText) &&
+    /\b(theft|shoplifting|burglary|burgle)\b/i.test(allegationText) &&
     !/\b(robbery|snatch|mugging|assault|gbh|wounding|violence)\b/i.test(allegationText)
   ) {
     return "generic";
+  }
+  if (looksLikeSmokePackFrontSheet(context.bundleText ?? "")) {
+    return (
+      resolveProvisionalWorkflowFromOffence(allegationText) ??
+      resolveProvisionalWorkflowFromOffence([allegationText, context.bundleText ?? ""].join(" ")) ??
+      "generic_provisional"
+    );
   }
   const provisional = resolveProvisionalWorkflowFromOffence(allegationText);
   if (provisional) return provisional;
@@ -429,13 +480,40 @@ const PROFILE_SOURCE_SUPPORT_RULES: SourceSupportRule[] = [
     output: /\bexport\s+log\b/i,
     source: /\bexport\s+log\b/i,
   },
-  // CCTV master/continuity — invent-advisory "assuming missing CCTV" is not source support.
+  // CCTV master / full window — stills or partial extract alone are not support.
   {
-    output: /\b(?:full cctv|cctv master|cctv continuity|cctv export|master footage|full\s*window)\b/i,
+    output: /\b(?:full cctv|cctv master|master footage|full\s*window|cctv full window)\b/i,
     source:
-      /\b(?:cctv\s+stills|partial\s+cctv|full\s+cctv|cctv\s+master|master\s+footage|full\s*(?:time\s+)?window|cctv\s+(?:footage|export|continuity|outstanding)|video\s+footage|camera\s+footage|dashcam)\b/i,
+      /\b(?:full\s+cctv(?:\s+master|\s+window)?|cctv\s+master|master\s+footage|full\s*(?:time\s+)?window|cctv\s+(?:footage|export)\s+(?:outstanding|not\s+served|master))\b/i,
+  },
+  // CCTV continuity — require continuity language tied to CCTV; stills ≠ continuity.
+  {
+    output: /\bcctv\s+continuity\b|\bcontinuity\s+(?:of\s+)?(?:cctv|footage)\b/i,
+    source:
+      /\b(?:cctv\s+continuity|continuity\s+(?:of\s+)?(?:the\s+)?(?:cctv|footage|video)|(?:cctv|footage)\s+continuity\s+(?:statement|log|record|note)|continuity\s+statement[^.\n]{0,40}\b(?:cctv|footage))\b/i,
+  },
+  // Generic CCTV chase seeds — stills/partial may support a limited CCTV ask, not master/continuity.
+  {
+    output: /\bcctv\s+export\b|\bcctv\b/i,
+    source:
+      /\b(?:cctv\s+stills|partial\s+cctv|full\s+cctv|cctv\s+master|master\s+footage|cctv\s+(?:footage|export|continuity|outstanding)|video\s+footage|camera\s+footage|dashcam)\b/i,
+  },
+  // ID procedure — robbery pack must not invent VIPER/parade without papers.
+  {
+    output: /\b(?:id\s+procedure|identification\s+procedure|viper|id\s+parade|video\s+identification)\b/i,
+    source: /\b(?:id\s+procedure|identification\s+procedure|viper|id\s+parade|video\s+identification|parade\s+identification)\b/i,
+  },
+  {
+    output:
+      /\b(?:possession and phone-attribution|phone-attribution|phone ownership|shared premises|co-occupier|drugs\/cash|pre-interview disclosure|knowledge\/control)\b/i,
+    source:
+      /\b(?:phone-attribution|phone ownership|phone extraction|phone download|shared premises|co-occupier|drugs\/cash|pre-interview|possession with intent|pwits)\b/i,
   },
 ];
+
+function labelledFurnitureFromContext(context: WorkflowProfileContext) {
+  return smokePackSolicitorFurniture(context.bundleText ?? "");
+}
 
 const ASSERTIVE_SOURCE_EXPECTATION_RE =
   /\b(?:appears outstanding|remains outstanding|outstanding|chase|ask the court|take instructions|may bear|may affect|required|needed|please provide|record that|conditional on|served)\b/i;
@@ -445,11 +523,25 @@ function sourceTextForProfileSupport(context: WorkflowProfileContext): string | 
   return text ? text : null;
 }
 
+function profilePackMayEmit(_context: WorkflowProfileContext): boolean {
+  return true;
+}
+
+function gateConvertedPackLines<T extends string>(
+  lines: T[],
+  context: WorkflowProfileContext,
+  _generator: string,
+): T[] {
+  if (!profilePackMayEmit(context)) return [];
+  return lines;
+}
+
 function profileLineHasSourceSupport(
   line: string,
   context: WorkflowProfileContext,
   profile: WorkflowProfile,
 ): boolean {
+  if (lineIsUnbackedOffenceFamilyFurniture(line, context.bundleText)) return false;
   if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return true;
   const sourceText = sourceTextForProfileSupport(context);
   if (!sourceText) return true;
@@ -469,30 +561,64 @@ function filterProfilePackLinesBySource<T extends string>(
   lines: T[],
   context: WorkflowProfileContext,
   profile: WorkflowProfile,
+  generator = "filterProfilePackLinesBySource",
 ): T[] {
-  return lines.filter((line) => profileLineHasSourceSupport(line, context, profile));
+  const supported = lines.filter((line) => profileLineHasSourceSupport(line, context, profile));
+  return gateConvertedPackLines(supported, context, generator);
 }
 
 export function workflowDisclosureChaseLabels(context: WorkflowProfileContext): string[] | null {
+  const labelled = labelledFurnitureFromContext(context);
+  if (labelled) return labelled.disclosureLabels;
+  if (!profilePackMayEmit(context) && resolveWorkflowProfile(context) !== "generic_motoring_provisional") {
+    const profile = resolveWorkflowProfile(context);
+    if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return null;
+    return [];
+  }
   const profile = resolveWorkflowProfile(context);
   if (profile === "generic") return null;
-  if (profile === "generic_motoring_provisional") return [...MOTORING_DISCLOSURE_ITEMS];
+  if (profile === "generic_motoring_provisional") {
+    return gateConvertedPackLines(
+      [...MOTORING_DISCLOSURE_ITEMS],
+      context,
+      "workflowDisclosureChaseLabels",
+    );
+  }
   if (isProvisionalWorkflowProfile(profile)) return null;
-  return filterProfilePackLinesBySource(PROFILE_PACKS[profile].disclosureItems, context, profile);
+  return filterProfilePackLinesBySource(
+    PROFILE_PACKS[profile].disclosureItems,
+    context,
+    profile,
+    "workflowDisclosureChaseLabels",
+  );
 }
 
 export function workflowCourtRecordAsks(context: WorkflowProfileContext): string[] | null {
+  const labelled = labelledFurnitureFromContext(context);
+  if (labelled) return labelled.courtRecordAsks.slice(0, 5);
   const profile = resolveWorkflowProfile(context);
   if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return null;
-  return filterProfilePackLinesBySource(PROFILE_PACKS[profile].courtRecordAsks, context, profile)
+  return filterProfilePackLinesBySource(
+    PROFILE_PACKS[profile].courtRecordAsks,
+    context,
+    profile,
+    "workflowCourtRecordAsks",
+  )
     .map(normalizeWorkflowPilotLabel)
     .slice(0, 5);
 }
 
 export function workflowTopNextActions(context: WorkflowProfileContext): string[] | null {
+  const labelled = labelledFurnitureFromContext(context);
+  if (labelled) return labelled.nextActions;
   const profile = resolveWorkflowProfile(context);
   if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return null;
-  return filterProfilePackLinesBySource(PROFILE_PACKS[profile].nextActions, context, profile);
+  return filterProfilePackLinesBySource(
+    PROFILE_PACKS[profile].nextActions,
+    context,
+    profile,
+    "workflowTopNextActions",
+  );
 }
 
 /** @deprecated Use {@link workflowTopNextActions}. */
@@ -501,8 +627,11 @@ export function pilotTopNextActions(context: WorkflowProfileContext): string[] |
 }
 
 export function workflowPrimaryRouteTitle(context: WorkflowProfileContext): string | null {
+  const labelled = labelledFurnitureFromContext(context);
+  if (labelled) return labelled.routeTitle;
   const profile = resolveWorkflowProfile(context);
   if (profile === "generic") return null;
+  if (!profilePackMayEmit(context)) return null;
   if (profile === "generic_motoring_provisional") return MOTORING_PRIMARY_ROUTE_TITLE;
   if (profile === "generic_serious_violence_provisional") return SERIOUS_VIOLENCE_PRIMARY_ROUTE_TITLE;
   if (profile === "generic_provisional") return GENERIC_PROVISIONAL_PRIMARY_ROUTE_TITLE;
@@ -563,50 +692,79 @@ export function pickWorkflowPrimaryRoute(
   return substantive ?? routes[0] ?? null;
 }
 
-/** Build robbery conditional phrase; drop modality clauses the papers never mention. */
+/** Build robbery conditional phrase; drop modality clauses the papers never establish. */
 function robberySourceMaterialPhrase(context: WorkflowProfileContext): string {
   const profile: WorkflowProfile = "robbery_identification";
-  const parts = ["full CCTV", "ID procedure material"];
-  if (profileLineHasSourceSupport("999/CAD timing", context, profile)) {
-    parts.push("999/CAD timing");
-  }
-  parts.push(
+  const candidates = [
+    "full CCTV",
+    "ID procedure material",
+    "999/CAD timing",
     "complainant statement",
     "any other-person attribution expressly raised by the papers",
     "interview material",
-  );
+  ];
+  const parts = candidates.filter((line) => profileLineHasSourceSupport(line, context, profile));
+  if (!parts.length) return "material expressly raised by the papers";
   if (parts.length === 1) return parts[0]!;
   if (parts.length === 2) return `${parts[0]} and ${parts[1]}`;
   return `${parts.slice(0, -1).join(", ")}, and ${parts[parts.length - 1]}`;
 }
 
+function robberyIdentificationLead(context: WorkflowProfileContext): string {
+  // Do not invent "Identification …" court theory unless ID procedure / robbery ID is on the papers.
+  const idOnPapers = profileLineHasSourceSupport("ID procedure material", context, "robbery_identification");
+  const robberyIdSignal = /\b(robbery|mugging|snatch|poor identification|identification issue|viper|id parade|id procedure)\b/i.test(
+    contextScan(context),
+  );
+  if (idOnPapers || robberyIdSignal) {
+    return "Identification, participation and attribution";
+  }
+  return "Participation and attribution";
+}
+
 function robberySafeCourtLine(context: WorkflowProfileContext): string {
   const phrase = robberySourceMaterialPhrase(context);
-  return `Identification and participation remain conditional on ${phrase}. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.`;
+  let line = `${robberyIdentificationLead(context)} remain conditional on ${phrase}. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.`;
+  const source = context.bundleText?.trim();
+  if (source && familySupport("cctv", source) === "negated") {
+    line = `${line} ${confirmNoneLine("cctv")}`;
+  }
+  return line;
 }
 
 function robberyDisclosureCaseWideLine(context: WorkflowProfileContext): string {
-  return `Identification, participation and attribution remain conditional on ${robberySourceMaterialPhrase(context)}.`;
+  let line = `${robberyIdentificationLead(context)} remain conditional on ${robberySourceMaterialPhrase(context)}.`;
+  const source = context.bundleText?.trim();
+  if (source && familySupport("cctv", source) === "negated") {
+    line = `${line} ${confirmNoneLine("cctv")}`;
+  }
+  return line;
 }
 
 export function workflowSafeCourtLine(context: WorkflowProfileContext): string | null {
+  const labelled = labelledFurnitureFromContext(context);
+  if (labelled) return labelled.courtLine;
+  if (!profilePackMayEmit(context)) return null;
   const profile = resolveWorkflowProfile(context);
-  switch (profile) {
-    case "fraud_account_control":
-      return "Account-control and dishonesty issues remain conditional on served bank/device material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
-    case "pwits_phone_attribution":
-      return "Possession and phone-attribution issues remain conditional on served extraction and search material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
-    case "robbery_identification":
-      return robberySafeCourtLine(context);
-    case "generic_motoring_provisional":
-      return MOTORING_PROVISIONAL_COURT_LINE;
-    case "generic_serious_violence_provisional":
-      return SERIOUS_VIOLENCE_PROVISIONAL_COURT_LINE;
-    case "generic_provisional":
-      return GENERIC_PROVISIONAL_COURT_LINE;
-    default:
-      return null;
-  }
+  const line = (() => {
+    switch (profile) {
+      case "fraud_account_control":
+        return "Account-control and dishonesty issues remain conditional on served bank/device material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
+      case "pwits_phone_attribution":
+        return "Possession and phone-attribution issues remain conditional on served extraction and search material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
+      case "robbery_identification":
+        return robberySafeCourtLine(context);
+      case "generic_motoring_provisional":
+        return MOTORING_PROVISIONAL_COURT_LINE;
+      case "generic_serious_violence_provisional":
+        return SERIOUS_VIOLENCE_PROVISIONAL_COURT_LINE;
+      case "generic_provisional":
+        return GENERIC_PROVISIONAL_COURT_LINE;
+      default:
+        return null;
+    }
+  })();
+  return sourceBackedPackLine(line, context);
 }
 
 /** @deprecated Prefer {@link robberyDisclosureCaseWideLine} via workflowDisclosureCaseWideLine. */
@@ -618,26 +776,37 @@ const ROBBERY_SOURCE_MATERIAL_PHRASE =
 
 /** Pilot disclosure “case-wide court line” — profile-specific, no generic forensic wording. */
 export function workflowDisclosureCaseWideLine(context: WorkflowProfileContext): string | null {
+  const labelled = labelledFurnitureFromContext(context);
+  if (labelled) return labelled.caseWideLine;
+  if (!profilePackMayEmit(context)) return null;
   const profile = resolveWorkflowProfile(context);
+  let line: string | null = null;
   if (profile === "fraud_account_control") {
-    return "Account-control and dishonesty issues remain conditional on served bank/export, device/login, mailbox and POCA/source-of-funds material.";
+    line =
+      "Account-control and dishonesty issues remain conditional on served bank/export, device/login, mailbox and POCA/source-of-funds material.";
+  } else if (profile === "pwits_phone_attribution") {
+    line =
+      "Possession, knowledge, intent to supply and phone attribution remain conditional on full phone extraction, search BWV, drug/cash continuity and co-occupier material.";
+  } else if (profile === "robbery_identification") {
+    line = robberyDisclosureCaseWideLine(context);
+  } else if (profile === "generic_motoring_provisional") {
+    line =
+      "Standard of driving, driver attribution, collision sequence, dashcam/CCTV/BWV, CAD/999, expert/collision material, medical/injury evidence where relevant, and served interview/account remain conditional on service.";
+  } else if (profile === "generic_serious_violence_provisional") {
+    line = "Serious violence strategy remains provisional pending served material and solicitor review.";
+  } else if (profile === "generic_provisional") {
+    line =
+      "Route and disclosure priorities remain provisional pending human review of offence family and served material.";
   }
-  if (profile === "pwits_phone_attribution") {
-    return "Possession, knowledge, intent to supply and phone attribution remain conditional on full phone extraction, search BWV, drug/cash continuity and co-occupier material.";
+  return sourceBackedPackLine(line, context);
+}
+
+function sourceBackedPackLine(line: string | null, context: WorkflowProfileContext): string | null {
+  if (!line) return null;
+  if (lineIsUnbackedOffenceFamilyFurniture(line, context.bundleText)) {
+    return GENERIC_PROVISIONAL_COURT_LINE;
   }
-  if (profile === "robbery_identification") {
-    return robberyDisclosureCaseWideLine(context);
-  }
-  if (profile === "generic_motoring_provisional") {
-    return "Standard of driving, driver attribution, collision sequence, dashcam/CCTV/BWV, CAD/999, expert/collision material, medical/injury evidence where relevant, and served interview/account remain conditional on service.";
-  }
-  if (profile === "generic_serious_violence_provisional") {
-    return "Serious violence strategy remains provisional pending served material and solicitor review.";
-  }
-  if (profile === "generic_provisional") {
-    return "Route and disclosure priorities remain provisional pending human review of offence family and served material.";
-  }
-  return null;
+  return line;
 }
 
 /** Route-status badge in pilot Control Room — avoids duplicate “conditional on served material”. */
@@ -673,43 +842,60 @@ export function workflowHeaderOverrides(
 ): WorkflowHeaderOverride | null {
   if (!isCriminalPilotMode()) return null;
   const t = caseTitle.trim();
-  const fullContext: WorkflowProfileContext = { caseTitle: t, ...context };
-  const scan = contextScan(fullContext);
+  const fileName = context?.clientLabel?.trim() ?? "";
+  const placeholderTitle =
+    !t ||
+    /^untitled case$/i.test(t) ||
+    /^client\b/i.test(t) ||
+    /not on papers|not safely extracted/i.test(t);
+  const heading =
+    placeholderTitle && fileName && !/^client\b/i.test(fileName) && !/not on papers|not safely extracted/i.test(fileName)
+      ? fileName
+      : t;
+  const fullContext: WorkflowProfileContext = { caseTitle: heading, ...context };
 
-  for (const demo of DEMO_TITLE_FALLBACK) {
-    if (demo.titleRe.test(scan)) {
-      return {
-        title: demo.title,
-        allegation: demo.allegation,
-        displayTitle: `${demo.title} — ${demo.allegation}`,
-        profile: demo.profile,
-      };
-    }
+  const identityDemo = acceptedDemoMatch(fullContext);
+  if (identityDemo) {
+    const sourceAllegation = fullContext.allegation?.trim();
+    const allegation =
+      sourceAllegation && !isUnusableAllegationLabel(sourceAllegation)
+        ? sourceAllegation
+        : identityDemo.allegation;
+    return {
+      title: identityDemo.title,
+      allegation,
+      displayTitle: `${identityDemo.title} — ${allegation}`,
+      profile: identityDemo.profile,
+    };
   }
 
   const profile = resolveWorkflowProfile(fullContext);
   if (profile === "generic") return null;
 
-  const title = t.startsWith("R v") ? t : t;
+  const title = heading.startsWith("R v") ? heading : heading;
   const allegationFromContext = fullContext.allegation?.trim();
-  const defaultAllegation =
-    profile === "generic_motoring_provisional"
-      ? MOTORING_PRIMARY_ROUTE_TITLE.split(" pressure")[0]
-      : profile === "generic_serious_violence_provisional"
-        ? SERIOUS_VIOLENCE_PRIMARY_ROUTE_TITLE
-        : profile === "generic_provisional"
-          ? GENERIC_PROVISIONAL_PRIMARY_ROUTE_TITLE
-          : PROFILE_PACKS[profile].primaryRouteTitle.split(" pressure")[0] ?? profile;
-  const cleanAllegation =
+  const packOk = profilePackMayEmit(fullContext);
+  const usableContextAllegation =
     allegationFromContext &&
-    !/\b(offence wording not safely extracted|unknown|add charge sheet)\b/i.test(allegationFromContext)
+    !isUnusableAllegationLabel(allegationFromContext) &&
+    !isProofPressureAllegationLabel(allegationFromContext)
       ? allegationFromContext
-      : defaultAllegation;
+      : null;
+  if (!packOk && !usableContextAllegation) return null;
+  // File/PDF charge only. Proof-pressure pack titles are not the offence.
+  if (!usableContextAllegation) {
+    return {
+      title,
+      allegation: "Offence wording not safely extracted",
+      displayTitle: title,
+      profile,
+    };
+  }
 
   return {
     title,
-    allegation: cleanAllegation,
-    displayTitle: `${title} — ${cleanAllegation}`,
+    allegation: usableContextAllegation,
+    displayTitle: `${title} — ${usableContextAllegation}`,
     profile,
   };
 }
@@ -724,12 +910,16 @@ export function pilotHeaderOverrides(
 }
 
 export function cleanPilotHeaderClient(raw: string): string {
-  return raw
+  const t = raw
     .replace(/\s+(?:Date(?:\s+of\s+birth)?|DOB|D\.?O\.?B\.?)\s*$/i, "")
     .replace(/\bPrimary allegation\b.*$/i, "")
     .replace(/\bPrimary\b.*$/i, "")
     .replace(/\b(sheet\s*\/\s*indictment|indictment|extract)\b.*$/i, "")
     .trim();
+  if (!t || /^client\b/i.test(t) || /not safely extracted|not on papers/i.test(t)) {
+    return "Client not on papers";
+  }
+  return t;
 }
 
 export function pilotStrategyBasisDisplay(label: string | null | undefined): string | null {
@@ -1474,6 +1664,7 @@ export function filterWorkflowPilotLines(
   for (const raw of lines) {
     const visible = sanitizePilotVisibleLine(raw, context);
     if (!visible) continue;
+    if (lineIsUnbackedOffenceFamilyFurniture(visible, context.bundleText)) continue;
     const key = visible.toLowerCase();
     if (seen.has(key)) continue;
     seen.add(key);

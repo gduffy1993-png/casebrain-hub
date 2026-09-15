@@ -25,6 +25,7 @@ import {
 import {
   type SharedEvidenceState,
   shouldSuppressChaseAsAlreadyOnFile,
+  wordingIndicatesReferredOnly,
   type EvidenceStateRow,
 } from "@/lib/criminal/evidence-state-reconcile";
 import { AUTHORSHIP_NOT_ESTABLISHED_LIMITATION } from "@/lib/criminal/attribution-model";
@@ -413,6 +414,7 @@ export function shouldChaseRequestAgainstServedAliases(
 ): { chase: boolean; reason: string | null } {
   for (const row of servedRows) {
     if (row.state !== "served") continue;
+    if (wordingIndicatesReferredOnly(row.label)) continue;
     if (aliasProvesSameServedItem({ label: requestLabel }, { label: row.label, state: "served" })) {
       return { chase: false, reason: `${row.label} is a served alias of this request — do not chase` };
     }

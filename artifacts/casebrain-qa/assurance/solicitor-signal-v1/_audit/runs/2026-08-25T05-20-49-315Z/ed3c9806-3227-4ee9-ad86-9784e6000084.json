@@ -1,0 +1,34 @@
+{
+  "caseId": "ed3c9806-3227-4ee9-ad86-9784e6000084",
+  "primary": [
+    {
+      "ref": null,
+      "label": "CCTV continuity / provenance",
+      "family": "cctv_continuity",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "CCTV full window / master footage",
+      "family": "cctv_master",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "CAD / dispatch / 999 material",
+      "family": "cad_999",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Full custody record / PACE material",
+      "family": "custody_pace",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 5,
+  "statedGaps": 0,
+  "statedGapsOnBoard": 0,
+  "truncated": false,
+  "findings": []
+}

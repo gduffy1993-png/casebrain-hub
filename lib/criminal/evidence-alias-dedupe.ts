@@ -59,9 +59,29 @@ export function evidenceScopeTags(label: string): EvidenceScopeTag[] {
   return tags.length ? tags : ["generic"];
 }
 
-export function scopesCompatible(a: EvidenceScopeTag[], b: EvidenceScopeTag[]): boolean {
+/**
+ * Scope compatibility for alias collapse.
+ * When both rows share a non-served existence, extract↔full-export may collapse
+ * (same outstanding chase unit). When served, keep extract and full export distinct.
+ */
+export function scopesCompatible(
+  a: EvidenceScopeTag[],
+  b: EvidenceScopeTag[],
+  existence?: string,
+): boolean {
+  const servedUnit = String(existence ?? "") === "served";
   for (const [x, y] of INCOMPATIBLE_SCOPE_PAIRS) {
-    if ((a.includes(x) && b.includes(y)) || (a.includes(y) && b.includes(x))) return false;
+    if ((a.includes(x) && b.includes(y)) || (a.includes(y) && b.includes(x))) {
+      // Gap-state phone extract + full download are one outstanding unit for counts/chase.
+      if (
+        !servedUnit &&
+        ((x === "extract_or_summary" && y === "full_export_or_download") ||
+          (y === "extract_or_summary" && x === "full_export_or_download"))
+      ) {
+        continue;
+      }
+      return false;
+    }
   }
   // stills vs full export / download
   if (a.includes("stills_or_screenshots") && b.includes("full_export_or_download")) return false;
@@ -153,7 +173,11 @@ export function dedupeEvidenceAliasesWithProvenance(rows: FiveAnswersEvidenceRow
       const kept = list[0]!;
       if (
         existenceCompatible(kept.existence, row.existence) &&
-        scopesCompatible(evidenceScopeTags(kept.label), evidenceScopeTags(row.label))
+        scopesCompatible(
+          evidenceScopeTags(kept.label),
+          evidenceScopeTags(row.label),
+          String(kept.existence),
+        )
       ) {
         list.push(row);
         placed = true;
