@@ -1,0 +1,27 @@
+{
+  "signedIn": true,
+  "recaptured": [
+    {
+      "id": "brookes-fresh",
+      "caseId": "95a2746e-d1d3-4f55-aad6-4fb41a7b428b",
+      "tabs": {
+        "overview": {
+          "len": 4058,
+          "loading": false
+        },
+        "file": {
+          "len": 2979,
+          "loading": false
+        },
+        "today": {
+          "len": 2145,
+          "loading": false
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "base": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app",
+  "email": "gduffy1993+casebrain-gold20@gmail.com",
+  "sha": "634908998599abe2942f7453d8e5928f0fdae3c3"
+}
