@@ -1,0 +1,172 @@
+{
+  "preview": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app",
+  "email": "gduffy1993+casebrain-gold20@gmail.com",
+  "sha": "a0cbe255da239b431c886748109355111b4d8aca",
+  "signedIn": true,
+  "cases": [
+    {
+      "id": "ocr-beck",
+      "caseId": "1d454c0b-da05-4385-8151-016426ca59b9",
+      "tabs": {
+        "overview": {
+          "textLen": 4385,
+          "identityHit": true,
+          "chargeNotIdentified": false,
+          "abh": true,
+          "intimidating": false,
+          "possessionPack": false,
+          "fragments": false,
+          "leverageGaps": false,
+          "drugDriving": false
+        },
+        "file": {
+          "textLen": 3118,
+          "identityHit": true,
+          "chargeNotIdentified": false,
+          "abh": true,
+          "intimidating": false,
+          "possessionPack": false,
+          "fragments": false,
+          "leverageGaps": false,
+          "drugDriving": false
+        },
+        "chase": {
+          "textLen": 6340,
+          "identityHit": true,
+          "chargeNotIdentified": false,
+          "abh": true,
+          "intimidating": false,
+          "possessionPack": false,
+          "fragments": false,
+          "leverageGaps": false,
+          "drugDriving": false
+        },
+        "court": {
+          "textLen": 3616,
+          "identityHit": true,
+          "chargeNotIdentified": false,
+          "abh": true,
+          "intimidating": false,
+          "possessionPack": false,
+          "fragments": false,
+          "leverageGaps": false,
+          "drugDriving": false
+        },
+        "papers": {
+          "textLen": 1702,
+          "identityHit": true,
+          "chargeNotIdentified": false,
+          "abh": true,
+          "intimidating": false,
+          "possessionPack": false,
+          "fragments": false,
+          "leverageGaps": false,
+          "drugDriving": false
+        }
+      }
+    },
+    {
+      "id": "brookes-fresh",
+      "caseId": "95a2746e-d1d3-4f55-aad6-4fb41a7b428b",
+      "tabs": {
+        "overview": {
+          "textLen": 4488,
+          "identityHit": true,
+          "chargeNotIdentified": false,
+          "abh": false,
+          "intimidating": true,
+          "possessionPack": false,
+          "fragments": false,
+          "leverageGaps": false,
+          "drugDriving": false
+        }
+      }
+    },
+    {
+      "id": "vale-bell",
+      "caseId": "b6d8ed78-b475-4d78-bc44-a7ec1e5475f0",
+      "tabs": {
+        "overview": {
+          "textLen": 3705,
+          "identityHit": true,
+          "chargeNotIdentified": false,
+          "abh": false,
+          "intimidating": false,
+          "possessionPack": false,
+          "fragments": false,
+          "leverageGaps": false,
+          "drugDriving": true
+        }
+      }
+    },
+    {
+      "id": "leverage",
+      "caseId": "17e21c53-5635-481e-a189-c8116d56c3d6",
+      "tabs": {
+        "overview": {
+          "textLen": 2772,
+          "identityHit": true,
+          "chargeNotIdentified": false,
+          "abh": false,
+          "intimidating": false,
+          "possessionPack": false,
+          "fragments": false,
+          "leverageGaps": true,
+          "drugDriving": false
+        }
+      }
+    },
+    {
+      "id": "ahmed",
+      "caseId": "ff92431f-fd4b-4adb-992e-abfdb5c80faa",
+      "tabs": {
+        "overview": {
+          "textLen": 3066,
+          "identityHit": true,
+          "chargeNotIdentified": false,
+          "abh": false,
+          "intimidating": false,
+          "possessionPack": false,
+          "fragments": false,
+          "leverageGaps": false,
+          "drugDriving": false
+        }
+      }
+    },
+    {
+      "id": "patel",
+      "caseId": "ffddc1a8-b837-4bde-bb50-bc55be0e7626",
+      "tabs": {
+        "overview": {
+          "textLen": 3139,
+          "identityHit": true,
+          "chargeNotIdentified": false,
+          "abh": false,
+          "intimidating": false,
+          "possessionPack": false,
+          "fragments": false,
+          "leverageGaps": true,
+          "drugDriving": false
+        }
+      }
+    },
+    {
+      "id": "gauntlet",
+      "caseId": "280e487c-3680-4eca-97f1-988828f448e2",
+      "tabs": {
+        "overview": {
+          "textLen": 2998,
+          "identityHit": true,
+          "chargeNotIdentified": false,
+          "abh": false,
+          "intimidating": false,
+          "possessionPack": false,
+          "fragments": false,
+          "leverageGaps": false,
+          "drugDriving": false
+        }
+      }
+    }
+  ],
+  "errors": []
+}

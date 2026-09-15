@@ -1,0 +1,74 @@
+CB
+
+CASE WORK
+
+Trial: 5d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Emery Beck
+
+On 15/03/2026 at about 19:31 at Meadow Close, Emery Beck is alleged to have assaulted Miles Dacre thereby occasioning actual bodily harm.
+
+Northlake Magistrates Court
+·
+Listing on papers · 24 Jun 2026 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Papers on this matter
+
+Source bundle for this matter. 1 file — open PDF with View.
+
+Case bundle document
+
+Uploaded 06/09/2026 · 5,926 chars
+
+Text extracted (5,926 chars)
+
+View
+
+RAW SOURCE EXTRACT — NOT DRAFTING
+
+For checking the uploaded source only. Do not copy this as client, court, or CPS wording.
+
+PACK U - SCANNED / PHOTO / OCR EVIDENCE PACK
+Fictional criminal defence evaluation bundle. No real persons, cases, addresses, phone numbers or police material.
+1. COVER / CASE HEADER
+Fictional case reference: CB-OCR-2026-0013
+Case title: ABH s.47 - Emery Beck
+Defendant name: Emery Beck
+Defendant DOB: 14/05/1997
+Police station: Crown Quay Police Station
+Court/stage: Northlake Magistrates Court / police station pre-charge
+Next hearing/review date: 24/06/2026
+Bail/RUI/remand status: remand
+Pack identifiers: Pack U / CB-OCR / CB-SCAN / CB-PHOTO / EX-U-*
+2. CHARGE / ALLEGATION
+Offence type: ABH s.47
+Exact allegation wording: On 15/03/2026 at about 19:31 at Meadow Close, Emery Beck is alleged to have assaulted Miles
+  Dacre thereby occasioning actual bodily harm.
+Date/time/location: 15/03/2026 / 19:31 / Meadow Close
+Contested issue: injury/causation
+Pack U / CB-OCR / CB-SCAN / CB-PHOTO / CB-OCR-2026-0013 / Fictional evaluation bundle / Page 13. MG5 SUMMARY
+The prosecution summary says the case turns on injury/causation and relies in part on EX-U-WA-13 as visual material.
+  The visual evidence is said to fit the Crown case by showing timing, context or linkage, but the defence disputes that
+  the image alone can safely establish the contested issue. Image appears to show relevant material only provisionally
+  and solicitor review is required.
+Visual evidence reliance: the image/scanned/photo material is relied on for injury/causation.
+Defence dispute: the visual item should be treated as provisional and cannot be converted into a legal conclusion
+  without the full source material and continuity.
+4. MG6 / DISCLOSURE POSITION
+Served material: MG5 case summary; MG6 disclosure note; EX-U-WA-13 as a still/photo/extract; basic exhibit list.
+Outstanding material: full chat export / device extraction / sender attribution / metadata / uncropped screenshot;
+  continuity/provenance not yet confirmed; full-resolution original not served unless expressly stated; source metadata
+  outstanding.
+Full image/CCTV/source file: not served - only still/photo/extract served
+Still/photo/extract served: yes - the served visual material is limited and should not be treated as the whole source
+  record.
+Continuity/provenance/source metadata: missing or incomplete unless expressly confirmed in the exhibit list.
+Full-resolution original: not served or not yet verified.
+OCR quality: medium. …

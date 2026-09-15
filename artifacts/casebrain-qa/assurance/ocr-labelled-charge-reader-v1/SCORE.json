@@ -1,0 +1,21 @@
+{
+  "root": "ocr-labelled-charge-reader",
+  "pr": 101,
+  "sha": "a0cbe255da239b431c886748109355111b4d8aca",
+  "vercel": "SUCCESS",
+  "preview": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app",
+  "verdict": "PASS",
+  "caseId": "1d454c0b-da05-4385-8151-016426ca59b9",
+  "before": "Charge not safely identified from uploaded papers on Overview/File/Chase/Court/Papers",
+  "after": "Exact File ABH allegation (occasioning actual bodily harm) on all five tabs. File extract still names Offence type: ABH s.47.",
+  "receipts": "SOURCE-BACKED",
+  "smoke": {
+    "brookesCharge": "Intimidating a witness",
+    "valeBell": "controlled drug / toxicology",
+    "leverageGaps": ["full CCTV master", "continuity statement", "ID procedure notes"],
+    "ahmedFragments": false,
+    "patelFragments": false,
+    "gauntletOfficerNote": false
+  },
+  "untouched": ["duplicate-subscriber-whatsapp", "court-layout-chrome"]
+}
