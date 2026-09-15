@@ -1,0 +1,47 @@
+{
+  "job": "PR #101 Court Today File-shortlist root only",
+  "doNotMerge": true,
+  "doNotProductionDeploy": true,
+  "productCodeChanged": true,
+  "loginEmail": "gduffy1993+casebrain-gold20@gmail.com",
+  "workspaceId": "e066f4cd-749f-4436-baa9-8c187092149a",
+  "pr": "https://github.com/gduffy1993-png/casebrain-hub/pull/101",
+  "sha": "7fdfa31f044ed72280b49319723773f906edee86",
+  "preview": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app",
+  "vercel": "SUCCESS / Ready on that SHA",
+  "root": "Court Today uses File-named Overview/Chase shortlist, not offence-family playbook",
+  "packVerdict": "PASS",
+  "passCount": 4,
+  "failCount": 0,
+  "notMixed": ["Ahmed/Patel/Gauntlet fragment-card cleanup", "Leverage empty Overview mute", "generic layout/copy polish"],
+  "cases": [
+    {
+      "id": "patterson",
+      "caseId": "1098e31f-aa53-424e-a405-683440907f7a",
+      "verdict": "PASS",
+      "before": "Court safe line Custody/PACE; top chase 999 audio / emergency-call material",
+      "after": "Court safe line and top chase O1 CCTV, O2 knife, O3 blood. No 999/CAD."
+    },
+    {
+      "id": "davies",
+      "caseId": "60bcda4a-87f8-48e0-826e-e2f0dcd74fb2",
+      "verdict": "PASS",
+      "before": "Court top chase Custody Record / Custody CCTV despite MG6/01 served",
+      "after": "Court top chase MG6/05 CCTV continuity. Custody not chased. Bank remains on Overview/Chase; P2 list-cap on Court."
+    },
+    {
+      "id": "trap-fresh",
+      "caseId": "ba0931b2-1e30-4aad-8655-e91afac35660",
+      "verdict": "PASS",
+      "before": "Court invented complainant MG11 / injury-causation",
+      "after": "Court uses interview + continuity only."
+    },
+    {
+      "id": "brookes-fresh",
+      "caseId": "95a2746e-d1d3-4f55-aad6-4fb41a7b428b",
+      "verdict": "PASS",
+      "before": "Court PWITS/possession/phone/SIM/IMEI pack",
+      "after": "Court uses U5 email / voice-note download / WhatsApp export. No possession playbook line. Overview charge still possession (out of scope)."
+    }
+  ]
+}
