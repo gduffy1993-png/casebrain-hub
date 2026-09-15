@@ -8,6 +8,7 @@ import type { ParsedBundleHeader } from "@/lib/bundle/parse-bundle-display";
 import { deglueBundleLines } from "@/lib/criminal/bundle-material-normalizer";
 import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
 import { extractSmokePackFrontSheet } from "@/lib/criminal/smoke-pack-front-sheet";
+import { isProofPressureAllegationLabel } from "@/lib/criminal/case-identity-boundary";
 
 /**
  * How much of a bundle is read into the scan the rest of the app works from.
@@ -27,6 +28,7 @@ const HIGH_VALUE_SECTIONS = [
   "COVER",
   "INDEX",
   "CHARGE",
+  "CHARGE AND PARTICULARS",
   "CHARGE_SHEET",
   "CHARGES",
   "INDICTMENT",
@@ -847,6 +849,59 @@ function isNarrativeAllegationValue(value: string): boolean {
   return false;
 }
 
+const COUNT_ONE_OFFENCE_NOUN_RE =
+  /\b(?:intimidating a witness|witness intimidation|malicious communications?|harassment|stalking|possession of (?:a )?controlled drug|intent to supply|theft|robbery|burglary|fraud|murder|manslaughter|affray|assault|wounding|gbh|abh|bladed article|offensive weapon|pervert(?:ing)? the course of justice|dangerous driving|drug driving|money laundering|criminal property)\b/i;
+
+function isPlausibleCountOneAllegation(value: string): boolean {
+  const v = value.replace(/\s+/g, " ").trim();
+  if (!v || v.length < 4 || v.length > 180) return false;
+  if (isProofPressureAllegationLabel(v)) return false;
+  if (
+    /^(?:between|on or about|on \d|after being told|messages were|the defendant|particulars|handset|phone|subscriber)\b/i.test(
+      v,
+    )
+  ) {
+    return false;
+  }
+  if (isNarrativeAllegationValue(v)) return false;
+  if (COUNT_ONE_OFFENCE_NOUN_RE.test(v) || isRecognisedShortOffenceLabel(v)) return true;
+  if (/\b(?:contrary to|section\s*\d+|common law)\b/i.test(v) && !isSpuriousChargeLabelValue(v)) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Count / Allegation / Particulars tables (indictment front-sheet and CHARGE AND PARTICULARS).
+ * Use the Count 1 allegation cell — never the particulars / phone-attribution narrative.
+ */
+function extractCountOneAllegationFromChargeTable(text: string): string | null {
+  if (!text?.trim()) return null;
+  const normalized = normalizeMetadataScanText(text);
+
+  const stacked = normalized.match(
+    /\bCount\s*\n+\s*Allegation\s*\n+\s*Particulars\s*\n+\s*1\s*\n+\s*([^\n]{4,180})/i,
+  );
+  if (stacked?.[1]) {
+    const v = cleanLineValue(trimChargeAllegationBoundary(stacked[1]));
+    if (v && isPlausibleCountOneAllegation(v)) return v;
+  }
+
+  const headerIdx = normalized.search(/\bCount(?:\t|\s+)Allegation(?:\t|\s+)Particulars\b/i);
+  if (headerIdx >= 0) {
+    const after = normalized.slice(headerIdx);
+    const tabRow =
+      after.match(/\n[ \t]*1\t([^\t\n]{4,180})\t/) ??
+      after.match(/\n[ \t]*1[ \t]+([^\t\n]{4,180}?)(?:\t|[ \t]{2,})/);
+    if (tabRow?.[1]) {
+      const v = cleanLineValue(trimChargeAllegationBoundary(tabRow[1]));
+      if (v && isPlausibleCountOneAllegation(v)) return v;
+    }
+  }
+
+  return null;
+}
+
 function extractChargeSheetAllegation(scan: string, fullText: string): string | null {
   for (const src of [scan, fullText]) {
     const normalized = normalizeMetadataScanText(src);
@@ -1080,6 +1135,9 @@ function extractOffenceFromChargeBlock(block: string): string | null {
   const fromGluedStatement = extractGluedStatementOfOffence(block);
   if (fromGluedStatement) return fromGluedStatement;
 
+  const fromCountTable = extractCountOneAllegationFromChargeTable(block);
+  if (fromCountTable) return fromCountTable;
+
   const mainChargePwits = block.match(
     /\bMain charge\s*(Possession with intent to supply[\s\S]{0,220}?section\s*5\s*\(\s*3\s*\)\s*of\s+the\s+Misuse of Drugs Act 1971)/i,
   );
@@ -1276,12 +1334,12 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
   // High-confidence short labelled offences (monster / OCR packs)
   const labelledShort =
     scan.match(
-      /^\s*(?:Charge|Offence)\s*:\s*(Affray|Theft|Fraud|Murder|Robbery|Harassment|Burglary|Manslaughter|Arson|Rape|Perjury|Assault|Wounding)\s*$/im,
+      /^\s*(?:Charge|Offence)\s*:\s*(Affray|Theft|Fraud|Murder|Robbery|Harassment|Burglary|Manslaughter|Arson|Rape|Perjury|Assault|Wounding|Intimidating a witness|Malicious communications)\s*$/im,
     ) ??
     scan.match(/^\s*Offence\s*:\s*(Robbery)\s*$/im) ??
     scan.match(/^\s*Offence\s*type\s*:\s*(ABH(?:\s*s\.?\s*47)?)\s*$/im) ??
     normalizedFull.match(
-      /^\s*(?:Charge|Offence)\s*:\s*(Affray|Theft|Fraud|Murder|Robbery|Harassment|Burglary|Manslaughter|Arson|Rape|Perjury|Assault|Wounding)\s*$/im,
+      /^\s*(?:Charge|Offence)\s*:\s*(Affray|Theft|Fraud|Murder|Robbery|Harassment|Burglary|Manslaughter|Arson|Rape|Perjury|Assault|Wounding|Intimidating a witness|Malicious communications)\s*$/im,
     ) ??
     normalizedFull.match(/^\s*Offence\s*:\s*(Robbery)\s*$/im) ??
     normalizedFull.match(/^\s*Offence\s*type\s*:\s*(ABH(?:\s*s\.?\s*47)?)\s*$/im);
@@ -1435,7 +1493,13 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
   }
 
   const chargeBlockRaw =
-    extractSectionBlock(fullText, ["CHARGE", "CHARGE_SHEET", "CHARGES", "INDICTMENT"]) ?? null;
+    extractSectionBlock(fullText, [
+      "CHARGE AND PARTICULARS",
+      "CHARGE",
+      "CHARGE_SHEET",
+      "CHARGES",
+      "INDICTMENT",
+    ]) ?? null;
   const chargeBlock = chargeBlockRaw ? normalizeMetadataScanText(chargeBlockRaw) : null;
   if (chargeBlock) {
     const fromCharge = extractOffenceFromChargeBlock(chargeBlock);
@@ -1457,6 +1521,16 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
   if (chargeSheetAllegation) {
     return {
       wording: formatOffenceDisplayFromBundle(chargeSheetAllegation),
+      source: "extracted_charge_fallback",
+    };
+  }
+
+  const countTableAllegation =
+    extractCountOneAllegationFromChargeTable(scan) ??
+    extractCountOneAllegationFromChargeTable(fullText);
+  if (countTableAllegation) {
+    return {
+      wording: formatOffenceDisplayFromBundle(countTableAllegation),
       source: "extracted_charge_fallback",
     };
   }

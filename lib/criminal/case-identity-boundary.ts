@@ -25,7 +25,9 @@ export function offenceFamilyHint(text: string): OffenceFamilyHint | null {
   if (/\brobbery\b/i.test(t)) return "robbery";
   if (/\b(pwits|intent\s+to\s+supply|class\s*[abc]\s+drug|controlled drug)\b/i.test(t)) return "drugs";
   if (/\b(fraud|false representation)\b/i.test(t)) return "fraud";
-  if (/\b(harassment|stalking)\b/i.test(t)) return "harassment";
+  if (/\b(harassment|stalking|intimidating a witness|witness intimidation|malicious communications?)\b/i.test(t)) {
+    return "harassment";
+  }
   if (/\b(bladed|pointed article|s\.?\s*139)\b/i.test(t)) return "bladed";
   if (/\bburglary\b/i.test(t)) return "burglary";
   if (/\b(assault|gbh|abh|wounding|oapa|affray|emergency worker)\b/i.test(t)) return "violence";
@@ -33,8 +35,25 @@ export function offenceFamilyHint(text: string): OffenceFamilyHint | null {
   return null;
 }
 
+/** Proof-pressure / playbook route titles are not a charge or statement of offence. */
+export function isProofPressureAllegationLabel(label: string | null | undefined): boolean {
+  const t = (label ?? "").replace(/\s+/g, " ").trim();
+  if (!t) return false;
+  return (
+    /\bpossession\s*\/\s*knowledge\s*\/\s*phone-attribution\b/i.test(t) ||
+    /\bfraud\s*\/\s*account-control(?:\s*\/\s*dishonesty)?\b/i.test(t) ||
+    /\bidentification\s*\/\s*participation\s*\/\s*attribution\b/i.test(t) ||
+    /\bviolence\s*\/\s*complainant account\b/i.test(t) ||
+    /\b(?:phone-attribution|account-control|proof[- ]pressure)\s+pressure\b/i.test(t)
+  );
+}
+
 export function isUnusableAllegationLabel(label: string): boolean {
-  return /\b(offence wording not safely extracted|unknown|add charge sheet)\b/i.test(label);
+  return (
+    /\b(offence wording not safely extracted|unknown|add charge sheet|charge not safely identified)\b/i.test(
+      label,
+    ) || isProofPressureAllegationLabel(label)
+  );
 }
 
 /** True when the papers name an offence family the demo pack does not. */

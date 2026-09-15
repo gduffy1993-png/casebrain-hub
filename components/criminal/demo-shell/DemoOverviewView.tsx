@@ -37,6 +37,7 @@ import {
   receiptFromCourtLine,
 } from "@/lib/criminal/visible-output-receipt";
 import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
+import { isProofPressureAllegationLabel } from "@/lib/criminal/case-identity-boundary";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
 
 function firstSourceLineMatching(text: string, pattern: RegExp): string | null {
@@ -332,14 +333,12 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
     .find((candidate) => candidate && !/\bnot on papers\b/i.test(candidate));
   const clientName = clientDisplay ?? "";
 
+  const fileCharge =
+    liveFileIdentity.offenceDisplay || liveFileIdentity.offenceWording || "";
+  const workflowCharge =
+    allegation && !isProofPressureAllegationLabel(allegation) ? allegation : "";
   const chargeLine = resolvePilotChargeDisplay(
-    polishPresentationLine(
-      liveFileIdentity.offenceDisplay ||
-        liveFileIdentity.offenceWording ||
-        allegation ||
-        "",
-      bundleHay,
-    ),
+    polishPresentationLine(fileCharge || workflowCharge || "", bundleHay),
   );
 
   const provisional = matterConfidence.level !== "safe";

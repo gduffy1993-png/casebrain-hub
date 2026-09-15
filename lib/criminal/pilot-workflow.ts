@@ -17,7 +17,11 @@ import {
   smokePackSolicitorFurniture,
 } from "@/lib/criminal/smoke-pack-front-sheet";
 import { stripDoNotInventAdvisory, familySupport, confirmNoneLine } from "@/lib/criminal/chase-source-gate";
-import { demoPackConflictsWithSourceAllegation } from "@/lib/criminal/case-identity-boundary";
+import {
+  demoPackConflictsWithSourceAllegation,
+  isProofPressureAllegationLabel,
+  isUnusableAllegationLabel,
+} from "@/lib/criminal/case-identity-boundary";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { isPlaceholderHearingIso } from "@/lib/criminal/solicitor-hearing-display";
 import type { BattleboardOutput, BattleboardRoute } from "@/lib/criminal/strategy-battleboard";
@@ -277,10 +281,6 @@ function contextScan(context: WorkflowProfileContext): string {
  */
 function demoIdentityScan(context: WorkflowProfileContext): string {
   return [context.caseTitle, context.clientLabel].filter(Boolean).join(" ");
-}
-
-function isUnusableAllegationLabel(label: string): boolean {
-  return /\b(offence wording not safely extracted|unknown|add charge sheet)\b/i.test(label);
 }
 
 function demoMatchFromIdentity(
@@ -875,26 +875,27 @@ export function workflowHeaderOverrides(
   const title = heading.startsWith("R v") ? heading : heading;
   const allegationFromContext = fullContext.allegation?.trim();
   const packOk = profilePackMayEmit(fullContext);
-  const defaultAllegation =
-    profile === "generic_motoring_provisional"
-      ? MOTORING_PRIMARY_ROUTE_TITLE.split(" pressure")[0]
-      : profile === "generic_serious_violence_provisional"
-        ? SERIOUS_VIOLENCE_PRIMARY_ROUTE_TITLE
-        : profile === "generic_provisional"
-          ? GENERIC_PROVISIONAL_PRIMARY_ROUTE_TITLE
-          : PROFILE_PACKS[profile].primaryRouteTitle.split(" pressure")[0] ?? profile;
   const usableContextAllegation =
-    allegationFromContext && !isUnusableAllegationLabel(allegationFromContext)
+    allegationFromContext &&
+    !isUnusableAllegationLabel(allegationFromContext) &&
+    !isProofPressureAllegationLabel(allegationFromContext)
       ? allegationFromContext
       : null;
   if (!packOk && !usableContextAllegation) return null;
-  const cleanAllegation = usableContextAllegation ?? (packOk ? defaultAllegation : null);
-  if (!cleanAllegation) return null;
+  // File/PDF charge only. Proof-pressure pack titles are not the offence.
+  if (!usableContextAllegation) {
+    return {
+      title,
+      allegation: "Offence wording not safely extracted",
+      displayTitle: title,
+      profile,
+    };
+  }
 
   return {
     title,
-    allegation: cleanAllegation,
-    displayTitle: `${title} — ${cleanAllegation}`,
+    allegation: usableContextAllegation,
+    displayTitle: `${title} — ${usableContextAllegation}`,
     profile,
   };
 }

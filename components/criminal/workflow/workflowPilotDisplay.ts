@@ -4,12 +4,13 @@ import {
   collapseHeaderCellDuplicates,
   dedupeSolicitorLines,
 } from "@/lib/criminal/solicitor-display-dedupe";
+import { isProofPressureAllegationLabel } from "@/lib/criminal/case-identity-boundary";
 
 const INTERNAL_CLIENT_RES =
   /unless document|not safely extracted|not on papers|offence wording not|add charge sheet|unknown offence|allegation not recorded|^client\b/i;
 
 const INTERNAL_CHARGE_RES =
-  /unless document|not safely extracted|offence wording not|add charge sheet|unknown offence|allegation not recorded/i;
+  /unless document|not safely extracted|not safely identified|offence wording not|add charge sheet|unknown offence|allegation not recorded|possession\s*\/\s*knowledge\s*\/\s*phone-attribution|fraud\s*\/\s*account-control|identification\s*\/\s*participation\s*\/\s*attribution|violence\s*\/\s*complainant account/i;
 
 export const PILOT_CHARGE_NOT_IDENTIFIED_LABEL =
   "Charge not safely identified from uploaded papers";
@@ -94,7 +95,7 @@ export function displayPilotStripCharge(raw: string | null | undefined): string 
     .replace(/^offence\s+(?=[A-Z])/i, "")
     .replace(/,?\s*contrary\s+to\s*$/i, "")
     .trim();
-  if (!t || INTERNAL_CHARGE_RES.test(t)) return "";
+  if (!t || INTERNAL_CHARGE_RES.test(t) || isProofPressureAllegationLabel(t)) return "";
   return t;
 }
 

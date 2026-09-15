@@ -21,6 +21,7 @@ import {
 import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
+import { isProofPressureAllegationLabel } from "@/lib/criminal/case-identity-boundary";
 
 export type BundleSourceHeaderInput = {
   shortTitle?: string | null;
@@ -89,7 +90,9 @@ function isUnknownOffenceLabel(label: string | null | undefined): boolean {
     l.includes("offence-specific strategy") ||
     l.includes("generic – add charge sheet") ||
     l.startsWith("offence wording not safely extracted") ||
-    l === "allegation not recorded"
+    l === "allegation not recorded" ||
+    isProofPressureAllegationLabel(label) ||
+    /\bcharge not safely identified\b/i.test(l)
   );
 }
 
@@ -483,7 +486,8 @@ export function sanitizeHeaderAllegation(raw: string): string {
     l.includes("add charge sheet") ||
     l.includes("offence-specific strategy") ||
     l.includes("check charge sheet") ||
-    l.includes("not safely extracted")
+    l.includes("not safely extracted") ||
+    isProofPressureAllegationLabel(t)
   ) {
     return NOT_EXTRACTED_OFFENCE;
   }
