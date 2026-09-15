@@ -258,7 +258,6 @@ export function useMatterBrief(caseId: string) {
       routeTitle: battleboard?.primary_route?.title,
       bundleText,
       clientLabel,
-      ledger,
     });
     const caseTitle = safeSolicitorCaseTitle(pilotHeader?.displayTitle ?? pilotHeader?.title ?? caseTitleBase);
     const allegation = pilotHeader?.allegation ?? allegationBase;
@@ -304,7 +303,6 @@ export function useMatterBrief(caseId: string) {
       bundleText,
       clientLabel,
       profileHint: pilotHeader?.profile ?? null,
-      ledger,
     };
     const canonicalMissingRows = canonicalRowsForBuilder(bundleSource?.canonical);
     const snapshotMissingRows = snapshot?.evidence.missingEvidence ?? [];
