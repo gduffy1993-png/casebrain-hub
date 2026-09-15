@@ -1,6 +1,8 @@
 import {
   GENERIC_PROVISIONAL_COURT_LINE,
   GENERIC_PROVISIONAL_PRIMARY_ROUTE_TITLE,
+  isDrugDrivingContext,
+  isMotoringOffenceText,
   isProvisionalWorkflowProfile,
   MOTORING_DISCLOSURE_ITEMS,
   MOTORING_PRIMARY_ROUTE_TITLE,
@@ -9,6 +11,11 @@ import {
   SERIOUS_VIOLENCE_PRIMARY_ROUTE_TITLE,
   SERIOUS_VIOLENCE_PROVISIONAL_COURT_LINE,
 } from "@/lib/eval/casebrain-auditor/provisional-offence-policy";
+import {
+  lineIsUnbackedOffenceFamilyFurniture,
+  looksLikeSmokePackFrontSheet,
+  smokePackSolicitorFurniture,
+} from "@/lib/criminal/smoke-pack-front-sheet";
 import { stripDoNotInventAdvisory, familySupport, confirmNoneLine } from "@/lib/criminal/chase-source-gate";
 import { demoPackConflictsWithSourceAllegation } from "@/lib/criminal/case-identity-boundary";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
@@ -207,7 +214,8 @@ const PROFILE_SIGNAL_RULES: Array<{
   {
     profile: "pwits_phone_attribution",
     patterns: [
-      { re: /\b(pwits|possession with intent|class\s*a|controlled drug)\b/i, weight: 12 },
+      { re: /\b(pwits|possession with intent|class\s*a)\b/i, weight: 12 },
+      { re: /\bcontrolled drug\b/i, weight: 12 },
       { re: /\b(phone attribution|handset|sim|imei|subscriber|phone extraction)\b/i, weight: 10 },
       { re: /\b(premises search|search bwv|drug continuity|co-occupier|shared premises)\b/i, weight: 6 },
     ],
@@ -338,6 +346,13 @@ function scoreProfile(context: WorkflowProfileContext): Map<WorkflowProfile, num
     for (const { text, weight: fieldWeight } of weightedFields) {
       if (!text.trim()) continue;
       for (const { re, weight } of patterns) {
+        if (
+          profile === "pwits_phone_attribution" &&
+          /\bcontrolled drug\b/i.test(re.source) &&
+          (isDrugDrivingContext(text) || isMotoringOffenceText(text))
+        ) {
+          continue;
+        }
         if (re.test(text)) total += weight * fieldWeight;
       }
     }
@@ -367,6 +382,13 @@ export function resolveWorkflowProfileFromSignals(context: WorkflowProfileContex
     !/\b(robbery|snatch|mugging|assault|gbh|wounding|violence)\b/i.test(allegationText)
   ) {
     return "generic";
+  }
+  if (looksLikeSmokePackFrontSheet(context.bundleText ?? "")) {
+    return (
+      resolveProvisionalWorkflowFromOffence(allegationText) ??
+      resolveProvisionalWorkflowFromOffence([allegationText, context.bundleText ?? ""].join(" ")) ??
+      "generic_provisional"
+    );
   }
   const provisional = resolveProvisionalWorkflowFromOffence(allegationText);
   if (provisional) return provisional;
@@ -481,7 +503,17 @@ const PROFILE_SOURCE_SUPPORT_RULES: SourceSupportRule[] = [
     output: /\b(?:id\s+procedure|identification\s+procedure|viper|id\s+parade|video\s+identification)\b/i,
     source: /\b(?:id\s+procedure|identification\s+procedure|viper|id\s+parade|video\s+identification|parade\s+identification)\b/i,
   },
+  {
+    output:
+      /\b(?:possession and phone-attribution|phone-attribution|phone ownership|shared premises|co-occupier|drugs\/cash|pre-interview disclosure|knowledge\/control)\b/i,
+    source:
+      /\b(?:phone-attribution|phone ownership|phone extraction|phone download|shared premises|co-occupier|drugs\/cash|pre-interview|possession with intent|pwits)\b/i,
+  },
 ];
+
+function labelledFurnitureFromContext(context: WorkflowProfileContext) {
+  return smokePackSolicitorFurniture(context.bundleText ?? "");
+}
 
 const ASSERTIVE_SOURCE_EXPECTATION_RE =
   /\b(?:appears outstanding|remains outstanding|outstanding|chase|ask the court|take instructions|may bear|may affect|required|needed|please provide|record that|conditional on|served)\b/i;
@@ -491,11 +523,25 @@ function sourceTextForProfileSupport(context: WorkflowProfileContext): string | 
   return text ? text : null;
 }
 
+function profilePackMayEmit(_context: WorkflowProfileContext): boolean {
+  return true;
+}
+
+function gateConvertedPackLines<T extends string>(
+  lines: T[],
+  context: WorkflowProfileContext,
+  _generator: string,
+): T[] {
+  if (!profilePackMayEmit(context)) return [];
+  return lines;
+}
+
 function profileLineHasSourceSupport(
   line: string,
   context: WorkflowProfileContext,
   profile: WorkflowProfile,
 ): boolean {
+  if (lineIsUnbackedOffenceFamilyFurniture(line, context.bundleText)) return false;
   if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return true;
   const sourceText = sourceTextForProfileSupport(context);
   if (!sourceText) return true;
@@ -515,30 +561,64 @@ function filterProfilePackLinesBySource<T extends string>(
   lines: T[],
   context: WorkflowProfileContext,
   profile: WorkflowProfile,
+  generator = "filterProfilePackLinesBySource",
 ): T[] {
-  return lines.filter((line) => profileLineHasSourceSupport(line, context, profile));
+  const supported = lines.filter((line) => profileLineHasSourceSupport(line, context, profile));
+  return gateConvertedPackLines(supported, context, generator);
 }
 
 export function workflowDisclosureChaseLabels(context: WorkflowProfileContext): string[] | null {
+  const labelled = labelledFurnitureFromContext(context);
+  if (labelled) return labelled.disclosureLabels;
+  if (!profilePackMayEmit(context) && resolveWorkflowProfile(context) !== "generic_motoring_provisional") {
+    const profile = resolveWorkflowProfile(context);
+    if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return null;
+    return [];
+  }
   const profile = resolveWorkflowProfile(context);
   if (profile === "generic") return null;
-  if (profile === "generic_motoring_provisional") return [...MOTORING_DISCLOSURE_ITEMS];
+  if (profile === "generic_motoring_provisional") {
+    return gateConvertedPackLines(
+      [...MOTORING_DISCLOSURE_ITEMS],
+      context,
+      "workflowDisclosureChaseLabels",
+    );
+  }
   if (isProvisionalWorkflowProfile(profile)) return null;
-  return filterProfilePackLinesBySource(PROFILE_PACKS[profile].disclosureItems, context, profile);
+  return filterProfilePackLinesBySource(
+    PROFILE_PACKS[profile].disclosureItems,
+    context,
+    profile,
+    "workflowDisclosureChaseLabels",
+  );
 }
 
 export function workflowCourtRecordAsks(context: WorkflowProfileContext): string[] | null {
+  const labelled = labelledFurnitureFromContext(context);
+  if (labelled) return labelled.courtRecordAsks.slice(0, 5);
   const profile = resolveWorkflowProfile(context);
   if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return null;
-  return filterProfilePackLinesBySource(PROFILE_PACKS[profile].courtRecordAsks, context, profile)
+  return filterProfilePackLinesBySource(
+    PROFILE_PACKS[profile].courtRecordAsks,
+    context,
+    profile,
+    "workflowCourtRecordAsks",
+  )
     .map(normalizeWorkflowPilotLabel)
     .slice(0, 5);
 }
 
 export function workflowTopNextActions(context: WorkflowProfileContext): string[] | null {
+  const labelled = labelledFurnitureFromContext(context);
+  if (labelled) return labelled.nextActions;
   const profile = resolveWorkflowProfile(context);
   if (profile === "generic" || isProvisionalWorkflowProfile(profile)) return null;
-  return filterProfilePackLinesBySource(PROFILE_PACKS[profile].nextActions, context, profile);
+  return filterProfilePackLinesBySource(
+    PROFILE_PACKS[profile].nextActions,
+    context,
+    profile,
+    "workflowTopNextActions",
+  );
 }
 
 /** @deprecated Use {@link workflowTopNextActions}. */
@@ -547,8 +627,11 @@ export function pilotTopNextActions(context: WorkflowProfileContext): string[] |
 }
 
 export function workflowPrimaryRouteTitle(context: WorkflowProfileContext): string | null {
+  const labelled = labelledFurnitureFromContext(context);
+  if (labelled) return labelled.routeTitle;
   const profile = resolveWorkflowProfile(context);
   if (profile === "generic") return null;
+  if (!profilePackMayEmit(context)) return null;
   if (profile === "generic_motoring_provisional") return MOTORING_PRIMARY_ROUTE_TITLE;
   if (profile === "generic_serious_violence_provisional") return SERIOUS_VIOLENCE_PRIMARY_ROUTE_TITLE;
   if (profile === "generic_provisional") return GENERIC_PROVISIONAL_PRIMARY_ROUTE_TITLE;
@@ -659,6 +742,9 @@ function robberyDisclosureCaseWideLine(context: WorkflowProfileContext): string 
 }
 
 export function workflowSafeCourtLine(context: WorkflowProfileContext): string | null {
+  const labelled = labelledFurnitureFromContext(context);
+  if (labelled) return labelled.courtLine;
+  if (!profilePackMayEmit(context)) return null;
   const profile = resolveWorkflowProfile(context);
   switch (profile) {
     case "fraud_account_control":
@@ -687,6 +773,9 @@ const ROBBERY_SOURCE_MATERIAL_PHRASE =
 
 /** Pilot disclosure “case-wide court line” — profile-specific, no generic forensic wording. */
 export function workflowDisclosureCaseWideLine(context: WorkflowProfileContext): string | null {
+  const labelled = labelledFurnitureFromContext(context);
+  if (labelled) return labelled.caseWideLine;
+  if (!profilePackMayEmit(context)) return null;
   const profile = resolveWorkflowProfile(context);
   if (profile === "fraud_account_control") {
     return "Account-control and dishonesty issues remain conditional on served bank/export, device/login, mailbox and POCA/source-of-funds material.";
@@ -774,6 +863,7 @@ export function workflowHeaderOverrides(
 
   const title = heading.startsWith("R v") ? heading : heading;
   const allegationFromContext = fullContext.allegation?.trim();
+  const packOk = profilePackMayEmit(fullContext);
   const defaultAllegation =
     profile === "generic_motoring_provisional"
       ? MOTORING_PRIMARY_ROUTE_TITLE.split(" pressure")[0]
@@ -782,10 +872,13 @@ export function workflowHeaderOverrides(
         : profile === "generic_provisional"
           ? GENERIC_PROVISIONAL_PRIMARY_ROUTE_TITLE
           : PROFILE_PACKS[profile].primaryRouteTitle.split(" pressure")[0] ?? profile;
-  const cleanAllegation =
+  const usableContextAllegation =
     allegationFromContext && !isUnusableAllegationLabel(allegationFromContext)
       ? allegationFromContext
-      : defaultAllegation;
+      : null;
+  if (!packOk && !usableContextAllegation) return null;
+  const cleanAllegation = usableContextAllegation ?? (packOk ? defaultAllegation : null);
+  if (!cleanAllegation) return null;
 
   return {
     title,
@@ -1559,6 +1652,7 @@ export function filterWorkflowPilotLines(
   for (const raw of lines) {
     const visible = sanitizePilotVisibleLine(raw, context);
     if (!visible) continue;
+    if (lineIsUnbackedOffenceFamilyFurniture(visible, context.bundleText)) continue;
     const key = visible.toLowerCase();
     if (seen.has(key)) continue;
     seen.add(key);

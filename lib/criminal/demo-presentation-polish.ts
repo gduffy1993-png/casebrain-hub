@@ -364,7 +364,9 @@ function bundleMentionsFamily(hay: string, family: BundleFamily): boolean {
     case "custody":
       return /custody|pace|detention|appropriate adult|safeguard/i.test(hay);
     case "drugs":
-      return /\bdrug\b|pwits|intent to supply|drug continuity|drug\/cash|forensic continuity/i.test(hay);
+      return /pwits|intent to supply|drug continuity|drug\/cash|forensic continuity|possession of a controlled drug/i.test(
+        hay,
+      ) && !/\bdrug[-\s]?driv(?:e|ing)\b/i.test(hay);
     case "cctv":
       return /\bcctv\b|stills|footage|camera/i.test(hay);
     case "cad":
@@ -428,8 +430,12 @@ function lineMentionsWrongFamilyTemplate(line: string, hay: string): boolean {
 }
 
 /** Drop wrong-family do-not-say / risk lines when bundle does not mention that material. */
+function hayWithoutExhibitCodes(hay: string): string {
+  return hay.replace(/\bEX[-A-Z0-9]*\b/gi, " ");
+}
+
 export function filterBundleFamilyWarnings(lines: string[], bundleHay: string): string[] {
-  const hay = bundleHay.toLowerCase();
+  const hay = hayWithoutExhibitCodes(bundleHay).toLowerCase();
   const families: BundleFamily[] = ["bwv", "custody", "drugs", "cctv", "cad", "encro", "abe", "phone"];
   const seen = new Set<string>();
   const out: string[] = [];

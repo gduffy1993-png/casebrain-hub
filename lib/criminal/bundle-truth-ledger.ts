@@ -117,7 +117,7 @@ function detectFamilyInText(text: string): BundleOffenceFamily | null {
   if (/\bpwits\b|intent\s+to\s+supply|section\s*5\s*\(\s*3\s*\)/i.test(b)) return "pwits";
   if (/\bfraud\b|false\s+representation/i.test(b)) return "fraud";
   if (
-    /dangerous\s+driving|careless\s+driving|due\s+care\s+and\s+attention|without\s+due\s+care|drink[-\s]?drive|road\s+traffic|\brtA\s*1988\s+s\.?\s*[23]\b/i.test(
+    /dangerous\s+driving|careless\s+driving|due\s+care\s+and\s+attention|without\s+due\s+care|drink[-\s]?drive|drug[-\s]?driv(?:e|ing)|driven\s+a\s+motor\s+vehicle|prescribed\s+limit|road\s+traffic|\brtA\s*1988\s+s\.?\s*[235]A?\b/i.test(
       b,
     )
   ) {

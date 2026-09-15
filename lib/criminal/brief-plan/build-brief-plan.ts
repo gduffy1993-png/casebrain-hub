@@ -7,6 +7,8 @@ import type {
   SourceTruthEvidenceCategory,
   SourceTruthFingerprint,
 } from "@/lib/criminal/source-truth-guardian/types";
+import { isDrugDrivingContext, isMotoringOffenceText } from "@/lib/eval/casebrain-auditor/provisional-offence-policy";
+import { smokePackSolicitorFurniture } from "@/lib/criminal/smoke-pack-front-sheet";
 import { CRIMINAL_BRIEF_PLAYBOOKS } from "./playbooks";
 import type {
   BriefPlanEvidenceItem,
@@ -102,7 +104,13 @@ function resolvePlanProfile(input: {
   const allegation = input.allegation ?? "";
   if (/\b(?:robbery|identification|id procedure)\b/i.test(allegation)) return "robbery_id";
   if (/\b(?:fraud|false representation|account|bank)\b/i.test(allegation)) return "fraud_account";
-  if (/\b(?:pwits|intent to supply|controlled drug|possession of.*drug)\b/i.test(allegation)) return "drugs_pwits";
+  if (isMotoringOffenceText(allegation) || isDrugDrivingContext(allegation)) return "driving_motoring";
+  if (
+    /\b(?:pwits|intent to supply|possession of.*drug)\b/i.test(allegation) &&
+    !isDrugDrivingContext(allegation)
+  ) {
+    return "drugs_pwits";
+  }
   if (/\b(?:driving|motor|vehicle|road traffic|drink)\b/i.test(allegation)) return "driving_motoring";
   if (/\b(?:sexual|rape|abe)\b/i.test(allegation)) return "sexual_abe";
   if (/\b(?:harassment|stalking|coercive|domestic)\b/i.test(allegation)) return "domestic_harassment";
@@ -205,25 +213,26 @@ export function buildCriminalBriefPlan(input: BuildCriminalBriefPlanInput): Crim
     ? ["Convert served contradiction(s) into a court line, chase ask, and summary risk."]
     : [];
 
+  const labelled = smokePackSolicitorFurniture(bundleText);
+
   return {
     version: "criminal-brief-plan-v1",
     profile,
-    mainIssue: mainIssueFor(profile, contradictions.length),
+    mainIssue: labelled?.mainIssue ?? mainIssueFor(profile, contradictions.length),
     servedEvidence,
     limitedEvidence,
     missingEvidence,
-    todayAngle: playbook.safeWording.today,
-    summaryAngle: playbook.safeWording.summary,
-    chaseAngle: playbook.safeWording.chase,
+    todayAngle: labelled?.courtLine ?? playbook.safeWording.today,
+    summaryAngle: labelled?.caseWideLine ?? playbook.safeWording.summary,
+    chaseAngle: labelled?.courtRecordAsks[0] ?? playbook.safeWording.chase,
     forbiddenTopics: [...new Set([...forbiddenTopicsFor(profile, fingerprint), ...playbook.doNotOverstate])],
     requiredOutputItems: {
       today: [
-        playbook.safeWording.today,
+        labelled?.caseWideLine ?? playbook.safeWording.today,
         "Keep the position provisional and tied to the uploaded papers.",
         ...contradictionRequired,
       ],
       summary: [playbook.safeWording.summary, ...playbook.opportunities.slice(0, 2), ...contradictionRequired],
-      // Compound chase templates are family-gated later in buildDisclosureChaseBrief.
       chase: [playbook.safeWording.chase, ...playbook.chaseTemplates.slice(0, 3)],
     },
     playbookId: playbook.id,

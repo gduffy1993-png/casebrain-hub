@@ -178,3 +178,95 @@ export function smokePackOutstandingChaseDrafts(text: string): SmokePackChaseDra
     draftChaseWording: `Please serve or confirm the status of: ${label}.`,
   }));
 }
+
+export type SmokePackSolicitorFurniture = {
+  courtLine: string;
+  caseWideLine: string;
+  routeTitle: string;
+  mainIssue: string;
+  nextActions: string[];
+  courtRecordAsks: string[];
+  disclosureLabels: string[];
+};
+
+function sentenceCase(raw: string): string {
+  const t = raw.replace(/\s+/g, " ").trim();
+  if (!t) return t;
+  return t.charAt(0).toUpperCase() + t.slice(1);
+}
+
+/** Labelled proof-pressure / outstanding only — never another offence-family pack. */
+export function smokePackSolicitorFurniture(text: string): SmokePackSolicitorFurniture | null {
+  const sheet = extractSmokePackFrontSheet(text);
+  if (!sheet.detected) return null;
+  const pressure = sheet.proofPressure?.replace(/\s+/g, " ").trim() || null;
+  const items = sheet.outstandingItems;
+  const family = sheet.offenceFamily?.replace(/\s+/g, " ").trim() || null;
+  const pressureClause = pressure
+    ? `${sentenceCase(pressure)} remains the labelled proof pressure`
+    : "The labelled papers do not yet support an offence-family template";
+  const outstandingClause = items.length
+    ? `outstanding source material (${items.join("; ")})`
+    : "outstanding labelled source material";
+  return {
+    courtLine: `${pressureClause}. The defence asks the court to record ${outstandingClause} on a timetable — position remains provisional pending solicitor review.`,
+    caseWideLine: pressure
+      ? `${sentenceCase(pressure)} remains provisional pending served source material and solicitor review.`
+      : "The defence position remains provisional pending solicitor review of the labelled papers.",
+    routeTitle: [family, pressure].filter(Boolean).join(" — ") || "Labelled papers — solicitor review",
+    mainIssue: pressure
+      ? `${sentenceCase(pressure)} — solicitor review required.`
+      : "Solicitor review of the labelled papers is required.",
+    nextActions: [
+      ...items.map((item) => `Chase or confirm: ${item}.`),
+      "Keep the hearing position provisional until solicitor review.",
+    ],
+    courtRecordAsks: items.map(
+      (item) =>
+        `Ask the court to record that ${item.charAt(0).toLowerCase()}${item.slice(1)} needs confirmation before it is relied on.`,
+    ),
+    disclosureLabels: items,
+  };
+}
+
+const FAMILY_FURNITURE_RULES: Array<{ output: RegExp; source: RegExp }> = [
+  { output: /\bpossession\b/i, source: /\bpossession\b/i },
+  {
+    output: /\bphone(?:-|\s+)?(?:attribution|ownership|extraction)|handset|subscriber|\bimei\b/i,
+    source: /\bphone(?:-|\s+)?(?:attribution|ownership|extraction|download)|handset|subscriber|\bimei\b/i,
+  },
+  { output: /\bcctv\b/i, source: /\bcctv\b/i },
+  { output: /\bpre-interview\b/i, source: /\bpre-interview\b/i },
+];
+
+function labelledFurnitureHay(sheet: SmokePackFrontSheet): string {
+  return [
+    sheet.proofPressure,
+    sheet.outstandingMaterial,
+    sheet.offenceFamily,
+    sheet.exactChargeWording,
+    sheet.caseTitle,
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+/**
+ * Offence-family / proof-pressure wording may only appear when File/PDF text
+ * (or the labelled front-sheet fields) actually name that concept.
+ */
+export function lineIsUnbackedOffenceFamilyFurniture(
+  line: string,
+  sourceText: string | null | undefined,
+): boolean {
+  const t = line.trim();
+  if (!t) return false;
+  const source = (sourceText ?? "").trim();
+  if (!source) return false;
+  const sheet = extractSmokePackFrontSheet(source);
+  const hay = sheet.detected ? labelledFurnitureHay(sheet) : source;
+  for (const rule of FAMILY_FURNITURE_RULES) {
+    if (rule.output.test(t) && !rule.source.test(hay)) return true;
+  }
+  return false;
+}

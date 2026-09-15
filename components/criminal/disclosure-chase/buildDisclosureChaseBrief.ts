@@ -74,7 +74,10 @@ import {
   phoneDownloadChaseWording,
   phoneDownloadIdentityLabel,
 } from "@/lib/criminal/disclosure-chase-finalize";
-import { smokePackOutstandingChaseDrafts } from "@/lib/criminal/smoke-pack-front-sheet";
+import {
+  lineIsUnbackedOffenceFamilyFurniture,
+  smokePackOutstandingChaseDrafts,
+} from "@/lib/criminal/smoke-pack-front-sheet";
 import {
   demoteSolicitorClutter,
   isGenericSolicitorClutterLabel,
@@ -252,7 +255,9 @@ const CHASE_FAMILIES: FamilyDef[] = [
     label: "Medical / expert source report",
     source: "CPS / expert source (confirm on file)",
     priority: 8,
-    match: (t) => /\b(medical|gp|hospital|pathology|expert|autopsy|fme)\b/.test(t),
+    match: (t) =>
+      /\b(medical|gp|hospital|pathology|expert|autopsy|fme)\b/.test(t) ||
+      /\bfinal\s+report\s+(?:is\s+)?not\s+included\b/.test(t),
   },
   {
     id: "exhibit_provenance",
@@ -1062,10 +1067,10 @@ export function reconcileMedicalReportModalityItems(
 ): DisclosureChaseItem[] {
   const hay = `${bundleText ?? ""}`;
   const finalReportOutstanding =
-    /\b(?:medical\s*\/\s*forensic\s+note|medical\s+note|forensic\s+note|injury\s+note)\b[\s\S]{0,120}\bfinal\s+report\s+(?:not\s+included|outstanding|not\s+attached|not\s+served)/i.test(
+    /\b(?:medical\s*\/\s*forensic\s+note|medical\s+note|forensic\s+note|injury\s+note)\b[\s\S]{0,160}\bfinal\s+report\s+(?:is\s+)?(?:not\s+included|outstanding|not\s+attached|not\s+served)/i.test(
       hay,
     ) ||
-    /\bfinal\s+(?:medical\s*\/\s*forensic\s+)?report\b[\s\S]{0,80}\b(?:not\s+included|outstanding|not\s+attached|not\s+served)/i.test(
+    /\bfinal\s+medical\s*\/\s*forensic\s+report\b[\s\S]{0,80}\b(?:not\s+included|outstanding|not\s+attached|not\s+served)/i.test(
       hay,
     );
 
@@ -1467,6 +1472,7 @@ function isUnsafeOrNonMaterialChaseLine(raw: string): boolean {
   if (!t) return true;
   if (lineIsScheduleFurniture(t)) return true;
   if (lineIsUnsourcedNarrativeChase(t)) return true;
+  if (/\bthis point collapses if\b/i.test(t) || /\bstrategy point collapses if\b/i.test(t)) return true;
   if (/^(?:item|material)\s*:/i.test(t) && /[—–-]\s*$/.test(t)) return true;
   if (FORBIDDEN_RE.test(t)) return true;
   if (/statement of offence\b/i.test(t) || /\bparticulars of offence\b/i.test(t)) return true;
@@ -3578,7 +3584,11 @@ function canonicalLedgerMaterial(
         "Please provide the full custody record, detention log, risk assessment and safeguards checklist, or confirm why any item is unavailable.",
     };
   }
-  if (familyId === "medical_expert" && /\bfinal\s+(?:medical\s*\/\s*forensic\s+)?report\b|\bfinal\s+report\s+not\s+included\b/i.test(displayLine)) {
+  if (
+    (familyId === "medical_expert" || /\bfinal\s+report\s+(?:is\s+)?not\s+included\b/i.test(displayLine)) &&
+    /\bfinal\s+(?:medical\s*\/\s*forensic\s+)?report\b|\bfinal\s+report\s+(?:is\s+)?not\s+included\b/i.test(displayLine) &&
+    !/^involving\s+/i.test(displayLine)
+  ) {
     return {
       label: "Final medical/forensic report",
       whyItMatters:
@@ -3829,6 +3839,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   }
 
   items = ensureCctvContinuityConfirmation(items, input, gateText, deadline);
+  items = reconcileMedicalReportModalityItems(items, gateText);
 
   const guardCtx = { ledger, bundleText: gateText ?? null };
   items = items
@@ -3926,6 +3937,16 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     items = smokePacked.slice(0, DISCLOSURE_CHASE_PRIMARY_CAP);
     primaryItems = items;
     additionalItems = [];
+  }
+  items = items.filter((item) => {
+    if (item.id.startsWith("source-confirm-smoke-")) return true;
+    return !lineIsUnbackedOffenceFamilyFurniture(item.label, input.bundleText);
+  });
+  primaryItems = items.filter((item) => primaryItems.some((p) => p.id === item.id));
+  additionalItems = items.filter((item) => additionalItems.some((p) => p.id === item.id));
+  if (!primaryItems.length && items.length) {
+    primaryItems = items.slice(0, DISCLOSURE_CHASE_PRIMARY_CAP);
+    additionalItems = items.slice(DISCLOSURE_CHASE_PRIMARY_CAP);
   }
 
   const linkedRoutes = [

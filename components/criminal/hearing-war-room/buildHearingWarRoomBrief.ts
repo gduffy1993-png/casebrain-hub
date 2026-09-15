@@ -42,6 +42,10 @@ import { isBundleTriangulationSurfacingEnabled } from "@/lib/criminal/bundle-tri
 import { buildClientSafeExplanation } from "@/lib/criminal/build-client-safe-explanation";
 import { isBundleClientSafeSurfacingEnabled } from "@/lib/criminal/bundle-client-safe-surfacing";
 import { buildCriminalBriefPlan, type CriminalBriefPlan } from "@/lib/criminal/brief-plan";
+import {
+  lineIsUnbackedOffenceFamilyFurniture,
+  smokePackSolicitorFurniture,
+} from "@/lib/criminal/smoke-pack-front-sheet";
 import { buildContradictionActions } from "@/lib/criminal/contradiction-actions";
 import { guardHearingWarRoomBrief, type SourceTruthGuardianReport } from "@/lib/criminal/source-truth-guardian";
 import {
@@ -318,9 +322,9 @@ function applyLedgerForbiddenGuards(
       max,
     );
 
-  const forbiddenDoNot = ledger.forbiddenClaims.map(
-    (fc) => `Do not state "${fc.phrase}" — ${fc.reason}`,
-  );
+  const forbiddenDoNot = ledger.forbiddenClaims
+    .map((fc) => `Do not state "${fc.phrase}" — ${fc.reason}`)
+    .filter((line) => !lineIsUnbackedOffenceFamilyFurniture(line, bundleText));
 
   const safePosition = guardLines([brief.safePositionToday], 1)[0] ?? brief.safePositionToday;
 
@@ -352,6 +356,7 @@ function applyLedgerForbiddenGuards(
 function enrichBriefWithClientSafe(
   brief: HearingWarRoomBrief,
   hasOutstandingDisclosure: boolean,
+  ledger: BundleTruthLedger | null,
 ): HearingWarRoomBrief {
   if (!isBundleClientSafeSurfacingEnabled()) return brief;
   const contradictionActions = buildContradictionActions(brief.bundleContradictions);
@@ -362,6 +367,7 @@ function enrichBriefWithClientSafe(
     contradictionActionLines: contradictionActions.map((a) => a.clientSafeLine),
     hasOutstandingDisclosure,
     fallback: brief.draftWording.clientExplanation,
+    ledger,
   });
   return {
     ...brief,
@@ -442,6 +448,7 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
     bundleText: input.bundleText,
     clientLabel: input.clientLabel,
     profileHint: input.profileHint,
+    ledger,
   };
   const profile = resolveWorkflowProfile(workflowContext);
   const profileAsks = workflowProfileAskCourtOnly(workflowContext);
@@ -451,14 +458,21 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
   );
   const hasChase = prioritizedChase.length > 0;
 
-  const safePositionToday = workflowSafeCourtLine(workflowContext) ?? briefPlan.todayAngle ?? resolveSafePosition(bb);
+  const labelled = smokePackSolicitorFurniture(input.bundleText ?? "");
+  const safePositionToday =
+    labelled?.courtLine ??
+    workflowSafeCourtLine(workflowContext) ??
+    briefPlan.todayAngle ??
+    resolveSafePosition(bb);
 
   const sayFromRoute =
     profile === "generic" && route?.hearing_line
       ? splitSentences(route.hearing_line).filter(isCourtSayable).slice(0, 2)
       : [];
   const sayThis = uniqueLines(
-    [...briefPlan.requiredOutputItems.today.slice(0, 2), ...sayFromRoute, ...defaultSayThis(hasChase, profile)],
+    labelled
+      ? [labelled.caseWideLine, "Keep the position provisional and tied to the uploaded papers."]
+      : [...briefPlan.requiredOutputItems.today.slice(0, 2), ...sayFromRoute, ...defaultSayThis(hasChase, profile)],
     6,
   );
 
@@ -495,10 +509,16 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
     .map((f) => `${f.title}: ${f.summary}`);
 
   const doNotOverstate = uniqueLines(
-    [
-      ...doNotRaw.map((l) => (isCriminalPilotMode() ? softenPilotRiskWording(l) : l)),
-      ...findingLines,
-    ],
+    labelled
+      ? [
+          "Do not import another offence-family template unless the papers support it.",
+          "Do not treat unserved source material as proved.",
+          "Solicitor review is required before fixing hearing position.",
+        ]
+      : [
+          ...doNotRaw.map((l) => (isCriminalPilotMode() ? softenPilotRiskWording(l) : l)),
+          ...findingLines,
+        ].filter((line) => !lineIsUnbackedOffenceFamilyFurniture(line, input.bundleText)),
     8,
   );
 
@@ -515,19 +535,21 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
   );
 
   const askCourtToRecord = dedupePilotCourtRecordLines(
-    profile !== "generic" && profileAsks?.length
-      ? uniqueLines(profileAsks, 5)
-      : uniqueLines(
-          [
-            briefPlan.chaseAngle,
-            ...prioritizedChase.map(toCourtRecordAsk).filter(Boolean),
-            ...briefPlan.missingEvidence.slice(0, 3).map((item) => toCourtRecordAsk(item.label)),
-            ...(input.proceduralOutstanding ?? [])
-              .filter((p) => /\b(cctv|cad|999|mg6|disclosure|continuity|bwv|interview)\b/i.test(p))
-              .map(toCourtRecordAsk),
-          ],
-          8,
-        ),
+    labelled?.courtRecordAsks.length
+      ? labelled.courtRecordAsks
+      : profile !== "generic" && profileAsks?.length
+        ? uniqueLines(profileAsks, 5)
+        : uniqueLines(
+            [
+              briefPlan.chaseAngle,
+              ...prioritizedChase.map(toCourtRecordAsk).filter(Boolean),
+              ...briefPlan.missingEvidence.slice(0, 3).map((item) => toCourtRecordAsk(item.label)),
+              ...(input.proceduralOutstanding ?? [])
+                .filter((p) => /\b(cctv|cad|999|mg6|disclosure|continuity|bwv|interview)\b/i.test(p))
+                .map(toCourtRecordAsk),
+            ].filter((line) => !lineIsUnbackedOffenceFamilyFurniture(line, input.bundleText)),
+            8,
+          ),
   );
 
   const rawPositionNotice = bb?.position_notice?.trim() ?? "";
@@ -564,7 +586,7 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
     6,
   );
 
-  const pilotMoves = workflowTopNextActions(workflowContext);
+  const pilotMoves = labelled?.nextActions ?? workflowTopNextActions(workflowContext);
   const nextHearingMoves = uniqueLines(
     pilotMoves?.length
       ? [
@@ -637,7 +659,7 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
   if (!isCriminalPilotMode()) {
     const enriched = enrichBriefWithContradictions(brief, input.bundleText);
     return guardHearingWarRoomBrief(applyLedgerForbiddenGuards(
-      enrichBriefWithClientSafe(enriched, input.chaseItems.length > 0),
+      enrichBriefWithClientSafe(enriched, input.chaseItems.length > 0, ledger),
       ledger,
       input.bundleText,
     ), { ledger, bundleText: input.bundleText });
@@ -664,6 +686,7 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
         input.bundleText,
       ),
       input.chaseItems.length > 0,
+      ledger,
     ),
     ledger,
     input.bundleText,

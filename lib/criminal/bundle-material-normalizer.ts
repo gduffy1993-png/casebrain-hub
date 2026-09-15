@@ -195,6 +195,21 @@ export function lineIsUnsourcedNarrativeChase(line: string): boolean {
   if (/^the (?:crown|prosecution|defence|court|app|matter|note|schedule|oic)\b/i.test(l)) {
     return true;
   }
+  if (/\bthis point collapses if\b/i.test(l) || /\bstrategy point collapses if\b/i.test(l)) {
+    return true;
+  }
+  if (/\b(?:solicitor )?review remains outstanding or incomplete\b/i.test(l) && !parseScheduleRef(l)) {
+    return true;
+  }
+  if (/^missing source material,?\s+then solicitor review/i.test(l)) {
+    return true;
+  }
+  if (/^review remains outstanding\b/i.test(l) && !ITEM_RE.test(l) && !parseScheduleRef(l)) {
+    return true;
+  }
+  if (/^(?:not yet served|listed but not attached|continuity awaited|items marked)\.?$/i.test(l)) {
+    return true;
+  }
   const words = l.split(/\s+/).filter(Boolean).length;
   const clauses = (l.match(/[.!?]/g) ?? []).length;
   if (clauses >= 2 && !parseScheduleRef(l)) return true;
@@ -1073,9 +1088,10 @@ export function buildForbiddenClaimsForMaterials(
     s === "partial" ||
     s === "unclear";
 
-  const cctvRows = materials.filter(
-    (m) => /\bcctv|footage|video\b/i.test(`${m.label} ${m.detail ?? ""}`) && notFullyServed(m.status),
-  );
+  const cctvRows = materials.filter((m) => {
+    const hay = `${m.label} ${m.detail ?? ""}`.replace(/\bEX[-A-Z0-9]*\b/gi, " ");
+    return /\bcctv|footage|video\b/i.test(hay) && notFullyServed(m.status);
+  });
   if (cctvRows.length) {
     add("forbid-cctv-confirms", "CCTV confirms", "CCTV is not fully served on papers", cctvRows.map((r) => r.id));
     add("forbid-cctv-proves", "CCTV proves", "CCTV is not fully served on papers", cctvRows.map((r) => r.id));
@@ -1131,7 +1147,7 @@ export function buildForbiddenClaimsForMaterials(
     (m) => /\bcad\b|\b999\b|dispatch|control\s*room/i.test(`${m.label} ${m.detail ?? ""} ${m.displayLine}`),
   );
   const cadServed = cadRows.filter((m) => m.status === "served");
-  if (cadRows.length === 0 || cadServed.length === 0) {
+  if (cadRows.length > 0 && cadServed.length === 0) {
     add(
       "forbid-cad-supports",
       "CAD/999 timing supports",
