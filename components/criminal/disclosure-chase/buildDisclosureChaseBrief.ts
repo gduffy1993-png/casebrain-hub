@@ -2195,14 +2195,9 @@ function ensureSmokePackOutstandingChaseItems(
   const next = [...items];
   for (const draft of drafts) {
     const already = next.some((item) => {
-      const hay = `${item.label} ${item.evidenceAnchor ?? ""} ${draft.label}`.toLowerCase();
-      return (
-        item.id === draft.id ||
-        (item.evidenceAnchor === draft.evidenceAnchor &&
-          item.label.replace(/\s+/g, " ").trim().toLowerCase() === draft.label.toLowerCase()) ||
-        (hay.includes(draft.label.toLowerCase().slice(0, 24)) &&
-          /outstanding material/i.test(item.evidenceAnchor ?? ""))
-      );
+      const itemLabel = item.label.replace(/\s+/g, " ").trim().toLowerCase().replace(/\s+outstanding$/, "");
+      const draftLabel = draft.label.replace(/\s+/g, " ").trim().toLowerCase().replace(/\s+outstanding$/, "");
+      return item.id === draft.id || itemLabel === draftLabel;
     });
     if (already) continue;
     next.push({

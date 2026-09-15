@@ -432,6 +432,24 @@ export function splitOutstandingInventoryLine(line: string): string[] {
   return [line.trim()].filter(Boolean);
 }
 
+function stripLeadingListMarker(line: string): string {
+  return compact(line).replace(/^[•●○▪◦*\-]\s*/, "");
+}
+
+function namedOutstandingMaterialParts(body: string): string[] {
+  const cleaned = compact(body);
+  if (!cleaned) return [];
+  if (lineIsScheduleFurniture(`Outstanding material: ${cleaned}`)) return [];
+  const chunks = /;/.test(cleaned)
+    ? cleaned.split(/\s*;\s*/)
+    : /,\s/.test(cleaned)
+      ? cleaned.split(/\s*,\s*(?:and\s+)?/)
+      : [cleaned];
+  return chunks
+    .map((part) => part.replace(/^any\s+/i, "").replace(/[.]+$/g, "").trim())
+    .filter((part) => part.length >= 8);
+}
+
 function stripScheduleFurnitureClauses(line: string): string {
   return compact(line)
     .replace(/\bnote:\s*items described as.*$/i, "")
@@ -1012,12 +1030,19 @@ function collectMaterialLines(bundleText: string): MaterialLineRecord[] {
     const clauses = line.split(/(?<=\.)\s+(?=[A-Z])/).map((s) => s.trim()).filter(Boolean);
     const units = clauses.length > 1 ? clauses : [line];
     for (const unit of units) {
-    const stillNeeded = deglueScheduleText(unit).match(/^Material still needed\s*:?\s*(.+)$/i);
+    const deglued = stripLeadingListMarker(deglueScheduleText(unit));
+    const stillNeeded = deglued.match(/^Material still needed\s*:?\s*(.+)$/i);
     if (stillNeeded?.[1]) {
       for (const part of stillNeeded[1].split(/;/)) {
         const item = part.trim();
         if (item.length >= 4) add(`${item} outstanding`);
       }
+      continue;
+    }
+    const outstandingMaterial = deglued.match(/^Outstanding material\s*:?\s*(.+)$/i);
+    if (outstandingMaterial?.[1]) {
+      const parts = namedOutstandingMaterialParts(outstandingMaterial[1]);
+      for (const item of parts) add(`${item} outstanding`);
       continue;
     }
     const outstandingParts = splitOutstandingInventoryLine(unit);

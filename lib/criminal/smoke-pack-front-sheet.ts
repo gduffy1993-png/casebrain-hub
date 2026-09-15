@@ -37,7 +37,8 @@ function normalizeScan(text: string): string {
   return (text ?? "")
     .replace(/\r/g, "\n")
     .replace(/\*\*([^*]+)\*\*/g, "$1")
-    .replace(/^#+\s+/gm, "");
+    .replace(/^#+\s+/gm, "")
+    .replace(/^\s*[•●○▪◦*\-]\s*/gm, "");
 }
 
 function cleanValue(raw: string): string | null {
@@ -104,10 +105,22 @@ function splitCourtStage(raw: string | null): { court: string | null; stage: str
 
 function splitOutstandingItems(raw: string | null): string[] {
   if (!raw) return [];
-  return raw
-    .split(/\s*;\s*/)
-    .map((part) => part.replace(/\s+/g, " ").replace(/[.]+$/g, "").trim())
+  const chunks = /;/.test(raw)
+    ? raw.split(/\s*;\s*/)
+    : /,\s/.test(raw)
+      ? raw.split(/\s*,\s*(?:and\s+)?/)
+      : [raw];
+  return chunks
+    .map((part) =>
+      part
+        .replace(/\s+/g, " ")
+        .replace(/[.]+$/g, "")
+        .replace(/^any\s+/i, "")
+        .trim(),
+    )
     .filter((part) => part.length >= 8)
+    .filter((part) => !/\bthis point collapses if\b/i.test(part))
+    .filter((part) => !/\b(?:solicitor )?review remains outstanding or incomplete\b/i.test(part))
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1));
 }
 
