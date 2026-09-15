@@ -5,6 +5,8 @@
  * witness lines, and demo-title matching are ignored. Output stays provisional.
  */
 
+import { isProofPressureAllegationLabel } from "@/lib/criminal/case-identity-boundary";
+
 export type SmokePackFrontSheet = {
   detected: boolean;
   defendantName: string | null;
@@ -54,6 +56,81 @@ function labelledPersonName(raw: string | null): string | null {
   if (!/^[A-Z][A-Za-z'’-]+(?:\s+[A-Z][A-Za-z'’-]+){1,3}$/.test(t)) return null;
   if (/\b(?:Court|Charge|Police|Defendant|Witness|Statement|Crown)\b/.test(t)) return null;
   return t;
+}
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/** Drop a following labelled field glued onto the same line. */
+function stripGluedNextLabels(raw: string): string {
+  return raw
+    .replace(
+      /\s+(?:Date\/time(?:\/location)?|Contested issue|Proof pressure|Pack identifiers|Exact charge wording|Exact allegation wording|Offence type|Offence family)\s*:[\s\S]*$/i,
+      "",
+    )
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const LABELLED_CHARGE_TOKEN =
+  /\b(?:abh|gbh|assault|theft|burglary|murder|robbery|fraud|harassment|wounding|affray|intimidating|malicious communications?|drug driving|controlled drug|pwits|possession of|actual bodily harm|grievous|occasioning|s\.?\s*\d+|contrary to)\b/i;
+
+function looksLikeLabelledCharge(value: string): boolean {
+  const t = value.replace(/\s+/g, " ").trim();
+  if (!t || t.length < 3) return false;
+  if (isProofPressureAllegationLabel(t)) return false;
+  if (/^(?:injury|causation|phone attribution|subscriber|continuity|identification leverage)\b/i.test(t)) {
+    return false;
+  }
+  return LABELLED_CHARGE_TOKEN.test(t);
+}
+
+function isPersonNameOnly(value: string): boolean {
+  return /^[A-Z][A-Za-z'’-]+(?:\s+[A-Z][A-Za-z'’-]+){1,3}$/.test(value.trim());
+}
+
+function usableExactCharge(raw: string | null): string | null {
+  if (!raw) return null;
+  const t = stripGluedNextLabels(raw);
+  if (!t || isProofPressureAllegationLabel(t) || isPersonNameOnly(t)) return null;
+  if (t.length < 8) return looksLikeLabelledCharge(t) ? t : null;
+  return t;
+}
+
+function usableOffenceType(raw: string | null): string | null {
+  if (!raw) return null;
+  const t = stripGluedNextLabels(raw).replace(/\.+$/, "");
+  if (!t || isProofPressureAllegationLabel(t) || isPersonNameOnly(t)) return null;
+  if (!looksLikeLabelledCharge(t)) return null;
+  return t;
+}
+
+function chargeFromCaseTitle(title: string | null, defendant: string | null): string | null {
+  if (!title) return null;
+  let t = stripGluedNextLabels(title);
+  if (isProofPressureAllegationLabel(t)) return null;
+  if (defendant) {
+    t = t.replace(new RegExp(`\\s*[-–—:]\\s*${escapeRegExp(defendant)}\\s*$`, "i"), "").trim();
+  } else {
+    t = t.replace(/\s*[-–—]\s*[A-Z][A-Za-z'’-]+(?:\s+[A-Z][A-Za-z'’-]+){1,3}\s*$/, "").trim();
+  }
+  t = t.replace(/^R\s*v\s+/i, "").trim();
+  if (!looksLikeLabelledCharge(t) || isPersonNameOnly(t)) return null;
+  return t;
+}
+
+/**
+ * Prefer exact charge / statement of offence, then Offence type, then a charge
+ * fragment in Case title. Proof-pressure and bare names never win.
+ */
+export function labelledSmokePackCharge(sheet: SmokePackFrontSheet): string | null {
+  if (!sheet.detected) return null;
+  return (
+    usableExactCharge(sheet.exactChargeWording) ||
+    usableOffenceType(sheet.offenceFamily) ||
+    chargeFromCaseTitle(sheet.caseTitle, sheet.defendantName)
+  );
 }
 
 function isContinuationLine(line: string): boolean {
@@ -169,8 +246,14 @@ export function extractSmokePackFrontSheet(text: string): SmokePackFrontSheet {
     court,
     stage,
     courtStage,
-    exactChargeWording: extractLabeledBlock(hay, ["Exact charge wording"]),
-    offenceFamily: extractLabeledBlock(hay, ["Offence family"]),
+    exactChargeWording: extractLabeledBlock(hay, [
+      "Exact charge wording",
+      "Exact allegation wording",
+      "Statement of Offence",
+      "Statement of offence",
+      "Allegation",
+    ]),
+    offenceFamily: extractLabeledBlock(hay, ["Offence family", "Offence type", "Offence"]),
     proofPressure: extractLabeledBlock(hay, ["Proof pressure"]),
     outstandingMaterial,
     outstandingItems: splitOutstandingItems(outstandingMaterial),

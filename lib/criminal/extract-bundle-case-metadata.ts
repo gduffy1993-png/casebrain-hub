@@ -7,7 +7,10 @@ import { isExtractionFailurePlaceholder } from "@/lib/bundle/bundle-document-tex
 import type { ParsedBundleHeader } from "@/lib/bundle/parse-bundle-display";
 import { deglueBundleLines } from "@/lib/criminal/bundle-material-normalizer";
 import { repairDisplayWordSpacing } from "@/lib/criminal/display-text";
-import { extractSmokePackFrontSheet } from "@/lib/criminal/smoke-pack-front-sheet";
+import {
+  extractSmokePackFrontSheet,
+  labelledSmokePackCharge,
+} from "@/lib/criminal/smoke-pack-front-sheet";
 import { isProofPressureAllegationLabel } from "@/lib/criminal/case-identity-boundary";
 
 /**
@@ -2531,8 +2534,9 @@ export function extractBundleCaseMetadata(
       stage = null;
       stageSource = "unavailable";
     }
-    if (smokeSheet.exactChargeWording || smokeSheet.offenceFamily) {
-      offenceWording = smokeSheet.exactChargeWording ?? smokeSheet.offenceFamily;
+    const labelledCharge = labelledSmokePackCharge(smokeSheet);
+    if (labelledCharge) {
+      offenceWording = labelledCharge;
       offenceSource = smokeSheet.exactChargeWording
         ? "extracted_charge_fallback"
         : "extracted_cover_fallback";
