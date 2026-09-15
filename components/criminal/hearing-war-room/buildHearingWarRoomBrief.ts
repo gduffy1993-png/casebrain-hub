@@ -367,7 +367,6 @@ function enrichBriefWithClientSafe(
     contradictionActionLines: contradictionActions.map((a) => a.clientSafeLine),
     hasOutstandingDisclosure,
     fallback: brief.draftWording.clientExplanation,
-    ledger,
   });
   return {
     ...brief,

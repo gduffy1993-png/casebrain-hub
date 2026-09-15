@@ -746,22 +746,25 @@ export function workflowSafeCourtLine(context: WorkflowProfileContext): string |
   if (labelled) return labelled.courtLine;
   if (!profilePackMayEmit(context)) return null;
   const profile = resolveWorkflowProfile(context);
-  switch (profile) {
-    case "fraud_account_control":
-      return "Account-control and dishonesty issues remain conditional on served bank/device material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
-    case "pwits_phone_attribution":
-      return "Possession and phone-attribution issues remain conditional on served extraction and search material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
-    case "robbery_identification":
-      return robberySafeCourtLine(context);
-    case "generic_motoring_provisional":
-      return MOTORING_PROVISIONAL_COURT_LINE;
-    case "generic_serious_violence_provisional":
-      return SERIOUS_VIOLENCE_PROVISIONAL_COURT_LINE;
-    case "generic_provisional":
-      return GENERIC_PROVISIONAL_COURT_LINE;
-    default:
-      return null;
-  }
+  const line = (() => {
+    switch (profile) {
+      case "fraud_account_control":
+        return "Account-control and dishonesty issues remain conditional on served bank/device material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
+      case "pwits_phone_attribution":
+        return "Possession and phone-attribution issues remain conditional on served extraction and search material. The defence asks the court to record outstanding source material on a timetable — position remains provisional pending instructions.";
+      case "robbery_identification":
+        return robberySafeCourtLine(context);
+      case "generic_motoring_provisional":
+        return MOTORING_PROVISIONAL_COURT_LINE;
+      case "generic_serious_violence_provisional":
+        return SERIOUS_VIOLENCE_PROVISIONAL_COURT_LINE;
+      case "generic_provisional":
+        return GENERIC_PROVISIONAL_COURT_LINE;
+      default:
+        return null;
+    }
+  })();
+  return sourceBackedPackLine(line, context);
 }
 
 /** @deprecated Prefer {@link robberyDisclosureCaseWideLine} via workflowDisclosureCaseWideLine. */
@@ -777,25 +780,33 @@ export function workflowDisclosureCaseWideLine(context: WorkflowProfileContext):
   if (labelled) return labelled.caseWideLine;
   if (!profilePackMayEmit(context)) return null;
   const profile = resolveWorkflowProfile(context);
+  let line: string | null = null;
   if (profile === "fraud_account_control") {
-    return "Account-control and dishonesty issues remain conditional on served bank/export, device/login, mailbox and POCA/source-of-funds material.";
+    line =
+      "Account-control and dishonesty issues remain conditional on served bank/export, device/login, mailbox and POCA/source-of-funds material.";
+  } else if (profile === "pwits_phone_attribution") {
+    line =
+      "Possession, knowledge, intent to supply and phone attribution remain conditional on full phone extraction, search BWV, drug/cash continuity and co-occupier material.";
+  } else if (profile === "robbery_identification") {
+    line = robberyDisclosureCaseWideLine(context);
+  } else if (profile === "generic_motoring_provisional") {
+    line =
+      "Standard of driving, driver attribution, collision sequence, dashcam/CCTV/BWV, CAD/999, expert/collision material, medical/injury evidence where relevant, and served interview/account remain conditional on service.";
+  } else if (profile === "generic_serious_violence_provisional") {
+    line = "Serious violence strategy remains provisional pending served material and solicitor review.";
+  } else if (profile === "generic_provisional") {
+    line =
+      "Route and disclosure priorities remain provisional pending human review of offence family and served material.";
   }
-  if (profile === "pwits_phone_attribution") {
-    return "Possession, knowledge, intent to supply and phone attribution remain conditional on full phone extraction, search BWV, drug/cash continuity and co-occupier material.";
+  return sourceBackedPackLine(line, context);
+}
+
+function sourceBackedPackLine(line: string | null, context: WorkflowProfileContext): string | null {
+  if (!line) return null;
+  if (lineIsUnbackedOffenceFamilyFurniture(line, context.bundleText)) {
+    return GENERIC_PROVISIONAL_COURT_LINE;
   }
-  if (profile === "robbery_identification") {
-    return robberyDisclosureCaseWideLine(context);
-  }
-  if (profile === "generic_motoring_provisional") {
-    return "Standard of driving, driver attribution, collision sequence, dashcam/CCTV/BWV, CAD/999, expert/collision material, medical/injury evidence where relevant, and served interview/account remain conditional on service.";
-  }
-  if (profile === "generic_serious_violence_provisional") {
-    return "Serious violence strategy remains provisional pending served material and solicitor review.";
-  }
-  if (profile === "generic_provisional") {
-    return "Route and disclosure priorities remain provisional pending human review of offence family and served material.";
-  }
-  return null;
+  return line;
 }
 
 /** Route-status badge in pilot Control Room — avoids duplicate “conditional on served material”. */
