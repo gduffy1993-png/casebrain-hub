@@ -29,6 +29,9 @@ import {
   buildHearingWarRoomBrief,
   type HearingWarRoomBrief,
 } from "./buildHearingWarRoomBrief";
+import { buildDisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import { canonicalRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
+import { assembleBundleTextForReasoning } from "@/lib/criminal/reasoning-v2/assemble-bundle-text";
 import { buildDisclosureChaseHref } from "@/components/criminal/disclosure-chase/disclosureChaseLinks";
 import { fetchJsonWithSurfaceContract } from "@/lib/criminal/surface-load-contract";
 import {
@@ -563,6 +566,15 @@ export function HearingWarRoom({
   const usePilotDeskUi = embedInShell || pilotMode;
   const { uploadDisabled: pilotUploadDisabled, recordPositionDisabled: pilotRecordPositionHidden } =
     usePilotDemoSession();
+  const pageAwareBundleText =
+    bundleSource?.canonical?.pageAwareFrontMatterScan ?? bundleSource?.frontMatterScan ?? null;
+  const sourceBundleText = useMemo(() => {
+    const assembled = assembleBundleTextForReasoning({
+      frontMatterScan: pageAwareBundleText,
+      snippets: bundleSource?.snippets,
+    });
+    return assembled || pageAwareBundleText || null;
+  }, [pageAwareBundleText, bundleSource?.snippets]);
   const hearingDateIso = resolveSolicitorHearingDateIso({
     bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
     snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
@@ -597,17 +609,6 @@ export function HearingWarRoom({
   })();
   const hearingStatus = hearingDisplay;
 
-  const chaseItemsAll = useMemo(
-    () =>
-      buildChaseItemsForHearing({
-        snapshotMissing: snapshot?.evidence.missingEvidence,
-        proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
-        battleboard,
-        bundleText: bundleSource?.frontMatterScan ?? null,
-      }),
-    [snapshot, effectiveProceduralSafety, battleboard, bundleSource?.frontMatterScan],
-  );
-
   const positionStatus = useMemo(() => {
     let raw: string;
     if (hasSavedPosition && savedPosition?.position_text?.trim()) {
@@ -634,6 +635,55 @@ export function HearingWarRoom({
     pilotMode,
     battleboard?.position_notice,
     workflowContext,
+  ]);
+
+  const chaseItemsAll = useMemo(() => {
+    const canonicalRows = canonicalRowsForBuilder(bundleSource?.canonical ?? null);
+    const builderMissingRows =
+      canonicalRows.length > 0 ? canonicalRows : snapshot?.evidence.missingEvidence ?? [];
+    const chase = buildDisclosureChaseBrief({
+      caseId,
+      caseTitle,
+      clientLabel,
+      allegation,
+      stage,
+      hearingStatus,
+      hearingDateIso,
+      bundleHealth: deriveBundleHealth(snapshot, bundleSource, battleboard),
+      positionStatus,
+      battleboard,
+      snapshotMissing: builderMissingRows,
+      proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
+      bundleText: sourceBundleText,
+      profileHint: pilotHeader?.profile ?? null,
+      canonicalFindings: bundleSource?.canonical?.findingSummaries ?? [],
+      canonicalEvidenceRows: (bundleSource?.canonical?.evidenceRows ?? []).map((r) => ({
+        label: r.label,
+        state: r.existence,
+      })),
+    });
+    return buildChaseItemsForHearing({
+      snapshotMissing: snapshot?.evidence.missingEvidence,
+      proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
+      battleboard,
+      bundleText: sourceBundleText,
+      fileBackedShortlist: chase.primaryItems.map((item) => item.label),
+    });
+  }, [
+    caseId,
+    caseTitle,
+    clientLabel,
+    allegation,
+    stage,
+    hearingStatus,
+    hearingDateIso,
+    snapshot,
+    bundleSource,
+    battleboard,
+    positionStatus,
+    effectiveProceduralSafety,
+    sourceBundleText,
+    pilotHeader?.profile,
   ]);
 
   const readiness = useMemo(() => {
@@ -667,7 +717,7 @@ export function HearingWarRoom({
         chaseItems: chaseItemsAll,
         defencePlan,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
-        bundleText: bundleSource?.frontMatterScan ?? null,
+        bundleText: sourceBundleText,
         profileHint: pilotHeader?.profile ?? null,
         pilotDemoReadOnly: pilotRecordPositionHidden,
         canonicalFindings: bundleSource?.canonical?.findingSummaries ?? [],
@@ -687,6 +737,7 @@ export function HearingWarRoom({
       chaseItemsAll,
       defencePlan,
       effectiveProceduralSafety,
+      sourceBundleText,
       pilotHeader?.profile,
       pilotRecordPositionHidden,
     ],

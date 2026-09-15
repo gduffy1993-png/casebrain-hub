@@ -182,7 +182,7 @@ export function PilotTodayDashboard({
     .filter((line) => !/^(open\s+chase|chase\s+outstanding\s+disclosure)/i.test(line.trim()))
     .slice(0, 3);
 
-  const topIssue = chaseItems[0] ?? view.collapseRisks[1] ?? "—";
+  const topIssue = chaseItems[0] ?? "—";
   const nextStep = nextMoves[0] ?? "—";
   const safeLine =
     view.safeCourtLine && view.safeCourtLine !== "—"

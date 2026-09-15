@@ -22,6 +22,7 @@ import type { DocumentRowMeta } from "@/lib/bundle/parse-bundle-display";
 import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { fileBackedMatterTitle } from "@/components/criminal/workflow/workflowPilotDisplay";
+import { buildBundleTruthLedger } from "@/lib/criminal/bundle-truth-ledger";
 import {
   buildChaseItemsForHearing,
   buildHearingWarRoomBrief,
@@ -219,6 +220,12 @@ export function useMatterBrief(caseId: string) {
 
     const pageAwareBundleText = bundleSource?.canonical?.pageAwareFrontMatterScan ?? null;
     const bundleText = pageAwareBundleText ?? bundleSource?.frontMatterScan ?? null;
+    const ledger = bundleText?.trim()
+      ? buildBundleTruthLedger({
+          bundleText,
+          parsedHeader: bundleSource?.header ?? undefined,
+        })
+      : null;
 
     const headerMeta = resolveCaseHeaderMetadata({
       snapshot,
@@ -236,6 +243,7 @@ export function useMatterBrief(caseId: string) {
       sourceCharges: bundleSource?.canonical?.charges ?? null,
       bundleText,
       matterState,
+      truthLedger: ledger,
     });
 
     const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
@@ -250,6 +258,7 @@ export function useMatterBrief(caseId: string) {
       routeTitle: battleboard?.primary_route?.title,
       bundleText,
       clientLabel,
+      ledger,
     });
     const caseTitle = safeSolicitorCaseTitle(pilotHeader?.displayTitle ?? pilotHeader?.title ?? caseTitleBase);
     const allegation = pilotHeader?.allegation ?? allegationBase;
@@ -295,6 +304,7 @@ export function useMatterBrief(caseId: string) {
       bundleText,
       clientLabel,
       profileHint: pilotHeader?.profile ?? null,
+      ledger,
     };
     const canonicalMissingRows = canonicalRowsForBuilder(bundleSource?.canonical);
     const snapshotMissingRows = snapshot?.evidence.missingEvidence ?? [];
@@ -307,18 +317,10 @@ export function useMatterBrief(caseId: string) {
         ? builderMissingRows.filter((item) => item.status === "MISSING")
         : builderMissingRows;
 
-    const chaseItemsAll = buildChaseItemsForHearing({
-      battleboard,
-      snapshotMissing: courtPressureRows,
-      proceduralOutstanding: undefined,
-      bundleText: sourceBundleText,
-    });
     const briefPlan = buildCriminalBriefPlan({
       bundleText: sourceBundleText,
-      missingMaterial: [
-        ...chaseItemsAll,
-        ...courtPressureRows.map((item) => item.label),
-      ],
+      ledger,
+      missingMaterial: courtPressureRows.map((item) => item.label),
       allegation,
     });
 
@@ -361,6 +363,35 @@ export function useMatterBrief(caseId: string) {
       ? pilotPositionDisplayLabel(positionRaw, workflowContext)
       : positionRaw;
 
+    const chase = buildDisclosureChaseBrief({
+      caseId,
+      caseTitle,
+      clientLabel,
+      allegation,
+      stage,
+      hearingStatus,
+      hearingDateIso,
+      bundleHealth,
+      positionStatus,
+      battleboard,
+      snapshotMissing: [
+        ...builderMissingRows,
+      ],
+      bundleText: sourceBundleText,
+      profileHint: pilotHeader?.profile ?? null,
+      briefPlan,
+      canonicalFindings,
+      canonicalEvidenceRows,
+    });
+
+    const chaseItemsAll = buildChaseItemsForHearing({
+      battleboard,
+      snapshotMissing: courtPressureRows,
+      proceduralOutstanding: undefined,
+      bundleText: sourceBundleText,
+      fileBackedShortlist: chase.primaryItems.map((item) => item.label),
+    });
+
     let readiness: string;
     if (!hasSavedPosition) {
       readiness = "Conditional — record position";
@@ -390,27 +421,6 @@ export function useMatterBrief(caseId: string) {
       profileHint: pilotHeader?.profile ?? null,
       briefPlan,
       canonicalFindings,
-    });
-
-    const chase = buildDisclosureChaseBrief({
-      caseId,
-      caseTitle,
-      clientLabel,
-      allegation,
-      stage,
-      hearingStatus,
-      hearingDateIso,
-      bundleHealth,
-      positionStatus,
-      battleboard,
-      snapshotMissing: [
-        ...builderMissingRows,
-      ],
-      bundleText: sourceBundleText,
-      profileHint: pilotHeader?.profile ?? null,
-      briefPlan,
-      canonicalFindings,
-      canonicalEvidenceRows,
     });
 
     const primaryRouteTitle = workflowPrimaryRouteTitle(workflowContext);

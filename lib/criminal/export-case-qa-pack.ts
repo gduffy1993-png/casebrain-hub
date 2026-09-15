@@ -450,6 +450,8 @@ export async function loadCaseQaPackInput(caseId: string): Promise<CaseQaPackInp
     chaseItems: buildChaseItemsForHearing({
       snapshotMissing: snapshot?.evidence.missingEvidence,
       battleboard,
+      bundleText: bundleSource?.frontMatterScan ?? null,
+      fileBackedShortlist: disclosureChase.primaryItems.map((item) => item.label),
     }),
     bundleText: bundleSource?.frontMatterScan ?? null,
   });

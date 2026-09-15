@@ -3,15 +3,9 @@ import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import type { DefenceStrategyPlan } from "@/lib/criminal/strategy-output";
 import type { WorkflowProfile } from "@/lib/criminal/pilot-workflow";
 import {
-  filterWorkflowItems,
   filterWorkflowPilotLines,
-  prioritizeWorkflowItems,
   resolveWorkflowProfile,
   softenPilotRiskWording,
-  workflowDraftDisclosureSnippet,
-  workflowProfileAskCourtOnly,
-  workflowSafeCourtLine,
-  workflowTopNextActions,
   sanitizePilotVisibleLine,
   sanitizePilotEvidenceAnchors,
   pilotCleanupVisibleText,
@@ -28,7 +22,6 @@ import {
   isBlockedBattleboardTemplateLine,
 } from "@/lib/criminal/bundle-truth-ledger";
 import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
-import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
 import {
   type BundleContradiction,
 } from "@/lib/criminal/extract-bundle-contradictions";
@@ -41,7 +34,7 @@ import { isBundleMultiIncidentSurfacingEnabled } from "@/lib/criminal/bundle-mul
 import { isBundleTriangulationSurfacingEnabled } from "@/lib/criminal/bundle-triangulation-surfacing";
 import { buildClientSafeExplanation } from "@/lib/criminal/build-client-safe-explanation";
 import { isBundleClientSafeSurfacingEnabled } from "@/lib/criminal/bundle-client-safe-surfacing";
-import { buildCriminalBriefPlan, type CriminalBriefPlan } from "@/lib/criminal/brief-plan";
+import type { CriminalBriefPlan } from "@/lib/criminal/brief-plan";
 import {
   lineIsUnbackedOffenceFamilyFurniture,
   smokePackSolicitorFurniture,
@@ -50,7 +43,6 @@ import { buildContradictionActions } from "@/lib/criminal/contradiction-actions"
 import { guardHearingWarRoomBrief, type SourceTruthGuardianReport } from "@/lib/criminal/source-truth-guardian";
 import {
   humanizeChaseFragmentLabel,
-  isRawChaseFragmentLabel,
 } from "@/lib/criminal/disclosure-chase-finalize";
 import { dedupePilotCourtRecordLines } from "@/lib/criminal/pilot-matter-display-polish";
 
@@ -136,6 +128,39 @@ function uniqueLines(items: string[], max: number): string[] {
   return out;
 }
 
+const FILE_BACKED_QUIET_COURT_LINE =
+  "The defence position remains provisional pending served source material and solicitor instructions.";
+
+export function courtShortlistLabelsFromChaseItems(
+  chaseItems: string[],
+  bundleText?: string | null,
+): string[] {
+  return uniqueLines(
+    chaseItems
+      .map((raw) => raw.trim())
+      .filter((line) => {
+        if (!line) return false;
+        if (/\bserved\b/i.test(line) && !/\boutstanding\b/i.test(line)) return false;
+        if (lineIsUnbackedOffenceFamilyFurniture(line, bundleText)) return false;
+        return true;
+      }),
+    12,
+  );
+}
+
+export function composeFileBackedCourtSafeLine(input: {
+  labelledCourtLine?: string | null;
+  shortlist: string[];
+}): string {
+  const labelled = input.labelledCourtLine?.trim();
+  if (labelled) return labelled;
+  const named = uniqueLines(input.shortlist, 3);
+  if (!named.length) return FILE_BACKED_QUIET_COURT_LINE;
+  const joined = named.join("; ");
+  const verb = named.length === 1 ? "remains" : "remain";
+  return `The defence asks the court to record that ${joined} ${verb} outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.`;
+}
+
 function toCourtRecordAsk(item: string): string {
   const t = item.trim();
   if (!t || /^please provide/i.test(t)) return "";
@@ -146,7 +171,8 @@ function toCourtRecordAsk(item: string): string {
   let label = humanizeChaseFragmentLabel(
     t.replace(/^chase[:\s]*/i, "").replace(/^outstanding[:\s]*/i, ""),
   );
-  if (!label || isRawChaseFragmentLabel(label)) return "";
+  if (!label) label = t.replace(/^chase[:\s]*/i, "").replace(/^outstanding[:\s]*/i, "").trim();
+  if (!label) return "";
 
   return (
     dedupePilotCourtRecordLines([
@@ -157,112 +183,21 @@ function toCourtRecordAsk(item: string): string {
   );
 }
 
-function splitSentences(text: string): string[] {
-  return text
-    .split(/(?<=[.!?])\s+/)
-    .map((s) => s.trim())
-    .filter((s) => s.length > 12);
-}
-
-function defaultSayThis(hasChase: boolean, profile: WorkflowProfile): string[] {
-  if (profile === "fraud_account_control") {
-    return [
-      "The defence position remains provisional pending served bank/account material and solicitor instructions.",
-      "The court is asked to record outstanding source material and set a disclosure timetable.",
-    ];
-  }
-  if (profile === "pwits_phone_attribution") {
-    return [
-      "The defence position remains provisional pending served phone/search material and solicitor instructions.",
-      "The court is asked to record outstanding source material and set a disclosure timetable.",
-    ];
-  }
-  const base = [
-    "The defence position remains provisional pending served source material and solicitor instructions.",
-    "The court is asked to record outstanding source material and set a disclosure timetable.",
-  ];
-  if (hasChase && profile === "robbery_identification") {
-    base.push(
-      "Identification and timing remain conditional until served CCTV, ID procedure and complainant account material are reviewed.",
-    );
-  } else if (hasChase && profile === "generic") {
-    base.push(
-      "Timing and sequence remain conditional until served source material and continuity records are reviewed.",
-    );
-  }
-  return base;
-}
-
-function defaultDoNotOverstate(profile: WorkflowProfile): string[] {
-  if (profile === "fraud_account_control") {
-    return [
-      "Assumed position may conflict with interview or served account records.",
-      "Served bank/device material may support the Crown account once disclosed.",
-      "Do not commit to final trial strategy until served material and instructions are reviewed.",
-    ];
-  }
-  if (profile === "pwits_phone_attribution") {
-    return [
-      "Assumed position may conflict with interview or served phone/search material.",
-      "Served extraction/attribution material may support Crown possession case once disclosed.",
-      "Do not commit to final trial strategy until served material and instructions are reviewed.",
-    ];
-  }
-  if (profile === "robbery_identification") {
-    return [
-      "Assumed position may conflict with interview or served CCTV/ID material.",
-      "Served CCTV may support Crown identification account if served and consistent.",
-      "CAD/999 timing may affect sequence if served and reconciled.",
-      "Do not commit to final trial strategy until served material and instructions are reviewed.",
-    ];
-  }
+function fileBackedSayThis(hasChase: boolean): string[] {
+  if (!hasChase) return [FILE_BACKED_QUIET_COURT_LINE];
   return [
-    "Assumed position may conflict with interview or served evidence.",
-    "Identification remains conditional on served CCTV once disclosed and reviewed.",
-    "Timing sequence remains conditional on served CAD/999 material once disclosed.",
-    "Do not commit to final trial strategy until served material and instructions are reviewed.",
+    "Keep the position provisional and tied to the uploaded papers.",
+    "The court is asked to record outstanding File-named source material and set a disclosure timetable.",
   ];
 }
 
-/** Strip repeated section prefixes; keep plain risk lines or short imperatives. */
-function formatBriefPlanForbiddenTopic(topic: string): string {
-  const trimmed = topic.trim();
-  if (!trimmed) return "";
-  if (/^do not /i.test(trimmed)) return trimmed.endsWith(".") ? trimmed : `${trimmed}.`;
-  return `Do not import ${trimmed} unless the papers support it.`;
-}
-
-function cleanDoNotBullet(raw: string): string | null {
-  let s = sanitizeLine(raw);
-  if (!s) return null;
-  s = s
-    .replace(/^do not overstate:\s*/i, "")
-    .replace(/^do not assume:\s*/i, "")
-    .replace(/^safety note on file:\s*/i, "")
-    .trim();
-  if (!s || FORBIDDEN_RE.test(s)) return null;
-  if (/^do not /i.test(s)) {
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  }
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
-
-function isCourtSayable(line: string): boolean {
-  const l = line.toLowerCase();
-  if (FORBIDDEN_RE.test(line)) return false;
-  if (/\b(chase|upload|record position|next 72|commit strategy|mg6 chase)\b/i.test(l)) return false;
-  return /\b(provisional|court|record|conditional|position|material|defence asks|timing)\b/i.test(l);
-}
-
-function resolveSafePosition(battleboard: BattleboardOutput | null): string {
-  const fromRoute = battleboard?.primary_route?.hearing_line?.trim();
-  if (fromRoute && !FORBIDDEN_RE.test(fromRoute)) return fromRoute;
-  const summary = battleboard?.solicitor_safe_summary?.trim();
-  if (summary && !FORBIDDEN_RE.test(summary)) {
-    const finalized = finalizeSolicitorVisibleProse(summary);
-    if (finalized.ok) return finalized.text;
-  }
-  return "Timing/sequence remains conditional on served CCTV/CAD/999 material. The defence asks the court to record outstanding source material and set a timetable — position remains provisional pending instructions.";
+function fileBackedDoNotOverstate(): string[] {
+  return [
+    "Do not import another offence-family template unless the papers support it.",
+    "Do not treat unserved source material as proved.",
+    "Do not chase served material as if it were outstanding.",
+    "Solicitor review is required before fixing hearing position.",
+  ];
 }
 
 function resolveReadinessLabel(input: BuildHearingWarRoomBriefInput): string {
@@ -283,7 +218,12 @@ export function buildChaseItemsForHearing(input: {
   proceduralOutstanding?: string[];
   battleboard?: BattleboardOutput | null;
   bundleText?: string | null;
+  /** When set (including empty), Court Today uses this File/PDF shortlist instead of snapshot family templates. */
+  fileBackedShortlist?: string[] | null;
 }): string[] {
+  if (Array.isArray(input.fileBackedShortlist)) {
+    return courtShortlistLabelsFromChaseItems(input.fileBackedShortlist, input.bundleText);
+  }
   return collectChaseItems(input).filter(
     (line) => !lineIsUnbackedOffenceFamilyFurniture(line, input.bundleText),
   );
@@ -393,37 +333,12 @@ function enrichBriefWithContradictions(
 
   const contradictions = extractAllBundleContradictions(bundleText);
   if (contradictions.length === 0) return brief;
-  const actions = buildContradictionActions(contradictions);
 
+  // Keep extracted contradictions for more-detail / client-safe, but do not
+  // prepend offence-family playbook chase/ask furniture onto Court Today.
   return {
     ...brief,
     bundleContradictions: contradictions,
-    sayThis: uniqueLines(
-      [...actions.map((a) => a.todayCourtLine), ...brief.sayThis],
-      Math.max(brief.sayThis.length + actions.length, 8),
-    ),
-    askCourtToRecord: uniqueLines(
-      [
-        ...actions.map(
-          (a) =>
-            `The defence asks the court to record that ${a.chaseAsk} remain outstanding for contradiction reconciliation.`,
-        ),
-        ...brief.askCourtToRecord,
-      ],
-      Math.max(brief.askCourtToRecord.length + actions.length, 8),
-    ),
-    collapseRisks: uniqueLines(
-      [...actions.map((a) => a.summaryRisk), ...contradictions.map((c) => c.riskLine), ...brief.collapseRisks],
-      Math.max(brief.collapseRisks.length + contradictions.length, 8),
-    ),
-    nextHearingMoves: uniqueLines(
-      [
-        ...actions.map((a) => `Chase: ${a.chaseAsk}.`),
-        ...contradictions.map((c) => c.opportunityLine),
-        ...brief.nextHearingMoves,
-      ],
-      Math.max(brief.nextHearingMoves.length + contradictions.length, 8),
-    ),
   };
 }
 
@@ -431,14 +346,6 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
   const ledger = input.bundleText?.trim()
     ? buildBundleTruthLedger({ bundleText: input.bundleText })
     : null;
-  const briefPlan =
-    input.briefPlan ??
-    buildCriminalBriefPlan({
-      bundleText: input.bundleText,
-      ledger,
-      missingMaterial: [...input.chaseItems, ...(input.proceduralOutstanding ?? [])],
-      allegation: input.allegation,
-    });
 
   const bb = input.battleboard;
   const route = bb?.primary_route;
@@ -452,28 +359,19 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
     ledger,
   };
   const profile = resolveWorkflowProfile(workflowContext);
-  const profileAsks = workflowProfileAskCourtOnly(workflowContext);
-  const prioritizedChase = prioritizeWorkflowItems(
-    filterWorkflowItems(input.chaseItems, workflowContext),
-    workflowContext,
-  );
-  const hasChase = prioritizedChase.length > 0;
+  const fileShortlist = courtShortlistLabelsFromChaseItems(input.chaseItems, input.bundleText);
+  const hasChase = fileShortlist.length > 0;
 
   const labelled = smokePackSolicitorFurniture(input.bundleText ?? "");
-  const safePositionToday =
-    labelled?.courtLine ??
-    workflowSafeCourtLine(workflowContext) ??
-    briefPlan.todayAngle ??
-    resolveSafePosition(bb);
+  const safePositionToday = composeFileBackedCourtSafeLine({
+    labelledCourtLine: labelled?.courtLine,
+    shortlist: fileShortlist,
+  });
 
-  const sayFromRoute =
-    profile === "generic" && route?.hearing_line
-      ? splitSentences(route.hearing_line).filter(isCourtSayable).slice(0, 2)
-      : [];
   const sayThis = uniqueLines(
     labelled
       ? [labelled.caseWideLine, "Keep the position provisional and tied to the uploaded papers."]
-      : [...briefPlan.requiredOutputItems.today.slice(0, 2), ...sayFromRoute, ...defaultSayThis(hasChase, profile)],
+      : fileBackedSayThis(hasChase),
     6,
   );
 
@@ -485,26 +383,6 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
     ...(input.defencePlan?.kill_switches?.map((k) => k.if) ?? []),
     ...hurts,
   ];
-  const collapse =
-    profile !== "generic"
-      ? filterWorkflowPilotLines(collapseRaw, workflowContext, { max: 5 })
-      : collapseRaw;
-  const doNotRaw =
-    profile !== "generic"
-      ? filterWorkflowPilotLines(
-          [
-            ...briefPlan.forbiddenTopics.map(formatBriefPlanForbiddenTopic).filter(Boolean),
-            ...collapse.map((r) => cleanDoNotBullet(r) ?? "").filter(Boolean),
-            ...defaultDoNotOverstate(profile),
-          ],
-          workflowContext,
-          { max: 6, useFallbacks: false },
-        )
-      : [
-          ...briefPlan.forbiddenTopics.map(formatBriefPlanForbiddenTopic).filter(Boolean),
-          ...collapse.map((r) => cleanDoNotBullet(r) ?? "").filter(Boolean),
-          ...defaultDoNotOverstate(profile),
-        ];
   const findingLines = (input.canonicalFindings ?? [])
     .filter((f) => f.unresolved || f.severity === "critical")
     .map((f) => `${f.title}: ${f.summary}`);
@@ -516,10 +394,9 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
           "Do not treat unserved source material as proved.",
           "Solicitor review is required before fixing hearing position.",
         ]
-      : [
-          ...doNotRaw.map((l) => (isCriminalPilotMode() ? softenPilotRiskWording(l) : l)),
-          ...findingLines,
-        ].filter((line) => !lineIsUnbackedOffenceFamilyFurniture(line, input.bundleText)),
+      : [...fileBackedDoNotOverstate(), ...findingLines].filter(
+          (line) => !lineIsUnbackedOffenceFamilyFurniture(line, input.bundleText),
+        ),
     8,
   );
 
@@ -531,26 +408,17 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
           )
         : collapseRaw.map((l) => (isCriminalPilotMode() ? softenPilotRiskWording(l) : l))),
       ...findingLines,
-    ],
+    ].filter((line) => !lineIsUnbackedOffenceFamilyFurniture(line, input.bundleText)),
     8,
   );
 
   const askCourtToRecord = dedupePilotCourtRecordLines(
     labelled?.courtRecordAsks.length
       ? labelled.courtRecordAsks
-      : profile !== "generic" && profileAsks?.length
-        ? uniqueLines(profileAsks, 5)
-        : uniqueLines(
-            [
-              briefPlan.chaseAngle,
-              ...prioritizedChase.map(toCourtRecordAsk).filter(Boolean),
-              ...briefPlan.missingEvidence.slice(0, 3).map((item) => toCourtRecordAsk(item.label)),
-              ...(input.proceduralOutstanding ?? [])
-                .filter((p) => /\b(cctv|cad|999|mg6|disclosure|continuity|bwv|interview)\b/i.test(p))
-                .map(toCourtRecordAsk),
-            ].filter((line) => !lineIsUnbackedOffenceFamilyFurniture(line, input.bundleText)),
-            8,
-          ),
+      : uniqueLines(
+          fileShortlist.map(toCourtRecordAsk).filter(Boolean),
+          8,
+        ),
   );
 
   const rawPositionNotice = bb?.position_notice?.trim() ?? "";
@@ -579,7 +447,11 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
       "Take instructions on timing/sequence — do not fix facts without source material.",
       "Check whether client account conflicts with served evidence before advancing a positive case.",
       "Confirm whether any positive defence can safely be advanced today.",
-      `Main issue to check: ${briefPlan.mainIssue}`,
+      labelled?.mainIssue
+        ? `Main issue to check: ${labelled.mainIssue}`
+        : hasChase
+          ? `Main issue to check: ${fileShortlist[0]}`
+          : "Main issue to check: served papers and solicitor instructions.",
       ...(input.defencePlan?.next_72_hours ?? []).filter((n) =>
         /instruction|position|interview|client/i.test(n),
       ),
@@ -587,21 +459,24 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
     6,
   );
 
-  const pilotMoves = labelled?.nextActions ?? workflowTopNextActions(workflowContext);
+  const fileBackedMoves = hasChase
+    ? [
+        ...fileShortlist.slice(0, 3).map((label) => `Chase: ${label}.`),
+        "Ask court to record outstanding source material on the order.",
+        "Seek timetable / review date — avoid open-ended adjournment without dates.",
+      ]
+    : [
+        "Keep the hearing line provisional pending served papers.",
+        "Seek timetable / review date — avoid open-ended adjournment without dates.",
+      ];
   const nextHearingMoves = uniqueLines(
-    pilotMoves?.length
+    labelled?.nextActions?.length
       ? [
-          ...pilotMoves,
+          ...labelled.nextActions,
           "Ask court to record outstanding source material on the order.",
           "Seek timetable / review date — avoid open-ended adjournment without dates.",
         ]
-      : [
-          "Record a provisional position based on uploaded papers.",
-          "Chase outstanding disclosure / source material.",
-          "Ask court to record outstanding source material on the order.",
-          "Seek timetable / review date — avoid open-ended adjournment without dates.",
-          "Avoid committing to final trial strategy until served material is reviewed.",
-        ],
+      : fileBackedMoves,
     5,
   );
 
@@ -622,16 +497,12 @@ export function buildHearingWarRoomBrief(input: BuildHearingWarRoomBriefInput): 
         8,
       );
 
-  const chaseSnippet =
-    profile !== "generic"
-      ? workflowDraftDisclosureSnippet(workflowContext, 3)
-      : input.chaseItems.slice(0, 4).join("; ") || "outstanding source material on file";
+  const chaseSnippet = hasChase
+    ? fileShortlist.slice(0, 4).join("; ")
+    : labelled?.disclosureLabels?.slice(0, 3).join("; ") || "outstanding source material on the current papers";
 
   const draftWording = {
-    disclosureTimetable:
-      profile !== "generic"
-        ? `The defence asks the court to record that ${chaseSnippet} remain outstanding on the current papers. The defence invites the court to order disclosure of that material by [date] with a review hearing on [date]. Position remains provisional pending service and instructions.`
-        : `The defence asks the court to record that ${chaseSnippet} remains outstanding. The defence invites the court to order disclosure of that material by [date] with a review hearing on [date]. Position remains provisional pending service and instructions.`,
+    disclosureTimetable: `The defence asks the court to record that ${chaseSnippet} ${hasChase && fileShortlist.length === 1 ? "remains" : "remain"} outstanding on the current papers. The defence invites the court to order disclosure of that material by [date] with a review hearing on [date]. Position remains provisional pending service and instructions.`,
     adjournment: `The defence position remains provisional pending served source material and instructions. The defence asks the court to adjourn to [date] for disclosure compliance and a further case management hearing — not for final trial strategy to be fixed today.`,
     clientExplanation: `Your position with the court today is conditional: we will ask the court to record what material is still outstanding and for a timetable. We are not saying the case is won or lost — we need the served material and your instructions before anything firm is advanced.`,
   };

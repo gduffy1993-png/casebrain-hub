@@ -18,7 +18,7 @@ import {
   serializeCanonicalFindingForSurface,
   type CanonicalFinding,
 } from "@/lib/criminal/canonical-finding-model";
-import { buildHearingWarRoomBrief, type HearingWarRoomBrief } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
+import { buildHearingWarRoomBrief, buildChaseItemsForHearing, type HearingWarRoomBrief } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import {
   buildDisclosureChaseBrief,
   type DisclosureChaseBrief,
@@ -186,23 +186,6 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     documents,
   });
 
-  const warRoom = buildHearingWarRoomBrief({
-    caseId,
-    caseTitle,
-    clientLabel,
-    allegation: allegationForExits,
-    stage: "Case management",
-    hearingStatus: "Listed",
-    bundleHealth: "Review papers",
-    positionStatus: "Provisional",
-    readiness: "Needs review",
-    battleboard: null,
-    hasSavedPosition: false,
-    chaseItems: activeMissingRows.map((row) => row.label),
-    bundleText: pipeline.bundleText,
-    canonicalFindings: pipeline.findings,
-  });
-
   const disclosureChase = buildDisclosureChaseBrief({
     caseId,
     caseTitle,
@@ -225,6 +208,27 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
       modality: i.modality,
       aliases: i.aliases,
     })),
+  });
+
+  const warRoom = buildHearingWarRoomBrief({
+    caseId,
+    caseTitle,
+    clientLabel,
+    allegation: allegationForExits,
+    stage: "Case management",
+    hearingStatus: "Listed",
+    bundleHealth: "Review papers",
+    positionStatus: "Provisional",
+    readiness: "Needs review",
+    battleboard: null,
+    hasSavedPosition: false,
+    chaseItems: buildChaseItemsForHearing({
+      snapshotMissing: activeMissingRows,
+      bundleText: pipeline.bundleText,
+      fileBackedShortlist: disclosureChase.primaryItems.map((item) => item.label),
+    }),
+    bundleText: pipeline.bundleText,
+    canonicalFindings: pipeline.findings,
   });
 
   const truthMap = buildFiveAnswersView({
