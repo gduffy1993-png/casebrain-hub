@@ -899,6 +899,15 @@ function extractCountOneAllegationFromChargeTable(text: string): string | null {
     }
   }
 
+  // Live PDF extracts often glue the table: "CountAllegationParticulars\n1Intimidating a witnessBetween ..."
+  const gluedCountOne = normalized.match(
+    /\b1\s*(Intimidating a witness|Witness intimidation|Malicious communications|Harassment|Possession of a controlled drug(?: of Class [ABC])?(?: with intent to supply)?|Robbery|Burglary|Theft|Fraud|Murder|Affray|Assault(?: by beating)?)\s*(?:Between|On or about|On \d{1,2}\s)/i,
+  );
+  if (gluedCountOne?.[1] && /\bCount\s*Allegation\s*Particulars\b/i.test(normalized.replace(/\s+/g, " "))) {
+    const v = cleanLineValue(trimChargeAllegationBoundary(gluedCountOne[1]));
+    if (v && isPlausibleCountOneAllegation(v)) return v;
+  }
+
   return null;
 }
 

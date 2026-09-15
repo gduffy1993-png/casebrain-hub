@@ -135,7 +135,19 @@ function courtHay(
   assert.equal(resolvePilotChargeDisplay(packOnly!.allegation), PILOT_CHARGE_NOT_IDENTIFIED_LABEL);
 }
 
-// 2. Phone attribution remains allowed as key defence issue/chase, not charge.
+// 1b. Glued live PDF table (CountAllegationParticulars / 1Intimidating a witnessBetween).
+{
+  const glued = [
+    "=== SECTION: CHARGE AND PARTICULARS ===",
+    "CountAllegationParticulars",
+    "1Intimidating a witnessBetween 08 May 2026 and 10 May 2026, at Northbank, Taylor Brookes is",
+    "alleged to have contacted Ellie Varna by WhatsApp message and voice note",
+    "2Malicious communicationsOn or about 09 May 2026, messages were allegedly sent from number ending",
+  ].join("\n");
+  const gluedOverview = overviewCharge(glued, "R v Taylor Brookes", "Taylor Brookes");
+  assert.match(gluedOverview.display, /intimidating a witness/i);
+  assert.doesNotMatch(gluedOverview.display, PACK_CHARGE);
+}
 {
   const { meta, display } = overviewCharge(BROOKES, "R v Taylor Brookes", "Taylor Brookes");
   const { chase, chaseItems, war } = chaseAndCourt(BROOKES, {
