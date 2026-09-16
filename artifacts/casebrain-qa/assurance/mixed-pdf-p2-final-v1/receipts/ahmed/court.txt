@@ -1,0 +1,127 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Holly Ahmed
+
+Possession of a bladed article in a public place, contrary to section 139 of the Criminal Justice Act 1988
+
+Crown Court at Preston
+·
+Listing on papers · 20 Jul 2026 at 12:30 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+READINESS
+
+Conditional — record position
+
+SAFE COURT LINE
+
+The defence asks the court to record that Complete CAD/999 log; full interview transcript; Final medical/forensic report remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+
+TOP CHASE
+
+Complete CAD/999 log
+
+NEXT STEP
+
+Chase: Complete CAD/999 log.
+
+Why / source receipt
+OUTPUT
+The defence asks the court to record that Complete CAD/999 log; full interview transcript; Final medical/forensic report remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+TYPE / SURFACE
+court_line · court
+TRUTH STATE
+outstanding
+SOURCE CLASS
+multi_source_backed
+DOCUMENT
+multiple source rows
+REF
+MG6, MG6, MG6
+PAGE
+page unavailable
+FILE QUOTE
+complete CAD/999 log — outstanding not attached | full interview transcript — outstanding | Final medical/forensic report
+TRANSFORMATION
+multi-item court/client line from shortlist receipts
+CONFIDENCE
+0.75
+GUARD
+pass: multi-item line backed by child receipts
+
+ITEM RECEIPTS
+
+Complete CAD/999 log
+
+MG6 · direct_pdf_quote · outstanding
+
+complete CAD/999 log — outstanding not attached
+
+full interview transcript
+
+MG6 · direct_pdf_quote · outstanding
+
+full interview transcript — outstanding
+
+Final medical/forensic report
+
+MG6 · direct_pdf_quote · outstanding
+
+Final medical/forensic report
+
+BEFORE COURT
+COURT LINES
+SOLICITOR REVIEW
+
+Ask the court to set a disclosure timetable for:
+
+complete CAD/999 log remains outstanding
+full interview transcript remains outstanding
+final medical/forensic report remains outstanding
+
+Keep the hearing position provisional until those papers are served.
+
+Next steps
+
+Chase: Complete CAD/999 log.
+Chase: full interview transcript.
+Chase: Final medical/forensic report.
+OUR READ
+COURT LINE FROM PAPERS
+PROVISIONAL
+Keep the position provisional and tied to the uploaded papers.
+The court is asked to record outstanding File-named source material and set a disclosure timetable.
+WHAT'S MISSING
+OUTSTANDING MATERIAL
+MISSING
+Complete CAD/999 log
+full interview transcript
+Final medical/forensic report
+Open CPS Chase (3 review items) →
+GUARDRAILS
+
+DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
+
+SOLICITOR REVIEW
+Avoid firm wording until the papers confirm it
+No support on the papers for another offence-family template. Avoid relying on it until confirmed.
+Do not treat unserved source material as proved.
+Do not chase served material as if it were outstanding.
+More detail (War Room drafts, ask court, risks)
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

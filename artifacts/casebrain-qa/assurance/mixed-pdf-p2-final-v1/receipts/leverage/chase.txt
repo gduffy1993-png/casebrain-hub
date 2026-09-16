@@ -1,0 +1,156 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Alden Vale
+
+On 02/05/2026 at about 18:07 at Market Yard, Alden Vale is alleged dishonestly to have appropriated retail goods intending permanently to…
+
+Northford Magistrates Court
+·
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+3
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+3
+
+All
+Overdue
+Due soon
+Chased
+Received
+full CCTV master
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+MG6 / DISCLOSURE POSITION (mg6) · compiled p.3 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+OUTPUT
+full CCTV master
+TYPE / SURFACE
+chase_request · chase
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+MG6 / DISCLOSURE POSITION
+REF
+MG6
+PAGE
+compiled p.3
+FILE QUOTE
+full CCTV master — outstanding
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+continuity statement
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+MG6 / DISCLOSURE POSITION (mg6) · compiled p.3 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+ID procedure notes
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+MG6 / DISCLOSURE POSITION (mg6) · compiled p.3 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+full CCTV master
+OUTSTANDING
+
+WHY IT MATTERS
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+Why / source receipt
+
+Source: MG6/MG6C disclosure schedule
+
+Deadline: Before next listing — confirm disclosure timetable
+
+EVIDENCE ANCHOR
+
+full CCTV master — outstanding
+
+DRAFT CHASE WORDING
+
+Please provide full CCTV master or confirm in writing why it is not available.
+
+COURT LINE
+
+The defence asks the court to record that full CCTV master remains missing on the current papers and should be disclosed on a timetable. Solicitor review required before addressing the court.
+
+Case-wide court line (provisional): The defence asks the court to record that full CCTV master, continuity statement and ID procedure notes remain outstanding on the papers.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

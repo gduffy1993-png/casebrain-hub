@@ -1,0 +1,127 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Imani Tobin
+
+Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861
+
+Northbridge Magistrates' Court
+·
+Listing on papers · 8 Sept 2026 at 10:45 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+READINESS
+
+Conditional — record position
+
+SAFE COURT LINE
+
+The defence asks the court to record that U1 BWV clip; BWV/4 Photo still; U3 Full interview transcript remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+
+TOP CHASE
+
+U1 BWV clip
+
+NEXT STEP
+
+Chase: U1 BWV clip.
+
+Why / source receipt
+OUTPUT
+The defence asks the court to record that U1 BWV clip; BWV/4 Photo still; U3 Full interview transcript remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+TYPE / SURFACE
+court_line · court
+TRUTH STATE
+outstanding
+SOURCE CLASS
+multi_source_backed
+DOCUMENT
+multiple source rows
+REF
+U1, BWV/4, U3
+PAGE
+mixed pages
+FILE QUOTE
+U1 BWV clip — Outstanding Needed for continuity | BWV/4 Photo still — not served | U3 Full interview transcript — Outstanding Needed before safe reliance
+TRANSFORMATION
+multi-item court/client line from shortlist receipts
+CONFIDENCE
+0.75
+GUARD
+pass: multi-item line backed by child receipts
+
+ITEM RECEIPTS
+
+U1 BWV clip
+
+U1 · direct_pdf_quote · outstanding
+
+U1 BWV clip — Outstanding Needed for continuity
+
+BWV/4 Photo still
+
+BWV/4 · direct_pdf_quote · outstanding
+
+BWV/4 Photo still — not served
+
+U3 Full interview transcript
+
+U3 · direct_pdf_quote · outstanding
+
+U3 Full interview transcript — Outstanding Needed before safe reliance
+
+BEFORE COURT
+COURT LINES
+SOLICITOR REVIEW
+
+Ask the court to set a disclosure timetable for:
+
+u1 BWV clip remains outstanding
+bWV/4 Photo still remains outstanding
+u3 Full interview transcript remains outstanding
+
+Keep the hearing position provisional until those papers are served.
+
+Next steps
+
+Chase: U1 BWV clip.
+Chase: BWV/4 Photo still.
+Chase: U3 Full interview transcript.
+OUR READ
+COURT LINE FROM PAPERS
+PROVISIONAL
+Keep the position provisional and tied to the uploaded papers.
+The court is asked to record outstanding File-named source material and set a disclosure timetable.
+WHAT'S MISSING
+OUTSTANDING MATERIAL
+MISSING
+U1 BWV clip
+BWV/4 Photo still
+U3 Full interview transcript
+Open CPS Chase (3 review items) →
+GUARDRAILS
+
+DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
+
+SOLICITOR REVIEW
+Avoid firm wording until the papers confirm it
+No support on the papers for another offence-family template. Avoid relying on it until confirmed.
+Do not treat unserved source material as proved.
+Do not chase served material as if it were outstanding.
+More detail (War Room drafts, ask court, risks)
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

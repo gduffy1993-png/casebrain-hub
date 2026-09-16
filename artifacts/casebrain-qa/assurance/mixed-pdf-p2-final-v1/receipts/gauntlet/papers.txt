@@ -1,0 +1,600 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Riley North
+
+Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861
+
+Northshire Crown Court
+·
+Listing on papers · 17 Jun 2026 at 14:00 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+PAPERS INVENTORY
+
+Schedule cells from the extract — not the full novel, and not a court pressure desk.
+
+1 file(s) on record
+
+Source text available for review
+
+Provisional — solicitor review
+
+13 material row(s) · 1 served/on-file · 12 gap / partial / unclear · showing 9 schedule / gap cells
+
+MATERIAL	TYPE	STATUS	PAGES / REF
+
+
+MG6C/001 Exterior CCTV export log
+
+not served — Central to sequence, doorway angle and continuity.
+
+Why / source receipt
+	MG6	Outstanding / missing	p.2 · MG6C/001
+
+
+MG6C/004 Final consultant medical report
+
+absent — Do not overstate injury severity or causation.
+
+Why / source receipt
+	MG6	Outstanding / missing	p.2 · MG6C/004
+
+
+MG6C/007 CAD/999 audio
+
+not served — First complaint and timing.
+
+Why / source receipt
+	MG6	Outstanding / missing	p.2 · MG6C/007
+
+
+MG6C/008 BWV initial witness account
+
+not served — First account and visible state.
+
+Why / source receipt
+	MG6	Outstanding / missing	p.2 · MG6C/008
+
+
+MG6C/009 Door staff final signed MG11
+
+absent — Sequence and camera-status issue.
+
+Why / source receipt
+	MG6	Outstanding / missing	p.2 · MG6C/009
+
+
+MG6C/010 Custody CCTV
+
+not served — May affect visible injury/condition after arrest.
+
+Why / source receipt
+	MG6	Outstanding / missing	p.2 · MG6C/010
+
+
+Exhibit code LP/4 appears on one continuity sheet and LP/14 appears on
+
+Why / source receipt
+	MG6	Not safely confirmed	p.2 · LP/4
+
+
+MG6C/003 Interior CCTV not working according to door staff Do not chase as if it exists; may support disclosure
+
+Why / source receipt
+	MG6	Not safely confirmed	p.2 · MG6C/003
+
+
+MG6C/006 Bottle exhibit continuity LP/4 vs LP/14 conflict Continuity/exhibit-code issue.
+
+Why / source receipt
+	MG6	Not safely confirmed	p.2 · MG6C/006
+
+Inventory is provisional and limited to what the extract establishes. Missing ranges appear only when the papers state them — gaps are not invented for a fuller-looking list.
+
+Pre-hearing readiness
+
+Not ready to rely on yet
+
+SOLICITOR REVIEW REQUIRED
+
+Pre-hearing readiness reflects whether served papers support a safe hearing position — not case strength or plea advice. Core source material or review gaps mean it is not safe to rely on this matter for a final hearing position on current papers. 12 core disclosure issues — such as CCTV, CAD, interview, laboratory, medical or continuity material where relevant — outstanding or partial on served papers. Provisional view — papers incomplete; do not finalise a hearing line without solicitor review.
+
+Not case strength · not plea advice · papers readiness only
+
+WHY THIS READINESS?
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs — outstanding or partial on served papers (MG5).
+One or more proof points flagged for human review.
+Serious violence charge or self-defence pattern — solicitor review before fixing hearing position.
+Show why this readiness
+
+ADDITIONAL PAPERS TOOLS
+
+Optional proof map, readiness exports, and supervisor tools — inventory stays above.
+
+Proof map
+
+Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861
+
+SERIOUS VIOLENCE
+OFFENCE-FAMILY PROOF MAP
+
+Solicitor review required before relying on this proof map at hearing.
+
+One or more proof points flagged for human review.
+Serious violence charge or self-defence pattern — solicitor review before fixing hearing position.
+Violence case with outstanding material on papers — solicitor review before fixing hearing position.
+WHAT THE CROWN MUST PROVE
+
+Unlawful assault / force
+
+Crown must prove the defendant applied unlawful force — elements sketch only; verify particulars against MG5.
+
+Charge sheet / MG5 · Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861 — Riley North
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not treat force as finally proved without reconciled witness/CCTV/medical material.
+
+Serious injury / GBH threshold
+
+Crown must prove qualifying injury (e.g. GBH/wounding threshold) — provisional until served medical/expert material.
+
+Charge / medical references · OffenceSection 18 wounding with intent / alternative section
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state injury grade or mechanism as final without served medical/expert reports.
+
+Intent / really serious harm (s18)
+
+Crown must prove intent to cause really serious harm for s18 — charge reduction to s20 may be live; sketch only.
+
+Charge sheet / MG5 · Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861 — Riley North
+
+SOLICITOR REVIEW
+PROVISIONAL
+
+Do not overstate: Do not state intent is proved; do not advise charge reduction outcome — solicitor to review.
+
+Causation / mechanism
+
+Crown must link act to injury (e.g. blow, fall, kerb) — timing and sequence may be disputed on papers.
+
+MG5 / witness / medical · show a cut but severity and causation should remain provisional until the full medical report is served.
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state causation is finally proved while expert/medical/CCTV gaps remain.
+
+Identification / attribution
+
+Crown must prove the defendant as perpetrator — ID may depend on CCTV/witness quality.
+
+MG5 / MG11 / CCTV · Sent 08 June 2026: Matter adjourned to 17 June 2026 at 14:00 for PTPH at Northshire Crown Court. Outstanding: CCTV
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not treat partial CCTV, weak lighting, or friend witness alone as conclusive ID.
+
+Witness reliability / timing
+
+N/A — assess witness accounts and timing consistency on served papers.
+
+MG11 / CAD / index · export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not merge conflicting witness/CAD/index timings into one account.
+
+CCTV / BWV / 999 / CAD
+
+N/A — continuity and full logs may be required for sequence and ID routes.
+
+CCTV list / CAD / 999 · Sent 08 June 2026: Matter adjourned to 17 June 2026 at 14:00 for PTPH at Northshire Crown Court. Outstanding: CCTV
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not say full footage or audio is available if only partial extracts or lists are served.
+
+Medical / expert evidence
+
+Crown may rely on medical/expert evidence for injury and mechanism — often outstanding on initial papers.
+
+Medical / forensic schedule · export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state injury mechanism or expert opinion as final until reports are served.
+
+Interview / custody / PACE
+
+N/A — interview account and custody/PACE compliance may affect route assessment.
+
+Interview / custody record · export log, final medical, continuity statement for bottle exhibit, full interview transcript, MG11 for door staff, CAD/999 call
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not infer guilt from no comment; do not overstate pre-interview disclosure.
+
+Disclosure completeness
+
+N/A — chase CCTV continuity, medical, 999/CAD/BWV, unused material before fixing route.
+
+MG6 / disclosure · Sent 08 June 2026: Matter adjourned to 17 June 2026 at 14:00 for PTPH at Northshire Crown Court. Outstanding: CCTV
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not fix trial/hearing position before outstanding violence disclosure is chased.
+
+Self-defence / lawful excuse (provisional)
+
+N/A — defence route only if source supports live issue; not established on thin papers.
+
+Witness / MG5 · export logs, incomplete medical material, exhibit-code inconsistency and the self-defence account prevent a safe
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not say self-defence is established; say it is a live provisional issue pending full CCTV/medical/interview material.
+
+Show fewer proof points
+WHAT THE BUNDLE APPEARS TO SUPPORT
+
+interview under caution — no comment account
+
+Interview summary · A: No comment.
+
+Disclosure chase: Review interview recording/transcript when served; confirm PACE compliance and disclosure of pre-interview material.
+
+SERVED
+
+interview under caution — no comment account
+
+Interview summary · A: No comment.
+
+Disclosure chase: Review interview recording/transcript when served; confirm PACE compliance and disclosure of pre-interview material.
+
+SERVED
+MISSING OR UNCLEAR
+
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+MG5 · Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+OUTSTANDING
+
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+MG5 · Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+OUTSTANDING
+
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+MG5 · Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+OUTSTANDING
+
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+MG5 · Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+OUTSTANDING
+Show 8 more
+DISCLOSURE CHASE LINKED TO PROOF ISSUES
+
+MG6 / disclosure schedule drives chase priority
+
+MG6(a) / MG6C / disclosure schedule · MG6C UNUSED MATERIAL SCHEDULE - MIXED AND DUPLICATED
+
+Disclosure chase: Work chase list from MG6/outstanding index; request timetable; record Crown responses before fixing hearing position.
+
+OUTSTANDING
+
+MG6 / disclosure schedule drives chase priority
+
+MG6(a) / MG6C / disclosure schedule · MG6C UNUSED MATERIAL SCHEDULE - MIXED AND DUPLICATED
+
+Disclosure chase: Work chase list from MG6/outstanding index; request timetable; record Crown responses before fixing hearing position.
+
+OUTSTANDING
+
+interview under caution — no comment account
+
+Interview summary · A: No comment.
+
+Disclosure chase: Review interview recording/transcript when served; confirm PACE compliance and disclosure of pre-interview material.
+
+SERVED
+
+interview under caution — no comment account
+
+Interview summary · A: No comment.
+
+Disclosure chase: Review interview recording/transcript when served; confirm PACE compliance and disclosure of pre-interview material.
+
+SERVED
+Show 2 more
+
+Working proof map on current papers — not final legal advice. Solicitor review before reliance.
+
+Draft solicitor outputs
+
+Generated from the current papers analysis — draft only, not for automatic sending.
+
+DRAFT ONLY
+
+Draft only — solicitor review required. Not a final court document. No automatic send.
+
+EXPORT TYPE
+
+Disclosure chase
+Hearing prep note
+Case handover
+
+PREVIEW
+
+Copy draft
+Mark reviewed
+Needs review
+Supervisor review
+
+Supervisor review required before relying on this position
+
+NOT CASE STRENGTH
+
+Review prioritisation on the current papers view — not win probability or plea advice.
+
+Pre-hearing readiness: not ready to rely on yet on current papers.
+Reasoning V2 flags human review on the current papers view.
+War Room flags solicitor review before fixing hearing line.
+3 core disclosure items outstanding on papers.
+Multiple do-not-concede points active — position not safe to finalise.
+REVIEW DETAIL
+
+SUPERVISOR SIGN-OFF
+
+Record a review action for this matter — metadata only, not legal advice.
+
+OPTIONAL NOTE (SHORT)
+Mark reviewed
+Escalate
+No obvious issue
+Reasoning
+
+Why this route — from uploaded papers · review only
+
+SOLICITOR REVIEW REQUIRED
+Collapse
+
+Reasoning route differs from existing Battleboard route
+
+Reasoning from uploaded papers may differ from the current saved strategy view. Solicitor review required before relying on either route.
+
+Battleboard route: Causation / injury route pressure
+
+Human review required
+
+One or more proof points flagged for human review.
+Serious violence charge or self-defence pattern — solicitor review before fixing hearing position.
+Violence case with outstanding material on papers — solicitor review before fixing hearing position.
+1. PRIMARY ROUTE
+
+Violence / injury / identification / disclosure pressure
+
+Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861
+
+2. WHY THIS ROUTE IS LIVE
+
+Primary route "Violence / injury / identification / disclosure pressure" is live on current papers (offence lens: ). 9 Crown proof point(s) are under pressure from the evidence graph. 12 missing or partial disclosure item(s) limit how firmly Crown can rely on linked proof points — route remains provisional. Human review required before fixing advice or hearing position.
+
+3. PROOF POINTS UNDER PRESSURE
+Disclosure completeness
+4 pressure link(s)
+Identification / attribution
+3 pressure link(s)
+Causation / mechanism
+2 pressure link(s)
+Serious injury / GBH threshold
+1 pressure link(s)
+Witness reliability / timing
+1 pressure link(s)
+CCTV / BWV / 999 / CAD
+1 pressure link(s)
+Medical / expert evidence
+1 pressure link(s)
+Interview / custody / PACE
+1 pressure link(s)
+Intent / really serious harm (s18)
+0 pressure link(s)
+4. EVIDENCE HELPING DEFENCE
+
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+MG5 · Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state causation or mechanism as finally proved until served expert/medical/forensic material is on file.
+
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+MG5 · Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state causation or mechanism as finally proved until served expert/medical/forensic material is on file.
+
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+MG5 · Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state causation or mechanism as finally proved until served expert/medical/forensic material is on file.
+
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+MG5 · Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state causation or mechanism as finally proved until served expert/medical/forensic material is on file.
+
+Show 8 more
+5. EVIDENCE HURTING DEFENCE
+
+interview under caution — no comment account
+
+Interview summary · A: No comment.
+
+LIKELY ON PAPERS
+
+Do not overstate: Do not infer guilt from no comment; do not overstate what was disclosed before interview.
+
+interview under caution — no comment account
+
+Interview summary · A: No comment.
+
+LIKELY ON PAPERS
+
+Do not overstate: Do not infer guilt from no comment; do not overstate what was disclosed before interview.
+
+6. MISSING MATERIAL
+
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+MG5 · Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state causation or mechanism as finally proved until served expert/medical/forensic material is on file.
+
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+MG5 · Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state causation or mechanism as finally proved until served expert/medical/forensic material is on file.
+
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+MG5 · Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state causation or mechanism as finally proved until served expert/medical/forensic material is on file.
+
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+MG5 · Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+PROVISIONAL
+PROVISIONAL
+
+Do not overstate: Do not state causation or mechanism as finally proved until served expert/medical/forensic material is on file.
+
+Show 8 more
+7. CONTRADICTIONS / UNRESOLVED CONFLICTS
+8. WHAT WOULD WEAKEN OR COLLAPSE THE ROUTE
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs: Crown case may be incomplete on served papers for this proof point.
+CAD/999 audio, BWV and CCTV export log remain outstanding.: Crown case may be incomplete on served papers for this proof point.
+If Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs is served and supports Crown, route assessment may change — solicitor to review.
+If CAD/999 audio, BWV and CCTV export log remain outstanding. is served and supports Crown, route assessment may change — solicitor to review.
+If MG6 / disclosure schedule drives chase priority is served and supports Crown, route assessment may change — solicitor to review.
+9. DISCLOSURE CHASE PRIORITIES
+
+Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs
+
+Chase final expert/medical/forensic report; record that causation remains provisional on current papers.
+
+Record disclosure chase for Medical material is incomplete: ambulance note served, triage note served, final consultant report absent. Photographs; request timetable on file.
+
+CAD/999 audio, BWV and CCTV export log remain outstanding.
+
+Chase master footage, export log, and continuity statement before fixing the hearing position.
+
+Record disclosure chase for CAD/999 audio, BWV and CCTV export log remain outstanding.; request timetable on file.
+
+MG6 / disclosure schedule drives chase priority
+
+Work chase list from MG6/outstanding index; request timetable; record Crown responses before fixing hearing position.
+
+Record disclosure chase for MG6 / disclosure schedule drives chase priority; request timetable on file.
+
+10. SAFE NEXT ACTION
+
+Chase final expert/medical/forensic report; record that causation remains provisional on current papers.
+
+11. DO-NOT-OVERSTATE WARNING
+
+Do not treat force as finally proved without reconciled witness/CCTV/medical material. Do not state injury grade or mechanism as final without served medical/expert reports. Do not state intent is proved; do not advise charge reduction outcome — solicitor to review. Do not state causation is finally proved while expert/medical/CCTV gaps remain. Do not treat partial CCTV, weak lighting, or friend witness alone as conclusive ID.
+
+12. HUMAN REVIEW REQUIRED
+
+Yes — review before fixing hearing position or concessions.
+
+From uploaded papers · conditional · provisional where stated · no predictions
+
+Mark this reasoning
+
+Mark whether this papers-based reasoning is useful for solicitor review — not advice.
+
+Useful
+Missed key issue
+Too vague
+Unsafe / overconfident
+Needs solicitor review
+Good enough for hearing prep
+OPTIONAL NOTE (SHORT)
+Save feedback
+Client account consistency check
+
+Compare structured client account to the current papers analysis — not advice; solicitor review required.
+
+Select structured account options (provisional). Do not paste case papers.
+
+Denies presence
+Denies participation
+Denies possession
+Denies intent
+Accepts presence but disputes role
+Accepts possession but disputes supply
+Self-defence / defensive force
+Accident / no dangerous standard
+Mistaken identity
+No comment / limited instructions
+Other (short note)
+Compare to papers analysis
+
+Based on uploaded papers · conditional where papers are incomplete
