@@ -1,0 +1,144 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+Overview
+File
+More
+
+CASE COMMAND CENTRE
+
+Isaac Patel
+Affray, contrary to section 3 Public Order Act 1986 · Southford Magistrates Court / First appearance · 25 August 2026 10:30
+PROVISIONAL
+
+Do not import another offence-family template unless the papers support it.
+
+5
+
+MISSING
+
+Needs chase
+
+1
+
+INCOMPLETE
+
+Needs completion
+
+6
+
+OPEN REVIEW
+
+Needs checking
+
+What needs attention
+
+One shortlist from the papers. If the file is quiet, this board stays quiet.
+
+6 items
+
+MG6/05 full CCTV master
+
+MISSING
+
+MG6/05 full CCTV master — as stated on the papers.
+
+Full custody record / PACE material
+
+MISSING
+
+Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.
+
+Full Interview recording / transcript
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position. [exact page unavailable (unsplit…
+
+MG6/07 full interview transcript
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+MG6/04 signed final MG11
+
+MISSING
+
+MG6/04 signed final MG11 — as stated on the papers.
+
+EX/01 — item referred to in MG5 (listed).
+
+UNCLEAR
+
+EX/01 — item referred to in MG5 (listed) — as stated on the papers.
+
+SELECTED ISSUE
+
+MG6/05 full CCTV master
+MISSING
+
+WHY CASEBRAIN SAYS THIS
+
+MG6/05 full CCTV master — as stated on the papers.
+
+SOURCES
+
+MG6/MG6C disclosure schedule
+MG6/05 full CCTV master — outstanding requested / not attached
+MG6 DISCLOSURE SCHEDULECBTB546 p.p.7
+
+RECOMMENDED ACTION
+
+Please provide the full CCTV window, master footage or export log, or confirm in writing why it is not available.
+
+Why / source receipt
+OUTPUT
+MG6/05 full CCTV master
+TYPE / SURFACE
+evidence_status · overview
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+MG6 DISCLOSURE SCHEDULECBTB546
+REF
+MG6/05
+PAGE
+p.7 (compiled p.7)
+FILE QUOTE
+MG6/05 full CCTV master — outstanding requested / not attached
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+Copy chase request
+Copy court wording
+Safe court line
+Copy safe court line
+
+The defence asks the court to record that MG6/05 full CCTV master, Full custody record / PACE material, Full Interview recording / transcript and MG6/07 full interview transcript remain outstanding on the papers.
+
+Why / source receipt
+Client update
+Copy client update
+
+CLIENT-SAFE SUMMARY
+(not for court or CPS) We are reviewing the papers in your case (Affray, contrary to section 3 Public Order Act 1986). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.
+
+Why / source receipt
+Detail tabs
+
+Main answer is above. Open the detail views only when you need the full source desk.
+
+File & source →
+Papers detail →
+CPS chase detail →
+Court detail →
+Readiness: 4% provisional score from papers-backed counts.

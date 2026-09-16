@@ -1,0 +1,106 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Leon Hale
+
+Murder, contrary to common law
+
+Northchester Crown Court
+·
+Listing on papers · 22 May 2026 at 10:00 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+READINESS
+
+Conditional — record position
+
+SAFE COURT LINE
+
+The defence asks the court to record that CCTV stills and timing note Master footage; CAD and 999 summaries Original audio/log; Police officer statement BWV remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+
+TOP CHASE
+
+CCTV stills and timing note Master footage
+
+NEXT STEP
+
+Chase: CCTV stills and timing note Master footage.
+
+Why / source receipt
+OUTPUT
+The defence asks the court to record that CCTV stills and timing note Master footage; CAD and 999 summaries Original audio/log; Police officer statement BWV remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+TYPE / SURFACE
+court_line · court
+TRUTH STATE
+provisional
+SOURCE CLASS
+derived_from_absence
+DOCUMENT
+unavailable
+REF
+ref unavailable
+PAGE
+page unavailable
+FILE QUOTE
+No supporting File/PDF quote available.
+TRANSFORMATION
+absence rule
+CONFIDENCE
+0.65
+GUARD
+pass: derived from stated absence
+BEFORE COURT
+COURT LINES
+SOLICITOR REVIEW
+
+Ask the court to set a disclosure timetable for:
+
+CCTV stills and timing note Master footage remains outstanding
+cAD / dispatch log material remains outstanding
+police officer statement BWV remains outstanding
+
+Keep the hearing position provisional until those papers are served.
+
+Next steps
+
+Chase: CCTV stills and timing note Master footage.
+Chase: CAD and 999 summaries Original audio/log.
+Chase: Police officer statement BWV.
+OUR READ
+COURT LINE FROM PAPERS
+PROVISIONAL
+Keep the position provisional and tied to the uploaded papers.
+The court is asked to record outstanding File-named source material and set a disclosure timetable.
+WHAT'S MISSING
+OUTSTANDING MATERIAL
+MISSING
+CCTV stills and timing note Master footage
+CAD / dispatch log material
+Police officer statement BWV
+Open CPS Chase (3 review items) →
+GUARDRAILS
+
+DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
+
+SOLICITOR REVIEW
+Avoid firm wording until the papers confirm it
+No support on the papers for another offence-family template. Avoid relying on it until confirmed.
+Do not treat unserved source material as proved.
+Do not chase served material as if it were outstanding.
+More detail (War Room drafts, ask court, risks)
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.
