@@ -276,4 +276,16 @@ function courtHay(
   assert.notEqual(display, PILOT_CHARGE_NOT_IDENTIFIED_LABEL);
 }
 
+// Glued OffenceAssault occasioning… must keep ABH, not stop at “Assault”.
+{
+  const paige = [
+    "DefendantPaige Marie Thornton",
+    "OffenceAssault occasioning actual bodily harm, contrary to section 47 Offences against the Person Act 1861",
+    "CourtNorthbridge Magistrates Court",
+  ].join("\n");
+  const { display } = overviewCharge(paige, "CB-TB-04 Paige Thornton", "Paige Thornton");
+  assert.match(display, /actual bodily harm|ABH|s\.?\s*47/i);
+  assert.doesNotMatch(display, /^Assault$/i);
+}
+
 console.log("overview-charge-file-first.test.ts: PASS");

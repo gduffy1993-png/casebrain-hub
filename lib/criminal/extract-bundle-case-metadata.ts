@@ -1378,6 +1378,8 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
   // High-confidence short labelled offences (monster / OCR packs)
   const labelledNouns =
     "Affray|Theft|Fraud|Murder|Robbery|Harassment|Burglary|Manslaughter|Arson|Rape|Perjury|Assault|Wounding|Intimidating a witness|Malicious communications";
+  const labelledGluedNouns =
+    "Intimidating a witness|Malicious communications|Affray|Theft|Fraud|Murder|Robbery|Harassment|Burglary|Manslaughter|Arson|Rape|Perjury|Wounding";
   const labelledShort =
     scan.match(
       new RegExp(
@@ -1389,7 +1391,7 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
     scan.match(/^\s*Offence\s*type\s*:\s*(ABH(?:\s*s\.?\s*47)?)\s*$/im) ??
     scan.match(
       new RegExp(
-        `\\b(?:Charge|Offence)(?=[A-Z])(${labelledNouns})\\b`,
+        `\\b(?:Charge|Offence)(?=[A-Z])(${labelledGluedNouns})\\b`,
       ),
     ) ??
     normalizedFull.match(
@@ -1402,7 +1404,7 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
     normalizedFull.match(/^\s*Offence\s*type\s*:\s*(ABH(?:\s*s\.?\s*47)?)\s*$/im) ??
     normalizedFull.match(
       new RegExp(
-        `\\b(?:Charge|Offence)(?=[A-Z])(${labelledNouns})\\b`,
+        `\\b(?:Charge|Offence)(?=[A-Z])(${labelledGluedNouns})\\b`,
       ),
     );
   if (labelledShort?.[1]) {
