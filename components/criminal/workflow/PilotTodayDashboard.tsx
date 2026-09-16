@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { DontSaySafetyBox } from "@/components/criminal/trust/DontSaySafetyBox";
 import { OutputReceiptDisclosure } from "@/components/criminal/trust/OutputReceiptDisclosure";
-import { receiptFromCourtLine } from "@/lib/criminal/visible-output-receipt";
+import { pickCourtLineReceiptSources, receiptFromCourtLine } from "@/lib/criminal/visible-output-receipt";
 import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
 import { TrustSectionChrome } from "@/components/criminal/trust/MatterConfidenceHeader";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
@@ -140,6 +140,15 @@ export type PilotTodayDashboardView = {
   collapseRisks: string[];
   nextHearingMoves: string[];
   chaseItems: string[];
+  chaseReceiptItems?: Array<{
+    label: string;
+    id?: string;
+    baseStatus?: string | null;
+    source?: string | null;
+    evidenceAnchor?: string | null;
+    mergedFrom?: string[];
+    sourceScheduleRef?: string | null;
+  }>;
   documentCount: number;
 };
 
@@ -187,6 +196,10 @@ export function PilotTodayDashboard({
     view.safeCourtLine && view.safeCourtLine !== "—"
       ? view.safeCourtLine.replace(/\s+/g, " ").trim()
       : "Provisional — review served papers before relying on any line.";
+  const courtReceipt = receiptFromCourtLine(
+    safeLine,
+    pickCourtLineReceiptSources(safeLine, view.chaseReceiptItems ?? []),
+  );
   const allegationDisplay = resolvePilotChargeDisplay(view.caseSummary.allegation, deskChargeLine);
   const positionDisplay = displayPilotSnapshotPosition(view.positionStatus, view.readiness);
 
@@ -205,7 +218,7 @@ export function PilotTodayDashboard({
           </div>
         ))}
       </div>
-      <OutputReceiptDisclosure receipt={receiptFromCourtLine(safeLine)} />
+      <OutputReceiptDisclosure receipt={courtReceipt} />
 
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
         <CockpitCard

@@ -337,6 +337,34 @@ describe("visible output receipts", () => {
       "MG6/04 bank source statements — Outstanding Not in papers supplied",
     ]);
     expect(receipt.guard).toMatch(/multi-item line backed/);
+    expect(receipt.supportingText).not.toMatch(/No supporting File\/PDF quote available/);
+  });
+
+  it("does not call a multi-item court line unsupported when children are source-backed", () => {
+    const receipt = receiptFromCourtLine(
+      "The defence asks the court to record that O02 CAD log full print remain outstanding on the current papers.",
+      [
+        chase({
+          id: "cad",
+          label: "O02 CAD log full print",
+          baseStatus: "Outstanding",
+          sourceScheduleRef: "O02",
+          evidenceAnchor: null,
+        }),
+        chase({
+          id: "audio",
+          label: "O05 999 audio",
+          baseStatus: "Outstanding",
+          sourceScheduleRef: "O05",
+          evidenceAnchor: null,
+        }),
+      ],
+    );
+    expect(receipt.sourceClass).toBe("multi_source_backed");
+    expect(receipt.unsupportedWarning).toBeNull();
+    expect(receipt.supportingText).toBe("Backed by listed child receipts");
+    expect(receipt.childReceipts).toHaveLength(2);
+    expect(receipt.guard).toMatch(/child receipts/);
   });
 
   it("backs a multi-item client update with child receipts from the shortlist", () => {

@@ -75,6 +75,7 @@ import {
   phoneDownloadChaseWording,
   phoneDownloadIdentityLabel,
 } from "@/lib/criminal/disclosure-chase-finalize";
+import { collapseSamePracticalChaseCards } from "@/lib/criminal/solicitor-same-source-dedupe";
 import {
   lineIsUnbackedOffenceFamilyFurniture,
   smokePackOutstandingChaseDrafts,
@@ -3035,6 +3036,7 @@ export function assembleSolicitorShortlist(items: DisclosureChaseItem[]): {
 } {
   let next = demoteSolicitorClutter(dedupeDisclosureItems(items), (i) => i.label);
   next = collapseSolicitorPhoneDownloadDoubles(next);
+  next = collapseSamePracticalChaseCards(next);
   next = next
     .map((item) => {
       const evidenceAnchor = familySafeEvidenceAnchor(
@@ -3936,7 +3938,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   ({ items, primaryItems, additionalItems } = assembleSolicitorShortlist(items));
   const smokePacked = ensureSmokePackOutstandingChaseItems(items, input.bundleText, deadline);
   if (smokePacked.length !== items.length) {
-    items = smokePacked.slice(0, DISCLOSURE_CHASE_PRIMARY_CAP);
+    items = collapseSamePracticalChaseCards(smokePacked).slice(0, DISCLOSURE_CHASE_PRIMARY_CAP);
     primaryItems = items;
     additionalItems = [];
   }

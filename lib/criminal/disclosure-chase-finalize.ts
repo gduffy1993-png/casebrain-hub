@@ -58,9 +58,26 @@ function stripPagePipeFragments(raw: string): string {
     .trim();
 }
 
+/** File/PDF shortlist labels must keep their named row, not a family alias. */
+export function isPreservedFileNamedChaseLabel(raw: string): boolean {
+  const t = raw.replace(/\s+/g, " ").trim();
+  if (!t) return false;
+  if (/\b(?:MG6C?\/\d+|O\d{1,3}|U\d+|EX[-/][A-Z0-9-]+)\b/i.test(t) && !/\s[—–-]\s/.test(t)) {
+    return true;
+  }
+  if (/\bMG6C\b/i.test(t) && /disclosure schedule/i.test(t) && /original download|voice note/i.test(t)) {
+    return true;
+  }
+  if (t.length > 48 && /\bfull bundle pages\b/i.test(t) && /\b(?:cctv master|continuity)\b/i.test(t)) {
+    return true;
+  }
+  return false;
+}
+
 export function humanizeChaseFragmentLabel(raw: string): string {
   let t = stripCourtLinePrefix(stripPagePipeFragments(raw.trim()));
   if (!t) return "";
+  if (isPreservedFileNamedChaseLabel(t)) return formatDisplayLabelCasing(t);
 
   // BWV / footage status fragments → natural prose (shared; not gold-ID patches)
   if (/bwv\s*\/\s*footage/i.test(t) && /not served/i.test(t) && /log only/i.test(t)) {
@@ -128,6 +145,9 @@ export function humanizeChaseFragmentLabel(raw: string): string {
   }
 
   if (t.length > 72 && /outstanding|served|draft|summary/i.test(t)) {
+    if (/\b(?:cctv|continuity|interview|whatsapp|bundle pages|mg6)\b/i.test(t)) {
+      return formatDisplayLabelCasing(t);
+    }
     return "Further papers on the file";
   }
 

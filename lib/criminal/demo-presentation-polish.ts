@@ -1,5 +1,6 @@
 import {
   humanizeChaseFragmentLabel,
+  isPreservedFileNamedChaseLabel,
   phoneDownloadIdentityLabel,
 } from "@/lib/criminal/disclosure-chase-finalize";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
@@ -293,6 +294,7 @@ function digitalChaseLabel(hay: string): string | null {
 export function displayChaseCardLabel(item: ChaseDisplayItem, bundleHay = ""): string {
   const hay = `${digitalHay(item)}\n${bundleHay}`;
   const normalized = item.label.replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
+  if (isPreservedFileNamedChaseLabel(normalized)) return normalized;
 
   // Prefer PDF-true phone download identity over harassment playbook message-export label.
   if (

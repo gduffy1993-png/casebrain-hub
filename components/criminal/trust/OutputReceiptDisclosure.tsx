@@ -29,7 +29,10 @@ function ChildReceiptRows({ receipts }: { receipts: VisibleOutputReceipt[] }) {
               {child.sourceRef} · {child.sourceClass} · {child.truthState}
             </p>
             <p className="mt-0.5 text-slate-500">
-              {child.supportingText ?? "No supporting File/PDF quote available."}
+              {child.supportingText ??
+                (child.sourceClass !== "unsupported"
+                  ? "Backed by listed child receipts"
+                  : "No supporting File/PDF quote available.")}
             </p>
           </li>
         ))}
@@ -71,7 +74,12 @@ export function OutputReceiptDisclosure({
         <Row label="Page" value={receipt.sourcePage} />
         <Row
           label="File quote"
-          value={receipt.supportingText ?? "No supporting File/PDF quote available."}
+          value={
+            receipt.supportingText ??
+            ((receipt.childReceipts ?? []).some((child) => child.sourceClass !== "unsupported")
+              ? "Backed by listed child receipts"
+              : "No supporting File/PDF quote available.")
+          }
         />
         <Row label="Transformation" value={receipt.transformation} />
         <Row label="Confidence" value={String(receipt.confidence)} />

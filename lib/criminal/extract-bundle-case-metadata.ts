@@ -644,6 +644,9 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
   let t = raw.trim();
   if (!t) return t;
 
+  t = t.replace(/^(?:primary\s+)?charge\s*:\s*/i, "").trim();
+  t = t.replace(/^offence(?:\s+type)?\s*:\s*/i, "").trim();
+
   const asTag = normalizeOffenceAsTagLine(t);
   if (asTag) t = asTag;
 

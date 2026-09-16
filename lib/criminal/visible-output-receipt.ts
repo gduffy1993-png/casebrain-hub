@@ -350,6 +350,23 @@ export function receiptFromMaterialRow(row: {
   });
 }
 
+export function pickCourtLineReceiptSources<T extends { label: string }>(
+  text: string,
+  items: T[],
+): T[] {
+  const hay = compact(text).toLowerCase();
+  if (!hay || !items.length) return [];
+  const matched = items.filter((item) => {
+    const label = compact(item.label).toLowerCase();
+    if (!label) return false;
+    if (hay.includes(label)) return true;
+    const slice = label.slice(0, Math.min(label.length, 36));
+    return slice.length >= 10 && hay.includes(slice);
+  });
+  if (matched.length) return matched.slice(0, 4);
+  return items.slice(0, 3);
+}
+
 export function receiptFromCourtLine(
   text: string,
   source?: {
@@ -376,6 +393,7 @@ export function receiptFromCourtLine(
   const childReceipts = sources
     .filter((item): item is typeof item & { label: string } => Boolean(compact(item.label)))
     .map((item) => receiptFromChaseItem(item, "court"));
+  const CHILD_BACKED_QUOTE = "Backed by listed child receipts";
   if (childReceipts.length > 1) {
     const refs = childReceipts.map((receipt) => receipt.sourceRef).filter((ref) => ref !== REF_UNAVAILABLE);
     const quotes = childReceipts
@@ -392,7 +410,7 @@ export function receiptFromCourtLine(
       sourceDocument: "multiple source rows",
       sourceRef: refs.length ? refs.join(", ") : REF_UNAVAILABLE,
       sourcePage: pageKnown ? "mixed pages" : PAGE_UNAVAILABLE,
-      supportingText: quotes.length ? quotes.join(" | ") : null,
+      supportingText: quotes.length ? quotes.join(" | ") : backedChildren.length ? CHILD_BACKED_QUOTE : null,
       transformation: "multi-item court/client line from shortlist receipts",
       confidence: backedChildren.length === childReceipts.length ? 0.75 : 0.45,
       guard:
@@ -408,7 +426,7 @@ export function receiptFromCourtLine(
     };
   }
   const singleSource = sources[0] ?? null;
-  return buildVisibleOutputReceipt({
+  const receipt = buildVisibleOutputReceipt({
     output: text,
     surface: "court",
     outputType: "court_line",
@@ -419,6 +437,26 @@ export function receiptFromCourtLine(
     mergedFrom: singleSource?.mergedFrom,
     provenance: singleSource?.provenance,
   });
+  const child = childReceipts[0];
+  if (!child) return receipt;
+  const childBacked = child.sourceClass !== "unsupported";
+  return {
+    ...receipt,
+    supportingText:
+      receipt.supportingText ?? child.supportingText ?? (childBacked ? CHILD_BACKED_QUOTE : null),
+    sourceClass:
+      receipt.sourceClass === "unsupported" && childBacked ? child.sourceClass : receipt.sourceClass,
+    sourceRef: receipt.sourceRef !== REF_UNAVAILABLE ? receipt.sourceRef : child.sourceRef,
+    sourceDocument: receipt.sourceDocument !== DOC_UNAVAILABLE ? receipt.sourceDocument : child.sourceDocument,
+    sourcePage: receipt.sourcePage !== PAGE_UNAVAILABLE ? receipt.sourcePage : child.sourcePage,
+    guard:
+      receipt.sourceClass === "unsupported" && childBacked
+        ? "pass: backed by listed child receipts"
+        : receipt.guard,
+    unsupportedWarning:
+      receipt.sourceClass === "unsupported" && childBacked ? null : receipt.unsupportedWarning,
+    childReceipts,
+  };
 }
 
 export function receiptFromClientLineSources(

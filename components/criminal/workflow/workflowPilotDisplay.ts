@@ -92,6 +92,7 @@ export function displayPilotStripCharge(raw: string | null | undefined): string 
     .replace(/\s+/g, " ")
     .trim()
     .replace(/^(?:statement|particulars)\s+of\s+offence\s*:\s*/i, "")
+    .replace(/^(?:primary\s+)?charge\s*:\s*/i, "")
     .replace(/^offence\s+(?=[A-Z])/i, "")
     .replace(/,?\s*contrary\s+to\s*$/i, "")
     .trim();

@@ -84,7 +84,6 @@ import { useExportsEnabled } from "@/lib/criminal/disclosure-export/export-flag"
 import { buildClientStressResult } from "@/lib/criminal/client-stress-test/build-client-stress-result";
 import { loadClientStressSelection } from "@/lib/criminal/client-stress-test/client-stress-selection-storage";
 import {
-  displayChaseBulletLine,
   filterBundleFamilyWarnings,
   polishPresentationLine,
 } from "@/lib/criminal/demo-presentation-polish";
@@ -637,7 +636,7 @@ export function HearingWarRoom({
     workflowContext,
   ]);
 
-  const chaseItemsAll = useMemo(() => {
+  const chaseBoard = useMemo(() => {
     const canonicalRows = canonicalRowsForBuilder(bundleSource?.canonical ?? null);
     const builderMissingRows =
       canonicalRows.length > 0 ? canonicalRows : snapshot?.evidence.missingEvidence ?? [];
@@ -662,13 +661,16 @@ export function HearingWarRoom({
         state: r.existence,
       })),
     });
-    return buildChaseItemsForHearing({
-      snapshotMissing: snapshot?.evidence.missingEvidence,
-      proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
-      battleboard,
-      bundleText: sourceBundleText,
-      fileBackedShortlist: chase.primaryItems.map((item) => item.label),
-    });
+    return {
+      labels: buildChaseItemsForHearing({
+        snapshotMissing: snapshot?.evidence.missingEvidence,
+        proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
+        battleboard,
+        bundleText: sourceBundleText,
+        fileBackedShortlist: chase.primaryItems.map((item) => item.label),
+      }),
+      items: chase.primaryItems,
+    };
   }, [
     caseId,
     caseTitle,
@@ -685,6 +687,8 @@ export function HearingWarRoom({
     sourceBundleText,
     pilotHeader?.profile,
   ]);
+
+  const chaseItemsAll = chaseBoard.labels;
 
   const readiness = useMemo(() => {
     if (effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED") {
@@ -818,7 +822,7 @@ export function HearingWarRoom({
     if (!usePilotDeskUi || snapshotLoading) return null;
     const filteredDno = filterBundleFamilyWarnings(brief.doNotOverstate, bundleContextHay);
     const filteredRisks = filterBundleFamilyWarnings(brief.collapseRisks, bundleContextHay);
-    const filteredChase = filterBundleFamilyWarnings(chaseItemsAll, bundleContextHay).map(displayChaseBulletLine);
+    const filteredChase = filterBundleFamilyWarnings(chaseItemsAll, bundleContextHay);
     const filteredSayThis = filterBundleFamilyWarnings(brief.sayThis, bundleContextHay).map((line) =>
       polishPresentationLine(line, bundleContextHay),
     );
@@ -846,6 +850,7 @@ export function HearingWarRoom({
       collapseRisks: filteredRisks,
       nextHearingMoves: filteredNextMoves,
       chaseItems: filteredChase,
+      chaseReceiptItems: chaseBoard.items,
       documentCount: Math.max(bundleSource?.documentCount ?? 0, snapshot?.analysis.docCount ?? 0),
     };
   }, [
@@ -859,6 +864,7 @@ export function HearingWarRoom({
     stage,
     brief,
     chaseItemsAll,
+    chaseBoard.items,
     bundleSource,
     snapshot,
     bundleContextHay,
