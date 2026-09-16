@@ -241,4 +241,39 @@ function courtHay(
   assert.notEqual(davies.display, PILOT_CHARGE_NOT_IDENTIFIED_LABEL);
 }
 
+// 10-fresh: glued CountAllegationParticulars "Assault on emergency workerOn 22 May" must not stay blank.
+{
+  const jordan = [
+    "=== SECTION: COVER SHEET ===",
+    "DefendantJordan Hale",
+    "This bundle concerns an alleged assault on an emergency worker and obstruction during a custody-suite incident.",
+    "=== SECTION: CHARGE AND PARTICULARS ===",
+    "CountAllegationParticulars",
+    "1Assault on emergency workerOn 22 May 2026 at Eastmoor custody suite, Jordan Hale is alleged to have",
+    "pushed PC Nathan Ives",
+    "2Obstruct policeOn the same date and place, Jordan Hale is alleged to have obstructed officers",
+  ].join("\n");
+  const { meta, display } = overviewCharge(jordan, "CB-FRESH-002 Jordan Hale", "Jordan Hale");
+  assert.match(meta.defendantName ?? "", /Jordan Hale/i);
+  assert.match(`${meta.offenceWording ?? ""} ${display}`, /emergency worker/i);
+  assert.notEqual(display, PILOT_CHARGE_NOT_IDENTIFIED_LABEL);
+}
+
+// 10-fresh: "offence/count. CB-TB-01 |" must not win over OffenceRobbery.
+{
+  const robbery = [
+    "CB-TB-01 | TRAINING / TEST BUNDLE - NO REAL CASE R v Ryan Hale - robbery first appearance / IDPC only",
+    "DefendantRyan Hale",
+    "OffenceRobbery - alleged theft of phone and wallet with force used or threatened",
+    "Contrary toSection 8 Theft Act 1968",
+    "CaseBrain should dedupe this page and not count it as a second offence/count. CB-TB-01 | TRAINING",
+  ].join("\n");
+  const { meta, display } = overviewCharge(robbery, "CB_TEST_01 Robbery IDPC", "Ryan Hale");
+  assert.match(meta.defendantName ?? "", /Ryan Hale/i);
+  assert.match(`${meta.offenceWording ?? ""} ${display}`, /robbery/i);
+  assert.doesNotMatch(display, /\/count/i);
+  assert.doesNotMatch(display, /CB-TB-01/i);
+  assert.notEqual(display, PILOT_CHARGE_NOT_IDENTIFIED_LABEL);
+}
+
 console.log("overview-charge-file-first.test.ts: PASS");

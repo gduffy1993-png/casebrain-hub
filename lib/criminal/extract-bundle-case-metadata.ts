@@ -109,7 +109,24 @@ function extractLabeledValue(scan: string, labelPatterns: string[]): string | nu
   return null;
 }
 
-/** Label followed by value on same line (optional colon), stopping at pipe or next label. */
+/** Offence: value, OffenceRobbery glued, never mid-sentence offence/count pack junk. */
+function extractInlineOffenceLabel(scan: string): string | null {
+  const labels = ["Offence type", "Statement of offence", "Offence", "Offense"];
+  for (const label of labels) {
+    const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const re = new RegExp(
+      `\\b${escaped}(?:\\s*:\\s*|\\s+|(?=[A-Z]))([^\\n/|]{3,200}?)(?=\\s*\\||\\s+(?:DOB|Stage|Court|Charge|Defence|Defense|Next\\s+hearing|Bundle\\s+size|Contrary\\s+to)\\b|$)`,
+      "i",
+    );
+    const m = scan.match(re);
+    if (m?.[1]) {
+      const v = cleanLineValue(m[1]);
+      if (v && !isSpuriousChargeLabelValue(v)) return v;
+    }
+  }
+  return null;
+}
+
 function extractInlineLabeled(scan: string, labels: string[], maxLen = 200): string | null {
   for (const label of labels) {
     const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -834,6 +851,10 @@ function isSpuriousChargeLabelValue(value: string): boolean {
   if (/^count\s*\d+$/i.test(t)) return true;
   if (/^[\.\s]*particulars\b/i.test(t)) return true;
   if (/particulars are\b/i.test(t) && !/\bcontrary to\b/i.test(t)) return true;
+  if (/^\//.test(t) || /^\/count\b/i.test(t) || /\boffence\s*\/\s*count\b/i.test(t)) return true;
+  if (/\bcb-tb-\d+\b/i.test(t) && !/\b(contrary to|section\s*\d+|robbery|theft|assault)\b/i.test(t)) {
+    return true;
+  }
   if (isTrackerCategoryOffenceLabel(value)) return true;
   return false;
 }
@@ -907,7 +928,7 @@ function extractCountOneAllegationFromChargeTable(text: string): string | null {
 
   // Live PDF extracts often glue the table: "CountAllegationParticulars\n1Intimidating a witnessBetween ..."
   const gluedCountOne = normalized.match(
-    /\b1\s*(Intimidating a witness|Witness intimidation|Malicious communications|Harassment|Possession of a controlled drug(?: of Class [ABC])?(?: with intent to supply)?|Robbery|Burglary|Theft|Fraud|Murder|Affray|Assault(?: by beating)?)\s*(?:Between|On or about|On \d{1,2}\s)/i,
+    /\b1\s*(Intimidating a witness|Witness intimidation|Malicious communications|Harassment|Possession of a controlled drug(?: of Class [ABC])?(?: with intent to supply)?|Robbery|Burglary|Theft|Fraud|Murder|Affray|Assault on (?:an )?emergency worker|Assault(?: by beating)?)\s*(?:Between|On or about|On \d{1,2}\s)/i,
   );
   if (gluedCountOne?.[1] && /\bCount\s*Allegation\s*Particulars\b/i.test(normalized.replace(/\s+/g, " "))) {
     const v = cleanLineValue(trimChargeAllegationBoundary(gluedCountOne[1]));
@@ -948,6 +969,10 @@ function extractChargeSheetAllegation(scan: string, fullText: string): string | 
 function extractPlainAllegationOffence(scan: string, fullText: string): string | null {
   for (const src of [scan, fullText]) {
     const normalized = normalizeMetadataScanText(src);
+
+    if (/\balleged assault on (?:an )?emergency worker\b/i.test(normalized)) {
+      return "Assault on an emergency worker";
+    }
 
     if (/\bis\s+alleged\s+to\s+have\s+assaulted\b/i.test(normalized)) {
       if (/\bby\s+beating\b/i.test(normalized)) return "Assault by beating";
@@ -1222,6 +1247,10 @@ function extractOffenceFromChargeBlock(block: string): string | null {
       const v = cleanLineValue(line.replace(/^offence\s*[:]\s*/i, ""));
       if (v && !isSpuriousChargeLabelValue(v)) return v;
     }
+    if (/^Offence(?=[A-Z])/.test(line)) {
+      const v = cleanLineValue(trimChargeAllegationBoundary(line.replace(/^Offence/i, "")));
+      if (v && !isSpuriousChargeLabelValue(v) && v.length >= 8) return v;
+    }
     if (/^(?:offence\s*)?\(?s\)?\s*as\s*tag\s*:/i.test(line)) {
       const asTag = normalizeOffenceAsTagLine(line);
       if (asTag) return asTag;
@@ -1347,17 +1376,35 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
   const normalizedFull = normalizeMetadataScanText(fullText);
 
   // High-confidence short labelled offences (monster / OCR packs)
+  const labelledNouns =
+    "Affray|Theft|Fraud|Murder|Robbery|Harassment|Burglary|Manslaughter|Arson|Rape|Perjury|Assault|Wounding|Intimidating a witness|Malicious communications";
   const labelledShort =
     scan.match(
-      /^\s*(?:Charge|Offence)\s*:\s*(Affray|Theft|Fraud|Murder|Robbery|Harassment|Burglary|Manslaughter|Arson|Rape|Perjury|Assault|Wounding|Intimidating a witness|Malicious communications)\s*$/im,
+      new RegExp(
+        `^\\s*(?:Charge|Offence)\\s*:\\s*(${labelledNouns})\\s*$`,
+        "im",
+      ),
     ) ??
     scan.match(/^\s*Offence\s*:\s*(Robbery)\s*$/im) ??
     scan.match(/^\s*Offence\s*type\s*:\s*(ABH(?:\s*s\.?\s*47)?)\s*$/im) ??
+    scan.match(
+      new RegExp(
+        `\\b(?:Charge|Offence)(?=[A-Z])(${labelledNouns})\\b`,
+      ),
+    ) ??
     normalizedFull.match(
-      /^\s*(?:Charge|Offence)\s*:\s*(Affray|Theft|Fraud|Murder|Robbery|Harassment|Burglary|Manslaughter|Arson|Rape|Perjury|Assault|Wounding|Intimidating a witness|Malicious communications)\s*$/im,
+      new RegExp(
+        `^\\s*(?:Charge|Offence)\\s*:\\s*(${labelledNouns})\\s*$`,
+        "im",
+      ),
     ) ??
     normalizedFull.match(/^\s*Offence\s*:\s*(Robbery)\s*$/im) ??
-    normalizedFull.match(/^\s*Offence\s*type\s*:\s*(ABH(?:\s*s\.?\s*47)?)\s*$/im);
+    normalizedFull.match(/^\s*Offence\s*type\s*:\s*(ABH(?:\s*s\.?\s*47)?)\s*$/im) ??
+    normalizedFull.match(
+      new RegExp(
+        `\\b(?:Charge|Offence)(?=[A-Z])(${labelledNouns})\\b`,
+      ),
+    );
   if (labelledShort?.[1]) {
     return {
       wording: formatOffenceDisplayFromBundle(labelledShort[1]),
@@ -1589,7 +1636,7 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
 
   let offenceWording =
     extractLabeledValue(scan, ["Offence type", "Offence", "Offense", "Statement of offence"]) ??
-    extractInlineLabeled(scan, ["Offence type", "Offence", "Offense", "Statement of offence"]) ??
+    extractInlineOffenceLabel(scan) ??
     null;
 
   if (offenceWording && !isSpuriousChargeLabelValue(offenceWording) && offenceWording.length < 200) {
