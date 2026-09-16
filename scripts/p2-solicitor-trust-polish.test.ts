@@ -17,6 +17,7 @@ import {
   buildHearingWarRoomBrief,
 } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { displayChaseCardLabel } from "../lib/criminal/demo-presentation-polish";
+import { polishChasePreviewLabel } from "../lib/criminal/solicitor-display-dedupe";
 import {
   humanizeChaseFragmentLabel,
   isPreservedFileNamedChaseLabel,
@@ -233,6 +234,8 @@ function countFamily(labels: string[], re: RegExp): number {
     chaseItem("c1", "Final continuity note"),
     chaseItem("c2", "The export log and continuity statement are outstanding."),
     chaseItem("c3", "Full footage, export logs, continuity statement, and camera timing notes remain"),
+    chaseItem("c4", "Final forensic continuity and contamination notes are outstanding."),
+    chaseItem("c5", "Full continuity schedule is outstanding."),
     chaseItem("master", "CCTV stills and timing note Master footage", "EX-MUR-009"),
   ]);
   const labels = collapsed.map((item) => item.label);
@@ -256,6 +259,11 @@ function countFamily(labels: string[], re: RegExp): number {
     }),
     /^Full phone download/i,
   );
+  assert.equal(
+    polishChasePreviewLabel("MG6C/001 Exterior CCTV export log"),
+    "MG6C/001 Exterior CCTV export log",
+  );
+  assert.equal(polishChasePreviewLabel("MG6C/007 CAD/999 audio"), "MG6C/007 CAD/999 audio");
   const arden =
     "Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity";
   assert.notEqual(humanizeChaseFragmentLabel(arden), "Further papers on the file");
@@ -336,6 +344,8 @@ function countFamily(labels: string[], re: RegExp): number {
       { label: "Final continuity note", status: "MISSING" },
       { label: "The export log and continuity statement are outstanding.", status: "MISSING" },
       { label: "Full footage, export logs, continuity statement, and camera timing notes remain", status: "MISSING" },
+      { label: "Final forensic continuity and contamination notes are outstanding.", status: "MISSING" },
+      { label: "Full continuity schedule is outstanding.", status: "MISSING" },
     ],
   });
   const labels = hale.chase.primaryItems.map((item) => item.label);

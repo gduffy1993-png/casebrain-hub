@@ -64,7 +64,9 @@ export function practicalChaseAsk(label: string): PracticalChaseAsk {
   }
   if (
     /\bcontinuity\b/.test(t) &&
-    /\b(export log|statement|timing notes|final continuity)\b/.test(t) &&
+    /\b(export log|statement|timing notes|final continuity|forensic continuity|continuity schedule|contamination notes)\b/.test(
+      t,
+    ) &&
     !/\bmaster footage\b/.test(t) &&
     !/\bstills and timing\b/.test(t)
   ) {
