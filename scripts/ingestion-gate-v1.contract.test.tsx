@@ -200,6 +200,21 @@ await check("short genuine structured document is accepted", () => {
   assert.ok(assessment.reasonCodes.includes("genuine_short_document_accepted"));
 });
 
+await check("unreadable table or layout is degraded review, not a silent guess", () => {
+  const assessment = buildIngestionAssessment({
+    fileName: "table.pdf",
+    mimeType: "application/pdf",
+    text: "Count 1 Theft\nCount 2 Burglary",
+    pageCount: 1,
+    pageUnits: [{ text: "Count 1 Theft\nCount 2 Burglary", textLayerEmpty: false }],
+    parserRoute: "pdf_page_units",
+    tableLayoutReadable: false,
+  });
+  assert.equal(assessment.decision, "degraded");
+  assert.equal(assessment.substantiveOutputsAllowed, true);
+  assert.ok(assessment.reasonCodes.includes("table_layout_unreadable"));
+});
+
 await check("material parser disagreement is review-only and not a silent winner", () => {
   const assessment = buildIngestionAssessment({
     fileName: "conflict.pdf",
@@ -231,6 +246,40 @@ await check("missing or dropped page count is quarantined", () => {
   });
   assert.equal(assessment.decision, "quarantined");
   assert.ok(assessment.reasonCodes.includes("missing_or_dropped_pages"));
+});
+
+await check("a one-page compiled mismatch stays degraded, not quarantined", () => {
+  const assessment = buildIngestionAssessment({
+    fileName: "blank-separator.pdf",
+    mimeType: "application/pdf",
+    text: "R v Taylor Reed\nCharge: Harassment",
+    pageCount: 11,
+    pageUnits: Array.from({ length: 10 }, (_, index) => ({
+      text: index === 0 ? "R v Taylor Reed\nCharge: Harassment" : `Page ${index + 1} continues.`,
+      textLayerEmpty: false,
+    })),
+    parserRoute: "pdf_page_units",
+  });
+  assert.equal(assessment.decision, "degraded");
+  assert.equal(assessment.substantiveOutputsAllowed, true);
+  assert.ok(assessment.reasonCodes.includes("page_count_mismatch"));
+});
+
+await check("one blank page in a readable bundle is degraded, not a quiet withhold", () => {
+  const assessment = buildIngestionAssessment({
+    fileName: "blank-page.pdf",
+    mimeType: "application/pdf",
+    text: "R v Taylor Reed\nCharge: Harassment",
+    pageCount: 2,
+    pageUnits: [
+      { text: "R v Taylor Reed\nCharge: Harassment", textLayerEmpty: false },
+      { text: "", textLayerEmpty: true },
+    ],
+    parserRoute: "pdf_page_units",
+  });
+  assert.equal(assessment.decision, "degraded");
+  assert.equal(assessment.substantiveOutputsAllowed, true);
+  assert.ok(assessment.reasonCodes.includes("partial_text_layer"));
 });
 
 await check("representative legacy healthy source remains usable", () => {

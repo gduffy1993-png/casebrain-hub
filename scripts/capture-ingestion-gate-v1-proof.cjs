@@ -2,7 +2,7 @@ const { chromium } = require("playwright");
 const fs = require("node:fs");
 const path = require("node:path");
 
-const BASE = (process.env.INGESTION_PROOF_BASE || "http://127.0.0.1:3100").replace(/\/$/, "");
+const BASE = (process.env.INGESTION_PROOF_BASE || "http://localhost:3100").replace(/\/$/, "");
 const EMAIL = process.env.GOLD20_EMAIL || "gduffy1993+casebrain-gold20@gmail.com";
 const OUT = path.resolve(
   "artifacts/casebrain-qa/assurance/certified-claim-lineage-v1/slice1-ingestion-gate-v1",
@@ -36,25 +36,40 @@ function ensure(directory) {
 
 async function signIn(page, secret) {
   await page.goto(`${BASE}/sign-in`, { waitUntil: "domcontentloaded", timeout: 90_000 });
-  await page.locator('input[type="email"], input[name="email"]').first().fill(EMAIL);
-  await page.locator('input[type="password"], input[name="password"]').first().fill(secret);
-  await page.getByRole("button", { name: /sign in/i }).first().click();
-  await page.waitForURL((url) => !url.pathname.includes("sign-in"), { timeout: 45_000 });
+  await page.locator("#email").waitFor({ state: "visible", timeout: 60_000 });
+  await page.waitForTimeout(500);
+  await page.locator("#email").fill(EMAIL);
+  await page.locator("#password").fill(secret);
+  await Promise.all([
+    page.waitForURL((url) => !url.pathname.includes("sign-in"), { timeout: 90_000 }),
+    page.getByRole("button", { name: /^sign in$/i }).click(),
+  ]).catch(async (error) => {
+    const body = await page.locator("body").innerText().catch(() => "");
+    const safe = body.replace(secret, "[redacted]").slice(0, 1200);
+    throw new Error(`sign-in stayed on ${page.url()}: ${safe || error.message}`);
+  });
 }
 
 async function capture(page, spec, tab) {
   const url = `${BASE}/cases/${spec.caseId}?tab=${tab}&controlRoom=1&demoShell=1`;
-  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 90_000 });
-  await page.waitForFunction(
-    () => {
-      const body = document.body.innerText;
-      return !/Loading workspace/i.test(body) && body.length > 250;
-    },
-    undefined,
-    { timeout: 45_000 },
-  );
-  await page.waitForTimeout(1_200);
-  const text = await page.locator("body").innerText();
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 120_000 });
+  const deadline = Date.now() + 90_000;
+  let text = "";
+  while (Date.now() < deadline) {
+    text = (await page.locator("body").innerText().catch(() => "")) || "";
+    const ready =
+      /Source extraction incomplete/i.test(text) ||
+      (/Papers loaded|Thin bundle|What needs attention|Papers on this matter/i.test(text) &&
+        !/Loading workspace|Building matter brief/i.test(text));
+    if (tab === "file" && /could not be safely read/i.test(text) && !/Source extraction incomplete/i.test(text)) {
+      await page.waitForTimeout(1_200);
+      continue;
+    }
+    if (ready && text.length > 250) break;
+    await page.waitForTimeout(1_000);
+  }
+  await page.waitForTimeout(800);
+  text = (await page.locator("body").innerText().catch(() => text)) || text;
   const caseDir = path.join(OUT, spec.id);
   ensure(caseDir);
   fs.writeFileSync(path.join(caseDir, `${tab}.txt`), text, "utf8");
@@ -93,6 +108,33 @@ async function capture(page, spec, tab) {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   try {
     await signIn(page, secret);
+    for (const spec of CASES) {
+      const api = await page.request.get(`${BASE}/api/criminal/${spec.caseId}/bundle-source`);
+      const json = await api.json();
+      const ingestion = json?.data?.canonical?.ingestion ?? null;
+      fs.writeFileSync(
+        path.join(OUT, `${spec.id}-bundle-source.json`),
+        JSON.stringify(
+          {
+            status: api.status(),
+            decision: ingestion?.decision ?? null,
+            withheld: ingestion?.substantiveOutputsWithheld ?? null,
+            reasonCodes: ingestion?.reasonCodes ?? [],
+            combinedTextLength: json?.data?.combinedTextLength ?? null,
+            header: json?.data?.header ?? null,
+          },
+          null,
+          2,
+        ),
+      );
+      report.cases.push({ id: `${spec.id}-api`, api: true, pass: api.ok() });
+    }
+    report.cases = report.cases.filter((entry) => !entry.api);
+    report.api = [];
+    for (const spec of CASES) {
+      const raw = fs.readFileSync(path.join(OUT, `${spec.id}-bundle-source.json`), "utf8");
+      report.api.push(JSON.parse(raw));
+    }
     for (const spec of CASES) {
       const tabs = [];
       for (const tab of spec.tabs) tabs.push(await capture(page, spec, tab));

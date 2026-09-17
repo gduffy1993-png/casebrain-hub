@@ -413,9 +413,10 @@ export function composeAuthenticatedBundleSourceWithCanonical(
 } {
   const payload = buildBundleSourcePayload(docs as Array<Record<string, unknown>>);
   const built = buildAuthenticatedMatterCanonicalFromDocuments(docs, opts);
+  const withheld = built.canonical.ingestion.substantiveOutputsWithheld;
   return {
     documentCount: docs.length,
-    combinedTextLength: payload.combinedText.length,
+    combinedTextLength: withheld ? 0 : payload.combinedText.length,
     canonical: built.canonical,
     units: built.units,
     pipeline: built.pipeline,

@@ -188,21 +188,26 @@ export function buildIngestionAssessment(input: AssessmentInput): IngestionAsses
   }
 
   if (isPdf && reportedPageCount != null && pageUnits.length > 0 && reportedPageCount !== pageUnits.length) {
-    reasons.push("page_count_mismatch", "missing_or_dropped_pages");
-    return {
-      version: INGESTION_ASSESSMENT_VERSION,
-      decision: "quarantined",
-      reasonCodes: reasons,
-      parserRoute: input.parserRoute,
-      sourceTextUsable: false,
-      substantiveOutputsAllowed: false,
-      textLength: trimmed.length,
-      reportedPageCount,
-      extractedPageCount: pageUnits.length,
-      pagesWithoutTextLayer,
-      parserError: compact(input.parserError) || null,
-      summary: summaryFor("quarantined"),
-    };
+    reasons.push("page_count_mismatch");
+    const droppedShare = pageUnits.length / reportedPageCount;
+    if (reportedPageCount >= 2 && droppedShare < 0.5) {
+      reasons.push("missing_or_dropped_pages");
+      return {
+        version: INGESTION_ASSESSMENT_VERSION,
+        decision: "quarantined",
+        reasonCodes: uniqueReasons(reasons),
+        parserRoute: input.parserRoute,
+        sourceTextUsable: false,
+        substantiveOutputsAllowed: false,
+        textLength: trimmed.length,
+        reportedPageCount,
+        extractedPageCount: pageUnits.length,
+        pagesWithoutTextLayer,
+        parserError: compact(input.parserError) || null,
+        summary: summaryFor("quarantined"),
+      };
+    }
+    reasons.push("missing_or_dropped_pages");
   }
 
   if (input.comparisonText?.trim() && trimmed && parserOutputsMateriallyConflict(trimmed, input.comparisonText)) {
@@ -223,11 +228,8 @@ export function buildIngestionAssessment(input: AssessmentInput): IngestionAsses
     };
   }
 
-  if (isPdf && pageUnits.length > 0 && pagesWithoutTextLayer > 0) {
-    reasons.push(
-      pagesWithoutTextLayer === pageUnits.length ? "no_usable_text_layer" : "partial_text_layer",
-      "ocr_required",
-    );
+  if (isPdf && pageUnits.length > 0 && pagesWithoutTextLayer === pageUnits.length) {
+    reasons.push("no_usable_text_layer", "ocr_required");
     return {
       version: INGESTION_ASSESSMENT_VERSION,
       decision: "needs_ocr",
@@ -242,6 +244,9 @@ export function buildIngestionAssessment(input: AssessmentInput): IngestionAsses
       parserError: compact(input.parserError) || null,
       summary: summaryFor("needs_ocr"),
     };
+  }
+  if (isPdf && pageUnits.length > 0 && pagesWithoutTextLayer > 0) {
+    reasons.push("partial_text_layer", "ocr_required");
   }
 
   if (!trimmed) {
@@ -284,6 +289,9 @@ export function buildIngestionAssessment(input: AssessmentInput): IngestionAsses
       "table_layout_unreadable",
       "parser_failure",
       "parser_xref_failure",
+      "partial_text_layer",
+      "page_count_mismatch",
+      "missing_or_dropped_pages",
     ].includes(reason),
   )
     ? "degraded"

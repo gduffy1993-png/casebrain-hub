@@ -19,6 +19,7 @@ export function PilotCaseDocumentsPanel({
   const shell = pilotDark ? workflowPilotSurfaceCard : workflowCard;
   const [sourceExcerpt, setSourceExcerpt] = useState<string | null>(null);
   const [resolvedDocs, setResolvedDocs] = useState(documents);
+  const [canonicalWithheld, setCanonicalWithheld] = useState(false);
 
   useEffect(() => {
     setResolvedDocs(documents);
@@ -51,9 +52,20 @@ export function PilotCaseDocumentsPanel({
         const res = await fetch(`/api/criminal/${caseId}/bundle-source`, { credentials: "include" });
         const json = (await res.json()) as {
           ok?: boolean;
-          data?: { frontMatterScan?: string; combinedTextLength?: number };
+          data?: {
+            frontMatterScan?: string;
+            combinedTextLength?: number;
+            canonical?: { ingestion?: { substantiveOutputsWithheld?: boolean } | null } | null;
+          };
         };
-        if (cancelled || !json.ok || !json.data?.frontMatterScan?.trim()) return;
+        if (cancelled || !json.ok || !json.data) return;
+        if (json.data.canonical?.ingestion?.substantiveOutputsWithheld) {
+          setCanonicalWithheld(true);
+          setSourceExcerpt(null);
+          return;
+        }
+        setCanonicalWithheld(false);
+        if (!json.data.frontMatterScan?.trim()) return;
         const text = sanitizeDemoBundleBanner(json.data.frontMatterScan.trim());
         setSourceExcerpt(text.length > 2400 ? `${text.slice(0, 2400)}…` : text);
       } catch {
@@ -65,9 +77,15 @@ export function PilotCaseDocumentsPanel({
     };
   }, [caseId]);
 
-  const sourceWithheld = resolvedDocs.some((document) =>
-    ["unreadable", "needs_ocr", "review"].includes(document.extractionStatus ?? ""),
-  );
+  const sourceWithheld =
+    canonicalWithheld ||
+    resolvedDocs.some(
+      (document) =>
+        ["unreadable", "needs_ocr", "review"].includes(document.extractionStatus ?? "") ||
+        /could not be safely read|OCR\/reprocess required|solicitor review required/i.test(
+          document.extractionMessage ?? "",
+        ),
+    );
 
   return (
     <section
@@ -112,7 +130,7 @@ export function PilotCaseDocumentsPanel({
           </div>
         ) : null}
         <CaseFilesList documents={resolvedDocs} />
-        {sourceExcerpt ? (
+        {sourceExcerpt && !sourceWithheld ? (
           <div
             className={`rounded-lg border p-3 ${
               pilotDark ? "border-slate-700/70 bg-slate-900/50" : "border-slate-200 bg-white"
