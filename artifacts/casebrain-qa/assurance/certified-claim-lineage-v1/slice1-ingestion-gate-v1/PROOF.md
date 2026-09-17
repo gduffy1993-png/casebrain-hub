@@ -11,8 +11,8 @@ Liam Parker (`883193c5-7eb2-433a-827d-d58c1b8874da`) is `quarantined`. Leon Hale
 ## Commit / deploy
 
 - Branch: `ui/demo-overview-shell-v1`
-- Product commits: `fa8ee39c8` (gate) plus the follow-up in this folder’s git log
-- SHA: see `CAPTURE.json` generatedAt and `git log -2 --oneline`
+- Product commits: `fa8ee39c8` (gate) and `dbfad0a12` (withhold + proof)
+- HEAD: `dbfad0a129bb0cb9f3810199cd3d589b89f6241d`
 - Vercel: preview only after push; production deploy not requested
 - Merge: not performed
 
