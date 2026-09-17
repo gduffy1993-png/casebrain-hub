@@ -56,6 +56,7 @@ import {
   type ChaseGateFamily,
 } from "@/lib/criminal/chase-source-gate";
 import {
+  cleanMaterialChaseLabel,
   deglueBundleLines,
   isClauseOrFragmentChaseLabel,
   lineIndicatesReferredOnly,
@@ -1232,7 +1233,7 @@ function isFamilyTemplateChaseCard(item: DisclosureChaseItem): boolean {
 }
 
 function cleanScheduleGlueLabel(label: string): string {
-  const raw = label.replace(/\s+/g, " ").trim();
+  const raw = cleanMaterialChaseLabel(label.replace(/\s+/g, " ").trim());
   const tableCellNoise =
     /(?:^|\||\/)\s*(?:yes|no|n\/a|partial|unclear)(?:\s*\([^)]*\))?\s*(?:\||\/|$)/i.test(
       raw,
@@ -1472,9 +1473,10 @@ function materialLabelFromCourtLine(raw: string): string {
 function isUnsafeOrNonMaterialChaseLine(raw: string): boolean {
   const t = raw.trim();
   if (!t) return true;
-  if (lineIsScheduleFurniture(t)) return true;
-  if (isClauseOrFragmentChaseLabel(t)) return true;
-  if (lineIsUnsourcedNarrativeChase(t)) return true;
+  const cleaned = cleanMaterialChaseLabel(t);
+  if (lineIsScheduleFurniture(t) || lineIsScheduleFurniture(cleaned)) return true;
+  if (isClauseOrFragmentChaseLabel(t) || isClauseOrFragmentChaseLabel(cleaned)) return true;
+  if (lineIsUnsourcedNarrativeChase(t) || lineIsUnsourcedNarrativeChase(cleaned)) return true;
   if (/\bthis point collapses if\b/i.test(t) || /\bstrategy point collapses if\b/i.test(t)) return true;
   if (/^(?:item|material)\s*:/i.test(t) && /[—–-]\s*$/.test(t)) return true;
   if (FORBIDDEN_RE.test(t)) return true;

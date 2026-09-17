@@ -594,7 +594,7 @@ function sanitizeEvidenceLabel(raw: string): string {
 
 /** Bare generic nouns that are never a professional evidence-unit label on their own. */
 const GENERIC_EVIDENCE_TOKEN_RE =
-  /^(evidence|summary|statement|prosecution|headline|referred|remains|final|outstanding|served|missing|pages?|bundle|schedule|section|particulars|offence|offense)$/i;
+  /^(evidence|summary|statement|prosecution|headline|referred|remains|final|outstanding|served|missing|pages?|bundle|schedule|section|particulars|offence|offense|subject|status|metadata)$/i;
 
 /**
  * Bundle furniture — the words a bundle uses to organise itself, not to name material.
@@ -624,7 +624,7 @@ export function isFragmentEvidenceLabel(label: string): boolean {
   if (!t) return true;
   if (/\.\s+[A-Z]/.test(t)) return true; // mid-label sentence break ("final statement. Final signed…")
   if (/\.$/.test(t) && t.length < 40) return true; // truncated trailing period residue ("listing.")
-  if (/^(headline summary|evidence referred|evidence on file|particulars of offence)\b/i.test(t)) {
+  if (/^(headline summary|evidence referred|evidence on file|particulars of offence|statement status|subject)\b/i.test(t)) {
     return true;
   }
   if (/\b(headline summary|evidence referred or|prosecution relies on)\b/i.test(t)) return true;
@@ -637,6 +637,8 @@ export function isFragmentEvidenceLabel(label: string): boolean {
   // words ("estate and arguing with MarcusCCTV stills were"). Two words are left alone, so material
   // that genuinely starts lower case ("iPhone download") still stands.
   if (/^[a-z]/.test(t) && t.split(/\s+/).length >= 3) return true;
+  if (/metadata are not attached/i.test(t) || /not attached to the extract/i.test(t)) return true;
+  if (/outstanding items are recorded/i.test(t)) return true;
   if (
     /\b(or|and|on|of|for|with|by|to|from|at|the|a|an|relies|remains|referred|summary|stated|is|are|was|were|been|yet|not|but)\s*$/i.test(
       t,
@@ -736,7 +738,7 @@ function isProfessionalEvidenceLabel(label: string): boolean {
 function isNoiseEvidenceLabel(label: string): boolean {
   const t = label.replace(/\s+/g, " ").trim();
   if (
-    /^(see|attached|attachment|and|or|the|a|an|on|at|for|with|from|that|this|count|page)\b/i.test(t)
+    /^(see|attached|attachment|and|or|the|a|an|on|at|for|with|from|that|this|count|page|subject)\b/i.test(t)
   ) {
     return true;
   }

@@ -1,4 +1,4 @@
-import { isClauseOrFragmentChaseLabel } from "@/lib/criminal/bundle-material-normalizer";
+import { cleanMaterialChaseLabel, isClauseOrFragmentChaseLabel } from "@/lib/criminal/bundle-material-normalizer";
 import { formatDisplayLabelCasing } from "@/lib/criminal/bundle-truth-ledger";
 import { sentenceCasePreservingAcronyms } from "@/lib/criminal/solicitor-visible-quality";
 import type {
@@ -319,9 +319,8 @@ function finalizeOneItem(item: DisclosureChaseItem): DisclosureChaseItem {
   // Presentation may tidy the wording of material the schedule names, but must not rename it
   // into a family card — the reference is what the request is made against.
   if (isSourceNamedChaseItem(item)) {
-    // Casing only. The fragment humaniser treats an MG6 label as schedule chrome and would
-    // rewrite `MG6/05 CCTV continuity log` into a generic clarification card.
-    const named = formatDisplayLabelCasing(item.label);
+    // Casing only after residue is stripped. `NI/4 Full BWV clip No` must not keep the status cell.
+    const named = formatDisplayLabelCasing(cleanMaterialChaseLabel(item.label));
     return {
       ...item,
       label: named,
@@ -430,7 +429,7 @@ function itemFinalizeKey(item: DisclosureChaseItem): string {
  */
 export function isSourceNamedChaseItem(item: DisclosureChaseItem): boolean {
   if (isGenericSolicitorClutterLabel(item.label)) return false;
-  if (isClauseOrFragmentChaseLabel(item.label)) return false;
+  if (isClauseOrFragmentChaseLabel(cleanMaterialChaseLabel(item.label))) return false;
   // A ledger row with the schedule's own code is the papers speaking. Referred-only /
   // extract-only / draft is still a named gap — do not wait for the word "outstanding".
   if (item.id.startsWith("ledger-material-") && item.sourceScheduleRef?.trim()) return true;

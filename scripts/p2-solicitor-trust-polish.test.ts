@@ -209,9 +209,10 @@ function countFamily(labels: string[], re: RegExp): number {
     chaseItem("cctv", "MG6/05 full CCTV master", "MG6/05"),
   ]);
   const labels = collapsed.map((item) => item.label);
-  assert.equal(countFamily(labels, /interview/i), 1);
-  assert.ok(labels.some((label) => /MG6\/07/i.test(label)));
-  assert.ok(labels.some((label) => /MG6\/05/i.test(label)));
+  assert.ok(labels.some((label) => /recording/i.test(label)), labels.join(" || "));
+  assert.ok(labels.some((label) => /MG6\/07/i.test(label)), labels.join(" || "));
+  assert.ok(labels.some((label) => /MG6\/05/i.test(label)), labels.join(" || "));
+  assert.equal(countFamily(labels, /interview/i), 2);
 }
 
 {

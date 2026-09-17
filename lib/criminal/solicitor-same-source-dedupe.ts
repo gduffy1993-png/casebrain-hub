@@ -82,6 +82,23 @@ export function practicalChaseAsk(label: string): PracticalChaseAsk {
   return null;
 }
 
+function interviewModality(label: string): "recording" | "transcript" | "both" | null {
+  const rec = /\brecording\b/i.test(label);
+  const tra = /\btranscript\b/i.test(label);
+  if (rec && tra) return "both";
+  if (rec) return "recording";
+  if (tra) return "transcript";
+  return null;
+}
+
+function interviewModalitiesCompatible(a: string, b: string): boolean {
+  const left = interviewModality(a);
+  const right = interviewModality(b);
+  if (!left || !right) return true;
+  if (left === "both" || right === "both") return left === right;
+  return left === right;
+}
+
 function preferCard<T extends PracticalChaseCard>(a: T, b: T): T {
   const score = (item: T) => {
     let n = 0;
@@ -128,6 +145,7 @@ export function collapseSamePracticalChaseCards<T extends PracticalChaseCard>(it
     const ask = key.slice(4);
     const named = [...byKey.entries()].find(([k]) => k.startsWith(`${ask}#`));
     if (!named) continue;
+    if (!interviewModalitiesCompatible(named[1].label, unref.label)) continue;
     byKey.set(named[0], mergeCards(named[1], unref));
     byKey.delete(key);
     redirect.set(key, named[0]);

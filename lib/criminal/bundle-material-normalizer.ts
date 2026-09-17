@@ -71,6 +71,9 @@ export function deglueScheduleText(line: string): string {
     .replace(/\b(O\d{1,2})(999)\b/g, "$1 $2")
     // `Material still neededsearch record` — MG5 issue-table glue.
     .replace(/\b(Material still needed)(?=[a-z])/gi, "$1 ")
+    // `Second officer statement8` / `checklist16 Jun` — a table index welded onto the word.
+    .replace(/\b(statement)(\d{1,2})\b/gi, "$1 $2")
+    .replace(/\b(checklist)(\d{1,2})\b/gi, "$1 $2")
     // `statementsOutstanding` — a lower-case word run glued to the next capitalised word.
     .replace(/([a-z]{2,})([A-Z])/g, "$1 $2")
     // `05CCTV` — digits glued to a following word, without breaking `MG6C` / `MG11A` refs.
@@ -210,6 +213,14 @@ export function lineIsUnsourcedNarrativeChase(line: string): boolean {
   if (/^(?:not yet served|listed but not attached|continuity awaited|items marked)\.?$/i.test(l)) {
     return true;
   }
+  if (/outstanding items are recorded/i.test(l)) return true;
+  if (/because they are referred to in the material/i.test(l)) return true;
+  if (/metadata are not attached/i.test(l) || /not attached to the extract/i.test(l)) return true;
+  if (/\bbut the actual\b/i.test(l) && !parseScheduleRef(l)) return true;
+  if (/^(?:initial\s+)?disclosure\s+checklist\b/i.test(l) && !parseScheduleRef(l)) return true;
+  if (/^[a-z]/.test(l) && /\bbut\b/.test(l) && !parseScheduleRef(l) && !isFormalOutstandingInventoryLine(l)) {
+    return true;
+  }
   const words = l.split(/\s+/).filter(Boolean).length;
   const clauses = (l.match(/[.!?]/g) ?? []).length;
   if (clauses >= 2 && !parseScheduleRef(l)) return true;
@@ -222,20 +233,21 @@ export function lineIsUnsourcedNarrativeChase(line: string): boolean {
  * cautions are not named disclosure material. Schedule-coded document gaps stay.
  */
 export function isClauseOrFragmentChaseLabel(line: string): boolean {
-  const l = compact(line);
+  const l = compact(deglueScheduleText(line));
   if (!l) return true;
-  if (parseScheduleRef(l) && ITEM_RE.test(l)) return false;
+  if (parseScheduleRef(l) && ITEM_RE.test(l) && !isFurnitureHeadingLabel(l)) return false;
 
   const statusStripped = compact(
     l
       .replace(/^\d{1,2}\s+/, "")
       .replace(
-        /\b(?:outstanding|requested|not served|not attached|not included|missing|needed before final position|to follow)\b/gi,
+        /\b(?:outstanding|requested|not served|not attached|not included|missing|needed before final position|to follow|awaited|awaiting|pending|reviewed|unsigned)\b/gi,
         "",
       )
       .replace(/[:—–,.]+/g, " "),
   );
   if (/^(?:reasonable excuse|no reasonable excuse|lawful excuse)$/i.test(statusStripped)) return true;
+  if (isFurnitureHeadingLabel(l) || isBareGenericItemStatusLabel(statusStripped, l)) return true;
   if (/\bnot included with the email\b/i.test(l)) return true;
   if (/\bofficer note says\b/i.test(l)) return true;
   if (/\bmust not be treated as a settled\b/i.test(l)) return true;
@@ -244,6 +256,46 @@ export function isClauseOrFragmentChaseLabel(line: string): boolean {
     return true;
   }
   if (/^where the (?:full )?(?:recording|transcript)\b/i.test(l) && !parseScheduleRef(l)) return true;
+  if (/outstanding items are recorded/i.test(l)) return true;
+  if (/metadata are not attached/i.test(l) || /not attached to the extract/i.test(l)) return true;
+  if (/\bbut the actual\b/i.test(l) && !parseScheduleRef(l)) return true;
+  if (/^(?:initial\s+)?disclosure\s+checklist\b/i.test(l)) return true;
+  if (/^[a-z]/.test(l) && /\bbut\b/.test(l) && !parseScheduleRef(l)) return true;
+  return false;
+}
+
+/** Email headings, table column titles, and schedule footers are not chaseable material. */
+function isFurnitureHeadingLabel(line: string): boolean {
+  const l = compact(line);
+  if (/^subject(?:\s*:.*)?$/i.test(l)) return true;
+  if (/^(?:re|fw|fwd)\s*:/i.test(l)) return true;
+  if (/^(?:item|description|status|note|relevance|timetable|type)\s*$/i.test(l)) return true;
+  if (/^(?:statement|item|material|exhibit)\s+status$/i.test(l)) return true;
+  if (/^statement status\b/i.test(l)) return true;
+  return false;
+}
+
+/**
+ * `statement awaited` is a status cell, not a named row. A named witness/officer
+ * statement with a person, exhibit code, or schedule ref still stands.
+ */
+function isBareGenericItemStatusLabel(statusStripped: string, original: string): boolean {
+  if (parseScheduleRef(original)) return false;
+  if (/\b(?:pc|dc|ds)\s+[A-Z][a-z]{2,}/i.test(original)) return false;
+  if (
+    /\bofficer\s+[A-Z][a-z]{2,}/i.test(original) &&
+    !/\bofficer\s+(?:statement|report|note|notebook|log)\b/i.test(original)
+  ) {
+    return false;
+  }
+  if (
+    /^(?:statement|item|material|extract|metadata|subject|status|note)$/i.test(statusStripped)
+  ) {
+    return true;
+  }
+  if (/^(?:(?:first|second|third|final|short|draft)\s+)?(?:officer\s+)?statement(?:\s+\d{1,2})?$/i.test(statusStripped)) {
+    return true;
+  }
   return false;
 }
 
@@ -260,6 +312,7 @@ export function lineIsScheduleFurniture(line: string): boolean {
   }
   if (lineIsUnsourcedNarrativeChase(l) && !isFormalOutstandingInventoryLine(l)) return true;
   if (/^[.\-/,:;]+$/.test(l)) return true;
+  if (isFurnitureHeadingLabel(l)) return true;
   if (/^outstanding\.?$/i.test(l)) return true;
   if (/^entries\.?$/i.test(l)) return true;
   if (/^outstanding\s+entries\.?$/i.test(l)) return true;
@@ -357,15 +410,19 @@ export function lineIsScheduleFurniture(line: string): boolean {
 /** After status words fall off, nothing remains that a solicitor could chase. */
 function labelIsStatusOnly(line: string): boolean {
   if (parseScheduleRef(line)) return false;
-  if (ITEM_RE.test(line)) return false;
   const stripped = compact(line)
     .replace(
-      /\b(?:outstanding|not\s+served|not\s+attached|not\s+commissioned|not\s+included|not\s+on\s+file|absent|missing|pending|awaiting(?:\s+export)?|draft|unsigned|referred(?:\s+only)?|requested)\b/gi,
+      /\b(?:outstanding|not\s+served|not\s+attached|not\s+commissioned|not\s+included|not\s+on\s+file|absent|missing|pending|awaiting(?:\s+export)?|awaited|draft|unsigned|referred(?:\s+only)?|requested|to\s+follow|reviewed)\b/gi,
       " ",
     )
     .replace(/[./,:;()[\]—–\-]+/g, " ")
     .trim();
-  return stripped.length < 4;
+  if (stripped.length < 4) return true;
+  if (/^(?:statement|item|material|extract|metadata|subject|status|note)$/i.test(stripped)) return true;
+  if (/^(?:(?:first|second|third|final|short|draft)\s+)?(?:officer\s+)?statement$/i.test(stripped)) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -732,9 +789,24 @@ function splitMaterialLabelDetail(line: string): { label: string; detail: string
  * which no one can send, and which state the item is served in the middle of asking for it.
  */
 const TRAILING_STATUS_CELL_RE =
-  /\s+((?:not\s+served|served|outstanding|missing|absent|unsigned|draft|partial|referred\s+only|referenced\s+only|awaiting|pending|requested)\b.*)$/i;
+  /\s+((?:not\s+served|served|outstanding|missing|absent|unsigned|draft|partial|referred\s+only|referenced\s+only|awaiting|awaited|pending|requested|to\s+follow)\b.*)$/i;
+
+const TRAILING_BOOLEAN_STATUS_CELL_RE =
+  /^(.*?)\s+(Yes|No|N\/A|Reviewed,?)(?:\s*[.,;:—–-].*)?$/i;
 
 function splitTrailingStatusCell(label: string): { label: string; statusCell: string | null } {
+  const booleanMatch = label.match(TRAILING_BOOLEAN_STATUS_CELL_RE);
+  if (booleanMatch?.[1] && booleanMatch[2]) {
+    const description = booleanMatch[1].trim();
+    if (
+      description.length >= 8 &&
+      !/\b(?:or|and|on|of|for|with|by|to|from|at|the|a|an|relies|remains|referred|stated|is|are|was|were|been|yet|not|but|exhibit)\s*$/i.test(
+        description,
+      )
+    ) {
+      return { label: description, statusCell: booleanMatch[2].trim() };
+    }
+  }
   const match = label.match(TRAILING_STATUS_CELL_RE);
   if (!match?.[1] || match.index === undefined) return { label, statusCell: null };
   const description = label.slice(0, match.index).trim();
@@ -759,11 +831,27 @@ function splitTrailingStatusCell(label: string): { label: string; statusCell: st
   return { label: description, statusCell: match[1].trim() };
 }
 
+/**
+ * Strip table status cells, glued row numbers, and trailing punctuation from a
+ * chase/ledger label. Named material stays; `clip No` / `Reviewed,` / `statement8` do not.
+ */
+export function cleanMaterialChaseLabel(raw: string): string {
+  const repaired = repairGluedMg6StatusText(raw);
+  const cell = splitTrailingStatusCell(repaired);
+  let label = stripLeadingRowNumber(cell.label)
+    .replace(/\b(statement)\s+\d{1,2}$/i, "$1")
+    .replace(/[:—–,;]+$/g, "")
+    .trim();
+  return label.length >= 3 ? label : repaired;
+}
+
 function splitScheduleStatusCell(
   label: string,
   scheduleRef: string | null,
 ): { label: string; statusCell: string | null } {
   const repaired = repairGluedMg6StatusText(label);
+  const booleanSplit = splitTrailingStatusCell(repaired);
+  if (booleanSplit.statusCell) return booleanSplit;
   const match = repaired.match(TRAILING_STATUS_CELL_RE);
   if (!match?.[1] || match.index === undefined) return { label, statusCell: null };
   const description = repaired.slice(0, match.index).trim();
@@ -1050,6 +1138,16 @@ function collectMaterialLines(bundleText: string): MaterialLineRecord[] {
       for (const part of outstandingParts) add(part);
       continue;
     }
+    const checklistWeld = deglued.match(
+      /^(?:initial\s+)?disclosure\s+checklist\s+\d{1,2}\s+\w+\s+\d{4}\s+(.+)$/i,
+    );
+    if (checklistWeld?.[1]) {
+      for (const part of checklistWeld[1].split(/[,;/]/)) {
+        const item = part.trim();
+        if (item.length >= 3) add(`${item} outstanding`);
+      }
+      continue;
+    }
     if (lineLooksLikeScheduleInventoryRow(unit)) add(unit);
     else if (
       inSchedule &&
@@ -1082,7 +1180,7 @@ export function normaliseBundleMaterials(bundleText: string): NormalisedMaterial
     const split = splitMaterialLabelDetail(labelSource);
     const cell = splitTrailingStatusCell(split.label);
     const scheduleCell = cell.statusCell ? { label: cell.label, statusCell: null } : splitScheduleStatusCell(cell.label, scheduleRef);
-    const label = stripLeadingRowNumber(scheduleCell.label).replace(/[:—–-]+\s*$/g, "").trim();
+    const label = cleanMaterialChaseLabel(scheduleCell.label);
     if (label.length < 3 || lineIsScheduleFurniture(label) || lineIsUnsourcedNarrativeChase(label)) continue;
     // The status cell leaves the label but must not leave the row: it is what the schedule says
     // about the item, and Papers still has to show it.

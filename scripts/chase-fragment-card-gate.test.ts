@@ -13,6 +13,7 @@ import {
 } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { buildDemoAttentionItems } from "../components/criminal/demo-shell/demoOverviewAdapter";
 import {
+  cleanMaterialChaseLabel,
   isClauseOrFragmentChaseLabel,
   lineIsUnsourcedNarrativeChase,
 } from "../lib/criminal/bundle-material-normalizer";
@@ -82,7 +83,7 @@ MG6C/004 Final consultant medical report outstanding
 Property bag references LP/4 and LP/14 appear inconsistently. Officer note says final continuity statement to follow.`;
 
 const FRAGMENT_CARD =
-  /reasonable excuse|not included with the email|officer note says|treated as a settled|where the (?:full )?(?:recording|transcript)|review remains outstanding or incomplete|this point collapses if|strategy point collapses if/i;
+  /reasonable excuse|not included with the email|officer note says|treated as a settled|where the (?:full )?(?:recording|transcript)|review remains outstanding or incomplete|this point collapses if|strategy point collapses if|Second officer statement8|Statement status|Full BWV clip No|exports Reviewed,|town-centre CCTV but|Initial disclosure checklist|statement awaited|metadata are not attached|Outstanding items are recorded|^Subject$|\bSubject\b/i;
 
 const PACK_CHARGE = /possession\s*\/\s*knowledge\s*\/\s*phone-attribution|phone-attribution pressure|\bpwits\b/i;
 
@@ -161,6 +162,28 @@ function boardOf(chase: ReturnType<typeof buildDisclosureChaseBrief>): string {
     true,
   );
   assert.equal(isClauseOrFragmentChaseLabel("Officer note says final continuity statement to follow."), true);
+  assert.equal(isClauseOrFragmentChaseLabel("Subject"), true);
+  assert.equal(isClauseOrFragmentChaseLabel("Statement status"), true);
+  assert.equal(isClauseOrFragmentChaseLabel("statement awaited"), true);
+  assert.equal(isClauseOrFragmentChaseLabel("metadata are not attached to the extract."), true);
+  assert.equal(
+    isClauseOrFragmentChaseLabel(
+      "Outstanding items are recorded because they are referred to in the material or appear",
+    ),
+    true,
+  );
+  assert.equal(isClauseOrFragmentChaseLabel("Second officer statement8"), true);
+  assert.equal(
+    isClauseOrFragmentChaseLabel("town-centre CCTV but the actual CCTV export is not included in the initial papers."),
+    true,
+  );
+  assert.equal(
+    isClauseOrFragmentChaseLabel("Initial disclosure checklist16 Jun 2026 CCTV, BWV, 999 audio"),
+    true,
+  );
+  assert.equal(isClauseOrFragmentChaseLabel("NI/4 Full BWV clip"), false);
+  assert.equal(isClauseOrFragmentChaseLabel("C5 Use-of-force / force incident form"), false);
+  assert.equal(isClauseOrFragmentChaseLabel("O001 The Iron Bridge CCTV 22:55-23:20"), false);
   assert.equal(isClauseOrFragmentChaseLabel("search record outstanding"), false);
   assert.equal(isClauseOrFragmentChaseLabel("full interview transcript outstanding"), false);
   assert.equal(isClauseOrFragmentChaseLabel("MG6C/001 Exterior CCTV export log not served"), false);
@@ -359,6 +382,148 @@ function boardOf(chase: ReturnType<typeof buildDisclosureChaseBrief>): string {
 {
   const display = resolvePilotChargeDisplay("");
   assert.equal(display, PILOT_CHARGE_NOT_IDENTIFIED_LABEL);
+}
+
+assert.equal(cleanMaterialChaseLabel("NI/4 Full BWV clip No — Outstanding re-export."), "NI/4 Full BWV clip");
+assert.doesNotMatch(
+  cleanMaterialChaseLabel("C3 Custody CCTV camera 1 and 2 exports Reviewed, — not served"),
+  /Reviewed/i,
+);
+
+const JORDAN = [
+  "MG6C UNUSED MATERIAL SCHEDULE",
+  "NI/4 Full BWV clip No — Outstanding re-export.",
+  "C3 Custody CCTV camera 1 and 2 exports Reviewed, — not served — May show body position",
+  "C5 Use-of-force / force incident form outstanding",
+  "4Second officer statement8Draft unsigned statement.",
+  "Statement status",
+  "C7 Signed final statement of PC Mira Senn unsigned",
+].join("\n");
+
+const RYAN = [
+  "MG6 DISCLOSURE SCHEDULE",
+  "CCTV export, continuity statement and viewing log are outstanding.",
+  "town-centre CCTV but the actual CCTV export is not included in the initial papers.",
+  "Initial disclosure checklist16 Jun 2026 CCTV, BWV, 999 audio",
+  "U5 BWV from scene attendance outstanding",
+  "999 audio and call-handler notes are outstanding; only CAD text is present.",
+].join("\n");
+
+const AARON = [
+  "MG6 DISCLOSURE SCHEDULE",
+  "O001 The Iron Bridge CCTV 22:55-23:20 Outstanding Manager says retained, not exported.",
+  "Outstanding items are recorded because they are referred to in the material or appear",
+  "Subject",
+  "O002 BWV PC Hall full clip outstanding",
+  "REQ-01 The Iron Bridge CCTV 22:55-23:20 Mason Reed outstanding",
+].join("\n");
+
+const LEON = [
+  "MG6 DISCLOSURE SCHEDULE",
+  "LM/02 Full CCTV export outstanding",
+  "statement awaited",
+  "PC Mira Senn witness statement outstanding",
+  "Full phone download / source extraction outstanding",
+].join("\n");
+
+const KIAN = [
+  "MG6 DISCLOSURE SCHEDULE",
+  "Full phone download / source extraction outstanding",
+  "metadata are not attached to the extract.",
+  "Interview audio/transcript outstanding",
+].join("\n");
+
+{
+  const { chase, overview, chaseItems } = chaseFromFile(JORDAN, {
+    caseId: "jordan-fragment-gate",
+    caseTitle: "R v Jordan Hale",
+    clientLabel: "Jordan Hale",
+    allegation: "Assault on emergency worker",
+  });
+  const board = boardOf(chase);
+  const hay = `${board}\n${overview.map((item) => item.title).join("\n")}\n${chaseItems.map((item) => item.label).join("\n")}`;
+  assert.doesNotMatch(hay, /Second officer statement8/i);
+  assert.doesNotMatch(hay, /Statement status/i);
+  assert.doesNotMatch(hay, /Full BWV clip No/i);
+  assert.doesNotMatch(hay, /Reviewed,/i);
+  assert.ok(/BWV|NI\/4/i.test(board), `Jordan named BWV row must remain — ${board}`);
+  assert.ok(/C5|use-of-force|CCTV/i.test(board), `Jordan named material row must remain — ${board}`);
+  assert.equal(overview.length, chase.primaryItems.length);
+}
+
+{
+  const { chase, overview } = chaseFromFile(RYAN, {
+    caseId: "ryan-fragment-gate",
+    caseTitle: "R v Ryan Hale",
+    clientLabel: "Ryan Hale",
+    allegation: "Robbery",
+  });
+  const board = boardOf(chase);
+  assert.doesNotMatch(board, /town-centre CCTV but/i);
+  assert.doesNotMatch(board, /Initial disclosure checklist/i);
+  assert.ok(/CCTV/i.test(board), `Ryan named CCTV gap must remain — ${board}`);
+  assert.ok(/BWV|999/i.test(board), `Ryan named BWV or 999 gap must remain — ${board}`);
+  assert.equal(overview.length, chase.primaryItems.length);
+}
+
+{
+  const { chase, overview } = chaseFromFile(AARON, {
+    caseId: "aaron-fragment-gate",
+    caseTitle: "R v Aaron Ross",
+    clientLabel: "Aaron Ross",
+    allegation: "Affray",
+  });
+  const board = boardOf(chase);
+  assert.doesNotMatch(board, /Outstanding items are recorded/i);
+  assert.ok(!board.split(" || ").some((label) => /^subject$/i.test(label.trim())), `Aaron Subject furniture — ${board}`);
+  assert.ok(/Iron Bridge CCTV|O001|BWV/i.test(board), `Aaron named CCTV/BWV must remain — ${board}`);
+  assert.equal(overview.length, chase.primaryItems.length);
+}
+
+{
+  const ashleigh = chaseFromFile(AARON.replace("Aaron Ross", "Ashleigh Merritt").replace("O001 The Iron Bridge", "O003 Full BWV from attendance"), {
+    caseId: "ashleigh-fragment-gate",
+    caseTitle: "R v Ashleigh Merritt",
+    clientLabel: "Ashleigh Merritt",
+    allegation: "Theft",
+  });
+  assert.doesNotMatch(boardOf(ashleigh.chase), /Outstanding items are recorded/i);
+  assert.ok(!boardOf(ashleigh.chase).split(" || ").some((label) => /^subject$/i.test(label.trim())));
+  const paige = chaseFromFile(AARON.replace("Aaron Ross", "Paige Thornton"), {
+    caseId: "paige-fragment-gate",
+    caseTitle: "R v Paige Thornton",
+    clientLabel: "Paige Thornton",
+    allegation: "Assault",
+  });
+  assert.doesNotMatch(boardOf(paige.chase), /Outstanding items are recorded/i);
+}
+
+{
+  const { chase, overview } = chaseFromFile(LEON, {
+    caseId: "leon-fragment-gate",
+    caseTitle: "R v Leon Marsh",
+    clientLabel: "Leon Marsh",
+    allegation: "Robbery",
+  });
+  const board = boardOf(chase);
+  assert.ok(!board.split(" || ").some((label) => /^statement awaited$/i.test(label.trim())), `Leon statement awaited — ${board}`);
+  assert.ok(/CCTV/i.test(board), `Leon named CCTV must remain — ${board}`);
+  assert.ok(/witness statement/i.test(board), `Leon named witness statement must remain — ${board}`);
+  assert.ok(/phone download|source extraction/i.test(board), `Leon named phone download must remain — ${board}`);
+  assert.equal(overview.length, chase.primaryItems.length);
+}
+
+{
+  const { chase, overview } = chaseFromFile(KIAN, {
+    caseId: "kian-fragment-gate",
+    caseTitle: "R v Kian Doyle",
+    clientLabel: "Kian Doyle",
+    allegation: "PWITS",
+  });
+  const board = boardOf(chase);
+  assert.doesNotMatch(board, /metadata are not attached/i);
+  assert.ok(/phone download|source extraction/i.test(board), `Kian named phone download must remain — ${board}`);
+  assert.equal(overview.length, chase.primaryItems.length);
 }
 
 console.log("chase-fragment-card-gate.test.ts: PASS");
