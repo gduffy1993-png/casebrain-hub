@@ -13,6 +13,7 @@ import { buildCopySafeResult } from "@/lib/criminal/trust/copy-safe";
 import { SolicitorDeepDetailGate } from "@/components/criminal/trust/SolicitorDeepDetailGate";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
 import { useMatterBrief } from "./useMatterBrief";
+import { IngestionGateNotice } from "@/components/criminal/IngestionGateNotice";
 import { workflowPilotCard, workflowSectionTitle } from "./workflowUi";
 import {
   displayChaseBulletLine,
@@ -168,7 +169,7 @@ export function PilotSummaryView({
 }: PilotSummaryViewProps) {
   const [fullOpen, setFullOpen] = useState(false);
   const [copied, setCopied] = useState<"client" | null>(null);
-  const { loading, matterBrief, matterConfidence, doNotOverstate, bundleMeta, outputIntegrity, allegation } =
+  const { loading, matterBrief, matterConfidence, doNotOverstate, bundleMeta, outputIntegrity, allegation, ingestion } =
     useMatterBrief(caseId);
   const bundleHay =
     bundleMeta?.canonical?.pageAwareFrontMatterScan ??
@@ -254,6 +255,10 @@ export function PilotSummaryView({
     const rest = matterBrief.sections.filter((s) => s.id !== "client");
     return client ? [client, ...rest] : matterBrief.sections;
   }, [matterBrief]);
+
+  if (!loading && ingestion?.substantiveOutputsWithheld) {
+    return <IngestionGateNotice assessment={ingestion} surface="overview" />;
+  }
 
   return (
     <div className="space-y-3" data-testid="pilot-summary-view">

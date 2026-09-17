@@ -12,6 +12,7 @@ import { ConfidenceDashboardPanel } from "@/components/criminal/confidence-dashb
 import { H5FeedbackFlag } from "@/components/criminal/feedback-console/H5FeedbackFlag";
 import { displayCopyBody } from "@/lib/criminal/five-answers/display-labels";
 import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
+import { IngestionGateNotice } from "@/components/criminal/IngestionGateNotice";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import { OverviewAdvancedPanel } from "./OverviewAdvancedPanel";
@@ -88,6 +89,7 @@ function FiveAnswersViewClassic({ caseId }: { caseId: string }) {
     outputIntegrity,
     canonical,
     evidenceRowsOverride,
+    ingestion,
   } = useMatterBrief(caseId);
   const buildTabHref = usePilotMatterTabHref();
 
@@ -240,6 +242,10 @@ function FiveAnswersViewClassic({ caseId }: { caseId: string }) {
         </p>
       </div>
     );
+  }
+
+  if (ingestion?.substantiveOutputsWithheld) {
+    return <IngestionGateNotice assessment={ingestion} surface="overview" />;
   }
 
   if (!view || !matterConfidence || !chase) {

@@ -33,8 +33,9 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     const { data: docs, error: docErr } = await supabase
       .from("documents")
-      .select("id, name, updated_at, raw_text, extracted_text, extracted_json")
+      .select("id, name, type, updated_at, raw_text, extracted_text, extracted_json")
       .eq("case_id", caseId)
+      .eq("org_id", orgId)
       .order("updated_at", { ascending: false });
 
     if (docErr) {

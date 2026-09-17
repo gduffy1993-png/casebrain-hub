@@ -30,6 +30,7 @@ import {
   type HearingWarRoomBrief,
 } from "./buildHearingWarRoomBrief";
 import { buildDisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import { IngestionGateNotice } from "@/components/criminal/IngestionGateNotice";
 import { canonicalRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
 import { assembleBundleTextForReasoning } from "@/lib/criminal/reasoning-v2/assemble-bundle-text";
 import { buildDisclosureChaseHref } from "@/components/criminal/disclosure-chase/disclosureChaseLinks";
@@ -782,10 +783,11 @@ export function HearingWarRoom({
     [battleboard, allegation, stage, chaseItemsAll, bundleSource, displayStrategy, committedStrategy],
   );
 
-  const loading = snapshotLoading || battleboardLoading;
-  const embedBlockingLoading = embedInShell ? snapshotLoading : loading;
+  const loading = snapshotLoading || battleboardLoading || bundleLoading;
+  const embedBlockingLoading = embedInShell ? snapshotLoading || bundleLoading : loading;
   const controlRoomHref = buildControlRoomHref(caseId);
   const headerLoading = snapshotLoading || bundleLoading;
+  const ingestion = bundleSource?.canonical?.ingestion ?? null;
 
   const bundleContextHay = useMemo(
     () =>
@@ -819,7 +821,7 @@ export function HearingWarRoom({
   const copyBlockedReason = outputIntegrity.banner;
 
   const pilotTodayView = useMemo((): PilotTodayDashboardView | null => {
-    if (!usePilotDeskUi || snapshotLoading) return null;
+    if (!usePilotDeskUi || snapshotLoading || ingestion?.substantiveOutputsWithheld) return null;
     const filteredDno = filterBundleFamilyWarnings(brief.doNotOverstate, bundleContextHay);
     const filteredRisks = filterBundleFamilyWarnings(brief.collapseRisks, bundleContextHay);
     const filteredChase = filterBundleFamilyWarnings(chaseItemsAll, bundleContextHay);
@@ -868,6 +870,7 @@ export function HearingWarRoom({
     bundleSource,
     snapshot,
     bundleContextHay,
+    ingestion,
   ]);
 
   if (embedInShell && usePilotDeskUi) {
@@ -878,6 +881,8 @@ export function HearingWarRoom({
             <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
             Loading matter dashboard…
           </div>
+        ) : ingestion?.substantiveOutputsWithheld ? (
+          <IngestionGateNotice assessment={ingestion} surface="court" />
         ) : surfaceError && !pilotTodayView ? (
           <div
             className={`${workflowCard} p-6 text-sm text-red-800 border-red-200 bg-red-50/60`}
@@ -919,7 +924,11 @@ export function HearingWarRoom({
       <div className={pilotMode ? "max-w-[1400px] space-y-4" : "xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px] space-y-4"}>
         <CaseWorkflowShell
           caseId={caseId}
-          safeCourtLine={pilotMode && !loading ? brief.safePositionToday : undefined}
+          safeCourtLine={
+            pilotMode && !loading && !ingestion?.substantiveOutputsWithheld
+              ? brief.safePositionToday
+              : undefined
+          }
           onRecordPosition={pilotRecordPositionHidden ? undefined : onRecordPosition}
           onUploadEvidence={pilotUploadDisabled ? undefined : onUploadEvidence}
           pilotUploadDisabled={pilotUploadDisabled}
@@ -997,6 +1006,8 @@ export function HearingWarRoom({
               <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
               Loading matter dashboard…
             </div>
+          ) : ingestion?.substantiveOutputsWithheld ? (
+            <IngestionGateNotice assessment={ingestion} surface="court" />
           ) : !pilotTodayView ? (
             <div
               className={`${workflowCard} p-6 text-sm text-red-800 border-red-200 bg-red-50/60`}
@@ -1029,6 +1040,8 @@ export function HearingWarRoom({
             <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
             Loading court-prep brief…
           </div>
+        ) : ingestion?.substantiveOutputsWithheld ? (
+          <IngestionGateNotice assessment={ingestion} surface="court" />
         ) : (
           <>
             <section className={`${workflowCard} p-4 border-emerald-200/50 bg-emerald-50/40`}>

@@ -10,6 +10,10 @@ import {
   countPdfPageObjects,
   extractPdfTextFromContentStreams,
 } from "@/lib/upload/pdf-stream-text-fallback";
+import {
+  buildIngestionAssessment,
+  type IngestionAssessment,
+} from "@/lib/upload/ingestion-assessment";
 
 /**
  * Per-page text extraction using the parser's page renderer. Lives here because this
@@ -19,13 +23,18 @@ import {
  * Returns null rather than throwing when page units cannot be produced, so the caller
  * degrades to explicit unknown page identity instead of inventing pages.
  */
-export async function extractPdfPageUnitsFromBuffer(
+type PdfPageUnitExtraction = {
+  pageUnits: ExtractedPageUnit[];
+  reportedPageCount: number | null;
+};
+
+async function extractPdfPageUnitsWithCountFromBuffer(
   buffer: Buffer,
-): Promise<ExtractedPageUnit[] | null> {
+): Promise<PdfPageUnitExtraction | null> {
   try {
     const pdfParse = (await import("pdf-parse")).default;
     const pageTexts: string[] = [];
-    await pdfParse(buffer, {
+    const result = await pdfParse(buffer, {
       max: 0,
       pagerender: async (pageData: {
         getTextContent: (opts: {
@@ -45,10 +54,23 @@ export async function extractPdfPageUnitsFromBuffer(
       },
     } as Parameters<typeof pdfParse>[1]);
     if (!pageTexts.length) return null;
-    return buildPageUnitsFromCompiledPageTexts(pageTexts);
+    return {
+      pageUnits: buildPageUnitsFromCompiledPageTexts(pageTexts),
+      reportedPageCount:
+        typeof result.numpages === "number" && result.numpages > 0
+          ? Math.round(result.numpages)
+          : null,
+    };
   } catch {
     return null;
   }
+}
+
+export async function extractPdfPageUnitsFromBuffer(
+  buffer: Buffer,
+): Promise<ExtractedPageUnit[] | null> {
+  const extracted = await extractPdfPageUnitsWithCountFromBuffer(buffer);
+  return extracted?.pageUnits ?? null;
 }
 
 export type ExtractedFileTextMeta = {
@@ -63,6 +85,8 @@ export type ExtractedFileTextMeta = {
   pageUnits: ExtractedPageUnit[];
   /** Present when one or more pages carry no extractable text layer. */
   textLayerLimitation: string | null;
+  /** Layer 0 decision. Parser diagnostics live here, never in source text. */
+  ingestionAssessment: IngestionAssessment;
 };
 
 /**
@@ -79,14 +103,25 @@ export async function extractTextAndMetaFromFileBuffer(
   const isPdf = mimeType === "application/pdf" || lower.endsWith(".pdf");
   if (isPdf) {
     try {
-      const pageUnits = (await extractPdfPageUnitsFromBuffer(buffer)) ?? [];
+      const pageExtraction = await extractPdfPageUnitsWithCountFromBuffer(buffer);
+      const pageUnits = pageExtraction?.pageUnits ?? [];
       if (pageUnits.length) {
         const coverage = summariseTextLayerCoverage(pageUnits);
+        const text = pageUnits.map((p) => p.text).join("\f");
+        const pageCount = pageExtraction?.reportedPageCount ?? pageUnits.length;
         return {
-          text: pageUnits.map((p) => p.text).join("\f"),
-          pageCount: pageUnits.length,
+          text,
+          pageCount,
           pageUnits,
           textLayerLimitation: coverage.limitation,
+          ingestionAssessment: buildIngestionAssessment({
+            fileName,
+            mimeType,
+            text,
+            pageCount,
+            pageUnits,
+            parserRoute: "pdf_page_units",
+          }),
         };
       }
       const pdfParse = (await import("pdf-parse")).default;
@@ -95,15 +130,40 @@ export async function extractTextAndMetaFromFileBuffer(
         typeof result.numpages === "number" && result.numpages > 0
           ? Math.round(result.numpages)
           : null;
-      return { text: result.text || "", pageCount: pages, pageUnits: [], textLayerLimitation: null };
+      const text = result.text || "";
+      return {
+        text,
+        pageCount: pages,
+        pageUnits: [],
+        textLayerLimitation: null,
+        ingestionAssessment: buildIngestionAssessment({
+          fileName,
+          mimeType,
+          text,
+          pageCount: pages,
+          pageUnits: [],
+          parserRoute: "pdf_text_fallback",
+        }),
+      };
     } catch (error) {
       const recovered = extractPdfTextFromContentStreams(buffer);
       if (recovered) {
+        const parserError = error instanceof Error ? error.message : "Unknown parser error";
+        const pageCount = countPdfPageObjects(buffer);
         return {
           text: recovered,
-          pageCount: countPdfPageObjects(buffer),
+          pageCount,
           pageUnits: [],
           textLayerLimitation: null,
+          ingestionAssessment: buildIngestionAssessment({
+            fileName,
+            mimeType,
+            text: recovered,
+            pageCount,
+            pageUnits: [],
+            parserRoute: "pdf_stream_fallback",
+            parserError,
+          }),
         };
       }
       throw new Error(
@@ -125,6 +185,14 @@ export async function extractTextAndMetaFromFileBuffer(
         pageCount: null,
         pageUnits: [],
         textLayerLimitation: null,
+        ingestionAssessment: buildIngestionAssessment({
+          fileName,
+          mimeType,
+          text: result.value || "",
+          pageCount: null,
+          pageUnits: [],
+          parserRoute: "docx",
+        }),
       };
     } catch (error) {
       throw new Error(
@@ -134,18 +202,36 @@ export async function extractTextAndMetaFromFileBuffer(
   }
 
   try {
+    const text = buffer.toString("utf-8");
     return {
-      text: buffer.toString("utf-8"),
+      text,
       pageCount: null,
       pageUnits: [],
       textLayerLimitation: null,
+      ingestionAssessment: buildIngestionAssessment({
+        fileName,
+        mimeType,
+        text,
+        pageCount: null,
+        pageUnits: [],
+        parserRoute: "plain_text",
+      }),
     };
   } catch {
+    const text = buffer.toString("latin1");
     return {
-      text: buffer.toString("latin1"),
+      text,
       pageCount: null,
       pageUnits: [],
       textLayerLimitation: null,
+      ingestionAssessment: buildIngestionAssessment({
+        fileName,
+        mimeType,
+        text,
+        pageCount: null,
+        pageUnits: [],
+        parserRoute: "plain_text",
+      }),
     };
   }
 }

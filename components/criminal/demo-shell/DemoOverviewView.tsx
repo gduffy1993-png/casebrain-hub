@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
+import { IngestionGateNotice } from "@/components/criminal/IngestionGateNotice";
 import { buildFiveAnswersView } from "@/lib/criminal/five-answers/build-five-answers-view";
 import { buildHearingMode } from "@/lib/criminal/hearing-mode";
 import { buildExportPack } from "@/lib/criminal/export-pack";
@@ -73,6 +74,7 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
     bundleMeta,
     clientLabel,
     hearingLabel,
+    ingestion,
   } = useMatterBrief(caseId);
 
   useEffect(() => {
@@ -219,6 +221,10 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
         </p>
       </div>
     );
+  }
+
+  if (ingestion?.substantiveOutputsWithheld) {
+    return <IngestionGateNotice assessment={ingestion} surface="overview" />;
   }
 
   if (!view || !matterConfidence || !chase) {

@@ -30,6 +30,7 @@ import {
 import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowShell";
 import { SourceStateBadge, sourceStateBadgeLabel } from "@/components/criminal/trust/SourceStateBadge";
 import { OutputReceiptDisclosure } from "@/components/criminal/trust/OutputReceiptDisclosure";
+import { IngestionGateNotice } from "@/components/criminal/IngestionGateNotice";
 import { receiptFromChaseItem, receiptFromCourtLine } from "@/lib/criminal/visible-output-receipt";
 import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
 import {
@@ -924,9 +925,10 @@ export function DisclosureChase({
   }, [filteredItems, selectedId]);
 
   const loading = snapshotLoading || battleboardLoading || bundleLoading;
-  const embedBlockingLoading = embedInShell ? snapshotLoading : loading;
+  const embedBlockingLoading = embedInShell ? snapshotLoading || bundleLoading : loading;
   const pilotEmbed = embedInShell;
   const loadingCardClass = pilotEmbed ? workflowPilotCard : workflowCard;
+  const ingestion = bundleSource?.canonical?.ingestion ?? null;
 
   useEffect(() => {
     setShowLimitedLoadingFallback(false);
@@ -1010,6 +1012,8 @@ export function DisclosureChase({
               remains unavailable.
             </p>
           </div>
+        ) : ingestion?.substantiveOutputsWithheld ? (
+          <IngestionGateNotice assessment={ingestion} surface="chase" />
         ) : surfaceError && brief.items.length === 0 ? (
           <div
             className={`${loadingCardClass} p-6 text-sm text-red-800 border-red-200 bg-red-50/60`}

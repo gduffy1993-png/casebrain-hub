@@ -11,6 +11,11 @@ import {
   pageUnitsFromExtractedText,
   type ExtractedPageUnit,
 } from "@/lib/upload/pdf-page-units";
+import {
+  assessmentForStoredDocument,
+  buildCaseIngestionAssessment,
+  type CaseIngestionAssessment,
+} from "@/lib/upload/ingestion-assessment";
 import { splitPageUnitsIntoLogicalDocuments } from "@/lib/criminal/compiled-bundle-segmentation";
 import {
   buildCanonicalPipelineFromDocumentUnits,
@@ -32,6 +37,7 @@ import {
 export type CaseDocumentRow = {
   id: string;
   name?: string | null;
+  type?: string | null;
   title?: string | null;
   raw_text?: string | null;
   extracted_text?: string | null;
@@ -46,6 +52,7 @@ export type CaseDocumentRow = {
 
 /** API + client contract carried on bundle-source (authenticated matter load). */
 export type AuthenticatedMatterCanonicalPayload = {
+  ingestion: CaseIngestionAssessment;
   findings: ReturnType<typeof serializeCanonicalFindingForSurface>[];
   /** Full findings for production builders (client may rehydrate summaries). */
   findingSummaries: Array<{
@@ -207,6 +214,7 @@ export function mapCaseDocumentsToUploadedUnits(docs: CaseDocumentRow[]): Upload
   let orderCursor = 0;
 
   docs.forEach((doc, idx) => {
+    if (!assessmentForStoredDocument(doc).substantiveOutputsAllowed) return;
     const text = bodyText(doc);
     if (!text) return;
     const fromJson = pagesFromExtractedJson(doc.extracted_json);
@@ -306,7 +314,10 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
   canonical: AuthenticatedMatterCanonicalPayload;
   surfaces: LiveProductionSurfaces | null;
 } {
-  const units = mapCaseDocumentsToUploadedUnits(docs);
+  const ingestion = buildCaseIngestionAssessment(docs);
+  const units = ingestion.substantiveOutputsWithheld
+    ? []
+    : mapCaseDocumentsToUploadedUnits(docs);
   const emptyPipeline: LiveCanonicalPipelineResult = {
     graph: {
       nodes: [],
@@ -349,6 +360,7 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
     units.length > 0 ? buildCanonicalPipelineFromDocumentUnits(units) : emptyPipeline;
 
   const canonical: AuthenticatedMatterCanonicalPayload = {
+    ingestion,
     findings: pipeline.findings.map(serializeCanonicalFindingForSurface),
     findingSummaries: toFindingSummaries(pipeline.findings),
     evidenceRows: pipeline.evidenceRows,
@@ -366,7 +378,7 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
   };
 
   const surfaces =
-    opts?.withSurfaces && units.length > 0
+    opts?.withSurfaces && units.length > 0 && !ingestion.substantiveOutputsWithheld
       ? buildLiveProductionSurfacesFromDocumentUnits(units, {
           caseId: opts.caseId,
           allegation: opts.allegation ?? undefined,

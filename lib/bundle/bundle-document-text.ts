@@ -1,3 +1,8 @@
+import {
+  isParserDiagnosticPlaceholder,
+  readPersistedIngestionAssessment,
+} from "@/lib/upload/ingestion-assessment";
+
 /**
  * Normalise document row to plain text for bundle parsing (aligned with defence-plan-chat).
  * When both `extracted_text` and `raw_text` exist, uses whichever body is **longer** so a short/stale
@@ -13,11 +18,7 @@
  * A witness sentence that happens to say "extraction failed" is not this.
  */
 export function isExtractionFailurePlaceholder(text: string): boolean {
-  const t = text.trim();
-  if (!t) return false;
-  if (/^\[PDF extraction failed:/i.test(t)) return true;
-  if (/^Document uploaded but text extraction failed:/i.test(t)) return true;
-  return false;
+  return isParserDiagnosticPlaceholder(text);
 }
 
 function usableBody(text: string): string {
@@ -30,6 +31,9 @@ export function getDocumentBodyText(d: {
   extracted_text?: string | null;
   extracted_json?: unknown;
 }): string {
+  const ingestion = readPersistedIngestionAssessment(d.extracted_json);
+  if (ingestion && !ingestion.substantiveOutputsAllowed) return "";
+
   const et = typeof d.extracted_text === "string" ? d.extracted_text.trim() : "";
   const raw = typeof d.raw_text === "string" ? d.raw_text.trim() : "";
 

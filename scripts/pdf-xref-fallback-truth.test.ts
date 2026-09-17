@@ -1,6 +1,6 @@
 /**
- * pdf-parse's bundled pdf.js throws `bad XRef entry` on pdfkit files.
- * The drawn text is still in the content streams. Recover that. Do not invent
+ * Some parser/pdfkit combinations throw `bad XRef entry`; others read the same file.
+ * When parsing fails, recover drawn content streams. Do not invent
  * a board from an independent sidecar extract while the file itself is unreadable.
  *
  * Run: npx tsx scripts/pdf-xref-fallback-truth.test.ts
@@ -46,16 +46,16 @@ await check("pdfkit Vale-shaped papers recover name, robbery, and O1 — not the
   const buf = await makePdfkitPdf(
     "R v Marcus Andrew Vale\nRobbery contrary to section 8 Theft Act 1968\nO1 Full interview transcript Outstanding",
   );
-  let threw = false;
-  try {
-    const pdfParse = (await import("pdf-parse")).default;
-    await pdfParse(buf, { max: 0 });
-  } catch {
-    threw = true;
-  }
-  assert.equal(threw, true, "this fixture must still be the pdf-parse xref failure");
-
   const meta = await extractTextAndMetaFromFileBuffer("CB-TB-039.pdf", "application/pdf", buf);
+  assert.ok(["accepted", "degraded"].includes(meta.ingestionAssessment.decision));
+  assert.equal(meta.ingestionAssessment.substantiveOutputsAllowed, true);
+  if (meta.ingestionAssessment.reasonCodes.includes("fallback_recovered_content")) {
+    assert.ok(meta.ingestionAssessment.reasonCodes.includes("parser_xref_failure"));
+  } else if (meta.ingestionAssessment.decision === "accepted") {
+    assert.ok(meta.pageUnits.length > 0);
+  } else {
+    assert.ok(meta.ingestionAssessment.reasonCodes.includes("page_units_unavailable"));
+  }
   assert.doesNotMatch(meta.text, /PDF parsing failed|bad XRef/i);
   assert.match(meta.text, /Marcus Andrew Vale/);
   assert.match(meta.text, /Robbery/);
@@ -141,6 +141,8 @@ await check("a readable xref PDF still uses the parser, not the stream scrape", 
     ),
   );
   const meta = await extractTextAndMetaFromFileBuffer("CB-TB-039_Vale.pdf", "application/pdf", buf);
+  assert.equal(meta.ingestionAssessment.decision, "accepted");
+  assert.equal(meta.ingestionAssessment.substantiveOutputsAllowed, true);
   assert.ok(meta.pageUnits.length > 0, "parser path must keep page units");
   assert.match(meta.text, /Marcus Andrew Vale/);
   assert.match(meta.text, /Robbery/);

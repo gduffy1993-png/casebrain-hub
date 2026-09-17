@@ -5,7 +5,13 @@ export type CaseWorkflowDocument = {
   name: string;
   created_at: string;
   type?: string | null;
-  extractionStatus?: "full" | "summary_only" | "no_text";
+  extractionStatus?:
+    | "full"
+    | "summary_only"
+    | "no_text"
+    | "unreadable"
+    | "needs_ocr"
+    | "review";
   extractionMessage?: string;
 };
 

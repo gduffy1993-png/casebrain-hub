@@ -25,7 +25,7 @@ export function PilotCaseDocumentsPanel({
   }, [documents]);
 
   useEffect(() => {
-    if (documents.length > 0 || !caseId) return;
+    if (!caseId) return;
     let cancelled = false;
     (async () => {
       try {
@@ -40,11 +40,12 @@ export function PilotCaseDocumentsPanel({
     return () => {
       cancelled = true;
     };
-  }, [caseId, documents.length]);
+  }, [caseId, documents]);
 
   useEffect(() => {
     if (!caseId) return;
     let cancelled = false;
+    setSourceExcerpt(null);
     (async () => {
       try {
         const res = await fetch(`/api/criminal/${caseId}/bundle-source`, { credentials: "include" });
@@ -63,6 +64,10 @@ export function PilotCaseDocumentsPanel({
       cancelled = true;
     };
   }, [caseId]);
+
+  const sourceWithheld = resolvedDocs.some((document) =>
+    ["unreadable", "needs_ocr", "review"].includes(document.extractionStatus ?? ""),
+  );
 
   return (
     <section
@@ -94,6 +99,18 @@ export function PilotCaseDocumentsPanel({
         className={`px-4 py-4 space-y-4 ${pilotDark ? "bg-slate-950/40" : "bg-slate-50/40"}`}
         data-testid="case-files-expanded"
       >
+        {sourceWithheld ? (
+          <div
+            className="rounded-lg border border-amber-300/70 bg-amber-50 px-4 py-3 text-sm text-amber-950"
+            data-testid="file-ingestion-gate-notice"
+          >
+            <p className="font-semibold">Source extraction incomplete</p>
+            <p className="mt-1 text-xs">
+              PDF could not be safely read. Reprocess/OCR/solicitor review required.
+              Substantive outputs withheld.
+            </p>
+          </div>
+        ) : null}
         <CaseFilesList documents={resolvedDocs} />
         {sourceExcerpt ? (
           <div

@@ -218,6 +218,41 @@ export function useMatterBrief(caseId: string) {
   const pilotMatter = useMemo(() => {
     if (snapshotLoading || battleboardLoading || bundleLoading) return null;
 
+    const ingestion = bundleSource?.canonical?.ingestion ?? null;
+    if (ingestion?.substantiveOutputsWithheld) {
+      return {
+        matterBrief: null,
+        matterConfidence: null,
+        doNotOverstate: [],
+        warRoom: null,
+        chase: null,
+        allegation: null,
+        clientLabel: null,
+        courtLabel: null,
+        hearingLabel: null,
+        hearingStatusResolved: null,
+        matterStateVm: null,
+        outputIntegrity: null,
+        briefPlan: null,
+        primaryRouteTitle: null,
+        canonical: bundleSource?.canonical ?? null,
+        ingestion,
+        evidenceRowsOverride: [],
+        bundleMeta: bundleSource
+          ? {
+              documentCount: bundleSource.documentCount ?? 0,
+              combinedTextLength: 0,
+              documentRows: bundleSource.documentRows,
+              snippets: undefined,
+              frontMatterScan: null,
+              pageAwareFrontMatterScan: null,
+              caseMetadata: null,
+              canonical: bundleSource.canonical ?? null,
+            }
+          : null,
+      };
+    }
+
     const pageAwareBundleText = bundleSource?.canonical?.pageAwareFrontMatterScan ?? null;
     const bundleText = pageAwareBundleText ?? bundleSource?.frontMatterScan ?? null;
     const ledger = bundleText?.trim()
@@ -494,6 +529,7 @@ export function useMatterBrief(caseId: string) {
       briefPlan,
       primaryRouteTitle,
       canonical: bundleSource?.canonical ?? null,
+      ingestion,
       evidenceRowsOverride: evidenceRowsFromCanonical,
       bundleMeta: bundleSource
         ? {
@@ -540,6 +576,7 @@ export function useMatterBrief(caseId: string) {
     primaryRouteTitle: pilotMatter?.primaryRouteTitle ?? null,
     bundleMeta: pilotMatter?.bundleMeta ?? null,
     canonical: pilotMatter?.canonical ?? null,
+    ingestion: pilotMatter?.ingestion ?? bundleSource?.canonical?.ingestion ?? null,
     evidenceRowsOverride: pilotMatter?.evidenceRowsOverride ?? [],
     caseTitle: snapshot?.caseMeta?.title?.trim() || "Criminal case",
   };
