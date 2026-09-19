@@ -1,0 +1,24 @@
+{
+  "root": "leverage-file-named-gaps",
+  "pr": 101,
+  "sha": "bf13248a71d6bd30c7dae97b462781e2a0d29db9",
+  "vercel": "SUCCESS",
+  "preview": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app",
+  "verdict": "PASS",
+  "caseId": "17e21c53-5635-481e-a189-c8116d56c3d6",
+  "before": { "overview": 0, "chase": 0 },
+  "after": {
+    "overview": 3,
+    "chase": 3,
+    "items": ["full CCTV master", "continuity statement", "ID procedure notes"]
+  },
+  "receipts": "SOURCE-BACKED",
+  "smoke": {
+    "ahmedFragments": false,
+    "patelFragments": false,
+    "gauntletOfficerNote": false,
+    "brookesCharge": "Intimidating a witness",
+    "valeBellPressure": "driver identity and toxicology procedure"
+  },
+  "untouched": ["duplicate-subscriber-whatsapp", "court-layout-chrome"]
+}

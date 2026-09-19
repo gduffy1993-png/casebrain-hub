@@ -33,8 +33,9 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     const { data: docs, error: docErr } = await supabase
       .from("documents")
-      .select("id, name, updated_at, raw_text, extracted_text, extracted_json")
+      .select("id, name, type, updated_at, raw_text, extracted_text, extracted_json")
       .eq("case_id", caseId)
+      .eq("org_id", orgId)
       .order("updated_at", { ascending: false });
 
     if (docErr) {
@@ -48,20 +49,21 @@ export async function GET(_request: Request, { params }: RouteParams) {
       caseTitle: typeof caseRow.title === "string" ? caseRow.title : null,
       allegation: payload.caseMetadata?.offenceDisplay ?? payload.header?.shortTitle ?? null,
     });
+    const withheld = canonical.ingestion.substantiveOutputsWithheld;
 
     return NextResponse.json({
       ok: true,
       data: {
-        combinedTextLength: payload.combinedText.length,
+        combinedTextLength: withheld ? 0 : payload.combinedText.length,
         documentCount: rows.length,
         documentRows: payload.documentRows,
-        health: payload.health,
-        header: payload.header,
-        snippets: payload.snippets,
-        caseMetadata: payload.caseMetadata,
+        health: withheld ? { ...payload.health, status: "empty" } : payload.health,
+        header: withheld ? null : payload.header,
+        snippets: withheld ? [] : payload.snippets,
+        caseMetadata: withheld ? null : payload.caseMetadata,
         sizeProfile: payload.sizeProfile,
-        frontMatterScanLength: payload.frontMatterScan.length,
-        frontMatterScan: payload.frontMatterScan,
+        frontMatterScanLength: withheld ? 0 : payload.frontMatterScan.length,
+        frontMatterScan: withheld ? "" : payload.frontMatterScan,
         /** Live canonical pipeline from uploaded document/page units. */
         canonical,
       },

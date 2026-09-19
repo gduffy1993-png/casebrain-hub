@@ -1,0 +1,233 @@
+[
+  {
+    "signature": "P2:TRUTH_EXPECTED_CHASE_MISSING:truthKey",
+    "severity": "P2",
+    "count": 5,
+    "caseIds": [
+      "cb-fresh-001-taylor-brookes",
+      "cb-fresh-002-jordan-hale",
+      "fictional-theft-ashleigh-merritt",
+      "sim-024"
+    ],
+    "examples": [
+      {
+        "severity": "P2",
+        "code": "TRUTH_EXPECTED_CHASE_MISSING",
+        "family": "truthKey",
+        "message": "Truth key expected a chase item that was not visible in app output.",
+        "sourceEvidence": "Phone extraction source material"
+      },
+      {
+        "severity": "P2",
+        "code": "TRUTH_EXPECTED_CHASE_MISSING",
+        "family": "truthKey",
+        "message": "Truth key expected a chase item that was not visible in app output.",
+        "sourceEvidence": "Message export / screenshot pack"
+      },
+      {
+        "severity": "P2",
+        "code": "TRUTH_EXPECTED_CHASE_MISSING",
+        "family": "truthKey",
+        "message": "Truth key expected a chase item that was not visible in app output.",
+        "sourceEvidence": "Interview recording / transcript"
+      },
+      {
+        "severity": "P2",
+        "code": "TRUTH_EXPECTED_CHASE_MISSING",
+        "family": "truthKey",
+        "message": "Truth key expected a chase item that was not visible in app output.",
+        "sourceEvidence": "Retail CCTV continuity"
+      },
+      {
+        "severity": "P2",
+        "code": "TRUTH_EXPECTED_CHASE_MISSING",
+        "family": "truthKey",
+        "message": "Truth key expected a chase item that was not visible in app output.",
+        "sourceEvidence": "MG6/unused schedule clarification"
+      }
+    ]
+  },
+  {
+    "signature": "P3:APP_OUTPUT_STALE_SCHEMA:coverage",
+    "severity": "P3",
+    "count": 75,
+    "caseIds": [
+      "sim-076",
+      "sim-077",
+      "sim-078",
+      "sim-079",
+      "sim-080",
+      "sim-081",
+      "sim-082",
+      "sim-083",
+      "sim-084",
+      "sim-085",
+      "sim-086",
+      "sim-087",
+      "sim-088",
+      "sim-089",
+      "sim-090",
+      "sim-091",
+      "sim-092",
+      "sim-093",
+      "sim-094",
+      "sim-095",
+      "sim-096",
+      "sim-097",
+      "sim-098",
+      "sim-099",
+      "sim-100",
+      "sim-101",
+      "sim-102",
+      "sim-103",
+      "sim-104",
+      "sim-105",
+      "sim-106",
+      "sim-107",
+      "sim-108",
+      "sim-109",
+      "sim-110",
+      "sim-111",
+      "sim-112",
+      "sim-113",
+      "sim-114",
+      "sim-115",
+      "sim-116",
+      "sim-117",
+      "sim-118",
+      "sim-119",
+      "sim-120",
+      "sim-121",
+      "sim-122",
+      "sim-123",
+      "sim-124",
+      "sim-125",
+      "sim-126",
+      "sim-127",
+      "sim-128",
+      "sim-129",
+      "sim-130",
+      "sim-131",
+      "sim-132",
+      "sim-133",
+      "sim-134",
+      "sim-135",
+      "sim-136",
+      "sim-137",
+      "sim-138",
+      "sim-139",
+      "sim-140",
+      "sim-141",
+      "sim-142",
+      "sim-143",
+      "sim-144",
+      "sim-145",
+      "sim-146",
+      "sim-147",
+      "sim-148",
+      "sim-149",
+      "sim-150"
+    ],
+    "examples": [
+      {
+        "severity": "P3",
+        "code": "APP_OUTPUT_STALE_SCHEMA",
+        "family": "coverage",
+        "message": "casebrain-output.json is present but predates the current audit schema; rerun the case before treating it as a live defect."
+      },
+      {
+        "severity": "P3",
+        "code": "APP_OUTPUT_STALE_SCHEMA",
+        "family": "coverage",
+        "message": "casebrain-output.json is present but predates the current audit schema; rerun the case before treating it as a live defect."
+      },
+      {
+        "severity": "P3",
+        "code": "APP_OUTPUT_STALE_SCHEMA",
+        "family": "coverage",
+        "message": "casebrain-output.json is present but predates the current audit schema; rerun the case before treating it as a live defect."
+      },
+      {
+        "severity": "P3",
+        "code": "APP_OUTPUT_STALE_SCHEMA",
+        "family": "coverage",
+        "message": "casebrain-output.json is present but predates the current audit schema; rerun the case before treating it as a live defect."
+      },
+      {
+        "severity": "P3",
+        "code": "APP_OUTPUT_STALE_SCHEMA",
+        "family": "coverage",
+        "message": "casebrain-output.json is present but predates the current audit schema; rerun the case before treating it as a live defect."
+      }
+    ]
+  },
+  {
+    "signature": "P3:APP_OUTPUT_NOT_ON_DISK:coverage",
+    "severity": "P3",
+    "count": 30,
+    "caseIds": [
+      "demo-audit-01-phone-harassment",
+      "demo-audit-02-cctv-stills",
+      "demo-audit-03-bwv-custody",
+      "demo-audit-04-co-def-interview",
+      "demo-audit-05-encro-attribution",
+      "demo-audit-06-domestic-stalking",
+      "demo-audit-07-phone-ocr-trap",
+      "demo-audit-08-cctv-night-stills",
+      "demo-audit-09-cctv-index-only",
+      "demo-audit-10-bwv-public-order",
+      "demo-audit-11-custody-pace-ocr",
+      "demo-audit-12-multi-def-burglary",
+      "demo-audit-13-co-def-index-trap",
+      "demo-audit-14-encro-retail",
+      "demo-audit-15-county-lines-runners",
+      "demo-audit-16-fraud-bank-statements",
+      "demo-audit-17-fraud-transaction-export",
+      "demo-audit-18-motoring-sjp-thin",
+      "demo-audit-19-motoring-breath-specimen",
+      "demo-audit-20-domestic-harassment",
+      "demo-audit-21-historic-sexual-abe",
+      "demo-audit-22-youth-interview",
+      "demo-audit-23-duplicate-pages",
+      "demo-audit-24-missing-pages-index",
+      "demo-audit-25-charge-bundle-mismatch",
+      "demo-audit-26-phone-referred-metadata",
+      "demo-audit-27-custody-pace-missing",
+      "demo-audit-28-fraud-subscriber-trap",
+      "demo-audit-29-youth-yjs-material",
+      "demo-audit-30-layout-hearing-date"
+    ],
+    "examples": [
+      {
+        "severity": "P3",
+        "code": "APP_OUTPUT_NOT_ON_DISK",
+        "family": "coverage",
+        "message": "Case has source text but no casebrain-output.json for automated comparison."
+      },
+      {
+        "severity": "P3",
+        "code": "APP_OUTPUT_NOT_ON_DISK",
+        "family": "coverage",
+        "message": "Case has source text but no casebrain-output.json for automated comparison."
+      },
+      {
+        "severity": "P3",
+        "code": "APP_OUTPUT_NOT_ON_DISK",
+        "family": "coverage",
+        "message": "Case has source text but no casebrain-output.json for automated comparison."
+      },
+      {
+        "severity": "P3",
+        "code": "APP_OUTPUT_NOT_ON_DISK",
+        "family": "coverage",
+        "message": "Case has source text but no casebrain-output.json for automated comparison."
+      },
+      {
+        "severity": "P3",
+        "code": "APP_OUTPUT_NOT_ON_DISK",
+        "family": "coverage",
+        "message": "Case has source text but no casebrain-output.json for automated comparison."
+      }
+    ]
+  }
+]

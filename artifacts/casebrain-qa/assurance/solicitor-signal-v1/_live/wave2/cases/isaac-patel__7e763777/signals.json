@@ -1,0 +1,71 @@
+{
+  "caseId": "7e763777-94a8-4958-a190-a35ef6ddb259",
+  "slug": "isaac-patel",
+  "label": "Isaac Patel 1 document on file: Patel CRIMINAL",
+  "preview": "https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-24T19:51:57.485Z",
+  "tabs": {
+    "overview": {
+      "ok": true,
+      "textLen": 2175,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "Safe Court Line Copy safe court line Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet. Client Update Copy client update CLIENT-SAFE SUMMARY (not for court or CPS) We ar",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "0 Missing",
+          "2 Incomplete",
+          "What Needs Attention",
+          "0 missing · 2 incomplete · 2 open review items",
+          "Missing",
+          "Unclear",
+          "Incomplete",
+          "Chased",
+          "CCTV full window / master footage",
+          "UNCLEAR",
+          "CAD / dispatch log material",
+          "UNCLEAR",
+          "UNCLEAR",
+          "CCTV full window / master footage",
+          "Please provide the full CCTV window, master footage or export log, or confirm in writing why it is not available.",
+          "Copy chase request"
+        ],
+        "textLen": 2175
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 2043,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "CHASED",
+          "Chased",
+          "CAD / dispatch log material",
+          "Chase before listed hearing",
+          "Copy CPS chase",
+          "CAD / dispatch log material",
+          "Deadline: Chase before listed hearing",
+          "My account is based on what I saw and what I reported at the time. There may be a timing issue when compared with the CAD or listing",
+          "DRAFT CHASE WORDING",
+          "Please provide CAD / dispatch log material or confirm in writing why it is not available.",
+          "Provisional chase list · check source before sending",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 2043
+      }
+    }
+  }
+}

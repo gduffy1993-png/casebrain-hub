@@ -3,6 +3,8 @@
  * Presentation only: does not change chase/brain/guardian builders.
  */
 
+import { isPreservedFileNamedChaseLabel } from "@/lib/criminal/disclosure-chase-finalize";
+
 /** Normalize visible copy — strips dev/eval tokens from solicitor-facing surfaces. */
 export function sanitizeSolicitorVisibleText(text: string): string {
   if (!text.trim()) return text;
@@ -109,6 +111,9 @@ export function polishChasePreviewLabel(line: string): string | null {
   const t = sanitizeSolicitorVisibleText(line.trim());
   if (!t) return null;
   if (isGenericAdditionalSourceLabel(t)) return null;
+  // File-named MG6C/O/U/EX rows must reach Court TOP CHASE even when the
+  // mash detector would otherwise treat the schedule token as OCR glue.
+  if (isPreservedFileNamedChaseLabel(t)) return t;
   // Refuse OCR/pack-table mash (continuation17, IssueCurrent, glued page markers).
   if (/\bcontinuation\s*\d+/i.test(t) || /continuation\d+/i.test(t)) return null;
   if (/IssueCurrent|StatusCurrent|BundleStatus/i.test(t)) return null;

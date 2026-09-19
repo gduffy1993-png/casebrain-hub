@@ -1,0 +1,68 @@
+
+### dunn__a81a0cf3
+   interview                gaps  1   overview:yes  today:yes  summary:yes  disclosure-chase:yes
+   CAD / 999                gaps  1   overview:yes  today:yes  summary:yes  disclosure-chase:yes
+   forensic / DNA / prints  gaps  1   overview:--   today:--   summary:--   disclosure-chase:-- 
+   witness / MG11           gaps  1   overview:--   today:--   summary:--   disclosure-chase:-- 
+   continuity               gaps  3   overview:--   today:--   summary:--   disclosure-chase:-- 
+
+### imani-tobin-wounding__a42cb20a
+   bank / account           gaps  1   overview:--   today:--   summary:--   disclosure-chase:-- 
+   CCTV                     gaps  3   overview:--   today:yes  summary:yes  disclosure-chase:-- 
+   body-worn video          gaps  4   overview:--   today:yes  summary:yes  disclosure-chase:-- 
+   interview                gaps  1   overview:yes  today:yes  summary:yes  disclosure-chase:yes
+   medical / pathology      gaps  1   overview:--   today:yes  summary:yes  disclosure-chase:-- 
+   phone / digital          gaps  1   overview:yes  today:--   summary:yes  disclosure-chase:yes
+   continuity               gaps  5   overview:--   today:yes  summary:yes  disclosure-chase:-- 
+
+### isaac-patel__7e763777
+   CCTV                     gaps  1   overview:yes  today:yes  summary:yes  disclosure-chase:yes
+   interview                gaps  2   overview:yes  today:yes  summary:yes  disclosure-chase:yes
+   custody record           gaps  1   overview:yes  today:yes  summary:yes  disclosure-chase:yes
+   witness / MG11           gaps  1   overview:--   today:yes  summary:yes  disclosure-chase:-- 
+
+### layla-davies__687cf5a6
+   bank / account           gaps  1   overview:--   today:--   summary:--   disclosure-chase:-- 
+   CCTV                     gaps  2   overview:--   today:yes  summary:yes  disclosure-chase:-- 
+   body-worn video          gaps  1   overview:--   today:yes  summary:yes  disclosure-chase:-- 
+   medical / pathology      gaps  1   overview:yes  today:yes  summary:yes  disclosure-chase:yes
+   phone / digital          gaps  1   overview:yes  today:yes  summary:yes  disclosure-chase:yes
+   continuity               gaps  1   overview:--   today:--   summary:--   disclosure-chase:-- 
+
+### leon-hale-murder__14823d9e
+   CCTV                     gaps  7   overview:--   today:yes  summary:--   disclosure-chase:-- 
+   body-worn video          gaps  2   overview:--   today:yes  summary:--   disclosure-chase:-- 
+   interview                gaps  3   overview:yes  today:yes  summary:--   disclosure-chase:yes
+   CAD / 999                gaps  4   overview:--   today:--   summary:--   disclosure-chase:-- 
+   medical / pathology      gaps  2   overview:yes  today:yes  summary:--   disclosure-chase:yes
+   phone / digital          gaps  2   overview:--   today:--   summary:--   disclosure-chase:-- 
+   forensic / DNA / prints  gaps  7   overview:yes  today:--   summary:--   disclosure-chase:yes
+   custody record           gaps  6   overview:yes  today:yes  summary:--   disclosure-chase:yes
+   witness / MG11           gaps  1   overview:--   today:--   summary:--   disclosure-chase:-- 
+   continuity               gaps  2   overview:--   today:yes  summary:--   disclosure-chase:-- 
+
+### robbery-charge__99090c69
+   CCTV                     gaps  3   overview:yes  today:yes  summary:--   disclosure-chase:yes
+   witness / MG11           gaps  1   overview:--   today:--   summary:--   disclosure-chase:-- 
+   continuity               gaps  1   overview:yes  today:yes  summary:--   disclosure-chase:yes
+
+### taylor-brookes-digital__2dcdc59d
+   phone / digital          gaps  1   overview:yes  today:yes  summary:yes  disclosure-chase:yes
+
+================ TOTALS ================
+case/family gaps on Papers      : 36
+carried on all four work tabs   : 9
+carried on some work tabs       : 17
+absent from every work tab      : 10
+
+Gaps a solicitor would never see outside Papers:
+  dunn__a81a0cf3  forensic / DNA / prints  (1 row(s))  e.g. O04 forensic continuity statement Outstanding Requested from OIC
+  dunn__a81a0cf3  witness / MG11  (1 row(s))  e.g. O03 independent witness statement Outstanding Continuity awaited
+  dunn__a81a0cf3  continuity  (3 row(s))  e.g. EX/03 Continuity note Eastmoor Police outstanding
+  imani-tobin-wounding__a42cb20a  bank / account  (1 row(s))  e.g. Bank or account material is summarised by the reviewing officer. Only partia
+  layla-davies__687cf5a6  bank / account  (1 row(s))  e.g. MG6/04 bank source statements Outstanding Not in papers supplied
+  layla-davies__687cf5a6  continuity  (1 row(s))  e.g. MG6/05 CCTV continuity log Outstanding Awaiting export
+  leon-hale-murder__14823d9e  CAD / 999  (4 row(s))  e.g. 11 CAD and 999 summaries Original audio/log outstanding EX-MUR-012 to
+  leon-hale-murder__14823d9e  phone / digital  (2 row(s))  e.g. him in the stairwell at the exact stabbing moment. Full phone download and f
+  leon-hale-murder__14823d9e  witness / MG11  (1 row(s))  e.g. Final MG11 statements and any unnamed estate witness statements remain outst
+  robbery-charge__99090c69  witness / MG11  (1 row(s))  e.g. Served according to MG6 extract: MG5 extract, MG6 extract, partial CCTV stil

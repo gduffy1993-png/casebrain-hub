@@ -1,0 +1,238 @@
+{
+  "14823d9e-1f0f-4cfc-af01-e6595d1cdfc4": [
+    {
+      "ref": "EX-MUR-021",
+      "label": "Interview recording and transcript",
+      "family": "interview",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "EX-MUR-014",
+      "label": "Final medical/forensic report",
+      "family": "medical_expert",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX-MUR-001",
+      "label": "EX-MUR-001 Charge Sheet",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX-MUR-002",
+      "label": "EX-MUR-002 MG5 Case Summary",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX-MUR-007",
+      "label": "EX-MUR-007 Police Officer Statement",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX-MUR-008",
+      "label": "EX-MUR-008 Paramedic Note",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX-MUR-015",
+      "label": "EX-MUR-015 Knife Recovery Note",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX-MUR-016",
+      "label": "EX-MUR-016 Initial DNA Note",
+      "family": "other",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "2dcdc59d-ff44-4bc8-ac31-bd11a954a59e": [
+    {
+      "ref": null,
+      "label": "Full phone download / source extraction",
+      "family": "other",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "687cf5a6-6898-4257-baef-33e33ace08df": [
+    {
+      "ref": "MG6/05",
+      "label": "MG6/05 CCTV Continuity log",
+      "family": "cctv_continuity",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "MG6/07",
+      "label": "MG6/07 final medical report",
+      "family": "medical_expert",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "MG6/04",
+      "label": "MG6/04 bank source statements",
+      "family": "other",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "MG6/06",
+      "label": "MG6/06 analyst certificate",
+      "family": "other",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "CCTV/2",
+      "label": "CCTV/2 External camera export Store manager Export log",
+      "family": "other",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "EX/01",
+      "label": "Body-worn video (BWV)",
+      "family": "bwv",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "DIG/4",
+      "label": "DIG/4 Phone screenshot bundle DC Morgan Raw extraction",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Full phone download / source extraction",
+      "family": "other",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "7e763777-94a8-4958-a190-a35ef6ddb259": [
+    {
+      "ref": "MG6/05",
+      "label": "MG6/05 full CCTV master",
+      "family": "cctv_master",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "MG6/04",
+      "label": "MG6/04 signed final MG11",
+      "family": "other",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "MG6/06",
+      "label": "Full custody record / PACE material",
+      "family": "custody_pace",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX/02",
+      "label": "EX/02 — continuity note to be checked against witness and MG6 schedule.",
+      "family": "exhibit_provenance",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX/01",
+      "label": "EX/01 — item referred to in MG5 (listed).",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "CCTV full window / master footage",
+      "family": "cctv_master",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "CAD / dispatch / 999 material",
+      "family": "cad_999",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "99090c69-5d78-41e3-946d-119b4bc335ba": [
+    {
+      "ref": "MG6/01",
+      "label": "Exhibits: EX-MON-MG5-01; EX-MON-MG6-01; EX-MON-INT-01; EX-MON-CCTV-01; EX-MON-MG11-01",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "CCTV continuity / provenance",
+      "family": "cctv_continuity",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "CCTV full window / master footage",
+      "family": "cctv_master",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27": [
+    {
+      "ref": "AB/2",
+      "label": "AB/2 Photo still",
+      "family": "other",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "TEL/5",
+      "label": "TEL/5 Property continuity note",
+      "family": "exhibit_provenance",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Subscriber / account data",
+      "family": "other",
+      "status": "Outstanding"
+    },
+    {
+      "ref": null,
+      "label": "Full custody record / PACE material",
+      "family": "custody_pace",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01": [
+    {
+      "ref": "O02",
+      "label": "O02 CAD log full print",
+      "family": "cad_999",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "O03",
+      "label": "O03 independent witness statement",
+      "family": "exhibit_provenance",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "O04",
+      "label": "O04 forensic continuity statement",
+      "family": "exhibit_provenance",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "EX/03",
+      "label": "EX/03 Continuity note Eastmoor Police",
+      "family": "exhibit_provenance",
+      "status": "Outstanding"
+    },
+    {
+      "ref": null,
+      "label": "CAD / dispatch / 999 material",
+      "family": "cad_999",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Full custody record / PACE material",
+      "family": "custody_pace",
+      "status": "Not safely confirmed"
+    }
+  ]
+}

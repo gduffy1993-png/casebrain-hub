@@ -1,0 +1,166 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Emery Beck
+
+On 15/03/2026 at about 19:31 at Meadow Close, Emery Beck is alleged to have assaulted Miles Dacre thereby occasioning actual bodily harm.
+
+Northlake Magistrates Court
+·
+Listing on papers · 24 Jun 2026 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+3
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+3
+
+All
+Overdue
+Due soon
+Chased
+Received
+continuity/provenance not yet confirmed; full-resolution original
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+3. MG5 SUMMARY (mg6) · compiled p.2 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+OUTPUT
+continuity/provenance not yet confirmed; full-resolution original
+TYPE / SURFACE
+chase_request · chase
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+3. MG5 SUMMARY
+REF
+MG6
+PAGE
+compiled p.2
+FILE QUOTE
+continuity/provenance not yet confirmed; full-resolution original — not served — unless expressly stated; source metadata
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+full chat export / device extraction / sender attribution / metadata / uncropped screenshot
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+3. MG5 SUMMARY (mg6) · compiled p.2 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Source metadata outstanding
+
+The front sheet labels this as outstanding source material — keep it on review/chase until the papers confirm service.
+
+NEEDS CONFIRMATION
+MISSING
+Source
+File extract
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+File extract · exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+continuity/provenance not yet confirmed; full-resolution original
+OUTSTANDING
+
+WHY IT MATTERS
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+Why / source receipt
+
+Source: MG6/MG6C disclosure schedule
+
+Deadline: Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+
+MERGED FROM FILE
+
+continuity/provenance not yet confirmed; full-resolution original — not served — unless expressly stated; source metadata
+Full-resolution original — not served — or not yet verified.
+Full-resolution original
+INTERVIEW / CLIENT ACCOUNT
+Timestamp visible but source file
+Screenshot sender partly cropped or metadata
+
+EVIDENCE ANCHOR
+
+continuity/provenance not yet confirmed; full-resolution original — not served — unless expressly stated; source metadata
+
+DRAFT CHASE WORDING
+
+Please provide continuity/provenance not yet confirmed; full-resolution original or confirm in writing why it is not available.
+
+COURT LINE
+
+The defence asks the court to record that continuity/provenance not yet confirmed; full-resolution original remains missing on the current papers and should be disclosed on a timetable. Solicitor review required before addressing the court.
+
+Case-wide court line (provisional): The defence asks the court to record that continuity/provenance not yet confirmed; full-resolution original, full chat export / device extraction / sender attribution / metadata / uncropped screenshot and Source metadata outstanding remain outstanding on the papers.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

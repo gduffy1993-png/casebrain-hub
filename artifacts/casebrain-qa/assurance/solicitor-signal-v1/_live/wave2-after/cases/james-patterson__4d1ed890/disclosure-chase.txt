@@ -1,0 +1,106 @@
+CB
+
+CASE WORK
+
+Trial: Trial ended — upgrade to upload more cases
+Upgrade
+
+Client not on papers
+
+Charge not safely identified from uploaded papers
+
+Court not safely identified from uploaded papers
+·
+Hearing not on papers
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+Court Position
+Papers & Evidence
+Client Summary
+CPS Chase
+File & Preparation
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+1
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+1
+
+All
+Overdue
+Due soon
+Chased
+Received
+Exhibit mapping / provenance
+
+Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.
+
+NEEDS CONFIRMATION
+Source
+Crown / disclosure officer
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+state: not safely confirmed · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Exhibit mapping / provenance
+NEEDS CONFIRMATION
+
+WHY IT MATTERS
+
+Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.
+
+Source: Crown / disclosure officer
+
+Deadline: Before next listing — confirm disclosure timetable
+
+Linked route: Continuity / provenance pressure
+
+MERGED FROM FILE
+
+continuity statements and master/source files for key exhibits.
+Map exhibit references across MG5/MG6 before trial theory is fixed.
+Record what handling/provenance material is still outstanding.
+
+DRAFT CHASE WORDING
+
+Please provide exhibit mapping / provenance or confirm in writing why it is not available.
+
+COURT LINE
+
+The defence asks the court to record that this material needs confirmation before it is relied on.
+
+Case-wide court line (provisional): The defence asks the court to record that source material must be clarified and timetabled.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

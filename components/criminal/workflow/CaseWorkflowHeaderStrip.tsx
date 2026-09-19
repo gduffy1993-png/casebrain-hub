@@ -13,7 +13,6 @@ import { workflowCard, workflowPilotSixtyStrip } from "./workflowUi";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { cleanPilotHeaderClient, cleanPilotCourtHeaderCell, cleanPilotHearingHeaderCell } from "@/lib/criminal/pilot-workflow";
 import {
-  PILOT_COURT_NOT_IDENTIFIED_LABEL,
   displayPilotStripClient,
   displayPilotStripCourt,
   displayPilotStripHearing,
@@ -48,6 +47,7 @@ type StripState = {
   bail: string | null;
   funding: string | null;
   safeguard: string | null;
+  sourceWithheld: boolean;
 };
 
 function healthFromDocCount(count: number): StripState["health"] {
@@ -72,6 +72,7 @@ export function CaseWorkflowHeaderStrip({
 
   useEffect(() => {
     let cancelled = false;
+    setStrip(null);
     (async () => {
       try {
         const [bundleRes, matterRes] = await Promise.all([
@@ -86,13 +87,35 @@ export function CaseWorkflowHeaderStrip({
             documentCount?: number;
             combinedTextLength?: number;
             frontMatterScan?: string | null;
+            canonical?: {
+              charges?: Parameters<typeof resolveCaseHeaderMetadata>[0]["sourceCharges"];
+              ingestion?: { substantiveOutputsWithheld?: boolean } | null;
+            } | null;
           };
         };
         const matter = await matterRes.json().catch(() => ({}));
         if (cancelled || !json.ok || !json.data) return;
+        if (json.data.canonical?.ingestion?.substantiveOutputsWithheld) {
+          setStrip({
+            client: "Source extraction incomplete",
+            charge: "Substantive outputs withheld",
+            court: "Reprocess/OCR",
+            hearing: "Solicitor review required",
+            health: "unknown",
+            documentCount: json.data.documentCount ?? 0,
+            combinedTextLength: 0,
+            bail: null,
+            funding: null,
+            safeguard: null,
+            sourceWithheld: true,
+          });
+          return;
+        }
         const meta = resolveCaseHeaderMetadata({
           bundleHeader: json.data.header ?? null,
           bundleMetadata: json.data.caseMetadata ?? null,
+          sourceCharges: json.data.canonical?.charges ?? null,
+          bundleText: json.data.frontMatterScan ?? null,
           snapshot: null,
         });
         const clientClean = pilot
@@ -132,23 +155,24 @@ export function CaseWorkflowHeaderStrip({
         if (matter?.station?.riskMedicalIssues) safeguards.push("Medical");
         setStrip({
           client: pilot
-            ? displayPilotStripClient(clientClean) || "Client not on papers"
-            : clientClean || "Client not on papers",
+            ? displayPilotStripClient(clientClean)
+            : clientClean,
           charge: pilot
             ? resolvePilotChargeDisplay(chargeClean, deskChargeLine)
-            : chargeClean || "Charge not on papers",
+            : chargeClean,
           court: pilot
-            ? displayPilotStripCourt(courtClean) || PILOT_COURT_NOT_IDENTIFIED_LABEL
-            : courtClean || "Court not on papers",
+            ? displayPilotStripCourt(courtClean)
+            : courtClean,
           hearing: pilot
-            ? displayPilotStripHearing(hearingDisplay) || "Hearing not on papers"
-            : hearingDisplay || "Hearing not on papers",
+            ? displayPilotStripHearing(hearingDisplay)
+            : hearingDisplay,
           health: healthFromDocCount(json.data.documentCount ?? 0),
           documentCount: json.data.documentCount ?? 0,
           combinedTextLength: json.data.combinedTextLength ?? 0,
           bail: typeof matter?.bailOutcome === "string" ? matter.bailOutcome : null,
           funding: typeof matter?.station?.representationType === "string" ? matter.station.representationType : null,
           safeguard: safeguards.length ? safeguards.join(" · ") : null,
+          sourceWithheld: false,
         });
       } catch {
         if (!cancelled) setStrip(null);
@@ -164,6 +188,21 @@ export function CaseWorkflowHeaderStrip({
   }, [caseId, safeCourtLine]);
 
   if (!strip) return null;
+  if (strip.sourceWithheld) {
+    return (
+      <div
+        className={`${pilot ? workflowPilotSixtyStrip : workflowCard} border-amber-400/60 px-3 py-2.5 text-sm`}
+        data-testid="case-workflow-header-ingestion-gate"
+      >
+        <p className={pilot ? "font-semibold text-amber-200" : "font-semibold text-amber-900"}>
+          Source extraction incomplete
+        </p>
+        <p className={pilot ? "mt-0.5 text-xs text-slate-400" : "mt-0.5 text-xs text-amber-800"}>
+          Reprocess/OCR/solicitor review required · substantive outputs withheld
+        </p>
+      </div>
+    );
+  }
 
   const healthBadge =
     strip.health === "ready"

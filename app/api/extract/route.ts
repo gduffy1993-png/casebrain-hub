@@ -7,6 +7,12 @@ import { extractCaseFacts, summariseDocument } from "@/lib/ai";
 import { redact } from "@/lib/redact";
 import { env } from "@/lib/env";
 import { extractCriminalCaseMeta, persistCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
+import { extractTextAndMetaFromFileBuffer } from "@/lib/upload/extract-text-from-file";
+import { toPersistedPageUnits } from "@/lib/upload/pdf-page-units";
+import {
+  quarantinedIngestionAssessment,
+  type IngestionAssessment,
+} from "@/lib/upload/ingestion-assessment";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
 
 export const runtime = "nodejs";
@@ -31,7 +37,7 @@ export async function POST(request: Request) {
   const { data: document, error: docError } = await supabase
     .from("documents")
     .select(
-      "id, case_id, name, storage_url, type, cases!inner(id, org_id, practice_area)",
+      "id, case_id, name, storage_url, type, extracted_json, cases!inner(id, org_id, practice_area)",
     )
     .eq("id", documentId)
     .eq("cases.org_id", orgId)
@@ -60,30 +66,120 @@ export async function POST(request: Request) {
   const buffer = Buffer.from(arrayBuffer);
   
   let text: string;
-  let extractionError: string | null = null;
+  let ingestionAssessment: IngestionAssessment;
+  let pageCount: number | null = null;
+  let persistedPages: ReturnType<typeof toPersistedPageUnits> = [];
+  let textLayerLimitation: string | null = null;
   try {
-    text = await extractTextFromBuffer(buffer, document.type);
+    const meta = await extractTextAndMetaFromFileBuffer(
+      document.name || "document",
+      document.type || "application/octet-stream",
+      buffer,
+    );
+    text = meta.text;
+    pageCount = meta.pageCount;
+    textLayerLimitation = meta.textLayerLimitation;
+    ingestionAssessment = meta.ingestionAssessment;
+    persistedPages = toPersistedPageUnits(
+      meta.pageUnits.map((unit) => ({
+        ...unit,
+        text: redact(unit.text, env.REDACTION_SECRET).redactedText,
+      })),
+    );
   } catch (error) {
     console.error(`[extract] Failed to extract text from ${document.name}`, error);
-    extractionError = error instanceof Error ? error.message : "Unknown extraction error";
-    
-    if (document.type === "application/pdf") {
-      return NextResponse.json(
-        {
-          error: `PDF extraction failed: ${extractionError}`,
-          suggestion:
-            "The PDF may be corrupted, password-protected, or use an unsupported format. Try re-saving it or removing password protection.",
+    const extractionError = error instanceof Error ? error.message : "Unknown extraction error";
+    ingestionAssessment = quarantinedIngestionAssessment({
+      fileName: document.name,
+      mimeType: document.type,
+      parserError: extractionError,
+    });
+    const previous =
+      document.extracted_json && typeof document.extracted_json === "object"
+        ? (document.extracted_json as Record<string, unknown>)
+        : {};
+    const preserved = { ...previous };
+    delete preserved.pages;
+    delete preserved.pageProvenance;
+    delete preserved.aiSummary;
+    const { error: quarantineUpdateError } = await supabase
+      .from("documents")
+      .update({
+        raw_text: "",
+        extracted_text: "",
+        extracted_json: {
+          ...preserved,
+          summary: "Source extraction incomplete; substantive outputs withheld.",
+          aiSummary: null,
+          extractionError,
+          ingestionAssessment,
         },
-        { status: 400 },
+      })
+      .eq("id", document.id)
+      .eq("case_id", document.case_id);
+
+    if (quarantineUpdateError) {
+      return NextResponse.json(
+        { error: "Extraction failed and its quarantine state could not be saved" },
+        { status: 500 },
       );
     }
-    
+
     return NextResponse.json(
       {
-        error: `Text extraction failed: ${extractionError}`,
-        suggestion: "Please check the file format and try again.",
+        error:
+          document.type === "application/pdf"
+            ? "PDF could not be safely read"
+            : "Text extraction failed",
+        suggestion: "Reprocess, use OCR where appropriate, or ask a solicitor to review the source.",
+        ingestionAssessment,
       },
-      { status: 400 },
+      { status: 422 },
+    );
+  }
+
+  const pageProvenance =
+    persistedPages.length > 0
+      ? {
+          pages: persistedPages,
+          pageProvenance: {
+            compiledPageCount: persistedPages.length,
+            pagesWithoutTextLayer: persistedPages.filter((page) => page.textLayerEmpty).length,
+            ...(textLayerLimitation ? { textLayerLimitation } : {}),
+          },
+        }
+      : {};
+
+  if (!ingestionAssessment.substantiveOutputsAllowed) {
+    const { error: withheldUpdateError } = await supabase
+      .from("documents")
+      .update({
+        raw_text: "",
+        extracted_text: "",
+        extracted_json: {
+          summary: "Source extraction incomplete; substantive outputs withheld.",
+          aiSummary: null,
+          extractionError: ingestionAssessment.summary,
+          ingestionAssessment,
+          ...(pageCount != null ? { pageCount } : {}),
+          ...pageProvenance,
+        },
+      })
+      .eq("id", document.id)
+      .eq("case_id", document.case_id);
+    if (withheldUpdateError) {
+      return NextResponse.json(
+        { error: "Failed to save the source extraction review state" },
+        { status: 500 },
+      );
+    }
+    return NextResponse.json(
+      {
+        error: "Source extraction incomplete",
+        suggestion: "Reprocess, use OCR where appropriate, or ask a solicitor to review the source.",
+        ingestionAssessment,
+      },
+      { status: 422 },
     );
   }
   
@@ -107,6 +203,9 @@ export async function POST(request: Request) {
     enrichedExtraction = {
       ...extracted,
       aiSummary: summary,
+      ingestionAssessment,
+      ...(pageCount != null ? { pageCount } : {}),
+      ...pageProvenance,
     };
   } catch (error) {
     console.error(`[extract] Failed to extract case facts from ${document.name}`, error);
@@ -127,7 +226,8 @@ export async function POST(request: Request) {
       extracted_json: enrichedExtraction,
       redaction_map: redactionMap,
     })
-    .eq("id", document.id);
+    .eq("id", document.id)
+    .eq("case_id", document.case_id);
 
   if (updateError) {
     return NextResponse.json(
@@ -186,43 +286,6 @@ export async function POST(request: Request) {
     console.error("[extract] Criminal structured extractor failed (non-fatal):", criminalExtractError);
   }
 
-  return NextResponse.json({ success: true, extracted, summary });
-}
-
-async function extractTextFromBuffer(buffer: Buffer, mimeType: string): Promise<string> {
-  if (mimeType === "application/pdf") {
-    try {
-      const pdfParse = (await import("pdf-parse")).default;
-      const result = await pdfParse(buffer, {
-        max: 0, // Parse all pages
-      });
-      return result.text || "";
-    } catch (error) {
-      throw new Error(
-        `PDF parsing failed: ${error instanceof Error ? error.message : "Unknown error"}. The PDF may be corrupted, password-protected, or use an unsupported format.`,
-      );
-    }
-  }
-  if (
-    mimeType ===
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-  ) {
-    try {
-      const mammoth = await import("mammoth");
-      const result = await mammoth.extractRawText({ buffer });
-      return result.value || "";
-    } catch (error) {
-      throw new Error(
-        `DOCX parsing failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-      );
-    }
-  }
-  
-  // For plain text files, try UTF-8 first, then fallback to latin1
-  try {
-    return buffer.toString("utf-8");
-  } catch {
-    return buffer.toString("latin1");
-  }
+  return NextResponse.json({ success: true, extracted, summary, ingestionAssessment });
 }
 

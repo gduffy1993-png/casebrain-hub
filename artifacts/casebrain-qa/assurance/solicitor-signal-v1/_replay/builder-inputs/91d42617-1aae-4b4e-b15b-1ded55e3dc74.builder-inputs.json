@@ -1,0 +1,343 @@
+{
+  "bundleSource": {
+    "status": 200,
+    "data": {
+      "combinedTextLength": 142,
+      "documentCount": 1,
+      "documentRows": [
+        {
+          "id": "3ecbbd33-1951-4e41-8744-534fbd0ac95e",
+          "name": "LIVE-02-phone.pdf",
+          "updatedAt": "2026-08-20T05:33:27.906638+00:00",
+          "lenExtracted": 142,
+          "lenRaw": 142,
+          "lenBody": 142
+        }
+      ],
+      "health": {
+        "status": "partial",
+        "duplicateDocuments": 0,
+        "headerDetected": false,
+        "mg5Detected": false,
+        "mg6Detected": false,
+        "exhibitLineCount": 0
+      },
+      "header": null,
+      "snippets": {
+        "mg5": null,
+        "mg6": null,
+        "mg11": null,
+        "exhibits": null
+      },
+      "caseMetadata": {
+        "defendantName": null,
+        "defendantSource": "unavailable",
+        "complainant": null,
+        "complainantSource": "unavailable",
+        "court": null,
+        "courtSource": "unavailable",
+        "nextHearingRaw": null,
+        "nextHearingIso": null,
+        "nextHearingSource": "unavailable",
+        "stage": null,
+        "stageSource": "unavailable",
+        "offenceWording": "Harassment",
+        "offenceDisplay": "Harassment",
+        "offenceSource": "extracted_charge_fallback",
+        "bailStatus": null,
+        "bailStatusSource": "unavailable",
+        "defencePosition": null,
+        "defencePositionSource": "unavailable"
+      },
+      "sizeProfile": {
+        "documentCount": 1,
+        "pdfCount": 1,
+        "pageCount": null,
+        "combinedTextLength": 142,
+        "isLargeByText": false,
+        "isLargeByPages": false
+      },
+      "frontMatterScanLength": 142,
+      "frontMatterScan": "Taylor Reed\nCharge: Harassment\nScreenshots of WhatsApp messages served.\nFull phone download / subscriber mapping outstanding.\nNo BWV. No CCTV.",
+      "canonical": {
+        "findings": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"LIVE-02-phone.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "LIVE-02-phone.pdf (case document) · compiled p.1 · state: served · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+            "defendant": null,
+            "countNumber": null,
+            "sourcePage": null,
+            "compiledPage": "p.1",
+            "pageLabel": "compiled p.1",
+            "pageIdentityKnown": true,
+            "pageIdentityNote": null,
+            "provenanceCompleteness": "sufficient",
+            "candidateAnchors": [],
+            "attribution": null
+          }
+        ],
+        "findingSummaries": [
+          {
+            "kind": "document_role",
+            "title": "Document version status",
+            "summary": "Current document on file: \"LIVE-02-phone.pdf\". Check status before relying on it.",
+            "unresolved": true,
+            "provenanceLine": "LIVE-02-phone.pdf (case document) · compiled p.1 · state: served · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+            "severity": "review",
+            "referencedAbsent": null
+          }
+        ],
+        "evidenceRows": [
+          {
+            "label": "Harassment Screenshots of WhatsApp messages",
+            "existence": "served",
+            "note": "LIVE-02-phone.pdf · page identity unresolved",
+            "sourceDocumentTitle": "LIVE-02-phone.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendants": []
+          },
+          {
+            "label": "Full phone download / subscriber mapping",
+            "existence": "missing",
+            "note": "LIVE-02-phone.pdf · page identity unresolved",
+            "sourceDocumentTitle": "LIVE-02-phone.pdf",
+            "sourceDocumentType": "case_document",
+            "sourcePage": null,
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendants": []
+          }
+        ],
+        "charges": [],
+        "chaseLabels": [
+          "Full phone download / subscriber mapping"
+        ],
+        "suppressedChaseLabels": [],
+        "documentRoles": [
+          {
+            "id": "3ecbbd33-1951-4e41-8744-534fbd0ac95e",
+            "title": "LIVE-02-phone.pdf",
+            "role": "operative"
+          }
+        ],
+        "unitCount": 1,
+        "pageUnitCount": 1
+      }
+    }
+  },
+  "battleboard": {
+    "status": 200,
+    "data": {
+      "case_id": "91d42617-1aae-4b4e-b15b-1ded55e3dc74",
+      "generated_at": "2026-08-25T07:52:32.556Z",
+      "overall_status": "thin_bundle",
+      "solicitor_safe_summary": "Defence position not safely recorded. Current pressure: Identification / visual ID pressure (conditional) — take/record instructions before relying on strategy. Key risk: Assumed position may conflict with interview or served evidence.",
+      "position_trust": "provisional",
+      "position_notice": "Defence position not safely recorded yet — position is provisional; take/record instructions before relying on it.",
+      "primary_route": {
+        "id": "identity",
+        "title": "Identification / visual ID pressure",
+        "status": "conditional",
+        "route_type": "identity",
+        "why_it_helps": [
+          "No BWV. No CCTV.",
+          "May create pressure on identification if the served visual material is limited or disputed on the file wording.",
+          "Conditional on comparing observation time, lighting, and any parade procedure actually recorded."
+        ],
+        "what_hurts_us": [
+          "Short, confident witness ID on served papers.",
+          "Clear CCTV/BWV sequence that matches Crown timing."
+        ],
+        "evidence_anchors": [
+          "No BWV. No CCTV."
+        ],
+        "collapse_risks": [
+          "Assumed position may conflict with interview or served evidence.",
+          "ID parade or formal identification procedure supports the Crown route if proved."
+        ],
+        "next_moves": [
+          "Take instructions on observation conditions and any ID dispute."
+        ],
+        "hearing_line": "On the file wording, identification remains conditional until served CCTV/source material and witness accounts are reconciled; do not overstate.",
+        "safety_note": "Needs solicitor review before any positive ID challenge is advanced at court."
+      },
+      "routes": [
+        {
+          "id": "identity",
+          "title": "Identification / visual ID pressure",
+          "status": "conditional",
+          "route_type": "identity",
+          "why_it_helps": [
+            "No BWV. No CCTV.",
+            "May create pressure on identification if the served visual material is limited or disputed on the file wording.",
+            "Conditional on comparing observation time, lighting, and any parade procedure actually recorded."
+          ],
+          "what_hurts_us": [
+            "Short, confident witness ID on served papers.",
+            "Clear CCTV/BWV sequence that matches Crown timing."
+          ],
+          "evidence_anchors": [
+            "No BWV. No CCTV."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "ID parade or formal identification procedure supports the Crown route if proved."
+          ],
+          "next_moves": [
+            "Take instructions on observation conditions and any ID dispute."
+          ],
+          "hearing_line": "On the file wording, identification remains conditional until served CCTV/source material and witness accounts are reconciled; do not overstate.",
+          "safety_note": "Needs solicitor review before any positive ID challenge is advanced at court."
+        },
+        {
+          "id": "disclosure",
+          "title": "Disclosure / source-material pressure",
+          "status": "blocked",
+          "route_type": "disclosure",
+          "why_it_helps": [
+            "May assist as conditional prosecution-pressure if MG6 or schedules show outstanding CCTV/CAD/999/MG11 or unused material.",
+            "Creates pressure if proved only once the listed source material is served and reviewed."
+          ],
+          "what_hurts_us": [
+            "Outstanding items are chased but return consistent with the Crown case.",
+            "Thin bundle with no published disclosure schedule to anchor a chase."
+          ],
+          "evidence_anchors": [
+            "CCTV full window",
+            "CCTV Continuity",
+            "Body Worn Video (BWV)",
+            "999 Call Audio",
+            "Interview Recording",
+            "Custody Record / Custody CCTV"
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Outstanding disclosure is served and supports the Crown route.",
+            "MG6 itself lists the material as served and consistent.",
+            "Chase returns master CCTV that undermines the defence timing/ID point."
+          ],
+          "next_moves": [
+            "Ask for full MG11/source material and unused schedule detail.",
+            "Prepare hearing line on outstanding disclosure; set a timetable."
+          ],
+          "hearing_line": "The defence asks the court to record outstanding disclosure and set a timetable; position remains provisional until source material is served.",
+          "safety_note": "Disclosure pressure is not a merits win — needs solicitor review before plea or trial strategy is fixed."
+        },
+        {
+          "id": "mitigation",
+          "title": "Mitigation / damage-limitation fallback",
+          "status": "blocked",
+          "route_type": "mitigation",
+          "why_it_helps": [
+            "Keeps a fallback route open if fight routes stay conditional on missing material.",
+            "May assist in managing client expectations and hearing posture without abandoning chase routes."
+          ],
+          "what_hurts_us": [
+            "Early mitigation signals weakness before disclosure chase completes.",
+            "Bad facts on the file limit realistic reduction outcomes."
+          ],
+          "evidence_anchors": [
+            "Thin bundle — fight routes may stay conditional until material is served."
+          ],
+          "collapse_risks": [
+            "Assumed position may conflict with interview or served evidence.",
+            "Fight routes strengthen after disclosure — mitigation prematurely narrows options.",
+            "Court views mitigation as acceptance of core facts not yet tested."
+          ],
+          "next_moves": [
+            "Keep mitigation fallback open while disclosure/timeline routes are chased.",
+            "Record instructions before any plea or sentence discussion.",
+            "Separate mitigation from live fight routes in hearing submissions."
+          ],
+          "hearing_line": "The defence preserves position on merits while recording that strategy remains provisional pending served material — do not overstate.",
+          "safety_note": "Mitigation is a fallback, not a substitute for testing outstanding source material."
+        }
+      ],
+      "global_collapse_risks": [
+        "Assumed position may conflict with interview or served evidence.",
+        "CAD/999 timing may affect Crown sequence if proved on served material.",
+        "Client account conflicts with served source material.",
+        "Missing expert/source report comes back against defence.",
+        "Any interview admission, if served and reviewed, could narrow the defence route.",
+        "Continuity/provenance may later be proved on served material."
+      ],
+      "urgent_next_moves": [
+        "Record defence position / take instructions before committing strategy."
+      ],
+      "diagnostics": {
+        "corpus_markers": null,
+        "safeguards_signal_count": 0,
+        "multiparty_signal_count": 0,
+        "timeline_signal_count": 0,
+        "cps_pressure_signal_count": 0,
+        "readiness_signal_count": 0,
+        "hearing_court_signal_count": 0,
+        "backup_route_types": [
+          "disclosure",
+          "mitigation"
+        ],
+        "backup_route_titles": [
+          "Disclosure / source-material pressure",
+          "Mitigation / damage-limitation fallback"
+        ],
+        "primary_anchor_sample": [
+          "No BWV. No CCTV."
+        ],
+        "safeguards_anchor_sample": [],
+        "multiparty_anchor_sample": [],
+        "cps_pressure_anchor_sample": [],
+        "readiness_anchor_sample": [],
+        "hearing_court_anchor_sample": []
+      }
+    }
+  },
+  "matter": {
+    "status": 200,
+    "data": {
+      "matterState": null,
+      "station": {
+        "timeInCustodyAt": null,
+        "nextPaceReviewAt": null,
+        "interviewStance": null,
+        "stationSummary": null,
+        "groundsForArrest": null,
+        "dateOfArrest": null,
+        "allegedOffence": null,
+        "custodyNumber": null,
+        "policeStationName": null,
+        "clientInitials": null,
+        "clientYob": null,
+        "representationType": null,
+        "riskAppropriateAdult": false,
+        "riskInterpreter": false,
+        "riskMentalHealth": false,
+        "riskMedicalIssues": false,
+        "initialDisclosureReceived": null,
+        "initialDisclosureNotes": null
+      },
+      "bailReturnDate": null,
+      "bailOutcome": null,
+      "matterClosedAt": null,
+      "matterClosedReason": null,
+      "plea": null,
+      "pleaDate": null,
+      "defendantName": null,
+      "clientInitials": null,
+      "allegedOffence": null
+    }
+  },
+  "position": {
+    "status": 200,
+    "data": {
+      "ok": true,
+      "data": null,
+      "position": null
+    }
+  }
+}

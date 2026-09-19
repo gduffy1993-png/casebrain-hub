@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-08-24T15:57:47.765Z",
+  "casesRoot": "C:\\Users\\gduff\\casebrain-hub-wt-f167-surgical-truth-v1\\artifacts\\evidence-state-audit-local\\cases",
+  "requested": 50,
+  "compared": 50,
+  "totalFindings": 93,
+  "bySeverity": {
+    "P0": 3,
+    "P1": 4,
+    "P2": 86,
+    "P3": 0
+  },
+  "clusterCount": 4,
+  "casesWithFindings": 42,
+  "identityFailCases": 3,
+  "inventFailCases": 3
+}

@@ -1,0 +1,157 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+James Patterson
+
+Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861
+
+Crown Court at Manchester
+·
+Listing on papers · 7 Aug 2026 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+3
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+3
+
+All
+Overdue
+Due soon
+Chased
+Received
+O1 Full CCTV window from flat block
+
+O1 Full CCTV window from flat block — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+MG6 SCHEDULECB-TB-014 | 26NS100014 (mg6) · compiled p.7 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+OUTPUT
+O1 Full CCTV window from flat block
+TYPE / SURFACE
+chase_request · chase
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+MG6 SCHEDULECB-TB-014 | 26NS100014
+REF
+O1
+PAGE
+compiled p.7
+FILE QUOTE
+O1 Full CCTV window from flat block — Outstanding Requested from officer in case
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+O2 Knife search log
+
+O2 Knife search log — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+MG6 SCHEDULECB-TB-014 | 26NS100014 (mg6) · compiled p.7 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+O3 Scenes-of-crime blood swab report
+
+O3 Scenes-of-crime blood swab report — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+MG6 SCHEDULECB-TB-014 | 26NS100014 (mg6) · compiled p.7 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+O1 Full CCTV window from flat block
+OUTSTANDING
+
+WHY IT MATTERS
+
+O1 Full CCTV window from flat block — as stated on the papers.
+
+Why / source receipt
+
+Source: MG6/MG6C disclosure schedule
+
+Deadline: Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+
+EVIDENCE ANCHOR
+
+O1 Full CCTV window from flat block — Outstanding Requested from officer in case
+
+DRAFT CHASE WORDING
+
+Please provide o1 Full CCTV window from flat block or confirm in writing why it is not available.
+
+COURT LINE
+
+Solicitor review required before addressing the court.
+
+Case-wide court line (provisional): The defence asks the court to record that O1 Full CCTV window from flat block, O2 Knife search log and O3 Scenes-of-crime blood swab report remain outstanding on the papers.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

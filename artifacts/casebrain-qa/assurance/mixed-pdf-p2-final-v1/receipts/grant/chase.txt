@@ -1,0 +1,189 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Vincent Grant
+
+Possession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971
+
+Northbridge Magistrates' Court
+·
+Listing on papers · 21 Jun 2026 at 11:00 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+5
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+5
+
+All
+Overdue
+Due soon
+Chased
+Received
+M9 BWV PC Khan
+
+M9 BWV PC Khan — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+MG6 / DISCLOSURE SCHEDULE (mg6) · compiled p.8 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+OUTPUT
+M9 BWV PC Khan
+TYPE / SURFACE
+chase_request · chase
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+MG6 / DISCLOSURE SCHEDULE
+REF
+M9
+PAGE
+compiled p.8
+FILE QUOTE
+M9 BWV PC Khan — Requested Not served — with this copy
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+M6 MG11 complainant Listed not enclosed Disclosure request
+
+M6 MG11 complainant Listed not enclosed Disclosure request — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+MG6 / DISCLOSURE SCHEDULE (mg6) · compiled p.8 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+M7 MG11 officer
+
+M7 MG11 officer — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+MG6 / DISCLOSURE SCHEDULE (mg6) · compiled p.8 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+M8 Seizure log Listed not enclosed Disclosure request
+
+M8 Seizure log Listed not enclosed Disclosure request — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+MG6 / DISCLOSURE SCHEDULE (mg6) · compiled p.8 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+M10 Subscriber check
+
+M10 Subscriber check — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+MG6 / DISCLOSURE SCHEDULE (mg6) · compiled p.8 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+M9 BWV PC Khan
+OUTSTANDING
+
+WHY IT MATTERS
+
+M9 BWV PC Khan — as stated on the papers.
+
+Why / source receipt
+
+Source: MG6/MG6C disclosure schedule
+
+Deadline: Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+
+EVIDENCE ANCHOR
+
+M9 BWV PC Khan — Requested Not served — with this copy
+
+DRAFT CHASE WORDING
+
+Please provide m9 BWV PC Khan or confirm in writing why it is not available.
+
+COURT LINE
+
+Solicitor review required before addressing the court.
+
+Case-wide court line (provisional): The defence asks the court to record that M9 BWV PC Khan, M6 MG11 complainant Listed not enclosed Disclosure request, M7 MG11 officer and M8 Seizure log Listed not enclosed Disclosure request remain outstanding on the papers.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

@@ -1,0 +1,28 @@
+{
+  "lane": "solicitor-signal-v1",
+  "wave": 2,
+  "generatedAt": "2026-08-24T20:55:00.000Z",
+  "previewFinal": "https://casebrain-g349ow2xb-gduffy1993-pngs-projects.vercel.app",
+  "previewWave2a": "https://casebrain-dupg7uta0-gduffy1993-pngs-projects.vercel.app",
+  "previewWave1": "https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app",
+  "wave1Sha": "11ee9cf79",
+  "inventMuteClosed": true,
+  "casesInventory": 23,
+  "trapOnPreview": false,
+  "fullLickCount": 23,
+  "finalTipSpotCheck": ["dunn", "brookes", "arden"],
+  "fixes": [
+    "overview_chips_follow_attention",
+    "chase_merged_chrome_sanitize",
+    "mg6_draft_align_to_display_label",
+    "soft_readiness_pct_muted"
+  ],
+  "passCore": ["brookes", "dunn", "arden", "ahmed", "grant"],
+  "passThinLastResort": ["vale", "patterson", "matter-details shells"],
+  "residuals": [
+    "dunn_evidence_anchor_call_data_line",
+    "thin_shell_last_resort_clutter",
+    "trap_absent",
+    "not_all_23_reshot_on_final_tip"
+  ]
+}

@@ -123,6 +123,22 @@ export function compareEvidenceStates(input: {
     };
   }
 
+  // Referred-on-papers vs summary/draft incomplete / NSC — same gap family for truth-key align
+  if (
+    expectedNorm === "referred_only" &&
+    (actualRaw === "incomplete" || actualRaw === "not_safely_confirmed") &&
+    /\b(summary|draft|unsigned|partial|extract|referred)\b/i.test(label)
+  ) {
+    return {
+      equivalent: true,
+      reason: "compatible_family",
+      actualRaw,
+      actualDisplay,
+      expectedRaw: expectedNorm,
+      expectedDisplay,
+    };
+  }
+
   // Uncertain prose ↔ not_safely_confirmed / incomplete (do not invent referred_only)
   if (
     expectedNorm === "not_safely_confirmed" &&
@@ -145,6 +161,22 @@ export function compareEvidenceStates(input: {
     expectedNorm === "incomplete" &&
     actualRaw === "served" &&
     /\b(summary|extract|partial|screenshot|clip|still)\b/i.test(label)
+  ) {
+    return {
+      equivalent: true,
+      reason: "compatible_family",
+      actualRaw,
+      actualDisplay,
+      expectedRaw: expectedNorm,
+      expectedDisplay,
+    };
+  }
+
+  // Truth "served" vs app incomplete for partial-on-export units — app is stricter (F04)
+  if (
+    expectedNorm === "served" &&
+    actualRaw === "incomplete" &&
+    /\b(partial|summary|extract|clip|still|screenshot)\b/i.test(label)
   ) {
     return {
       equivalent: true,

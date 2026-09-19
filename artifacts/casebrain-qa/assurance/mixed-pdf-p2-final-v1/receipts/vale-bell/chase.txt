@@ -1,0 +1,156 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Vale Bell
+
+On 16/07/2026 at Eastmere Bus Station, Vale Bell is alleged to have driven a motor vehicle with a specified controlled drug above the pre…
+
+Riverton Crown Court
+·
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+3
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+3
+
+All
+Overdue
+Due soon
+Chased
+Received
+source material for driver identity and toxicology procedure
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+MG6 / DISCLOSURE POSITION (mg6) · compiled p.4 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+OUTPUT
+source material for driver identity and toxicology procedure
+TYPE / SURFACE
+chase_request · chase
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+MG6 / DISCLOSURE POSITION
+REF
+MG6
+PAGE
+compiled p.4
+FILE QUOTE
+source material for driver identity and toxicology procedure — outstanding
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Full continuity/provenance
+
+The front sheet labels this as outstanding source material — keep it on review/chase until the papers confirm service.
+
+NEEDS CONFIRMATION
+MISSING
+Source
+File extract
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+File extract · exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Offence-specific expert or statutory material needed for solicitor review
+
+The front sheet labels this as outstanding source material — keep it on review/chase until the papers confirm service.
+
+NEEDS CONFIRMATION
+MISSING
+Source
+File extract
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+File extract · exact page unavailable (unsplit whole-document text) · state: not safely confirmed · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+source material for driver identity and toxicology procedure
+OUTSTANDING
+
+WHY IT MATTERS
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+Why / source receipt
+
+Source: MG6/MG6C disclosure schedule
+
+Deadline: Before next listing — confirm disclosure timetable
+
+EVIDENCE ANCHOR
+
+source material for driver identity and toxicology procedure — outstanding
+
+DRAFT CHASE WORDING
+
+Please provide source material for driver identity and toxicology procedure or confirm in writing why it is not available.
+
+COURT LINE
+
+The defence asks the court to record that source material for driver identity and toxicology procedure remains missing on the current papers and should be disclosed on a timetable. Solicitor review required before addressing the court.
+
+Case-wide court line (provisional): The defence asks the court to record that source material for driver identity and toxicology procedure, Full continuity/provenance and Offence-specific expert or statutory material needed for solicitor review remain outstanding on the papers.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

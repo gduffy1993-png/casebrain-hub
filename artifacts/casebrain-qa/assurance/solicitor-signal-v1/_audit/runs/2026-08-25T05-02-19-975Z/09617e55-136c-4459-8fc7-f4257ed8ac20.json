@@ -1,0 +1,16 @@
+{
+  "caseId": "09617e55-136c-4459-8fc7-f4257ed8ac20",
+  "primary": [
+    {
+      "ref": null,
+      "label": "CCTV full window / master footage",
+      "family": "cctv_master",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 21,
+  "statedGaps": 0,
+  "statedGapsOnBoard": 0,
+  "truncated": false,
+  "findings": []
+}

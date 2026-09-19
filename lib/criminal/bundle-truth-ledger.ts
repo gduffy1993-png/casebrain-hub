@@ -117,7 +117,7 @@ function detectFamilyInText(text: string): BundleOffenceFamily | null {
   if (/\bpwits\b|intent\s+to\s+supply|section\s*5\s*\(\s*3\s*\)/i.test(b)) return "pwits";
   if (/\bfraud\b|false\s+representation/i.test(b)) return "fraud";
   if (
-    /dangerous\s+driving|careless\s+driving|due\s+care\s+and\s+attention|without\s+due\s+care|drink[-\s]?drive|road\s+traffic|\brtA\s*1988\s+s\.?\s*[23]\b/i.test(
+    /dangerous\s+driving|careless\s+driving|due\s+care\s+and\s+attention|without\s+due\s+care|drink[-\s]?drive|drug[-\s]?driv(?:e|ing)|driven\s+a\s+motor\s+vehicle|prescribed\s+limit|road\s+traffic|\brtA\s*1988\s+s\.?\s*[235]A?\b/i.test(
       b,
     )
   ) {
@@ -499,6 +499,7 @@ export function ledgerAnchorForChaseFamily(
     cctv_continuity: /\b(cctv|continuity|provenance)\b/i,
     cad_999: /\b(999|cad|dispatch|control\s*room)\b/i,
     bwv: /\b(bwv|body[-\s]?worn)\b/i,
+    custody_pace: /\b(custody\s+(?:record|log|sheet)|detention\s+log|pace|safeguards?\s+checklist|risk\s+assessment)\b/i,
     interview: /\b(interview|transcript|pace)\b/i,
     mg6_unused: /\b(mg6|unused|disclosure\s*schedule)\b/i,
     medical_expert: /\b(medical|hospital|pathology|expert|fme|gp)\b/i,
@@ -751,7 +752,10 @@ export function buildBundleTruthLedger(input: BuildBundleTruthLedgerInput): Bund
 }
 
 export function ledgerMaterialsNeedingChase(ledger: BundleTruthLedger): NormalisedMaterialRow[] {
+  // `unclear` is an inventory state, not a gap. A parseable `CCTV/3` on a location note
+  // must not become a request just because the code parsed.
   return ledger.materials.filter((m) =>
-    ["outstanding", "absent", "partial", "draft", "unsigned", "referred_only", "unclear"].includes(m.status),
+    ["outstanding", "absent", "partial", "draft", "unsigned", "referred_only"].includes(m.status) &&
+    !/^\s*served\b/i.test(m.detail ?? ""),
   );
 }

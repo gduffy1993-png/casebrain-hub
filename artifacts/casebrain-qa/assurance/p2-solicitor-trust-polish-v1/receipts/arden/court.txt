@@ -1,0 +1,104 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Arden Vale
+
+Robbery
+
+·
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+READINESS
+
+Conditional — record position
+
+SAFE COURT LINE
+
+The defence asks the court to record that Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity remains outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+
+TOP CHASE
+
+Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity
+
+NEXT STEP
+
+Chase: Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity.
+
+Why / source receipt
+OUTPUT
+The defence asks the court to record that Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity remains outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+TYPE / SURFACE
+court_line · court
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+MG6 / DISCLOSURE POSITION
+REF
+MG6
+PAGE
+compiled p.8
+FILE QUOTE
+Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity
+TRANSFORMATION
+schedule row → missing chase card
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+
+ITEM RECEIPTS
+
+Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity
+
+MG6 · direct_pdf_quote · outstanding
+
+Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity
+
+BEFORE COURT
+COURT LINES
+SOLICITOR REVIEW
+Ask the court to record that / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity remains outstanding and should be disclosed on a timetable.
+
+Next steps
+
+Chase: Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity.
+Ask court to record outstanding source material on the order.
+Seek timetable / review date — avoid open-ended adjournment without dates.
+OUR READ
+COURT LINE FROM PAPERS
+PROVISIONAL
+Keep the position provisional and tied to the uploaded papers.
+The court is asked to record outstanding File-named source material and set a disclosure timetable.
+WHAT'S MISSING
+OUTSTANDING MATERIAL
+MISSING
+Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity
+Open CPS Chase (1 review item) →
+GUARDRAILS
+
+DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
+
+SOLICITOR REVIEW
+Avoid firm wording until the papers confirm it
+No support on the papers for another offence-family template. Avoid relying on it until confirmed.
+Do not treat unserved source material as proved.
+Do not chase served material as if it were outstanding.
+More detail (War Room drafts, ask court, risks)
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

@@ -4,11 +4,18 @@
  * Maps real uploaded documents → pipeline → payloads the browser builders consume.
  */
 
+import { getDocumentBodyText } from "@/lib/bundle/bundle-document-text";
 import { buildBundleSourcePayload } from "@/lib/bundle/parse-bundle-display";
+import { buildMetadataScan } from "@/lib/criminal/extract-bundle-case-metadata";
 import {
   pageUnitsFromExtractedText,
   type ExtractedPageUnit,
 } from "@/lib/upload/pdf-page-units";
+import {
+  assessmentForStoredDocument,
+  buildCaseIngestionAssessment,
+  type CaseIngestionAssessment,
+} from "@/lib/upload/ingestion-assessment";
 import { splitPageUnitsIntoLogicalDocuments } from "@/lib/criminal/compiled-bundle-segmentation";
 import {
   buildCanonicalPipelineFromDocumentUnits,
@@ -30,6 +37,7 @@ import {
 export type CaseDocumentRow = {
   id: string;
   name?: string | null;
+  type?: string | null;
   title?: string | null;
   raw_text?: string | null;
   extracted_text?: string | null;
@@ -44,6 +52,7 @@ export type CaseDocumentRow = {
 
 /** API + client contract carried on bundle-source (authenticated matter load). */
 export type AuthenticatedMatterCanonicalPayload = {
+  ingestion: CaseIngestionAssessment;
   findings: ReturnType<typeof serializeCanonicalFindingForSurface>[];
   /** Full findings for production builders (client may rehydrate summaries). */
   findingSummaries: Array<{
@@ -62,12 +71,12 @@ export type AuthenticatedMatterCanonicalPayload = {
   documentRoles: Array<{ id: string; title: string | null; role: string }>;
   unitCount: number;
   pageUnitCount: number;
+  /** Metadata-sized text with document/page markers preserved for page-aware receipts. */
+  pageAwareFrontMatterScan?: string | null;
 };
 
 function bodyText(doc: CaseDocumentRow): string {
-  const raw = typeof doc.raw_text === "string" ? doc.raw_text : "";
-  const ext = typeof doc.extracted_text === "string" ? doc.extracted_text : "";
-  return (raw.trim() || ext.trim() || "").trim();
+  return getDocumentBodyText(doc);
 }
 
 /**
@@ -205,6 +214,7 @@ export function mapCaseDocumentsToUploadedUnits(docs: CaseDocumentRow[]): Upload
   let orderCursor = 0;
 
   docs.forEach((doc, idx) => {
+    if (!assessmentForStoredDocument(doc).substantiveOutputsAllowed) return;
     const text = bodyText(doc);
     if (!text) return;
     const fromJson = pagesFromExtractedJson(doc.extracted_json);
@@ -304,7 +314,10 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
   canonical: AuthenticatedMatterCanonicalPayload;
   surfaces: LiveProductionSurfaces | null;
 } {
-  const units = mapCaseDocumentsToUploadedUnits(docs);
+  const ingestion = buildCaseIngestionAssessment(docs);
+  const units = ingestion.substantiveOutputsWithheld
+    ? []
+    : mapCaseDocumentsToUploadedUnits(docs);
   const emptyPipeline: LiveCanonicalPipelineResult = {
     graph: {
       nodes: [],
@@ -347,6 +360,7 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
     units.length > 0 ? buildCanonicalPipelineFromDocumentUnits(units) : emptyPipeline;
 
   const canonical: AuthenticatedMatterCanonicalPayload = {
+    ingestion,
     findings: pipeline.findings.map(serializeCanonicalFindingForSurface),
     findingSummaries: toFindingSummaries(pipeline.findings),
     evidenceRows: pipeline.evidenceRows,
@@ -360,10 +374,11 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
     })),
     unitCount: units.length,
     pageUnitCount: units.reduce((n, u) => n + u.pages.length, 0),
+    pageAwareFrontMatterScan: pipeline.bundleText?.trim() ? buildMetadataScan(pipeline.bundleText) : null,
   };
 
   const surfaces =
-    opts?.withSurfaces && units.length > 0
+    opts?.withSurfaces && units.length > 0 && !ingestion.substantiveOutputsWithheld
       ? buildLiveProductionSurfacesFromDocumentUnits(units, {
           caseId: opts.caseId,
           allegation: opts.allegation ?? undefined,
@@ -398,9 +413,10 @@ export function composeAuthenticatedBundleSourceWithCanonical(
 } {
   const payload = buildBundleSourcePayload(docs as Array<Record<string, unknown>>);
   const built = buildAuthenticatedMatterCanonicalFromDocuments(docs, opts);
+  const withheld = built.canonical.ingestion.substantiveOutputsWithheld;
   return {
     documentCount: docs.length,
-    combinedTextLength: payload.combinedText.length,
+    combinedTextLength: withheld ? 0 : payload.combinedText.length,
     canonical: built.canonical,
     units: built.units,
     pipeline: built.pipeline,

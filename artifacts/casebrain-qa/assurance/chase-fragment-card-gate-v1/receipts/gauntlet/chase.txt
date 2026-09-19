@@ -1,0 +1,189 @@
+CB
+
+CASE WORK
+
+Trial: 5d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Riley North
+
+Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861
+
+Northshire Crown Court
+·
+Listing on papers · 17 Jun 2026 at 14:00 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+5
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+5
+
+All
+Overdue
+Due soon
+Chased
+Received
+MG6C/001 Exterior CCTV export log
+
+Continuity source needs checking before any CCTV point is relied on.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CHARGE SHEET / CASE INITIATION (mg6) · p.2 (compiled p.2) · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+OUTPUT
+MG6C/001 Exterior CCTV export log
+TYPE / SURFACE
+chase_request · chase
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+CHARGE SHEET / CASE INITIATION
+REF
+MG6C/001
+PAGE
+p.2 (compiled p.2)
+FILE QUOTE
+MG6C/001 Exterior CCTV export log — not served — Central to sequence, doorway angle and continuity.
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+999 audio / emergency-call material
+
+MG6C/007 CAD/999 audio — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CHARGE SHEET / CASE INITIATION (mg6) · p.2 (compiled p.2) · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+MG6C/008 BWV initial witness account
+
+MG6C/008 BWV initial witness account — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CHARGE SHEET / CASE INITIATION (mg6) · p.2 (compiled p.2) · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+MG6C/004 Final consultant medical report
+
+MG6C/004 Final consultant medical report — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CHARGE SHEET / CASE INITIATION (mg6) · p.2 (compiled p.2) · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+MG6C/009 Door staff final signed MG11
+
+MG6C/009 Door staff final signed MG11 — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CHARGE SHEET / CASE INITIATION (mg6) · p.2 (compiled p.2) · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+MG6C/001 Exterior CCTV export log
+OUTSTANDING
+
+WHY IT MATTERS
+
+Continuity source needs checking before any CCTV point is relied on.
+
+Why / source receipt
+
+Source: MG6/MG6C disclosure schedule
+
+Deadline: Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+
+EVIDENCE ANCHOR
+
+MG6C/001 Exterior CCTV export log — not served — Central to sequence, doorway angle and continuity.
+
+DRAFT CHASE WORDING
+
+Please confirm the CCTV continuity record, provenance material, or confirm in writing why it is not available.
+
+COURT LINE
+
+Solicitor review required before addressing the court.
+
+Case-wide court line (provisional): Message export / source device material — solicitor review.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

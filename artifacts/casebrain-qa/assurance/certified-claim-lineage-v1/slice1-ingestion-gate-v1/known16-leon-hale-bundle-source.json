@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "decision": "degraded",
+  "withheld": false,
+  "reasonCodes": [
+    "parser_failure",
+    "legacy_metadata_inferred"
+  ],
+  "combinedTextLength": 167149,
+  "header": null
+}

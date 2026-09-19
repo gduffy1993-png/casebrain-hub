@@ -1,0 +1,1820 @@
+{
+  "preview": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app",
+  "email": "gduffy1993+casebrain-gold20@gmail.com",
+  "sha": "7e4d743e31c956b7a8a24358e8d62fdd0950928e",
+  "productSha": "f95c941cccb411442bd50272ffa3a58c085c07f0",
+  "signedIn": true,
+  "account": "gold20",
+  "workspace": "e066f4cd-749f-4436-baa9-8c187092149a",
+  "cases": [
+    {
+      "id": "hale",
+      "file": "CB-MURDER-TEST-0001_criminal_defence_bundle.pdf",
+      "caseId": "9b555b7b-d520-4c33-a661-9ed93acc0fe1",
+      "expect": "Leon Hale",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/9b555b7b-d520-4c33-a661-9ed93acc0fe1?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 4907,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/9b555b7b-d520-4c33-a661-9ed93acc0fe1?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3027,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/9b555b7b-d520-4c33-a661-9ed93acc0fe1?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 6486,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/9b555b7b-d520-4c33-a661-9ed93acc0fe1?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3521,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/9b555b7b-d520-4c33-a661-9ed93acc0fe1?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 5185,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "patterson",
+      "file": "CB-TB-014_James_Patterson.pdf",
+      "caseId": "1098e31f-aa53-424e-a405-683440907f7a",
+      "expect": "James Patterson",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/1098e31f-aa53-424e-a405-683440907f7a?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2656,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/1098e31f-aa53-424e-a405-683440907f7a?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3048,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/1098e31f-aa53-424e-a405-683440907f7a?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3339,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/1098e31f-aa53-424e-a405-683440907f7a?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3353,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/1098e31f-aa53-424e-a405-683440907f7a?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 1719,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "patel",
+      "file": "CB-TB-546_Patel.pdf",
+      "caseId": "ffddc1a8-b837-4bde-bb50-bc55be0e7626",
+      "expect": "Isaac Patel",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ffddc1a8-b837-4bde-bb50-bc55be0e7626?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2938,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ffddc1a8-b837-4bde-bb50-bc55be0e7626?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3033,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": true,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ffddc1a8-b837-4bde-bb50-bc55be0e7626?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 4391,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ffddc1a8-b837-4bde-bb50-bc55be0e7626?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3241,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ffddc1a8-b837-4bde-bb50-bc55be0e7626?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2095,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "davies",
+      "file": "CB-TB-439_Davies.pdf",
+      "caseId": "60bcda4a-87f8-48e0-826e-e2f0dcd74fb2",
+      "expect": "Layla Davies",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/60bcda4a-87f8-48e0-826e-e2f0dcd74fb2?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3718,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/60bcda4a-87f8-48e0-826e-e2f0dcd74fb2?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3059,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/60bcda4a-87f8-48e0-826e-e2f0dcd74fb2?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 5593,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/60bcda4a-87f8-48e0-826e-e2f0dcd74fb2?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3524,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/60bcda4a-87f8-48e0-826e-e2f0dcd74fb2?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2476,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "tobin",
+      "file": "CB-TB-1925_Tobin.pdf",
+      "caseId": "f68abc38-3c3f-4f1b-bc2c-3153796e13e6",
+      "expect": "Imani Tobin",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/f68abc38-3c3f-4f1b-bc2c-3153796e13e6?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3631,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/f68abc38-3c3f-4f1b-bc2c-3153796e13e6?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3051,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/f68abc38-3c3f-4f1b-bc2c-3153796e13e6?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 5144,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/f68abc38-3c3f-4f1b-bc2c-3153796e13e6?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2982,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/f68abc38-3c3f-4f1b-bc2c-3153796e13e6?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3092,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "ahmed",
+      "file": "CB-TB-1573_Ahmed.pdf",
+      "caseId": "ff92431f-fd4b-4adb-992e-abfdb5c80faa",
+      "expect": "Holly Ahmed",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ff92431f-fd4b-4adb-992e-abfdb5c80faa?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3066,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ff92431f-fd4b-4adb-992e-abfdb5c80faa?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3081,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": true,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ff92431f-fd4b-4adb-992e-abfdb5c80faa?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 5326,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ff92431f-fd4b-4adb-992e-abfdb5c80faa?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3081,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ff92431f-fd4b-4adb-992e-abfdb5c80faa?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 1933,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": true,
+            "emailTail": true,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "grant",
+      "file": "CB-TB-1681_Grant.pdf",
+      "caseId": "91b84da7-0caa-43e6-b40e-d160b4dbdc90",
+      "expect": "Vincent Grant",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/91b84da7-0caa-43e6-b40e-d160b4dbdc90?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 4038,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/91b84da7-0caa-43e6-b40e-d160b4dbdc90?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3100,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/91b84da7-0caa-43e6-b40e-d160b4dbdc90?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 4301,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/91b84da7-0caa-43e6-b40e-d160b4dbdc90?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3279,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/91b84da7-0caa-43e6-b40e-d160b4dbdc90?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2078,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "dunn",
+      "file": "CB-TB-343_Dunn.pdf",
+      "caseId": "33b31c1e-4277-4c90-ac52-3cc0b959ad05",
+      "expect": "Ellis Dunn",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/33b31c1e-4277-4c90-ac52-3cc0b959ad05?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 4044,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/33b31c1e-4277-4c90-ac52-3cc0b959ad05?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3047,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/33b31c1e-4277-4c90-ac52-3cc0b959ad05?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 4754,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/33b31c1e-4277-4c90-ac52-3cc0b959ad05?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3095,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/33b31c1e-4277-4c90-ac52-3cc0b959ad05?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2045,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "arden",
+      "file": "CB-MONSTER-2026-0001.pdf",
+      "caseId": "578ecbd4-0450-4550-9b6e-86a8a3fe692e",
+      "expect": "Arden Vale",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/578ecbd4-0450-4550-9b6e-86a8a3fe692e?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3615,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/578ecbd4-0450-4550-9b6e-86a8a3fe692e?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2922,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/578ecbd4-0450-4550-9b6e-86a8a3fe692e?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2459,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/578ecbd4-0450-4550-9b6e-86a8a3fe692e?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2968,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/578ecbd4-0450-4550-9b6e-86a8a3fe692e?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2164,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "gauntlet",
+      "file": "gauntlet-08-kitchen-sink.pdf",
+      "caseId": "280e487c-3680-4eca-97f1-988828f448e2",
+      "expect": "Riley North",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/280e487c-3680-4eca-97f1-988828f448e2?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2998,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/280e487c-3680-4eca-97f1-988828f448e2?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3062,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/280e487c-3680-4eca-97f1-988828f448e2?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 4361,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/280e487c-3680-4eca-97f1-988828f448e2?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3227,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/280e487c-3680-4eca-97f1-988828f448e2?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 20663,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "trap-fresh",
+      "file": "CB-TRAP-2026-0030.pdf",
+      "caseId": "ba0931b2-1e30-4aad-8655-e91afac35660",
+      "expect": "Leo Greene",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ba0931b2-1e30-4aad-8655-e91afac35660?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2471,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ba0931b2-1e30-4aad-8655-e91afac35660?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3000,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ba0931b2-1e30-4aad-8655-e91afac35660?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2577,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ba0931b2-1e30-4aad-8655-e91afac35660?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2774,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/ba0931b2-1e30-4aad-8655-e91afac35660?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 1396,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "carter",
+      "file": "police station.pdf",
+      "caseId": "576c0d28-f5b2-459a-9254-fe3c69379d0a",
+      "expect": "Liam Carter",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/576c0d28-f5b2-459a-9254-fe3c69379d0a?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 1657,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": true,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": true,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/576c0d28-f5b2-459a-9254-fe3c69379d0a?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2918,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/576c0d28-f5b2-459a-9254-fe3c69379d0a?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 772,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": true,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/576c0d28-f5b2-459a-9254-fe3c69379d0a?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 1866,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": true,
+            "childReceipts": false
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/576c0d28-f5b2-459a-9254-fe3c69379d0a?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 823,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "vale-bell",
+      "file": "CB-CHARGE-2026-0039.pdf",
+      "caseId": "b6d8ed78-b475-4d78-bc44-a7ec1e5475f0",
+      "expect": "Vale Bell",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/b6d8ed78-b475-4d78-bc44-a7ec1e5475f0?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3705,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/b6d8ed78-b475-4d78-bc44-a7ec1e5475f0?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3069,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/b6d8ed78-b475-4d78-bc44-a7ec1e5475f0?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 4155,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/b6d8ed78-b475-4d78-bc44-a7ec1e5475f0?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 4525,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/b6d8ed78-b475-4d78-bc44-a7ec1e5475f0?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 1456,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "ocr-beck",
+      "file": "CB-OCR-2026-0013.pdf",
+      "caseId": "1d454c0b-da05-4385-8151-016426ca59b9",
+      "expect": "Emery Beck",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/1d454c0b-da05-4385-8151-016426ca59b9?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3846,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/1d454c0b-da05-4385-8151-016426ca59b9?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3118,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/1d454c0b-da05-4385-8151-016426ca59b9?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 4591,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/1d454c0b-da05-4385-8151-016426ca59b9?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 4924,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/1d454c0b-da05-4385-8151-016426ca59b9?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 1702,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "leverage",
+      "file": "CB-LEVERAGE-2026-0001.pdf",
+      "caseId": "17e21c53-5635-481e-a189-c8116d56c3d6",
+      "expect": "Alden Vale",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/17e21c53-5635-481e-a189-c8116d56c3d6?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2772,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/17e21c53-5635-481e-a189-c8116d56c3d6?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3077,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/17e21c53-5635-481e-a189-c8116d56c3d6?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3307,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/17e21c53-5635-481e-a189-c8116d56c3d6?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3161,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/17e21c53-5635-481e-a189-c8116d56c3d6?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 1240,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    },
+    {
+      "id": "brookes-fresh",
+      "file": "CB-FRESH-001_Taylor_Brookes_Digital_Attribution.pdf",
+      "caseId": "95a2746e-d1d3-4f55-aad6-4fb41a7b428b",
+      "expect": "Taylor Brookes",
+      "tabs": {
+        "overview": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/95a2746e-d1d3-4f55-aad6-4fb41a7b428b?tab=overview&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 4328,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "file": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/95a2746e-d1d3-4f55-aad6-4fb41a7b428b?tab=file&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2979,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": true,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "chase": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/95a2746e-d1d3-4f55-aad6-4fb41a7b428b?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 5643,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        },
+        "court": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/95a2746e-d1d3-4f55-aad6-4fb41a7b428b?tab=today&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 3687,
+          "loading": false,
+          "whyOpened": true,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": true
+          }
+        },
+        "papers": {
+          "url": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app/cases/95a2746e-d1d3-4f55-aad6-4fb41a7b428b?tab=papers&controlRoom=1&demoShell=1",
+          "ok": true,
+          "textLen": 2523,
+          "loading": false,
+          "whyOpened": false,
+          "identityHit": true,
+          "flags": {
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "possessionPack": false,
+            "chargeBlank": false,
+            "emptyOverview": false,
+            "emptyChase": false,
+            "hasExtract": false,
+            "noQuote": false,
+            "childReceipts": false
+          }
+        }
+      }
+    }
+  ],
+  "errors": []
+}

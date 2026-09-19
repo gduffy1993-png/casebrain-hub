@@ -12,7 +12,13 @@ type Document = {
   name: string;
   created_at: string;
   type?: string | null;
-  extractionStatus?: "full" | "summary_only" | "no_text";
+  extractionStatus?:
+    | "full"
+    | "summary_only"
+    | "no_text"
+    | "unreadable"
+    | "needs_ocr"
+    | "review";
   extractionMessage?: string;
   extractionCharCount?: number;
 };
@@ -114,7 +120,9 @@ export function CaseFilesList({ documents }: CaseFilesListProps) {
               {doc.extractionMessage && (
                 <p
                   className={`text-xs mt-1 ${
-                    doc.extractionStatus === "no_text"
+                    ["no_text", "unreadable", "needs_ocr", "review"].includes(
+                      doc.extractionStatus ?? "",
+                    )
                       ? "text-amber-600 dark:text-amber-500"
                       : doc.extractionStatus === "summary_only"
                         ? "text-amber-600/90 dark:text-amber-500/90"

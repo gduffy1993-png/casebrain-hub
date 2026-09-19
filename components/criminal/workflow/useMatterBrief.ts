@@ -21,13 +21,15 @@ import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-
 import type { DocumentRowMeta } from "@/lib/bundle/parse-bundle-display";
 import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { fileBackedMatterTitle } from "@/components/criminal/workflow/workflowPilotDisplay";
+import { buildBundleTruthLedger } from "@/lib/criminal/bundle-truth-ledger";
 import {
   buildChaseItemsForHearing,
   buildHearingWarRoomBrief,
 } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import { buildDisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildMatterBrief, type MatterBrief } from "./buildMatterBrief";
-import { assembleBundleTextForContradictions } from "@/lib/criminal/reasoning-v2/assemble-bundle-text";
+import { assembleBundleTextForReasoning } from "@/lib/criminal/reasoning-v2/assemble-bundle-text";
 import { buildCriminalBriefPlan } from "@/lib/criminal/brief-plan";
 import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-matter-confidence";
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
@@ -44,6 +46,7 @@ import { buildSolicitorMatterStateVm } from "@/lib/criminal/solicitor-matter-sta
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { computeCounters } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import type { AuthenticatedMatterCanonicalPayload } from "@/lib/criminal/authenticated-matter-canonical";
+import { canonicalRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
 
 function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
   if (docCount === 0) return "unknown";
@@ -215,7 +218,50 @@ export function useMatterBrief(caseId: string) {
   const pilotMatter = useMemo(() => {
     if (snapshotLoading || battleboardLoading || bundleLoading) return null;
 
-    const caseTitleBase = snapshot?.caseMeta?.title?.trim() || "Criminal case";
+    const ingestion = bundleSource?.canonical?.ingestion ?? null;
+    if (ingestion?.substantiveOutputsWithheld) {
+      return {
+        matterBrief: null,
+        matterConfidence: null,
+        doNotOverstate: [],
+        warRoom: null,
+        chase: null,
+        allegation: null,
+        clientLabel: null,
+        courtLabel: null,
+        hearingLabel: null,
+        hearingStatusResolved: null,
+        matterStateVm: null,
+        outputIntegrity: null,
+        briefPlan: null,
+        primaryRouteTitle: null,
+        canonical: bundleSource?.canonical ?? null,
+        ingestion,
+        evidenceRowsOverride: [],
+        bundleMeta: bundleSource
+          ? {
+              documentCount: bundleSource.documentCount ?? 0,
+              combinedTextLength: 0,
+              documentRows: bundleSource.documentRows,
+              snippets: undefined,
+              frontMatterScan: null,
+              pageAwareFrontMatterScan: null,
+              caseMetadata: null,
+              canonical: bundleSource.canonical ?? null,
+            }
+          : null,
+      };
+    }
+
+    const pageAwareBundleText = bundleSource?.canonical?.pageAwareFrontMatterScan ?? null;
+    const bundleText = pageAwareBundleText ?? bundleSource?.frontMatterScan ?? null;
+    const ledger = bundleText?.trim()
+      ? buildBundleTruthLedger({
+          bundleText,
+          parsedHeader: bundleSource?.header ?? undefined,
+        })
+      : null;
+
     const headerMeta = resolveCaseHeaderMetadata({
       snapshot,
       matter: matter
@@ -229,17 +275,23 @@ export function useMatterBrief(caseId: string) {
         : null,
       bundleMetadata: bundleSource?.caseMetadata,
       bundleHeader: bundleSource?.header,
-      bundleText: bundleSource?.frontMatterScan ?? null,
+      sourceCharges: bundleSource?.canonical?.charges ?? null,
+      bundleText,
       matterState,
+      truthLedger: ledger,
     });
 
     const clientLabelBase = sanitizeHeaderClient(headerMeta.clientLabel);
     const allegationBase = sanitizeHeaderAllegation(headerMeta.allegation);
     const clientLabel = isCriminalPilotMode() ? cleanPilotHeaderClient(clientLabelBase) : clientLabelBase;
+    const caseTitleBase =
+      fileBackedMatterTitle(snapshot?.caseMeta?.title, clientLabel) ||
+      snapshot?.caseMeta?.title?.trim() ||
+      "Criminal case";
     const pilotHeader = workflowHeaderOverrides(caseTitleBase, {
       allegation: allegationBase,
       routeTitle: battleboard?.primary_route?.title,
-      bundleText: bundleSource?.frontMatterScan ?? null,
+      bundleText,
       clientLabel,
     });
     const caseTitle = safeSolicitorCaseTitle(pilotHeader?.displayTitle ?? pilotHeader?.title ?? caseTitleBase);
@@ -249,7 +301,7 @@ export function useMatterBrief(caseId: string) {
     : headerMeta.stage;
     const bundleHayForHearing = [
       bundleSource?.caseMetadata?.nextHearingRaw,
-      bundleSource?.frontMatterScan,
+      bundleText,
       bundleSource?.header?.shortTitle,
     ]
       .filter(Boolean)
@@ -273,39 +325,35 @@ export function useMatterBrief(caseId: string) {
     });
     const bundleHealth = deriveBundleHealth(snapshot, bundleSource, battleboard);
 
-    const bundleTextForBrief = assembleBundleTextForContradictions({
-      frontMatterScan: bundleSource?.frontMatterScan ?? null,
+    const bundleTextForBrief = assembleBundleTextForReasoning({
+      frontMatterScan: pageAwareBundleText ?? bundleSource?.frontMatterScan ?? null,
       snippets: bundleSource?.snippets,
     });
+    const sourceBundleText = bundleTextForBrief || bundleText || null;
 
     const workflowContext = {
       caseTitle,
       allegation,
       routeTitle: battleboard?.primary_route?.title,
-      bundleText: bundleSource?.frontMatterScan ?? null,
+      bundleText,
       clientLabel,
       profileHint: pilotHeader?.profile ?? null,
     };
+    const canonicalMissingRows = canonicalRowsForBuilder(bundleSource?.canonical);
+    const snapshotMissingRows = snapshot?.evidence.missingEvidence ?? [];
+    const builderMissingRows =
+      canonicalMissingRows.length > 0
+        ? canonicalMissingRows
+        : snapshotMissingRows;
+    const courtPressureRows =
+      canonicalMissingRows.length > 0
+        ? builderMissingRows.filter((item) => item.status === "MISSING")
+        : builderMissingRows;
 
-    const chaseItemsAll = buildChaseItemsForHearing({
-      battleboard,
-      snapshotMissing: [
-        ...(snapshot?.evidence.missingEvidence ?? []),
-        ...(bundleSource?.canonical?.chaseLabels ?? []).map((label) => ({
-          label,
-          status: "Outstanding",
-        })),
-      ],
-      proceduralOutstanding: undefined,
-      bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
-    });
     const briefPlan = buildCriminalBriefPlan({
-      bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
-      missingMaterial: [
-        ...chaseItemsAll,
-        ...(snapshot?.evidence.missingEvidence?.map((item) => item.label) ?? []),
-        ...(bundleSource?.canonical?.chaseLabels ?? []),
-      ],
+      bundleText: sourceBundleText,
+      ledger,
+      missingMaterial: courtPressureRows.map((item) => item.label),
       allegation,
     });
 
@@ -348,6 +396,35 @@ export function useMatterBrief(caseId: string) {
       ? pilotPositionDisplayLabel(positionRaw, workflowContext)
       : positionRaw;
 
+    const chase = buildDisclosureChaseBrief({
+      caseId,
+      caseTitle,
+      clientLabel,
+      allegation,
+      stage,
+      hearingStatus,
+      hearingDateIso,
+      bundleHealth,
+      positionStatus,
+      battleboard,
+      snapshotMissing: [
+        ...builderMissingRows,
+      ],
+      bundleText: sourceBundleText,
+      profileHint: pilotHeader?.profile ?? null,
+      briefPlan,
+      canonicalFindings,
+      canonicalEvidenceRows,
+    });
+
+    const chaseItemsAll = buildChaseItemsForHearing({
+      battleboard,
+      snapshotMissing: courtPressureRows,
+      proceduralOutstanding: undefined,
+      bundleText: sourceBundleText,
+      fileBackedShortlist: chase.primaryItems.map((item) => item.label),
+    });
+
     let readiness: string;
     if (!hasSavedPosition) {
       readiness = "Conditional — record position";
@@ -373,35 +450,10 @@ export function useMatterBrief(caseId: string) {
       hasSavedPosition,
       chaseItems: chaseItemsAll,
       proceduralOutstanding: undefined,
-      bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
+      bundleText: sourceBundleText,
       profileHint: pilotHeader?.profile ?? null,
       briefPlan,
       canonicalFindings,
-    });
-
-    const chase = buildDisclosureChaseBrief({
-      caseId,
-      caseTitle,
-      clientLabel,
-      allegation,
-      stage,
-      hearingStatus,
-      hearingDateIso,
-      bundleHealth,
-      positionStatus,
-      battleboard,
-      snapshotMissing: [
-        ...(snapshot?.evidence.missingEvidence ?? []),
-        ...(bundleSource?.canonical?.chaseLabels ?? []).map((label) => ({
-          label,
-          status: "Outstanding",
-        })),
-      ],
-      bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
-      profileHint: pilotHeader?.profile ?? null,
-      briefPlan,
-      canonicalFindings,
-      canonicalEvidenceRows,
     });
 
     const primaryRouteTitle = workflowPrimaryRouteTitle(workflowContext);
@@ -415,12 +467,12 @@ export function useMatterBrief(caseId: string) {
       documentCount,
       combinedTextLength: bundleSource?.combinedTextLength,
       bundleHealth: bundleHealthTier(bundleHealth, documentCount),
-      missingMaterialCount: chaseItemsAll.length,
+      missingMaterialCount: chase.items.length,
       genericProvisional: /provisional|thin|generic/i.test(`${bundleHealth} ${pilotHeader?.profile ?? ""}`),
       hasSafeCourtLine: Boolean(warRoom.safePositionToday?.trim()),
     });
 
-    const bundleHay = `${bundleTextForBrief || bundleSource?.frontMatterScan || ""}`;
+    const bundleHay = `${sourceBundleText || ""}`;
     const hearingResolved = resolveSolicitorHearingStatus({
       bundleNextHearingIso: hearingDateIso,
       snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt ?? null,
@@ -477,6 +529,7 @@ export function useMatterBrief(caseId: string) {
       briefPlan,
       primaryRouteTitle,
       canonical: bundleSource?.canonical ?? null,
+      ingestion,
       evidenceRowsOverride: evidenceRowsFromCanonical,
       bundleMeta: bundleSource
         ? {
@@ -485,6 +538,8 @@ export function useMatterBrief(caseId: string) {
             documentRows: bundleSource.documentRows,
             snippets: bundleSource.snippets,
             frontMatterScan: bundleSource.frontMatterScan,
+            pageAwareFrontMatterScan: pageAwareBundleText,
+            caseMetadata: bundleSource.caseMetadata,
             canonical: bundleSource.canonical ?? null,
           }
         : null,
@@ -521,6 +576,7 @@ export function useMatterBrief(caseId: string) {
     primaryRouteTitle: pilotMatter?.primaryRouteTitle ?? null,
     bundleMeta: pilotMatter?.bundleMeta ?? null,
     canonical: pilotMatter?.canonical ?? null,
+    ingestion: pilotMatter?.ingestion ?? bundleSource?.canonical?.ingestion ?? null,
     evidenceRowsOverride: pilotMatter?.evidenceRowsOverride ?? [],
     caseTitle: snapshot?.caseMeta?.title?.trim() || "Criminal case",
   };

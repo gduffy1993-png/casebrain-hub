@@ -10,6 +10,7 @@ import { resolveControlRoomFromSearchParams } from "./criminalCaseNavigation";
 import { usePilotDocumentsTabActive } from "@/components/criminal/workflow/useCaseWorkflowActiveTab";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import type { CaseWorkflowDocument } from "@/components/criminal/workflow/caseWorkflowDocuments";
+import { useDemoOverviewShell } from "@/components/criminal/demo-shell/useDemoOverviewShell";
 
 function useControlRoomActive(): boolean {
   const searchParams = useSearchParams();
@@ -33,13 +34,20 @@ export function CriminalCasePageLayout({
 }) {
   const controlRoom = useControlRoomActive();
   const pilotDocumentsTab = usePilotDocumentsTabActive();
-  const hideBottomFilesStrip = isCriminalPilotMode() && pilotDocumentsTab;
+  const demoShell = useDemoOverviewShell();
+  const hideBottomFilesStrip =
+    (isCriminalPilotMode() && pilotDocumentsTab) || (demoShell && !pilotDocumentsTab);
 
   if (controlRoom) {
     return (
       <div
-        className="w-full space-y-4 xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px]"
+        className={
+          demoShell
+            ? "w-full max-w-[1480px] space-y-4"
+            : "w-full space-y-4 xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px]"
+        }
         data-layout="control-room"
+        data-demo-shell={demoShell ? "true" : undefined}
         data-documents-focus={pilotDocumentsTab ? "true" : undefined}
       >
         {children}
