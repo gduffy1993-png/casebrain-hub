@@ -194,10 +194,10 @@ export function buildMetadataScan(fullText: string): string {
 
 /** Stop before these tokens when trimming a person-name capture from table-style PDF text. */
 const PERSON_CAPTURE_STOP =
-  /\s*(?:\||\s+DOB\b|Date\s+of\s+birth\b|\bDate\b|Complainant\b|Victim\b|Venue\b|Court\b|Stage\b|Bail\b|Offence\b|Offense\b|Charge\b|Allegation\b|Next\s+hearing\b|\s+Single\b|\s+client\b|\s+unless\b|[\n\r])/i;
+  /\s*(?:\||\s+DOB\b|Date\s+of\s+birth\b|\bDate\b|Defendant\b|Complainant\b|Victim\b|Venue\b|Court\b|Stage\b|Bail\b|Offence\b|Offense\b|Charge\b|Allegation\b|Next\s+hearing\b|Co-?occupier\b|Occupier\b|named\s+in\b|\s+Count\b|Particulars\b|\s+Single\b|\s+client\b|\s+unless\b|[\n\r])/i;
 
 const PERSON_NAME_TOKEN = `[A-Za-z][A-Za-z'’.\-]+`;
-const PERSON_NAME_CAPTURE = `(${PERSON_NAME_TOKEN}(?:\\s+${PERSON_NAME_TOKEN}){0,3})`;
+const PERSON_NAME_CAPTURE = `(${PERSON_NAME_TOKEN}(?:[ \\t]+${PERSON_NAME_TOKEN}){0,3})`;
 
 function normalizeCapturedPersonTokens(raw: string): string {
   return raw
@@ -248,7 +248,7 @@ function stripPersonNameDocumentRoleTail(words: string[]): string[] {
       continue;
     }
     const last = w[w.length - 1]!.toLowerCase();
-    if (/^(?:mg11|draft|unsigned|final|not|primary)$/i.test(last)) {
+    if (/^(?:mg11|draft|unsigned|final|not|primary|occupier|named|papers|co-occupier)$/i.test(last)) {
       w = w.slice(0, -1);
       continue;
     }
@@ -278,7 +278,11 @@ function sanitizePersonName(value: string): string | null {
   }
   // Interview / section-header mash (e.g. "Client ACCOUNT No comment after")
   if (/\b(?:account|comment|disclosure|interview|limited)\b/i.test(t)) return null;
-  const words = t.split(/\s+/).filter(Boolean);
+  const words = t
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((word) => word.replace(/[.,;:]+$/g, ""))
+    .filter(Boolean);
   while (words.length > 1 && /^(?:defendant|accused|client)$/i.test(words[0]!)) {
     words.shift();
   }
@@ -295,9 +299,10 @@ function sanitizePersonName(value: string): string | null {
   if (words.length < 1 || words.length > 4) return null;
   const furnitureWords =
     /^(?:summary|cps|chase|file|preparation|overview|papers|evidence|upgrade|bundle|schedule|index|cover|extract)$/i;
-  if (words.filter((w) => furnitureWords.test(w)).length >= 2) return null;
+  const furnitureCount = words.filter((w) => furnitureWords.test(w)).length;
+  if (furnitureCount === words.length || furnitureCount >= 2) return null;
   const labelWords =
-    /^(?:defendant|accused|client|complainant|victim|name|the|and|or|dob|doi|mr|mrs|ms|dr|account|no|after|unless|document|says|otherwise|single)$/i;
+    /^(?:defendant|accused|client|complainant|victim|name|the|and|or|dob|doi|mr|mrs|ms|dr|account|no|after|unless|document|says|otherwise|single|occupier|co-occupier|named|papers|count|particulars)$/i;
   const verbWords =
     /^(?:contacted|communicated|alleged|denied|admitted|is|was|has|had|that|which|against|contrary|witness|victim|complainant|swung|states|alleges|reports|identified|during|struggle|bottle|injury|first)$/i;
   if (words.some((w) => labelWords.test(w) || verbWords.test(w))) return null;
@@ -306,72 +311,188 @@ function sanitizePersonName(value: string): string | null {
   return words.join(" ");
 }
 
-function extractDefendantName(scan: string): string | null {
-  const hay = deglueBundleLines(scan);
+const CHARGE_SHEET_IDENTITY_RE =
+  /\b(?:charge sheet|indictment extract|initial details|statement of offence)\b/i;
 
-  const colonFirst =
-    extractLabeledValue(hay, [
-      "Defendant(s)",
-      "Defendant name",
-      "Defendant",
-      "Accused",
-      "Client",
-    ]) ?? null;
-  if (colonFirst) {
-    const v = sanitizePersonName(colonFirst);
-    if (v) return v;
+type DefendantIdentityRole = "charge_sheet_defendant" | "cover_defendant" | "rv_caption" | "witness";
+
+type DefendantIdentityHit = { name: string; role: DefendantIdentityRole };
+
+function normalizePersonNameKey(name: string): string {
+  return name.replace(/\s+/g, " ").trim().replace(/[.,;:]+$/g, "").toLowerCase();
+}
+
+function lastPersonNameToken(name: string): string {
+  return normalizePersonNameKey(name).split(/\s+/).filter(Boolean).pop() ?? "";
+}
+
+function personNamesAgree(a: string, b: string): boolean {
+  const left = normalizePersonNameKey(a);
+  const right = normalizePersonNameKey(b);
+  if (!left || !right) return false;
+  if (left === right) return true;
+  const lastA = lastPersonNameToken(left);
+  const lastB = lastPersonNameToken(right);
+  return Boolean(lastA && lastB && lastA === lastB);
+}
+
+function uniquePersonNames(names: string[]): string[] {
+  const seen = new Map<string, string>();
+  for (const name of names) {
+    const key = normalizePersonNameKey(name);
+    if (!key || seen.has(key)) continue;
+    seen.set(key, name.replace(/[.,;:]+$/g, "").trim());
+  }
+  return [...seen.values()];
+}
+
+function preferLongestPersonName(names: string[]): string | null {
+  const unique = uniquePersonNames(names);
+  if (!unique.length) return null;
+  return unique.slice().sort((a, b) => b.length - a.length || a.localeCompare(b))[0] ?? null;
+}
+
+function classifyDefendantFieldContext(hay: string, index: number): DefendantIdentityRole {
+  const around = hay.slice(Math.max(0, index - 160), Math.min(hay.length, index + 80));
+  if (
+    /\b(?:witness statement|statement of|mg11)\b/i.test(around) &&
+    !CHARGE_SHEET_IDENTITY_RE.test(around)
+  ) {
+    return "witness";
+  }
+  const before = hay.slice(Math.max(0, index - 1400), index);
+  if (CHARGE_SHEET_IDENTITY_RE.test(before)) return "charge_sheet_defendant";
+  const after = hay.slice(index, Math.min(hay.length, index + 360));
+  if (/\bcount\s*1\b/i.test(after)) return "charge_sheet_defendant";
+  return "cover_defendant";
+}
+
+function pushSanitizedDefendantHit(
+  hits: DefendantIdentityHit[],
+  raw: string | null | undefined,
+  role: DefendantIdentityRole,
+): void {
+  if (!raw) return;
+  const name = sanitizePersonName(raw);
+  if (!name) return;
+  hits.push({ name, role });
+}
+
+/**
+ * Charge-sheet / indictment Defendant and agreeing R v captions outrank a cover-index
+ * Defendant field. Conflicting charge-sheet identities stay unestablished.
+ */
+function pickAuthoritativeDefendant(
+  hits: DefendantIdentityHit[],
+): { name: string | null; unresolvedConflict: boolean } {
+  const usable = hits.filter((hit) => hit.role !== "witness");
+  if (!usable.length) return { name: null, unresolvedConflict: false };
+
+  const charge = uniquePersonNames(
+    usable.filter((hit) => hit.role === "charge_sheet_defendant").map((hit) => hit.name),
+  );
+  const rv = uniquePersonNames(usable.filter((hit) => hit.role === "rv_caption").map((hit) => hit.name));
+  const cover = uniquePersonNames(
+    usable.filter((hit) => hit.role === "cover_defendant").map((hit) => hit.name),
+  );
+
+  const namesAgreeingWithRv = (names: string[]): string[] =>
+    uniquePersonNames(names.filter((name) => rv.some((caption) => personNamesAgree(name, caption))));
+
+  if (charge.length > 1) {
+    const lastNames = new Set(charge.map(lastPersonNameToken));
+    if (lastNames.size === 1) return { name: preferLongestPersonName(charge), unresolvedConflict: false };
+    const byLength = charge.slice().sort((a, b) => a.length - b.length);
+    const shortest = byLength[0]!;
+    if (
+      shortest.split(/\s+/).length >= 2 &&
+      byLength.every((name) => name.toLowerCase().startsWith(shortest.toLowerCase()))
+    ) {
+      return { name: shortest, unresolvedConflict: false };
+    }
+    const agreeing = namesAgreeingWithRv(charge);
+    if (agreeing.length === 1) return { name: agreeing[0]!, unresolvedConflict: false };
+    if (agreeing.length > 1) {
+      const agreeLast = new Set(agreeing.map(lastPersonNameToken));
+      if (agreeLast.size === 1) {
+        return { name: preferLongestPersonName(agreeing), unresolvedConflict: false };
+      }
+    }
+    return { name: null, unresolvedConflict: true };
   }
 
+  if (charge.length === 1) {
+    const chosen = charge[0]!;
+    if (rv.length) {
+      const agreeing = rv.filter((name) => personNamesAgree(chosen, name));
+      const conflicting = rv.filter((name) => !personNamesAgree(chosen, name));
+      if (conflicting.length && !agreeing.length) return { name: null, unresolvedConflict: true };
+    }
+    return { name: chosen, unresolvedConflict: false };
+  }
+
+  if (rv.length) {
+    const lastNames = new Set(rv.map(lastPersonNameToken));
+    if (lastNames.size > 1) return { name: null, unresolvedConflict: true };
+    return { name: preferLongestPersonName(rv), unresolvedConflict: false };
+  }
+
+  if (cover.length > 1) {
+    const lastNames = new Set(cover.map(lastPersonNameToken));
+    if (lastNames.size === 1) return { name: preferLongestPersonName(cover), unresolvedConflict: false };
+    return { name: null, unresolvedConflict: true };
+  }
+
+  return { name: cover[0] ?? null, unresolvedConflict: false };
+}
+
+function extractDefendantName(scan: string): string | null {
+  const hay = deglueBundleLines(scan);
+  const hits: DefendantIdentityHit[] = [];
+
   const tablePatterns: RegExp[] = [
-    new RegExp(`\\bDefendant\\s*\\(s\\)\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "i"),
-    new RegExp(`\\bDefendant\\s+name\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "i"),
-    new RegExp(`\\bDefendant\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "i"),
-    new RegExp(`\\bDefendant\\s+${PERSON_NAME_CAPTURE}`, "i"),
-    new RegExp(`\\bAccused\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "i"),
+    new RegExp(`\\bDefendant\\s*\\(s\\)\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "gi"),
+    new RegExp(`\\bDefendant\\s+name\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "gi"),
+    new RegExp(`\\bDefendant\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "gi"),
+    new RegExp(`\\bAccused\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "gi"),
     // Avoid "CLIENT ACCOUNT" and mid-sentence "client unless…" — Client is a label, not a prose word.
-    new RegExp(`\\bClient\\s+(?!ACCOUNT\\b)(?!ACCOUNT:)(?!position\\b)(?!unless\\b)${PERSON_NAME_CAPTURE}`),
+    new RegExp(`\\bClient\\s+(?!ACCOUNT\\b)(?!ACCOUNT:)(?!position\\b)(?!unless\\b)${PERSON_NAME_CAPTURE}`, "g"),
   ];
 
   for (const re of tablePatterns) {
-    const m = hay.match(re);
-    if (m?.[1]) {
-      const v = sanitizePersonName(m[1]);
-      if (v) return v;
+    for (const match of hay.matchAll(re)) {
+      if (!match[1] || match.index == null) continue;
+      pushSanitizedDefendantHit(hits, match[1], classifyDefendantFieldContext(hay, match.index));
     }
   }
 
-  const gluedDefendant = hay.match(
-    /\b(?:Defendant|Accused)([A-Z][a-z]+[A-Z][a-z]+(?:[A-Z][a-z]+)?)\b/,
-  );
-  if (gluedDefendant?.[1]) {
-    const v = sanitizePersonName(gluedDefendant[1]);
-    if (v) return v;
+  for (const match of hay.matchAll(/\b(?:Defendant|Accused)([A-Z][a-z]+[A-Z][a-z]+(?:[A-Z][a-z]+)?)\b/g)) {
+    if (!match[1] || match.index == null) continue;
+    pushSanitizedDefendantHit(hits, match[1], classifyDefendantFieldContext(hay, match.index));
   }
 
-  // Title-case "R v Name", ALL CAPS "R V ISAAC PATEL", glued "R vIsaacPatel"
-  const rv =
-    hay.match(/\bR\s+v\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b/) ??
-    hay.match(/\bR\s+[vV]\s+([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+){0,2})\b/);
-  if (rv?.[1]) {
-    const v = sanitizePersonName(rv[1]);
-    if (v) return v;
+  const rvPatterns = [
+    /\bR[ \t]+v[ \t]+([A-Z][a-z]+(?:[ \t]+[A-Z][a-z]+){0,2})\b/g,
+    /\bR[ \t]+[vV][ \t]+([A-Z][A-Za-z]+(?:[ \t]+[A-Z][A-Za-z]+){0,2})\b/g,
+  ];
+  for (const re of rvPatterns) {
+    for (const match of hay.matchAll(re)) {
+      pushSanitizedDefendantHit(hits, match[1], "rv_caption");
+    }
   }
 
-  // Appeal transcripts: "REX\nV\nMARTIN ADAMS" (allow newlines / ALL CAPS)
-  const rex = hay.match(
-    /\bREX\s+V\s+([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+){0,2})\b/i,
-  );
-  if (rex?.[1]) {
-    const v = sanitizePersonName(rex[1].replace(/\s+/g, " "));
-    if (v) return v;
-  }
+  const rex = hay.match(/\bREX\s+V\s+([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+){0,2})\b/i);
+  if (rex?.[1]) pushSanitizedDefendantHit(hits, rex[1].replace(/\s+/g, " "), "rv_caption");
   const rexNl = hay.match(
     /\bREX[\s\n]+V[\s\n]+([A-Z][A-Za-z]+(?:[\s\n]+[A-Z][A-Za-z]+){0,2})(?=[\s\n]+(?:_{2,}|ON\b|Computer|Before|CASE\b))/i,
   );
   if (rexNl?.[1]) {
-    const v = sanitizePersonName(rexNl[1].replace(/[\s\n]+/g, " "));
-    if (v) return v;
+    pushSanitizedDefendantHit(hits, rexNl[1].replace(/[\s\n]+/g, " "), "rv_caption");
   }
+
+  const authoritative = pickAuthoritativeDefendant(hits);
+  if (authoritative.unresolvedConflict) return null;
+  if (authoritative.name) return authoritative.name;
 
   // Cover sheet: name on its own line, then Charge — or Case ID then Charge
   // (`Taylor Reed\nCharge: Harassment`, `Isaac Patel\nCase ID: …\nCharge: Affray`).
@@ -770,7 +891,8 @@ export function formatOffenceDisplayFromBundle(raw: string): string {
     return "Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861";
   }
 
-  return t.length > 140 ? `${t.slice(0, 137)}…` : t;
+  if (t.length > 280) return `${t.slice(0, 277)}…`;
+  return t;
 }
 
 /** Golden-10 / fictional charge sheets: "Offence(s) as tag: …" or OCR-broken "(s) as tag: …". */
@@ -859,6 +981,129 @@ function isSpuriousChargeLabelValue(value: string): boolean {
   return false;
 }
 
+const CHARGE_DANGLING_TRAILING_WORDS = new Set([
+  "and",
+  "the",
+  "to",
+  "of",
+  "a",
+  "an",
+  "in",
+  "on",
+  "with",
+  "for",
+  "as",
+  "by",
+  "or",
+  "but",
+  "that",
+  "which",
+  "is",
+  "was",
+  "at",
+  "had",
+  "have",
+]);
+
+const CHARGE_LINE_BOUNDARY_RE =
+  /^(?:count\s*\d+\b|statement of offence\b|particulars of offence\b|defendant\b|accused\b|court\b|next hearing\b|bail\b|defence\b|primary allegation\b|page\s*\d|mg\s*\d|===|co-occupier|co-defendant)\b/i;
+
+/** Wrapped Count / Offence lines that stop mid-phrase must not be displayed. */
+export function isIncompleteChargeWording(value: string | null | undefined): boolean {
+  const t = (value ?? "").replace(/\s+/g, " ").trim();
+  if (!t) return true;
+  if (/\bcontrary to\s*$/i.test(t)) return true;
+  if (/[,:;]$/.test(t)) return true;
+  if (/[.!?]$/.test(t)) return false;
+  const last = t.split(/\s+/).pop()?.replace(/[“”"')\]]+$/g, "").toLowerCase() ?? "";
+  return CHARGE_DANGLING_TRAILING_WORDS.has(last);
+}
+
+function isChargeLineBoundary(line: string): boolean {
+  const t = line.trim();
+  if (!t) return true;
+  if (/^===/.test(t)) return true;
+  return CHARGE_LINE_BOUNDARY_RE.test(t);
+}
+
+function looksLikeChargeContinuation(prev: string, next: string): boolean {
+  const n = next.trim();
+  if (!n || isChargeLineBoundary(n)) return false;
+  if (/^[a-z]/.test(n)) return true;
+  if (/^section\s*\d+/i.test(n) && /\bcontrary to\s*$/i.test(prev.trim())) return true;
+  return isIncompleteChargeWording(prev);
+}
+
+function joinWrappedChargeCapture(lines: string[], startIdx: number, first: string): string {
+  let captured = first.replace(/\s+/g, " ").trim();
+  let i = startIdx;
+  while (
+    isIncompleteChargeWording(captured) &&
+    i + 1 < lines.length &&
+    looksLikeChargeContinuation(captured, lines[i + 1]!)
+  ) {
+    i += 1;
+    captured = `${captured} ${lines[i]!.replace(/\s+/g, " ").trim()}`;
+  }
+  return captured;
+}
+
+function preferBroaderLabelledCharge(
+  partial: string,
+  ...scans: string[]
+): string {
+  const needle = partial.replace(/\s+/g, " ").trim().toLowerCase();
+  if (!needle) return partial;
+  for (const scan of scans) {
+    const labelled = extractCompleteLabelledOffence(scan);
+    if (
+      labelled &&
+      /;/.test(labelled) &&
+      labelled.replace(/\s+/g, " ").toLowerCase().includes(needle.slice(0, Math.min(40, needle.length))) &&
+      labelled.length > partial.length
+    ) {
+      return labelled;
+    }
+  }
+  return partial;
+}
+
+function extractCompleteLabelledOffence(scan: string): string | null {
+  const hay = deglueBundleLines(scan);
+  const labels = [
+    "Primary allegation",
+    "Statement of offence",
+    "Offence type",
+    "Offence",
+    "Offense",
+    "Charge",
+  ];
+  for (const label of labels) {
+    const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const patterns = [
+      new RegExp(`\\b${escaped}\\s*:\\s*([^\\n]{4,220})`, "i"),
+      new RegExp(`\\b${escaped}\\s+([^\\n]{4,220})`, "i"),
+      new RegExp(`\\b${escaped}(?=[A-Z])([^\\n]{4,220})`, "i"),
+    ];
+    for (const re of patterns) {
+      const m = hay.match(re);
+      if (!m?.[1]) continue;
+      if (label === "Charge" && /^(?:sheet|and particulars)\b/i.test(m[1])) continue;
+      const v = cleanLineValue(trimChargeAllegationBoundary(m[1]));
+      if (
+        v &&
+        !isIncompleteChargeWording(v) &&
+        !isSpuriousChargeLabelValue(v) &&
+        !isNarrativeAllegationValue(v) &&
+        !isProofPressureAllegationLabel(v)
+      ) {
+        return v;
+      }
+    }
+  }
+  return null;
+}
+
 /** MG5-style incident narrative — not a charge-sheet offence label. */
 function isNarrativeAllegationValue(value: string): boolean {
   const t = value.trim();
@@ -896,6 +1141,15 @@ function isPlausibleCountOneAllegation(value: string): boolean {
     return true;
   }
   return false;
+}
+
+/** Complete Count / charge-sheet wording may be long particulars; fragments and MG5 colour are not. */
+function isUsableChargeCapture(value: string | null | undefined): boolean {
+  const v = (value ?? "").replace(/\s+/g, " ").trim();
+  if (!v || isIncompleteChargeWording(v) || isSpuriousChargeLabelValue(v)) return false;
+  if (isProofPressureAllegationLabel(v)) return false;
+  if (!isNarrativeAllegationValue(v)) return true;
+  return COUNT_ONE_OFFENCE_NOUN_RE.test(v) || /\bcontrary to\b|\bsection\s*\d+/i.test(v);
 }
 
 /**
@@ -952,8 +1206,19 @@ function extractChargeSheetAllegation(scan: string, fullText: string): string | 
       /\bCount\s*1\s*[:\\-]\s*([^\n]{8,220}(?:section|contrary|oapa|act|common law)[^\n]{0,80})/i,
     );
     if (countLine?.[1]) {
-      const v = cleanLineValue(trimChargeAllegationBoundary(countLine[1]));
-      if (v && !isNarrativeAllegationValue(v) && !isSpuriousChargeLabelValue(v)) return v;
+      const lines = normalized.split(/\n/);
+      const idx = lines.findIndex((line) => /^count\s*1\s*[:\\-]/i.test(line.trim()));
+      const captured =
+        idx >= 0 ? joinWrappedChargeCapture(lines, idx, countLine[1]) : countLine[1];
+      const v = cleanLineValue(trimChargeAllegationBoundary(captured));
+      if (
+        v &&
+        !isIncompleteChargeWording(v) &&
+        !isNarrativeAllegationValue(v) &&
+        !isSpuriousChargeLabelValue(v)
+      ) {
+        return v;
+      }
     }
   }
   return null;
@@ -1234,8 +1499,11 @@ function extractOffenceFromChargeBlock(block: string): string | null {
       }
     }
     if (/^charge\s*:/i.test(line)) {
-      const v = cleanLineValue(line.replace(/^charge\s*:\s*/i, ""));
-      if (v && !isSpuriousChargeLabelValue(v) && v.length >= 8) return v;
+      const captured = joinWrappedChargeCapture(lines, i, line.replace(/^charge\s*:\s*/i, ""));
+      const v = cleanLineValue(trimChargeAllegationBoundary(captured));
+      if (v && !isSpuriousChargeLabelValue(v) && !isIncompleteChargeWording(v) && v.length >= 8) {
+        return v;
+      }
     }
     if (/^charge(?![a-z:])([A-Z])/i.test(line)) {
       const v = cleanLineValue(trimChargeAllegationBoundary(line.replace(/^charge/i, "")));
@@ -1244,8 +1512,9 @@ function extractOffenceFromChargeBlock(block: string): string | null {
     if (/^offence\s*[:]/i.test(line)) {
       const asTag = normalizeOffenceAsTagLine(line);
       if (asTag) return asTag;
-      const v = cleanLineValue(line.replace(/^offence\s*[:]\s*/i, ""));
-      if (v && !isSpuriousChargeLabelValue(v)) return v;
+      const captured = joinWrappedChargeCapture(lines, i, line.replace(/^offence\s*[:]\s*/i, ""));
+      const v = cleanLineValue(trimChargeAllegationBoundary(captured));
+      if (v && !isSpuriousChargeLabelValue(v) && !isIncompleteChargeWording(v)) return v;
     }
     if (/^Offence(?=[A-Z])/.test(line)) {
       const v = cleanLineValue(trimChargeAllegationBoundary(line.replace(/^Offence/i, "")));
@@ -1279,8 +1548,11 @@ function extractOffenceFromChargeBlock(block: string): string | null {
           captured = `${captured} ${next.trim()}`;
         }
       }
-      const v = cleanLineValue(captured);
-      if (v && v.length >= 16) return v;
+      captured = joinWrappedChargeCapture(lines, i, captured);
+      const v = cleanLineValue(trimChargeAllegationBoundary(captured));
+      if (v && v.length >= 8 && !isIncompleteChargeWording(v) && !isSpuriousChargeLabelValue(v)) {
+        return v;
+      }
     }
     if (/contrary to common law/i.test(line) && /\b(pervert|murder|manslaughter)\b/i.test(line)) {
       return cleanLineValue(line);
@@ -1298,16 +1570,18 @@ function extractOffenceFromChargeBlock(block: string): string | null {
       return cleanLineValue(line);
     }
     if (/contrary to section\s*\d+/i.test(line) && line.length >= 24) {
+      let captured = line;
       const prev = lines[i - 1];
       if (
         prev &&
         /(?:possession|supply|intent|being concerned|cocaine|cannabis|controlled drug)/i.test(prev) &&
         !/contrary to section/i.test(prev)
       ) {
-        const lead = prev.replace(/^charge/i, "").trim();
-        return cleanLineValue(trimChargeAllegationBoundary(`${lead}, ${line}`));
+        captured = `${prev.replace(/^charge/i, "").trim()}, ${line}`;
       }
-      return cleanLineValue(line);
+      captured = joinWrappedChargeCapture(lines, i, captured);
+      const v = cleanLineValue(trimChargeAllegationBoundary(captured));
+      if (v && !isIncompleteChargeWording(v)) return v;
     }
     if (/assault occasioning actual bodily harm/i.test(line)) {
       return cleanLineValue(line);
@@ -1496,8 +1770,9 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
   if (emergencyWorker?.[1]) {
     const v = cleanLineValue(trimChargeAllegationBoundary(emergencyWorker[1].replace(/\s*\n\s*/g, " ")));
     if (v && !isSpuriousChargeLabelValue(v)) {
+      const broader = preferBroaderLabelledCharge(v, scan, normalizedFull);
       return {
-        wording: formatOffenceDisplayFromBundle(v),
+        wording: formatOffenceDisplayFromBundle(broader),
         source: "extracted_charge_fallback",
       };
     }
@@ -1569,20 +1844,50 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
     const fromCharge = extractOffenceFromChargeBlock(chargeBlock);
     if (fromCharge) {
       const trimmed = trimChargeAllegationBoundary(fromCharge);
-      return { wording: formatOffenceDisplayFromBundle(trimmed), source: "extracted_charge_fallback" };
+      if (trimmed && !isIncompleteChargeWording(trimmed)) {
+        const labelled =
+          extractCompleteLabelledOffence(scan) ?? extractCompleteLabelledOffence(normalizedFull);
+        if (
+          labelled &&
+          !isIncompleteChargeWording(labelled) &&
+          !isNarrativeAllegationValue(labelled) &&
+          isNarrativeAllegationValue(trimmed)
+        ) {
+          return {
+            wording: formatOffenceDisplayFromBundle(labelled),
+            source: "extracted_cover_fallback",
+          };
+        }
+        return { wording: formatOffenceDisplayFromBundle(trimmed), source: "extracted_charge_fallback" };
+      }
     }
   }
 
   const fromScanCharge =
     extractOffenceFromChargeBlock(scan) ??
     extractOffenceFromChargeBlock(normalizeMetadataScanText(fullText));
-  if (fromScanCharge && !isNarrativeAllegationValue(fromScanCharge)) {
+  if (fromScanCharge) {
     const trimmed = trimChargeAllegationBoundary(fromScanCharge);
-    return { wording: formatOffenceDisplayFromBundle(trimmed), source: "extracted_charge_fallback" };
+    if (isUsableChargeCapture(trimmed)) {
+      const labelled =
+        extractCompleteLabelledOffence(scan) ?? extractCompleteLabelledOffence(normalizedFull);
+      if (
+        labelled &&
+        isUsableChargeCapture(labelled) &&
+        !isNarrativeAllegationValue(labelled) &&
+        isNarrativeAllegationValue(trimmed)
+      ) {
+        return {
+          wording: formatOffenceDisplayFromBundle(labelled),
+          source: "extracted_cover_fallback",
+        };
+      }
+      return { wording: formatOffenceDisplayFromBundle(trimmed), source: "extracted_charge_fallback" };
+    }
   }
 
   const chargeSheetAllegation = extractChargeSheetAllegation(scan, fullText);
-  if (chargeSheetAllegation) {
+  if (chargeSheetAllegation && !isIncompleteChargeWording(chargeSheetAllegation)) {
     return {
       wording: formatOffenceDisplayFromBundle(chargeSheetAllegation),
       source: "extracted_charge_fallback",
@@ -1592,10 +1897,19 @@ function extractOffenceWording(scan: string, fullText: string): { wording: strin
   const countTableAllegation =
     extractCountOneAllegationFromChargeTable(scan) ??
     extractCountOneAllegationFromChargeTable(fullText);
-  if (countTableAllegation) {
+  if (countTableAllegation && !isIncompleteChargeWording(countTableAllegation)) {
     return {
       wording: formatOffenceDisplayFromBundle(countTableAllegation),
       source: "extracted_charge_fallback",
+    };
+  }
+
+  const labelledComplete =
+    extractCompleteLabelledOffence(scan) ?? extractCompleteLabelledOffence(normalizedFull);
+  if (labelledComplete) {
+    return {
+      wording: formatOffenceDisplayFromBundle(labelledComplete),
+      source: "extracted_cover_fallback",
     };
   }
 
