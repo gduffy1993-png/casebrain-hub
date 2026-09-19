@@ -194,7 +194,7 @@ export function buildMetadataScan(fullText: string): string {
 
 /** Stop before these tokens when trimming a person-name capture from table-style PDF text. */
 const PERSON_CAPTURE_STOP =
-  /\s*(?:\||\s+DOB\b|Date\s+of\s+birth\b|\bDate\b|Defendant\b|Complainant\b|Victim\b|Venue\b|Court\b|Stage\b|Bail\b|Offence\b|Offense\b|Charge\b|Allegation\b|Next\s+hearing\b|Co-?occupier\b|Occupier\b|named\s+in\b|\s+Count\b|Particulars\b|\s+Single\b|\s+client\b|\s+unless\b|[\n\r])/i;
+  /\s*(?:\||\s+DOB\b|Date\s+of\s+birth\b|\bDate\b|Defendant\b|Complainant\b|Victim\b|Venue\b|Court\b|Stage\b|Bail\b|Offence\b|Offense\b|Charge\b|Allegation\b|Next\s+hearing\b|Co-?occupier\b|Occupier\b|named\s+in\b|\s+Count\b|Particulars\b|\s+Page\b|\s+Tab\b|\s+Single\b|\s+client\b|\s+unless\b|[\n\r])/i;
 
 const PERSON_NAME_TOKEN = `[A-Za-z][A-Za-z'’.\-]+`;
 const PERSON_NAME_CAPTURE = `(${PERSON_NAME_TOKEN}(?:[ \\t]+${PERSON_NAME_TOKEN}){0,3})`;
@@ -248,7 +248,7 @@ function stripPersonNameDocumentRoleTail(words: string[]): string[] {
       continue;
     }
     const last = w[w.length - 1]!.toLowerCase();
-    if (/^(?:mg11|draft|unsigned|final|not|primary|occupier|named|papers|co-occupier)$/i.test(last)) {
+    if (/^(?:mg11|draft|unsigned|final|not|primary|occupier|named|papers|co-occupier|page|tab)$/i.test(last)) {
       w = w.slice(0, -1);
       continue;
     }
@@ -302,7 +302,7 @@ function sanitizePersonName(value: string): string | null {
   const furnitureCount = words.filter((w) => furnitureWords.test(w)).length;
   if (furnitureCount === words.length || furnitureCount >= 2) return null;
   const labelWords =
-    /^(?:defendant|accused|client|complainant|victim|name|the|and|or|dob|doi|mr|mrs|ms|dr|account|no|after|unless|document|says|otherwise|single|occupier|co-occupier|named|papers|count|particulars)$/i;
+    /^(?:defendant|accused|client|complainant|victim|name|the|and|or|dob|doi|mr|mrs|ms|dr|account|no|after|unless|document|says|otherwise|single|occupier|co-occupier|named|papers|count|particulars|page|tab)$/i;
   const verbWords =
     /^(?:contacted|communicated|alleged|denied|admitted|is|was|has|had|that|which|against|contrary|witness|victim|complainant|swung|states|alleges|reports|identified|during|struggle|bottle|injury|first)$/i;
   if (words.some((w) => labelWords.test(w) || verbWords.test(w))) return null;

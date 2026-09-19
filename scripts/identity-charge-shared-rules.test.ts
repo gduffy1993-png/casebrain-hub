@@ -160,6 +160,20 @@ assert.equal(
 }
 
 {
+  const gluedPage = [
+    "EM-26-1184 - R v Jordan HalePage 1",
+    "R v Jordan Hale - Custody / BWV / Procedural Conflict",
+    "DefendantJordan Hale",
+    "ComplainantPC Nathan Ives",
+    "1Assault on emergency workerOn 22 May 2026 at Eastmoor custody suite, Jordan Hale is alleged to have",
+    "pushed PC Nathan Ives",
+  ].join("\n");
+  const got = meta(gluedPage);
+  assert.equal(got.defendantName, "Jordan Hale");
+  assert.doesNotMatch(got.defendantName ?? "", /Nathan Ives/i);
+}
+
+{
   const oneLine = [
     "R v Jordan Quinn",
     "Defendant: Jordan Quinn",
