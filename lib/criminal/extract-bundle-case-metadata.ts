@@ -1080,10 +1080,11 @@ function extractCompleteLabelledOffence(scan: string): string | null {
   ];
   for (const label of labels) {
     const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const wordEnd = /^(Offence|Offense|Charge)$/i.test(label) ? "\\b" : "";
     const patterns = [
-      new RegExp(`\\b${escaped}\\s*:\\s*([^\\n]{4,220})`, "i"),
-      new RegExp(`\\b${escaped}\\s+([^\\n]{4,220})`, "i"),
-      new RegExp(`\\b${escaped}(?=[A-Z])([^\\n]{4,220})`, "i"),
+      new RegExp(`\\b${escaped}${wordEnd}\\s*:\\s*([^\\n]{4,220})`, "i"),
+      new RegExp(`\\b${escaped}${wordEnd}\\s+([^\\n]{4,220})`, "i"),
+      new RegExp(`\\b${escaped}${wordEnd}(?=[A-Z])([^\\n]{4,220})`, "i"),
     ];
     for (const re of patterns) {
       const m = hay.match(re);
@@ -1114,7 +1115,9 @@ function isNarrativeAllegationValue(value: string): boolean {
   if (/\bdefendant allegedly\b/i.test(t) && !/\b(contrary to|section\s*\d+)\b/i.test(t)) return true;
   if (
     t.length > 72 &&
-    !/\b(contrary to|section\s*\d+|common law|wounding with intent|pervert|dangerous driving)\b/i.test(t)
+    !/\b(contrary to|section\s*\d+|s\.?\s*\d+|common law|wounding with intent|pervert|dangerous driving|offences against the person|oapa)\b/i.test(
+      t,
+    )
   ) {
     return true;
   }

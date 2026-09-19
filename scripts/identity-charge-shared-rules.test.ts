@@ -174,6 +174,23 @@ assert.equal(
 }
 
 {
+  const priya = [
+    "R v Priya Nair - ABH / date-control test",
+    "DefendantPriya Nair",
+    "Primary allegationAssault occasioning actual bodily harm, Offences Against the Person Act 1861 s.47",
+    "CHARGE SHEET / indictment extract",
+    "Defendant: Priya Nair.",
+    "Count 1: Assault occasioning actual bodily harm, contrary to section 47 of the Offences Against the Person Act",
+    "1861.",
+  ].join("\n");
+  const got = meta(priya);
+  assert.equal(got.defendantName, "Priya Nair");
+  const charge = got.offenceDisplay ?? got.offenceWording ?? "";
+  assert.match(charge, /actual bodily harm|ABH|s\.?\s*47/i);
+  assert.doesNotMatch(charge, /^s Against the Person/i);
+}
+
+{
   const oneLine = [
     "R v Jordan Quinn",
     "Defendant: Jordan Quinn",
