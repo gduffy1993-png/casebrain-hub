@@ -1,0 +1,60 @@
+{
+  "caseId": "0038f06b-cf6f-446e-9d8c-5848fa542ec9",
+  "slug": "matter-details-to",
+  "label": "Matter details to confirm Charge, hearing and papers need solicitor review before relying on this matter. CRIMINAL",
+  "preview": "https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-24T20:00:42.854Z",
+  "tabs": {
+    "overview": {
+      "ok": true,
+      "textLen": 2035,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "Safe Court Line Copy safe court line The defence asks the court to record that full BWV and continuity material should be served. Client Update Copy client update CLIENT-SAFE SUMMARY (not for court or CPS) We are reviewing the papers in you",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "0 Missing",
+          "1 Incomplete",
+          "What Needs Attention",
+          "0 missing · 1 incomplete · 1 open review item",
+          "Missing",
+          "Unclear",
+          "Incomplete",
+          "Chased",
+          "MG6 / unused schedule clarification",
+          "UNCLEAR",
+          "UNCLEAR",
+          "MG6 / unused schedule clarification",
+          "Please provide the MG6 / unused schedule clarification or confirm in writing why it is not available.",
+          "Copy chase request",
+          "The defence asks the court to record that full BWV and continuity material should be served."
+        ],
+        "textLen": 2035
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 788,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "Disclosure chase not ready yet.",
+          "CaseBrain is still checking the uploaded papers. Do not treat the chase list as complete until this tab loads, or a solicitor has checked the Papers and File tabs."
+        ],
+        "textLen": 788
+      }
+    }
+  }
+}

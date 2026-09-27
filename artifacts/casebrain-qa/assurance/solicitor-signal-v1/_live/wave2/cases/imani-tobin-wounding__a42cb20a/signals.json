@@ -1,0 +1,65 @@
+{
+  "caseId": "a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27",
+  "slug": "imani-tobin-wounding",
+  "label": "Imani Tobin Wounding with intent to cause grievous bodily harm CRIMINAL",
+  "preview": "https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-24T19:54:23.070Z",
+  "tabs": {
+    "overview": {
+      "ok": false,
+      "textLen": 247,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Continue to your secure criminal-defence workspace."
+        ],
+        "textLen": 247
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 3076,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "CHASED",
+          "Chased",
+          "Full custody record / PACE material",
+          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          "REFERRED ONLY",
+          "state: missing · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+          "Copy CPS chase",
+          "Copy CPS chase",
+          "Subscriber / account data",
+          "Screenshots or partial extraction alone do not prove subscriber attribution.",
+          "MISSING",
+          "state: missing · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+          "Copy CPS chase",
+          "Full custody record / PACE material",
+          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          "Full custody record / PACE material",
+          "DRAFT CHASE WORDING",
+          "Please provide full custody record / PACE material or confirm in writing why it is not available.",
+          "The defence asks the court to record that full custody record / PACE material appears outstanding on the current file and should be disclosed on a timetable.",
+          "Case-wide court line (provisional): The defence asks the court to record that custody/PACE and interview material need source-status confirmation before the hearing position is fixed.",
+          "Provisional chase list · check source before sending",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 3076
+      }
+    }
+  }
+}

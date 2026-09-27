@@ -1,0 +1,187 @@
+{
+  "results": [
+    {
+      "folder": "case-01-taylor-brookes-digital-attri",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 12101,
+      "pageUnits": 10,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-02-cb-trap-2026-0030-hallucinat",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 2883,
+      "pageUnits": 3,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-03-live-03-jordan-hale-bwv-reco",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 182,
+      "pageUnits": 1,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-04-live-01-isaac-patel-affray-r",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 527,
+      "pageUnits": 1,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-05-live-02-taylor-reed-phone-ne",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 142,
+      "pageUnits": 1,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-06-case-16",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 10225,
+      "pageUnits": 27,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-07-case-20",
+      "decision": "degraded",
+      "reasonCodes": [
+        "partial_text_layer",
+        "ocr_required"
+      ],
+      "textLength": 16850,
+      "pageUnits": 11,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-08-case-13",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 1613919,
+      "pageUnits": 500,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-09-case-12",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 10795,
+      "pageUnits": 22,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-10-case-11",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 4238,
+      "pageUnits": 8,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-11-case-19",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 2643,
+      "pageUnits": 2,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-12-case-18",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 6873,
+      "pageUnits": 21,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-13-case-17",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 8092,
+      "pageUnits": 19,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-14-case-15",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 26963,
+      "pageUnits": 86,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-15-case-14",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 2883,
+      "pageUnits": 3,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-16-case-10",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 8342,
+      "pageUnits": 15,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-17-case-9",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 8193,
+      "pageUnits": 13,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-18-case-8",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 5271,
+      "pageUnits": 8,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-19-case-7",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 5926,
+      "pageUnits": 5,
+      "withheld": false,
+      "diagnosticInText": false
+    },
+    {
+      "folder": "case-20-case-6",
+      "decision": "accepted",
+      "reasonCodes": [],
+      "textLength": 167149,
+      "pageUnits": 137,
+      "withheld": false,
+      "diagnosticInText": false
+    }
+  ]
+}

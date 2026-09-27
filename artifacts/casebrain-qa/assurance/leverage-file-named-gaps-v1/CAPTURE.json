@@ -1,0 +1,157 @@
+{
+  "signedIn": true,
+  "recaptured": [
+    {
+      "id": "leverage",
+      "caseId": "17e21c53-5635-481e-a189-c8116d56c3d6",
+      "tabs": {
+        "overview": {
+          "len": 2772,
+          "loading": false,
+          "flags": {
+            "cctvMaster": true,
+            "continuity": true,
+            "idNotes": true,
+            "emptyBoard": false,
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "intimidating": false,
+            "valePressure": false
+          }
+        },
+        "chase": {
+          "len": 3307,
+          "loading": false,
+          "flags": {
+            "cctvMaster": true,
+            "continuity": true,
+            "idNotes": true,
+            "emptyBoard": false,
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "intimidating": false,
+            "valePressure": false
+          }
+        }
+      }
+    },
+    {
+      "id": "ahmed",
+      "caseId": "ff92431f-fd4b-4adb-992e-abfdb5c80faa",
+      "tabs": {
+        "overview": {
+          "len": 3066,
+          "loading": false,
+          "flags": {
+            "cctvMaster": false,
+            "continuity": false,
+            "idNotes": false,
+            "emptyBoard": false,
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "intimidating": false,
+            "valePressure": false
+          }
+        }
+      }
+    },
+    {
+      "id": "patel",
+      "caseId": "ffddc1a8-b837-4bde-bb50-bc55be0e7626",
+      "tabs": {
+        "overview": {
+          "len": 3139,
+          "loading": false,
+          "flags": {
+            "cctvMaster": true,
+            "continuity": false,
+            "idNotes": false,
+            "emptyBoard": false,
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "intimidating": false,
+            "valePressure": false
+          }
+        }
+      }
+    },
+    {
+      "id": "gauntlet",
+      "caseId": "280e487c-3680-4eca-97f1-988828f448e2",
+      "tabs": {
+        "overview": {
+          "len": 2998,
+          "loading": false,
+          "flags": {
+            "cctvMaster": false,
+            "continuity": true,
+            "idNotes": false,
+            "emptyBoard": false,
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "intimidating": false,
+            "valePressure": false
+          }
+        }
+      }
+    },
+    {
+      "id": "brookes-fresh",
+      "caseId": "95a2746e-d1d3-4f55-aad6-4fb41a7b428b",
+      "tabs": {
+        "overview": {
+          "len": 4488,
+          "loading": false,
+          "flags": {
+            "cctvMaster": false,
+            "continuity": true,
+            "idNotes": false,
+            "emptyBoard": false,
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "intimidating": true,
+            "valePressure": false
+          }
+        }
+      }
+    },
+    {
+      "id": "vale-bell",
+      "caseId": "b6d8ed78-b475-4d78-bc44-a7ec1e5475f0",
+      "tabs": {
+        "overview": {
+          "len": 3705,
+          "loading": false,
+          "flags": {
+            "cctvMaster": false,
+            "continuity": true,
+            "idNotes": false,
+            "emptyBoard": false,
+            "reasonableExcuse": false,
+            "emailTail": false,
+            "officerNote": false,
+            "settledFragment": false,
+            "intimidating": false,
+            "valePressure": true
+          }
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "base": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app",
+  "email": "gduffy1993+casebrain-gold20@gmail.com",
+  "sha": "bf13248a71d6bd30c7dae97b462781e2a0d29db9"
+}

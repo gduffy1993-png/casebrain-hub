@@ -38,6 +38,8 @@ export function ClientVsPapersPanel({ caseId }: { caseId: string }) {
           const meta = resolveCaseHeaderMetadata({
             bundleHeader: bundleJson.data.header ?? null,
             bundleMetadata: bundleJson.data.caseMetadata ?? null,
+            sourceCharges: bundleJson.data.canonical?.charges ?? null,
+            bundleText: bundleJson.data.frontMatterScan ?? null,
             snapshot: null,
           });
           setPapersLine(sanitizeHeaderAllegation(meta.allegation) || "Allegation not safely on papers yet.");

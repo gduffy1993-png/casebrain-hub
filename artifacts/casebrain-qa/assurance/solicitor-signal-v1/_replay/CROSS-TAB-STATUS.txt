@@ -1,0 +1,12 @@
+
+[DOWNGRADE] layla-davies__687cf5a6  tab=summary
+   family : custody record
+   papers : Served / on file
+   says   : Full custody record / PACE material ÔÇö Custody/PACE material is referred to in limited form ÔÇö chase the full record before assessing safeguards or interview fairness.
+
+================ TOTALS ================
+case/family pairs checked : 52
+raw contradiction lines   : 1
+distinct contradictions   : 1
+  upgrades (gap -> on file): 0
+  downgrades (served -> gap): 1

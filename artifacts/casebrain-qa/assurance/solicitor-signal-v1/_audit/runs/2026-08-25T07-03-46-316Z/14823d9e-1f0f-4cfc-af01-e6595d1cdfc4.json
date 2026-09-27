@@ -1,0 +1,58 @@
+{
+  "caseId": "14823d9e-1f0f-4cfc-af01-e6595d1cdfc4",
+  "primary": [
+    {
+      "ref": "EX-MUR-021",
+      "label": "Interview recording and transcript",
+      "family": "interview",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "EX-MUR-014",
+      "label": "Final medical/forensic report",
+      "family": "medical_expert",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX-MUR-001",
+      "label": "EX-MUR-001 Charge Sheet",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX-MUR-002",
+      "label": "EX-MUR-002 MG5 Case Summary",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX-MUR-007",
+      "label": "EX-MUR-007 Police Officer Statement",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX-MUR-008",
+      "label": "EX-MUR-008 Paramedic Note",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX-MUR-015",
+      "label": "EX-MUR-015 Knife Recovery Note",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX-MUR-016",
+      "label": "EX-MUR-016 Initial DNA Note",
+      "family": "other",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 288,
+  "statedGaps": 4,
+  "statedGapsOnBoard": 1,
+  "truncated": false,
+  "findings": []
+}

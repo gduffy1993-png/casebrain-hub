@@ -1,0 +1,80 @@
+{
+  "caseId": "09617e55-136c-4459-8fc7-f4257ed8ac20",
+  "slug": "matter-details-to",
+  "label": "Matter details to confirm Charge, hearing and papers need solicitor review before relying on this matter. CRIMINAL",
+  "preview": "https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-24T19:58:06.998Z",
+  "tabs": {
+    "overview": {
+      "ok": true,
+      "textLen": 2000,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "Safe Court Line Copy safe court line Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet. Client Update Copy client update CLIENT-SAFE SUMMARY (not for court or CPS) We ar",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "1 Missing",
+          "1 Incomplete",
+          "What Needs Attention",
+          "1 missing · 1 incomplete · 1 open review item",
+          "Missing",
+          "Unclear",
+          "Incomplete",
+          "Chased",
+          "CCTV full window / master footage",
+          "UNCLEAR",
+          "Full CCTV or master media status needs confirming before the hearing position is fixed.",
+          "UNCLEAR",
+          "CCTV full window / master footage",
+          "Full CCTV or master media status needs confirming before the hearing position is fixed.",
+          "Full image/CCTV/source file: not served — only still/photo/extract served",
+          "Please provide the full CCTV window, master footage or export log, or confirm in writing why it is not available.",
+          "Copy chase request"
+        ],
+        "textLen": 2000
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 2242,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "CHASED",
+          "Chased",
+          "CCTV full window / master footage",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "MISSING",
+          "Listing on papers elapsed — confirm next listing / chase outstanding disclosure",
+          "state: missing · limitation: Source reference present; exact document title/type and page still need checking.",
+          "Copy CPS chase",
+          "CCTV full window / master footage",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "Deadline: Listing on papers elapsed — confirm next listing / chase outstanding disclosure",
+          "Linked route: Master CCTV footage — solicitor review.",
+          "CCTV full window / master footage",
+          "Full CCTV master outstanding or not verified, where applicable.",
+          "Full CCTV master",
+          "Full image/CCTV/source file: not served — only still/photo/extract served",
+          "DRAFT CHASE WORDING",
+          "Please provide CCTV full window / master footage or confirm in writing why it is not available.",
+          "Provisional chase list · check source before sending",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 2242
+      }
+    }
+  }
+}

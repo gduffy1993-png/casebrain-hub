@@ -1,0 +1,127 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Layla Davies
+
+Concealing criminal property, contrary to section 327 Proceeds of Crime Act 2002
+
+Crown Court at Sheffield
+·
+Listing on papers · 19 Jun 2026 at 10:00 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+READINESS
+
+Conditional — record position
+
+SAFE COURT LINE
+
+The defence asks the court to record that MG6/05 CCTV Continuity log; MG6/07 final medical report; Messages Screenshots in officer note only Raw extraction remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+
+TOP CHASE
+
+MG6/05 CCTV Continuity log
+
+NEXT STEP
+
+Chase: MG6/05 CCTV Continuity log.
+
+Why / source receipt
+OUTPUT
+The defence asks the court to record that MG6/05 CCTV Continuity log; MG6/07 final medical report; Messages Screenshots in officer note only Raw extraction remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+TYPE / SURFACE
+court_line · court
+TRUTH STATE
+outstanding
+SOURCE CLASS
+multi_source_backed
+DOCUMENT
+multiple source rows
+REF
+MG6/05, MG6/07, MG6
+PAGE
+mixed pages
+FILE QUOTE
+MG6/05 CCTV Continuity log — Outstanding Awaiting export | MG6/07 final medical report — Outstanding Requested from officer in case | Messages Screenshots in officer note only Raw extraction — absent
+TRANSFORMATION
+multi-item court/client line from shortlist receipts
+CONFIDENCE
+0.75
+GUARD
+pass: multi-item line backed by child receipts
+
+ITEM RECEIPTS
+
+MG6/05 CCTV Continuity log
+
+MG6/05 · direct_pdf_quote · outstanding
+
+MG6/05 CCTV Continuity log — Outstanding Awaiting export
+
+MG6/07 final medical report
+
+MG6/07 · direct_pdf_quote · outstanding
+
+MG6/07 final medical report — Outstanding Requested from officer in case
+
+Messages Screenshots in officer note only Raw extraction
+
+MG6 · direct_pdf_quote · outstanding
+
+Messages Screenshots in officer note only Raw extraction — absent
+
+BEFORE COURT
+COURT LINES
+SOLICITOR REVIEW
+
+Ask the court to set a disclosure timetable for:
+
+messages Screenshots in officer note only Raw extraction remains outstanding
+CCTV/2 External camera export Store manager Export log remains outstanding
+dIG/4 Phone screenshot bundle DC Morgan Raw extraction remains outstanding
+
+Keep the hearing position provisional until those papers are served.
+
+Next steps
+
+Chase: MG6/05 CCTV Continuity log.
+Chase: Messages Screenshots in officer note only Raw extraction.
+Ask court to record outstanding source material on the order.
+OUR READ
+COURT LINE FROM PAPERS
+PROVISIONAL
+Keep the position provisional and tied to the uploaded papers.
+The court is asked to record outstanding File-named source material and set a disclosure timetable.
+WHAT'S MISSING
+OUTSTANDING MATERIAL
+MISSING
+MG6/05 CCTV Continuity log
+MG6/07 final medical report
+Messages Screenshots in officer note only Raw extraction
+Open CPS Chase (3 review items) →
+GUARDRAILS
+
+DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
+
+SOLICITOR REVIEW
+Avoid firm wording until the papers confirm it
+No support on the papers for another offence-family template. Avoid relying on it until confirmed.
+Do not treat unserved source material as proved.
+Do not chase served material as if it were outstanding.
+More detail (War Room drafts, ask court, risks)
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

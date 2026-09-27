@@ -1,0 +1,116 @@
+{
+  "caseId": "918d817e-2173-495f-b456-783705049c5c",
+  "slug": "vale",
+  "label": "Vale 1 document on file: Vale CRIMINAL",
+  "preview": "https://casebrain-l8dqkfmm0-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-24T19:23:12.064Z",
+  "tabs": {
+    "overview": {
+      "ok": true,
+      "textLen": 1816,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "Safe Court Line Copy safe court line The defence asks the court to record that source material must be clarified and timetabled. Client Update Copy client update CLIENT-SAFE SUMMARY (not for court or CPS) We are reviewing the papers in your",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "0 Missing",
+          "1 Incomplete",
+          "What Needs Attention",
+          "0 missing · 1 incomplete · 1 open review item",
+          "Missing",
+          "Unclear",
+          "Incomplete",
+          "Chased",
+          "UNCLEAR",
+          "UNCLEAR",
+          "Copy chase request"
+        ],
+        "textLen": 1816
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 2191,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "CHASED",
+          "Chased",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "Copy CPS chase",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited.",
+          "Map exhibit references across MG5/MG6 before trial theory is fixed.",
+          "DRAFT CHASE WORDING",
+          "Provisional chase list · check source before sending",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 2191
+      }
+    },
+    "file": {
+      "ok": true,
+      "textLen": 931,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase"
+        ],
+        "textLen": 931
+      }
+    },
+    "court": {
+      "ok": true,
+      "textLen": 1045,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "Based on uploaded papers · conditional where papers are incomplete"
+        ],
+        "textLen": 1045
+      }
+    },
+    "papers": {
+      "ok": true,
+      "textLen": 1045,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "Based on uploaded papers · conditional where papers are incomplete"
+        ],
+        "textLen": 1045
+      }
+    }
+  }
+}

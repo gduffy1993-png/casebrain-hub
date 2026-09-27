@@ -1,0 +1,13 @@
+{
+  "root": "overview-charge-file-first",
+  "pr": 101,
+  "sha": "634908998599abe2942f7453d8e5928f0fdae3c3",
+  "vercel": "SUCCESS",
+  "preview": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app",
+  "caseId": "95a2746e-d1d3-4f55-aad6-4fb41a7b428b",
+  "verdict": "PASS",
+  "beforeCharge": "Possession / knowledge / phone-attribution",
+  "afterCharge": "Intimidating a witness",
+  "courtToday": "U5 email / voice-note / WhatsApp shortlist unchanged",
+  "untouched": ["ahmed-fragments", "patel-fragments", "gauntlet-fragments", "leverage-mute"]
+}

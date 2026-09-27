@@ -29,6 +29,10 @@ import {
   buildHearingWarRoomBrief,
   type HearingWarRoomBrief,
 } from "./buildHearingWarRoomBrief";
+import { buildDisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import { IngestionGateNotice } from "@/components/criminal/IngestionGateNotice";
+import { canonicalRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
+import { assembleBundleTextForReasoning } from "@/lib/criminal/reasoning-v2/assemble-bundle-text";
 import { buildDisclosureChaseHref } from "@/components/criminal/disclosure-chase/disclosureChaseLinks";
 import { fetchJsonWithSurfaceContract } from "@/lib/criminal/surface-load-contract";
 import {
@@ -81,7 +85,6 @@ import { useExportsEnabled } from "@/lib/criminal/disclosure-export/export-flag"
 import { buildClientStressResult } from "@/lib/criminal/client-stress-test/build-client-stress-result";
 import { loadClientStressSelection } from "@/lib/criminal/client-stress-test/client-stress-selection-storage";
 import {
-  displayChaseBulletLine,
   filterBundleFamilyWarnings,
   polishPresentationLine,
 } from "@/lib/criminal/demo-presentation-polish";
@@ -499,6 +502,7 @@ export function HearingWarRoom({
           : null,
         bundleMetadata: bundleSource?.caseMetadata,
         bundleHeader: bundleSource?.header,
+        sourceCharges: bundleSource?.canonical?.charges ?? null,
         bundleText: bundleSource?.frontMatterScan ?? null,
         matterState,
       }),
@@ -562,6 +566,15 @@ export function HearingWarRoom({
   const usePilotDeskUi = embedInShell || pilotMode;
   const { uploadDisabled: pilotUploadDisabled, recordPositionDisabled: pilotRecordPositionHidden } =
     usePilotDemoSession();
+  const pageAwareBundleText =
+    bundleSource?.canonical?.pageAwareFrontMatterScan ?? bundleSource?.frontMatterScan ?? null;
+  const sourceBundleText = useMemo(() => {
+    const assembled = assembleBundleTextForReasoning({
+      frontMatterScan: pageAwareBundleText,
+      snippets: bundleSource?.snippets,
+    });
+    return assembled || pageAwareBundleText || null;
+  }, [pageAwareBundleText, bundleSource?.snippets]);
   const hearingDateIso = resolveSolicitorHearingDateIso({
     bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
     snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
@@ -596,17 +609,6 @@ export function HearingWarRoom({
   })();
   const hearingStatus = hearingDisplay;
 
-  const chaseItemsAll = useMemo(
-    () =>
-      buildChaseItemsForHearing({
-        snapshotMissing: snapshot?.evidence.missingEvidence,
-        proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
-        battleboard,
-        bundleText: bundleSource?.frontMatterScan ?? null,
-      }),
-    [snapshot, effectiveProceduralSafety, battleboard, bundleSource?.frontMatterScan],
-  );
-
   const positionStatus = useMemo(() => {
     let raw: string;
     if (hasSavedPosition && savedPosition?.position_text?.trim()) {
@@ -634,6 +636,60 @@ export function HearingWarRoom({
     battleboard?.position_notice,
     workflowContext,
   ]);
+
+  const chaseBoard = useMemo(() => {
+    const canonicalRows = canonicalRowsForBuilder(bundleSource?.canonical ?? null);
+    const builderMissingRows =
+      canonicalRows.length > 0 ? canonicalRows : snapshot?.evidence.missingEvidence ?? [];
+    const chase = buildDisclosureChaseBrief({
+      caseId,
+      caseTitle,
+      clientLabel,
+      allegation,
+      stage,
+      hearingStatus,
+      hearingDateIso,
+      bundleHealth: deriveBundleHealth(snapshot, bundleSource, battleboard),
+      positionStatus,
+      battleboard,
+      snapshotMissing: builderMissingRows,
+      proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
+      bundleText: sourceBundleText,
+      profileHint: pilotHeader?.profile ?? null,
+      canonicalFindings: bundleSource?.canonical?.findingSummaries ?? [],
+      canonicalEvidenceRows: (bundleSource?.canonical?.evidenceRows ?? []).map((r) => ({
+        label: r.label,
+        state: r.existence,
+      })),
+    });
+    return {
+      labels: buildChaseItemsForHearing({
+        snapshotMissing: snapshot?.evidence.missingEvidence,
+        proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
+        battleboard,
+        bundleText: sourceBundleText,
+        fileBackedShortlist: chase.primaryItems.map((item) => item.label),
+      }),
+      items: chase.primaryItems,
+    };
+  }, [
+    caseId,
+    caseTitle,
+    clientLabel,
+    allegation,
+    stage,
+    hearingStatus,
+    hearingDateIso,
+    snapshot,
+    bundleSource,
+    battleboard,
+    positionStatus,
+    effectiveProceduralSafety,
+    sourceBundleText,
+    pilotHeader?.profile,
+  ]);
+
+  const chaseItemsAll = chaseBoard.labels;
 
   const readiness = useMemo(() => {
     if (effectiveProceduralSafety?.status === "UNSAFE_TO_PROCEED") {
@@ -666,7 +722,7 @@ export function HearingWarRoom({
         chaseItems: chaseItemsAll,
         defencePlan,
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
-        bundleText: bundleSource?.frontMatterScan ?? null,
+        bundleText: sourceBundleText,
         profileHint: pilotHeader?.profile ?? null,
         pilotDemoReadOnly: pilotRecordPositionHidden,
         canonicalFindings: bundleSource?.canonical?.findingSummaries ?? [],
@@ -686,6 +742,7 @@ export function HearingWarRoom({
       chaseItemsAll,
       defencePlan,
       effectiveProceduralSafety,
+      sourceBundleText,
       pilotHeader?.profile,
       pilotRecordPositionHidden,
     ],
@@ -726,10 +783,11 @@ export function HearingWarRoom({
     [battleboard, allegation, stage, chaseItemsAll, bundleSource, displayStrategy, committedStrategy],
   );
 
-  const loading = snapshotLoading || battleboardLoading;
-  const embedBlockingLoading = embedInShell ? snapshotLoading : loading;
+  const loading = snapshotLoading || battleboardLoading || bundleLoading;
+  const embedBlockingLoading = embedInShell ? snapshotLoading || bundleLoading : loading;
   const controlRoomHref = buildControlRoomHref(caseId);
   const headerLoading = snapshotLoading || bundleLoading;
+  const ingestion = bundleSource?.canonical?.ingestion ?? null;
 
   const bundleContextHay = useMemo(
     () =>
@@ -763,10 +821,10 @@ export function HearingWarRoom({
   const copyBlockedReason = outputIntegrity.banner;
 
   const pilotTodayView = useMemo((): PilotTodayDashboardView | null => {
-    if (!usePilotDeskUi || snapshotLoading) return null;
+    if (!usePilotDeskUi || snapshotLoading || ingestion?.substantiveOutputsWithheld) return null;
     const filteredDno = filterBundleFamilyWarnings(brief.doNotOverstate, bundleContextHay);
     const filteredRisks = filterBundleFamilyWarnings(brief.collapseRisks, bundleContextHay);
-    const filteredChase = filterBundleFamilyWarnings(chaseItemsAll, bundleContextHay).map(displayChaseBulletLine);
+    const filteredChase = filterBundleFamilyWarnings(chaseItemsAll, bundleContextHay);
     const filteredSayThis = filterBundleFamilyWarnings(brief.sayThis, bundleContextHay).map((line) =>
       polishPresentationLine(line, bundleContextHay),
     );
@@ -794,6 +852,7 @@ export function HearingWarRoom({
       collapseRisks: filteredRisks,
       nextHearingMoves: filteredNextMoves,
       chaseItems: filteredChase,
+      chaseReceiptItems: chaseBoard.items,
       documentCount: Math.max(bundleSource?.documentCount ?? 0, snapshot?.analysis.docCount ?? 0),
     };
   }, [
@@ -807,9 +866,11 @@ export function HearingWarRoom({
     stage,
     brief,
     chaseItemsAll,
+    chaseBoard.items,
     bundleSource,
     snapshot,
     bundleContextHay,
+    ingestion,
   ]);
 
   if (embedInShell && usePilotDeskUi) {
@@ -820,6 +881,8 @@ export function HearingWarRoom({
             <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
             Loading matter dashboard…
           </div>
+        ) : ingestion?.substantiveOutputsWithheld ? (
+          <IngestionGateNotice assessment={ingestion} surface="court" />
         ) : surfaceError && !pilotTodayView ? (
           <div
             className={`${workflowCard} p-6 text-sm text-red-800 border-red-200 bg-red-50/60`}
@@ -861,7 +924,11 @@ export function HearingWarRoom({
       <div className={pilotMode ? "max-w-[1400px] space-y-4" : "xl:mr-[min(360px,26vw)] xl:pr-3 max-w-[1400px] space-y-4"}>
         <CaseWorkflowShell
           caseId={caseId}
-          safeCourtLine={pilotMode && !loading ? brief.safePositionToday : undefined}
+          safeCourtLine={
+            pilotMode && !loading && !ingestion?.substantiveOutputsWithheld
+              ? brief.safePositionToday
+              : undefined
+          }
           onRecordPosition={pilotRecordPositionHidden ? undefined : onRecordPosition}
           onUploadEvidence={pilotUploadDisabled ? undefined : onUploadEvidence}
           pilotUploadDisabled={pilotUploadDisabled}
@@ -939,6 +1006,8 @@ export function HearingWarRoom({
               <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
               Loading matter dashboard…
             </div>
+          ) : ingestion?.substantiveOutputsWithheld ? (
+            <IngestionGateNotice assessment={ingestion} surface="court" />
           ) : !pilotTodayView ? (
             <div
               className={`${workflowCard} p-6 text-sm text-red-800 border-red-200 bg-red-50/60`}
@@ -971,6 +1040,8 @@ export function HearingWarRoom({
             <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
             Loading court-prep brief…
           </div>
+        ) : ingestion?.substantiveOutputsWithheld ? (
+          <IngestionGateNotice assessment={ingestion} surface="court" />
         ) : (
           <>
             <section className={`${workflowCard} p-4 border-emerald-200/50 bg-emerald-50/40`}>

@@ -1,0 +1,189 @@
+CB
+
+CASE WORK
+
+Trial: 5d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Holly Ahmed
+
+Possession of a bladed article in a public place, contrary to section 139 of the Criminal Justice Act 1988
+
+Crown Court at Preston
+·
+Listing on papers · 20 Jul 2026 at 12:30 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+5
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+5
+
+All
+Overdue
+Due soon
+Chased
+Received
+Complete CAD/999 log
+
+The papers identify a CAD/999 log gap — keep the request limited to the log the source identifies.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CB-TB-1573_Ahmed.pdf (mg6) · exact page unavailable (unsplit whole-document text) · state: missing · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+OUTPUT
+Complete CAD/999 log
+TYPE / SURFACE
+chase_request · chase
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+CB-TB-1573_Ahmed.pdf
+REF
+MG6
+PAGE
+page unavailable
+FILE QUOTE
+complete CAD/999 log — outstanding not attached
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.7
+GUARD
+pass: source-backed — page unavailable
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+full interview transcript
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CB-TB-1573_Ahmed.pdf (mg6) · exact page unavailable (unsplit whole-document text) · state: missing · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Final medical/forensic report
+
+A short note is not a final report — keep the requested material limited to the report the source actually identifies.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+search record
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CB-TB-1573_Ahmed.pdf (mg6) · exact page unavailable (unsplit whole-document text) · state: missing · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Subscriber / account data
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CB-TB-1573_Ahmed.pdf (mg6) · exact page unavailable (unsplit whole-document text) · state: missing · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Complete CAD/999 log
+OUTSTANDING
+
+WHY IT MATTERS
+
+The papers identify a CAD/999 log gap — keep the request limited to the log the source identifies.
+
+Why / source receipt
+
+Source: MG6/MG6C disclosure schedule
+
+Deadline: Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+
+EVIDENCE ANCHOR
+
+complete CAD/999 log — outstanding not attached
+
+DRAFT CHASE WORDING
+
+Please provide complete CAD / 999 log or confirm in writing why it is not available.
+
+COURT LINE
+
+The defence asks the court to record that complete CAD/999 log remains missing on the current papers and should be disclosed on a timetable. Solicitor review required before addressing the court.
+
+Case-wide court line (provisional): The defence asks the court to record that Complete CAD/999 log, full interview transcript, Final medical/forensic report and search record remain outstanding on the papers.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

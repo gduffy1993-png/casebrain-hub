@@ -25,6 +25,10 @@ import { expandZipsToFolderCaseGroups } from "@/lib/upload/zip-to-case-groups";
 import { evalPackNameForStorage, inferEvalPackFromTitle, parseEvalPackId } from "@/lib/eval-packs";
 import { extractTextAndMetaFromFile } from "@/lib/upload/extract-text-from-file";
 import { toPersistedPageUnits, type ExtractedPageUnit } from "@/lib/upload/pdf-page-units";
+import {
+  quarantinedIngestionAssessment,
+  type IngestionAssessment,
+} from "@/lib/upload/ingestion-assessment";
 
 export const runtime = "nodejs";
 
@@ -449,19 +453,26 @@ export async function POST(request: Request) {
     let pageUnits: ExtractedPageUnit[] = [];
     let textLayerLimitation: string | null = null;
     let extractionError: string | null = null;
+    let ingestionAssessment: IngestionAssessment;
     try {
       const meta = await extractTextAndMetaFromFile(file, buffer);
       text = meta.text;
       pageCount = meta.pageCount;
       pageUnits = meta.pageUnits;
       textLayerLimitation = meta.textLayerLimitation;
+      ingestionAssessment = meta.ingestionAssessment;
     } catch (error) {
       console.error(`[upload] Failed to extract text from ${file.name}`, error);
       extractionError = error instanceof Error ? error.message : "Unknown extraction error";
       
       // For PDFs, try to continue with empty text (file will still be stored)
-      if (file.type === "application/pdf") {
-        text = `[PDF extraction failed: ${extractionError}. File stored but text extraction unavailable. Please re-upload a valid PDF or use OCR if needed.]`;
+      if (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")) {
+        text = "";
+        ingestionAssessment = quarantinedIngestionAssessment({
+          fileName: file.name,
+          mimeType: file.type,
+          parserError: extractionError,
+        });
       } else {
         // For other file types, return error
         return NextResponse.json(
@@ -475,9 +486,14 @@ export async function POST(request: Request) {
         );
       }
     }
+
+    const extractionBlocked = !ingestionAssessment.substantiveOutputsAllowed;
+    if (extractionBlocked && !extractionError) {
+      extractionError = ingestionAssessment.summary;
+    }
     
     const { redactedText, map: redactionMap } = redact(
-      text,
+      extractionBlocked ? "" : text,
       env.REDACTION_SECRET,
     );
 
@@ -506,10 +522,10 @@ export async function POST(request: Request) {
     let summary: string | null = null;
     let enrichedExtraction;
     
-    if (extractionError) {
-      // Create minimal extraction for corrupted files
+    if (extractionBlocked) {
+      // Persist diagnostics separately; never turn them into source prose or facts.
       extracted = {
-        summary: `Document uploaded but text extraction failed: ${extractionError}`,
+        summary: "Source extraction incomplete; substantive outputs withheld.",
         parties: [],
         dates: [],
         amounts: [],
@@ -521,6 +537,7 @@ export async function POST(request: Request) {
         ...extracted,
         aiSummary: null,
         extractionError,
+        ingestionAssessment,
         ...(pageCount != null ? { pageCount } : {}),
         ...pageProvenance,
       };
@@ -539,6 +556,7 @@ export async function POST(request: Request) {
         enrichedExtraction = {
           ...extracted,
           aiSummary: summary,
+          ingestionAssessment,
           ...(pageCount != null ? { pageCount } : {}),
           ...pageProvenance,
         };
@@ -558,6 +576,7 @@ export async function POST(request: Request) {
           ...extracted,
           aiSummary: null,
           extractionError: error instanceof Error ? error.message : "AI extraction failed",
+          ingestionAssessment,
           ...(pageCount != null ? { pageCount } : {}),
           ...pageProvenance,
         };
@@ -653,7 +672,10 @@ export async function POST(request: Request) {
     documentIds.push(document.id);
 
     // Auto-run bundle analysis for PDFs (Phase A)
-    if (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")) {
+    if (
+      ingestionAssessment.substantiveOutputsAllowed &&
+      (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf"))
+    ) {
       try {
         const { summariseBundlePhaseA } = await import("@/lib/bundle-navigator");
         // Prefer parser pageCount; fall back to weak text hint only when unknown
@@ -685,7 +707,7 @@ export async function POST(request: Request) {
     }
 
     // Criminal structured extraction (deterministic): run after text extraction and document insert
-    if (resolvedPracticeArea === "criminal") {
+    if (ingestionAssessment.substantiveOutputsAllowed && resolvedPracticeArea === "criminal") {
       try {
         const meta = extractCriminalCaseMeta({
           text: redactedText,

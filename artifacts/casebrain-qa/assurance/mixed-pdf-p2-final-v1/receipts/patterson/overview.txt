@@ -1,0 +1,126 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+Overview
+File
+More
+
+CASE COMMAND CENTRE
+
+James Patterson
+Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861 · Crown Court at Manchester / Crown · 07/08/2026
+PROVISIONAL
+
+Do not import another offence-family template unless the papers support it.
+
+3
+
+MISSING
+
+Needs chase
+
+0
+
+INCOMPLETE
+
+Needs completion
+
+3
+
+OPEN REVIEW
+
+Needs checking
+
+What needs attention
+
+One shortlist from the papers. If the file is quiet, this board stays quiet.
+
+3 items
+
+O1 Full CCTV window from flat block
+
+MISSING
+
+O1 Full CCTV window from flat block — as stated on the papers.
+
+O2 Knife search log
+
+MISSING
+
+O2 Knife search log — as stated on the papers.
+
+O3 Scenes-of-crime blood swab report
+
+MISSING
+
+O3 Scenes-of-crime blood swab report — as stated on the papers.
+
+SELECTED ISSUE
+
+O1 Full CCTV window from flat block
+MISSING
+
+WHY CASEBRAIN SAYS THIS
+
+O1 Full CCTV window from flat block — as stated on the papers.
+
+SOURCES
+
+MG6/MG6C disclosure schedule
+O1 Full CCTV window from flat block — Outstanding Requested from officer in case
+MG6 SCHEDULECB-TB-014 | 26NS100014
+
+RECOMMENDED ACTION
+
+Please provide the o1 Full CCTV window from flat block or confirm in writing why it is not available.
+
+Why / source receipt
+OUTPUT
+O1 Full CCTV window from flat block
+TYPE / SURFACE
+evidence_status · overview
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+MG6 SCHEDULECB-TB-014 | 26NS100014
+REF
+O1
+PAGE
+compiled p.7
+FILE QUOTE
+O1 Full CCTV window from flat block — Outstanding Requested from officer in case
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+Copy chase request
+Copy court wording
+Safe court line
+Copy safe court line
+
+The defence asks the court to record that O1 Full CCTV window from flat block, O2 Knife search log and O3 Scenes-of-crime blood swab report remain outstanding on the papers.
+
+Why / source receipt
+Client update
+Copy client update
+
+CLIENT-SAFE SUMMARY
+(not for court or CPS) We are reviewing the papers in your case (Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.
+
+Why / source receipt
+Detail tabs
+
+Main answer is above. Open the detail views only when you need the full source desk.
+
+File & source →
+Papers detail →
+CPS chase detail →
+Court detail →
+Readiness: 4% provisional score from papers-backed counts.

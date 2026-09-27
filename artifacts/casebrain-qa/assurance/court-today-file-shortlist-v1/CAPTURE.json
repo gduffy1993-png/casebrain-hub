@@ -1,0 +1,80 @@
+{
+  "signedIn": true,
+  "recaptured": [
+    {
+      "id": "patterson",
+      "caseId": "1098e31f-aa53-424e-a405-683440907f7a",
+      "tabs": {
+        "overview": {
+          "len": 2263,
+          "loading": false
+        },
+        "disclosure-chase": {
+          "len": 2951,
+          "loading": false
+        },
+        "today": {
+          "len": 2024,
+          "loading": false
+        }
+      }
+    },
+    {
+      "id": "davies",
+      "caseId": "60bcda4a-87f8-48e0-826e-e2f0dcd74fb2",
+      "tabs": {
+        "overview": {
+          "len": 3356,
+          "loading": false
+        },
+        "disclosure-chase": {
+          "len": 5237,
+          "loading": false
+        },
+        "today": {
+          "len": 2289,
+          "loading": false
+        }
+      }
+    },
+    {
+      "id": "trap-fresh",
+      "caseId": "ba0931b2-1e30-4aad-8655-e91afac35660",
+      "tabs": {
+        "overview": {
+          "len": 2073,
+          "loading": false
+        },
+        "disclosure-chase": {
+          "len": 2184,
+          "loading": false
+        },
+        "today": {
+          "len": 1938,
+          "loading": false
+        }
+      }
+    },
+    {
+      "id": "brookes-fresh",
+      "caseId": "95a2746e-d1d3-4f55-aad6-4fb41a7b428b",
+      "tabs": {
+        "overview": {
+          "len": 4098,
+          "loading": false
+        },
+        "disclosure-chase": {
+          "len": 5643,
+          "loading": false
+        },
+        "today": {
+          "len": 2151,
+          "loading": false
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "base": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app",
+  "email": "gduffy1993+casebrain-gold20@gmail.com"
+}

@@ -1,0 +1,233 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Leon Hale
+
+Murder, contrary to common law
+
+Northchester Crown Court
+·
+Listing on papers · 22 May 2026 at 10:00 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+8
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+8
+
+All
+Overdue
+Due soon
+Chased
+Received
+CCTV stills and timing note Master footage
+
+CCTV stills and timing note Master footage — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CB-MURDER-TEST-0001_criminal_defence_bundle.pdf (compiled pp. 1–3) (mg6) · compiled p.2 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+OUTPUT
+CCTV stills and timing note Master footage
+TYPE / SURFACE
+chase_request · chase
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+CB-MURDER-TEST-0001_criminal_defence_bundle.pdf (compiled pp. 1–3)
+REF
+EX-MUR-009
+PAGE
+compiled p.2
+FILE QUOTE
+EX-MUR-009 — CCTV stills and timing note Master footage — outstanding EX-MUR-009 to
+TRANSFORMATION
+served stills split from missing master
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+CAD / dispatch log material
+
+CAD and 999 summaries Original audio/log — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CB-MURDER-TEST-0001_criminal_defence_bundle.pdf (compiled pp. 1–3) (mg6) · compiled p.2 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Police officer statement BWV
+
+Police officer statement BWV — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CB-MURDER-TEST-0001_criminal_defence_bundle.pdf (compiled pp. 1–3) (mg6) · compiled p.2 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Full custody record / PACE material
+
+Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.
+
+OUTSTANDING
+REFERRED ONLY
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CB-MURDER-TEST-0001_criminal_defence_bundle.pdf (compiled pp. 1–3) (mg6) · compiled p.2 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Interview summary Full recording/transcript
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+CB-MURDER-TEST-0001_criminal_defence_bundle.pdf (compiled pp. 1–3) (mg6) · compiled p.2 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Final continuity note
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+MG11 extract. Witness: PC Rowan Ellis. This statement is fictional and provided as a draft or extract for testing. (mg6) · compiled p.21 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+The export log and continuity statement are outstanding.
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+MG11 extract. Witness: Paramedic Samir Kent. This statement is fictional and provided as a draft or extract for testing. (mg6) · compiled p.24 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Further papers on the file
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+Provenance
+MG11 extract. Witness: Paramedic Samir Kent. This statement is fictional and provided as a draft or extract for testing. (mg6) · compiled p.26 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+CCTV stills and timing note Master footage
+OUTSTANDING
+
+WHY IT MATTERS
+
+CCTV stills and timing note Master footage — as stated on the papers.
+
+Why / source receipt
+
+Source: MG6/MG6C disclosure schedule
+
+Deadline: Listing on papers elapsed — confirm next listing / chase outstanding disclosure
+
+DRAFT CHASE WORDING
+
+Please provide CCTV stills and timing note Master footage or confirm in writing why it is not available.
+
+COURT LINE
+
+Solicitor review required before addressing the court.
+
+Case-wide court line (provisional): The defence asks the court to record that CCTV stills and timing note Master footage, CAD and 999 summaries Original audio/log, Police officer statement BWV and Full custody record / PACE material remain outstanding on the papers.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

@@ -81,6 +81,19 @@ export type CaseBrainAuditOutput = {
   caseId: string;
   generatedAt?: string;
   source?: string;
+  caseIdentity?: {
+    caseTitle?: string;
+    clientLabel?: string;
+    allegation?: string;
+    offenceLabel?: string;
+    stage?: string;
+    /** Venue when safely extracted from source papers. */
+    court?: string | null;
+    /** Human listing fragment from source (date/time/venue as written). */
+    hearingDateRaw?: string | null;
+    /** ISO listing date/time when parseable from source. */
+    hearingDateIso?: string | null;
+  };
   truthKeyComparison?: Array<{
     truthItem: string;
     truthState: string;

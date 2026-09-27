@@ -15,7 +15,7 @@ export function isProvisionalWorkflowProfile(
 }
 
 const MOTORING_RE =
-  /\b(dangerous driving|careless driving|driving without due care|due care and attention|road traffic act|rt\.?\s*a\.?\s*1988|motoring|speeding|no insurance|fail to stop|drink[-\s]?drive|drug[-\s]?drive|drink drug driving|driving whilst|unfit to drive|causing (?:serious )?injury by (?:dangerous|careless|inconsiderate) driving|inconsiderate driving)\b/i;
+  /\b(dangerous driving|careless driving|driving without due care|due care and attention|road traffic act|rt\.?\s*a\.?\s*1988|motoring|speeding|no insurance|fail to stop|drink[-\s]?drive|drug[-\s]?driv(?:e|ing)|drink drug driving|driving whilst|unfit to drive|causing (?:serious )?injury by (?:dangerous|careless|inconsiderate) driving|inconsiderate driving)\b/i;
 
 const TWOC_RE =
   /\b(taking (?:a )?(?:motor )?vehicle without consent|took a mechanically propelled vehicle without|twoc|vehicle interference)\b/i;
@@ -29,10 +29,26 @@ const GENERIC_PROVISIONAL_RE =
 const MONEY_LAUNDERING_FRAUD_RE =
   /\b(money laundering|criminal property|proceeds of crime|concealing|disposal of criminal|transfer(?:ring)? criminal property|account control|source of funds|transaction(?:s)? (?:showing|linked)|bank(?:ing)? (?:movement|transfer))\b/i;
 
+/** Specified-drug / prescribed-limit driving is motoring, not PWITS. */
+export function isDrugDrivingContext(text: string | null | undefined): boolean {
+  const t = text ?? "";
+  if (!t.trim()) return false;
+  if (/\bdrug[-\s]?driv(?:e|ing)\b/i.test(t)) return true;
+  if (/\bsection\s*5A\b/i.test(t) || /\brta\s*1988\s*s\.?\s*5A\b/i.test(t)) return true;
+  if (
+    /\b(?:driven|driving)\b/i.test(t) &&
+    /\b(?:specified\s+)?controlled drug\b/i.test(t) &&
+    /\b(?:prescribed limit|motor vehicle)\b/i.test(t)
+  ) {
+    return true;
+  }
+  return false;
+}
+
 export function isMotoringOffenceText(text: string | null | undefined): boolean {
   const t = (text ?? "").trim();
   if (!t) return false;
-  return MOTORING_RE.test(t) || TWOC_RE.test(t);
+  return MOTORING_RE.test(t) || TWOC_RE.test(t) || isDrugDrivingContext(t);
 }
 
 export function isSeriousViolenceOffenceText(text: string | null | undefined): boolean {

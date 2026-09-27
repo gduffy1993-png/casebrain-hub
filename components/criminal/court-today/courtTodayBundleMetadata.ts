@@ -4,6 +4,8 @@ import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-
 export type CourtTodayBundlePayload = {
   caseMetadata: ExtractedBundleCaseMetadata | null;
   header: ParsedBundleHeader | null;
+  /** Compact source/front-matter text; used only for shared header truth fallbacks. */
+  frontMatterScan: string | null;
 };
 
 export async function fetchCourtTodayBundleMetadata(
@@ -19,10 +21,12 @@ export async function fetchCourtTodayBundleMetadata(
     const d = json.data as {
       caseMetadata?: ExtractedBundleCaseMetadata | null;
       header?: ParsedBundleHeader | null;
+      frontMatterScan?: string | null;
     };
     return {
       caseMetadata: d.caseMetadata ?? null,
       header: d.header ?? null,
+      frontMatterScan: typeof d.frontMatterScan === "string" ? d.frontMatterScan : null,
     };
   } catch {
     return null;

@@ -1,0 +1,144 @@
+{
+  "caseId": "91d42617-1aae-4b4e-b15b-1ded55e3dc74",
+  "slug": "live",
+  "label": "LIVE 02 Taylor Reed Phone Negation Recovery Proof Harassment CRIMINAL",
+  "preview": "https://casebrain-l8dqkfmm0-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-24T19:29:12.214Z",
+  "tabs": {
+    "overview": {
+      "ok": true,
+      "textLen": 1978,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "Safe Court Line Copy safe court line The defence asks the court to record outstanding message/account source material and complainant statement gaps. Client Update Copy client update CLIENT-SAFE SUMMARY (not for court or CPS) We are reviewi",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "2 Missing",
+          "1 Incomplete",
+          "What Needs Attention",
+          "2 missing · 1 incomplete · 2 open review items",
+          "Missing",
+          "Unclear",
+          "Incomplete",
+          "Chased",
+          "Phone extraction/download status",
+          "UNCLEAR",
+          "Subscriber / account data",
+          "UNCLEAR",
+          "Screenshots or partial extraction alone do not prove subscriber attribution.",
+          "UNCLEAR",
+          "Phone extraction/download status",
+          "No BWV. No CCTV.",
+          "Please provide the Phone extraction/download status / source extraction or confirm in writing why it is not available.",
+          "Copy chase request"
+        ],
+        "textLen": 1978
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 2393,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "CHASED",
+          "Chased",
+          "Full phone download / source extraction",
+          "Copy CPS chase",
+          "Subscriber / account data",
+          "Screenshots or partial extraction alone do not prove subscriber attribution.",
+          "MISSING",
+          "state: missing · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+          "Copy CPS chase",
+          "Full phone download / source extraction",
+          "Full phone download / source extraction — solicitor review.",
+          "DRAFT CHASE WORDING",
+          "Please provide full phone download / source extraction or confirm in writing why it is not available.",
+          "Provisional chase list · check source before sending",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 2393
+      }
+    },
+    "file": {
+      "ok": true,
+      "textLen": 810,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "LIVE-02-phone.pdf",
+          "Full phone download / subscriber mapping outstanding.",
+          "No BWV. No CCTV."
+        ],
+        "textLen": 810
+      }
+    },
+    "court": {
+      "ok": true,
+      "textLen": 1172,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "2 material row(s) · 0 served/on-file · 2 gap / partial / unclear",
+          "Full phone download / subscriber mapping outstanding.",
+          "MG6 Outstanding / missing —",
+          "No BWV. No CCTV.",
+          "MG6 Not safely confirmed —",
+          "Inventory is provisional and limited to what the extract establishes. Missing ranges appear only when the papers state them — gaps are not invented for a fuller-looking list.",
+          "Based on uploaded papers · conditional where papers are incomplete"
+        ],
+        "textLen": 1172
+      }
+    },
+    "papers": {
+      "ok": true,
+      "textLen": 1172,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "2 material row(s) · 0 served/on-file · 2 gap / partial / unclear",
+          "Full phone download / subscriber mapping outstanding.",
+          "MG6 Outstanding / missing —",
+          "No BWV. No CCTV.",
+          "MG6 Not safely confirmed —",
+          "Inventory is provisional and limited to what the extract establishes. Missing ranges appear only when the papers state them — gaps are not invented for a fuller-looking list.",
+          "Based on uploaded papers · conditional where papers are incomplete"
+        ],
+        "textLen": 1172
+      }
+    }
+  }
+}

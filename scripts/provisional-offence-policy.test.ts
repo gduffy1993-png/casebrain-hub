@@ -5,6 +5,7 @@ import {
 } from "@/lib/eval/casebrain-auditor/real-case-collector";
 import {
   isClearMoneyLaunderingFraudText,
+  isDrugDrivingContext,
   isMotoringOffenceText,
   resolveProvisionalWorkflowFromOffence,
 } from "@/lib/eval/casebrain-auditor/provisional-offence-policy";
@@ -61,6 +62,17 @@ assert.equal(isMotoringOffenceText("Dangerous driving"), true);
 assert.equal(isMotoringOffenceText("Section 18 GBH"), false);
 
 assert.equal(isMotoringOffenceText("Drink drug driving"), true);
+assert.equal(isMotoringOffenceText("Drug driving - Vale Bell"), true);
+assert.equal(
+  isDrugDrivingContext(
+    "On 16/07/2026 Vale Bell is alleged to have driven a motor vehicle with a specified controlled drug above the prescribed limit.",
+  ),
+  true,
+);
+assert.equal(
+  isDrugDrivingContext("Possession of a controlled drug of Class A with intent to supply"),
+  false,
+);
 assert.equal(
   inferAuditorFamilyFromOffence("Drink drug driving contrary to section 4 Road Traffic Act 1988"),
   null,

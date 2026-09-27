@@ -1,0 +1,126 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Alden Vale
+
+On 02/05/2026 at about 18:07 at Market Yard, Alden Vale is alleged dishonestly to have appropriated retail goods intending permanently to…
+
+Northford Magistrates Court
+·
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+READINESS
+
+Conditional — record position
+
+SAFE COURT LINE
+
+The labelled papers do not yet support an offence-family template. The defence asks the court to record outstanding source material (Full CCTV master; Continuity statement; ID procedure notes) on a timetable — position remains provisional pending solicitor review.
+
+TOP CHASE
+
+full CCTV master
+
+NEXT STEP
+
+Chase or confirm: Continuity statement.
+
+Why / source receipt
+OUTPUT
+The labelled papers do not yet support an offence-family template. The defence asks the court to record outstanding source material (Full CCTV master; Continuity statement; ID procedure notes) on a timetable — position remains provisional pending solicitor review.
+TYPE / SURFACE
+court_line · court
+TRUTH STATE
+outstanding
+SOURCE CLASS
+multi_source_backed
+DOCUMENT
+multiple source rows
+REF
+MG6, MG6, MG6
+PAGE
+mixed pages
+FILE QUOTE
+full CCTV master — outstanding | continuity statement — outstanding | ID procedure notes — outstanding
+TRANSFORMATION
+multi-item court/client line from shortlist receipts
+CONFIDENCE
+0.75
+GUARD
+pass: multi-item line backed by child receipts
+
+ITEM RECEIPTS
+
+full CCTV master
+
+MG6 · direct_pdf_quote · outstanding
+
+full CCTV master — outstanding
+
+continuity statement
+
+MG6 · direct_pdf_quote · outstanding
+
+continuity statement — outstanding
+
+ID procedure notes
+
+MG6 · direct_pdf_quote · outstanding
+
+ID procedure notes — outstanding
+
+BEFORE COURT
+COURT LINES
+SOLICITOR REVIEW
+
+Ask the court to set a disclosure timetable for:
+
+full CCTV master needs confirmation before it is relied on. remains outstanding
+continuity statement needs confirmation before it is relied on. remains outstanding
+ID procedure notes needs confirmation before it is relied on. remains outstanding
+
+Keep the hearing position provisional until those papers are served.
+
+Next steps
+
+Chase or confirm: Continuity statement.
+Chase or confirm: ID procedure notes.
+Keep the hearing position provisional until solicitor review.
+OUR READ
+COURT LINE FROM PAPERS
+PROVISIONAL
+The defence position remains provisional pending solicitor review of the labelled papers.
+Keep the position provisional and tied to the uploaded papers.
+WHAT'S MISSING
+OUTSTANDING MATERIAL
+MISSING
+full CCTV master
+continuity statement
+ID procedure notes
+Open CPS Chase (3 review items) →
+GUARDRAILS
+
+DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
+
+SOLICITOR REVIEW
+Avoid firm wording until the papers confirm it
+No support on the papers for another offence-family template. Avoid relying on it until confirmed.
+Do not treat unserved source material as proved.
+Solicitor review is required before fixing hearing position.
+More detail (War Room drafts, ask court, risks)
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

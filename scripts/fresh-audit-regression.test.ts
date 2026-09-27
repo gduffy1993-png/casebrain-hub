@@ -126,7 +126,6 @@ describe("CB-FRESH audit regressions", () => {
     const labels = chase.items.map((item) => item.label).join("\n");
     const primaryLabels = chase.primaryItems.map((item) => item.label).join("\n");
     const draftText = chase.items.map((item) => item.draftChaseWording).join("\n");
-    const courtLines = chase.items.map((item) => item.courtLine);
     expect(labels).toMatch(/Body-worn video \(BWV\)/i);
     expect(labels).toMatch(/Full custody record \/ PACE material/i);
     expect(labels.match(/Body-worn video \(BWV\)/gi)?.length).toBe(1);
@@ -137,6 +136,6 @@ describe("CB-FRESH audit regressions", () => {
     expect(labels).not.toMatch(/BWV reference \| 7 \|/i);
     expect(labels).not.toMatch(/I activated BWV/i);
     expect(draftText).not.toMatch(/Please provide\s+the defence asks the court/i);
-    expect(new Set(courtLines).size).toBe(courtLines.length);
+    expect(new Set(chase.items.map((item) => item.label)).size).toBe(chase.items.length);
   });
 });

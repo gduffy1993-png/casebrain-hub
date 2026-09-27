@@ -1,0 +1,167 @@
+CB
+
+CASE WORK
+
+Trial: Trial ended — upgrade to upload more cases
+Upgrade
+
+Arden Vale
+
+Robbery
+
+Court not safely identified from uploaded papers
+·
+Hearing not on papers
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+Court Position
+Papers & Evidence
+Client Summary
+CPS Chase
+File & Preparation
+Record Position
+Upload Evidence
+
+PAPERS INVENTORY
+
+Document / schedule inventory from uploaded papers — not a court pressure desk.
+
+1 file(s) on record
+
+Source text available for review
+
+Provisional — solicitor review
+
+19 material row(s) · 0 served/on-file · 19 gap / partial / unclear
+
+MATERIAL	TYPE	STATUS	PAGES / REF
+
+
+Exhibits: EX-MON-MG5-01; EX-MON-MG6-01; EX-MON-INT-01; EX-MON-CCTV-01; EX-MON-MG11-01
+
+	MG6	Not safely confirmed	MG6/01
+
+
+Duplicated old summary wrapper
+
+does not update served/outstanding material.
+
+	MG6	Outstanding / missing	—
+
+
+Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity
+
+	MG6	Outstanding / missing	pp. 88–94
+
+
+Reference to a source file exists, but the underlying source file is not served
+
+in this
+
+	MG6	Outstanding / missing	—
+
+
+Safe move: chase missing material and do not overstate provisional strategy. Missing source
+
+	MG6	Outstanding / missing	—
+
+
+This may assist the defence because: Missing source pages and full CCTV create disclosure
+
+	MG6	Outstanding / missing	—
+
+
+complete signed MG11.
+
+	MG6	Not safely confirmed	—
+
+
+Correct behaviour is to find charge/MG6/interview/exhibits, flag missing material, and not
+
+	MG6	Not safely confirmed	—
+
+
+Disclosure issue: full bundle pages 88-94 and 201-206, full CCTV master, continuity statement,
+
+	MG6	Not safely confirmed	pp. 88–94
+
+
+extract p201; interview p260.
+
+	MG6	Not safely confirmed	p. 201
+
+
+extract, custody/interview summary.
+
+	MG6	Not safely confirmed	—
+
+
+files/continuity and record prejudice from incomplete service.
+
+	MG6	Not safely confirmed	—
+
+
+INTERVIEW / CLIENT ACCOUNT
+
+	MG6	Not safely confirmed	—
+
+
+MG5 SUMMARY
+
+	MG6	Not safely confirmed	—
+
+
+pages and full CCTV create disclosure pressure; do not treat this as full-bundle review.
+
+	MG6	Not safely confirmed	—
+
+
+Served according to MG6 extract: MG5 extract, MG6 extract, partial CCTV stills, one MG11
+
+	MG6	Draft	—
+
+
+statement, complete signed MG11.
+
+	MG6	Not safely confirmed	—
+
+
+Strategy must remain provisional where source documents, clean scans, continuity or latest
+
+	MG6	Not safely confirmed	—
+
+
+This point collapses if: point collapses if full CCTV/source pages clearly support Crown
+
+	MG6	Not safely confirmed	—
+
+Inventory is provisional and limited to what the extract establishes. Missing ranges appear only when the papers state them — gaps are not invented for a fuller-looking list.
+
+Pre-hearing readiness
+
+Not ready to rely on yet
+
+SOLICITOR REVIEW REQUIRED
+
+Pre-hearing readiness reflects whether served papers support a safe hearing position — not case strength or plea advice. Core source material or review gaps mean it is not safe to rely on this matter for a final hearing position on current papers. 14 core disclosure issues — such as CCTV, CAD, interview, laboratory, medical or continuity material where relevant — outstanding or partial on served papers. Provisional view — papers incomplete; do not finalise a hearing line without solicitor review. Stage on file: PTPH.
+
+Not case strength · not plea advice · papers readiness only
+
+WHY THIS READINESS?
+CCTV — stills served; full master footage outstanding — outstanding or partial on served papers (CCTV / video section).
+Duplicated old summary wrapper — outstanding or partial on served papers (MG5).
+Limited relevant source material on file — comparison remains provisional.
+Show why this readiness
+
+ADDITIONAL PAPERS TOOLS
+
+More detailed drafting is held back until the source position is clearer.
+
+ADDITIONAL PAPERS TOOLS UNAVAILABLE
+
+More detailed drafting is held back until the source position is clearer.
+
+Based on uploaded papers · conditional where papers are incomplete

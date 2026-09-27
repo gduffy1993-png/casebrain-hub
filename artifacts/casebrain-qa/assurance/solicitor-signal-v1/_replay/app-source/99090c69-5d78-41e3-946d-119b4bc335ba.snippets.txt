@@ -1,0 +1,231 @@
+
+=== SNIPPET: mg5 ===
+MG5 pages.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 288CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 289 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Old bundle header repeats case reference CB-MONSTER-2026-0001 but does not update disclosure
+position.
+Duplicated old summary wrapper - does not update served/outstanding material.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 289CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 290 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Bundle administrative page 290: index cross-reference and repeated non-substantive material.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 290CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 291 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Duplicate pagination marker. This page is included to test long-bundle extraction and not to
+add new case facts.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 291CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 292 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Fictional solicitor test corpus page 292. Do not treat absent pages as served.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 292CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 293 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Noise extract: property receipt wrapper / envelope note / pagination marker. Relevant issue
+remains long-bundle-load; partial extract only; duplicate MG5 pages.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 293CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 294 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Old bundle header repeats case reference CB-MONSTER-2026-0001 but does not update disclosure
+position.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 294CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 295 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Bundle administrative page 295: index cross-reference and repeated non-substantive material.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 295CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 296 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Duplicate pagination marker. This page is included to test long-bundle extraction and not to
+add new case facts.
+Reference to a source file exists, but the underlying source file is not served in this
+extract.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 296CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 297 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Fictional solicitor test corpus page 297. Do not treat absent pages as served.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 297CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 298 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Noise extract: property receipt wrapper / envelope note / pagination marker. Relevant issue
+remains long-bundle-load; partial extract only; duplicate MG5 pages.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 298CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 299 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Old bundle header repeats case reference CB-MONSTER-2026-0001 but does not update disclosure
+position.
+Irrelevant administrative note: pagination check only. No new admissible evidence recorded
+on this page.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 299CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 300 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Bundle administrative page 300: index cross-reference and repeated non-substantive material.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 300
+
+=== SNIPPET: mg6 ===
+null
+
+=== SNIPPET: mg11 ===
+MG11-01
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 2CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 3 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Noise extract: property receipt wrapper / envelope note / pagination marker. Relevant issue
+remains long-bundle-load; partial extract only; duplicate MG5 pages.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 3CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 4 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+BUNDLE INDEX / LOAD STRESS
+Bundle index states pages 1-300.
+This test file contains actual pages 1-300 but many pages are noise, duplicated wrappers, old
+extracts or irrelevant pagination pages.
+Important case material is buried at: charge p2; MG5 p5; duplicate MG5 p37; MG6 p88; CCTV
+extract p201; interview p260.
+Correct behaviour is to find charge/MG6/interview/exhibits, flag missing material, and not
+pretend every referenced source is safely served.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 4CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 5 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+
+=== SNIPPET: exhibits ===
+EXHIBIT LIST
+EX-MON-MG5-01; EX-MON-MG6-01; EX-MON-INT-01; EX-MON-CCTV-01; EX-MON-MG11-01
+All exhibit codes above are fictional EX-MON-* codes for CaseBrain evaluation only.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 12CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 13 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Noise extract: property receipt wrapper / envelope note / pagination marker. Relevant issue
+remains long-bundle-load; partial extract only; duplicate MG5 pages.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 13CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 14 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+STRATEGY SAFETY NOTE
+This may assist the defence because: Missing source pages and full CCTV create disclosure
+pressure; do not treat this as full-bundle review.
+This may assist the Crown if served source material cures the gap or clearly supports the
+allegation.
+This creates pressure if proved because the solicitor can ask for missing pages/source
+files/continuity and record prejudice from incomplete service.
+This point collapses if: point collapses if full CCTV/source pages clearly support Crown
+identification and force.
+Do not treat the strategy as final until source material and instructions are reviewed by a
+solicitor.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 14CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 15 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Bundle administrative page 15: index cross-reference and repeated non-substantive material.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 15CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 16 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Duplicate pagination marker. This page is included to test long-bundle extraction and not to
+add new case facts.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 16CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 17 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Fictional solicitor test corpus page 17. Do not treat absent pages as served.
+Duplicated old summary wrapper - does not update served/outstanding material.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 17CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 18 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Noise extract: property receipt wrapper / envelope note / pagination marker. Relevant issue
+remains long-bundle-load; partial extract only; duplicate MG5 pages.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 18CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 19 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Old bundle header repeats case reference CB-MONSTER-2026-0001 but does not update disclosure
+position.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 19CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 20 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Bundle administrative page 20: index cross-reference and repeated non-substantive material.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 20CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 21 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Duplicate pagination marker. This page is included to test long-bundle extraction and not to
+add new case facts.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 21CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 22 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Fictional solicitor test corpus page 22. Do not treat absent pages as served.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 22CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 23 of 300 - Robbery - long extract bundle stress
+FICTIONAL EVALUATION PDF - NOT REAL POLICE MATERIAL
+NOISE / LONG BUNDLE PAGE
+Noise extract: property receipt wrapper / envelope note / pagination marker. Relevant issue
+remains long-bundle-load; partial extract only; duplicate MG5 pages.
+Irrelevant administrative note: pagination check only. No new admissible evidence recorded
+on this page.
+Safe behaviour: use only the relevant served text and flag source gaps rather than inferring
+missing content.
+CB-MONSTER-2026-0001 | fictional long-bundle stress page 23CB-MONSTER-2026-0001 - Monster Bundle Load Pack
+Page 24 of 300 - Robbery - long extract bundle stress
+FICTION

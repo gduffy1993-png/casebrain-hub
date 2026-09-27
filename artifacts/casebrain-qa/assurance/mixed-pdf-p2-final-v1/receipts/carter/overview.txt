@@ -1,0 +1,89 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+Overview
+File
+More
+
+CASE COMMAND CENTRE
+
+Liam Carter
+Burglary
+
+Do not import another offence-family template unless the papers support it.
+
+0
+
+MISSING
+
+Needs chase
+
+0
+
+INCOMPLETE
+
+Needs completion
+
+0
+
+OPEN REVIEW
+
+Needs checking
+
+What needs attention
+
+One shortlist from the papers. If the file is quiet, this board stays quiet.
+
+0 items
+No outstanding attention items on this extract.
+No chase board needed
+
+The current extract does not state a named gap. Use File or Papers if you want to inspect the source.
+
+Safe court line
+Copy safe court line
+
+No named outstanding material on the current papers — position stays provisional.
+
+Why / source receipt
+OUTPUT
+No named outstanding material on the current papers — position stays provisional.
+TYPE / SURFACE
+court_line · court
+TRUTH STATE
+none
+SOURCE CLASS
+derived_from_absence
+DOCUMENT
+unavailable
+REF
+ref unavailable
+PAGE
+page unavailable
+FILE QUOTE
+No supporting File/PDF quote available.
+TRANSFORMATION
+absence rule
+CONFIDENCE
+0.65
+GUARD
+pass: derived from stated absence
+Client update
+Copy client update
+
+CLIENT-SAFE SUMMARY
+(not for court or CPS) We are reviewing the papers in your case (Burglary). This is early-stage — nothing is final until we have full disclosure and your instructions. We are not saying the case is won or lost — we need the full material before giving firm advice.
+
+Why / source receipt
+Detail tabs
+
+Main answer is above. Open the detail views only when you need the full source desk.
+
+File & source →
+Papers detail →
+CPS chase detail →
+Court detail →
+Readiness: 20% provisional score from papers-backed counts.

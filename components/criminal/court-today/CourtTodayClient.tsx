@@ -435,8 +435,8 @@ export function CourtTodayClient() {
     [pilotVisibleBriefsForCounters],
   );
   const pilotChaseKpi = pilotMissingEvidenceItems > 0
-    ? { label: "Active chase items", value: pilotMissingEvidenceItems }
-    : { label: "Chase review matters", value: pilotChaseReviewMatterCount };
+    ? { label: "All open review items", value: pilotMissingEvidenceItems }
+    : { label: "Matters needing review", value: pilotChaseReviewMatterCount };
   const pilotAtRiskCount = useMemo(
     () => pilotVisibleBriefsForCounters.filter((brief) => brief.readiness === "red").length,
     [pilotVisibleBriefsForCounters],
@@ -469,10 +469,12 @@ export function CourtTodayClient() {
               <h1
                 className={`${pilotDashboardShell ? "text-xl" : "text-2xl"} font-semibold ${pilotDashboardShell ? "text-slate-50" : "text-slate-900"}`}
               >
-                Court Today
+                {pilotDashboardShell ? "Case workspace" : "Court Today"}
               </h1>
               {pilotDashboardShell ? (
-                <p className="text-xs text-slate-500 mt-0.5">{todayLabel}</p>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  Review source state, court wording and disclosure actions.
+                </p>
               ) : null}
             </div>
           </div>

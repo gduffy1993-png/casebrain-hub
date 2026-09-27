@@ -10,6 +10,7 @@ export const revalidate = 0;
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { assessmentForStoredDocument } from "@/lib/upload/ingestion-assessment";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -46,7 +47,7 @@ export async function GET(
     // Include raw_text and extracted_json to compute extraction status; do not send full content to client
     const { data: rows, error: docsError } = await supabase
       .from("documents")
-      .select("id, name, type, created_at, raw_text, extracted_json")
+      .select("id, name, type, created_at, raw_text, extracted_text, extracted_json")
       .eq("case_id", caseId)
       .eq("org_id", documentOrgId)
       .order("created_at", { ascending: false });
@@ -68,18 +69,35 @@ export async function GET(
       return s + a;
     }
 
-    const documents = (rows ?? []).map((row: { id: string; name: string; type?: string; created_at: string; raw_text?: string | null; extracted_json?: unknown }) => {
+    const documents = (rows ?? []).map((row: { id: string; name: string; type?: string; created_at: string; raw_text?: string | null; extracted_text?: string | null; extracted_json?: unknown }) => {
       const rawText = typeof row.raw_text === "string" ? row.raw_text.trim() : "";
       const rawLen = rawText.length;
       const summaryChars = getSummaryChars(row.extracted_json);
       const hasFullText = rawLen >= DOC_TEXT_MIN;
       const hasSummary = summaryChars > 0;
-      let extractionStatus: "full" | "summary_only" | "no_text";
+      const ingestionAssessment = assessmentForStoredDocument(row);
+      let extractionStatus: "full" | "summary_only" | "no_text" | "unreadable" | "needs_ocr" | "review";
       let extractionMessage: string;
       let extractionCharCount: number | undefined;
-      if (hasFullText) {
+      if (!ingestionAssessment.substantiveOutputsAllowed) {
+        extractionStatus =
+          ingestionAssessment.decision === "needs_ocr"
+            ? "needs_ocr"
+            : ingestionAssessment.decision === "parser_conflict"
+              ? "review"
+              : "unreadable";
+        extractionMessage =
+          ingestionAssessment.decision === "needs_ocr"
+            ? "No safe text layer — OCR/reprocess required"
+            : ingestionAssessment.decision === "parser_conflict"
+              ? "Parser conflict — solicitor review required"
+              : "PDF could not be safely read — reprocess/review required";
+      } else if (hasFullText) {
         extractionStatus = "full";
-        extractionMessage = `Text extracted (${rawLen.toLocaleString()} chars)`;
+        extractionMessage =
+          ingestionAssessment.decision === "degraded"
+            ? `Text recovered with limitations (${rawLen.toLocaleString()} chars) — review source`
+            : `Text extracted (${rawLen.toLocaleString()} chars)`;
         extractionCharCount = rawLen;
       } else if (hasSummary) {
         extractionStatus = "summary_only";
@@ -97,6 +115,7 @@ export async function GET(
         extractionStatus,
         extractionMessage,
         extractionCharCount,
+        ingestionAssessment,
       };
     });
 

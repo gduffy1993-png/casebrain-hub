@@ -1,0 +1,110 @@
+{
+  "preview": "https://casebrain-7ht2iuzej-gduffy1993-pngs-projects.vercel.app",
+  "generatedAt": "2026-08-24T18:48:06.522Z",
+  "results": [
+    {
+      "slug": "dunn",
+      "caseId": "a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01",
+      "surfaces": {
+        "overview": {
+          "file": "live-dunn-overview.txt",
+          "chars": 2423,
+          "chips": {
+            "missing": 0,
+            "incomplete": 3,
+            "openReview": 4,
+            "hasServed": true,
+            "hasOutstanding": true,
+            "hasIncomplete": true,
+            "hasReferred": true,
+            "hasNsc": true
+          },
+          "head": "CB CASE WORK Trial: Trial ended — upgrade to upload more cases Upgrade Overview Court Position Papers & Evidence Client Summary CPS Chase File & Preparation Ellis Dunn Conspiracy to burgle, contrary to section 1 of the Criminal Law Act 1977 · Listing on papers · 7 Jul 2026 at 14:15 (elapsed) PROVISIONAL Not ready for final court position — solicitor review required before relying on strategy lines"
+        },
+        "disclosure-chase": {
+          "file": "live-dunn-disclosure-chase.txt",
+          "chars": 3965,
+          "chips": {
+            "chaseTotal": 4,
+            "hasServed": true,
+            "hasOutstanding": true,
+            "hasIncomplete": true,
+            "hasReferred": true,
+            "hasNsc": true
+          },
+          "head": "CB CASE WORK Trial: Trial ended — upgrade to upload more cases Upgrade Ellis Dunn Conspiracy to burgle, contrary to section 1 of the Criminal Law Act 1977 Crown Court at Manchester · Listing on papers · 7 Jul 2026 at 14:15 (elapsed) PROVISIONAL — CHECK PAPERS Next: Chase outstanding disclosure and record provisional hearing position. Overview Court Position Papers & Evidence Client Summary CPS Cha"
+        },
+        "papers": {
+          "file": "live-dunn-papers.txt",
+          "chars": 4074,
+          "chips": {
+            "hasServed": true,
+            "hasOutstanding": true,
+            "hasIncomplete": true,
+            "hasReferred": true,
+            "hasNsc": true
+          },
+          "head": "CB CASE WORK Trial: Trial ended — upgrade to upload more cases Upgrade Ellis Dunn Conspiracy to burgle, contrary to section 1 of the Criminal Law Act 1977 Crown Court at Manchester · Listing on papers · 7 Jul 2026 at 14:15 (elapsed) PROVISIONAL — CHECK PAPERS Next: Chase outstanding disclosure and record provisional hearing position. Overview Court Position Papers & Evidence Client Summary CPS Cha"
+        }
+      },
+      "cross": {
+        "overviewMissing": 0,
+        "overviewIncomplete": 3,
+        "chaseTotal": 4,
+        "note": "ok_or_unparsed"
+      }
+    },
+    {
+      "slug": "brookes",
+      "caseId": "2dcdc59d-ff44-4bc8-ac31-bd11a954a59e",
+      "surfaces": {
+        "overview": {
+          "file": "live-brookes-overview.txt",
+          "chars": 2241,
+          "chips": {
+            "missing": 2,
+            "incomplete": 1,
+            "openReview": 3,
+            "hasServed": true,
+            "hasOutstanding": true,
+            "hasIncomplete": true,
+            "hasReferred": false,
+            "hasNsc": false
+          },
+          "head": "CB CASE WORK Trial: Trial ended — upgrade to upload more cases Upgrade Overview Court Position Papers & Evidence Client Summary CPS Chase File & Preparation Taylor Brookes Possession / knowledge / phone-attribution · Listing on papers · 6 Jul 2026 at 10:00 (elapsed) PROVISIONAL Not ready for final court position — solicitor review required before relying on strategy lines. 2 Missing High impact it"
+        },
+        "disclosure-chase": {
+          "file": "live-brookes-disclosure-chase.txt",
+          "chars": 3545,
+          "chips": {
+            "chaseTotal": 3,
+            "hasServed": true,
+            "hasOutstanding": true,
+            "hasIncomplete": true,
+            "hasReferred": false,
+            "hasNsc": true
+          },
+          "head": "CB CASE WORK Trial: Trial ended — upgrade to upload more cases Upgrade Taylor Brookes Charge not safely identified from uploaded papers Northbank Crown Court · Listing on papers · 6 Jul 2026 at 10:00 (elapsed) PROVISIONAL — CHECK PAPERS Next: Chase outstanding disclosure and record provisional hearing position. Overview Court Position Papers & Evidence Client Summary CPS Chase File & Preparation R"
+        },
+        "papers": {
+          "file": "live-brookes-papers.txt",
+          "chars": 5335,
+          "chips": {
+            "hasServed": true,
+            "hasOutstanding": true,
+            "hasIncomplete": true,
+            "hasReferred": false,
+            "hasNsc": true
+          },
+          "head": "CB CASE WORK Trial: Trial ended — upgrade to upload more cases Upgrade Taylor Brookes Charge not safely identified from uploaded papers Northbank Crown Court · Listing on papers · 6 Jul 2026 at 10:00 (elapsed) PROVISIONAL — CHECK PAPERS Next: Chase outstanding disclosure and record provisional hearing position. Overview Court Position Papers & Evidence Client Summary CPS Chase File & Preparation R"
+        }
+      },
+      "cross": {
+        "overviewMissing": 2,
+        "overviewIncomplete": 1,
+        "chaseTotal": 3,
+        "note": "ok_or_unparsed"
+      }
+    }
+  ]
+}

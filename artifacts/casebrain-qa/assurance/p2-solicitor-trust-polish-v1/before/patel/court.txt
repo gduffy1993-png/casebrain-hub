@@ -1,0 +1,106 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Isaac Patel
+
+Affray, contrary to section 3 Public Order Act 1986
+
+Southford Magistrates Court
+·
+Listing on papers · 25 Aug 2026 at 10:30 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+READINESS
+
+Conditional — record position
+
+SAFE COURT LINE
+
+The defence asks the court to record that MG6/05 full CCTV master; Full custody record / PACE material; Full Interview recording / transcript remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+
+TOP CHASE
+
+MG6/05 full CCTV master
+
+NEXT STEP
+
+Chase: MG6/05 full CCTV master.
+
+Why / source receipt
+OUTPUT
+The defence asks the court to record that MG6/05 full CCTV master; Full custody record / PACE material; Full Interview recording / transcript remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+TYPE / SURFACE
+court_line · court
+TRUTH STATE
+provisional
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+unavailable
+REF
+MG6/05
+PAGE
+page unavailable
+FILE QUOTE
+No supporting File/PDF quote available.
+TRANSFORMATION
+schedule row → missing chase card
+CONFIDENCE
+0.7
+GUARD
+pass: source-backed — page unavailable
+BEFORE COURT
+COURT LINES
+SOLICITOR REVIEW
+
+Ask the court to set a disclosure timetable for:
+
+full custody record / PACE material remains outstanding
+full Interview recording / transcript remains outstanding
+eX/01 — item referred to in MG5 (listed). remains outstanding
+
+Keep the hearing position provisional until those papers are served.
+
+Next steps
+
+Chase: MG6/05 full CCTV master.
+Chase: Full custody record / PACE material.
+Chase: Full Interview recording / transcript.
+OUR READ
+COURT LINE FROM PAPERS
+PROVISIONAL
+Keep the position provisional and tied to the uploaded papers.
+The court is asked to record outstanding File-named source material and set a disclosure timetable.
+WHAT'S MISSING
+OUTSTANDING MATERIAL
+MISSING
+MG6/05 full CCTV master
+Full custody record / PACE material
+Interview recording and transcript
+Open CPS Chase (3 review items) →
+GUARDRAILS
+
+DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
+
+SOLICITOR REVIEW
+Avoid firm wording until the papers confirm it
+No support on the papers for another offence-family template. Avoid relying on it until confirmed.
+Do not treat unserved source material as proved.
+Do not chase served material as if it were outstanding.
+More detail (War Room drafts, ask court, risks)
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

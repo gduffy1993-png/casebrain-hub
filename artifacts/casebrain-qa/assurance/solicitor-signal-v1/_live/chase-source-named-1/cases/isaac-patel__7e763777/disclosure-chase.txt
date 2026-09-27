@@ -1,0 +1,160 @@
+CB
+
+CASE WORK
+
+Trial: Trial ended — upgrade to upload more cases
+Upgrade
+
+Isaac Patel
+
+Affray, contrary to section 3 Public Order Act 1986
+
+Southford Magistrates Court
+·
+Same-day listing · 25 Aug 2026 at 10:30
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+Court Position
+Papers & Evidence
+Client Summary
+CPS Chase
+File & Preparation
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+5
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+5
+
+All
+Overdue
+Due soon
+Chased
+Received
+Full custody record / PACE material
+
+Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.
+
+NEEDS CONFIRMATION
+REFERRED ONLY
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Confirm status before relying on this item
+Provenance
+state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+EX/02 — continuity note to be checked against witness and MG6 schedule.
+
+The papers record this material as unclear. Chase or confirm status before fixing hearing position.
+
+NEEDS CONFIRMATION
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Confirm status before relying on this item
+Provenance
+state: not safely confirmed · limitation: Source reference present; exact document title/type and page still need checking.
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+EX/01 — item referred to in MG5 (listed).
+
+The papers refer to this material, but it has not been confirmed as served. Chase or confirm status before fixing hearing position.
+
+NEEDS CONFIRMATION
+REFERRED ONLY
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Confirm status before relying on this item
+Provenance
+state: not safely confirmed · limitation: Source reference present; exact document title/type and page still need checking.
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+CCTV full window / master footage
+
+CCTV full window / master footage needs checking before it is relied on.
+
+NEEDS CONFIRMATION
+Source
+Crown / disclosure officer (confirm on file)
+Deadline
+Confirm status before relying on this item
+Provenance
+state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+CAD / dispatch log material
+
+CAD / dispatch / 999 material needs checking before it is relied on.
+
+NEEDS CONFIRMATION
+Source
+Crown / disclosure officer (confirm on file)
+Deadline
+Confirm status before relying on this item
+Provenance
+state: not safely confirmed · limitation: Source reference present; exact document title/type and page still need checking.
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Full custody record / PACE material
+NEEDS CONFIRMATION
+
+WHY IT MATTERS
+
+Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.
+
+Source: MG6/MG6C disclosure schedule
+
+Deadline: Confirm status before relying on this item
+
+EVIDENCE ANCHOR
+
+MG6/MG6C schedule — custody record extract only
+
+DRAFT CHASE WORDING
+
+Please confirm the current status of full custody record / PACE material before it is relied on.
+
+COURT LINE
+
+The defence asks the court to record that this material needs confirmation before it is relied on.
+
+Case-wide court line (provisional): The defence asks the court to record that custody/PACE and interview material need source-status confirmation before the hearing position is fixed.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

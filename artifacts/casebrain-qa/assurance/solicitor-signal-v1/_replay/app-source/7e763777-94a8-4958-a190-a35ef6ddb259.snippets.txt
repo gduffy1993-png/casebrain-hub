@@ -1,0 +1,61 @@
+
+=== SNIPPET: mg5 ===
+MG5 case summary
+Tab 3: MG11 witness statement
+Tab 4: MG11 police statement
+Tab 5: Custody/interview note
+Tab 6: MG6 disclosure schedule
+Tab 7: Exhibit list
+
+CHARGE SHEET / CASE DETAILSCBTB546
+Page 2
+Defendant and hearing details
+DefendantIsaacPatel
+DOB: 12/04/2004
+CourtHearingSouthford Magistrates Court 25 August 2026 10:30
+Current stage: First appearance
+Charge
+Affray
+contrary to section 3 Public Order Act 1986
+Particulars: On 22 August 2026 at Northbridge, the defendant is alleged to have committed the offence described above. The
+prosecution papers are served for the hearing listed.
+
+MG5 - CASE SUMMARYCBTB546
+Page 3
+Summary of key evidence
+The Crown case is that Isaac Patel was involved in an incident at or near Northbridge High Street. The account relies on witness
+description, timing material and item continuity.
+There is an issue for review: case stops mid-narrative after continuation page. The papers do not resolve this point on the face of the
+served material.
+Interview position is summarised only. Where the full recording or transcript is not served, the account must not be treated as a settled
+admission.
+Issues for review
+- case stops mid-narrative after continuation page
+- Confirm served material against MG6 schedule
+- Check whether hearing/listing date has been superseded
+
+=== SNIPPET: mg6 ===
+null
+
+=== SNIPPET: mg11 ===
+MG11 witness statement
+Tab 4: MG11 police statement
+Tab 5: Custody/interview note
+Tab 6: MG6 disclosure schedule
+Tab 7: Exhibit list
+
+CHARGE SHEET / CASE DETAILSCBTB546
+Page 2
+Defendant and hearing details
+DefendantIsaacPatel
+DOB: 12/04/2004
+CourtHearingSouthford Magistrates Court 25 August 2026 10:30
+Current stage: First appearance
+Charge
+Affray
+contrary to section 3 Public Order Act 1986
+Particulars: On 22 August 2026 at Northbridge, the defendant is alleged to have committed the offence described above. The
+prosecution papers are served for the hearing listed.
+
+=== SNIPPET: exhibits ===
+null

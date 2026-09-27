@@ -1,0 +1,36 @@
+{
+  "job": "PR #101 P2 solicitor trust polish",
+  "doNotMerge": true,
+  "doNotProductionDeploy": true,
+  "loginEmail": "gduffy1993+casebrain-gold20@gmail.com",
+  "workspaceId": "e066f4cd-749f-4436-baa9-8c187092149a",
+  "pr": "https://github.com/gduffy1993-png/casebrain-hub/pull/101",
+  "sha": "f95c941cccb411442bd50272ffa3a58c085c07f0",
+  "preview": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app",
+  "vercel": "SUCCESS / Ready",
+  "beforeProof": "artifacts/casebrain-qa/assurance/mixed-pdf-final-rerun-v1",
+  "spotCases": ["brookes-fresh", "patel", "ocr-beck", "hale", "dunn", "gauntlet", "arden", "davies"],
+  "full16Rerun": false,
+  "hardFailures": 0,
+  "captureErrors": 0,
+  "targets": {
+    "brookesDedupe": "PASS",
+    "patelInterviewDedupe": "PASS",
+    "ocrBeckVisualDedupe": "PASS",
+    "haleContinuityDedupe": "PASS",
+    "dunnCourtChip": "PASS",
+    "gauntletCourtChip": "PASS",
+    "ardenCourtChip": "PASS",
+    "courtWhyChildReceipts": "PASS",
+    "daviesChargeGlue": "PASS",
+    "brookesNoGenericFullPhone": "PASS"
+  },
+  "remainingSoft": [
+    "listing time / Court chrome generally",
+    "Court 3-item cap",
+    "Arden lumped outstanding wording",
+    "Hale Chase tab CAD alias",
+    "Brookes RV/2 Further papers display",
+    "OCR labelled Court line still names Full-resolution beside collapsed card"
+  ]
+}

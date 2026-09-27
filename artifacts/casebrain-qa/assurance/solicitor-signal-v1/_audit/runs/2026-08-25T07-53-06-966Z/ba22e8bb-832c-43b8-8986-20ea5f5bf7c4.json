@@ -1,0 +1,46 @@
+{
+  "caseId": "ba22e8bb-832c-43b8-8986-20ea5f5bf7c4",
+  "primary": [
+    {
+      "ref": "CCTV/3",
+      "label": "CCTV/3 CCTV export logshort note",
+      "family": "cctv_master",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "AB/2",
+      "label": "AB/2 Continuity labelunclear",
+      "family": "exhibit_provenance",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Complete CAD/999 log",
+      "family": "cad_999",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Full custody record / PACE material",
+      "family": "custody_pace",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Interview transcript",
+      "family": "interview",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "Final medical/forensic report",
+      "family": "medical_expert",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 24,
+  "statedGaps": 0,
+  "statedGapsOnBoard": 0,
+  "truncated": false,
+  "findings": []
+}

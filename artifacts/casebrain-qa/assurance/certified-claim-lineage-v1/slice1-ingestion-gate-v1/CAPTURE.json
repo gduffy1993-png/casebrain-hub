@@ -1,0 +1,96 @@
+{
+  "generatedAt": "2026-09-17T03:30:19.514Z",
+  "baseUrl": "http://localhost:3100",
+  "loginEmail": "gduffy1993+casebrain-gold20@gmail.com",
+  "cases": [
+    {
+      "id": "liam-parker",
+      "caseId": "883193c5-7eb2-433a-827d-d58c1b8874da",
+      "expected": "withheld",
+      "tabs": [
+        {
+          "tab": "overview",
+          "url": "http://localhost:3100/cases/883193c5-7eb2-433a-827d-d58c1b8874da?tab=overview&controlRoom=1&demoShell=1",
+          "withheld": true,
+          "parserDiagnosticVisible": false,
+          "quietConclusionVisible": false,
+          "textLength": 261
+        },
+        {
+          "tab": "file",
+          "url": "http://localhost:3100/cases/883193c5-7eb2-433a-827d-d58c1b8874da?tab=file&controlRoom=1&demoShell=1",
+          "withheld": true,
+          "parserDiagnosticVisible": false,
+          "quietConclusionVisible": false,
+          "textLength": 402
+        },
+        {
+          "tab": "disclosure-chase",
+          "url": "http://localhost:3100/cases/883193c5-7eb2-433a-827d-d58c1b8874da?tab=disclosure-chase&controlRoom=1&demoShell=1",
+          "withheld": true,
+          "parserDiagnosticVisible": false,
+          "quietConclusionVisible": false,
+          "textLength": 415
+        },
+        {
+          "tab": "today",
+          "url": "http://localhost:3100/cases/883193c5-7eb2-433a-827d-d58c1b8874da?tab=today&controlRoom=1&demoShell=1",
+          "withheld": true,
+          "parserDiagnosticVisible": false,
+          "quietConclusionVisible": false,
+          "textLength": 396
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "known16-leon-hale",
+      "caseId": "9b555b7b-d520-4c33-a661-9ed93acc0fe1",
+      "expected": "healthy",
+      "tabs": [
+        {
+          "tab": "overview",
+          "url": "http://localhost:3100/cases/9b555b7b-d520-4c33-a661-9ed93acc0fe1?tab=overview&controlRoom=1&demoShell=1",
+          "withheld": false,
+          "parserDiagnosticVisible": false,
+          "quietConclusionVisible": false,
+          "textLength": 4422
+        },
+        {
+          "tab": "file",
+          "url": "http://localhost:3100/cases/9b555b7b-d520-4c33-a661-9ed93acc0fe1?tab=file&controlRoom=1&demoShell=1",
+          "withheld": false,
+          "parserDiagnosticVisible": false,
+          "quietConclusionVisible": false,
+          "textLength": 305
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "api": [
+    {
+      "status": 200,
+      "decision": "quarantined",
+      "withheld": true,
+      "reasonCodes": [
+        "parser_diagnostic_placeholder",
+        "parser_error_stub",
+        "parser_xref_failure"
+      ],
+      "combinedTextLength": 0,
+      "header": null
+    },
+    {
+      "status": 200,
+      "decision": "degraded",
+      "withheld": false,
+      "reasonCodes": [
+        "parser_failure",
+        "legacy_metadata_inferred"
+      ],
+      "combinedTextLength": 167149,
+      "header": null
+    }
+  ]
+}

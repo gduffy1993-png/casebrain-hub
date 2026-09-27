@@ -188,8 +188,8 @@ export function expandTruthMapRowsForDisplay(input: {
     expanded.push(
       evidenceRowFromSourceState(
         "Complainant MG11",
-        "not_safely_confirmed",
-        "Draft or unsigned on file — confirm final signed statement before reliance.",
+        "referred_only",
+        "Draft or unsigned on file — referred on papers; confirm final signed statement before reliance.",
       ),
     );
   }

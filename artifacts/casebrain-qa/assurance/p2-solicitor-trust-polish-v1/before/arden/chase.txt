@@ -1,0 +1,121 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Arden Vale
+
+Robbery
+
+·
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+1
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+1
+
+All
+Overdue
+Due soon
+Chased
+Received
+Further papers on the file
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+INCOMPLETE
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+MG6 / DISCLOSURE POSITION (mg6) · compiled p.8 · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+OUTPUT
+Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity
+TYPE / SURFACE
+chase_request · chase
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+MG6 / DISCLOSURE POSITION
+REF
+MG6
+PAGE
+compiled p.8
+FILE QUOTE
+Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Further papers on the file
+OUTSTANDING
+
+WHY IT MATTERS
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+Why / source receipt
+
+Source: MG6/MG6C disclosure schedule
+
+Deadline: Before next listing — confirm disclosure timetable
+
+EVIDENCE ANCHOR
+
+Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity
+
+DRAFT CHASE WORDING
+
+Please provide further papers on the file or confirm in writing why it is not available.
+
+COURT LINE
+
+The defence asks the court to record that outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV master, continuity remains missing on the current papers and should be disclosed on a timetable. Solicitor review required before addressing the court.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

@@ -10,6 +10,8 @@ import {
   Scale,
 } from "lucide-react";
 import { DontSaySafetyBox } from "@/components/criminal/trust/DontSaySafetyBox";
+import { OutputReceiptDisclosure } from "@/components/criminal/trust/OutputReceiptDisclosure";
+import { pickCourtLineReceiptSources, receiptFromCourtLine } from "@/lib/criminal/visible-output-receipt";
 import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
 import { TrustSectionChrome } from "@/components/criminal/trust/MatterConfidenceHeader";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
@@ -138,6 +140,15 @@ export type PilotTodayDashboardView = {
   collapseRisks: string[];
   nextHearingMoves: string[];
   chaseItems: string[];
+  chaseReceiptItems?: Array<{
+    label: string;
+    id?: string;
+    baseStatus?: string | null;
+    source?: string | null;
+    evidenceAnchor?: string | null;
+    mergedFrom?: string[];
+    sourceScheduleRef?: string | null;
+  }>;
   documentCount: number;
 };
 
@@ -171,7 +182,6 @@ export function PilotTodayDashboard({
     view.chaseItems
       .map((line) => polishChasePreviewLabel(line) ?? "")
       .filter(Boolean),
-    view.safeCourtLine,
   ).slice(0, listCap);
   const askCourtItems = dedupePilotCourtRecordLines(
     dedupePilotLines(view.askCourtToRecord, view.safeCourtLine),
@@ -180,12 +190,16 @@ export function PilotTodayDashboard({
     .filter((line) => !/^(open\s+chase|chase\s+outstanding\s+disclosure)/i.test(line.trim()))
     .slice(0, 3);
 
-  const topIssue = chaseItems[0] ?? view.collapseRisks[1] ?? "—";
+  const topIssue = chaseItems[0] ?? "—";
   const nextStep = nextMoves[0] ?? "—";
   const safeLine =
     view.safeCourtLine && view.safeCourtLine !== "—"
       ? view.safeCourtLine.replace(/\s+/g, " ").trim()
       : "Provisional — review served papers before relying on any line.";
+  const courtReceipt = receiptFromCourtLine(
+    safeLine,
+    pickCourtLineReceiptSources(safeLine, view.chaseReceiptItems ?? []),
+  );
   const allegationDisplay = resolvePilotChargeDisplay(view.caseSummary.allegation, deskChargeLine);
   const positionDisplay = displayPilotSnapshotPosition(view.positionStatus, view.readiness);
 
@@ -204,6 +218,7 @@ export function PilotTodayDashboard({
           </div>
         ))}
       </div>
+      <OutputReceiptDisclosure receipt={courtReceipt} />
 
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
         <CockpitCard
@@ -252,7 +267,7 @@ export function PilotTodayDashboard({
             className="mt-3 inline-flex text-xs font-semibold text-amber-300 hover:text-amber-100"
             data-testid="pilot-today-open-chase"
           >
-            Open Chase ({view.chaseItems.length}) →
+            Open CPS Chase ({chaseItems.length} review item{chaseItems.length === 1 ? "" : "s"}) →
           </Link>
         </CockpitCard>
 

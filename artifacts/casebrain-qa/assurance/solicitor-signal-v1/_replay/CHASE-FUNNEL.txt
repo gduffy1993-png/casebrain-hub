@@ -1,0 +1,572 @@
+
+### 687cf5a6-6898-4257-baef-33e33ace08df
+    ledger rows needing chase : 21 (stated by the schedule: 5)
+    chase items produced      : 3 (primary 3)
+    ledger rows reaching list : 0
+    chase items:
+      - [other] Full phone download / source extraction
+      - [custody_pace] Full custody record / PACE material
+      - [medical_expert] Medical / expert source report
+    ledger rows dropped by the chase pipeline:
+      ! prose  unclear        6 CAD / custody / interview note6-6
+      ! prose  unclear        Charge sheet
+      ! prose  unclear        MG5 ÔÇö case summary CB-TB-439
+      ! prose  unclear        MG11 ÔÇö witness statement CB-TB-439
+      ! prose  unclear        Witness statement
+      ! prose  unclear        Statement of Rachel Green
+      ! prose  unclear        This statement is true to the best of my knowledge and belief and I make it kn
+      ! prose  unclear        Statement of PC Lane
+      ! prose  unclear        Occupation / rolepolice officer / civilian witness
+      ! prose  unclear        Digital extraction / device note CB-TB-439
+      ! prose  unclear        Digital extraction / device note
+      ! STATED outstanding    MG6/04 bank source statements Outstanding Not in papers supplied
+      ! STATED outstanding    MG6/05 CCTV continuity log Outstanding Awaiting export
+      ! STATED outstanding    MG6/06 analyst certificate Outstanding Awaiting export
+      ! STATED outstanding    MG6/07 final medical report Outstanding Requested from officer in case
+      ! prose  outstanding    The schedule has been reviewed. Further material remains outstanding and will 
+      ! prose  draft          EX/01 Officer body worn video clip PC Harris Partial clip only
+      ! STATED outstanding    CCTV/2 External camera export Store manager Export log absent
+      ! prose  draft          DIG/4 Phone screenshot bundle DC Morgan Raw extraction absent
+      ! prose  unclear        Trial issues Identification, disclosure, continuity and admissibility remain u
+      ! prose  unclear        Directions Disclosure to be chased; defence statement date to be fixed if requ
+
+### 7e763777-94a8-4958-a190-a35ef6ddb259
+    ledger rows needing chase : 37 (stated by the schedule: 5)
+    chase items produced      : 3 (primary 3)
+    ledger rows reaching list : 2
+    chase items:
+      - [cctv_master] CCTV full window / master footage
+      - [cad_999] CAD / dispatch / 999 material
+      - [interview] Interview recording
+    ledger rows dropped by the chase pipeline:
+      ! prose  unclear        Tab 1: Charge sheet / case details
+      ! prose  unclear        Tab 2: MG5 case summary
+      ! prose  unclear        Tab 3: MG11 witness statement
+      ! prose  unclear        Tab 4: MG11 police statement
+      ! prose  unclear        Tab 5: Custody/interview note
+      ! prose  unclear        CHARGE SHEET / CASE DETAILSCBTB546
+      ! prose  unclear        MG5 ÔÇö CASE SUMMARYCBTB546
+      ! prose  unclear        The Crown case is that Isaac Patel was involved in an incident at or near Nort
+      ! prose  unclear        description, timing material and item continuity.
+      ! prose  outstanding    Interview position is summarised only. Where the full recording or transcript 
+      ! prose  unclear        MG11 ÔÇö WITNESS STATEMENTCBTB546
+      ! prose  unclear        WITNESS STATEMENT
+      ! prose  unclear        Statement of: Sofia Thornton Date: 19/02/2026
+      ! prose  unclear        Continuation sheet. The first page of this statement is not placed immediately
+      ! prose  unclear        I make this statement about the incident involving Isaac Patel.
+      ! prose  unclear        My account is based on what I saw and what I reported at the time. There may b
+      ! prose  unclear        I refer to an exhibit or recording where available, but I have not reviewed th
+      ! prose  unclear        MG11 ÔÇö POLICE STATEMENTCB-TB-546
+      ! prose  unclear        Statement of: Noah Morgan Date: 17/08/2026
+      ! prose  unclear        CUSTODY / INTERVIEW NOTECB-TB-546
+      ! prose  unclear        Custody / interview extract
+      ! prose  unclear        Legal advice requested. Interview summary available on this file.
+      ! STATED outstanding    MG6/04 signed final MG11 outstanding requested / not attached
+      ! STATED outstanding    MG6/06 custody record pages 3-5 outstanding requested / not attached
+      ! STATED outstanding    MG6/07 full interview transcript outstanding requested / not attached
+      ! STATED referred_only  EX/01 ÔÇö item referred to in MG5 (listed).
+      ! prose  unclear        EX/02 ÔÇö continuity note to be checked against witness and MG6 schedule.
+      ! prose  unclear        Statement of: Zara Mitchell Date: 25/01/2026
+      ! prose  unclear        Statement of: Amira Doyle Date: 28/01/2026
+      ! prose  unclear        Statement of: Owen Rees Date: 23/03/2026
+      ! prose  unclear        Statement of: Tara Marsh Date: 16/01/2026
+      ! prose  unclear        Statement of: Noah Lewis Date: 04/04/2026
+      ! prose  unclear        Statement of: Liam Pike Date: 17/02/2026
+      ! prose  unclear        Statement of: Maya Morgan Date: 07/01/2026
+      ! prose  unclear        Statement of: Tara Patel Date: 25/03/2026
+
+### a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27
+    ledger rows needing chase : 39 (stated by the schedule: 8)
+    chase items produced      : 2 (primary 2)
+    ledger rows reaching list : 0
+    chase items:
+      - [other] Subscriber / account data
+      - [custody_pace] Full custody record / PACE material
+    ledger rows dropped by the chase pipeline:
+      ! prose  unclear        Tab 1 Charge sheet / initial details
+      ! prose  unclear        Tab 2 MG5 case summary
+      ! prose  unclear        Tab 3 Witness material
+      ! prose  unclear        Tab 5 Custody / interview or CAD extract
+      ! prose  unclear        Charge Sheet
+      ! prose  unclear        MG5 Case Summary
+      ! prose  unclear        Imani Tobin was identified as a suspect after witness accounts and material la
+      ! prose  outstanding    officers. The file is not complete and the service position should be checked 
+      ! prose  unclear        schedule. Issue requiring review: corrected indictment conflicts with old char
+      ! prose  unclear        Consider whether the interview record or transcript is complete enough to rely
+      ! prose  outstanding    U1 BWV clip Outstanding Needed for continuity
+      ! prose  unclear        U2 Forensic or medical report Part copy only Needed before safe reliance
+      ! prose  outstanding    U3 Full interview transcript Outstanding Needed before safe reliance
+      ! prose  outstanding    U9 Document marked served in MG5 but absent ÔÇö from
+      ! STATED outstanding    CCTV/3 Body worn video not served
+      ! prose  unclear        MG11 Witness Statement
+      ! prose  unclear        Witness Statement
+      ! prose  unclear        URNNB/479865/25 Statement of Thomas Green
+      ! prose  unclear        I make this statement from my own recollection. I was at The Duke public house
+      ! prose  draft          TEL/5 Medical note partial
+      ! STATED outstanding    BWV/4 Photo still not served
+      ! STATED outstanding    AB/2 Photo still not served
+      ! STATED referred_only  TEL/5 Property continuity note referenced only
+      ! STATED referred_only  AB/2 Phone download reference referenced only
+      ! prose  draft          Bank or account material is summarised by the reviewing officer. Only partial 
+      ! prose  unclear        attached. The loss figure differs between the police summary and witness accou
+      ! prose  unclear        Statement of offence: Wounding with intent to cause grievous bodily harm, cont
+      ! prose  draft          and SIM evidence are not complete. The extraction listed here is partial and s
+      ! prose  unclear        CAD / 999 Extract
+      ! STATED referred_only  CCTV/3 Property continuity note referenced only
+      ! STATED referred_only  BWV/4 Property continuity note referenced only
+      ! STATED referred_only  CCTV/3 CCTV clip referenced only
+      ! prose  unclear        URNNB/479865/25 Statement of Olivia Reed
+      ! prose  unclear        Custody and Interview Extract
+      ! prose  referred_only  U1 Phone extraction report Listed ÔÇö not served ÔÇö Needed for attribution
+      ! prose  outstanding    U2 Continuity statement Outstanding Needed for continuity
+      ! prose  unclear        U3 Full CCTV master Part copy only Needed for attribution
+      ! prose  unclear        URNNB/479865/25 Statement of Sophie Allan
+      ! prose  unclear        the current charge page and any later indictment.
+
+### 14823d9e-1f0f-4cfc-af01-e6595d1cdfc4
+    ledger rows needing chase : 242 (stated by the schedule: 1)
+    chase items produced      : 6 (primary 6)
+    ledger rows reaching list : 4
+    chase items:
+      - [other] Full phone download / source extraction
+      - [cad_999] CAD / dispatch / 999 material
+      - [bwv] Body-worn video (BWV)
+      - [custody_pace] Full custody record / PACE material
+      - [interview] Interview recording
+      - [medical_expert] Final medical/forensic report
+    ledger rows dropped by the chase pipeline:
+      ! prose  draft          Bundle health note Partial served bundle. Outstanding phone, CCTV, forensic, p
+      ! prose  unclear        witness material. Conflicting witness accounts.
+      ! prose  outstanding    Bundle presentation: mixed solicitor/CPS-style disclosure pack with served mat
+      ! prose  unsigned       6 MG11 Jordan Pike Draft witness statement EX-MUR-005
+      ! prose  unsigned       7 MG11 Priya Cole Draft witness statement EX-MUR-006
+      ! prose  outstanding    10 CCTV stills and timing note Master footage outstanding EX-MUR-009 to
+      ! prose  outstanding    11 CAD and 999 summaries Original audio/log outstanding EX-MUR-012 to
+      ! prose  draft          12 Pathology and forensic notes Initial/partial only EX-MUR-014 to
+      ! prose  outstanding    15 Custody record summary Full record/CCTV outstanding EX-MUR-022
+      ! prose  draft          1 A. OUTDATED WITNESS INDEX ÔÇö DRAFT ONLY
+      ! prose  draft          DRAFT ONLY ÔÇö This witness index appears in the served papers but is superseded
+      ! prose  unclear        Aisha Trent Potential eye-witness: saw shiny object Corrected statement: poor 
+      ! prose  outstanding    Unnamed witness ATo be traced Statement outstanding
+      ! prose  outstanding    Unnamed witness BTo be traced Statement outstanding
+      ! prose  draft          Note: the witness index has not been cross-checked against all MG11 draft ÔÇö s.
+      ! prose  unclear        2. CHARGE SHEET EXTRACT
+      ! prose  unclear        2 A. CHARGE SHEET ADMINISTRATION NOTE
+      ! prose  draft          Main prosecution theory Argument, presence, CCTV movement, witness identificat
+      ! prose  unclear        3. MG5 CASE SUMMARY ÔÇö OVERVIEW
+      ! prose  unclear        was seen arguing with Marcus shortly before the fatal injury. CCTV stills show
+      ! prose  unclear        approximately 22:41 and leaving at approximately 22:47. A 999 call was recorde
+      ! prose  unclear        The Crown says the timing, the argument, Leon Hale presence, and witness refer
+      ! prose  draft          prove that Leon unlawfully killed Marcus Vale with the necessary intent. The C
+      ! prose  unclear        3 A. MG5 CASE SUMMARY ÔÇö PROSECUTION ROUTE
+      ! prose  draft          out of stairwell area; partial witness identification; forensic material on bl
+      ! prose  outstanding    CCTV: still images are served but full master footage is not served. The entry
+      ! prose  unclear        3 B. MG5 CASE SUMMARY ÔÇö LIVE ISSUES
+      ! prose  unclear        The MG5 identifies several live issues: identity of the person who inflicted t
+      ! prose  unclear        self-defence; whether a second male was involved; whether the forensic links a
+      ! prose  unclear        The summary notes that one witness says Leon may have had something shiny in h
+      ! prose  unclear        certainty because lighting was poor. Another witness says a second male in a d
+      ! prose  unclear        looked scared. A third witness heard someone shout drop it but did not see the
+      ! prose  unclear        CCTV, continuity logs, full 999 audio, full CAD, BWV, final pathology, final D
+      ! prose  unclear        3 C. MG5 CASE SUMMARY ÔÇö TIMING
+      ! prose  unclear        Current timing summary is provisional. CCTV still references place Leon near t
+      ! prose  unclear        approximately 22:47. CAD records the call at 22:52.
+      ! prose  unclear        The CCTV timing note refers to a possible 3-4 minute drift on Camera 3. The CA
+      ! prose  outstanding    MG5 timing. Original 999 audio is not served, so the exact words, timing, back
+      ! prose  draft          The served material is listed below. Several documents are summaries, stills, 
+      ! prose  outstanding    The schedule should be read alongside the outstanding list.
+      ! prose  referred_only  MG5 case summary Served / summary or draft Use cautiously where marked draft o
+      ! prose  referred_only  Charge sheet Served / summary or draft Use cautiously where marked draft or su
+      ! prose  referred_only  Draft MG11 witness statements Served / summary or draft Use cautiously where m
+      ! prose  referred_only  CCTV still images from estate entrance Served / summary or draft Use cautiousl
+      ! prose  referred_only  Initial pathology summary Served / summary or draft Use cautiously where marke
+      ! prose  referred_only  Custody record summary Served / summary or draft Use cautiously where marked d
+      ! prose  referred_only  Interview summary Served / summary or draft Use cautiously where marked draft 
+      ! prose  referred_only  Partial phone download summary Served / summary or draft Use cautiously where 
+      ! prose  referred_only  Initial forensic note Served / summary or draft Use cautiously where marked dr
+      ! prose  referred_only  CAD summary Served / summary or draft Use cautiously where marked draft or sum
+      ! prose  outstanding    4 A. MG6 DISCLOSURE SCHEDULE ÔÇö OUTSTANDING MATERIAL 1
+      ! prose  outstanding    Outstanding material is not treated as served. The defence position should rem
+      ! prose  outstanding    Outstanding item Reason given / note Potential significance
+      ! prose  unclear        Full CCTV master footage from estate cameras
+      ! prose  outstanding    Not yet served. Required to test source
+      ! prose  unclear        reliability, timing, continuity, attribution, or
+      ! prose  unclear        CCTV continuity statement and export log
+      ! prose  outstanding    Full 999 audio Not yet served. Required to test source
+      ! prose  outstanding    Full CAD incident log Not yet served. Required to test source
+      ! prose  outstanding    BWV from first attending officers Not yet served. Required to test source
+      ! prose  outstanding    Full pathology report Not yet served. Required to test source
+      ! prose  unclear        attribution, and reliability of forensic route.
+      ! prose  outstanding    Knife DNA report final version Not yet served. Required to test source
+      ! prose  outstanding    4 A. MG6 DISCLOSURE SCHEDULE ÔÇö OUTSTANDING MATERIAL 2
+      ! prose  outstanding    Fingerprint report on knife/door/stairwell rail Not yet served. Required to te
+      ! prose  unclear        Full phone download and cell-site report
+      ! prose  outstanding    Messages between Leon and Marcus Not yet served. Required to test source
+      ! prose  outstanding    Statements from two unnamed estate witnesses Not yet served. Required to test 
+      ! prose  unclear        and disclosure before interview.
+      ! prose  unclear        Custody CCTV for arrival and solicitor
+      ! prose  outstanding    Any unused intelligence about second male Not yet served. Required to test sou
+      ! prose  outstanding    4 A. MG6 DISCLOSURE SCHEDULE ÔÇö OUTSTANDING MATERIAL 3
+      ! prose  outstanding    Any forensic contamination notes Not yet served. Required to test source
+      ! prose  outstanding    Paramedic records Not yet served. Required to test source
+      ! prose  outstanding    Ambulance call log Not yet served. Required to test source
+      ! prose  outstanding    Door access / stairwell entry logs if available Not yet served. Required to te
+      ! prose  draft          5. MG11 AISHA TRENT ÔÇö DRAFT EXTRACT
+      ! prose  unclear        5 A. MG11 AISHA TRENT ÔÇö CORRECTED PAGE
+      ! prose  draft          Correction: In my first draft I said Leon had a knife. I want to correct that.
+      ! prose  draft          Corrected witness certainty is lower than the first draft.
+      ! prose  draft          6. MG11 JORDAN PIKE ÔÇö DRAFT EXTRACT
+      ! prose  unclear        6 A. MG11 JORDAN PIKE ÔÇö CONTINUATION
+      ! prose  draft          7. MG11 PRIYA COLE ÔÇö DRAFT EXTRACT
+      ! prose  unclear        I was frightened and I did not stay close. My statement is based on what I saw
+      ! prose  unclear        7 A. MG11 PRIYA COLE ÔÇö HANDWRITTEN NOTE TRANSCRIBED
+      ! prose  draft          The note is marked draft only. It appears to have been created before the type
+      ! prose  unclear        8. MG11 POLICE OFFICER ÔÇö FIRST ATTENDING OFFICER
+      ! prose  unclear        I attended the Eastgate Estate following a call logged on CAD at approximately
+      ! prose  unclear        I noted a possible contamination risk because members of the public had moved 
+      ! prose  outstanding    BWV not served.
+      ! prose  unclear        The cordon was placed after initial medical assistance. There was a delay whil
+      ! prose  unclear        I cannot say whether the knife was moved before I saw it. The final continuity
+      ! prose  unclear        time appears later than the first CAD entry.
+      ! prose  unclear        Continuity timing needs checking.
+      ! prose  draft          call was unclear from witnesses at the scene. Several people gave different ac
+      ! prose  outstanding    was caused beyond what is recorded clinically. A full ambulance record is outs
+      ! prose  draft          Timing between injury and emergency call unclear.
+      ! prose  outstanding    not served. The stills include estate entrance and stairwell views. The stairw
+      ! prose  unclear        seen around 22:46 but the image is blurred. The Crown says CCTV supports prese
+      ! prose  unclear        Camera 3 timing note May drift 3-4 minutes Note only Timing alignment with CAD
+      ! prose  unclear        10 A. CCTV TIMING NOTE
+      ! prose  outstanding    corrected against server time, export time, or another system clock. The expor
+      ! prose  unclear        If the camera is slow, the apparent order between Leon leaving, the second mal
+      ! prose  unclear        The full master footage is required to test whether still images have been sel
+      ! prose  unclear        10 B. CCTV STILL IMAGE DESCRIPTION ÔÇö ENTRANCE
+      ! prose  unclear        10 C. CCTV STILL IMAGE DESCRIPTION ÔÇö STAIRWELL
+      ! prose  unclear        11. 999 / CAD SECTION ÔÇö SUMMARY
+      ! prose  unclear        CAD logs the emergency call at 22:52. The 999 summary note says the caller hea
+      ! prose  outstanding    someone had a knife but does not identify who. The original audio is not serve
+      ! prose  unclear        The CAD narrative differs slightly from the MG5 timing. The MG5 places Leon mo
+      ! prose  unclear        the 999 call at 22:52. Without the full audio and full CAD log, the exact timi
+      ! prose  draft          CAD Summary Served summary only Full incident log outstanding; timing differs 
+      ! prose  referred_only  999 Summary Note Served summary only
+      ! prose  outstanding    Original audio outstanding; caller does not identify who had
+      ! prose  unclear        11 A. 999 SUMMARY NOTE ÔÇö TEXT EXTRACT
+      ! prose  unclear        transcript. The original audio is required before any firm position is taken o
+      ! prose  unclear        11 B. CAD SUMMARY NOTE ÔÇö TIMING
+      ! prose  unclear        CAD summary shows call received at 22:52. Arrival and dispatch times are summa
+      ! prose  outstanding    CAD log is outstanding.
+      ! prose  unclear        The CAD narrative differs slightly from the MG5 sequence because the MG5 relie
+      ! prose  unclear        12. FORENSIC SECTION ÔÇö OVERVIEW
+      ! prose  draft          The forensic material is partial. Knife, blood, pathology, fingerprint, and co
+      ! prose  draft          The Crown may rely on partial forensic links, but the defence position remains
+      ! prose  draft          Knife found near bins behind estate. Partial DNA mixture includes Marcus Vale.
+      ! prose  outstanding    Hale, but the note says others cannot be excluded. Fingerprint result is outst
+      ! prose  draft          Initial DNA note: partial mixed DNA profile on knife. Marcus Vale included in 
+      ! prose  outstanding    Fingerprint report on knife, door, and stairwell rail is outstanding. Current 
+      ! prose  outstanding    struggle. The final pathology report is outstanding.
+      ! prose  unclear        12 F. FORENSIC CONTINUITY NOTE
+      ! prose  unclear        Initial continuity note records recovery and bagging steps but refers to scene
+      ! prose  outstanding    schedule is outstanding. There is no final statement tying every movement and 
+      ! prose  unclear        This note should be read with first officer statement and scene photograph ind
+      ! prose  outstanding    him in the stairwell at the exact stabbing moment. Full phone download and fin
+      ! prose  draft          Partial messages show argument earlier that day. Crown may rely on hostility. 
+      ! prose  draft          Partial message extract: Leon appears to tell Marcus not tonight and leave it.
+      ! prose  draft          you. There are also angry messages from both sides. The extract is partial and
+      ! prose  unclear        The note does not resolve whether phone location aligns with CCTV timing drift
+      ! prose  unclear        14. INTERVIEW SUMMARY ÔÇö LEON HALE
+      ! prose  outstanding    There are some no comment answers after limited disclosure. Full interview rec
+      ! prose  unclear        14 A. INTERVIEW SUMMARY ÔÇö SELECTED QUESTIONS
+      ! prose  outstanding    Blood Says blood from struggle/checking Marcus Blood pattern analysis not serv
+      ! prose  unclear        14 B. INTERVIEW SUMMARY ÔÇö SOLICITOR DISCLOSURE NOTE
+      ! prose  unclear        Legal adviser requested disclosure of CCTV, forensic position, and witness bas
+      ! prose  outstanding    was limited. The custody record summary is served but full custody record and 
+      ! prose  unclear        Issue: whether interview answers, including no comment answers, were given aft
+      ! prose  outstanding    Custody record summary is served. Full custody record is outstanding. Custody 
+      ! prose  outstanding    timing is outstanding. The summary records that Leon was remanded in custody a
+      ! prose  outstanding    Arrival time and solicitor consultation times are summarised but not complete.
+      ! prose  outstanding    and whether any material was shown or discussed before interview. The full cus
+      ! prose  unclear        No allegation is made in this note that custody was unlawful. The issue for th
+      ! prose  outstanding    The defence should not finalise the hearing/trial position on incomplete sourc
+      ! prose  unclear        Full CCTV master 22:30-23:05 Tests full sequence, second male, timing drift, s
+      ! prose  unclear        CCTV continuity/export logs Tests authenticity, camera drift, export time, edi
+      ! prose  unclear        Full 999 audio Tests exact words, number of men, uncertainty, background voice
+      ! prose  unclear        Full CAD incident log Tests event timing, dispatch entries, updates, and diffe
+      ! prose  outstanding    Fingerprint report Tests handling of knife, door, rail, and whether forensic a
+      ! prose  unclear        Missing witness statements Tests second male, number of men, and whether Crown
+      ! prose  unclear        Custody CCTVTests arrival, consultation timing, and disclosure before intervie
+      ! prose  unclear        Paramedic/ambulance records Tests timing, treatment, injury sequence, and witn
+      ! prose  unclear        Witness 1 certainty
+      ! prose  unclear        Second male Jordan Pike says a second male in a dark hoodie ran from the stair
+      ! prose  unclear        999 caller Caller says two or three men shouting and someone had a knife but d
+      ! prose  unclear        MG5 timing, CAD time, and CCTV still times are not fully aligned; Camera 3 may
+      ! prose  draft          Forensic limits Knife DNA is partial/mixed and final report is outstanding.
+      ! prose  outstanding    Pathology Initial note allows deliberate thrust or struggle mechanics; final r
+      ! prose  outstanding    Safe hearing position: maintain conditional position pending outstanding sourc
+      ! prose  outstanding    Keep position conditional on outstanding source
+      ! prose  outstanding    CCTVStills only; master footage outstanding Seek timetable for master, continu
+      ! prose  outstanding    Forensics Initial DNA/pathology only; fingerprints outstanding Seek final repo
+      ! prose  draft          Witnesses Draft MG11s with contradiction; missing estate witnesses Request fin
+      ! prose  draft          Interview/custody Summary only; audio/transcript/custody CCTV outstanding Requ
+      ! prose  draft          EX-MUR-001 Charge Sheet Served summary/draft
+      ! prose  draft          EX-MUR-002 MG5 Case Summary Served summary/draft
+      ! prose  draft          EX-MUR-003 MG6 Disclosure Schedule Served summary/draft
+      ! prose  draft          EX-MUR-004 MG11 Aisha Trent Served summary/draft
+      ! prose  draft          EX-MUR-005 MG11 Jordan Pike Served summary/draft
+      ! prose  draft          EX-MUR-006 MG11 Priya Cole Served summary/draft
+      ! prose  draft          EX-MUR-007 Police Officer Statement Served summary/draft
+      ! prose  draft          EX-MUR-008 Paramedic Note Served summary/draft
+      ! prose  draft          EX-MUR-010 CCTV Still Stairwell Served summary/draft
+      ! prose  draft          EX-MUR-011 CCTV Timing Note Served summary/draft
+      ! prose  draft          EX-MUR-012 CAD Summary Served summary/draft
+      ! prose  draft          EX-MUR-013999 Summary Note Served summary/draft
+      ! prose  draft          EX-MUR-014 Initial Pathology Summary Served summary/draft
+      ! prose  draft          EX-MUR-015 Knife Recovery Note Served summary/draft
+      ! prose  draft          EX-MUR-016 Initial DNA Note Served summary/draft
+      ! prose  draft          EX-MUR-017 Blood Stain Note Served summary/draft
+      ! prose  draft          EX-MUR-019 Phone Summary Marcus Vale Served summary/draft
+      ! prose  draft          EX-MUR-020 Cell-site Initial Note Served summary/draft
+      ! prose  draft          EX-MUR-021 Interview Summary Served summary/draft
+      ! prose  draft          EX-MUR-022 Custody Record Summary Served summary/draft
+      ! prose  draft          EX-MUR-023 Disclosure Chase Note Served summary/draft
+      ! prose  unclear        Full CCTV master footage from estate cameras 22:30-23:05
+      ! prose  unclear        Full 999 audio
+      ! prose  unclear        Full CAD incident log
+      ! prose  unclear        BWV from first attending officers
+      ! prose  unclear        20 A. CORRECTED WITNESS STATEMENT COVER NOTE
+      ! prose  draft          Corrected witness statement cover note: Aisha Trent first draft used stronger 
+      ! prose  draft          20 B. DRAFT ONLY ÔÇö FORENSIC LAB ADMIN NOTE
+      ! prose  draft          DRAFT ONLY. Awaiting final report. The current lab note records preliminary ob
+      ! prose  outstanding    Area Current position Outstanding
+      ! prose  outstanding    The scene photograph index is served as an index only. The full photograph set
+      ! prose  unclear        20 D. FORENSIC CONTINUITY NOTE ÔÇö INITIAL
+      ! prose  unclear        Initial continuity note records that knife and clothing exhibits were bagged a
+      ! prose  outstanding    records possible pre-cordon movement by members of the public. Full continuity
+      ! prose  unclear        The forensic continuity issue is not resolved in this bundle. It may assist ei
+      ! prose  unclear        22:52 CAD call. Camera 3 may drift 3-4 minutes.
+      ! prose  outstanding    outstanding.
+      ! prose  unclear        Witness Statements contain poor lighting, second male, and uncertainty
+      ! prose  draft          Use final MG11s and do not overstate draft
+      ! prose  draft          Forensic DNA partial/mixed, fingerprints outstanding, pathology initial
+      ! prose  draft          Digital Phone summaries partial; cell-site not precise enough for
+      ! prose  unclear        ANNEX B ÔÇö WITNESS CONSISTENCY WORKING NOTE 02
+      ! prose  unclear        Witness note. This working page is included to create realistic bundle volume 
+      ! prose  unclear        The witness statements overlap on argument and confusion but conflict on weapo
+      ! prose  outstanding    Final MG11 statements and any unnamed estate witness statements remain outstan
+      ! prose  unclear        ANNEX C ÔÇö FORENSIC LIMITS WORKING NOTE 03
+      ! prose  unclear        Forensic note. This working page is included to create realistic bundle volume
+      ! prose  draft          Knife DNA is partial/mixed. Low-level profile may include Leon but cannot excl
+      ! prose  outstanding    report outstanding. Scene contamination concern noted.
+      ! prose  draft          Phone summaries are partial. Leon phone near Eastgate area does not in current
+      ! prose  outstanding    Marcus phone is incomplete. Possible missing messages with second male are fla
+      ! prose  outstanding    cell-site report remain outstanding.
+      ! prose  unclear        ANNEX E ÔÇö CUSTODY AND INTERVIEW WORKING NOTE 05
+      ! prose  unclear        Disclosure before interview was limited. Legal adviser requested CCTV, forensi
+      ! prose  outstanding    audio/transcript and custody CCTV are outstanding.
+      ! prose  unclear        No comment answers need to be read in the context of disclosure given at the t
+      ! prose  unclear        transcript.
+      ! prose  unclear        Full custody record and custody CCTV may matter for timing of consultation and
+      ! prose  outstanding    should remain conditional pending source material.
+      ! STATED outstanding    The court can be asked to record outstanding CCTV, CAD/999, BWV, pathology, DN
+      ! prose  unclear        and witness material.
+      ! prose  unclear        ANNEX B ÔÇö WITNESS CONSISTENCY WORKING NOTE 08
+      ! prose  unclear        ANNEX C ÔÇö FORENSIC LIMITS WORKING NOTE 09
+      ! prose  unclear        ANNEX E ÔÇö CUSTODY AND INTERVIEW WORKING NOTE 11
+      ! prose  unclear        ANNEX B ÔÇö WITNESS CONSISTENCY WORKING NOTE 14
+      ! prose  unclear        ANNEX C ÔÇö FORENSIC LIMITS WORKING NOTE 15
+      ! prose  unclear        Forensic note. This working
+
+### 99090c69-5d78-41e3-946d-119b4bc335ba
+    ledger rows needing chase : 19 (stated by the schedule: 0)
+    chase items produced      : 2 (primary 2)
+    ledger rows reaching list : 4
+    chase items:
+      - [cctv_continuity] CCTV continuity / provenance
+      - [cctv_master] CCTV full window / master footage
+    ledger rows dropped by the chase pipeline:
+      ! prose  unclear        complete signed MG11.
+      ! prose  outstanding    Safe move: chase missing material and do not overstate provisional strategy. M
+      ! prose  unclear        MG6-01 ÔÇö Exhibits: EX-MON-MG5-01; EX-MON-MG6-01; EX-MON-INT-01; EX-MON-CCTV-01
+      ! prose  unclear        extract p201; interview p260.
+      ! prose  unclear        Correct behaviour is to find charge/MG6/interview/exhibits, flag missing mater
+      ! prose  unclear        MG5 SUMMARY
+      ! prose  unclear        Strategy must remain provisional where source documents, clean scans, continui
+      ! prose  draft          Served according to MG6 extract: MG5 extract, MG6 extract, partial CCTV stills
+      ! prose  unclear        extract, custody/interview summary.
+      ! prose  outstanding    Outstanding / incomplete: full bundle pages 88-94 and 201-206, full CCTV maste
+      ! prose  unclear        statement, complete signed MG11.
+      ! prose  unclear        INTERVIEW / CLIENT ACCOUNT
+      ! prose  unclear        files/continuity and record prejudice from incomplete service.
+      ! prose  outstanding    Duplicated old summary wrapper ÔÇö does not update served/outstanding material.
+      ! prose  outstanding    Reference to a source file exists, but the underlying source file is not serve
+
+### 2dcdc59d-ff44-4bc8-ac31-bd11a954a59e
+    ledger rows needing chase : 85 (stated by the schedule: 0)
+    chase items produced      : 2 (primary 2)
+    ledger rows reaching list : 1
+    chase items:
+      - [other] Subscriber / account data
+      - [other] Full phone download / source extraction
+    ledger rows dropped by the chase pipeline:
+      ! prose  unclear        R v Taylor Brookes ÔÇö Digital Attribution / Witness Contact
+      ! prose  unclear        Complainant / witness
+      ! prose  unclear        This bundle contains charge material, summary, statements, exhibit references,
+      ! prose  unclear        MG5 case summary
+      ! prose  draft          Crown relies on screenshots and witness account.
+      ! prose  unclear        MG11 Ellie Varna
+      ! prose  unclear        Phone number believed linked; subscriber report not
+      ! prose  unclear        Interview summary
+      ! prose  outstanding    Original download and voice note outstanding.
+      ! prose  draft          No-contact bail; draft request. NB-26-0721 ÔÇö R v Taylor Brookes
+      ! prose  unclear        Intimidating a witness
+      ! prose  unclear        after being told she was a prosecution witness.
+      ! prose  outstanding    pending service of original device material.
+      ! prose  unclear        The defendant denies sending the messages. The defence account recorded at int
+      ! prose  draft          was used by more than one person and that the screenshots do not prove authors
+      ! prose  unclear        === SECTION: MG5 CASE SUMMARY ===
+      ! prose  referred_only  sender referred to her witness statement in earlier proceedings and told her t
+      ! prose  draft          e provided screenshot
+      ! prose  draft          printouts showing a contact named 'T'. One screenshot includes a voice note ic
+      ! prose  unclear        2026. No subscriber return, handset extraction, SIM registration, device attri
+      ! prose  unclear        MG11 Ellie Varna, dated 10 May 2026.
+      ! prose  draft          Screenshot printout EV/1, four cropped WhatsApp screens.
+      ! prose  outstanding    Original WhatsApp export not served.
+      ! prose  outstanding    Voice note original audio not served ÔÇö and no transcript served.
+      ! prose  outstanding    Subscriber data or phone attribution report not served.
+      ! prose  draft          No continuity statement for how screenshots moved from witness handset to exhi
+      ! prose  unclear        === SECTION: MG11 STATEMENT ÔÇö ELLIE VARNA ===
+      ! prose  unclear        I am Ellie Varna. I know Taylor Brookes through people in our estate. I gave a
+      ! prose  draft          screenshots and sent them to PC Rowan Vale. I also played a voice note to my s
+      ! prose  draft          from the weekend. The screenshot shows 10 May at the top of one screen and 09 
+      ! prose  draft          I did not reply apart from sending a question mark. I blocked the contact afte
+      ! prose  unclear        screen recording. I have not changed my phone since then. The officer took pho
+      ! prose  draft          device and asked me to email the screenshots, which I did.
+      ! prose  unclear        Statement issues visible on face
+      ! prose  unclear        Witness says Friday 09 May in one paragraph and Saturday night in another.
+      ! prose  unclear        Witness belief of sender is based on saved contact name, writing style, and pr
+      ! prose  unclear        Statement does not confirm original WhatsApp export or device extraction. NB-2
+      ! prose  draft          === SECTION: SCREENSHOT EXHIBIT PRINT ÔÇö EV/1 ===
+      ! prose  draft          EXHIBIT EV/1 ÔÇö WhatsApp screenshot print, supplied as cropped images. The prin
+      ! prose  draft          no visible full contact card, and no device metadata. The contact name display
+      ! prose  unclear        Reply from witness: '?'
+      ! prose  unclear        No transcript. Original audio not in
+      ! prose  draft          Officer endorsement on back of print: 'Screenshots received by email from EV o
+      ! prose  unclear        by witness
+      ! prose  unclear        before sending. Original handset available if required.' No separate continuit
+      ! prose  unclear        that number to contact him. This summary does not attach the custody record, s
+      ! prose  draft          The officer viewed screenshot images on the witness phone and received copies 
+      ! prose  unclear        Digital continuity notes
+      ! prose  unclear        Witness handset
+      ! prose  unclear        Not seized; still with witness
+      ! prose  outstanding    Not served
+      ! prose  draft          Screenshots alone do not show full metadata.
+      ! prose  outstanding    Described but not served
+      ! prose  unclear        No original audio, transcript, speaker comparison, or continuity. NB-26-0721 ÔÇö
+      ! prose  unclear        === SECTION: INTERVIEW SUMMARY ===
+      ! prose  unclear        Interview date: 15 May 2026. The defendant was interviewed with a solicitor pr
+      ! prose  unclear        o and transcript are
+      ! prose  draft          When shown the screenshot printout, he said the messages did not prove they ca
+      ! prose  unclear        person speaking on the voice note, but the audio was not played in interview b
+      ! prose  unclear        Voice note not played in interview.
+      ! prose  draft          Defendant does not accept that screenshots prove he sent the messages. NB-26-0
+      ! prose  unclear        Continuity note
+      ! prose  draft          Cropped WhatsApp screenshot printout
+      ! prose  unclear        Received by email from witness; no full export.
+      ! prose  unclear        Basis of belief stated; underlying subscriber record
+      ! prose  referred_only  Referenced in officer summary but not attached.
+      ! prose  outstanding    Outstanding / not commissioned on served papers.
+      ! prose  outstanding    Outstanding ÔÇö not served
+      ! prose  unclear        continuity, and whether alleged threat is
+      ! prose  outstanding    Not commissioned / absent
+      ! prose  draft          Email from witness attaching screenshots
+      ! prose  unclear        Relevant to continuity and whether
+      ! prose  draft          screenshots were cropped before receipt.
+      ! prose  unclear        Full interview audio/transcript
+      ! prose  referred_only  Summary only served; wording of denial and
+      ! prose  unclear        Disclosure officer note: 'Original digital material may be available from witn
+      ! prose  draft          === SECTION: BAIL HISTORY AND DRAFT DISCLOSURE REQUEST ===
+      ! prose  draft          Draft defence disclosure request
+      ! prose  unclear        Please serve the native WhatsApp export or a proper forensic download showing 
+      ! prose  unclear        Please serve the original 00:17 voice note audio and any transcript or continu
+      ! prose  draft          Please serve the email or transfer record by which the screenshots were receiv
+      ! prose  unclear        continuity statement concerning cropping or editing.
+      ! prose  unclear        Please serve the full interview audio/transcript, not only the summary.
+      ! prose  unclear        The issue is attribution, continuity, and original digital material.
+
+### a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01
+    ledger rows needing chase : 36 (stated by the schedule: 5)
+    chase items produced      : 2 (primary 2)
+    ledger rows reaching list : 0
+    chase items:
+      - [cad_999] CAD / dispatch / 999 material
+      - [custody_pace] Full custody record / PACE material
+    ledger rows dropped by the chase pipeline:
+      ! prose  unclear        5 Custody / interview / CAD material7
+      ! prose  unclear        CHARGE SHEET / CASE INITIATION
+      ! prose  unclear        Statement of offence
+      ! prose  unclear        On 29/05/2026 at Albion Road, Ellis Dunn is alleged to have committed the abov
+      ! prose  unclear        MG5 CASE SUMMARY
+      ! prose  unclear        Interview / account
+      ! prose  unclear        MG5 CASE SUMMARY ÔÇö CONTINUATION
+      ! prose  draft          The prosecution case is that Ellis Dunn was involved in an incident at Albion 
+      ! prose  draft          Call data is partial; one co-defendant blames another.
+      ! prose  unclear        WITNESS STATEMENT
+      ! prose  unclear        URNNP/2026/000343 Statement of Lena Ross
+      ! prose  unclear        This statement is true to the best of my knowledge and belief and I make it kn
+      ! prose  unclear        3. I have been shown reference CCTV/3. I cannot comment on material that I hav
+      ! prose  unclear        4. The exact words used were recorded from memory and not from an audio record
+      ! prose  unclear        URNNP/2026/000343 Statement of Noah Kent
+      ! prose  unclear        2. The custody record shows a solicitor request before interview.
+      ! prose  unclear        3. I have been shown reference BWV/02. I cannot comment on material that I hav
+      ! prose  unclear        INTERVIEW SUMMARY
+      ! prose  unclear        20:04 Initial call opened; caller reports incident at Albion Road CAD
+      ! prose  unclear        20:12 Unit dispatched; description taken from first account CAD
+      ! prose  unclear        22:10 Interview position recorded as limited / disputed Interview summary
+      ! prose  unclear        Note: Custody timing should be checked against CAD if sequence matters.
+      ! STATED referred_only  O01 full interview transcript Outstanding Listed but not attached
+      ! STATED outstanding    O02 CAD log full print Outstanding Not yet served
+      ! STATED outstanding    O03 independent witness statement Outstanding Continuity awaited
+      ! STATED outstanding    O04 forensic continuity statement Outstanding Requested from OIC
+      ! prose  referred_only  O05999 audio Outstanding Listed but not attached
+      ! prose  outstanding    Disclosure note: the status column should be checked against the actual papers
+      ! STATED outstanding    EX/03 Continuity note Eastmoor Police outstanding
+      ! prose  unclear        Issues noted Disclosure, witness availability, plea and trial preparation dire
+      ! prose  outstanding    Directions sought: confirm service of core material, identify outstanding disc
+      ! prose  outstanding    outstanding entries.
+      ! prose  unclear        No further document on this page changes the charge wording unless a later cor
+      ! prose  draft          Further review of the papers identifies that call data is partial; one co-defe
+      ! prose  unclear        The defendant named on the charge sheet remains Ellis Dunn. Any alternate spel
+      ! prose  unclear        against the charge sheet.
+
+================ TOTALS ================
+ledger rows needing chase   : 479
+reached the chase list      : 11
+dropped in the pipeline     : 468
+
+of those, gaps the schedule states (reference + asserted gap status):
+  stated gaps               : 24
+  reaching the chase list   : 1
+  dropped                   : 23
+
+Stated gaps the chase pipeline drops:
+  ! 687cf5a6-6898-4257-baef-33e33ace08df  outstanding    MG6/04 bank source statements Outstanding Not in papers supplied
+  ! 687cf5a6-6898-4257-baef-33e33ace08df  outstanding    MG6/05 CCTV continuity log Outstanding Awaiting export
+  ! 687cf5a6-6898-4257-baef-33e33ace08df  outstanding    MG6/06 analyst certificate Outstanding Awaiting export
+  ! 687cf5a6-6898-4257-baef-33e33ace08df  outstanding    MG6/07 final medical report Outstanding Requested from officer in case
+  ! 687cf5a6-6898-4257-baef-33e33ace08df  outstanding    CCTV/2 External camera export Store manager Export log absent
+  ! 7e763777-94a8-4958-a190-a35ef6ddb259  outstanding    MG6/04 signed final MG11 outstanding requested / not attached
+  ! 7e763777-94a8-4958-a190-a35ef6ddb259  outstanding    MG6/06 custody record pages 3-5 outstanding requested / not attached
+  ! 7e763777-94a8-4958-a190-a35ef6ddb259  outstanding    MG6/07 full interview transcript outstanding requested / not attached
+  ! 7e763777-94a8-4958-a190-a35ef6ddb259  referred_only  EX/01 ÔÇö item referred to in MG5 (listed).
+  ! a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27  outstanding    CCTV/3 Body worn video not served
+  ! a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27  outstanding    BWV/4 Photo still not served
+  ! a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27  outstanding    AB/2 Photo still not served
+  ! a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27  referred_only  TEL/5 Property continuity note referenced only
+  ! a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27  referred_only  AB/2 Phone download reference referenced only
+  ! a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27  referred_only  CCTV/3 Property continuity note referenced only
+  ! a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27  referred_only  BWV/4 Property continuity note referenced only
+  ! a42cb20a-017b-4dfb-b8a5-1dc5b11a3b27  referred_only  CCTV/3 CCTV clip referenced only
+  ! 14823d9e-1f0f-4cfc-af01-e6595d1cdfc4  outstanding    The court can be asked to record outstanding CCTV, CAD/999, BWV, pathology
+  ! a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01  referred_only  O01 full interview transcript Outstanding Listed but not attached
+  ! a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01  outstanding    O02 CAD log full print Outstanding Not yet served
+  ! a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01  outstanding    O03 independent witness statement Outstanding Continuity awaited
+  ! a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01  outstanding    O04 forensic continuity statement Outstanding Requested from OIC
+  ! a81a0cf3-c7c8-4b23-99fc-be6ed82a7e01  outstanding    EX/03 Continuity note Eastmoor Police outstanding

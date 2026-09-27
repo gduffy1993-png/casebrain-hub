@@ -1,0 +1,169 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+Overview
+File
+More
+
+CASE COMMAND CENTRE
+
+Vincent Grant
+Possession of a controlled drug of Class A with intent to supply, contrary to section 5(3) Misuse of Drugs Act 1971 · Northbridge Magistrates' Court / Appeal papers · 21 June 2026 at 11:00
+PROVISIONAL
+
+Do not import another offence-family template unless the papers support it.
+
+5
+
+MISSING
+
+Needs chase
+
+0
+
+INCOMPLETE
+
+Needs completion
+
+5
+
+OPEN REVIEW
+
+Needs checking
+
+Key defence issues
+
+Highest-value points from the papers. Each one keeps its source receipt.
+
+3 issues
+Witness cannot identify ownership and phone attribution needs review
+
+This matters because possession or attribution may be disputed if ownership is not proved and a witness cannot identify who owned the item.
+
+Next: Take instructions on ownership, test the witness limitation, and chase any missing attribution material.
+
+Source: phone attribution | 2. Police asked me about items recovered after a search. I cannot say who owned the handset or bag referred to in the officer note.
+
+Why / source receipt
+OUTPUT
+Witness cannot identify ownership and phone attribution needs review
+TYPE / SURFACE
+key_defence_issue · overview
+TRUTH STATE
+not_safely_confirmed
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+File extract
+REF
+ref unavailable
+PAGE
+page unavailable
+FILE QUOTE
+phone attribution | 2. Police asked me about items recovered after a search. I cannot say who owned the handset or bag referred to in the officer note.
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.7
+GUARD
+pass: source-backed — page unavailable
+Full phone extraction or subscriber material is not complete
+
+This matters because a summary or partial subscriber return may not prove the full attribution picture.
+
+Next: Chase the full extraction/report or subscriber material and avoid treating the phone evidence as complete.
+
+Source: messages and handset material, but the present papers do not contain a complete extraction report.
+
+Why / source receipt
+Interview service status conflicts on the papers
+
+This matters because an interview summary is not the same as a full transcript or recording.
+
+Next: Confirm exactly what interview material is served before advising on admissions or interview fairness.
+
+Source: The interview note is not a verbatim transcript unless separately served. | InterviewSummary provided; full transcript outstanding
+
+Why / source receipt
+What needs attention
+
+One shortlist from the papers. If the file is quiet, this board stays quiet.
+
+5 items
+
+M9 BWV PC Khan
+
+MISSING
+
+M9 BWV PC Khan — as stated on the papers.
+
+M6 MG11 complainant Listed not enclosed Disclosure request
+
+MISSING
+
+M6 MG11 complainant Listed not enclosed Disclosure request — as stated on the papers.
+
+M7 MG11 officer
+
+MISSING
+
+M7 MG11 officer — as stated on the papers.
+
+M8 Seizure log Listed not enclosed Disclosure request
+
+MISSING
+
+M8 Seizure log Listed not enclosed Disclosure request — as stated on the papers.
+
+M10 Subscriber check
+
+MISSING
+
+M10 Subscriber check — as stated on the papers.
+
+SELECTED ISSUE
+
+M9 BWV PC Khan
+MISSING
+
+WHY CASEBRAIN SAYS THIS
+
+M9 BWV PC Khan — as stated on the papers.
+
+SOURCES
+
+MG6/MG6C disclosure schedule
+M9 BWV PC Khan — Requested Not served — with this copy
+MG6 / DISCLOSURE SCHEDULE
+
+RECOMMENDED ACTION
+
+Please provide the m9 BWV PC Khan or confirm in writing why it is not available.
+
+Why / source receipt
+Copy chase request
+Copy court wording
+Safe court line
+Copy safe court line
+
+The defence asks the court to record that M9 BWV PC Khan, M6 MG11 complainant Listed not enclosed Disclosure request, M7 MG11 officer and M8 Seizure log Listed not enclosed Disclosure request remain outstanding on the papers.
+
+Why / source receipt
+Client update
+Copy client update
+
+CLIENT-SAFE SUMMARY
+
+Why / source receipt
+Detail tabs
+
+Main answer is above. Open the detail views only when you need the full source desk.
+
+File & source →
+Papers detail →
+CPS chase detail →
+Court detail →
+Readiness: 4% provisional score from papers-backed counts.

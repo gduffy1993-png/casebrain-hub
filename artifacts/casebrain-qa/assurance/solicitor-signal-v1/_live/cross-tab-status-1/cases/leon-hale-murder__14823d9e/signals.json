@@ -1,0 +1,212 @@
+{
+  "caseId": "14823d9e-1f0f-4cfc-af01-e6595d1cdfc4",
+  "slug": "leon-hale-murder",
+  "label": "Leon Hale Murder, contrary to common law CRIMINAL",
+  "preview": "https://casebrain-jifw0ew6e-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-25T02:41:12.757Z",
+  "tabs": {
+    "papers": {
+      "ok": true,
+      "textLen": 6758,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "250 material row(s) · 8 served/on-file · 242 gap / partial / unclear · showing first 40",
+          "10 CCTV stills and timing note Master footage outstanding EX-MUR-009 to",
+          "MG6 Outstanding / missing —",
+          "11 CAD and 999 summaries Original audio/log outstanding EX-MUR-012 to",
+          "MG6 Outstanding / missing —",
+          "14 Interview summary Full recording/transcript outstanding EX-MUR-021",
+          "MG6 Outstanding / missing —",
+          "15 Custody record summary Full record/CCTV outstanding EX-MUR-022",
+          "MG6 Outstanding / missing —",
+          "4 A. MG6 DISCLOSURE SCHEDULE",
+          "MG6 Outstanding / missing —",
+          "4 A. MG6 DISCLOSURE SCHEDULE",
+          "MG6 Outstanding / missing —",
+          "4 A. MG6 DISCLOSURE SCHEDULE",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "and whether any material was shown or discussed before interview. The full custody record is outstanding.",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "Arrival time and solicitor consultation times are summarised but not complete. Custody CCTV may assist in checking timing",
+          "MG6 Outstanding / missing —",
+          "audio/transcript and custody CCTV are outstanding.",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —",
+          "BWV from first attending officers Not yet served. Required to test source",
+          "MG6 Outstanding / missing —",
+          "BWV not served.",
+          "MG6 Outstanding / missing —",
+          "CAD log is outstanding.",
+          "MG6 Outstanding / missing —",
+          "CCTV: still images are served but full master footage is not served. The entry camera places Leon at the estate entrance area",
+          "MG6 Outstanding / missing —",
+          "CCTVStills only; master footage outstanding Seek timetable for master, continuity, export logs",
+          "MG6 Outstanding / missing —",
+          "MG6 Outstanding / missing —"
+        ],
+        "textLen": 6758
+      }
+    },
+    "overview": {
+      "ok": true,
+      "textLen": 1993,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "Safe Court Line Copy safe court line Serious violence strategy remains provisional pending served material and solicitor review. Client Update Copy client update CLIENT-SAFE SUMMARY (not for court or CPS) We are reviewing the papers in your",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "0 Missing",
+          "2 Incomplete",
+          "What Needs Attention",
+          "0 missing · 2 incomplete · 2 open review items",
+          "Missing",
+          "Unclear",
+          "Incomplete",
+          "Chased",
+          "Interview recording",
+          "UNCLEAR",
+          "UNCLEAR",
+          "UNCLEAR",
+          "Interview recording",
+          "Custody / police interview unit",
+          "Please confirm the current status of interview recording before it is relied on.",
+          "Copy chase request"
+        ],
+        "textLen": 1993
+      }
+    },
+    "today": {
+      "ok": true,
+      "textLen": 2238,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "SAFE COURT LINE This is a serious violence matter on the current papers. Strategy and route remain provisional pending served material and solicitor review — do not advance fixed trial theory or outcome language without instructions and ser",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "TOP CHASE",
+          "CCTV full window",
+          "full custody and interview records remain outstanding. remains outstanding",
+          "CCTV full window remains outstanding",
+          "CCTV Continuity remains outstanding",
+          "Custody/PACE safeguards cannot be finally assessed until the full custody and interview material is served.",
+          "WHAT'S MISSING",
+          "MISSING",
+          "CCTV full window",
+          "CCTV Continuity",
+          "Body Worn Video (BWV)",
+          "Open CPS Chase (3 review items) →",
+          "Assumed position may conflict with interview or served evidence.",
+          "Missing expert/source report may return against the defence route.",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 2238
+      }
+    },
+    "summary": {
+      "ok": true,
+      "textLen": 813,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "FULL SUMMARY WORKSPACE",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 813
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 3235,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "CHASED",
+          "Chased",
+          "Interview recording",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited. [exact page unavailable (unsplit whole-document text) · state: incomplete · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding]",
+          "Custody / police interview unit",
+          "exact page unavailable (unsplit whole-document text) · state: missing · limitation: Recording state missing; transcript state incomplete.",
+          "Copy CPS chase",
+          "Copy CPS chase",
+          "Interview recording",
+          "Review the cited source before relying on this item; record whether the material is served, incomplete, unclear or still awaited. [exact page unavailable (unsplit whole-document text) · state: incomplete · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding]",
+          "Source: Custody / police interview unit",
+          "Linked route: Interview / account pressure",
+          "Interview recording",
+          "Interview recording and transcript",
+          "14 Interview summary Full recording/transcript outstanding EX-MUR-021",
+          "Full interview audio/transcript Not yet served. Required to test source",
+          "Full Interview recording and transcript are",
+          "no comment after limited disclosureFull interview audio/transcript",
+          "DRAFT CHASE WORDING",
+          "Please confirm the current status of interview recording before it is relied on.",
+          "Provisional chase list · check source before sending",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 3235
+      }
+    },
+    "file": {
+      "ok": true,
+      "textLen": 3101,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "Bundle health notePartial served bundle. Outstanding phone, CCTV, forensic, pathology, interview, CAD/999, and",
+          "interview summary, custody/PACE material, forensic notes, timeline material, exhibit list, duplicate/revised pages, and",
+          "The following index is intentionally mixed and partly incomplete to simulate a real pre-PTPH bundle. Some items are served as",
+          "3MG5 case summaryServedEX-MUR-002",
+          "4MG6 disclosure scheduleServed / outstanding splitEX-MUR-003",
+          "8Police officer statementBWV not servedEX-MUR-007",
+          "10CCTV stills and timing noteMaster footage outstandingEX-MUR-009 to",
+          "11CAD and 999 summariesOriginal audio/log outstandi…"
+        ],
+        "textLen": 3101
+      }
+    }
+  }
+}

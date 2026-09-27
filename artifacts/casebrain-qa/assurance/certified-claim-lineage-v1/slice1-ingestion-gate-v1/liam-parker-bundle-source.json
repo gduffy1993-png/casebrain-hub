@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "decision": "quarantined",
+  "withheld": true,
+  "reasonCodes": [
+    "parser_diagnostic_placeholder",
+    "parser_error_stub",
+    "parser_xref_failure"
+  ],
+  "combinedTextLength": 0,
+  "header": null
+}

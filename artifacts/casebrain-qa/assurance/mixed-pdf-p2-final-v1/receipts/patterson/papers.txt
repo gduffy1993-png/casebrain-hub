@@ -1,0 +1,85 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+James Patterson
+
+Wounding with intent to cause grievous bodily harm, s.18 OAPA 1861
+
+Crown Court at Manchester
+·
+Listing on papers · 7 Aug 2026 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+PAPERS INVENTORY
+
+Schedule cells from the extract — not the full novel, and not a court pressure desk.
+
+1 file(s) on record
+
+Source text available for review
+
+Provisional — solicitor review
+
+12 material row(s) · 5 served/on-file · 7 gap / partial / unclear · showing 5 schedule / gap cells
+
+MATERIAL	TYPE	STATUS	PAGES / REF
+
+
+O1 Full CCTV window from flat block
+
+Outstanding Requested from officer in case
+
+Why / source receipt
+	MG6	Outstanding / missing	compiled p.7 · O1
+
+
+O2 Knife search log
+
+Outstanding Awaited from third party or unit
+
+Why / source receipt
+	MG6	Outstanding / missing	compiled p.7 · O2
+
+
+O3 Scenes-of-crime blood swab report
+
+Outstanding Listed, not served
+
+Why / source receipt
+	MG6	Outstanding / missing	compiled p.7 · O3
+
+
+S1 MG11 Marcus Vale
+
+Served Relied on by prosecution
+
+Why / source receipt
+	MG6	Served / on file	compiled p.7 · S1
+
+
+S2 Medical discharge summary
+
+Served Served with initial material
+
+Why / source receipt
+	MG6	Served / on file	compiled p.7 · S2
+
+Inventory is provisional and limited to what the extract establishes. Missing ranges appear only when the papers state them — gaps are not invented for a fuller-looking list.
+
+MORE PAPERS TOOLS
+
+Optional proof map, readiness exports, and supervisor tools — inventory stays above.
+
+Based on uploaded papers · conditional where papers are incomplete

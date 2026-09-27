@@ -9,7 +9,8 @@ import { CaseWorkflowHeaderStrip } from "./CaseWorkflowHeaderStrip";
 import { PilotDemoUploadNotice } from "./PilotDemoUploadNotice";
 import { PilotCaseDocumentsPanel } from "./PilotCaseDocumentsPanel";
 import type { CaseWorkflowDocument } from "./caseWorkflowDocuments";
-import { usePilotDocumentsTabActive } from "./useCaseWorkflowActiveTab";
+import { useCaseWorkflowActiveTab, usePilotDocumentsTabActive } from "./useCaseWorkflowActiveTab";
+import { useDemoOverviewShell } from "@/components/criminal/demo-shell/useDemoOverviewShell";
 
 export type CaseWorkflowShellProps = {
   caseId: string;
@@ -41,14 +42,28 @@ export function CaseWorkflowShell({
   deskChargeLine,
 }: CaseWorkflowShellProps) {
   const pilotMode = isCriminalPilotMode();
+  const demoShell = useDemoOverviewShell();
+  const activeTab = useCaseWorkflowActiveTab();
   const allowUpload = Boolean(onUploadEvidence) && !pilotUploadDisabled;
   const pilotDocumentsTab = usePilotDocumentsTabActive();
   const showDocumentsOnly =
     documentsOnly || (pilotMode && pilotDocumentsTab);
+  const hidePilotStripForDemoOverview = demoShell && activeTab === "overview";
+  const hideCompactActionsForDemo = demoShell && (activeTab === "overview" || showDocumentsOnly);
 
   return (
-    <div className={pilotMode ? workflowPilotMatterChrome : "space-y-3"} data-testid="case-workflow-shell">
-      {pilotMode ? (
+    <div
+      className={
+        demoShell
+          ? "space-y-3 text-slate-900"
+          : pilotMode
+            ? workflowPilotMatterChrome
+            : "space-y-3"
+      }
+      data-testid="case-workflow-shell"
+      data-demo-shell={demoShell ? "true" : undefined}
+    >
+      {pilotMode && !hidePilotStripForDemoOverview ? (
         <CaseWorkflowHeaderStrip
           caseId={caseId}
           safeCourtLine={safeCourtLine}
@@ -57,7 +72,7 @@ export function CaseWorkflowShell({
       ) : null}
       <CaseWorkflowNav caseId={caseId} />
       {pilotUploadDisabled ? <PilotDemoUploadNotice /> : null}
-      {!showDocumentsOnly ? (
+      {!showDocumentsOnly && !hideCompactActionsForDemo ? (
         <CaseWorkflowCompactActions
           caseId={caseId}
           onRecordPosition={pilotRecordPositionHidden ? undefined : onRecordPosition}
@@ -67,7 +82,7 @@ export function CaseWorkflowShell({
         />
       ) : null}
       {showDocumentsOnly ? (
-        <PilotCaseDocumentsPanel documents={documents} caseId={caseId} pilotDark={pilotMode} />
+        <PilotCaseDocumentsPanel documents={documents} caseId={caseId} pilotDark={pilotMode && !demoShell} />
       ) : (
         children
       )}

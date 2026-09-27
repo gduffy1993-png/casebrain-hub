@@ -1,0 +1,23 @@
+chase: separate a schedule row's description from its status cell
+
+Flattening welds the two together (`EX-MUR-002MG5 Case SummaryServed summary/draft`), and the
+welded string was being used as the request label. Cards read "MG5 Case Summary Served
+summary/draft" — wording no one can send, which states the item is served in the middle of asking
+for it. The description is now what is asked for and the status cell is what the schedule says
+about it; the status still travels on the row so Papers keeps showing it.
+
+Also:
+- parseScheduleRef deglues first, so a reference welded to its description still parses
+  (EX-MUR-001 was returning null on raw text).
+- Where the papers name material a template card already covers, the template becomes that row —
+  carrying the reference, anchor and stated status. It was being dropped as a duplicate and then
+  the template it deferred to was removed for naming an unaffirmed modality, losing the gap twice.
+- Material the schedule records as absent now outranks material served in summary or draft form,
+  so an eight-slot board is not filled with "served summary/draft" rows.
+
+Adds scripts/chase-request-wording-truth.test.ts, which fails if any card states an item is served
+while asking for it, or names a reference without naming the material.
+
+Also adds the offline parity harness: capture-builder-inputs.cjs saves every input the live tab
+passes the builder, not just the bundle text, and chase-live-parity.ts replays the board from them.
+The earlier replay fed bundle text alone, so its numbers were not comparable to the screen.

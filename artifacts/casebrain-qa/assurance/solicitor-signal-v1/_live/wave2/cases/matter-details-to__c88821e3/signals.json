@@ -1,0 +1,76 @@
+{
+  "caseId": "c88821e3-bbb7-4528-9dd6-034592710e30",
+  "slug": "matter-details-to",
+  "label": "Matter details to confirm Charge, hearing and papers need solicitor review before relying on this matter. CRIMINAL",
+  "preview": "https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-24T19:56:47.411Z",
+  "tabs": {
+    "overview": {
+      "ok": true,
+      "textLen": 2176,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "Safe Court Line Copy safe court line Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet. Client Update Copy client update CLIENT-SAFE SUMMARY (not for court or CPS) We ar",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "0 Missing",
+          "1 Incomplete",
+          "What Needs Attention",
+          "0 missing · 1 incomplete · 1 open review item",
+          "Missing",
+          "Unclear",
+          "Incomplete",
+          "Chased",
+          "Full custody record / PACE material",
+          "UNCLEAR",
+          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          "UNCLEAR",
+          "Full custody record / PACE material",
+          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          "MG6/MG6C disclosure schedule",
+          "Please provide the full custody record / PACE material or confirm in writing why it is not available.",
+          "Copy chase request"
+        ],
+        "textLen": 2176
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 1960,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "CHASED",
+          "Chased",
+          "Full custody record / PACE material",
+          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          "REFERRED ONLY",
+          "MG6/MG6C disclosure schedule",
+          "Listing on papers elapsed — confirm next listing / chase outstanding disclosure",
+          "Copy CPS chase",
+          "Full custody record / PACE material",
+          "Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.",
+          "Source: MG6/MG6C disclosure schedule",
+          "Deadline: Listing on papers elapsed — confirm next listing / chase outstanding disclosure",
+          "DRAFT CHASE WORDING",
+          "Please provide full custody record / PACE material or confirm in writing why it is not available.",
+          "Provisional chase list · check source before sending",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 1960
+      }
+    }
+  }
+}

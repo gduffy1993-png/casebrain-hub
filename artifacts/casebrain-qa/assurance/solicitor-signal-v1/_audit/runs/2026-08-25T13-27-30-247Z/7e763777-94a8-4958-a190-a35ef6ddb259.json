@@ -1,0 +1,58 @@
+{
+  "caseId": "7e763777-94a8-4958-a190-a35ef6ddb259",
+  "primary": [
+    {
+      "ref": "MG6/05",
+      "label": "MG6/05 full CCTV master",
+      "family": "cctv_master",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "MG6/04",
+      "label": "MG6/04 signed final MG11",
+      "family": "other",
+      "status": "Outstanding"
+    },
+    {
+      "ref": "MG6/06",
+      "label": "Full custody record / PACE material",
+      "family": "custody_pace",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX/02",
+      "label": "EX/02 — continuity note to be checked against witness and MG6 schedule.",
+      "family": "exhibit_provenance",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": "EX/01",
+      "label": "EX/01 — item referred to in MG5 (listed).",
+      "family": "other",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "CCTV full window / master footage",
+      "family": "cctv_master",
+      "status": "Not safely confirmed"
+    },
+    {
+      "ref": null,
+      "label": "CAD / dispatch / 999 material",
+      "family": "cad_999",
+      "status": "Not safely confirmed"
+    }
+  ],
+  "ledgerRows": 40,
+  "statedGaps": 4,
+  "statedGapsOnBoard": 3,
+  "truncated": false,
+  "findings": [
+    {
+      "rule": "R5 the schedule itself must never become a request",
+      "severity": "P1",
+      "detail": "EX/02 — continuity note to be checked against witness and MG6 schedule."
+    }
+  ]
+}

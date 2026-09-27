@@ -1,0 +1,165 @@
+CB
+
+CASE WORK
+
+Trial: 14d left · 34/40 cases · 34/150 docs
+Upgrade
+Overview
+File
+More
+
+CASE COMMAND CENTRE
+
+Leon Hale.
+Murder · Northchester Crown Court / PTPH / plea and trial preparation · 22 May 2026 at 10:00
+PROVISIONAL
+
+Do not import another offence-family template unless the papers support it.
+
+8
+
+MISSING
+
+Needs chase
+
+0
+
+INCOMPLETE
+
+Needs completion
+
+8
+
+OPEN REVIEW
+
+Needs checking
+
+Key defence issues
+
+Highest-value points from the papers. Each one keeps its source receipt.
+
+3 issues
+Phone or item attribution is not safely proved
+
+This matters because the Crown may need to connect the client to the handset, bag or account before the inference is safe.
+
+Next: Check the attribution evidence, take instructions, and chase any missing subscriber or extraction material.
+
+Source: Phone summaries are partial. Leon phone near Eastgate area does not in current extract prove stairwell presence at exact
+
+Why / source receipt
+Full phone extraction or subscriber material is not complete
+
+This matters because a summary or partial subscriber return may not prove the full attribution picture.
+
+Next: Chase the full extraction/report or subscriber material and avoid treating the phone evidence as complete.
+
+Source: him in the stairwell at the exact stabbing moment. Full phone download and final cell-site report are outstanding.
+
+Why / source receipt
+Interview service status conflicts on the papers
+
+This matters because an interview summary is not the same as a full transcript or recording.
+
+Next: Confirm exactly what interview material is served before advising on admissions or interview fairness.
+
+Source: Full interview audio/transcriptNot yet served. Required to test source | Interview summaryServed / summary or draftUse cautiously where marked draft or summary only.
+
+Why / source receipt
+What needs attention
+
+One shortlist from the papers. If the file is quiet, this board stays quiet.
+
+8 items
+
+CCTV stills and timing note Master footage
+
+MISSING
+
+CCTV stills and timing note Master footage — as stated on the papers.
+
+CAD and 999 summaries Original audio/log
+
+MISSING
+
+CAD and 999 summaries Original audio/log — as stated on the papers.
+
+Police officer statement BWV
+
+MISSING
+
+Police officer statement BWV — as stated on the papers.
+
+Full custody record / PACE material
+
+MISSING
+
+Custody/PACE material is referred to in limited form — chase the full record before assessing safeguards or interview fairness.
+
+Interview summary Full recording/transcript
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+Final continuity note
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+Scene photograph index Index only, full set
+
+MISSING
+
+Scene photograph index Index only, full set — as stated on the papers.
+
+Unnamed witness ATo be traced Statement
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+SELECTED ISSUE
+
+CCTV stills and timing note Master footage
+MISSING
+
+WHY CASEBRAIN SAYS THIS
+
+CCTV stills and timing note Master footage — as stated on the papers.
+
+SOURCES
+
+MG6/MG6C disclosure schedule
+CB-MURDER-TEST-0001_criminal_defence_bundle.pdf (compiled pp. 1–3)
+
+RECOMMENDED ACTION
+
+Please provide the full CCTV window, master footage or export log, or confirm in writing why it is not available.
+
+Why / source receipt
+Copy chase request
+Copy court wording
+Safe court line
+Copy safe court line
+
+The defence asks the court to record that CCTV stills and timing note Master footage, CAD and 999 summaries Original audio/log, Police officer statement BWV and Full custody record / PACE material remain outstanding on the papers.
+
+Why / source receipt
+Client update
+Copy client update
+
+CLIENT-SAFE SUMMARY
+(not for court or CPS) We are reviewing the papers in your case (Murder). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.
+
+Why / source receipt
+Detail tabs
+
+Main answer is above. Open the detail views only when you need the full source desk.
+
+File & source →
+Papers detail →
+CPS chase detail →
+Court detail →
+Readiness: 4% provisional score from papers-backed counts.

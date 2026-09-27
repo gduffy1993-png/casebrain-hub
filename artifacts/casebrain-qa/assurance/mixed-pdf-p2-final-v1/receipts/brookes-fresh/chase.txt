@@ -1,0 +1,228 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Taylor Brookes
+
+Intimidating a witness
+
+Northbank Crown Court
+·
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+DISCLOSURE CHASE
+
+TOTAL
+
+7
+
+OVERDUE
+
+0
+
+DUE SOON
+
+0
+
+CHASED
+
+0
+
+RECEIVED
+
+0
+
+NOT STARTED
+
+7
+
+All
+Overdue
+Due soon
+Chased
+Received
+U2 Original 00:17 voice note audio
+
+U2 Original 00:17 voice note audio — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+SECTION: MG6C / UNUSED MATERIAL SCHEDULE (mg6) · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+OUTPUT
+U2 Original 00:17 voice note audio
+TYPE / SURFACE
+chase_request · chase
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+SECTION: MG6C / UNUSED MATERIAL SCHEDULE
+REF
+U2
+PAGE
+page unavailable
+FILE QUOTE
+U2 Original 00:17 voice note audio — Outstanding — not served — Needed to assess content, speaker,
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.7
+GUARD
+pass: source-backed — page unavailable
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+U5 Email from witness attaching screenshots
+
+U5 Email from witness attaching screenshots — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+SECTION: MG6C / UNUSED MATERIAL SCHEDULE (mg6) · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+MG6C / disclosure schedule12-13 Original download and voice note
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+SECTION: COVER SHEET (mg6) · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Original WhatsApp export
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+SECTION: MG5 CASE SUMMARY (mg6) · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Subscriber / account data
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+SECTION: MG5 CASE SUMMARY (mg6) · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+Further papers on the file
+
+RV/2 Historic custody contact-number record NoReferenced in officer summary but not attached — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+SECTION: EXHIBIT LOG (mg6) · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+DR/1 Digital attribution report No
+
+DR/1 Digital attribution report No — as stated on the papers.
+
+OUTSTANDING
+MISSING
+Source
+MG6/MG6C disclosure schedule
+Deadline
+Before next listing — confirm disclosure timetable
+Provenance
+SECTION: EXHIBIT LOG (mg6) · state: missing · limitation: Source reference present; exact document title/type and page still need checking.
+Why / source receipt
+Copy CPS chase
+Provisional: check source before sending
+Copy court line
+U2 Original 00:17 voice note audio
+OUTSTANDING
+
+WHY IT MATTERS
+
+U2 Original 00:17 voice note audio — as stated on the papers.
+
+Why / source receipt
+
+Source: MG6/MG6C disclosure schedule
+
+Deadline: Before next listing — confirm disclosure timetable
+
+MERGED FROM FILE
+
+U2 Original 00:17 voice note audio — Outstanding — not served — Needed to assess content, speaker,
+Voice note Described but not served — No original audio, transcript, speaker comparison, or continuity.
+Voice note original audio — not served — and no transcript served.
+Voice note original audio
+Voice note Described but not served
+
+EVIDENCE ANCHOR
+
+U2 Original 00:17 voice note audio — Outstanding — not served — Needed to assess content, speaker,
+
+DRAFT CHASE WORDING
+
+Please provide u2 Original 00:17 voice note audio or confirm in writing why it is not available.
+
+COURT LINE
+
+Solicitor review required before addressing the court.
+
+Case-wide court line (provisional): The defence asks the court to record that U2 Original 00:17 voice note audio, U5 Email from witness attaching screenshots, MG6C / disclosure schedule12-13 Original download and voice note and Original WhatsApp export remain outstanding on the papers.
+
+Provisional chase list · check source before sending
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

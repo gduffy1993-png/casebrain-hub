@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-09-17T03:20:19.844Z",
+  "liam": {
+    "caseId": "883193c5-7eb2-433a-827d-d58c1b8874da",
+    "documentCount": 1,
+    "storedLengths": [
+      {
+        "name": "CB-TB-02_Liam_Parker.pdf",
+        "raw": 233,
+        "extracted": 233,
+        "diagnostic": true,
+        "bodyTextLength": 0
+      }
+    ],
+    "decision": "quarantined",
+    "reasonCodes": [
+      "parser_diagnostic_placeholder",
+      "parser_error_stub",
+      "parser_xref_failure"
+    ],
+    "withheld": true,
+    "combinedTextLength": 0,
+    "units": 0,
+    "findings": 0,
+    "chaseLabels": 0,
+    "surfacesNull": true
+  },
+  "hale": {
+    "caseId": "9b555b7b-d520-4c33-a661-9ed93acc0fe1",
+    "documentCount": 1,
+    "storedLengths": [
+      {
+        "name": "CB-MURDER-TEST-0001_criminal_defence_bundle.pdf",
+        "raw": 167149,
+        "extracted": 167149,
+        "diagnostic": false,
+        "bodyTextLength": 167149
+      }
+    ],
+    "decision": "degraded",
+    "reasonCodes": [
+      "parser_failure",
+      "legacy_metadata_inferred"
+    ],
+    "withheld": false,
+    "combinedTextLength": 167149,
+    "units": 30,
+    "findings": 4,
+    "chaseLabels": 40,
+    "surfacesNull": false
+  }
+}

@@ -1,0 +1,126 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+Overview
+File
+More
+
+CASE COMMAND CENTRE
+
+Alden Vale
+On 02/05/2026 at about 18:07 at Market Yard, Alden Vale is alleged dishonestly to have appropriated retail goods intending permanently to… · Northford Magistrates Court / police station pre-charge
+PROVISIONAL
+
+Do not import another offence-family template unless the papers support it.
+
+3
+
+MISSING
+
+Needs chase
+
+0
+
+INCOMPLETE
+
+Needs completion
+
+3
+
+OPEN REVIEW
+
+Needs checking
+
+What needs attention
+
+One shortlist from the papers. If the file is quiet, this board stays quiet.
+
+3 items
+
+full CCTV master
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+continuity statement
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+ID procedure notes
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+SELECTED ISSUE
+
+full CCTV master
+MISSING
+
+WHY CASEBRAIN SAYS THIS
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+SOURCES
+
+MG6/MG6C disclosure schedule
+full CCTV master — outstanding
+MG6 / DISCLOSURE POSITION
+
+RECOMMENDED ACTION
+
+Please provide the full CCTV window, master footage or export log, or confirm in writing why it is not available.
+
+Why / source receipt
+OUTPUT
+full CCTV master
+TYPE / SURFACE
+evidence_status · overview
+TRUTH STATE
+outstanding
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+MG6 / DISCLOSURE POSITION
+REF
+MG6
+PAGE
+compiled p.3
+FILE QUOTE
+full CCTV master — outstanding
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+Copy chase request
+Copy court wording
+Safe court line
+Copy safe court line
+
+The defence asks the court to record that full CCTV master, continuity statement and ID procedure notes remain outstanding on the papers.
+
+Why / source receipt
+Client update
+Copy client update
+
+CLIENT-SAFE SUMMARY
+(not for court or CPS) We are reviewing the papers in your case (On 02/05/2026 at about 18:07 at Market Yard, Alden Vale is alleged dishonestly to have appropriated retail goods intending permanently to…). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.
+
+Why / source receipt
+Detail tabs
+
+Main answer is above. Open the detail views only when you need the full source desk.
+
+File & source →
+Papers detail →
+CPS chase detail →
+Court detail →
+Readiness: 4% provisional score from papers-backed counts.

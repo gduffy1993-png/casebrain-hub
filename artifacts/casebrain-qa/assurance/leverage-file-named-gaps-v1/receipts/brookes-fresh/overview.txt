@@ -1,0 +1,179 @@
+CB
+
+CASE WORK
+
+Trial: 5d left · 24/25 cases · 24/100 docs
+Upgrade
+Overview
+File
+More
+
+CASE COMMAND CENTRE
+
+Taylor Brookes
+Intimidating a witness · Northbank Crown Court
+PROVISIONAL
+
+Do not import another offence-family template unless the papers support it.
+
+8
+
+MISSING
+
+Needs chase
+
+0
+
+INCOMPLETE
+
+Needs completion
+
+8
+
+OPEN REVIEW
+
+Needs checking
+
+Key defence issues
+
+Highest-value points from the papers. Each one keeps its source receipt.
+
+2 issues
+Phone or item attribution is not safely proved
+
+This matters because the Crown may need to connect the client to the handset, bag or account before the inference is safe.
+
+Next: Check the attribution evidence, take instructions, and chase any missing subscriber or extraction material.
+
+Source: 2026. No subscriber return, handset extraction, SIM registration, device attribution report, or original WhatsApp
+
+Why / source receipt
+OUTPUT
+Phone or item attribution is not safely proved
+TYPE / SURFACE
+key_defence_issue · overview
+TRUTH STATE
+not_safely_confirmed
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+File extract
+REF
+ref unavailable
+PAGE
+p.3
+FILE QUOTE
+2026. No subscriber return, handset extraction, SIM registration, device attribution report, or original WhatsApp
+TRANSFORMATION
+schedule row → status card
+CONFIDENCE
+0.9
+GUARD
+pass: source-backed with page
+Full phone extraction or subscriber material is not complete
+
+This matters because a summary or partial subscriber return may not prove the full attribution picture.
+
+Next: Chase the full extraction/report or subscriber material and avoid treating the phone evidence as complete.
+
+Source: Subscriber data or phone attribution report not served.
+
+Why / source receipt
+What needs attention
+
+One shortlist from the papers. If the file is quiet, this board stays quiet.
+
+8 items
+
+Voice note Described but not served
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+U5 Email from witness attaching screenshots
+
+MISSING
+
+U5 Email from witness attaching screenshots — as stated on the papers.
+
+MG6C / disclosure schedule12-13 Original download and voice note
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+Original WhatsApp export
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+Voice note original audio
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+Subscriber data or phone attribution report
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+WhatsApp export
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+Subscriber data
+
+MISSING
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+SELECTED ISSUE
+
+Voice note Described but not served
+MISSING
+
+WHY CASEBRAIN SAYS THIS
+
+This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.
+
+SOURCES
+
+MG6/MG6C disclosure schedule
+Voice note Described but not served — No original audio, transcript, speaker comparison, or continuity.
+SECTION: OFFICER DIGITAL SUMMARY
+
+RECOMMENDED ACTION
+
+Please provide the voice note Described but not served or confirm in writing why it is not available.
+
+Why / source receipt
+Copy chase request
+Copy court wording
+Safe court line
+Copy safe court line
+
+The defence asks the court to record that Voice note Described but not served, U5 Email from witness attaching screenshots, MG6C / disclosure schedule12-13 Original download and voice note and Original WhatsApp export remain outstanding on the papers.
+
+Why / source receipt
+Client update
+Copy client update
+
+CLIENT-SAFE SUMMARY
+(not for court or CPS) We are reviewing the papers in your case (Intimidating a witness). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.
+
+Why / source receipt
+Detail tabs
+
+Main answer is above. Open the detail views only when you need the full source desk.
+
+File & source →
+Papers detail →
+CPS chase detail →
+Court detail →
+Readiness: 14% provisional score from papers-backed counts.

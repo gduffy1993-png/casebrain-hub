@@ -1,0 +1,42 @@
+{
+  "root": "chase-fragment-card-gate",
+  "pr": 101,
+  "sha": "9ef796ab93373651d2116ac8e3306289ecf07051",
+  "vercel": "SUCCESS",
+  "preview": "https://casebrain-hub-git-ui-demo-overv-5aa27b-gduffy1993-pngs-projects.vercel.app",
+  "verdict": "PASS",
+  "cases": {
+    "ahmed": {
+      "caseId": "ff92431f-fd4b-4adb-992e-abfdb5c80faa",
+      "before": ["reasonable excuse", "not included with the email.", "7 cards"],
+      "after": ["CAD/999", "full interview transcript", "Final medical/forensic report", "search record", "phone subscriber data", "5 cards"],
+      "overviewChaseAgree": true,
+      "fragments": false
+    },
+    "patel": {
+      "caseId": "ffddc1a8-b837-4bde-bb50-bc55be0e7626",
+      "before": ["Where the full recording… treated as a settled", "Overview 7 vs Chase 6"],
+      "after": ["MG6/05 CCTV", "custody", "interview", "MG6/04 MG11", "EX/01", "6 cards both tabs"],
+      "overviewChaseAgree": true,
+      "fragments": false
+    },
+    "gauntlet": {
+      "caseId": "280e487c-3680-4eca-97f1-988828f448e2",
+      "before": ["Officer note says final continuity statement to follow.", "6 cards"],
+      "after": ["MG6C/001", "MG6C/007", "MG6C/008", "MG6C/004", "MG6C/009", "5 cards"],
+      "overviewChaseAgree": true,
+      "fragments": false
+    },
+    "brookesFresh": {
+      "caseId": "95a2746e-d1d3-4f55-aad6-4fb41a7b428b",
+      "charge": "Intimidating a witness",
+      "regress": false
+    },
+    "valeBell": {
+      "caseId": "b6d8ed78-b475-4d78-bc44-a7ec1e5475f0",
+      "labelledPressure": "driver identity and toxicology procedure",
+      "regress": false
+    }
+  },
+  "untouched": ["leverage-mute", "duplicate-subscriber-whatsapp", "court-layout-chrome"]
+}

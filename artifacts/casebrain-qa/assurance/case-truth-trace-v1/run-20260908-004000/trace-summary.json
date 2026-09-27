@@ -1,0 +1,210 @@
+{
+  "generatedAt": "2026-09-07T23:24:00.306Z",
+  "head": "01067641c",
+  "mode": "receipt",
+  "scanned": {
+    "localCases": 503,
+    "liveTabCases": 7,
+    "sweepRecords": 13000,
+    "outputLines": 331163,
+    "sourceBackedLines": 23326,
+    "noSourceLines": 22101,
+    "notOnGitLines": 285736,
+    "findings": 46435,
+    "receiptBackedLines": 22572,
+    "unsupportedFactualLines": 9154
+  },
+  "severityCounts": {
+    "P0": 9292,
+    "P1": 0,
+    "P2": 16099,
+    "P3": 21044
+  },
+  "corpus": {
+    "hard": {
+      "unsupported_factual_statement": 9154,
+      "wrong_defendant_source_bleed": 0,
+      "incorrect_evidence_status": 0,
+      "incorrect_provenance": 14,
+      "duplicate_conflicting_output": 0,
+      "unsafe_strengthening_of_source_wording": 23,
+      "cross_surface_disagreement": 98,
+      "stale_state_output": 0
+    },
+    "soft": {
+      "ugly_title": 0,
+      "repetition": 0,
+      "generic_boilerplate_clutter": 2590,
+      "weak_wording": 83,
+      "furniture_copy_button_noise": 60
+    },
+    "hardTotal": 9289,
+    "softTotal": 2733
+  },
+  "gold20Acceptance": {
+    "cases": 7,
+    "outputLines": 1219,
+    "hard": {
+      "unsupported_factual_statement": 8,
+      "wrong_defendant_source_bleed": 0,
+      "incorrect_evidence_status": 0,
+      "incorrect_provenance": 0,
+      "duplicate_conflicting_output": 0,
+      "unsafe_strengthening_of_source_wording": 0,
+      "cross_surface_disagreement": 0,
+      "stale_state_output": 0
+    },
+    "soft": {
+      "ugly_title": 0,
+      "repetition": 0,
+      "generic_boilerplate_clutter": 37,
+      "weak_wording": 30,
+      "furniture_copy_button_noise": 60
+    },
+    "hardTotal": 8,
+    "softTotal": 127
+  },
+  "topCodes": [
+    {
+      "code": "compound_mixed_status_output",
+      "count": 16099
+    },
+    {
+      "code": "generic_solicitor_clutter",
+      "count": 12215
+    },
+    {
+      "code": "unsupported_factual_statement",
+      "count": 9154
+    },
+    {
+      "code": "date_role_hearing_passed_as_ops_chrome",
+      "count": 1980
+    },
+    {
+      "code": "mute_phone_download",
+      "count": 1867
+    },
+    {
+      "code": "invent_interview_recording",
+      "count": 742
+    },
+    {
+      "code": "modality_summary_vs_recording",
+      "count": 699
+    },
+    {
+      "code": "mute_cctv_master",
+      "count": 674
+    },
+    {
+      "code": "mute_cad_999",
+      "count": 661
+    },
+    {
+      "code": "invent_bwv",
+      "count": 521
+    },
+    {
+      "code": "invent_cad_999",
+      "count": 288
+    },
+    {
+      "code": "mute_stage_despite_pdf",
+      "count": 278
+    },
+    {
+      "code": "invent_phone_download",
+      "count": 265
+    },
+    {
+      "code": "invent_cctv_master",
+      "count": 193
+    },
+    {
+      "code": "date_role_hearing_passed_chrome",
+      "count": 185
+    },
+    {
+      "code": "mute_export_log",
+      "count": 147
+    },
+    {
+      "code": "cross_surface_disagreement",
+      "count": 98
+    },
+    {
+      "code": "modality_screenshot_vs_download",
+      "count": 65
+    },
+    {
+      "code": "mute_hearing_despite_pdf",
+      "count": 62
+    },
+    {
+      "code": "furniture_copy_button_noise",
+      "count": 60
+    }
+  ],
+  "topHardCodes": [
+    {
+      "code": "unsupported_factual_statement",
+      "count": 9154
+    },
+    {
+      "code": "cross_surface_disagreement",
+      "count": 98
+    },
+    {
+      "code": "unsafe_strengthening_of_source_wording",
+      "count": 23
+    },
+    {
+      "code": "incorrect_provenance",
+      "count": 14
+    }
+  ],
+  "topSurfaces": [
+    {
+      "surface": "client",
+      "count": 16862
+    },
+    {
+      "surface": "papers",
+      "count": 9201
+    },
+    {
+      "surface": "court",
+      "count": 7401
+    },
+    {
+      "surface": "overview",
+      "count": 5159
+    },
+    {
+      "surface": "chase",
+      "count": 3889
+    },
+    {
+      "surface": "file",
+      "count": 2579
+    },
+    {
+      "surface": "output-json",
+      "count": 705
+    },
+    {
+      "surface": "identity",
+      "count": 498
+    },
+    {
+      "surface": "chase+court",
+      "count": 71
+    },
+    {
+      "surface": "papers+court",
+      "count": 41
+    }
+  ],
+  "note": "Receipt mode: every solicitor-facing factual line must carry output → type → truth state → source/ref → supporting text → transformation → source class → final wording. Soft wording is counted separately from Gold 20 hard truth failures. Historical sweeps without a source quote stay in the historical queue."
+}

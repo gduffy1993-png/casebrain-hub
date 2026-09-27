@@ -63,25 +63,65 @@ const PERMITTED_MODALITY_RELATIONSHIPS: ReadonlyArray<readonly [EvidenceModality
 ];
 
 export function inferEvidenceModality(label: string): EvidenceModality {
+  const cached = modalityCache.get(label);
+  if (cached !== undefined) return cached;
+  // A schedule names the part on file and the whole that is not in the same row
+  // (`CCTV stills and timing note — master footage outstanding`). The request is for the whole.
+  const clipHit = /\b(clips?|stills?|screenshots?|excerpts?|snippets?)\b/i.test(label);
+  const masterHit =
+    /\b(master(?:\s+(?:cctv|footage|export|recording))?|full\s+(?:cctv|footage|video|export))\b/i.test(
+      label,
+    );
+  if (masterHit && clipHit) return remember(modalityCache, label, "master_media");
   for (const { modality, re } of MODALITY_PATTERNS) {
-    if (re.test(label)) return modality;
+    if (re.test(label)) return remember(modalityCache, label, modality);
   }
-  return "generic";
+  return remember(modalityCache, label, "generic");
+}
+
+/**
+ * Answers already worked out for a piece of wording.
+ *
+ * Deciding whether material is already on file compares every chase request against every evidence
+ * row, and both sides get reduced to a comparable key and a modality first. A board built from a heavy
+ * schedule asks about the same few hundred labels tens of thousands of times over, and on a bundle of
+ * nine hundred rows that reduction alone accounted for five of the board's thirteen seconds. Neither
+ * answer depends on anything but the label. Bounded, so the cache cannot outgrow the case that filled
+ * it.
+ */
+const LABEL_CACHE_LIMIT = 4_000;
+const modalityCache = new Map<string, EvidenceModality>();
+const aliasKeyCache = new Map<string, string>();
+
+function remember<T>(cache: Map<string, T>, label: string, value: T): T {
+  if (cache.size >= LABEL_CACHE_LIMIT) {
+    const oldest = cache.keys().next().value;
+    if (oldest !== undefined) cache.delete(oldest);
+  }
+  cache.set(label, value);
+  return value;
+}
+
+/**
+ * The papers named the gap as outstanding. "Referred on schedule" is how it was
+ * listed, not a review-only chip. Explicit "referred only" / "referenced only"
+ * still names the mid-state (F01/F02).
+ */
+export function outstandingStatedOverReferredOnly(text: string): boolean {
+  const hay = text.toLowerCase();
+  if (!/\boutstanding\b/.test(hay)) return false;
+  if (/^referred\s+only\s*:/i.test(text.trim())) return false;
+  if (/\breferr?e(?:d|nced)\s+only\b/.test(hay)) return false;
+  return true;
 }
 
 /**
  * True when wording proves referred/listed/scheduled but not served/attached.
- * Outstanding alone is NOT enough.
+ * Outstanding stated as the gap is NOT referred_only.
  */
 export function wordingIndicatesReferredOnly(text: string): boolean {
   const hay = text.toLowerCase();
-  if (
-    /\boutstanding\b/.test(hay) &&
-    !/\breferred\b/.test(hay) &&
-    !/\b(?:listed|scheduled)\b/.test(hay)
-  ) {
-    return false;
-  }
+  if (outstandingStatedOverReferredOnly(text)) return false;
   if (/^uncertain(?:\s+on\s+papers)?\s*:/i.test(text.trim())) return false;
   if (/^referred\s+only\s*:/i.test(text.trim()) || /\breferred\s+only\b/.test(hay)) return true;
   if (/\breferred\s+on\s+(?:mg6c?|schedule|index|disclosure)\b/.test(hay)) return true;
@@ -95,7 +135,7 @@ export function wordingIndicatesReferredOnly(text: string): boolean {
   }
   // "confirm on file" alone is organisational chase boilerplate — not referred proof
   if (/\bmentioned but\b|\bnot safely served\b|\bnot safely on file\b/.test(hay)) return true;
-  if (/\bnot\s+included\b|\bnot\s+attached\b|\bsummary\s+only\b/.test(hay)) return true;
+  if (/\bsummary\s+only\b/.test(hay) && !/\boutstanding\b/.test(hay)) return true;
   return false;
 }
 
@@ -162,6 +202,8 @@ export function reconcileEvidenceState(input: {
   baseStatus?: string;
   evidenceAnchor?: string | null;
   explicitState?: string | null;
+  /** Chase whyItMatters / note — used for referred-only cues only, never as outstanding proof. */
+  note?: string | null;
 }): SharedEvidenceState {
   if (input.explicitState) {
     const e = input.explicitState.toLowerCase().replace(/\s+/g, "_");
@@ -173,23 +215,43 @@ export function reconcileEvidenceState(input: {
     if (e === "not_safely_confirmed" || e === "unclear") return "not_safely_confirmed";
   }
 
-  // Do not use organisational chase-source labels (e.g. "CPS / expert source (confirm on file)")
-  // as evidence-state proof — only label, baseStatus, and evidenceAnchor.
-  const hay = `${input.label} ${input.evidenceAnchor ?? ""} ${input.baseStatus ?? ""}`;
+  // Label + anchor only for existence cues. Organisational chase chips (Outstanding /
+  // Overdue) must not poison the hay into missing when whyItMatters says referred.
+  const labelHay = `${input.label} ${input.evidenceAnchor ?? ""}`;
+  const referredHay = `${labelHay} ${input.note ?? ""}`;
+  const status = (input.baseStatus ?? "").toLowerCase().replace(/_/g, " ").trim();
 
   // Referred/listed/scheduled-not-served BEFORE outstanding/not-served (F01)
-  if (wordingIndicatesReferredOnly(hay)) {
+  if (wordingIndicatesReferredOnly(referredHay)) {
     return "referred_only";
   }
   // Partial/incomplete for the unit itself (not referred-only aggregates)
-  if (wordingIndicatesPartialIncomplete(hay)) {
+  if (wordingIndicatesPartialIncomplete(labelHay)) {
     return "incomplete";
   }
-  if (/\boutstanding\b|\bnot served\b|\bmissing\b|\babsent\b|\bnot provided\b/i.test(hay)) {
+  // Content-level missing cues on the unit label/anchor only (not chase status chips,
+  // not "appears outstanding" why-boilerplate).
+  if (/\boutstanding\b|\bnot served\b|\bmissing\b|\babsent\b|\bnot provided\b|\bnot included\b|\bnot attached\b|\bnot in this (?:bundle|section)\b/i.test(labelHay)) {
     return "missing";
   }
-  if ((input.baseStatus ?? "").toLowerCase() === "received" || /\bserved\b/i.test(hay)) {
+  if (status === "received" || /\bserved\b/i.test(labelHay)) {
     return "served";
+  }
+  // Organisational / raw status chips (not content) — after referred/partial label cues
+  if (status === "partial" || status === "incomplete" || status === "draft" || status === "unsigned") {
+    return "incomplete";
+  }
+  // Genuine chase deadline chips without referred/partial/content cues → missing
+  if (
+    status === "outstanding" ||
+    status === "overdue" ||
+    status === "due soon" ||
+    status === "chased"
+  ) {
+    return "missing";
+  }
+  if (status === "not safely confirmed" || status === "unclear") {
+    return "not_safely_confirmed";
   }
   return "not_safely_confirmed";
 }
@@ -234,6 +296,43 @@ export function evidenceMaySatisfyRequest(
 }
 
 /**
+ * Whether wording asks for the whole of something, a part of it, or does not say.
+ *
+ * A schedule states a gap by naming what is on file and what is not, in the same row: "CCTV stills and
+ * timing note — master footage outstanding" means the stills are served and the master is not. So the
+ * scope a piece of wording asks about decides what can answer it, and it decides it across every
+ * family: a summary is not the full record, an index is not the photograph set, an extract is not the
+ * original log.
+ */
+type EvidenceScope = "whole" | "part" | "unspecified";
+
+const WHOLE_SCOPE_RE = /\b(master|full|original|complete|entire|unedited|whole|underlying|raw)\b/i;
+const PART_SCOPE_RE =
+  /\b(summary|summaries|index|extract|excerpt|excerpts|still|stills|clip|clips|screenshot|screenshots|snippet|snippets|partial|initial|draft|sample)\b/i;
+
+export function evidenceScopeOfLabel(label: string): EvidenceScope {
+  // A row naming both asks for the whole: the part is what it says is already there.
+  if (WHOLE_SCOPE_RE.test(label)) return "whole";
+  if (PART_SCOPE_RE.test(label)) return "part";
+  return "unspecified";
+}
+
+/**
+ * True when a row's own wording denies that the material is on file.
+ *
+ * Rows reach here from prose as well as schedules, and flattening welds a status onto the text before
+ * it ("Full 999 audioNot yet"), which is how a row can arrive labelled as outstanding and stated as
+ * served. Where the label and the state disagree, the row proves nothing, and it must not be the reason
+ * a solicitor never sees a gap the papers state.
+ */
+function labelDeniesService(label: string): boolean {
+  return (
+    /not\s*(?:yet|served|provided|attached|available|on\s+file|disclosed)\b/i.test(label) ||
+    /\b(?:outstanding|awaited|awaiting|withheld)\b/i.test(label)
+  );
+}
+
+/**
  * Whether a chase request for `requestLabel` should be suppressed because
  * equivalent material is already served (or incomplete, not missing).
  */
@@ -242,6 +341,7 @@ export function shouldSuppressChaseAsAlreadyOnFile(
   rows: EvidenceStateRow[],
 ): { suppress: boolean; reason: string | null } {
   const reqMod = inferEvidenceModality(requestLabel);
+  const reqScope = evidenceScopeOfLabel(requestLabel);
 
   for (const row of rows) {
     const rowMod = row.modality ?? inferEvidenceModality(row.label);
@@ -250,6 +350,11 @@ export function shouldSuppressChaseAsAlreadyOnFile(
 
     // Served recording does not satisfy a request for a missing transcript.
     if (row.state === "served") {
+      if (labelDeniesService(row.label)) continue;
+      if (wordingIndicatesReferredOnly(row.label)) continue;
+      // A part of a thing is not the thing: a served summary, index or extract leaves the full
+      // version as outstanding as it was.
+      if (reqScope === "whole" && evidenceScopeOfLabel(row.label) === "part") continue;
       if (reqMod === "transcript" && rowMod === "recording") {
         continue;
       }
@@ -325,12 +430,15 @@ export function modalitiesCompatibleForService(a: EvidenceModality, b: EvidenceM
 }
 
 function normalizeAliasKey(label: string): string {
-  return label
+  const cached = aliasKeyCache.get(label);
+  if (cached !== undefined) return cached;
+  const key = label
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, " ")
     .replace(/\b(the|a|an|full|complete|served|outstanding|missing)\b/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+  return remember(aliasKeyCache, label, key);
 }
 
 /** Map shared state onto presentation SourceStateKind-compatible values. */

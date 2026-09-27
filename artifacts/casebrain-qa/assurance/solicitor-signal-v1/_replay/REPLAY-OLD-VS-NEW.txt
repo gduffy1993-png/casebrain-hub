@@ -1,0 +1,476 @@
+
+### Layla Davies
+    rows old 20 / new 24   served old 2 / new 3   changed 9
+  ROW   MG6/04 bank source statements Outstanding Not in papers supplied
+  OLD   served
+  NOW   outstanding
+  PDF   p.7  MG6/04 | bank source statements | Outstanding | Not in papers supplied
+  WHY   P0 was claimed served, is not
+
+  ROW   MG6/05 CCTV continuity log Outstanding Awaiting export
+  OLD   unclear
+  NOW   outstanding
+  PDF   p.7  MG6/05 | CCTV continuity log | Outstanding | Awaiting export
+  WHY   P2 vague reading sharpened to the stated status
+
+  ROW   MG6/07 final medical report Outstanding Requested from officer in case
+  OLD   unclear
+  NOW   outstanding
+  PDF   p.7  MG6/07 | final medical report | Outstanding | Requested from officer in case
+  WHY   P2 vague reading sharpened to the stated status
+
+  ROW   WitnessesComplainant, police officer, civilian witness where served
+  OLD   served
+  NOW   MISSING
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   row no longer produced
+
+  ROW   MG6/01 custody record extract Served Contained in papers
+  OLD   MISSING
+  NOW   served
+  PDF   p.7  MG6/01 | custody record extract | Served | Contained in papers
+  WHY   P1 row was dropped entirely
+
+  ROW   MG6/02 old charge sheet Served Contained in papers
+  OLD   MISSING
+  NOW   served
+  PDF   p.7  MG6/02 | old charge sheet | Served | Contained in papers
+  WHY   P1 row was dropped entirely
+
+  ROW   MG6/03 bank schedule extract Served Contained in papers
+  OLD   MISSING
+  NOW   served
+  PDF   p.7  MG6/03 | bank schedule extract | Served | Contained in papers
+  WHY   P1 row was dropped entirely
+
+  ROW   MG6/06 analyst certificate Outstanding Awaiting export
+  OLD   MISSING
+  NOW   outstanding
+  PDF   p.7  MG6/06 | analyst certificate | Outstanding | Awaiting export
+  WHY   P1 row was dropped entirely
+
+  ROW   EX/01 Officer body worn video clip PC Harris Partial clip only
+  OLD   MISSING
+  NOW   draft
+  PDF   p.9  EX/01 | Officer body worn video clip | PC Harris | Partial clip only
+  WHY   P1 row was dropped entirely
+
+### Isaac Patel
+    rows old 39 / new 42   served old 2 / new 5   changed 7
+  ROW   MG6/04 signed final MG11 outstanding requested / not attached
+  OLD   referred_only
+  NOW   outstanding
+  PDF   p.7  MG6/04 | signed final MG11 | outstanding | requested / not attached
+  WHY   P2 status corrected
+
+  ROW   MG6/05 full CCTV master outstanding requested / not attached
+  OLD   referred_only
+  NOW   outstanding
+  PDF   p.7  MG6/05 | full CCTV master | outstanding | requested / not attached
+  WHY   P2 status corrected
+
+  ROW   MG6/06 custody record pages 3-5 outstanding requested / not attached
+  OLD   referred_only
+  NOW   outstanding
+  PDF   p.7  MG6/06 | custody record pages 3-5 | outstanding | requested / not attached
+  WHY   P2 status corrected
+
+  ROW   MG6/07 full interview transcript outstanding requested / not attached
+  OLD   referred_only
+  NOW   outstanding
+  PDF   p.7  MG6/07 | full interview transcript | outstanding | requested / not attached
+  WHY   P2 status corrected
+
+  ROW   MG6/02 charge sheet served available in bundle
+  OLD   MISSING
+  NOW   served
+  PDF   p.7  MG6/02 | charge sheet | served | available in bundle
+  WHY   P1 row was dropped entirely
+
+  ROW   MG6/03 MG5 case summary served available in bundle
+  OLD   MISSING
+  NOW   served
+  PDF   p.7  MG6/03 | MG5 case summary | served | available in bundle
+  WHY   P1 row was dropped entirely
+
+  ROW   MG6/01 forensic submission note served available in bundle
+  OLD   MISSING
+  NOW   served
+  PDF   p.7  MG6/01 | forensic submission note | served | listed as served
+  WHY   P1 row was dropped entirely
+
+### Imani Tobin
+    rows old 36 / new 46   served old 3 / new 7   changed 22
+  ROW   S1 First witness statement Served Relied upon subject to content
+  OLD   unclear
+  NOW   served
+  PDF   p.4  First witness statement
+  WHY   P1 unconfirmed shown as on file
+
+  ROW   U1 BWV clip Outstanding Needed for continuity
+  OLD   unclear
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P2 vague reading sharpened to the stated status
+
+  ROW   U3 Full interview transcript Outstanding Needed before safe reliance
+  OLD   unclear
+  NOW   outstanding
+  PDF   p.4  Full interview transcript
+  WHY   P2 vague reading sharpened to the stated status
+
+  ROW   CCTV/3 Body worn video not served
+  OLD   served
+  NOW   outstanding
+  PDF   p.5  CCTV/3 | Body worn video | not served
+  WHY   P0 was claimed served, is not
+
+  ROW   BWV/4 Photo still not served
+  OLD   served
+  NOW   outstanding
+  PDF   p.7  BWV/4 | Photo still | not served | AB/2
+  WHY   P0 was claimed served, is not
+
+  ROW   CCTV/3 Property continuity note served
+  OLD   unclear
+  NOW   served
+  PDF   p.5  CCTV/3 | Body worn video | not served
+  WHY   P1 unconfirmed shown as on file
+
+  ROW   TEL/5 Property continuity note referenced only
+  OLD   unclear
+  NOW   referred_only
+  PDF   p.5  TEL/5 | Body worn video | referenced only | TEL/5
+  WHY   P2 vague reading sharpened to the stated status
+
+  ROW   CCTV/3 Property continuity note referenced only
+  OLD   unclear
+  NOW   referred_only
+  PDF   p.5  CCTV/3 | Body worn video | not served
+  WHY   P2 vague reading sharpened to the stated status
+
+  ROW   BWV/4 Property continuity note referenced only
+  OLD   unclear
+  NOW   referred_only
+  PDF   p.7  BWV/4 | Photo still | not served | AB/2
+  WHY   P2 vague reading sharpened to the stated status
+
+  ROW   CCTV/3 CCTV clip referenced only
+  OLD   unclear
+  NOW   referred_only
+  PDF   p.5  CCTV/3 | Body worn video | not served
+  WHY   P2 vague reading sharpened to the stated status
+
+  ROW   U1 Phone extraction report Listed ÔÇö not served ÔÇö Needed for attribution
+  OLD   outstanding
+  NOW   referred_only
+  PDF   p.19  Phone extraction report
+  WHY   P2 status corrected
+
+  ROW   U2 Continuity statement Outstanding Needed for continuity
+  OLD   unclear
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P2 vague reading sharpened to the stated status
+
+  ROW   S2 MG5 case summary Served Relied upon subject to content
+  OLD   MISSING
+  NOW   served
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   TEL/5 Medical note served
+  OLD   MISSING
+  NOW   served
+  PDF   p.5  TEL/5 | Body worn video | referenced only | TEL/5
+  WHY   P1 row was dropped entirely
+
+  ROW   URNNB/479865/25 Statement of Thomas Green
+  OLD   MISSING
+  NOW   unclear
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   TEL/5 Medical note partial
+  OLD   MISSING
+  NOW   draft
+  PDF   p.5  TEL/5 | Body worn video | referenced only | TEL/5
+  WHY   P1 row was dropped entirely
+
+  ROW   AB/2 Photo still not served
+  OLD   MISSING
+  NOW   outstanding
+  PDF   p.7  AB/2 | Photo still | not served | CCTV/3
+  WHY   P1 row was dropped entirely
+
+  ROW   AB/2 Phone download reference referenced only
+  OLD   MISSING
+  NOW   referred_only
+  PDF   p.7  AB/2 | Photo still | not served | CCTV/3
+  WHY   P1 row was dropped entirely
+
+  ROW   URNNB/479865/25 Statement of Olivia Reed
+  OLD   MISSING
+  NOW   unclear
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   S1 MG5 case summary Served Relied upon subject to content
+  OLD   MISSING
+  NOW   served
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   S2 Charge sheet Served Relied upon subject to content
+  OLD   MISSING
+  NOW   served
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   URNNB/479865/25 Statement of Sophie Allan
+  OLD   MISSING
+  NOW   unclear
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+### Ellis Dunn
+    rows old 29 / new 40   served old 0 / new 4   changed 12
+  ROW   O04 forensic continuity statement Outstanding Requested from OIC
+  OLD   unclear
+  NOW   outstanding
+  PDF   p.8  O04 | forensic continuity statement | Outstanding | Requested from OIC
+  WHY   P2 vague reading sharpened to the stated status
+
+  ROW   URNNP/2026/000343 Statement of Lena Ross
+  OLD   MISSING
+  NOW   unclear
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   URNNP/2026/000343 Statement of Noah Kent
+  OLD   MISSING
+  NOW   unclear
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   20:04 Initial call opened; caller reports incident at Albion Road CAD
+  OLD   MISSING
+  NOW   unclear
+  PDF   p.7  Initial call opened; caller reports incident at Albion Road
+  WHY   P1 row was dropped entirely
+
+  ROW   20:12 Unit dispatched; description taken from first account CAD
+  OLD   MISSING
+  NOW   unclear
+  PDF   p.7  Unit dispatched; description taken from first account
+  WHY   P1 row was dropped entirely
+
+  ROW   22:10 Interview position recorded as limited / disputed Interview summary
+  OLD   MISSING
+  NOW   unclear
+  PDF   p.7  Interview position recorded as limited / disputed
+  WHY   P1 row was dropped entirely
+
+  ROW   S01 BWV stills Served Included in present papers
+  OLD   MISSING
+  NOW   served
+  PDF   p.8  S01 | BWV stills | Served | Included in present papers
+  WHY   P1 row was dropped entirely
+
+  ROW   S02 interview summary Served Included in present papers
+  OLD   MISSING
+  NOW   served
+  PDF   p.8  S02 | interview summary | Served | Included in present papers
+  WHY   P1 row was dropped entirely
+
+  ROW   S04 CAD incident log extract Served Included in present papers
+  OLD   MISSING
+  NOW   served
+  PDF   p.8  S04 | CAD incident log extract | Served | Included in present papers
+  WHY   P1 row was dropped entirely
+
+  ROW   S05 CCTV stills Served Included in present papers
+  OLD   MISSING
+  NOW   served
+  PDF   p.8  S05 | CCTV stills | Served | Included in present papers
+  WHY   P1 row was dropped entirely
+
+  ROW   O02 CAD log full print Outstanding Not yet served
+  OLD   MISSING
+  NOW   outstanding
+  PDF   p.8  O02 | CAD log full print | Outstanding | Not yet served
+  WHY   P1 row was dropped entirely
+
+  ROW   EX/03 Continuity note Eastmoor Police outstanding
+  OLD   MISSING
+  NOW   outstanding
+  PDF   p.9  EX/03 | Continuity note | Eastmoor Police | outstanding
+  WHY   P1 row was dropped entirely
+
+### Arden (robbery)
+    rows old 19 / new 19   served old 0 / new 0   changed 0
+
+### Taylor Brookes
+    rows old 86 / new 86   served old 1 / new 1   changed 0
+
+### Leon Hale (murder)
+    rows old 238 / new 250   served old 13 / new 8   changed 24
+  ROW   Bundle health note Partial served bundle. Outstanding phone, CCTV, forensic, pathology, intervie
+  OLD   outstanding
+  NOW   draft
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P2 status corrected
+
+  ROW   6 MG11 Jordan Pike Draft witness statement EX-MUR-005
+  OLD   unclear
+  NOW   unsigned
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P2 vague reading sharpened to the stated status
+
+  ROW   7 MG11 Priya Cole Draft witness statement EX-MUR-006
+  OLD   unclear
+  NOW   unsigned
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P2 vague reading sharpened to the stated status
+
+  ROW   Full 999 audio Not yet served. Required to test source
+  OLD   served
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P0 was claimed served, is not
+
+  ROW   Full CAD incident log Not yet served. Required to test source
+  OLD   served
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P0 was claimed served, is not
+
+  ROW   BWV from first attending officers Not yet served. Required to test source
+  OLD   served
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P0 was claimed served, is not
+
+  ROW   Full interview audio/transcript Not yet served. Required to test source
+  OLD   served
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P0 was claimed served, is not
+
+  ROW   Any forensic contamination notes Not yet served. Required to test source
+  OLD   served
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P0 was claimed served, is not
+
+  ROW   statement when served.
+  OLD   served
+  NOW   MISSING
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   row no longer produced
+
+  ROW   CAD Summary Served summary only Full incident log outstanding; timing differs slightly from MG5
+  OLD   outstanding
+  NOW   draft
+  PDF   p.0  Custody extract served (PACE clock summary).
+  WHY   P2 status corrected
+
+  ROW   Interview/custody Summary only; audio/transcript/custody CCTV outstanding Request full interview
+  OLD   outstanding
+  NOW   draft
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P2 status corrected
+
+  ROW   Full pathology report Not yet served. Required to test source
+  OLD   MISSING
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   Knife DNA report final version Not yet served. Required to test source
+  OLD   MISSING
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   Fingerprint report on knife/door/stairwell rail Not yet served. Required to test source
+  OLD   MISSING
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   Messages between Leon and Marcus Not yet served. Required to test source
+  OLD   MISSING
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   Statements from two unnamed estate witnesses Not yet served. Required to test source
+  OLD   MISSING
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   Any unused intelligence about second male Not yet served. Required to test source
+  OLD   MISSING
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   Paramedic records Not yet served. Required to test source
+  OLD   MISSING
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   Ambulance call log Not yet served. Required to test source
+  OLD   MISSING
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   Door access / stairwell entry logs if available Not yet served. Required to test source
+  OLD   MISSING
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   Presence Accepts being at estate and arguing with Marcus CCTV stills were disclosed in limited f
+  OLD   MISSING
+  NOW   served
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   Witnesses Draft MG11s with contradiction; missing estate witnesses Request final statements and 
+  OLD   MISSING
+  NOW   draft
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   Area Current position Outstanding
+  OLD   MISSING
+  NOW   outstanding
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+  ROW   Witness Statements contain poor lighting, second male, and uncertainty
+  OLD   MISSING
+  NOW   unclear
+  PDF   not located in extract (SOURCE_NOT_AVAILABLE)
+  WHY   P1 row was dropped entirely
+
+================ TOTALS ================
+cases replayed          7
+rows after fix          507
+rows whose status moved 74
+falsely marked served   10
+served but hidden       15
+rows dropped entirely   42
+
+clusters:
+    42  P1 row was dropped entirely
+    12  P2 vague reading sharpened to the stated status
+     8  P0 was claimed served, is not
+     8  P2 status corrected
+     2  row no longer produced
+     2  P1 unconfirmed shown as on file

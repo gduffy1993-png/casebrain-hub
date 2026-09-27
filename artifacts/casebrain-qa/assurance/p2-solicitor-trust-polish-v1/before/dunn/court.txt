@@ -1,0 +1,106 @@
+CB
+
+CASE WORK
+
+Trial: 4d left · 24/25 cases · 24/100 docs
+Upgrade
+
+Ellis Dunn
+
+Conspiracy to burgle, contrary to section 1 of the Criminal Law Act 1977
+
+Crown Court at Manchester
+·
+Listing on papers · 7 Jul 2026 at 14:15 (elapsed)
+PROVISIONAL — CHECK PAPERS
+
+Next: Chase outstanding disclosure and record provisional hearing position.
+
+Overview
+File
+More
+Record Position
+Upload Evidence
+
+READINESS
+
+Conditional — record position
+
+SAFE COURT LINE
+
+The defence asks the court to record that O02 CAD log full print; O05 999 audio; O01 full interview transcript remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+
+TOP CHASE
+
+CAD / dispatch log material
+
+NEXT STEP
+
+Chase: O02 CAD log full print.
+
+Why / source receipt
+OUTPUT
+The defence asks the court to record that O02 CAD log full print; O05 999 audio; O01 full interview transcript remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.
+TYPE / SURFACE
+court_line · court
+TRUTH STATE
+provisional
+SOURCE CLASS
+direct_pdf_quote
+DOCUMENT
+unavailable
+REF
+O02
+PAGE
+page unavailable
+FILE QUOTE
+No supporting File/PDF quote available.
+TRANSFORMATION
+schedule row → missing chase card
+CONFIDENCE
+0.7
+GUARD
+pass: source-backed — page unavailable
+BEFORE COURT
+COURT LINES
+SOLICITOR REVIEW
+
+Ask the court to set a disclosure timetable for:
+
+cAD / dispatch log material remains outstanding
+999 audio / emergency-call material remains outstanding
+o01 full interview transcript remains outstanding
+
+Keep the hearing position provisional until those papers are served.
+
+Next steps
+
+Chase: O02 CAD log full print.
+Chase: O05 999 audio.
+Chase: O01 full interview transcript.
+OUR READ
+COURT LINE FROM PAPERS
+PROVISIONAL
+Keep the position provisional and tied to the uploaded papers.
+The court is asked to record outstanding File-named source material and set a disclosure timetable.
+WHAT'S MISSING
+OUTSTANDING MATERIAL
+MISSING
+CAD / dispatch log material
+999 audio / emergency-call material
+O01 full interview transcript
+Open CPS Chase (3 review items) →
+GUARDRAILS
+
+DO NOT TREAT AS CONFIRMED ON CURRENT PAPERS
+
+SOLICITOR REVIEW
+Avoid firm wording until the papers confirm it
+No support on the papers for another offence-family template. Avoid relying on it until confirmed.
+Do not treat unserved source material as proved.
+Do not chase served material as if it were outstanding.
+More detail (War Room drafts, ask court, risks)
+
+Flag this section
+
+Mark anything wrong, unclear, unsafe, or useful for later review.

@@ -1,0 +1,64 @@
+{
+  "caseId": "b0231c3b-eb05-41e0-99fa-77ad7dbb7d39",
+  "slug": "matter-details-to",
+  "label": "Matter details to confirm Charge, hearing and papers need solicitor review before relying on this matter. CRIMINAL",
+  "preview": "https://casebrain-q3lhtyih7-gduffy1993-pngs-projects.vercel.app",
+  "capturedAt": "2026-08-24T19:59:52.850Z",
+  "tabs": {
+    "overview": {
+      "ok": true,
+      "textLen": 1816,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": "Safe Court Line Copy safe court line The defence asks the court to record that source material must be clarified and timetabled. Client Update Copy client update CLIENT-SAFE SUMMARY (not for court or CPS) We are reviewing the papers in your",
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "CPS Chase",
+          "0 Missing",
+          "1 Incomplete",
+          "What Needs Attention",
+          "0 missing · 1 incomplete · 1 open review item",
+          "Missing",
+          "Unclear",
+          "Incomplete",
+          "Chased",
+          "UNCLEAR",
+          "UNCLEAR",
+          "Copy chase request"
+        ],
+        "textLen": 1816
+      }
+    },
+    "disclosure-chase": {
+      "ok": true,
+      "textLen": 2176,
+      "signals": {
+        "evidenceState": null,
+        "openChase": null,
+        "chaseItems": null,
+        "courtLine": null,
+        "actions": null,
+        "disclosureGaps": null,
+        "attentionSample": [
+          "Next: Chase outstanding disclosure and record provisional hearing position.",
+          "CPS Chase",
+          "DISCLOSURE CHASE",
+          "CHASED",
+          "Chased",
+          "MG6/unused clarification may affect disclosure fairness and route viability — solicitor review required (linked to route: Continuity / provenance pressure).",
+          "Copy CPS chase",
+          "MG6/unused clarification may affect disclosure fairness and route viability — solicitor review required (linked to route: Continuity / provenance pressure).",
+          "MG6 / unused schedule clarification",
+          "DRAFT CHASE WORDING",
+          "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available.",
+          "Provisional chase list · check source before sending",
+          "Mark anything wrong, unclear, unsafe, or useful for later review."
+        ],
+        "textLen": 2176
+      }
+    }
+  }
+}
