@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-10-13T01:45:02.2019900Z",
+  "deploymentUrl": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app",
+  "deployedCodeCommit": "563fd0e93d9d214b13860bdfff83c6205366caf8",
+  "readerEndpoint": "/api/schedule_chase_reader",
+  "accessControl": {
+    "anonymousStatus": 401,
+    "authorizedStatus": 200
+  },
+  "reader": {
+    "name": "PyMuPDF",
+    "version": "1.28.0",
+    "input": "CB-TB-1260_Vale.pdf",
+    "inputSha256": "fa833c11fdda8afc7e6aa7c834961e67914a4edb6db13a667d3a11e876893c71",
+    "pageCount": 15,
+    "hostedOutputMatchesLocal": true
+  },
+  "acceptance": {
+    "cases": 5,
+    "passed": 5,
+    "apiPassed": 5,
+    "browserPassed": 5,
+    "gate": "logged-in-schedule-chase-holds",
+    "cpsLetterHeld": true
+  },
+  "evidenceHashes": {
+    "codeAndArtifacts": 27,
+    "screenshots": 15,
+    "total": 42,
+    "mismatches": 0
+  },
+  "learningStoresChanged": false
+}

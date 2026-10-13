@@ -25,6 +25,7 @@ export type HearingNotice = {
   /** ISO date of the hearing when a date could be read. */
   hearingDateIso: string | null;
   hearingDateRaw: string | null;
+  hearingTimeLiteral?: string | null;
   hearingType: string | null;
   /** ISO date the notice itself was issued, when stated. */
   noticeIssuedIso: string | null;
@@ -32,6 +33,10 @@ export type HearingNotice = {
   sourcePage: string | null;
   compiledPage: string | null;
   pageIdentityKnown: boolean;
+  sourceExcerpt?: string | null;
+  sourceKind?: "coded_extractor" | "learned_pattern";
+  patternId?: string | null;
+  reviewIds?: string[];
 };
 
 export type HearingLifecycle = {

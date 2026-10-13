@@ -89,6 +89,8 @@ export function humanizeChaseFragmentLabel(raw: string): string {
     const core = mg6[1]
       .replace(/\s+(only|summary|served|outstanding|draft unsigned).*$/i, "")
       .trim();
+    // A schedule "report" cell is that report — do not broaden to full download / source material.
+    if (/\bphone\s+extraction\s+report\b/i.test(core)) return formatDisplayLabelCasing(core);
     if (/phone extraction|extraction summary/i.test(core)) return "Phone extraction source material";
     if (/screenshot|message pack/i.test(core)) return "Screenshot / message pack";
     if (/subscriber/i.test(core)) return "Subscriber / account data";
@@ -112,6 +114,11 @@ export function humanizeChaseFragmentLabel(raw: string): string {
   }
   if (/full\s+phone\s+download|phone\s+download\s*\/\s*source\s+extraction/i.test(t)) {
     return phoneDownloadIdentityLabel(t);
+  }
+  // Preserve schedule-named report cells (Vale) — report ≠ underlying full download.
+  if (/\bphone\s+extraction\s+report\b/i.test(t)) {
+    const report = t.match(/\bphone\s+extraction\s+report\b/i)?.[0] ?? t;
+    return formatDisplayLabelCasing(report);
   }
   if (/phone extraction|extraction summary/i.test(t)) return "Phone extraction source material";
   if (/subscriber\s+data|subscriber\s*\/\s*account/i.test(t)) return "Subscriber / account data";

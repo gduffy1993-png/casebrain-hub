@@ -1,0 +1,956 @@
+{
+  "generatedAt": "2026-10-13T01:43:34.721Z",
+  "copyRoot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release",
+  "gitHead": "563fd0e93d9d214b13860bdfff83c6205366caf8",
+  "baseUrl": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app",
+  "email": "chatgpt.reviewer.1791850130920@casebrain.qa.review",
+  "orgId": "33643d29-14f5-4cd8-b408-f4687389a64d",
+  "labEnv": "CASEBRAIN_SCHEDULE_CHASE_LAB=1",
+  "proofKinds": {
+    "realBrowser": "Playwright against /cases/{id}?tab=overview|today|disclosure-chase with auth cookie",
+    "htmlFetchHarness": "Not this pack — see COPY-SCREEN-ACCEPTANCE.json (unauthenticated fixture HTML fetch)"
+  },
+  "storeNote": "Learning stores were not modified by this proof.",
+  "summary": {
+    "cases": 5,
+    "passed": 5,
+    "failed": [],
+    "apiPassed": 5,
+    "browserPassed": 5
+  },
+  "gate": "logged-in-schedule-chase-holds",
+  "results": [
+    {
+      "key": "SIDDIQ",
+      "caseId": "eb690e49-a2c4-4ba2-81ed-37b825fffe19",
+      "tab": "overview",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/eb690e49-a2c4-4ba2-81ed-37b825fffe19?tab=overview&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\SIDDIQ-overview.png",
+      "screenshotBytes": 278666,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "SIDDIQ",
+      "caseId": "eb690e49-a2c4-4ba2-81ed-37b825fffe19",
+      "tab": "today",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/eb690e49-a2c4-4ba2-81ed-37b825fffe19?tab=today&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\SIDDIQ-today.png",
+      "screenshotBytes": 120579,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "SIDDIQ",
+      "caseId": "eb690e49-a2c4-4ba2-81ed-37b825fffe19",
+      "tab": "disclosure-chase",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/eb690e49-a2c4-4ba2-81ed-37b825fffe19?tab=disclosure-chase&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\SIDDIQ-disclosure-chase.png",
+      "screenshotBytes": 174812,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "SIDDIQ",
+      "caseId": "eb690e49-a2c4-4ba2-81ed-37b825fffe19",
+      "documentId": "e9f569d5-bfa8-4239-8f2b-ca7bedd98edd",
+      "mode": "applied",
+      "pdfSha256": "2d13a977eb118185c77b86ea7b9949700099a956f7b650cf4921855e96dcb55a",
+      "ownership": {
+        "email": "chatgpt.reviewer.1791850130920@casebrain.qa.review",
+        "userId": "fc794489-eef4-48bf-aaca-82bbe6e020db",
+        "orgId": "33643d29-14f5-4cd8-b408-f4687389a64d",
+        "caseId": "eb690e49-a2c4-4ba2-81ed-37b825fffe19"
+      },
+      "apiChecks": {
+        "httpOk": true,
+        "labEnabled": true,
+        "applied": true,
+        "cpsHeld": true,
+        "sourceReceiptOk": true,
+        "mustChaseOk": true,
+        "mustNotChaseOk": true,
+        "uploadOk": true,
+        "conflictOk": true,
+        "unsupportedVisible": true,
+        "surfacesChaseOk": true,
+        "surfacesUnsupportedOk": true
+      },
+      "apiPass": true,
+      "chaseLabels": [
+        "BWV search footage",
+        "scales continuity",
+        "drug analysis certificate",
+        "householder MG11"
+      ],
+      "sourceDocumentId": "e9f569d5-bfa8-4239-8f2b-ca7bedd98edd",
+      "sourceDocumentName": "CB-TB-014_Siddiq.pdf",
+      "limitations": [
+        "CPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label."
+      ],
+      "cpsChase": null,
+      "lab": {
+        "enabled": true,
+        "applied": true,
+        "unsupportedInput": false,
+        "unsupportedReason": null,
+        "scheduleNotEstablished": false,
+        "multipleSchedulesUnresolved": false,
+        "source": "column-pages",
+        "rowCount": 9,
+        "missingCount": 4,
+        "servedCount": 5,
+        "sourceDocumentId": "e9f569d5-bfa8-4239-8f2b-ca7bedd98edd",
+        "sourceDocumentName": "CB-TB-014_Siddiq.pdf",
+        "scheduleDocuments": [
+          {
+            "documentId": "e9f569d5-bfa8-4239-8f2b-ca7bedd98edd",
+            "documentName": "CB-TB-014_Siddiq.pdf",
+            "rowCount": 9
+          }
+        ],
+        "scheduleObservations": [
+          {
+            "documentId": "e9f569d5-bfa8-4239-8f2b-ca7bedd98edd",
+            "documentName": "CB-TB-014_Siddiq.pdf",
+            "page": 7,
+            "reference": "S1",
+            "item": "charge sheet",
+            "statusWord": "served",
+            "side": "served",
+            "line": "S1 charge sheet | Served Available in current papers"
+          },
+          {
+            "documentId": "e9f569d5-bfa8-4239-8f2b-ca7bedd98edd",
+            "documentName": "CB-TB-014_Siddiq.pdf",
+            "page": 7,
+            "reference": "S2",
+            "item": "MG5",
+            "statusWord": "served",
+            "side": "served",
+            "line": "S2 MG5 | Served Available in current papers"
+          },
+          {
+            "documentId": "e9f569d5-bfa8-4239-8f2b-ca7bedd98edd",
+            "documentName": "CB-TB-014_Siddiq.pdf",
+            "page": 7,
+            "reference": "S3",
+            "item": "search record extract",
+            "statusWord": "served",
+            "side": "served",
+            "line": "S3 search record extract | Served Available in current papers"
+          },
+          {
+            "documentId": "e9f569d5-bfa8-4239-8f2b-ca7bedd98edd",
+            "documentName": "CB-TB-014_Siddiq.pdf",
+            "page": 7,
+            "reference": "S4",
+            "item": "MG11 officer",
+            "statusWord": "served",
+            "side": "served",
+            "line": "S4 MG11 officer | Served Available in current papers"
+          },
+          {
+            "documentId": "e9f569d5-bfa8-4239-8f2b-ca7bedd98edd",
+            "documentName": "CB-TB-014_Siddiq.pdf",
+            "page": 7,
+            "reference": "S5",
+            "item": "photograph schedule",
+            "statusWord": "served",
+            "side": "served",
+            "line": "S5 photograph schedule | Served Available in current papers"
+          },
+          {
+            "documentId": "e9f569d5-bfa8-4239-8f2b-ca7bedd98edd",
+            "documentName": "CB-TB-014_Siddiq.pdf",
+            "page": 7,
+            "reference": "O1",
+            "item": "BWV search footage",
+            "statusWord": "outstanding",
+            "side": "missing",
+            "line": "O1 BWV search footage | Outstanding Listed or referred to but not in current"
+          },
+          {
+            "documentId": "e9f569d5-bfa8-4239-8f2b-ca7bedd98edd",
+            "documentName": "CB-TB-014_Siddiq.pdf",
+            "page": 7,
+            "reference": "O2",
+            "item": "scales continuity",
+            "statusWord": "outstanding",
+            "side": "missing",
+            "line": "O2 scales continuity | Outstanding Listed or referred to but not in current"
+          },
+          {
+            "documentId": "e9f569d5-bfa8-4239-8f2b-ca7bedd98edd",
+            "documentName": "CB-TB-014_Siddiq.pdf",
+            "page": 7,
+            "reference": "O3",
+            "item": "drug analysis certificate",
+            "statusWord": "outstanding",
+            "side": "missing",
+            "line": "O3 drug analysis certificate | Outstanding Listed or referred to but not in current"
+          },
+          {
+            "documentId": "e9f569d5-bfa8-4239-8f2b-ca7bedd98edd",
+            "documentName": "CB-TB-014_Siddiq.pdf",
+            "page": 7,
+            "reference": "O4",
+            "item": "householder MG11",
+            "statusWord": "requested",
+            "side": "missing",
+            "line": "O4 householder MG11 | Requested Listed or referred to but not in current"
+          }
+        ],
+        "conflicts": [],
+        "uploadLimitations": [],
+        "cpsChaseHeld": true
+      },
+      "screens": {
+        "overview": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\SIDDIQ-overview.png",
+        "today": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\SIDDIQ-today.png",
+        "disclosure-chase": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\SIDDIQ-disclosure-chase.png"
+      },
+      "tabBodyPreview": {
+        "overview": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\nOverview\nFile\nMore\nNext hearing\n\nDate not safely established\n\nCoded source extractor\nSource receipt\n\ncontinuity, drug analysis certificate, householder MG11. The file should be reviewed again once · p.10\n\nCASE COMMAND CENTRE\n\nOmar Siddiq\ndetails2026 Defendant, charge, court and hearing\nPROVISIONAL\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\nDo not import another offence-family template unless the papers support it.\n\n4\n\nMISSING\n\nNeeds chase\n\n0\n\nINCOMPLETE\n\nNeeds completion\n\n4\n\nOPEN REVIEW\n\nNeeds checking\n\nKey defence issues\n\nHighest-value points from the papers. Each one keeps its source receipt.\n\n1 issue\nInterview service status conflicts on the papers\n\nThis matters because an interview summary is not the same as a full transcript or recording.\n\nNext: Confirm exactly what interview material is served before advising on admissions or interview fairness.\n\nSource: INT/4Interview audio/transcriptSummary only unless transcript served | transcript or custody record where listed as outstanding.\n\nWhy / source receipt\nWhat needs attention\n\nOne shortlist from the papers. If the file is quiet, this board stays quiet.\n\n4 items\n\nBWV search footage\n\nMISSING\n\nSchedule status \"outstanding\" — O1 BWV search footage | Outstanding Listed or referred to but not in current (p.7)\n\nscales continuity\n\nMISSING\n\nSchedule status \"outstanding\" — O2 scales continuity | Outstanding Listed or referred to but not in current (p.7)\n\ndrug analysis certificate\n\nMISSING\n\nSchedule status \"outstanding\" — O3 drug analysis certificate | Outstanding Listed or referred to but not in current (p.7)\n\nhouseholder MG11\n\nMISSING\n\nSchedule status \"requested\" — O4 householder MG11 | Requested Listed or referred to but not in current (p.7)\n\nSELECTED ISSUE\n\nBWV search footage\nMISSING\n\nWHY CASEBRAIN SAYS THIS\n\nSchedule status \"outstanding\" — O1 BWV search footage | Outstanding Listed or referred to but not in current (p.7)\n\nSOURCES\n\nMG6 disclosure schedule\nO1 BWV search footage | Outstanding Listed or referred to but not in current\nMG6 disclosure schedule p.7\n\nRECOMMENDED ACTION\n\nPlease provide the BWV search footage, or confirm in writing why it is not available.\n\nWhy / source receipt\nCopy chase request\nCopy court wording\nSafe court line\nCopy safe court line\n\nThe defence asks the court to record that BWV search footage; scales continuity; drug analysis certificate; householder MG11 remain outstanding on the papers.\n\nWhy / source receipt\nClient update\nCopy client update\n\nCLIENT-SAFE SUMMARY\n(not for court or CPS) We are reviewing the papers in your case (details2026 Defendant, charge, court and hearing). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.\n\nWhy / source receipt\nDetail tabs\n\nMain answer is above. Open the detail views only when you need the full source desk.\n\nFile & source →\nPapers detail →\nCPS chase detail →\nCourt detail →\nReadiness: 4% provisional score from papers-backed counts.",
+        "today": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\n\nOmar Siddiq\n\ndetails2026 Defendant, charge, court and hearing\n\nEastmere Magistrates' Court\n·\nListing on papers · 31 Jul 2026 at 10:00 (elapsed)\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nFile\nMore\nRecord Position\nUpload Evidence\nNext hearing\n\nDate not safely established\n\nCoded source extractor\nSource receipt\n\ncontinuity, drug analysis certificate, householder MG11. The file should be reviewed again once · p.10\n\nREADINESS\n\nNeeds review\n\nSAFE COURT LINE\n\nThe defence asks the court to record that BWV search footage; scales continuity; drug analysis certificate remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.\n\nTOP CHASE\n\nBWV search footage\n\nNEXT STEP\n\nChase: BWV search footage.\n\nWhy / source receipt\nBEFORE COURT\nCOURT LINES\nSOLICITOR REVIEW\n\nAsk the court to set a disclosure timetable for:\n\nbWV search footage remains outstanding\nscales continuity remains outstanding\ndrug analysis certificate remains outstanding\n\nKeep the hearing position provisional until those papers are served.\n\nNext steps\n\nChase: BWV search footage.\nChase: scales continuity.\nChase: drug analysis certificate.\nOUR READ\nCOURT LINE FROM PAPERS\nPROVISIONAL\nKeep the position provisional and tied to the uploaded papers.\nThe court is asked to record outstanding File-named source material and set a disclosure timetable.\nWHAT'S MISSING\nOUTSTANDING MATERIAL\nMISSING\nBWV search footage\nscales continuity\ndrug analysis certificate\nhouseholder MG11\nOpen CPS Chase (4 review items) →\nGUARDRAILS\n\nSchedule chase notes\n\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\n\nDO NOT TREAT AS CONFIRMED ON CURRENT PAPERS\n\nSOLICITOR REVIEW\nAvoid firm wording until the papers confirm it\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\nNo support on the papers for another offence-family template. Avoid relying on it until confirmed.\nDo not treat unserved source material as proved.\nMore detail (War Room drafts, ask court, risks)\n\nFlag this section\n\nMark anything wrong, unclear, unsafe, or useful for later review.",
+        "disclosure-chase": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\n\nOmar Siddiq\n\ndetails2026 Defendant, charge, court and hearing\n\nEastmere Magistrates' Court\n·\nListing on papers · 31 Jul 2026 at 10:00 (elapsed)\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nFile\nMore\nRecord Position\nUpload Evidence\n\nDISCLOSURE CHASE\n\nSCHEDULE CHASE NOTES\n\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\n\nTOTAL\n\n4\n\nOVERDUE\n\n0\n\nDUE SOON\n\n0\n\nCHASED\n\n0\n\nRECEIVED\n\n0\n\nNOT STARTED\n\n4\n\nAll\nOverdue\nDue soon\nChased\nReceived\nBWV search footage\n\nSchedule status \"outstanding\" — O1 BWV search footage | Outstanding Listed or referred to but not in current (p.7)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 7 (compiled 7) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nscales continuity\n\nSchedule status \"outstanding\" — O2 scales continuity | Outstanding Listed or referred to but not in current (p.7)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 7 (compiled 7) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\ndrug analysis certificate\n\nSchedule status \"outstanding\" — O3 drug analysis certificate | Outstanding Listed or referred to but not in current (p.7)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 7 (compiled 7) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nhouseholder MG11\n\nSchedule status \"requested\" — O4 householder MG11 | Requested Listed or referred to but not in current (p.7)\n\nNEEDS CONFIRMATION\nREFERRED ONLY\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 7 (compiled 7) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nBWV search footage\nOUTSTANDING\n\nWHY IT MATTERS\n\nSchedule status \"outstanding\" — O1 BWV search footage | Outstanding Listed or referred to but not in current (p.7)\n\nWhy / source receipt\n\nSource: MG6 disclosure schedule\n\nDeadline: As soon as practicable\n\nEVIDENCE ANCHOR\n\nO1 BWV search footage | Outstanding Listed or referred to but not in current\n\nDRAFT CHASE WORDING\n\nPlease provide BWV search footage, or confirm in writing why it is not available.\n\nCOURT LINE\n\nThe defence asks the court to record that BWV search footage remains outstanding on the schedule.\n\nCase-wide court line (provisional): The defence asks the court to record that BWV search footage; scales continuity; drug analysis certificate; householder MG11 remain outstanding on the papers.\n\nProvisional chase list · check source before sending\n\nFlag this section\n\nMark anything wrong, unclear, unsafe, or useful for later review."
+      },
+      "tabErrors": {},
+      "screensComplete": true,
+      "browserTabsOk": true,
+      "proofKind": "authenticated-api-plus-browser"
+    },
+    {
+      "key": "HUGHES",
+      "caseId": "d824158d-5fe6-434e-9047-5cd319176689",
+      "tab": "overview",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/d824158d-5fe6-434e-9047-5cd319176689?tab=overview&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\HUGHES-overview.png",
+      "screenshotBytes": 278851,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "HUGHES",
+      "caseId": "d824158d-5fe6-434e-9047-5cd319176689",
+      "tab": "today",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/d824158d-5fe6-434e-9047-5cd319176689?tab=today&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\HUGHES-today.png",
+      "screenshotBytes": 113827,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "HUGHES",
+      "caseId": "d824158d-5fe6-434e-9047-5cd319176689",
+      "tab": "disclosure-chase",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/d824158d-5fe6-434e-9047-5cd319176689?tab=disclosure-chase&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\HUGHES-disclosure-chase.png",
+      "screenshotBytes": 210179,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "HUGHES",
+      "caseId": "d824158d-5fe6-434e-9047-5cd319176689",
+      "documentId": "893cc091-40c4-48c6-8350-2ba548b498c9",
+      "mode": "applied",
+      "pdfSha256": "547e48480db13fd06148d468d5d0c668b0421dc31df71a8c0897e377aa134d55",
+      "ownership": {
+        "email": "chatgpt.reviewer.1791850130920@casebrain.qa.review",
+        "userId": "fc794489-eef4-48bf-aaca-82bbe6e020db",
+        "orgId": "33643d29-14f5-4cd8-b408-f4687389a64d",
+        "caseId": "d824158d-5fe6-434e-9047-5cd319176689"
+      },
+      "apiChecks": {
+        "httpOk": true,
+        "labEnabled": true,
+        "applied": true,
+        "cpsHeld": true,
+        "sourceReceiptOk": true,
+        "mustChaseOk": true,
+        "mustNotChaseOk": true,
+        "uploadOk": true,
+        "conflictOk": true,
+        "unsupportedVisible": true,
+        "surfacesChaseOk": true,
+        "surfacesUnsupportedOk": true
+      },
+      "apiPass": true,
+      "chaseLabels": [
+        "CCTV export log",
+        "MG11 officer",
+        "BWV booking-in clip",
+        "BWV PC Morris",
+        "Call handler note",
+        "Seizure log"
+      ],
+      "sourceDocumentId": "893cc091-40c4-48c6-8350-2ba548b498c9",
+      "sourceDocumentName": "CB-TB-1606_Hughes.pdf",
+      "limitations": [
+        "CPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label."
+      ],
+      "cpsChase": null,
+      "lab": {
+        "enabled": true,
+        "applied": true,
+        "unsupportedInput": false,
+        "unsupportedReason": null,
+        "scheduleNotEstablished": false,
+        "multipleSchedulesUnresolved": false,
+        "source": "column-pages",
+        "rowCount": 8,
+        "missingCount": 6,
+        "servedCount": 2,
+        "sourceDocumentId": "893cc091-40c4-48c6-8350-2ba548b498c9",
+        "sourceDocumentName": "CB-TB-1606_Hughes.pdf",
+        "scheduleDocuments": [
+          {
+            "documentId": "893cc091-40c4-48c6-8350-2ba548b498c9",
+            "documentName": "CB-TB-1606_Hughes.pdf",
+            "rowCount": 8
+          }
+        ],
+        "scheduleObservations": [
+          {
+            "documentId": "893cc091-40c4-48c6-8350-2ba548b498c9",
+            "documentName": "CB-TB-1606_Hughes.pdf",
+            "page": 8,
+            "reference": "M1",
+            "item": "BWV PC Khan",
+            "statusWord": "served",
+            "side": "served",
+            "line": "M1 BWV PC Khan | Served Signed copy attached"
+          },
+          {
+            "documentId": "893cc091-40c4-48c6-8350-2ba548b498c9",
+            "documentName": "CB-TB-1606_Hughes.pdf",
+            "page": 8,
+            "reference": "M2",
+            "item": "Forensic submission note",
+            "statusWord": "served",
+            "side": "served",
+            "line": "M2 Forensic submission note | Served Read with MG5"
+          },
+          {
+            "documentId": "893cc091-40c4-48c6-8350-2ba548b498c9",
+            "documentName": "CB-TB-1606_Hughes.pdf",
+            "page": 8,
+            "reference": "M3",
+            "item": "CCTV export log",
+            "statusWord": "requested",
+            "side": "missing",
+            "line": "M3 CCTV export log | Requested Officer to upload"
+          },
+          {
+            "documentId": "893cc091-40c4-48c6-8350-2ba548b498c9",
+            "documentName": "CB-TB-1606_Hughes.pdf",
+            "page": 8,
+            "reference": "M4",
+            "item": "MG11 officer",
+            "statusWord": "requested",
+            "side": "missing",
+            "line": "M4 MG11 officer | Requested Awaiting CPS review"
+          },
+          {
+            "documentId": "893cc091-40c4-48c6-8350-2ba548b498c9",
+            "documentName": "CB-TB-1606_Hughes.pdf",
+            "page": 8,
+            "reference": "M5",
+            "item": "BWV booking-in clip",
+            "statusWord": "to follow",
+            "side": "missing",
+            "line": "M5 BWV booking-in clip | To follow Awaiting CPS review"
+          },
+          {
+            "documentId": "893cc091-40c4-48c6-8350-2ba548b498c9",
+            "documentName": "CB-TB-1606_Hughes.pdf",
+            "page": 8,
+            "reference": "M6",
+            "item": "BWV PC Morris",
+            "statusWord": "to follow",
+            "side": "missing",
+            "line": "M6 BWV PC Morris | To follow Awaiting CPS review"
+          },
+          {
+            "documentId": "893cc091-40c4-48c6-8350-2ba548b498c9",
+            "documentName": "CB-TB-1606_Hughes.pdf",
+            "page": 8,
+            "reference": "M7",
+            "item": "Call handler note",
+            "statusWord": "requested",
+            "side": "missing",
+            "line": "M7 Call handler note | Requested Officer to upload"
+          },
+          {
+            "documentId": "893cc091-40c4-48c6-8350-2ba548b498c9",
+            "documentName": "CB-TB-1606_Hughes.pdf",
+            "page": 8,
+            "reference": "M8",
+            "item": "Seizure log",
+            "statusWord": "requested",
+            "side": "missing",
+            "line": "M8 Seizure log | Requested Disclosure request pending"
+          }
+        ],
+        "conflicts": [],
+        "uploadLimitations": [],
+        "cpsChaseHeld": true
+      },
+      "screens": {
+        "overview": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\HUGHES-overview.png",
+        "today": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\HUGHES-today.png",
+        "disclosure-chase": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\HUGHES-disclosure-chase.png"
+      },
+      "tabBodyPreview": {
+        "overview": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\nOverview\nFile\nMore\nNext hearing\n\nNo next hearing is safely established from the supplied papers.\n\nCASE COMMAND CENTRE\n\nJordan Hughes\nRobbery\nPROVISIONAL\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\nDo not import another offence-family template unless the papers support it.\n\n6\n\nMISSING\n\nNeeds chase\n\n0\n\nINCOMPLETE\n\nNeeds completion\n\n6\n\nOPEN REVIEW\n\nNeeds checking\n\nKey defence issues\n\nHighest-value points from the papers. Each one keeps its source receipt.\n\n1 issue\nInterview service status conflicts on the papers\n\nThis matters because an interview summary is not the same as a full transcript or recording.\n\nNext: Confirm exactly what interview material is served before advising on admissions or interview fairness.\n\nSource: The interview note is not a verbatim transcript unless separately served. | InterviewSummary provided; full transcript outstanding\n\nWhy / source receipt\nWhat needs attention\n\nOne shortlist from the papers. If the file is quiet, this board stays quiet.\n\n6 items\n\nCCTV export log\n\nMISSING\n\nSchedule status \"requested\" — M3 CCTV export log | Requested Officer to upload (p.8)\n\nMG11 officer\n\nMISSING\n\nSchedule status \"requested\" — M4 MG11 officer | Requested Awaiting CPS review (p.8)\n\nBWV booking-in clip\n\nMISSING\n\nSchedule status \"to follow\" — M5 BWV booking-in clip | To follow Awaiting CPS review (p.8)\n\nBWV PC Morris\n\nMISSING\n\nSchedule status \"to follow\" — M6 BWV PC Morris | To follow Awaiting CPS review (p.8)\n\nCall handler note\n\nMISSING\n\nSchedule status \"requested\" — M7 Call handler note | Requested Officer to upload (p.8)\n\nSeizure log\n\nMISSING\n\nSchedule status \"requested\" — M8 Seizure log | Requested Disclosure request pending (p.8)\n\nSELECTED ISSUE\n\nCCTV export log\nMISSING\n\nWHY CASEBRAIN SAYS THIS\n\nSchedule status \"requested\" — M3 CCTV export log | Requested Officer to upload (p.8)\n\nSOURCES\n\nMG6 disclosure schedule\nM3 CCTV export log | Requested Officer to upload\nMG6 disclosure schedule p.8\n\nRECOMMENDED ACTION\n\nPlease provide the CCTV export log, or confirm in writing why it is not available.\n\nWhy / source receipt\nCopy chase request\nCopy court wording\nSafe court line\nCopy safe court line\n\nThe defence asks the court to record that CCTV export log; MG11 officer; BWV booking-in clip; BWV PC Morris; Call handler note; Seizure log remain outstanding on the papers.\n\nWhy / source receipt\nClient update\nCopy client update\n\nCLIENT-SAFE SUMMARY\n(not for court or CPS) We are reviewing the papers in your case (Robbery). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.\n\nWhy / source receipt\nDetail tabs\n\nMain answer is above. Open the detail views only when you need the full source desk.\n\nFile & source →\nPapers detail →\nCPS chase detail →\nCourt detail →\nReadiness: 4% provisional score from papers-backed counts.",
+        "today": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\n\nJordan Hughes\n\nRobbery\n\nEastford Magistrates' Court\n·\nListing on papers · 15 Aug 2026 at 12:00 (elapsed)\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nFile\nMore\nRecord Position\nUpload Evidence\nNext hearing\n\nNo next hearing is safely established from the supplied papers.\n\nREADINESS\n\nNeeds review\n\nSAFE COURT LINE\n\nThe defence asks the court to record that CCTV export log; MG11 officer; BWV booking-in clip remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.\n\nTOP CHASE\n\nCCTV export log\n\nNEXT STEP\n\nChase: CCTV export log.\n\nWhy / source receipt\nBEFORE COURT\nCOURT LINES\nSOLICITOR REVIEW\n\nAsk the court to set a disclosure timetable for:\n\nCCTV export log remains outstanding\nofficer MG11 statement remains outstanding\nbWV booking-in clip remains outstanding\n\nKeep the hearing position provisional until those papers are served.\n\nNext steps\n\nChase: CCTV export log.\nChase: MG11 officer.\nChase: BWV booking-in clip.\nOUR READ\nCOURT LINE FROM PAPERS\nPROVISIONAL\nKeep the position provisional and tied to the uploaded papers.\nThe court is asked to record outstanding File-named source material and set a disclosure timetable.\nWHAT'S MISSING\nOUTSTANDING MATERIAL\nMISSING\nCCTV export log\nMG11 officer\nBWV booking-in clip\nBWV PC Morris\nCall handler note\nSeizure log\nOpen CPS Chase (6 review items) →\nGUARDRAILS\n\nSchedule chase notes\n\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\n\nDO NOT TREAT AS CONFIRMED ON CURRENT PAPERS\n\nSOLICITOR REVIEW\nAvoid firm wording until the papers confirm it\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\nNo support on the papers for another offence-family template. Avoid relying on it until confirmed.\nDo not treat unserved source material as proved.\nMore detail (War Room drafts, ask court, risks)\n\nFlag this section\n\nMark anything wrong, unclear, unsafe, or useful for later review.",
+        "disclosure-chase": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\n\nJordan Hughes\n\nRobbery\n\nEastford Magistrates' Court\n·\nListing on papers · 15 Aug 2026 at 12:00 (elapsed)\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nFile\nMore\nRecord Position\nUpload Evidence\n\nDISCLOSURE CHASE\n\nSCHEDULE CHASE NOTES\n\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\n\nTOTAL\n\n6\n\nOVERDUE\n\n0\n\nDUE SOON\n\n0\n\nCHASED\n\n0\n\nRECEIVED\n\n0\n\nNOT STARTED\n\n6\n\nAll\nOverdue\nDue soon\nChased\nReceived\nCCTV export log\n\nSchedule status \"requested\" — M3 CCTV export log | Requested Officer to upload (p.8)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 8 (compiled 8) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nMG11 officer\n\nSchedule status \"requested\" — M4 MG11 officer | Requested Awaiting CPS review (p.8)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 8 (compiled 8) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nBWV booking-in clip\n\nSchedule status \"to follow\" — M5 BWV booking-in clip | To follow Awaiting CPS review (p.8)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 8 (compiled 8) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nBWV PC Morris\n\nSchedule status \"to follow\" — M6 BWV PC Morris | To follow Awaiting CPS review (p.8)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 8 (compiled 8) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nCall handler note\n\nSchedule status \"requested\" — M7 Call handler note | Requested Officer to upload (p.8)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 8 (compiled 8) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nSeizure log\n\nSchedule status \"requested\" — M8 Seizure log | Requested Disclosure request pending (p.8)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 8 (compiled 8) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nCCTV export log\nOUTSTANDING\n\nWHY IT MATTERS\n\nSchedule status \"requested\" — M3 CCTV export log | Requested Officer to upload (p.8)\n\nWhy / source receipt\n\nSource: MG6 disclosure schedule\n\nDeadline: As soon as practicable\n\nEVIDENCE ANCHOR\n\nM3 CCTV export log | Requested Officer to upload\n\nDRAFT CHASE WORDING\n\nPlease provide CCTV export log, or confirm in writing why it is not available.\n\nCOURT LINE\n\nThe defence asks the court to record that CCTV export log remains outstanding on the schedule.\n\nCase-wide court line (provisional): The defence asks the court to record that CCTV export log; MG11 officer; BWV booking-in clip; BWV PC Morris; Call handler note; Seizure log remain outstanding on the papers.\n\nProvisional chase list · check source before sending\n\nFlag this section\n\nMark anything wrong, unclear, unsafe, or useful for later review."
+      },
+      "tabErrors": {},
+      "screensComplete": true,
+      "browserTabsOk": true,
+      "proofKind": "authenticated-api-plus-browser"
+    },
+    {
+      "key": "VALE",
+      "caseId": "a547ed6f-2177-4ee7-8e96-c47bd4bc205e",
+      "tab": "overview",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/a547ed6f-2177-4ee7-8e96-c47bd4bc205e?tab=overview&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\VALE-overview.png",
+      "screenshotBytes": 374160,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "VALE",
+      "caseId": "a547ed6f-2177-4ee7-8e96-c47bd4bc205e",
+      "tab": "today",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/a547ed6f-2177-4ee7-8e96-c47bd4bc205e?tab=today&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\VALE-today.png",
+      "screenshotBytes": 163588,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "VALE",
+      "caseId": "a547ed6f-2177-4ee7-8e96-c47bd4bc205e",
+      "tab": "disclosure-chase",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/a547ed6f-2177-4ee7-8e96-c47bd4bc205e?tab=disclosure-chase&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\VALE-disclosure-chase.png",
+      "screenshotBytes": 166405,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "VALE",
+      "caseId": "a547ed6f-2177-4ee7-8e96-c47bd4bc205e",
+      "documentId": "7ecae114-472b-49f5-a1cf-d90a47923305",
+      "mode": "applied",
+      "pdfSha256": "fa833c11fdda8afc7e6aa7c834961e67914a4edb6db13a667d3a11e876893c71",
+      "ownership": {
+        "email": "chatgpt.reviewer.1791850130920@casebrain.qa.review",
+        "userId": "fc794489-eef4-48bf-aaca-82bbe6e020db",
+        "orgId": "33643d29-14f5-4cd8-b408-f4687389a64d",
+        "caseId": "a547ed6f-2177-4ee7-8e96-c47bd4bc205e"
+      },
+      "apiChecks": {
+        "httpOk": true,
+        "labEnabled": true,
+        "applied": true,
+        "cpsHeld": true,
+        "sourceReceiptOk": true,
+        "mustChaseOk": true,
+        "mustNotChaseOk": true,
+        "uploadOk": true,
+        "conflictOk": true,
+        "unsupportedVisible": true,
+        "surfacesChaseOk": true,
+        "surfacesUnsupportedOk": true
+      },
+      "apiPass": true,
+      "chaseLabels": [
+        "phone extraction report",
+        "medical report",
+        "dashcam footage"
+      ],
+      "sourceDocumentId": "7ecae114-472b-49f5-a1cf-d90a47923305",
+      "sourceDocumentName": "CB-TB-1260_Vale.pdf",
+      "limitations": [
+        "Upload limitation (served on schedule; not in this copy): 999 audio — Schedule says served; document not in this copy (p.7)",
+        "Unresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"INT/6 999 audio — OIC outstanding\" (p.8)",
+        "Unresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"EX/01 999 audio — OIC outstanding\" (p.14)",
+        "Unresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"BWV/4 999 audio — Forensic provider outstanding\" (p.14)",
+        "CPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label."
+      ],
+      "cpsChase": null,
+      "lab": {
+        "enabled": true,
+        "applied": true,
+        "unsupportedInput": false,
+        "unsupportedReason": null,
+        "scheduleNotEstablished": false,
+        "multipleSchedulesUnresolved": false,
+        "source": "column-pages",
+        "rowCount": 7,
+        "missingCount": 3,
+        "servedCount": 4,
+        "sourceDocumentId": "7ecae114-472b-49f5-a1cf-d90a47923305",
+        "sourceDocumentName": "CB-TB-1260_Vale.pdf",
+        "scheduleDocuments": [
+          {
+            "documentId": "7ecae114-472b-49f5-a1cf-d90a47923305",
+            "documentName": "CB-TB-1260_Vale.pdf",
+            "rowCount": 7
+          }
+        ],
+        "scheduleObservations": [
+          {
+            "documentId": "7ecae114-472b-49f5-a1cf-d90a47923305",
+            "documentName": "CB-TB-1260_Vale.pdf",
+            "page": 7,
+            "reference": "1",
+            "item": "MG5 case summary",
+            "statusWord": "served",
+            "side": "served",
+            "line": "1 MG5 case summary | Yes See tab listed"
+          },
+          {
+            "documentId": "7ecae114-472b-49f5-a1cf-d90a47923305",
+            "documentName": "CB-TB-1260_Vale.pdf",
+            "page": 7,
+            "reference": "2",
+            "item": "interview summary",
+            "statusWord": "served",
+            "side": "served",
+            "line": "2 interview summary | Yes Served electronically"
+          },
+          {
+            "documentId": "7ecae114-472b-49f5-a1cf-d90a47923305",
+            "documentName": "CB-TB-1260_Vale.pdf",
+            "page": 7,
+            "reference": "3",
+            "item": "phone download summary",
+            "statusWord": "served",
+            "side": "served",
+            "line": "3 phone download summary | Yes See tab listed"
+          },
+          {
+            "documentId": "7ecae114-472b-49f5-a1cf-d90a47923305",
+            "documentName": "CB-TB-1260_Vale.pdf",
+            "page": 7,
+            "reference": "4",
+            "item": "999 audio",
+            "statusWord": "served",
+            "side": "served",
+            "line": "4 999 audio | Yes Schedule says served; document not in this copy"
+          },
+          {
+            "documentId": "7ecae114-472b-49f5-a1cf-d90a47923305",
+            "documentName": "CB-TB-1260_Vale.pdf",
+            "page": 7,
+            "reference": "5",
+            "item": "phone extraction report",
+            "statusWord": "outstanding",
+            "side": "missing",
+            "line": "5 phone extraction report | No Listed but not supplied"
+          },
+          {
+            "documentId": "7ecae114-472b-49f5-a1cf-d90a47923305",
+            "documentName": "CB-TB-1260_Vale.pdf",
+            "page": 7,
+            "reference": "6",
+            "item": "medical report",
+            "statusWord": "outstanding",
+            "side": "missing",
+            "line": "6 medical report | No Outstanding"
+          },
+          {
+            "documentId": "7ecae114-472b-49f5-a1cf-d90a47923305",
+            "documentName": "CB-TB-1260_Vale.pdf",
+            "page": 7,
+            "reference": "7",
+            "item": "dashcam footage",
+            "statusWord": "outstanding",
+            "side": "missing",
+            "line": "7 dashcam footage | No Requested from OIC"
+          }
+        ],
+        "conflicts": [
+          {
+            "page": 8,
+            "item": "999 audio",
+            "statusWord": "outstanding",
+            "line": "INT/6 999 audio | OIC outstanding",
+            "scheduleLine": "4 999 audio | Yes Schedule says served; document not in this copy"
+          },
+          {
+            "page": 14,
+            "item": "999 audio",
+            "statusWord": "outstanding",
+            "line": "EX/01 999 audio | OIC outstanding",
+            "scheduleLine": "4 999 audio | Yes Schedule says served; document not in this copy"
+          },
+          {
+            "page": 14,
+            "item": "999 audio",
+            "statusWord": "outstanding",
+            "line": "BWV/4 999 audio | Forensic provider outstanding",
+            "scheduleLine": "4 999 audio | Yes Schedule says served; document not in this copy"
+          }
+        ],
+        "uploadLimitations": [
+          {
+            "page": 7,
+            "reference": "4",
+            "item": "999 audio",
+            "note": "Schedule says served; document not in this copy",
+            "line": "4 999 audio | Yes Schedule says served; document not in this copy"
+          }
+        ],
+        "cpsChaseHeld": true
+      },
+      "screens": {
+        "overview": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\VALE-overview.png",
+        "today": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\VALE-today.png",
+        "disclosure-chase": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\VALE-disclosure-chase.png"
+      },
+      "tabBodyPreview": {
+        "overview": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\nOverview\nFile\nMore\nNext hearing\n\nDate not safely established\n\nCoded source extractor\nSource receipt\n\nMG6 SCHEDULE OF MATERIAL · p.9\n\nCASE COMMAND CENTRE\n\nCallum Vale\nCommon assault, contrary to section 39 Criminal Justice Act 1988\nPROVISIONAL\nUpload limitation (served on schedule; not in this copy): 999 audio — Schedule says served; document not in this copy (p.7)\nUnresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"INT/6 999 audio — OIC outstanding\" (p.8)\nUnresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"EX/01 999 audio — OIC outstanding\" (p.14)\nUnresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"BWV/4 999 audio — Forensic provider outstanding\" (p.14)\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\n\n3\n\nMISSING\n\nNeeds chase\n\n0\n\nINCOMPLETE\n\nNeeds completion\n\n3\n\nOPEN REVIEW\n\nNeeds checking\n\nKey defence issues\n\nHighest-value points from the papers. Each one keeps its source receipt.\n\n1 issue\nFull phone extraction or subscriber material is not complete\n\nThis matters because a summary or partial subscriber return may not prove the full attribution picture.\n\nNext: Chase the full extraction/report or subscriber material and avoid treating the phone evidence as complete.\n\nSource: ring string glued in listing notice Served material: MG5 case summary, interview summary, phone download summary Outstanding material: 999 audio, phone extraction report, medical report Continuation page appears to stop before the officer's final review paragraph.\n\nWhy / source receipt\nWhat needs attention\n\nOne shortlist from the papers. If the file is quiet, this board stays quiet.\n\n3 items\n\nphone extraction report\n\nMISSING\n\nSchedule status \"outstanding\" — 5 phone extraction report | No Listed but not supplied (p.7)\n\nmedical report\n\nMISSING\n\nSchedule status \"outstanding\" — 6 medical report | No Outstanding (p.7)\n\ndashcam footage\n\nMISSING\n\nSchedule status \"outstanding\" — 7 dashcam footage | No Requested from OIC (p.7)\n\nSELECTED ISSUE\n\nphone extraction report\nMISSING\n\nWHY CASEBRAIN SAYS THIS\n\nSchedule status \"outstanding\" — 5 phone extraction report | No Listed but not supplied (p.7)\n\nSOURCES\n\nMG6 disclosure schedule\n5 phone extraction report | No Listed but not supplied\nMG6 disclosure schedule p.7\n\nRECOMMENDED ACTION\n\nPlease provide the phone extraction report, or confirm in writing why it is not available.\n\nWhy / source receipt\nCopy chase request\nCopy court wording\nSafe court line\nCopy safe court line\n\nThe defence asks the court to record that phone extraction report; medical report; dashcam footage remain outstanding on the papers.\n\nWhy / source receipt\nClient update\nCopy client update\n\nCLIENT-SAFE SUMMARY\n(not for court or CPS) We are reviewing the papers in your case (Common assault, contrary to section 39 Criminal Justice Act 1988). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.\n\nWhy / source receipt\nDetail tabs\n\nMain answer is above. Open the detail views only when you need the full source desk.\n\nFile & source →\nPapers detail →\nCPS chase detail →\nCourt detail →\nReadiness: 4% provisional score from papers-backed counts.",
+        "today": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\n\nCallum Vale\n\nCommon assault, contrary to section 39 Criminal Justice Act 1988\n\nCrown Court at Leeds\n·\nListing on papers · 15 Jul 2026 at 09:30 (elapsed)\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nFile\nMore\nRecord Position\nUpload Evidence\nNext hearing\n\nDate not safely established\n\nCoded source extractor\nSource receipt\n\nMG6 SCHEDULE OF MATERIAL · p.9\n\nREADINESS\n\nNeeds review\n\nSAFE COURT LINE\n\nThe defence asks the court to record that phone extraction report; medical report; dashcam footage remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.\n\nTOP CHASE\n\nphone extraction report\n\nNEXT STEP\n\nChase: phone extraction report.\n\nWhy / source receipt\nBEFORE COURT\nCOURT LINES\nSOLICITOR REVIEW\n\nAsk the court to set a disclosure timetable for:\n\nphone extraction report remains outstanding\nmedical report remains outstanding\ndashcam footage remains outstanding\n\nKeep the hearing position provisional until those papers are served.\n\nNext steps\n\nChase: phone extraction report.\nChase: medical report.\nChase: dashcam footage.\nOUR READ\nCOURT LINE FROM PAPERS\nPROVISIONAL\nKeep the position provisional and tied to the uploaded papers.\nThe court is asked to record outstanding File-named source material and set a disclosure timetable.\nWHAT'S MISSING\nOUTSTANDING MATERIAL\nMISSING\nphone extraction report\nmedical report\ndashcam footage\nOpen CPS Chase (3 review items) →\nGUARDRAILS\n\nSchedule chase notes\n\nUpload limitation (served on schedule; not in this copy): 999 audio — Schedule says served; document not in this copy (p.7)\nUnresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"INT/6 999 audio — OIC outstanding\" (p.8)\nUnresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"EX/01 999 audio — OIC outstanding\" (p.14)\nUnresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"BWV/4 999 audio — Forensic provider outstanding\" (p.14)\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\n\nDO NOT TREAT AS CONFIRMED ON CURRENT PAPERS\n\nSOLICITOR REVIEW\nAvoid firm wording until the papers confirm it\nUpload limitation (served on schedule; not in this copy): 999 audio — Schedule says served; document not in this copy (p.7)\nUnresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"INT/6 999 audio — OIC outstanding\" (p.8)\nUnresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"EX/01 999 audio — OIC outstanding\" (p.14)\nUnresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"BWV/4 999 audio — Forensic provider outstanding\" (p.14)\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\nMore detail (War Room drafts, ask court, risks)\n\nFlag this section\n\nMark anything wrong, unclear, unsafe, or useful for later review.",
+        "disclosure-chase": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\n\nCallum Vale\n\nCommon assault, contrary to section 39 Criminal Justice Act 1988\n\nCrown Court at Leeds\n·\nListing on papers · 15 Jul 2026 at 09:30 (elapsed)\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nFile\nMore\nRecord Position\nUpload Evidence\n\nDISCLOSURE CHASE\n\nSCHEDULE CHASE NOTES\n\nUpload limitation (served on schedule; not in this copy): 999 audio — Schedule says served; document not in this copy (p.7)\nUnresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"INT/6 999 audio — OIC outstanding\" (p.8)\nUnresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"EX/01 999 audio — OIC outstanding\" (p.14)\nUnresolved schedule conflict: 999 audio — schedule \"4 999 audio — Yes Schedule says served; document not in this copy\" vs later \"BWV/4 999 audio — Forensic provider outstanding\" (p.14)\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\n\nTOTAL\n\n3\n\nOVERDUE\n\n0\n\nDUE SOON\n\n0\n\nCHASED\n\n0\n\nRECEIVED\n\n0\n\nNOT STARTED\n\n3\n\nAll\nOverdue\nDue soon\nChased\nReceived\nphone extraction report\n\nSchedule status \"outstanding\" — 5 phone extraction report | No Listed but not supplied (p.7)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 7 (compiled 7) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nmedical report\n\nSchedule status \"outstanding\" — 6 medical report | No Outstanding (p.7)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 7 (compiled 7) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\ndashcam footage\n\nSchedule status \"outstanding\" — 7 dashcam footage | No Requested from OIC (p.7)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 7 (compiled 7) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nphone extraction report\nOUTSTANDING\n\nWHY IT MATTERS\n\nSchedule status \"outstanding\" — 5 phone extraction report | No Listed but not supplied (p.7)\n\nWhy / source receipt\n\nSource: MG6 disclosure schedule\n\nDeadline: As soon as practicable\n\nEVIDENCE ANCHOR\n\n5 phone extraction report | No Listed but not supplied\n\nDRAFT CHASE WORDING\n\nPlease provide phone extraction report, or confirm in writing why it is not available.\n\nCOURT LINE\n\nThe defence asks the court to record that phone extraction report remains outstanding on the schedule.\n\nCase-wide court line (provisional): The defence asks the court to record that phone extraction report; medical report; dashcam footage remain outstanding on the papers.\n\nProvisional chase list · check source before sending\n\nFlag this section\n\nMark anything wrong, unclear, unsafe, or useful for later review."
+      },
+      "tabErrors": {},
+      "screensComplete": true,
+      "browserTabsOk": true,
+      "proofKind": "authenticated-api-plus-browser"
+    },
+    {
+      "key": "ELLIS",
+      "caseId": "21769ea4-5381-48cc-aa1a-97574ed4c96b",
+      "tab": "overview",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/21769ea4-5381-48cc-aa1a-97574ed4c96b?tab=overview&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\ELLIS-overview.png",
+      "screenshotBytes": 275810,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "ELLIS",
+      "caseId": "21769ea4-5381-48cc-aa1a-97574ed4c96b",
+      "tab": "today",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/21769ea4-5381-48cc-aa1a-97574ed4c96b?tab=today&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\ELLIS-today.png",
+      "screenshotBytes": 128432,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "ELLIS",
+      "caseId": "21769ea4-5381-48cc-aa1a-97574ed4c96b",
+      "tab": "disclosure-chase",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/21769ea4-5381-48cc-aa1a-97574ed4c96b?tab=disclosure-chase&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\ELLIS-disclosure-chase.png",
+      "screenshotBytes": 176116,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "ELLIS",
+      "caseId": "21769ea4-5381-48cc-aa1a-97574ed4c96b",
+      "documentId": "6792b5af-51de-456e-9a6d-98315a0fc336",
+      "mode": "applied",
+      "pdfSha256": "fdd9ef099bcb27b34ba10450fc19e41429eb159c2f735e59484e92fa1911df7c",
+      "ownership": {
+        "email": "chatgpt.reviewer.1791850130920@casebrain.qa.review",
+        "userId": "fc794489-eef4-48bf-aaca-82bbe6e020db",
+        "orgId": "33643d29-14f5-4cd8-b408-f4687389a64d",
+        "caseId": "21769ea4-5381-48cc-aa1a-97574ed4c96b"
+      },
+      "apiChecks": {
+        "httpOk": true,
+        "labEnabled": true,
+        "applied": true,
+        "cpsHeld": true,
+        "sourceReceiptOk": true,
+        "mustChaseOk": true,
+        "mustNotChaseOk": true,
+        "uploadOk": true,
+        "conflictOk": true,
+        "unsupportedVisible": true,
+        "surfacesChaseOk": true,
+        "surfacesUnsupportedOk": true
+      },
+      "apiPass": true,
+      "chaseLabels": [
+        "Body-worn video — PC Daniel Hart",
+        "Photograph exhibit ML/1 — damaged passenger window",
+        "Property exhibit DH/1 — metal torch",
+        "Repair estimate supplied by Maya Lewis"
+      ],
+      "sourceDocumentId": "6792b5af-51de-456e-9a6d-98315a0fc336",
+      "sourceDocumentName": "magistrates_first_hearing_test_bundle_24pp.pdf",
+      "limitations": [
+        "Upload limitation (served on schedule; not in this copy): Interview transcript — Jordan Ellis — not in this copy (p.15)",
+        "CPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label."
+      ],
+      "cpsChase": null,
+      "lab": {
+        "enabled": true,
+        "applied": true,
+        "unsupportedInput": false,
+        "unsupportedReason": null,
+        "scheduleNotEstablished": false,
+        "multipleSchedulesUnresolved": false,
+        "source": "column-pages",
+        "rowCount": 9,
+        "missingCount": 4,
+        "servedCount": 5,
+        "sourceDocumentId": "6792b5af-51de-456e-9a6d-98315a0fc336",
+        "sourceDocumentName": "magistrates_first_hearing_test_bundle_24pp.pdf",
+        "scheduleDocuments": [
+          {
+            "documentId": "6792b5af-51de-456e-9a6d-98315a0fc336",
+            "documentName": "magistrates_first_hearing_test_bundle_24pp.pdf",
+            "rowCount": 9
+          }
+        ],
+        "scheduleObservations": [
+          {
+            "documentId": "6792b5af-51de-456e-9a6d-98315a0fc336",
+            "documentName": "magistrates_first_hearing_test_bundle_24pp.pdf",
+            "page": 14,
+            "reference": "",
+            "item": "MG11 - Maya Lewis dated 5 October 2026",
+            "statusWord": "served",
+            "side": "served",
+            "line": "MG11 - Maya Lewis dated 5 October 2026 | Yes - served"
+          },
+          {
+            "documentId": "6792b5af-51de-456e-9a6d-98315a0fc336",
+            "documentName": "magistrates_first_hearing_test_bundle_24pp.pdf",
+            "page": 14,
+            "reference": "",
+            "item": "MG11 - PC Daniel Hart dated 5 October 2026",
+            "statusWord": "served",
+            "side": "served",
+            "line": "MG11 - PC Daniel Hart dated 5 October 2026 | Yes - served"
+          },
+          {
+            "documentId": "6792b5af-51de-456e-9a6d-98315a0fc336",
+            "documentName": "magistrates_first_hearing_test_bundle_24pp.pdf",
+            "page": 14,
+            "reference": "",
+            "item": "CCTV - front camera 2 export, 20:11 to 20:13",
+            "statusWord": "served",
+            "side": "served",
+            "line": "CCTV - front camera 2 export, 20:11 to 20:13 | Yes - partial copy served"
+          },
+          {
+            "documentId": "6792b5af-51de-456e-9a6d-98315a0fc336",
+            "documentName": "magistrates_first_hearing_test_bundle_24pp.pdf",
+            "page": 14,
+            "reference": "",
+            "item": "Body-worn video - PC Daniel Hart",
+            "statusWord": "to follow",
+            "side": "missing",
+            "line": "Body-worn video - PC Daniel Hart | To follow"
+          },
+          {
+            "documentId": "6792b5af-51de-456e-9a6d-98315a0fc336",
+            "documentName": "magistrates_first_hearing_test_bundle_24pp.pdf",
+            "page": 15,
+            "reference": "",
+            "item": "Interview transcript - Jordan Ellis",
+            "statusWord": "served",
+            "side": "served",
+            "line": "Interview transcript - Jordan Ellis | Yes - not in this copy"
+          },
+          {
+            "documentId": "6792b5af-51de-456e-9a6d-98315a0fc336",
+            "documentName": "magistrates_first_hearing_test_bundle_24pp.pdf",
+            "page": 15,
+            "reference": "",
+            "item": "Custody record extract",
+            "statusWord": "served",
+            "side": "served",
+            "line": "Custody record extract | Yes - served"
+          },
+          {
+            "documentId": "6792b5af-51de-456e-9a6d-98315a0fc336",
+            "documentName": "magistrates_first_hearing_test_bundle_24pp.pdf",
+            "page": 15,
+            "reference": "",
+            "item": "Photograph exhibit ML/1 - damaged passenger window",
+            "statusWord": "outstanding",
+            "side": "missing",
+            "line": "Photograph exhibit ML/1 - damaged passenger window | Outstanding"
+          },
+          {
+            "documentId": "6792b5af-51de-456e-9a6d-98315a0fc336",
+            "documentName": "magistrates_first_hearing_test_bundle_24pp.pdf",
+            "page": 15,
+            "reference": "",
+            "item": "Property exhibit DH/1 - metal torch",
+            "statusWord": "outstanding",
+            "side": "missing",
+            "line": "Property exhibit DH/1 - metal torch | Outstanding"
+          },
+          {
+            "documentId": "6792b5af-51de-456e-9a6d-98315a0fc336",
+            "documentName": "magistrates_first_hearing_test_bundle_24pp.pdf",
+            "page": 15,
+            "reference": "",
+            "item": "Repair estimate supplied by Maya Lewis",
+            "statusWord": "outstanding",
+            "side": "missing",
+            "line": "Repair estimate supplied by Maya Lewis | Outstanding"
+          }
+        ],
+        "conflicts": [],
+        "uploadLimitations": [
+          {
+            "page": 15,
+            "reference": "",
+            "item": "Interview transcript - Jordan Ellis",
+            "note": "not in this copy",
+            "line": "Interview transcript - Jordan Ellis | Yes - not in this copy"
+          }
+        ],
+        "cpsChaseHeld": true
+      },
+      "screens": {
+        "overview": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\ELLIS-overview.png",
+        "today": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\ELLIS-today.png",
+        "disclosure-chase": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\ELLIS-disclosure-chase.png"
+      },
+      "tabBodyPreview": {
+        "overview": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\nOverview\nFile\nMore\nNext hearing\n\n22 October 2026\n\nCoded source extractor\nSource receipt\n\nNOTICE OF HEARING · p.2\n\nCASE COMMAND CENTRE\n\nJordan Ellis\nCriminal damage · Ellis Court Northbridge Magistrates' Court · Upcoming listing · 22 Oct 2026\nPROVISIONAL\nUpload limitation (served on schedule; not in this copy): Interview transcript — Jordan Ellis — not in this copy (p.15)\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\nDo not import another offence-family template unless the papers support it.\n\n4\n\nMISSING\n\nNeeds chase\n\n0\n\nINCOMPLETE\n\nNeeds completion\n\n4\n\nOPEN REVIEW\n\nNeeds checking\n\nWhat needs attention\n\nOne shortlist from the papers. If the file is quiet, this board stays quiet.\n\n4 items\n\nBody-worn video - PC Daniel Hart\n\nMISSING\n\nSchedule status \"to follow\" — Body-worn video - PC Daniel Hart | To follow (p.14)\n\nPhotograph exhibit ML/1 - damaged passenger window\n\nMISSING\n\nSchedule status \"outstanding\" — Photograph exhibit ML/1 - damaged passenger window | Outstanding (p.15)\n\nProperty exhibit DH/1 - metal torch\n\nMISSING\n\nSchedule status \"outstanding\" — Property exhibit DH/1 - metal torch | Outstanding (p.15)\n\nRepair estimate supplied by Maya Lewis\n\nMISSING\n\nSchedule status \"outstanding\" — Repair estimate supplied by Maya Lewis | Outstanding (p.15)\n\nSELECTED ISSUE\n\nBody-worn video - PC Daniel Hart\nMISSING\n\nWHY CASEBRAIN SAYS THIS\n\nSchedule status \"to follow\" — Body-worn video - PC Daniel Hart | To follow (p.14)\n\nSOURCES\n\nMG6 disclosure schedule\nBody-worn video - PC Daniel Hart | To follow\nMG6 disclosure schedule p.14\n\nRECOMMENDED ACTION\n\nPlease provide the Body-worn video - PC Daniel Hart, or confirm in writing why it is not available.\n\nWhy / source receipt\nCopy chase request\nCopy court wording\nSafe court line\nCopy safe court line\n\nThe defence asks the court to record that Body-worn video — PC Daniel Hart; Photograph exhibit ML/1 — damaged passenger window; Property exhibit DH/1 — metal torch; Repair estimate supplied by Maya Lewis remain outstanding on the papers.\n\nWhy / source receipt\nClient update\nCopy client update\n\nCLIENT-SAFE SUMMARY\n(not for court or CPS) We are reviewing the papers in your case (Criminal damage). This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice.\n\nWhy / source receipt\nDetail tabs\n\nMain answer is above. Open the detail views only when you need the full source desk.\n\nFile & source →\nPapers detail →\nCPS chase detail →\nCourt detail →\nReadiness: 4% provisional score from papers-backed counts.",
+        "today": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\n\nJordan Ellis\n\nCriminal damage\n\nNorthbridge Magistrates' Court\n·\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nFile\nMore\nRecord Position\nUpload Evidence\nNext hearing\n\n22 October 2026\n\nCoded source extractor\nSource receipt\n\nNOTICE OF HEARING · p.2\n\nREADINESS\n\nNeeds review\n\nSAFE COURT LINE\n\nThe defence asks the court to record that Body-worn video — PC Daniel Hart; Photograph exhibit ML/1 — damaged passenger window; Property exhibit DH/1 — metal torch remain outstanding on the current papers. Position remains provisional pending served source material and solicitor instructions.\n\nTOP CHASE\n\nBody-worn video - PC Daniel Hart\n\nNEXT STEP\n\nChase: Body-worn video — PC Daniel Hart.\n\nWhy / source receipt\nBEFORE COURT\nCOURT LINES\nSOLICITOR REVIEW\n\nAsk the court to set a disclosure timetable for:\n\nbody-worn video — PC Daniel Hart remains outstanding\nphotograph exhibit ML/1 — damaged passenger window remains outstanding\nproperty exhibit DH/1 — metal torch remains outstanding\n\nKeep the hearing position provisional until those papers are served.\n\nNext steps\n\nChase: Body-worn video — PC Daniel Hart.\nChase: Photograph exhibit ML/1 — damaged passenger window.\nChase: Property exhibit DH/1 — metal torch.\nOUR READ\nCOURT LINE FROM PAPERS\nPROVISIONAL\nKeep the position provisional and tied to the uploaded papers.\nThe court is asked to record outstanding File-named source material and set a disclosure timetable.\nWHAT'S MISSING\nOUTSTANDING MATERIAL\nMISSING\nBody-worn video - PC Daniel Hart\nPhotograph exhibit ML/1 - damaged passenger window\nProperty exhibit DH/1 - metal torch\nRepair estimate supplied by Maya Lewis\nOpen CPS Chase (4 review items) →\nGUARDRAILS\n\nSchedule chase notes\n\nUpload limitation (served on schedule; not in this copy): Interview transcript — Jordan Ellis — not in this copy (p.15)\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\n\nDO NOT TREAT AS CONFIRMED ON CURRENT PAPERS\n\nSOLICITOR REVIEW\nAvoid firm wording until the papers confirm it\nUpload limitation (served on schedule; not in this copy): Interview transcript — Jordan Ellis — not in this copy (p.15)\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\nNo support on the papers for another offence-family template. Avoid relying on it until confirmed.\nMore detail (War Room drafts, ask court, risks)\n\nFlag this section\n\nMark anything wrong, unclear, unsafe, or useful for later review.",
+        "disclosure-chase": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\n\nJordan Ellis\n\nCriminal damage\n\nNorthbridge Magistrates' Court\n·\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nFile\nMore\nRecord Position\nUpload Evidence\n\nDISCLOSURE CHASE\n\nSCHEDULE CHASE NOTES\n\nUpload limitation (served on schedule; not in this copy): Interview transcript — Jordan Ellis — not in this copy (p.15)\nCPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.\n\nTOTAL\n\n4\n\nOVERDUE\n\n0\n\nDUE SOON\n\n0\n\nCHASED\n\n0\n\nRECEIVED\n\n0\n\nNOT STARTED\n\n4\n\nAll\nOverdue\nDue soon\nChased\nReceived\nBody-worn video - PC Daniel Hart\n\nSchedule status \"to follow\" — Body-worn video - PC Daniel Hart | To follow (p.14)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 14 (compiled 14) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nPhotograph exhibit ML/1 - damaged passenger window\n\nSchedule status \"outstanding\" — Photograph exhibit ML/1 - damaged passenger window | Outstanding (p.15)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 15 (compiled 15) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nProperty exhibit DH/1 - metal torch\n\nSchedule status \"outstanding\" — Property exhibit DH/1 - metal torch | Outstanding (p.15)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 15 (compiled 15) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nRepair estimate supplied by Maya Lewis\n\nSchedule status \"outstanding\" — Repair estimate supplied by Maya Lewis | Outstanding (p.15)\n\nOUTSTANDING\nMISSING\nSource\nMG6 disclosure schedule\nDeadline\nAs soon as practicable\nProvenance\nMG6 disclosure schedule (disclosure schedule) · 15 (compiled 15) · state: missing\nWhy / source receipt\nCopy CPS chase\nProvisional: check source before sending\nCopy court line\nBody-worn video - PC Daniel Hart\nOUTSTANDING\n\nWHY IT MATTERS\n\nSchedule status \"to follow\" — Body-worn video - PC Daniel Hart | To follow (p.14)\n\nWhy / source receipt\n\nSource: MG6 disclosure schedule\n\nDeadline: As soon as practicable\n\nEVIDENCE ANCHOR\n\nBody-worn video - PC Daniel Hart | To follow\n\nDRAFT CHASE WORDING\n\nPlease provide Body-worn video - PC Daniel Hart, or confirm in writing why it is not available.\n\nCOURT LINE\n\nThe defence asks the court to record that Body-worn video - PC Daniel Hart remains outstanding on the schedule.\n\nCase-wide court line (provisional): The defence asks the court to record that Body-worn video — PC Daniel Hart; Photograph exhibit ML/1 — damaged passenger window; Property exhibit DH/1 — metal torch; Repair estimate supplied by Maya Lewis remain outstanding on the papers.\n\nProvisional chase list · check source before sending\n\nFlag this section\n\nMark anything wrong, unclear, unsafe, or useful for later review."
+      },
+      "tabErrors": {},
+      "screensComplete": true,
+      "browserTabsOk": true,
+      "proofKind": "authenticated-api-plus-browser"
+    },
+    {
+      "key": "UNSUPPORTED",
+      "caseId": "355cd6cb-56bf-4853-bce3-e29d0d4cd2c0",
+      "tab": "overview",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/355cd6cb-56bf-4853-bce3-e29d0d4cd2c0?tab=overview&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\UNSUPPORTED-overview.png",
+      "screenshotBytes": 272794,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "UNSUPPORTED",
+      "caseId": "355cd6cb-56bf-4853-bce3-e29d0d4cd2c0",
+      "tab": "today",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/355cd6cb-56bf-4853-bce3-e29d0d4cd2c0?tab=today&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\UNSUPPORTED-today.png",
+      "screenshotBytes": 121458,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "UNSUPPORTED",
+      "caseId": "355cd6cb-56bf-4853-bce3-e29d0d4cd2c0",
+      "tab": "disclosure-chase",
+      "href": "https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app/cases/355cd6cb-56bf-4853-bce3-e29d0d4cd2c0?tab=disclosure-chase&controlRoom=1",
+      "screenshot": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\UNSUPPORTED-disclosure-chase.png",
+      "screenshotBytes": 72842,
+      "visibleChase": true,
+      "visibleUnsupported": true,
+      "proofKind": "real-browser-playwright"
+    },
+    {
+      "key": "UNSUPPORTED",
+      "caseId": "355cd6cb-56bf-4853-bce3-e29d0d4cd2c0",
+      "documentId": "046c53d2-d3fe-4fba-9738-54c21cebaa99",
+      "mode": "unsupported",
+      "pdfSha256": "2d13a977eb118185c77b86ea7b9949700099a956f7b650cf4921855e96dcb55a",
+      "ownership": {
+        "email": "chatgpt.reviewer.1791850130920@casebrain.qa.review",
+        "userId": "fc794489-eef4-48bf-aaca-82bbe6e020db",
+        "orgId": "33643d29-14f5-4cd8-b408-f4687389a64d",
+        "caseId": "355cd6cb-56bf-4853-bce3-e29d0d4cd2c0"
+      },
+      "apiChecks": {
+        "httpOk": true,
+        "labEnabled": true,
+        "applied": true,
+        "cpsHeld": true,
+        "sourceReceiptOk": true,
+        "mustChaseOk": true,
+        "mustNotChaseOk": true,
+        "uploadOk": true,
+        "conflictOk": true,
+        "unsupportedVisible": true,
+        "surfacesChaseOk": true,
+        "surfacesUnsupportedOk": true
+      },
+      "apiPass": true,
+      "chaseLabels": [],
+      "sourceDocumentId": null,
+      "sourceDocumentName": null,
+      "limitations": [
+        "Schedule chase could not be read this way. Column-separated PDF text is required (original PDF path or supplied column pages). Flattened extract text is not enough. This is not proof that nothing is outstanding.",
+        "CPS chase letter held on this copy while schedule chase input is unsupported."
+      ],
+      "cpsChase": null,
+      "lab": {
+        "enabled": true,
+        "applied": false,
+        "unsupportedInput": true,
+        "unsupportedReason": "Schedule chase could not be read this way. Column-separated PDF text is required (original PDF path or supplied column pages). Flattened extract text is not enough. This is not proof that nothing is outstanding.",
+        "scheduleNotEstablished": false,
+        "multipleSchedulesUnresolved": false,
+        "source": "unit-pages",
+        "rowCount": 0,
+        "missingCount": 0,
+        "servedCount": 0,
+        "sourceDocumentId": null,
+        "sourceDocumentName": null,
+        "scheduleDocuments": [],
+        "scheduleObservations": [],
+        "conflicts": [],
+        "uploadLimitations": [],
+        "cpsChaseHeld": true
+      },
+      "screens": {
+        "overview": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\UNSUPPORTED-overview.png",
+        "today": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\UNSUPPORTED-today.png",
+        "disclosure-chase": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\UNSUPPORTED-disclosure-chase.png"
+      },
+      "tabBodyPreview": {
+        "overview": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\nOverview\nFile\nMore\nNext hearing\n\nDate not safely established\n\nCoded source extractor\nSource receipt\n\ncontinuity, drug analysis certificate, householder MG11. The file should be reviewed again once · p.10\n\nCASE COMMAND CENTRE\n\nOmar Siddiq\ndetails2026 Defendant, charge, court and hearing\nSchedule chase could not be read this way. Column-separated PDF text is required (original PDF path or supplied column pages). Flattened extract text is not enough. This is not proof that nothing is outstanding.\nCPS chase letter held on this copy while schedule chase input is unsupported.\nDo not import another offence-family template unless the papers support it.\n\n0\n\nMISSING\n\nNot confirmed\n\n0\n\nINCOMPLETE\n\nNot confirmed\n\n1\n\nOPEN REVIEW\n\nSchedule review required\n\nKey defence issues\n\nHighest-value points from the papers. Each one keeps its source receipt.\n\n2 issues\nInterview service status conflicts on the papers\n\nThis matters because an interview summary is not the same as a full transcript or recording.\n\nNext: Confirm exactly what interview material is served before advising on admissions or interview fairness.\n\nSource: INT/4Interview audio/transcriptSummary only unless transcript served | transcript or custody record where listed as outstanding.\n\nWhy / source receipt\nBWV appears requested but not served\n\nThis matters because body-worn video may affect identification, continuity or officer account reliability.\n\nNext: Add BWV to the disclosure chase and avoid fixing the hearing position until its status is confirmed.\n\nSource: Known issues for reviewlocation of scales disputed by documents; BWV missing; analysis not served; householder\n\nWhy / source receipt\nWhat needs attention\n\nOne shortlist from the papers. If the file is quiet, this board stays quiet.\n\n0 items\nSchedule chase could not be read this way — review required. Zero items here is not a confirmed clean board.\nSchedule chase review required\n\nSchedule chase could not be read this way. This is not proof that nothing is outstanding — check File or Papers before treating the board as clear.\n\nSafe court line\nCopy safe court line\n\nSchedule chase could not be read this way. Column-separated PDF text is required (original PDF path or supplied column pages). Flattened extract text is not enough. This is not proof that nothing is outstanding.\n\nWhy / source receipt\nClient update\nCopy client update\n\nCLIENT-SAFE SUMMARY\n(not for court or CPS) We are reviewing the papers in your case (details2026 Defendant, charge, court and hearing). This is early-stage — nothing is final until we have full disclosure and your instructions. We are not saying the case is won or lost — we need the full material before giving firm advice.\n\nWhy / source receipt\nDetail tabs\n\nMain answer is above. Open the detail views only when you need the full source desk.\n\nFile & source →\nPapers detail →\nCPS chase detail →\nCourt detail →\nReadiness: 20% provisional score from papers-backed counts.",
+        "today": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\n\nOmar Siddiq\n\ndetails2026 Defendant, charge, court and hearing\n\nEastmere Magistrates' Court\n·\nListing on papers · 31 Jul 2026 at 10:00 (elapsed)\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nFile\nMore\nRecord Position\nUpload Evidence\nNext hearing\n\nDate not safely established\n\nCoded source extractor\nSource receipt\n\ncontinuity, drug analysis certificate, householder MG11. The file should be reviewed again once · p.10\n\nREADINESS\n\nNeeds review\n\nSAFE COURT LINE\n\nThe defence position remains provisional pending served source material and solicitor instructions.\n\nTOP CHASE\n\n—\n\nNEXT STEP\n\nKeep the hearing line provisional pending served papers.\n\nWhy / source receipt\nBEFORE COURT\nCOURT LINES\nSOLICITOR REVIEW\n\nNo ask-court lines on the current brief.\n\nNext steps\n\nKeep the hearing line provisional pending served papers.\nSeek timetable / review date — avoid open-ended adjournment without dates.\nOUR READ\nCOURT LINE FROM PAPERS\nPROVISIONAL\n\nSee the safe court line in the strip above — keep the position provisional until papers confirm.\n\nWHAT'S MISSING\nOUTSTANDING MATERIAL\nMISSING\n\nNo chase items on the current brief.\n\nOpen CPS Chase (0 review items) →\nGUARDRAILS\n\nSchedule chase notes\n\nSchedule chase could not be read this way. Column-separated PDF text is required (original PDF path or supplied column pages). Flattened extract text is not enough. This is not proof that nothing is outstanding.\nCPS chase letter held on this copy while schedule chase input is unsupported.\n\nDO NOT TREAT AS CONFIRMED ON CURRENT PAPERS\n\nSOLICITOR REVIEW\nAvoid firm wording until the papers confirm it\nSchedule chase could not be read this way. Column-separated PDF text is required (original PDF path or supplied column pages). Flattened extract text is not enough. This is not proof that nothing is outstanding.\nCPS chase letter held on this copy while schedule chase input is unsupported.\nNo support on the papers for another offence-family template. Avoid relying on it until confirmed.\nMore detail (War Room drafts, ask court, risks)\n\nFlag this section\n\nMark anything wrong, unclear, unsafe, or useful for later review.",
+        "disclosure-chase": "CB\n\nCASE WORK\n\nTrial: 14d left · 5/2 cases · 5/10 docs\nUpgrade\n\nOmar Siddiq\n\ndetails2026 Defendant, charge, court and hearing\n\nEastmere Magistrates' Court\n·\nListing on papers · 31 Jul 2026 at 10:00 (elapsed)\nPROVISIONAL — CHECK PAPERS\n\nNext: Chase outstanding disclosure and record provisional hearing position.\n\nOverview\nFile\nMore\nRecord Position\nUpload Evidence\n\nDISCLOSURE CHASE\n\nSCHEDULE CHASE NOTES\n\nSchedule chase could not be read this way. Column-separated PDF text is required (original PDF path or supplied column pages). Flattened extract text is not enough. This is not proof that nothing is outstanding.\nCPS chase letter held on this copy while schedule chase input is unsupported.\n\nTOTAL\n\n0\n\nOVERDUE\n\n0\n\nDUE SOON\n\n0\n\nCHASED\n\n0\n\nRECEIVED\n\n0\n\nNOT STARTED\n\n0\n\nAll\nOverdue\nDue soon\nChased\nReceived\n\nNo source-material chase items safely detected on the current file.\n\nUpload material or run analysis — chase items appear when missing evidence, Battleboard moves, or procedural gaps are recorded. All labels remain provisional and solicitor-controlled.\n\nProvisional chase list · check source before sending\n\nFlag this section\n\nMark anything wrong, unclear, unsafe, or useful for later review."
+      },
+      "tabErrors": {},
+      "screensComplete": true,
+      "browserTabsOk": true,
+      "proofKind": "authenticated-api-plus-browser"
+    }
+  ],
+  "startCopy": {
+    "command": "hosted preview: https://casebrain-rml1ekizl-gduffy1993-pngs-projects.vercel.app",
+    "casesManifest": "C:\\Users\\gduff\\casebrain-hub-wt-schedule-chase-release\\artifacts\\casebrain-qa\\assurance\\schedule-chase-hosted-preview-2026-10-13\\CASES.json"
+  }
+}

@@ -39,6 +39,8 @@ export type EvidenceObservation = {
   compiledPage: string | null;
   pageIdentityKnown: boolean;
   defendant?: string | null;
+  sourceExcerpt?: string | null;
+  chaseFromThisObservation?: boolean;
 };
 
 export type EvidenceContradiction = {

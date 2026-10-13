@@ -24,6 +24,7 @@ import { dedupeEvidenceAliases } from "@/lib/criminal/evidence-alias-dedupe";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import {
   buildCanonicalPipelineFromDocumentUnits,
+  type LiveCanonicalPipelineResult,
   type UploadedDocumentUnit,
 } from "@/lib/criminal/build-from-document-units";
 import { shouldChaseRequestAgainstServedAliases } from "@/lib/criminal/canonical-finding-model";
@@ -209,6 +210,8 @@ export type BuildCanonicalMatterInput = {
    * are built from the live pipeline and chase items are alias-suppressed.
    */
   documents?: UploadedDocumentUnit[] | null;
+  /** Reuse an already-built canonical pipeline; never rebuild a competing truth object. */
+  canonicalPipeline?: LiveCanonicalPipelineResult | null;
 };
 
 export function buildCanonicalMatterStateV1(input: BuildCanonicalMatterInput): CanonicalMatterStateV1 {
@@ -217,9 +220,10 @@ export function buildCanonicalMatterStateV1(input: BuildCanonicalMatterInput): C
   let bundleHay = input.bundleHay?.trim() || null;
 
   const pipeline =
-    input.documents && input.documents.length > 0
+    input.canonicalPipeline ??
+    (input.documents && input.documents.length > 0
       ? buildCanonicalPipelineFromDocumentUnits(input.documents)
-      : null;
+      : null);
   if (pipeline) {
     bundleHay = bundleHay ? `${bundleHay}\n${pipeline.bundleText}` : pipeline.bundleText;
   }

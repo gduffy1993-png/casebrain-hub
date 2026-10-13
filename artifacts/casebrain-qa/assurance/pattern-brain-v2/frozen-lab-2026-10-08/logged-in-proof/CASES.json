@@ -1,0 +1,45 @@
+{
+  "generatedAt": "2026-10-11T03:11:52.413Z",
+  "seeded": [
+    {
+      "key": "SIDDIQ",
+      "caseId": "334bb7dc-60c7-42c3-a09a-36712c46126f",
+      "documentId": "6593f745-8117-4347-b85d-59fa7d7dad84",
+      "pdfPath": "C:/Users/gduff/Downloads/cb-tb-001-030-v4/pdfs/CB-TB-014_Siddiq.pdf",
+      "pdfSha256": "2d13a977eb118185c77b86ea7b9949700099a956f7b650cf4921855e96dcb55a",
+      "mode": "applied"
+    },
+    {
+      "key": "HUGHES",
+      "caseId": "6a4cef0d-81ce-4b36-85b5-c67d1caabe1b",
+      "documentId": "e138a2a9-2c20-407b-adae-b1929daa46fa",
+      "pdfPath": "C:/Users/gduff/Downloads/cb-tb-1601-2200-v5-factory-run/pdfs/CB-TB-1606_Hughes.pdf",
+      "pdfSha256": "547e48480db13fd06148d468d5d0c668b0421dc31df71a8c0897e377aa134d55",
+      "mode": "applied"
+    },
+    {
+      "key": "VALE",
+      "caseId": "e8c06e5b-1400-4308-afe0-6ede165298bf",
+      "documentId": "733f8a0a-4821-41ac-b4fd-0b52f959884d",
+      "pdfPath": "C:/Users/gduff/Downloads/cb-tb-1201-1300-v5/pdfs/CB-TB-1260_Vale.pdf",
+      "pdfSha256": "fa833c11fdda8afc7e6aa7c834961e67914a4edb6db13a667d3a11e876893c71",
+      "mode": "applied"
+    },
+    {
+      "key": "ELLIS",
+      "caseId": "b4315df5-5165-4784-be74-0dce965ed014",
+      "documentId": "2462ffdf-706d-4f1d-ae39-46fca5bcfea0",
+      "pdfPath": "C:/Users/gduff/Downloads/magistrates_first_hearing_test_bundle_24pp.pdf",
+      "pdfSha256": "fdd9ef099bcb27b34ba10450fc19e41429eb159c2f735e59484e92fa1911df7c",
+      "mode": "applied"
+    },
+    {
+      "key": "UNSUPPORTED",
+      "caseId": "c7070568-cf32-401a-947d-0944fbc51f88",
+      "documentId": "681e4d41-a66e-43d6-805f-6097ea249f5f",
+      "pdfPath": "C:/Users/gduff/Downloads/cb-tb-001-030-v4/pdfs/CB-TB-014_Siddiq.pdf",
+      "pdfSha256": "2d13a977eb118185c77b86ea7b9949700099a956f7b650cf4921855e96dcb55a",
+      "mode": "unsupported"
+    }
+  ]
+}

@@ -184,13 +184,17 @@ export function PilotSummaryView({
     () => (packetLedger ? buildClientPacketFacts(packetLedger.materials) : []),
     [packetLedger],
   );
-  const filteredDoNot = useMemo(
-    () =>
-      collapseDontSayMg11WitnessLines(
-        dedupeSolicitorLines(filterBundleFamilyWarnings(doNotOverstate, bundleHay)),
-      ),
-    [doNotOverstate, bundleHay],
-  );
+  const filteredDoNot = useMemo(() => {
+    const filtered = collapseDontSayMg11WitnessLines(
+      dedupeSolicitorLines(filterBundleFamilyWarnings(doNotOverstate, bundleHay)),
+    );
+    const scheduleNoteRe =
+      /schedule chase|upload limitation|unresolved schedule|could not be read this way|cps chase letter held|multiple disclosure schedules|schedule observation|schedule documents \(unresolved/i;
+    const scheduleNotes = filtered.filter((line) => scheduleNoteRe.test(line));
+    const other = filtered.filter((line) => !scheduleNoteRe.test(line));
+    // Keep schedule-lab notes first and outside the overview list cap.
+    return [...scheduleNotes, ...other];
+  }, [doNotOverstate, bundleHay]);
   const buildTabHref = usePilotMatterTabHref();
   const chaseHref = buildTabHref(caseId, "disclosure-chase");
   const todayHref = buildTabHref(caseId, "today");
@@ -325,7 +329,17 @@ export function PilotSummaryView({
       </div>
 
       {!loading && filteredDoNot.length ? (
-        <DontSaySafetyBox items={filteredDoNot.slice(0, 8)} />
+        <DontSaySafetyBox
+          items={(() => {
+            const scheduleNoteRe =
+              /schedule chase|upload limitation|unresolved schedule|could not be read this way|cps chase letter held|multiple disclosure schedules|schedule observation|schedule documents \(unresolved/i;
+            const scheduleNotes = filteredDoNot.filter((line) => scheduleNoteRe.test(line));
+            const other = filteredDoNot
+              .filter((line) => !scheduleNoteRe.test(line))
+              .slice(0, Math.max(0, 8 - scheduleNotes.length));
+            return [...scheduleNotes, ...other];
+          })()}
+        />
       ) : null}
 
       {loading && !packetLedger ? (

@@ -29,10 +29,16 @@ import {
   type CanonicalFinding,
 } from "@/lib/criminal/canonical-finding-model";
 import type { StructuredChargeView } from "@/lib/criminal/structured-charge-state";
+import type { HearingLifecycle } from "@/lib/criminal/hearing-notice-lifecycle";
 import {
   buildLiveProductionSurfacesFromDocumentUnits,
   type LiveProductionSurfaces,
 } from "@/lib/criminal/canonical-live-surface-adapter";
+import {
+  applyScheduleChaseLab,
+  isScheduleChaseLabEnabled,
+  type ScheduleChaseLabMeta,
+} from "@/lib/criminal/schedule-chase-lab";
 
 export type CaseDocumentRow = {
   id: string;
@@ -53,6 +59,7 @@ export type CaseDocumentRow = {
 /** API + client contract carried on bundle-source (authenticated matter load). */
 export type AuthenticatedMatterCanonicalPayload = {
   ingestion: CaseIngestionAssessment;
+  hearingLifecycle: HearingLifecycle;
   findings: ReturnType<typeof serializeCanonicalFindingForSurface>[];
   /** Full findings for production builders (client may rehydrate summaries). */
   findingSummaries: Array<{
@@ -73,6 +80,7 @@ export type AuthenticatedMatterCanonicalPayload = {
   pageUnitCount: number;
   /** Metadata-sized text with document/page markers preserved for page-aware receipts. */
   pageAwareFrontMatterScan?: string | null;
+  scheduleChaseLab: ScheduleChaseLabMeta | null;
 };
 
 function bodyText(doc: CaseDocumentRow): string {
@@ -307,12 +315,28 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
     clientLabel?: string | null;
     /** When true, also run full production surface builders (tests / server composition). */
     withSurfaces?: boolean;
+    /**
+     * Copy-only. When true (or CASEBRAIN_SCHEDULE_CHASE_LAB=1), replace the glued
+     * chase with schedule status cells. Prefer pdfPath/pages for column text.
+     */
+    scheduleChaseLab?: boolean | {
+      enabled?: boolean;
+      pdfPath?: string | null;
+      pages?: string[] | null;
+      scheduleNotEstablished?: boolean;
+      multipleSchedulesUnresolved?: boolean;
+      scheduleDocuments?: ScheduleChaseLabMeta["scheduleDocuments"];
+      scheduleObservations?: ScheduleChaseLabMeta["scheduleObservations"];
+      sourceDocumentId?: string | null;
+      sourceDocumentName?: string | null;
+    };
   },
 ): {
   units: UploadedDocumentUnit[];
   pipeline: LiveCanonicalPipelineResult;
   canonical: AuthenticatedMatterCanonicalPayload;
   surfaces: LiveProductionSurfaces | null;
+  scheduleChaseLab: ScheduleChaseLabMeta | null;
 } {
   const ingestion = buildCaseIngestionAssessment(docs);
   const units = ingestion.substantiveOutputsWithheld
@@ -356,11 +380,36 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
       supersessionSupport: [],
     },
   };
-  const pipeline =
+  let pipeline =
     units.length > 0 ? buildCanonicalPipelineFromDocumentUnits(units) : emptyPipeline;
+
+  const labOpt = opts?.scheduleChaseLab;
+  const labEnabled =
+    typeof labOpt === "boolean"
+      ? isScheduleChaseLabEnabled(labOpt)
+      : isScheduleChaseLabEnabled(labOpt?.enabled);
+  let scheduleChaseLab: ScheduleChaseLabMeta | null = null;
+  if (labEnabled && units.length > 0) {
+    const applied = applyScheduleChaseLab(pipeline, {
+      units,
+      pdfPath: typeof labOpt === "object" ? labOpt.pdfPath ?? null : null,
+      pages: typeof labOpt === "object" ? labOpt.pages ?? null : null,
+      scheduleNotEstablished:
+        typeof labOpt === "object" ? Boolean(labOpt.scheduleNotEstablished) : false,
+      multipleSchedulesUnresolved:
+        typeof labOpt === "object" ? Boolean(labOpt.multipleSchedulesUnresolved) : false,
+      scheduleDocuments: typeof labOpt === "object" ? labOpt.scheduleDocuments : undefined,
+      scheduleObservations: typeof labOpt === "object" ? labOpt.scheduleObservations : undefined,
+      sourceDocumentId: typeof labOpt === "object" ? labOpt.sourceDocumentId ?? null : null,
+      sourceDocumentName: typeof labOpt === "object" ? labOpt.sourceDocumentName ?? null : null,
+    });
+    pipeline = applied.pipeline;
+    scheduleChaseLab = applied.meta;
+  }
 
   const canonical: AuthenticatedMatterCanonicalPayload = {
     ingestion,
+    hearingLifecycle: pipeline.hearingLifecycle,
     findings: pipeline.findings.map(serializeCanonicalFindingForSurface),
     findingSummaries: toFindingSummaries(pipeline.findings),
     evidenceRows: pipeline.evidenceRows,
@@ -375,6 +424,7 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
     unitCount: units.length,
     pageUnitCount: units.reduce((n, u) => n + u.pages.length, 0),
     pageAwareFrontMatterScan: pipeline.bundleText?.trim() ? buildMetadataScan(pipeline.bundleText) : null,
+    scheduleChaseLab,
   };
 
   const surfaces =
@@ -384,10 +434,13 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
           allegation: opts.allegation ?? undefined,
           caseTitle: opts.caseTitle ?? undefined,
           clientLabel: opts.clientLabel ?? undefined,
+          canonicalPipeline: pipeline,
+          holdCpsChase: Boolean(scheduleChaseLab),
+          scheduleChaseLab,
         })
       : null;
 
-  return { units, pipeline, canonical, surfaces };
+  return { units, pipeline, canonical, surfaces, scheduleChaseLab };
 }
 
 /**
@@ -402,6 +455,9 @@ export function composeAuthenticatedBundleSourceWithCanonical(
     caseTitle?: string | null;
     clientLabel?: string | null;
     withSurfaces?: boolean;
+    scheduleChaseLab?: NonNullable<
+      Parameters<typeof buildAuthenticatedMatterCanonicalFromDocuments>[1]
+    >["scheduleChaseLab"];
   },
 ): {
   documentCount: number;
