@@ -19,16 +19,25 @@ import { createClient } from "@supabase/supabase-js";
 import { readOriginalPdfAsDocument } from "./pattern-brain-v2-pdf";
 
 const ROOT = process.cwd();
-const OUT = path.join(
-  ROOT,
-  "artifacts/casebrain-qa/assurance/pattern-brain-v2/frozen-lab-2026-10-08/logged-in-proof",
-);
+const OUT =
+  process.env.SCHEDULE_CHASE_PROOF_OUT?.trim() ||
+  path.join(
+    ROOT,
+    "artifacts/casebrain-qa/assurance/pattern-brain-v2/frozen-lab-2026-10-08/logged-in-proof",
+  );
 const PORT = Number(process.env.SCHEDULE_CHASE_LOGGED_IN_PORT ?? "3020");
-const BASE = `http://127.0.0.1:${PORT}`;
+const BASE =
+  process.env.SCHEDULE_CHASE_PROOF_BASE_URL?.trim().replace(/\/$/, "") ||
+  `http://127.0.0.1:${PORT}`;
+const HOSTED_PROOF = /^https:\/\//i.test(BASE);
 const EMAIL =
+  process.env.SCHEDULE_CHASE_PROOF_EMAIL?.trim() ||
   process.env.H5_SMOKE_EMAIL?.trim() ||
   "demo.loom.taylor.1782877263@casebrain.qa.smoke";
-const PASSWORD = process.env.SMOKE_PASSWORD ?? "ProdSmokeOnly!Jun2026";
+const PASSWORD =
+  process.env.SCHEDULE_CHASE_PROOF_PASSWORD ??
+  process.env.SMOKE_PASSWORD ??
+  "ProdSmokeOnly!Jun2026";
 const HEADLESS = process.env.CB_FRESH_HEADLESS !== "0";
 
 type CaseExpect = {
@@ -198,7 +207,7 @@ async function resolveOrgForUser(userId: string): Promise<string> {
 async function signIn(context: BrowserContext): Promise<{ userId: string; orgId: string }> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-  await ensurePassword(EMAIL);
+  if (!HOSTED_PROOF) await ensurePassword(EMAIL);
   const anon = createClient(url, anonKey, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
@@ -214,7 +223,7 @@ async function signIn(context: BrowserContext): Promise<{ userId: string; orgId:
       domain: new URL(BASE).hostname,
       path: "/",
       httpOnly: false,
-      secure: false,
+      secure: HOSTED_PROOF,
       sameSite: "Lax",
     },
   ]);
@@ -544,39 +553,45 @@ async function main() {
     NODE_OPTIONS: [process.env.NODE_OPTIONS, "--max-old-space-size=8192"].filter(Boolean).join(" "),
     NEXT_PUBLIC_CRIMINAL_PILOT_MODE: process.env.NEXT_PUBLIC_CRIMINAL_PILOT_MODE ?? "1",
   };
-  // Production server: avoids Next-dev compile stalls during PDF-heavy bundle-source.
-  const skipBuild = process.argv.includes("--skip-build") && fs.existsSync(path.join(ROOT, ".next", "BUILD_ID"));
-  if (!skipBuild) {
-    console.log("building copy for logged-in proof…");
-    execSync("npx next build", { cwd: ROOT, env, stdio: "inherit" });
+  let child: ChildProcess | null = null;
+  if (HOSTED_PROOF) {
+    console.log("using hosted preview", BASE);
   } else {
-    console.log("reusing existing .next build (--skip-build)");
-  }
-  if (process.platform === "win32") {
-    try {
-      execSync(
-        `powershell -NoProfile -Command "Get-NetTCPConnection -LocalPort ${PORT} -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }"`,
-        { stdio: "ignore" },
-      );
-    } catch {
-      // ignore
+    // Production server: avoids Next-dev compile stalls during PDF-heavy bundle-source.
+    const skipBuild =
+      process.argv.includes("--skip-build") && fs.existsSync(path.join(ROOT, ".next", "BUILD_ID"));
+    if (!skipBuild) {
+      console.log("building copy for logged-in proof…");
+      execSync("npx next build", { cwd: ROOT, env, stdio: "inherit" });
+    } else {
+      console.log("reusing existing .next build (--skip-build)");
     }
+    if (process.platform === "win32") {
+      try {
+        execSync(
+          `powershell -NoProfile -Command "Get-NetTCPConnection -LocalPort ${PORT} -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }"`,
+          { stdio: "ignore" },
+        );
+      } catch {
+        // ignore
+      }
+    }
+    const serverLog = path.join(OUT, "next-start.log");
+    const serverLogFd = fs.openSync(serverLog, "w");
+    child = spawn(
+      process.platform === "win32" ? "npx.cmd" : "npx",
+      ["next", "start", "-H", "127.0.0.1", "-p", String(PORT)],
+      {
+        cwd: ROOT,
+        env,
+        stdio: ["ignore", serverLogFd, serverLogFd],
+        shell: process.platform === "win32",
+      },
+    );
+    child.on("exit", (code, signal) => {
+      console.log("next start exited", { code, signal, serverLog });
+    });
   }
-  const serverLog = path.join(OUT, "next-start.log");
-  const serverLogFd = fs.openSync(serverLog, "w");
-  let child: ChildProcess | null = spawn(
-    process.platform === "win32" ? "npx.cmd" : "npx",
-    ["next", "start", "-H", "127.0.0.1", "-p", String(PORT)],
-    {
-      cwd: ROOT,
-      env,
-      stdio: ["ignore", serverLogFd, serverLogFd],
-      shell: process.platform === "win32",
-    },
-  );
-  child.on("exit", (code, signal) => {
-    console.log("next start exited", { code, signal, serverLog });
-  });
 
   const results: Record<string, unknown>[] = [];
   try {

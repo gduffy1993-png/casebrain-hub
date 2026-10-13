@@ -12,7 +12,7 @@ import path from "node:path";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-import { columnPages } from "./schedule-chase-column-reader";
+import { columnPagesForPdf } from "./schedule-chase-column-reader";
 import { parseSchedule } from "./schedule-chase-parse";
 
 function storageBucket(): string {
@@ -182,7 +182,7 @@ async function resolveOwnedScheduleColumnPagesUncached(opts: {
     const tmpPdf = path.join(tmpDir, `${doc.id}.pdf`);
     try {
       fs.writeFileSync(tmpPdf, buffer);
-      const pages = columnPages(tmpPdf);
+      const pages = await columnPagesForPdf(buffer, tmpPdf);
       if (!pages.length) continue;
       documentsReadable += 1;
       readableDocumentIds.push(doc.id);
