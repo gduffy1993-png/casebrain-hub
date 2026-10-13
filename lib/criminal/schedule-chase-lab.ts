@@ -5,10 +5,7 @@
  * Without pdfPath or supplied column pages, do not publish an empty chase as "nothing
  * outstanding" — mark unsupported input and leave the prior pipeline alone.
  */
-import {
-  parseSchedule,
-  columnPages,
-} from "../../scripts/pattern-brain-schedule-parser-repair";
+import { parseSchedule } from "./schedule-chase-parse";
 import {
   canonicalEvidenceKey,
   type CanonicalChaseRequest,
@@ -71,7 +68,7 @@ function resolvePages(opts: {
   units: UploadedDocumentUnit[];
 }): { pages: string[]; source: ScheduleChaseLabMeta["source"]; columnAware: boolean } {
   if (opts.pages?.length) return { pages: opts.pages, source: "column-pages", columnAware: true };
-  if (opts.pdfPath) return { pages: columnPages(opts.pdfPath), source: "column-pages", columnAware: true };
+  // Hosted/API path must pre-supply column pages — do not spawn Python from this shared module.
   return { pages: pagesFromUnits(opts.units), source: "unit-pages", columnAware: false };
 }
 

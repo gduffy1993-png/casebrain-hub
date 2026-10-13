@@ -12,7 +12,8 @@ import path from "node:path";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-import { columnPages, parseSchedule } from "../../scripts/pattern-brain-schedule-parser-repair";
+import { columnPages } from "./schedule-chase-column-reader";
+import { parseSchedule } from "./schedule-chase-parse";
 
 function storageBucket(): string {
   return process.env.SUPABASE_STORAGE_BUCKET?.trim() || "casebrain-documents";
