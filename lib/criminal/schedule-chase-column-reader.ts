@@ -25,6 +25,8 @@ export async function columnPagesForPdf(buffer: Buffer, localPdfPath: string): P
 
   const secret = process.env.SCHEDULE_CHASE_READER_SECRET?.trim();
   if (!secret) throw new Error("Hosted schedule-chase reader secret is not configured");
+  const requestBody = new Uint8Array(buffer.length);
+  requestBody.set(buffer);
 
   const response = await fetch(url, {
     method: "POST",
@@ -33,7 +35,7 @@ export async function columnPagesForPdf(buffer: Buffer, localPdfPath: string): P
       "Content-Type": "application/pdf",
       "Content-Length": String(buffer.length),
     },
-    body: buffer,
+    body: requestBody,
     signal: AbortSignal.timeout(60_000),
   });
   if (!response.ok) {
