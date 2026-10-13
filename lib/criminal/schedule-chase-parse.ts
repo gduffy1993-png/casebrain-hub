@@ -27,18 +27,6 @@ type ParsedRow = {
   absentFromCopy: string | null;
 };
 
-type Tracker = { ref: string; pdf: string; pdfPath: string; offence: string; served: string; missing: string };
-
-function sha256(file: string): string {
-  return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
-}
-
-function frozenHashes(): Record<string, string> {
-  const hashes: Record<string, string> = {};
-  for (const relative of FROZEN) hashes[relative] = sha256(path.join(ROOT, relative));
-  return hashes;
-}
-
 function compact(value: string): string {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "");
 }
