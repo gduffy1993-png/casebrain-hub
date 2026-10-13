@@ -924,7 +924,9 @@ async function main() {
         : "stop",
     results,
     startCopy: {
-      command: `$env:CASEBRAIN_SCHEDULE_CHASE_LAB="1"; npm run dev -- --port ${PORT}`,
+      command: HOSTED_PROOF
+        ? `hosted preview: ${BASE}`
+        : `$env:CASEBRAIN_SCHEDULE_CHASE_LAB="1"; npm run dev -- --port ${PORT}`,
       casesManifest: manifestPath,
     },
   };
@@ -933,7 +935,10 @@ async function main() {
 
   const hashTargets = [
     "scripts/pattern-brain-schedule-chase-logged-in-proof.ts",
+    "scripts/pattern-brain-reader-pages.py",
     "lib/criminal/schedule-chase-owned-column-pages.ts",
+    "lib/criminal/schedule-chase-column-reader.ts",
+    "lib/criminal/schedule-chase-parse.ts",
     "lib/criminal/schedule-chase-lab.ts",
     "lib/criminal/schedule-chase-lab-types.ts",
     "lib/criminal/authenticated-matter-canonical.ts",
@@ -941,6 +946,11 @@ async function main() {
     "lib/criminal/schedule-chase-client.ts",
     "lib/criminal/demo-presentation-polish.ts",
     "lib/criminal/disclosure-chase-finalize.ts",
+    "api/schedule_chase_reader.py",
+    "python_runtime/schedule_chase_column_reader.py",
+    "requirements.txt",
+    "vercel.json",
+    "docs/schedule-chase-preview-rollback.md",
     "app/api/criminal/[caseId]/bundle-source/route.ts",
     "components/criminal/disclosure-chase/DisclosureChase.tsx",
     "components/criminal/hearing-war-room/HearingWarRoom.tsx",
@@ -970,6 +980,8 @@ async function main() {
     generatedAt: new Date().toISOString(),
     gate: pack.gate,
     gitHead,
+    baseUrl: BASE,
+    hostedProof: HOSTED_PROOF,
     email: EMAIL,
     orgId,
     userId,
