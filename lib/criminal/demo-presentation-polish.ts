@@ -1,3 +1,4 @@
+import { formatDisplayLabelCasing } from "@/lib/criminal/bundle-truth-ledger";
 import {
   humanizeChaseFragmentLabel,
   isPreservedFileNamedChaseLabel,
@@ -233,6 +234,9 @@ type ChaseDisplayItem = {
   mergedFrom?: string[];
   draftChaseWording?: string;
   whyItMatters?: string;
+  /** When set from schedule-lab surfaces, keep the schedule item wording on the card. */
+  source?: string | null;
+  provenance?: { sourceDocumentType?: string | null } | null;
 };
 
 function digitalHay(item: ChaseDisplayItem): string {
@@ -296,6 +300,14 @@ export function displayChaseCardLabel(item: ChaseDisplayItem, bundleHay = ""): s
   const normalized = item.label.replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
   if (isPreservedFileNamedChaseLabel(normalized)) return normalized;
 
+  // Schedule-lab MG6 rows must stay as the schedule named them — do not remap to playbook labels.
+  if (
+    /MG6 disclosure schedule/i.test(item.source ?? "") ||
+    item.provenance?.sourceDocumentType === "disclosure_schedule"
+  ) {
+    return formatDisplayLabelCasing(normalized);
+  }
+
   // Prefer PDF-true phone download identity over harassment playbook message-export label.
   if (
     /\b(?:message\s+export|source\s+device\s+material|full\s+message\s+export)\b/i.test(normalized) &&
@@ -349,6 +361,12 @@ export function displayChaseBulletLine(line: string): string {
 export function displayChaseItemText(text: string | null | undefined, item: ChaseDisplayItem): string {
   const context = digitalHay(item);
   const raw = text ?? "";
+  // Schedule-lab MG6 rows keep the schedule proposition — do not drop/rewrite via family polish.
+  if (isScheduleLabChaseItem(item) && raw.trim()) {
+    const label = displayChaseCardLabel(item);
+    const preserved = preserveScheduleChaseProposition(raw.trim(), label);
+    return polishPresentationLine(preserved, context) || preserved;
+  }
   const [filtered] = filterBundleFamilyWarnings([raw], context);
   if (raw.trim() && !filtered) {
     const fallback = digitalChaseLabel(context);
@@ -436,6 +454,9 @@ function hayWithoutExhibitCodes(hay: string): string {
   return hay.replace(/\bEX[-A-Z0-9]*\b/gi, " ");
 }
 
+const SCHEDULE_LAB_NOTE_RE =
+  /upload limitation|unresolved schedule conflict|could not be read this way|cps chase letter held|multiple disclosure schedules|schedule observation|schedule documents \(unresolved|schedule chase/i;
+
 export function filterBundleFamilyWarnings(lines: string[], bundleHay: string): string[] {
   const hay = hayWithoutExhibitCodes(bundleHay).toLowerCase();
   const families: BundleFamily[] = ["bwv", "custody", "drugs", "cctv", "cad", "encro", "abe", "phone"];
@@ -447,6 +468,13 @@ export function filterBundleFamilyWarnings(lines: string[], bundleHay: string): 
     if (!line) continue;
     const key = line.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
     if (!key || seen.has(key)) continue;
+
+    // Schedule-lab limitation / conflict lines are authoritative — never drop for family mismatch.
+    if (SCHEDULE_LAB_NOTE_RE.test(line)) {
+      seen.add(key);
+      out.push(line);
+      continue;
+    }
 
     let drop = lineMentionsWrongFamilyTemplate(line, hay);
     if (!drop) {
@@ -464,6 +492,25 @@ export function filterBundleFamilyWarnings(lines: string[], bundleHay: string): 
   }
 
   return out;
+}
+
+function isScheduleLabChaseItem(item: ChaseDisplayItem): boolean {
+  return (
+    /MG6 disclosure schedule/i.test(item.source ?? "") ||
+    item.provenance?.sourceDocumentType === "disclosure_schedule"
+  );
+}
+
+/** Keep schedule-named phone/report wording; never broaden via family formatter. */
+function preserveScheduleChaseProposition(text: string, label: string): string {
+  const preserved = formatDisplayLabelCasing(label.replace(/\s+/g, " ").trim());
+  if (!preserved) return text;
+  return text
+    .replace(/Full phone download\s*\/\s*source extraction/gi, preserved)
+    .replace(/Full phone download\s*\/\s*source export/gi, preserved)
+    .replace(/Full phone download\s*\/\s*subscriber mapping/gi, preserved)
+    .replace(/Phone extraction source material/gi, preserved)
+    .replace(/full phone download/gi, preserved);
 }
 
 /** Presentation-only. Do not invent phone/subscriber/MG11 rows from a harassment word-shape. */

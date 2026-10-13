@@ -52,6 +52,7 @@ export function DemoOverviewCanvas({
   clientReceipt,
   readiness,
   doNotItems = [],
+  scheduleChaseReviewRequired = false,
   fileHref,
   papersHref,
   chaseHref,
@@ -72,6 +73,8 @@ export function DemoOverviewCanvas({
   clientReceipt?: VisibleOutputReceipt;
   readiness: DemoReadiness;
   doNotItems?: string[];
+  /** Unsupported / unreadable schedule chase — never present as confirmed clean board. */
+  scheduleChaseReviewRequired?: boolean;
   fileHref?: string;
   papersHref?: string;
   chaseHref?: string;
@@ -90,24 +93,32 @@ export function DemoOverviewCanvas({
     window.setTimeout(() => setCopied((c) => (c === key ? null : c)), 1600);
   };
 
-  const safetyLine = doNotItems.find((line) => line.trim()) ?? "";
+  const scheduleNoteRe =
+    /schedule chase|upload limitation|unresolved schedule|could not be read this way|cps chase letter held|multiple disclosure schedules|schedule observation|schedule documents \(unresolved/i;
+  const scheduleNotes = doNotItems.filter((line) => line.trim() && scheduleNoteRe.test(line));
+  const otherSafety = doNotItems.filter((line) => line.trim() && !scheduleNoteRe.test(line));
+  // Schedule-lab notes must all remain visible — do not collapse to a single banner line.
+  const safetyLines =
+    scheduleNotes.length > 0
+      ? [...scheduleNotes, ...otherSafety.slice(0, 1)]
+      : otherSafety.slice(0, 1);
   const statCards = [
     {
       label: "Missing",
       value: stats.missing,
-      note: "Needs chase",
+      note: scheduleChaseReviewRequired ? "Not confirmed" : "Needs chase",
       className: "border-rose-100 bg-rose-50/70 text-rose-700",
     },
     {
       label: "Incomplete",
       value: stats.incomplete,
-      note: "Needs completion",
+      note: scheduleChaseReviewRequired ? "Not confirmed" : "Needs completion",
       className: "border-amber-100 bg-amber-50/70 text-amber-700",
     },
     {
       label: "Open review",
-      value: stats.openReviewItems,
-      note: "Needs checking",
+      value: scheduleChaseReviewRequired ? Math.max(stats.openReviewItems, 1) : stats.openReviewItems,
+      note: scheduleChaseReviewRequired ? "Schedule review required" : "Needs checking",
       className: "border-blue-100 bg-blue-50/70 text-blue-700",
     },
   ];
@@ -153,7 +164,17 @@ export function DemoOverviewCanvas({
             </div>
             <div className="flex items-start gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-100">
               <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-300" />
-              <p>{safetyLine || readinessBanner}</p>
+              {safetyLines.length > 0 ? (
+                <ul className="min-w-0 space-y-1.5">
+                  {safetyLines.map((line) => (
+                    <li key={line.slice(0, 120)} className="leading-snug">
+                      {line}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>{readinessBanner}</p>
+              )}
             </div>
           </div>
           <div className="grid grid-cols-3 gap-2">
@@ -217,7 +238,9 @@ export function DemoOverviewCanvas({
           <ul className="divide-y divide-slate-100">
             {attention.length === 0 ? (
               <li className="px-4 py-10 text-sm text-slate-500">
-                No outstanding attention items on this extract.
+                {scheduleChaseReviewRequired
+                  ? "Schedule chase could not be read this way — review required. Zero items here is not a confirmed clean board."
+                  : "No outstanding attention items on this extract."}
               </li>
             ) : (
               attention.map((item) => {
@@ -318,11 +341,27 @@ export function DemoOverviewCanvas({
             </div>
           ) : (
             <div className="flex h-full min-h-[18rem] flex-col items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50 p-6 text-center">
-              <ShieldCheck className="h-8 w-8 text-emerald-600" />
-              <h2 className="mt-3 text-base font-semibold text-slate-900">No chase board needed</h2>
-              <p className="mt-1 max-w-sm text-sm text-slate-500">
-                The current extract does not state a named gap. Use File or Papers if you want to inspect the source.
-              </p>
+              {scheduleChaseReviewRequired ? (
+                <>
+                  <AlertCircle className="h-8 w-8 text-amber-600" />
+                  <h2 className="mt-3 text-base font-semibold text-slate-900">
+                    Schedule chase review required
+                  </h2>
+                  <p className="mt-1 max-w-sm text-sm text-slate-500">
+                    Schedule chase could not be read this way. This is not proof that nothing is outstanding —
+                    check File or Papers before treating the board as clear.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <ShieldCheck className="h-8 w-8 text-emerald-600" />
+                  <h2 className="mt-3 text-base font-semibold text-slate-900">No chase board needed</h2>
+                  <p className="mt-1 max-w-sm text-sm text-slate-500">
+                    The current extract does not state a named gap. Use File or Papers if you want to inspect the
+                    source.
+                  </p>
+                </>
+              )}
             </div>
           )}
         </section>

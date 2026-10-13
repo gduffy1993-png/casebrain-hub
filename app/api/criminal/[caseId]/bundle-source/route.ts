@@ -3,6 +3,8 @@ import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { buildBundleSourcePayload } from "@/lib/bundle/parse-bundle-display";
 import { buildAuthenticatedMatterCanonicalFromDocuments } from "@/lib/criminal/authenticated-matter-canonical";
+import { isScheduleChaseLabEnabled } from "@/lib/criminal/schedule-chase-lab-types";
+import { resolveOwnedScheduleColumnPages } from "@/lib/criminal/schedule-chase-owned-column-pages";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -11,6 +13,10 @@ type RouteParams = { params: Promise<{ caseId: string }> };
  * Bundle header fields, document health, MG snippets, and live canonical pipeline
  * from authenticated uploaded documents (matter-loading path used by Overview / War Room /
  * Chase / Control Room / truth map).
+ *
+ * Copy-only: when CASEBRAIN_SCHEDULE_CHASE_LAB=1, schedule chase uses column pages from
+ * the case's owned uploaded PDF (storage). Without that PDF, unsupported input is visible.
+ * Default remains off — production behaviour unchanged.
  */
 export async function GET(_request: Request, { params }: RouteParams) {
   try {
@@ -33,7 +39,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     const { data: docs, error: docErr } = await supabase
       .from("documents")
-      .select("id, name, type, updated_at, raw_text, extracted_text, extracted_json")
+      .select("id, name, type, updated_at, raw_text, extracted_text, extracted_json, storage_url")
       .eq("case_id", caseId)
       .eq("org_id", orgId)
       .order("updated_at", { ascending: false });
@@ -44,11 +50,86 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     const rows = docs ?? [];
     const payload = buildBundleSourcePayload(rows);
-    const { canonical } = buildAuthenticatedMatterCanonicalFromDocuments(rows, {
+
+    const scheduleLabOn = isScheduleChaseLabEnabled();
+    let scheduleChaseLab:
+      | boolean
+      | {
+          enabled: true;
+          pages?: string[] | null;
+          scheduleNotEstablished?: boolean;
+          multipleSchedulesUnresolved?: boolean;
+          scheduleDocuments?: Array<{
+            documentId: string;
+            documentName: string;
+            rowCount: number;
+          }>;
+          scheduleObservations?: Array<{
+            documentId: string;
+            documentName: string;
+            page: number;
+            reference: string;
+            item: string;
+            statusWord: string;
+            side: "served" | "missing";
+            line: string;
+          }>;
+          sourceDocumentId?: string | null;
+          sourceDocumentName?: string | null;
+        }
+      | undefined;
+    if (scheduleLabOn) {
+      const column = await resolveOwnedScheduleColumnPages({
+        supabase,
+        orgId,
+        caseId,
+        docs: rows,
+      });
+      if (column?.kind === "schedule" && column.schedules.length > 1) {
+        scheduleChaseLab = {
+          enabled: true,
+          multipleSchedulesUnresolved: true,
+          scheduleDocuments: column.schedules.map((row) => ({
+            documentId: row.documentId,
+            documentName: row.documentName,
+            rowCount: row.rowCount,
+          })),
+          scheduleObservations: column.schedules.flatMap((row) =>
+            row.observations.map((obs) => ({
+              documentId: row.documentId,
+              documentName: row.documentName,
+              page: obs.page,
+              reference: obs.reference,
+              item: obs.item,
+              statusWord: obs.statusWord,
+              side: obs.side,
+              line: obs.line,
+            })),
+          ),
+        };
+      } else if (column?.kind === "schedule" && column.pages?.length) {
+        scheduleChaseLab = {
+          enabled: true,
+          pages: column.pages,
+          sourceDocumentId: column.documentId,
+          sourceDocumentName: column.documentName,
+        };
+      } else if (column?.kind === "no-schedule") {
+        scheduleChaseLab = { enabled: true, scheduleNotEstablished: true };
+      } else {
+        // No owned PDF bytes / column pages — visible unsupported input.
+        scheduleChaseLab = { enabled: true };
+      }
+    }
+
+    const built = buildAuthenticatedMatterCanonicalFromDocuments(rows, {
       caseId,
       caseTitle: typeof caseRow.title === "string" ? caseRow.title : null,
       allegation: payload.caseMetadata?.offenceDisplay ?? payload.header?.shortTitle ?? null,
+      withSurfaces: scheduleLabOn,
+      scheduleChaseLab,
     });
+    const { canonical, surfaces } = built;
     const withheld = canonical.ingestion.substantiveOutputsWithheld;
 
     return NextResponse.json({
@@ -66,6 +147,8 @@ export async function GET(_request: Request, { params }: RouteParams) {
         frontMatterScan: withheld ? "" : payload.frontMatterScan,
         /** Live canonical pipeline from uploaded document/page units. */
         canonical,
+        /** Present only when schedule chase lab is explicitly enabled on this copy. */
+        surfaces: scheduleLabOn && !withheld ? surfaces : null,
       },
     });
   } catch (e) {

@@ -40,6 +40,7 @@ import {
 import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { isProofPressureAllegationLabel } from "@/lib/criminal/case-identity-boundary";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
+import { CanonicalHearingReceiptCard } from "@/components/criminal/hearing/CanonicalHearingReceiptCard";
 
 function firstSourceLineMatching(text: string, pattern: RegExp): string | null {
   const normalized = (text ?? "").replace(/\r/g, "\n");
@@ -74,6 +75,7 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
     bundleMeta,
     clientLabel,
     hearingLabel,
+    canonical,
     ingestion,
   } = useMatterBrief(caseId);
 
@@ -356,33 +358,61 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
     .map((part) => (part ?? "").trim())
     .filter(Boolean)
     .join(" / ");
+  const authoritativeHearing =
+    canonical?.hearingLifecycle != null
+      ? typeof hearingLabel === "string"
+        ? hearingLabel
+        : ""
+      : liveFileIdentity.nextHearingRaw ||
+        (typeof hearingLabel === "string" ? hearingLabel : "");
   const stageLine = displayPilotStripHearing(
-    [fileHearing, liveFileIdentity.nextHearingRaw].filter(Boolean).join(" · ") ||
-      (typeof hearingLabel === "string" ? hearingLabel : ""),
+    [fileHearing, authoritativeHearing].filter(Boolean).join(" · "),
   );
 
-  const doNotItems = dedupePresentationLines(filteredDoNotOverstate).slice(0, 3);
+  const doNotDeduped = dedupePresentationLines(filteredDoNotOverstate);
+  const scheduleNoteRe =
+    /schedule chase|upload limitation|unresolved schedule|could not be read this way|cps chase letter held|multiple disclosure schedules|schedule observation|schedule documents \(unresolved/i;
+  const scheduleDoNot = doNotDeduped.filter((line) => scheduleNoteRe.test(line));
+  const otherDoNot = doNotDeduped
+    .filter((line) => !scheduleNoteRe.test(line))
+    .slice(0, Math.max(0, 3 - Math.min(scheduleDoNot.length, 3)));
+  // Keep every schedule-lab note; only non-schedule guardrails stay under the old cap.
+  const doNotItems = [...scheduleDoNot, ...otherDoNot];
+  const scheduleChaseReviewRequired = Boolean(
+    (bundleMeta as { canonical?: { scheduleChaseLab?: { unsupportedInput?: boolean } | null } } | null)
+      ?.canonical?.scheduleChaseLab?.unsupportedInput ||
+      doNotItems.some((line) => /could not be read this way/i.test(line)),
+  );
 
   return (
-    <DemoOverviewCanvas
-      clientName={clientName}
-      chargeLine={chargeLine}
-      stageLine={stageLine}
-      provisional={provisional}
-      readinessBanner={readinessBanner}
-      stats={stats}
-      keyIssues={keyIssues}
-      attention={attention}
-      courtLine={courtLineText}
-      courtReceipt={courtReceipt}
-      clientUpdate={clientUpdate}
-      clientReceipt={clientReceipt}
-      readiness={readiness}
-      doNotItems={doNotItems}
-      fileHref={buildTabHref(caseId, "file")}
-      papersHref={buildTabHref(caseId, "papers")}
-      chaseHref={buildTabHref(caseId, "disclosure-chase")}
-      courtHref={buildTabHref(caseId, "today")}
-    />
+    <div className="space-y-3">
+      {canonical?.hearingLifecycle ? (
+        <CanonicalHearingReceiptCard
+          lifecycle={canonical.hearingLifecycle}
+          surface="overview"
+        />
+      ) : null}
+      <DemoOverviewCanvas
+        clientName={clientName}
+        chargeLine={chargeLine}
+        stageLine={stageLine}
+        provisional={provisional}
+        readinessBanner={readinessBanner}
+        stats={stats}
+        keyIssues={keyIssues}
+        attention={attention}
+        courtLine={courtLineText}
+        courtReceipt={courtReceipt}
+        clientUpdate={clientUpdate}
+        clientReceipt={clientReceipt}
+        readiness={readiness}
+        doNotItems={doNotItems}
+        scheduleChaseReviewRequired={scheduleChaseReviewRequired}
+        fileHref={buildTabHref(caseId, "file")}
+        papersHref={buildTabHref(caseId, "papers")}
+        chaseHref={buildTabHref(caseId, "disclosure-chase")}
+        courtHref={buildTabHref(caseId, "today")}
+      />
+    </div>
   );
 }

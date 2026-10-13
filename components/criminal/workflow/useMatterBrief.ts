@@ -1,6 +1,14 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  createElement,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
 import { buildCaseSnapshot, type CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import {
@@ -40,13 +48,19 @@ import {
 } from "@/lib/criminal/demo-presentation-polish";
 import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
 import { evaluateMatterIntegrity } from "@/lib/criminal/solicitor-output-integrity";
-import { resolveSolicitorHearingDateIso } from "@/lib/criminal/solicitor-hearing-display";
-import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
+import { resolveCanonicalFirstHearingStatus } from "@/lib/criminal/canonical-hearing-display-authority";
 import { buildSolicitorMatterStateVm } from "@/lib/criminal/solicitor-matter-state";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { computeCounters } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import type { AuthenticatedMatterCanonicalPayload } from "@/lib/criminal/authenticated-matter-canonical";
 import { canonicalRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
+import type { LiveProductionSurfaces } from "@/lib/criminal/canonical-live-surface-adapter";
+import {
+  scheduleChaseBundleText,
+  scheduleChaseLimitationLines,
+  scheduleChaseServerDisclosure,
+  scheduleChaseServerWarRoom,
+} from "@/lib/criminal/schedule-chase-client";
 
 function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
   if (docCount === 0) return "unknown";
@@ -77,6 +91,8 @@ type BundleSourceSummary = {
   caseMetadata?: ExtractedBundleCaseMetadata | null;
   /** Live canonical pipeline from authenticated document/page units. */
   canonical?: AuthenticatedMatterCanonicalPayload | null;
+  /** Present when schedule chase lab is enabled on this copy. */
+  surfaces?: Pick<LiveProductionSurfaces, "disclosureChase" | "warRoom" | "composedProse"> | null;
 };
 
 function deriveBundleHealth(
@@ -98,7 +114,7 @@ function deriveBundleHealth(
   });
 }
 
-export function useMatterBrief(caseId: string) {
+function useLiveMatterBrief(caseId: string, disabled = false) {
   const [snapshot, setSnapshot] = useState<CaseSnapshot | null>(null);
   const [snapshotLoading, setSnapshotLoading] = useState(true);
   const [battleboard, setBattleboard] = useState<BattleboardOutput | null>(null);
@@ -111,6 +127,7 @@ export function useMatterBrief(caseId: string) {
   const [savedPositionText, setSavedPositionText] = useState<string | null>(null);
 
   useEffect(() => {
+    if (disabled) return;
     let cancelled = false;
     setSnapshotLoading(true);
     buildCaseSnapshot(caseId)
@@ -126,9 +143,10 @@ export function useMatterBrief(caseId: string) {
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, disabled]);
 
   useEffect(() => {
+    if (disabled) return;
     let cancelled = false;
     setBattleboardLoading(true);
     fetch(`/api/criminal/${caseId}/strategy-battleboard`, { cache: "no-store", credentials: "include" })
@@ -144,9 +162,10 @@ export function useMatterBrief(caseId: string) {
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, disabled]);
 
   useEffect(() => {
+    if (disabled) return;
     let cancelled = false;
     setBundleLoading(true);
     fetch(`/api/criminal/${caseId}/bundle-source`, { cache: "no-store", credentials: "include" })
@@ -163,6 +182,7 @@ export function useMatterBrief(caseId: string) {
           header: d.header,
           caseMetadata: d.caseMetadata ?? null,
           canonical: (d as BundleSourceSummary).canonical ?? null,
+          surfaces: (d as BundleSourceSummary).surfaces ?? null,
         });
       })
       .catch(() => {})
@@ -172,9 +192,10 @@ export function useMatterBrief(caseId: string) {
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, disabled]);
 
   useEffect(() => {
+    if (disabled) return;
     let cancelled = false;
     fetch(`/api/criminal/${caseId}/matter`, { credentials: "include" })
       .then((r) => r.json())
@@ -193,9 +214,10 @@ export function useMatterBrief(caseId: string) {
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, disabled]);
 
   useEffect(() => {
+    if (disabled) return;
     let cancelled = false;
     fetch(`/api/criminal/${caseId}/position`, { credentials: "include" })
       .then((r) => r.json())
@@ -213,7 +235,7 @@ export function useMatterBrief(caseId: string) {
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, disabled]);
 
   const pilotMatter = useMemo(() => {
     if (snapshotLoading || battleboardLoading || bundleLoading) return null;
@@ -299,25 +321,24 @@ export function useMatterBrief(caseId: string) {
   const stage = headerMeta.stage
     ? collapseHeaderCellDuplicates(headerMeta.stage) || headerMeta.stage
     : headerMeta.stage;
+    const canonicalHearing = bundleSource?.canonical?.hearingLifecycle.latest ?? null;
     const bundleHayForHearing = [
+      canonicalHearing?.sourceExcerpt,
+      canonicalHearing?.hearingDateRaw,
       bundleSource?.caseMetadata?.nextHearingRaw,
       bundleText,
       bundleSource?.header?.shortTitle,
     ]
       .filter(Boolean)
       .join("\n");
-    const hearingDateIso = resolveSolicitorHearingDateIso({
-      bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
-      snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
-      nextHearingRaw: bundleSource?.caseMetadata?.nextHearingRaw,
-      bundleHay: bundleHayForHearing,
+    const hearingResolvedEarly = resolveCanonicalFirstHearingStatus({
+      canonicalLifecycle: bundleSource?.canonical?.hearingLifecycle,
+      legacyBundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
+      legacySnapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+      legacyNextHearingRaw: headerMeta.nextHearing,
+      legacyBundleHay: bundleHayForHearing,
     });
-    const hearingResolvedEarly = resolveSolicitorHearingStatus({
-      bundleNextHearingIso: hearingDateIso,
-      snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt ?? null,
-      nextHearingRaw: headerMeta.nextHearing,
-      bundleHay: bundleHayForHearing,
-    });
+    const hearingDateIso = hearingResolvedEarly.dateIso;
     const hearingStatus = resolveDemoPresentationHearingLabel({
       caseId,
       currentLabel: hearingResolvedEarly.statusLabel,
@@ -396,32 +417,35 @@ export function useMatterBrief(caseId: string) {
       ? pilotPositionDisplayLabel(positionRaw, workflowContext)
       : positionRaw;
 
-    const chase = buildDisclosureChaseBrief({
-      caseId,
-      caseTitle,
-      clientLabel,
-      allegation,
-      stage,
-      hearingStatus,
-      hearingDateIso,
-      bundleHealth,
-      positionStatus,
-      battleboard,
-      snapshotMissing: [
-        ...builderMissingRows,
-      ],
-      bundleText: sourceBundleText,
-      profileHint: pilotHeader?.profile ?? null,
-      briefPlan,
-      canonicalFindings,
-      canonicalEvidenceRows,
-    });
+    const scheduleLabOn = Boolean(bundleSource?.canonical?.scheduleChaseLab?.enabled);
+    const scheduleBundleText = scheduleChaseBundleText(bundleSource, sourceBundleText);
+    const serverChase = scheduleChaseServerDisclosure(bundleSource);
+    const chase =
+      serverChase ??
+      buildDisclosureChaseBrief({
+        caseId,
+        caseTitle,
+        clientLabel,
+        allegation,
+        stage,
+        hearingStatus,
+        hearingDateIso,
+        bundleHealth,
+        positionStatus,
+        battleboard: scheduleLabOn ? null : battleboard,
+        snapshotMissing: [...builderMissingRows],
+        bundleText: scheduleBundleText,
+        profileHint: pilotHeader?.profile ?? null,
+        briefPlan,
+        canonicalFindings: scheduleLabOn ? [] : canonicalFindings,
+        canonicalEvidenceRows,
+      });
 
     const chaseItemsAll = buildChaseItemsForHearing({
-      battleboard,
+      battleboard: scheduleLabOn ? null : battleboard,
       snapshotMissing: courtPressureRows,
       proceduralOutstanding: undefined,
-      bundleText: sourceBundleText,
+      bundleText: scheduleBundleText,
       fileBackedShortlist: chase.primaryItems.map((item) => item.label),
     });
 
@@ -436,25 +460,40 @@ export function useMatterBrief(caseId: string) {
       readiness = "Review — standard caution";
     }
 
-    const warRoom = buildHearingWarRoomBrief({
-      caseId,
-      caseTitle,
-      clientLabel,
-      allegation,
-      stage,
-      hearingStatus,
-      bundleHealth,
-      positionStatus,
-      readiness,
-      battleboard,
-      hasSavedPosition,
-      chaseItems: chaseItemsAll,
-      proceduralOutstanding: undefined,
-      bundleText: sourceBundleText,
-      profileHint: pilotHeader?.profile ?? null,
-      briefPlan,
-      canonicalFindings,
-    });
+    const serverWarRoom = scheduleChaseServerWarRoom(bundleSource);
+    const builtWarRoom =
+      serverWarRoom ??
+      buildHearingWarRoomBrief({
+        caseId,
+        caseTitle,
+        clientLabel,
+        allegation,
+        stage,
+        hearingStatus,
+        bundleHealth,
+        positionStatus,
+        readiness,
+        battleboard: scheduleLabOn ? null : battleboard,
+        hasSavedPosition,
+        chaseItems: chaseItemsAll,
+        proceduralOutstanding: undefined,
+        bundleText: scheduleBundleText,
+        profileHint: pilotHeader?.profile ?? null,
+        briefPlan,
+        canonicalFindings: scheduleLabOn ? [] : canonicalFindings,
+      });
+    const scheduleLimitations = scheduleChaseLimitationLines(bundleSource);
+    const warRoom =
+      scheduleLimitations.length > 0
+        ? {
+            ...builtWarRoom,
+            // Schedule-lab notes first so Overview cannot drop them under list caps.
+            doNotOverstate: [
+              ...scheduleLimitations,
+              ...builtWarRoom.doNotOverstate.filter((line) => !scheduleLimitations.includes(line)),
+            ],
+          }
+        : builtWarRoom;
 
     const primaryRouteTitle = workflowPrimaryRouteTitle(workflowContext);
 
@@ -473,15 +512,18 @@ export function useMatterBrief(caseId: string) {
     });
 
     const bundleHay = `${sourceBundleText || ""}`;
-    const hearingResolved = resolveSolicitorHearingStatus({
-      bundleNextHearingIso: hearingDateIso,
-      snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt ?? null,
-      nextHearingRaw: hearingStatus,
-      bundleHay: bundleHayForHearing || bundleHay,
+    const hearingResolved = resolveCanonicalFirstHearingStatus({
+      canonicalLifecycle: bundleSource?.canonical?.hearingLifecycle,
+      legacyBundleNextHearingIso: hearingDateIso,
+      legacySnapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+      legacyNextHearingRaw: hearingStatus,
+      legacyBundleHay: bundleHayForHearing || bundleHay,
     });
     // Prefer demo polish label when present; otherwise shared Phase-8 status line.
     const hearingLabel =
-      isDemoPresentationCase(caseId) && hearingStatus !== hearingResolvedEarly.statusLabel
+      bundleSource?.canonical?.hearingLifecycle == null &&
+      isDemoPresentationCase(caseId) &&
+      hearingStatus !== hearingResolvedEarly.statusLabel
         ? hearingStatus
         : hearingResolved.statusLabel;
     const chaseCounters = computeCounters(chase.items, {});
@@ -580,4 +622,34 @@ export function useMatterBrief(caseId: string) {
     evidenceRowsOverride: pilotMatter?.evidenceRowsOverride ?? [],
     caseTitle: snapshot?.caseMeta?.title?.trim() || "Criminal case",
   };
+}
+
+export type MatterBriefResult = ReturnType<typeof useLiveMatterBrief>;
+
+const MatterBriefAcceptanceContext = createContext<MatterBriefResult | null>(
+  null,
+);
+
+/**
+ * Copy-only harness seam. Production screens omit this provider and retain
+ * their authenticated fetch path.
+ */
+export function MatterBriefAcceptanceProvider({
+  value,
+  children,
+}: {
+  value: MatterBriefResult;
+  children: ReactNode;
+}) {
+  return createElement(
+    MatterBriefAcceptanceContext.Provider,
+    { value },
+    children,
+  );
+}
+
+export function useMatterBrief(caseId: string): MatterBriefResult {
+  const acceptanceValue = useContext(MatterBriefAcceptanceContext);
+  const liveValue = useLiveMatterBrief(caseId, acceptanceValue != null);
+  return acceptanceValue ?? liveValue;
 }

@@ -149,15 +149,42 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
   opts?: {
     caseId?: string;
     allegation?: string;
+    /** Reuse the already reconciled shared pipeline instead of rebuilding a second truth. */
+    canonicalPipeline?: LiveCanonicalPipelineResult;
     /** Exact recorded charge as captured (may be truncated) — always retained in chargeCompleteness.sourceChargeText. */
     recordedChargeText?: string | null;
     canonicalOffenceLine?: string | null;
     courtNoteText?: string | null;
     caseTitle?: string;
     clientLabel?: string;
+    /** Copy-only: do not emit the first-label CPS chase letter. */
+    holdCpsChase?: boolean;
+    /** Copy-only schedule chase meta for limitations on the disclosure surface. */
+    scheduleChaseLab?: {
+      applied?: boolean;
+      unsupportedInput?: boolean;
+      unsupportedReason?: string | null;
+      multipleSchedulesUnresolved?: boolean;
+      scheduleDocuments?: Array<{ documentId: string; documentName: string; rowCount: number }>;
+      scheduleObservations?: Array<{
+        documentId: string;
+        documentName: string;
+        page: number;
+        item: string;
+        statusWord: string;
+        side: string;
+        line: string;
+      }>;
+      conflicts?: Array<{ page: number; item: string; line: string; scheduleLine: string }>;
+      uploadLimitations?: Array<{ page: number; item: string; note: string; line: string }>;
+    } | null;
   },
 ): LiveProductionSurfaces {
-  const pipeline = buildCanonicalPipelineFromDocumentUnits(documents);
+  const pipeline =
+    opts?.canonicalPipeline ?? buildCanonicalPipelineFromDocumentUnits(documents);
+  const scheduleLab = opts?.scheduleChaseLab ?? null;
+  const scheduleLabApplied = Boolean(scheduleLab && scheduleLab.unsupportedInput !== true && scheduleLab.applied !== false);
+  const scheduleLabUnsupported = Boolean(scheduleLab?.unsupportedInput);
   const caseId = opts?.caseId ?? "live-integration-case";
   const recordedFromPipeline =
     pipeline.charges[0]?.particulars?.trim() ||
@@ -184,9 +211,10 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     evidenceRows: evidenceRowsForFiveAnswers(pipeline),
     chaseItems: activeMissingRows.map((row) => ({ label: row.label, baseStatus: row.status })),
     documents,
+    canonicalPipeline: pipeline,
   });
 
-  const disclosureChase = buildDisclosureChaseBrief({
+  let disclosureChase = buildDisclosureChaseBrief({
     caseId,
     caseTitle,
     clientLabel,
@@ -198,8 +226,9 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     positionStatus: "Provisional",
     battleboard: null,
     snapshotMissing: builderEvidenceRows,
-    bundleText: pipeline.bundleText,
-    canonicalFindings: pipeline.findings,
+    // Applied schedule chase: do not let bundle-text heuristics rebuild a second list.
+    bundleText: scheduleLabApplied || scheduleLabUnsupported ? "" : pipeline.bundleText,
+    canonicalFindings: scheduleLabApplied || scheduleLabUnsupported ? [] : pipeline.findings,
     // Reconciled canonical items, not the raw per-page observations: chase must not
     // re-ask for anything the reconciled state already treats as served.
     canonicalEvidenceRows: pipeline.evidenceState.items.map((i) => ({
@@ -209,6 +238,83 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
       aliases: i.aliases,
     })),
   });
+
+  if (scheduleLabUnsupported) {
+    const reason =
+      scheduleLab?.unsupportedReason ??
+      "Schedule chase could not be read this way. This is not proof that nothing is outstanding.";
+    disclosureChase = {
+      ...disclosureChase,
+      items: [],
+      primaryItems: [],
+      additionalItems: [],
+      disclosureSummary: reason,
+      safeCourtLine: reason,
+      counters: {
+        total: 0,
+        overdue: 0,
+        dueSoon: 0,
+        chased: 0,
+        received: 0,
+        notStarted: 0,
+      },
+    };
+  } else if (scheduleLabApplied) {
+    const scheduleItems = pipeline.evidenceState.chaseRequests.map((request, index) => {
+      const item = pipeline.evidenceState.items.find((row) => row.label === request.label);
+      const excerpt = item?.observations[0]?.sourceExcerpt ?? request.reason;
+      const page = item?.observations[0]?.sourcePage ?? null;
+      const ref = item?.aliases[0] ?? null;
+      return {
+        id: `schedule-chase-${index + 1}`,
+        familyId: "other" as const,
+        label: request.label,
+        whyItMatters: request.reason,
+        source: "MG6 disclosure schedule",
+        baseStatus: "Outstanding" as const,
+        urgency: "medium" as const,
+        deadlineLabel: "As soon as practicable",
+        evidenceAnchor: excerpt,
+        linkedRoute: null,
+        draftChaseWording: `Please provide ${request.label}, or confirm in writing why it is not available.`,
+        courtLine: `The defence asks the court to record that ${request.label} remains outstanding on the schedule.`,
+        mergedFrom: [],
+        sourceScheduleRef: ref,
+        provenance: {
+          sourceDocumentTitle: "MG6 disclosure schedule",
+          sourceDocumentType: "disclosure_schedule",
+          sourcePage: page,
+          compiledPage: page,
+          pageIdentityKnown: Boolean(page),
+          evidenceState: "missing",
+          defendant: null,
+          countNumber: null,
+          unresolvedConflictOrLimitation: null,
+        },
+      };
+    });
+    const names = scheduleItems.map((item) => item.label).join("; ");
+    disclosureChase = {
+      ...disclosureChase,
+      items: scheduleItems,
+      primaryItems: scheduleItems,
+      additionalItems: [],
+      disclosureSummary: names
+        ? `Schedule chase (copy lab): ${names}.`
+        : "Schedule chase (copy lab): schedule established; no outstanding status cells on the current schedule.",
+      safeCourtLine: names
+        ? `The defence asks the court to record that ${names} remain outstanding on the papers.`
+        : "Schedule established; no named outstanding schedule items are recorded on the current papers.",
+      counters: {
+        total: scheduleItems.length,
+        overdue: 0,
+        dueSoon: 0,
+        chased: 0,
+        received: 0,
+        notStarted: scheduleItems.length,
+      },
+    };
+  }
 
   const warRoom = buildHearingWarRoomBrief({
     caseId,
@@ -223,12 +329,12 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     battleboard: null,
     hasSavedPosition: false,
     chaseItems: buildChaseItemsForHearing({
-      snapshotMissing: activeMissingRows,
-      bundleText: pipeline.bundleText,
+      snapshotMissing: scheduleLabUnsupported ? [] : activeMissingRows,
+      bundleText: scheduleLabApplied || scheduleLabUnsupported ? "" : pipeline.bundleText,
       fileBackedShortlist: disclosureChase.primaryItems.map((item) => item.label),
     }),
-    bundleText: pipeline.bundleText,
-    canonicalFindings: pipeline.findings,
+    bundleText: scheduleLabApplied || scheduleLabUnsupported ? "" : pipeline.bundleText,
+    canonicalFindings: scheduleLabApplied || scheduleLabUnsupported ? [] : pipeline.findings,
   });
 
   const truthMap = buildFiveAnswersView({
@@ -318,14 +424,25 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     requestedAction: "Record outstanding material and relationship findings on the papers.",
     safetyQualification: "Position remains provisional pending solicitor review.",
   });
-  const cpsCompose = composeStructuredSolicitorOutput({
-    kind: "cps_chase",
-    subject: pipeline.chaseLabels[0] ?? "Outstanding material",
-    evidenceState: "missing",
-    whyItMatters: "Detected from uploaded papers as outstanding or incomplete.",
-    requestedAction: `Please provide ${pipeline.chaseLabels[0] ?? "the outstanding material"}.`,
-    safetyQualification: "Chase wording is provisional pending solicitor review.",
-  });
+  const cpsCompose = opts?.holdCpsChase
+    ? {
+        ok: false,
+        text: null,
+        output: null,
+        rejections: [],
+        disposition: "safely_omitted" as const,
+        omitDisplay:
+          "CPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.",
+        omitKind: "cps_chase_held_lab",
+      }
+    : composeStructuredSolicitorOutput({
+        kind: "cps_chase",
+        subject: pipeline.chaseLabels[0] ?? "Outstanding material",
+        evidenceState: "missing",
+        whyItMatters: "Detected from uploaded papers as outstanding or incomplete.",
+        requestedAction: `Please provide ${pipeline.chaseLabels[0] ?? "the outstanding material"}.`,
+        safetyQualification: "Chase wording is provisional pending solicitor review.",
+      });
 
   const firstFinding = pipeline.findings[0];
   const clientDisclaimer = clientSafeSummaryDisclaimerWithProvenance({
@@ -341,12 +458,48 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
 
   const serialized = pipeline.findings.map(serializeCanonicalFindingForSurface);
   const requiredLimitations = requiredLimitationsFor(pipeline);
+  const multiScheduleDocs = scheduleLab?.scheduleDocuments ?? [];
+  const multiScheduleObs = scheduleLab?.scheduleObservations ?? [];
+  const scheduleLimitations = [
+    ...(scheduleLabUnsupported && scheduleLab?.unsupportedReason
+      ? [scheduleLab.unsupportedReason]
+      : []),
+    ...(scheduleLab?.multipleSchedulesUnresolved && multiScheduleDocs.length
+      ? [
+          `Schedule documents (unresolved authority): ${multiScheduleDocs
+            .map((row) => `${row.documentName} [${row.rowCount} rows]`)
+            .join("; ")}.`,
+        ]
+      : []),
+    ...(scheduleLab?.multipleSchedulesUnresolved
+      ? multiScheduleObs.slice(0, 40).map(
+          (row) =>
+            `Schedule observation (${row.documentName}): ${row.item} | ${row.statusWord} — ${row.line} (p.${row.page})`,
+        )
+      : []),
+    ...(scheduleLab?.uploadLimitations ?? []).map(
+      (row) =>
+        `Upload limitation (served on schedule; not in this copy): ${row.item} — ${row.note} (p.${row.page})`,
+    ),
+    ...(scheduleLab?.conflicts ?? []).map(
+      (row) =>
+        `Unresolved schedule conflict: ${row.item} — schedule "${row.scheduleLine}" vs later "${row.line}" (p.${row.page})`,
+    ),
+    ...(opts?.holdCpsChase
+      ? [
+          scheduleLabUnsupported
+            ? "CPS chase letter held on this copy while schedule chase input is unsupported."
+            : "CPS chase letter held on this copy. Schedule chase shows the page line; it does not auto-draft a CPS request from the first label.",
+        ]
+      : []),
+  ];
 
   // Every exit carries the same limitation set, so a limitation cannot be lost by
   // travelling through copy, export, PDF or composed prose.
   const composedLimitations = Array.from(
     new Set([
       ...requiredLimitations,
+      ...scheduleLimitations,
       ...pipeline.findings
         .filter((f) => f.unresolved)
         .map((f) => f.provenance.unresolvedConflictOrLimitation || f.provenanceLine)
@@ -431,7 +584,6 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     },
   );
 
-  const sanitizedChase = enforcement.sanitizedExits.find((e) => e.exit === "disclosure_chase");
   const sanitizedProse = enforcement.sanitizedExits.find((e) => e.exit === "composed_prose");
   const sanitizedCopy = enforcement.sanitizedExits.find((e) => e.exit === "copy");
 

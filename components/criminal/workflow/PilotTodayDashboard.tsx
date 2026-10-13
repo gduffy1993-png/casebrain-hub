@@ -177,12 +177,22 @@ export function PilotTodayDashboard({
 
   const listCap = pilotListCap(view.documentCount);
   const sayThisItems = dedupePilotLines(view.sayThis, view.safeCourtLine).slice(0, listCap);
-  const doNotItems = dedupePilotLines(view.doNotOverstate).slice(0, listCap);
-  const chaseItems = dedupePilotLines(
+  const scheduleNoteRe =
+    /schedule chase|upload limitation|unresolved schedule|could not be read this way|cps chase letter held|multiple disclosure schedules|schedule observation|schedule documents \(unresolved/i;
+  const scheduleNotes = dedupePilotLines(view.doNotOverstate.filter((line) => scheduleNoteRe.test(line)));
+  const otherDoNot = dedupePilotLines(
+    view.doNotOverstate.filter((line) => !scheduleNoteRe.test(line)),
+  ).slice(0, Math.max(0, listCap - scheduleNotes.length));
+  // Schedule-lab notes are never truncated away by the pilot list cap.
+  const doNotItems = [...scheduleNotes, ...otherDoNot];
+  const chaseItemsRaw = dedupePilotLines(
     view.chaseItems
       .map((line) => polishChasePreviewLabel(line) ?? "")
       .filter(Boolean),
-  ).slice(0, listCap);
+  );
+  // When schedule-lab notes are present, keep the full chase list on Court — listCap
+  // must not hide outstanding schedule items the Overview/Chase tabs already show.
+  const chaseItems = scheduleNotes.length > 0 ? chaseItemsRaw : chaseItemsRaw.slice(0, listCap);
   const askCourtItems = dedupePilotCourtRecordLines(
     dedupePilotLines(view.askCourtToRecord, view.safeCourtLine),
   ).slice(0, listCap);
@@ -276,6 +286,18 @@ export function PilotTodayDashboard({
           icon={<AlertTriangle className="h-3.5 w-3.5 text-rose-400" />}
           accentClass="border-rose-700/50"
         >
+          {scheduleNotes.length > 0 ? (
+            <div className="mb-2 space-y-1" data-testid="schedule-chase-lab-notes">
+              <p className={`text-[10px] ${workflowMuted}`}>Schedule chase notes</p>
+              <ul className="space-y-1 text-xs text-slate-200">
+                {scheduleNotes.map((line) => (
+                  <li key={line} data-testid="schedule-chase-lab-note">
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
           <DontSaySafetyBox items={doNotItems} compact />
         </CockpitCard>
 

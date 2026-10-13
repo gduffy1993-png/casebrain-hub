@@ -32,6 +32,14 @@ import {
 import { buildDisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { IngestionGateNotice } from "@/components/criminal/IngestionGateNotice";
 import { canonicalRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
+import type { LiveProductionSurfaces } from "@/lib/criminal/canonical-live-surface-adapter";
+import {
+  scheduleChaseBundleText,
+  scheduleChaseLabMeta,
+  scheduleChaseLimitationLines,
+  scheduleChaseServerDisclosure,
+  scheduleChaseServerWarRoom,
+} from "@/lib/criminal/schedule-chase-client";
 import { assembleBundleTextForReasoning } from "@/lib/criminal/reasoning-v2/assemble-bundle-text";
 import { buildDisclosureChaseHref } from "@/components/criminal/disclosure-chase/disclosureChaseLinks";
 import { fetchJsonWithSurfaceContract } from "@/lib/criminal/surface-load-contract";
@@ -75,8 +83,7 @@ import {
   displayPilotStripHearing,
   displayPilotStripStage,
 } from "@/components/criminal/workflow/workflowPilotDisplay";
-import { resolveSolicitorHearingDateIso } from "@/lib/criminal/solicitor-hearing-display";
-import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
+import { resolveCanonicalFirstHearingStatus } from "@/lib/criminal/canonical-hearing-display-authority";
 import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
 import { useReadinessEnabled } from "@/lib/criminal/pre-hearing-readiness/readiness-flag";
@@ -90,6 +97,7 @@ import {
 } from "@/lib/criminal/demo-presentation-polish";
 import { evaluateMatterIntegrity } from "@/lib/criminal/solicitor-output-integrity";
 import { SolicitorDeepDetailGate } from "@/components/criminal/trust/SolicitorDeepDetailGate";
+import { CanonicalHearingReceiptCard } from "@/components/criminal/hearing/CanonicalHearingReceiptCard";
 
 const ABOVE_FOLD_LIST_CAP = 5;
 
@@ -101,7 +109,7 @@ const HEARING_PROMPTS = [
   "What instruction do I need?",
 ] as const;
 
-type MatterSummary = {
+export type HearingWarRoomMatterSummary = {
   clientInitials: string | null;
   allegedOffence: string | null;
   stageDetected: string | null;
@@ -109,7 +117,7 @@ type MatterSummary = {
   bailOutcome?: string | null;
 };
 
-type BundleSourceSummary = {
+export type HearingWarRoomBundleSource = {
   documentCount: number;
   combinedTextLength: number;
   documentRows?: DocumentRowMeta[];
@@ -122,6 +130,7 @@ type BundleSourceSummary = {
     exhibits?: string | null;
   };
   canonical?: import("@/lib/criminal/authenticated-matter-canonical").AuthenticatedMatterCanonicalPayload | null;
+  surfaces?: Pick<LiveProductionSurfaces, "disclosureChase" | "warRoom" | "composedProse"> | null;
 };
 
 export type HearingWarRoomProps = {
@@ -147,6 +156,12 @@ export type HearingWarRoomProps = {
   embedInShell?: boolean;
   /** Court Today desk charge line — snapshot/strip UI fallback only. */
   deskChargeLine?: string | null;
+  /** Copy-only harness data; production omits this and uses authenticated fetches. */
+  acceptanceData?: {
+    matter: HearingWarRoomMatterSummary;
+    battleboard: BattleboardOutput | null;
+    bundleSource: HearingWarRoomBundleSource;
+  };
 };
 
 function formatGbDate(dateStr: string | null | undefined): string | null {
@@ -165,7 +180,7 @@ function formatGbDate(dateStr: string | null | undefined): string | null {
 
 function deriveBundleHealth(
   snapshot: CaseSnapshot | null,
-  bundleSource: BundleSourceSummary | null,
+  bundleSource: HearingWarRoomBundleSource | null,
   battleboard: BattleboardOutput | null,
 ): string {
   return formatCaseBundleHealthLabel({
@@ -371,15 +386,26 @@ export function HearingWarRoom({
   onUploadEvidence,
   embedInShell = false,
   deskChargeLine,
+  acceptanceData,
 }: HearingWarRoomProps) {
-  const [matter, setMatter] = useState<MatterSummary | null>(null);
-  const [battleboard, setBattleboard] = useState<BattleboardOutput | null>(null);
-  const [battleboardLoading, setBattleboardLoading] = useState(true);
-  const [bundleSource, setBundleSource] = useState<BundleSourceSummary | null>(null);
-  const [bundleLoading, setBundleLoading] = useState(true);
+  const [matter, setMatter] = useState<HearingWarRoomMatterSummary | null>(
+    acceptanceData?.matter ?? null,
+  );
+  const [battleboard, setBattleboard] = useState<BattleboardOutput | null>(
+    acceptanceData?.battleboard ?? null,
+  );
+  const [battleboardLoading, setBattleboardLoading] = useState(!acceptanceData);
+  const [bundleSource, setBundleSource] = useState<HearingWarRoomBundleSource | null>(
+    acceptanceData?.bundleSource ?? null,
+  );
+  const [bundleLoading, setBundleLoading] = useState(!acceptanceData);
   const [surfaceError, setSurfaceError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (acceptanceData) {
+      setMatter(acceptanceData.matter);
+      return;
+    }
     let cancelled = false;
     fetchJsonWithSurfaceContract<any>(`/api/criminal/${caseId}/matter`, {
       cache: "default",
@@ -399,9 +425,15 @@ export function HearingWarRoom({
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, acceptanceData]);
 
   useEffect(() => {
+    if (acceptanceData) {
+      setBattleboard(acceptanceData.battleboard);
+      setBattleboardLoading(false);
+      setSurfaceError(null);
+      return;
+    }
     let cancelled = false;
     setBattleboardLoading(true);
     fetchJsonWithSurfaceContract<BattleboardOutput | "empty">(
@@ -430,17 +462,23 @@ export function HearingWarRoom({
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, acceptanceData]);
 
   useEffect(() => {
+    if (acceptanceData) {
+      setBundleSource(acceptanceData.bundleSource);
+      setBundleLoading(false);
+      setSurfaceError(null);
+      return;
+    }
     let cancelled = false;
     setBundleLoading(true);
-    fetchJsonWithSurfaceContract<BundleSourceSummary | "empty">(
+    fetchJsonWithSurfaceContract<HearingWarRoomBundleSource | "empty">(
       `/api/criminal/${caseId}/bundle-source`,
       {
         mapOk: (json) => {
           const res = json as { ok?: boolean; data?: unknown } | null;
-          if (res?.ok && res?.data) return res.data as BundleSourceSummary;
+          if (res?.ok && res?.data) return res.data as HearingWarRoomBundleSource;
           return "empty";
         },
       },
@@ -452,7 +490,7 @@ export function HearingWarRoom({
           return;
         }
         if (res.data === "empty") return;
-        const d = res.data as BundleSourceSummary;
+        const d = res.data as HearingWarRoomBundleSource;
         setBundleSource({
           documentCount: d.documentCount ?? 0,
           combinedTextLength: d.combinedTextLength ?? 0,
@@ -473,7 +511,8 @@ export function HearingWarRoom({
                 exhibits: d.snippets.exhibits ?? null,
               }
             : undefined,
-          canonical: (d as BundleSourceSummary).canonical ?? null,
+          canonical: (d as HearingWarRoomBundleSource).canonical ?? null,
+          surfaces: (d as HearingWarRoomBundleSource).surfaces ?? null,
         });
       })
       .catch(() => {})
@@ -483,7 +522,7 @@ export function HearingWarRoom({
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, acceptanceData]);
 
   const caseTitleBase = snapshot?.caseMeta?.title?.trim() || "Criminal case";
 
@@ -575,27 +614,25 @@ export function HearingWarRoom({
     });
     return assembled || pageAwareBundleText || null;
   }, [pageAwareBundleText, bundleSource?.snippets]);
-  const hearingDateIso = resolveSolicitorHearingDateIso({
-    bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
-    snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
-    nextHearingRaw: bundleSource?.caseMetadata?.nextHearingRaw,
-    bundleHay: bundleSource?.frontMatterScan,
-  });
+  const canonicalHearing = bundleSource?.canonical?.hearingLifecycle.latest ?? null;
   const courtDisplay = pilotMode
     ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
       cleanPilotCourtHeaderCell(headerMeta.court)
     : headerMeta.court?.trim() || "Court not safely extracted";
-  const hearingResolved = resolveSolicitorHearingStatus({
-    bundleNextHearingIso: hearingDateIso,
-    snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
-    nextHearingRaw: headerMeta.nextHearing,
-    bundleHay: [
+  const hearingResolved = resolveCanonicalFirstHearingStatus({
+    canonicalLifecycle: bundleSource?.canonical?.hearingLifecycle,
+    legacyBundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
+    legacySnapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+    legacyNextHearingRaw: headerMeta.nextHearing,
+    legacyBundleHay: [
+      canonicalHearing?.sourceExcerpt,
       bundleSource?.caseMetadata?.nextHearingRaw,
       bundleSource?.frontMatterScan,
     ]
       .filter(Boolean)
       .join("\n"),
   });
+  const hearingDateIso = hearingResolved.dateIso;
   const hearingDisplay = (() => {
     if (
       (snapshotLoading || bundleLoading) &&
@@ -638,9 +675,18 @@ export function HearingWarRoom({
   ]);
 
   const chaseBoard = useMemo(() => {
+    const serverChase = scheduleChaseServerDisclosure(bundleSource);
+    if (serverChase) {
+      return {
+        labels: serverChase.primaryItems.map((item) => item.label),
+        items: serverChase.primaryItems,
+      };
+    }
     const canonicalRows = canonicalRowsForBuilder(bundleSource?.canonical ?? null);
     const builderMissingRows =
       canonicalRows.length > 0 ? canonicalRows : snapshot?.evidence.missingEvidence ?? [];
+    const scheduleLabOn = Boolean(bundleSource?.canonical?.scheduleChaseLab?.enabled);
+    const scheduleText = scheduleChaseBundleText(bundleSource, sourceBundleText);
     const chase = buildDisclosureChaseBrief({
       caseId,
       caseTitle,
@@ -651,12 +697,16 @@ export function HearingWarRoom({
       hearingDateIso,
       bundleHealth: deriveBundleHealth(snapshot, bundleSource, battleboard),
       positionStatus,
-      battleboard,
+      battleboard: scheduleLabOn ? null : battleboard,
       snapshotMissing: builderMissingRows,
-      proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
-      bundleText: sourceBundleText,
+      proceduralOutstanding: scheduleLabOn
+        ? undefined
+        : effectiveProceduralSafety?.outstandingItems,
+      bundleText: scheduleText,
       profileHint: pilotHeader?.profile ?? null,
-      canonicalFindings: bundleSource?.canonical?.findingSummaries ?? [],
+      canonicalFindings: scheduleLabOn
+        ? []
+        : bundleSource?.canonical?.findingSummaries ?? [],
       canonicalEvidenceRows: (bundleSource?.canonical?.evidenceRows ?? []).map((r) => ({
         label: r.label,
         state: r.existence,
@@ -664,10 +714,12 @@ export function HearingWarRoom({
     });
     return {
       labels: buildChaseItemsForHearing({
-        snapshotMissing: snapshot?.evidence.missingEvidence,
-        proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
-        battleboard,
-        bundleText: sourceBundleText,
+        snapshotMissing: scheduleLabOn ? builderMissingRows : snapshot?.evidence.missingEvidence,
+        proceduralOutstanding: scheduleLabOn
+          ? undefined
+          : effectiveProceduralSafety?.outstandingItems,
+        battleboard: scheduleLabOn ? null : battleboard,
+        bundleText: scheduleText,
         fileBackedShortlist: chase.primaryItems.map((item) => item.label),
       }),
       items: chase.primaryItems,
@@ -705,8 +757,12 @@ export function HearingWarRoom({
     return "Review — standard caution";
   }, [effectiveProceduralSafety, hasSavedPosition, chaseItemsAll, battleboard, pilotMode, pilotRecordPositionHidden]);
 
-  const brief: HearingWarRoomBrief = useMemo(
-    () =>
+  const brief: HearingWarRoomBrief = useMemo(() => {
+    const serverWarRoom = scheduleChaseServerWarRoom(bundleSource);
+    const scheduleLabOn = Boolean(bundleSource?.canonical?.scheduleChaseLab?.enabled);
+    const scheduleText = scheduleChaseBundleText(bundleSource, sourceBundleText);
+    const built =
+      serverWarRoom ??
       buildHearingWarRoomBrief({
         caseId,
         caseTitle,
@@ -717,36 +773,50 @@ export function HearingWarRoom({
         bundleHealth: deriveBundleHealth(snapshot, bundleSource, battleboard),
         positionStatus,
         readiness,
-        battleboard,
+        battleboard: scheduleLabOn ? null : battleboard,
         hasSavedPosition,
         chaseItems: chaseItemsAll,
         defencePlan,
-        proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
-        bundleText: sourceBundleText,
+        proceduralOutstanding: scheduleLabOn
+          ? undefined
+          : effectiveProceduralSafety?.outstandingItems,
+        bundleText: scheduleText,
         profileHint: pilotHeader?.profile ?? null,
         pilotDemoReadOnly: pilotRecordPositionHidden,
-        canonicalFindings: bundleSource?.canonical?.findingSummaries ?? [],
-      }),
-    [
-      caseId,
-      caseTitle,
-      clientLabel,
-      allegation,
-      stage,
-      hearingStatus,
-      bundleSource,
-      battleboard,
-      positionStatus,
-      readiness,
-      hasSavedPosition,
-      chaseItemsAll,
-      defencePlan,
-      effectiveProceduralSafety,
-      sourceBundleText,
-      pilotHeader?.profile,
-      pilotRecordPositionHidden,
-    ],
-  );
+        canonicalFindings: scheduleLabOn
+          ? []
+          : bundleSource?.canonical?.findingSummaries ?? [],
+      });
+    const notes = scheduleChaseLimitationLines(bundleSource);
+    if (!notes.length) return built;
+    // Schedule-lab notes first so pilot Court (listCap) cannot drop them.
+    return {
+      ...built,
+      doNotOverstate: [
+        ...notes,
+        ...built.doNotOverstate.filter((line) => !notes.includes(line)),
+      ],
+    };
+  }, [
+    caseId,
+    caseTitle,
+    clientLabel,
+    allegation,
+    stage,
+    hearingStatus,
+    bundleSource,
+    battleboard,
+    positionStatus,
+    readiness,
+    hasSavedPosition,
+    chaseItemsAll,
+    defencePlan,
+    effectiveProceduralSafety,
+    sourceBundleText,
+    pilotHeader?.profile,
+    pilotRecordPositionHidden,
+    snapshot,
+  ]);
 
   const planSummary = useMemo(() => {
     const parts = [
@@ -784,7 +854,17 @@ export function HearingWarRoom({
   );
 
   const loading = snapshotLoading || battleboardLoading || bundleLoading;
-  const embedBlockingLoading = embedInShell ? snapshotLoading || bundleLoading : loading;
+  const scheduleSurfaceReady = Boolean(
+    scheduleChaseServerDisclosure(bundleSource) ||
+      scheduleChaseLimitationLines(bundleSource).length > 0 ||
+      scheduleChaseLabMeta(bundleSource)?.enabled,
+  );
+  // Schedule-lab surfaces are enough for Court; do not blank the tab on snapshot lag.
+  const embedBlockingLoading = embedInShell
+    ? scheduleSurfaceReady
+      ? bundleLoading
+      : snapshotLoading || bundleLoading
+    : loading;
   const controlRoomHref = buildControlRoomHref(caseId);
   const headerLoading = snapshotLoading || bundleLoading;
   const ingestion = bundleSource?.canonical?.ingestion ?? null;
@@ -821,7 +901,8 @@ export function HearingWarRoom({
   const copyBlockedReason = outputIntegrity.banner;
 
   const pilotTodayView = useMemo((): PilotTodayDashboardView | null => {
-    if (!usePilotDeskUi || snapshotLoading || ingestion?.substantiveOutputsWithheld) return null;
+    if (!usePilotDeskUi || ingestion?.substantiveOutputsWithheld) return null;
+    if (snapshotLoading && !scheduleSurfaceReady) return null;
     const filteredDno = filterBundleFamilyWarnings(brief.doNotOverstate, bundleContextHay);
     const filteredRisks = filterBundleFamilyWarnings(brief.collapseRisks, bundleContextHay);
     const filteredChase = filterBundleFamilyWarnings(chaseItemsAll, bundleContextHay);
@@ -858,6 +939,7 @@ export function HearingWarRoom({
   }, [
     usePilotDeskUi,
     snapshotLoading,
+    scheduleSurfaceReady,
     clientLabel,
     allegation,
     courtDisplay,
@@ -895,21 +977,29 @@ export function HearingWarRoom({
             </p>
           </div>
         ) : pilotTodayView ? (
-          <PilotTodayDashboard
-            caseId={caseId}
-            view={pilotTodayView}
-            deskChargeLine={deskChargeLine}
-            moreDetail={
-              <SolicitorDeepDetailGate integrity={outputIntegrity} label="Court more detail">
-                <PilotWarRoomMoreDetail
-                  brief={brief}
-                  bundleHay={bundleContextHay}
-                  canCopyDrafts={canCopyDrafts}
-                  copyBlockedReason={copyBlockedReason}
-                />
-              </SolicitorDeepDetailGate>
-            }
-          />
+          <div className="space-y-3">
+            {bundleSource?.canonical?.hearingLifecycle ? (
+              <CanonicalHearingReceiptCard
+                lifecycle={bundleSource.canonical.hearingLifecycle}
+                surface="war_room"
+              />
+            ) : null}
+            <PilotTodayDashboard
+              caseId={caseId}
+              view={pilotTodayView}
+              deskChargeLine={deskChargeLine}
+              moreDetail={
+                <SolicitorDeepDetailGate integrity={outputIntegrity} label="Court more detail">
+                  <PilotWarRoomMoreDetail
+                    brief={brief}
+                    bundleHay={bundleContextHay}
+                    canCopyDrafts={canCopyDrafts}
+                    copyBlockedReason={copyBlockedReason}
+                  />
+                </SolicitorDeepDetailGate>
+              }
+            />
+          </div>
         ) : (
           <div className={`${workflowCard} p-6 text-sm text-slate-500`}>
             Matter dashboard will appear once case snapshot loads.
@@ -998,6 +1088,15 @@ export function HearingWarRoom({
             <p className="px-4 py-2 text-[10px] text-slate-400 border-t border-slate-100">{metadataNote}</p>
           ) : null}
         </header>
+        ) : null}
+
+        {!loading &&
+        !ingestion?.substantiveOutputsWithheld &&
+        bundleSource?.canonical?.hearingLifecycle ? (
+          <CanonicalHearingReceiptCard
+            lifecycle={bundleSource.canonical.hearingLifecycle}
+            surface="war_room"
+          />
         ) : null}
 
         {pilotMode ? (

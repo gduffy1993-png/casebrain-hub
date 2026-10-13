@@ -93,6 +93,13 @@ import {
 import { humanizeRemainingSnakeCaseTokens } from "@/lib/criminal/solicitor-visible-sanitization";
 import { createClient } from "@/lib/supabase/browser";
 import { canonicalRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
+import type { LiveProductionSurfaces } from "@/lib/criminal/canonical-live-surface-adapter";
+import {
+  scheduleChaseBundleText,
+  scheduleChaseLabMeta,
+  scheduleChaseLimitationLines,
+  scheduleChaseServerDisclosure,
+} from "@/lib/criminal/schedule-chase-client";
 
 const LOCAL_STORAGE_PREFIX = "casebrain:disclosure-chase:";
 
@@ -114,6 +121,7 @@ type BundleSourceSummary = {
   header?: { stage: string | null; shortTitle?: string | null; accused?: string | null };
   caseMetadata?: ExtractedBundleCaseMetadata | null;
   canonical?: import("@/lib/criminal/authenticated-matter-canonical").AuthenticatedMatterCanonicalPayload | null;
+  surfaces?: Pick<LiveProductionSurfaces, "disclosureChase" | "warRoom" | "composedProse"> | null;
 };
 
 export type DisclosureChaseProps = {
@@ -127,6 +135,11 @@ export type DisclosureChaseProps = {
   controlRoomMode?: boolean;
   /** Parent already mounted CaseWorkflowShell (pilot Chase tab). */
   embedInShell?: boolean;
+  /** Copy-only harness data; production omits this and uses authenticated fetches. */
+  acceptanceData?: {
+    bundleSource: BundleSourceSummary;
+    battleboard?: BattleboardOutput | null;
+  };
 };
 
 const FILTER_TABS: { id: ChaseFilterBucket; label: string }[] = [
@@ -543,12 +556,17 @@ export function DisclosureChase({
   effectiveProceduralSafety,
   controlRoomMode,
   embedInShell = false,
+  acceptanceData,
 }: DisclosureChaseProps) {
   const [matter, setMatter] = useState<MatterSummary | null>(null);
-  const [battleboard, setBattleboard] = useState<BattleboardOutput | null>(null);
-  const [battleboardLoading, setBattleboardLoading] = useState(true);
-  const [bundleSource, setBundleSource] = useState<BundleSourceSummary | null>(null);
-  const [bundleLoading, setBundleLoading] = useState(true);
+  const [battleboard, setBattleboard] = useState<BattleboardOutput | null>(
+    acceptanceData?.battleboard ?? null,
+  );
+  const [battleboardLoading, setBattleboardLoading] = useState(!acceptanceData);
+  const [bundleSource, setBundleSource] = useState<BundleSourceSummary | null>(
+    acceptanceData?.bundleSource ?? null,
+  );
+  const [bundleLoading, setBundleLoading] = useState(!acceptanceData);
   const [filter, setFilter] = useState<ChaseFilterBucket>("all");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [surfaceError, setSurfaceError] = useState<string | null>(null);
@@ -561,6 +579,10 @@ export function DisclosureChase({
   const [pilotChaseActionsHidden, setPilotChaseActionsHidden] = useState(false);
 
   useEffect(() => {
+    if (acceptanceData) {
+      setLocalStatus({});
+      return;
+    }
     let cancelled = false;
     createClient()
       .auth.getUser()
@@ -588,7 +610,7 @@ export function DisclosureChase({
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, acceptanceData]);
 
   const persistLocal = useCallback(
     (next: LocalChaseMap) => {
@@ -609,6 +631,7 @@ export function DisclosureChase({
   const markReceived = (id: string) => persistLocal({ ...localStatus, [id]: "Received" });
 
   useEffect(() => {
+    if (acceptanceData) return;
     let cancelled = false;
     fetch(`/api/criminal/${caseId}/matter`, { credentials: "include" })
       .then((r) => r.json())
@@ -626,9 +649,14 @@ export function DisclosureChase({
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, acceptanceData]);
 
   useEffect(() => {
+    if (acceptanceData) {
+      setBattleboard(acceptanceData.battleboard ?? null);
+      setBattleboardLoading(false);
+      return;
+    }
     let cancelled = false;
     setBattleboardLoading(true);
     fetchJsonWithSurfaceContract<BattleboardOutput | "empty">(
@@ -657,9 +685,14 @@ export function DisclosureChase({
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, acceptanceData]);
 
   useEffect(() => {
+    if (acceptanceData) {
+      setBundleSource(acceptanceData.bundleSource);
+      setBundleLoading(false);
+      return;
+    }
     let cancelled = false;
     setBundleLoading(true);
     fetchJsonWithSurfaceContract<(BundleSourceSummary & { documentCount?: number }) | "empty">(
@@ -696,6 +729,7 @@ export function DisclosureChase({
             : undefined,
           caseMetadata: d.caseMetadata ?? null,
           canonical: (d as BundleSourceSummary).canonical ?? null,
+          surfaces: (d as BundleSourceSummary).surfaces ?? null,
         });
       })
       .catch(() => {})
@@ -705,7 +739,7 @@ export function DisclosureChase({
     return () => {
       cancelled = true;
     };
-  }, [caseId]);
+  }, [caseId, acceptanceData]);
 
   const sourceBundleText =
     bundleSource?.canonical?.pageAwareFrontMatterScan ??
@@ -817,11 +851,16 @@ export function DisclosureChase({
 
   const brief: DisclosureChaseBrief = useMemo(
     () => {
+      const serverChase = scheduleChaseServerDisclosure(bundleSource);
+      if (serverChase) return serverChase;
+
       const canonicalRows = canonicalRowsForBuilder(bundleSource?.canonical ?? null);
       const builderMissingRows =
         canonicalRows.length > 0
           ? canonicalRows
           : snapshot?.evidence.missingEvidence ?? [];
+      const scheduleLabOn = Boolean(bundleSource?.canonical?.scheduleChaseLab?.enabled);
+      const scheduleText = scheduleChaseBundleText(bundleSource, sourceBundleText);
 
       return buildDisclosureChaseBrief({
         caseId,
@@ -833,12 +872,16 @@ export function DisclosureChase({
         hearingDateIso,
         bundleHealth: deriveBundleHealth(snapshot, bundleSource, battleboard),
         positionStatus,
-        battleboard,
+        battleboard: scheduleLabOn ? null : battleboard,
         snapshotMissing: builderMissingRows,
-        proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
-        bundleText: sourceBundleText,
+        proceduralOutstanding: scheduleLabOn
+          ? undefined
+          : effectiveProceduralSafety?.outstandingItems,
+        bundleText: scheduleText,
         profileHint: pilotHeader?.profile ?? null,
-        canonicalFindings: bundleSource?.canonical?.findingSummaries ?? [],
+        canonicalFindings: scheduleLabOn
+          ? []
+          : bundleSource?.canonical?.findingSummaries ?? [],
         canonicalEvidenceRows: (bundleSource?.canonical?.evidenceRows ?? []).map((r) => ({
           label: r.label,
           state: r.existence,
@@ -925,7 +968,18 @@ export function DisclosureChase({
   }, [filteredItems, selectedId]);
 
   const loading = snapshotLoading || battleboardLoading || bundleLoading;
-  const embedBlockingLoading = embedInShell ? snapshotLoading || bundleLoading : loading;
+  // Schedule-lab surfaces are enough to render chase; do not keep the tracker blank
+  // while the unrelated case snapshot is still loading.
+  const scheduleSurfaceReady = Boolean(
+    scheduleChaseServerDisclosure(bundleSource) ||
+      scheduleChaseLimitationLines(bundleSource).length > 0 ||
+      scheduleChaseLabMeta(bundleSource)?.enabled,
+  );
+  const embedBlockingLoading = embedInShell
+    ? scheduleSurfaceReady
+      ? bundleLoading
+      : snapshotLoading || bundleLoading
+    : loading;
   const pilotEmbed = embedInShell;
   const loadingCardClass = pilotEmbed ? workflowPilotCard : workflowCard;
   const ingestion = bundleSource?.canonical?.ingestion ?? null;
@@ -994,6 +1048,22 @@ export function DisclosureChase({
             Disclosure chase
           </p>
         )}
+
+        {scheduleChaseLimitationLines(bundleSource).length > 0 && !loading ? (
+          <section
+            className={`${workflowPilotSurfaceCard} p-3 space-y-1`}
+            data-testid="schedule-chase-lab-notes"
+          >
+            <p className={workflowSectionTitle}>Schedule chase notes</p>
+            <ul className="space-y-1 text-xs text-slate-700">
+              {scheduleChaseLimitationLines(bundleSource).map((line) => (
+                <li key={line} data-testid="schedule-chase-lab-note">
+                  {line}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
         {embedBlockingLoading && !showLimitedLoadingFallback ? (
           <div className={`${loadingCardClass} p-8 flex items-center justify-center gap-2 ${pilotEmbed ? "text-slate-400" : "text-slate-600"}`}>
