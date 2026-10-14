@@ -6,6 +6,47 @@ import { extractMetadataWithLessons, metadataValue } from "@/lib/criminal/contro
 import { readOwnedOriginalPdf, sourceHash } from "@/lib/criminal/controlled-learning/original-pdf";
 
 const uuid = z.string().uuid();
+
+async function recordLearningEvent(
+  db: SupabaseClient,
+  orgId: string,
+  actorId: string,
+  action: string,
+  lessonId: string | null,
+  payload: Record<string, unknown> = {},
+) {
+  const { error } = await db.from("learning_events").insert({
+    org_id: orgId,
+    lesson_id: lessonId,
+    actor_id: actorId,
+    action,
+    payload,
+  });
+  if (error) throw new Error("Learning audit event could not be stored.");
+}
+
+async function sampleHeldOutCorrectionIds(
+  db: SupabaseClient,
+  orgId: string,
+  field: string,
+  trainingId: string,
+): Promise<string[]> {
+  const { data, error } = await db
+    .from("learning_corrections")
+    .select("id,verified_at")
+    .eq("org_id", orgId)
+    .eq("field", field)
+    .order("created_at", { ascending: true })
+    .limit(50);
+  if (error || !data) throw new Error("Held-out examples could not be loaded.");
+  const ids = data
+    .filter((row) => row.id !== trainingId && row.verified_at)
+    .map((row) => row.id)
+    .slice(0, 12);
+  if (ids.length < 5) throw new Error("Five verified held-out examples of this field are required.");
+  return ids;
+}
+
 const BodySchema = z.discriminatedUnion("action", [
   z.object({ action: z.literal("capture"), documentId: uuid, page: z.number().int().min(1).max(2000),
     rule: RuleSchema, expectedValue: z.string().trim().min(2).max(320) }).strict(),
@@ -60,6 +101,7 @@ async function POST(request: NextRequest) {
         document_id: body.documentId, field: body.rule.field, label: body.rule.label, expected_value: match.value,
         source_page: body.page, source_line: match.line, source_hash: source.hash, created_by: userId }).select().single();
       if (error) throw new Error("Correction could not be stored.");
+      await recordLearningEvent(db, orgId, userId, "captured", null, { correctionId: data.id, documentId: body.documentId });
       return NextResponse.json({ correction: data });
     }
     if (body.action === "verify" || body.action === "propose") {
@@ -68,13 +110,16 @@ async function POST(request: NextRequest) {
       const source = await readOwnedOriginalPdf(db, orgId, correction.document_id);
       if (source.hash !== correction.source_hash) throw new Error("The source changed. Capture the correction again.");
       if (body.action === "verify") {
+        if (correction.created_by === userId) throw new Error("A different reviewer must verify this correction.");
         const { error } = await db.from("learning_corrections").update({ verified_by: userId, verified_at: new Date().toISOString() }).eq("id", correction.id).eq("org_id", orgId);
         if (error) throw new Error("Verification could not be stored.");
+        await recordLearningEvent(db, orgId, userId, "verified", null, { correctionId: correction.id });
         return NextResponse.json({ verified: true });
       }
       if (!correction.verified_at) throw new Error("A source correction must be verified before proposing a rule.");
       const { data, error } = await db.from("learning_lessons").insert({ org_id: orgId, correction_id: correction.id, field: correction.field, label: correction.label }).select().single();
       if (error) throw new Error("Rule could not be proposed (a proposal may already exist).");
+      await recordLearningEvent(db, orgId, userId, "proposed", data.id, { correctionId: correction.id });
       return NextResponse.json({ lesson: data });
     }
     const { data: lesson } = await db.from("learning_lessons").select("*").eq("id", body.lessonId).eq("org_id", orgId).maybeSingle();
@@ -86,10 +131,15 @@ async function POST(request: NextRequest) {
     }
     if (lesson.status !== "proposed") throw new Error("Only proposed rules can be evaluated or approved.");
     const rule = RuleSchema.parse({ field: lesson.field, label: lesson.label });
-    const testIds: string[] = body.action === "evaluate" ? body.testIds : (lesson.evaluation?.observations ?? []).map((o: { id: string }) => o.id);
-    if (testIds.length < 5 || testIds.length > 12 || new Set(testIds).size !== testIds.length) throw new Error("Select five to twelve distinct verified held-out examples.");
     const { data: training } = await db.from("learning_corrections").select("*").eq("org_id", orgId).eq("id", lesson.correction_id).maybeSingle();
     if (!training?.verified_at) throw new Error("Training correction is no longer verified.");
+    if (body.action === "approve" && (training.created_by === userId || training.verified_by === userId)) {
+      throw new Error("A different reviewer must approve this rule.");
+    }
+    const testIds: string[] = body.action === "evaluate"
+      ? body.testIds
+      : await sampleHeldOutCorrectionIds(db, orgId, rule.field, training.id);
+    if (testIds.length < 5 || testIds.length > 12 || new Set(testIds).size !== testIds.length) throw new Error("Select five to twelve distinct verified held-out examples.");
     const trainingSource = await readOwnedOriginalPdf(db, orgId, training.document_id);
     if (trainingSource.hash !== training.source_hash) throw new Error("Training PDF changed.");
     const active = await loadApprovedRules(orgId);
@@ -118,6 +168,7 @@ async function POST(request: NextRequest) {
     if (body.action === "evaluate") {
       const { error } = await db.from("learning_lessons").update({ evaluation: report, updated_at: new Date().toISOString() }).eq("id", lesson.id).eq("org_id", orgId).eq("status", "proposed");
       if (error) throw new Error("Evaluation could not be stored.");
+      await recordLearningEvent(db, orgId, userId, "evaluated", lesson.id, { sampled: false, tested: report.tested });
       return NextResponse.json({ report });
     }
     // Approval re-extracts originals and reruns the evaluation; browser reports are never trusted.

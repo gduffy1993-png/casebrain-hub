@@ -226,10 +226,17 @@ export function mapCaseDocumentsToUploadedUnits(docs: CaseDocumentRow[]): Upload
     if (!assessmentForStoredDocument(doc).substantiveOutputsAllowed) return;
     const text = bodyText(doc);
     if (!text) return;
-    const fromJson = pagesFromExtractedJson(doc.extracted_json);
-    const fromFf = fromJson ?? pagesFromFormFeed(text);
+    const assessment = assessmentForStoredDocument(doc);
+    const fallbackWithoutPageUnits =
+      assessment.parserRoute === "pdf_text_fallback" ||
+      assessment.parserRoute === "pdf_stream_fallback" ||
+      assessment.reasonCodes.includes("page_units_unavailable");
+    const fromJson = fallbackWithoutPageUnits ? null : pagesFromExtractedJson(doc.extracted_json);
+    const fromFf = fromJson ?? (fallbackWithoutPageUnits ? null : pagesFromFormFeed(text));
     const pages: UploadedPageUnit[] = fromFf?.length
-      ? fromFf
+      ? fromFf.map((page) =>
+          fallbackWithoutPageUnits ? { ...page, pageNumber: null, pageIdentityKnown: false } : page,
+        )
       : [
           {
             pageNumber: null,
@@ -439,6 +446,7 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
           canonicalPipeline: pipeline,
           holdCpsChase: Boolean(scheduleChaseLab),
           scheduleChaseLab,
+          learningRules: opts?.learningRules ?? [],
         })
       : null;
 

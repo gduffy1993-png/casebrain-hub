@@ -15,9 +15,9 @@ type RouteParams = { params: Promise<{ caseId: string }> };
  * from authenticated uploaded documents (matter-loading path used by Overview / War Room /
  * Chase / Control Room / truth map).
  *
- * Copy-only: when CASEBRAIN_SCHEDULE_CHASE_LAB=1, schedule chase uses column pages from
- * the case's owned uploaded PDF (storage). Without that PDF, unsupported input is visible.
- * Default remains off — production behaviour unchanged.
+ * Surfaces are always built from the live canonical pipeline. The schedule-chase
+ * lab flag only swaps the chase input (owned PDF column pages); it does not gate
+ * whether Overview / Chase / War Room receive server surfaces.
  */
 export async function GET(_request: Request, { params }: RouteParams) {
   try {
@@ -128,7 +128,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
       caseId,
       caseTitle: typeof caseRow.title === "string" ? caseRow.title : null,
       allegation: payload.caseMetadata?.offenceDisplay ?? payload.header?.shortTitle ?? null,
-      withSurfaces: scheduleLabOn,
+      withSurfaces: true,
       scheduleChaseLab,
       learningRules: learning.rules,
     });
@@ -151,8 +151,8 @@ export async function GET(_request: Request, { params }: RouteParams) {
         /** Live canonical pipeline from uploaded document/page units. */
         canonical,
         learning: { status: learning.status, applied: withheld ? [] : payload.learningApplied },
-        /** Present only when schedule chase lab is explicitly enabled on this copy. */
-        surfaces: scheduleLabOn && !withheld ? surfaces : null,
+        /** Live production surfaces from the same canonical pipeline. Withheld when ingestion blocks output. */
+        surfaces: withheld ? null : surfaces,
       },
     });
   } catch (e) {

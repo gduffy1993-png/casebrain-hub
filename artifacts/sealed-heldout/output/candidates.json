@@ -1,0 +1,100 @@
+[
+  {
+    "file": "heldout-1.pdf",
+    "pdfSha256": "083ee4b6d111f8ee508f3386eb25236c3de0fbe5c1fe65855387c5956a63198f",
+    "caseId": "6d77d2d8-68e4-44c9-b612-a53a9522ed89",
+    "documentIds": [
+      "0024e815-cb62-4337-8a0f-fb33e2437e07"
+    ],
+    "extractSha256": "8ae4c23b80d1e7c8ff79e515fe791ebd68190bae842dda7af193db125f700452",
+    "surfacesPresent": true,
+    "defendantObserved": "Person Alpha",
+    "chargeObserved": "Theft",
+    "withheld": false,
+    "route": "upload"
+  },
+  {
+    "file": "heldout-2.pdf",
+    "pdfSha256": "4e7c99a77ea937645498c2db1f9c3658a7f389c9a896ebb4148f6798f2b5137f",
+    "caseId": "259fabf5-af5a-476e-ab01-1c45866d2b28",
+    "documentIds": [
+      "07b21dbf-2b87-4be3-bbca-acf3e44f92b5"
+    ],
+    "extractSha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e",
+    "surfacesPresent": true,
+    "defendantObserved": "Person Bravo",
+    "chargeObserved": "Theft",
+    "withheld": false,
+    "route": "upload"
+  },
+  {
+    "file": "heldout-3.pdf",
+    "pdfSha256": "2ba21af7f38b457fcd053f960b9d42676792f3de090fc4c2afe6a75ae34c3fae",
+    "caseId": "777aa7fd-422c-441b-9040-0f8ac2b83d8f",
+    "documentIds": [
+      "cc919516-9aa6-4a15-bf98-9868d3f427b7"
+    ],
+    "extractSha256": "14063697603e22d600d336bee6cff12c8be93509ce84a0642918d89b2aef1753",
+    "surfacesPresent": true,
+    "defendantObserved": "Person Charlie",
+    "chargeObserved": "Theft",
+    "withheld": false,
+    "route": "upload"
+  },
+  {
+    "file": "heldout-4.pdf",
+    "pdfSha256": "696d01bc9107dcdd38a95fc28dcd0dce48e2f85299d6adea6ee9d97465932c8d",
+    "caseId": "7eeef6e8-39b6-4740-bfce-f7e17a04d5b8",
+    "documentIds": [
+      "5b4af0b1-82c6-4353-951d-91d28bf18f4d"
+    ],
+    "extractSha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e",
+    "surfacesPresent": true,
+    "defendantObserved": "Person Delta",
+    "chargeObserved": "Theft",
+    "withheld": false,
+    "route": "upload"
+  },
+  {
+    "file": "heldout-5.pdf",
+    "pdfSha256": "8197bae8a47cb5ed79f24ea0cf6f05055625fc0305f01f58c4ca758ec4734db9",
+    "caseId": "1a45eefa-d278-48fa-aa6d-df3bef5ec776",
+    "documentIds": [
+      "6e230bce-2a84-4aa0-a817-20296181d509"
+    ],
+    "extractSha256": "9a049b03f6fc40bfcf2f136320359257ed4af8513f71aa6fef47f17059bbae23",
+    "surfacesPresent": true,
+    "defendantObserved": "Person Echo",
+    "chargeObserved": "Theft",
+    "withheld": false,
+    "route": "upload"
+  },
+  {
+    "file": "heldout-6.pdf",
+    "pdfSha256": "556eb6a5bb3c00d564374847fc2ed152cb257a80269e296fc83481e3c1bb8258",
+    "caseId": "bc36d296-edff-4ec9-a371-8249c9463415",
+    "documentIds": [
+      "635df2d3-15d3-43c7-911b-cb1e097e3bf6"
+    ],
+    "extractSha256": "8efbbe9bc19ad2e043c6cdb187c0a0fedde70b6458443ce0b5648ec04ccf4cdf",
+    "surfacesPresent": true,
+    "defendantObserved": "Person Foxtrot",
+    "chargeObserved": "Theft",
+    "withheld": false,
+    "route": "upload"
+  },
+  {
+    "file": "CB-MONSTER-2026-0001.pdf",
+    "pdfSha256": "a13f158eaf217269bc00a9af8feecdb8d7fef727e309972a293f9c6546ced9f7",
+    "caseId": "b12143b6-06ae-4674-980f-e3da0fc91182",
+    "documentIds": [
+      "de971223-5d3b-4952-bf0e-9fd2498c99fc"
+    ],
+    "extractSha256": "e3209b97ef1347d5595a21629a3f34da01516dbf1ef0f5aa2d5af973e72f3644",
+    "surfacesPresent": true,
+    "defendantObserved": "Arden Vale",
+    "chargeObserved": "Robbery",
+    "withheld": false,
+    "route": "upload"
+  }
+]

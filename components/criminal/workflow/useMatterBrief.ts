@@ -91,8 +91,11 @@ type BundleSourceSummary = {
   caseMetadata?: ExtractedBundleCaseMetadata | null;
   /** Live canonical pipeline from authenticated document/page units. */
   canonical?: AuthenticatedMatterCanonicalPayload | null;
-  /** Present when schedule chase lab is enabled on this copy. */
-  surfaces?: Pick<LiveProductionSurfaces, "disclosureChase" | "warRoom" | "composedProse"> | null;
+  /** Live production surfaces from bundle-source (always built when papers are readable). */
+  surfaces?: Pick<
+    LiveProductionSurfaces,
+    "disclosureChase" | "warRoom" | "composedProse" | "exportPack" | "truthMap" | "matterState"
+  > | null;
 };
 
 function deriveBundleHealth(
@@ -125,6 +128,7 @@ function useLiveMatterBrief(caseId: string, disabled = false) {
   const [matterState, setMatterState] = useState<string | null>(null);
   const [hasSavedPosition, setHasSavedPosition] = useState(false);
   const [savedPositionText, setSavedPositionText] = useState<string | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
     if (disabled) return;
@@ -135,7 +139,10 @@ function useLiveMatterBrief(caseId: string, disabled = false) {
         if (!cancelled) setSnapshot(s);
       })
       .catch(() => {
-        if (!cancelled) setSnapshot(null);
+        if (!cancelled) {
+          setSnapshot(null);
+          setLoadError((prev) => prev ?? "Case snapshot could not be loaded.");
+        }
       })
       .finally(() => {
         if (!cancelled) setSnapshotLoading(false);
@@ -150,12 +157,18 @@ function useLiveMatterBrief(caseId: string, disabled = false) {
     let cancelled = false;
     setBattleboardLoading(true);
     fetch(`/api/criminal/${caseId}/strategy-battleboard`, { cache: "no-store", credentials: "include" })
-      .then((r) => r.json())
-      .then((res) => {
-        if (cancelled || !res?.ok) return;
+      .then(async (r) => {
+        const res = await r.json().catch(() => null);
+        if (cancelled) return;
+        if (!r.ok || !res?.ok) {
+          setLoadError((prev) => prev ?? "Strategy board could not be loaded.");
+          return;
+        }
         setBattleboard(res.data ?? res.battleboard ?? null);
       })
-      .catch(() => {})
+      .catch(() => {
+        if (!cancelled) setLoadError((prev) => prev ?? "Strategy board could not be loaded.");
+      })
       .finally(() => {
         if (!cancelled) setBattleboardLoading(false);
       });
@@ -168,10 +181,15 @@ function useLiveMatterBrief(caseId: string, disabled = false) {
     if (disabled) return;
     let cancelled = false;
     setBundleLoading(true);
+    setLoadError(null);
     fetch(`/api/criminal/${caseId}/bundle-source`, { cache: "no-store", credentials: "include" })
-      .then((r) => r.json())
-      .then((res) => {
-        if (cancelled || !res?.ok || !res?.data) return;
+      .then(async (r) => {
+        const res = await r.json().catch(() => null);
+        if (cancelled) return;
+        if (!r.ok || !res?.ok || !res?.data) {
+          setLoadError("Papers could not be loaded.");
+          return;
+        }
         const d = res.data as BundleSourceSummary;
         setBundleSource({
           documentCount: d.documentCount ?? 0,
@@ -185,7 +203,9 @@ function useLiveMatterBrief(caseId: string, disabled = false) {
           surfaces: (d as BundleSourceSummary).surfaces ?? null,
         });
       })
-      .catch(() => {})
+      .catch(() => {
+        if (!cancelled) setLoadError("Papers could not be loaded.");
+      })
       .finally(() => {
         if (!cancelled) setBundleLoading(false);
       });
@@ -198,9 +218,13 @@ function useLiveMatterBrief(caseId: string, disabled = false) {
     if (disabled) return;
     let cancelled = false;
     fetch(`/api/criminal/${caseId}/matter`, { credentials: "include" })
-      .then((r) => r.json())
-      .then((data) => {
-        if (cancelled || !data) return;
+      .then(async (r) => {
+        const data = await r.json().catch(() => null);
+        if (cancelled) return;
+        if (!r.ok || !data) {
+          setLoadError((prev) => prev ?? "Saved matter record could not be loaded.");
+          return;
+        }
         setMatterState(data.matterState ?? data.stage ?? null);
         setMatter({
           clientInitials: data.clientInitials ?? null,
@@ -210,7 +234,9 @@ function useLiveMatterBrief(caseId: string, disabled = false) {
           bailOutcome: data.bailOutcome ?? null,
         });
       })
-      .catch(() => {});
+      .catch(() => {
+        if (!cancelled) setLoadError((prev) => prev ?? "Saved matter record could not be loaded.");
+      });
     return () => {
       cancelled = true;
     };
@@ -220,9 +246,13 @@ function useLiveMatterBrief(caseId: string, disabled = false) {
     if (disabled) return;
     let cancelled = false;
     fetch(`/api/criminal/${caseId}/position`, { credentials: "include" })
-      .then((r) => r.json())
-      .then((data) => {
+      .then(async (r) => {
+        const data = await r.json().catch(() => null);
         if (cancelled) return;
+        if (!r.ok) {
+          setLoadError((prev) => prev ?? "Saved position could not be loaded.");
+          return;
+        }
         if (data.ok && (data.data || data.position)) {
           setHasSavedPosition(true);
           setSavedPositionText((data.data || data.position)?.position_text ?? null);
@@ -231,7 +261,9 @@ function useLiveMatterBrief(caseId: string, disabled = false) {
           setSavedPositionText(null);
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        if (!cancelled) setLoadError((prev) => prev ?? "Saved position could not be loaded.");
+      });
     return () => {
       cancelled = true;
     };
@@ -258,6 +290,7 @@ function useLiveMatterBrief(caseId: string, disabled = false) {
         briefPlan: null,
         primaryRouteTitle: null,
         canonical: bundleSource?.canonical ?? null,
+        surfaces: null,
         ingestion,
         evidenceRowsOverride: [],
         bundleMeta: bundleSource
@@ -286,15 +319,19 @@ function useLiveMatterBrief(caseId: string, disabled = false) {
 
     const headerMeta = resolveCaseHeaderMetadata({
       snapshot,
-      matter: matter
-        ? {
-            clientInitials: matter.clientInitials,
-            defendantName: matter.defendantName,
-            allegedOffence: matter.allegedOffence,
-            stageDetected: matter.stageDetected,
-            bailOutcome: matter.bailOutcome,
-          }
-        : null,
+      // Live canonical papers own identity. The persisted /matter row must not override them.
+      matter:
+        bundleSource?.canonical && matter
+          ? null
+          : matter
+            ? {
+                clientInitials: matter.clientInitials,
+                defendantName: matter.defendantName,
+                allegedOffence: matter.allegedOffence,
+                stageDetected: matter.stageDetected,
+                bailOutcome: matter.bailOutcome,
+              }
+            : null,
       bundleMetadata: bundleSource?.caseMetadata,
       bundleHeader: bundleSource?.header,
       sourceCharges: bundleSource?.canonical?.charges ?? null,
@@ -571,6 +608,7 @@ function useLiveMatterBrief(caseId: string, disabled = false) {
       briefPlan,
       primaryRouteTitle,
       canonical: bundleSource?.canonical ?? null,
+      surfaces: bundleSource?.surfaces ?? null,
       ingestion,
       evidenceRowsOverride: evidenceRowsFromCanonical,
       bundleMeta: bundleSource
@@ -602,6 +640,8 @@ function useLiveMatterBrief(caseId: string, disabled = false) {
 
   return {
     loading: snapshotLoading || battleboardLoading || bundleLoading,
+    loadError,
+    surfaces: pilotMatter?.surfaces ?? bundleSource?.surfaces ?? null,
     matterBrief: pilotMatter?.matterBrief ?? null,
     matterConfidence: pilotMatter?.matterConfidence ?? null,
     doNotOverstate: pilotMatter?.doNotOverstate ?? [],

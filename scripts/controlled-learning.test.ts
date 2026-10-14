@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import { RuleSchema, LEARNING_VERSION, learnedFields, matchLabelRule, evaluateObservations, type ApprovedRule, type EvaluationObservation } from "../lib/criminal/controlled-learning/core";
 import { extractMetadataWithLessons } from "../lib/criminal/controlled-learning/extract";
 import { buildBundleSourcePayload } from "../lib/bundle/parse-bundle-display";
+import { getDocumentBodyText } from "../lib/bundle/bundle-document-text";
 import { extractCriminalCaseMeta } from "../lib/criminal/structured-extractor";
+import { scheduleChaseServerDisclosure, scheduleChaseServerWarRoom } from "../lib/criminal/schedule-chase-client";
 
 let checks = 0;
 function check(name: string, test: () => void) { test(); checks++; console.log(`PASS ${name}`); }
@@ -61,6 +63,14 @@ check("AI summaries cannot supply a newly learned field", () => {
   const payload = buildBundleSourcePayload([{ id: "doc", extracted_json: { summary: "Defendant named: Morgan Reed" } }], [{ ...rule, label: "Defendant named" }]);
   assert.equal(payload.learningApplied.length, 0);
   assert.equal(payload.caseMetadata.defendantName, null);
+  assert.equal(getDocumentBodyText({ extracted_json: { summary: "Defendant named: Morgan Reed", aiSummary: "Invented charge" } }), "");
+});
+check("server chase surfaces are used even when the schedule lab is off", () => {
+  const disclosure = { primaryItems: [{ label: "CCTV" }] } as any;
+  const warRoom = { safePositionToday: "Review papers" } as any;
+  assert.equal(scheduleChaseServerDisclosure({ surfaces: { disclosureChase: disclosure } }), disclosure);
+  assert.equal(scheduleChaseServerWarRoom({ surfaces: { warRoom } }), warRoom);
+  assert.equal(scheduleChaseServerDisclosure({}), null);
 });
 check("upload structured extraction accepts approved labels without editing source", () => {
   const result = extractCriminalCaseMeta({ text: "Accused individual: Morgan Reed", documentName: "source.pdf", learningRules: [rule] });

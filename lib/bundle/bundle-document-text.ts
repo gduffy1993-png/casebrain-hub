@@ -7,7 +7,7 @@ import {
  * Normalise document row to plain text for bundle parsing (aligned with defence-plan-chat).
  * When both `extracted_text` and `raw_text` exist, uses whichever body is **longer** so a short/stale
  * extract row cannot shadow the full PDF/`raw_text` bundle (common after uploads).
- * Otherwise: substantial raw_text, then extracted_text, then extracted_json summaries.
+ * Otherwise: substantial raw_text, then extracted_text. AI summaries never become body text.
  *
  * A parser-failure banner is not papers. It stays on the File row as extracted_text so the
  * solicitor can see the upload failed; it does not become hay, identity, or a served finding.
@@ -51,14 +51,6 @@ export function getDocumentBodyText(d: {
   if (et.length > 0) {
     const usable = usableBody(et);
     if (usable) return usable;
-  }
-  const ej = d.extracted_json;
-  if (ej && typeof ej === "object") {
-    const o = ej as Record<string, unknown>;
-    const parts: string[] = [];
-    if (typeof o.summary === "string" && o.summary.trim()) parts.push(o.summary.trim());
-    if (typeof o.aiSummary === "string" && o.aiSummary.trim()) parts.push(o.aiSummary.trim());
-    if (parts.length) return usableBody(parts.join("\n"));
   }
   return usableBody(raw);
 }

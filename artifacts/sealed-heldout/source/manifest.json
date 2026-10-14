@@ -1,0 +1,32 @@
+{
+  "files": [
+    {
+      "name": "heldout-1.pdf",
+      "sha256": "083ee4b6d111f8ee508f3386eb25236c3de0fbe5c1fe65855387c5956a63198f"
+    },
+    {
+      "name": "heldout-2.pdf",
+      "sha256": "4e7c99a77ea937645498c2db1f9c3658a7f389c9a896ebb4148f6798f2b5137f"
+    },
+    {
+      "name": "heldout-3.pdf",
+      "sha256": "2ba21af7f38b457fcd053f960b9d42676792f3de090fc4c2afe6a75ae34c3fae"
+    },
+    {
+      "name": "heldout-4.pdf",
+      "sha256": "696d01bc9107dcdd38a95fc28dcd0dce48e2f85299d6adea6ee9d97465932c8d"
+    },
+    {
+      "name": "heldout-5.pdf",
+      "sha256": "8197bae8a47cb5ed79f24ea0cf6f05055625fc0305f01f58c4ca758ec4734db9"
+    },
+    {
+      "name": "heldout-6.pdf",
+      "sha256": "556eb6a5bb3c00d564374847fc2ed152cb257a80269e296fc83481e3c1bb8258"
+    },
+    {
+      "name": "CB-MONSTER-2026-0001.pdf",
+      "sha256": "a13f158eaf217269bc00a9af8feecdb8d7fef727e309972a293f9c6546ced9f7"
+    }
+  ]
+}

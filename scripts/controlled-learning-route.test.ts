@@ -9,9 +9,9 @@ import { NextRequest } from "next/server";
 
 import { createLearningHandlers } from "../lib/criminal/controlled-learning/handlers";
 import { loadRulesFromDatabase } from "../lib/criminal/controlled-learning/registry";
-const fixture = { db: null as any, role: "solicitor", org: "10000000-0000-4000-8000-000000000001", files: new Map<string, Uint8Array>(), calls: 0 };
+const fixture = { db: null as any, role: "solicitor", userId: "reviewer-1", org: "10000000-0000-4000-8000-000000000001", files: new Map<string, Uint8Array>(), calls: 0 };
 const { GET, POST } = createLearningHandlers({ authenticate: async () => ({ ok: true,
-  context: { orgId: fixture.org, userId: "reviewer-1", role: fixture.role } }), database: () => fixture.db,
+  context: { orgId: fixture.org, userId: fixture.userId, role: fixture.role } }), database: () => fixture.db,
   approvedRules: orgId => loadRulesFromDatabase(fixture.db, orgId) });
 const tests: Array<{ name: string; run: () => Promise<void> }> = [];
 let initialize: () => Promise<void>, cleanup: () => Promise<void>;
@@ -96,10 +96,13 @@ describe.sequential("controlled learning authenticated workflow", () => {
   });
   it("captures and verifies six different original PDFs", async () => {
     for (let index = 0; index < documents.length; index++) {
+      fixture.userId = "reviewer-1";
       const result = await act({ action: "capture", documentId: documents[index].id,
         rule: { field: "defendant", label: "Defendant named" }, expectedValue: documents[index].name, page: index % 2 === 1 ? 2 : 1 });
       expect(result.status, JSON.stringify(result.body)).toBe(200);
       const id = result.body.correction.id;
+      expect((await act({ action: "verify", correctionId: id, confirmed: true })).status).toBe(400);
+      fixture.userId = "reviewer-2";
       expect((await act({ action: "verify", correctionId: id, confirmed: true })).status).toBe(200);
       if (index === 0) trainingId = id; else testIds.push(id);
     }
@@ -123,8 +126,13 @@ describe.sequential("controlled learning authenticated workflow", () => {
     expect(result.body.report.improvements).toBe(5); expect(result.body.report.regressions).toBe(0);
   }, 30000);
   it("requires separate approval and records an audit event", async () => {
+    fixture.userId = "reviewer-1";
+    expect((await act({ action: "approve", lessonId })).status).toBe(400);
+    fixture.userId = "reviewer-2";
+    expect((await act({ action: "approve", lessonId })).status).toBe(400);
+    fixture.userId = "reviewer-3";
     const result = await act({ action: "approve", lessonId }); expect(result.status, JSON.stringify(result.body)).toBe(200);
-    const events = await pg.query("select * from learning_events where lesson_id=$1", [lessonId]); expect(events.rows[0].action).toBe("approved");
+    const events = await pg.query("select * from learning_events where lesson_id=$1 and action='approved'", [lessonId]); expect(events.rows[0].action).toBe("approved");
     const response = await GET(new NextRequest("http://localhost/api/criminal/learning")); expect((await response.json()).lessons[0].status).toBe("approved");
   }, 30000);
   it("can revoke the rule without deleting the evidence", async () => {

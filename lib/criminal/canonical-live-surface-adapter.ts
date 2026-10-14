@@ -47,6 +47,7 @@ import {
 } from "@/lib/criminal/cross-exit-contradiction-scanner";
 import { sanitizeSolicitorProse } from "@/lib/criminal/solicitor-visible-sanitization";
 import { canonicalEvidenceStateRowsForBuilder } from "@/lib/criminal/canonical-evidence-status-bridge";
+import type { ApprovedRule } from "@/lib/criminal/controlled-learning/core";
 
 export type LiveProductionSurfaces = {
   pipeline: LiveCanonicalPipelineResult;
@@ -159,6 +160,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     clientLabel?: string;
     /** Copy-only: do not emit the first-label CPS chase letter. */
     holdCpsChase?: boolean;
+    learningRules?: ApprovedRule[];
     /** Copy-only schedule chase meta for limitations on the disclosure surface. */
     scheduleChaseLab?: {
       applied?: boolean;
@@ -353,6 +355,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     text: pipeline.bundleText,
     documentName: documents.map((d) => d.title).join("; "),
     now: new Date(),
+    learningRules: opts?.learningRules ?? [],
   });
   const keyFacts = appendCanonicalFindingsToKeyFacts(
     buildCriminalStructuredKeyFacts(meta, "live-document-units"),

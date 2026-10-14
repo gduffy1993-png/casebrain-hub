@@ -1,0 +1,43 @@
+{
+  "gate": "sealed-heldout-upload-to-screen-holds",
+  "tested": 7,
+  "passed": 7,
+  "failed": 0,
+  "results": [
+    {
+      "file": "heldout-1.pdf",
+      "fail": [],
+      "pass": true
+    },
+    {
+      "file": "heldout-2.pdf",
+      "fail": [],
+      "pass": true
+    },
+    {
+      "file": "heldout-3.pdf",
+      "fail": [],
+      "pass": true
+    },
+    {
+      "file": "heldout-4.pdf",
+      "fail": [],
+      "pass": true
+    },
+    {
+      "file": "heldout-5.pdf",
+      "fail": [],
+      "pass": true
+    },
+    {
+      "file": "heldout-6.pdf",
+      "fail": [],
+      "pass": true
+    },
+    {
+      "file": "CB-MONSTER-2026-0001.pdf",
+      "fail": [],
+      "pass": true
+    }
+  ]
+}

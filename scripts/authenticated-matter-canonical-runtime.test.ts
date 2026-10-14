@@ -22,6 +22,10 @@ import {
   buildCriminalStructuredKeyFacts,
 } from "@/lib/criminal/key-facts-v2";
 import { extractCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
+import {
+  scheduleChaseServerDisclosure,
+  scheduleChaseServerWarRoom,
+} from "@/lib/criminal/schedule-chase-client";
 
 let passed = 0;
 function check(name: string, fn: () => void) {
@@ -266,6 +270,19 @@ check("canonical finding appears consistently in API and production builders", (
   assert.ok(api.canonical.pageUnitCount >= docs.length);
   assert.ok(api.units.some((u) => u.pages.some((p) => p.pageNumber === 22)));
 
+  // Server surfaces ship without the schedule-chase lab flag.
+  assert.equal(api.canonical.scheduleChaseLab, null);
+  assert.ok(api.surfaces?.disclosureChase, "bundle-source must return disclosure surfaces");
+  assert.ok(api.surfaces?.warRoom, "bundle-source must return war-room surfaces");
+  assert.equal(
+    scheduleChaseServerDisclosure({ canonical: api.canonical, surfaces: api.surfaces }),
+    api.surfaces.disclosureChase,
+  );
+  assert.equal(
+    scheduleChaseServerWarRoom({ canonical: api.canonical, surfaces: api.surfaces }),
+    api.surfaces.warRoom,
+  );
+
   const surfaces = buildSurfacesFromAuthenticatedApiPayload(
     api.canonical,
     api.pipeline.bundleText,
@@ -378,6 +395,39 @@ check("negative: unsplit whole-document text never claims p.1 provenance", () =>
     api.canonical.findings.every((f) => !/\bp\.1\b/i.test(f.provenanceLine)),
     "no whole-document finding may manufacture p.1",
   );
+});
+
+check("negative: pdf text fallback with form-feeds still has unknown page identity", () => {
+  const api = composeAuthenticatedBundleSourceWithCanonical(
+    [
+      {
+        id: "fallback-split",
+        name: "Fallback bundle.pdf",
+        updated_at: "2024-05-01T12:00:00Z",
+        raw_text: "Page one charge sheet.\fPage two interview recording served.",
+        extracted_json: {
+          ingestionAssessment: {
+            version: "ingestion-gate-v1",
+            decision: "degraded",
+            reasonCodes: ["page_units_unavailable"],
+            parserRoute: "pdf_text_fallback",
+            sourceTextUsable: true,
+            substantiveOutputsAllowed: true,
+            textLength: 60,
+            reportedPageCount: 2,
+            extractedPageCount: 0,
+            pagesWithoutTextLayer: 0,
+            parserError: null,
+            summary: "Page units unavailable.",
+          },
+        },
+      },
+    ],
+    { caseId: "fallback-page-identity", withSurfaces: true },
+  );
+  assert.equal(api.units.length, 1);
+  assert.equal(api.units[0]!.pages[0]!.pageIdentityKnown, false);
+  assert.equal(api.units[0]!.pages[0]!.pageNumber, null);
 });
 
 check("negative: updated_at DESC mapping still makes newest upload operative", () => {

@@ -1,6 +1,6 @@
 /**
- * Copy-only helpers so logged-in Overview / Court / Chase prefer the reviewed
- * schedule chase surfaces when bundle-source applied the lab.
+ * Helpers so logged-in Overview / Court / Chase prefer server-built surfaces
+ * from bundle-source. Schedule-lab meta still gates limitation/CPS copy only.
  */
 import type { ScheduleChaseLabMeta } from "@/lib/criminal/schedule-chase-lab-types";
 import type { LiveProductionSurfaces } from "@/lib/criminal/canonical-live-surface-adapter";
@@ -35,18 +35,12 @@ export function scheduleChaseBundleText(
 export function scheduleChaseServerDisclosure(
   bundle: BundleSourceScheduleSlice | null | undefined,
 ): DisclosureChaseBrief | null {
-  const lab = scheduleChaseLabMeta(bundle);
-  if (!lab?.enabled) return null;
-  const surface = bundle?.surfaces?.disclosureChase ?? null;
-  if (surface) return surface;
-  return null;
+  return bundle?.surfaces?.disclosureChase ?? null;
 }
 
 export function scheduleChaseServerWarRoom(
   bundle: BundleSourceScheduleSlice | null | undefined,
 ): HearingWarRoomBrief | null {
-  const lab = scheduleChaseLabMeta(bundle);
-  if (!lab?.enabled) return null;
   return bundle?.surfaces?.warRoom ?? null;
 }
 

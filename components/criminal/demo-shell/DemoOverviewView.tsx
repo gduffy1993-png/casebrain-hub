@@ -37,7 +37,6 @@ import {
   receiptFromClientLineSources,
   receiptFromCourtLine,
 } from "@/lib/criminal/visible-output-receipt";
-import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { isProofPressureAllegationLabel } from "@/lib/criminal/case-identity-boundary";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
 import { CanonicalHearingReceiptCard } from "@/components/criminal/hearing/CanonicalHearingReceiptCard";
@@ -65,6 +64,8 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
   const [showLimitedLoadingFallback, setShowLimitedLoadingFallback] = useState(false);
   const {
     loading,
+    loadError,
+    surfaces,
     matterConfidence,
     doNotOverstate,
     warRoom,
@@ -118,7 +119,7 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
 
   const view = useMemo(() => {
     if (!warRoom || !chase) return null;
-    const built = buildFiveAnswersView({
+    const built = surfaces?.truthMap ?? buildFiveAnswersView({
       allegation: allegation ?? "",
       warRoom,
       chase,
@@ -135,7 +136,7 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
       ...built,
       evidenceState: { ...built.evidenceState, rows: dedupeEvidenceRowsByLabel(gapRowsPolished) },
     };
-  }, [warRoom, chase, allegation, matterConfidence, filteredDoNotOverstate, sourceBundleText, bundleHay]);
+  }, [warRoom, chase, allegation, matterConfidence, filteredDoNotOverstate, sourceBundleText, bundleHay, surfaces]);
 
   const hearingMode = useMemo(() => {
     if (!briefPlan || !warRoom || !chase) return null;
@@ -164,6 +165,7 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
   ]);
 
   const exportPack = useMemo(() => {
+    if (surfaces?.exportPack) return surfaces.exportPack;
     if (!warRoom || !chase) return null;
     return buildExportPack({
       caseId,
@@ -188,7 +190,17 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
     filteredDoNotOverstate,
     primaryRouteTitle,
     bundleHay,
+    surfaces,
   ]);
+
+  if (loadError && !view) {
+    return (
+      <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-sm text-red-950 space-y-2">
+        <p className="font-semibold">Overview could not load.</p>
+        <p>{loadError}</p>
+      </div>
+    );
+  }
 
   if (loading && !view && !showLimitedLoadingFallback) {
     return <DemoOverviewCanvas
@@ -232,7 +244,9 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
   if (!view || !matterConfidence || !chase) {
     return (
       <div className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-500">
-        Case overview will appear once documents are processed.
+        {loadError
+          ? loadError
+          : "Case overview will appear once documents are processed."}
       </div>
     );
   }
@@ -323,30 +337,23 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
           provenance: clientSource?.provenance ?? null,
         });
 
-  const liveFileIdentity = extractBundleCaseMetadata(
-    [
-      bundleMeta?.frontMatterScan ?? "",
-      sourceBundleText,
-      bundleMeta?.snippets?.mg5 ?? "",
-      bundleMeta?.snippets?.mg11 ?? "",
-    ].join("\n\n"),
-  );
-
+  const serverMeta = bundleMeta?.caseMetadata ?? null;
+  const canonicalCharge = (canonical?.charges ?? [])
+    .map((charge) => [charge.offence, charge.particulars].filter(Boolean).join(" — "))
+    .find((line) => line.trim());
   const clientDisplay = [
-    liveFileIdentity.defendantName ?? "",
-    bundleMeta?.caseMetadata?.defendantName ?? "",
+    serverMeta?.defendantName ?? "",
     typeof clientLabel === "string" ? clientLabel : "",
   ]
     .map((candidate) => displayPilotStripClient(candidate))
     .find((candidate) => candidate && !/\bnot on papers\b/i.test(candidate));
   const clientName = clientDisplay ?? "";
 
-  const fileCharge =
-    liveFileIdentity.offenceDisplay || liveFileIdentity.offenceWording || "";
   const workflowCharge =
     allegation && !isProofPressureAllegationLabel(allegation) ? allegation : "";
+  const metaCharge = serverMeta?.offenceDisplay || serverMeta?.offenceWording || "";
   const chargeLine = resolvePilotChargeDisplay(
-    polishPresentationLine(fileCharge || workflowCharge || "", bundleHay),
+    polishPresentationLine(canonicalCharge || workflowCharge || metaCharge || "", bundleHay),
   );
 
   const provisional = matterConfidence.level !== "safe";
@@ -354,17 +361,16 @@ export function DemoOverviewView({ caseId }: { caseId: string }) {
     ? "Not ready for final court position — solicitor review required before relying on strategy lines."
     : "Papers look fuller — still check sources before fixing the hearing position.";
 
-  const fileHearing = [liveFileIdentity.court, liveFileIdentity.stage]
+  const fileHearing = [serverMeta?.court, serverMeta?.stage]
     .map((part) => (part ?? "").trim())
     .filter(Boolean)
     .join(" / ");
+  const latestHearing = canonical?.hearingLifecycle?.latest ?? null;
   const authoritativeHearing =
-    canonical?.hearingLifecycle != null
-      ? typeof hearingLabel === "string"
-        ? hearingLabel
-        : ""
-      : liveFileIdentity.nextHearingRaw ||
-        (typeof hearingLabel === "string" ? hearingLabel : "");
+    (typeof hearingLabel === "string" ? hearingLabel : "") ||
+    latestHearing?.hearingDateRaw ||
+    serverMeta?.nextHearingRaw ||
+    "";
   const stageLine = displayPilotStripHearing(
     [fileHearing, authoritativeHearing].filter(Boolean).join(" · "),
   );

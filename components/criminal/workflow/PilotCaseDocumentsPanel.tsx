@@ -21,6 +21,7 @@ export function PilotCaseDocumentsPanel({
   const [sourceExcerpt, setSourceExcerpt] = useState<string | null>(null);
   const [resolvedDocs, setResolvedDocs] = useState(documents);
   const [canonicalWithheld, setCanonicalWithheld] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
     setResolvedDocs(documents);
@@ -33,10 +34,15 @@ export function PilotCaseDocumentsPanel({
       try {
         const res = await fetch(`/api/cases/${caseId}/documents`, { credentials: "include" });
         const json = (await res.json()) as { documents?: CaseWorkflowDocument[] };
-        if (cancelled || !json.documents?.length) return;
+        if (cancelled) return;
+        if (!res.ok) {
+          setLoadError((prev) => prev ?? "File list could not be loaded.");
+          return;
+        }
+        if (!json.documents?.length) return;
         setResolvedDocs(json.documents);
       } catch {
-        /* non-fatal */
+        if (!cancelled) setLoadError((prev) => prev ?? "File list could not be loaded.");
       }
     })();
     return () => {
@@ -59,7 +65,11 @@ export function PilotCaseDocumentsPanel({
             canonical?: { ingestion?: { substantiveOutputsWithheld?: boolean } | null } | null;
           };
         };
-        if (cancelled || !json.ok || !json.data) return;
+        if (cancelled) return;
+        if (!res.ok || !json.ok || !json.data) {
+          setLoadError((prev) => prev ?? "Source extract could not be loaded.");
+          return;
+        }
         if (json.data.canonical?.ingestion?.substantiveOutputsWithheld) {
           setCanonicalWithheld(true);
           setSourceExcerpt(null);
@@ -70,7 +80,7 @@ export function PilotCaseDocumentsPanel({
         const text = sanitizeDemoBundleBanner(json.data.frontMatterScan.trim());
         setSourceExcerpt(text.length > 2400 ? `${text.slice(0, 2400)}…` : text);
       } catch {
-        /* non-fatal */
+        if (!cancelled) setLoadError((prev) => prev ?? "Source extract could not be loaded.");
       }
     })();
     return () => {
@@ -118,6 +128,15 @@ export function PilotCaseDocumentsPanel({
         className={`px-4 py-4 space-y-4 ${pilotDark ? "bg-slate-950/40" : "bg-slate-50/40"}`}
         data-testid="case-files-expanded"
       >
+        {loadError ? (
+          <div
+            className="rounded-lg border border-red-300/70 bg-red-50 px-4 py-3 text-sm text-red-950"
+            data-testid="file-load-error"
+          >
+            <p className="font-semibold">Papers could not be loaded.</p>
+            <p className="mt-1 text-xs">{loadError}</p>
+          </div>
+        ) : null}
         {sourceWithheld ? (
           <div
             className="rounded-lg border border-amber-300/70 bg-amber-50 px-4 py-3 text-sm text-amber-950"

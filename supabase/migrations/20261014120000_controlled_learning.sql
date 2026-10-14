@@ -19,7 +19,8 @@ create table if not exists public.learning_lessons (
 create table if not exists public.learning_events (
   id uuid primary key default gen_random_uuid(), org_id uuid not null,
   lesson_id uuid references public.learning_lessons(id) on delete cascade,
-  actor_id text not null, action text not null, created_at timestamptz not null default now()
+  actor_id text not null, action text not null, payload jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now()
 );
 create index if not exists learning_corrections_org on public.learning_corrections(org_id, field);
 create index if not exists learning_lessons_org on public.learning_lessons(org_id, status);
@@ -30,17 +31,55 @@ alter table public.learning_events enable row level security;
 revoke all on public.learning_corrections, public.learning_lessons, public.learning_events from anon, authenticated;
 grant all on public.learning_corrections, public.learning_lessons, public.learning_events to service_role;
 
+-- Tenant must match the owned source document. There is no organisations table to FK.
+create or replace function public.learning_corrections_org_matches_document()
+returns trigger language plpgsql as $$
+begin
+  if not exists (
+    select 1 from public.documents d
+    where d.id = new.document_id and d.org_id::text = new.org_id::text
+  ) then
+    raise exception 'learning correction org_id must match the source document';
+  end if;
+  return new;
+end $$;
+drop trigger if exists learning_corrections_org_matches_document on public.learning_corrections;
+create trigger learning_corrections_org_matches_document
+  before insert or update on public.learning_corrections
+  for each row execute procedure public.learning_corrections_org_matches_document();
+
+create or replace function public.learning_corrections_four_eyes()
+returns trigger language plpgsql as $$
+begin
+  if new.verified_by is not null and new.verified_by is not distinct from new.created_by then
+    raise exception 'learning correction cannot be self-verified';
+  end if;
+  return new;
+end $$;
+drop trigger if exists learning_corrections_four_eyes on public.learning_corrections;
+create trigger learning_corrections_four_eyes
+  before insert or update on public.learning_corrections
+  for each row execute procedure public.learning_corrections_four_eyes();
+
 -- Approval and audit entry are atomic. Only a server-built current evaluation is accepted.
 create or replace function public.approve_learning_lesson(p_org uuid, p_id uuid, p_actor text,
   p_evaluation jsonb, p_version text) returns boolean language plpgsql security definer
 set search_path = public as $$
 declare
   selected public.learning_lessons;
+  training public.learning_corrections;
   active_ids jsonb;
 begin
   perform pg_advisory_xact_lock(hashtextextended(p_org::text, 0));
   select * into selected from public.learning_lessons where id=p_id and org_id=p_org for update;
   if not found or selected.status <> 'proposed' then return false; end if;
+  select * into training from public.learning_corrections
+    where id=selected.correction_id and org_id=p_org;
+  if not found or training.verified_at is null then return false; end if;
+  if p_actor is not distinct from training.created_by
+    or p_actor is not distinct from training.verified_by then
+    return false;
+  end if;
   select coalesce(jsonb_agg(id::text order by id::text),'[]'::jsonb) into active_ids
     from public.learning_lessons where org_id=p_org and status='approved'
       and evaluation->>'pipelineVersion'=p_version;

@@ -1,0 +1,45 @@
+{
+  "cases": [
+    {
+      "file": "heldout-1.pdf",
+      "kind": "synthetic-original-pdf",
+      "defendant": "Person Alpha",
+      "requireSurfaces": true
+    },
+    {
+      "file": "heldout-2.pdf",
+      "kind": "synthetic-original-pdf",
+      "defendant": "Person Bravo",
+      "requireSurfaces": true
+    },
+    {
+      "file": "heldout-3.pdf",
+      "kind": "synthetic-original-pdf",
+      "defendant": "Person Charlie",
+      "requireSurfaces": true
+    },
+    {
+      "file": "heldout-4.pdf",
+      "kind": "synthetic-original-pdf",
+      "defendant": "Person Delta",
+      "requireSurfaces": true
+    },
+    {
+      "file": "heldout-5.pdf",
+      "kind": "synthetic-original-pdf",
+      "defendant": "Person Echo",
+      "requireSurfaces": true
+    },
+    {
+      "file": "heldout-6.pdf",
+      "kind": "synthetic-original-pdf",
+      "defendant": "Person Foxtrot",
+      "requireSurfaces": true
+    },
+    {
+      "file": "CB-MONSTER-2026-0001.pdf",
+      "kind": "original-pdf",
+      "requireSurfaces": true
+    }
+  ]
+}
