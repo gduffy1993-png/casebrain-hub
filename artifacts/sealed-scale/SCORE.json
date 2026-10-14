@@ -1,0 +1,12 @@
+{
+  "n": 30000,
+  "passed": 30000,
+  "failed": 0,
+  "accuracy": 1,
+  "gate": "sealed-scale-holds",
+  "required": 0.9,
+  "elapsedMs": 702299,
+  "byReason": {},
+  "sampleFails": [],
+  "candidateSha256": "89cd78cbe2f50efe236977b18712aa391caaae9b7068de2839f5a62ecb9ba27b"
+}

@@ -201,4 +201,57 @@ assert.equal(
   assert.match(got.offenceDisplay ?? got.offenceWording ?? "", /intimidating a witness/i);
 }
 
+{
+  const queenOnly = [
+    "PROSECUTION CASE PAPERS",
+    "THE QUEEN v Callum Ross",
+    "CHARGE SHEET AND INITIAL DETAILS",
+    "Charge: Theft, contrary to section 1 Theft Act 1968",
+    "Court: Northchester Magistrates' Court",
+    "Next hearing: 12 May 2026 10:00",
+  ].join("\n");
+  const got = meta(queenOnly);
+  assert.equal(got.defendantName, "Callum Ross");
+}
+
+{
+  const kingDot = [
+    "THE KING v. Priya Nair",
+    "CHARGE SHEET AND INITIAL DETAILS",
+    "Charge: Affray, contrary to section 3 Public Order Act 1986",
+  ].join("\n");
+  assert.equal(meta(kingDot).defendantName, "Priya Nair");
+}
+
+{
+  const regina = [
+    "Regina v Marcus Grant",
+    "Person charged: Marcus Grant",
+    "Charge: Burglary, contrary to section 9 Theft Act 1968",
+  ].join("\n");
+  assert.equal(meta(regina).defendantName, "Marcus Grant");
+}
+
+{
+  const rDot = [
+    "R. v. Yasmin Khan",
+    "CHARGE SHEET AND INITIAL DETAILS",
+    "Charge: Harassment, contrary to section 2 Protection from Harassment Act 1997",
+  ].join("\n");
+  assert.equal(meta(rDot).defendantName, "Yasmin Khan");
+}
+
+{
+  const mcGrath = [
+    "PROSECUTION CASE PAPERS",
+    "R v Isla McGrath",
+    "Defendant: Isla McGrath",
+    "CHARGE SHEET AND INITIAL DETAILS",
+    "Charge: Theft, contrary to section 1 Theft Act 1968",
+    "Court: Leeds Magistrates' Court",
+    "Next hearing: 4 July 2026 10:00",
+  ].join("\n");
+  assert.equal(meta(mcGrath).defendantName, "Isla McGrath");
+}
+
 console.log("identity-charge-shared-rules.test.ts: PASS");

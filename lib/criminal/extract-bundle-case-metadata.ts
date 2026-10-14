@@ -221,7 +221,11 @@ function trimPersonCapture(raw: string): string {
   t = t.replace(/\bMatter reference\b.*$/i, "").trim();
   t = t.replace(/\bURN[A-Z0-9]+\b.*$/i, "").trim();
   t = t.replace(/\bPrimary\b.*$/i, "").trim();
-  t = t.replace(/([a-z])([A-Z])/g, "$1 $2");
+  t = t.replace(/([a-z])([A-Z])/g, (full, lower: string, upper: string, offset: number) => {
+    const prefix = t.slice(0, offset + 1);
+    if (/(?:^|[^A-Za-z])(?:Mc|Mac)$/i.test(prefix)) return full;
+    return `${lower} ${upper}`;
+  });
   t = normalizeCapturedPersonTokens(t);
   // After camelCase: "Morley Date of birth…"
   t = t.replace(/\bDate\s+of\s+birth\b.*$/i, "").trim();
@@ -455,6 +459,7 @@ function extractDefendantName(scan: string): string | null {
     new RegExp(`\\bDefendant\\s+name\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "gi"),
     new RegExp(`\\bDefendant\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "gi"),
     new RegExp(`\\bAccused\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "gi"),
+    new RegExp(`\\bPerson\\s+charged\\s*:?\\s*${PERSON_NAME_CAPTURE}`, "gi"),
     // Avoid "CLIENT ACCOUNT" and mid-sentence "client unless…" — Client is a label, not a prose word.
     new RegExp(`\\bClient\\s+(?!ACCOUNT\\b)(?!ACCOUNT:)(?!position\\b)(?!unless\\b)${PERSON_NAME_CAPTURE}`, "g"),
   ];
@@ -471,9 +476,12 @@ function extractDefendantName(scan: string): string | null {
     pushSanitizedDefendantHit(hits, match[1], classifyDefendantFieldContext(hay, match.index));
   }
 
+  const captionName = `([A-Z][A-Za-z'’\\-]+(?:[ \\t]+[A-Z][A-Za-z'’\\-]+){0,2})`;
   const rvPatterns = [
-    /\bR[ \t]+v[ \t]+([A-Z][a-z]+(?:[ \t]+[A-Z][a-z]+){0,2})\b/g,
-    /\bR[ \t]+[vV][ \t]+([A-Z][A-Za-z]+(?:[ \t]+[A-Z][A-Za-z]+){0,2})\b/g,
+    new RegExp(`\\bR\\.?[ \\t]*v\\.?[ \\t]+${captionName}\\b`, "gi"),
+    new RegExp(`\\b(?:THE[ \\t]+)?(?:QUEEN|KING|CROWN)[ \\t]+v\\.?[ \\t]+${captionName}\\b`, "gi"),
+    new RegExp(`\\b(?:Regina|Rex)[ \\t]+v\\.?[ \\t]+${captionName}\\b`, "gi"),
+    new RegExp(`\\b(?:DPP|CPS)[ \\t]+v\\.?[ \\t]+${captionName}\\b`, "g"),
   ];
   for (const re of rvPatterns) {
     for (const match of hay.matchAll(re)) {

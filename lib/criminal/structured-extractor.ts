@@ -14,6 +14,7 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { learnedFields, type ApprovedRule } from "@/lib/criminal/controlled-learning/core";
+import { extractBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 
 import {
   allocateDefendantsFromChargeText,
@@ -637,7 +638,9 @@ export function extractCriminalCaseMeta(input: ExtractInput): CriminalCaseMeta {
   const learned = learnedFields(learningText, input.learningRules ?? []);
   const defendantName =
     pickFirstLineValue(text, /\bdefendant\b\s*[:\-]\s*([A-Za-z][A-Za-z\s'\-]{2,80})/i) ??
-    learned.defendant?.value ?? null;
+    learned.defendant?.value ??
+    extractBundleCaseMetadata(text).defendantName ??
+    null;
 
   const { charges, plea } = extractChargesFromText(input);
   if (!charges.length && learned.charge) {
