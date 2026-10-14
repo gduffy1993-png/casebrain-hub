@@ -249,7 +249,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
       primaryItems: [],
       additionalItems: [],
       disclosureSummary: reason,
-      safeCourtLine: reason,
+      safeCourtLine: "",
       counters: {
         total: 0,
         overdue: 0,
@@ -616,8 +616,8 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
 
   const proseTexts = sanitizedProse?.texts ?? [];
   const enforcedComposedProse = {
-    courtLine: proseTexts[0] || (courtCompose.ok ? courtCompose.text : null),
-    cpsChase: proseTexts[1] || (cpsCompose.ok ? cpsCompose.text : null),
+    courtLine: scheduleLabUnsupported ? null : proseTexts[0] || (courtCompose.ok ? courtCompose.text : null),
+    cpsChase: scheduleLabUnsupported ? null : proseTexts[1] || (cpsCompose.ok ? cpsCompose.text : null),
     clientDisclaimer: proseTexts[2] || clientDisclaimer,
     limitations: composedLimitations,
     allegation: allegationWithStatus || allegation,

@@ -22,6 +22,8 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "test:controlled-learning": "tsx scripts/controlled-learning.test.ts && tsx scripts/controlled-learning-route.test.ts",
+    "test:learning-pdfs": "tsx scripts/controlled-learning-original-pdfs.ts",
     "seed": "ts-node scripts/seed.ts",
     "test": "vitest",
     "test:watch": "vitest --watch",
@@ -81,6 +83,7 @@
     "zustand": "^4.5.5"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.9",
     "@playwright/test": "^1.49.1",
     "@types/node": "^20",
     "@types/pdfkit": "^0.13.5",

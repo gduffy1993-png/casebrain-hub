@@ -58,6 +58,7 @@ import {
   isInterviewTranscriptEstablished,
 } from "@/lib/criminal/chase-source-gate";
 import { extractCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
+import type { ApprovedRule } from "@/lib/criminal/controlled-learning/core";
 import {
   buildStructuredChargeView,
   type StructuredChargeView,
@@ -863,12 +864,15 @@ function isChargeInstrument(node: DocumentRelationshipNode): boolean {
 function extractChargesFromInstrument(
   doc: UploadedDocumentUnit,
   role: StructuredChargeView["documentRole"],
+  learningRules: ApprovedRule[] = [],
 ): StructuredChargeView[] {
   const text = documentText(doc);
   const meta = extractCriminalCaseMeta({
     text,
     documentName: doc.title,
     now: new Date(),
+    learningRules,
+    learningText: resolvePageUnits(doc).map(page => page.text).join("\f"),
   });
 
   if (meta.charges.length === 0) {
@@ -935,6 +939,7 @@ function extractChargesFromInstrument(
  */
 export function buildCanonicalPipelineFromDocumentUnits(
   documents: UploadedDocumentUnit[],
+  learningRules: ApprovedRule[] = [],
 ): LiveCanonicalPipelineResult {
   const ordered = [...documents].sort((a, b) => a.uploadOrder - b.uploadOrder);
   const bundleText = ordered.map((d) => `=== ${d.title} ===\n${documentText(d)}`).join("\n\n");
@@ -1349,7 +1354,7 @@ export function buildCanonicalPipelineFromDocumentUnits(
       node.role === "amended" || node.role === "operative" || node.role === "superseded"
         ? node.role
         : "unknown";
-    const extracted = extractChargesFromInstrument(doc, role);
+    const extracted = extractChargesFromInstrument(doc, role, learningRules);
     if (extracted.length > 0) {
       charges.push(...extracted);
     } else if (role === "superseded" || role === "operative" || role === "amended") {

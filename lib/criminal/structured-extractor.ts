@@ -13,6 +13,7 @@
  */
 
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { learnedFields, type ApprovedRule } from "@/lib/criminal/controlled-learning/core";
 
 import {
   allocateDefendantsFromChargeText,
@@ -88,6 +89,9 @@ export type CriminalCaseMeta = {
 };
 
 type ExtractInput = {
+  learningRules?: ApprovedRule[];
+  /** Unlabelled original page text, retaining form-feed boundaries for learned rows. */
+  learningText?: string;
   text: string;
   documentName: string;
   now?: Date;
@@ -629,11 +633,22 @@ export function extractCriminalCaseMeta(input: ExtractInput): CriminalCaseMeta {
   const now = input.now ?? new Date();
   const text = input.text ?? "";
 
+  const learningText = input.learningText ?? text;
+  const learned = learnedFields(learningText, input.learningRules ?? []);
   const defendantName =
     pickFirstLineValue(text, /\bdefendant\b\s*[:\-]\s*([A-Za-z][A-Za-z\s'\-]{2,80})/i) ??
-    null;
+    learned.defendant?.value ?? null;
 
   const { charges, plea } = extractChargesFromText(input);
+  if (!charges.length && learned.charge) {
+    // A count must belong to this row, not an unrelated narrative mention elsewhere.
+    const page = learningText.split("\f")[(learned.charge.compiledPage ?? 1) - 1];
+    const precedingRow = page?.split(/\r?\n/).slice(0, learned.charge.lineNumber - 1).reverse().find(line => line.trim());
+    const count = precedingRow?.match(/^\s*(?:count|count number)\s*:\s*([1-9]\d{0,2})\s*$/i)?.[1];
+    if (count) charges.push({ count: Number(count), offence: learned.charge.value, statute: null, plea, dateOfOffence: null,
+      chargeDate: null, confidence: 0.6, source: input.documentName, defendants: defendantName ? [defendantName] : [],
+      documentRole: inferChargeDocumentRole(`${input.documentName} ${text.slice(0, 4000)}`) });
+  }
   const hearings = extractHearingsFromText({ ...input, now });
 
   const nextHearing =

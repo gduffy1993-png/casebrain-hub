@@ -4,7 +4,9 @@ import {
   type ExtractedBundleCaseMetadata,
 } from "@/lib/criminal/extract-bundle-case-metadata";
 import { buildBundleSizeProfile, type BundleSizeProfile } from "@/lib/bundle/bundle-display-profile";
-import { combineCaseDocumentsText, getDocumentBodyText } from "./bundle-document-text";
+import { combineCaseDocumentsText, getDocumentBodyText, isExtractionFailurePlaceholder } from "./bundle-document-text";
+import { extractMetadataWithLessons } from "@/lib/criminal/controlled-learning/extract";
+import { matchLabelRule, type ApprovedRule } from "@/lib/criminal/controlled-learning/core";
 
 const HEADER_SCAN = 16_000;
 const SNIPPET_MAX = 8000;
@@ -187,7 +189,7 @@ export type DocumentRowMeta = {
   lenBody: number;
 };
 
-export function buildBundleSourcePayload(docs: Array<Record<string, unknown>>): {
+export function buildBundleSourcePayload(docs: Array<Record<string, unknown>>, learningRules: ApprovedRule[] = []): {
   combinedText: string;
   documentRows: DocumentRowMeta[];
   health: BundleHealth;
@@ -196,6 +198,7 @@ export function buildBundleSourcePayload(docs: Array<Record<string, unknown>>): 
   caseMetadata: ExtractedBundleCaseMetadata;
   sizeProfile: BundleSizeProfile;
   frontMatterScan: string;
+  learningApplied: Array<ReturnType<typeof extractMetadataWithLessons>["applied"][number] & { documentId: string; documentName: string | null }>;
 } {
   const typed = docs as Array<{
     id: string;
@@ -208,7 +211,23 @@ export function buildBundleSourcePayload(docs: Array<Record<string, unknown>>): 
 
   const combinedText = combineCaseDocumentsText(typed);
   const header = parseBundleHeaderFields(combinedText);
-  const caseMetadata = extractBundleCaseMetadata(combinedText, header);
+  // Learn from persisted source extraction only, never an extracted_json AI summary.
+  // Keep leading blank-page separators; trimming them would shift page provenance.
+  const sourceDocs = typed.flatMap(doc => {
+    const text = typeof doc.raw_text === "string" ? doc.raw_text : "";
+    return text.trim() && !isExtractionFailurePlaceholder(text) && getDocumentBodyText(doc)
+      ? [{ ...doc, text }] : [];
+  });
+  const learned = extractMetadataWithLessons(sourceDocs.map(doc => doc.text).join("\n\n"), learningRules, extractBundleCaseMetadata(combinedText, header));
+  const learningApplied = learned.applied.flatMap(receipt => {
+    const rule = learningRules.find(rule => rule.id === receipt.ruleId && rule.field === receipt.field);
+    if (!rule) return [];
+    const source = sourceDocs.flatMap(doc => matchLabelRule(doc.text, rule, rule.id)
+      .filter(match => match.line === receipt.line).map(match => ({ doc, match })))[0];
+    return source ? [{ ...receipt, lineNumber: source.match.lineNumber, compiledPage: source.match.compiledPage,
+      documentId: source.doc.id, documentName: source.doc.name ?? null }] : [];
+  });
+  const caseMetadata = learned.metadata;
   const snippets = extractBundleSnippets(combinedText);
   const health = computeBundleHealth(typed, combinedText, header);
 
@@ -244,5 +263,6 @@ export function buildBundleSourcePayload(docs: Array<Record<string, unknown>>): 
     caseMetadata,
     sizeProfile,
     frontMatterScan,
+    learningApplied,
   };
 }

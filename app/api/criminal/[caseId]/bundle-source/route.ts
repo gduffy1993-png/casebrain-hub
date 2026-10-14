@@ -5,6 +5,7 @@ import { buildBundleSourcePayload } from "@/lib/bundle/parse-bundle-display";
 import { buildAuthenticatedMatterCanonicalFromDocuments } from "@/lib/criminal/authenticated-matter-canonical";
 import { isScheduleChaseLabEnabled } from "@/lib/criminal/schedule-chase-lab-types";
 import { resolveOwnedScheduleColumnPages } from "@/lib/criminal/schedule-chase-owned-column-pages";
+import { loadApprovedRules } from "@/lib/criminal/controlled-learning/store";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -49,7 +50,8 @@ export async function GET(_request: Request, { params }: RouteParams) {
     }
 
     const rows = docs ?? [];
-    const payload = buildBundleSourcePayload(rows);
+    const learning = await loadApprovedRules(orgId);
+    const payload = buildBundleSourcePayload(rows, learning.rules);
 
     const scheduleLabOn = isScheduleChaseLabEnabled();
     let scheduleChaseLab:
@@ -128,6 +130,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
       allegation: payload.caseMetadata?.offenceDisplay ?? payload.header?.shortTitle ?? null,
       withSurfaces: scheduleLabOn,
       scheduleChaseLab,
+      learningRules: learning.rules,
     });
     const { canonical, surfaces } = built;
     const withheld = canonical.ingestion.substantiveOutputsWithheld;
@@ -147,6 +150,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
         frontMatterScan: withheld ? "" : payload.frontMatterScan,
         /** Live canonical pipeline from uploaded document/page units. */
         canonical,
+        learning: { status: learning.status, applied: withheld ? [] : payload.learningApplied },
         /** Present only when schedule chase lab is explicitly enabled on this copy. */
         surfaces: scheduleLabOn && !withheld ? surfaces : null,
       },

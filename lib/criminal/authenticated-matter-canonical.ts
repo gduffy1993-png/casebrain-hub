@@ -7,6 +7,7 @@
 import { getDocumentBodyText } from "@/lib/bundle/bundle-document-text";
 import { buildBundleSourcePayload } from "@/lib/bundle/parse-bundle-display";
 import { buildMetadataScan } from "@/lib/criminal/extract-bundle-case-metadata";
+import type { ApprovedRule } from "@/lib/criminal/controlled-learning/core";
 import {
   pageUnitsFromExtractedText,
   type ExtractedPageUnit,
@@ -309,6 +310,7 @@ function toFindingSummaries(findings: CanonicalFinding[]): AuthenticatedMatterCa
 export function buildAuthenticatedMatterCanonicalFromDocuments(
   docs: CaseDocumentRow[],
   opts?: {
+    learningRules?: ApprovedRule[];
     caseId?: string;
     allegation?: string | null;
     caseTitle?: string | null;
@@ -381,7 +383,7 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
     },
   };
   let pipeline =
-    units.length > 0 ? buildCanonicalPipelineFromDocumentUnits(units) : emptyPipeline;
+    units.length > 0 ? buildCanonicalPipelineFromDocumentUnits(units, opts?.learningRules ?? []) : emptyPipeline;
 
   const labOpt = opts?.scheduleChaseLab;
   const labEnabled =

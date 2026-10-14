@@ -1,4 +1,5 @@
 "use client";
+import { LearningReview } from "@/components/criminal/learning/LearningReview";
 
 import { useEffect, useState } from "react";
 import { FileText } from "lucide-react";
@@ -130,6 +131,10 @@ export function PilotCaseDocumentsPanel({
           </div>
         ) : null}
         <CaseFilesList documents={resolvedDocs} />
+        <details className="rounded border border-slate-200 bg-white p-3 text-slate-900">
+          <summary className="cursor-pointer text-sm font-medium">Correct a field and teach a reusable label</summary>
+          <div className="mt-3"><LearningReview documents={resolvedDocs.map(d => ({ id: d.id, name: d.name }))} /></div>
+        </details>
         {sourceExcerpt && !sourceWithheld ? (
           <div
             className={`rounded-lg border p-3 ${

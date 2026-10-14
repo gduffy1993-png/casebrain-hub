@@ -105,13 +105,13 @@ export function DemoOverviewCanvas({
   const statCards = [
     {
       label: "Missing",
-      value: stats.missing,
+      value: scheduleChaseReviewRequired ? "Unknown" : stats.missing,
       note: scheduleChaseReviewRequired ? "Not confirmed" : "Needs chase",
       className: "border-rose-100 bg-rose-50/70 text-rose-700",
     },
     {
       label: "Incomplete",
-      value: stats.incomplete,
+      value: scheduleChaseReviewRequired ? "Unknown" : stats.incomplete,
       note: scheduleChaseReviewRequired ? "Not confirmed" : "Needs completion",
       className: "border-amber-100 bg-amber-50/70 text-amber-700",
     },
@@ -232,7 +232,7 @@ export function DemoOverviewCanvas({
               </p>
             </div>
             <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">
-              {attention.length} item{attention.length === 1 ? "" : "s"}
+              {scheduleChaseReviewRequired ? "Review required" : `${attention.length} item${attention.length === 1 ? "" : "s"}`}
             </span>
           </div>
           <ul className="divide-y divide-slate-100">
@@ -372,17 +372,18 @@ export function DemoOverviewCanvas({
           <div className="flex items-center justify-between gap-2">
             <h3 className="text-sm font-semibold text-slate-900">Safe court line</h3>
             <button
+              disabled={scheduleChaseReviewRequired || !courtLine}
               type="button"
               className="inline-flex items-center gap-1 text-xs font-medium text-blue-700 hover:underline"
               onClick={async () => {
-                if (await copyText(courtLine)) flashCopy("safe");
+                if (!scheduleChaseReviewRequired && courtLine && await copyText(courtLine)) flashCopy("safe");
               }}
             >
               <Copy className="h-3 w-3" />
               {copied === "safe" ? "Copied" : "Copy safe court line"}
             </button>
           </div>
-          <p className="text-sm text-slate-700 leading-relaxed">{courtLine || "Court line not ready yet."}</p>
+          <p className="text-sm text-slate-700 leading-relaxed">{scheduleChaseReviewRequired ? "Court wording unavailable — review the original disclosure schedule before drafting." : courtLine || "Court line not ready yet."}</p>
           {courtReceipt ? <OutputReceiptDisclosure receipt={courtReceipt} /> : null}
         </section>
 
@@ -390,10 +391,11 @@ export function DemoOverviewCanvas({
           <div className="flex items-center justify-between gap-2">
             <h3 className="text-sm font-semibold text-slate-900">Client update</h3>
             <button
+              disabled={scheduleChaseReviewRequired || !clientUpdate}
               type="button"
               className="inline-flex items-center gap-1 text-xs font-medium text-blue-700 hover:underline"
               onClick={async () => {
-                if (await copyText(clientUpdate)) flashCopy("client");
+                if (!scheduleChaseReviewRequired && await copyText(clientUpdate)) flashCopy("client");
               }}
             >
               <Copy className="h-3 w-3" />
@@ -401,7 +403,7 @@ export function DemoOverviewCanvas({
             </button>
           </div>
           <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap">
-            {clientUpdate || "Client update not ready yet."}
+            {scheduleChaseReviewRequired ? "Client update unavailable — check the charge and disclosure position against the original papers before drafting." : clientUpdate || "Client update not ready yet."}
           </p>
           {clientReceipt ? <OutputReceiptDisclosure receipt={clientReceipt} /> : null}
         </section>
@@ -434,7 +436,7 @@ export function DemoOverviewCanvas({
             ) : null}
           </div>
           <div className="mt-4 rounded-xl bg-slate-50 p-3 text-xs text-slate-500">
-            Readiness: {readiness.overallPct}% provisional score from papers-backed counts.
+            {scheduleChaseReviewRequired ? "Readiness: unknown — disclosure schedule review required." : `Readiness: ${readiness.overallPct}% provisional score from papers-backed counts.`}
           </div>
         </section>
       </div>

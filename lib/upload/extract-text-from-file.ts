@@ -28,7 +28,7 @@ type PdfPageUnitExtraction = {
   reportedPageCount: number | null;
 };
 
-async function extractPdfPageUnitsWithCountFromBuffer(
+async function extractPdfWithLegacyParser(
   buffer: Buffer,
 ): Promise<PdfPageUnitExtraction | null> {
   try {
@@ -64,6 +64,26 @@ async function extractPdfPageUnitsWithCountFromBuffer(
   } catch {
     return null;
   }
+}
+
+/** Use the bundled page engine directly, avoiding the legacy wrapper's shared state.
+ * Original bytes are re-read; fallback text is never relabelled as page-aware.
+ */
+async function extractPdfPageUnitsWithCountFromBuffer(buffer: Buffer): Promise<PdfPageUnitExtraction | null> {
+  let document: Awaited<ReturnType<typeof import("pdf-parse/lib/pdf.js/v2.0.550/build/pdf.js")["default"]["getDocument"]>["promise"]> | undefined;
+  try {
+    const engine = (await import("pdf-parse/lib/pdf.js/v2.0.550/build/pdf.js")).default;
+    engine.disableWorker = true;
+    document = await engine.getDocument(new Uint8Array(buffer)).promise;
+    const pages: string[] = [];
+    for (let pageNumber = 1; pageNumber <= document.numPages; pageNumber++) {
+      const page = await document.getPage(pageNumber);
+      const content = await page.getTextContent({ normalizeWhitespace: false, disableCombineTextItems: false });
+      pages.push(renderPageTextFromItems(content.items));
+    }
+    return { pageUnits: buildPageUnitsFromCompiledPageTexts(pages), reportedPageCount: document.numPages };
+  } catch { return extractPdfWithLegacyParser(buffer); }
+  finally { await document?.destroy().catch(() => undefined); }
 }
 
 export async function extractPdfPageUnitsFromBuffer(

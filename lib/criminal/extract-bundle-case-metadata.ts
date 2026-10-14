@@ -966,6 +966,10 @@ function isTrackerCategoryOffenceLabel(value: string): boolean {
 
 function isSpuriousChargeLabelValue(value: string): boolean {
   const t = value.trim().toLowerCase();
+  // Flattened bundle indexes join the document title, year and notes. These
+  // describe a charge sheet; they are not the offence recorded on that sheet.
+  if (/\bdefendant,?\s*charge,?\s*court\s+and\s+hearing\b/i.test(t)) return true;
+  if (/^details\s*\d{4}/i.test(t)) return true;
   if (isRecognisedShortOffenceLabel(t)) return false;
   if (!t || t.length < 8) return true;
   if (/^charge\s*sheet$/i.test(t) || t === "sheet") return true;
@@ -1434,6 +1438,15 @@ function extractOffenceFromChargeBlock(block: string): string | null {
   const corrected = extractCorrectedIndictmentWording(block);
   if (corrected) return corrected;
 
+  // PDF table extraction can glue the field label to its value and wrap the
+  // statute onto the next line. Require an offence row and a legal citation.
+  const tableOffence = block.match(
+    /(?:^|\n)\s*Offen[cs]e\s*:?\s*((?:Possession|Assault|Robbery|Theft|Burglary|Criminal damage)[^\n]{8,220}(?:\n\s*(?!Court|Next hearing|Prosecutor|Bail|Particulars)[^\n]{1,160}){0,2})/i,
+  );
+  if (tableOffence?.[1]) {
+    const wording = tableOffence[1].replace(/\s+/g, " ").trim();
+    if (/\bcontrary to\b/i.test(wording) && !isIncompleteChargeWording(wording)) return wording;
+  }
   const compound = extractCompoundOffenceSummary(block);
   if (compound) return compound;
 

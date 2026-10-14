@@ -24,6 +24,7 @@ import { normalizePracticeArea } from "@/lib/types/casebrain";
 import { expandZipsToFolderCaseGroups } from "@/lib/upload/zip-to-case-groups";
 import { evalPackNameForStorage, inferEvalPackFromTitle, parseEvalPackId } from "@/lib/eval-packs";
 import { extractTextAndMetaFromFile } from "@/lib/upload/extract-text-from-file";
+import { loadApprovedRules } from "@/lib/criminal/controlled-learning/store";
 import { toPersistedPageUnits, type ExtractedPageUnit } from "@/lib/upload/pdf-page-units";
 import {
   quarantinedIngestionAssessment,
@@ -709,9 +710,11 @@ export async function POST(request: Request) {
     // Criminal structured extraction (deterministic): run after text extraction and document insert
     if (ingestionAssessment.substantiveOutputsAllowed && resolvedPracticeArea === "criminal") {
       try {
+        const learning = await loadApprovedRules(orgId);
         const meta = extractCriminalCaseMeta({
           text: redactedText,
           documentName: file.name,
+          learningRules: learning.rules,
         });
         await persistCriminalCaseMeta({
           supabase,

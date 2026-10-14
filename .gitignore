@@ -2,6 +2,7 @@ node_modules
 .next
 .env
 .env.local
+.env.preview
 .env.*.local
 .env.vercel.prod
 .env.production
