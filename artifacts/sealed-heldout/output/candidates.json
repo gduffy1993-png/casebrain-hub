@@ -1,10 +1,10 @@
 [
   {
     "file": "heldout-1.pdf",
-    "pdfSha256": "083ee4b6d111f8ee508f3386eb25236c3de0fbe5c1fe65855387c5956a63198f",
-    "caseId": "6d77d2d8-68e4-44c9-b612-a53a9522ed89",
+    "pdfSha256": "d8efade1ab6163ee35798320f535a99e57fd5886494e58053a68357a470ab3d8",
+    "caseId": "c63fea9c-71e7-4b23-af09-9caf442791cd",
     "documentIds": [
-      "0024e815-cb62-4337-8a0f-fb33e2437e07"
+      "a0fade9e-b71f-4931-badb-5884d58c7b44"
     ],
     "extractSha256": "8ae4c23b80d1e7c8ff79e515fe791ebd68190bae842dda7af193db125f700452",
     "surfacesPresent": true,
@@ -15,10 +15,10 @@
   },
   {
     "file": "heldout-2.pdf",
-    "pdfSha256": "4e7c99a77ea937645498c2db1f9c3658a7f389c9a896ebb4148f6798f2b5137f",
-    "caseId": "259fabf5-af5a-476e-ab01-1c45866d2b28",
+    "pdfSha256": "c345b6123ff6b34e5d56c9f84ccbd3441a18820b89d27917b0a9feafae3bfd1c",
+    "caseId": "ce631d18-c751-4fd0-8a42-017b52b64d37",
     "documentIds": [
-      "07b21dbf-2b87-4be3-bbca-acf3e44f92b5"
+      "198759f3-e7a8-4a33-a84e-1cd189c69b26"
     ],
     "extractSha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e",
     "surfacesPresent": true,
@@ -29,10 +29,10 @@
   },
   {
     "file": "heldout-3.pdf",
-    "pdfSha256": "2ba21af7f38b457fcd053f960b9d42676792f3de090fc4c2afe6a75ae34c3fae",
-    "caseId": "777aa7fd-422c-441b-9040-0f8ac2b83d8f",
+    "pdfSha256": "cb19ff5ef8f3574e6d20470f800e324a4ee3b5e8aa8dd5a2afcf4193017c616e",
+    "caseId": "67034557-947f-4814-a0ab-c0c467694231",
     "documentIds": [
-      "cc919516-9aa6-4a15-bf98-9868d3f427b7"
+      "4c980208-747f-4070-9594-18f140483bf3"
     ],
     "extractSha256": "14063697603e22d600d336bee6cff12c8be93509ce84a0642918d89b2aef1753",
     "surfacesPresent": true,
@@ -43,10 +43,10 @@
   },
   {
     "file": "heldout-4.pdf",
-    "pdfSha256": "696d01bc9107dcdd38a95fc28dcd0dce48e2f85299d6adea6ee9d97465932c8d",
-    "caseId": "7eeef6e8-39b6-4740-bfce-f7e17a04d5b8",
+    "pdfSha256": "17a53ce4dd6877f63154cd7d6739723170a25c56c9884b7969fcd5de7d992c51",
+    "caseId": "ed27a583-30b8-4542-968d-3bd97ef9b6bb",
     "documentIds": [
-      "5b4af0b1-82c6-4353-951d-91d28bf18f4d"
+      "1f1f4c32-9f6b-40cd-8a2d-868eb64a1c16"
     ],
     "extractSha256": "43c727ee4fc7250574d2ef90cfa16626388a10e1b30d36ece1c272953ad2ed9e",
     "surfacesPresent": true,
@@ -57,10 +57,10 @@
   },
   {
     "file": "heldout-5.pdf",
-    "pdfSha256": "8197bae8a47cb5ed79f24ea0cf6f05055625fc0305f01f58c4ca758ec4734db9",
-    "caseId": "1a45eefa-d278-48fa-aa6d-df3bef5ec776",
+    "pdfSha256": "c370537fa1da7020fbf13a7ebc62d4b5e5c2a21b1b1746aa64f88b4405060bcc",
+    "caseId": "cfee0202-6392-4092-b9e6-7be3cccf9336",
     "documentIds": [
-      "6e230bce-2a84-4aa0-a817-20296181d509"
+      "a1ca84c3-c49b-499c-8eb3-d55e5b6f3060"
     ],
     "extractSha256": "9a049b03f6fc40bfcf2f136320359257ed4af8513f71aa6fef47f17059bbae23",
     "surfacesPresent": true,
@@ -71,10 +71,10 @@
   },
   {
     "file": "heldout-6.pdf",
-    "pdfSha256": "556eb6a5bb3c00d564374847fc2ed152cb257a80269e296fc83481e3c1bb8258",
-    "caseId": "bc36d296-edff-4ec9-a371-8249c9463415",
+    "pdfSha256": "362042cb363591ce53556a584b3d25f05e2acb16dfcb1967ff030d60d45ae781",
+    "caseId": "6e157a21-7f0a-4315-b5ab-2315e9791c6e",
     "documentIds": [
-      "635df2d3-15d3-43c7-911b-cb1e097e3bf6"
+      "4e69ad5a-9760-4fb3-8a81-6eb06567aa0e"
     ],
     "extractSha256": "8efbbe9bc19ad2e043c6cdb187c0a0fedde70b6458443ce0b5648ec04ccf4cdf",
     "surfacesPresent": true,
@@ -86,9 +86,9 @@
   {
     "file": "CB-MONSTER-2026-0001.pdf",
     "pdfSha256": "a13f158eaf217269bc00a9af8feecdb8d7fef727e309972a293f9c6546ced9f7",
-    "caseId": "b12143b6-06ae-4674-980f-e3da0fc91182",
+    "caseId": "d40048f3-930e-405b-92d4-94da1383b4a1",
     "documentIds": [
-      "de971223-5d3b-4952-bf0e-9fd2498c99fc"
+      "e52f622b-d823-4900-91f0-bc64c1374d6d"
     ],
     "extractSha256": "e3209b97ef1347d5595a21629a3f34da01516dbf1ef0f5aa2d5af973e72f3644",
     "surfacesPresent": true,

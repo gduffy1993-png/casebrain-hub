@@ -1,12 +1,12 @@
 {
-  "hostedProof": false,
-  "localProof": true,
-  "baseUrl": "http://127.0.0.1:3017",
+  "hostedProof": true,
+  "localProof": false,
+  "baseUrl": "https://casebrain-mon4ljszv-gduffy1993-pngs-projects.vercel.app",
   "freeze": {
-    "frozenAt": "2026-10-14T07:17:33.327Z",
-    "candidateContentSha256": "d70a94e66ef351624025bcd920cedb43f19fdd053dc1ff40a7f01853dd28f3f7",
-    "baseUrl": "http://127.0.0.1:3017",
-    "email": "sealed-heldout-af925ee6@casebrain.qa.smoke",
+    "frozenAt": "2026-10-14T07:38:36.629Z",
+    "candidateContentSha256": "ff5d91f3a5d81e1e617dbffb0cc08cba2676ffebabe23796093a1946cf7d67af",
+    "baseUrl": "https://casebrain-mon4ljszv-gduffy1993-pngs-projects.vercel.app",
+    "email": "sealed-heldout-ccd2c2f7@casebrain.qa.smoke",
     "route": "upload",
     "cases": 7
   },
@@ -56,6 +56,6 @@
   "codeHashes": {
     "uploadRoute": "06a86a6cc5cc424fce63bf338865605add451203507a23207401b0ff56426894",
     "bundleSource": "c8476f0ae1f1f7e1424fc698f71fdba6625d21c2ebdbe6b2b4eb73ba59625fee",
-    "script": "49035edf4897c8a2fcb1a46a6b6fbf169dd93d59219e37df36a8e55a099804a0"
+    "script": "f51f2f7ceffb4b5cbd696fcad0c929a7093573d3ce90153ebb06b19b69f094f1"
   }
 }

@@ -1,8 +1,8 @@
 {
-  "frozenAt": "2026-10-14T07:17:33.327Z",
-  "candidateContentSha256": "d70a94e66ef351624025bcd920cedb43f19fdd053dc1ff40a7f01853dd28f3f7",
-  "baseUrl": "http://127.0.0.1:3017",
-  "email": "sealed-heldout-af925ee6@casebrain.qa.smoke",
+  "frozenAt": "2026-10-14T07:38:36.629Z",
+  "candidateContentSha256": "ff5d91f3a5d81e1e617dbffb0cc08cba2676ffebabe23796093a1946cf7d67af",
+  "baseUrl": "https://casebrain-mon4ljszv-gduffy1993-pngs-projects.vercel.app",
+  "email": "sealed-heldout-ccd2c2f7@casebrain.qa.smoke",
   "route": "upload",
   "cases": 7
 }
